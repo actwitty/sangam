@@ -91,15 +91,18 @@ GEM
       net-ssh-gateway (>= 1.0.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
-    capybara (0.3.9)
+    capybara (0.4.1.2)
+      celerity (>= 0.7.9)
       culerity (>= 0.2.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      selenium-webdriver (>= 0.0.3)
+      selenium-webdriver (>= 0.0.27)
+      xpath (~> 0.1.3)
     carrierwave (0.5.2)
       activesupport (~> 3.0)
+    celerity (0.8.9)
     chalofa_ruby-progressbar (0.0.9.1)
     chef (0.9.12)
       bunny (>= 0.6.0)
@@ -115,8 +118,8 @@ GEM
       ohai (>= 0.5.7)
       rest-client (< 1.7.0, >= 1.0.4)
       uuidtools
-    childprocess (0.1.7)
-      ffi (~> 0.6.3)
+    childprocess (0.1.8)
+      ffi (~> 1.0.6)
     closure-compiler (1.1.1)
     cloudfiles (1.4.10)
       mime-types (>= 1.16)
@@ -160,7 +163,7 @@ GEM
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
     fastercsv (1.5.4)
-    ffi (0.6.3)
+    ffi (1.0.7)
       rake (>= 0.8.7)
     fixture_builder (0.2.2)
     fog (0.3.25)
@@ -341,9 +344,9 @@ GEM
       sexp_processor (~> 3.0)
     rubyntlm (0.1.1)
     rubyzip (0.9.4)
-    selenium-webdriver (0.1.3)
-      childprocess (~> 0.1.5)
-      ffi (~> 0.6.3)
+    selenium-webdriver (0.2.0)
+      childprocess (>= 0.1.7)
+      ffi (>= 1.0.7)
       json_pure
       rubyzip
     sexp_processor (3.0.5)
@@ -375,6 +378,8 @@ GEM
       crack (>= 0.1.7)
     will_paginate (3.0.pre2)
     xml-simple (1.0.15)
+    xpath (0.1.4)
+      nokogiri (~> 1.3)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -389,12 +394,12 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   capistrano (= 2.5.19)
   capistrano-ext (= 1.2.1)
-  capybara (~> 0.3.9)
+  capybara
   carrierwave (= 0.5.2)
   chef (= 0.9.12)
   cloudfiles (= 1.4.10)
-  cucumber-rails (= 0.3.2)
-  database_cleaner (= 0.6.0)
+  cucumber-rails
+  database_cleaner
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
   em-websocket!
@@ -425,9 +430,9 @@ DEPENDENCIES
   roxml!
   rspec (>= 2.0.1)
   rspec-instafail (>= 0.1.7)
-  rspec-rails (= 2.0.1)
+  rspec-rails (>= 2.0.1)
   ruby-debug19
-  selenium-webdriver (= 0.1.3)
+  selenium-webdriver (~> 0.2.0)
   sod!
   thin (= 1.2.8)
   typhoeus

@@ -30,7 +30,7 @@ development:
   charset: utf8
   collation: utf8_bin
 
-test:
+test: &test
   adapter: mysql2
   database:  sangam_test
   username: root
@@ -45,3 +45,6 @@ production:
   password: lemon124
   charset: utf8
   collation: utf8_bin
+
+cucumber:
+  <<: *test

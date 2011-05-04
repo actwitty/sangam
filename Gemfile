@@ -72,7 +72,8 @@ end
 
 group :test, :development do
   gem 'factory_girl_rails', :require => false
-  gem 'rspec-rails', '2.0.1'
+  gem 'rspec-rails', '>= 2.0.1'
+  gem 'capybara'
   gem 'ruby-debug-base19', '0.11.23' if RUBY_VERSION.include? '1.9.1'
   gem 'ruby-debug19' if RUBY_VERSION.include? '1.9'
   gem 'ruby-debug' if defined?(Rubinius).nil? && RUBY_VERSION.include?('1.8')
@@ -84,13 +85,13 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'fixture_builder', '~> 0.2.0'
-  gem 'selenium-webdriver', '0.1.3'
-  gem 'capybara', '~> 0.3.9'
-  gem 'cucumber-rails', '0.3.2'
+  gem 'selenium-webdriver', '~> 0.2.0'
+  gem 'capybara'
+  gem 'cucumber-rails'
   gem 'rspec', '>= 2.0.1'
   #gem 'rspec-rails', '>= 2.0.1'
   gem 'rcov'
-  gem 'database_cleaner', '0.6.0'
+  gem 'database_cleaner'
   gem 'webmock', :require => false
   #gem 'jasmine', :path => 'vendor/gems/jasmine', :require => false
   gem 'mongrel', :require => false if RUBY_VERSION.include? '1.8'
