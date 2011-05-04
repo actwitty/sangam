@@ -43,7 +43,7 @@ module Sangam
     # be sure to check the documentation.
     config.generators do |g|
       g.template_engine :haml
-      g.test_framework :rspec, :fixture => false
+      g.test_framework :rspec
     end
 
     
