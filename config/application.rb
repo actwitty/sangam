@@ -46,7 +46,13 @@ module Sangam
       g.test_framework :rspec
     end
 
-    
+   ### Part of a Spork hack. See http://bit.ly/arY19y
+    if Rails.env.test?
+      initializer :after => :initialize_dependency_mechanism do
+        # Work around initializer in railties/lib/rails/application/bootstrap.rb
+        ActiveSupport::Dependencies.mechanism = :load
+      end
+    end 
 
   end
 end

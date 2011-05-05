@@ -97,5 +97,6 @@ group :test do
   gem 'mongrel', :require => false if RUBY_VERSION.include? '1.8'
   gem 'rspec-instafail', '>= 0.1.7', :require => false
   gem 'fuubar'
+  gem 'spork', '0.8.4'
 end
 
