@@ -50,12 +50,12 @@ class Profile < ActiveRecord::Base
   
   
    # validate presence of foreign key 
-  validates_presence_of :user
+ # validates_presence_of :user
 
   # validate uniqueness of user_id as user_id has one and only one profile
   validates_uniqueness_of :user_id
 
-  before_validation :strip_and_downcase_email
+  before_validation :strip_field
   
   # validate lengths
   validates_length_of :first_name, :maximum => 32 
@@ -86,7 +86,7 @@ class Profile < ActiveRecord::Base
 
   #validate date of birth has already elapsed
   # gem 'date_validator'
-  validates :dob, :date => { :after => Time.now, :before => Time.now + 125.year }
+  validates :dob, :date => { :before => Time.now, :after => Time.now - 125.year }
 
   #validate float precisions to 4 places after decimal
   validates_format_of :current_geo_lat, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
@@ -94,6 +94,13 @@ class Profile < ActiveRecord::Base
   validates_format_of :home_geo_lat, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
   validates_format_of :home_geo_long, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
 
+  def strip_field
+        
+     if email.present?
+      email.strip!
+      email.downcase!
+    end
+  end
 
   ############################################# 
   # add validate url from a universal validator
