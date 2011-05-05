@@ -15,5 +15,7 @@ class Like < ActiveRecord::Base
 
   belongs_to :post
   belongs_to :author, :class_name => 'User'
-
+    
+  validates_presence_of :post
+  validates_uniqueness_of :post_id, :scope => :author_id, :on => :create
 end

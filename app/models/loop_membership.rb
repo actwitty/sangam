@@ -11,8 +11,14 @@
 #
 
 class LoopMembership < ActiveRecord::Base
-
+  
   belongs_to :loop 
   belongs_to :contact 
-
+  
+  #validate foreign key reference
+  validates_presence_of :loop
+  validates_presence_of :contact
+  
+  #validate join
+  validates_uniqueness_of :loop_id, :scope => :contact_id
 end

@@ -41,12 +41,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  # relations #
   has_one :profile
   
   
   has_many :likes, :foreign_key => :author_id #these are the likes user did
   has_many :comments, :foreign_key => :author_id #these are the comments user is author
-  has_many :contacts
+  
+  has_many :comments, :foreign_key => :author_id #these are the comments user is author
+  has_many :contacts, :foreign_key => :friend_id #these are the friends in the contacts table
 
   has_many :loops
   has_many :loop_memberships, :through => :loops
@@ -55,5 +58,24 @@ class User < ActiveRecord::Base
   has_many :activities, :through => :hubs
   has_many :entities, :through => :hubs
   has_many :posts, :through => :hubs
+  ####################################
+  
+  # Validations #
+  before_validation :strip_fields, :on => :create
+  validates_presence_of :username
+  validates_length_of :username, :maximum => 32
+  validates_uniqueness_of :username, :case_sensitive => false, :message => 'username is already registered'
+  ######################################
 
+  def strip_fields
+    if username.present?
+      username.strip!
+      username.downcase!
+    end
+    
+     if email.present?
+      email.strip!
+      email.downcase!
+    end
+  end
 end

@@ -18,5 +18,14 @@ class LoopView < ActiveRecord::Base
   belongs_to :entity 
   belongs_to :post 
   belongs_to :loop 
-
+  
+  #validate foreign key reference
+  validates_presence_of :loop
+  validates_presence_of :activity
+  validates_presence_of :entity
+  validates_presence_of :post
+  
+  # validate join
+  validates_uniqueness_of :loop_id, :scope => [ :activity_id, :post_id, :entity_id ]
+  
 end

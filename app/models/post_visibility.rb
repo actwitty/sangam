@@ -16,4 +16,5 @@ class PostVisibility < ActiveRecord::Base
   belongs_to :contact
   belongs_to :post
 
+  validates_uniqueness_of :post_id, :scope => :contact_id
 end

@@ -12,8 +12,12 @@
 #
 
 class Loop < ActiveRecord::Base
-
+  
   belongs_to :user
   has_many :loop_memberships
-
+  #validate foreign key reference
+  validates_presence_of :user #again this can be skipped as the user is triggering this
+  
+  #validate the join
+  validates_uniqueness_of :id, :scope => :user_id
 end

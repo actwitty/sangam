@@ -1,0 +1,2 @@
+class UserboardPostCacheController < ApplicationController
+end

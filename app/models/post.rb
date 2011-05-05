@@ -35,5 +35,13 @@ class Post < ActiveRecord::Base
 
   has_many :post_visibilities
   has_many :contacts, :through => :post_visibilities
+  
+
+  # validates_presence_of :user --- can add by external code
+  #TODO: Add check for user exists validates_presence_of :use
+  validates_length_of :message_text, :maximum => 200
+  validates_length_of :activity_text, :maximum => 32
+
+  validates_length_of :optional_comment, :maximum => 400, :allow_blank => true
 
 end

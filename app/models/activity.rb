@@ -22,5 +22,6 @@ class Activity < ActiveRecord::Base
 
   has_many :loop_views
   has_many :loops, :through => :loop_views
+  
 
 end

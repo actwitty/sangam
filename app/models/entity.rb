@@ -35,7 +35,7 @@
 #
 
 class Entity < ActiveRecord::Base
-
+  
   has_many :hubs
   has_many :activities, :through => :hubs
   has_many :users, :through => :hubs
@@ -43,5 +43,35 @@ class Entity < ActiveRecord::Base
   
   has_many :loop_views
   has_many :loops, :through => :loop_views
-
+  
+  # validate lengths with blanks not allowed, nils not allowed
+  validates_length_of :entity_name, :maximum => 200
+  validates_length_of :entity_type, :maximum => 200
+  validates_length_of :entity_category, :maximum => 200
+  validates_length_of :entity_creator_name, :maximum => 64
+  
+  
+  # validate lengths
+  validates_length_of :entity_url, :maximum => 250, :allow_blank => true
+  validates_length_of :entity_desc, :maximum => 250, :allow_blank => true
+  validates_length_of :entity_photo_l, :maximum => 250, :allow_blank => true
+  validates_length_of :entity_photo_m, :maximum => 250, :allow_blank => true
+  validates_length_of :entity_photo_s, :maximum => 250, :allow_blank => true
+  validates_length_of :entity_announcements, :maximum => 250, :allow_blank => true
+  validates_length_of :entity_most_popular_name, :maximum => 64, :allow_blank => true
+  
+  
+  #validate float precisions to 4 places after decimal
+  validates_format_of :entity_location_lat, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
+  validates_format_of :entity_location_long, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
+  
+  validates_format_of :entity_most_popular_location_lat, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
+  validates_format_of :entity_most_popular_location_long, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
+  
+  ############################################# 
+  # add validate url from a universal validator
+  # entity_photo_l
+  # entity_photo_m
+  # entity_photo_s
+  ##############################################
 end
