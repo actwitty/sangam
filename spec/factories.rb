@@ -6,11 +6,8 @@ Factory.define :profile do |p|
   p.sequence(:last_name)  { |n| "LemonyLast#{n}" }
   p.sequence(:nick_name)  { |n| "SmartLemon#{n}" }
   p.sequence(:short_status)  { |n| "Status of crushed lemon#{n}" }
-  p.sequence(:sex)  { "M" }
-  p.sequence(:dob)  { "01/01/2011" }
-  
-  
-  
+  p.sequence(:sex)  { "male" }
+  p.sequence(:dob)  { "01/01/2011" }  
 end
 
 
