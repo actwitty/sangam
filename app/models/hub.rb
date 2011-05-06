@@ -1,4 +1,3 @@
-# == Schema Information
 # Schema version: 20110504095033
 #
 # Table name: hubs

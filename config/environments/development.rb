@@ -27,5 +27,17 @@ Sangam::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   
+  config.action_mailer.delivery_method = :smtp
+
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :enable_starttls_auto => true,
+    :port => 587,
+    :authentication => :plain,
+    :user_name => "no-reply@lemonbag.com",
+    :password => 'lemonbag08032011'
+  }
+
+    
 end
 
