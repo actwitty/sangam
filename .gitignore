@@ -10,3 +10,4 @@ doc/app
 *˜
 .DS_Store
 .project
+solr/data

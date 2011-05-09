@@ -41,6 +41,9 @@ gem 'annotate-models', '1.0.4'
 
 gem 'thin', '1.2.8', :require => false
 
+#Search 
+gem 'sunspot_rails', '~> 1.2.1'
+
 #Websocket
 gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket', :ref => 'e278f5a1c4db60be7485'
 

@@ -67,6 +67,16 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :case_sensitive => false, :message => 'username is already registered'
   ######################################
 
+  # Accessors  #
+  attr_accessible  :username
+  #######################################
+
+
+  searchable do
+    string :username
+    string :email
+  end
+
   def strip_fields
     if username.present?
       username.strip!
@@ -78,4 +88,5 @@ class User < ActiveRecord::Base
       email.downcase!
     end
   end
+
 end

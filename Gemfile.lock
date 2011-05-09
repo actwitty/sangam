@@ -115,8 +115,8 @@ GEM
       ohai (>= 0.5.7)
       rest-client (< 1.7.0, >= 1.0.4)
       uuidtools
-    childprocess (0.1.7)
-      ffi (~> 0.6.3)
+    childprocess (0.1.8)
+      ffi (~> 1.0.6)
     closure-compiler (1.1.1)
     cloudfiles (1.4.10)
       mime-types (>= 1.16)
@@ -150,6 +150,7 @@ GEM
       ruby_parser
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    escape (0.0.4)
     eventmachine (0.12.10)
     excon (0.2.4)
     extlib (0.9.15)
@@ -162,7 +163,7 @@ GEM
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
     fastercsv (1.5.4)
-    ffi (0.6.3)
+    ffi (1.0.7)
       rake (>= 0.8.7)
     fixture_builder (0.2.2)
     fog (0.3.25)
@@ -277,6 +278,7 @@ GEM
     open4 (1.0.1)
     orm_adapter (0.0.4)
     polyglot (0.3.1)
+    pr_geohash (1.0.0)
     pyu-ruby-sasl (0.0.3.2)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -312,6 +314,8 @@ GEM
       vegas (~> 0.1.2)
     rest-client (1.6.1)
       mime-types (>= 1.16)
+    rsolr (0.12.1)
+      builder (>= 2.1.2)
     rspec (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
@@ -343,16 +347,24 @@ GEM
       sexp_processor (~> 3.0)
     rubyntlm (0.1.1)
     rubyzip (0.9.4)
-    selenium-webdriver (0.1.3)
-      childprocess (~> 0.1.5)
-      ffi (~> 0.6.3)
+    selenium-webdriver (0.2.0)
+      childprocess (>= 0.1.7)
+      ffi (>= 1.0.7)
       json_pure
       rubyzip
     sexp_processor (3.0.5)
     sinatra (1.2.6)
       rack (~> 1.1)
       tilt (< 2.0, >= 1.2.2)
+    spork (0.8.4)
     subexec (0.0.4)
+    sunspot (1.2.1)
+      escape (= 0.0.4)
+      pr_geohash (~> 1.0)
+      rsolr (= 0.12.1)
+    sunspot_rails (1.2.1)
+      nokogiri
+      sunspot (= 1.2.1)
     systemu (2.2.0)
     term-ansicolor (1.0.5)
     thin (1.2.8)
@@ -391,12 +403,12 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   capistrano (= 2.5.19)
   capistrano-ext (= 1.2.1)
-  capybara (~> 0.3.9)
+  capybara
   carrierwave (= 0.5.2)
   chef (= 0.9.12)
   cloudfiles (= 1.4.10)
-  cucumber-rails (= 0.3.2)
-  database_cleaner (= 0.6.0)
+  cucumber-rails
+  database_cleaner
   date_validator
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
@@ -427,12 +439,13 @@ DEPENDENCIES
   rest-client (= 1.6.1)
   roxml!
   rspec (>= 2.0.1)
-  rspec-core (= 2.0.1)
   rspec-instafail (>= 0.1.7)
-  rspec-rails (= 2.0.1)
+  rspec-rails (>= 2.0.1)
   ruby-debug19
-  selenium-webdriver (= 0.1.3)
+  selenium-webdriver (~> 0.2.0)
   sod!
+  spork (= 0.8.4)
+  sunspot_rails (~> 1.2.1)
   thin (= 1.2.8)
   typhoeus
   webmock
