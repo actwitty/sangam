@@ -72,10 +72,12 @@ class User < ActiveRecord::Base
   #######################################
 
 
-  searchable do
-    string :username
-    string :email
-  end
+
+#  searchable do
+#    string :username
+#    string :email
+#  end
+
 
   def strip_fields
     if username.present?
