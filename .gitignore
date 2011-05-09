@@ -1,6 +1,7 @@
 .bundle
 db/*.sqlite3*
 log/*.log
+log/*.log.*
 *.log
 tmp/**/*
 tmp/*
@@ -11,3 +12,5 @@ doc/app
 .DS_Store
 .project
 solr/data
+.idea/*.*
+*.pid
