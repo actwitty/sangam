@@ -4,7 +4,7 @@ require 'active_support/secure_random'
 describe Profile do
   #pending "add some examples to (or delete) #{__FILE__}"
   before(:each) do
-    @username =   'profiletest'
+    @username =   'profilertester'
     @email = 'tester@lemonbag.com'
     @user = Factory.create(:user, :username => @username, :email => "tester@lemonbag.com")
     @profile = Factory.create(:profile, :user_id => @user.id)
