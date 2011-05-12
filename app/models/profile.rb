@@ -50,7 +50,7 @@ class Profile < ActiveRecord::Base
   
   
    # validate presence of foreign key 
- # validates_presence_of :user
+  validates_presence_of :user
 
   # validate uniqueness of user_id as user_id has one and only one profile
   validates_uniqueness_of :user_id
@@ -58,7 +58,7 @@ class Profile < ActiveRecord::Base
   before_validation :strip_field
   
   # validate lengths
-  validates_length_of :first_name, :maximum => 32 
+  validates_length_of :first_name, :maximum => 32
   validates_length_of :last_name,  :maximum => 32
   validates_length_of :nick_name, :maximum => 128, :allow_blank => true
   validates_length_of :mobile_number, :in => 7..32, :allow_blank => true
