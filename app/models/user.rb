@@ -44,20 +44,13 @@ class User < ActiveRecord::Base
   # relations #
   has_one :profile
   
-  
-  has_many :likes, :foreign_key => :author_id #these are the likes user did
-  has_many :comments, :foreign_key => :author_id #these are the comments user is author
-  
-  has_many :comments, :foreign_key => :author_id #these are the comments user is author
   has_many :contacts, :foreign_key => :friend_id #these are the friends in the contacts table
 
   has_many :loops
   has_many :loop_memberships, :through => :loops
 
-  has_many :hubs
-  has_many :activities, :through => :hubs
-  has_many :entities, :through => :hubs
-  has_many :posts, :through => :hubs
+  has_many :posts, :foreign_key => :author_id , :dependent => :destroy
+
   ####################################
   
   # Validations #
