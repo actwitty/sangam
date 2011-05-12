@@ -64,31 +64,37 @@ class User < ActiveRecord::Base
   before_validation :strip_fields, :on => :create
   validates_presence_of :username
   validates_length_of :username, :maximum => 32
-  validates_uniqueness_of :username, :case_sensitive => false, :message => 'username is already registered'
+  validates_uniqueness_of :username,
+                          :case_sensitive => false,
+                          :message => 'username is already registered'
+
+  validates_presence_of :profile, :unless => proc {|user| user.confirmed_at.nil?}
+
   ######################################
 
-  # Accessors  #
-  attr_accessible  :username
-  #######################################
-
-
-
-#  searchable do
-#    string :username
-#    string :email
-#  end
+  # private methods
+  private
 
 
   def strip_fields
-    if username.present?
-      username.strip!
-      username.downcase!
+    if self.email.present?
+       self.email.strip!
+       self.email.downcase!
     end
-    
-     if email.present?
-      email.strip!
-      email.downcase!
+    if self.username.present?
+      self.username.strip!
+      self.username.downcase!
+    else
+       self.username = self.email
     end
   end
 
+  # profile related api
+  def build_profile_on_confirmation
+
+  end
+
+  def update_profile
+
+  end
 end
