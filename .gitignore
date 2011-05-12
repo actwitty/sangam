@@ -15,4 +15,3 @@ solr/data
 .idea/*.*
 *.pid
 *.orig
-*.tgz
