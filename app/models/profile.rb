@@ -94,6 +94,8 @@ class Profile < ActiveRecord::Base
   validates_format_of :home_geo_lat, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
   validates_format_of :home_geo_long, :with => /^[0-9]+\.[0-9]{4}$/, :allow_blank => true
 
+  validates_existence_of :user      #works both ways
+
   def strip_field
         
      if email.present?

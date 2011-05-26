@@ -132,9 +132,54 @@ describe User do
   end
   
 
+
+  describe "manage contacts for user" do
+    before(:each) do
+        @tom = Factory.create(:user,  :username => 'tom')
+        @dick = Factory.create(:user,  :username => 'dick')
+        @harry = Factory.create(:user,  :username => 'harry')
+    end
+
+    it "must create a new contact requests for a user" do
+      @tom.get_contacts.count.should equal(0)
+      @tom.get_pending_request_contacts.count.should equal(0)
+
+      @dick.new_contact_request(@tom.id)
+      @harry.new_contact_request(@tom.id)
+      @tom.get_pending_request_contacts.count.should equal(2)
+      @tom.get_contacts.count.should equal(0)
+
+      @dick.get_raised_contact_requests_raised.count.should equal(1)
+
+      @tom.accept_a_contact_request(@dick.id)
+      @dick.get_raised_contact_requests_raised.count.should equal(0)
+
+      @tom.get_pending_request_contacts.count.should equal(1)
+      @tom.get_contacts.count.should equal(1)
+
+      @tom.reject_a_contact_request(@harry.id)
+      @tom.get_pending_request_contacts.count.should equal(0)
+
+      @tom.get_contacts.count.should equal(1)
+      @dick.get_contacts.count.should equal(1)
+      @tom.disconnect_a_contact(@dick.id)
+
+      @tom.disconnect_a_contact(100000)
+
+
+      @tom.get_contacts.count.should equal(0)
+      @dick.get_raised_contact_requests_raised.count.should equal(0)
+      @dick.get_contacts.count.should equal(0)
+
+    end
+
+  end
   describe "destroy user and dependencies" do
 
   end
+
+
+
   
   
   

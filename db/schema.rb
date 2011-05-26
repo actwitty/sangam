@@ -10,38 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110502113130) do
+ActiveRecord::Schema.define(:version => 20110517110406) do
 
   create_table "contacts", :force => true do |t|
-    t.string   "status"
-    t.boolean  "pending"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "status"
     t.integer  "user_id"
-  end
-
-  create_table "loop_memberships", :force => true do |t|
+    t.integer  "friend_id"
     t.integer  "loop_id"
-    t.integer  "contact_id"
+    t.decimal  "strength",   :precision => 5, :scale => 2, :default => 100.0
+    t.string   "relation",                                 :default => "Friend"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "loop_views", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "activity_id"
-    t.integer  "loop_id"
-    t.integer  "entity_id"
-    t.integer  "post_id"
   end
 
   create_table "loops", :force => true do |t|
     t.string   "name"
-    t.boolean  "public"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "profiles", :force => true do |t|

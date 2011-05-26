@@ -1,6 +1,8 @@
 Sangam::Application.routes.draw do
 
-  devise_for :users
+ # devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -54,7 +56,9 @@ Sangam::Application.routes.draw do
   # root :to => "welcome#index"
     
     root :to => "home#index"
- 
+
+    resource :profile
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
