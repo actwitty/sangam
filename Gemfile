@@ -69,6 +69,9 @@ gem 'SystemTimer', '1.2.1' unless RUBY_VERSION.include? '1.9' || RUBY_PLATFORM =
 gem 'validates_existence', '>= 0.4'
 gem 'default_value_for',  :git => 'git://github.com/FooBarWidget/default_value_for.git'
 
+#generators for gems which dont have it yet
+gem  'rails3-generators'
+
 group :development do
   gem 'capistrano', '2.5.19', :require => false
   gem 'capistrano-ext', '1.2.1', :require => false
