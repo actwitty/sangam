@@ -1,0 +1,2 @@
+class EntityOwnershipsController < ApplicationController
+end

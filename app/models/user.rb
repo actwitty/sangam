@@ -49,7 +49,26 @@ class User < ActiveRecord::Base
   has_many :loops
   has_many :loop_memberships, :through => :loops
 
-  has_many :posts, :foreign_key => :author_id , :dependent => :destroy
+  ##### ALOK changed it  ##########################
+  has_many :activities, :foreign_key => :author_id , :dependent => :destroy
+  has_many :documents, :foreign_key => :owner_id, :dependent => :destroy
+
+
+  #CREATE & DESTROY for hub, hub association, mentions, campaigns, entity_ownerships, location_ownerships  will happen from activity create & destroy
+  #no explicit create & destroy is called by user for all these
+  has_many :hubs
+  has_many :entities, :through => :hubs
+  has_many :locations, :through => :hubs
+  has_many  :activity_dicts, :through => :hubs
+
+  has_many :mentions
+  has_many :campaigns,:foreign_key => :author_id
+
+  #Though it only removes the user foreign key in entity ownership. But User ID  &  Entities
+  # will not be deleted as of now. Only user's docs and activities
+  has_many :entity_ownerships, :foreign_key => :owner_id, :dependent => :nullify
+
+  ##### ALOK changes ends here #####################
 
   ####################################
   

@@ -1,0 +1,2 @@
+module WebLocationsHelper
+end

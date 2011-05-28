@@ -1,0 +1,2 @@
+class WebLocationsController < ApplicationController
+end

@@ -70,7 +70,14 @@ gem 'SystemTimer', '1.2.1' unless RUBY_VERSION.include? '1.9' || RUBY_PLATFORM =
 #generators for gems which dont have it yet
 gem  'rails3-generators'
 
+#add validation for foreign keys
+gem "validates_existence", ">= 0.4"
+
+#Ancestry gem - a better replacement of act_as_tree
+gem 'ancestry'
+
 group :development do
+
   gem 'capistrano', '2.5.19', :require => false
   gem 'capistrano-ext', '1.2.1', :require => false
   gem 'sod', :git => "git://github.com/MikeSofaer/sod.git"
