@@ -50,13 +50,17 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
   add_index "campaigns", ["author_id", "campaign_name", "campaign_value"], :name => "index_campaign_on_author_name_value"
   add_index "campaigns", ["campaign_name", "campaign_value"], :name => "index_campaign_on_name_value"
 
+
   create_table "contacts", :force => true do |t|
-    t.string   "status"
-    t.boolean  "pending"
+   t.integer  "status"
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.integer  "loop_id"
+    t.decimal  "strength",   :precision => 5, :scale => 2, :default => 100.0
+    t.string   "relation",                                 :default => "Friend"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-  end
+ end
 
   create_table "documents", :force => true do |t|
     t.integer  "owner_id",      :null => false
@@ -157,28 +161,11 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
 
   add_index "locations", ["location_type"], :name => "index_locations_on_location_type"
 
-  create_table "loop_memberships", :force => true do |t|
-    t.integer  "loop_id"
-    t.integer  "contact_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "loop_views", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "activity_id"
-    t.integer  "loop_id"
-    t.integer  "entity_id"
-    t.integer  "post_id"
-  end
-
   create_table "loops", :force => true do |t|
     t.string   "name"
-    t.boolean  "public"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "mentions", :force => true do |t|

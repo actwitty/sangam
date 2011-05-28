@@ -43,8 +43,14 @@ class User < ActiveRecord::Base
 
   # relations #
   has_one :profile
+
   
-  has_many :contacts, :foreign_key => :friend_id #these are the friends in the contacts table
+  has_many :likes, :foreign_key => :author_id #these are the likes user did
+  has_many :comments, :foreign_key => :author_id #these are the comments user is author
+  
+  has_many :comments, :foreign_key => :author_id #these are the comments user is author
+  has_many :contacts
+  has_many :friends, :foreign_key => :friend_id, :class_name => 'Contact' #these are the friends in the contacts table
 
   has_many :loops
   has_many :loop_memberships, :through => :loops
@@ -70,7 +76,7 @@ class User < ActiveRecord::Base
 
   ##### ALOK changes ends here #####################
 
-  ####################################
+
   
   # Validations #
   before_validation :strip_fields, :on => :create
@@ -84,7 +90,75 @@ class User < ActiveRecord::Base
 
   ######################################
 
-  # private methods
+
+
+  # profile related api
+  def build_profile_on_confirmation
+
+  end
+
+  def update_profile
+
+  end
+
+  def get_pending_request_contacts
+      users_new_list = User.find(:all,  :joins => :friends,
+                                        :conditions => {
+                                                        :contacts =>
+                                                         {
+                                                            :status => Contact.statusStringToKey['New'],
+                                                            :friend_id => self.id }
+                                                          })
+      return users_new_list
+  end
+
+  def get_raised_contact_requests_raised
+    users_initiated_req_list = User.find(:all,  :joins => :contacts,
+                                        :conditions => {
+                                                        :contacts =>
+                                                         {
+                                                            :status => Contact.statusStringToKey['New'],
+                                                            :user_id => self.id }
+                                                          })
+      return users_initiated_req_list
+  end
+
+
+  def get_contacts
+     users_connected_list = User.find(:all,  :joins => :contacts,
+                                        :conditions => {
+                                                        :contacts =>
+                                                         {
+                                                            :status => Contact.statusStringToKey['Connected'],
+                                                            :user_id => self.id }
+                                                          })
+     return  users_connected_list
+  end
+
+
+  def new_contact_request (friend_id)
+    contact = Contact.new(:user_id => self.id, :friend_id => friend_id)
+    contact.request_new
+  end
+
+  def accept_a_contact_request (friend_id)
+    contact = Contact.new(:user_id => self.id, :friend_id => friend_id)
+    contact.accept_new
+
+  end
+
+  def reject_a_contact_request(friend_id)
+    contact = Contact.new(:user_id => self.id, :friend_id => friend_id)
+    contact.reject_new
+  end
+
+  def disconnect_a_contact(friend_id)
+   contact = Contact.new(:user_id => self.id, :friend_id => friend_id)
+   contact.delete_contacts_from_both_ends()
+  end
+
+
+    # private methods
   private
 
 
@@ -99,14 +173,5 @@ class User < ActiveRecord::Base
     else
        self.username = self.email
     end
-  end
-
-  # profile related api
-  def build_profile_on_confirmation
-
-  end
-
-  def update_profile
-
   end
 end

@@ -8,6 +8,12 @@ GIT
       nokogiri (>= 1.3.3)
 
 GIT
+  remote: git://github.com/FooBarWidget/default_value_for.git
+  revision: 1bc2825bee2f0b68497473af97e770f9d8810f05
+  specs:
+    default_value_for (1.0.2)
+
+GIT
   remote: git://github.com/MikeSofaer/sod.git
   revision: 08e990601bfa6ffd3224a2e4c792df9eae712693
   specs:
@@ -422,6 +428,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   date_validator
+  default_value_for!
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
   em-websocket!
