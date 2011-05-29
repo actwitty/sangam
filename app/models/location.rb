@@ -1,3 +1,14 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: locations
+#
+#  id            :integer(4)      not null, primary key
+#  location_type :integer(4)      not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class Location < ActiveRecord::Base
 
   has_many :hubs, :dependent => :nullify

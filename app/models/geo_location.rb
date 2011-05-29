@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: geo_locations
+#
+#  id            :integer(4)      not null, primary key
+#  geo_latitude  :decimal(10, 7)  not null
+#  geo_longitude :decimal(10, 7)  not null
+#  geo_name      :text            default(""), not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class GeoLocation < ActiveRecord::Base
 
   belongs_to :location

@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: web_locations
+#
+#  id                     :integer(4)      not null, primary key
+#  location_id            :integer(4)      not null
+#  web_location_url       :string(255)     not null
+#  web_location_title     :string(255)
+#  web_location_desc      :text
+#  web_location_image_url :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+
 class WebLocation < ActiveRecord::Base
   belongs_to :location
 

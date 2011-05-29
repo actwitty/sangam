@@ -1,3 +1,14 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: entities
+#
+#  id          :integer(4)      not null, primary key
+#  entity_name :string(255)     not null
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 ################# CAUTION!!  Should Not call delete of entity as we are going to hold them fore ever as of now :) #################
 class Entity < ActiveRecord::Base
 

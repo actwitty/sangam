@@ -1,20 +1,20 @@
 # == Schema Information
-# Schema version: 20110517104636
+# Schema version: 20110528065055
 #
 # Table name: activities
 #
-#  id                  :integer(4)      not null, primary key
-#  activity_data_id :integer(4)      not null
-#  activity_data_type       :integer(4)      not null
-#  activity_text       :text            default(""), not null
-#  author_id           :integer(4)      not null
-#  activity_name       :string(64)      not null
-#  created_at          :datetime
-#  updated_at          :datetime
-#  parent_id           :integer(4)
-#  ancestry            :string(255)
-#  ancestry_depth      :integer(4)      default(0)
+#  id               :integer(4)      not null, primary key
+#  activity_dict_id :integer(4)      not null
+#  activity_text    :text            default(""), not null
+#  activity_name    :string(255)     not null
+#  author_id        :integer(4)      not null
+#  parent_id        :integer(4)
+#  ancestry         :string(255)
+#  ancestry_depth   :integer(4)      default(0)
+#  created_at       :datetime
+#  updated_at       :datetime
 #
+
 #TODO add i18n error messages in all validations
 #TODO move all constants to environments
 class Activity < ActiveRecord::Base
@@ -36,7 +36,7 @@ class Activity < ActiveRecord::Base
   has_many    :campaigns, :dependent => :destroy
   has_many    :documents, :dependent => :nullify # documents have life time more than activity
 
-  belongs_to :activity_list
+  belongs_to :activity_dict
 
   before_save       :ensure_valid_parent_and_author
   before_destroy    :ensure_before_destroyed

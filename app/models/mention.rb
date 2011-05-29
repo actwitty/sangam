@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: mentions
+#
+#  id          :integer(4)      not null, primary key
+#  activity_id :integer(4)      not null
+#  user_id     :integer(4)      not null
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Mention < ActiveRecord::Base
 
   belongs_to :user

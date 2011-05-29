@@ -1,3 +1,20 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: hubs
+#
+#  id               :integer(4)      not null, primary key
+#  activity_id      :integer(4)      not null
+#  activity_name    :string(255)     not null
+#  activity_dict_id :integer(4)      not null
+#  entity_id        :integer(4)
+#  entity_name      :string(255)
+#  user_id          :integer(4)      not null
+#  location_id      :integer(4)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class Hub < ActiveRecord::Base
   belongs_to :user
   belongs_to :activity

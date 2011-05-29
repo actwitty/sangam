@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: campaigns
+#
+#  id               :integer(4)      not null, primary key
+#  activity_id      :integer(4)      not null
+#  author_id        :integer(4)      not null
+#  campaign_name    :string(255)     not null
+#  campaign_value   :string(32)      not null
+#  campaign_comment :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class Campaign < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User"

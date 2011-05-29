@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: documents
+#
+#  id            :integer(4)      not null, primary key
+#  owner_id      :integer(4)      not null
+#  document_name :string(255)     not null
+#  document_type :string(255)     not null
+#  document_url  :string(255)     not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 #TODO whole document validations should happpen
 class Document < ActiveRecord::Base
 

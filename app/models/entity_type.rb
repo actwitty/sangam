@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20110528065055
+#
+# Table name: entity_types
+#
+#  id               :integer(4)      not null, primary key
+#  entity_id        :integer(4)      not null
+#  entity_type_uri  :string(255)     not null
+#  entity_type_name :string(255)     not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class EntityType < ActiveRecord::Base
 
   belongs_to :entity
