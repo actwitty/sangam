@@ -1,14 +1,17 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110530100149
 #
 # Table name: contacts
 #
 #  id         :integer(4)      not null, primary key
-#  status     :string(255)
-#  pending    :boolean(1)
+#  status     :integer(4)
+#  user_id    :integer(4)
+#  friend_id  :integer(4)
+#  loop_id    :integer(4)
+#  strength   :decimal(5, 2)   default(100.0)
+#  relation   :string(255)     default("Friend")
 #  created_at :datetime
 #  updated_at :datetime
-#  user_id    :integer(4)
 #
 
 class Contact < ActiveRecord::Base

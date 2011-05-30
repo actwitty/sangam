@@ -10,18 +10,16 @@ class CreateWebLocations < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :web_locations, [:location_id, :web_location_title, :web_location_url],
-                              :name => "index_web_loc_on_loc_title_url"
-
-    add_index :web_locations, [:web_location_title, :web_location_url], :name => "index_web_loc_on_title_url"
-    add_index :web_locations, :web_location_url
+    add_index :web_locations, :location_id, :unique => true
+    add_index :web_locations, :web_location_url, :unique => true
+    add_index :web_locations, :web_location_title
   end
 
   def self.down
 
-    remove_index  :web_locations, "index_web_loc_on_loc_title_url"
-    remove_index  :web_locations, "index_web_loc_on_title_url"
+    remove_index  :web_locations, :location_id
     remove_index  :web_locations, :web_location_url
+    remove_index  :web_locations, :web_location_title
 
     drop_table :web_locations
   end

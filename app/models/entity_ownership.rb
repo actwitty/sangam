@@ -18,4 +18,6 @@ class EntityOwnership < ActiveRecord::Base
   validates_existence_of :owner, :unless => Proc.new{|a| a.owner.nil?}
   validates_existence_of :entity
 
+  validates_uniqueness_of :entity_id, :scope => :owner_id, :unless => Proc.new{|a| a.owner.nil?}
+
 end

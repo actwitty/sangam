@@ -21,11 +21,10 @@ class Location < ActiveRecord::Base
   #all urls should be destroyed
   has_one :web_location, :dependent => :destroy
   has_one :geo_location, :dependent => :destroy
+  has_one :unresolved_location, :dependent => :destroy
 
   validates_presence_of :location_type
 
   validates_numericality_of :location_type,:only_integer => true,:greater_than_or_equal_to => 1,:less_than_or_equal_to => 2
-
-
 
 end

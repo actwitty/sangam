@@ -2,7 +2,7 @@ class CreateLocations < ActiveRecord::Migration
   def self.up
     create_table :locations do |t|
 
-      t.integer   :location_type, :null => false    #Geo location, Url
+      t.integer   :location_type, :null => false    #Geo location, Url, unknown ( only a name)
       t.timestamps
 
     end

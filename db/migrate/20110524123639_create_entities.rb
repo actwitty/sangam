@@ -4,15 +4,20 @@
 
 				t.string    :entity_name, :null => false
 
+        #uniqe global uid
+        t.string    :entity_guid, :null => false
+
 				t.timestamps
       end
 
-			  add_index :entities, :entity_name
+			  add_index :entities, :entity_guid, :uniqne => true
+        add_index :entities, :entity_name
 
 		end
 
 		def self.down
 
+      remove_index :entities, :entity_guid
 			remove_index :entities, :entity_name
 
 			drop_table :entities

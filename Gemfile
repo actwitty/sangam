@@ -78,6 +78,9 @@ gem "validates_existence", ">= 0.4"
 #Ancestry gem - a better replacement of act_as_tree
 gem 'ancestry'
 
+#Manages constants
+gem 'app_constants'
+
 group :development do
 
   gem 'capistrano', '2.5.19', :require => false

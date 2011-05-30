@@ -17,8 +17,8 @@ class CreateDocuments < ActiveRecord::Migration
 
   def self.down
 
-    remove_index :documents, :name => "index_docs_on_owner_name_type"
-    remove_index :documents, :name => "index_docs_on_name_type"
+    remove_index :documents, "index_docs_on_owner_name_type"
+    remove_index :documents, "index_docs_on_name_type"
     remove_index :documents, :document_type
     remove_index :documents, :document_url
 

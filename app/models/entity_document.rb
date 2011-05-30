@@ -1,11 +1,12 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110530100149
 #
 # Table name: entity_documents
 #
 #  id                     :integer(4)      not null, primary key
 #  entity_id              :integer(4)      not null
 #  entity_doc_name        :string(255)     not null
+#  entity_doc_mid         :string(255)     not null
 #  entity_doc_description :text
 #  entity_doc_photo_url   :string(255)
 #  entity_doc_wiki_url    :string(255)
@@ -19,8 +20,12 @@ class EntityDocument < ActiveRecord::Base
 
   validates_existence_of :entity
 
-  validates_presence_of :entity_doc_name
+  validates_presence_of :entity_doc_name, :entity_doc_mid
+
   validates_length_of   :entity_doc_name, :in => 1..255
+  validates_length_of   :entity_doc_mid, :in => 1..255
+
+  validates_uniqueness_of :entity_doc_mid, :entity_id
 
   validates_length_of :entity_doc_description, :maximum => 1024, :unless => Proc.new{|a| a.entity_doc_description.nil?}
 

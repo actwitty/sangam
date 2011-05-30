@@ -14,16 +14,24 @@
 #
 
 class WebLocation < ActiveRecord::Base
+
+
   belongs_to :location
 
   validates_existence_of :location
+
   validates_presence_of :web_location_url
 
-  validates_length_of :web_location_url, :maximum => 255
-  validates_format_of :web_location_url, :with => URI::regexp(%w(http https))
+  validates_uniqueness_of :location_id
+  validates_uniqueness_of :web_location_url
 
-  validates_length_of :web_location_image_url, :maximum => 255
-  validates_format_of :web_location_image_url, :with => URI::regexp(%w(http https)),
+  validates_length_of :web_location_url, :in => 1..255
+
+  validates_format_of :web_location_url, :with =>  eval(AppConstants.url_validator)
+
+  validates_length_of :web_location_image_url, :maximum => 255,
+                                            :unless => Proc.new {|a| a.web_location_image_url.nil?}
+  validates_format_of :web_location_image_url, :with => eval(AppConstants.url_validator),
                                             :unless => Proc.new {|a| a.web_location_image_url.nil?}
 
   validates_length_of :web_location_title, :maximum => 255, :unless => Proc.new {|a| a.web_location_title.nil? }

@@ -1,10 +1,11 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110530100149
 #
 # Table name: entities
 #
 #  id          :integer(4)      not null, primary key
 #  entity_name :string(255)     not null
+#  entity_guid :string(255)     not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #
@@ -24,8 +25,10 @@ class Entity < ActiveRecord::Base
   has_many      :entity_types, :dependent => :destroy
   has_one       :entity_document, :dependent => :destroy
 
-  validates_presence_of   :entity_name
+  validates_presence_of   :entity_name, :entity_guid
+  validates_uniqueness_of :entity_guid, :unique => true
 
-  validates_length_of      :entity_name, :in => 1..255
+  validates_length_of     :entity_name, :in => 1..255
+  validates_length_of     :entity_guid, :in => 1..255
 
 end

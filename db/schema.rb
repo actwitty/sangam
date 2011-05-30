@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528065055) do
+ActiveRecord::Schema.define(:version => 20110530100149) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_dict_id",                :null => false
@@ -32,9 +32,12 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
   add_index "activities", ["parent_id"], :name => "index_activities_on_parent_id"
 
   create_table "activity_dicts", :force => true do |t|
+    t.string   "dict_name",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "activity_dicts", ["dict_name"], :name => "index_activity_dicts_on_dict_name"
 
   create_table "campaigns", :force => true do |t|
     t.integer  "activity_id",                    :null => false
@@ -46,13 +49,12 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
     t.datetime "updated_at"
   end
 
+  add_index "campaigns", ["activity_id", "campaign_name"], :name => "index_campaigns_on_activity_id_and_campaign_name"
   add_index "campaigns", ["author_id", "activity_id", "campaign_name"], :name => "index_campaign_on_author_activity_name", :unique => true
   add_index "campaigns", ["author_id", "campaign_name", "campaign_value"], :name => "index_campaign_on_author_name_value"
-  add_index "campaigns", ["campaign_name", "campaign_value"], :name => "index_campaign_on_name_value"
-
 
   create_table "contacts", :force => true do |t|
-   t.integer  "status"
+    t.integer  "status"
     t.integer  "user_id"
     t.integer  "friend_id"
     t.integer  "loop_id"
@@ -60,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
     t.string   "relation",                                 :default => "Friend"
     t.datetime "created_at"
     t.datetime "updated_at"
- end
+  end
 
   create_table "documents", :force => true do |t|
     t.integer  "owner_id",      :null => false
@@ -78,15 +80,18 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
 
   create_table "entities", :force => true do |t|
     t.string   "entity_name", :null => false
+    t.string   "entity_guid", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "entities", ["entity_guid"], :name => "index_entities_on_entity_guid"
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name"
 
   create_table "entity_documents", :force => true do |t|
     t.integer  "entity_id",              :null => false
     t.string   "entity_doc_name",        :null => false
+    t.string   "entity_doc_mid",         :null => false
     t.text     "entity_doc_description"
     t.string   "entity_doc_photo_url"
     t.string   "entity_doc_wiki_url"
@@ -94,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
     t.datetime "updated_at"
   end
 
+  add_index "entity_documents", ["entity_doc_mid"], :name => "index_entity_documents_on_entity_doc_mid", :unique => true
   add_index "entity_documents", ["entity_doc_name"], :name => "index_entity_documents_on_entity_doc_name"
   add_index "entity_documents", ["entity_id"], :name => "index_entity_documents_on_entity_id", :unique => true
 
@@ -120,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
   add_index "entity_types", ["entity_type_uri", "entity_type_name"], :name => "index_on_entity_type_uri_name"
 
   create_table "geo_locations", :force => true do |t|
+    t.integer  "location_id"
     t.decimal  "geo_latitude",  :precision => 10, :scale => 7, :null => false
     t.decimal  "geo_longitude", :precision => 10, :scale => 7, :null => false
     t.text     "geo_name",                                     :null => false
@@ -130,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
   add_index "geo_locations", ["geo_latitude", "geo_longitude"], :name => "index_geo_locations_on_geo_latitude_and_geo_longitude", :unique => true
   add_index "geo_locations", ["geo_longitude"], :name => "index_geo_locations_on_geo_longitude"
   add_index "geo_locations", ["geo_name"], :name => "index_geo_locations_on_geo_name", :length => {"geo_name"=>255}
+  add_index "geo_locations", ["location_id"], :name => "index_geo_locations_on_location_id", :unique => true
 
   create_table "hubs", :force => true do |t|
     t.integer  "activity_id",      :null => false
@@ -219,6 +227,16 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
     t.datetime "updated_at"
   end
 
+  create_table "unresolved_locations", :force => true do |t|
+    t.integer  "location_id",              :null => false
+    t.string   "unresolved_location_name", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "unresolved_locations", ["location_id"], :name => "index_unresolved_locations_on_location_id", :unique => true
+  add_index "unresolved_locations", ["unresolved_location_name"], :name => "index_unresolved_locations_on_unresolved_location_name", :unique => true
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",   :limit => 128, :default => ""
@@ -266,9 +284,9 @@ ActiveRecord::Schema.define(:version => 20110528065055) do
     t.datetime "updated_at"
   end
 
-  add_index "web_locations", ["location_id", "web_location_title", "web_location_url"], :name => "index_web_loc_on_loc_title_url"
-  add_index "web_locations", ["web_location_title", "web_location_url"], :name => "index_web_loc_on_title_url"
-  add_index "web_locations", ["web_location_url"], :name => "index_web_locations_on_web_location_url"
+  add_index "web_locations", ["location_id"], :name => "index_web_locations_on_location_id", :unique => true
+  add_index "web_locations", ["web_location_title"], :name => "index_web_locations_on_web_location_title"
+  add_index "web_locations", ["web_location_url"], :name => "index_web_locations_on_web_location_url", :unique => true
 
   create_table "word_forms", :force => true do |t|
     t.integer  "activity_dict",  :null => false
