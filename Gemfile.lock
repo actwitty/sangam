@@ -193,6 +193,7 @@ GEM
       chalofa_ruby-progressbar (~> 0.0.9)
       rspec (~> 2.0)
       rspec-instafail (~> 0.1.4)
+    geocoder (1.0.1)
     gherkin (2.3.7)
       json (>= 1.4.6)
     haml (3.1.1)
@@ -442,6 +443,7 @@ DEPENDENCIES
   fog (= 0.3.25)
   foreigner (= 0.9.1)
   fuubar
+  geocoder
   haml (>= 3.0.25)
   haml-rails (>= 0.3.4)
   http_accept_language!

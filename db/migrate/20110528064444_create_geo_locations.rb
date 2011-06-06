@@ -8,6 +8,7 @@ class CreateGeoLocations < ActiveRecord::Migration
 
       t.timestamps
     end
+
     add_index :geo_locations,:location_id, :unique => true
     add_index :geo_locations, [:geo_latitude,:geo_longitude ], :unique => true
     add_index :geo_locations, :geo_longitude

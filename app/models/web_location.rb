@@ -18,6 +18,7 @@ class WebLocation < ActiveRecord::Base
 
   belongs_to :location
 
+
   validates_existence_of :location
 
   validates_presence_of :web_location_url
@@ -36,4 +37,25 @@ class WebLocation < ActiveRecord::Base
 
   validates_length_of :web_location_title, :maximum => 255, :unless => Proc.new {|a| a.web_location_title.nil? }
   validates_length_of :web_location_desc, :maximum => 1024, :unless => Proc.new {|a| a.web_location_desc.nil? }
+
+  before_save :cant_change_location_web_url
+  after_save  :log_confirmation
+
+  protected
+
+  def cant_change_location_web_url
+
+    if !new_record?
+      if self.location_id_changed? || self.web_location_url_changed?
+        Rails.logger.info("Trying to edit" + (self.location_id_changed? ? " location_id":" web_location_url" ))
+        raise ActiveRecord::RecordNotSaved.new(self)
+      end
+    end
+  end
+
+  def log_confirmation
+    puts "Web Location Created"
+    Rails.logger.info("Geo Location Created Url =  #{self.web_location_url} name = #{self.web_location_title}" )
+  end
+
 end

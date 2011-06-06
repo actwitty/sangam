@@ -36,7 +36,7 @@ class CreateActivities < ActiveRecord::Migration
 
     remove_index :activities, :ancestry
 
-    remove_index :activities,  "index_activity_author_name_dict"
+    remove_index :activities,  :name => "index_activity_author_name_dict"
 
     remove_index :activities, [:activity_name,:author_id]
 

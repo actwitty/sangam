@@ -81,6 +81,9 @@ gem 'ancestry'
 #Manages constants
 gem 'app_constants'
 
+#Manages geo location
+gem "geocoder"
+
 group :development do
 
   gem 'capistrano', '2.5.19', :require => false

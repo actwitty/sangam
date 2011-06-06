@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110530100149) do
+ActiveRecord::Schema.define(:version => 20110605184329) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_dict_id",                :null => false
@@ -161,12 +161,27 @@ ActiveRecord::Schema.define(:version => 20110530100149) do
   add_index "hubs", ["location_id", "user_id"], :name => "index_hubs_on_location_id_and_user_id"
   add_index "hubs", ["user_id", "activity_dict_id", "entity_id"], :name => "index_hubs_on_user_activity_entity"
 
-  create_table "locations", :force => true do |t|
-    t.integer  "location_type", :null => false
+  create_table "location_hubs", :force => true do |t|
+    t.integer  "location_web_id"
+    t.integer  "location_geo_id"
+    t.integer  "location_unresolved_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "location_hubs", ["location_geo_id", "location_unresolved_id"], :name => "index_location_hub_on_geo_unresolved"
+  add_index "location_hubs", ["location_unresolved_id"], :name => "index_location_hubs_on_location_unresolved_id"
+  add_index "location_hubs", ["location_web_id", "location_geo_id", "location_unresolved_id"], :name => "index_location_hub_on_web_geo_unresolved", :unique => true
+  add_index "location_hubs", ["location_web_id", "location_unresolved_id"], :name => "index_location_hub_on_web_unresolved"
+
+  create_table "locations", :force => true do |t|
+    t.integer  "location_type", :null => false
+    t.text     "location_name", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["location_name"], :name => "index_locations_on_location_name", :length => {"location_name"=>255}
   add_index "locations", ["location_type"], :name => "index_locations_on_location_type"
 
   create_table "loops", :force => true do |t|
@@ -235,7 +250,7 @@ ActiveRecord::Schema.define(:version => 20110530100149) do
   end
 
   add_index "unresolved_locations", ["location_id"], :name => "index_unresolved_locations_on_location_id", :unique => true
-  add_index "unresolved_locations", ["unresolved_location_name"], :name => "index_unresolved_locations_on_unresolved_location_name", :unique => true
+  add_index "unresolved_locations", ["unresolved_location_name"], :name => "index_unresolved_locations_on_unresolved_location_name"
 
   create_table "users", :force => true do |t|
     t.string   "email"

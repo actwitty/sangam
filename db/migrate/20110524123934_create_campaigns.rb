@@ -24,9 +24,9 @@ class CreateCampaigns < ActiveRecord::Migration
 
   def self.down
 
-    remove_index :campaigns, "index_campaign_on_author_activity_name"
+    remove_index :campaigns, :name => "index_campaign_on_author_activity_name"
     remove_index :campaigns, [:activity_id,:campaign_name]
-    remove_index :campaigns, "index_campaign_on_name_value"
+    remove_index :campaigns, :name => "index_campaign_on_name_value"
 
     drop_table :campaigns
   end

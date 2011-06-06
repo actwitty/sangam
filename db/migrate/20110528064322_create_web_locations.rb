@@ -16,7 +16,6 @@ class CreateWebLocations < ActiveRecord::Migration
   end
 
   def self.down
-
     remove_index  :web_locations, :location_id
     remove_index  :web_locations, :web_location_url
     remove_index  :web_locations, :web_location_title

@@ -27,8 +27,8 @@ describe WebLocation do
 
     it "should accept only valid urls" do
       lambda{
-        wl = Factory.create(:web_location, :location_id => Factory(:location).id, :web_location_url => "www.gmail.com/q=eyhe?&x=2323224343")
-      }.should raise_error ActiveRecord::RecordInvalid
+        wl = Factory.create(:web_location, :location_id => Factory(:location).id, :web_location_url => "http://google.com")
+      }.should_not raise_error ActiveRecord::RecordInvalid
     end
 
     it "should accept must have unique urls" do
@@ -102,24 +102,33 @@ describe WebLocation do
   end
 
   describe "Read" do
-
+    before(:each) do
+      @loc1 = Factory(:web_location)
+      @loc2 = Factory(:web_location)
+      @loc3 = Factory(:web_location)
+      @loc4 = Factory(:web_location)
+      @loc5 = Factory(:web_location)
+    end
     it "should be able to find web location based on location id" do
-
+       l = WebLocation.where(:location_id => @loc3.location_id)
+       l.should == [@loc3]
     end
 
-    it "should be able to find web location based on web url" do
-
-    end
-
-     it "should be able to find all web locations based on web title" do
-
+    it "should be able to find all web locations based on web title" do
+        l = WebLocation.where("web_location_url LIKE :loc_url", {:loc_url => "http://www.gmai%"}).
+            order("created_at DESC")
+        l.should  == [ @loc1, @loc2, @loc3, @loc4, @loc5]
+        #l.should == [@loc3]
      end
   end
 
   describe "Create" do
 
     it "location should be able to create web location"  do
-
+       @loc = Factory(:location)
+       lambda {
+          wl = @loc.create_web_location(:web_location_url => "http://gmail.com")
+       }.should change(WebLocation, :count).by(1)
     end
 
   end
@@ -127,7 +136,11 @@ describe WebLocation do
   describe "Delete" do
 
     it "location should be able to delete web location"  do
-
+       @loc = Factory(:location)
+       @loc.create_web_location(:web_location_url => "http://gmail.com")
+       lambda{
+         @loc.destroy
+        }.should change(WebLocation, :count).by(-1)
     end
 
   end
@@ -135,18 +148,35 @@ describe WebLocation do
   describe "Update" do
 
     it "should not allow update of location id"  do
+       l = Factory(:location)
+       wl = Factory(:web_location)
+       lambda{
+         w = WebLocation.find(wl.id)
+         w.location_id= l.id
+         w.save!
+       }.should raise_error ActiveRecord::RecordNotSaved
 
     end
     it "should not allow update of web url"  do
-
+       l = Factory(:location)
+       wl = Factory(:web_location)
+       lambda{
+         wl.web_location_url = "http://a.com"
+         wl.save!
+       }.should raise_error ActiveRecord::RecordNotSaved
     end
     it "should  allow update of web image url"  do
+       l = Factory(:location)
+       wl = Factory(:web_location)
+       lambda{
+         wl.web_location_image_url = "http://a.com"
+         wl.save!
+       }.should_not raise_error ActiveRecord::RecordNotSaved
+    end
+    xit "should  allow update of web title"  do
 
     end
-    it "should  allow update of web title"  do
-
-    end
-    it "should  allow update of web desc"  do
+    xit "should  allow update of web desc"  do
 
     end
   end

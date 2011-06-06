@@ -13,6 +13,7 @@
 #
 
 class GeoLocation < ActiveRecord::Base
+  geocoded_by :address, :latitude  => :geo_latitude, :longitude => :geo_longitude # ActiveRecord
 
   belongs_to :location
 
@@ -26,4 +27,24 @@ class GeoLocation < ActiveRecord::Base
   validates_uniqueness_of  :geo_latitude, :scope => :geo_longitude
 
   validates_length_of :geo_name, :in => 1..1024
+
+  before_save :cant_change_location_lat_long_name
+  after_save :log_confirmation
+
+  protected
+
+
+  def cant_change_location_lat_long_name
+
+    if !new_record?
+        Rails.logger.info("Trying to edit Geo Location - Not Allowed")
+        raise ActiveRecord::RecordNotSaved.new(self)
+    end
+  end
+
+  def log_confirmation
+    puts "Geo Location Created"
+    Rails.logger.info("Geo Location Created lat =  #{self.geo_latitude.to_s} long = self.geo_longitude.to_s
+                      name = #{self.geo_name}" )
+  end
 end

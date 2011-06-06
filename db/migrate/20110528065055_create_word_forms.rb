@@ -17,8 +17,8 @@ class CreateWordForms < ActiveRecord::Migration
 
   def self.down
 
-    remove_index   :word_forms, "index_on_word_forms_dict_type_name"
-    remove_index   :word_forms, "index_on_word_forms_type_name"
+    remove_index   :word_forms, :name => "index_on_word_forms_dict_type_name"
+    remove_index   :word_forms, :name => "index_on_word_forms_type_name"
     remove_index   :word_forms, :word_form_name
 
     remove_table :word_forms

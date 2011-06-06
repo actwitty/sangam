@@ -18,8 +18,8 @@ class CreateEntityTypes < ActiveRecord::Migration
 
   def self.down
 
-    remove_index :entity_types, "index_on_entity_type_entity_id_type"
-    remove_index :entity_types, "index_on_entity_type_uri_name"
+    remove_index :entity_types, :name => "index_on_entity_type_entity_id_type"
+    remove_index :entity_types, :name => "index_on_entity_type_uri_name"
     remove_index :entity_types, :entity_type_name
 
     drop_table :entity_types

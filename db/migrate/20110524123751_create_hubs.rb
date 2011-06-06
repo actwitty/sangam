@@ -47,7 +47,7 @@ class CreateHubs < ActiveRecord::Migration
     remove_index :hubs,  [ :location_id,      :user_id]
 
     #these satisfies all location based queries
-    remove_index :hubs,  "index_hubs_on_user_activity_entity"
+    remove_index :hubs,  :name => "index_hubs_on_user_activity_entity"
     remove_index :hubs,  [ :activity_dict_id, :entity_id]
 
     #remaining  indexes
