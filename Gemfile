@@ -96,9 +96,6 @@ group :test, :development do
   gem 'factory_girl_rails', :require => false
   gem 'rspec-rails', '>= 2.0.1'
   gem 'capybara'
-  gem 'ruby-debug-base19', '0.11.23' if RUBY_VERSION.include? '1.9.1'
-  gem 'ruby-debug19' if RUBY_VERSION.include? '1.9'
-  gem 'ruby-debug' if defined?(Rubinius).nil? && RUBY_VERSION.include?('1.8')
   gem 'launchy'
   gem 'railroady'
 
