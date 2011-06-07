@@ -2,14 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2', '0.2.6'
 
-
 gem 'bundler', '>= 1.0.0'
-
 
 gem 'haml', '>= 3.0.25'
 gem 'haml-rails', '>= 0.3.4', :group => :development
@@ -32,10 +27,6 @@ gem 'i18n-inflector-rails', '~> 1.0'
 gem 'addressable', '2.2.2', :require => 'addressable/uri'
 gem 'json', '1.4.6'
 gem 'annotate-models', '1.0.4'
-
-
-#Search 
-gem 'sunspot_rails', '~> 1.2.1'
 
 #File uploading
 gem "paperclip", "~> 2.3"
