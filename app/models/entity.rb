@@ -31,4 +31,8 @@ class Entity < ActiveRecord::Base
   validates_length_of     :entity_name, :in => 1..255
   validates_length_of     :entity_guid, :in => 1..255
 
+
+  def self.CreateEntities(entity_hash ={})
+
+  end
 end

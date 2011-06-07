@@ -32,10 +32,8 @@ gem 'i18n-inflector-rails', '~> 1.0'
 gem 'acts-as-taggable-on', :git => 'git://github.com/diaspora/acts-as-taggable-on.git'
 
 #Uncatagorized
-gem 'roxml', :git => 'git://github.com/Empact/roxml.git', :ref => '7ea9a9ffd2338aaef5b0'
 gem 'addressable', '2.2.2', :require => 'addressable/uri'
 gem 'json', '1.4.6'
-gem 'http_accept_language', :git => 'git://github.com/iain/http_accept_language.git', :ref => '0b78aa7849fc90cf9e12'
 gem 'annotate-models', '1.0.4'
 
 
@@ -43,14 +41,12 @@ gem 'annotate-models', '1.0.4'
 gem 'sunspot_rails', '~> 1.2.1'
 
 #File uploading
-gem 'carrierwave', '0.5.2'
-gem "fog", '0.3.25'
+gem "paperclip", "~> 2.3"
 
 gem 'mini_magick', '3.2'
-gem 'aws', '2.3.32' # upgrade to 2.4 breaks 1.8 >.<
 
 gem 'jammit', '0.5.4'
-gem 'rest-client', '1.6.1'
+
 gem 'typhoeus'
 
 gem 'date_validator'
@@ -79,35 +75,23 @@ gem "geocoder"
 
 group :development do
 
-  gem 'capistrano', '2.5.19', :require => false
-  gem 'capistrano-ext', '1.2.1', :require => false
-  gem 'sod', :git => "git://github.com/MikeSofaer/sod.git"
-  gem "erb2haml"         # Add this line
 end
 
 group :test, :development do
   gem 'factory_girl_rails', :require => false
   gem 'rspec-rails', '>= 2.0.1'
   gem 'capybara'
-  gem 'launchy'
-  gem 'railroady'
-
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem 'fixture_builder', '~> 0.2.0'
   gem 'selenium-webdriver', '~> 0.2.0'
-  gem 'capybara'
   gem 'cucumber-rails'
   gem 'rspec', '>= 2.0.1'
   #gem 'rspec-rails', '>= 2.0.1'
   gem 'rcov'
   gem 'database_cleaner'
-  gem 'webmock', :require => false
-  #gem 'jasmine', :path => 'vendor/gems/jasmine', :require => false
-  gem 'rspec-instafail', '>= 0.1.7', :require => false
-  gem 'fuubar'
   gem 'spork', '0.8.4'
 end
 
