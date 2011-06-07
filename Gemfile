@@ -65,7 +65,6 @@ gem 'cloudfiles', '1.4.10', :require => false
 
 #Queue
 gem 'resque', '1.10.0'
-gem 'SystemTimer', '1.2.1' unless RUBY_VERSION.include? '1.9' || RUBY_PLATFORM =~ 'win32'
 gem 'validates_existence', '>= 0.4'
 gem 'default_value_for',  :git => 'git://github.com/FooBarWidget/default_value_for.git'
 
@@ -113,7 +112,6 @@ group :test do
   gem 'database_cleaner'
   gem 'webmock', :require => false
   #gem 'jasmine', :path => 'vendor/gems/jasmine', :require => false
-  gem 'mongrel', :require => false if RUBY_VERSION.include? '1.8'
   gem 'rspec-instafail', '>= 0.1.7', :require => false
   gem 'fuubar'
   gem 'spork', '0.8.4'
