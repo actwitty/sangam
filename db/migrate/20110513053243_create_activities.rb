@@ -4,7 +4,7 @@ class CreateActivities < ActiveRecord::Migration
       # activity_data_id in table where actual uniq activity name is stored === globally unique activity names
       t.integer :activity_dict_id, :null => false
 
-      t.text   :activity_text, :limit => "1024", :null => false
+      t.text   :activity_text, :limit => 1024, :null => false
 
       #activity_name should always be same activity_data_name == redundancy
       t.string  :activity_name, :null => false
