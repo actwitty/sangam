@@ -28,9 +28,6 @@ gem 'will_paginate', '3.0.pre2'
 #Inflected translations
 gem 'i18n-inflector-rails', '~> 1.0'
 
-#Tags
-gem 'acts-as-taggable-on', :git => 'git://github.com/diaspora/acts-as-taggable-on.git'
-
 #Uncatagorized
 gem 'addressable', '2.2.2', :require => 'addressable/uri'
 gem 'json', '1.4.6'
@@ -47,16 +44,7 @@ gem 'mini_magick', '3.2'
 
 gem 'jammit', '0.5.4'
 
-gem 'typhoeus'
-
 gem 'date_validator'
-#Backups
-gem 'cloudfiles', '1.4.10', :require => false
-
-#Queue
-gem 'resque', '1.10.0'
-
-gem 'default_value_for',  :git => 'git://github.com/FooBarWidget/default_value_for.git'
 
 #generators for gems which dont have it yet
 gem  'rails3-generators'
