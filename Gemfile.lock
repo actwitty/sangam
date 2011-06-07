@@ -34,15 +34,6 @@ GIT
   specs:
     http_accept_language (1.0.1)
 
-GIT
-  remote: git://github.com/igrigorik/em-websocket
-  revision: e278f5a1c4db60be7485859520a069e08bfe1247
-  ref: e278f5a1c4db60be7485
-  specs:
-    em-websocket (0.2.0)
-      addressable (>= 2.1.1)
-      eventmachine (>= 0.12.9)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -82,7 +73,6 @@ GEM
       activerecord (>= 2.2.2)
     annotate-models (1.0.4)
     app_constants (1.0.3)
-    archive-tar-minitar (0.5.2)
     arel (2.0.9)
     aws (2.3.32)
       activesupport
@@ -117,7 +107,6 @@ GEM
     closure-compiler (1.1.1)
     cloudfiles (1.4.10)
       mime-types (>= 1.16)
-    columnize (0.3.2)
     configuration (1.2.0)
     crack (0.1.8)
     cucumber (0.10.2)
@@ -147,7 +136,6 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
-    eventmachine (0.12.10)
     excon (0.2.4)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
@@ -201,8 +189,6 @@ GEM
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
-    linecache19 (0.5.12)
-      ruby_core_source (>= 0.1.4)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -313,20 +299,10 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.5.0)
-    ruby-debug-base19 (0.11.25)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby_core_source (>= 0.1.4)
-    ruby-debug19 (0.11.6)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby-debug-base19 (>= 0.11.19)
     ruby-hmac (0.4.0)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
-    ruby_core_source (0.1.5)
-      archive-tar-minitar (>= 0.5.2)
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     rubyntlm (0.1.1)
@@ -396,7 +372,6 @@ DEPENDENCIES
   default_value_for!
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
-  em-websocket!
   erb2haml
   factory_girl_rails
   fixture_builder (~> 0.2.0)
@@ -423,7 +398,6 @@ DEPENDENCIES
   rspec (>= 2.0.1)
   rspec-instafail (>= 0.1.7)
   rspec-rails (>= 2.0.1)
-  ruby-debug19
   selenium-webdriver (~> 0.2.0)
   sod!
   spork (= 0.8.4)

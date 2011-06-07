@@ -42,9 +42,6 @@ gem 'annotate-models', '1.0.4'
 #Search 
 gem 'sunspot_rails', '~> 1.2.1'
 
-#Websocket
-gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket', :ref => 'e278f5a1c4db60be7485'
-
 #File uploading
 gem 'carrierwave', '0.5.2'
 gem "fog", '0.3.25'
@@ -62,7 +59,6 @@ gem 'cloudfiles', '1.4.10', :require => false
 
 #Queue
 gem 'resque', '1.10.0'
-gem 'SystemTimer', '1.2.1' unless RUBY_VERSION.include? '1.9' || RUBY_PLATFORM =~ 'win32'
 
 gem 'default_value_for',  :git => 'git://github.com/FooBarWidget/default_value_for.git'
 
@@ -93,9 +89,6 @@ group :test, :development do
   gem 'factory_girl_rails', :require => false
   gem 'rspec-rails', '>= 2.0.1'
   gem 'capybara'
-  gem 'ruby-debug-base19', '0.11.23' if RUBY_VERSION.include? '1.9.1'
-  gem 'ruby-debug19' if RUBY_VERSION.include? '1.9'
-  gem 'ruby-debug' if defined?(Rubinius).nil? && RUBY_VERSION.include?('1.8')
   gem 'launchy'
   gem 'railroady'
 
@@ -113,7 +106,6 @@ group :test do
   gem 'database_cleaner'
   gem 'webmock', :require => false
   #gem 'jasmine', :path => 'vendor/gems/jasmine', :require => false
-  gem 'mongrel', :require => false if RUBY_VERSION.include? '1.8'
   gem 'rspec-instafail', '>= 0.1.7', :require => false
   gem 'fuubar'
   gem 'spork', '0.8.4'
