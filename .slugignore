@@ -1,0 +1,17 @@
+.bundle
+db/*.sqlite3*
+log/*.log
+log/*.log.*
+*.log
+tmp/**/*
+tmp/*
+doc/api
+doc/app
+*.swp
+*˜
+.DS_Store
+.project
+solr/data
+.idea/*.*
+*.pid
+*.orig
