@@ -82,6 +82,7 @@ GEM
       activerecord (>= 2.2.2)
     annotate-models (1.0.4)
     app_constants (1.0.3)
+    archive-tar-minitar (0.5.2)
     arel (2.0.9)
     aws (2.3.32)
       activesupport
@@ -90,7 +91,6 @@ GEM
       xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
-    bunny (0.6.0)
     capistrano (2.5.19)
       highline
       net-scp (>= 1.0.0)
@@ -112,25 +112,12 @@ GEM
       activesupport (~> 3.0)
     celerity (0.8.9)
     chalofa_ruby-progressbar (0.0.9.1)
-    chef (0.9.12)
-      bunny (>= 0.6.0)
-      erubis
-      extlib
-      highline
-      json (<= 1.4.6, >= 1.4.4)
-      mixlib-authentication (>= 1.1.0)
-      mixlib-cli (>= 1.1.0)
-      mixlib-config (>= 1.1.2)
-      mixlib-log (>= 1.2.0)
-      moneta
-      ohai (>= 0.5.7)
-      rest-client (< 1.7.0, >= 1.0.4)
-      uuidtools
     childprocess (0.1.8)
       ffi (~> 1.0.6)
     closure-compiler (1.1.1)
     cloudfiles (1.4.10)
       mime-types (>= 1.16)
+    columnize (0.3.2)
     configuration (1.2.0)
     crack (0.1.8)
     cucumber (0.10.2)
@@ -142,7 +129,6 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
-    daemons (1.1.3)
     database_cleaner (0.6.7)
     date_validator (0.6.1)
       activemodel (~> 3.0.0)
@@ -163,7 +149,6 @@ GEM
     escape (0.0.4)
     eventmachine (0.12.10)
     excon (0.2.4)
-    extlib (0.9.15)
     factory_girl (1.3.3)
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
@@ -172,7 +157,6 @@ GEM
       addressable (~> 2.2.2)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
-    fastercsv (1.5.4)
     ffi (1.0.7)
       rake (>= 0.8.7)
     fixture_builder (0.2.2)
@@ -185,7 +169,6 @@ GEM
       net-ssh (~> 2.0.23)
       nokogiri (~> 1.4.3.1)
       ruby-hmac
-    foreigner (0.9.1)
     formatador (0.1.3)
     fuubar (0.0.4)
       chalofa_ruby-progressbar (~> 0.0.9)
@@ -218,6 +201,8 @@ GEM
     launchy (0.4.0)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
+    linecache19 (0.5.12)
+      ruby_core_source (>= 0.1.4)
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -226,12 +211,6 @@ GEM
     mime-types (1.16)
     mini_magick (3.2)
       subexec (~> 0.0.4)
-    mixlib-authentication (1.1.4)
-      mixlib-log
-    mixlib-cli (1.2.0)
-    mixlib-config (1.1.2)
-    mixlib-log (1.3.0)
-    moneta (0.6.0)
     multi_json (0.0.5)
     multipart-post (1.1.0)
     mysql2 (0.2.6)
@@ -271,13 +250,6 @@ GEM
     oauth2 (0.1.1)
       faraday (~> 0.5.0)
       multi_json (~> 0.0.4)
-    ohai (0.5.8)
-      extlib
-      json (<= 1.4.6, >= 1.4.4)
-      mixlib-cli
-      mixlib-config
-      mixlib-log
-      systemu
     omniauth (0.1.6)
       oa-basic (= 0.1.6)
       oa-core (= 0.1.6)
@@ -341,10 +313,20 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.5.0)
+    ruby-debug-base19 (0.11.25)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
     ruby-hmac (0.4.0)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
     ruby_parser (2.0.6)
       sexp_processor (~> 3.0)
     rubyntlm (0.1.1)
@@ -367,12 +349,7 @@ GEM
     sunspot_rails (1.2.1)
       nokogiri
       sunspot (= 1.2.1)
-    systemu (2.2.0)
     term-ansicolor (1.0.5)
-    thin (1.2.8)
-      daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
-      rack (>= 1.0.0)
     thor (0.14.6)
     tilt (1.3)
     treetop (1.4.9)
@@ -412,7 +389,6 @@ DEPENDENCIES
   capistrano-ext (= 1.2.1)
   capybara
   carrierwave (= 0.5.2)
-  chef (= 0.9.12)
   cloudfiles (= 1.4.10)
   cucumber-rails
   database_cleaner
@@ -422,12 +398,9 @@ DEPENDENCIES
   devise_invitable (~> 0.4.0)
   em-websocket!
   erb2haml
-  excon (= 0.2.4)
   factory_girl_rails
-  fastercsv (= 1.5.4)
   fixture_builder (~> 0.2.0)
   fog (= 0.3.25)
-  foreigner (= 0.9.1)
   fuubar
   geocoder
   haml (>= 3.0.25)
@@ -439,7 +412,6 @@ DEPENDENCIES
   launchy
   mini_magick (= 3.2)
   mysql2 (= 0.2.6)
-  ohai (= 0.5.8)
   omniauth (= 0.1.6)
   railroady
   rails (= 3.0.7)
@@ -451,11 +423,11 @@ DEPENDENCIES
   rspec (>= 2.0.1)
   rspec-instafail (>= 0.1.7)
   rspec-rails (>= 2.0.1)
+  ruby-debug19
   selenium-webdriver (~> 0.2.0)
   sod!
   spork (= 0.8.4)
   sunspot_rails (~> 1.2.1)
-  thin (= 1.2.8)
   typhoeus
   validates_existence (>= 0.4)
   webmock
