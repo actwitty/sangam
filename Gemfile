@@ -6,11 +6,10 @@ gem 'rails', '3.0.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.2.6'
-gem 'foreigner', '0.9.1'
+
 
 gem 'bundler', '>= 1.0.0'
-gem 'chef', '0.9.12', :require => false
-gem 'ohai', '0.5.8', :require => false #Chef dependency
+
 
 gem 'haml', '>= 3.0.25'
 gem 'haml-rails', '>= 0.3.4', :group => :development
@@ -39,7 +38,6 @@ gem 'json', '1.4.6'
 gem 'http_accept_language', :git => 'git://github.com/iain/http_accept_language.git', :ref => '0b78aa7849fc90cf9e12'
 gem 'annotate-models', '1.0.4'
 
-gem 'thin', '1.2.8', :require => false
 
 #Search 
 gem 'sunspot_rails', '~> 1.2.1'
@@ -50,11 +48,10 @@ gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket', :ref => '
 #File uploading
 gem 'carrierwave', '0.5.2'
 gem "fog", '0.3.25'
-gem "excon", "0.2.4"
+
 gem 'mini_magick', '3.2'
 gem 'aws', '2.3.32' # upgrade to 2.4 breaks 1.8 >.<
 
-gem 'fastercsv', '1.5.4', :require => false
 gem 'jammit', '0.5.4'
 gem 'rest-client', '1.6.1'
 gem 'typhoeus'
@@ -65,7 +62,8 @@ gem 'cloudfiles', '1.4.10', :require => false
 
 #Queue
 gem 'resque', '1.10.0'
-gem 'validates_existence', '>= 0.4'
+gem 'SystemTimer', '1.2.1' unless RUBY_VERSION.include? '1.9' || RUBY_PLATFORM =~ 'win32'
+
 gem 'default_value_for',  :git => 'git://github.com/FooBarWidget/default_value_for.git'
 
 #generators for gems which dont have it yet
@@ -95,6 +93,9 @@ group :test, :development do
   gem 'factory_girl_rails', :require => false
   gem 'rspec-rails', '>= 2.0.1'
   gem 'capybara'
+  gem 'ruby-debug-base19', '0.11.23' if RUBY_VERSION.include? '1.9.1'
+  gem 'ruby-debug19' if RUBY_VERSION.include? '1.9'
+  gem 'ruby-debug' if defined?(Rubinius).nil? && RUBY_VERSION.include?('1.8')
   gem 'launchy'
   gem 'railroady'
 
@@ -112,6 +113,7 @@ group :test do
   gem 'database_cleaner'
   gem 'webmock', :require => false
   #gem 'jasmine', :path => 'vendor/gems/jasmine', :require => false
+  gem 'mongrel', :require => false if RUBY_VERSION.include? '1.8'
   gem 'rspec-instafail', '>= 0.1.7', :require => false
   gem 'fuubar'
   gem 'spork', '0.8.4'
