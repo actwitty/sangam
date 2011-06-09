@@ -9,7 +9,7 @@ class CreateEntityDocuments < ActiveRecord::Migration
       t.string  :entity_doc_name, :null => false
       t.string  :entity_doc_mid, :null => false
 
-      t.text   :entity_doc_description, :limit => 1024
+      t.text   :entity_doc_description
       t.string  :entity_doc_photo_url
       t.string  :entity_doc_wiki_url
 

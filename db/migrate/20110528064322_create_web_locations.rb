@@ -5,7 +5,7 @@ class CreateWebLocations < ActiveRecord::Migration
 
       t.string  :web_location_url, :null => false
       t.string  :web_location_title
-      t.text   :web_location_desc, :limit => 1024
+      t.text   :web_location_desc
       t.string  :web_location_image_url
 
       t.timestamps

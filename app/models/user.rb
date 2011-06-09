@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   has_many :hubs
   has_many :entities, :through => :hubs
   has_many :locations, :through => :hubs
-  has_many  :activity_dicts, :through => :hubs
+  has_many  :activity_words, :through => :hubs
 
   has_many :mentions
   has_many :campaigns,:foreign_key => :author_id

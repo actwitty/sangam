@@ -117,7 +117,7 @@ describe WebLocation do
     it "should be able to find all web locations based on web title" do
         l = WebLocation.where("web_location_url LIKE :loc_url", {:loc_url => "http://www.gmai%"}).
             order("created_at DESC")
-        l.should  == [ @loc1, @loc2, @loc3, @loc4, @loc5]
+        l.should  == [ @loc5, @loc4, @loc3, @loc2, @loc1]
         #l.should == [@loc3]
      end
   end

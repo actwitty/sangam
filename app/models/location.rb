@@ -15,7 +15,7 @@ class Location < ActiveRecord::Base
   has_many :hubs, :dependent => :nullify
 
   has_many :activities, :through => :hubs
-  has_many :activity_dicts, :through => :hubs
+  has_many :activity_words, :through => :hubs
   has_many :entities, :through => :hubs
   has_many :users, :through => :hubs
 

@@ -1,0 +1,2 @@
+class ActivityWordsController < ApplicationController
+end

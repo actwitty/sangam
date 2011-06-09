@@ -15,9 +15,16 @@ class EntityOwnership < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   belongs_to :entity
 
-  validates_existence_of :owner, :unless => Proc.new{|a| a.owner.nil?}
+  validates_existence_of :owner, :on => :create
   validates_existence_of :entity
 
   validates_uniqueness_of :entity_id, :scope => :owner_id, :unless => Proc.new{|a| a.owner.nil?}
 
+  after_destroy :ensure_cleanup
+
+  protected
+
+  def ensure_cleanup
+    puts "entity ownership destroyed #{self.entity_id}"
+  end
 end

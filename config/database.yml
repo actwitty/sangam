@@ -23,28 +23,33 @@
 
 
 development:
-  adapter: mysql2
+  adapter: postgresql
   database: sangam_development
-  username: root
-  password: lemon124 
-  charset: utf8
-  collation: utf8_bin
+  username: sangam 
+  password: 'lemon124' 
+  charset: unicode 
+  pool: 5
+  host: localhost 
+
 
 test: &test
-  adapter: mysql2
-  database:  sangam_test
-  username: root
-  password: lemon124 
-  charset: utf8
-  collation: utf8_bin
+  adapter: postgresql
+  database: sangam_test
+  username: sangam
+  password: 'lemon124'
+  charset: unicode
+  pool: 5
+  host: localhost 
+  min_messages: WARNING
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   database: sangam_production
-  username: root
-  password: lemon124
-  charset: utf8
-  collation: utf8_bin
+  username: sangam
+  password: 'lemon124'
+  charset: unicode
+  pool: 5
+  host: localhost 
 
 cucumber:
   <<: *test

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110605184329) do
+ActiveRecord::Schema.define(:version => 20110609094335) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_dict_id",                :null => false
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(:version => 20110605184329) do
   add_index "activities", ["author_id"], :name => "index_activities_on_author_id"
   add_index "activities", ["parent_id"], :name => "index_activities_on_parent_id"
 
-  create_table "activity_dicts", :force => true do |t|
-    t.string   "dict_name",  :null => false
+  create_table "activity_words", :force => true do |t|
+    t.string   "word_name",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "activity_dicts", ["dict_name"], :name => "index_activity_dicts_on_dict_name"
+  add_index "activity_words", ["word_name"], :name => "index_activity_words_on_word_name"
 
   create_table "campaigns", :force => true do |t|
     t.integer  "activity_id",                    :null => false
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20110605184329) do
   create_table "entities", :force => true do |t|
     t.string   "entity_name", :null => false
     t.string   "entity_guid", :null => false
+    t.text     "entity_doc",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -115,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20110605184329) do
 
   create_table "entity_types", :force => true do |t|
     t.integer  "entity_id",        :null => false
-    t.string   "entity_type_uri",  :null => false
+    t.string   "entity_type_uri"
     t.string   "entity_type_name", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -136,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20110605184329) do
 
   add_index "geo_locations", ["geo_latitude", "geo_longitude"], :name => "index_geo_locations_on_geo_latitude_and_geo_longitude", :unique => true
   add_index "geo_locations", ["geo_longitude"], :name => "index_geo_locations_on_geo_longitude"
-  add_index "geo_locations", ["geo_name"], :name => "index_geo_locations_on_geo_name", :length => {"geo_name"=>255}
+  add_index "geo_locations", ["geo_name"], :name => "index_geo_locations_on_geo_name"
   add_index "geo_locations", ["location_id"], :name => "index_geo_locations_on_location_id", :unique => true
 
   create_table "hubs", :force => true do |t|
@@ -181,8 +182,8 @@ ActiveRecord::Schema.define(:version => 20110605184329) do
     t.datetime "updated_at"
   end
 
-  add_index "locations", ["location_name"], :name => "index_locations_on_location_name", :length => {"location_name"=>255}
-  add_index "locations", ["location_type"], :name => "index_locations_on_location_type"
+  add_index "locations", ["location_name"], :name => "index_locations_on_location_name"
+  add_index "locations", ["location_type", "location_name"], :name => "index_locations_on_location_type_and_location_name"
 
   create_table "loops", :force => true do |t|
     t.string   "name"
@@ -210,11 +211,11 @@ ActiveRecord::Schema.define(:version => 20110605184329) do
     t.string   "profile_photo_m"
     t.string   "profile_photo_s"
     t.string   "home_location"
-    t.decimal  "home_geo_lat",     :precision => 10, :scale => 0
-    t.decimal  "home_geo_long",    :precision => 10, :scale => 0
+    t.decimal  "home_geo_lat"
+    t.decimal  "home_geo_long"
     t.string   "current_location"
-    t.decimal  "current_geo_lat",  :precision => 10, :scale => 0
-    t.decimal  "current_geo_long", :precision => 10, :scale => 0
+    t.decimal  "current_geo_lat"
+    t.decimal  "current_geo_long"
     t.integer  "age"
     t.string   "sex"
     t.string   "theme"

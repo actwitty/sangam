@@ -117,7 +117,6 @@ GEM
       subexec (~> 0.0.4)
     multi_json (0.0.5)
     multipart-post (1.1.0)
-    mysql2 (0.2.6)
     net-ldap (0.1.1)
     nokogiri (1.4.3.1)
     oa-basic (0.1.6)
@@ -158,6 +157,7 @@ GEM
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
+    pg (0.11.0)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.2)
     rack (1.2.2)
@@ -250,9 +250,9 @@ DEPENDENCIES
   jammit (= 0.5.4)
   json (= 1.4.6)
   mini_magick (= 3.2)
-  mysql2 (= 0.2.6)
   omniauth (= 0.1.6)
   paperclip (~> 2.3)
+  pg
   rails (= 3.0.7)
   rails3-generators
   rcov

@@ -13,11 +13,13 @@
 ################# CAUTION!!  Should Not call delete of entity as we are going to hold them fore ever as of now :) #################
 class Entity < ActiveRecord::Base
 
+  serialize :entity_doc, Hash
+
   # this nullify is in case some body deletes an entity for a reason . this SHOULD NOT happen though
   has_many      :hubs, :dependent => :nullify
 
   has_many      :activities, :through => :hubs
-  has_many      :activity_dicts, :through => :hubs
+  has_many      :activity_words, :through => :hubs
   has_many      :locations, :through => :hubs
   has_many      :users, :through => :hubs
 
@@ -25,14 +27,78 @@ class Entity < ActiveRecord::Base
   has_many      :entity_types, :dependent => :destroy
   has_one       :entity_document, :dependent => :destroy
 
-  validates_presence_of   :entity_name, :entity_guid
+  validates_presence_of   :entity_name, :entity_guid, :entity_doc
   validates_uniqueness_of :entity_guid, :unique => true
 
   validates_length_of     :entity_name, :in => 1..255
   validates_length_of     :entity_guid, :in => 1..255
 
+  class << self
 
-  def self.CreateEntities(entity_hash ={})
+  #  {'guid'=>nil,         //unique id regarding entity   always present if content found in freebase
+  #   'name'=>nil,      //name of entity   always present
+  #   'mid'=>nil,        // machine ID       always present if content found on freebase
+  #  '/common/topic/alias'=>[],      //alias name  optional array form
+  #  '/common/topic/image'=>[{'id'=>nil}],  //image optional array of hashes. hash con
+  #  'key'=>{'namespace'=>'/wikipedia/en_id','value'=>nil}   // wikipedia link in hash form value will contain wikipedia content id  optional
+  #   'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
+  #
+    def CreateEntities(owner_id = nil, entity_hash ={})
 
+      if !entity_hash.has_key?('mid') or entity_hash['mid'].nil?
+        puts "hello"
+        return nil
+      end
+
+      begin
+        entity_id = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'],
+                              :entity_doc => entity_hash)
+
+      rescue => e
+        Rails.logger.info("Entity => CreateEntity => Rescue " +  e.message )
+         #Validation Uniqueness fails
+        if /has already been taken/ =~ e.message
+          Rails.logger.info("Entity => CreateEntity => Rescue => Unique " +  e.message + " " + entity_hash['mid'] )
+          entity_id = Entity.where(:entity_guid => entity_hash['mid']).first
+          return entity_id
+        end
+      end
+
+      begin
+
+         entity_hash['type'].each do |entry|
+          id = EntityType.create!(:entity_id => entity_id.id , :entity_type_uri => entry['id'],
+                             :entity_type_name => entry['name'])
+         end
+         puts "==== #{entity_id}"
+         EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity_id.id)
+
+      rescue => e
+        entity_id.destroy
+        puts "***** #{entity_id}"
+        entity_id = nil
+        Rails.logger.info("Entity => CreateEntity or CreateOwnership=> Type => Rescue " +  e.message )
+        return nil
+      end
+
+
+      return entity_id
+    end
+
+    #return relations .. use each, all, first to load object
+    def FindEntityByName(name)
+      Entity.where(:entity_name => name)
+    end
+
+    #return object
+    def FindEntityByGUID(guid)
+      Entity.where(:entity_guid => guid).first
+    end
+
+    #return relations .. use each, all, first to load object
+    def SearchEntityByType(type)
+      Entity.joins(:entity_types).where(:entity_types => {:entity_type_name => type} )
+    end
   end
+
 end

@@ -1,2 +1,0 @@
-class ActivityDictsController < ApplicationController
-end

@@ -4,7 +4,7 @@ class CreateGeoLocations < ActiveRecord::Migration
       t.integer  :location_id
       t.decimal :geo_latitude, :precision => 10, :scale => 7, :null => false
       t.decimal :geo_longitude, :precision => 10, :scale => 7, :null => false
-      t.text    :geo_name, :limit => 1024, :null => false
+      t.text    :geo_name, :null => false
 
       t.timestamps
     end
@@ -12,7 +12,7 @@ class CreateGeoLocations < ActiveRecord::Migration
     add_index :geo_locations,:location_id, :unique => true
     add_index :geo_locations, [:geo_latitude,:geo_longitude ], :unique => true
     add_index :geo_locations, :geo_longitude
-    add_index :geo_locations, :geo_name, :length => 1024
+    add_index :geo_locations, :geo_name
   end
 
   def self.down

@@ -4,7 +4,7 @@
 # Table name: activities
 #
 #  id               :integer(4)      not null, primary key
-#  activity_dict_id :integer(4)      not null
+#  activity_word_id :integer(4)      not null
 #  activity_text    :text            default(""), not null
 #  activity_name    :string(255)     not null
 #  author_id        :integer(4)      not null
@@ -36,19 +36,18 @@ class Activity < ActiveRecord::Base
   has_many    :campaigns, :dependent => :destroy
   has_many    :documents, :dependent => :nullify # documents have life time more than activity
 
-  belongs_to :activity_dict
+  belongs_to :activity_word
 
   before_save       :ensure_valid_parent_and_author
   before_destroy    :ensure_before_destroyed
   after_save        :ensure_tables_setup_at_save
 
   validates_existence_of  :author
-  validates_existence_of  :activity_dict
+  validates_existence_of  :activity_word
 
   validates_presence_of     :activity_name, :activity_text
 
-  validates_length_of       :activity_text , :minimum => 1, :message => "Post cannot be blank "
-  validates_length_of       :activity_text , :maximum => 1024, :message => "Post size cannot be more than 1024 characters "
+  validates_length_of       :activity_text , :in => 1..2048
 
   validates_length_of   :activity_name,   :in => 1..255
 
@@ -72,14 +71,6 @@ class Activity < ActiveRecord::Base
         end
 
       else
-        #TODO this if statement can be removed with validates_existence check above
-        if !User.exists?(self.author_id)
-          puts "Invalid Author"
-          Rails.logger.error("No Valid Author for this activity")
-          errors[:author] << "Invalid Author is creating activity"
-          raise ActiveRecord::RecordInvalid.new(self)
-        end
-
         if self.parent_id.nil?
           Rails.logger.info("Root Activity created by #{self.author}")
           puts "nil parent"

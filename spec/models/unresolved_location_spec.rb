@@ -56,7 +56,7 @@ describe UnresolvedLocation do
    it "should be able to find all unresolved locations based on name" do
         l = UnresolvedLocation.where("unresolved_location_name LIKE :loc_url", {:loc_url => "Un%"}).
             order("created_at DESC")
-        l.should  == [ @loc1, @loc2, @loc3, @loc4, @loc5]
+        l.should  == [ @loc5, @loc4, @loc3, @loc2, @loc1]
         #l.should == [@loc3]
   end
  end

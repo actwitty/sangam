@@ -6,7 +6,7 @@
 
         #uniqe global uid
         t.string    :entity_guid, :null => false
-
+        t.text     :entity_doc, :null => false
 				t.timestamps
       end
 
