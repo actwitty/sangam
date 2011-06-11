@@ -15,6 +15,8 @@
 
 class Document < ActiveRecord::Base
 
+   attr_accessible  :data_file
+
    belongs_to     :owner, :class_name => "User", :touch => true
    belongs_to     :activity
 

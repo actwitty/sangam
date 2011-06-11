@@ -55,9 +55,14 @@ Sangam::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
     
-    root :to => "home#index"
+    #root :to => "home#index"
 
-    resource :profile
+    root :to => "users#index"
+
+    resources :users
+    resources :documents
+
+    #resource :profile
 
   # See how all your routes lay out with "rake routes"
 
