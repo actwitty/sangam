@@ -61,6 +61,9 @@ gem "geocoder"
 #Wordnik Api
 gem 'wordnik', ">= 0.3"
 
+#Delayed Job
+gem 'delayed_job'
+
 group :development do
 
 end
