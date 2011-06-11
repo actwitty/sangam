@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: entity_ownerships
 #
-#  id         :integer(4)      not null, primary key
-#  owner_id   :integer(4)
-#  entity_id  :integer(4)      not null
+#  id         :integer         not null, primary key
+#  owner_id   :integer
+#  entity_id  :integer         not null
 #  created_at :datetime
 #  updated_at :datetime
 #

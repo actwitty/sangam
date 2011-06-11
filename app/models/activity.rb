@@ -1,16 +1,16 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: activities
 #
-#  id               :integer(4)      not null, primary key
-#  activity_word_id :integer(4)      not null
-#  activity_text    :text            default(""), not null
+#  id               :integer         not null, primary key
+#  activity_dict_id :integer         not null
+#  activity_text    :text            not null
 #  activity_name    :string(255)     not null
-#  author_id        :integer(4)      not null
-#  parent_id        :integer(4)
+#  author_id        :integer         not null
+#  parent_id        :integer
 #  ancestry         :string(255)
-#  ancestry_depth   :integer(4)      default(0)
+#  ancestry_depth   :integer         default(0)
 #  created_at       :datetime
 #  updated_at       :datetime
 #

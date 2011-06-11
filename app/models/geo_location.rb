@@ -1,13 +1,13 @@
 # == Schema Information
-# Schema version: 20110530100149
+# Schema version: 20110609094335
 #
 # Table name: geo_locations
 #
-#  id            :integer(4)      not null, primary key
-#  location_id   :integer(4)
+#  id            :integer         not null, primary key
+#  location_id   :integer
 #  geo_latitude  :decimal(10, 7)  not null
 #  geo_longitude :decimal(10, 7)  not null
-#  geo_name      :text            default(""), not null
+#  geo_name      :text            not null
 #  created_at    :datetime
 #  updated_at    :datetime
 #

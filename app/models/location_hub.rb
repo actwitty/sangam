@@ -1,12 +1,12 @@
 # == Schema Information
-# Schema version: 20110605184329
+# Schema version: 20110609094335
 #
 # Table name: location_hubs
 #
-#  id                     :integer(4)      not null, primary key
-#  location_web_id        :integer(4)
-#  location_geo_id        :integer(4)
-#  location_unresolved_id :integer(4)
+#  id                     :integer         not null, primary key
+#  location_web_id        :integer
+#  location_geo_id        :integer
+#  location_unresolved_id :integer
 #  created_at             :datetime
 #  updated_at             :datetime
 #

@@ -1,10 +1,10 @@
 # == Schema Information
-# Schema version: 20110530100149
+# Schema version: 20110609094335
 #
 # Table name: entity_documents
 #
-#  id                     :integer(4)      not null, primary key
-#  entity_id              :integer(4)      not null
+#  id                     :integer         not null, primary key
+#  entity_id              :integer         not null
 #  entity_doc_name        :string(255)     not null
 #  entity_doc_mid         :string(255)     not null
 #  entity_doc_description :text

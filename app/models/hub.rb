@@ -1,16 +1,16 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: hubs
 #
-#  id               :integer(4)      not null, primary key
-#  activity_id      :integer(4)      not null
+#  id               :integer         not null, primary key
+#  activity_id      :integer         not null
 #  activity_name    :string(255)     not null
-#  activity_word_id :integer(4)      not null
-#  entity_id        :integer(4)
+#  activity_dict_id :integer         not null
+#  entity_id        :integer
 #  entity_name      :string(255)
-#  user_id          :integer(4)      not null
-#  location_id      :integer(4)
+#  user_id          :integer         not null
+#  location_id      :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #

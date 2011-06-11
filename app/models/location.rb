@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 20110605184329
+# Schema version: 20110609094335
 #
 # Table name: locations
 #
-#  id            :integer(4)      not null, primary key
-#  location_type :integer(4)      not null
-#  location_name :text            default(""), not null
+#  id            :integer         not null, primary key
+#  location_type :integer         not null
+#  location_name :text            not null
 #  created_at    :datetime
 #  updated_at    :datetime
 #
@@ -41,11 +41,11 @@ class Location < ActiveRecord::Base
   protected
 
   def  ensure_proper_location_type
-    Rails.logger.info ("Location Save")
+    Rails.logger.info("Location Save")
   end
 
   def ensure_proper_clean_up
-    Rails.logger.info ( "Location Destroy " + self.location_type.to_s)
+    Rails.logger.info( "Location Destroy " + self.location_type.to_s)
   end
 
 

@@ -1,14 +1,14 @@
 # == Schema Information
-# Schema version: 20110502113130
+# Schema version: 20110609094335
 #
 # Table name: users
 #
-#  id                   :integer(4)      not null, primary key
+#  id                   :integer         not null, primary key
 #  email                :string(255)
 #  encrypted_password   :string(128)     default("")
 #  reset_password_token :string(255)
 #  remember_created_at  :datetime
-#  sign_in_count        :integer(4)      default(0)
+#  sign_in_count        :integer         default(0)
 #  current_sign_in_at   :datetime
 #  last_sign_in_at      :datetime
 #  current_sign_in_ip   :string(255)
@@ -16,19 +16,19 @@
 #  confirmation_token   :string(255)
 #  confirmed_at         :datetime
 #  confirmation_sent_at :datetime
-#  failed_attempts      :integer(4)      default(0)
+#  failed_attempts      :integer         default(0)
 #  unlock_token         :string(255)
 #  locked_at            :datetime
 #  authentication_token :string(255)
 #  username             :string(255)
-#  show_help            :boolean(1)
-#  disable_email        :boolean(1)
+#  show_help            :boolean
+#  disable_email        :boolean
 #  created_at           :datetime
 #  updated_at           :datetime
 #  invitation_token     :string(60)
 #  invitation_sent_at   :datetime
-#  invitation_limit     :integer(4)
-#  invited_by_id        :integer(4)
+#  invitation_limit     :integer
+#  invited_by_id        :integer
 #  invited_by_type      :string(255)
 #
 

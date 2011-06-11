@@ -4,7 +4,7 @@ class CreateActivityWords < ActiveRecord::Migration
       t.string :word_name, :null => false
       t.timestamps
     end
-    add_index :activity_words, :word_name
+    add_index :activity_words, :word_name, :unique => true
   end
 
   def self.down

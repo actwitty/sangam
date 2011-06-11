@@ -2,6 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
 
+#ALOK need to use 0.8.7 as 0.9 > has DSL errors
+gem "rake", "0.8.7"
+
 #gem 'mysql2', '0.2.6'
 gem  'pg'
 
@@ -15,7 +18,7 @@ gem 'devise',           '~> 1.2.0'
 gem 'devise_invitable', '~> 0.4.0'
 
 #Authentication
-gem 'omniauth', '0.1.6'
+gem 'omniauth'
 
 #Views
 #gem 'haml', '3.0.25'
@@ -25,12 +28,14 @@ gem 'will_paginate', '3.0.pre2'
 gem 'i18n-inflector-rails', '~> 1.0'
 
 #Uncatagorized
-gem 'addressable', '2.2.2', :require => 'addressable/uri'
+gem 'addressable'  , '2.2.4'
+
 gem 'json', '1.4.6'
 gem 'annotate-models', '1.0.4'
 
 #File uploading
-gem "paperclip", "~> 2.3"
+gem "fog"
+gem "carrierwave"
 
 gem 'mini_magick', '3.2'
 
@@ -52,6 +57,9 @@ gem 'app_constants'
 
 #Manages geo location
 gem "geocoder"
+
+#Wordnik Api
+gem 'wordnik', ">= 0.3"
 
 group :development do
 

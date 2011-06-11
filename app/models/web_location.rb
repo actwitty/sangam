@@ -1,10 +1,10 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: web_locations
 #
-#  id                     :integer(4)      not null, primary key
-#  location_id            :integer(4)      not null
+#  id                     :integer         not null, primary key
+#  location_id            :integer         not null
 #  web_location_url       :string(255)     not null
 #  web_location_title     :string(255)
 #  web_location_desc      :text

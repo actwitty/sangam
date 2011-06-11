@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: entity_types
 #
-#  id               :integer(4)      not null, primary key
-#  entity_id        :integer(4)      not null
-#  entity_type_uri  :string(255)     not null
+#  id               :integer         not null, primary key
+#  entity_id        :integer         not null
+#  entity_type_uri  :string(255)
 #  entity_type_name :string(255)     not null
 #  created_at       :datetime
 #  updated_at       :datetime

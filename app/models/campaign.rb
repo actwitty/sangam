@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: campaigns
 #
-#  id               :integer(4)      not null, primary key
-#  activity_id      :integer(4)      not null
-#  author_id        :integer(4)      not null
+#  id               :integer         not null, primary key
+#  activity_id      :integer         not null
+#  author_id        :integer         not null
 #  campaign_name    :string(255)     not null
 #  campaign_value   :string(32)      not null
 #  campaign_comment :string(255)

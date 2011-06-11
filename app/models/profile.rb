@@ -1,9 +1,9 @@
 # == Schema Information
-# Schema version: 20110501112607
+# Schema version: 20110609094335
 #
 # Table name: profiles
 #
-#  id               :integer(4)      not null, primary key
+#  id               :integer         not null, primary key
 #  first_name       :string(255)
 #  last_name        :string(255)
 #  nick_name        :string(255)
@@ -12,12 +12,12 @@
 #  profile_photo_m  :string(255)
 #  profile_photo_s  :string(255)
 #  home_location    :string(255)
-#  home_geo_lat     :integer(10)
-#  home_geo_long    :integer(10)
+#  home_geo_lat     :decimal(, )
+#  home_geo_long    :decimal(, )
 #  current_location :string(255)
-#  current_geo_lat  :integer(10)
-#  current_geo_long :integer(10)
-#  age              :integer(4)
+#  current_geo_lat  :decimal(, )
+#  current_geo_long :decimal(, )
+#  age              :integer
 #  sex              :string(255)
 #  theme            :string(255)
 #  dob              :date
@@ -36,10 +36,10 @@
 #  tag_string       :string(255)
 #  email            :string(255)
 #  searchable       :string(255)
-#  verified_account :boolean(1)
-#  is_celebrity     :boolean(1)
-#  abuse_count      :integer(4)
-#  user_id          :integer(4)
+#  verified_account :boolean
+#  is_celebrity     :boolean
+#  abuse_count      :integer
+#  user_id          :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #

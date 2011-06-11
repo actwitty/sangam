@@ -1,11 +1,11 @@
 # == Schema Information
-# Schema version: 20110528065055
+# Schema version: 20110609094335
 #
 # Table name: mentions
 #
-#  id          :integer(4)      not null, primary key
-#  activity_id :integer(4)      not null
-#  user_id     :integer(4)      not null
+#  id          :integer         not null, primary key
+#  activity_id :integer         not null
+#  user_id     :integer         not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #
