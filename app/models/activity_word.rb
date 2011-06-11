@@ -1,3 +1,14 @@
+# == Schema Information
+# Schema version: 20110611114344
+#
+# Table name: activity_words
+#
+#  id         :integer         not null, primary key
+#  word_name  :string(255)     not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class ActivityWord < ActiveRecord::Base
 
   has_many :related_words, :foreign_key => :related_word_id, :class_name => "WordForm", :dependent => :destroy
@@ -50,26 +61,7 @@ class ActivityWord < ActiveRecord::Base
         return word_obj
       end
 
-      #find words of type relation for input word
-      related_words = ActivityWord.GetRelatedWords(word, relation)
-
-      #create the new words entry in ActivityWord and also create their relation in WordForm
-      if !related_words.blank?
-        related_words[0]["words"].each do |attr|
-
-          w_obj =  ActivityWord.where(:word_name => attr).first
-
-          if w_obj.blank?
-            puts "wow"
-            w_obj = ActivityWord.create!(:word_name => attr)
-          end
-
-          WordForm.create!(:activity_word_id => w_obj.id , :word_form_name => attr, :related_word_id => word_obj.id,
-                          :relation_type => relation)
-        end
-      else
-        Rails.logger.info("ActiveWord=>CreateActivityWord => No Related words for #{word}")
-      end
+      ActivityWord.CreateRelatedWords(word_obj, relation)
       return word_obj
     end
 
@@ -77,6 +69,7 @@ class ActivityWord < ActiveRecord::Base
     def FindWordForm(act_obj, form = "verb-form")
       a_obj = WordForm.includes(:activity_word).select(:activity_word_id).where(:related_word_id => act_obj.id, :relation_type => form)
       a_obj.inject(act = []){|arr, element| arr << element.activity_word}
+      puts act
       return act
     end
 
@@ -86,9 +79,33 @@ class ActivityWord < ActiveRecord::Base
       if $& == word
         word.downcase!
         related_words =  Wordnik.word.get_related_words(word, :limit => 50, :type => relation)
-        #puts related_words.to_s
+        puts related_words.to_s
       end
       return related_words
     end
+
+    def CreateRelatedWords(word_obj, relation)
+      #find words of type relation for input word
+      related_words = ActivityWord.GetRelatedWords(word_obj.word_name, relation)
+
+      #create the new words entry in ActivityWord and also create their relation in WordForm
+      if !related_words.blank?
+        related_words[0]["words"].each do |attr|
+
+          w_obj =  ActivityWord.where(:word_name => attr).first
+
+          if w_obj.blank?
+            w_obj = ActivityWord.create!(:word_name => attr)
+          end
+
+          WordForm.create!(:activity_word_id => w_obj.id , :word_form_name => attr, :related_word_id => word_obj.id,
+                          :relation_type => relation)
+        end
+      else
+        Rails.logger.info("ActiveWord=>CreateRelatedWords => No Related words for #{word_obj.word_name}")
+      end
+    end
+
+    handle_asynchronously :CreateRelatedWords
   end
 end

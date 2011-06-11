@@ -34,6 +34,8 @@ describe ActivityWord do
     end
   end
   describe "Read" do
+    include DelayedJobSpecHelper
+
     it "should be able to read activity_word_id of all word forms" do
       w_id = ActivityWord.CreateActivityWord("TesTing", "verb-form")
       w_id1 = ActivityWord.CreateActivityWord("test", "")
@@ -43,11 +45,13 @@ describe ActivityWord do
       w_id5 = ActivityWord.CreateActivityWord("eat", "verb-form")
       w_id6 = ActivityWord.CreateActivityWord("Drink")
       w_id7 = ActivityWord.CreateActivityWord("tests")
-      w_id8 = ActivityWord.CreateActivityWord("eat", "hyponym")
+      w_id8 = ActivityWord.CreateActivityWord("eat", "same-context")
+      work_off
       objs = ActivityWord.FindWordForm(w_id1)
       objs.should include(w_id7)
       objs = ActivityWord.FindWordForm(w_id8)
       objs.should_not be_blank
+
     end
 
   end
