@@ -35,7 +35,9 @@ gem 'annotate-models', '1.0.4'
 
 #File uploading
 gem "fog"
-gem "carrierwave"
+gem "carrierwave", :git => 'git://github.com/jnicklas/carrierwave.git'
+gem "rmagick"
+
 
 gem 'mini_magick', '3.2'
 

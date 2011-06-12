@@ -18,37 +18,56 @@ class DataFileUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
   # def scale(width, height)
-  #   # do something
+  # # do something
   # end
 
 
-  process :resize_to_fit => [800, 800]
+  process :resize_to_fit => [800, 800], :if => :image?
 
   # Create different versions of your uploaded files:
-  version :thumb do
+  version :thumb , :if => :image? do
     process :resize_to_fill => [200,200]
   end
 
+   # Create different versions document icon:
+  version :icon , :if => !:image?  do
+    process :doc_create_icon
 
+    def full_filename (for_file = model.logo.file)
+      puts super
+      str = MIME::Types.type_for(original_filename).first.to_s
+      s = str.split('/')
+      "thumb_#{s[1]}.jpeg"
+    end
+  end
 
+  def doc_create_icon
+    str = MIME::Types.type_for(original_filename).first.to_s
+    s = str.split('/')
+    FileUtils.copy("#{Rails.root}/public/test/#{s[1]}.jpeg", current_path)
+  end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_white_list
-     #%w(jpg jpeg png pdf docx  xlsx  pptx mp4 flv ogv)
-     %w(jpg jpeg png)
+     #%w(jpg jpeg png pdf docx xlsx pptx mp4 flv ogv)
+     %w(jpg jpeg png pdf)
    end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
-  #   "something.jpg" if original_filename
+  # "something.jpg" if original_filename
   # end
-
+  protected
+    def image? (new_file)
+      MIME::Types.type_for(original_filename).first.to_s.include?('image')
+    end
 end
+

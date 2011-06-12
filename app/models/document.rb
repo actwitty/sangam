@@ -15,13 +15,13 @@
 
 class Document < ActiveRecord::Base
 
-   attr_accessible  :data_file
+   attr_accessible  :data_file , :owner_id, :activity_id, :document_name, :document_type,:document_url
 
    belongs_to     :owner, :class_name => "User", :touch => true
    belongs_to     :activity
 
-   validates_existence_of :owner
-   validates_existence_of :activity,  :allow_blank => true
+#   validates_existence_of :owner
+#   validates_existence_of :activity,  :allow_blank => true
 
    validates_presence_of :document_name, :document_type,:document_url
 
@@ -32,4 +32,5 @@ class Document < ActiveRecord::Base
    validates_format_of :document_url, :with => eval(AppConstants.url_validator)
 
    mount_uploader :data_file, DataFileUploader
+
 end
