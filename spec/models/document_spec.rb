@@ -13,18 +13,17 @@ describe Document do
 
   describe "Create" do
     it "should save the file in folder" do
-
-      @doc.data_file = File.open("#{Rails.root}/public/PAN.jpg")
+      @doc.data_file = File.open("#{Rails.root}/public/test/PAN.jpg")
       lambda{
         @doc.save!
        }.should_not raise_error
     end
     it "should save the not create thumbnail for pdfs etc , other than images" do
-      @doc.data_file = File.open("#{Rails.root}/public/test.pdf")
+      @doc.data_file = File.open("#{Rails.root}/public/test/test.pdf")
       puts "opened"
       @doc.save!
       puts "saved"
-      @doc.data_file.icon.url.should == "/test/thumb_pdf.jpeg"
+      @doc.data_file.thumb.url.should == "/test/thumb_pdf.jpeg"
     end
   end
 

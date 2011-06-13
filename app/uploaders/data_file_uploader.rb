@@ -32,27 +32,38 @@ class DataFileUploader < CarrierWave::Uploader::Base
   process :resize_to_fit => [800, 800], :if => :image?
 
   # Create different versions of your uploaded files:
-  version :thumb , :if => :image? do
-    process :resize_to_fill => [200,200]
-  end
+  version :thumb do
 
-   # Create different versions document icon:
-  version :icon , :if => !:image?  do
-    process :doc_create_icon
+    process :resize_to_fill => [200,200], :if => :image?
+    process :doc_create_icon, :if => :application?
 
     def full_filename (for_file = model.logo.file)
-      puts super
       str = MIME::Types.type_for(original_filename).first.to_s
-      s = str.split('/')
-      "thumb_#{s[1]}.jpeg"
+      if str.include?('image')
+        super
+      else
+        s = str.split('/')
+        "thumb_#{s[1]}.jpeg"
+      end
+    end
+
+    def store_dir
+      str = MIME::Types.type_for(original_filename).first.to_s
+      if str.include?('image')
+        "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      else
+        "#{Rails.root}/public/test"
+      end
     end
   end
+
 
   def doc_create_icon
     str = MIME::Types.type_for(original_filename).first.to_s
     s = str.split('/')
     FileUtils.copy("#{Rails.root}/public/test/#{s[1]}.jpeg", current_path)
   end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_white_list
@@ -68,6 +79,9 @@ class DataFileUploader < CarrierWave::Uploader::Base
   protected
     def image? (new_file)
       MIME::Types.type_for(original_filename).first.to_s.include?('image')
+    end
+    def application? (new_file)
+      MIME::Types.type_for(original_filename).first.to_s.include?('application')
     end
 end
 

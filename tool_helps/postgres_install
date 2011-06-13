@@ -1,0 +1,26 @@
+bash> sudo apt-get install postgresql postgresql-client postgresql-contrib libpq-dev 
+
+bash> git pull
+
+bash> bundle install
+bash> sudo su postgres
+
+postgres@bash> createuser sangam 
+# press y on superuser
+
+postgres@bash> psql template1
+
+template1=#> ALTER USER sangam WITH ENCRYPTED PASSWORD 'lemon124';
+
+template1=#> Ctrl-D
+postgres@bash Ctrl-D
+
+bash> sudo apt-get install libcurl4-openssl-dev
+
+bash> rake db:drop
+bash> rake db:create
+bash> rake db:migrate
+bash> rake db:test:prepare
+
+
+
