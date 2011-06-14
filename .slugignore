@@ -15,4 +15,6 @@ solr/data
 .idea/*.*
 *.pid
 *.orig
-
+sangam/.*/*.*
+public/test/*
+public/uploads/**/*.*
