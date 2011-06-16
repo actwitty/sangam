@@ -41,7 +41,5 @@ Sangam::Application.configure do
     :user_name => "no-reply@lemonbag.com",
     :password => 'lemonbag08032011'
   }
-
-    
 end
 

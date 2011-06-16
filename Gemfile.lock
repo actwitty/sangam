@@ -1,4 +1,20 @@
 GIT
+  remote: git://github.com/collectiveidea/delayed_job.git
+  revision: 40fc746e3bd8d4bf095f1cb710efb3d3aff18013
+  specs:
+    delayed_job (3.0.0.pre)
+      activesupport
+      daemons
+
+GIT
+  remote: git://github.com/collectiveidea/delayed_job_active_record.git
+  revision: 3d359527cb22e0ea70fab103ad5af0902a1bfa78
+  specs:
+    delayed_job_active_record (0.2.0)
+      activerecord (~> 3.0)
+      delayed_job (= 3.0.0.pre)
+
+GIT
   remote: git://github.com/jnicklas/carrierwave.git
   revision: 133c14a80b2fa3ae4a35789a806ba5a64344425c
   specs:
@@ -72,9 +88,6 @@ GEM
     database_cleaner (0.6.7)
     date_validator (0.6.2)
       activemodel (>= 3.0.0, < 3.2.0)
-    delayed_job (2.1.4)
-      activesupport (~> 3.0)
-      daemons
     devise (1.2.1)
       bcrypt-ruby (~> 2.1.2)
       orm_adapter (~> 0.0.3)
@@ -236,6 +249,7 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
+    simple_form (1.4.0)
     spork (0.8.4)
     subexec (0.0.4)
     term-ansicolor (1.0.5)
@@ -276,7 +290,8 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   date_validator
-  delayed_job
+  delayed_job!
+  delayed_job_active_record!
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
   factory_girl_rails
@@ -299,6 +314,7 @@ DEPENDENCIES
   rspec (>= 2.0.1)
   rspec-rails (>= 2.0.1)
   selenium-webdriver (~> 0.2.0)
+  simple_form
   spork (= 0.8.4)
   validates_existence (>= 0.4)
   will_paginate (= 3.0.pre2)

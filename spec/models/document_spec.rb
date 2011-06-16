@@ -3,28 +3,31 @@ require 'spec_helper'
 describe Document do
   include CarrierWave::Test::Matchers
 
-  before(:each) do
-    DataFileUploader.enable_processing = true
+   describe "Create" do
+   include DelayedJobSpecHelper
 
-    @doc = Document.create!(:owner_id => 1, :activity_id => 2 , :document_name => "alok.jpg", :document_type => "jpeg",
-     :document_url => "http://google.com")
-
-  end
-
-  describe "Create" do
-    it "should save the file in folder" do
-      @doc.data_file = File.open("#{Rails.root}/public/test/PAN.jpg")
-      lambda{
-        @doc.save!
-       }.should_not raise_error
-    end
     it "should save the not create thumbnail for pdfs etc , other than images" do
-      @doc.data_file = File.open("#{Rails.root}/public/test/test.pdf")
-      puts "opened"
-      @doc.save!
-      puts "saved"
-      @doc.data_file.thumb.url.should == "/test/thumb_pdf.jpeg"
+      u = Factory(:user)
+      @doc = Document.CreateDocument(u,nil, "#{Rails.root}/public/test/test.pdf")
+      @doc1 = Document.CreateDocument(u,nil, "#{Rails.root}/public/test/test.pdf")
+       puts "hello"
+       work_off
+      d_array= u.documents.all
+      d_array.count.should == 2
+#      #d.should == @doc
+#      puts d.document_data_url
+#      puts d.document_data.thumb.url
+#      puts d.document_type
+#      #d.destroy
     end
-  end
-
+    it "should save the file in amazon bucket" do
+      @doc = Document.CreateDocument(Factory(:user),nil, "#{Rails.root}/public/test/test.pdf")
+       puts "hello"
+       work_off
+       d = Document.where(:document_name => "test.pdf").first
+       d.destroy
+       d =  Document.where(:document_name => "test.pdf").first
+       d.should be_nil
+      end
+    end
 end
