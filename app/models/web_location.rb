@@ -19,7 +19,7 @@ class WebLocation < ActiveRecord::Base
   belongs_to :location
 
 
-  validates_existence_of :location
+  validates_existence_of :location_id
 
   validates_presence_of :web_location_url
 
@@ -30,13 +30,8 @@ class WebLocation < ActiveRecord::Base
 
   validates_format_of :web_location_url, :with =>  eval(AppConstants.url_validator)
 
-  validates_length_of :web_location_image_url, :maximum => 255,
-                                            :unless => Proc.new {|a| a.web_location_image_url.nil?}
-  validates_format_of :web_location_image_url, :with => eval(AppConstants.url_validator),
-                                            :unless => Proc.new {|a| a.web_location_image_url.nil?}
+  validates_length_of :web_location_title, :maximum => 255, :allow_blank => true
 
-  validates_length_of :web_location_title, :maximum => 255, :unless => Proc.new {|a| a.web_location_title.nil? }
-  validates_length_of :web_location_desc, :maximum => 1024, :unless => Proc.new {|a| a.web_location_desc.nil? }
 
   before_save :cant_change_web_join_url
   after_save  :log_confirmation

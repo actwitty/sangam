@@ -72,7 +72,7 @@ class Location < ActiveRecord::Base
       assoc  = :web_location
       assocs = :web_locations
       uniq_hash = {:web_location_url => new_hash[:web_location_url]}
-      text_data =  new_hash[:web_location_desc]
+      text_data =  new_hash[:web_location_title]
     elsif !location_hash[:geo_location].nil?
       loc_type = 2
       new_hash = location_hash[:geo_location]

@@ -15,8 +15,8 @@ class Mention < ActiveRecord::Base
   belongs_to :user
   belongs_to :activity
 
-  validates_existence_of :user
-  validates_existence_of :activity
+  validates_existence_of :user_id
+  validates_existence_of :activity_id
 
   validates_uniqueness_of :activity_id, :scope => :user_id
 

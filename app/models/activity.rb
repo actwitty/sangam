@@ -45,8 +45,8 @@ class Activity < ActiveRecord::Base
   before_destroy    :ensure_before_destroyed
   after_save        :ensure_tables_setup_at_save
 
-  validates_existence_of  :author
-  validates_existence_of  :activity_word
+  validates_existence_of  :author_id
+  validates_existence_of  :activity_word_id
 
   validates_presence_of     :activity_name, :activity_text
 
@@ -131,8 +131,14 @@ class Activity < ActiveRecord::Base
     def self.delete_activity(act)
 
     end
-    #TODO
-    def self.create_activity(act_hash)
-
-    end
+#    #TODO
+#    :parent =>
+#    :activity =>
+#    :entity =>
+#    :location => {:location_type => 1, :lat => , :long => , :name =>  }
+#    def self.CreateActivity(act_hash ={})
+#      ActivityWord.CreateActivityWord(, relation = "")
+#      Activity.create!(:activity_word_id => 101,:activity_text => "hello", :activity_name => "test", :author => @u)
+#
+#    end
 end

@@ -18,7 +18,7 @@ class EntityDocument < ActiveRecord::Base
 
   belongs_to :entity
 
-  validates_existence_of :entity
+  validates_existence_of :entity_id
 
   validates_presence_of :entity_doc_name, :entity_doc_mid
 

@@ -40,14 +40,13 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "activity_words", ["word_name"], :name => "index_activity_words_on_word_name", :unique => true
 
   create_table "campaigns", :force => true do |t|
-    t.integer  "author_id",                      :null => false
+    t.integer  "author_id",      :null => false
     t.integer  "activity_id"
     t.integer  "entity_id"
     t.integer  "location_id"
-    t.integer  "father_id",                      :null => false
-    t.string   "campaign_name",                  :null => false
-    t.string   "campaign_value",   :limit => 32, :null => false
-    t.string   "campaign_comment"
+    t.integer  "father_id",      :null => false
+    t.string   "campaign_name",  :null => false
+    t.integer  "campaign_value", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -317,11 +316,9 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
 
   create_table "web_locations", :force => true do |t|
-    t.integer  "location_id",            :null => false
-    t.string   "web_location_url",       :null => false
-    t.string   "web_location_title"
-    t.text     "web_location_desc"
-    t.string   "web_location_image_url"
+    t.integer  "location_id",        :null => false
+    t.string   "web_location_url",   :null => false
+    t.string   "web_location_title", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

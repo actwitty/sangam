@@ -36,8 +36,8 @@ class Document < ActiveRecord::Base
    belongs_to     :owner, :class_name => "User", :touch => true
    belongs_to     :activity
 
-   validates_existence_of :owner, :allow_blank => true
-   validates_existence_of :activity,  :allow_blank => true
+   validates_existence_of :owner_id
+   validates_existence_of :activity_id,  :allow_nil => true
 
    validates_presence_of :document_name, :document_type
 

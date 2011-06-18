@@ -26,11 +26,11 @@ class Campaign < ActiveRecord::Base
 
   belongs_to :father, :class_name => "Activity"
 
-  validates_existence_of :author
-  validates_existence_of :father
-  validates_existence_of :activity, :allow_blank => true
-  validates_existence_of :entity, :allow_blank => true
-  validates_existence_of :location, :allow_blank => true
+  validates_existence_of :author_id
+  validates_existence_of :father_id
+  validates_existence_of :activity_id, :allow_nil => true
+  validates_existence_of :entity_id, :allow_nil => true
+  validates_existence_of :location_id, :allow_nil => true
 
   validates_uniqueness_of :author_id, :scope => [:activity_id, :campaign_name]
   validates_uniqueness_of :author_id, :scope => [:entity_id, :campaign_name]
@@ -44,5 +44,7 @@ class Campaign < ActiveRecord::Base
   validates_length_of :campaign_value, :in => 1..32
   validates_length_of :campaign_comment, :in => 1..255,  :allow_blank => true
 
-
+  def CreateCampaign(author, name, value, option ={})
+     Activity.create()
+  end
 end

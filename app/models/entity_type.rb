@@ -15,7 +15,7 @@ class EntityType < ActiveRecord::Base
 
   belongs_to :entity
 
-  validates_existence_of :entity
+  validates_existence_of :entity_id
 
   validates_presence_of :entity_type_uri, :entity_type_name
 
