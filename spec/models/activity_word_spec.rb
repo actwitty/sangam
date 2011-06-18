@@ -5,7 +5,7 @@ describe ActivityWord do
     it "should not allow nil word" do
       lambda{
         w_id = Factory(:activity_word,:word_name => nil)
-      }.should_not raise_error ActiveRecord::RecordInvalid
+      }.should raise_error ActiveRecord::RecordInvalid
     end
      it "should not allow duplicate word" do
       lambda{
@@ -21,16 +21,16 @@ describe ActivityWord do
     end
   end
   describe "Create" do
+    include DelayedJobSpecHelper
     it "should create word forms" do
-      w_id = ActivityWord.CreateActivityWord("TesTing")
-      w_id1 = ActivityWord.CreateActivityWord("test")
-      w_id2 = ActivityWord.CreateActivityWord("DEepika")
-      w_id3 = ActivityWord.CreateActivityWord("test")
-      w_id1.word_forms.count.should == 2
+      w_id = ActivityWord.CreateActivityWord("TesTing", "verb-form")
+      w_id1 = ActivityWord.CreateActivityWord("test", "form")
+      w_id2 = ActivityWord.CreateActivityWord("DEepika", "verb-form")
+      w_id3 = ActivityWord.CreateActivityWord("test", "")
+      work_off
+      w_id1.related_words.count.should == 2
       w_id3.should == w_id1
 #      w_id1.should == w_id
-
-      puts w_id2.word_forms
     end
   end
   describe "Read" do

@@ -87,9 +87,9 @@ describe GeoLocation do
     end
 
     it "should be able to find all geo locations based on name" do
-        l = GeoLocation.where("geo_name LIKE :loc_url", {:loc_url => "Geo %"}).
-            order("created_at DESC")
-        l.should include( @loc5, @loc4, @loc3, @loc2, @loc1 )
+        l = GeoLocation.where("geo_name LIKE :loc_url", {:loc_url => "geo%"}).order("created_at DESC")
+        puts l[0].class
+        l.should ==[ @loc5, @loc4, @loc3, @loc2, @loc1 ]
         #l.should == [@loc3]
     end
     it "should be able to find a geo locations lat" do

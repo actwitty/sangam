@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(:version => 20110616040229) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "activity_dict_id",                :null => false
+    t.integer  "activity_word_id",                :null => false
     t.text     "activity_text",                   :null => false
     t.string   "activity_name",                   :null => false
     t.integer  "author_id",                       :null => false
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["activity_dict_id", "author_id"], :name => "index_activities_on_activity_dict_id_and_author_id"
   add_index "activities", ["activity_name", "author_id"], :name => "index_activities_on_activity_name_and_author_id"
+  add_index "activities", ["activity_word_id", "author_id"], :name => "index_activities_on_activity_word_id_and_author_id"
   add_index "activities", ["ancestry"], :name => "index_activities_on_ancestry"
-  add_index "activities", ["author_id", "activity_name", "activity_dict_id"], :name => "index_activity_author_name_dict"
+  add_index "activities", ["author_id", "activity_name", "activity_word_id"], :name => "index_activity_author_name_dict"
   add_index "activities", ["author_id"], :name => "index_activities_on_author_id"
   add_index "activities", ["parent_id"], :name => "index_activities_on_parent_id"
 
@@ -40,8 +40,11 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "activity_words", ["word_name"], :name => "index_activity_words_on_word_name", :unique => true
 
   create_table "campaigns", :force => true do |t|
-    t.integer  "activity_id",                    :null => false
     t.integer  "author_id",                      :null => false
+    t.integer  "activity_id"
+    t.integer  "entity_id"
+    t.integer  "location_id"
+    t.integer  "father_id",                      :null => false
     t.string   "campaign_name",                  :null => false
     t.string   "campaign_value",   :limit => 32, :null => false
     t.string   "campaign_comment"
@@ -51,7 +54,13 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
 
   add_index "campaigns", ["activity_id", "campaign_name"], :name => "index_campaigns_on_activity_id_and_campaign_name"
   add_index "campaigns", ["author_id", "activity_id", "campaign_name"], :name => "index_campaign_on_author_activity_name", :unique => true
+  add_index "campaigns", ["author_id", "activity_id", "campaign_name"], :name => "index_campaign_on_author_location_name", :unique => true
   add_index "campaigns", ["author_id", "campaign_name", "campaign_value"], :name => "index_campaign_on_author_name_value"
+  add_index "campaigns", ["author_id", "entity_id", "campaign_name"], :name => "index_campaign_on_author_entity_name", :unique => true
+  add_index "campaigns", ["campaign_name"], :name => "index_campaigns_on_campaign_name"
+  add_index "campaigns", ["entity_id", "campaign_name"], :name => "index_campaigns_on_entity_id_and_campaign_name"
+  add_index "campaigns", ["father_id"], :name => "index_campaigns_on_father_id", :unique => true
+  add_index "campaigns", ["location_id", "campaign_name"], :name => "index_campaigns_on_location_id_and_campaign_name"
 
   create_table "contacts", :force => true do |t|
     t.integer  "status"
@@ -160,7 +169,7 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   create_table "hubs", :force => true do |t|
     t.integer  "activity_id",      :null => false
     t.string   "activity_name",    :null => false
-    t.integer  "activity_dict_id", :null => false
+    t.integer  "activity_word_id", :null => false
     t.integer  "entity_id"
     t.string   "entity_name"
     t.integer  "user_id",          :null => false
@@ -169,28 +178,28 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.datetime "updated_at"
   end
 
-  add_index "hubs", ["activity_dict_id", "entity_id"], :name => "index_hubs_on_activity_dict_id_and_entity_id"
-  add_index "hubs", ["activity_dict_id", "user_id"], :name => "index_hubs_on_activity_dict_id_and_user_id"
   add_index "hubs", ["activity_id"], :name => "index_hubs_on_activity_id"
   add_index "hubs", ["activity_name"], :name => "index_hubs_on_activity_name"
+  add_index "hubs", ["activity_word_id", "entity_id"], :name => "index_hubs_on_activity_word_id_and_entity_id"
+  add_index "hubs", ["activity_word_id", "user_id"], :name => "index_hubs_on_activity_word_id_and_user_id"
   add_index "hubs", ["entity_id", "activity_id"], :name => "index_hubs_on_entity_id_and_activity_id"
   add_index "hubs", ["entity_id", "user_id"], :name => "index_hubs_on_entity_id_and_user_id"
   add_index "hubs", ["entity_name"], :name => "index_hubs_on_entity_name"
   add_index "hubs", ["location_id", "user_id"], :name => "index_hubs_on_location_id_and_user_id"
-  add_index "hubs", ["user_id", "activity_dict_id", "entity_id"], :name => "index_hubs_on_user_activity_entity"
+  add_index "hubs", ["user_id", "activity_word_id", "entity_id"], :name => "index_hubs_on_user_activity_entity"
 
   create_table "location_hubs", :force => true do |t|
-    t.integer  "location_web_id"
-    t.integer  "location_geo_id"
-    t.integer  "location_unresolved_id"
+    t.integer  "web_join_id"
+    t.integer  "geo_join_id"
+    t.integer  "unresolved_join_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "location_hubs", ["location_geo_id", "location_unresolved_id"], :name => "index_location_hub_on_geo_unresolved"
-  add_index "location_hubs", ["location_unresolved_id"], :name => "index_location_hubs_on_location_unresolved_id"
-  add_index "location_hubs", ["location_web_id", "location_geo_id", "location_unresolved_id"], :name => "index_location_hub_on_web_geo_unresolved", :unique => true
-  add_index "location_hubs", ["location_web_id", "location_unresolved_id"], :name => "index_location_hub_on_web_unresolved"
+  add_index "location_hubs", ["geo_join_id", "unresolved_join_id"], :name => "index_location_hub_on_geo_unresolved"
+  add_index "location_hubs", ["unresolved_join_id"], :name => "index_location_hubs_on_unresolved_join_id"
+  add_index "location_hubs", ["web_join_id", "geo_join_id", "unresolved_join_id"], :name => "index_location_hub_on_web_geo_unresolved", :unique => true
+  add_index "location_hubs", ["web_join_id", "unresolved_join_id"], :name => "index_location_hub_on_web_unresolved"
 
   create_table "locations", :force => true do |t|
     t.integer  "location_type", :null => false

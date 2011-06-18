@@ -4,7 +4,7 @@
 # Table name: activities
 #
 #  id               :integer         not null, primary key
-#  activity_dict_id :integer         not null
+#  activity_word_id :integer         not null
 #  activity_text    :text            not null
 #  activity_name    :string(255)     not null
 #  author_id        :integer         not null
@@ -25,6 +25,7 @@ class Activity < ActiveRecord::Base
   belongs_to :author, :class_name => "User", :touch => true
    #:touch => true can be un-optimal for deep nested threading
   belongs_to     :parent, :class_name => "Activity",  :foreign_key => "parent_id", :touch => true
+  belongs_to      :activity_word
 
   #destroy will happen from activity
   has_many      :hubs, :dependent => :destroy
@@ -36,7 +37,9 @@ class Activity < ActiveRecord::Base
   has_many    :campaigns, :dependent => :destroy
   has_many    :documents, :dependent => :nullify # documents have life time more than activity
 
-  belongs_to :activity_word
+  has_one      :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :destroy
+
+
 
   before_save       :ensure_valid_parent_and_author
   before_destroy    :ensure_before_destroyed

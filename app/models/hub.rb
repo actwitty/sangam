@@ -6,7 +6,7 @@
 #  id               :integer         not null, primary key
 #  activity_id      :integer         not null
 #  activity_name    :string(255)     not null
-#  activity_dict_id :integer         not null
+#  activity_word_id :integer         not null
 #  entity_id        :integer
 #  entity_name      :string(255)
 #  user_id          :integer         not null
@@ -20,6 +20,7 @@ class Hub < ActiveRecord::Base
   belongs_to :activity
   belongs_to :location
   belongs_to :entity
+  belongs_to :activity_word
 
   validates_existence_of  :activity
   validates_existence_of  :activity_word

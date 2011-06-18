@@ -61,14 +61,14 @@ describe Location do
     it "should search all urls and return location ids" do
       location_ids = Location.SearchLocation({:web_location => {:web_location_url => "go"}})
       #location_ids.should be_blank
-      location_ids.count.should == 2
+      location_ids.count.should == 1
 
     end
     it "should fetch a location  and return location ids" do
       location_id = Location.GetLocation(@id2.id)
       puts location_id.location_type
       location_id.web_location.location_id.should == location_id.id
-      location_id.web_location.web_location_url.should == "http://google.com"
+      location_id.web_location.web_location_url.should == "http://GOOGLE.com"
 
     end
     it "should fetch NIL location  and return location for invalid location" do
@@ -128,19 +128,19 @@ describe Location do
         puts "hello"
       end
 
-      jh1 = Location.JoinLocations({:location_geo_id => @id1.id,:location_web_id => @id2.id,
-                                   :location_unresolved_id => @id4.id})
-      jh2 = Location.JoinLocations({:location_web_id => @id2.id, :location_geo_id => @id1.id,
-                                   :location_unresolved_id => @id4.id})
-      jh3 = Location.JoinLocations({:location_geo_id => @id1.id,:location_web_id => @id2.id  })
-      jh4 = Location.JoinLocations({:location_web_id => @id2.id , :location_geo_id => @id1.id})
-      jh5 = Location.JoinLocations({:location_web_id => @id2.id,:location_unresolved_id => @id4.id})
-      jh6 = Location.JoinLocations({:location_unresolved_id => @id4.id, :location_web_id => @id2.id})
-      jh7 = Location.JoinLocations({:location_unresolved_id => @id4.id,:location_geo_id => @id1.id,
-                                   :location_web_id => @id2.id})
-      jh8 = Location.JoinLocations({:location_unresolved_id => @id4.id})
-      jh9 = Location.JoinLocations({:location_geo_id => @id1.id,:location_web_id => @id7.id})
-      jh10 = Location.JoinLocations({:location_geo_id => @id6.id,:location_web_id => @id7.id})
+      jh1 = Location.JoinLocations({:geo_join_id => @id1.id,:web_join_id => @id2.id,
+                                   :unresolved_join_id => @id4.id})
+      jh2 = Location.JoinLocations({:web_join_id => @id2.id, :geo_join_id => @id1.id,
+                                   :unresolved_join_id => @id4.id})
+      jh3 = Location.JoinLocations({:geo_join_id => @id1.id,:web_join_id => @id2.id  })
+      jh4 = Location.JoinLocations({:web_join_id => @id2.id , :geo_join_id => @id1.id})
+      jh5 = Location.JoinLocations({:web_join_id => @id2.id,:unresolved_join_id => @id4.id})
+      jh6 = Location.JoinLocations({:unresolved_join_id => @id4.id, :web_join_id => @id2.id})
+      jh7 = Location.JoinLocations({:unresolved_join_id => @id4.id,:geo_join_id => @id1.id,
+                                   :web_join_id => @id2.id})
+      jh8 = Location.JoinLocations({:unresolved_join_id => @id4.id})
+      jh9 = Location.JoinLocations({:geo_join_id => @id1.id,:web_join_id => @id7.id})
+      jh10 = Location.JoinLocations({:geo_join_id => @id6.id,:web_join_id => @id7.id})
 
       #puts jh.geo_location_id
       #puts jh.web_location_id
@@ -152,9 +152,9 @@ describe Location do
       jh6.should == jh5
       jh7.should == jh1
       jh8.should be_nil
-      jo = LocationHub.where(:location_unresolved_id => @id4)
+      jo = LocationHub.where(:unresolved_join_id => @id4)
       jo.each do |attr|
-        puts attr.location_web_id.to_s + " " + attr.location_geo_id.to_s + " " + attr.location_unresolved_id.to_s
+        puts attr.web_join_id.to_s + " " + attr.geo_join_id.to_s + " " + attr.unresolved_join_id.to_s
 
       end
       puts "============"
@@ -164,7 +164,7 @@ describe Location do
 #      @id2.destroy
 #      @id6.destroy
 #      puts "============"
-#      jo = Location.joins(:location_geos).where(:location_hubs => {:location_geo_id => @id1}).all
+#      jo = Location.joins(:geo_joins).where(:location_hubs => {:geo_join_id => @id1}).all
 #      jo.each do |attr|
 #        puts attr.id
 #      end

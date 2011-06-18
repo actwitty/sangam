@@ -5,7 +5,7 @@ class CreateHubs < ActiveRecord::Migration
 
       t.integer :activity_id, :null => false
       t.string :activity_name, :null => false
-      t.integer :activity_dict_id, :null => false
+      t.integer :activity_word_id, :null => false
 
       #it can become null here => when entity gets deleted it will be  nullified which SHOULD NOT happen - no entity deletion
       #also possible that an activity does not have an entity
@@ -22,13 +22,13 @@ class CreateHubs < ActiveRecord::Migration
       t.timestamps
     end
     #these 3 index satisfies user filter requiremens
-    add_index :hubs,  [ :activity_dict_id, :user_id]
+    add_index :hubs,  [ :activity_word_id, :user_id]
     add_index :hubs,  [ :entity_id,        :user_id]
     add_index :hubs,  [ :location_id,      :user_id]
 
     #these satisfies all location based queries
-    add_index :hubs,  [ :user_id, :activity_dict_id, :entity_id] , :name => "index_hubs_on_user_activity_entity"
-    add_index :hubs,  [ :activity_dict_id, :entity_id]
+    add_index :hubs,  [ :user_id, :activity_word_id, :entity_id] , :name => "index_hubs_on_user_activity_entity"
+    add_index :hubs,  [ :activity_word_id, :entity_id]
 
     #remaining  indexes
     add_index :hubs,  [:entity_id , :activity_id]
@@ -42,13 +42,13 @@ class CreateHubs < ActiveRecord::Migration
 
   def self.down
     #these 3 index satisfies user filter requiremens
-    remove_index :hubs,  [ :activity_dict_id, :user_id]
-    remove_index :hubs,  [ :entity_id,        :user_id]
-    remove_index :hubs,  [ :location_id,      :user_id]
+    remove_index :hubs,  [ :activity_word_id, :user_id]
+    remove_index :hubs,  [ :entity_id, :user_id]
+    remove_index :hubs,  [ :location_id,:user_id]
 
     #these satisfies all location based queries
     remove_index :hubs,  :name => "index_hubs_on_user_activity_entity"
-    remove_index :hubs,  [ :activity_dict_id, :entity_id]
+    remove_index :hubs,  [ :activity_word_id, :entity_id]
 
     #remaining  indexes
     remove_index :hubs,  [:entity_id , :activity_id]

@@ -28,6 +28,8 @@ class Entity < ActiveRecord::Base
   has_many      :entity_types, :dependent => :destroy
   has_one       :entity_document, :dependent => :destroy
 
+  has_many       :campaigns, :dependent => :destroy
+
   validates_presence_of   :entity_name, :entity_guid, :entity_doc
   validates_uniqueness_of :entity_guid, :unique => true
 
@@ -52,7 +54,8 @@ class Entity < ActiveRecord::Base
       end
 
       begin
-        entity_id = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'],
+
+        entity_id = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
                               :entity_doc => entity_hash)
 
       rescue => e
@@ -68,8 +71,8 @@ class Entity < ActiveRecord::Base
       begin
 
          entity_hash['type'].each do |entry|
-          id = EntityType.create!(:entity_id => entity_id.id , :entity_type_uri => entry['id'],
-                             :entity_type_name => entry['name'])
+         id = EntityType.create!(:entity_id => entity_id.id , :entity_type_uri => entry['id'],
+                             :entity_type_name => entry['name'].downcase)
          end
          puts "==== #{entity_id}"
          EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity_id.id)
@@ -88,7 +91,7 @@ class Entity < ActiveRecord::Base
 
     #return relations .. use each, all, first to load object
     def FindEntityByName(name)
-      Entity.where(:entity_name => name)
+      Entity.where(:entity_name => name.downcase)
     end
 
     #return object
@@ -98,7 +101,7 @@ class Entity < ActiveRecord::Base
 
     #return relations .. use each, all, first to load object
     def SearchEntityByType(type)
-      Entity.joins(:entity_types).where(:entity_types => {:entity_type_name => type} )
+      Entity.joins(:entity_types).where(:entity_types => {:entity_type_name => type.downcase} )
     end
   end
 

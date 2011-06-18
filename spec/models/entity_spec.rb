@@ -69,7 +69,7 @@ describe Entity do
 
   describe "Associations" do
     it "should respond to associations" do
-      @e.should respond_to(:users, :activities, :activity_dicts, :hubs, :locations, :entity_ownership)
+      @e.should respond_to(:users, :activities, :activity_words, :hubs, :locations, :entity_ownership)
     end
   end
 

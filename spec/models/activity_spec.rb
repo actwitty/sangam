@@ -8,42 +8,42 @@ describe Activity do
     @u1 = Factory(:user)
     @u2 = Factory(:user)
     @u3 = Factory(:user)
-    @act = Activity.create!(:activity_dict_id => 101,:activity_text => "hello",
+    @act = Activity.create!(:activity_word_id => 101,:activity_text => "hello",
                              :activity_name => "test", :author => @u)
 
     sleep(1)
-    @act_child_1 = @act.children.create!(:activity_dict_id => 102,:activity_text => "hello1",
+    @act_child_1 = @act.children.create!(:activity_word_id => 102,:activity_text => "hello1",
                             :activity_name => "test_1", :author => @u1, :parent => @act )
      sleep(1)
-    @act_child_2 = @act.children.create!(:activity_dict_id => 101,:activity_text => "hello2",
+    @act_child_2 = @act.children.create!(:activity_word_id => 101,:activity_text => "hello2",
                              :activity_name => "test", :author => @u, :parent => @act)
 
 
-    @act_child_3 = @act.children.create!(:activity_dict_id => 103,:activity_text => "hello3",
+    @act_child_3 = @act.children.create!(:activity_word_id => 103,:activity_text => "hello3",
                             :activity_name => "test_3",  :author => @u2, :parent => @act)
 
 
-    @act_child_2_1 = @act_child_2.children.create!(:activity_dict_id => 1021,:activity_text => "hello2_1",
+    @act_child_2_1 = @act_child_2.children.create!(:activity_word_id => 1021,:activity_text => "hello2_1",
                             :activity_name => "test_2_1",   :author => @u2,
                             :parent => @act_child_2)
      sleep(1)
-    @act_child_3_1 = @act_child_3.children.create!(:activity_dict_id => 1031,:activity_text => "hello3_1",
+    @act_child_3_1 = @act_child_3.children.create!(:activity_word_id => 1031,:activity_text => "hello3_1",
                              :activity_name => "test_3_1",  :author => @u,
                              :parent => @act_child_3)
     #@act_child_3_1.save
 
-    @act_child_3_1_1 = @act_child_3_1.children.create!(:activity_dict_id => 10311,:activity_text => "hello3_1_1",
+    @act_child_3_1_1 = @act_child_3_1.children.create!(:activity_word_id => 10311,:activity_text => "hello3_1_1",
                              :activity_name => "test_3_1_1",  :author => @u3,
                              :parent => @act_child_3_1)
     sleep(1)
-    @act_child_3_2 = @act_child_3.children.create!(:activity_dict_id => 1031,:activity_text => "hello3_2",
+    @act_child_3_2 = @act_child_3.children.create!(:activity_word_id => 1031,:activity_text => "hello3_2",
                          :activity_name => "test_3_1", :author => @u, :parent => @act_child_3)
 
-    @bct = Activity.create!(:activity_dict_id => 101,:activity_text => "hello_b",
+    @bct = Activity.create!(:activity_word_id => 101,:activity_text => "hello_b",
                              :activity_name => "test_b", :author => @u)
 
     sleep(1)
-    @bct_child_1 = @bct.children.create!(:activity_dict_id => 102,:activity_text => "hello_b_1",
+    @bct_child_1 = @bct.children.create!(:activity_word_id => 102,:activity_text => "hello_b_1",
                             :activity_name => "test_1",  :author => @u, :parent => @bct )
 
     @act_arr =   [@act, @act_child_1 , @act_child_2, @act_child_3,@act_child_2_1, @act_child_3_1,
@@ -52,7 +52,7 @@ describe Activity do
 
   describe "validations" do
 
-#    %w[:activity_dict_id :activity_text:activity_name :parent].each do |attr|
+#    %w[:activity_word_id :activity_text:activity_name :parent].each do |attr|
 #      it "should must have #{attr}" do
 #        a=Activity.new
 #        a.valid?
@@ -66,7 +66,7 @@ describe Activity do
 			1025.times do
 			  str = str + 'a'
 			end
-			a=Activity.new(:activity_dict_id => 101,:activity_text => str  )
+			a=Activity.new(:activity_word_id => 101,:activity_text => str  )
 			a.valid?
       a.should_not be_valid
 			a.errors[:activity_text].should_not be_blank
@@ -74,7 +74,7 @@ describe Activity do
 
      it "should must not be save with blank activity text" do
       str = ""
-			a=Activity.new(:activity_dict_id => 101,:activity_text => str  )
+			a=Activity.new(:activity_word_id => 101,:activity_text => str  )
 			a.valid?
       a.should_not be_valid
       a.errors[:activity_text].should_not be_blank
@@ -82,14 +82,14 @@ describe Activity do
 
     it "should must not be save without author" do
       lambda{
-        a=Activity.create!(:activity_dict_id => 101,:activity_text => "hello" )
+        a=Activity.create!(:activity_word_id => 101,:activity_text => "hello" )
 
       }.should raise_error ActiveRecord::RecordInvalid
     end
 
     it "should must not be saved with invalid author" do
       lambda {
-        a=Activity.create!(:activity_dict_id => 101,:activity_text => "hello",
+        a=Activity.create!(:activity_word_id => 101,:activity_text => "hello",
                            :activity_name => "act temp",:author_id => 100 )
         a.errors[:author].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
@@ -97,7 +97,7 @@ describe Activity do
 
     it "should must not be saved with Invalid parent activity" do
       lambda {
-        a=Activity.create!(:activity_dict_id => 101,:activity_text => "hello",:activity_name => "act temp",
+        a=Activity.create!(:activity_word_id => 101,:activity_text => "hello",:activity_name => "act temp",
                            :author_id => Factory(:user), :parent_id => 1 )
         a.errors[:parent].should_not be_blank
       }.should raise_error ActiveRecord::RecordNotFound
@@ -105,7 +105,7 @@ describe Activity do
     it "should must not be saved without activity_name" do
 
     end
-       it "should must not be saved without activity_dict_id" do
+       it "should must not be saved without activity_word_id" do
 
     end
   end
@@ -168,14 +168,14 @@ describe Activity do
       a[1].subtree.all.should == @act_arr
     end
     it "user should be able read all its root activities along with their whole subtree" do
-      @cct = Activity.create!(:activity_dict_id => 101,:activity_text => "hello_b",
+      @cct = Activity.create!(:activity_word_id => 101,:activity_text => "hello_b",
                              :activity_name => "test_c",  :author => @u1)
 
        sleep(1)
-      @cct_child_1 = @cct.children.create!(:activity_dict_id => 102,:activity_text => "hello_c_1",
+      @cct_child_1 = @cct.children.create!(:activity_word_id => 102,:activity_text => "hello_c_1",
                             :activity_name => "test_1", :author => @u2, :parent => @cct )
 
-      @cct_child_1_1 = @cct_child_1.children.create!(:activity_dict_id => 102,:activity_text => "hello_c_1_1",
+      @cct_child_1_1 = @cct_child_1.children.create!(:activity_word_id => 102,:activity_text => "hello_c_1_1",
                             :activity_name => "test_1",  :author => @u, :parent => @cct_child_1 )
 
       Activity.board(@u)
@@ -186,7 +186,7 @@ describe Activity do
   describe "Update Tree" do
 
     it "should be able to add child on fly" do
-      a = @act.children.create(:activity_dict_id => 101,:activity_text => "hello",:activity_name => "activity_temp",
+      a = @act.children.create(:activity_word_id => 101,:activity_text => "hello",:activity_name => "activity_temp",
                                :author => @u, :parent => @act )
       @act.children.should include(@act_child_1, @act_child_2, @act_child_3, a)
       @act.children.size.should == 4
@@ -209,7 +209,7 @@ describe Activity do
 
       a = @act.children
       usr = Factory(:user)
-      parent = Activity.create!(:activity_dict_id => 101,:activity_text => "hello temp",:activity_name => "Act temp",
+      parent = Activity.create!(:activity_word_id => 101,:activity_text => "hello temp",:activity_name => "Act temp",
                               :author => usr)
       #parent = @act_child_1
       lambda {

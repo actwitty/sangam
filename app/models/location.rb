@@ -24,9 +24,11 @@ class Location < ActiveRecord::Base
   has_one :geo_location, :dependent => :destroy
   has_one :unresolved_location, :dependent => :destroy
 
-  has_many :location_webs, :class_name => "LocationHub", :foreign_key => :location_web_id, :dependent => :destroy
-  has_many :location_geos,:class_name => "LocationHub", :foreign_key => :location_geo_id, :dependent => :destroy
-  has_many :location_unresolveds, :class_name => "LocationHub",:foreign_key => :location_unresolved_id, :dependent => :destroy
+  has_many :web_joins, :class_name => "LocationHub", :foreign_key => :web_join_id, :dependent => :destroy
+  has_many :geo_joins,:class_name => "LocationHub", :foreign_key => :geo_join_id, :dependent => :destroy
+  has_many :unresolved_joins, :class_name => "LocationHub",:foreign_key => :unresolved_join_id, :dependent => :destroy
+
+  has_many  :campaigns, :dependent => :destroy
 
   validates_presence_of :location_type, :location_name
 
@@ -58,7 +60,7 @@ class Location < ActiveRecord::Base
       loc_type = 1
       new_hash = location_hash[:web_location]
 
-      new_hash[:web_location_url]=new_hash[:web_location_url].downcase
+      new_hash[:web_location_url]=new_hash[:web_location_url]
 
       if !new_hash[:web_location_url].nil?
         if ! (/^(http|https):\/\// =~ new_hash[:web_location_url])
@@ -110,8 +112,6 @@ class Location < ActiveRecord::Base
   end
 
   #Return an LOCATION Object or in case of other errors nil is returned
-  #This include will fire one+three queries in database for all location fetch
-  #need to restrict only based on type.... although the current one is more cleaner and DRY
   def self.GetLocation(location_id)
     loc = Location.find(location_id)
 
@@ -158,7 +158,7 @@ class Location < ActiveRecord::Base
   # Join can only happen between locations of different types
   # Ids SHOULD always be existing location in respective types
   #Returns NIL if any of the passed location does not exist. Otherwise returns the ID of join table
-  # input format {:location_web_id => x , :location_geo_id => y, :location_unresolved_id => z}
+  # input format {:web_join_id => x , :geo_join_id => y, :unresolved_join_id => z}
   def self.JoinLocations(location_hash = {})
 
     #atleast 2 location need to joined
@@ -166,7 +166,7 @@ class Location < ActiveRecord::Base
       Rails.logger.info("Location => JoinLocations -- Invalid Hash length ")
       return nil
     end
-    assoc_name = [:location_web_id,  :location_geo_id, :location_unresolved_id]
+    assoc_name = [:web_join_id,  :geo_join_id, :unresolved_join_id]
 
     #in
     assoc_name.each do |value|
@@ -190,11 +190,11 @@ class Location < ActiveRecord::Base
   end
   #Input is location object
    def self.SearchJoin(location)
-     assoc = [:location_web_id, :location_geo_id, :location_unresolved_id]
+     assoc = [:web_join_id, :geo_join_id, :unresolved_join_id]
 
      location_ids = LocationHub.where(assoc[location.location_type - 1] => location.id).all
      location_ids.each do |attr|
-       puts attr.location_web_id.to_s + " " + attr.location_geo_id.to_s + " " + attr.location_unresolved_id.to_s
+       puts attr.web_join_id.to_s + " " + attr.geo_join_id.to_s + " " + attr.unresolved_join_id.to_s
      end
    end
 end

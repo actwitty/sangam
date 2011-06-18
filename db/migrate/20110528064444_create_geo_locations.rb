@@ -19,7 +19,7 @@ class CreateGeoLocations < ActiveRecord::Migration
     remove_index :geo_locations, :location_id
     remove_index :geo_locations, [:geo_latitude,:geo_longitude]
     remove_index :geo_locations, :geo_longitude
-    remove_index :geo_locations, :geo__name
+    remove_index :geo_locations, :geo_name
 
     drop_table :geo_locations
   end

@@ -8,7 +8,8 @@
 
 Factory.define :activity do |f|
   f.association :author, :factory => :user
-  f.sequence(:activity_identifier) {|n| n}
-  f.sequence(:activity_type) {|n| n}
+  f.association :activity_word, :factory => :activity_word
   f.sequence(:activity_text) {|n| "MyText #{n}" }
+  f.sequence(:activity_name) {|n| "Activity #{n}" }
+
 end

@@ -38,12 +38,12 @@ class WebLocation < ActiveRecord::Base
   validates_length_of :web_location_title, :maximum => 255, :unless => Proc.new {|a| a.web_location_title.nil? }
   validates_length_of :web_location_desc, :maximum => 1024, :unless => Proc.new {|a| a.web_location_desc.nil? }
 
-  before_save :cant_change_location_web_url
+  before_save :cant_change_web_join_url
   after_save  :log_confirmation
 
   protected
 
-  def cant_change_location_web_url
+  def cant_change_web_join_url
 
     if !new_record?
       if self.location_id_changed? || self.web_location_url_changed?

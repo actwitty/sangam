@@ -16,6 +16,11 @@ class ActivityWord < ActiveRecord::Base
   #should not get deleted
   has_many :activities, :dependent => :destroy
 
+  has_many :hubs
+  has_many :entities, :through => :hubs
+  has_many :locations, :through => :hubs
+  has_many  :users, :through => :hubs
+
   validates_presence_of    :word_name
   validates_uniqueness_of  :word_name
 
@@ -42,7 +47,7 @@ class ActivityWord < ActiveRecord::Base
       begin
         if word_rel.blank?
           puts "hello !"
-          word_obj = ActivityWord.create!(:word_name => word)
+          word_obj = ActivityWord.create!(:word_name => word.downcase)
         else
           word_obj = word_rel.first
         end
@@ -67,10 +72,11 @@ class ActivityWord < ActiveRecord::Base
 
     #return the objects of related activity words. Defaults to verb-form
     def FindWordForm(act_obj, form = "verb-form")
-      a_obj = WordForm.includes(:activity_word).select(:activity_word_id).where(:related_word_id => act_obj.id, :relation_type => form)
-      a_obj.inject(act = []){|arr, element| arr << element.activity_word}
-      puts act
-      return act
+      a_obj = WordForm.select(:activity_word_id).where(:related_word_id => act_obj.id, :relation_type => form).all
+      a_obj.inject(act = []){|arr, element| arr << element.activity_word_id}
+      b_act = ActivityWord.where(:id => act).all
+      puts b_act
+      return b_act
     end
 
     #return a JSON
@@ -95,6 +101,7 @@ class ActivityWord < ActiveRecord::Base
           w_obj =  ActivityWord.where(:word_name => attr).first
 
           if w_obj.blank?
+            puts attr.downcase
             w_obj = ActivityWord.create!(:word_name => attr)
           end
 
