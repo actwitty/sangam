@@ -1,0 +1,15 @@
+%friendship
+  -if @friend_status=="unknown"
+    = form_tag contacts_add_path, :method => 'post' do
+      %p
+        = hidden_field_tag :friend_id, params[:friend_id]
+        = submit_tag "Add as friend", :name => nil
+  -elsif @friend_status=="pending"
+    = form_tag contacts_add_path, :method => 'post' do
+      %p
+        = label_tag "Friend request is pending"
+  -elsif @friend_status=="friend"
+    = form_tag contacts_remove_path, :method => 'post' do
+      %p
+        = hidden_field_tag :friend_id, params[:friend_id]
+        = submit_tag "Add as friend", :name => nil

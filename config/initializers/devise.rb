@@ -43,7 +43,7 @@ Devise.setup do |config|
   # config.http_authenticatable = false
 
   # If http headers should be returned for AJAX requests. True by default.
-  # config.http_authenticatable_on_xhr = true
+  config.http_authenticatable_on_xhr = false
 
   # The realm used in Http Basic Authentication. "Application" by default.
   # config.http_authentication_realm = "Application"
@@ -183,7 +183,8 @@ Devise.setup do |config|
   #
   # The :"*/*" and "*/*" formats below is required to match Internet
   # Explorer requests.
-  # config.navigational_formats = [:"*/*", "*/*", :html]
+  #config.navigational_formats = [:"*/*", "*/*", :html]
+  config.navigational_formats = [:html,:js]
 
   # The default HTTP method used to sign out a resource. Default is :get.
   # config.sign_out_via = :get
@@ -197,9 +198,12 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
-  # config.warden do |manager|
+ # config.warden do |manager|
   #   manager.failure_app   = AnotherApp
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
+  # config.omniauth :facebook, '224385160907301', 'e9d8c6e5b027fda60b461b25242e88ee'
+  # config.omniauth :twitter, 'uKJHPO2QTE0lN9M0Rx8ZBw', 'GiI2O31kgBdLgbttxN0ynkzsqH7eKDKY5ISiOBC7Y'
 end

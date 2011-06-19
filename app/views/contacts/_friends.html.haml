@@ -1,0 +1,11 @@
+#friends
+  %ul
+    - unless friends.nil?
+      - friends.each do |friend|
+        %li
+          %a{:href => "/users/#{friend.id}"} 
+            %img{:alt => "", :src=>"#{friend.profile.profile_photo_s}"}
+              %br
+                #{friend.profile.first_name}  #{friend.profile.last_name}
+    - else
+      %h3 No friends added so far

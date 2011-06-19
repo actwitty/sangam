@@ -1,0 +1,19 @@
+%h2 Change your password?
+= simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :put }) do |f|
+  =f.input :reset_password_token, :as => :hidden
+  %p
+    = f.input :password ,
+              :placeholder => "Password", 
+              :label => false, 
+              :class => 'inputbox', 
+              :hint => "Enter new password",
+              :input_html => { :size=> 30  }
+  %p
+    = f.input :password ,
+              :placeholder => "Password Confirmation", 
+              :label => false, 
+              :class => 'inputbox', 
+              :hint => "Enter new password",
+              :input_html => { :size=> 30  }
+  %p= f.submit :value=>"Change password"
+

@@ -1,0 +1,15 @@
+%img{:src => @welcome_user_picture}
+  Hello
+  %b= @welcome_username
+  welcome to actwitty.com
+%br
+.right
+  #foreign_auths
+    #gettingin.signindiv
+      =render :partial => "/users/sessions/new"
+    %input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
+    %input#user_provider{:name => "auth_provider", :type => "hidden", :value =>  params[:provider]}/
+    %input#user_uid{:name => "auth_uid", :type => "hidden", :value => params[:uid]}/ 
+
+
+

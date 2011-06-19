@@ -3,7 +3,6 @@ class CreateProfiles < ActiveRecord::Migration
     create_table :profiles do |t|
       t.string :first_name
       t.string :last_name
-      t.string :nick_name
       t.string :short_status
       t.string :profile_photo_l
       t.string :profile_photo_m
@@ -22,14 +21,9 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :company_name
       t.string :phone_number
       t.string :mobile_number
-      t.string :favorite_pal
       t.string :work_area
       t.string :interest
       t.string :home_page
-      t.string :twitter_id
-      t.string :facebook_id
-      t.string :google_id
-      t.string :open_id
       t.string :tag_string
       t.string :email
       t.string :searchable
@@ -37,13 +31,21 @@ class CreateProfiles < ActiveRecord::Migration
       t.boolean :is_celebrity
       t.integer :abuse_count
       t.string :theme
+      t.boolean :is_terms_accepted
+      t.boolean :is_privacy_accepted
+
+
       t.integer :user_id
 
       t.timestamps
+
     end
+
+
   end
 
   def self.down
     drop_table :profiles
   end
 end
+

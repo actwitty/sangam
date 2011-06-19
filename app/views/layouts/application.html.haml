@@ -1,9 +1,11 @@
 !!!
 %html
   %head
-    %title Sangam
-    = stylesheet_link_tag :all
+    %title ActWitty - Channelizing social data
+    = include_stylesheets :defaults
     = include_javascripts :jquery
+    = javascript_include_tag :defaults
     = csrf_meta_tag
+    %link{:href => "/images/alpha/favicon.ico", :rel => "icon", :type => "image/ico"}/
   %body
     = yield

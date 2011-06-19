@@ -89,7 +89,7 @@ describe Profile do
 
 
   describe "delete a profile" do
-      it "must delete a profile based on email" do
+      it "must delete a profile based on username" do
         lambda{
           User.find_by_username(@username).profile.delete
           }.should change(Profile, :count).by(-1)
@@ -138,7 +138,10 @@ describe Profile do
     end
 
     it 'must find a user whose first name is Sent* with join' do
-       users=User.find(:all, :include => [ :profile ], :conditions => ['profiles.first_name LIKE ? OR profiles.last_name LIKE ? ', 'Sent%', 'Sent%' ])
+       users=User.find(:all, :include => [ :profile ], :conditions => ['profiles.first_name LIKE ?
+                                                                              OR
+                                                                       profiles.last_name LIKE ? ',
+                                                                       'Sent%', 'Sent%' ])
        users.count.should == 2
 
 

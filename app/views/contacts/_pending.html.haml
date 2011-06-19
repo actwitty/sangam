@@ -1,0 +1,15 @@
+#friends
+  %ul
+    - unless friends.nil?
+      - friends.each do |friend|
+        %li
+          = form_tag contacts_accept_path, :method => 'post' do
+            %a{:href => "/users/#{friend.id}"} 
+              %img{:alt => "", :src=>"#{friend.profile.profile_photo_s}"}
+                %br
+                  #{friend.profile.first_name}  #{friend.profile.last_name}
+            = hidden_field_tag :friend_id, friend.id
+            = submit_tag "Accept friend", :name => "friend_req", :value=>"Accept"
+            = submit_tag "Reject friend", :name => "friend_req", :value=>"Reject"
+    - else
+      %h3 No friends added so far

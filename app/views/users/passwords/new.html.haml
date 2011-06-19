@@ -1,0 +1,11 @@
+%h2 Forgot your password?
+= simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :post }) do |f|
+  %p
+    = f.input :email ,
+              :placeholder => "Email", 
+              :label => false, 
+              :class => 'inputbox', 
+              :hint => "Enter the email to confirm again.",
+              :input_html => { :size=> 30  }
+  %p= f.submit :value=>"Send password reset instructions"
+

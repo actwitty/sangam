@@ -1,0 +1,27 @@
+%h2 Welcome #{@user.email}, just a few more steps to start acting witty
+= simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
+  = f.input :first_name, :input_html => { :size=> 30  }
+  = f.input :last_name, :input_html => { :size=> 30  }
+  = f.input :sex, :label=> "Gender",:collection => ['male','female','other'], :as => :radio
+  = f.input :dob, :label=> "Date of Brith", :as => :string
+  = f.input :home_location, :label => "City", :input_html => { :size => 30 }
+  %div
+    %textarea.element.textarea.medium{:value => "Terms and services", :readonly=> "readonly" }
+      :preserve
+        Software License Agreement
+                
+         NOTICE TO USER: PLEASE READ THIS AGREEMENT CAREFULLY. BY COPYING, INSTALLING OR USING ALL OR ANY PORTION OF THE SOFTWARE YOU ACCEPT ALL THE TERMS AND CO            NDITIONS OF THIS AGREEMENT, INCLUDING, IN PARTICULAR THE LIMITATIONS ON: USE CONTAINED IN SECTION 2; TRANSFERABILITY IN SECTION 4; WARRANTY IN SECTIONS             6 AND 7; LIABILITY IN SECTION 8; AND SPECIFIC PROVISIONS AND EXCEPTIONS IN SECTION 14. YOU AGREE THAT THIS AGREEMENT IS LIKE ANY WRITTEN NEGOTIATED AGRE            EMENT SIGNED BY YOU. THIS AGREEMENT IS ENFORCEABLE AGAINST YOU AND ANY LEGAL ENTITY THAT OBTAINED THE SOFTWARE AND ON WHOSE BEHALF IT IS USED: FOR EXAMP            LE, IF APPLICABLE, YOUR EMPLOYER. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT USE THE SOFTWARE. VISIT http://www.mysite.com FOR TERMS OF             AND LIMITATIONS ON RETURNING THE SOFTWARE FOR A REFUND.
+    = f.input :is_terms_accepted,
+              :label => "I accept",      
+              :as => :boolean
+  %div
+    %textarea.element.textarea.medium{:value => "Privacy Policy", :readonly=> "readonly" }
+      :preserve
+        Software License Agreement
+                
+         NOTICE TO USER: PLEASE READ THIS AGREEMENT CAREFULLY. BY COPYING, INSTALLING OR USING ALL OR ANY PORTION OF THE SOFTWARE YOU ACCEPT ALL THE TERMS AND CO            NDITIONS OF THIS AGREEMENT, INCLUDING, IN PARTICULAR THE LIMITATIONS ON: USE CONTAINED IN SECTION 2; TRANSFERABILITY IN SECTION 4; WARRANTY IN SECTIONS             6 AND 7; LIABILITY IN SECTION 8; AND SPECIFIC PROVISIONS AND EXCEPTIONS IN SECTION 14. YOU AGREE THAT THIS AGREEMENT IS LIKE ANY WRITTEN NEGOTIATED AGRE            EMENT SIGNED BY YOU. THIS AGREEMENT IS ENFORCEABLE AGAINST YOU AND ANY LEGAL ENTITY THAT OBTAINED THE SOFTWARE AND ON WHOSE BEHALF IT IS USED: FOR EXAMP            LE, IF APPLICABLE, YOUR EMPLOYER. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT USE THE SOFTWARE. VISIT http://www.mysite.com FOR TERMS OF             AND LIMITATIONS ON RETURNING THE SOFTWARE FOR A REFUND.
+    = f.input :is_privacy_accepted,
+              :label => "I accept",      
+              :as => :boolean
+    %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
+  = f.button :submit, :value => "Get In"

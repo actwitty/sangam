@@ -1,0 +1,11 @@
+%h2 Send unlock instructions
+= simple_form_for(@user, :as => :user, :url => unlock_path(:user), :html => { :method => :post }) do |f|
+  %p
+    = f.input :email ,
+              :placeholder => "Email", 
+              :label => false, 
+              :class => 'inputbox', 
+              :hint => "Enter the email to confirm again.",
+              :input_html => { :size=> 30  }
+  %p= f.submit :value=>"Send Unlock instructions"
+

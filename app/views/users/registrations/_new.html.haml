@@ -1,0 +1,31 @@
+= simple_form_for(@user, :as=>:user, :url => user_registration_path, :remote => true, :validate => true, :html => { :id => "signin" }) do |f|
+  #inputs.ui-buttonset{:style => "margin-top: 2em;"}
+    #lefthalf
+      = f.input :email ,
+              :placeholder => "Email", 
+              :label => false, 
+              :class => 'inputbox', 
+              :hint => "This is the login email",
+              :input_html => { :size=> 30  }
+    #righthalf
+      = f.input :password , 
+              :placeholder => "Password",
+              :label => false, 
+              :class => 'inputbox',
+              :required => true, 
+              :hint => "Must be atleast 6 characters",
+              :input_html => { :size=> 30  }
+    = f.input :remember_me, :as => :boolean
+    %input#signinbutton.ui-button.ui-widget.ui-state-default.ui-corner-left.actwittysignin{:role => "button", :type => "button", :value => "Sign In"}/
+    %input#signupbutton.ui-button.ui-widget.ui-state-default.ui-corner-right.actwittysignup{:class => "{button:{label:'SignUp'}}", :role => "button", :type => "button", :value => "Sign Up"}/
+    
+    %input#user_key{:name => "user[key]", :type => "hidden", :value => ""}/
+    %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
+    %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
+
+  = link_to "Forgot password?", new_password_path(:user)
+  = link_to "Unlock Account?", new_unlock_path(:user)
+  = link_to "Resend Confirmation?", new_confirmation_path(:user)
+   
+  
+

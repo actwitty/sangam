@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
 
   add_index "activity_words", ["word_name"], :name => "index_activity_words_on_word_name", :unique => true
 
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "salt"
+    t.string   "token"
+    t.string   "secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "campaigns", :force => true do |t|
     t.integer  "author_id",                      :null => false
     t.integer  "activity_id"
@@ -152,6 +163,25 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "entity_types", ["entity_type_name"], :name => "index_entity_types_on_entity_type_name"
   add_index "entity_types", ["entity_type_uri", "entity_type_name"], :name => "index_on_entity_type_uri_name"
 
+  create_table "foreign_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "screen_name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "image"
+    t.string   "url"
+    t.string   "gender"
+    t.string   "email"
+    t.string   "hometown"
+    t.string   "location"
+    t.float    "timezone"
+    t.string   "locale"
+    t.string   "foreign_updated_time"
+    t.integer  "authentication_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "geo_locations", :force => true do |t|
     t.integer  "location_id"
     t.decimal  "geo_latitude",  :precision => 10, :scale => 7, :null => false
@@ -231,7 +261,6 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   create_table "profiles", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "nick_name"
     t.string   "short_status"
     t.string   "profile_photo_l"
     t.string   "profile_photo_m"
@@ -250,20 +279,17 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.string   "company_name"
     t.string   "phone_number"
     t.string   "mobile_number"
-    t.string   "favorite_pal"
     t.string   "work_area"
     t.string   "interest"
     t.string   "home_page"
-    t.string   "twitter_id"
-    t.string   "facebook_id"
-    t.string   "google_id"
-    t.string   "open_id"
     t.string   "tag_string"
     t.string   "email"
     t.string   "searchable"
     t.boolean  "verified_account"
     t.boolean  "is_celebrity"
     t.integer  "abuse_count"
+    t.boolean  "is_terms_accepted"
+    t.boolean  "is_privacy_accepted"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

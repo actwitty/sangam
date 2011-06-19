@@ -1,0 +1,8 @@
+
+= render :partial => "users/sessions/foreign_auth"
+.clear 
+.right
+  #gettingin.signindiv
+    =render :partial => "users/sessions/new", :locals => { :user => User.new }
+
+

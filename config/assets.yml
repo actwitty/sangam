@@ -8,9 +8,20 @@ javascripts:
     - public/javascripts/vendor/swfobject.js
     - public/javascripts/vendor/web_socket.js
   jquery:
-    - public/javascripts/vendor/jquery152.min.js
+    - public/javascripts/application.js
     - public/javascripts/rails.js
-    - public/javascripts/vendor/jqueryui.js
+    - public/javascripts/header.js
+    - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
+    - public/javascripts/redmond/js/jquery-1.5.1.min.js
+    - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
+    - public/javascripts/redmond/development-bundle/external/jquery.metadata.js
+    - public/javascripts/redmond/development-bundle/ui/jquery.ui.core.js
+    - public/javascripts/redmond/development-bundle/ui/jquery.ui.widget.js
+    - public/javascripts/redmond/development-bundle/ui/jquery.ui.button.js
+    - public/javascripts/plugins/ui-watermark/ui.watermark.js
+    - public/javascripts/rails.validations.js
+    - public/javascripts/rails.validations.custom.js
+    - public/javascripts/plugins/profile_view.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js
@@ -19,10 +30,6 @@ javascripts:
     - public/javascripts/vendor/jquery.autoresize.min.js
     - public/javascripts/vendor/jquery-ui-1.8.9.custom.min.js
     - public/javascripts/vendor/jquery.infinitescroll.min.js
-    - public/javascripts/vendor/facebox.js
-    - public/javascripts/vendor/timeago.js
-    - public/javascripts/vendor/Mustache.js
-    - public/javascripts/vendor/charCount.js
   mobile:
     - public/javascripts/vendor/jquery152.min.js
     - public/javascripts/vendor/jquery.mobile-1.0a4.js
@@ -38,8 +45,9 @@ javascripts:
     - public/javascripts/vendor/jquery.autoSuggest.custom.js
 
 stylesheets:
-  default:
-    - public/stylesheets/vendor/facebox.css
-    - public/stylesheets/vendor/fileuploader.css
-    - public/stylesheets/vendor/tipsy.css
-    - public/stylesheets/vendor/autoSuggest.css
+  defaults:
+    - public/stylesheets/actwitty/signin.css
+    - public/stylesheets/actwitty/validations.css
+    - public/stylesheets/actwitty/simple_form.css
+    - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
+

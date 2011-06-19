@@ -1,0 +1,51 @@
+/* line 1, ../../../app/stylesheets/actwitty/validations.scss */
+.error_messages {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+/* line 11, ../../../app/stylesheets/actwitty/validations.scss */
+.error_messages h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+/* line 21, ../../../app/stylesheets/actwitty/validations.scss */
+.error_messages p {
+  margin: 8px 10px;
+}
+
+/* line 25, ../../../app/stylesheets/actwitty/validations.scss */
+.field_with_errors {
+  display: inline;
+}
+
+/* line 29, ../../../app/stylesheets/actwitty/validations.scss */
+.field_with_errors .message {
+  color: #D00;
+  padding-left: 5px;
+  font-size: 12px;
+}
+
+/* line 35, ../../../app/stylesheets/actwitty/validations.scss */
+.ul_error {
+  float: left;
+}
+
+/* line 39, ../../../app/stylesheets/actwitty/validations.scss */
+.li_error_list_none {
+  list-style-type: none;
+  color: #D00;
+  padding-left: 5px;
+  font-size: 12px;
+}

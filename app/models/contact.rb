@@ -1,13 +1,13 @@
 # == Schema Information
-# Schema version: 20110609094335
+# Schema version: 20110517110406
 #
 # Table name: contacts
 #
-#  id         :integer         not null, primary key
-#  status     :integer
-#  user_id    :integer
-#  friend_id  :integer
-#  loop_id    :integer
+#  id         :integer(4)      not null, primary key
+#  status     :integer(4)
+#  user_id    :integer(4)
+#  friend_id  :integer(4)
+#  loop_id    :integer(4)
 #  strength   :decimal(5, 2)   default(100.0)
 #  relation   :string(255)     default("Friend")
 #  created_at :datetime
@@ -70,52 +70,52 @@ class Contact < ActiveRecord::Base
   end
 
 
-  def request_new
-        self.status = Contact.statusStringToKey['New']
-
-        contact_from_friend = Contact.all(:conditions => ['user_id = ? AND friend_id = ? ',
-                                                      self.friend_id, self.user_id])[0]
+  def self.request_new(user_id, friend_id)
+        contact_from_friend = Contact.find_by_user_id_and_friend_id(
+                                                      friend_id, user_id)
+        contact = Contact.new(:user_id=>user_id,
+                              :friend_id=>friend_id,
+                              :status => Contact.statusStringToKey['New'])
         unless contact_from_friend.nil?
           contact_from_friend.status = Contact.statusStringToKey['Connected']
           contact_from_friend.save!
-          self.status = Contact.statusStringToKey['Connected']
+          contact.status = Contact.statusStringToKey['Connected']
         end
 
-        self.save!
+        contact.save!
         return true
 
   end
 
 
-  def accept_new
-        contact_from_friend = Contact.all(:conditions => ['user_id = ? AND friend_id = ? ',
-                                                     self.friend_id, self.user_id])[0]
+  def self.accept_new(user_id, friend_id)
+        contact_from_friend = Contact.find_by_user_id_and_friend_id(
+                                                      friend_id, user_id)
         unless contact_from_friend.nil?
 
             contact_from_friend.status = Contact.statusStringToKey['Connected']
             contact_from_friend.save!
-            self.status = Contact.statusStringToKey['Connected']
-
+            contact=Contact.create(:user_id =>user_id,
+                                   :friend_id =>friend_id,
+                                   :status => Contact.statusStringToKey['Connected'])
         end
-        self.save!
+
   end
 
-  def reject_new
-
-      contact_from_friend = Contact.all(:conditions => ['user_id = ? AND friend_id = ? ',
-                                                     self.friend_id, self.user_id])[0]
-      unless contact_from_friend.nil?
-        contact_from_friend.destroy
-      end
+  def self.reject_new(user_id,friend_id)
+       Contact.destroy_all(:user_id => friend_id, :friend_id => user_id)
   end
 
-  def delete_contacts_from_both_ends
+  def self.delete_contacts_from_both_ends(user_id,friend_id)
+
     #remove the record requested from the friend irrespective of state
-    Contact.destroy_all(:user_id => self.user_id , :friend_id => self.friend_id)
+    Contact.destroy_all(:user_id => user_id , :friend_id => friend_id)
 
-    Contact.destroy_all(:friend_id => self.user_id , :user_id => self.friend_id)
+    Contact.destroy_all(:friend_id => user_id , :user_id => friend_id)
+
 
   end
+
 
 
 

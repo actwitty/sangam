@@ -1,0 +1,17 @@
+%h2 Welcome to #{@user.profile.first_name} #{@user.profile.last_name} 's home page, his email id is #{@user.email}
+%friendship
+  -if @friend_status=="unknown"
+    = form_tag contacts_add_path, :method => 'post' do
+      %p
+        = hidden_field_tag :friend_id, params[:id]
+        = submit_tag "Add as friend", :name => nil
+  -elsif @friend_status=="pending"
+    = form_tag contacts_remove_path, :method => 'post' do
+      %p
+        = hidden_field_tag :friend_id, params[:id]
+        = submit_tag "Remove pending friend", :name => nil
+  -elsif @friend_status=="friend"
+    = form_tag contacts_remove_path, :method => 'post' do
+      %p
+        = hidden_field_tag :friend_id, params[:id]
+        = submit_tag "Remove friend", :name => nil
