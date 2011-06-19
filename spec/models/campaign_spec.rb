@@ -56,6 +56,8 @@ describe Campaign do
   end
   describe "Create" do
     it "should create campaigns on activities"  do
+       text = '<A href="/users/#{options[:user_id]}">#{user.username}</A>s <a href="/activities/2345"'.html_safe
+       text.should ==
 
     end
   end

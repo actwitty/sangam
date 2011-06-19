@@ -59,7 +59,7 @@ class Campaign < ActiveRecord::Base
 #
 #      options = params[:options][:activity]
 #      user = User.find(options[:user_id])
-#      text = "<A href=/users/#{options[:user_id]}>#{user.username}</A>'s <A href=/activities/"
+#      text =  '<A href="/users/#{options[:user_id]}">#{user.username}</A>s <A href="/activities/'
 #    end
 #    father =  Activity.CreateActivity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
 #                                       :text => "<a href=/users/#{}",:enrich => false)
