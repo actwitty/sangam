@@ -59,7 +59,7 @@ class ActivityWord < ActiveRecord::Base
         return word_obj
       end
 
-      #icheck if give type of relation exists for this word
+      #check if give type of relation exists for this word
       rel = WordForm.where(:related_word_id => word_obj.id, :relation_type => relation)
       puts " #{word} <=> #{relation} " + rel.count.to_s
       if !rel.blank?
@@ -99,14 +99,17 @@ class ActivityWord < ActiveRecord::Base
         related_words[0]["words"].each do |attr|
 
           w_obj =  ActivityWord.where(:word_name => attr).first
+          begin
+            if w_obj.blank?
+              puts attr.downcase
+              w_obj = ActivityWord.create!(:word_name => attr)
+            end
 
-          if w_obj.blank?
-            puts attr.downcase
-            w_obj = ActivityWord.create!(:word_name => attr)
+            WordForm.create!(:activity_word_id => w_obj.id , :word_form_name => attr, :related_word_id => word_obj.id,
+                           :relation_type => relation)
+          rescue
+            Rails.logger.warn("Activity Word => CreateRelatedWords => Word Creation Error #{attr}")
           end
-
-          WordForm.create!(:activity_word_id => w_obj.id , :word_form_name => attr, :related_word_id => word_obj.id,
-                          :relation_type => relation)
         end
       else
         Rails.logger.info("ActiveWord=>CreateRelatedWords => No Related words for #{word_obj.word_name}")

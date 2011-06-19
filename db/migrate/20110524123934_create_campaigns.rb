@@ -11,8 +11,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :father_id, :null => false
 
       t.string  :campaign_name, :null => false
-      t.string  :campaign_value, :limit => 32, :null => false
-      t.string  :campaign_comment
+      t.integer  :campaign_value,:null => false
 
       t.timestamps
     end
@@ -36,7 +35,6 @@ class CreateCampaigns < ActiveRecord::Migration
     add_index :campaigns, :campaign_name
 
     add_index :campaigns, [:author_id,:campaign_name, :campaign_value], :name => "index_campaign_on_author_name_value"
-
 
   end
 

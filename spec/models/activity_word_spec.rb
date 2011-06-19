@@ -45,7 +45,7 @@ describe ActivityWord do
       w_id5 = ActivityWord.CreateActivityWord("eat", "verb-form")
       w_id6 = ActivityWord.CreateActivityWord("Drink")
       w_id7 = ActivityWord.CreateActivityWord("tests")
-      w_id8 = ActivityWord.CreateActivityWord("eat", "same-context")
+      w_id8 = ActivityWord.CreateActivityWord("eat", "related")
       work_off
       objs = ActivityWord.FindWordForm(w_id1)
       objs.should include(w_id7)

@@ -22,15 +22,15 @@ class Hub < ActiveRecord::Base
   belongs_to :entity
   belongs_to :activity_word
 
-  validates_existence_of  :activity
-  validates_existence_of  :activity_word
-  validates_existence_of  :user
-  validates_existence_of  :entity , :unless => Proc.new { |a| a.entity_id.nil? }
-  validates_existence_of  :location , :unless => Proc.new { |a| a.location_id.nil? }
+  validates_existence_of  :activity_id
+  validates_existence_of  :activity_word_id
+  validates_existence_of  :user_id
+  validates_existence_of  :entity_id , :allow_nil => true
+  validates_existence_of  :location_id , :allow_nil => true
 
   validates_presence_of :activity_name
 
   validates_length_of   :activity_name , :in => 1..255
-  validates_length_of   :entity_name, :maximum => 255, :unless => Proc.new {|a| a.entity_name.nil?}
+  validates_length_of   :entity_name, :maximum => 255, :allow_blank => true
 
 end

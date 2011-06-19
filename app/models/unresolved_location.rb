@@ -13,7 +13,7 @@
 class UnresolvedLocation < ActiveRecord::Base
   belongs_to  :location
 
-  validates_existence_of :location
+  validates_existence_of :location_id
 
   validates_presence_of :unresolved_location_name
 

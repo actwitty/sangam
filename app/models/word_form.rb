@@ -16,8 +16,8 @@ class WordForm < ActiveRecord::Base
  belongs_to :related_word, :class_name => "ActivityWord"
  belongs_to :activity_word
 
- validates_existence_of :activity_word
- validates_existence_of :related_word
+ validates_existence_of :activity_word_id
+ validates_existence_of :related_word_id
 
  validates_presence_of :word_form_name, :relation_type
  validates_length_of    :word_form_name,  :in => 1..255

@@ -4,9 +4,7 @@ class CreateWebLocations < ActiveRecord::Migration
       t.integer :location_id, :null => false
 
       t.string  :web_location_url, :null => false
-      t.string  :web_location_title
-      t.text   :web_location_desc
-      t.string  :web_location_image_url
+      t.string  :web_location_title, :null => false
 
       t.timestamps
     end

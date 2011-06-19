@@ -15,8 +15,8 @@ class EntityOwnership < ActiveRecord::Base
   belongs_to :owner, :class_name => "User"
   belongs_to :entity
 
-  validates_existence_of :owner, :on => :create
-  validates_existence_of :entity
+  validates_existence_of :owner_id, :on => :create
+  validates_existence_of :entity_id
 
   validates_uniqueness_of :entity_id, :scope => :owner_id, :unless => Proc.new{|a| a.owner.nil?}
 

@@ -54,12 +54,6 @@ describe WebLocation do
       }.should raise_error ActiveRecord::RecordInvalid
     end
 
-    it "should accept only valid image url" do
-      lambda{
-        wl = Factory.create(:web_location, :location_id => Factory(:location).id,
-                            :web_location_url => "http://www.gmail.com", :web_location_image_url => "gmail.com")
-      }.should raise_error ActiveRecord::RecordInvalid
-    end
 
     it "should accept only valid length of urls" do
       lambda{
@@ -68,7 +62,7 @@ describe WebLocation do
           a = a+'a'
         end
         wl = Factory.create(:web_location, :location_id => Factory(:location).id,
-                            :web_location_url => "http://www.gmail.com", :web_location_image_url => "www.gmail.com/#{a}")
+                            :web_location_url => "www.gmail.com")
       }.should raise_error ActiveRecord::RecordInvalid
     end
 
@@ -89,7 +83,7 @@ describe WebLocation do
           a = a+'a'
         end
         wl = Factory.create(:web_location, :location_id => Factory(:location).id,
-                            :web_location_url => "http://www.gmail.com", :web_location_desc => "#{a}")
+                            :web_location_url => "http://www.gmail.com", :web_location_title => "#{a}")
       }.should raise_error ActiveRecord::RecordInvalid
     end
   end
@@ -127,7 +121,7 @@ describe WebLocation do
     it "location should be able to create web location"  do
        @loc = Factory(:location)
        lambda {
-          wl = @loc.create_web_location(:web_location_url => "http://gmail.com")
+          wl = @loc.create_web_location(:web_location_url => "http://gmail.com", :web_location_title => "Web location title")
        }.should change(WebLocation, :count).by(1)
     end
 
@@ -137,7 +131,7 @@ describe WebLocation do
 
     it "location should be able to delete web location"  do
        @loc = Factory(:location)
-       @loc.create_web_location(:web_location_url => "http://gmail.com")
+       @loc.create_web_location(:web_location_url => "http://gmail.com", :web_location_title => "Web location title")
        lambda{
          @loc.destroy
         }.should change(WebLocation, :count).by(-1)
