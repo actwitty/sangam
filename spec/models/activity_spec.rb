@@ -8,42 +8,44 @@ describe Activity do
     @u1 = Factory(:user)
     @u2 = Factory(:user)
     @u3 = Factory(:user)
-    @act = Activity.create!(:activity_word_id => 101,:activity_text => "hello",
+    @aw1 = Factory(:activity_word)
+    @aw2 = Factory(:activity_word)
+
+    @act = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello",
                              :activity_name => "test", :author => @u)
 
-    sleep(1)
-    @act_child_1 = @act.children.create!(:activity_word_id => 102,:activity_text => "hello1",
-                            :activity_name => "test_1", :author => @u1, :parent => @act )
-     sleep(1)
-    @act_child_2 = @act.children.create!(:activity_word_id => 101,:activity_text => "hello2",
+    @act_child_1 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello1",
+                            :activity_name => "test_1", :author_id => @u1.id, :parent => @act )
+
+    @act_child_2 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello2",
                              :activity_name => "test", :author => @u, :parent => @act)
 
 
-    @act_child_3 = @act.children.create!(:activity_word_id => 103,:activity_text => "hello3",
+    @act_child_3 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3",
                             :activity_name => "test_3",  :author => @u2, :parent => @act)
 
 
-    @act_child_2_1 = @act_child_2.children.create!(:activity_word_id => 1021,:activity_text => "hello2_1",
+    @act_child_2_1 = @act_child_2.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello2_1",
                             :activity_name => "test_2_1",   :author => @u2,
                             :parent => @act_child_2)
-     sleep(1)
-    @act_child_3_1 = @act_child_3.children.create!(:activity_word_id => 1031,:activity_text => "hello3_1",
+
+    @act_child_3_1 = @act_child_3.children.create!(:activity_word_id =>@aw2.id,:activity_text => "hello3_1",
                              :activity_name => "test_3_1",  :author => @u,
                              :parent => @act_child_3)
     #@act_child_3_1.save
 
-    @act_child_3_1_1 = @act_child_3_1.children.create!(:activity_word_id => 10311,:activity_text => "hello3_1_1",
+    @act_child_3_1_1 = @act_child_3_1.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3_1_1",
                              :activity_name => "test_3_1_1",  :author => @u3,
                              :parent => @act_child_3_1)
-    sleep(1)
-    @act_child_3_2 = @act_child_3.children.create!(:activity_word_id => 1031,:activity_text => "hello3_2",
+
+    @act_child_3_2 = @act_child_3.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3_2",
                          :activity_name => "test_3_1", :author => @u, :parent => @act_child_3)
 
-    @bct = Activity.create!(:activity_word_id => 101,:activity_text => "hello_b",
+    @bct = Activity.create!(:activity_word_id =>@aw2.id,:activity_text => "hello_b",
                              :activity_name => "test_b", :author => @u)
 
-    sleep(1)
-    @bct_child_1 = @bct.children.create!(:activity_word_id => 102,:activity_text => "hello_b_1",
+
+    @bct_child_1 = @bct.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_b_1",
                             :activity_name => "test_1",  :author => @u, :parent => @bct )
 
     @act_arr =   [@act, @act_child_1 , @act_child_2, @act_child_3,@act_child_2_1, @act_child_3_1,
@@ -63,10 +65,10 @@ describe Activity do
 
     it "should must not be save with length of activity text more that 1024" do
       str = ""
-			1025.times do
+			2049.times do
 			  str = str + 'a'
 			end
-			a=Activity.new(:activity_word_id => 101,:activity_text => str  )
+			a=Activity.new(:activity_word_id => @aw1.id,:activity_text => str  )
 			a.valid?
       a.should_not be_valid
 			a.errors[:activity_text].should_not be_blank
@@ -74,7 +76,7 @@ describe Activity do
 
      it "should must not be save with blank activity text" do
       str = ""
-			a=Activity.new(:activity_word_id => 101,:activity_text => str  )
+			a=Activity.new(:activity_word_id =>@aw1.id,:activity_text => str  )
 			a.valid?
       a.should_not be_valid
       a.errors[:activity_text].should_not be_blank
@@ -82,14 +84,14 @@ describe Activity do
 
     it "should must not be save without author" do
       lambda{
-        a=Activity.create!(:activity_word_id => 101,:activity_text => "hello" )
+        a=Activity.create!(:activity_word_id =>@aw1.id,:activity_text => "hello" )
 
       }.should raise_error ActiveRecord::RecordInvalid
     end
 
     it "should must not be saved with invalid author" do
       lambda {
-        a=Activity.create!(:activity_word_id => 101,:activity_text => "hello",
+        a=Activity.create!(:activity_word_id =>@aw1.id,:activity_text => "hello",
                            :activity_name => "act temp",:author_id => 100 )
         a.errors[:author].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
@@ -97,7 +99,7 @@ describe Activity do
 
     it "should must not be saved with Invalid parent activity" do
       lambda {
-        a=Activity.create!(:activity_word_id => 101,:activity_text => "hello",:activity_name => "act temp",
+        a=Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello",:activity_name => "act temp",
                            :author_id => Factory(:user), :parent_id => 1 )
         a.errors[:parent].should_not be_blank
       }.should raise_error ActiveRecord::RecordNotFound
@@ -158,7 +160,7 @@ describe Activity do
     end
 
     it "user should be able read all his activities by name and count" do
-      @u.activities.count(:all,:group => "activity_name",:order => "updated_at DESC").should_not be_nil
+      @u.activities.group("activity_name").order("updated_at DESC").should_not be_nil
     end
 
 
@@ -168,14 +170,14 @@ describe Activity do
       a[1].subtree.all.should == @act_arr
     end
     it "user should be able read all its root activities along with their whole subtree" do
-      @cct = Activity.create!(:activity_word_id => 101,:activity_text => "hello_b",
+      @cct = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello_b",
                              :activity_name => "test_c",  :author => @u1)
 
-       sleep(1)
-      @cct_child_1 = @cct.children.create!(:activity_word_id => 102,:activity_text => "hello_c_1",
+
+      @cct_child_1 = @cct.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_c_1",
                             :activity_name => "test_1", :author => @u2, :parent => @cct )
 
-      @cct_child_1_1 = @cct_child_1.children.create!(:activity_word_id => 102,:activity_text => "hello_c_1_1",
+      @cct_child_1_1 = @cct_child_1.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_c_1_1",
                             :activity_name => "test_1",  :author => @u, :parent => @cct_child_1 )
 
       Activity.board(@u)
@@ -186,7 +188,7 @@ describe Activity do
   describe "Update Tree" do
 
     it "should be able to add child on fly" do
-      a = @act.children.create(:activity_word_id => 101,:activity_text => "hello",:activity_name => "activity_temp",
+      a = @act.children.create(:activity_word_id => @aw2.id,:activity_text => "hello",:activity_name => "activity_temp",
                                :author => @u, :parent => @act )
       @act.children.should include(@act_child_1, @act_child_2, @act_child_3, a)
       @act.children.size.should == 4
@@ -209,7 +211,7 @@ describe Activity do
 
       a = @act.children
       usr = Factory(:user)
-      parent = Activity.create!(:activity_word_id => 101,:activity_text => "hello temp",:activity_name => "Act temp",
+      parent = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello temp",:activity_name => "Act temp",
                               :author => usr)
       #parent = @act_child_1
       lambda {
@@ -283,7 +285,7 @@ describe Activity do
     it "Deletion of activity should not update the time of parent " do
       @u.activities.destroy(@act_child_1)
       a = @u.activities.find(:all,:conditions => {:ancestry_depth => 0},:order => "updated_at DESC")
-      a.should == [@bct,@act]
+      a.should == [@act,@bct]
 
     end
   end
@@ -293,6 +295,26 @@ describe Activity do
     end
     it "User should be able to read all activities from himself and friends based in order of time of updation " do
 
+    end
+  end
+  describe "CreateActivity" do
+    it "should create activity by the class method given" do
+      act = Activity.CreateActivity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza
+                               hut with @bhaloo @bandar @@ Marathalli",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :enrich => true)
+      act.should_not be_nil
+
+      child = Activity.CreateActivity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+      child1 = Activity.CreateActivity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+      child2 = Activity.CreateActivity(:author_id => @u2.id, :activity => "&comment&" , :text => "Cow Cow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+      child3 = Activity.CreateActivity(:author_id => @u1.id, :activity => "&comment&" , :text => "dow dow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+
+      act.children.should == [child3, child2, child1 , child]
     end
   end
   describe "Hub" do

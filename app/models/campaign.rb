@@ -44,7 +44,24 @@ class Campaign < ActiveRecord::Base
   validates_length_of :campaign_value, :in => 1..32
   validates_length_of :campaign_comment, :in => 1..255,  :allow_blank => true
 
-  def CreateCampaign(author, name, value, option ={})
-     Activity.create()
+
+  # :author_id => 123
+  # :campaign_name => "like"
+  # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
+  # :options = :activity => {:user_id => 123, :username => "xyz", :activity_id => 234,, :activity_name => "abc"}
+  #                          OR
+  #          :entity => {:entity_id = 123, :entity_name => "abc"}
+  #                          OR
+  #           :location => {:location_id => 123, :location_name => "abc""
+  def CreateCampaign(params = {})
+
+#    if params[:options].has_key?(:activity)
+#
+#      options = params[:options][:activity]
+#      user = User.find(options[:user_id])
+#      text = "<A href=/users/#{options[:user_id]}>#{user.username}</A>'s <A href=/activities/"
+#    end
+#    father =  Activity.CreateActivity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
+#                                       :text => "<a href=/users/#{}",:enrich => false)
   end
 end

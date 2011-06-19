@@ -131,14 +131,53 @@ class Activity < ActiveRecord::Base
     def self.delete_activity(act)
 
     end
-#    #TODO
-#    :parent =>
-#    :activity =>
-#    :entity =>
-#    :location => {:location_type => 1, :lat => , :long => , :name =>  }
-#    def self.CreateActivity(act_hash ={})
-#      ActivityWord.CreateActivityWord(, relation = "")
-#      Activity.create!(:activity_word_id => 101,:activity_text => "hello", :activity_name => "test", :author => @u)
-#
-#    end
+    def self.PostProcActivity(params={})
+      Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
+    end
+
+    #TODO
+#    :author_id => user id
+#    :parent_id => id of parent activity or nil . If parent there then it should be comment. But its responsibility
+#.              of client to post where Activity = <comment> location = nil
+
+#    :activity => activity word or phrase in activity box
+#    :text =>   ""entity box + @@ + location box" or nil
+#    :description => NO SUPPORT .. DO WE NEED OR Entity Box is itself Description.. Can be added if every body feels so
+#    :location => {
+#                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
+#                                      OR
+#                  :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
+#                                      OR
+#                  :unresolved_location =>{:unresolved_location_name => "http://google.com"}
+#                                      OR
+#                                     nil
+#                 }
+#    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
+
+  def self.CreateActivity(params={})
+
+      word_obj = ActivityWord.CreateActivityWord(params[:activity], relation = "verb-form")
+
+      if params[:parent_id].blank?
+        obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
+                         :author_id => params[:author_id])
+
+      else
+         act = Activity.find(params[:parent_id])
+         if !act.blank?
+            obj = act.children.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] ,
+                                 :activity_name => params[:activity], :author_id => params[:author_id], :parent => act )
+         end
+      end
+
+      if params[:enrich] == true
+        PostProcActivity(params)
+      end
+      return obj
+
+    rescue => e
+      Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
+      nil
+  end
+
 end
