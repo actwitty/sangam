@@ -298,13 +298,13 @@ describe Activity do
     end
   end
   describe "CreateActivity" do
+    include DelayedJobSpecHelper
     it "should create activity by the class method given" do
-      act = Activity.CreateActivity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza
-                               hut with @bhaloo @bandar @@ Marathalli",
+      act = Activity.CreateActivity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
       act.should_not be_nil
-
+      work_off
       child = Activity.CreateActivity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
                                       me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
       child1 = Activity.CreateActivity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
@@ -315,6 +315,7 @@ describe Activity do
                                       me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
 
       act.children.should == [child3, child2, child1 , child]
+
     end
   end
   describe "Hub" do

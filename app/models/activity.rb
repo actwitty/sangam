@@ -1,3 +1,4 @@
+require "query_manager"
 # == Schema Information
 # Schema version: 20110609094335
 #
@@ -91,7 +92,11 @@ class Activity < ActiveRecord::Base
     end
 
   public
-    def self.board (user, filter_activity = {})
+  class << self
+
+    include QueryManager
+
+    def board (user, filter_activity = {})
       u = User.all #change it with users in contact
       a = Activity.where(:author_id => u, :ancestry => nil).order("updated_at DESC").limit(5)
 
@@ -104,36 +109,33 @@ class Activity < ActiveRecord::Base
       puts h
     end
 
-    def self.page (user, filter_activity = {})
+    def page (user, filter_activity = {})
       #TODO Only users activity. if its not root then show only that activity without its parent and child
     end
 
     #TODO
-    def self.top_activities (user)
+    def top_activities (user)
 
     end
     #TODO
-    def self.campaign_count (user, act_id)
+    def campaign_count (user, act_id)
 
     end
     #TODO
-    def self.bookmarked_activity (user)
+    def bookmarked_activity (user)
 
     end
     #TODO
-    def self.parse_activity(xml_data)
+    def parse_activity(xml_data)
 
     end
     #TODO
-    def self.update_activity(act)
+    def update_activity(act)
 
     end
     #TODO
-    def self.delete_activity(act)
+    def delete_activity(act)
 
-    end
-    def self.PostProcActivity(params={})
-      Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
     end
 
     #TODO
@@ -155,7 +157,7 @@ class Activity < ActiveRecord::Base
 #                 }
 #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
 
-  def self.CreateActivity(params={})
+    def CreateActivity(params={})
 
       word_obj = ActivityWord.CreateActivityWord(params[:activity], relation = "verb-form")
 
@@ -176,9 +178,19 @@ class Activity < ActiveRecord::Base
       end
       return obj
 
-    rescue => e
-      Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
+      rescue => e
+        Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
       nil
-  end
+   end
 
+
+    def PostProcActivity(params={})
+      entities=get_entities(params[:text])
+      entities.each do |entity|
+        Entity.CreateEntities(params[:author_id],entity)
+      end
+      Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
+    end
+   handle_asynchronously :PostProcActivity
+  end
 end
