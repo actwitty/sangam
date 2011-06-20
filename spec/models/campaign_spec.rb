@@ -54,11 +54,15 @@ describe Campaign do
       end
     end
   end
+  include DelayedJobSpecHelper
   before(:each) do
    @u1 = Factory(:user)
    @u2 = Factory(:user)
    @u3 = Factory(:user)
-   @a1 = Factory(:activity)
+   @a1 = Activity.CreateActivity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :enrich => true)
+   work_off
    @e1 = Factory(:entity)
    @c1 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
                              :activity => {:user_id => @u2.id, :activity_id => @a1.id} )

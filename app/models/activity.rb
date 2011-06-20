@@ -138,7 +138,7 @@ class Activity < ActiveRecord::Base
 
     end
 
-    #TODO
+
 #    :author_id => user id
 #    :parent_id => id of parent activity or nil . If parent there then it should be comment. But its responsibility
 #.              of client to post where Activity = <comment> location = nil
