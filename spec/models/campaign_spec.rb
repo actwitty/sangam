@@ -54,11 +54,73 @@ describe Campaign do
       end
     end
   end
+  before(:each) do
+   @u1 = Factory(:user)
+   @u2 = Factory(:user)
+   @u3 = Factory(:user)
+   @a1 = Factory(:activity)
+   @e1 = Factory(:entity)
+   @c1 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
+                             :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+   @c2 = Campaign.CreateCampaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+   @c3 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+   @c4 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+   @c5 = Campaign.CreateCampaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+  end
   describe "Create" do
     it "should create campaigns on activities"  do
-       text = '<A href="/users/#{options[:user_id]}">#{user.username}</A>s <a href="/activities/2345"'.html_safe
-       text.should ==
+
+       @c1.should_not be_nil
+       @c2.should_not be_nil
+       @c3.should_not be_nil
+       @c4.should be_nil
+       @c5.should_not be_nil
+       @c1.activity_id.should == @a1.id
+       @c1.author_id.should == @u1.id
+       @c1.father.should_not be_nil
+       puts @c1.father.activity_name
+       puts @c1.father.activity_text.inspect
+
+       @a1.destroy
+
 
     end
   end
+  describe "Delete" do
+    it "should delete a campaign properly when deleting only campaign "   do
+
+       #Campaign.DeleteCampaign(c1.id)
+       @a1.destroy
+       f = Activity.where(:id =>@c3.father_id)
+       f.should be_blank
+       @a1 = Factory(:activity)
+       c1 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+       c2 = Campaign.CreateCampaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+       c3 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
+                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+       c2.father.destroy
+       c = Campaign.where(:id => c2.id)
+       c.should be_blank
+
+       Campaign.DeleteCampaign(c1.id)
+       c = Campaign.where(:id => c1.id)
+       c.should be_blank
+
+       c3.destroy
+       c = Campaign.where(:id => c3.id)
+       c.should be_blank
+    end
+  end
+  describe "Read" do
+    it "should read campaigns properly" do
+      Campaign.GetCampaign(:activity_id => @a1.id)
+    end
+  end
 end
+

@@ -32,9 +32,9 @@ class Campaign < ActiveRecord::Base
   validates_existence_of :entity_id, :allow_nil => true
   validates_existence_of :location_id, :allow_nil => true
 
-  validates_uniqueness_of :author_id, :scope => [:activity_id, :campaign_name]
-  validates_uniqueness_of :author_id, :scope => [:entity_id, :campaign_name]
-  validates_uniqueness_of :author_id, :scope => [:location_id, :campaign_name]
+  validates_uniqueness_of :author_id, :scope => [:activity_id, :campaign_name],  :unless => Proc.new {|a| a.activity_id.nil?}
+  validates_uniqueness_of :author_id, :scope => [:entity_id, :campaign_name], :unless => Proc.new {|a| a.entity_id.nil?}
+  validates_uniqueness_of :author_id, :scope => [:location_id, :campaign_name], :unless => Proc.new {|a| a.location_id.nil?}
   validates_uniqueness_of :father_id
 
 
@@ -42,26 +42,84 @@ class Campaign < ActiveRecord::Base
 
   validates_length_of :campaign_name, :in => 1..255
   validates_length_of :campaign_value, :in => 1..32
-  validates_length_of :campaign_comment, :in => 1..255,  :allow_blank => true
 
 
-  # :author_id => 123
-  # :campaign_name => "like"
-  # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
-  # :options = :activity => {:user_id => 123, :username => "xyz", :activity_id => 234,, :activity_name => "abc"}
-  #                          OR
-  #          :entity => {:entity_id = 123, :entity_name => "abc"}
-  #                          OR
-  #           :location => {:location_id => 123, :location_name => "abc""
-  def CreateCampaign(params = {})
+  after_destroy :ensure_destroy_cleanup
 
-#    if params[:options].has_key?(:activity)
-#
-#      options = params[:options][:activity]
-#      user = User.find(options[:user_id])
-#      text =  '<A href="/users/#{options[:user_id]}">#{user.username}</A>s <A href="/activities/'
-#    end
-#    father =  Activity.CreateActivity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
-#                                       :text => "<a href=/users/#{}",:enrich => false)
+  def ensure_destroy_cleanup
+    #Delete to stop circular effect
+    self.father.delete
+  end
+
+  class << self
+    # :author_id => 123
+    # :campaign_name => "like"
+    # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
+    # :campaign_comment => "xbcxbcnxbcnx" or nil
+    # :activity => {:user_id => 123, :activity_id => 234}
+    #                OR
+    # :entity => {:entity_id = 123}
+    #                OR
+    # :location => {:location_id => 123
+    def CreateCampaign(params = {})
+      new_hash = {}
+
+      #NEED TO MAKE IT DRY
+      if params.has_key?(:activity)
+
+        options = params[:activity]
+        user = User.find(options[:user_id])
+        activity = Activity.find(options[:activity_id])
+        text = "<a href=/users/#{options[:user_id]}>#{user.username}s</a> <a href=/activities/#{options[:activity_id]}>#{activity.activity_name}</a>".html_safe
+        params[:activity_id] = activity.id
+        params.delete(:activity)
+
+      elsif params.has_key?(:entity)
+
+        options = params[:entity]
+        entity = Entity.find(options[:entity_id])
+        text = "<a href=/entities/#{options[:entity_id]}>#{entity.entity_name}</a>".html_safe
+        params[:entity_id] = entity.id
+        params.delete(:entity)
+
+      elsif params.has_key?(:location)
+        options = params[:location]
+        location = Location.find(options[:location_id])
+        text = "<a href=/entities/#{options[:location_id]}>#{location.location_name}</a>".html_safe
+        params[:location_id] = location.id
+        params.delete(:location)
+      end
+      puts new_hash
+      params[:father_id] =  Activity.CreateActivity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
+                                         :text => text,:enrich => false).id
+
+      campaign = Campaign.create!(params)
+      return campaign
+    rescue => e
+      Rails.logger.error("Campaign => CreateCampaign => #{e.message} => #{params.to_s}")
+      nil
+    end
+    def DeleteCampaign(campaign_id)
+      campaign = Campaign.find(campaign_id)
+      campaign.father.destroy
+    end
+  # :activity_id => 123
+  #      OR
+  # :entity_id => 123
+  #     OR
+  # :location_id => 123
+  # OUTPUT = [["campaign_name", "campaign_value", "author_id"], count]
+  #[["join", 2, 1679], 1]
+  #[["like", 1, 1677], 1]
+  #[["like", 2, 1679], 1]
+  #[["support", 3, 1677], 1]
+
+    def GetCampaign(params={})
+      campaigns = Campaign.where( params).group(:campaign_name, :campaign_value, :author_id).order(:campaign_name).count
+      campaigns.each do  |attr|
+        puts attr.to_s
+      end
+
+    end
   end
 end

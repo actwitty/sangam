@@ -22,9 +22,9 @@ class Activity < ActiveRecord::Base
   has_ancestry   :cache_depth => 3
 
 
-  belongs_to :author, :class_name => "User", :touch => true
+  belongs_to :author, :class_name => "User" #, :touch => true
    #:touch => true can be un-optimal for deep nested threading
-  belongs_to     :parent, :class_name => "Activity",  :foreign_key => "parent_id", :touch => true
+  belongs_to     :parent, :class_name => "Activity",  :foreign_key => "parent_id"#, :touch => true
   belongs_to      :activity_word
 
   #destroy will happen from activity
@@ -37,7 +37,8 @@ class Activity < ActiveRecord::Base
   has_many    :campaigns, :dependent => :destroy
   has_many    :documents, :dependent => :nullify # documents have life time more than activity
 
-  has_one      :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :destroy
+  #:delete instead of :destroy to stop circular effect
+  has_one      :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :delete
 
 
 
