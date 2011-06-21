@@ -1,13 +1,13 @@
 # == Schema Information
-# Schema version: 20110517110406
+# Schema version: 20110616040229
 #
 # Table name: contacts
 #
-#  id         :integer(4)      not null, primary key
-#  status     :integer(4)
-#  user_id    :integer(4)
-#  friend_id  :integer(4)
-#  loop_id    :integer(4)
+#  id         :integer         not null, primary key
+#  status     :integer
+#  user_id    :integer
+#  friend_id  :integer
+#  loop_id    :integer
 #  strength   :decimal(5, 2)   default(100.0)
 #  relation   :string(255)     default("Friend")
 #  created_at :datetime

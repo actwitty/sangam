@@ -1,9 +1,9 @@
 # == Schema Information
-# Schema version: 20110605183950
+# Schema version: 20110616040229
 #
 # Table name: profiles
 #
-#  id                  :integer(4)      not null, primary key
+#  id                  :integer         not null, primary key
 #  first_name          :string(255)
 #  last_name           :string(255)
 #  short_status        :string(255)
@@ -11,12 +11,12 @@
 #  profile_photo_m     :string(255)
 #  profile_photo_s     :string(255)
 #  home_location       :string(255)
-#  home_geo_lat        :integer(10)
-#  home_geo_long       :integer(10)
+#  home_geo_lat        :decimal(, )
+#  home_geo_long       :decimal(, )
 #  current_location    :string(255)
-#  current_geo_lat     :integer(10)
-#  current_geo_long    :integer(10)
-#  age                 :integer(4)
+#  current_geo_lat     :decimal(, )
+#  current_geo_long    :decimal(, )
+#  age                 :integer
 #  sex                 :string(255)
 #  theme               :string(255)
 #  dob                 :date
@@ -30,12 +30,12 @@
 #  tag_string          :string(255)
 #  email               :string(255)
 #  searchable          :string(255)
-#  verified_account    :boolean(1)
-#  is_celebrity        :boolean(1)
-#  abuse_count         :integer(4)
-#  is_terms_accepted   :boolean(1)
-#  is_privacy_accepted :boolean(1)
-#  user_id             :integer(4)
+#  verified_account    :boolean
+#  is_celebrity        :boolean
+#  abuse_count         :integer
+#  is_terms_accepted   :boolean
+#  is_privacy_accepted :boolean
+#  user_id             :integer
 #  created_at          :datetime
 #  updated_at          :datetime
 #
@@ -52,6 +52,7 @@ class Profile < ActiveRecord::Base
   validates_uniqueness_of :user_id
 
   before_validation :strip_field
+  after_save :update_user_full_name
 
   # validate lengths
 
@@ -96,15 +97,18 @@ class Profile < ActiveRecord::Base
      if email.present?
       email.strip!
       email.downcase!
-    end
+     end
+     if !profile_photo_s.present?
+       profile_photo_s
+     end
   end
 
-  ############################################# 
-  # add validate url from a universal validator
-  # profile_photo_l
-  # profile_photo_m
-  # profile_photo_s
-  # home_page
-  ##############################################
+  def update_user_full_name
+    user.full_name = first_name.strip + ' ' + last_name.strip
+    user.photo_small_url = profile_photo_s
+    user.save
+  end
+
+
 
 end

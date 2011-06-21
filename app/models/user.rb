@@ -1,14 +1,14 @@
 # == Schema Information
-# Schema version: 20110605183950
+# Schema version: 20110616040229
 #
 # Table name: users
 #
-#  id                   :integer(4)      not null, primary key
+#  id                   :integer         not null, primary key
 #  email                :string(255)
 #  encrypted_password   :string(128)     default("")
 #  reset_password_token :string(255)
 #  remember_created_at  :datetime
-#  sign_in_count        :integer(4)      default(0)
+#  sign_in_count        :integer         default(0)
 #  current_sign_in_at   :datetime
 #  last_sign_in_at      :datetime
 #  current_sign_in_ip   :string(255)
@@ -16,19 +16,21 @@
 #  confirmation_token   :string(255)
 #  confirmed_at         :datetime
 #  confirmation_sent_at :datetime
-#  failed_attempts      :integer(4)      default(0)
+#  failed_attempts      :integer         default(0)
 #  unlock_token         :string(255)
 #  locked_at            :datetime
 #  authentication_token :string(255)
 #  username             :string(255)
-#  show_help            :boolean(1)
-#  disable_email        :boolean(1)
+#  show_help            :boolean
+#  disable_email        :boolean
+#  full_name            :string(255)
+#  photo_small_url      :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
 #  invitation_token     :string(60)
 #  invitation_sent_at   :datetime
-#  invitation_limit     :integer(4)
-#  invited_by_id        :integer(4)
+#  invitation_limit     :integer
+#  invited_by_id        :integer
 #  invited_by_type      :string(255)
 #
 
@@ -42,7 +44,7 @@ class User < ActiveRecord::Base
           #,:devise_create_users
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name
 
   # relations #
   has_one :profile
@@ -99,6 +101,17 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  def get_raised_contact_requests_raised
+    users_list=nil
+    new_friends_id_list = contacts.select("user_id").where(:status =>
+                                                  Contact.statusStringToKey['New']).all().map(&:user_id)
+
+    if !new_friends_id_list.nil? && new_friends_id_list.count() != 0
+      users_list=User.where("id in (?)", new_friends_id_list ).all
+    end
+    return users_list
+  end
+
 
   def get_contacts
     users_list=nil
@@ -127,6 +140,7 @@ class User < ActiveRecord::Base
   def disconnect_a_contact(friend_id)
    Contact.delete_contacts_from_both_ends(id, friend_id)
   end
+
 
   def get_provider_uids_of_friends(provider, uid_list)
    friends_id_list = contacts.select("friend_id").where(:status =>

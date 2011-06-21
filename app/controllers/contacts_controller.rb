@@ -70,8 +70,7 @@ class ContactsController < ApplicationController
     redirect_to(:back)
   end
 
-
-  def facebook_friends
+  def facebook_friends_list
     provider="facebook"
     facebook_auth=Authentication.find_by_user_id_and_provider(current_user.id, provider)
     if facebook_auth.nil?
@@ -79,47 +78,44 @@ class ContactsController < ApplicationController
       #TODO: Fix this path
     else
       uid_list = Array.new
-      @display_hash = Hash.new
+      display_hash = Hash.new
       begin
-        @graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
-        @friends = @graph.get_connections("me", "friends")
-        puts @friends
+        graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
+        friends = graph.get_connections("me", "friends")
+        puts friends
         #  puts current_user.get_contacts_provider_uid(provider)
-        @friends.each {
-              |friend|
-              uid_list.push friend["id"]
-              @display_hash[friend["id"]]=friend["name"]
+
+        friends.each {
+                  |friend|
+                  uid_list.push friend["id"]
+                  display_hash[friend["id"]]= {"name"=>friend["name"], "status"=>"invite"}
 
         }
-        @uid_list_and_friend=nil
-        @uid_list_for_invite=nil
-        @uid_list_not_friend=nil
+
+
         if uid_list.count() > 0
           uid_list_in_actwitty=Authentication.find_all_uids_present_in_actwitty(provider, uid_list)
           if !uid_list_in_actwitty.nil? && uid_list_in_actwitty.count >0
-            @uid_list_and_friend = current_user.get_provider_uids_of_friends(provider, uid_list)
-            @uid_list_for_invite =  uid_list - uid_list_in_actwitty
-            @uid_list_not_friend =  uid_list_in_actwitty - @uid_list_and_friend
-          else
-             @uid_list_for_invite =  uid_list
+            uid_list_and_friend = current_user.get_provider_uids_of_friends(provider, uid_list)
+            uid_list_not_friend =  uid_list_in_actwitty - uid_list_and_friend
+
+            uid_list_and_friend.each { |uid| display_hash[uid][:status]="friend"  }
+            uid_list_not_friend.each { |uid| display_hash[uid][:status]="request"  }
           end
         end
-
-
-
-
-
-        puts @uid_list_for_invite
-        puts @uid_list_and_friend
-        puts @uid_list_not_friend
-
+        puts display_hash.to_json
+        format.js { render :json => display_hash }
       rescue Koala::Facebook::APIError
         session[:return_to] ||= request.referer
         redirect_to "/users/auth/facebook"
       end
-
-      #puts uid_list.to_s
     end
+  end
+
+
+  def facebook_friends
+    puts "Looking for facebook friends"
+
   end
 
 

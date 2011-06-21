@@ -1,9 +1,9 @@
 # == Schema Information
-# Schema version: 20110605183950
+# Schema version: 20110616040229
 #
 # Table name: foreign_profiles
 #
-#  id                   :integer(4)      not null, primary key
+#  id                   :integer         not null, primary key
 #  name                 :string(255)
 #  screen_name          :string(255)
 #  first_name           :string(255)
@@ -17,7 +17,7 @@
 #  timezone             :float
 #  locale               :string(255)
 #  foreign_updated_time :string(255)
-#  authentication_id    :integer(4)
+#  authentication_id    :integer
 #  created_at           :datetime
 #  updated_at           :datetime
 #

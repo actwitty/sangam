@@ -3,17 +3,16 @@
 #
 # Table name: campaigns
 #
-#  id               :integer         not null, primary key
-#  author_id        :integer         not null
-#  activity_id      :integer
-#  entity_id        :integer
-#  location_id      :integer
-#  father_id        :integer         not null
-#  campaign_name    :string(255)     not null
-#  campaign_value   :string(32)      not null
-#  campaign_comment :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id             :integer         not null, primary key
+#  author_id      :integer         not null
+#  activity_id    :integer
+#  entity_id      :integer
+#  location_id    :integer
+#  father_id      :integer         not null
+#  campaign_name  :string(255)     not null
+#  campaign_value :integer         not null
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 
 class Campaign < ActiveRecord::Base
