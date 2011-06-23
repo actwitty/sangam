@@ -1,3 +1,5 @@
+= javascript_include_tag 'actwitty/contacts'
+= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
 %h2 Profile page
 #signoutdiv.right
   %a{:href => "/users/sign_out"} Sign Out
@@ -30,9 +32,9 @@
 
 %hr
 %h3 Friends Friends list
-=render :partial => '/contacts/friends', :locals => { :friends =>@friends }
+%ul#friends_list
 %h3 Pending Friends list
-=render :partial => '/contacts/pending', :locals => { :friends =>@pending_friends }
+%ul#pending_request_list
 
 %hr
 %strong Available direct sign in options:

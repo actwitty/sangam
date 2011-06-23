@@ -51,7 +51,7 @@ class Profile < ActiveRecord::Base
   # validate uniqueness of user_id as user_id has one and only one profile
   validates_uniqueness_of :user_id
 
-  before_validation :strip_field
+  before_save :process_before_save
   after_save :update_user_full_name
 
   # validate lengths
@@ -92,14 +92,14 @@ class Profile < ActiveRecord::Base
 
   validates_existence_of :user      #works both ways
 
-  def strip_field
+  def process_before_save
         
      if email.present?
       email.strip!
       email.downcase!
      end
      if !profile_photo_s.present?
-       profile_photo_s
+       profile_photo_s = '/images/actwitty/default_user.gif'
      end
   end
 

@@ -13,7 +13,11 @@ class ContactsController < ApplicationController
   def add( )
     friend_id = Integer(params[:friend_id])
     current_user.new_contact_request(friend_id)
-    redirect_to(:back)
+    if request.xhr?
+       render :json => {}
+    else
+      redirect_to(:back)
+    end
   end
 
   def provider_add()
@@ -28,9 +32,12 @@ class ContactsController < ApplicationController
 
   def remove()
     friend_id = Integer(params[:friend_id])
-
     current_user.disconnect_a_contact(friend_id)
-    redirect_to(:back)
+    if request.xhr?
+       render :json => {}
+    else
+      redirect_to(:back)
+    end
 
   end
 
@@ -45,15 +52,34 @@ class ContactsController < ApplicationController
       #We ideally expect here if (friend_req == "Reject")
       current_user.reject_a_contact_request(friend_id)
     end
+    if request.xhr?
+      render :json => {:request => "complete"}
+    else
+      redirect_to(:back)
+    end
 
-    #go back to where you came from
-    redirect_to(:back)
   end
 
 
 
   def facebook_friends
 
+  end
+
+
+  def pending_friend_requests
+    pending_friends = current_user.get_pending_request_contacts()
+    puts  pending_friends.to_json
+    if request.xhr?
+      render :json => pending_friends
+    end
+  end
+
+  def friends
+    friends = current_user.get_contacts()
+    if request.xhr?
+      render :json => friends
+    end
 
   end
 

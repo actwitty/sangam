@@ -93,10 +93,10 @@ class User < ActiveRecord::Base
   def get_pending_request_contacts
     users_list=nil
     friends_id_list = friends.select("user_id").where(:status =>
-                                                  Contact.statusStringToKey['New']).all().map(&:user_id)
+                                                  Contact.statusStringToKey['New']).map(&:user_id)
 
     if !friends_id_list.nil? && friends_id_list.count() != 0
-      users_list=User.where("id in (?)", friends_id_list ).all
+      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list )
     end
     return users_list
   end
@@ -104,10 +104,10 @@ class User < ActiveRecord::Base
   def get_raised_contact_requests_raised
     users_list=nil
     new_friends_id_list = contacts.select("user_id").where(:status =>
-                                                  Contact.statusStringToKey['New']).all().map(&:user_id)
+                                                  Contact.statusStringToKey['New']).map(&:user_id)
 
     if !new_friends_id_list.nil? && new_friends_id_list.count() != 0
-      users_list=User.where("id in (?)", new_friends_id_list ).all
+      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", new_friends_id_list )
     end
     return users_list
   end
@@ -116,10 +116,10 @@ class User < ActiveRecord::Base
   def get_contacts
     users_list=nil
     friends_id_list = contacts.select("friend_id").where(:status =>
-                                                  Contact.statusStringToKey['Connected']).all().map(&:friend_id)
+                                                  Contact.statusStringToKey['Connected']).map(&:friend_id)
 
     if !friends_id_list.nil? && friends_id_list.count() != 0
-      users_list=User.where("id in (?)", friends_id_list ).all
+      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list )
     end
     return users_list
   end
@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
 
   def get_provider_uids_of_friends(provider, uid_list)
    friends_id_list = contacts.select("friend_id").where(:status =>
-                                                  Contact.statusStringToKey['Connected']).all().map(&:friend_id)
+                                                  Contact.statusStringToKey['Connected']).map(&:friend_id)
 
    Authentication.all(:select => "uid",:conditions=> ['user_id in (?) and uid in (?)',
                                                        friends_id_list, uid_list]).map(&:uid)
@@ -153,15 +153,12 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      all(:include => :profile,:order => "first_name" ,
-          :conditions => ['users.email = ?
-                            or first_name LIKE ?
-                              or last_name LIKE ?', search,
-                                              "%#{search}%",
-                                              "%#{search}%"],
-          :joins => :profile)
+      select("id,full_name,photo_small_url").order("full_name").
+                  where( ['users.email = ?
+                            or full_name ILIKE ?', search,
+                                                   "%#{search}%"])
     else
-     all(:include => :profile, :order => "profiles.first_name, profiles.last_name")
+     select("id,full_name,photo_small_url").order("full_name")
     end
   end
 

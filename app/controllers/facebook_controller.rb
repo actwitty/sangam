@@ -55,7 +55,6 @@ class FacebookController < ApplicationController
         if request.xhr?
           resp = {:location => '/users/auth/facebook',
                   :message => 'Log in to facebook'}
-          puts resp.to_json
            render :json => resp
         else
 

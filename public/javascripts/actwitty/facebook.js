@@ -1,5 +1,4 @@
 
-
 /*
  * Render friends on the main facebook friends page *
  * 
@@ -83,7 +82,6 @@ $('.fb_request').live('click', function () {
         if (data && data.location) {
           window.location.href = data.location;
         }else{
-          renderFriends(data);
         }
       },
       error: function (error) {
@@ -98,7 +96,7 @@ $('.fb_request').live('click', function () {
  */
 $('.fb_invite').live('click', function () {
   var dataString = 'provider=facebook&uid=' + $(this).attr('id');
-    $.ajax({
+  $.ajax({
       url:  '/facebook/invite',
       type: 'POST',
       data: dataString
