@@ -30,12 +30,13 @@ Sangam::Application.routes.draw do
 
   match '/authentications/auth_signin' => 'authentications#auth_signin'
   match '/contacts/facebook_friends' => 'contacts#facebook_friends'
-  match '/contacts/facebook_friends_list' => 'contacts#facebook_friends_list'
+
   match '/contacts/friendship' => 'contacts#friendship'
   match '/contacts/search' => 'contacts#search'
   match '/contacts/add' => 'contacts#add'
   match '/contacts/provider_add' => 'contacts#provider_add'
-  match '/contacts/invite' => 'contacts#invite'
+  match '/facebook/facebook_friends_list' => 'facebook#facebook_friends_list'
+  match '/facebook/invite' => 'facebook#invite'
   match '/contacts/accept' => 'contacts#accept'
   match '/contacts/remove' => 'contacts#remove'
   match '/sign_out' => 'welcome#new'

@@ -1,39 +1,15 @@
+= javascript_include_tag 'actwitty/facebook'
+= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
 %h2 Facebook Friends
 %h3 List of people from facebook you may like to connect on actwitty
-%ul
-  - if !@uid_list_not_friend.nil? && @uid_list_not_friend.count()!=0
-    - @uid_list_not_friend.each do |uid|
-      %li
-        = form_tag contacts_provider_add_path, :method => 'post' do
-          %img{:alt => "", :src=>"http://graph.facebook.com/#{uid}/picture/"}
-            %br
-              #{@display_hash[uid]}
-          %p
-            = hidden_field_tag :provider, "facebook"
-            = hidden_field_tag :uid, "#{uid}"            
-            = submit_tag "Send Friend Request", :name => nil
+%ul#fb_friend_suggests
+ 
 %hr
 %h3 List of people whom you can invite from facebook to actwitty
-%ul
-  - if !@uid_list_for_invite.nil? && @uid_list_for_invite.count()!=0
-    - @uid_list_for_invite.each do |uid|
-      %li
-        = form_tag contacts_invite_path, :method => 'post' do
-          %img{:alt => "", :src=>"http://graph.facebook.com/#{uid}/picture/"}
-            %br
-              #{@display_hash[uid]}
-          %p
-            = hidden_field_tag :provider, "facebook"
-            = hidden_field_tag :uid, "#{uid}"            
-            = submit_tag "Invite to Actwitty", :name => nil
+%ul#fb_invites
+  
 %hr
 %h3 List of people your friends on actwitty and facebook both
-%ul
-  - if !@uid_list_and_friend.nil? && @uid_list_and_friend.count()!=0
-    - @uid_list_and_friend.each do |uid|
-      %li
-        %img{:alt => "", :src=>"http://graph.facebook.com/#{uid}/picture/"}
-          %br
-            #{@display_hash[uid]}
+%ul#fb_friends
+ 
 %hr
-= javascript_include_tag 'actwitty/contacts'
