@@ -14,6 +14,8 @@
 #home_page_wrapper
   .home_page_header
 
+  /
+    Everything coming on the top bar, this is a TODO
   .home_page_signout
     %a{:href => "/users/sign_out"} 
       %img.img_sign_out{:alt => "", :src=>"/images/actwitty/signout.png"}
@@ -23,27 +25,25 @@
   %a.auth_provider{:href => "/users/auth/facebook"}
     %img.img_provider{ :src=>"/images/authentications/facebook_64.png", :alt => "Twitter"}
     
-
+  /
+    *********************************************************
+  / 
+    Top side info for snap and name under it
   .home_page_info
     .home_page_photo
       %img{:alt => "", :src=>"#{current_user.photo_small_url}"}
       %label.main_title #{current_user.full_name}
-   
-    #home_page_input
-      %fieldset
-        %legend Input Box
-        %input{:name => "home_page_activity", :type => "text"}
-          %input{:name => "home_page_entity", :type => "text"}
-            %input#searchTextField{:name => "home_page_location", :type => "text"}
-              %input#searchTextField1{:size => "50", :type => "hidden"}
-                %input#submits{:type => "button", :value => "done"}
-                  %input#user_latlng{:name => "latlang", :type => "hidden"}/
-        #map
-  %hr/
-  .home_page_filters
+  
+  /
+    *********************************************************
+  
+  %hr
+  /
+    Side bars
+  .home_page_filters.sidebar.sidebar
     .home_page_activities.filters
       %h4.sidebar_titles Activities
-      %ul.filter_list
+      %ul.filter_list.sidebar_lists
         %li.filter_list_elem
           %a{:href => "#"} eating
         %li.filter_list_elem
@@ -55,7 +55,7 @@
 
     .home_page_entities.filters
       %h4.sidebar_titles Entities
-      %ul.filter_list
+      %ul.filter_list.sidebar_lists
         %li.filter_list_elem
           %a{:href => "#"} eating
         %li.filter_list_elem
@@ -73,7 +73,19 @@
     .home_page_pending_friends.filters
       %h4.sidebar_titles#pending_side_title Pending Friends
       %ul#pending_request_list.filter_list.sidebar_lists
-  %hr/
+  /
+    ***********************************************************************
+  /
+    Home page main activity generator input boxes
+  #home_page_input.main_section
+    %fieldset
+        %input{:name => "home_page_activity", :type => "text",:placeholder => "Activity"}
+        %input{:name => "home_page_entity", :type => "text",:placeholder => "Entity"}
+        %input#searchTextField{:name => "home_page_location", :type => "text",:placeholder => "Location"}
+        %input#searchTextField1{:size => "50", :type => "hidden"}
+        %input#actwitty_generator{:type => "button", :value => "done"}
+        %input#user_latlng{:name => "latlang", :type => "hidden"}
+        #map
     
     
 

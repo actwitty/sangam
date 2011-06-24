@@ -41,7 +41,17 @@ label.alternate_login_label {
   vertical-align: text-bottom;
 }
 
-/* line 49, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 48, ../../../app/stylesheets/actwitty/profile.scss */
+.sidebar {
+  float: left;
+}
+
+/* line 52, ../../../app/stylesheets/actwitty/profile.scss */
+.main_section {
+  float: left;
+}
+
+/* line 57, ../../../app/stylesheets/actwitty/profile.scss */
 ul.sidebar_lists {
   width: 80%;
   height: 150px;
@@ -49,7 +59,7 @@ ul.sidebar_lists {
   border: 1px;
 }
 
-/* line 58, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 66, ../../../app/stylesheets/actwitty/profile.scss */
 li.user_stamp {
   display: block;
   list-style: none;
@@ -57,13 +67,13 @@ li.user_stamp {
   margin: 2px;
 }
 
-/* line 66, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 74, ../../../app/stylesheets/actwitty/profile.scss */
 a.link_user_stamp.user_stamp {
   font: 12px Arial, Helvetica, sans-serif;
   text-align: center;
 }
 
-/* line 72, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 80, ../../../app/stylesheets/actwitty/profile.scss */
 img.img_stamp.user_stamp {
   width: 40px;
   height: 40px;
@@ -72,7 +82,7 @@ img.img_stamp.user_stamp {
   text-align: center;
 }
 
-/* line 81, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 89, ../../../app/stylesheets/actwitty/profile.scss */
 h4.sidebar_titles {
   font: 16px Arial, Helvetica, sans-serif;
   text-align: center;
