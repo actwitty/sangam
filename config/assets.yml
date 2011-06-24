@@ -47,7 +47,11 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/signin.css
+    - public/stylesheets/actwitty/profile.css
     - public/stylesheets/actwitty/validations.css
     - public/stylesheets/actwitty/simple_form.css
+    - public/stylesheets/actwitty/home_page.css
+    - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
+    - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
 

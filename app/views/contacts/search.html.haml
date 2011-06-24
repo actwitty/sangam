@@ -7,6 +7,6 @@
       - @users.each do |user|
         %li
           %a{:href => "/users/#{user.id}"} 
-            %img{:alt => "", :src=>"#{user.profile.profile_photo_s}"}
+            %img{:alt => "", :src=>"#{user.photo_small_url}"}
               %br
-              #{user.profile.first_name}  #{user.profile.last_name}
+              #{user.full_name}

@@ -2,7 +2,10 @@ class ContactsController < ApplicationController
   before_filter :authenticate_user!
 
   def search
-    @users = User.search(params[:search])
+    people = User.search(params[:search])
+    if request.xhr?
+      render :json => people
+    end
   end
 
   def friendship()

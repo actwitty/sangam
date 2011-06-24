@@ -1,0 +1,87 @@
+
+label.main_title
+{
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:center;
+}
+
+
+
+img.img_sign_out
+{
+  width: 40px;
+  height: 40px;
+  float:right;
+}
+
+textarea.home_page_people_search
+{
+   float:right;
+}
+
+label.home_page_people_search_label
+{
+   font: 12px Arial, Helvetica, sans-serif;
+   float:right;
+   vertical-align:text-bottom;
+
+}
+
+a.auth_provider
+{
+  float:right;
+}
+
+img.img_provider
+{
+  width:  40px;
+  height: 40px;
+}
+
+label.alternate_login_label
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  float:right;
+  vertical-align:text-bottom;
+}
+
+ul.sidebar_lists
+{
+  width:80%;
+  height:150px;
+  overflow:auto;
+  border:1px;
+
+}
+
+li.user_stamp
+{
+  display:block;
+  list-style:none;
+  list-style-type:none;
+  margin:2px;
+}
+
+a.link_user_stamp.user_stamp
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  text-align:center;
+}
+
+img.img_stamp.user_stamp
+{
+  width:  40px;
+  height: 40px;
+  margin-top: 2px;
+  margin-right: 10px;
+  text-align:center;
+}
+
+h4.sidebar_titles
+{
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:center;
+  width: 100%;
+}
+
+

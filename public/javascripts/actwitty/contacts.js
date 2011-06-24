@@ -6,16 +6,19 @@
 function renderFriends(json){
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
-        var html ='<li id=' + user_data.user.id  +  '>' +
-            '<a href="/users/' +  user_data.user.id + '">' +
-            '<img src="' + user_data.user.photo_small_url + '" alt="" ><br>' +  user_data.user.full_name + '</img>'+
-            '</a>'+
-            
-            '</li>';
+        var html ='<li id=' + user_data.user.id  +  ' class="user_stamp">' +
+                    '<a href="/users/' +  user_data.user.id + '" class="link_user_stamp user_stamp">' +
+                      '<img src="' + user_data.user.photo_small_url + '" alt="" class="img_stamp user_stamp" >' +
+                           user_data.user.full_name + 
+                      '</img>'+
+                    '</a>'+ 
+                  '</li>';
         $('#friends_list').append(html);
           
       }
-  }); 
+  });
+
+  $('#friends_side_title').text('All (' +  $('#friends_list li').size() + ') Friends' );
 }
 
 /*
@@ -24,25 +27,30 @@ function renderFriends(json){
 function renderPendingRequests(json){
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
-        var html ='<li id=' + user_data.user.id  +  '>' +
-            '<a href="/users/' +  user_data.user.id + '">' +
-              '<img src="' + user_data.user.photo_small_url + '" alt="" ><br>' +  user_data.user.full_name + '</img>'+
-            '</a>'+ 
-            '<div>' +
-              '<input type="button" value="Accept" class="friend_accept" id="' + user_data.user.id  + '"/>' + 
-              '<input type="button" value="Reject" class="friend_accept" id="' + user_data.user.id  + '"/>' + 
-            '</div>'+
-            '</li>';
+        var html ='<li id=' + user_data.user.id  +  ' class="user_stamp">' +
+                    '<a href="/users/' +  user_data.user.id + '" class="link_user_stamp user_stamp">' +
+                      '<img src="' + user_data.user.photo_small_url + '" alt="" class="img_stamp user_stamp" >' +  
+                        user_data.user.full_name + 
+                      '</img>'+
+                    '</a>'+ 
+                    '<div>' +
+                      '<input type="button" value="Accept" class="friend_accept" id="' + user_data.user.id  + '"/>' + 
+                      '<input type="button" value="Reject" class="friend_accept" id="' + user_data.user.id  + '"/>' + 
+                    '</div>'+
+                  '</li>';
         $('#pending_request_list').append(html);
           
       }
-  }); 
+  });
+  $('#pending_side_title').text('All (' +  $('#pending_request_list li').size() + ') Pending Requests' );
 }
 
 /*
  * Invoke on page load
  */
 $(document).ready(function(){
+
+    var friends_json=null;
     /*
      * Get data on ready
      */
@@ -59,6 +67,7 @@ $(document).ready(function(){
           }else{
             renderFriends(data);
           }
+          friends_json=data;
         },
         error: function (error) {
 
@@ -66,6 +75,7 @@ $(document).ready(function(){
     });
 
 
+    /********************************************************************************************/
     $.ajax({
         url: '/contacts/pending_friend_requests',
         type: 'GET',
@@ -84,9 +94,61 @@ $(document).ready(function(){
 
         }
     });
+
+
+
+    /********************************************************************************************/
+    function format(user) {
+		  return '<img alt="" class="img_stamp user_stamp" src="'+ user.photo_small_url + '">   ' + user.full_name + "</img>";
+	  }
+
+    function getID(user){
+      return user.id;
+    }
+
+	  $("#searchfriends").autocomplete('/contacts/friends', {
+		  multiple: false,
+      //cacheLength:1000,
+		  dataType: "json",
+        parse: function(data) {
+        return $.map(data, function(row) {
+          return {
+            data: row.user,
+            value: row.user.full_name,
+            result: row.user.full_name
+          }
+        });
+      },
+      formatItem: function(item) {
+        return format(item);
+      }
+    }).result(function(e, item) {
+        //$("#content").append("<p>selected " + format(item) + "</p>");
+        window.location.href = '/users/' +  getID(item);
+    });
+
+    $("#searchall").autocomplete('/contacts/search', {
+		  multiple: false,
+      //cacheLength:1000,
+		  dataType: "json",
+        parse: function(data) {
+        return $.map(data, function(row) {
+          return {
+            data: row.user,
+            value: row.user.full_name,
+            result: row.user.full_name
+          }
+        });
+      },
+      formatItem: function(item) {
+        return format(item);
+      }
+    }).result(function(e, item) {
+        //$("#content").append("<p>selected " + format(item) + "</p>");
+        window.location.href = '/users/' +  getID(item);
+    });
+
 });
-
-
 
 
 /*

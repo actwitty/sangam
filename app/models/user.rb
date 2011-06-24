@@ -125,6 +125,7 @@ class User < ActiveRecord::Base
   end
 
 
+
   def new_contact_request (friend_id)
     Contact.request_new(id, friend_id)
   end

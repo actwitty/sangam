@@ -1,0 +1,80 @@
+/* line 3, ../../../app/stylesheets/actwitty/profile.scss */
+label.main_title {
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+/* line 11, ../../../app/stylesheets/actwitty/profile.scss */
+img.img_sign_out {
+  width: 40px;
+  height: 40px;
+  float: right;
+}
+
+/* line 18, ../../../app/stylesheets/actwitty/profile.scss */
+textarea.home_page_people_search {
+  float: right;
+}
+
+/* line 23, ../../../app/stylesheets/actwitty/profile.scss */
+label.home_page_people_search_label {
+  font: 12px Arial, Helvetica, sans-serif;
+  float: right;
+  vertical-align: text-bottom;
+}
+
+/* line 31, ../../../app/stylesheets/actwitty/profile.scss */
+a.auth_provider {
+  float: right;
+}
+
+/* line 36, ../../../app/stylesheets/actwitty/profile.scss */
+img.img_provider {
+  width: 40px;
+  height: 40px;
+}
+
+/* line 42, ../../../app/stylesheets/actwitty/profile.scss */
+label.alternate_login_label {
+  font: 12px Arial, Helvetica, sans-serif;
+  float: right;
+  vertical-align: text-bottom;
+}
+
+/* line 49, ../../../app/stylesheets/actwitty/profile.scss */
+ul.sidebar_lists {
+  width: 80%;
+  height: 150px;
+  overflow: auto;
+  border: 1px;
+}
+
+/* line 58, ../../../app/stylesheets/actwitty/profile.scss */
+li.user_stamp {
+  display: block;
+  list-style: none;
+  list-style-type: none;
+  margin: 2px;
+}
+
+/* line 66, ../../../app/stylesheets/actwitty/profile.scss */
+a.link_user_stamp.user_stamp {
+  font: 12px Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+/* line 72, ../../../app/stylesheets/actwitty/profile.scss */
+img.img_stamp.user_stamp {
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/* line 81, ../../../app/stylesheets/actwitty/profile.scss */
+h4.sidebar_titles {
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align: center;
+  width: 100%;
+}

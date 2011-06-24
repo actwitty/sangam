@@ -93,20 +93,22 @@ class Profile < ActiveRecord::Base
   validates_existence_of :user      #works both ways
 
   def process_before_save
-        
      if email.present?
       email.strip!
       email.downcase!
-     end
-     if !profile_photo_s.present?
-       profile_photo_s = '/images/actwitty/default_user.gif'
      end
   end
 
   def update_user_full_name
     user.full_name = first_name.strip + ' ' + last_name.strip
-    user.photo_small_url = profile_photo_s
-    user.save
+    if !profile_photo_s.nil?
+        user.photo_small_url =  profile_photo_s
+    end
+    if user.photo_small_url.nil?
+      user.photo_small_url = '/images/actwitty/default_user.gif'
+    end
+    user.save!
+
   end
 
 

@@ -1,56 +1,81 @@
 = javascript_include_tag 'actwitty/contacts'
+= javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js'
+= javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js'
+= javascript_include_tag 'plugins/jquery-autocomplete/lib/thickbox-compressed.js'
+= javascript_include_tag 'plugins/jquery-autocomplete/jquery.autocomplete.js'
 = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
-%h2 Profile page
-#signoutdiv.right
-  %a{:href => "/users/sign_out"} Sign Out
-
-%hr
-
-%TopDiv
-  %UserImg
-    %img{:alt => "", :src=>"#{current_user.profile.profile_photo_s}"}
-  %UserName
-    %label
-      %b="#{current_user.profile.first_name} #{current_user.profile.last_name}"
-%hr
-- if current_user.authentications
-  - unless current_user.authentications.empty?
-    %p
-      %strong You can sign in to this account using:
-    .authentications
-      - for authentication in current_user.authentications
-        .authentication
-          = image_tag "/images/authentications/#{authentication.provider}_64.png", :size => "64x64"
-          .provider= authentication.provider.titleize
-          .uid= authentication.uid
-          = link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"
-      .clear
-  - else
-    %p
-      %strong No authentication enabled so far.
 
 
-%hr
-%h3 Friends Friends list
-%ul#friends_list
-%h3 Pending Friends list
-%ul#pending_request_list
+%script{:src => "http://maps.google.com/maps/api/js?sensor=true&libraries=places", :type => "text/javascript"}
+= javascript_include_tag 'actwitty/home_page_inputs'
 
-%hr
-%strong Available direct sign in options:
-%p
+
+
+#home_page_wrapper
+  .home_page_header
+
+  .home_page_signout
+    %a{:href => "/users/sign_out"} 
+      %img.img_sign_out{:alt => "", :src=>"/images/actwitty/signout.png"}
+  %textarea#searchall.home_page_people_search{:placeholder => "Search People"}
   %a.auth_provider{:href => "/users/auth/twitter"}
-    = image_tag "/images/authentications/twitter_64.png", :size => "64x64", :alt => "Twitter"
-    Twitter
+    %img.img_provider{ :src=>"/images/authentications/twitter_64.png", :alt => "Twitter"}
   %a.auth_provider{:href => "/users/auth/facebook"}
-    = image_tag "/images/authentications/facebook_64.png", :size => "64x64", :alt => "Facebook"
-    Facebook
-  %a.auth_provider{:href => "/users/auth/google_apps"}
-    = image_tag "/images/authentications/google_64.png", :size => "64x64", :alt => "Google"
-    Google
-  %a.auth_provider{:href => "/users/auth/open_id"}
-    = image_tag "/images/authentications/openid_64.png", :size => "64x64", :alt => "OpenID"
-    OpenId 
+    %img.img_provider{ :src=>"/images/authentications/facebook_64.png", :alt => "Twitter"}
+    
+
+  .home_page_info
+    .home_page_photo
+      %img{:alt => "", :src=>"#{current_user.photo_small_url}"}
+      %label.main_title #{current_user.full_name}
+   
+    #home_page_input
+      %fieldset
+        %legend Input Box
+        %input{:name => "home_page_activity", :type => "text"}
+          %input{:name => "home_page_entity", :type => "text"}
+            %input#searchTextField{:name => "home_page_location", :type => "text"}
+              %input#searchTextField1{:size => "50", :type => "hidden"}
+                %input#submits{:type => "button", :value => "done"}
+                  %input#user_latlng{:name => "latlang", :type => "hidden"}/
+        #map
+  %hr/
+  .home_page_filters
+    .home_page_activities.filters
+      %h4.sidebar_titles Activities
+      %ul.filter_list
+        %li.filter_list_elem
+          %a{:href => "#"} eating
+        %li.filter_list_elem
+          %a{:href => "#"} playing
+        %li.filter_list_elem
+          %a{:href => "#"} watching
+        %li.filter_list_elem
+          %a{:href => "#"} sleeping
+
+    .home_page_entities.filters
+      %h4.sidebar_titles Entities
+      %ul.filter_list
+        %li.filter_list_elem
+          %a{:href => "#"} eating
+        %li.filter_list_elem
+          %a{:href => "#"} playing
+        %li.filter_list_elem
+          %a{:href => "#"} watching
+        %li.filter_list_elem
+          %a{:href => "#"} sleeping
+
+    .home_page_friends.filters
+      %h4.sidebar_titles#friends_side_title Friends
+      %textarea#searchfriends
+      %ul#friends_list.filter_list.sidebar_lists
+
+    .home_page_pending_friends.filters
+      %h4.sidebar_titles#pending_side_title Pending Friends
+      %ul#pending_request_list.filter_list.sidebar_lists
+  %hr/
+    
+    
 
 
 
