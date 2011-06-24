@@ -80,11 +80,18 @@ img.img_stamp.user_stamp {
   margin-top: 2px;
   margin-right: 10px;
   text-align: center;
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
-/* line 89, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 90, ../../../app/stylesheets/actwitty/profile.scss */
 h4.sidebar_titles {
   font: 16px Arial, Helvetica, sans-serif;
   text-align: center;
+  width: 100%;
+}
+
+/* line 97, ../../../app/stylesheets/actwitty/profile.scss */
+label.activities_sidebar {
+  font: 14px Arial, Helvetica, sans-serif;
   width: 100%;
 }

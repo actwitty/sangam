@@ -1,4 +1,7 @@
-
+/*
+ * Home page friends related jqueries
+ *
+ */
 
 /*
  * Render friends 
@@ -67,6 +70,7 @@ $(document).ready(function(){
           }else{
             renderFriends(data);
           }
+          //TODO: try to use this in search, why should search hit server, again and again
           friends_json=data;
         },
         error: function (error) {
@@ -98,6 +102,7 @@ $(document).ready(function(){
 
 
     /********************************************************************************************/
+    /** General functions to support auto complete based search **/
     function format(user) {
 		  return '<img alt="" class="img_stamp user_stamp" src="'+ user.photo_small_url + '">   ' + user.full_name + "</img>";
 	  }
@@ -106,6 +111,10 @@ $(document).ready(function(){
       return user.id;
     }
 
+    /********************************************************************************************/
+    /*
+     * Friends search
+     */
 	  $("#searchfriends").autocomplete('/contacts/friends', {
 		  multiple: false,
       //cacheLength:1000,
@@ -127,6 +136,10 @@ $(document).ready(function(){
         window.location.href = '/users/' +  getID(item);
     });
 
+    /********************************************************************************************/
+    /*
+     * Search all
+     */
     $("#searchall").autocomplete('/contacts/search', {
 		  multiple: false,
       //cacheLength:1000,
@@ -151,6 +164,7 @@ $(document).ready(function(){
 });
 
 
+/********************************* READY ENDS HERE ******************************************/
 /*
  * Request a friend from facebook to join in to actwitty
  */

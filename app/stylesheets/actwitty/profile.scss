@@ -83,6 +83,7 @@ img.img_stamp.user_stamp
   margin-top: 2px;
   margin-right: 10px;
   text-align:center;
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
 h4.sidebar_titles
@@ -90,6 +91,12 @@ h4.sidebar_titles
   font: 16px Arial, Helvetica, sans-serif;
   text-align:center;
   width: 100%;
+}
+
+label.activities_sidebar
+{
+   font: 14px Arial, Helvetica, sans-serif;
+   width: 100%;
 }
 
 

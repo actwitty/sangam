@@ -43,6 +43,9 @@ Sangam::Application.routes.draw do
   match '/contacts/remove' => 'contacts#remove'
 
 
+  match '/activities/top_activities' => 'activities#top_activities'
+  match '/entities/top_entities' => 'entities#top_entities'
+
 
   match '/facebook/facebook_friends_list' => 'facebook#facebook_friends_list'
   match '/facebook/invite' => 'facebook#invite'
