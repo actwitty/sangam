@@ -1,3 +1,35 @@
+.home_page_header
+{
+  display:block;
+  border:1px solid red;
+  height:60px;
+}
+
+.aw_header_logo
+{
+  float:left;
+  border:3px solid gray;
+  margin-left:10px;
+}
+.aw_header_nav
+{
+  display:inline;
+  float:right;
+}
+.aw_header_navl
+{
+  list-style-type:none;
+  display:inline;
+  padding-right:10px;
+}
+
+
+#searchall
+{
+  float:left;
+  margin-left:30%;
+  margin-top:10px;
+}
 
 label.main_title
 {
@@ -45,17 +77,67 @@ label.alternate_login_label
   vertical-align:text-bottom;
 }
 
-.sidebar{
-  float:left;
+
+
+
+
+/*************************Home Page Row2 ******************/
+
+.home_page_row2
+{
+  display:block;
+  border:1px solid blue;
+  height:200px;
 }
 
+
+/*Input Section in row2 of home page*/
 .main_section{
+  width:600px;
   float:left;
+  margin-left:350px;
+  margin-top:30px;
+  height:100px;
+  border:1px solid green;
+
+}
+/*home page user photo*/
+.home_page_photo
+{
+  float:left;
+  display:block;
+  border:2px solid green;
+  margin-left:10px;
+}
+
+
+
+/****************************** Side Bar Filters on Activities/entities/friends***************************/
+.sidebar
+{
+  float:left;
+  width:300px;
+}
+
+.filters
+{
+  display:block;
+  border:1px solid red;
+  padding:0 0 0px 0;
+  margin-top:10px;
+}
+
+.filter_search
+{
+  border:1px solid black;
+  height:20px;
+  background:white;
+  margin-left:60px; 
 }
 
 ul.sidebar_lists
 {
-  width:80%;
+  width:70%;
   height:150px;
   overflow:auto;
   border:1px;
@@ -68,6 +150,7 @@ li.user_stamp
   list-style:none;
   list-style-type:none;
   margin:2px;
+  text-align:center;
 }
 
 a.link_user_stamp.user_stamp
@@ -91,6 +174,8 @@ h4.sidebar_titles
   font: 16px Arial, Helvetica, sans-serif;
   text-align:center;
   width: 100%;
+  border:1px solid black;
+  margin-top:-2px;
 }
 
 label.activities_sidebar

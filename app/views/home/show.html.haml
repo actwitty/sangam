@@ -17,50 +17,74 @@
 
 #home_page_wrapper
   .home_page_header
+    %img.aw_header_logo{:src => "/images/rails.png"}/
+    /%textarea#searchall.home_page_people_search{:placeholder => "Search People"}
+    %input#searchall.home_page_people_search{:type => "text",:placeholder => "Search"}/
+    %ul.aw_header_nav
+      %li.aw_header_navl
+        %a{:href => "#"} Home
+      %li.aw_header_navl
+        %a{:href => "#"} Settings
+      %li.aw_header_navl
+        %a{:href => "/users/sign_out"} Logout
 
+  %hr
   / Everything coming on the top bar, this is a TODO
-  .home_page_signout
-    %a{:href => "/users/sign_out"} 
-      %img.img_sign_out{:alt => "", :src=>"/images/actwitty/signout.png"}
-  %textarea#searchall.home_page_people_search{:placeholder => "Search People"}
-  %a.auth_provider{:href => "/users/auth/twitter"}
-    %img.img_provider{ :src=>"/images/authentications/twitter_64.png", :alt => "Twitter"}
-  %a.auth_provider{:href => "/users/auth/facebook"}
-    %img.img_provider{ :src=>"/images/authentications/facebook_64.png", :alt => "Twitter"}
+  /
+    .home_page_signout
+    %a.auth_provider{:href => "/users/auth/twitter"}
+      %img.img_provider{ :src=>"/images/authentications/twitter_64.png", :alt => "Twitter"}
+    %a.auth_provider{:href => "/users/auth/facebook"}
+      %img.img_provider{ :src=>"/images/authentications/facebook_64.png", :alt => "Twitter"}
     
   / *********************************************************
 
   / Top side info for snap and name under it
-  .home_page_info
+  .home_page_row2
     .home_page_photo
       %p
         %img{:alt => "", :src=>"#{current_user.photo_small_url}"}
       %p
         %label.main_title #{current_user.full_name}
+    / Home page main activity generator input boxes
+    #home_page_input.main_section
+      /%fieldset
+      %input{:name => "home_page_activity", :type => "text",:placeholder => "Activity", :size=>"40"}
+      %input#searchTextField{:name => "home_page_location", :type => "text",:placeholder => "Location",:size=>"40"}
+      %input{:name => "home_page_entity", :type => "text",:placeholder => "Entity", :size=>"80"}
+      %input#searchTextField1{:size => "50", :type => "hidden"}
+      %input#actwitty_generator{:type => "button", :value => "Go!"}
+      %input#user_latlng{:name => "latlang", :type => "hidden"}
+      #map
+  / *************************************************
+
   
   / *********************************************************
   
   %hr
   / Side bars
-  .home_page_filters.sidebar.sidebar
+  .home_page_filters.sidebar
 
     / Activities
     .home_page_activities.filters
       %h4#activities_side_title.sidebar_titles Activities
-      %textarea#search_activities{:placeholder => "Activities"}
+      %input#search_activities.filter_search{:type => "text",:placeholder => "Activities"}/
+      /%textarea#search_activities{:placeholder => "Activities"}
       %ul#activities_side_list.filter_list.sidebar_lists
     / *************************************************
 
     / Entities
     .home_page_entities.filters
       %h4#entities_side_title.sidebar_titles Entities
-      %textarea#search_entities{:placeholder => "Entities"}
+      %input#search_entities.filter_search{:type => "text",:placeholder => "Entities"}/
+      /%textarea#search_entities{:placeholder => "Entities"}
       %ul#entities_side_list.filter_list.sidebar_lists
     / *************************************************
       
     / Locations
     .home_page_locations.filters
       %h4#locations_side_title.sidebar_titles Locations
+      /%input#searchall.home_page_people_search{:type => "text"}/
       %ul#locations_side_list.filter_list.sidebar_lists
     / *************************************************
 
@@ -68,28 +92,20 @@
     / Friends
     .home_page_friends.filters
       %h4.sidebar_titles#friends_side_title Friends
-      %textarea#searchfriends{:placeholder => "Search Friends"}
+      %input#searchfriends.filter_search{:type => "text",:placeholder => "Search Friends"}/
+      /%textarea#searchfriends{:placeholder => "Search Friends"}
       %ul#friends_list.filter_list.sidebar_lists
     / *************************************************
 
     / Pending friend requests
     .home_page_pending_friends.filters
       %h4.sidebar_titles#pending_side_title Pending Friends
+      /%input#searchall.home_page_people_search{:type => "text"}/
       %ul#pending_request_list.filter_list.sidebar_lists
     / *************************************************
   / ***********************************************************************
 
-  / Home page main activity generator input boxes
-  #home_page_input.main_section
-    %fieldset
-      %input{:name => "home_page_activity", :type => "text",:placeholder => "Activity"}
-      %input{:name => "home_page_entity", :type => "text",:placeholder => "Entity"}
-      %input#searchTextField{:name => "home_page_location", :type => "text",:placeholder => "Location"}
-      %input#searchTextField1{:size => "50", :type => "hidden"}
-      %input#actwitty_generator{:type => "button", :value => "Go!"}
-      %input#user_latlng{:name => "latlang", :type => "hidden"}
-      #map
-  / *************************************************
+  
 
   / Albums must come here TODO
 

@@ -68,7 +68,7 @@
     $(window).load(initialize);
     $(document).ready(function() {
       
-       $("#submits").click(function() {
+       $("#actwitty_generator").click(function() {
           if($('#searchTextField1').val() == $('#searchTextField').val()) {
             alert("Input seems to be location, with lat/lang as:"+$('#user_latlng').val());
           } else {
