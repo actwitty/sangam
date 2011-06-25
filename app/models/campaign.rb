@@ -41,8 +41,7 @@ class Campaign < ActiveRecord::Base
   validates_presence_of :campaign_name, :campaign_value
 
   validates_length_of :campaign_name, :in => 1..255
-  validates_length_of :campaign_value, :in => 1..32
-
+  validates_numericality_of :campaign_value
 
   after_destroy :ensure_destroy_cleanup
 
@@ -52,6 +51,7 @@ class Campaign < ActiveRecord::Base
   end
 
   class << self
+    include ActivityTextFormatter
     # :author_id => 123
     # :campaign_name => "like"
     # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
@@ -61,7 +61,7 @@ class Campaign < ActiveRecord::Base
     # :entity => {:entity_id = 123}
     #                OR
     # :location => {:location_id => 123
-    def CreateCampaign(params = {})
+    def create_campaign(params = {})
       new_hash = {}
 
       #NEED TO MAKE IT DRY
@@ -70,7 +70,10 @@ class Campaign < ActiveRecord::Base
         options = params[:activity]
         user = User.find(options[:user_id])
         activity = Activity.find(options[:activity_id])
-        text = "<a href=/users/#{options[:user_id]}>#{user.username}s</a> <a href=/activities/#{options[:activity_id]}>#{activity.activity_name}</a>".html_safe
+        #text = "<a href=/users/#{options[:user_id]}>#{user.username}s</a> <a href=/activities/#{options[:activity_id]}>#{activity.activity_name}</a>".html_safe
+        text = "#{link_to_type(AppConstants.user_controller, AppConstants.campaign_username_class,user.username,
+                  options[:user_id] )} #{link_to_type(AppConstants.activity_controller,
+                                         AppConstants.campaign_activity_class,activity.activity_name,options[:activity_id] )}".html_safe
         params[:activity_id] = activity.id
         params.delete(:activity)
 
@@ -78,25 +81,29 @@ class Campaign < ActiveRecord::Base
 
         options = params[:entity]
         entity = Entity.find(options[:entity_id])
-        text = "<a href=/entities/#{options[:entity_id]}>#{entity.entity_name}</a>".html_safe
+        #text = "<a href=/entities/#{options[:entity_id]}>#{entity.entity_name}</a>".html_safe
+        text = "#{link_to_type(AppConstants.entity_controller, AppConstants.campaign_entity_class,entity.entity_name,
+                  options[:entity_id] )}".html_safe
         params[:entity_id] = entity.id
         params.delete(:entity)
 
       elsif params.has_key?(:location)
         options = params[:location]
         location = Location.find(options[:location_id])
-        text = "<a href=/entities/#{options[:location_id]}>#{location.location_name}</a>".html_safe
+        #text = "<a href=/entities/#{options[:location_id]}>#{location.location_name}</a>".html_safe
+        text = "#{link_to_type(AppConstants.location_controller, AppConstants.campaign_location_class,location.location_name,
+                  options[:location_id] )}".html_safe
         params[:location_id] = location.id
         params.delete(:location)
       end
       puts new_hash
-      params[:father_id] =  Activity.CreateActivity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
+      params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
                                          :text => text,:enrich => false).id
 
       campaign = Campaign.create!(params)
       return campaign
     rescue => e
-      Rails.logger.error("Campaign => CreateCampaign => #{e.message} => #{params.to_s}")
+      Rails.logger.error("Campaign => create_campaign => #{e.message} => #{params.to_s}")
       nil
     end
     def DeleteCampaign(campaign_id)

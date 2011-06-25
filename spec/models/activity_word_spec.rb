@@ -23,10 +23,10 @@ describe ActivityWord do
   describe "Create" do
     include DelayedJobSpecHelper
     it "should create word forms" do
-      w_id = ActivityWord.CreateActivityWord("TesTing", "verb-form")
-      w_id1 = ActivityWord.CreateActivityWord("test", "form")
-      w_id2 = ActivityWord.CreateActivityWord("DEepika", "verb-form")
-      w_id3 = ActivityWord.CreateActivityWord("test", "")
+      w_id = ActivityWord.create_activity_word("TesTing", "verb-form")
+      w_id1 = ActivityWord.create_activity_word("test", "form")
+      w_id2 = ActivityWord.create_activity_word("DEepika", "verb-form")
+      w_id3 = ActivityWord.create_activity_word("test", "")
       work_off
       w_id1.related_words.count.should == 2
       w_id3.should == w_id1
@@ -37,15 +37,15 @@ describe ActivityWord do
     include DelayedJobSpecHelper
 
     it "should be able to read activity_word_id of all word forms" do
-      w_id = ActivityWord.CreateActivityWord("TesTing", "verb-form")
-      w_id1 = ActivityWord.CreateActivityWord("test", "")
-      w_id2 = ActivityWord.CreateActivityWord("DEepika")
-      w_id3 = ActivityWord.CreateActivityWord("test", "verb-form")
-      w_id4 = ActivityWord.CreateActivityWord("eating")
-      w_id5 = ActivityWord.CreateActivityWord("eat", "verb-form")
-      w_id6 = ActivityWord.CreateActivityWord("Drink")
-      w_id7 = ActivityWord.CreateActivityWord("tests")
-      w_id8 = ActivityWord.CreateActivityWord("eat", "related")
+      w_id = ActivityWord.create_activity_word("TesTing", "verb-form")
+      w_id1 = ActivityWord.create_activity_word("test", "")
+      w_id2 = ActivityWord.create_activity_word("DEepika")
+      w_id3 = ActivityWord.create_activity_word("test", "verb-form")
+      w_id4 = ActivityWord.create_activity_word("eating")
+      w_id5 = ActivityWord.create_activity_word("eat", "verb-form")
+      w_id6 = ActivityWord.create_activity_word("Drink")
+      w_id7 = ActivityWord.create_activity_word("tests")
+      w_id8 = ActivityWord.create_activity_word("eat", "related")
       work_off
       objs = ActivityWord.FindWordForm(w_id1)
       objs.should include(w_id7)

@@ -39,7 +39,7 @@ class ActivityWord < ActiveRecord::Base
     # cross-reference = 	Return the cross-reference word relationship type.
     #same-context =	Return the same context word relationship type.
 
-    def CreateActivityWord(word, relation = "")
+    def create_activity_word(word, relation = "")
 
       #finding first instead of creating as more chances of find than create for words
       word_rel = ActivityWord.where(:word_name => word)

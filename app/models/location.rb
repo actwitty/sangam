@@ -54,7 +54,7 @@ class Location < ActiveRecord::Base
   #Return an LOCATION Object on New location creation or already existing location
   #In case of other errors nil is returned
   #Ned to make more DRY
-  def self.CreateLocation(location_hash = {})
+  def self.create_location(location_hash = {})
 
     if !location_hash[:web_location].nil? and !location_hash[:web_location][:web_location_url].blank?
       loc_type = 1
@@ -98,26 +98,26 @@ class Location < ActiveRecord::Base
     return l
 
     rescue => e
-      Rails.logger.info("Location => CreateLocation => Rescue " +  e.message )
+      Rails.logger.info("Location => create_location => Rescue " +  e.message )
       l.destroy
       l = nil
       #Validation Uniqueness fails
       if /has already been taken/ =~ e.message
         loc = Location.joins(assoc).where(assocs => uniq_hash)
         l = loc.first
-        Rails.logger.info("Location => CreateLocation => Rescue => Uniq index found " + l.location_type.to_s)
+        Rails.logger.info("Location => create_location => Rescue => Uniq index found " + l.location_type.to_s)
       end
     return l
 
   end
 
   #Return an LOCATION Object or in case of other errors nil is returned
-  def self.GetLocation(location_id)
+  def self.get_location(location_id)
     loc = Location.find(location_id)
 
     return loc
   rescue => e
-    Rails.logger.info("Location => GetLocation " + e.message )
+    Rails.logger.info("Location => get_location " + e.message )
     return nil
 
   end
@@ -126,7 +126,7 @@ class Location < ActiveRecord::Base
   # Searches on URL - Sub domain search not there as of now due to performance issue with MySQL Inno db
   #Searches on Lat-Long
   #Searches on Lat-Long with a Range
-  def self.SearchLocation(search_hash= {})
+  def self.search_location(search_hash= {})
 
     if !search_hash[:web_location].nil? and  !search_hash[:web_location][:web_location_url].blank?
       web_hash = search_hash[:web_location]
@@ -159,11 +159,11 @@ class Location < ActiveRecord::Base
   # Ids SHOULD always be existing location in respective types
   #Returns NIL if any of the passed location does not exist. Otherwise returns the ID of join table
   # input format {:web_join_id => x , :geo_join_id => y, :unresolved_join_id => z}
-  def self.JoinLocations(location_hash = {})
+  def self.join_locations(location_hash = {})
 
     #atleast 2 location need to joined
     if location_hash.size < 2
-      Rails.logger.info("Location => JoinLocations -- Invalid Hash length ")
+      Rails.logger.info("Location => join_locations -- Invalid Hash length ")
       return nil
     end
     assoc_name = [:web_join_id,  :geo_join_id, :unresolved_join_id]

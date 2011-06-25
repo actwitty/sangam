@@ -11,12 +11,12 @@ describe Entity do
                            'key'=> {'namespace'=> "/wikipedia/en_id_1_1",'value'=>"content 1_1"},
                            'type'=>[{'id'=>"/common/topic_1_1",'name'=>"Topic"},{'id'=>"/common/music_1_2",'name'=>"Music_1_2"} ]
                           }
-    @e3 = Entity.CreateEntities(@u.id,@h)
+    @e3 = Entity.create_entities(@u.id,@h)
     @h['mid'] = "/m/abcd1"
-    @e4 = Entity.CreateEntities(@u.id, @h)
+    @e4 = Entity.create_entities(@u.id, @h)
     @h['mid'] = "/m/abcd2"
     @h['type'][0]['name'] = "music"
-    @e5 = Entity.CreateEntities(@u.id,@h)
+    @e5 = Entity.create_entities(@u.id,@h)
   end
   describe "Validations"  do
 
@@ -76,12 +76,12 @@ describe Entity do
   describe "Read" do
     it "should be able to read entity_doc based on entity guid " do
       @h['mid'] = @e.entity_guid
-      eid = Entity.CreateEntities(@u.id, @h)
-      eid.entity_doc.should == @e.entity_doc
+      eid = Entity.create_entities(@u.id, @h)
+      eid.entity_document.should == @e.entity_document
 
     end
     it "should be able to all entity based on entity type " do
-       eids = Entity.SearchEntityByType('Topic')
+       eids = Entity.search_entity_by_type('Topic')
        eids.should_not be_blank
        eids.should include(@e3, @e4)
        puts eids
@@ -90,7 +90,7 @@ describe Entity do
        end
     end
     it "should be able to entity based on entity name " do
-       eids = Entity.FindEntityByName('Entity name 1')
+       eids = Entity.find_entity_by_name('Entity name 1')
        eids.should_not be_blank
        eids.should include(@e3, @e4, @e5)
        puts eids
@@ -99,7 +99,7 @@ describe Entity do
        end
     end
     it "should be able to entity based on entity Guid " do
-       eid = Entity.FindEntityByGUID('/m/abcd')
+       eid = Entity.find_entity_by_guid('/m/abcd')
        eid.should_not be_nil
        eid.should ==@e3
        puts eid

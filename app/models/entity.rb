@@ -46,7 +46,7 @@ class Entity < ActiveRecord::Base
   #  'key'=>{'namespace'=>'/wikipedia/en_id','value'=>nil}   // wikipedia link in hash form value will contain wikipedia content id  optional
   #   'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
   #
-    def CreateEntities(owner_id = nil, entity_hash ={})
+    def create_entities(owner_id = nil, entity_hash ={})
 
       if !entity_hash.has_key?('mid') or entity_hash['mid'].nil?
         puts "hello"
@@ -55,7 +55,7 @@ class Entity < ActiveRecord::Base
 
       begin
 
-        entity_id = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
+        entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
                               :entity_doc => entity_hash)
 
       rescue => e
@@ -63,44 +63,44 @@ class Entity < ActiveRecord::Base
          #Validation Uniqueness fails
         if /has already been taken/ =~ e.message
           Rails.logger.info("Entity => CreateEntity => Rescue => Unique " +  e.message + " " + entity_hash['mid'] )
-          entity_id = Entity.where(:entity_guid => entity_hash['mid']).first
-          return entity_id
+          entity = Entity.where(:entity_guid => entity_hash['mid']).first
+          return entity
         end
       end
 
       begin
 
          entity_hash['type'].each do |entry|
-         id = EntityType.create!(:entity_id => entity_id.id , :entity_type_uri => entry['id'],
+         id = EntityType.create!(:entity_id => entity.id , :entity_type_uri => entry['id'],
                              :entity_type_name => entry['name'].downcase)
          end
-         puts "==== #{entity_id}"
-         EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity_id.id)
+         puts "==== #{entity}"
+         EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
 
       rescue => e
-        entity_id.destroy
-        puts "***** #{entity_id}"
+        entity.destroy
+        puts "***** #{entity}"
         entity_id = nil
         Rails.logger.info("Entity => CreateEntity or CreateOwnership=> Type => Rescue " +  e.message )
         return nil
       end
 
 
-      return entity_id
+      return entity
     end
 
     #return relations .. use each, all, first to load object
-    def FindEntityByName(name)
+    def find_entity_by_name(name)
       Entity.where(:entity_name => name.downcase)
     end
 
     #return object
-    def FindEntityByGUID(guid)
+    def find_entity_by_guid(guid)
       Entity.where(:entity_guid => guid).first
     end
 
     #return relations .. use each, all, first to load object
-    def SearchEntityByType(type)
+    def search_entity_by_type(type)
       Entity.joins(:entity_types).where(:entity_types => {:entity_type_name => type.downcase} )
     end
   end

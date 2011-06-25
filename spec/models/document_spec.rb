@@ -8,8 +8,8 @@ describe Document do
 
     it "should save the not create thumbnail for pdfs etc , other than images" do
       u = Factory(:user)
-      @doc = Document.CreateDocument(u,nil, "#{Rails.root}/public/test/test.pdf")
-      @doc1 = Document.CreateDocument(u,nil, "#{Rails.root}/public/test/test.pdf")
+      @doc = Document.create_document(u.id,nil, "#{Rails.root}/public/test/test.pdf")
+      @doc1 = Document.create_document(u.id,nil, "#{Rails.root}/public/test/test.pdf")
        puts "hello"
        work_off
       d_array= u.documents.all
@@ -21,7 +21,7 @@ describe Document do
 #      #d.destroy
     end
     it "should save the file in amazon bucket" do
-      @doc = Document.CreateDocument(Factory(:user),nil, "#{Rails.root}/public/test/test.pdf")
+      @doc = Document.create_document(Factory(:user).id,nil, "#{Rails.root}/public/test/test.pdf")
        puts "hello"
        work_off
        d = Document.where(:document_name => "test.pdf").first

@@ -6,7 +6,7 @@ class DocumentJob < Struct.new(:owner,:activity,  :path  )
 
   def perform
     Rails.logger.info("DocumentJob Perform")
-    @id = Document.DelayCreate(self.owner,self.activity, self.path)
+    @id = Document.delay_create(owner,activity,path)
   end
 
   def before(job)

@@ -1,0 +1,10 @@
+= form_for @document, :html => {:multipart => true} do |f|
+  = f.hidden_field :activity_id
+  = f.hidden_field :owner_id
+  = f.hidden_field :document_type
+  %p
+    = f.file_field :document_data
+  %p
+    = f.file_field :document_dat
+  %p= f.submit
+  <% end
