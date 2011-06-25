@@ -285,7 +285,7 @@ describe Activity do
     it "Deletion of activity should not update the time of parent " do
       @u.activities.destroy(@act_child_1)
       a = @u.activities.find(:all,:conditions => {:ancestry_depth => 0},:order => "updated_at DESC")
-      a.should == [@act,@bct]
+      a.should == [@bct, @act]
 
     end
   end
@@ -297,24 +297,48 @@ describe Activity do
 
     end
   end
-  describe "CreateActivity" do
+  describe "create_activity" do
     include DelayedJobSpecHelper
     it "should create activity by the class method given" do
-      act = Activity.CreateActivity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+      act = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
       act.should_not be_nil
       work_off
-      child = Activity.CreateActivity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
+      child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>", :parent_id => act.id, :enrich => false )
+      child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
                                       me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
-      child1 = Activity.CreateActivity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
+      child2 = Activity.create_activity(:author_id => @u2.id, :activity => "&comment&" , :text => "Cow Cow man have fun keep
                                       me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
-      child2 = Activity.CreateActivity(:author_id => @u2.id, :activity => "&comment&" , :text => "Cow Cow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
-      child3 = Activity.CreateActivity(:author_id => @u1.id, :activity => "&comment&" , :text => "dow dow man have fun keep
+      child3 = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "dow dow man have fun keep
                                       me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
 
-      act.children.should == [child3, child2, child1 , child]
+      act.children.should  include(child3, child2, child1 , child)
+
+
+      @u.entities.each do |attr|
+        puts attr.id
+        puts attr.entity_name
+      end
+      @u.activity_words.each do |attr|
+        puts attr.id
+        puts attr.word_name
+      end
+      @u.entities.each do |attr|
+        puts attr.id
+        puts attr.entity_name
+      end
+      @u.locations.each do |attr|
+        puts attr.id
+        puts attr.location_name
+      end
+
+#      act.destroy
+#      Hub.count.should == 0
+       @u.destroy
+       Hub.count.should == 0
 
     end
   end

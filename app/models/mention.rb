@@ -20,5 +20,5 @@ class Mention < ActiveRecord::Base
 
   validates_uniqueness_of :activity_id, :scope => :user_id
 
-  validates_numericality_of :mention_count,:only_integer => true,:greater_than_or_equal_to => 1
+
 end

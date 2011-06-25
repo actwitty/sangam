@@ -95,6 +95,7 @@ class Activity < ActiveRecord::Base
   class << self
 
     include QueryManager
+    include ActivityTextFormatter
 
     def board (user, filter_activity = {})
       u = User.all #change it with users in contact
@@ -138,7 +139,30 @@ class Activity < ActiveRecord::Base
 
     end
 
+    def create_mentions(text, activity)
+       m = get_mentions(text)
+       m.each do |attr|
+         obj = Mention.create(:user_id => attr[0].to_i, :activity_id => activity.id)
+         if obj.id.nil?
+           text= untag_a_mention(text,attr[0].to_i )
+         end
+       end
 
+       if m.length > 0
+         text = flatten_mentions(text)
+
+         #Save the updated mention if enrich is not done
+         update = activity.update_attributes(:activity_text => text )
+
+         if !update
+           Rails.logger.error("Activity =. CreateMentions => Mentions Saving failed")
+         end
+       end
+       text
+    end
+
+
+#    CHILD ACTIVITIES AND CAMPAIGNS WILL NOT GO TO HUB
 #    :author_id => user id
 #    :parent_id => id of parent activity or nil . If parent there then it should be comment. But its responsibility
 #.              of client to post where Activity = <comment> location = nil
@@ -155,15 +179,20 @@ class Activity < ActiveRecord::Base
 #                                      OR
 #                                     nil
 #                 }
+#    :documents => ActionDispatch::HTTP::Uploader objects
 #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
 
-    def CreateActivity(params={})
+    def create_activity(params={})
 
-      word_obj = ActivityWord.CreateActivityWord(params[:activity], relation = "verb-form")
+      word_obj = ActivityWord.create_activity_word(params[:activity], relation = "verb-form")
+
+      #Add activity_word to params hash for hub creation
+      params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
 
       if params[:parent_id].blank?
         obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
                          :author_id => params[:author_id])
+
 
       else
          act = Activity.find(params[:parent_id])
@@ -173,9 +202,16 @@ class Activity < ActiveRecord::Base
          end
       end
 
+      #Generate Mentions
+      params[:text] = create_mentions(params[:text], obj)
+
+      #Add activity to params hash for hub creation
+      params[:activity_hash]  = obj.id
+
       if params[:enrich] == true
-        PostProcActivity(params)
+        post_proc_activity(params)
       end
+
       return obj
 
       rescue => e
@@ -183,14 +219,62 @@ class Activity < ActiveRecord::Base
       nil
    end
 
+  def create_hub_entries(params = {})
+    hubs_hash = {}
 
-    def PostProcActivity(params={})
-      entities=get_entities(params[:text])
-      entities.each do |entity|
-        Entity.CreateEntities(params[:author_id],entity)
-      end
-      Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
+    hubs_hash[:activity_id] =  params[:activity_hash]
+    hubs_hash[:activity_word_id] =  params[:activity_word_hash][:id]
+    hubs_hash[:activity_name] =  params[:activity_word_hash][:word]
+    hubs_hash[:user_id] = params[:author_id]
+    hubs_hash[:location_id] = params[:location_hash]
+
+    params[:entity_hash].each do |key, value|
+      hubs_hash[:entity_name] = key
+      hubs_hash[:entity_id] = value
+      puts hubs_hash
+      Hub.create!(hubs_hash)
     end
-   handle_asynchronously :PostProcActivity
+    obj = Activity.where(:id => params[:activity_hash]).first
+    obj.update_attributes(:activity_text => params[:text])
+
+  rescue => e
+     Rails.logger.error("Activity => CreateHubEntries => Failed => #{e.message} => #{params} => hubs_hash = #{hubs_hash}")
+  end
+
+  def post_proc_activity(params={})
+     temp_text = remove_all_mentions(params[:text])
+     entities=get_entities(temp_text)
+
+     entities.each do |entity|
+       obj = Entity.create_entities(params[:author_id],entity)
+
+       if !obj.nil?
+         #Add entity to params hash for hub creation
+         if  params[:entity_hash].nil?
+           params[:entity_hash] = {}
+         end
+          params[:entity_hash][entity['name']]  = obj.id
+
+       end
+     end
+
+     params[:text] = mark_entities(params[:text],params[:entity_hash])
+     #puts params[:text]
+
+     if !params[:location].blank?
+       loc= Location.create_location(params[:location])
+       if !loc.nil?
+          #Add location to params hash for hub creation
+          params[:location_hash] = loc.id
+       end
+     end
+      #mentions
+      #locations
+      #Hub update
+      #Activity Text Update
+     create_hub_entries(params)
+     Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
+  end
+   handle_asynchronously :post_proc_activity
   end
 end

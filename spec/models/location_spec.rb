@@ -38,17 +38,17 @@ describe Location do
 
   describe "Read" do
     before(:each) do
-      @id1 = Location.CreateLocation(:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"})
-      @id2 = Location.CreateLocation(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
-      @id3 = Location.CreateLocation(:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"})
-      @id4 = Location.CreateLocation(:unresolved_location =>{:unresolved_location_name => "http://google.com"})
-      @id5 = Location.CreateLocation(:geo_location => {:geo_latitude => 23.4767, :geo_longitude => 120.6, :geo_name => "sj"})
-      @id6 = Location.CreateLocation(:geo_location => {:geo_latitude => 24.4767, :geo_longitude => 121, :geo_name => "sj"})
-      @id7 = Location.CreateLocation(:web_location =>{:web_location_url => "http://GOoogLe1.com", :web_location_title => "hello"})
-      @id8 = Location.CreateLocation(:web_location =>{:web_location_url => "gooogle1.com", :web_location_title => "hello"})
-      @id9 = Location.CreateLocation(:unresolved_location =>{:unresolved_location_name => "http://google.com"})
-      @id10 = Location.CreateLocation(:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"})
-      @id11 = Location.CreateLocation(:geo_location => {:geo_latitude => 123.6567, :geo_longitude => 120.3, :geo_name => "sj"})
+      @id1 = Location.create_location(:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"})
+      @id2 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
+      @id3 = Location.create_location(:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"})
+      @id4 = Location.create_location(:unresolved_location =>{:unresolved_location_name => "http://google.com"})
+      @id5 = Location.create_location(:geo_location => {:geo_latitude => 23.4767, :geo_longitude => 120.6, :geo_name => "sj"})
+      @id6 = Location.create_location(:geo_location => {:geo_latitude => 24.4767, :geo_longitude => 121, :geo_name => "sj"})
+      @id7 = Location.create_location(:web_location =>{:web_location_url => "http://GOoogLe1.com", :web_location_title => "hello"})
+      @id8 = Location.create_location(:web_location =>{:web_location_url => "gooogle1.com", :web_location_title => "hello"})
+      @id9 = Location.create_location(:unresolved_location =>{:unresolved_location_name => "http://google.com"})
+      @id10 = Location.create_location(:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"})
+      @id11 = Location.create_location(:geo_location => {:geo_latitude => 123.6567, :geo_longitude => 120.3, :geo_name => "sj"})
     end
     it "should read  location with give location name" do
       l = Location.where(:id => @id4.id).first
@@ -59,13 +59,13 @@ describe Location do
       l.should == [@id1, @id3, @id5, @id6]
     end
     it "should search all urls and return location ids" do
-      location_ids = Location.SearchLocation({:web_location => {:web_location_url => "go"}})
+      location_ids = Location.search_location({:web_location => {:web_location_url => "go"}})
       #location_ids.should be_blank
       location_ids.count.should == 1
 
     end
     it "should fetch a location  and return location ids" do
-      location_id = Location.GetLocation(@id2.id)
+      location_id = Location.get_location(@id2.id)
       puts location_id.location_type
       location_id.web_location.location_id.should == location_id.id
       location_id.web_location.web_location_url.should == "http://GOOGLE.com"
@@ -77,7 +77,7 @@ describe Location do
 
     end
     it "should search all near geo location  and return location ids" do
-      location_ids = Location.SearchLocation({:geo_location => {:geo_latitude => 23, :geo_longitude => 120, :range => 50}})
+      location_ids = Location.search_location({:geo_location => {:geo_latitude => 23, :geo_longitude => 120, :range => 50}})
       location_ids.each do |loc|
         puts loc.location_type
       end
@@ -85,7 +85,7 @@ describe Location do
 
     end
      it "should search a near geo location  and return its location id" do
-      location_ids = Location.SearchLocation({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3}})
+      location_ids = Location.search_location({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3}})
       location_ids.each do |loc|
         puts loc.location_type
       end
@@ -97,28 +97,28 @@ describe Location do
     it "should read all location with give location type" do
       #params = { :location => {:location_type => 2, :web_location_attributes => {:web_location_url => "http://gmail.com"}}}
       lambda{
-       Location.CreateLocation({:web_location =>{:web_location_url => "http://google.com", :web_location_title => "hello"}})
-       Location.CreateLocation({:web_location => {}})
-       Location.CreateLocation({:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"}})
-       Location.CreateLocation({:unresolved_location =>{:unresolved_location_name => "http://google.com"}})
-       Location.CreateLocation({:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"},
+       Location.create_location({:web_location =>{:web_location_url => "http://google.com", :web_location_title => "hello"}})
+       Location.create_location({:web_location => {}})
+       Location.create_location({:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"}})
+       Location.create_location({:unresolved_location =>{:unresolved_location_name => "http://google.com"}})
+       Location.create_location({:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"},
                                :web_location =>{:web_location_url => "http://google.com", :web_location_title => "hello"}})
       }.should change(Location,:count).by(3)
     end
   end
   describe "Join Create" do
      before(:each) do
-      @id1 = Location.CreateLocation({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}})
-      @id2 = Location.CreateLocation({:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}})
-      @id3 = Location.CreateLocation({:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"}})
-      @id4 = Location.CreateLocation({:unresolved_location =>{:unresolved_location_name => "http://google.com"}})
-      @id5 = Location.CreateLocation({:geo_location => {:geo_latitude => 23.4767, :geo_longitude => 120.6, :geo_name => "sj"}})
-      @id6 = Location.CreateLocation({:geo_location => {:geo_latitude => 24.4767, :geo_longitude => 121, :geo_name => "sj"}})
-      @id7 = Location.CreateLocation({:web_location =>{:web_location_url => "http://GOoogLe1.com", :web_location_title => "hello"}})
-      @id8 = Location.CreateLocation({:web_location =>{:web_location_url => "gooogle1.com", :web_location_title => "hello"}})
-      @id9 = Location.CreateLocation({:unresolved_location =>{:unresolved_location_name => "http://google.com"}})
-      @id10 = Location.CreateLocation({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}})
-      @id11 = Location.CreateLocation({:geo_location => {:geo_latitude => 123.6567, :geo_longitude => 120.3, :geo_name => "sj"}})
+      @id1 = Location.create_location({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}})
+      @id2 = Location.create_location({:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}})
+      @id3 = Location.create_location({:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"}})
+      @id4 = Location.create_location({:unresolved_location =>{:unresolved_location_name => "http://google.com"}})
+      @id5 = Location.create_location({:geo_location => {:geo_latitude => 23.4767, :geo_longitude => 120.6, :geo_name => "sj"}})
+      @id6 = Location.create_location({:geo_location => {:geo_latitude => 24.4767, :geo_longitude => 121, :geo_name => "sj"}})
+      @id7 = Location.create_location({:web_location =>{:web_location_url => "http://GOoogLe1.com", :web_location_title => "hello"}})
+      @id8 = Location.create_location({:web_location =>{:web_location_url => "gooogle1.com", :web_location_title => "hello"}})
+      @id9 = Location.create_location({:unresolved_location =>{:unresolved_location_name => "http://google.com"}})
+      @id10 = Location.create_location({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}})
+      @id11 = Location.create_location({:geo_location => {:geo_latitude => 123.6567, :geo_longitude => 120.3, :geo_name => "sj"}})
 
      end
     it "should be able to join locations" do
@@ -128,19 +128,19 @@ describe Location do
         puts "hello"
       end
 
-      jh1 = Location.JoinLocations({:geo_join_id => @id1.id,:web_join_id => @id2.id,
+      jh1 = Location.join_locations({:geo_join_id => @id1.id,:web_join_id => @id2.id,
                                    :unresolved_join_id => @id4.id})
-      jh2 = Location.JoinLocations({:web_join_id => @id2.id, :geo_join_id => @id1.id,
+      jh2 = Location.join_locations({:web_join_id => @id2.id, :geo_join_id => @id1.id,
                                    :unresolved_join_id => @id4.id})
-      jh3 = Location.JoinLocations({:geo_join_id => @id1.id,:web_join_id => @id2.id  })
-      jh4 = Location.JoinLocations({:web_join_id => @id2.id , :geo_join_id => @id1.id})
-      jh5 = Location.JoinLocations({:web_join_id => @id2.id,:unresolved_join_id => @id4.id})
-      jh6 = Location.JoinLocations({:unresolved_join_id => @id4.id, :web_join_id => @id2.id})
-      jh7 = Location.JoinLocations({:unresolved_join_id => @id4.id,:geo_join_id => @id1.id,
+      jh3 = Location.join_locations({:geo_join_id => @id1.id,:web_join_id => @id2.id  })
+      jh4 = Location.join_locations({:web_join_id => @id2.id , :geo_join_id => @id1.id})
+      jh5 = Location.join_locations({:web_join_id => @id2.id,:unresolved_join_id => @id4.id})
+      jh6 = Location.join_locations({:unresolved_join_id => @id4.id, :web_join_id => @id2.id})
+      jh7 = Location.join_locations({:unresolved_join_id => @id4.id,:geo_join_id => @id1.id,
                                    :web_join_id => @id2.id})
-      jh8 = Location.JoinLocations({:unresolved_join_id => @id4.id})
-      jh9 = Location.JoinLocations({:geo_join_id => @id1.id,:web_join_id => @id7.id})
-      jh10 = Location.JoinLocations({:geo_join_id => @id6.id,:web_join_id => @id7.id})
+      jh8 = Location.join_locations({:unresolved_join_id => @id4.id})
+      jh9 = Location.join_locations({:geo_join_id => @id1.id,:web_join_id => @id7.id})
+      jh10 = Location.join_locations({:geo_join_id => @id6.id,:web_join_id => @id7.id})
 
       #puts jh.geo_location_id
       #puts jh.web_location_id

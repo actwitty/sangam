@@ -59,21 +59,27 @@ describe Campaign do
    @u1 = Factory(:user)
    @u2 = Factory(:user)
    @u3 = Factory(:user)
-   @a1 = Activity.CreateActivity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+
+   @l1 = Factory(:location)
+   @a1 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
    work_off
    @e1 = Factory(:entity)
-   @c1 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
+   @c1 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
                              :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
-   @c2 = Campaign.CreateCampaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
+   @c2 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
-   @c3 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
+   @c3 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
-   @c4 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
+   @c4 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
-   @c5 = Campaign.CreateCampaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
+   @c5 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+   @c6 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
+                               :entity => {:entity_id => @e1.id} )
+   @c7 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
+                               :location => {:location_id => @l1.id} )
   end
   describe "Create" do
     it "should create campaigns on activities"  do
@@ -87,7 +93,10 @@ describe Campaign do
        @c1.author_id.should == @u1.id
        @c1.father.should_not be_nil
        puts @c1.father.activity_name
-       puts @c1.father.activity_text.inspect
+       puts @c1.father.activity_text
+
+       puts @c6.father.activity_text
+       puts @c7.father.activity_text
 
        @a1.destroy
 
@@ -102,11 +111,11 @@ describe Campaign do
        f = Activity.where(:id =>@c3.father_id)
        f.should be_blank
        @a1 = Factory(:activity)
-       c1 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
+       c1 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
-       c2 = Campaign.CreateCampaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
+       c2 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
-       c3 = Campaign.CreateCampaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
+       c3 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
                                :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
        c2.father.destroy
        c = Campaign.where(:id => c2.id)

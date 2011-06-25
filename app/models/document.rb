@@ -30,7 +30,7 @@
 require 'file_size_validator'
 
 class Document < ActiveRecord::Base
-
+   include ActionView::Helpers::UrlHelper
    attr_accessible  :document_data , :owner_id, :activity_id, :document_name, :document_type
 
    belongs_to     :owner, :class_name => "User", :touch => true
@@ -44,21 +44,35 @@ class Document < ActiveRecord::Base
    validates_length_of :document_name, :in => 3..255 #a.b
    validates_length_of :document_type, :in => 3..255
 
-
    mount_uploader :document_data, DocumentDataUploader
+
 
    validates :document_data, :presence => true, :file_size => { :maximum => 0.5.megabytes.to_i }
 
    class << self
-     def DelayCreate(owner, activity,path)
+     def delay_create(owner_id, activity_id,path)
        name = File.basename(path)
-       Document.create!(:owner_id => owner.id, :activity_id => (activity.nil? ? nil : activity.id) ,
+       puts "==========================  #{path}"
+       d = Document.create!(:owner_id => owner_id, :activity_id => (activity_id.nil? ? nil : activity_id) ,
                         :document_name => name, :document_type => MIME::Types.type_for(name.to_s).first.to_s,
                         :document_data => File.open(path))
+       #puts  d.document_data
+     rescue => e
+       Rails.logger.error("Document => delay_create => Failed with #{e.message}")
      end
-     def CreateDocument(owner, activity,  path)
-       Delayed::Job.enqueue DocumentJob.new(owner, activity,  path)
+
+     def create_document(owner_id, activity_id, path)
+       Delayed::Job.enqueue DocumentJob.new(owner_id, activity_id,path)
      end
-   end
+
+     #useful for invocation from controllers as they give ActionDispatch::HTTP::Uploader aas params
+     #callin "new" creates a cache snapshot of file in Rails.root/tmp/uploads as per initializers/fog.rb
+     #tmp is chosen as Heroku makes only this folder writable
+     def UploadDocument(owner_id, activity_id, params )
+        d = Document.new(params[:document])
+        create_document(owner_id, activity_id,"#{Rails.root}/tmp#{d.document_data.to_s}")
+     end
+
+    end
 end
 

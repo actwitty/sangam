@@ -2,13 +2,30 @@
 
 development: &default
   url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
-  #constant2:  "value2"
+
+  entity_controller:  "entities"
+  user_controller:  "users"
+  location_controller: "locations"
+  activity_word_controller:  "activity_words"
+  activity_controller: "activities"
+
+  #CSS class names for styling individual links
+  activity_entity_class:  "activity_entity"
+  activity_mention_class: "activity_mention"
+  activity_location_class: "activity_location"
+  activity_word_class: "activity_word"
+
+  campaign_username_class: "campaign_username"
+  campaign_activity_class: "campaign_activity"
+  campaign_entity_class: "campaign_entity"
+  campaign_location_class: "campaign_location"
+
+  invalid_resource_id: 0
 
 production:
   <<: *default
   #constant1:  "overriden value1"
-  url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
-  
+
 test:
   <<: *default
-  url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
+  #url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
