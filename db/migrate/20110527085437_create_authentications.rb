@@ -10,6 +10,8 @@ class CreateAuthentications < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :authentications, [:user_id, :provider, :uid]
+    add_index :authentications, [:provider, :uid]
   end
 
   def self.down

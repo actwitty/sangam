@@ -4,8 +4,7 @@ class HomeController < ApplicationController
 
    def show
     @user=current_user
-    @friends = current_user.get_contacts()
-    @pending_friends = current_user.get_pending_request_contacts()
+
   end
 
 end

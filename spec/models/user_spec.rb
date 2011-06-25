@@ -6,8 +6,7 @@ describe User do
   # pending "add some examples to (or delete) #{__FILE__}"
   
     before(:each) do
-      @user = Factory.create(:user,  :username => 'DummyUser',
-                                    :password => '1234567',
+      @user = Factory.create(:user, :password => '1234567',
                                     :password_confirmation => '1234567',
                                     :email => 'lemony@lemonbag.com')
     end
@@ -18,13 +17,6 @@ describe User do
     it "succeeds on default user build" do
       @user.should be_valid
     end
-    it "fails if user name is repeated" do
-      lambda{
-        user = Factory.create(:user, :username => 'DummyUser')
-        user.should_not be_valid
-        user.errors[:username].should_not be_nil
-        }.should raise_error ActiveRecord::RecordInvalid
-    end
     
     it "fails if email is repeated" do
       lambda{
@@ -33,14 +25,7 @@ describe User do
         user.errors[:email].should_not be_nil
       }.should raise_error ActiveRecord::RecordInvalid
     end
-    
-    it "fails if username is blank" do
 
-        user = Factory.create(:user, :username => '')
-        user.should be_valid
-        user.username.should == user.email
-
-    end
     
     it "fails if email is blank" do
       user = Factory.build(:user,:email => '')
@@ -90,33 +75,12 @@ describe User do
 
   describe "update user fields" do
     before(:each) do
-        @local_dummy_user = User.find_by_username('DummyUser')
-        @modified_username='DummyIsNotNiceName'
+      @local_dummy_user = User.find_by_username('DummyUser')
     end
     it "succeeds to find a user by username"  do
         @local_dummy_user.should be_valid
     end
-    it "succeeds to change username in user table" do
 
-        @local_dummy_user.username=@modified_username
-        @local_dummy_user.save
-        @local_dummy_user = User.find_by_username( @modified_username)
-        @local_dummy_user.should be_valid
-        @local_dummy_user.username.should == @modified_username
-    end
-
-    it "fails to change username to non unique in user table" do
-
-        user1 =   Factory.create(:user)
-        user2 =   Factory.create(:user)
-
-        user1.username="RepeatedNames"
-        user2.username=user1.username
-        user1.save
-        lambda {
-          user2.save!
-        }.should raise_error  ActiveRecord::RecordInvalid
-    end
 
     it "fails to change email to non unique in user table" do
 
@@ -174,6 +138,31 @@ describe User do
     end
 
   end
+
+  describe "change full name when profile name is changed" do
+    before(:each) do
+      @a_user = Factory.create(:user)
+      @a_user.profile = Factory.create(:profile,
+                                         :user_id => @a_user.id,
+                                         :email => @a_user.email)
+
+    end
+
+    it "must have full name from profile"   do
+      name_from_profile=@a_user.profile.first_name + " " +  @a_user.profile.last_name
+      b_user=User.all(:conditions => ["id = ?" , @a_user.id]).first
+      b_user.full_name.should eq(name_from_profile)
+    end
+
+    it "must have full name from profile on change"   do
+      @a_user.profile.first_name="InterestingNewName"
+      @a_user.profile.save
+      name_from_profile=@a_user.profile.first_name + " " +  @a_user.profile.last_name
+      b_user=User.all(:conditions => ["id = ?" , @a_user.id]).first
+      b_user.full_name.should eq(name_from_profile)
+    end
+  end
+
   describe "destroy user and dependencies" do
 
   end
@@ -184,3 +173,4 @@ describe User do
   
   
 end
+1

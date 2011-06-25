@@ -121,6 +121,7 @@ class AuthenticationsController < ApplicationController
 
         else
            # I know the user, allow him to get in
+          already_existing_auth.save
           sign_in_and_redirect(:user, already_existing_auth.user)
         end
       end

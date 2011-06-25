@@ -9,6 +9,11 @@ class CreateContacts < ActiveRecord::Migration
       t.string :relation
       t.timestamps
     end
+
+
+    add_index :contacts, [:user_id, :friend_id, :status]
+    add_index :contacts, [:friend_id, :status]
+    add_index :contacts, :status
   end
 
   def self.down

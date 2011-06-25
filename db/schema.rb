@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.datetime "updated_at"
   end
 
+  add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
+  add_index "authentications", ["user_id", "provider", "uid"], :name => "index_authentications_on_user_id_and_provider_and_uid"
+
   create_table "campaigns", :force => true do |t|
     t.integer  "author_id",      :null => false
     t.integer  "activity_id"
@@ -82,6 +85,10 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "contacts", ["friend_id", "status"], :name => "index_contacts_on_friend_id_and_status"
+  add_index "contacts", ["status"], :name => "index_contacts_on_status"
+  add_index "contacts", ["user_id", "friend_id", "status"], :name => "index_contacts_on_user_id_and_friend_id_and_status"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -294,6 +301,9 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.datetime "updated_at"
   end
 
+  add_index "profiles", ["first_name", "last_name"], :name => "index_profiles_on_first_name_and_last_name"
+  add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
+
   create_table "unresolved_locations", :force => true do |t|
     t.integer  "location_id",              :null => false
     t.string   "unresolved_location_name", :null => false
@@ -324,6 +334,8 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.string   "username"
     t.boolean  "show_help"
     t.boolean  "disable_email"
+    t.string   "full_name"
+    t.string   "photo_small_url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token",     :limit => 60
@@ -336,6 +348,7 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["full_name"], :name => "index_users_on_full_name"
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true

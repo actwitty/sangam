@@ -15,6 +15,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :show_help
       t.boolean :disable_email
       t.string :email
+      t.string :full_name
+      t.string :photo_small_url
 
       t.timestamps
     end
@@ -24,6 +26,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :confirmation_token,   :unique => true
     add_index :users, :unlock_token,         :unique => true
     add_index :users, :authentication_token, :unique => true
+    add_index :users, :full_name
+
   end
 
   def self.down

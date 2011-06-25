@@ -41,6 +41,9 @@ class CreateProfiles < ActiveRecord::Migration
 
     end
 
+    add_index :profiles, [:first_name, :last_name]
+    add_index :profiles, :last_name
+    #add more later on
 
   end
 

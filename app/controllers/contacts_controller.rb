@@ -2,7 +2,10 @@ class ContactsController < ApplicationController
   before_filter :authenticate_user!
 
   def search
-    @users = User.search(params[:search])
+    people = User.search(params[:search])
+    if request.xhr?
+      render :json => people
+    end
   end
 
   def friendship()
@@ -13,7 +16,11 @@ class ContactsController < ApplicationController
   def add( )
     friend_id = Integer(params[:friend_id])
     current_user.new_contact_request(friend_id)
-    redirect_to(:back)
+    if request.xhr?
+       render :json => {}
+    else
+      redirect_to(:back)
+    end
   end
 
   def provider_add()
@@ -21,36 +28,19 @@ class ContactsController < ApplicationController
     uid=params[:uid]
     auth =Authentication.find_by_provider_and_uid(provider, uid)
     current_user.new_contact_request(auth.user_id)
-    redirect_to(:back)
+
   end
 
-  def invite()
-    provider=params[:provider]
-    uid=params[:uid]
-    if provider=="facebook"
-      facebook_auth=Authentication.find_by_user_id_and_provider(current_user.id, provider)
-      if facebook_auth.nil?
-        puts "Enable Facebook log in page"
-        #TODO: Fix this path
-      else
-        begin
-          @graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
-          @graph.put_wall_post("Come on, join in to actwitty at www.actwitty.com",
-          {:name => "Actwitty", :link => "http://localhost:3000"},uid)
-        rescue Koala::Facebook::APIError
-          session[:return_to] ||= request.referer
-          redirect_to "/users/auth/facebook"
-        end
-      end
-    end
-    redirect_to(:back)
-  end
+
 
   def remove()
     friend_id = Integer(params[:friend_id])
-
     current_user.disconnect_a_contact(friend_id)
-    redirect_to(:back)
+    if request.xhr?
+       render :json => {}
+    else
+      redirect_to(:back)
+    end
 
   end
 
@@ -65,67 +55,39 @@ class ContactsController < ApplicationController
       #We ideally expect here if (friend_req == "Reject")
       current_user.reject_a_contact_request(friend_id)
     end
+    if request.xhr?
+      render :json => {:request => "complete"}
+    else
+      redirect_to(:back)
+    end
 
-    #go back to where you came from
-    redirect_to(:back)
   end
+
 
 
   def facebook_friends
-    provider="facebook"
-    facebook_auth=Authentication.find_by_user_id_and_provider(current_user.id, provider)
-    if facebook_auth.nil?
-      puts "Enable Facebook log in page"
-      #TODO: Fix this path
-    else
-      uid_list = Array.new
-      @display_hash = Hash.new
-      begin
-        @graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
-        @friends = @graph.get_connections("me", "friends")
-        puts @friends
-        #  puts current_user.get_contacts_provider_uid(provider)
-        @friends.each {
-              |friend|
-              uid_list.push friend["id"]
-              @display_hash[friend["id"]]=friend["name"]
 
-        }
-        @uid_list_and_friend=nil
-        @uid_list_for_invite=nil
-        @uid_list_not_friend=nil
-        if uid_list.count() > 0
-          uid_list_in_actwitty=Authentication.find_all_uids_present_in_actwitty(provider, uid_list)
-          if !uid_list_in_actwitty.nil? && uid_list_in_actwitty.count >0
-            @uid_list_and_friend = current_user.get_provider_uids_of_friends(provider, uid_list)
-            @uid_list_for_invite =  uid_list - uid_list_in_actwitty
-            @uid_list_not_friend =  uid_list_in_actwitty - @uid_list_and_friend
-          else
-             @uid_list_for_invite =  uid_list
-          end
-        end
+  end
 
 
-
-
-
-        puts @uid_list_for_invite
-        puts @uid_list_and_friend
-        puts @uid_list_not_friend
-
-      rescue Koala::Facebook::APIError
-        session[:return_to] ||= request.referer
-        redirect_to "/users/auth/facebook"
-      end
-
-      #puts uid_list.to_s
+  def pending_friend_requests
+    pending_friends = current_user.get_pending_request_contacts()
+    puts  pending_friends.to_json
+    if request.xhr?
+      render :json => pending_friends
     end
   end
 
-
-  def twitter_friends
+  def friends
+    friends = current_user.get_contacts()
+    if request.xhr?
+      render :json => friends
+    end
 
   end
+
+
+
 
   def actwitty_friends
 
