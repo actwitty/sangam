@@ -77,7 +77,7 @@ describe Entity do
     it "should be able to read entity_doc based on entity guid " do
       @h['mid'] = @e.entity_guid
       eid = Entity.create_entities(@u.id, @h)
-      eid.entity_document.should == @e.entity_document
+      eid.entity_doc.should == @e.entity_doc
 
     end
     it "should be able to all entity based on entity type " do

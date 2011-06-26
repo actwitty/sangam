@@ -127,6 +127,7 @@ class Location < ActiveRecord::Base
   #Searches on Lat-Long
   #Searches on Lat-Long with a Range
   def self.search_location(search_hash= {})
+    location_ids = {}
 
     if !search_hash[:web_location].nil? and  !search_hash[:web_location][:web_location_url].blank?
       web_hash = search_hash[:web_location]

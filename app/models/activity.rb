@@ -32,7 +32,7 @@ class Activity < ActiveRecord::Base
   has_many      :hubs, :dependent => :destroy
 
   has_many      :entities, :through => :hubs
-  has_one        :location,:through => :hubs
+  has_many        :location,:through => :hubs
 
   has_many    :mentions, :dependent => :destroy #destroy will happen from activity
   has_many    :campaigns, :dependent => :destroy
@@ -97,14 +97,18 @@ class Activity < ActiveRecord::Base
     include QueryManager
     include ActivityTextFormatter
 
-    def board (user, filter_activity = {})
+    # id_max => id
+    # activity => {enabled  => true/false, word => "eating"}
+    # friends => true/false
+    # related => true/false
+    def board (params)
       u = User.all #change it with users in contact
       a = Activity.where(:author_id => u, :ancestry => nil).order("updated_at DESC").limit(5)
 
       # TODO Add Campaigns to each activity
       # TODO Add user name and photograph Id to each activity
 
-      h = Hash[*a.collect { |v|
+       h = Hash[*a.collect { |v|
                 [v, v.subtree.from_depth(1).arrange]
               }.flatten]
       puts h
@@ -186,6 +190,7 @@ class Activity < ActiveRecord::Base
 
       word_obj = ActivityWord.create_activity_word(params[:activity], relation = "verb-form")
 
+
       #Add activity_word to params hash for hub creation
       params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
 
@@ -203,10 +208,21 @@ class Activity < ActiveRecord::Base
       end
 
       #Generate Mentions
+      #TODO - not very optimal as create_mention saves the the activity text with flatten_mentions. if we move this
+      #TODO - function before Activity.create! then mention create is not valid..so going with less optimal way
       params[:text] = create_mentions(params[:text], obj)
 
+       #create location
+      if !params[:location].blank?
+       loc= Location.create_location(params[:location])
+       if !loc.nil?
+          #Add location to params hash for hub creation
+          params[:location_hash] = loc.id
+       end
+      end
+
       #Add activity to params hash for hub creation
-      params[:activity_hash]  = obj.id
+      params[:activity_hash] = obj.id
 
       if params[:enrich] == true
         post_proc_activity(params)
@@ -214,10 +230,15 @@ class Activity < ActiveRecord::Base
 
       return obj
 
-      rescue => e
-        Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
+    rescue => e
+      #cleanup the location
+      if !params[:location].blank?
+        loc.destroy
+      end
+
+      Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
       nil
-   end
+    end
 
   def create_hub_entries(params = {})
     hubs_hash = {}
@@ -236,6 +257,8 @@ class Activity < ActiveRecord::Base
     end
     obj = Activity.where(:id => params[:activity_hash]).first
     obj.update_attributes(:activity_text => params[:text])
+#    puts obj.inspect
+#    puts obj.activity_text
 
   rescue => e
      Rails.logger.error("Activity => CreateHubEntries => Failed => #{e.message} => #{params} => hubs_hash = #{hubs_hash}")
@@ -259,20 +282,9 @@ class Activity < ActiveRecord::Base
      end
 
      params[:text] = mark_entities(params[:text],params[:entity_hash])
-     #puts params[:text]
 
-     if !params[:location].blank?
-       loc= Location.create_location(params[:location])
-       if !loc.nil?
-          #Add location to params hash for hub creation
-          params[:location_hash] = loc.id
-       end
-     end
-      #mentions
-      #locations
-      #Hub update
-      #Activity Text Update
      create_hub_entries(params)
+
      Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
   end
    handle_asynchronously :post_proc_activity

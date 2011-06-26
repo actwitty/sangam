@@ -61,7 +61,7 @@ Sangam::Application.routes.draw do
   resources :authentications
   resources :contacts
 
-  #resource  :documents
+  resource  :documents
 
   # Sample resource route with options:
   #   resources :products do

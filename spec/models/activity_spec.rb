@@ -304,6 +304,7 @@ describe Activity do
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
+
       act.should_not be_nil
       work_off
       child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
@@ -334,11 +335,14 @@ describe Activity do
         puts attr.id
         puts attr.location_name
       end
-
+       puts act.location.inspect
 #      act.destroy
 #      Hub.count.should == 0
        @u.destroy
        Hub.count.should == 0
+
+      act.destroy
+      act.children.should == []
 
     end
   end
