@@ -10,7 +10,7 @@
  
       var input = document.getElementById('searchTextField');
       var options = {
-        bounds: defaultBounds
+        boxStyle: { border: "1px solid black", opacity: 0.75, width:"40px" }
       };
       autocomplete = new google.maps.places.Autocomplete(input, options);
  
