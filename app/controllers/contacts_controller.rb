@@ -8,6 +8,71 @@ class ContactsController < ApplicationController
     end
   end
 
+  def followers
+    friends = current_user.get_followers()
+    if request.xhr?
+      render :json => friends
+    end
+  end
+
+  def followings
+    friends = current_user.get_followings()
+    if request.xhr?
+      render :json => friends
+    end
+  end
+
+  def provider_follow
+    provider=params[:provider]
+    uid=params[:uid]
+    auth =Authentication.find_by_provider_and_uid(provider, uid)
+    current_user.follow(auth.user_id)
+    if request.xhr?
+       render :json => {}
+    else
+      redirect_to(:back)
+    end
+  end
+
+  def follow
+    friend_id = params[:friend_id]
+    status = current_user.follow(friend_id)
+    if request.xhr?
+      if (status)
+        resp =  {:change_action => "Un-Follow"}
+        puts resp.to_json()
+        render :json =>  resp
+      else
+        resp = { :change_action => "Follow"}
+        puts resp.to_json()
+        render :json =>  resp
+      end
+    else
+      redirect_to(:back)
+    end
+  end
+
+  def unfollow
+
+    friend_id = params[:friend_id]
+
+    status = current_user.unfollow(friend_id)
+    if request.xhr?
+      if (status)
+        resp =  {:change_action => "Follow"}
+        puts resp.to_json()
+        render :json =>  resp
+      else
+        resp = { :change_action => "Un-Follow"}
+        puts resp.to_json()
+        render :json =>  resp
+      end
+    else
+      redirect_to(:back)
+    end
+  end
+
+
   def friendship()
      friend_id = Integer(params[:id])
 
@@ -83,7 +148,6 @@ class ContactsController < ApplicationController
     if request.xhr?
       render :json => friends
     end
-
   end
 
 

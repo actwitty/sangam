@@ -152,6 +152,50 @@ class User < ActiveRecord::Base
 
   end
 
+  def follow(friend_id)
+    Contact.follow(id, friend_id)
+  end
+
+  def unfollow(friend_id)
+    Contact.unfollow(id, friend_id)
+  end
+
+  def followers_count()
+     friends.count()
+  end
+
+  def followings_count()
+      contacts.count()
+  end
+
+  def check_follower(friend_id)
+    contact=Contact.find_by_user_id_and_friend_id(id, friend_id)
+    if contact.nil?
+
+      return false
+    else
+      puts "xxxxxxxxxxxxxx"
+      return true
+    end
+  end
+
+  def get_followings
+    friends_id_list = contacts.select("user_id").where(:friend_id => id)
+    if !friends_id_list.nil? && friends_id_list.count() != 0
+      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list )
+    end
+    return users_list
+  end
+
+  def get_followers
+    friends_id_list = contacts.select("friend_id").where(:user_id => id)
+    if !friends_id_list.nil? && friends_id_list.count() != 0
+      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list )
+    end
+    return users_list
+
+  end
+
   def self.search(search)
     if search
       select("id,full_name,photo_small_url").order("full_name").
