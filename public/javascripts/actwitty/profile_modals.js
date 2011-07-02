@@ -2,16 +2,14 @@
 
 $(document).ready(function(){
       $('#all_channels').click(function() { 
-          var html= '<p>' +
-                      'CHANNELS' +
-                    '</p>';
+          $( "#channel-dialog-modal" ).attr("title", "Select a channel filter");
           $( "#channel-dialog-modal" ).empty();                                       
-          $( "#channel-dialog-modal" ).append(html);                                
           $( "#channel-dialog-modal" ).dialog({
 			                                  height: 500,
                                         width: 800,
 			                                  modal: true
 		                                  });                                  
+          get_all_channels();
       });
 
      $('#all_things').click(function() {

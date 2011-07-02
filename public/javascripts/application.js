@@ -3,14 +3,16 @@
 
 jQuery.ajaxSetup({
    cache: true,
-   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "application/json")}
  });
 
 $(document).ajaxSend(function(event, request, settings) {
-  if (typeof(AUTH_TOKEN) == "undefined") return;
-  // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
-  settings.data = settings.data || "";
-  settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN);
+  if (typeof(AUTH_TOKEN) == "undefined") return;  
+  if ( settings.type != 'GET' &&  settings.type != 'get') {
+        settings.data = settings.data || "";
+        settings.data = (settings.data ? settings.data + "&" : "")
+            + "authenticity_token=" + encodeURIComponent( AUTH_TOKEN );
+  }
 });
 
 $(function() {
