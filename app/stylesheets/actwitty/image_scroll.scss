@@ -1,0 +1,44 @@
+div.aw_slider {
+  /* Set it so we could calculate the offsetLeft */
+  position: relative;
+  height: 80px;
+  width: 150px;
+  overflow: hidden;
+}
+ul.aw_slider {
+  display: block;
+  height: 60px;
+  width: 1500px;
+  margin: 0;
+  background: url('/images/navigation.png');
+  list-style: none;
+}
+.aw_slider li {
+  margin-top: 7px;
+  display: block;
+  float: left;
+}
+.aw_slider a {
+  display: block;
+  text-decoration: none;
+}
+
+.aw_slider span {
+  display: none;
+  margin-top: 3px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+.aw_slider a:hover span {
+  display: block;
+}
+.aw_slider img {
+  border: 3px #fff solid;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.aw_slider a:hover img {
+  filter:alpha(opacity=50);
+  opacity: 0.5;
+}
