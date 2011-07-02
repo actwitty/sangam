@@ -1,13 +1,7 @@
 / Java scripts includes
 = javascript_include_tag 'redmond/js/jquery-ui-1.8.13.custom.min.js'
-= javascript_include_tag 'actwitty/aw_slider.js'
-= javascript_include_tag 'plugins/jquery-list-splitter/jquery.easyListSplitter.js'
-= javascript_include_tag 'actwitty/profile_channels.js'
-= javascript_include_tag 'actwitty/profile_follow.js'
-= javascript_include_tag 'actwitty/profile_summary.js'
-= javascript_include_tag 'actwitty/profile.js'
-= javascript_include_tag 'actwitty/profile_modals.js'
-= javascript_include_tag 'actwitty/profile_people.js'
+= javascript_include_tag 'actwitty/profile'
+= javascript_include_tag 'plugins/jcarousel/jquery.jcarousel.min.js'
 = javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js'
 = javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js'
 = javascript_include_tag 'plugins/jquery-autocomplete/lib/thickbox-compressed.js'
@@ -30,12 +24,6 @@
     %input#searchall.home_page_people_search{:type => "text",:placeholder => "Search"}/
     %ul.aw_header_nav
       -if user_signed_in?
-        -if current_user.id != @user.id
-          %li.aw_header_navl 
-            -if !@follow
-              %input#follow_button{:type => "button", :value => "Follow"}  
-            -else
-              %input#follow_button{:type => "button", :value => "Un-Follow"}
         %li.aw_header_navl
           %a{:href => "#"} Home
         %li.aw_header_navl
@@ -92,21 +80,16 @@
   %hr
   
   .home_page_filter_row
-    %ul.aw_sub_header_nav
+    %ul.aw_header_nav
+      %li.aw_header_navl
+        %a{:href => "#"} Channels
+      %li.aw_header_navl
+        %a{:href => "#"} Things
+      %li.aw_header_navl
+        %a{:href => "#"} Locations
       -if user_signed_in?  && current_user.id == @user.id
-        %li.aw_sub_header_nav_l
-          %a#all_followers{:href => "#"} Followers #{current_user.followers_count()}
-        %li.aw_sub_header_nav_l
-          %a#all_followings{:href => "#"} Followings #{current_user.followings_count()}
-        %li.aw_sub_header_nav_l
-          %a#all_facebookers{:href => "#"} Facebook People
-      %li.aw_sub_header_nav_r
-        %a#all_channels{:href => "#"} Channels
-      %li.aw_sub_header_nav_r
-        %a#all_things{:href => "#"} Things
-      %li.aw_sub_header_nav_r
-        %a#all_locations{:href => "#"} Locations
-
+        %li.aw_header_navl
+          %a{:href => "#"} Friends
 
   #sub_filter_tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     %ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-corner-all
@@ -114,7 +97,7 @@
         %a{:href => "#Personal"} Personal
       -if user_signed_in?  && current_user.id == @user.id
         %li#friend_tab_head.ui-state-default.ui-corner-top
-          %a{:href => "#Friends"} Followings
+          %a{:href => "#Friends"} Friends
       %li#recent_tab_head.ui-state-default.ui-corner-top
         %a{:href => "#Recent"} Recent
     #Personal.ui-tabs-panel.ui-widget-content.ui-corner-bottom
@@ -129,17 +112,7 @@
     #Recent.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
       %p I am in recent
 
-  #channel-dialog-modal
-  #location-dialog-modal
-  #thing-dialog-modal
-  #follower-dialog-modal
-  #following-dialog-modal
-  #facebook-dialog-modal
-  
-  /Secret cookies
   %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
-  -if user_signed_in?
-    %input#page_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 
 
 
