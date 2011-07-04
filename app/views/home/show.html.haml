@@ -2,9 +2,16 @@
 = javascript_include_tag 'redmond/js/jquery-ui-1.8.13.custom.min.js'
 = javascript_include_tag 'actwitty/aw_slider.js'
 = javascript_include_tag 'plugins/jquery-list-splitter/jquery.easyListSplitter.js'
+= javascript_include_tag 'actwitty/profile_filter.js'
 = javascript_include_tag 'actwitty/profile_channels.js'
+= javascript_include_tag 'actwitty/profile_locations.js'
+= javascript_include_tag 'actwitty/profile_things.js'
+= javascript_include_tag 'actwitty/profile_followers.js'
+= javascript_include_tag 'actwitty/profile_facebook.js'
+= javascript_include_tag 'actwitty/profile_followings.js'
 = javascript_include_tag 'actwitty/profile_follow.js'
 = javascript_include_tag 'actwitty/profile_summary.js'
+= javascript_include_tag 'actwitty/profile_stream.js'
 = javascript_include_tag 'actwitty/profile.js'
 = javascript_include_tag 'actwitty/profile_modals.js'
 = javascript_include_tag 'actwitty/profile_people.js'
@@ -33,9 +40,10 @@
         -if current_user.id != @user.id
           %li.aw_header_navl 
             -if !@follow
-              %input#follow_button{:type => "button", :value => "Follow"}  
+              %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}  
             -else
-              %input#follow_button{:type => "button", :value => "Un-Follow"}
+              %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
+            %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}/
         %li.aw_header_navl
           %a{:href => "#"} Home
         %li.aw_header_navl
@@ -116,7 +124,7 @@
         %li#friend_tab_head.ui-state-default.ui-corner-top
           %a{:href => "#Friends"} Followings
       %li#recent_tab_head.ui-state-default.ui-corner-top
-        %a{:href => "#Recent"} Recent
+        %a{:href => "#Stream"} Stream
     #Personal.ui-tabs-panel.ui-widget-content.ui-corner-bottom
       %ul#personal_summary.summary_list
       %a#more_personal.more_personal{:href => "#"} More
@@ -126,7 +134,8 @@
         %ul#friends_summary.summary_list
         %a#more_friends.more_friends{:href => "#"} More
         %input{:type => "hidden", :id => "friend_count", :value => "0"}/
-    #Recent.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
+    #Stream.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
+      #stream_filters
       %p I am in recent
 
   #channel-dialog-modal
@@ -139,7 +148,17 @@
   /Secret cookies
   %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
   -if user_signed_in?
-    %input#page_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+  %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@defaul_page_mode}" }
+
+  /Filter
+  %input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }
+  %input#filter_location_name{:name => "filter_location_name", :type => "hidden", :value => "#{@filter_location_name}" }
+  %input#filter_thing_id{:name => "filter_thing_id", :type => "hidden", :value => "#{@filter_thing_id}" }
+  %input#filter_thing_name{:name => "filter_thing_name", :type => "hidden", :value => "#{@filter_thing_name}" }
+  %input#filter_channel_id{:name => "filter_channel_id", :type => "hidden", :value => "#{@filter_channel_id}" }
+  %input#filter_channel_name{:name => "filter_channel_name", :type => "hidden", :value => "#{@filter_channel_name}" }
+
 
 
 
