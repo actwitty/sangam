@@ -13,16 +13,15 @@ $(document).ready(function(){
       });
 
      $('#all_things').click(function() {
-          var html= '<p>' +
-                      'THINGS' +
-                    '</p>';
+
+          $( "#thing-dialog-modal" ).attr("title", "Select a thing filter");
           $( "#thing-dialog-modal" ).empty();                                       
-          $( "#thing-dialog-modal" ).append(html);                                
           $( "#thing-dialog-modal" ).dialog({
 			                                  height: 500,
                                         width: 800,
 			                                  modal: true
-		                                  });              
+		                                  });  
+          get_all_things();
      });
 
      $('#all_locations').click(function() {

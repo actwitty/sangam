@@ -2,42 +2,37 @@
 
 $(document).ready(function(){
       $('#all_followers').click(function() { 
-          var html= '<p>' +
-                      'FOLLOWERS' +
-                    '</p>';
+          $( "#follower-dialog-modal" ).attr("title", "Manage followers");
           $( "#follower-dialog-modal" ).empty();                                       
-          $( "#follower-dialog-modal" ).append(html);                                
           $( "#follower-dialog-modal" ).dialog({
 			                                  height: 500,
                                         width: 800,
 			                                  modal: true
-		                                  });                                  
+		                                  });      
+          get_all_followers();
       });
 
+         
      $('#all_followings').click(function() {
-          var html= '<p>' +
-                      'FOLLOWINGS' +
-                    '</p>';
+          $( "#follower-dialog-modal" ).attr("title", "Manage followings");
           $( "#following-dialog-modal" ).empty();                                       
-          $( "#following-dialog-modal" ).append(html);                                
           $( "#following-dialog-modal" ).dialog({
 			                                  height: 500,
                                         width: 800,
 			                                  modal: true
-		                                  });              
+		                                  });  
+          get_all_followings();
      });
 
      $('#all_facebookers').click(function() {
-          var html= '<p>' +
-                      'FACEBOOKS' +
-                    '</p>';
+          $( "#facebook-dialog-modal" ).attr("title", "Manage facebook");
           $( "#facebook-dialog-modal" ).empty();                                       
-          $( "#facebook-dialog-modal" ).append(html);                                
           $( "#facebook-dialog-modal" ).dialog({
 			                                  height: 500,
                                         width: 800,
 			                                  modal: true
 		                                  });              
+          get_all_facebookers();
      });
 
 

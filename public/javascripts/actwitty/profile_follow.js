@@ -1,10 +1,10 @@
 
 
 $(document).ready(function(){
-  var owner_id=$('#page_owner_id').attr("value");
 
-   $('#follow_button').live("click",function(){
+   $('.follow_button').live("click",function(){
       btn = $(this);
+      friend_id = $("#" + btn.attr("id") + "_user_id").attr("value");
       if( $(this).val() == 'Follow' ) {
        post_url="/contacts/follow";
       }else{
@@ -13,7 +13,7 @@ $(document).ready(function(){
       $.ajax({
         url: post_url,
         type: 'POST',
-        data: { "friend_id" :  owner_id },
+        data: { "friend_id" :  friend_id },
         dataType: "json",
         success: function (data) {
 
