@@ -10,14 +10,13 @@ javascripts:
   jquery:
     - public/javascripts/application.js
     - public/javascripts/rails.js
-    - public/javascripts/header.js
-    - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
     - public/javascripts/redmond/js/jquery-1.5.1.min.js
     - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
     - public/javascripts/redmond/development-bundle/external/jquery.metadata.js
-    - public/javascripts/redmond/development-bundle/ui/jquery.ui.core.js
-    - public/javascripts/redmond/development-bundle/ui/jquery.ui.widget.js
-    - public/javascripts/redmond/development-bundle/ui/jquery.ui.button.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.core.min.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.widget.min.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.button.min.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.dialog.min.js
     - public/javascripts/plugins/ui-watermark/ui.watermark.js
     - public/javascripts/rails.validations.js
     - public/javascripts/rails.validations.custom.js
@@ -50,8 +49,8 @@ stylesheets:
     - public/stylesheets/actwitty/profile.css
     - public/stylesheets/actwitty/validations.css
     - public/stylesheets/actwitty/simple_form.css
+    - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/home_page.css
-    - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
 

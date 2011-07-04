@@ -29,21 +29,30 @@ Sangam::Application.routes.draw do
   match '/users/registrations/confirmation_wait' => 'users/registrations#confirmation_wait'
 
   match '/authentications/auth_signin' => 'authentications#auth_signin'
+
+
+
+
+
+  #match '/contacts/add' => 'contacts#add'
+  #match '/contacts/accept' => 'contacts#accept'
+  #match '/contacts/remove' => 'contacts#remove'
+  #match '/contacts/friends' => 'contacts#friends'
+  #match '/contacts/pending_friend_requests' => 'contacts#pending_friend_requests'
+  #match '/contacts/provider_add' => 'contacts#provider_add'
+  #match '/contacts/friendship' => 'contacts#friendship'
+
   match '/contacts/facebook_friends' => 'contacts#facebook_friends'
-  match '/contacts/friends' => 'contacts#friends'
-  match '/contacts/pending_friend_requests' => 'contacts#pending_friend_requests'
-
-  match '/contacts/friendship' => 'contacts#friendship'
   match '/contacts/search' => 'contacts#search'
-  match '/contacts/provider_add' => 'contacts#provider_add'
-
-
-  match '/contacts/add' => 'contacts#add'
-  match '/contacts/accept' => 'contacts#accept'
-  match '/contacts/remove' => 'contacts#remove'
-
+  match '/contacts/followers' => 'contacts#followers'
+  match '/contacts/followings' => 'contacts#followings'
+  match '/contacts/follow' => 'contacts#follow'
+  match '/contacts/unfollow' => 'contacts#unfollow'
+  match '/contacts/provider_follow' => 'contacts#provider_follow'
 
   match '/activities/top_activities' => 'activities#top_activities'
+  match '/activities/get_snapshots' =>  'activities#get_snapshots'
+  match '/activities/get_friends_snapshots' => 'activities#get_friends_snapshots'
   match '/entities/top_entities' => 'entities#top_entities'
 
 

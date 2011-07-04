@@ -16,8 +16,31 @@
   display:inline;
   float:right;
 }
+
 .aw_header_navl
 {
+  float:left;
+  list-style-type:none;
+  display:inline;
+  padding-right:10px;
+}
+
+
+.aw_sub_header_nav
+{
+  display:inline;
+}
+.aw_sub_header_nav_r
+{
+  float:right;
+  list-style-type:none;
+  display:inline;
+  padding-right:10px;
+}
+
+.aw_sub_header_nav_l
+{
+  float:left;
   list-style-type:none;
   display:inline;
   padding-right:10px;
@@ -78,7 +101,17 @@ label.alternate_login_label
 }
 
 
-
+.aw_sub_filter
+{
+  display:inline;
+  float:left;
+}
+.aw_sub_filter_navl
+{
+  list-style-type:none;
+  display:inline;
+  padding-right:10px;
+}
 
 
 /*************************Home Page Row2 ******************/
@@ -86,21 +119,43 @@ label.alternate_login_label
 .home_page_row2
 {
   display:block;
-  border:1px solid blue;
-  height:200px;
+  height:120px;
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
+
+.home_page_filter_row
+{
+  display:block;
+  height:30px;
+  font: 12px Arial, Helvetica, sans-serif;
+}
+
+.home_page_sub_filter_row
+{
+  display:block;
+  height:30px;
+  font: 12px Arial, Helvetica, sans-serif;
+}
 
 /*Input Section in row2 of home page*/
-.main_section{
-  width:600px;
+.input_box{
+  width:800px;
   float:left;
   margin-left:350px;
-  margin-top:30px;
+  margin-top:2px;
   height:100px;
-  border:1px solid green;
+  font: 12px Arial, Helvetica, sans-serif;
 
 }
+
+.channel_input_box{
+}
+.place_input_box{
+}
+
+
+
 /*home page user photo*/
 .home_page_photo
 {
@@ -113,75 +168,165 @@ label.alternate_login_label
 
 
 /****************************** Side Bar Filters on Activities/entities/friends***************************/
-.sidebar
-{
-  float:left;
-  width:300px;
-}
-
-.filters
-{
-  display:block;
-  border:1px solid red;
-  padding:0 0 0px 0;
-  margin-top:10px;
-}
-
-.filter_search
-{
-  border:1px solid black;
-  height:20px;
-  background:white;
-  margin-left:60px; 
-}
-
-ul.sidebar_lists
-{
-  width:70%;
-  height:150px;
-  overflow:auto;
-  border:1px;
-
-}
 
 li.user_stamp
 {
   display:block;
   list-style:none;
   list-style-type:none;
-  margin:2px;
-  text-align:center;
+  margin-top:-2px;
+  margin-left:-2px;
 }
 
 a.link_user_stamp.user_stamp
 {
   font: 12px Arial, Helvetica, sans-serif;
-  text-align:center;
+  margin-top:-2px;
+  margin-left:-2px;
 }
 
 img.img_stamp.user_stamp
 {
   width:  40px;
   height: 40px;
-  margin-top: 2px;
-  margin-right: 10px;
-  text-align:center;
   font: 12px Arial, Helvetica, sans-serif;
-}
-
-h4.sidebar_titles
-{
-  font: 16px Arial, Helvetica, sans-serif;
-  text-align:center;
-  width: 100%;
-  border:1px solid black;
   margin-top:-2px;
+  margin-left:-2px;
 }
 
-label.activities_sidebar
+
+.summary_box
 {
-   font: 14px Arial, Helvetica, sans-serif;
-   width: 100%;
+  width: 90%;
+  height: 150px;
+  border: 1px solid black;
 }
 
 
+.summary_user_box
+{
+  width: 5%;
+  height: 100%;
+  float: left;
+  border: 1px solid black;
+  font: 10px Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  
+}
+
+.summary_main_box
+{
+  height:100%;
+  width: 94%;
+  float: left;
+  border: 1px solid black;
+  font: 12px Arial, Helvetica, sans-serif;
+  overflow: hidden;
+
+}
+
+ul.summary_list{
+  width:100%;
+  height:100%;
+  overflow:auto;
+  list-style: none;
+  border:1px;
+}
+
+a.summary_user_box_a
+{
+  float:left;
+}
+
+img.summary_user_box_img
+{
+  float:left;
+  width:  40px;
+}
+
+.summary_main_box_header
+{
+  float:left;
+  font: 16px Arial, Helvetica, sans-serif;
+  height: 16px;
+  width: 100%;
+  background:cyan;
+  border: 1px solid black;
+  overflow: hidden;
+
+}
+
+.summary_main_box_attachments
+{
+   float:left;
+   font: 12px Arial, Helvetica, sans-serif;
+   border: 1px solid black;
+   width: 20%;
+   overflow: hidden;
+}
+
+.summary_main_box_friends
+{
+   float:left;
+   font: 12px Arial, Helvetica, sans-serif;
+   border: 1px solid black;
+   width: 20%;
+   overflow: hidden;
+}
+
+ul.summary_main_box_friends {
+  display: block;
+  list-style: none;
+  width: 100%
+}
+
+.summary_main_box_entities
+{
+   float:left;
+   font: 12px Arial, Helvetica, sans-serif;
+   border: 1px solid black;
+   width: 20%;
+   overflow: hidden;
+}
+
+ul.summary_main_box_entities{
+  display: block;
+  list-style: none;
+  width: 100%
+}
+
+.summary_main_box_locations
+{
+   float:left;
+   font: 12px Arial, Helvetica, sans-serif;
+   border: 1px solid black;
+   width: 20%;
+   overflow: hidden;
+}
+
+ul.summary_main_box_locations{
+  display: block;
+  list-style: none;
+  width: 100%
+}
+
+.summary_main_box_latest
+{
+   float:left;
+   font: 12px Arial, Helvetica, sans-serif;
+   border: 1px solid black;
+   width: 10%;
+   overflow: hidden;
+}
+
+
+.modal_channels_ul
+{
+   list-style: none;
+   width: 80%;
+}
+
+.modal_channels_ul li
+{
+  display: inline;
+}
