@@ -176,3 +176,18 @@ describe Location do
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: locations
+#
+#  id            :integer         not null, primary key
+#  location_type :integer         not null
+#  location_name :text            not null
+#  location_url  :string(255)
+#  location_lat  :decimal(10, 7)
+#  location_long :decimal(10, 7)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

@@ -99,3 +99,15 @@ describe UnresolvedLocation do
     end
  end
 end
+
+# == Schema Information
+#
+# Table name: unresolved_locations
+#
+#  id                       :integer         not null, primary key
+#  location_id              :integer         not null
+#  unresolved_location_name :string(255)     not null
+#  created_at               :datetime
+#  updated_at               :datetime
+#
+

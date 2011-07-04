@@ -34,3 +34,19 @@ describe Document do
       end
     end
 end
+
+# == Schema Information
+#
+# Table name: documents
+#
+#  id               :integer         not null, primary key
+#  owner_id         :integer         not null
+#  activity_id      :integer
+#  activity_word_id :integer
+#  document_name    :string(255)     not null
+#  document_type    :string(255)
+#  document_data    :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+

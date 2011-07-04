@@ -482,3 +482,24 @@ describe Activity do
 
 end
 
+
+# == Schema Information
+#
+# Table name: activities
+#
+#  id                   :integer         not null, primary key
+#  activity_word_id     :integer         not null
+#  activity_text        :text            not null
+#  activity_name        :string(255)     not null
+#  author_id            :integer         not null
+#  author_full_name     :string(255)     not null
+#  author_profile_photo :string(255)     not null
+#  parent_id            :integer
+#  base_location_id     :integer
+#  base_location_data   :text
+#  ancestry             :string(255)
+#  ancestry_depth       :integer         default(0)
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+

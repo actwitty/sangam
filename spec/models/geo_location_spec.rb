@@ -166,3 +166,17 @@ describe GeoLocation do
   end
 end
 
+
+# == Schema Information
+#
+# Table name: geo_locations
+#
+#  id            :integer         not null, primary key
+#  location_id   :integer
+#  geo_latitude  :decimal(10, 7)  not null
+#  geo_longitude :decimal(10, 7)  not null
+#  geo_name      :text            not null
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

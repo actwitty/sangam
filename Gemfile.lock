@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/bcardarella/client_side_validations.git
+  revision: 906aa08bc0a601d1b7451968e49a8446a3f8e8cf
+  specs:
+    client_side_validations (3.1.0)
+
+GIT
   remote: git://github.com/collectiveidea/delayed_job.git
   revision: 40fc746e3bd8d4bf095f1cb710efb3d3aff18013
   specs:
@@ -73,8 +79,6 @@ GEM
     childprocess (0.1.9)
       ffi (~> 1.0.6)
     chunky_png (1.2.0)
-    client_side_validations (3.0.7)
-      activesupport (~> 3.0.0)
     closure-compiler (1.1.1)
     compass (0.11.3)
       chunky_png (~> 1.2)
@@ -307,7 +311,7 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   capybara
   carrierwave!
-  client_side_validations
+  client_side_validations!
   compass
   cucumber-rails
   database_cleaner

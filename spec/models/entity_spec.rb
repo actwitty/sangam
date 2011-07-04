@@ -113,3 +113,17 @@ describe Entity do
   end
 
 end
+
+# == Schema Information
+#
+# Table name: entities
+#
+#  id           :integer         not null, primary key
+#  entity_name  :string(255)     not null
+#  entity_guid  :string(255)     not null
+#  entity_image :string(255)     not null
+#  entity_doc   :text            not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

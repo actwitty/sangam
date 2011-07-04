@@ -176,3 +176,16 @@ describe WebLocation do
   end
 
 end
+
+# == Schema Information
+#
+# Table name: web_locations
+#
+#  id                 :integer         not null, primary key
+#  location_id        :integer         not null
+#  web_location_url   :string(255)     not null
+#  web_location_title :string(255)     not null
+#  created_at         :datetime
+#  updated_at         :datetime
+#
+
