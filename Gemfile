@@ -35,7 +35,7 @@ gem 'i18n-inflector-rails', '~> 1.0'
 gem 'addressable'  , '2.2.4'
 
 gem 'json', '1.4.6'
-gem 'annotate-models', '1.0.4'
+gem 'annotate'
 
 #File uploading
 gem "fog"
