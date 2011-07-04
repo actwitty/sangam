@@ -21,7 +21,7 @@ class FacebookController < ApplicationController
         graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
         friends = graph.get_connections("me", "friends")
 
-          #  puts current_user.get_contacts_provider_uid(provider)
+
 
         friends.each {
                   |friend|
@@ -32,18 +32,25 @@ class FacebookController < ApplicationController
                                       "status"=>"invite" }
 
         }
+        puts "--FB Friends --------------"
+        puts friends
+        puts "---------------------------"
+
+        uid_based_list = current_user.get_uid_follow_status(provider, uid_list)
 
 
-        if uid_list.count() > 0
-          uid_list_in_actwitty=Authentication.find_all_uids_present_in_actwitty(provider, uid_list)
-          if !uid_list_in_actwitty.nil? && uid_list_in_actwitty.count >0
-            uid_list_and_friend = current_user.get_provider_uids_of_friends(provider, uid_list)
-            uid_list_not_friend =  uid_list_in_actwitty - uid_list_and_friend
+        uid_based_list.each_key do |key|
 
-            uid_list_and_friend.each { |uid| display_hash[uid][:status]="friend"  }
-            uid_list_not_friend.each { |uid| display_hash[uid][:status]="request"  }
-          end
+            display_hash[key]["user_id"] = uid_based_list[key][:user_id]
+            if ( uid_based_list[key][:following] == 1)
+               display_hash[key]["status"] = "Un-Follow"
+            else
+              display_hash[key]["status"] = "Follow"
+            end
+
         end
+
+        puts display_hash
 
 
       if request.xhr?

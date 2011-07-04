@@ -5,6 +5,10 @@ class HomeController < ApplicationController
    def show
     @user=nil
 
+    if params[:mode] == 'filtered'
+      @defaul_page_mode = 'filtered'
+      params.except(:mode)
+    end
     #if no id mentioned or user not found try to fall back to current user
     #if user not logged in then go to sign in page
     @follow = true

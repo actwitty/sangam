@@ -11,6 +11,9 @@ class ContactsController < ApplicationController
   def followers
     friends = current_user.get_followers()
     if request.xhr?
+      puts "---------------------------"
+      puts friends.to_json
+      puts "---------------------------"
       render :json => friends
     end
   end
