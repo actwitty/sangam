@@ -106,7 +106,7 @@ describe Campaign do
   describe "Delete" do
     it "should delete a campaign properly when deleting only campaign "   do
 
-       #Campaign.DeleteCampaign(c1.id)
+       #Campaign.delete_campaign(c1.id)
        @a1.destroy
        f = Activity.where(:id =>@c3.father_id)
        f.should be_blank
@@ -121,7 +121,7 @@ describe Campaign do
        c = Campaign.where(:id => c2.id)
        c.should be_blank
 
-       Campaign.DeleteCampaign(c1.id)
+       Campaign.delete_campaign(c1.id)
        c = Campaign.where(:id => c1.id)
        c.should be_blank
 
@@ -132,7 +132,7 @@ describe Campaign do
   end
   describe "Read" do
     it "should read campaigns properly" do
-      Campaign.GetCampaign(:activity_id => @a1.id)
+      Campaign.get_campaign(:activity_id => @a1.id)
     end
   end
 end

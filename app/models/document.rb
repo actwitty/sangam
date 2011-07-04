@@ -3,14 +3,15 @@
 #
 # Table name: documents
 #
-#  id            :integer         not null, primary key
-#  owner_id      :integer         not null
-#  activity_id   :integer
-#  document_name :string(255)     not null
-#  document_type :string(255)     not null
-#  document_data :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id               :integer         not null, primary key
+#  owner_id         :integer         not null
+#  activity_id      :integer
+#  activity_word_id :integer
+#  document_name    :string(255)     not null
+#  document_type    :string(255)     not null
+#  document_data    :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 # == Schema Information
@@ -35,11 +36,13 @@ class Document < ActiveRecord::Base
 
    belongs_to     :owner, :class_name => "User", :touch => true
    belongs_to     :activity
+   belongs_to     :activity_word
 
    validates_existence_of :owner_id
    validates_existence_of :activity_id,  :allow_nil => true
+   validates_existence_of :activity_word_id,  :allow_nil => true
 
-   validates_presence_of :document_name, :document_type
+   validates_presence_of :document_name
 
    validates_length_of :document_name, :in => 3..255 #a.b
    validates_length_of :document_type, :in => 3..255
@@ -65,12 +68,16 @@ class Document < ActiveRecord::Base
        Delayed::Job.enqueue DocumentJob.new(owner_id, activity_id,path)
      end
 
-     #useful for invocation from controllers as they give ActionDispatch::HTTP::Uploader aas params
+     #useful for invocation from controllers as they give ActionDispatch::HTTP::Uploader as params
      #callin "new" creates a cache snapshot of file in Rails.root/tmp/uploads as per initializers/fog.rb
      #tmp is chosen as Heroku makes only this folder writable
-     def UploadDocument(owner_id, activity_id, params )
-        d = Document.new(params[:document])
-        create_document(owner_id, activity_id,"#{Rails.root}/tmp#{d.document_data.to_s}")
+     #owner_id, activity_id, data_array
+     #data_array is array of ActionDispatch::HTTP::Uploader
+     def UploadDocument(owner_id, activity_id, data_array )
+        data_array.each do |attr|
+          d = Document.new(:owner_id => owner_id, :activity_id => activity_id, :document_data => attr)
+          create_document(owner_id, activity_id,"#{Rails.root}/tmp#{d.document_data.to_s}")
+        end
      end
 
     end

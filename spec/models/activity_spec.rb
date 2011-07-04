@@ -12,41 +12,48 @@ describe Activity do
     @aw2 = Factory(:activity_word)
 
     @act = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello",
-                             :activity_name => "test", :author => @u)
+                             :activity_name => "test", :author_id => @u.id, :author_full_name => @u.full_name,
+                            :author_profile_photo => @u.photo_small_url)
 
     @act_child_1 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello1",
-                            :activity_name => "test_1", :author_id => @u1.id, :parent => @act )
+                            :activity_name => "test_1", :author_id => @u1.id, :parent => @act,
+                            :author_full_name => @u1.full_name, :author_profile_photo => @u1.photo_small_url )
 
     @act_child_2 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello2",
-                             :activity_name => "test", :author => @u, :parent => @act)
+                             :activity_name => "test", :author => @u, :parent => @act,
+                              :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
 
 
     @act_child_3 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3",
-                            :activity_name => "test_3",  :author => @u2, :parent => @act)
+                            :activity_name => "test_3",  :author => @u2, :parent => @act,
+                              :author_full_name => @u2.full_name, :author_profile_photo => @u2.photo_small_url)
 
 
     @act_child_2_1 = @act_child_2.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello2_1",
-                            :activity_name => "test_2_1",   :author => @u2,
-                            :parent => @act_child_2)
+                            :activity_name => "test_2_1",   :author => @u2, :parent => @act_child_2,
+                            :author_full_name => @u2.full_name, :author_profile_photo => @u2.photo_small_url)
 
     @act_child_3_1 = @act_child_3.children.create!(:activity_word_id =>@aw2.id,:activity_text => "hello3_1",
-                             :activity_name => "test_3_1",  :author => @u,
-                             :parent => @act_child_3)
+                             :activity_name => "test_3_1",  :author => @u,  :parent => @act_child_3,
+                              :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
     #@act_child_3_1.save
 
     @act_child_3_1_1 = @act_child_3_1.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3_1_1",
-                             :activity_name => "test_3_1_1",  :author => @u3,
-                             :parent => @act_child_3_1)
+                             :activity_name => "test_3_1_1",  :author => @u3, :parent => @act_child_3_1,
+                              :author_full_name => @u3.full_name, :author_profile_photo => @u3.photo_small_url)
 
     @act_child_3_2 = @act_child_3.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3_2",
-                         :activity_name => "test_3_1", :author => @u, :parent => @act_child_3)
+                         :activity_name => "test_3_1", :author => @u, :parent => @act_child_3,
+                          :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
 
     @bct = Activity.create!(:activity_word_id =>@aw2.id,:activity_text => "hello_b",
-                             :activity_name => "test_b", :author => @u)
+                             :activity_name => "test_b", :author => @u, :author_full_name => @u.full_name,
+                             :author_profile_photo => @u.photo_small_url)
 
 
     @bct_child_1 = @bct.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_b_1",
-                            :activity_name => "test_1",  :author => @u, :parent => @bct )
+                            :activity_name => "test_1",  :author => @u, :parent => @bct,
+                            :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
 
     @act_arr =   [@act, @act_child_1 , @act_child_2, @act_child_3,@act_child_2_1, @act_child_3_1,
                   @act_child_3_1_1,  @act_child_3_2 ]
@@ -74,12 +81,12 @@ describe Activity do
 			a.errors[:activity_text].should_not be_blank
     end
 
-     it "should must not be save with blank activity text" do
+     it "can be save with blank activity text" do
       str = ""
 			a=Activity.new(:activity_word_id =>@aw1.id,:activity_text => str  )
 			a.valid?
       a.should_not be_valid
-      a.errors[:activity_text].should_not be_blank
+      a.errors[:activity_text].should be_blank
      end
 
     it "should must not be save without author" do
@@ -171,16 +178,21 @@ describe Activity do
     end
     it "user should be able read all its root activities along with their whole subtree" do
       @cct = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello_b",
-                             :activity_name => "test_c",  :author => @u1)
+                             :activity_name => "test_c",  :author => @u1,
+                              :author_full_name => @u1.full_name, :author_profile_photo => @u1.photo_small_url)
 
 
       @cct_child_1 = @cct.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_c_1",
-                            :activity_name => "test_1", :author => @u2, :parent => @cct )
+                            :activity_name => "test_1", :author => @u2, :parent => @cct,
+                            :author_full_name => @u2.full_name, :author_profile_photo => @u2.photo_small_url)
 
       @cct_child_1_1 = @cct_child_1.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_c_1_1",
-                            :activity_name => "test_1",  :author => @u, :parent => @cct_child_1 )
-
-      Activity.board(@u)
+                            :activity_name => "test_1",  :author => @u, :parent => @cct_child_1,
+                            :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
+      params = {}
+      params[:scope] = 0
+      params[:user_id] = @u.id
+      #Activity.board(params)
     end
 
   end
@@ -189,7 +201,9 @@ describe Activity do
 
     it "should be able to add child on fly" do
       a = @act.children.create(:activity_word_id => @aw2.id,:activity_text => "hello",:activity_name => "activity_temp",
-                               :author => @u, :parent => @act )
+                               :author => @u, :parent => @act, :author_full_name => @u.full_name,
+                               :author_profile_photo => @u.photo_small_url )
+
       @act.children.should include(@act_child_1, @act_child_2, @act_child_3, a)
       @act.children.size.should == 4
     end
@@ -212,7 +226,8 @@ describe Activity do
       a = @act.children
       usr = Factory(:user)
       parent = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello temp",:activity_name => "Act temp",
-                              :author => usr)
+                              :author => usr, :author_full_name => usr.full_name,
+                              :author_profile_photo => usr.photo_small_url)
       #parent = @act_child_1
       lambda {
         a[2].parent = parent
@@ -297,18 +312,36 @@ describe Activity do
 
     end
   end
-  describe "create_activity" do
+  describe "create_activity " do
     include DelayedJobSpecHelper
     it "should create activity by the class method given" do
       act = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true)
+      act2 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "burger at kfc with
+                                  <mention><name>PIZZA<name><id>235<id><mention>",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :enrich => true)
+
+      act3 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "AR rehman's jai ho",
+                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
+                              :enrich => true)
+      act3 = Activity.create_activity(:author_id => @u.id, :activity => "photgraphy" , :text => "",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
+                              :enrich => true)
+      act4 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
+                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+                              :enrich => true)
+      act5 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "Dal chawal and gulab jamoon at sahib singh sultan",
+                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
 
       act.should_not be_nil
       work_off
       child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>", :parent_id => act.id, :enrich => false )
+                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>",
+                                       :parent_id => act.id, :enrich => false )
       child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
                                       me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
       child2 = Activity.create_activity(:author_id => @u2.id, :activity => "&comment&" , :text => "Cow Cow man have fun keep
@@ -335,7 +368,7 @@ describe Activity do
         puts attr.id
         puts attr.location_name
       end
-       puts act.location.inspect
+#       puts act.location.inspect
 #      act.destroy
 #      Hub.count.should == 0
        @u.destroy
@@ -344,6 +377,93 @@ describe Activity do
       act.destroy
       act.children.should == []
 
+    end
+
+  end
+  describe "Get Snapshots" do
+    include DelayedJobSpecHelper
+    it "should create the result as per spec"  do
+      act = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true)
+
+
+      act3 = Activity.create_activity(:author_id => @u.id, :activity => "singing" , :text => "AR rehman's jai ho",
+                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
+                              :enrich => true)
+      act4 = Activity.create_activity(:author_id => @u.id, :activity => "painting" , :text => "Sachin tendulkar  rahul dravid",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
+                              :enrich => true)
+      act4 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza Britney spears  rahul dravid pizza pizza hut",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "tundi"}},
+                              :enrich => true)
+      act2 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at sachin tendulkar with
+                                  <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :enrich => true)
+       act5 = Activity.create_activity(:author_id => @u1.id, :activity => "photgraphy" , :text => "Burger at Dominos with Rahul Dravid",
+                              :location => {:unresolved_location =>{:unresolved_location_name =>  "Cool Place"}},
+                              :enrich => true)
+       act6 = Activity.create_activity(:author_id => @u2.id, :activity => "eating" , :text => "Dal roti at McDonald's with MS Dhoni",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
+                              :enrich => true)
+       ac75 = Activity.create_activity(:author_id => @u2.id, :activity => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
+                              :location => {:web_location =>{:web_location_url => "google.com", :web_location_title => "hello"}},
+                             :enrich => true)
+      act4 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
+                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+                              :enrich => true)
+      act5 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
+                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+                              :enrich => true)
+
+      act.should_not be_nil
+      work_off
+      child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>", :parent_id => act.id, :enrich => false )
+      child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
+                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+      params = {}
+      params[:user_id] =  @u.id
+      params[:current_user] =  @u
+
+      @u.new_contact_request(@u1.id)
+      @u1.new_contact_request(@u.id)
+      @u.new_contact_request(@u2.id)
+      @u2.new_contact_request(@u.id)
+      @u.new_contact_request(@u3.id)
+      @u3.new_contact_request(@u.id)
+
+      params[:scope] = 0
+      params[:order] = "2011-07-05T07:28:56Z"
+      h = @u.get_user_activities(1)
+      puts h.inspect
+      h.should_not be_nil
+
+       h = @u.get_user_entities(1)
+      puts h.inspect
+      h.should_not be_nil
+
+      h = @u.get_user_locations(1)
+      puts h.inspect
+      h.should_not be_nil
+
+      wi = ActivityWord.where(:word_name => "eating").first
+      e = Entity.where(:entity_name => "pizza").first
+      filter = {:word_id => wi.id}
+
+      h = @u.get_related_friends( filter)
+      puts h.inspect
+      h.should_not be_nil
+
+      h = @u.get_related_entities(@u.id,filter)
+      puts h.inspect
+      h.should_not be_nil
+
+      h = @u.get_related_locations(@u.id, filter)
+      puts h.inspect
+      h.should_not be_nil
     end
   end
   describe "Hub" do

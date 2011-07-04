@@ -1,14 +1,15 @@
 # == Schema Information
-# Schema version: 20110609094335
+# Schema version: 20110616040229
 #
 # Table name: entities
 #
-#  id          :integer         not null, primary key
-#  entity_name :string(255)     not null
-#  entity_guid :string(255)     not null
-#  entity_doc  :text            not null
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id           :integer         not null, primary key
+#  entity_name  :string(255)     not null
+#  entity_guid  :string(255)     not null
+#  entity_image :string(255)     not null
+#  entity_doc   :text            not null
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 ################# CAUTION!!  Should Not call delete of entity as we are going to hold them fore ever as of now :) #################
@@ -30,11 +31,14 @@ class Entity < ActiveRecord::Base
 
   has_many       :campaigns, :dependent => :destroy
 
-  validates_presence_of   :entity_name, :entity_guid, :entity_doc
+  validates_presence_of   :entity_name, :entity_guid, :entity_doc, :entity_image
   validates_uniqueness_of :entity_guid, :unique => true
 
   validates_length_of     :entity_name, :in => 1..255
   validates_length_of     :entity_guid, :in => 1..255
+  validates_length_of     :entity_image, :in => 1..255
+
+ # validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_name_image}
 
   class << self
 
@@ -49,14 +53,17 @@ class Entity < ActiveRecord::Base
     def create_entities(owner_id = nil, entity_hash ={})
 
       if !entity_hash.has_key?('mid') or entity_hash['mid'].nil?
-        puts "hello"
         return nil
       end
 
       begin
 
-        entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
-                              :entity_doc => entity_hash)
+      entity_hash['/common/topic/image'].blank? ? entity_image = AppConstants.entitiy_name_image :
+                                                  entity_image = entity_hash['/common/topic/image'][0]['id']
+
+      entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
+                              :entity_doc => entity_hash, :entity_image => entity_image)
+
 
       rescue => e
         Rails.logger.info("Entity => CreateEntity => Rescue " +  e.message )

@@ -16,7 +16,10 @@ describe Document do
       d_array.count.should == 2
 #      #d.should == @doc
 #      puts d.document_data_url
-#      puts d.document_data.thumb.url
+      d_array.each do |d|
+        puts d.id
+        puts d.document_data.thumb.url
+      end
 #      puts d.document_type
 #      #d.destroy
     end

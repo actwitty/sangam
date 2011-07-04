@@ -22,6 +22,18 @@ development: &default
 
   invalid_resource_id: 0
 
+  entitiy_name_image: "/images/actwitty/unknown_entity.png"
+
+  summary_word_count: 15
+  summary_document_count: 5
+  summary_entity_count: 5
+  summary_location_count: 5
+  summary_friend_count: 5
+  summary_text_count: 5
+  summary_loop_count: 50
+
+  stream_max_count: 15
+
 production:
   <<: *default
   #constant1:  "overriden value1"

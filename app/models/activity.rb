@@ -1,27 +1,32 @@
-require "query_manager"
 # == Schema Information
-# Schema version: 20110609094335
+# Schema version: 20110616040229
 #
 # Table name: activities
 #
-#  id               :integer         not null, primary key
-#  activity_word_id :integer         not null
-#  activity_text    :text            not null
-#  activity_name    :string(255)     not null
-#  author_id        :integer         not null
-#  parent_id        :integer
-#  ancestry         :string(255)
-#  ancestry_depth   :integer         default(0)
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id                   :integer         not null, primary key
+#  activity_word_id     :integer         not null
+#  activity_text        :text            not null
+#  activity_name        :string(255)     not null
+#  author_id            :integer         not null
+#  author_full_name     :string(255)     not null
+#  author_profile_photo :string(255)     not null
+#  parent_id            :integer
+#  base_location_id     :integer
+#  base_location_data   :text
+#  ancestry             :string(255)
+#  ancestry_depth       :integer         default(0)
+#  created_at           :datetime
+#  updated_at           :datetime
 #
 
+require "query_manager"
 #TODO add i18n error messages in all validations
 #TODO move all constants to environments
 class Activity < ActiveRecord::Base
 
   has_ancestry   :cache_depth => 3
 
+  serialize :base_location_data, Hash
 
   belongs_to :author, :class_name => "User" #, :touch => true
    #:touch => true can be un-optimal for deep nested threading
@@ -32,11 +37,13 @@ class Activity < ActiveRecord::Base
   has_many      :hubs, :dependent => :destroy
 
   has_many      :entities, :through => :hubs
-  has_many        :location,:through => :hubs
+  has_many      :locations,:through => :hubs
 
   has_many    :mentions, :dependent => :destroy #destroy will happen from activity
   has_many    :campaigns, :dependent => :destroy
   has_many    :documents, :dependent => :nullify # documents have life time more than activity
+
+  belongs_to     :base_location, :class_name => "Location"
 
   #:delete instead of :destroy to stop circular effect
   has_one      :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :delete
@@ -49,12 +56,15 @@ class Activity < ActiveRecord::Base
 
   validates_existence_of  :author_id
   validates_existence_of  :activity_word_id
+  validates_existence_of  :base_location_id, :allow_nil => true
 
-  validates_presence_of     :activity_name, :activity_text
+  validates_presence_of   :activity_name, :author_full_name, :author_profile_photo
 
-  validates_length_of       :activity_text , :in => 1..2048
+  validates_length_of     :activity_text , :maximum => 2048
 
-  validates_length_of   :activity_name,   :in => 1..255
+  validates_length_of     :activity_name,   :in => 1..255
+
+
 
   protected
 
@@ -92,79 +102,12 @@ class Activity < ActiveRecord::Base
     end
 
   public
-  class << self
 
+
+  class << self
     include QueryManager
     include ActivityTextFormatter
-
-    # id_max => id
-    # activity => {enabled  => true/false, word => "eating"}
-    # friends => true/false
-    # related => true/false
-    def board (params)
-      u = User.all #change it with users in contact
-      a = Activity.where(:author_id => u, :ancestry => nil).order("updated_at DESC").limit(5)
-
-      # TODO Add Campaigns to each activity
-      # TODO Add user name and photograph Id to each activity
-
-       h = Hash[*a.collect { |v|
-                [v, v.subtree.from_depth(1).arrange]
-              }.flatten]
-      puts h
-    end
-
-    def page (user, filter_activity = {})
-      #TODO Only users activity. if its not root then show only that activity without its parent and child
-    end
-
-    #TODO
-    def top_activities (user)
-
-    end
-    #TODO
-    def campaign_count (user, act_id)
-
-    end
-    #TODO
-    def bookmarked_activity (user)
-
-    end
-    #TODO
-    def parse_activity(xml_data)
-
-    end
-    #TODO
-    def update_activity(act)
-
-    end
-    #TODO
-    def delete_activity(act)
-
-    end
-
-    def create_mentions(text, activity)
-       m = get_mentions(text)
-       m.each do |attr|
-         obj = Mention.create(:user_id => attr[0].to_i, :activity_id => activity.id)
-         if obj.id.nil?
-           text= untag_a_mention(text,attr[0].to_i )
-         end
-       end
-
-       if m.length > 0
-         text = flatten_mentions(text)
-
-         #Save the updated mention if enrich is not done
-         update = activity.update_attributes(:activity_text => text )
-
-         if !update
-           Rails.logger.error("Activity =. CreateMentions => Mentions Saving failed")
-         end
-       end
-       text
-    end
-
+    include LocationRoutines
 
 #    CHILD ACTIVITIES AND CAMPAIGNS WILL NOT GO TO HUB
 #    :author_id => user id
@@ -188,38 +131,57 @@ class Activity < ActiveRecord::Base
 
     def create_activity(params={})
 
-      word_obj = ActivityWord.create_activity_word(params[:activity], relation = "verb-form")
+      base_location_hash = nil
+      base_location_data = nil
 
+      #get user details
+      u = User.find(params[:author_id])
+      if u.nil?
+        raise ActiveRecord::RecordNotSaved.new(self)
+      end
+
+      #create the activity word
+      word_obj = ActivityWord.create_activity_word(params[:activity], relation = "verb-form")
 
       #Add activity_word to params hash for hub creation
       params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
 
+
+      #create location
+      if !params[:location].blank?
+       loc= Location.create_location(params[:location])
+       if !loc.nil?
+          #Add location to params hash for hub creation
+          base_location_id = params[:location_hash] = loc.id
+          base_location_hash = location_hash(loc)
+       end
+      end
+
+      #create activity => either root or child
       if params[:parent_id].blank?
+
         obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
-                         :author_id => params[:author_id])
+                               :author_id => params[:author_id],:author_full_name => u.full_name,
+                               :author_profile_photo => u.photo_small_url,:base_location_id => base_location_id,
+                               :base_location_data => base_location_hash,:parent_id => nil)
 
 
       else
          act = Activity.find(params[:parent_id])
          if !act.blank?
             obj = act.children.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] ,
-                                 :activity_name => params[:activity], :author_id => params[:author_id], :parent => act )
+                                 :activity_name => params[:activity], :author_id => params[:author_id],
+                                 :author_full_name => u.full_name, :author_profile_photo => u.photo_small_url,
+                                 :parent => act)
          end
       end
 
+      puts obj.inspect
       #Generate Mentions
       #TODO - not very optimal as create_mention saves the the activity text with flatten_mentions. if we move this
       #TODO - function before Activity.create! then mention create is not valid..so going with less optimal way
-      params[:text] = create_mentions(params[:text], obj)
+      params[:text] = Mention.create_mentions(params[:text], obj)
 
-       #create location
-      if !params[:location].blank?
-       loc= Location.create_location(params[:location])
-       if !loc.nil?
-          #Add location to params hash for hub creation
-          params[:location_hash] = loc.id
-       end
-      end
 
       #Add activity to params hash for hub creation
       params[:activity_hash] = obj.id
@@ -231,11 +193,6 @@ class Activity < ActiveRecord::Base
       return obj
 
     rescue => e
-      #cleanup the location
-      if !params[:location].blank?
-        loc.destroy
-      end
-
       Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
       nil
     end
@@ -247,14 +204,21 @@ class Activity < ActiveRecord::Base
     hubs_hash[:activity_word_id] =  params[:activity_word_hash][:id]
     hubs_hash[:activity_name] =  params[:activity_word_hash][:word]
     hubs_hash[:user_id] = params[:author_id]
-    hubs_hash[:location_id] = params[:location_hash]
 
-    params[:entity_hash].each do |key, value|
-      hubs_hash[:entity_name] = key
-      hubs_hash[:entity_id] = value
-      puts hubs_hash
+    if !params[:location_hash].nil?
+      hubs_hash[:location_id] = params[:location_hash]
+    end
+
+    if !params[:entity_hash].nil?
+      params[:entity_hash].each do |key, value|
+        #hubs_hash[:entity_name] = key
+        hubs_hash[:entity_id] = value
+        Hub.create!(hubs_hash)
+      end
+    else
       Hub.create!(hubs_hash)
     end
+
     obj = Activity.where(:id => params[:activity_hash]).first
     obj.update_attributes(:activity_text => params[:text])
 #    puts obj.inspect
@@ -280,13 +244,17 @@ class Activity < ActiveRecord::Base
 
        end
      end
-
-     params[:text] = mark_entities(params[:text],params[:entity_hash])
+     if !params[:entity_hash].nil?
+       params[:text] = mark_entities(params[:text],params[:entity_hash])
+     end
 
      create_hub_entries(params)
+
+     #TODO Create_Documents
 
      Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
   end
    handle_asynchronously :post_proc_activity
   end
+
 end

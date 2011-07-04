@@ -35,6 +35,11 @@ describe Entity do
         en = Factory(:entity, :entity_name => "")
       }.should raise_error ActiveRecord::RecordInvalid
     end
+    it "should have not have blank image" do
+      lambda{
+        en = Factory(:entity, :entity_image => "")
+      }.should raise_error ActiveRecord::RecordInvalid
+    end
     it "should have not have name with length more than 255" do
       lambda{
         a = ""

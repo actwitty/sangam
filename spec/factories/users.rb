@@ -6,6 +6,8 @@ Factory.define :user do |u|
   u.sequence(:email) { |n| "lemony#{n}@lemonbag.com" }
   u.password "lemonyssecret"
   u.password_confirmation { |u| u.password }
+  u.sequence(:full_name){|n| "lemony#{n} lime#{n}" }
+  u.sequence(:photo_small_url ){|n| "images/id_#{n}" }
   
   u.after_build do |user|
 

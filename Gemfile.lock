@@ -268,6 +268,9 @@ GEM
       rubyzip
     simple_form (1.4.0)
     spork (0.8.4)
+    squeel (0.8.4)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
     subexec (0.0.4)
     term-ansicolor (1.0.5)
     thor (0.14.6)
@@ -339,6 +342,7 @@ DEPENDENCIES
   selenium-webdriver (~> 0.2.0)
   simple_form
   spork (= 0.8.4)
+  squeel
   validates_existence (>= 0.4)
   will_paginate (= 3.0.pre2)
   wordnik (>= 0.3)

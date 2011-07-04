@@ -13,13 +13,17 @@
 ActiveRecord::Schema.define(:version => 20110616040229) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "activity_word_id",                :null => false
-    t.text     "activity_text",                   :null => false
-    t.string   "activity_name",                   :null => false
-    t.integer  "author_id",                       :null => false
+    t.integer  "activity_word_id",                    :null => false
+    t.text     "activity_text",                       :null => false
+    t.string   "activity_name",                       :null => false
+    t.integer  "author_id",                           :null => false
+    t.string   "author_full_name",                    :null => false
+    t.string   "author_profile_photo",                :null => false
     t.integer  "parent_id"
+    t.integer  "base_location_id"
+    t.text     "base_location_data"
     t.string   "ancestry"
-    t.integer  "ancestry_depth",   :default => 0
+    t.integer  "ancestry_depth",       :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,8 +32,10 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "activities", ["activity_word_id", "author_id"], :name => "index_activities_on_activity_word_id_and_author_id"
   add_index "activities", ["ancestry"], :name => "index_activities_on_ancestry"
   add_index "activities", ["author_id", "activity_name", "activity_word_id"], :name => "index_activity_author_name_dict"
-  add_index "activities", ["author_id"], :name => "index_activities_on_author_id"
+  add_index "activities", ["author_id", "parent_id"], :name => "index_activities_on_author_id_and_parent_id"
+  add_index "activities", ["base_location_id"], :name => "index_activities_on_base_location_id"
   add_index "activities", ["parent_id"], :name => "index_activities_on_parent_id"
+  add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
 
   create_table "activity_words", :force => true do |t|
     t.string   "word_name",  :null => false
@@ -107,29 +113,31 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "documents", :force => true do |t|
-    t.integer  "owner_id",      :null => false
+    t.integer  "owner_id",         :null => false
     t.integer  "activity_id"
-    t.string   "document_name", :null => false
-    t.string   "document_type", :null => false
+    t.integer  "activity_word_id"
+    t.string   "document_name",    :null => false
+    t.string   "document_type"
     t.string   "document_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "documents", ["activity_id", "document_name", "document_type"], :name => "index_docs_on_activity_name_type"
-  add_index "documents", ["document_name", "document_type"], :name => "index_docs_on_name_type"
+  add_index "documents", ["activity_id"], :name => "index_documents_on_activity_id"
+  add_index "documents", ["activity_word_id", "document_type"], :name => "index_documents_on_activity_word_id_and_document_type"
   add_index "documents", ["document_type"], :name => "index_documents_on_document_type"
-  add_index "documents", ["owner_id", "activity_id", "document_name", "document_type"], :name => "index_docs_on_owner_activity_name_type"
+  add_index "documents", ["owner_id", "document_type"], :name => "index_documents_on_owner_id_and_document_type"
 
   create_table "entities", :force => true do |t|
-    t.string   "entity_name", :null => false
-    t.string   "entity_guid", :null => false
-    t.text     "entity_doc",  :null => false
+    t.string   "entity_name",  :null => false
+    t.string   "entity_guid",  :null => false
+    t.string   "entity_image", :null => false
+    t.text     "entity_doc",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "entities", ["entity_guid"], :name => "index_entities_on_entity_guid"
+  add_index "entities", ["entity_guid"], :name => "index_entities_on_entity_guid", :unique => true
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name"
 
   create_table "entity_documents", :force => true do |t|
@@ -207,7 +215,6 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
     t.string   "activity_name",    :null => false
     t.integer  "activity_word_id", :null => false
     t.integer  "entity_id"
-    t.string   "entity_name"
     t.integer  "user_id",          :null => false
     t.integer  "location_id"
     t.datetime "created_at"
@@ -220,7 +227,6 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "hubs", ["activity_word_id", "user_id"], :name => "index_hubs_on_activity_word_id_and_user_id"
   add_index "hubs", ["entity_id", "activity_id"], :name => "index_hubs_on_entity_id_and_activity_id"
   add_index "hubs", ["entity_id", "user_id"], :name => "index_hubs_on_entity_id_and_user_id"
-  add_index "hubs", ["entity_name"], :name => "index_hubs_on_entity_name"
   add_index "hubs", ["location_id", "user_id"], :name => "index_hubs_on_location_id_and_user_id"
   add_index "hubs", ["user_id", "activity_word_id", "entity_id"], :name => "index_hubs_on_user_activity_entity"
 
@@ -238,14 +244,20 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "location_hubs", ["web_join_id", "unresolved_join_id"], :name => "index_location_hub_on_web_unresolved"
 
   create_table "locations", :force => true do |t|
-    t.integer  "location_type", :null => false
-    t.text     "location_name", :null => false
+    t.integer  "location_type",                                :null => false
+    t.text     "location_name",                                :null => false
+    t.string   "location_url"
+    t.decimal  "location_lat",  :precision => 10, :scale => 7
+    t.decimal  "location_long", :precision => 10, :scale => 7
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "locations", ["location_lat", "location_long"], :name => "index_locations_on_location_lat_and_location_long", :unique => true
+  add_index "locations", ["location_long"], :name => "index_locations_on_location_long"
   add_index "locations", ["location_name"], :name => "index_locations_on_location_name"
   add_index "locations", ["location_type", "location_name"], :name => "index_locations_on_location_type_and_location_name"
+  add_index "locations", ["location_url"], :name => "index_locations_on_location_url", :unique => true
 
   create_table "loops", :force => true do |t|
     t.string   "name"

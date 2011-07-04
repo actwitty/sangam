@@ -10,8 +10,6 @@ class CreateHubs < ActiveRecord::Migration
       #it can become null here => when entity gets deleted it will be  nullified which SHOULD NOT happen - no entity deletion
       #also possible that an activity does not have an entity
       t.integer :entity_id
-      #here entity name can be null when an activity does not have an entity
-      t.string  :entity_name
 
       t.integer :user_id, :null => false
 
@@ -34,7 +32,6 @@ class CreateHubs < ActiveRecord::Migration
     add_index :hubs,  [:entity_id , :activity_id]
     add_index :hubs,  :activity_id
     add_index :hubs,  :activity_name
-    add_index :hubs,  :entity_name
 
     #TODO modify ass needed
 
@@ -54,7 +51,6 @@ class CreateHubs < ActiveRecord::Migration
     remove_index :hubs,  [:entity_id , :activity_id]
     remove_index :hubs,  :activity_id
     remove_index :hubs,  :activity_name
-    remove_index :hubs,  :entity_name
 
     #TODO modify ass needed
 

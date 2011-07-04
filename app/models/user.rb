@@ -63,9 +63,9 @@ class User < ActiveRecord::Base
   #CREATE & DESTROY for hub, hub association, mentions, campaigns, entity_ownerships, location_ownerships  will happen from activity create & destroy
   #no explicit create & destroy is called by user for all these
   has_many :hubs
-  has_many :entities, :through => :hubs
-  has_many :locations, :through => :hubs
-  has_many  :activity_words, :through => :hubs
+  has_many :entities, :through => :hubs, :uniq => true
+  has_many :locations, :through => :hubs, :uniq => true
+  has_many  :activity_words, :through => :hubs, :uniq => true
 
   has_many :mentions
   has_many :campaigns,:foreign_key => :author_id
@@ -112,7 +112,6 @@ class User < ActiveRecord::Base
     return users_list
   end
 
-
   def get_contacts
     users_list=nil
     friends_id_list = contacts.select("friend_id").where(:status =>
@@ -123,8 +122,6 @@ class User < ActiveRecord::Base
     end
     return users_list
   end
-
-
 
   def new_contact_request (friend_id)
     Contact.request_new(id, friend_id)
@@ -164,6 +161,133 @@ class User < ActiveRecord::Base
   end
 
 
+  #sort_order => 1 (lexicographical)
+  #sort_order => 2 (based on updated)
+  #returns hash of : {:name => "eating" ,:id => 123 }
+  def get_user_activities( sort_order)
+
+     h = Activity.where(:author_id => self.id).group(:activity_word_id, :activity_name).
+         order("MAX(updated_at)  DESC").count
+
+     word_hash = []
+
+     h.each do |k,v|
+        word_hash << {:name => k[1], :id => k[0]}
+     end
+
+     if !sort_order.blank?  and sort_order == 1
+        word_hash = word_hash.sort {|x, y| x[:name] <=> y[:name] }
+     end
+        word_hash
+     end
+
+  #sort_order => 1 (lexicographical)
+  #sort_order => 2 (based on updated)
+  #returns hash of : {:name => "pizza" , :id => 123 }
+  def get_user_entities(sort_order)
+
+    entity_hash = []
+
+    h = entities.order("updated_at DESC").each do |attr|
+      entity_hash <<  {:name => attr.entity_name,:id => attr.id}
+    end
+
+    if !sort_order.blank?  and sort_order == 1
+      entity_hash = entity_hash.sort {|x, y| x[:name] <=> y[:name] }
+    end
+    entity_hash
+  end
+
+  include LocationRoutines
+
+  #sort_order => 1 (lexicographical)
+  #sort_order => 2 (based on updated)
+  #returns: array of :type => 1, :url => "http://google.com", :name => "Google"
+  #                                                      OR
+  #                 :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
+  #                                                      OR
+  #                 :type => 2, :name => "John's home"]
+
+  def get_user_locations( sort_order)
+
+    lh = []
+
+    h = locations.order("updated_at DESC").each do |attr|
+      l = location_hash(attr)
+      l[:id] = attr.id
+      lh <<  l
+    end
+
+    if !sort_order.blank?  and sort_order == 1
+      lh = lh.sort {|x, y| x[:name] <=> y[:name] }
+    end
+
+    lh
+    end
+
+  #always current_user's id (logged in)
+  #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
+  #returns array of {:id => 123, :name => "samarth" , :image => "images/234"}
+  def get_related_friends(filter = {})
+
+    friend_objs = {}
+
+    users = get_contacts
+    users.each do |attr|
+      friend_objs[attr.id] = attr
+    end
+
+    h = {}
+    h = process_filter(filter)
+    h[:user_id] = friend_objs.keys
+    h = Hub.where(h).group(:user_id).order("MAX(updated_at) DESC").count
+
+    friends = []
+    h.each do |k,v|
+      friends << {:id => friend_objs[k].id, :name => friend_objs[k].full_name,
+                   :image => friend_objs[k].photo_small_url}
+    end
+    friends
+  end
+
+  #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
+  #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
+  def get_related_entities(user_id, filter = {})
+    h = {}
+    h = process_filter(filter)
+    h[:user_id] = user_id
+
+    h = Hub.where(h).group(:entity_id).order("MAX(updated_at) DESC").count
+    e = Entity.where(:id => h.keys).group(:id, :entity_name).order("MAX(updated_at) DESC").count
+
+    entity_hash = []
+    e.each do |k,v|
+      entity_hash << {:id => k[0], :name => k[1]}
+    end
+    entity_hash
+  end
+
+  #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
+  #returns array of :type => 1, :url => "http://google.com", :name => "Google"
+  #                                                      OR
+  #                 :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
+  #                                                      OR
+  #                 :type => 2, :name => "John's home"
+  def get_related_locations(user_id, filter = {})
+    h = {}
+    h = process_filter(filter)
+    h[:user_id] = user_id
+
+    lh = []
+    h = Hub.where(h).group(:location_id).order("MAX(updated_at) DESC").count
+    Location.where(:id => h.keys).order("updated_at DESC").all.each do |attr|
+      l = location_hash(attr)
+      l[:id] = attr.id
+      lh <<  l
+    end
+    lh
+  end
+
 
   # private methods
   private
@@ -181,4 +305,21 @@ class User < ActiveRecord::Base
        self.username = self.email
     end
   end
+
+
+  def process_filter(filter)
+
+    h = {}
+    if !filter[:word_id].blank?
+      h[:activity_word_id] = filter[:word_id]
+    end
+    if !filter[:location_id].blank?
+      h[:location_id] = filter[:location_id]
+    end
+    if !filter[:entity_id].blank?
+       h[:entity_id] = filter[:entity_id]
+    end
+    h
+    end
+
 end

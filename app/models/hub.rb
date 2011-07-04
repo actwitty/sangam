@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110609094335
+# Schema version: 20110616040229
 #
 # Table name: hubs
 #
@@ -8,7 +8,6 @@
 #  activity_name    :string(255)     not null
 #  activity_word_id :integer         not null
 #  entity_id        :integer
-#  entity_name      :string(255)
 #  user_id          :integer         not null
 #  location_id      :integer
 #  created_at       :datetime
@@ -31,6 +30,5 @@ class Hub < ActiveRecord::Base
   validates_presence_of :activity_name
 
   validates_length_of   :activity_name , :in => 1..255
-  validates_length_of   :entity_name, :maximum => 255, :allow_blank => true
 
 end

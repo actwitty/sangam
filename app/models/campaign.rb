@@ -105,7 +105,7 @@ class Campaign < ActiveRecord::Base
       Rails.logger.error("Campaign => create_campaign => #{e.message} => #{params.to_s}")
       nil
     end
-    def DeleteCampaign(campaign_id)
+    def delete_campaign(campaign_id)
       campaign = Campaign.find(campaign_id)
       campaign.father.destroy
     end
@@ -120,7 +120,7 @@ class Campaign < ActiveRecord::Base
   #[["like", 2, 1679], 1]
   #[["support", 3, 1677], 1]
 
-    def GetCampaign(params={})
+    def get_campaign(params={})
       campaigns = Campaign.where( params).group(:campaign_name, :campaign_value, :author_id).order(:campaign_name).count
       campaigns.each do  |attr|
         puts attr.to_s

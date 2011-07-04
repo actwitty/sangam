@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
                         :activity_count => 20,
                         :user => {:user_id => 123, :full_name => "Sudha Saxena", :photo => "http://google.com"},
 
-                        :location => [{:location_id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}}] ,
+                        :locations => [{:location_id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}}] ,
                         :documents => [{:document_id => 213, :document_name => "file.jpg", :document_type => "image/jpg", :document_url => "http://s3.amazonaws.com/1"},
                                                   {:document_id => 214,:document_name => "file1.jpg", :document_type => "image/jpg", :document_url => "http://s3.amazonaws.com/2"},
                                                   {:document_id => 215,:document_name => "file2.jpg", :document_type => "image/jpg", :document_url => "http://s3.amazonaws.com/3"} ],

@@ -84,6 +84,9 @@ gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delaye
 #simple form
 gem "simple_form"
 
+#easy ARel
+gem "squeel"  # Last officially released gem
+
 group :development do
 
 end

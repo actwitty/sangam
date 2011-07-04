@@ -16,6 +16,8 @@ class ActivityWord < ActiveRecord::Base
   #should not get deleted
   has_many :activities, :dependent => :destroy
 
+  has_many :documents, :dependent => :nullify
+
   has_many :hubs
   has_many :entities, :through => :hubs
   has_many :locations, :through => :hubs
@@ -67,6 +69,7 @@ class ActivityWord < ActiveRecord::Base
       end
 
       ActivityWord.CreateRelatedWords(word_obj, relation)
+      puts
       return word_obj
     end
 

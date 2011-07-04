@@ -6,11 +6,13 @@
 
         #uniqe global uid
         t.string    :entity_guid, :null => false
+        t.string   :entity_image, :null => false
+
         t.text     :entity_doc, :null => false
 				t.timestamps
       end
 
-			  add_index :entities, :entity_guid, :uniqne => true
+			  add_index :entities, :entity_guid, :unique => true
         add_index :entities, :entity_name
 
 		end

@@ -1,16 +1,20 @@
 # == Schema Information
-# Schema version: 20110609094335
+# Schema version: 20110616040229
 #
 # Table name: locations
 #
 #  id            :integer         not null, primary key
 #  location_type :integer         not null
 #  location_name :text            not null
+#  location_url  :string(255)
+#  location_lat  :decimal(10, 7)
+#  location_long :decimal(10, 7)
 #  created_at    :datetime
 #  updated_at    :datetime
 #
 
 class Location < ActiveRecord::Base
+  geocoded_by :address, :latitude  => :location_lat, :longitude => :location_long # ActiveRecord
 
   has_many :hubs, :dependent => :nullify
 
@@ -19,10 +23,6 @@ class Location < ActiveRecord::Base
   has_many :entities, :through => :hubs
   has_many :users, :through => :hubs
 
-  #all urls should be destroyed
-  has_one :web_location, :dependent => :destroy
-  has_one :geo_location, :dependent => :destroy
-  has_one :unresolved_location, :dependent => :destroy
 
   has_many :web_joins, :class_name => "LocationHub", :foreign_key => :web_join_id, :dependent => :destroy
   has_many :geo_joins,:class_name => "LocationHub", :foreign_key => :geo_join_id, :dependent => :destroy
@@ -30,84 +30,85 @@ class Location < ActiveRecord::Base
 
   has_many  :campaigns, :dependent => :destroy
 
-  validates_presence_of :location_type, :location_name
+  #TODO the serializable base_location_data in activity is not delete with this..check
+  has_many :base_activities, :foreign_key => :base_location_id, :class_name => "Activity", :dependent => :nullify
 
+  validates_presence_of :location_type, :location_name
   validates_numericality_of :location_type, :greater_than_or_equal_to => 1 , :less_than_or_equal_to => 3
 
   validates_length_of :location_name , :in => 1..1024
 
-  before_save :ensure_proper_location_type
+  validates_uniqueness_of :location_url, :unless => Proc.new{|a|a.location_url.nil?}
+  validates_length_of     :location_url, :in => 1..255 , :unless => Proc.new{|a|a.location_url.nil?}
+  validates_format_of     :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
 
-  before_destroy :ensure_proper_clean_up
+  validates_numericality_of :location_lat,
+                            :greater_than_or_equal_to => -90 ,:less_than_or_equal_to => 90, :unless => Proc.new{|a|a.location_lat.nil?}
+  validates_numericality_of :location_long,
+                            :greater_than_or_equal_to => -180 ,:less_than_or_equal_to => 180, :unless => Proc.new{|a|a.location_long.nil?}
 
-  protected
-
-  def  ensure_proper_location_type
-    Rails.logger.info("Location Save")
-  end
-
-  def ensure_proper_clean_up
-    Rails.logger.info( "Location Destroy " + self.location_type.to_s)
-  end
+  validates_uniqueness_of  :location_lat, :scope => :location_long, :unless => Proc.new{|a|a.location_lat.nil?}
 
 
-  #Return an LOCATION Object on New location creation or already existing location
-  #In case of other errors nil is returned
-  #Ned to make more DRY
-  def self.create_location(location_hash = {})
+  def self.create_location(location_hash ={})
 
     if !location_hash[:web_location].nil? and !location_hash[:web_location][:web_location_url].blank?
-      loc_type = 1
+
       new_hash = location_hash[:web_location]
-
-      new_hash[:web_location_url]=new_hash[:web_location_url]
-
-      if !new_hash[:web_location_url].nil?
-        if ! (/^(http|https):\/\// =~ new_hash[:web_location_url])
-          new_hash[:web_location_url] = "http://"  + new_hash[:web_location_url]
-        end
+      if ! (/^(http|https):\/\// =~ new_hash[:web_location_url])
+         new_hash[:web_location_url] = "http://"  + new_hash[:web_location_url]
       end
+      h = {:location_type => 1, :location_url => new_hash[:web_location_url], :location_name => new_hash[:web_location_title]}
 
-      klass = "WebLocation"
-      assoc  = :web_location
-      assocs = :web_locations
-      uniq_hash = {:web_location_url => new_hash[:web_location_url]}
-      text_data =  new_hash[:web_location_title]
     elsif !location_hash[:geo_location].nil?
-      loc_type = 2
+
       new_hash = location_hash[:geo_location]
-      klass = "GeoLocation"
-      assoc  = :geo_location
-      assocs = :geo_locations
-      uniq_hash = {:geo_latitude => new_hash[:geo_latitude], :geo_longitude => new_hash[:geo_longitude]}
-      text_data =  new_hash[:geo_name]
+      h = {:location_type => 2, :location_lat => new_hash[:geo_latitude],:location_long => new_hash[:geo_longitude],
+          :location_name => new_hash[:geo_name]}
+
     elsif !location_hash[:unresolved_location].nil?
-      loc_type = 3
       new_hash = location_hash[:unresolved_location]
-      klass = "UnresolvedLocation"
-      assoc  = :unresolved_location
-      assocs = :unresolved_locations
-      text_data =  new_hash[:unresolved_location_name]
-      uniq_hash = {}
+      h = {:location_type => 3, :location_name => new_hash[:unresolved_location_name]}
     end
-
-    l = Location.create(:location_type => loc_type, :location_name => text_data)
-
-    new_hash[:location_id] = l.id
-    loc = klass.constantize.create!( new_hash)
-    return l
+    l = Location.create!(h)
 
     rescue => e
       Rails.logger.info("Location => create_location => Rescue " +  e.message )
-      l.destroy
       l = nil
       #Validation Uniqueness fails
       if /has already been taken/ =~ e.message
-        loc = Location.joins(assoc).where(assocs => uniq_hash)
-        l = loc.first
+        h.delete(:location_name)
+        l = Location.where(h).first
         Rails.logger.info("Location => create_location => Rescue => Uniq index found " + l.location_type.to_s)
       end
     return l
+  end
+
+  def self.search_location(search_hash= {})
+    location_ids = {}
+
+    if !search_hash[:web_location].nil? and  !search_hash[:web_location][:web_location_url].blank?
+      web_hash = search_hash[:web_location]
+      location_ids= Location.where("location_url LIKE :loc_url_http or
+                                                    location_url LIKE :loc_url_https",
+                                {:loc_url_http => "http://#{web_hash[:web_location_url]}%",
+                                :loc_url_https => "https://#{web_hash[:web_location_url]}%"})
+
+    elsif !search_hash[:geo_location].nil? and !search_hash[:geo_location][:geo_latitude].blank? and
+                                          !search_hash[:geo_location][:geo_longitude].blank?
+      geo_hash = search_hash[:geo_location]
+
+      if geo_hash[:range].nil?
+        location_ids= Location.where("location_lat = :geo_lat AND location_long = :geo_long",
+               {:geo_lat => geo_hash[:geo_latitude],:geo_long => geo_hash[:geo_longitude]})
+      else
+        location_ids = Location.near([geo_hash[:geo_latitude], geo_hash[:geo_longitude]],geo_hash[:range])
+        #location_ids= Location.where(:id => wls)
+      end
+
+    end
+
+    return location_ids
 
   end
 
@@ -122,37 +123,7 @@ class Location < ActiveRecord::Base
 
   end
 
-  #Returns a list of location as relation always
-  # Searches on URL - Sub domain search not there as of now due to performance issue with MySQL Inno db
-  #Searches on Lat-Long
-  #Searches on Lat-Long with a Range
-  def self.search_location(search_hash= {})
-    location_ids = {}
 
-    if !search_hash[:web_location].nil? and  !search_hash[:web_location][:web_location_url].blank?
-      web_hash = search_hash[:web_location]
-      location_ids= Location.joins(:web_location).where("web_location_url LIKE :loc_url_http or
-                                                    web_location_url LIKE :loc_url_https",
-                                {:loc_url_http => "http://#{web_hash[:web_location_url]}%",
-                                :loc_url_https => "https://#{web_hash[:web_location_url]}%"})
-
-    elsif !search_hash[:geo_location].nil? and !search_hash[:geo_location][:geo_latitude].blank? and
-                                          !search_hash[:geo_location][:geo_longitude].blank?
-      geo_hash = search_hash[:geo_location]
-
-      if geo_hash[:range].nil?
-        location_ids= Location.joins(:geo_location).where("geo_latitude = :geo_lat AND geo_longitude = :geo_long",
-               {:geo_lat => geo_hash[:geo_latitude],:geo_long => geo_hash[:geo_longitude]})
-      else
-        wls = GeoLocation.near([geo_hash[:geo_latitude], geo_hash[:geo_longitude]],geo_hash[:range])
-        location_ids= Location.joins(:geo_location).where(:geo_locations => {:id => wls})
-      end
-
-    end
-
-    return location_ids
-
-  end
   #Joins two location eg. Web location at a {lat long}
   #or a name location at Web page
   # or a name location at a lat-long

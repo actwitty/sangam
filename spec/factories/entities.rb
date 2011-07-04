@@ -3,6 +3,7 @@
 Factory.define :entity do |f|
   f.sequence(:entity_guid) {|n|"/m/234#{n}" }
   f.sequence(:entity_name) {|n|"Entity name #{n}" }
+  f.sequence(:entity_image) {|n|"http://freebase.com/#{n}" }
   f.sequence(:entity_doc) {|n|
                           {'guid'=>"23456_#{n}",
                             'name'=> "Entity name #{n}",
