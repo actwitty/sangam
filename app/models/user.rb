@@ -144,13 +144,43 @@ class User < ActiveRecord::Base
 
 
   def get_provider_uids_of_friends(provider, uid_list)
-   friends_id_list = contacts.select("friend_id").where(:status =>
-                                                  Contact.statusStringToKey['Connected']).map(&:friend_id)
+   friends_id_list = contacts.select("friend_id").map(&:friend_id)
 
    Authentication.all(:select => "uid",:conditions=> ['user_id in (?) and uid in (?)',
                                                        friends_id_list, uid_list]).map(&:uid)
 
   end
+
+
+  def get_uid_follow_status(provider, uid_list)
+
+    auths = Authentication.all(:select => "uid, user_id", :conditions=> ['uid in (?)',
+                                                                            uid_list])
+
+    #TODO : Fix this properly
+    uid_based_list = Hash.new
+    user_id_list = Hash.new
+    auths.each do |auth|
+         uid_based_list[auth.uid] = {:user_id => auth.user.id, :following => 0}
+         user_id_list[auth.user_id] = auth.uid
+    end
+
+    friends_list = Contact.all(:select => "friend_id", :conditions=> ['user_id = ? and friend_id in (?)',
+                                                                            id,
+                                                                            user_id_list.keys]).map(&:friend_id)
+
+
+
+    friends_list.each do |friend|
+         uid_based_list[user_id_list[friend]][:following] = 1
+    end
+
+    puts  uid_based_list
+    return uid_based_list
+
+  end
+
+
 
   def follow(friend_id)
     Contact.follow(id, friend_id)
@@ -165,7 +195,7 @@ class User < ActiveRecord::Base
   end
 
   def followings_count()
-      contacts.count()
+    contacts.count()
   end
 
   def check_follower(friend_id)
@@ -174,21 +204,38 @@ class User < ActiveRecord::Base
 
       return false
     else
-      puts "xxxxxxxxxxxxxx"
       return true
     end
   end
 
-  def get_followings
-    friends_id_list = contacts.select("user_id").where(:friend_id => id)
+  def get_followers
+    users_list = nil
+    friends_id_list = Contact.select("user_id").where(:friend_id => id).map(&:user_id)
+
     if !friends_id_list.nil? && friends_id_list.count() != 0
-      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list )
+      users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list ).index_by(&:id)
+
+      followings_as_well_list = Contact.select("friend_id").where("friend_id in (?)
+                                                                and user_id = ?",
+                                                                friends_id_list,
+                                                                id ).map(&:friend_id)
+
+      followings_as_well_list.each { |user_id|
+                                      puts "USER ID => " + user_id.to_s
+                                      unless users_list[user_id].nil?
+                                        users_list[user_id]["following"] = 1
+                                      end
+                                    }
+
+
     end
     return users_list
   end
 
-  def get_followers
-    friends_id_list = contacts.select("friend_id").where(:user_id => id)
+  def get_followings
+    users_list=nil
+    friends_id_list = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
+
     if !friends_id_list.nil? && friends_id_list.count() != 0
       users_list=User.select("id,full_name,photo_small_url").where("id in (?)", friends_id_list )
     end
@@ -203,7 +250,7 @@ class User < ActiveRecord::Base
                             or full_name ILIKE ?', search,
                                                    "%#{search}%"])
     else
-     select("id,full_name,photo_small_url").order("full_name")
+      select("id,full_name,photo_small_url").order("full_name")
     end
   end
 
