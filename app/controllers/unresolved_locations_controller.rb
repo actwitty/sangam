@@ -1,2 +1,0 @@
-class UnresolvedLocationsController < ApplicationController
-end
