@@ -53,4 +53,5 @@ stylesheets:
     - public/stylesheets/actwitty/home_page.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
+    - public/stylesheets/actwitty/mainpage.css
 

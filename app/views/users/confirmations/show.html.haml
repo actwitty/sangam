@@ -1,27 +1,119 @@
-%h2 Welcome #{@user.email}, just a few more steps to start acting witty
-= simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
-  = f.input :first_name, :input_html => { :size=> 30  }
-  = f.input :last_name, :input_html => { :size=> 30  }
-  = f.input :sex, :label=> "Gender",:collection => ['male','female','other'], :as => :radio
-  = f.input :dob, :label=> "Date of Brith", :as => :string
-  = f.input :home_location, :label => "City", :input_html => { :size => 30 }
-  %div
-    %textarea.element.textarea.medium{:value => "Terms and services", :readonly=> "readonly" }
-      :preserve
-        Software License Agreement
-                
-         NOTICE TO USER: PLEASE READ THIS AGREEMENT CAREFULLY. BY COPYING, INSTALLING OR USING ALL OR ANY PORTION OF THE SOFTWARE YOU ACCEPT ALL THE TERMS AND CO            NDITIONS OF THIS AGREEMENT, INCLUDING, IN PARTICULAR THE LIMITATIONS ON: USE CONTAINED IN SECTION 2; TRANSFERABILITY IN SECTION 4; WARRANTY IN SECTIONS             6 AND 7; LIABILITY IN SECTION 8; AND SPECIFIC PROVISIONS AND EXCEPTIONS IN SECTION 14. YOU AGREE THAT THIS AGREEMENT IS LIKE ANY WRITTEN NEGOTIATED AGRE            EMENT SIGNED BY YOU. THIS AGREEMENT IS ENFORCEABLE AGAINST YOU AND ANY LEGAL ENTITY THAT OBTAINED THE SOFTWARE AND ON WHOSE BEHALF IT IS USED: FOR EXAMP            LE, IF APPLICABLE, YOUR EMPLOYER. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT USE THE SOFTWARE. VISIT http://www.mysite.com FOR TERMS OF             AND LIMITATIONS ON RETURNING THE SOFTWARE FOR A REFUND.
-    = f.input :is_terms_accepted,
-              :label => "I accept",      
-              :as => :boolean
-  %div
-    %textarea.element.textarea.medium{:value => "Privacy Policy", :readonly=> "readonly" }
-      :preserve
-        Software License Agreement
-                
-         NOTICE TO USER: PLEASE READ THIS AGREEMENT CAREFULLY. BY COPYING, INSTALLING OR USING ALL OR ANY PORTION OF THE SOFTWARE YOU ACCEPT ALL THE TERMS AND CO            NDITIONS OF THIS AGREEMENT, INCLUDING, IN PARTICULAR THE LIMITATIONS ON: USE CONTAINED IN SECTION 2; TRANSFERABILITY IN SECTION 4; WARRANTY IN SECTIONS             6 AND 7; LIABILITY IN SECTION 8; AND SPECIFIC PROVISIONS AND EXCEPTIONS IN SECTION 14. YOU AGREE THAT THIS AGREEMENT IS LIKE ANY WRITTEN NEGOTIATED AGRE            EMENT SIGNED BY YOU. THIS AGREEMENT IS ENFORCEABLE AGAINST YOU AND ANY LEGAL ENTITY THAT OBTAINED THE SOFTWARE AND ON WHOSE BEHALF IT IS USED: FOR EXAMP            LE, IF APPLICABLE, YOUR EMPLOYER. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT USE THE SOFTWARE. VISIT http://www.mysite.com FOR TERMS OF             AND LIMITATIONS ON RETURNING THE SOFTWARE FOR A REFUND.
-    = f.input :is_privacy_accepted,
-              :label => "I accept",      
-              :as => :boolean
-    %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
-  = f.button :submit, :value => "Get In"
+#confirmation-page-wrapper
+  #confirmation-header
+    #logo
+      %img{:height => "120", :src => "/images/actwitty/Picture6.png", :width => "600"}/
+  #confirmation-page
+    #confirmation-page-block
+      #orgot-sign-connect-desc
+        %h3#confirm-desc.desc Welcome, just a few more steps for confirmation
+      #confirmation-form
+        = simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
+          #confirmation-input
+            %ul#confirmation-input-list
+              %li.confirmation-fields
+                %label.confirmation-labels First Name
+                = f.input :first_name,:label=>false, :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
+                /
+                  %label.confirmation-labels First Name
+                  %input#1password-input.confirmation-input.input-deco{:name => "firstname_confirmation", :size => "40", :type => "text"}
+              %li.confirmation-fields
+                %label.confirmation-labels Last Name
+                = f.input :last_name,:label=>false, :input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
+                /
+                  %label.confirmation-labels Last Name
+                  %input#2password-input.confirmation-input.input-deco{:name => "lastname_confirmation", :size => "40", :type => "text"}
+              %li.confirmation-fields
+                %label.confirmation-labels Gender
+                = f.input :sex, :label=> false,:collection => ['male','female','other'], :as => :radio,:input_html=>{:class=>"confirmation-input input-deco",:id=>"confirm-gender-male"}
+                /                
+                  %label.confirmation-labels Gender
+                  %input#confirm-gender-male.confirmation-input.input-deco{:name => "gender", :type => "radio", :value => "male"}
+                    %label{:for => "confirm-gender-male"}
+                      male
+                      %input#confirm-gender-female.confirmation-input.input-deco{:checked => "", :name => "gender", :type => "radio", :value => "female"}
+                        %label{:for => "confirm-gender-female"} female
+                        %input#confirm-gender-other.confirmation-input.input-deco{:name => "gender", :type => "radio", :value => "other"}
+                          %label{:for => "confirm-gender-other"} other
+              %li.confirmation-fields
+                %label.confirmation-labels Date of Birth
+                = f.input :dob, :label=> false, :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco"}
+                /
+                  %label.confirmation-labels Date of Birth
+                  %input#dob-input.confirmation-input.input-deco{:name => "dob_confirmation", :size => "20", :type => "text"}
+                    %label.dob-highlight mm/dd/yyyy
+              %li.confirmation-fields
+                %label.confirmation-labels City
+                = f.input :home_location, :label =>false, :input_html => { :size => 30, :class=>"confirmation-input input-deco" }
+                /
+                  %label.confirmation-labels City
+                  %input#3password-input.confirmation-input.input-deco{:name => "city_confirmation", :size => "40", :type => "text"}
+              %li.confirmation-fields
+                %label.confirmation-labels Privacy Concerns
+                = f.input :is_terms_accepted,
+                          :label => false,      
+                          :as => :boolean,
+                          :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
+                /
+                  %label.confirmation-labels Privacy Concerns
+                  %input#confirm-policy.input-deco{:name => "confirm-policy", :type => "checkbox"}
+              %li.confirmation-fields
+                %label.confirmation-labels Terms of Service
+                = f.input :is_privacy_accepted,
+                          :label =>false,      
+                          :as => :boolean,
+                          :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
+                /
+                  %label.confirmation-labels Terms of Service
+                  %input#confirm-tos.input-deco{:name => "confirm-tos", :type => "checkbox"}
+          #site-connect-buttons
+            = f.button :submit, :value => "Get In",:input_html=>{:class=>"connect_buttons",:id=>"confirm-button"}
+            /
+              %input#confirm-button.connect-buttons{:name => "sign-in", :type => "button", :value => "Get In"}/
+  #page-footer
+    .footer-content
+      #about-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 About ActWitty
+      #team-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Team
+      #contact-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Contact Us
+      #blog-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Blogs
+
+
+
+
+
+
+/  
+  %h2 Welcome #{@user.email}, just a few more steps to start acting witty
+  = simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
+    = f.input :first_name, :input_html => { :size=> 30  }
+    = f.input :last_name, :input_html => { :size=> 30  }
+    = f.input :sex, :label=> "Gender",:collection => ['male','female','other'], :as => :radio
+    = f.input :dob, :label=> "Date of Brith", :as => :string
+    = f.input :home_location, :label => "City", :input_html => { :size => 30 }
+    %div
+      %textarea.element.textarea.medium{:value => "Terms and services", :readonly=> "readonly" }
+        :preserve
+          Software License Agreement
+                  
+           
+      = f.input :is_terms_accepted,
+                :label => "I accept",      
+                :as => :boolean
+    %div
+      %textarea.element.textarea.medium{:value => "Privacy Policy", :readonly=> "readonly" }
+        :preserve
+          Software License Agreement
+                  
+           
+      = f.input :is_privacy_accepted,
+                :label => "I accept",      
+                :as => :boolean
+      %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
+    = f.button :submit, :value => "Get In"

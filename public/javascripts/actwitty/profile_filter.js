@@ -26,6 +26,9 @@ function modify_filter(filter_hash){
     var html = '<input type="button" id="location_filter_drop " value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
     $("#stream_filters").append(html);
   }
+
+
+  reload_streams_on_viewed_user();
 }
 
 function reset_filter(){
@@ -35,14 +38,16 @@ function reset_filter(){
   $("#filter_thing_id").attr("value", "");
   $("#filter_location_name").attr("value", "");
   $("#filter_location_id").attr("value", "");
+  modify_filter({});
 }
 
-function load_filter(){
-   modify_filter({});
-}
 
-function apply_filter(){
-
+function get_filter(){
+  return { 
+           channel : $("#filter_channel_id").attr("value", ""),
+           thing : $("#filter_thing_id").attr("value", ""),
+           place : $("#filter_thing_id").attr("value", "")
+         }; 
 }
 
 $(document).ready(function(){

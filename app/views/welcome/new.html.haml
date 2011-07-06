@@ -1,8 +1,46 @@
+/= render :partial => "users/sessions/foreign_auth"
+/.clear 
+/.right
+/  #gettingin.signindiv
+/    =render :partial => "users/sessions/new", :locals => { :user => User.new }
 
-= render :partial => "users/sessions/foreign_auth"
-.clear 
-.right
-  #gettingin.signindiv
+/=render :partial => 'users/sign_up/new'
+#page-wrapper
+  #header
+    #logo
+      %img{:height => "120", :src => "/images/actwitty/actwitty_logo.png", :width => "600"}/
+    = render :partial => "users/sessions/foreign_auth"
+    /
+      #sns-connect
+        #sns-desc
+          %h3 If you have already started acting witty!
+        #sns-login
+          %h3#desc Directly Sign-In with
+          .twitter.icon.medium
+          .facebook.icon.medium
+  #site-connect  
     =render :partial => "users/sessions/new", :locals => { :user => User.new }
-
-
+  
+  #info-section
+    #download-section
+      #download-desc
+        %h3.desc GET ActWitty ON
+      #download-list
+        %img.download-src{:height => "65", :src => "/images/actwitty/android.jpg", :width => "65"}
+          %img.download-src{:height => "65", :src => "/images/actwitty/iphone.png", :width => "65"}
+            %img.download-src{:height => "65", :src => "/images/actwitty/blackberry.png", :width => "65"}
+              %img.download-src{:height => "65", :src => "/images/actwitty/palm.png", :width => "65"}
+  #page-footer
+    .footer-content
+      #about-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 About ActWitty
+      #team-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Team
+      #contact-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Contact Us
+      #blog-us.footer-header
+        %a.footers{:href => "http://act-witty.blogspot.com/"}
+          %h4 Blogs

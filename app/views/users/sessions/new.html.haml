@@ -1,1 +1,54 @@
-=render :partial => '/users/sessions/new'
+/=render :partial => '/users/sessions/new'
+#page-wrapper
+  #header
+    #logo
+      %img{:height => "120", :src => "/images/actwitty/Picture6.png", :width => "600"}/
+    #sns-connect
+      #sns-desc
+        %h3 If you have already started acting witty!
+      #sns-login
+        %h3#desc Directly Sign-In with
+        .twitter.icon.medium
+        .facebook.icon.medium
+        /
+          <img id="facebook-login" class="logo-img" src="fb.jpeg" width="30" height="30">
+          <img id="twitter-login" class="logo-img" src="twt.jpeg" width="30" height="30">
+  #site-connect
+    #sign_in_up
+      #sign-connect-desc
+        %h3.desc START ACTING WITTY
+      %form
+        #data-input
+          %input#email-input.input-deco{:size => "20", :type => "text"}
+            %input#password-input.input-deco{:size => "20", :type => "text"}
+        #data-input-actions
+          %input.input-deco{:name => "remember-me", :type => "checkbox", :value => "Remember Me"}
+            Remember Me
+            %a#forgot-password{:href => "#"} Forgot Password?
+        #site-connect-buttons
+          %input#signin-button.connect-buttons{:name => "sign-in", :type => "button", :value => "Sign In"}/
+          %input#signup-button.connect-buttons{:name => "sign-up", :type => "button", :value => "Sign Up"}/
+    #info-slide
+  #info-section
+    #download-section
+      #download-desc
+        %h3.desc GET ActWitted ONN
+      #download-list
+        %img.download-src{:height => "65", :src => "/images/actwitty/android.jpg", :width => "65"}
+          %img.download-src{:height => "65", :src => "/images/actwitty/iphone.png", :width => "65"}
+            %img.download-src{:height => "65", :src => "/images/actwitty/blackberry.png", :width => "65"}
+              %img.download-src{:height => "65", :src => "/images/actwitty/palm.png", :width => "65"}
+  #page-footer
+    .footer-content
+      #about-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 About ActWitty
+      #team-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Team
+      #contact-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Contact Us
+      #blog-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Blogs
