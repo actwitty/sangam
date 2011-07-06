@@ -9,11 +9,11 @@ javascripts:
     - public/javascripts/vendor/web_socket.js
   jquery:
     - public/javascripts/application.js
-    - public/javascripts/actwitty/getting_in.js
     - public/javascripts/rails.js
     - public/javascripts/redmond/js/jquery-1.5.1.min.js
     - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
     - public/javascripts/redmond/development-bundle/external/jquery.metadata.js
+    - public/javascripts/actwitty/getting_in.js
     - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.core.min.js
     - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.widget.min.js
     - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.button.min.js
