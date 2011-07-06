@@ -1,7 +1,7 @@
 #confirmation-page-wrapper
   #confirmation-header
     #logo
-      %img{:height => "120", :src => "/images/actwitty/Picture6.png", :width => "600"}/
+      %img{:height => "120", :src => "/images/actwitty/actwitty_logo.png", :width => "600"}/
   #confirmation-page
     #confirmation-page-block
       #orgot-sign-connect-desc
@@ -65,6 +65,7 @@
                 /
                   %label.confirmation-labels Terms of Service
                   %input#confirm-tos.input-deco{:name => "confirm-tos", :type => "checkbox"}
+          %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
           #site-connect-buttons
             = f.button :submit, :value => "Get In",:input_html=>{:class=>"connect_buttons",:id=>"confirm-button"}
             /

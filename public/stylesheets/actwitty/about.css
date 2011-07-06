@@ -1,0 +1,35 @@
+/* line 1, ../../../app/stylesheets/actwitty/about.scss */
+.wrapper {
+  position: relative;
+  float: left;
+  left: 0.00%;
+  width: 100.00%;
+  background-color: #cccccc;
+}
+
+/* line 8, ../../../app/stylesheets/actwitty/about.scss */
+.left {
+  position: relative;
+  float: left;
+  left: 0.00%;
+  width: 50.00%;
+  background-color: #ccccff;
+}
+
+/* line 15, ../../../app/stylesheets/actwitty/about.scss */
+.right {
+  position: relative;
+  float: right;
+  right: 0.00%;
+  width: 50.00%;
+  background-color: #ccccff;
+}
+
+/* line 22, ../../../app/stylesheets/actwitty/about.scss */
+.footer {
+  position: relative;
+  float: left;
+  left: 0.00%;
+  width: 100.00%;
+  background-color: #cfcfcf;
+}

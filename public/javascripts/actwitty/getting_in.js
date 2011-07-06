@@ -1,7 +1,5 @@
 $(function(){
 
-
-
     $(".actwittysignup").live('click', function() {
       var auth_key = $('#foreign_auths').find('input[name="auth_key"]').val();
       var auth_uid =  $('#foreign_auths').find('input[name="auth_uid"]').val();
