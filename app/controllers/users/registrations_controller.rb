@@ -42,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
         @user = resource
 
-        if request.xhr?1
+        if request.xhr?
           respond_to do |format|
           #  format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
              format.js   { render :partial => "confirmation_wait" }
@@ -69,6 +69,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         format.js   {  }
       end
     end
+  rescue => e
+    Rails.logger.info("Error in User => Registration => create => #{e}")
   end
 
 

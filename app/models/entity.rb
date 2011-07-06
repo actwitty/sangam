@@ -38,7 +38,7 @@ class Entity < ActiveRecord::Base
   validates_length_of     :entity_guid, :in => 1..255
   validates_length_of     :entity_image, :in => 1..255
 
- # validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_name_image}
+ # validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
 
   class << self
 
@@ -58,7 +58,7 @@ class Entity < ActiveRecord::Base
 
       begin
 
-      entity_hash['/common/topic/image'].blank? ? entity_image = AppConstants.entitiy_name_image :
+      entity_hash['/common/topic/image'].blank? ? entity_image = AppConstants.entitiy_no_image :
                                                   entity_image = entity_hash['/common/topic/image'][0]['id']
 
       entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,

@@ -26,7 +26,7 @@ Sangam::Application.configure do
   #for enabling breakpoint
   config.breakpoint_server = true
   # Lemonbag for devise mailers
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '' }
 
   config.breakpoint_server = true
 
@@ -35,11 +35,12 @@ Sangam::Application.configure do
 
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
+    :domain => "actwitty.com"
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,
-    :user_name => "no-reply@lemonbag.com",
-    :password => 'lemonbag08032011'
+    :user_name => "no-reply@actwitty.com",
+    :password => 'actwitty2011'
   }
 end
 

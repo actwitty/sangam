@@ -13,53 +13,43 @@ class CreateActivities < ActiveRecord::Migration
       t.string   :author_full_name, :null => false
       t.string   :author_profile_photo, :null => false
 
-      t.integer :parent_id
 
       t.integer :base_location_id
       t.text    :base_location_data
 
-      t.string :ancestry
-      t.integer :ancestry_depth,  :default => 0
+      t.boolean :enriched
 
       t.timestamps
     end
 
-      add_index :activities, :ancestry
-      add_index :activities, [:author_id, :activity_name,:activity_word_id], :name => "index_activity_author_name_dict"
+      add_index :activities, [:author_id, :activity_word_id, :activity_name], :name => "index_activity_author_name_dict"
 
-      add_index :activities, [:activity_name,:author_id]
+      add_index :activities, [:activity_word_id, :activity_name]
 
-      add_index :activities, [:activity_word_id, :author_id]
-
-      #TODO not needed - verify through query analyzer though :)
-      add_index :activities, [:author_id, :parent_id]
-
-      add_index :activities, :parent_id
+      add_index :activities, [:author_id, :activity_name]
 
       add_index :activities, :updated_at
 
       add_index :activities, :base_location_id
 
+      add_index :activities, [:id, :enriched]
+
   end
 
   def self.down
 
-    remove_index :activities, :ancestry
+      remove_index :activities,  :name => "index_activity_author_name_dict"
 
-    remove_index :activities,  :name => "index_activity_author_name_dict"
+      remove_index :activities, [:activity_word_id, :activity_name]
 
-    remove_index :activities, [:activity_name,:author_id]
+      remove_index :activities, [:author_id, :activity_name]
 
-    remove_index :activities, [:activity_word_id, :author_id]
+      remove_index :activities, :updated_at
 
-    remove_index :activities, [:author_id, :parent_id]
+      remove_index :activities, :base_location_id
 
-    remove_index :activities, :parent_id
+      remove_index :activities, [:id, :enriched]
 
-    remove_index :activities, :updated_at
-
-    remove_index :activities, :base_location_id
-
-    drop_table :activities
+      drop_table :activities
   end
 end
