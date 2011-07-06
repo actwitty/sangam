@@ -1,10 +1,55 @@
-%h2 Resend confirmation instructions
-= simple_form_for(@user, :as => :user, :url => confirmation_path(:user), :html => { :method => :post }) do |f|
-  %p
-    = f.input :email ,
-              :placeholder => "Email", 
-              :label => false, 
-              :class => 'inputbox', 
-              :hint => "Enter the email to confirm again.",
-              :input_html => { :size=> 30  }
-  %p= f.submit :value=>"Resend confirmation instructions"
+#page-wrapper
+  #header
+    #logo
+      %img{:height => "120", :src => "/images/actwitty/Picture6.png", :width => "600"}/
+  #forgot-site-connect
+    #forgot-sign_in_up
+      #forgot-sign-connect-desc
+        %h3#forgot-desc.desc Resend Confirmation Instruction
+        %p
+          Please enter any email address that we may have.
+          We'll send you an email that will allow you to confirm your account.
+      = simple_form_for(@user, :as => :user, :url => confirmation_path(:user), :html => { :method => :post }) do |f|
+        #data-input
+          = f.input :email ,
+                    :placeholder => "Email", 
+                    :label => false, 
+                    :class => 'inputbox', 
+                    :input_html => { :size=> 30,:id=>"password-input",:class=>"input-deco"  }
+        #forgot-site-connect-buttons
+          = f.button :submit,
+                     :value=>"Email Me",
+                     :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
+      /
+        %form
+          #data-input
+            %input#password-input.input-deco{:size => "40", :type => "text"}
+          #forgot-site-connect-buttons
+            %input#forgot-button.connect-buttons{:name => "sign-in", :type => "button", :value => "Email me "}/
+  #page-footer
+    .footer-content
+      #about-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 About ActWitty
+      #team-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Team
+      #contact-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Contact Us
+      #blog-us.footer-header
+        %a.footers{:href => "#"}
+          %h4 Blogs
+
+
+/
+  %h2 Resend confirmation instructions
+  = simple_form_for(@user, :as => :user, :url => confirmation_path(:user), :html => { :method => :post }) do |f|
+    %p
+      = f.input :email ,
+                :placeholder => "Email", 
+                :label => false, 
+                :class => 'inputbox', 
+                :hint => "Enter the email to confirm again.",
+                :input_html => { :size=> 30  }
+    %p= f.submit :value=>"Resend confirmation instructions"
