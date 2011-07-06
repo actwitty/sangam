@@ -47,7 +47,7 @@ Sangam::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.default_url_options = { :host => 'simple-mountain-557.heroku.com' }
     
   config.action_mailer.delivery_method = :smtp
 
