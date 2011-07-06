@@ -69,6 +69,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         format.js   {  }
       end
     end
+  rescue => e
+    Rails.logger.info("Error in User => Registration => create => #{e}")
   end
 
 

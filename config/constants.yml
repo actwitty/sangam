@@ -1,6 +1,9 @@
 # Enter your per-environment constants below
 
 development: &default
+  activity_text_length: 8192
+  comment_text_length: 2048
+
   url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
 
   entity_controller:  "entities"
@@ -22,7 +25,8 @@ development: &default
 
   invalid_resource_id: 0
 
-  entitiy_name_image: "/images/actwitty/unknown_entity.png"
+  entitiy_no_image: "images/entity/default.png"
+  user_no_image: "image/profile/default.png"
 
   summary_word_count: 15
   summary_document_count: 5

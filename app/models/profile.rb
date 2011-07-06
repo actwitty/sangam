@@ -105,7 +105,7 @@ class Profile < ActiveRecord::Base
         user.photo_small_url =  profile_photo_s
     end
     if user.photo_small_url.nil?
-      user.photo_small_url = '/images/actwitty/default_user.gif'
+      user.photo_small_url = AppConstants.user_no_image
     end
     user.save!
 

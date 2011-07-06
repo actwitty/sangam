@@ -10,31 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616040229) do
+ActiveRecord::Schema.define(:version => 20110705061633) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "activity_word_id",                    :null => false
-    t.text     "activity_text",                       :null => false
-    t.string   "activity_name",                       :null => false
-    t.integer  "author_id",                           :null => false
-    t.string   "author_full_name",                    :null => false
-    t.string   "author_profile_photo",                :null => false
-    t.integer  "parent_id"
+    t.integer  "activity_word_id",     :null => false
+    t.text     "activity_text",        :null => false
+    t.string   "activity_name",        :null => false
+    t.integer  "author_id",            :null => false
+    t.string   "author_full_name",     :null => false
+    t.string   "author_profile_photo", :null => false
     t.integer  "base_location_id"
     t.text     "base_location_data"
-    t.string   "ancestry"
-    t.integer  "ancestry_depth",       :default => 0
+    t.boolean  "enriched"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["activity_name", "author_id"], :name => "index_activities_on_activity_name_and_author_id"
-  add_index "activities", ["activity_word_id", "author_id"], :name => "index_activities_on_activity_word_id_and_author_id"
-  add_index "activities", ["ancestry"], :name => "index_activities_on_ancestry"
-  add_index "activities", ["author_id", "activity_name", "activity_word_id"], :name => "index_activity_author_name_dict"
-  add_index "activities", ["author_id", "parent_id"], :name => "index_activities_on_author_id_and_parent_id"
+  add_index "activities", ["activity_word_id", "activity_name"], :name => "index_activities_on_activity_word_id_and_activity_name"
+  add_index "activities", ["author_id", "activity_name"], :name => "index_activities_on_author_id_and_activity_name"
+  add_index "activities", ["author_id", "activity_word_id", "activity_name"], :name => "index_activity_author_name_dict"
   add_index "activities", ["base_location_id"], :name => "index_activities_on_base_location_id"
-  add_index "activities", ["parent_id"], :name => "index_activities_on_parent_id"
+  add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
   add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
 
   create_table "activity_words", :force => true do |t|
@@ -80,6 +76,11 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
   add_index "campaigns", ["entity_id", "campaign_name"], :name => "index_campaigns_on_entity_id_and_campaign_name"
   add_index "campaigns", ["father_id"], :name => "index_campaigns_on_father_id", :unique => true
   add_index "campaigns", ["location_id", "campaign_name"], :name => "index_campaigns_on_location_id_and_campaign_name"
+
+  create_table "comments", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contacts", :force => true do |t|
     t.integer  "status"
@@ -315,6 +316,11 @@ ActiveRecord::Schema.define(:version => 20110616040229) do
 
   add_index "profiles", ["first_name", "last_name"], :name => "index_profiles_on_first_name_and_last_name"
   add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
+
+  create_table "summaries", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "unresolved_locations", :force => true do |t|
     t.integer  "location_id",              :null => false

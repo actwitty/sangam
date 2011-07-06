@@ -11,5 +11,6 @@ Factory.define :activity do |f|
   f.association :activity_word, :factory => :activity_word
   f.sequence(:activity_text) {|n| "MyText #{n}" }
   f.sequence(:activity_name) {|n| "Activity #{n}" }
-
+  f.sequence(:author_full_name) {|n| "Full name #{n}"}
+  f.sequence(:author_profile_photo) {|n| "images/profile/#{n}"}
 end

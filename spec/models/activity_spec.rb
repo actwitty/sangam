@@ -11,71 +11,19 @@ describe Activity do
     @aw1 = Factory(:activity_word)
     @aw2 = Factory(:activity_word)
 
-    @act = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello",
-                             :activity_name => "test", :author_id => @u.id, :author_full_name => @u.full_name,
-                            :author_profile_photo => @u.photo_small_url)
-
-    @act_child_1 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello1",
-                            :activity_name => "test_1", :author_id => @u1.id, :parent => @act,
-                            :author_full_name => @u1.full_name, :author_profile_photo => @u1.photo_small_url )
-
-    @act_child_2 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello2",
-                             :activity_name => "test", :author => @u, :parent => @act,
-                              :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
-
-
-    @act_child_3 = @act.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3",
-                            :activity_name => "test_3",  :author => @u2, :parent => @act,
-                              :author_full_name => @u2.full_name, :author_profile_photo => @u2.photo_small_url)
-
-
-    @act_child_2_1 = @act_child_2.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello2_1",
-                            :activity_name => "test_2_1",   :author => @u2, :parent => @act_child_2,
-                            :author_full_name => @u2.full_name, :author_profile_photo => @u2.photo_small_url)
-
-    @act_child_3_1 = @act_child_3.children.create!(:activity_word_id =>@aw2.id,:activity_text => "hello3_1",
-                             :activity_name => "test_3_1",  :author => @u,  :parent => @act_child_3,
-                              :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
-    #@act_child_3_1.save
-
-    @act_child_3_1_1 = @act_child_3_1.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3_1_1",
-                             :activity_name => "test_3_1_1",  :author => @u3, :parent => @act_child_3_1,
-                              :author_full_name => @u3.full_name, :author_profile_photo => @u3.photo_small_url)
-
-    @act_child_3_2 = @act_child_3.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello3_2",
-                         :activity_name => "test_3_1", :author => @u, :parent => @act_child_3,
-                          :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
-
-    @bct = Activity.create!(:activity_word_id =>@aw2.id,:activity_text => "hello_b",
-                             :activity_name => "test_b", :author => @u, :author_full_name => @u.full_name,
-                             :author_profile_photo => @u.photo_small_url)
-
-
-    @bct_child_1 = @bct.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_b_1",
-                            :activity_name => "test_1",  :author => @u, :parent => @bct,
-                            :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
-
-    @act_arr =   [@act, @act_child_1 , @act_child_2, @act_child_3,@act_child_2_1, @act_child_3_1,
-                  @act_child_3_1_1,  @act_child_3_2 ]
   end
 
   describe "validations" do
 
-#    %w[:activity_word_id :activity_text:activity_name :parent].each do |attr|
-#      it "should must have #{attr}" do
-#        a=Activity.new
-#        a.valid?
-#        a.should_not be_valid
-#        a.errors[attr].should_not be_nil
-#      end
-#    end
 
     it "should must not be save with length of activity text more that 1024" do
       str = ""
-			2049.times do
+			(AppConstants.activity_text_length + 1).times do
 			  str = str + 'a'
 			end
-			a=Activity.new(:activity_word_id => @aw1.id,:activity_text => str  )
+			a=Activity.new(:author_id => @u.id, :activity_word_id => @aw1.id,:activity_text => str,
+                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
+                     :author_profile_photo => "images/124"  )
 			a.valid?
       a.should_not be_valid
 			a.errors[:activity_text].should_not be_blank
@@ -83,7 +31,9 @@ describe Activity do
 
      it "can be save with blank activity text" do
       str = ""
-			a=Activity.new(:activity_word_id =>@aw1.id,:activity_text => str  )
+			a=Activity.new(:author_id => @u.id, :activity_word_id => @aw1.id,:activity_text =>"",
+                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
+                     :author_profile_photo => "images/124"  )
 			a.valid?
       a.should_not be_valid
       a.errors[:activity_text].should be_blank
@@ -91,31 +41,36 @@ describe Activity do
 
     it "should must not be save without author" do
       lambda{
-        a=Activity.create!(:activity_word_id =>@aw1.id,:activity_text => "hello" )
+        a=Activity.create!(:activity_word_id => @aw1.id,:activity_text =>"alok",
+                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
+                     :author_profile_photo => "images/124"  )
 
       }.should raise_error ActiveRecord::RecordInvalid
     end
 
     it "should must not be saved with invalid author" do
       lambda {
-        a=Activity.create!(:activity_word_id =>@aw1.id,:activity_text => "hello",
-                           :activity_name => "act temp",:author_id => 100 )
+        a=Activity.create!(:author_id => 123,:activity_word_id => @aw1.id,:activity_text =>"alok",
+                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
+                     :author_profile_photo => "images/124"  )
         a.errors[:author].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
     end
 
-    it "should must not be saved with Invalid parent activity" do
-      lambda {
-        a=Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello",:activity_name => "act temp",
-                           :author_id => Factory(:user), :parent_id => 1 )
-        a.errors[:parent].should_not be_blank
-      }.should raise_error ActiveRecord::RecordNotFound
-    end
-    it "should must not be saved without activity_name" do
 
+    it "should must not be saved without activity_name" do
+      lambda {
+        a=Activity.create!(:author_id => 123,:activity_word_id => @aw1.id,:activity_text =>"alok",
+                     :author_full_name => "Alok Srivastava",:author_profile_photo => "images/124"  )
+        a.errors[:activity_name].should_not be_blank
+        }.should raise_error ActiveRecord::RecordInvalid
     end
        it "should must not be saved without activity_word_id" do
-
+      lambda {
+        a=Activity.create!(:activity_text =>"alok",:activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
+                     :author_profile_photo => "images/124"  )
+        a.errors[:activity_word_id].should_not be_blank
+        }.should raise_error ActiveRecord::RecordInvalid
     end
   end
 
@@ -123,136 +78,43 @@ describe Activity do
   describe "associations" do
 
     it "should respond to associations" do
-      @act.should respond_to(:author, :parent)
+      @act.should respond_to(:author)
     end
   end
 
   describe "Read Tree"  do
 
 
-    it "should be able to find node " do
-      Activity.exists?(@act_child_3_1).should_not be_false
-      a = Activity.find(@act_child_2_1)
-      puts a.activity_name
-    end
+    it "should be able to fetch all immediate comments" do
 
-    it "should be able to fetch all immediate child" do
-      @act.children.should include(@act_child_1, @act_child_2, @act_child_3)
-    end
-
-    it "should be able to fetch subtree" do
-      @act.subtree.all.should == @act_arr
-      a = @act.subtree.arrange
-      puts a
-    end
-
-
-    it "should be able to fetch subtree at depth 2" do
-      @act.subtree(:to_depth => 2).size.should == @act_arr.size - 1
-    end
-
-    it "should be able to fetch subtree at depth 2" do
-       @act_child_3_1_1.parent.should == @act_child_3_1
-    end
-
-    it "user should be able to fetch full thread of activities om his own activities" do
-       a= @u.activities.find(@act)
-       a.subtree.all.should == @act_arr
     end
 
     it "user should not be able to directly fetch thread of other users" do
-      lambda{
-       @u.activities.find(@act_child_3)
-      }.should raise_error
+
     end
 
-    it "user should be able read all his activities by name and count" do
-      @u.activities.group("activity_name").order("updated_at DESC").should_not be_nil
+    it "user should be able read all his activities as per response needed" do
+
     end
 
 
-    it "user should be able read all its root activities along with their whole subtree" do
-      a = @u.activities.find(:all,:conditions => {:ancestry => nil},:order => "updated_at DESC")
-      a.should == [@bct,@act]
-      a[1].subtree.all.should == @act_arr
-    end
-    it "user should be able read all its root activities along with their whole subtree" do
-      @cct = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello_b",
-                             :activity_name => "test_c",  :author => @u1,
-                              :author_full_name => @u1.full_name, :author_profile_photo => @u1.photo_small_url)
+    it "user should be able read all its root activities" do
 
-
-      @cct_child_1 = @cct.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_c_1",
-                            :activity_name => "test_1", :author => @u2, :parent => @cct,
-                            :author_full_name => @u2.full_name, :author_profile_photo => @u2.photo_small_url)
-
-      @cct_child_1_1 = @cct_child_1.children.create!(:activity_word_id => @aw2.id,:activity_text => "hello_c_1_1",
-                            :activity_name => "test_1",  :author => @u, :parent => @cct_child_1,
-                            :author_full_name => @u.full_name, :author_profile_photo => @u.photo_small_url)
-      params = {}
-      params[:scope] = 0
-      params[:user_id] = @u.id
-      #Activity.board(params)
     end
 
   end
 
   describe "Update Tree" do
 
-    it "should be able to add child on fly" do
-      a = @act.children.create(:activity_word_id => @aw2.id,:activity_text => "hello",:activity_name => "activity_temp",
-                               :author => @u, :parent => @act, :author_full_name => @u.full_name,
-                               :author_profile_photo => @u.photo_small_url )
+    it "should be able to add cmment on the activity" do
 
-      @act.children.should include(@act_child_1, @act_child_2, @act_child_3, a)
-      @act.children.size.should == 4
     end
 
     it "should be not allow update of author" do
 
-      a = @act.children
-      usr = Factory(:user)
-      lambda {
-        a[2].author = usr
-        a[2].save!
-      }.should raise_error ActiveRecord::RecordNotSaved
-
-      b = Activity.find(a[2])
-      b.author.should_not == usr
-
-    end
-    it "should be not allow update of parent" do
-
-      a = @act.children
-      usr = Factory(:user)
-      parent = Activity.create!(:activity_word_id => @aw1.id,:activity_text => "hello temp",:activity_name => "Act temp",
-                              :author => usr, :author_full_name => usr.full_name,
-                              :author_profile_photo => usr.photo_small_url)
-      #parent = @act_child_1
-      lambda {
-        a[2].parent = parent
-        a[2].save!
-      }.should raise_error ActiveRecord::RecordNotSaved
-
-      b = Activity.find(a[2])
-      b.parent.should_not == parent
 
     end
 
-
-    it "should be allowed to update descendent" do
-      a = @act.children
-      a[2].activity_text = "alok"
-      a[2].save
-      Activity.find(:all, :conditions => {:activity_text => "alok"}).should == [a[2]]
-    end
-
-    it "User should be allowed to update descendent" do
-      a = @u2.activities
-      a[1].activity_text = "alok"
-      a[1].save
-      Activity.find(:all, :conditions => {:activity_text => "alok"}).should == [a[1]]
-    end
   end
 
   describe "Delete Tree" do
@@ -280,102 +142,84 @@ describe Activity do
        Activity.exists?(@act_child_2).should_not be_false
     end
 
-    it "should be not be able delete invalid children " do
-      lambda{
-          @act_child_3.children.destroy(@act_child_2_1)
-        }.should raise_error ActiveRecord::RecordNotFound
+    it "should be not be able delete invalid comment " do
+
     end
 
-    it "should be not be able delete invalid subtree " do
-      lambda{
-          @act_child_3.subtree.destroy(@act_child_2)
-        }.should raise_error ActiveRecord::RecordNotFound
-    end
 
-    it "should be able delete subtree " do
-      @act.children.delete(@act_child_2)
-      @act.subtree.should include(@act_child_2_1)
-      @act.subtree.should include(@act_child_3_1_1, @act_child_3, @act_child_3_2)
+
+    it "should be able delete all comment " do
+
     end
-    it "Deletion of activity should not update the time of parent " do
-      @u.activities.destroy(@act_child_1)
-      a = @u.activities.find(:all,:conditions => {:ancestry_depth => 0},:order => "updated_at DESC")
-      a.should == [@bct, @act]
+    it "Deletion of activity should  update the time of user, summary , hub " do
 
     end
   end
-  describe "Contacts"  do
-     it "User should be able to read all activities from himself and friends based  " do
 
-    end
-    it "User should be able to read all activities from himself and friends based in order of time of updation " do
-
-    end
-  end
   describe "create_activity " do
     include DelayedJobSpecHelper
     it "should create activity by the class method given" do
-      act = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with
-                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true)
-      act2 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "burger at kfc with
-                                  <mention><name>PIZZA<name><id>235<id><mention>",
-                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
-                              :enrich => true)
-
-      act3 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "AR rehman's jai ho",
-                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
-                              :enrich => true)
-      act3 = Activity.create_activity(:author_id => @u.id, :activity => "photgraphy" , :text => "",
-                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
-                              :enrich => true)
-      act4 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
-                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
-                              :enrich => true)
-      act5 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "Dal chawal and gulab jamoon at sahib singh sultan",
-                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
-                              :enrich => true)
-
-      act.should_not be_nil
-      work_off
-      child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>",
-                                       :parent_id => act.id, :enrich => false )
-      child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
-      child2 = Activity.create_activity(:author_id => @u2.id, :activity => "&comment&" , :text => "Cow Cow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
-      child3 = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "dow dow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
-
-      act.children.should  include(child3, child2, child1 , child)
-
-
-      @u.entities.each do |attr|
-        puts attr.id
-        puts attr.entity_name
-      end
-      @u.activity_words.each do |attr|
-        puts attr.id
-        puts attr.word_name
-      end
-      @u.entities.each do |attr|
-        puts attr.id
-        puts attr.entity_name
-      end
-      @u.locations.each do |attr|
-        puts attr.id
-        puts attr.location_name
-      end
-#       puts act.location.inspect
+#      act = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with
+#                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+#                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+#                              :enrich => true)
+#      act2 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "burger at kfc with
+#                                  <mention><name>PIZZA<name><id>235<id><mention>",
+#                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+#                              :enrich => true)
+#
+#      act3 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "AR rehman's jai ho",
+#                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
+#                              :enrich => true)
+#      act3 = Activity.create_activity(:author_id => @u.id, :activity => "photgraphy" , :text => "",
+#                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
+#                              :enrich => true)
+#      act4 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
+#                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+#                              :enrich => true)
+#      act5 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "Dal chawal and gulab jamoon at sahib singh sultan",
+#                              :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+#                              :enrich => true)
+#
+#      act.should_not be_nil
+#      work_off
+#      child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
+#                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>",
+#                                       :parent_id => act.id, :enrich => false )
+#      child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
+#                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+#      child2 = Activity.create_activity(:author_id => @u2.id, :activity => "&comment&" , :text => "Cow Cow man have fun keep
+#                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+#      child3 = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "dow dow man have fun keep
+#                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+#
+#      act.children.should  include(child3, child2, child1 , child)
+#
+#
+#      @u.entities.each do |attr|
+#        puts attr.id
+#        puts attr.entity_name
+#      end
+#      @u.activity_words.each do |attr|
+#        puts attr.id
+#        puts attr.word_name
+#      end
+#      @u.entities.each do |attr|
+#        puts attr.id
+#        puts attr.entity_name
+#      end
+#      @u.locations.each do |attr|
+#        puts attr.id
+#        puts attr.location_name
+#      end
+##       puts act.location.inspect
+##      act.destroy
+##      Hub.count.should == 0
+#       @u.destroy
+#       Hub.count.should == 0
+#
 #      act.destroy
-#      Hub.count.should == 0
-       @u.destroy
-       Hub.count.should == 0
-
-      act.destroy
-      act.children.should == []
+#      act.children.should == []
 
     end
 
@@ -383,47 +227,47 @@ describe Activity do
   describe "Get Snapshots" do
     include DelayedJobSpecHelper
     it "should create the result as per spec"  do
-      act = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza at pizza hut with
+      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true)
 
 
-      act3 = Activity.create_activity(:author_id => @u.id, :activity => "singing" , :text => "AR rehman's jai ho",
+      act3 = @u.create_activity( :activity => "singing" , :text => "AR rehman's jai ho",
                               :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
                               :enrich => true)
-      act4 = Activity.create_activity(:author_id => @u.id, :activity => "painting" , :text => "Sachin tendulkar  rahul dravid",
+      act4 = @u.create_activity( :activity => "painting" , :text => "Sachin tendulkar  rahul dravid",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
                               :enrich => true)
-      act4 = Activity.create_activity(:author_id => @u.id, :activity => "eating" , :text => "pizza Britney spears  rahul dravid pizza pizza hut",
+      act4 = @u.create_activity( :activity => "eating" , :text => "pizza Britney spears  rahul dravid pizza pizza hut",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "tundi"}},
                               :enrich => true)
-      act2 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at sachin tendulkar with
+      act2 = @u1.create_activity( :activity => "eating" , :text => "pizza at sachin tendulkar with
                                   <mention><name>PIZZA<name><id>235<id><mention>",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
-       act5 = Activity.create_activity(:author_id => @u1.id, :activity => "photgraphy" , :text => "Burger at Dominos with Rahul Dravid",
+       act5 = @u1.create_activity( :activity => "photgraphy" , :text => "Burger at Dominos with Rahul Dravid",
                               :location => {:unresolved_location =>{:unresolved_location_name =>  "Cool Place"}},
                               :enrich => true)
-       act6 = Activity.create_activity(:author_id => @u2.id, :activity => "eating" , :text => "Dal roti at McDonald's with MS Dhoni",
+       act6 = @u2.create_activity( :activity => "eating" , :text => "Dal roti at McDonald's with MS Dhoni",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
                               :enrich => true)
-       ac75 = Activity.create_activity(:author_id => @u2.id, :activity => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
+       act7 = @u2.create_activity( :activity => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
                               :location => {:web_location =>{:web_location_url => "google.com", :web_location_title => "hello"}},
                              :enrich => true)
-      act4 = Activity.create_activity(:author_id => @u.id, :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
+      act4 = @u.create_activity( :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
-      act5 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
+      act5 = @u1.create_activity( :activity => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
 
       act.should_not be_nil
       work_off
-      child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>", :parent_id => act.id, :enrich => false )
-      child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
-                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
+#      child = Activity.create_activity(:author_id => @u1.id, :activity => "&comment&" , :text => "Wow man have fun keep
+#                                      me posted. @bhaloo - dont eat much mote <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention>", :parent_id => act.id, :enrich => false )
+#      child1 = Activity.create_activity(:author_id => @u.id, :activity => "&comment&" , :text => "Bow Bow man have fun keep
+#                                      me posted. @bhaloo - dont eat much mote", :parent_id => act.id, :enrich => false )
       params = {}
       params[:user_id] =  @u.id
       params[:current_user] =  @u
@@ -464,22 +308,12 @@ describe Activity do
       h = @u.get_related_locations(@u.id, filter)
       puts h.inspect
       h.should_not be_nil
+
+      h = @u.get_enriched_activities([act[:id], act5[:id], act7[:id]])
+      puts h.inspect
+      h.should_not be_nil
     end
   end
-  describe "Hub" do
-
-  end
-
-  describe "Locations" do
-
-  end
-  describe "Entities" do
-
-  end
-  describe "Mentions" do
-
-  end
-
 end
 
 
