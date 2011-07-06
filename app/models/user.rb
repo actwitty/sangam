@@ -340,7 +340,7 @@ class User < ActiveRecord::Base
     end
     friends
   end
-
+  #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
   def get_related_entities(user_id, filter = {})
@@ -358,6 +358,7 @@ class User < ActiveRecord::Base
     entity_hash
   end
 
+  #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #returns array of :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR

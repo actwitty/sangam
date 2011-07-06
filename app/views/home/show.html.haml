@@ -136,7 +136,13 @@
         %input{:type => "hidden", :id => "friend_count", :value => "0"}/
     #Stream.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
       #stream_filters
-      %p I am in recent
+      #stream_related_entities
+      #stream_related_activities
+      #stream_related_friends
+      #stream_list_div 
+        %ul#streams.stream_list
+        %a#more_stream.more_streams{:href => "#"} More
+        %input{:type => "hidden", :id => "stream_count", :value => "0"}/
 
   #channel-dialog-modal
   #location-dialog-modal
@@ -149,6 +155,8 @@
   %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
   -if user_signed_in?
     %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+  - else
+    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
   %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@defaul_page_mode}" }
 
   /Filter

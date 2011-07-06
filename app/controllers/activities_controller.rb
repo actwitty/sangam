@@ -20,14 +20,15 @@ class ActivitiesController < ApplicationController
     user_activities= [{:post =>
                           {
                             :id =>  1234,
-                            :user => { :id => 128, :full_name => "Abc Saxena", :photo => "http://google.com" },
+                            :user => { :id => 128, :full_name => "Abc Saxena", :photo => "/images/actwitty/default_user.gif" },
+                            :time => "12:53:31",
                             :word => { :id => 1923, :word_name => "Motorbiking" },
-                            :location => {:id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}} ,
+                            :location => {:id => 23456, :geo_location => {:latitude => 23.6567, :longitude => 120.3, :name => "marathalli"}}   ,
                             :documents =>
                               [
-                                {:id => 213, :name => "file.jpg", :type => "image/jpg", :url => "http://s3.amazonaws.com/1"},
-                                {:id => 214,:name => "file1.jpg", :type => "image/jpg", :url => "http://s3.amazonaws.com/2"},
-                                {:id => 215,:name => "file2.jpg", :type => "image/jpg", :url => "http://s3.amazonaws.com/3"}
+                                {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
+                                {:id => 214,:name => "autum.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                                {:id => 215,:name => "winter.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                               ],
                             :campaign =>
                               [
@@ -43,7 +44,7 @@ class ActivitiesController < ApplicationController
                           :array => [
                             {
                               :id => 123,
-                              :user => {:id => 129, :full_name => "Def Saxena", :photo => "http://google.com"},
+                              :user => {:id => 129, :full_name => "Def Saxena", :photo => "/images/actwitty/default_user.gif"},
                               :word => {:id => 1923, :name => "&comment&"},
                               :campaign => [
                                 {:id => 38, :name => "like", :count => 23, :user => true},
@@ -78,7 +79,7 @@ class ActivitiesController < ApplicationController
                                        {:document_id => 215,:document_name => "spring_3.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_3.jpg"} ],
 
                         :recent_text => "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
-                                                 <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>",
+                                                 <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_me/images/test/spring.jpgntion\">PIZZA</a>",
                         :entities => [{:entity_id => 2341, :entity_name => "parle biscuits", :entity_image => "/images/actwitty/unknown_entity.png"},
                                       {:entity_id => 2342, :entity_name => "sachin tendulkar", :entity_image => "/images/actwitty/unknown_entity.png"},
                                       {:entity_id => 2343, :entity_name => "sonia gandhi", :entity_image => "/images/actwitty/unknown_entity.png"}],

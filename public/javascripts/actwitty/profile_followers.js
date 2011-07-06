@@ -116,7 +116,7 @@ $(document).ready(function(){
     }).result(function(e, item) {
       if (ignore_follower_auto_complete == false){
           /* filter change transaction */
-          modify_filter({});
+          reset_filter();
 
           $("#follower-dialog-modal").dialog('close');
           ignore_follower_auto_complete = true;
@@ -128,7 +128,7 @@ $(document).ready(function(){
   $(".user_nav").live('click', function(){
     var click_id = $(this).attr("id");
     var user_id = $("#" + click_id + "_hidden").attr("value");
-    modify_filter({});
+    reset_filter({});
 
     $("#follower-dialog-modal").dialog('close');
     window.location.href = "/home/show?id=" + user_id;

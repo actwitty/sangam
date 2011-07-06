@@ -320,6 +320,14 @@ ul.summary_main_box_locations{
 }
 
 
+ul.stream_list{
+  width:100%;
+  height:100%;
+  overflow:auto;
+  list-style: none;
+  border:1px;
+}
+
 .modal_channels_ul
 {
    list-style: none;
@@ -328,5 +336,22 @@ ul.summary_main_box_locations{
 
 .modal_channels_ul li
 {
-  display: inline;
+  display: block;
+}
+
+.modal_things_ul
+{
+   list-style: none;
+   width: 80%;
+}
+
+.modal_things_ul li
+{
+  display: block;
+}
+
+.modal_followers_ul
+{
+   list-style: none;
+   width: 80%;
 }

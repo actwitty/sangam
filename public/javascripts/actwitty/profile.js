@@ -35,7 +35,6 @@ $(document).ready(function(){
                 populated_friends=true;
               }
             }else if(ui.panel.id == "Stream"){
-              load_filter();
               if(populated_stream == false){
                 append_stream(page_owner_id);
                 populated_stream=true;
@@ -50,9 +49,9 @@ $(document).ready(function(){
     if(default_tab && default_tab =='filtered'){
       var last_tab =  $('#sub_filter_tabs ul').tabs().size();
       $('#sub_filter_tabs').tabs('select', (last_tab - 1));
-      load_filter();
       if(populated_stream == false){
-        append_stream(page_owner_id, personal_summaries_count);
+        var streams_count = parseInt($('#stream_count').val());
+        append_friends_summary(owner_id, streams_count);
         populated_stream=true;
       }
     }else{
@@ -74,6 +73,13 @@ $(document).ready(function(){
       if(populated_friends == true){
         var friends_summaries_count = parseInt($('#friend_count').val());
         append_friends_summary(owner_id, friends_summaries_count);
+      }
+    });
+
+     $('#more_streams').click(function() {
+      if(populated_stream == true){
+        var streams_count = parseInt($('#stream_count').val());
+        append_friends_summary(owner_id, streams_count);
       }
     });
 

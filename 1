@@ -6,35 +6,23 @@
 /*
  * Render friends 
  */
-function renderFollowings(json){
-  var search_html = '<input type="text" id="search_followings" placeholder="Followings"/>';
-  $("#following-dialog-modal").append(search_html);
-  var html = '<ul id="followings_list" class="modal_friends_ul">' +
+function renderFollowers(json){
+  var search_html = '<input type="text" id="search_followers" placeholder="Followers"/>';
+  $("#follower-dialog-modal").append(search_html);
+  var html = '<ul id="followers_list" class="modal_friends_ul">' +
              '</ul>';
   
-  $("#following-dialog-modal").append(html);
-
+  $("#follower-dialog-modal").append(html);
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
-        var li_id = "followings_li_" + user_data.user.id;
-        var html ='<li id="' + li_id  +  '" class="user_stamp">' +
-                    '<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
+        var html ='<li id=' + user_data.user.id  +  ' class="user_stamp">' +
+                    '<a href="/home/show?id=' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
                       '<img src="' + user_data.user.photo_small_url + '" alt="" class="img_stamp user_stamp" >' +
                            user_data.user.full_name + 
                       '</img>'+
                     '</a>'+ 
-                    '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>'; 
-                  '</li>'; 
-
-
-        $('#followings_list').append(html);
-
-        var html = '<input type="button" class="follow_button" value="Un-Follow" id="follow_btn_' + user_data.user.id + '" />';
-
-          $("#" + li_id).append(html);
-
-        var html = '<input type="hidden" value="' +user_data.user.id + '" id="follow_btn_' + user_data.user.id + '_user_id" />';
-        $("#" + li_id).append(html);
+                  '</li>';
+        $('#followers_list').append(html);
           
       }
   });
@@ -43,18 +31,18 @@ function renderFollowings(json){
 
 
 /* Global data */
-var json_followings_data;
-var ignore_following_auto_complete = false;
+var json_followers_data;
+var ignore_follower_auto_complete = false;
 
 /*
  * Invoke on page load
  */
-function get_all_followings(){
+function get_all_followers(){
     /*
      * Get data on ready
      */
     $.ajax({
-        url: '/contacts/followings',
+        url: '/contacts/followers',
         type: 'GET',
         data: {},
         dataType: 'json',
@@ -64,11 +52,10 @@ function get_all_followings(){
           if (data && data.location) {
             window.location.href = data.location;
           }else{
-            renderFollowings(data);
-            json_followings_data=data;
+            renderFollowers(data);
           }
           //TODO: try to use this in search, why should search hit server, again and again
-          
+          json_followers_data=data;
         },
         error: function (error) {
 
@@ -89,14 +76,13 @@ function getID(user){
 
 /********************************************************************************************/
 $(document).ready(function(){
- $("#search_followings").live('keyup.autocomplete', function() {
-   alert(json_followings_data);
-    $(this).autocomplete('/contacts/followings', {
-      multiple: false,
+  $("#search_followers").live('keyup.autocomplete', function() {
+	  $(this).autocomplete(json_followers_data, {
+		  multiple: false,
       delay: 0,
       //cacheLength:1000,
 		  dataType: "json",
-      parse: function(data) {
+        parse: function(data) {
         return $.map(data, function(row) {
           return {
             data: row.user,
@@ -107,29 +93,19 @@ $(document).ready(function(){
       },
       formatItem: function(item) {
         return format(item);
-      },
-
+      }
     }).result(function(e, item) {
-      if (ignore_following_auto_complete == false){
+        
+        if (ignore_follower_auto_complete == false){
           /* filter change transaction */
-          reset_filter();
+          modify_filter({});
 
-          $("#following-dialog-modal").dialog('close');
-          ignore_following_auto_complete = true;
+          $("#follower-dialog-modal").dialog('close');
+          ignore_follower_auto_complete = true;
           window.location.href = "/home/show?id=" + getID(item);
         }
     });
   });
-
-  $(".user_nav").live('click', function(){
-    var click_id = $(this).attr("id");
-    var user_id = $("#" + click_id + "_hidden").attr("value");
-    reset_filter();
-
-    $("#following-dialog-modal").dialog('close');
-    window.location.href = "/home/show?id=" + user_id;
-  });
- 
 
 });
 

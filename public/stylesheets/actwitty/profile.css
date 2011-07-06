@@ -302,29 +302,38 @@ ul.summary_main_box_locations {
   overflow: hidden;
 }
 
-/* line 324, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 323, ../../../app/stylesheets/actwitty/profile.scss */
+ul.stream_list {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  list-style: none;
+  border: 1px;
+}
+
+/* line 332, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_channels_ul {
   list-style: none;
   width: 80%;
 }
 
-/* line 330, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 338, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_channels_ul li {
   display: block;
 }
 
-/* line 335, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 343, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_things_ul {
   list-style: none;
   width: 80%;
 }
 
-/* line 341, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 349, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_things_ul li {
   display: block;
 }
 
-/* line 346, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 354, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_followers_ul {
   list-style: none;
   width: 80%;
