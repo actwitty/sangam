@@ -24,7 +24,23 @@ javascripts:
     - public/javascripts/plugins/profile_view.js
     - public/javascripts/cal.js
     - public/javascripts/jquery.nivo.slider.pack.js
-    
+  jquery_devel:
+    - public/javascripts/application.js
+    - public/javascripts/rails.js
+    - public/javascripts/redmond/js/jquery-1.5.1.min.js
+    - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
+    - public/javascripts/redmond/development-bundle/external/jquery.metadata.js
+    - public/javascripts/actwitty/getting_in.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.core.min.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.widget.min.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.button.min.js
+    - public/javascripts/redmond/development-bundle/ui/minified/jquery.ui.dialog.min.js
+    - public/javascripts/plugins/ui-watermark/ui.watermark.js
+    - public/javascripts/rails.validations.js
+    - public/javascripts/rails.validations.custom.js
+    - public/javascripts/plugins/profile_view.js
+    - public/javascripts/cal.js
+    - public/javascripts/jquery.nivo.slider.pack.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js

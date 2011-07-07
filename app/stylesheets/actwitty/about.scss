@@ -1,9 +1,25 @@
+#team {
+  width:600px;
+  margin-left:350px;
+}
+
+#team_img
+{
+  width:600px;
+}
+
+p.team
+{
+  text-align:center;
+}
+
 p.title {
   width: 60%;
   margin: auto;
   font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size:30px;
   align:left;
+  text-align:center;
   color:#009ACD;
 }
 
@@ -13,6 +29,15 @@ p.heading {
   margin: auto;
   font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size:22px;
+  color:#2F2F2F;
+  text-align:center;
+}
+
+p.description {
+  width: 60%;
+  margin: auto;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size:16px;
   color:#2F2F2F;
 }
 

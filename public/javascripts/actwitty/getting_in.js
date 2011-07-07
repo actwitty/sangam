@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
 
     $(".actwittysignup").live('click', function() {
       var auth_key = $('#foreign_auths').find('input[name="auth_key"]').val();

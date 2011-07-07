@@ -10,9 +10,8 @@
 #page-wrapper
   #header
     #logo
-      %a{:href => "#"}
+      %a{:href => "http://www.actwitty.com"}
         %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
-      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
     = render :partial => "users/sessions/foreign_auth"
     /
       #sns-connect
@@ -29,14 +28,12 @@
       .slider-wrapper.theme-default
         .ribbon
         #slider.nivoSlider
-          %img{:alt => "", :src => "/images/l1.jpg"}/
-          %img{:alt => "", :src => "/images/l2.jpg"}/
-          %img{:alt => "", :src => "/images/l3.jpg"}/
-          %img{:alt => "", :src => "/images/l4.jpg"}/
-
+          %img{:alt => "", :src => "/images/actwitty/actwitty_intro_1.png"}/
+          %img{:alt => "", :src => "/images/actwitty/actwitty_intro_2.png"}/
+    
   #info-section
     #actwitty-text
-      %h3 Channelize, Collaborate, Connect
+      %h3 Channelize, Collaborate, Connect 
     #download-section
       #download-desc
         %h3.desc GET ActWitty ON

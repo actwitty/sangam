@@ -67,10 +67,6 @@ body {
 }
 
 
-
-
-
-
 #logo {
   height: auto;
   width: auto;
@@ -420,13 +416,14 @@ div.footers {
 
 #download-section {
   display: block;
-  float: left;
+  float: right;
   background: #fdfdfe;
   height: 60%;
   width: 470px;
   padding: 10px 0 0 20px;
   margin-top: 30px;
-  margin-left:35px;
+  /*margin-left:35px;*/
+  margin-right:40px;
   /*margin-bottom:10px;
   
   margin-left:40px;*/
@@ -837,9 +834,9 @@ div.footers {
 /* line 875, ../../../app/stylesheets/actwitty/mainpage.scss */
 #slider {
   position: relative;
-  width: 470px;
+  width: 490px;
   /* Change this to your images width */
-  height: 300px;
+  height: 350px;
   /* Change this to your images height */
   margin-top: -10px;
 }
@@ -979,6 +976,8 @@ div.footers {
   top: 0px;
   left: 0px;
   display: none;
+    width: 485px;
+  height: 338px;
 }
 
 /* line 983, ../../../app/stylesheets/actwitty/mainpage.scss */
