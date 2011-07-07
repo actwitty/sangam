@@ -26,7 +26,7 @@ Sangam::Application.configure do
   #for enabling breakpoint
   config.breakpoint_server = true
   # Lemonbag for devise mailers
-  config.action_mailer.default_url_options = { :host => '' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.breakpoint_server = true
 

@@ -41,8 +41,8 @@ en:
       failure: 'Could not authorize you from %{kind} because "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: 'Confirm your actwitty.com membership'
       reset_password_instructions:
-        subject: 'Reset password instructions'
+        subject: 'Reset your actwitty.com password'
       unlock_instructions:
-        subject: 'Unlock Instructions'
+        subject: 'Unlock your actwitty.com account'
