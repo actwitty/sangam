@@ -60,7 +60,7 @@ gem 'ancestry'
 
 #Jquery
 gem 'jquery-rails'
-gem 'client_side_validations', :git => 'git://github.com/bcardarella/client_side_validations.git'
+gem 'client_side_validations'
 
 #Form Styling
 gem 'simple_form'
