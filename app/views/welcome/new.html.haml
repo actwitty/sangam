@@ -5,6 +5,8 @@
 /    =render :partial => "users/sessions/new", :locals => { :user => User.new }
 
 /=render :partial => 'users/sign_up/new'
+#LoadingDiv
+  %img.loading-img{:src => "/images/actwitty/loading4.gif"} 
 #page-wrapper
   #header
     #logo
@@ -21,9 +23,20 @@
           .twitter.icon.medium
           .facebook.icon.medium
   #site-connect  
-    =render :partial => "users/sessions/new", :locals => { :user => User.new }
-  
+    #sign_in_up  
+      =render :partial => "users/sessions/new", :locals => { :user => User.new }
+    #info-slide
+      .slider-wrapper.theme-default
+        .ribbon
+        #slider.nivoSlider
+          %img{:alt => "", :src => "/images/l1.jpg"}/
+          %img{:alt => "", :src => "/images/l2.jpg"}/
+          %img{:alt => "", :src => "/images/l3.jpg"}/
+          %img{:alt => "", :src => "/images/l4.jpg"}/
+
   #info-section
+    #actwitty-text
+      %h3 Channelize, Collaborate, Connect
     #download-section
       #download-desc
         %h3.desc GET ActWitty ON

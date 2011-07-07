@@ -13,12 +13,10 @@ $(function(){
         type: 'POST',
         data: $(this).closest('form').serialize(),
         beforeSend: function(){
-          alert("Before");
           $('#LoadingDiv').css('display','block'); 
         },
         success: function(){
           
-          alert('success');
           $('#LoadingDiv').css('display','none');
         },
       });
@@ -38,16 +36,12 @@ $(function(){
         url: "/users/sign_in",
         type: 'POST',
         data: $(this).closest('form').serialize(),
-        /*
         beforeSend: function(){
-          alert("Before");
           $('#LoadingDiv').css('display','block'); 
         },
         success: function(){
-          alert('success');
           $('#LoadingDiv').css('display','none');
         },
-        */
       });
       return false;
     });

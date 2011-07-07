@@ -1,33 +1,3 @@
-/
-  = simple_form_for(:user,@user, :url => user_session_path, :remote => true,  :html => { :id => "signin" }) do |f|
-
-    #inputs.ui-buttonset{:style => "margin-top: 2em;"}
-      #lefthalf
-        = f.input :email ,
-                  :placeholder => "Email", 
-                  :class => 'inputbox',
-                  :label => false,
-                  :autocomplete => "On",
-      #righthalf
-        = f.input :password , 
-                  :placeholder => "Password", 
-                  :class => 'inputbox',
-                  :label => false
-      = f.input :remember_me,  :as => :boolean
-      %input#signinbutton.ui-button.ui-widget.ui-state-default.ui-corner-left.actwittysignin{:role => "button", :type => "button", :value => "Sign In"}/
-      %input#signupbutton.ui-button.ui-widget.ui-state-default.ui-corner-right.actwittysignup{:class => "{button:{label:'SignUp'}}", :role => "button", :type => "button", :value => "Sign Up"}/
-      
-      %input#user_key{:name => "user[key]", :type => "hidden", :value => ""}/
-      %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
-      %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
-
-    = link_to "Forgot password?", new_password_path(:user)
-    = link_to "Unlock Account?", new_unlock_path(:user)
-    = link_to "Resend Confirmation?", new_confirmation_path(:user)
-
-
-
-
 #sign_in_up
   #sign-connect-desc
     %h3.desc START ACTING WITTY
