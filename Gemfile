@@ -55,7 +55,7 @@ gem  'rails3-generators'
 #add validation for foreign keys
 gem "validates_existence", ">= 0.4"
 
-gem 'ancestry'
+#gem 'ancestry'
 
 #Jquery
 gem 'jquery-rails'
