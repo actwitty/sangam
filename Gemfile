@@ -6,7 +6,7 @@ gem 'rails', '3.0.7'
 gem "rake", "0.8.7"
 
 #gem 'mysql2', '0.2.6'
-gem  'pg'
+gem 'pg'
 
 gem 'bundler', '>= 1.0.0'
 
@@ -16,7 +16,7 @@ gem 'sass'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
 #Security
-gem 'devise',           '~> 1.2.0'
+gem 'devise', '~> 1.2.0'
 gem 'devise_invitable', '~> 0.4.0'
 
 #Authentication
@@ -32,14 +32,14 @@ gem 'will_paginate', '3.0.pre2'
 gem 'i18n-inflector-rails', '~> 1.0'
 
 #Uncatagorized
-gem 'addressable'  , '2.2.4'
+gem 'addressable' , '2.2.4'
 
 gem 'json', '1.4.6'
 gem 'annotate'
 
 #File uploading
 gem "fog"
-gem "carrierwave"
+gem "carrierwave", :git => 'git://github.com/jnicklas/carrierwave.git'
 gem "rmagick"
 
 
@@ -50,16 +50,17 @@ gem 'jammit', '0.5.4'
 gem 'date_validator'
 
 #generators for gems which dont have it yet
-gem  'rails3-generators'
+gem 'rails3-generators'
 
 #add validation for foreign keys
 gem "validates_existence", ">= 0.4"
 
-#gem 'ancestry'
+#Ancestry gem - a better replacement of act_as_tree
+gem 'ancestry'
 
 #Jquery
 gem 'jquery-rails'
-gem 'client_side_validations'
+gem 'client_side_validations', :git => 'git://github.com/bcardarella/client_side_validations.git'
 
 #Form Styling
 gem 'simple_form'
@@ -77,13 +78,14 @@ gem "koala"
 gem 'wordnik', ">= 0.3"
 
 #Delayed Job
-gem 'delayed_job'
-#gem 'delayed_job_active_record'
+gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
+gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delayed_job_active_record.git'
 
+#simple form
 gem "simple_form"
 
 #easy ARel
-gem "squeel"  # Last officially released gem
+gem "squeel" # Last officially released gem
 
 group :development do
 
@@ -106,4 +108,3 @@ group :test do
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
 end
-
