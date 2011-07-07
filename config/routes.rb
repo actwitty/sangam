@@ -1,8 +1,7 @@
 Sangam::Application.routes.draw do
 
-  get "home/show"
-
-  get "home_controller/show"
+  #get "home/show"
+  get "home/alpha"
 
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
