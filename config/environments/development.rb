@@ -35,7 +35,7 @@ Sangam::Application.configure do
 
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
-    :domain => "actwitty.com"
+    :domain => "actwitty.com",
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,

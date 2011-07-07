@@ -47,6 +47,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/signin.css
+    - public/stylesheets/actwitty/about.css
     - public/stylesheets/actwitty/profile.css
     - public/stylesheets/actwitty/validations.css
     - public/stylesheets/actwitty/simple_form.css

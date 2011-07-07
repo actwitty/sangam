@@ -73,36 +73,11 @@
 }
 
 /* line 61, ../../../app/stylesheets/actwitty/signin.scss */
-.icon.medium.linkedin {
-  background-position: 0px 0px;
-}
-
-/* line 63, ../../../app/stylesheets/actwitty/signin.scss */
 .icon.medium.twitter {
   background-position: 0px -30px;
 }
 
-/* line 65, ../../../app/stylesheets/actwitty/signin.scss */
+/* line 63, ../../../app/stylesheets/actwitty/signin.scss */
 .icon.medium.facebook {
   background-position: 0px -60px;
-}
-
-/* line 67, ../../../app/stylesheets/actwitty/signin.scss */
-.icon.medium.foursquare {
-  background-position: 0px -90px;
-}
-
-/* line 69, ../../../app/stylesheets/actwitty/signin.scss */
-.icon.medium.crunchbase {
-  background-position: 0px -120px;
-}
-
-/* line 71, ../../../app/stylesheets/actwitty/signin.scss */
-.icon.medium.gmail {
-  background-position: 0px -150px;
-}
-
-/* line 73, ../../../app/stylesheets/actwitty/signin.scss */
-.icon.medium.google-calendar {
-  background-position: 0px -180px;
 }
