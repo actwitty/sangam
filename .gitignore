@@ -8,7 +8,6 @@ tmp/*
 doc/api
 doc/app
 *.swp
-*˜
 .DS_Store
 .project
 solr/data
