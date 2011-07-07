@@ -1,72 +1,103 @@
-
-#page-wrapper
-{
-    background:white;
-    width:100%;
-    margin:0;
-    padding:0;
-    height:auto;
-    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+body {
+  margin: 0 auto;
+  padding: 0;
+  display: block;
+  width: 1300px;
+  /*border:1px solid green;*/
 }
-#header
-{
-    /*background:#484848;*/
-    background:#fff;
-    width:100%;
-    height:140px;;
-    /*margin-top:40px;*/
-   
-    /*
-    -moz-box-shadow: 0 0 4px #3a3a3a;
-    -webkit-box-shadow: 0 0 4px #3a3a3a;
-    -o-box-shadow: 0 0 4px #3a3a3a;
-    */
-    border-bottom:1px solid gray;
-/*
+
+#LoadingDiv {
+  margin: 0;
+  position: fixed;
+  height: 100%;
+  z-index: 9999;
+  /*padding-top:200px;*/
+  /*padding-left:50px;*/
+  width: 100%;
+  margin-top: -40px;
+  /*clear:none;*/
+  background: url(/images/actwitty/background.gif);
+  /*background-color:#666666;
+  border:1px solid #000000;*/
+  opacity: 0.1;
+  display: none;
+}
+
+.loading-img {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+}
+
+#page-wrapper {
+  background: white;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /*border: 1px solid #e4e6e7;*/
+}
+
+#header {
+  /*background:#484848;*/
+  background: #fff;
+  width: 100%;
+  height: 140px;
+  /*margin-top:40px;*/
+  border-bottom: 1px solid gray;
+  /*
     box-shadow: 0 0 6px #f7faf0;
-  -moz-box-shadow: 0 0 6px #f7faf0;
-  -webkit-box-shadow: 0 0 6px #f7faf0;
-  -o-box-shadow: 0 0 6px #f7faf0;
-*/
-}
-#site-connect
-{
-    /*background:#373735;*/
-    background:white;
-    width:100%;
-    /*height:55%;*/
-    height:400px;
-    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-#info-section
-{
-    background:white;
-    width:100%;
-    height:300px;
-    margin-top:5px;
-    margin-bottom:5px;
+    -moz-box-shadow: 0 0 6px #f7faf0;
+    -webkit-box-shadow: 0 0 6px #f7faf0;
+    -o-box-shadow: 0 0 6px #f7faf0;
+    border:1px solid red;
+  */
 }
 
-#logo
-{
-  height:30px;
-  width:60px;
-  
-  /*margin-left:160px;*/
-  float:left;
-  display:block;
-  /*margin-top:-50px;*/
+#site-connect {
+  /*background:#373735;*/
+  background: white;
+  width: 100%;
+  /*height:55%;*/
+  height: 400px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-#sns-connect
-{
-  display:block;
-  float:right;
-  height:80px;
-  width:470px;
-  background: #111211;
-  padding:10px 0 0 20px;
-  margin-right:40px;
-  margin-top:10px;
+
+#info-section {
+  background: white;
+  width: 100%;
+  height: 300px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#logo {
+  height: auto;
+  width: auto;
+  float: left;
+  display: block;
+  /*margin-top:-50px;
+  margin-left:160px;*/
+}
+
+#logo-img {
+  width: 450px;
+  height: 100px;
+}
+
+#sns-connect {
+  display: block;
+  float: right;
+  height: 80px;
+  width: 470px;
+  /*background: #111211;*/
+  background: #fff;
+  padding: 10px 0 0 20px;
+  margin-right: 40px;
+  margin-top: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -77,24 +108,23 @@
   -webkit-box-shadow: 0 0 3px #3a3a3a;
   -o-box-shadow: 0 0 3px #3a3a3a;
 }
-.inputform
-{
-  margin-left:40px;
-  height:auto;
-  width:100%;
+
+.inputform {
+  margin-left: 40px;
+  height: auto;
+  width: 100%;
 }
 
-#sign_in_up
-{
-  display:block;
-  float:right;
+#sign_in_up {
+  display: block;
+  float: right;
   /*background:#121212;*/
-  background:#fdfdfe;
-  height:auto;
-  width:470px;
-  padding:10px 0 0 20px;
-  margin-top:30px;
-  margin-right:40px;
+  background: #fdfdfe;
+  height: auto;
+  width: 470px;
+  padding: 10px 0 0 20px;
+  margin-top: 30px;
+  margin-right: 40px;
   /*margin-bottom:10px;
   
   margin-left:40px;*/
@@ -109,198 +139,199 @@
   -o-box-shadow: 0 0 4px #3a3a3a;
 }
 
-
-#info-slide
-{
-  display:block;
+#info-slide {
+  display: block;
   /*text-align:center;*/
-  float:left;
- /* background:yellow;*/
-  background:url(iframebg1.jpg) no-repeat;
-  height:100%;
-  width:40%;
-  margin-left:50px;
-  padding:10px 0 0 20px;
-  margin-top:30px;
+  float: left;
+  /* background:yellow;*/
+  height: 300px;
+  width: 470px;
+  margin-left: 50px;
+  padding: 10px 0 0 20px;
+  margin-top: 30px;
 }
 
-#sns-desc
-{
-  padding:0 0 0 10px;
-  color:#fff;
+#sns-desc {
+  padding: 0 0 0 10px;
+  color: #000;
   /*text-align:center;*/
-  font-size:12px;
+  font-size: 12px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-#sns-login
-{
-  display:block;
-  margin-top:-20px;
-}
-#desc
-{
-  float:left;
-  padding:0 10px 0 10px;
-  vertical-align:center;
-  text-align:center;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#7EC0EE;
-  
-}
-#facebook-login
-{
-  float:left;
-  
-  padding:5px;
-}
-#twitter-login
-{
-  float:right;
-  padding:5px;
+
+#sns-login {
+  display: block;
+  margin-top: -20px;
 }
 
-#sign-connect-desc
-{
+#desc {
+  float: left;
+  padding: 0 10px 0 10px;
+  vertical-align: center;
+  text-align: center;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: #7EC0EE;
+}
+
+#facebook-login {
+  float: left;
+  padding: 5px;
+}
+
+#twitter-login {
+  float: right;
+  padding: 5px;
+}
+
+#sign-connect-desc {
   /*padding:10px;*/
-  font-size:14px;
-  margin-left:10px;
+  font-size: 14px;
+  margin-left: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#87CEEB;
-}
-#sign-connect-desc h3
-{
-  text-align:center;
+  color: #87CEEB;
 }
 
-
-.email-input
-{
-  float:left;
-  padding:3px;
+#sign-connect-desc h3 {
+  text-align: center;
 }
 
-.password-input
-{
-  float:left;
-  padding:3px;
-  margin-top:0px;
+.email-input {
+  float: left;
+  padding: 3px;
 }
 
-.remember-main
-{
-  float:none;
-  margin-left:0px;
-  margin-top:5px;
+.password-input {
+  float: left;
+  padding: 3px;
+  margin-top: 0px;
 }
 
+.remember-main {
+  float: none;
+  margin-left: 0px;
+  margin-top: 5px;
+}
 
-
-#data-input
-{
+#data-input {
   /*
   padding:3px;
   width:100%;
   height:auto;
   */
 }
-.main-input-list
-{
-  
-  list-style-type:none;
-  margin-left:40px;
-}
-#data-input-actions
-{
-  float:left;
-  margin-top:10px;
-  margin-right:40px;
+
+.main-input-list {
+  list-style-type: none;
+  margin-left: 40px;
 }
 
-
+#data-input-actions {
+  float: left;
+  margin-top: 10px;
+  margin-right: 40px;
+}
 
 .icon {
   padding: 0;
-  margin: 0; }
-  .icon.medium {
-    width: 32px;
-    height: 30px;
-    margin: 8px 0 8px 12px;
-    background: transparent url(/images/actwitty/icons-medium.png) no-repeat; }
-    .icon.medium.twitter {
-      background-position: 0px -30px;
-      float:right;
-      margin-right:30px; }
-    .icon.medium.facebook {
-      background-position: 0px -60px;
-      float:right; }
+  margin: 0;
+}
 
-#top
-{
-  background:gray;
+.icon.medium {
+  width: 32px;
+  height: 30px;
+  margin: 8px 0 8px 12px;
+  background: transparent url(/images/actwitty/icons-medium.png) no-repeat;
+}
+
+.icon.medium.linkedin {
+  background-position: 0px 0px;
+}
+
+.icon.medium.twitter {
+  background-position: 0px -30px;
+  float: right;
+  margin-right: 30px;
+}
+
+.icon.medium.facebook {
+  background-position: 0px -60px;
+  float: right;
+}
+
+.icon.medium.foursquare {
+  background-position: 0px -90px;
+}
+
+.icon.medium.crunchbase {
+  background-position: 0px -120px;
+}
+
+.icon.medium.gmail {
+  background-position: 0px -150px;
+}
+
+.icon.medium.google-calendar {
+  background-position: 0px -180px;
+}
+
+#top {
+  background: gray;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-.footer-content
-{
-  display:block;
-  padding:10px;
-  margin-left:100px;
-  
-}
-.footer-header
-{
-  float:left;
-  padding:10px;
+.footer-content {
+  display: block;
+  padding: 10px;
+  margin-left: 100px;
 }
 
-a
-{
-  text-decoration:none;
-  color:white;
+.footer-header {
+  float: left;
+  padding: 10px;
 }
-div.footers 
-{
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+div.footers {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-.input-deco
-{
-  border:1px solid gray;
-  height:30px;
-  margin-top:3px;
+.input-deco {
+  border: 1px solid gray;
+  height: 30px;
+  margin-top: 3px;
 }
 
-#site-connect-buttons
-{
-  margin-top:10px;
-  display:block;
-  float:left;
-  
+#site-connect-buttons {
+  margin-top: 10px;
+  display: block;
+  float: left;
 }
 
-#forgot-password
-{
-  margin-top:40px;
+#forgot-password {
+  margin-top: 40px;
   /*padding-top:20px;*/
-  margin-left:20px;
+  margin-left: 20px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  font-size:12px;
-  color:#333;
-}
-.main-page-navlinks
-{
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  font-size:12px;
-  color:#333;
-  padding:5px;
-  border:0px solid red;
-  margin-left:10px;
+  font-size: 12px;
+  color: #333;
 }
 
-.button
-{
+.main-page-navlinks {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#ffffff;
+  font-size: 12px;
+  color: #333;
+  padding: 5px;
+  border: 0px solid red;
+  margin-left: 10px;
+}
+
+.button {
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: #ffffff;
   /*background: #1B1B1B;*/
   background: #00BFFF;
   border: 1px solid black;
@@ -309,18 +340,17 @@ div.footers
   -o-border-radius: 4px;
   text-decoration: none;
   font-size: 16px;
-  letter-spacing:0px;
-  width:205px;
+  letter-spacing: 0px;
+  width: 205px;
   padding: 10px;
   font-weight: bold;
-  margin-top:20px;
-  text-align:center;
+  margin-top: 20px;
+  text-align: center;
 }
 
-.connect-buttons
-{
-   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#ffffff;
+.connect-buttons {
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: #ffffff;
   /*background: #1B1B1B;*/
   background: #00BFFF;
   -moz-border-radius: 4px;
@@ -328,64 +358,58 @@ div.footers
   -o-border-radius: 4px;
   text-decoration: none;
   font-size: 16px;
-  letter-spacing:0px;
-  width:205px;
+  letter-spacing: 0px;
+  width: 205px;
   padding: 10px;
   font-weight: bold;
-  margin-top:10px;
-  margin-bottm:10px;
-  text-align:center;
+  margin-top: 10px;
+  margin-bottm: 10px;
+  text-align: center;
 }
 
-.connect-buttons:hover
-{
-  cursor:pointer;
+.connect-buttons:hover {
+  cursor: pointer;
 }
 
-#validation-errors
-{
-  display:block;
-  background:green;
-}
-#email-error
-{
-  float:left;
-  margin-left:20px;
-  color:black;
-}
-#password-error
-{
-  float:left;
-  margin-left:160px;
-  color:black;
+#validation-errors {
+  display: block;
+  background: green;
 }
 
-#email-col
-{
-  float:left;
+#email-error {
+  float: left;
+  margin-left: 20px;
+  color: black;
 }
 
-#password-col
-{
-  float:left;
+#password-error {
+  float: left;
+  margin-left: 160px;
+  color: black;
 }
 
-.listing
-{
+#email-col {
+  float: left;
+}
+
+#password-col {
+  float: left;
+}
+
+.listing {
   /*display:inline;*/
-  list-style-type:none;
+  list-style-type: none;
 }
 
-#download-section
-{
-  display:block;
-  float:right;
+#download-section {
+  display: block;
+  float: right;
   background: #fdfdfe;
-  height:60%;
-  width:470px;
-  padding:10px 0 0 20px;
-  margin-top:30px;
-  margin-right:40px;
+  height: 60%;
+  width: 470px;
+  padding: 10px 0 0 20px;
+  margin-top: 30px;
+  margin-right: 40px;
   /*margin-bottom:10px;
   
   margin-left:40px;*/
@@ -398,24 +422,21 @@ div.footers
   -moz-box-shadow: 0 0 4px #3a3a3a;
   -webkit-box-shadow: 0 0 4px #3a3a3a;
   -o-box-shadow: 0 0 4px #3a3a3a;
-
 }
 
-#download-desc
-{
+#download-desc {
   /*padding:10px;*/
-  font-size:14px;
-  margin-left:10px;
+  font-size: 14px;
+  margin-left: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#87CEEB;
+  color: #87CEEB;
 }
-#download-list
-{
-  display:block;
-  background:white;
-  width:95%;
-  height:50%;
 
+#download-list {
+  display: block;
+  background: white;
+  width: 95%;
+  height: 50%;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -425,256 +446,836 @@ div.footers
   -webkit-box-shadow: 0 0 6px #fffdf9;
   -o-box-shadow: 0 0 6px #fffdf9;
 }
-.download-src
-{
-  padding-top:10px;
-  padding-left:40px;
-}
-#input-form
-{
-  margin-left:30px;
+
+.download-src {
+  padding-top: 10px;
+  padding-left: 40px;
 }
 
-.main-input-list
-{
-  
-  list-style-type:none;
+#input-form {
+  margin-left: 30px;
 }
 
-#remember-box
-{
-  margin-left:40px;
-}
-.remember-list
-{
-  display:inline;
+.main-input-list {
+  list-style-type: none;
 }
 
+#remember-box {
+  margin-left: 40px;
+}
 
+.remember-list {
+  display: inline;
+}
 
 /*-------------------------- Forgot Password Page ---------------------*/
-#forgot-site-connect
-{
-    /*background:#373735;*/
-    background:white;
-    width:100%;
-    height:300px;
-    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-    border:1px solid red;
+#forgot-site-connect {
+  /*background:#373735;*/
+  background: white;
+  width: 100%;
+  height: 300px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  margin-bottom: 80px;
 }
-#forgot-sign_in_up
-{
-  display:block;
-  float:right;
-  background:#121212;
-  height:80%;
-  width:470px;
-  padding:10px 0 0 20px;
-  margin-top:30px;
-  margin-right:30%;
+
+#forgot-sign_in_up {
+  display: block;
+  float: right;
+  /*background:#121212;*/
+  background: #fff;
+  height: 80%;
+  width: 470px;
+  padding: 10px 0 0 20px;
+  margin-top: 30px;
+  margin-right: 30%;
   /*margin-bottom:10px;
   
   margin-left:40px;*/
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
   box-shadow: 0 0 6px  #3a3a3a;
   -moz-box-shadow: 0 0 6px  #3a3a3a;
   -webkit-box-shadow: 0 0 6px  #3a3a3a;
   -o-box-shadow: 0 0 6px #3a3a3a;
 }
-#forgot-sign-connect-desc
-{
+
+#forgot-sign-connect-desc {
   /*padding:10px;*/
-  font-size:14px;
-  margin-left:10px;
+  font-size: 14px;
+  margin-left: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#87CEEB;
+  color: #87CEEB;
 }
 
-#forgot-site-connect-buttons
-{
-  display:block;
-  
+#forgot-site-connect-buttons {
+  display: block;
 }
-
-
 
 /*------------------------- confirmation page ------------------------------*/
-#confirmation-page-wrapper
-{
-    background:white;
-    height:1100px;
-    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-
-.confirmation-input-list
-{
-  list-style-type:none;
-}
-.confirmation-fields
-{
-  list-style-type:none;
-  padding:10px;
-}
-
-.confirmation-input
-{
-  margin-left:60px;
-  margin-top:10px;
-}
-.confirmation-labels
-{
-  display:block;
-  float:left;
-  width:150px;
-  text-align:center;
-  vertical-align:top;
-  font-size:16px;
-  font-weight:bold;
+#confirmation-page-wrapper {
+  background: white;
+  height: 1100px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#87CEEB;
+  margin: 0;
+  padding: 0;
 }
-#confirmation-header
-{ 
-    /*background:#484848;*/
-    background:#fff;
-    width:100%;
-    height:10%;
-    margin-top:40px;
-    /*
-    -moz-box-shadow: 0 0 4px #3a3a3a;
-    -webkit-box-shadow: 0 0 4px #3a3a3a;
-    -o-box-shadow: 0 0 4px #3a3a3a;
-    */
-    border-bottom:1px solid gray;
 
-/*
-    box-shadow: 0 0 6px #f7faf0;
+.confirmation-input-list {
+  list-style-type: none;
+}
+
+.confirmation-fields {
+  list-style-type: none;
+  padding: 10px;
+}
+
+.confirmation-input {
+  margin-left: 60px;
+  margin-top: 10px;
+}
+
+.confirmation-labels {
+  display: block;
+  float: left;
+  width: 150px;
+  text-align: center;
+  vertical-align: top;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: #87CEEB;
+}
+
+#confirmation-header {
+  /*background:#484848;*/
+  background: #fff;
+  width: 100%;
+  height: 10%;
+  margin-top: 40px;
+  border-bottom: 1px solid gray;
+  /*
+  box-shadow: 0 0 6px #f7faf0;
   -moz-box-shadow: 0 0 6px #f7faf0;
   -webkit-box-shadow: 0 0 6px #f7faf0;
   -o-box-shadow: 0 0 6px #f7faf0;
-*/
+  -moz-box-shadow: 0 0 4px #3a3a3a;
+  -webkit-box-shadow: 0 0 4px #3a3a3a;
+  -o-box-shadow: 0 0 4px #3a3a3a;
+  */
 }
 
-
-
-
-#confirmation-page
-{
-/*background:#373735;*/
-    background:white;
-    width:100%;
-    height:80%;
-    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+#confirmation-page {
+  /*background:#373735;*/
+  background: white;
+  width: 100%;
+  height: 80%;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-
-
-#confirmation-page-block
-{
-  display:block;
-  float:right;
-  background:#121212;
-  height:auto;
-  width:800px;
-  padding:10px 0 0 20px;
-  margin-top:30px;
-  margin-right:20%;
+#confirmation-page-block {
+  display: block;
+  float: right;
+  /*background:#121212;*/
+  background: #fff;
+  height: auto;
+  width: 800px;
+  padding: 10px 0 20px 20px;
+  margin-top: 30px;
+  margin-right: 20%;
   /*margin-bottom:10px;
-  
   margin-left:40px;*/
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-  
-  box-shadow: 0 0 6px  #3a3a3a;
-  -moz-box-shadow: 0 0 6px  #3a3a3a;
-  -webkit-box-shadow: 0 0 6px  #3a3a3a;
-  -o-box-shadow: 0 0 6px #3a3a3a;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0 0 4px  #3a3a3a;
+  -moz-box-shadow: 0 0 4px  #3a3a3a;
+  -webkit-box-shadow: 0 0 4px  #3a3a3a;
+  -o-box-shadow: 0 0 4px #3a3a3a;
 }
-.confirm-policies
-{
-  width:300px;
-  height:100px;
-   border-radius: 4px;
+
+/* line 659, ../../../app/stylesheets/actwitty/mainpage.scss */
+.confirm-policies {
+  width: 300px;
+  height: 100px;
+  border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
-  font-size:10px;
+  font-size: 10px;
   border-radius: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-#confirm-desc
-{
-  font-size:30px;
+/* line 672, ../../../app/stylesheets/actwitty/mainpage.scss */
+#confirm-desc {
+  font-size: 30px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color:#87CEEB;
-}
-#confirm-button
-{
-  width:150px;
+  color: #87CEEB;
 }
 
+/* line 678, ../../../app/stylesheets/actwitty/mainpage.scss */
+#confirm-button {
+  width: 150px;
+}
 
+/* line 683, ../../../app/stylesheets/actwitty/mainpage.scss */
+#profile_submit {
+  margin-left: 260px;
+}
+
+/* line 688, ../../../app/stylesheets/actwitty/mainpage.scss */
+#profile_submit:hover {
+  cursor: pointer;
+}
+
+/* line 693, ../../../app/stylesheets/actwitty/mainpage.scss */
+#tos_pos {
+  display: block;
+  margin-top: 90px;
+}
+
+/* line 698, ../../../app/stylesheets/actwitty/mainpage.scss */
+#tos_pos p {
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size: 10px;
+  margin-left: -60px;
+}
+
+/* line 708, ../../../app/stylesheets/actwitty/mainpage.scss */
+#tos_pos a {
+  color: blue;
+  text-decoration: none;
+}
 
 /* ########################## Footer Content ########################*/
-
-#page-footer
-{
-  margin-bottom:0;
-  background:#fff;
-  width:100%;
-  height:40px;
-  box-shadow: 0 0 8px #3a3a3a;
-  -moz-box-shadow: 0 0 8px #3a3a3a;
-  -webkit-box-shadow: 0 0 8px #3a3a3a;
-  -o-box-shadow: 0 0 8px #3a3a3a;
-}
-.footer-content
-{
-  display:block;
-  padding:10px;
-  margin-left:38%;
-}
-.footer-header
-{
-  float:left;
-  padding-left:10px;
-  font-size:12px;
-  font-weight:normal;
-  height:14px;
-  margin-top:-10px;
-  color:gray;
-
-}
-.footer-header
-{
-  float:left;
-  padding-left:10px;
-  color:black;
-  font-size:12px;
-  font-weight:normal;
-  height:14px;
-  margin-top:-20px;
-
+/* line 717, ../../../app/stylesheets/actwitty/mainpage.scss */
+#page-footer {
+  margin-bottom: 0;
+  background: #fff;
+  width: 100%;
+  height: 40px;
+  box-shadow: 0 0 3px #3a3a3a;
+  -moz-box-shadow: 0 0 3px #3a3a3a;
+  -webkit-box-shadow: 0 0 3px #3a3a3a;
+  -o-box-shadow: 0 0 3px #3a3a3a;
 }
 
-
-
-.footer-header a
-{
-  text-decoration:none;
-  color:#009ACD;
+/* line 728, ../../../app/stylesheets/actwitty/mainpage.scss */
+.footer-content {
+  display: block;
+  padding: 10px;
+  margin-left: 38%;
 }
-div.footers 
-{
-  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif
+
+/* line 734, ../../../app/stylesheets/actwitty/mainpage.scss */
+.footer-header {
+  float: left;
+  padding-left: 10px;
+  font-size: 12px;
+  font-weight: normal;
+  height: 14px;
+  margin-top: -10px;
+  color: gray;
+}
+
+/* line 745, ../../../app/stylesheets/actwitty/mainpage.scss */
+.footer-header {
+  float: left;
+  padding-left: 10px;
+  color: black;
+  font-size: 12px;
+  font-weight: normal;
+  height: 14px;
+  margin-top: -20px;
+}
+
+/* line 759, ../../../app/stylesheets/actwitty/mainpage.scss */
+.footer-header a {
+  text-decoration: none;
+  color: #009ACD;
+}
+
+/* line 764, ../../../app/stylesheets/actwitty/mainpage.scss */
+div.footers {
+  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
+}
+
+/*#############################Sign-Up Welcome Message ##############################*/
+/* line 772, ../../../app/stylesheets/actwitty/mainpage.scss */
+.welcome-message {
+  width: 600px;
+  height: auto;
+  margin-left: 400px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  -moz-box-shadow: inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow: inset 0 0 5px #000000;
+}
+
+/* line 788, ../../../app/stylesheets/actwitty/mainpage.scss */
+.welcome-message h4 {
+  color: #333;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* line 796, ../../../app/stylesheets/actwitty/mainpage.scss */
+.welcome-message h3 {
+  color: #0a67a3;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  font-size: 22px;
+  text-align: center;
+  padding: 5px;
+}
+
+/*################################### Date Picker ###################################*/
+/* line 808, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker {
+  border-collapse: collapse;
+  border: 1px solid #999;
+  position: absolute;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+
+/* line 818, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tr.controls th {
+  height: 22px;
+  font-size: 11px;
+}
+
+/* line 823, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker select {
+  font-size: 11px;
+}
+
+/* line 827, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tr.days th {
+  height: 18px;
+}
+
+/* line 831, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tfoot td {
+  height: 18px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* line 837, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker th, .datepicker tfoot td {
+  background: #87cbee;
+  font: 10px/18px Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* line 842, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker th span, .datepicker tfoot td span {
+  font-weight: normal;
+}
+
+/* line 847, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tbody td {
+  width: 24px;
+  border: 1px solid blue;
+  height: 24px;
+  border: 1px solid #ccc;
+  font: 11px/22px Arial, Helvetica, sans-serif;
+  text-align: center;
+  background: #fff;
+}
+
+/* line 857, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tbody td.date {
+  cursor: pointer;
+}
+
+/* line 861, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tbody td.date.over {
+  background-color: #00cfff;
+}
+
+/* line 865, ../../../app/stylesheets/actwitty/mainpage.scss */
+.datepicker tbody td.date.chosen {
+  font-weight: bold;
+  background-color: #0386a5;
+}
+
+/*######################## SLIDER CSS #######################*/
+/* line 875, ../../../app/stylesheets/actwitty/mainpage.scss */
+#slider {
+  position: relative;
+  width: 470px;
+  /* Change this to your images width */
+  height: 300px;
+  /* Change this to your images height */
+  margin-top: -10px;
+}
+
+/* line 881, ../../../app/stylesheets/actwitty/mainpage.scss */
+#slider img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+
+/* line 887, ../../../app/stylesheets/actwitty/mainpage.scss */
+#slider a {
+  border: 0;
+  display: block;
+}
+
+/* The Nivo Slider styles */
+/* line 894, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivoSlider {
+  position: relative;
+}
+
+/* line 897, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivoSlider img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+/* If an image is wrapped in a link */
+/* line 903, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivoSlider a.nivo-imageLink {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 6;
+  display: none;
+}
+
+/* The slices and boxes in the Slider */
+/* line 916, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-slice {
+  display: block;
+  position: absolute;
+  z-index: 5;
+  height: 100%;
+}
+
+/* line 922, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-box {
+  display: block;
+  position: absolute;
+  z-index: 5;
+}
+
+/* Caption styles */
+/* line 928, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-caption {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  background: #000;
+  color: #fff;
+  opacity: 0.8;
+  /* Overridden by captionOpacity setting */
+  width: 100%;
+  z-index: 8;
+}
+
+/* line 938, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-caption p {
+  padding: 5px;
+  margin: 0;
+}
+
+/* line 942, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-caption a {
+  display: inline !important;
+}
+
+/* line 945, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-html-caption {
+  display: none;
+}
+
+/* Direction nav styles (e.g. Next & Prev) */
+/* line 949, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-directionNav a {
+  position: absolute;
+  top: 45%;
+  z-index: 9;
+  cursor: pointer;
+}
+
+/* line 955, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-prevNav {
+  left: 0px;
+}
+
+/* line 958, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-nextNav {
+  right: 0px;
+}
+
+/* Control nav styles (e.g. 1,2,3...) */
+/* line 962, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-controlNav a {
+  position: relative;
+  z-index: 9;
+  cursor: pointer;
+}
+
+/* line 967, ../../../app/stylesheets/actwitty/mainpage.scss */
+.nivo-controlNav a.active {
+  font-weight: bold;
+}
+
+/* line 970, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivoSlider {
+  position: relative;
+  background: white url(loading.gif) no-repeat 50% 50%;
+  -webkit-box-shadow: 0px 1px 5px 0px #4a4a4a;
+  -moz-box-shadow: 0px 1px 5px 0px #4a4a4a;
+  box-shadow: 0px 1px 5px 0px #4a4a4a;
+}
+
+/* line 977, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivoSlider img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+}
+
+/* line 983, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivoSlider a {
+  border: 0;
+  display: block;
+}
+
+/* line 988, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-controlNav {
+  position: absolute;
+  left: 50%;
+  /*bottom:-42px;*/
+  margin-left: 40px;
+  /* Tweak this to center bullets */
+}
+
+/* line 994, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-controlNav a {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: url(bullets.png) no-repeat;
+  text-indent: -9999px;
+  border: 0;
+  margin-right: 3px;
+  float: left;
+}
+
+/* line 1004, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-controlNav a.active {
+  background-position: 0 -22px;
+}
+
+/* line 1008, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-directionNav a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url(arrows.png) no-repeat;
+  text-indent: -9999px;
+  border: 0;
+}
+
+/* line 1016, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default a.nivo-nextNav {
+  background-position: -30px 0;
+  right: 15px;
+}
+
+/* line 1020, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default a.nivo-prevNav {
+  left: 15px;
+}
+
+/* line 1024, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-caption {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* line 1027, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-caption a {
+  color: #fff;
+  border-bottom: 1px dotted #fff;
+}
+
+/* line 1031, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-default .nivo-caption a:hover {
+  color: #fff;
+}
+
+/*
+Skin Name: Orman Theme
+Skin URI: http://nivo.dev7studios.com
+Skin Type: fixed
+Description: A light and green skin for the Nivo Slider.
+Version: 1.0
+Author: Gilbert Pellegrom & Orman Clark
+Author URI: http://dev7studios.com
+*/
+/* line 1046, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman.slider-wrapper {
+  background: url(slider.png) no-repeat;
+  width: 722px;
+  height: 337px;
+  margin: 0 auto;
+  padding-top: 18px;
+  position: relative;
+}
+
+/* line 1055, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivoSlider {
+  position: relative;
+  width: 568px;
+  height: 268px;
+  margin-left: 77px;
+  background: url(loading.gif) no-repeat 50% 50%;
+}
+
+/* line 1062, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivoSlider img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  width: 568px;
+  /* Make sure your images are the same size */
+  height: 268px;
+  /* Make sure your images are the same size */
+}
+
+/* line 1070, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivoSlider a {
+  border: 0;
+  display: block;
+}
+
+/* line 1075, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-controlNav {
+  position: absolute;
+  left: 50%;
+  bottom: -60px;
+  margin-left: -30px;
+  /* Tweak this to center bullets */
+}
+
+/* line 1081, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-controlNav a {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: url(bullets.png) no-repeat;
+  text-indent: -9999px;
+  border: 0;
+  margin-right: 7px;
+  float: left;
+}
+
+/* line 1091, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-controlNav a.active {
+  background-position: 0 -10px;
+}
+
+/* line 1095, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-directionNav a {
+  display: block;
+  width: 25px;
+  height: 200px;
+  background: url(arrows.png) no-repeat 0% 50%;
+  text-indent: -9999px;
+  border: 0;
+  top: 40px;
+}
+
+/* line 1104, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman a.nivo-nextNav {
+  background-position: 100% 50%;
+  right: -40px;
+  padding-right: 20px;
+}
+
+/* line 1109, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman a.nivo-prevNav {
+  left: -40px;
+  padding-left: 20px;
+}
+
+/* line 1114, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-caption {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* line 1117, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-caption a {
+  color: #fff;
+  border-bottom: 1px dotted #fff;
+}
+
+/* line 1121, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .nivo-caption a:hover {
+  color: #fff;
+}
+
+/* line 1125, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-orman .ribbon {
+  background: url(ribbon.png) no-repeat;
+  width: 111px;
+  height: 111px;
+  position: absolute;
+  top: -3px;
+  left: 56px;
+  z-index: 300;
+}
+
+/*
+Skin Name: Pascal Theme
+Skin URI: http://nivo.dev7studios.com
+Skin Type: fixed
+Description: A nice, light skin for the Nivo Slider.
+Version: 1.0
+Author: Gilbert Pellegrom & Pascal Gartner
+Author URI: http://dev7studios.com
+*/
+/* line 1147, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal.slider-wrapper {
+  background: url(slider.png) no-repeat;
+  width: 668px;
+  height: 299px;
+  margin: 0 auto;
+  padding-top: 17px;
+  position: relative;
+}
+
+/* line 1156, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivoSlider {
+  position: relative;
+  width: 630px;
+  height: 235px;
+  margin-left: 19px;
+  background: url(loading.gif) no-repeat 50% 50%;
+}
+
+/* line 1163, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivoSlider img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  width: 630px;
+  /* Make sure your images are the same size */
+  height: 235px;
+  /* Make sure your images are the same size */
+}
+
+/* line 1171, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivoSlider a {
+  border: 0;
+  display: block;
+}
+
+/* line 1176, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-controlNav {
+  background: url(controlnav.png) no-repeat;
+  width: 251px;
+  height: 40px;
+  position: absolute;
+  left: 200px;
+  /* Tweak this to center bullets */
+  bottom: -42px;
+  padding: 8px 0 0 82px;
+  z-index: 20;
+}
+
+/* line 1186, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-controlNav a {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background: url(bullets.png) no-repeat;
+  text-indent: -9999px;
+  border: 0;
+  margin-right: 3px;
+  float: left;
+}
+
+/* line 1196, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-controlNav a.active {
+  background-position: 0 -22px;
+}
+
+/* line 1200, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-directionNav a {
+  display: none;
+}
+
+/* line 1204, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-caption {
+  bottom: 40%;
+  left: auto;
+  right: 0px;
+  width: auto;
+  max-width: 630px;
+  overflow: hidden;
+  background: #fff;
+  text-shadow: none;
+  font-family: arial, serif;
+  color: #4c4b4b;
+}
+
+/* line 1216, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-caption p {
+  padding: 5px 15px;
+  color: #333;
+  font-weight: bold;
+  font-size: 27px;
+  text-transform: uppercase;
+}
+
+/* line 1223, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .nivo-caption a {
+  color: #333;
+  font-weight: bold;
+  font-size: 27px;
+  text-transform: uppercase;
+}
+
+/* line 1230, ../../../app/stylesheets/actwitty/mainpage.scss */
+.theme-pascal .ribbon {
+  background: url(ribbon.png) no-repeat;
+  width: 111px;
+  height: 111px;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  z-index: 300;
 }
 
