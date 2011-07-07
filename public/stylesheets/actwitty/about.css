@@ -1,35 +1,43 @@
+@charset "UTF-8";
 /* line 1, ../../../app/stylesheets/actwitty/about.scss */
-.wrapper {
-  position: relative;
-  float: left;
-  left: 0.00%;
-  width: 100.00%;
-  background-color: #cccccc;
+p.title {
+  width: 60%;
+  margin: auto;
+  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
+  font-size: 30px;
+  align: left;
+  color: #009ACD;
 }
 
-/* line 8, ../../../app/stylesheets/actwitty/about.scss */
-.left {
-  position: relative;
-  float: left;
-  left: 0.00%;
-  width: 50.00%;
-  background-color: #ccccff;
+/* line 11, ../../../app/stylesheets/actwitty/about.scss */
+p.heading {
+  width: 60%;
+  margin: auto;
+  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
+  font-size: 22px;
+  color: #2F2F2F;
 }
 
-/* line 15, ../../../app/stylesheets/actwitty/about.scss */
-.right {
-  position: relative;
-  float: right;
-  right: 0.00%;
-  width: 50.00%;
-  background-color: #ccccff;
+/* line 19, ../../../app/stylesheets/actwitty/about.scss */
+p.multi-column {
+  -moz-column-count: 2;
+  -moz-column-gap: 20px;
+  -o-column-count: 2;
+  -o-column-gap: 20px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 20px;
+  column-count: 2;
+  column-gap: 20px;
+  color: #2F2F2F;
+  width: 50%;
+  margin: auto;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size: 16px;
 }
 
-/* line 22, ../../../app/stylesheets/actwitty/about.scss */
-.footer {
-  position: relative;
-  float: left;
-  left: 0.00%;
-  width: 100.00%;
-  background-color: #cfcfcf;
+/* line 37, ../../../app/stylesheets/actwitty/about.scss */
+.multi-column span.heading {
+  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  color: #009ACD;
 }

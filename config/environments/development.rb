@@ -39,8 +39,6 @@ Sangam::Application.configure do
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,
-    :user_name => "sudhanshu.saxena@gmail.com",
-    :password => '151180google',
     :user_name => "no-reply@actwitty.com",
     :password => 'actwitty2011'
   }
