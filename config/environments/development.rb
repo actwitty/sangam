@@ -35,17 +35,14 @@ Sangam::Application.configure do
 
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
-    :domain => "actwitty.com"
+    :domain => "actwitty.com",
     :enable_starttls_auto => true,
     :port => 587,
     :authentication => :plain,
-<<<<<<< HEAD
     :user_name => "sudhanshu.saxena@gmail.com",
-    :password => '151180google'
-=======
+    :password => '151180google',
     :user_name => "no-reply@actwitty.com",
     :password => 'actwitty2011'
->>>>>>> 8c74b66379b53c559451d18c100199e1a87290b4
   }
 end
 

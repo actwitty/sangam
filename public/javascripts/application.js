@@ -15,4 +15,12 @@ $(document).ajaxSend(function(event, request, settings) {
   }
 });
 
+/*$(document).ready(function(){
+    $('#slider').nivoSlider();
+});*/
+
+$(window).load(function() {
+        alert("slider");
+        $('#slider').nivoSlider();
+    });
 

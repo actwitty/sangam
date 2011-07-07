@@ -28,12 +28,18 @@
 }
 
 /* line 29, ../../../app/stylesheets/actwitty/simple_form.scss */
-.field_with_errors {
+.confirmation-fields .field_with_errors {
+  width: 200px;
+  /*display:block;*/
+}
+
+/* line 35, ../../../app/stylesheets/actwitty/simple_form.scss */
+.main-input-list .field_with_errors {
   width: 200px;
   display: block;
 }
 
-/* line 34, ../../../app/stylesheets/actwitty/simple_form.scss */
+/* line 42, ../../../app/stylesheets/actwitty/simple_form.scss */
 .simple_form .error {
   margin-left: 10px;
   font-size: 12px;
@@ -42,7 +48,16 @@
   width: 100%;
 }
 
-/* line 43, ../../../app/stylesheets/actwitty/simple_form.scss */
+/* line 49, ../../../app/stylesheets/actwitty/simple_form.scss */
+.simple_form .confirmation-fields .error {
+  margin-left: 210px;
+  font-size: 12px;
+  color: black;
+  display: block;
+  width: 100%;
+}
+
+/* line 57, ../../../app/stylesheets/actwitty/simple_form.scss */
 .simple_form .hint {
   clear: left;
   margin-left: 120px;

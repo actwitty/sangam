@@ -1,7 +1,9 @@
 #confirmation-page-wrapper
   #confirmation-header
     #logo
-      %img{:height => "120", :src => "/images/actwitty/actwitty_logo.png", :width => "600"}/
+      %a{:href => "#"}
+        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
+      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
   #confirmation-page
     #confirmation-page-block
       #orgot-sign-connect-desc
@@ -36,7 +38,7 @@
                           %label{:for => "confirm-gender-other"} other
               %li.confirmation-fields
                 %label.confirmation-labels Date of Birth
-                = f.input :dob, :label=> false, :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco"}
+                = f.input :dob, :label=> false, :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco dob"}
                 /
                   %label.confirmation-labels Date of Birth
                   %input#dob-input.confirmation-input.input-deco{:name => "dob_confirmation", :size => "20", :type => "text"}
@@ -47,29 +49,32 @@
                 /
                   %label.confirmation-labels City
                   %input#3password-input.confirmation-input.input-deco{:name => "city_confirmation", :size => "40", :type => "text"}
-              %li.confirmation-fields
-                %label.confirmation-labels Privacy Concerns
-                = f.input :is_terms_accepted,
-                          :label => false,      
-                          :as => :boolean,
-                          :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
-                /
+              /    
+                %li.confirmation-fields
                   %label.confirmation-labels Privacy Concerns
-                  %input#confirm-policy.input-deco{:name => "confirm-policy", :type => "checkbox"}
-              %li.confirmation-fields
-                %label.confirmation-labels Terms of Service
-                = f.input :is_privacy_accepted,
-                          :label =>false,      
-                          :as => :boolean,
-                          :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
-                /
+                  = f.input :is_terms_accepted,
+                            :label => false,      
+                            :as => :boolean,
+                            :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
+              /    
+                %li.confirmation-fields
                   %label.confirmation-labels Terms of Service
-                  %input#confirm-tos.input-deco{:name => "confirm-tos", :type => "checkbox"}
+                  = f.input :is_privacy_accepted,
+                            :label =>false,      
+                            :as => :boolean,
+                            :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
+                 
           %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
           #site-connect-buttons
             = f.button :submit, :value => "Get In",:input_html=>{:class=>"connect_buttons",:id=>"confirm-button"}
-            /
-              %input#confirm-button.connect-buttons{:name => "sign-in", :type => "button", :value => "Get In"}/
+          #tos_pos
+            %p
+              By Getting-In you agree to our
+              %a{:href => "#"} Terms of service and Privacy Policy  
+          /  
+            #tos_pos
+              %a{:href => "#",:class=>"tos"} Terms of Service
+              %a{:href => "#",:class=>"pos"} Privacy Policy
   #page-footer
     .footer-content
       #about-us.footer-header
