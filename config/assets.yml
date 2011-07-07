@@ -8,6 +8,7 @@ javascripts:
     - public/javascripts/vendor/swfobject.js
     - public/javascripts/vendor/web_socket.js
   jquery:
+    
     - public/javascripts/application.js
     - public/javascripts/rails.js
     - public/javascripts/redmond/js/jquery-1.5.1.min.js
@@ -22,6 +23,9 @@ javascripts:
     - public/javascripts/rails.validations.js
     - public/javascripts/rails.validations.custom.js
     - public/javascripts/plugins/profile_view.js
+    - public/javascripts/cal.js
+    - public/javascripts/jquery.nivo.slider.pack.js
+    
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js
@@ -56,4 +60,5 @@ stylesheets:
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
     - public/stylesheets/actwitty/mainpage.css
+
 

@@ -1,7 +1,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def confirmation_wait
-
+    respond_to do |format|
+      format.html { render_with_scope :new }
+      format.js   {  }
+    end
   end
 
 
@@ -41,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_to do |format|
           Rails.logger.info "xhr request, rendering partial confirmation wait"
           #  format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
-          format.js   { render :actionq => "confirmation_wait" }
+          format.js   { render :action => "confirmation_wait" }
         end
 
       end
@@ -57,7 +60,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   rescue => e
     Rails.logger.info("Error in User => Registration => create => #{e}")
-    puts "Error in User => Registration => create => #{e}"
   end
 
 

@@ -2,7 +2,9 @@
 #page-wrapper
   #header
     #logo
-      %img{:height => "120", :src => "/images/actwitty/Picture6.png", :width => "600"}/
+      %a{:href => "#"}
+        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
+      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
     #sns-connect
       #sns-desc
         %h3 If you have already started acting witty!
@@ -29,6 +31,12 @@
           %input#signin-button.connect-buttons{:name => "sign-in", :type => "button", :value => "Sign In"}/
           %input#signup-button.connect-buttons{:name => "sign-up", :type => "button", :value => "Sign Up"}/
     #info-slide
+      %h5 samarth
+      #slider
+        %img{:alt => "", :src => "images/l1.jpg"}/
+        %img{:alt => "", :src => "images/l2.jpg"}/
+        %img{:alt => "", :src => "images/l3.jpg"}/
+        %img{:alt => "", :src => "images/l4.jpg"}/
   #info-section
     #download-section
       #download-desc

@@ -1,7 +1,9 @@
 #page-wrapper
   #header
     #logo
-      %img{:height => "120", :src => "/images/actwitty/actwitty_logo.png", :width => "600"}/
+      %a{:href => "#"}
+        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
+      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
   #forgot-site-connect
     #forgot-sign_in_up
       #forgot-sign-connect-desc
