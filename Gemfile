@@ -39,7 +39,7 @@ gem 'annotate'
 
 #File uploading
 gem "fog"
-gem "carrierwave", :git => 'git://github.com/jnicklas/carrierwave.git'
+gem "carrierwave"
 gem "rmagick"
 
 
@@ -55,8 +55,6 @@ gem  'rails3-generators'
 #add validation for foreign keys
 gem "validates_existence", ">= 0.4"
 
-#Ancestry gem - a better replacement of act_as_tree
-gem 'ancestry'
 
 #Jquery
 gem 'jquery-rails'
@@ -78,10 +76,9 @@ gem "koala"
 gem 'wordnik', ">= 0.3"
 
 #Delayed Job
-gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
-gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delayed_job_active_record.git'
+gem 'delayed_job'
+#gem 'delayed_job_active_record'
 
-#simple form
 gem "simple_form"
 
 #easy ARel
