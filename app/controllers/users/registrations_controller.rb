@@ -41,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_to do |format|
           Rails.logger.info "xhr request, rendering partial confirmation wait"
           #  format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
-          format.js   { render :partial => "confirmation_wait" }
+          format.js   { render :actionq => "confirmation_wait" }
         end
 
       end
