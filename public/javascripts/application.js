@@ -20,7 +20,6 @@ $(document).ajaxSend(function(event, request, settings) {
 });*/
 
 $(window).load(function() {
-        alert("slider");
         $('#slider').nivoSlider();
     });
 
