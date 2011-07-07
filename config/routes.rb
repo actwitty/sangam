@@ -59,6 +59,7 @@ Sangam::Application.routes.draw do
   match '/facebook/invite' => 'facebook#invite'
 
   match '/about/show' => 'about#show'
+  match '/team/show' => 'team#show'
 
 
   match '/sign_out' => 'welcome#new'

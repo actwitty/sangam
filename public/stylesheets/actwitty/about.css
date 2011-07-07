@@ -41,3 +41,9 @@ p.multi-column {
   font-size: 18px;
   color: #009ACD;
 }
+
+/* line 44, ../../../app/stylesheets/actwitty/about.scss */
+.team_img {
+  margin: auto;
+  align: center;
+}
