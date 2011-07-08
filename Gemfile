@@ -57,7 +57,7 @@ gem 'jquery-rails'
 gem 'client_side_validations'
 
 #Form Styling
-gem 'simple_form'
+gem 'simple_form' , '1.4.1'
 
 #Manages constants
 gem 'app_constants'

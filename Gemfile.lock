@@ -6,7 +6,6 @@ GIT
       activesupport
       daemons
 
-
 GIT
   remote: git://github.com/collectiveidea/delayed_job_active_record.git
   revision: 3d359527cb22e0ea70fab103ad5af0902a1bfa78
@@ -264,9 +263,7 @@ GEM
       ffi (>= 1.0.7)
       json_pure
       rubyzip
-    simple_form (1.4.2)
-      actionpack (~> 3.0)
-      activemodel (~> 3.0)
+    simple_form (1.4.1)
     spork (0.8.4)
     squeel (0.8.5)
       activerecord (~> 3.0)
@@ -338,7 +335,7 @@ DEPENDENCIES
   rspec-rails (>= 2.0.1)
   sass
   selenium-webdriver (~> 0.2.0)
-  simple_form
+  simple_form (= 1.4.1)
   spork (= 0.8.4)
   squeel
   validates_existence (>= 0.4)
