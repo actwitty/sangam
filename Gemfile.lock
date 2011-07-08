@@ -132,7 +132,7 @@ GEM
     formatador (0.1.5)
     fssm (0.2.7)
     geocoder (1.0.2)
-    gherkin (2.4.1)
+    gherkin (2.4.2)
       json (>= 1.4.6)
     haml (3.1.2)
     haml-rails (0.3.4)
