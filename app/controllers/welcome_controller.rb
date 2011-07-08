@@ -5,4 +5,6 @@ class WelcomeController < ApplicationController
       redirect_to :controller => "home", :action => "alpha"
     end
   end
+
+
 end

@@ -1,0 +1,15 @@
+#page-wrapper
+  #header
+    =render :partial => "welcome/logo"
+
+  #forgot-site-connect
+    #forgot-sign_in_up
+      #forgot-sign-connect-desc
+        %h3#forgot-desc.desc Email confirmation pending.
+        %p
+          An email has been sent to your id: #{params[:email]}.
+          %br/
+          Please click the confirmation via clicking the link on email.
+          %br/
+
+  =render :partial => "welcome/footer"

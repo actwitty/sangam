@@ -25,7 +25,7 @@ Sangam::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
-  match '/users/registrations/confirmation_wait' => 'users/registrations#confirmation_wait'
+  match '/welcome/confirmation_wait' => 'welcome#confirmation_wait'
 
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 
