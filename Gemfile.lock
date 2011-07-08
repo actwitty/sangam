@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/bcardarella/client_side_validations.git
-  revision: a6ccd9ba3d62e9c314a068879cb9207ca730768f
-  specs:
-    client_side_validations (3.1.0)
-
-GIT
   remote: git://github.com/collectiveidea/delayed_job.git
   revision: 4b0f030982721f6ba829f557f3a297e6bfd0b355
   specs:
@@ -62,8 +56,6 @@ GEM
       activesupport (= 3.0.7)
     activesupport (3.0.7)
     addressable (2.2.4)
-    ancestry (1.2.4)
-      activerecord (>= 2.2.2)
     annotate (2.4.0)
     app_constants (1.0.3)
     arel (2.0.10)
@@ -79,6 +71,7 @@ GEM
     childprocess (0.1.9)
       ffi (~> 1.0.6)
     chunky_png (1.2.0)
+    client_side_validations (3.1.0)
     closure-compiler (1.1.1)
     compass (0.11.4)
       chunky_png (~> 1.2)
@@ -289,7 +282,6 @@ GEM
     validates_existence (0.7.0)
     warden (1.0.4)
       rack (>= 1.0)
-    will_paginate (3.0.pre2)
     wordnik (4.06.01)
       activemodel (>= 3.0.3)
       addressable (>= 2.2.4)
@@ -307,13 +299,12 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (= 2.2.4)
-  ancestry
   annotate
   app_constants
   bundler (>= 1.0.0)
   capybara
   carrierwave!
-  client_side_validations!
+  client_side_validations
   compass
   cucumber-rails
   database_cleaner
@@ -329,9 +320,9 @@ DEPENDENCIES
   haml (>= 3.0.25)
   haml-rails (>= 0.3.4)
   i18n-inflector-rails (~> 1.0)
-  jammit (= 0.5.4)
+  jammit
   jquery-rails
-  json (= 1.4.6)
+  json
   koala
   mini_magick (= 3.2)
   omniauth (>= 0.2.0)
@@ -346,9 +337,8 @@ DEPENDENCIES
   rspec-rails (>= 2.0.1)
   sass
   selenium-webdriver (~> 0.2.0)
-  simple_form (= 1.4.0)
+  simple_form
   spork (= 0.8.4)
   squeel
   validates_existence (>= 0.4)
-  will_paginate (= 3.0.pre2)
   wordnik (>= 0.3)

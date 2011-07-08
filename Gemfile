@@ -23,10 +23,6 @@ gem 'devise_invitable', '~> 0.4.0'
 gem 'omniauth', '>= 0.2.0'
 gem 'render_component'
 
-#Views
-#gem 'haml', '3.0.25'
-gem 'will_paginate', '3.0.pre2'
-
 
 #Inflected translations
 gem 'i18n-inflector-rails', '~> 1.0'
@@ -34,7 +30,7 @@ gem 'i18n-inflector-rails', '~> 1.0'
 #Uncatagorized
 gem 'addressable' , '2.2.4'
 
-gem 'json', '1.4.6'
+gem 'json'
 gem 'annotate'
 
 #File uploading
@@ -45,7 +41,7 @@ gem "rmagick"
 
 gem 'mini_magick', '3.2'
 
-gem 'jammit', '0.5.4'
+gem 'jammit'
 
 gem 'date_validator'
 
@@ -55,15 +51,13 @@ gem 'rails3-generators'
 #add validation for foreign keys
 gem "validates_existence", ">= 0.4"
 
-#Ancestry gem - a better replacement of act_as_tree
-gem 'ancestry'
 
 #Jquery
 gem 'jquery-rails'
-gem 'client_side_validations', :git => 'git://github.com/bcardarella/client_side_validations.git'
+gem 'client_side_validations'
 
 #Form Styling
-gem 'simple_form', '1.4.0'
+gem 'simple_form'
 
 #Manages constants
 gem 'app_constants'
