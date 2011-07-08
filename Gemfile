@@ -41,7 +41,7 @@ gem "rmagick"
 
 gem 'mini_magick', '3.2'
 
-gem 'jammit'
+gem 'jammit', '0.5.4'
 
 gem 'date_validator'
 
