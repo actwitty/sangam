@@ -26,9 +26,9 @@
     %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
   %br/
   #site-connect-buttons
-    %input#signinbutton.connect-buttons.actwittysignin{:role => "button", :type => "button", :value => "Sign In"}/
     %input#signupbutton.connect-buttons.actwittysignup{:class => "{button:{label:'SignUp'}}", :role => "button", :type => "button", :value => "Sign Up"}/
-    = link_to "Forgot password?    ", new_password_path(:user), :id=>"forgot-password", :class=>"main-page-navlinks"
-    = link_to "Unlock Account?     ", new_unlock_path(:user), :class=>"main-page-navlinks"
-    = link_to "Resend Confirmation?", new_confirmation_path(:user), :class=>"main-page-navlinks"
+    %input#signinbutton.connect-buttons.actwittysignin{:role => "button", :type => "button", :value => "Sign In"}/
+    / = link_to "Unlock Account?     ", new_unlock_path(:user), :class=>"main-page-navlinks"
+    = link_to "Resend signup confirmation email ", new_confirmation_path(:user), :class=>"main-page-navlinks"
+    = link_to "Forgot signin password ", new_password_path(:user), :id=>"forgot-password", :class=>"main-page-navlinks"
 

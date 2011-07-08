@@ -403,15 +403,59 @@ div.footers {
 #actwitty-text
 {
   width:700px;
-  height:100px;
   display:block;
   float:left;
   margin-top:50px;
-  margin-left:30px;
-  text-align:center;
-  font-size:34px;
-  font-family: Verdana, Geneva, sans-serif;
+}
+
+
+
+#actwitty-text .insist
+{
+  font-size:56px;
+  font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
   color:#3EA99F;
+  float:left;
+  text-align:left;
+  color:#3EA99F;
+  margin-right:5px;
+  margin-top:0px;
+}
+
+#actwitty-text .insist_2
+{
+  font-size:56px;
+  font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
+  color:#3EA99F;
+  float:left;
+  text-align:left;
+  color:#3EA99F;
+  margin-right:5px;
+  margin-left:280px;
+  margin-top:5px;
+}
+
+#actwitty-text .insist_3
+{
+  font-size:56px;
+  font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
+  color:#3EA99F;
+  float:left;
+  text-align:left;
+  color:#3EA99F;
+  margin-right:5px;
+  margin-left:30px;
+}
+
+#actwitty-text .detail 
+{
+  font-size:33px;
+  font-family:Verdana, Geneva, sans-serif;
+  color:#3f3f3f;
+  float:left;
+  text-align:left;
+  margin-right:5px;
+  margin-top:22px;
 }
 
 #download-section {

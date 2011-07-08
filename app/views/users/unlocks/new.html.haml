@@ -1,9 +1,7 @@
 #page-wrapper
   #header
-    #logo
-      %a{:href => "#"}
-        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
-      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
+    =render :partial => "welcome/logo"
+
   #forgot-site-connect
     #forgot-sign_in_up
       #forgot-sign-connect-desc
@@ -22,20 +20,8 @@
           = f.button :submit,
                      :value=>"Email Me",
                      :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
-  #page-footer
-    .footer-content
-      #about-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 About ActWitty
-      #team-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Team
-      #contact-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Contact Us
-      #blog-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Blogs
+
+  =render :partial => "welcome/footer"
 
 
 

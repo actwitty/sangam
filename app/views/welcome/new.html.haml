@@ -1,58 +1,41 @@
-/= render :partial => "users/sessions/foreign_auth"
-/.clear 
-/.right
-/  #gettingin.signindiv
-/    =render :partial => "users/sessions/new", :locals => { :user => User.new }
-
-/=render :partial => 'users/sign_up/new'
 #LoadingDiv
   %img.loading-img{:src => "/images/actwitty/loading4.gif"} 
 #page-wrapper
+  / Welcome page header
   #header
-    #logo
-      %a{:href => "http://www.actwitty.com"}
-        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
-    = render :partial => "users/sessions/foreign_auth"
-    /
-      #sns-connect
-        #sns-desc
-          %h3 If you have already started acting witty!
-        #sns-login
-          %h3#desc Directly Sign-In with
-          .twitter.icon.medium
-          .facebook.icon.medium
+    =render :partial => "welcome/logo" 
+    =render :partial => "users/sessions/foreign_auth"
+  
+  / Welcome sign in/ sign up div
   #site-connect  
     #sign_in_up  
       =render :partial => "users/sessions/new", :locals => { :user => User.new }
+
+    / Welcome information slider div
     #info-slide
       .slider-wrapper.theme-default
         .ribbon
         #slider.nivoSlider
           %img{:alt => "", :src => "/images/actwitty/actwitty_intro_1.png"}/
           %img{:alt => "", :src => "/images/actwitty/actwitty_intro_2.png"}/
-    
+  
+  / Welcome page Information text
   #info-section
     #actwitty-text
-      %h3 Channelize, Collaborate, Connect 
+      %span
+        .insist #Channelize
+        .detail interests
+        .insist_2 #Enrich
+        .detail channels
+        .insist_3 #Connect
+        .detail to topical short lived networks 
+
     #download-section
       #download-desc
-        %h3.desc GET ActWitty ON
+        %h3.desc Enable ActWitty on
       #download-list
         %img.download-src{:height => "65", :src => "/images/actwitty/android.jpg", :width => "65"}
           %img.download-src{:height => "65", :src => "/images/actwitty/iphone.png", :width => "65"}
             %img.download-src{:height => "65", :src => "/images/actwitty/blackberry.png", :width => "65"}
               %img.download-src{:height => "65", :src => "/images/actwitty/palm.png", :width => "65"}
-  #page-footer
-    .footer-content
-      #about-us.footer-header
-        %a.footers{:href => "/about/show"}
-          %h4 About ActWitty
-      #team-us.footer-header
-        %a.footers{:href => "/team/show"}
-          %h4 Team
-      #contact-us.footer-header
-        %a.footers{:href => "mailto:contact@actwitty.com"}
-          %h4 Contact Us
-      #blog-us.footer-header
-        %a.footers{:href => "http://act-witty.blogspot.com/"}
-          %h4 Blogs
+  =render :partial => "welcome/footer"

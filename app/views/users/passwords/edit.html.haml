@@ -1,9 +1,7 @@
 #page-wrapper
   #header
-    #logo
-      %a{:href => "#"}
-        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
-      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
+   =render :partial => "welcome/footer"
+
   #forgot-site-connect
     #forgot-sign_in_up
       #forgot-sign-connect-desc
@@ -29,44 +27,5 @@
           = f.button :submit,
                      :value=>"Change Password",
                      :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
-  #page-footer
-    .footer-content
-      #about-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 About ActWitty
-      #team-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Team
-      #contact-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Contact Us
-      #blog-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Blogs
-
-
-
-
-
-
-
-/
-  %h2 Change your password?
-  = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :put }) do |f|
-    =f.input :reset_password_token, :as => :hidden
-    %p
-      = f.input :password ,
-                :placeholder => "Password", 
-                :label => false, 
-                :class => 'inputbox', 
-                :hint => "Enter new password",
-                :input_html => { :size=> 30  }
-    %p
-      = f.input :password ,
-                :placeholder => "Password Confirmation", 
-                :label => false, 
-                :class => 'inputbox', 
-                :hint => "Enter new password",
-                :input_html => { :size=> 30  }
-    %p= f.submit :value=>"Change password"
+  =render :partial => "welcome/footer"
 

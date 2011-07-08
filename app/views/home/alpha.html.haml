@@ -3,29 +3,22 @@
     #logo
       %a{:href => "http://www.actwitty.com"}
         %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
-      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
+  
   #forgot-site-connect
     #forgot-sign_in_up
       #forgot-sign-connect-desc
         %h3#forgot-desc.desc Welcome to ActWitty
         %p
-          Dear netizen we welcome you to actwitty. 
-          We will soon be bringing up enriched website.
-          We will keep you posted over email.
+          Dear netizen,
+          %br/
+          We welcome you to ActWitty. 
+          %br/
+
+          Our website is getting enriched. 
+          %br/
+          ActWitty will keep you posted over email.
         %a.connect-buttons{:href => "/users/sign_out"} Sign Out
-    
-  #page-footer
-    .footer-content
-      #about-us.footer-header
-        %a.footers{:href => "/about/show"}
-          %h4 About ActWitty
-      #team-us.footer-header
-        %a.footers{:href => "/team/show"}
-          %h4 Team
-      #contact-us.footer-header
-        %a.footers{:href => "mailto:contact@actwitty.com"}
-          %h4 Contact Us
-      #blog-us.footer-header
-        %a.footers{:href => "http://act-witty.blogspot.com/"}
-          %h4 Blogs
+
+
+  =render :partial => "welcome/footer"    
 

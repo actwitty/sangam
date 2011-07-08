@@ -1,9 +1,7 @@
 #confirmation-page-wrapper
   #confirmation-header
-    #logo
-      %a{:href => "#"}
-        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
-      /%img{:id=>"logo-img", :src => "/images/actwitty/actwitty_logo.png"}/
+    =render :partial => "welcome/footer"
+  
   #confirmation-page
     #confirmation-page-block
       #orgot-sign-connect-desc
@@ -71,55 +69,5 @@
             %p
               By Getting-In you agree to our
               %a{:href => "#"} Terms of service and Privacy Policy  
-          /  
-            #tos_pos
-              %a{:href => "#",:class=>"tos"} Terms of Service
-              %a{:href => "#",:class=>"pos"} Privacy Policy
-  #page-footer
-    .footer-content
-      #about-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 About ActWitty
-      #team-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Team
-      #contact-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Contact Us
-      #blog-us.footer-header
-        %a.footers{:href => "#"}
-          %h4 Blogs
-
-
-
-
-
-
-/  
-  %h2 Welcome #{@user.email}, just a few more steps to start acting witty
-  = simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
-    = f.input :first_name, :input_html => { :size=> 30  }
-    = f.input :last_name, :input_html => { :size=> 30  }
-    = f.input :sex, :label=> "Gender",:collection => ['male','female','other'], :as => :radio
-    = f.input :dob, :label=> "Date of Brith", :as => :string
-    = f.input :home_location, :label => "City", :input_html => { :size => 30 }
-    %div
-      %textarea.element.textarea.medium{:value => "Terms and services", :readonly=> "readonly" }
-        :preserve
-          Software License Agreement
-                  
-           
-      = f.input :is_terms_accepted,
-                :label => "I accept",      
-                :as => :boolean
-    %div
-      %textarea.element.textarea.medium{:value => "Privacy Policy", :readonly=> "readonly" }
-        :preserve
-          Software License Agreement
-                  
-           
-      = f.input :is_privacy_accepted,
-                :label => "I accept",      
-                :as => :boolean
-      %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
-    = f.button :submit, :value => "Get In"
+  
+  =render :partial => "welcome/footer"
