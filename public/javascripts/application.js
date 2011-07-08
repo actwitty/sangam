@@ -37,14 +37,14 @@ $(document).ready(function(){
       $.ajax({
         url: "/users",
         type: 'POST',
-        data: $(this).closest('form').serialize() //,
-    /*    beforeSend: function(){
+        data: $(this).closest('form').serialize() ,
+        beforeSend: function(){
           $('#LoadingDiv').css('display','block'); 
         },
         success: function(){
           
           $('#LoadingDiv').css('display','none');
-        },*/
+        },
       });
       return false;
   });
@@ -61,13 +61,13 @@ $(document).ready(function(){
       $.ajax({
         url: "/users/sign_in",
         type: 'POST',
-        data: $(this).closest('form').serialize() /*,
+        data: $(this).closest('form').serialize() ,
         beforeSend: function(){
           $('#LoadingDiv').css('display','block'); 
         },
         success: function(){
           $('#LoadingDiv').css('display','none');
-        },*/
+        },
       });
       return false;
     });

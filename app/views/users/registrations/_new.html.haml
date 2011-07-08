@@ -1,6 +1,5 @@
 #sign-connect-desc
   %h3.desc START ACTING WITTY
-/%form
 = simple_form_for(:user,@user, :url => user_registration_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
   %ul#data-input
     %li.main-input-list

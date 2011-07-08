@@ -63,7 +63,7 @@ gem 'jquery-rails'
 gem 'client_side_validations', :git => 'git://github.com/bcardarella/client_side_validations.git'
 
 #Form Styling
-gem 'simple_form'
+gem 'simple_form', '1.4.0'
 
 #Manages constants
 gem 'app_constants'
@@ -81,8 +81,7 @@ gem 'wordnik', ">= 0.3"
 gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
 gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delayed_job_active_record.git'
 
-#simple form
-gem "simple_form"
+
 
 #easy ARel
 gem "squeel" # Last officially released gem
