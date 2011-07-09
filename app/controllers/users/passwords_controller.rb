@@ -27,6 +27,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # PUT /resource/password
   def update
+    puts params
     self.resource = resource_class.reset_password_by_token(params[resource_name])
 
     if resource.errors.empty?

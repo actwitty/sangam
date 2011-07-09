@@ -28,8 +28,8 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       @profile.save!
       sign_in_and_redirect(resource_name, resource)
     else
-      puts  resource.errors
-      render_with_scope :show
+      redirect_to :controller => "welcome", :action => "new"
+
     end
 
  end

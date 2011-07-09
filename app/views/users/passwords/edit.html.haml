@@ -1,6 +1,6 @@
 #page-wrapper
   #header
-   =render :partial => "welcome/logo"
+    =render :partial => "welcome/logo"
 
   #forgot-site-connect
     #forgot-sign_in_up
@@ -9,7 +9,7 @@
         %p
           Please enter any email address that we may have.
           We'll send you an email that will allow you to reset your password.
-      = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :post }) do |f|
+      = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :put }) do |f|
         =f.input :reset_password_token, :as => :hidden
         #data-input
           = f.input :password ,
