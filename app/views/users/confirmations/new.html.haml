@@ -15,14 +15,16 @@
       = simple_form_for(@user, :as => :user, :url => confirmation_path(:user), :html => { :method => :post }) do |f|
         #data-input
           = f.input :email ,
-                    :placeholder => "Type Your Email-id",
+                    :placeholder => "Email",
                     :label => false, 
                     :class => 'inputbox', 
                     :input_html => { :size=> 30,:id=>"password-input",:class=>"input-deco"  }
         #forgot-site-connect-buttons
+          %input.connect-buttons{:role => "button", :type => "submit", :value => "Email Me"}/
+        /
           = f.button :submit,
                      :value=>"Email Me",
                      :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
 
-  =render :partial => "welcome/footer"
+=render :partial => "welcome/footer"
 

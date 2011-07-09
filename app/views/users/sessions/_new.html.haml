@@ -4,14 +4,14 @@
   %ul#data-input
     %li.main-input-list
       = f.input :email ,
-                :placeholder => "Enter Valid Email-id",
+                :placeholder => "Email",
                 :label => false,
-                :input_html => { :class=>'input-deco email-input ',:size=>'30'}
+                :input_html => { :class=>'input-deco email-input '}
     %li.main-input-list
       = f.input :password ,
-                :placeholder => "Enter Your Password",
+                :placeholder => "Password",
                 :label => false,
-                :input_html => { :class=>'input-deco password-input ',:size=>'30'}
+                :input_html => { :class=>'input-deco password-input '}
   #data-input-actions
     %ul#remember-box
       = f.input :remember_me,  :as => :boolean
@@ -23,8 +23,11 @@
     %input#signupbutton.connect-buttons.actwittysignup{:class => "{button:{label:'SignUp'}}", :role => "button", :type => "button", :value => "Sign Up"}/
     %input#signinbutton.connect-buttons.actwittysignin{:role => "button", :type => "button", :value => "Sign In"}/
     / = link_to "Unlock Account?     ", new_unlock_path(:user), :class=>"main-page-navlinks"
-    = link_to "Resend signup confirmation email ", new_confirmation_path(:user), :class=>"main-page-navlinks"
-    = link_to "Forgot signin password ", new_password_path(:user), :id=>"forgot-password", :class=>"main-page-navlinks"
+    #site-connect-nav
+      #resend-confirm-nav
+        = link_to "Resend confirmation", new_confirmation_path(:user), :class=>"main-page-navlinks"
+      #forgot-password-nav
+        = link_to "Forgot password", new_password_path(:user), :id=>"forgot-password", :class=>"main-page-navlinks"
 
 
 

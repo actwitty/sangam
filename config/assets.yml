@@ -22,10 +22,10 @@ javascripts:
     - public/javascripts/rails.validations.custom.js
     - public/javascripts/plugins/profile_view.js
     - public/javascripts/cal.js
-    - public/javascripts/jquery.nivo.slider.pack.js
     - public/javascripts/actwitty/placeholder.js
     - public/javascripts/actwitty/jquery.placeholder.js
     - public/javascripts/actwitty/jquery-placeholder-0.1.js
+    - public/javascripts/slider.js
   jquery_devel:
     - public/javascripts/application.js
     - public/javascripts/rails.js
@@ -42,7 +42,6 @@ javascripts:
     - public/javascripts/rails.validations.custom.js
     - public/javascripts/plugins/profile_view.js
     - public/javascripts/cal.js
-    - public/javascripts/jquery.nivo.slider.pack.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js

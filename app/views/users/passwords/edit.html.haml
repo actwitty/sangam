@@ -1,8 +1,9 @@
 #page-wrapper
   #header
     =render :partial => "welcome/logo"
+
   #forgot-site-connect
-    #forgot-sign_in_up
+    #forgot-sign_in_up.forgot-reset
       #forgot-sign-connect-desc
         %h3#forgot-desc.desc Forgot Your Password?
         %p
@@ -17,14 +18,13 @@
                     :class => 'inputbox', 
                     :input_html => { :size=> 30,:id=>"password-input",:class=>"input-deco"  }
 
-          = f.input :password ,
+          = f.input :password_confirmation ,
                     :placeholder => "Re-enter Password", 
                     :label => false, 
                     :class => 'inputbox', 
                     :input_html => { :size=> 30,:id=>"password-input",:class=>"input-deco"  }
         #forgot-site-connect-buttons
-          = f.button :submit,
-                     :value=>"Change Password",
-                     :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
-  =render :partial => "welcome/footer"
+          %input#reset-password-btn.connect-buttons{:role => "button", :type => "submit", :value => "Change Password"}/
+        
+=render :partial => "welcome/footer"
 

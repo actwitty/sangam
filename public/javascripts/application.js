@@ -14,17 +14,7 @@ $(document).ajaxSend(function(event, request, settings) {
             + "authenticity_token=" + encodeURIComponent( AUTH_TOKEN );
   }
 });
-/*
-$(document).ready(function(){
-    $('#slider').nivoSlider();
-});
-*/
-/*
-$(window).load(function() {
-        alert("kjghdf");
-        $('#slider').nivoSlider();
-    });
-*/
+
 $(document).ready(function(){
     $(".actwittysignup").live('click', function() {
       var auth_key = $('#foreign_auths').find('input[name="auth_key"]').val();
@@ -71,6 +61,7 @@ $(document).ready(function(){
       });
       return false;
     });
+    
 
   });
 

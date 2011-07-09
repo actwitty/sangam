@@ -1,11 +1,23 @@
 #team {
-  width:600px;
+  width:650px;
   margin-left:350px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+
+  box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+
 }
 
 #team_img
 {
   width:600px;
+  margin-left:5px;
+  border:1px solid red;
 }
 
 p.team

@@ -1,21 +1,31 @@
 @charset "UTF-8";
 /* line 1, ../../../app/stylesheets/actwitty/about.scss */
 #team {
-  width: 600px;
+  width: 650px;
   margin-left: 350px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
 }
 
-/* line 7, ../../../app/stylesheets/actwitty/about.scss */
+/* line 17, ../../../app/stylesheets/actwitty/about.scss */
 #team_img {
   width: 600px;
+  margin-left: 5px;
+  border: 1px solid red;
 }
 
-/* line 12, ../../../app/stylesheets/actwitty/about.scss */
+/* line 24, ../../../app/stylesheets/actwitty/about.scss */
 p.team {
   text-align: center;
 }
 
-/* line 16, ../../../app/stylesheets/actwitty/about.scss */
+/* line 28, ../../../app/stylesheets/actwitty/about.scss */
 p.title {
   width: 60%;
   margin: auto;
@@ -26,7 +36,7 @@ p.title {
   color: #009ACD;
 }
 
-/* line 27, ../../../app/stylesheets/actwitty/about.scss */
+/* line 39, ../../../app/stylesheets/actwitty/about.scss */
 p.heading {
   width: 60%;
   margin: auto;
@@ -36,7 +46,7 @@ p.heading {
   text-align: center;
 }
 
-/* line 36, ../../../app/stylesheets/actwitty/about.scss */
+/* line 48, ../../../app/stylesheets/actwitty/about.scss */
 p.description {
   width: 60%;
   margin: auto;
@@ -45,7 +55,7 @@ p.description {
   color: #2F2F2F;
 }
 
-/* line 44, ../../../app/stylesheets/actwitty/about.scss */
+/* line 56, ../../../app/stylesheets/actwitty/about.scss */
 p.multi-column {
   -moz-column-count: 2;
   -moz-column-gap: 20px;
@@ -62,14 +72,14 @@ p.multi-column {
   font-size: 16px;
 }
 
-/* line 62, ../../../app/stylesheets/actwitty/about.scss */
+/* line 74, ../../../app/stylesheets/actwitty/about.scss */
 .multi-column span.heading {
   font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
   font-size: 18px;
   color: #009ACD;
 }
 
-/* line 69, ../../../app/stylesheets/actwitty/about.scss */
+/* line 81, ../../../app/stylesheets/actwitty/about.scss */
 .team_img {
   margin: auto;
   align: center;

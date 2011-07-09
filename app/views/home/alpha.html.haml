@@ -1,8 +1,6 @@
 #page-wrapper
   #header
-    #logo
-      %a{:href => "http://www.actwitty.com"}
-        %img#logo-img{:src => "/images/actwitty/actwitty_logo.png"}/
+    =render :partial => "welcome/logo"
   
   #forgot-site-connect
     #forgot-sign_in_up
@@ -20,5 +18,5 @@
         %a.connect-buttons{:href => "/users/sign_out"} Sign Out
 
 
-  =render :partial => "welcome/footer"    
+=render :partial => "welcome/footer"    
 

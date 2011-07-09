@@ -8,69 +8,38 @@
   #confirmation-page
     #confirmation-page-block
       #orgot-sign-connect-desc
-        %h3#confirm-desc.desc Welcome, just a few more steps for confirmation
+        %h3#confirm-desc.desc Few more steps for confirmation
       #confirmation-form
         = simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
           #confirmation-input
             %ul#confirmation-input-list
               %li.confirmation-fields
                 %label.confirmation-labels First Name
-                = f.input :first_name,:label=>false, :placeholder => "Enter First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
-                /
-                  %label.confirmation-labels First Name
-                  %input#1password-input.confirmation-input.input-deco{:name => "firstname_confirmation", :size => "40", :type => "text"}
+                = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
+
               %li.confirmation-fields
                 %label.confirmation-labels Last Name
-                = f.input :last_name,:label=>false, :placeholder => "Enter Last Name",:input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
-                /
-                  %label.confirmation-labels Last Name
-                  %input#2password-input.confirmation-input.input-deco{:name => "lastname_confirmation", :size => "40", :type => "text"}
+                = f.input :last_name,:label=>false, :placeholder => "Last Name",:input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
+
               %li.confirmation-fields
                 %label.confirmation-labels Gender
                 = f.input :sex, :label=> false,:collection => ['male','female','other'], :as => :radio,:input_html=>{:class=>"confirmation-input input-deco",:id=>"confirm-gender-male"}
-                /                
-                  %label.confirmation-labels Gender
-                  %input#confirm-gender-male.confirmation-input.input-deco{:name => "gender", :type => "radio", :value => "male"}
-                    %label{:for => "confirm-gender-male"}
-                      male
-                      %input#confirm-gender-female.confirmation-input.input-deco{:checked => "", :name => "gender", :type => "radio", :value => "female"}
-                        %label{:for => "confirm-gender-female"} female
-                        %input#confirm-gender-other.confirmation-input.input-deco{:name => "gender", :type => "radio", :value => "other"}
-                          %label{:for => "confirm-gender-other"} other
+
               %li.confirmation-fields
                 %label.confirmation-labels Date of Birth
-                = f.input :dob, :label=> false, :placeholder => "Enter Date of Birth", :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco dob"}
-                /
-                  %label.confirmation-labels Date of Birth
-                  %input#dob-input.confirmation-input.input-deco{:name => "dob_confirmation", :size => "20", :type => "text"}
-                    %label.dob-highlight mm/dd/yyyy
+                = f.input :dob, :label=> false, :placeholder => "Date of Birth", :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco dob"}
+
               %li.confirmation-fields
                 %label.confirmation-labels City
-                = f.input :home_location, :label =>false, :placeholder => "Enter City", :input_html => { :size => 30, :class=>"confirmation-input input-deco" }
-                /
-                  %label.confirmation-labels City
-                  %input#3password-input.confirmation-input.input-deco{:name => "city_confirmation", :size => "40", :type => "text"}
-              /    
-                %li.confirmation-fields
-                  %label.confirmation-labels Privacy Concerns
-                  = f.input :is_terms_accepted,
-                            :label => false,      
-                            :as => :boolean,
-                            :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
-              /    
-                %li.confirmation-fields
-                  %label.confirmation-labels Terms of Service
-                  = f.input :is_privacy_accepted,
-                            :label =>false,      
-                            :as => :boolean,
-                            :input_html=>{:class=>"input-deco",:id=>"confirm-tos"}
+                = f.input :home_location, :label =>false, :placeholder => "City", :input_html => { :size => 30, :class=>"confirmation-input input-deco" }
+              
                  
           %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
           #site-connect-buttons
-            = f.button :submit, :value => "Get In",:input_html=>{:class=>"connect_buttons",:id=>"confirm-button"}
+            %input#confirm-button.connect-buttons{:role => "button", :type => "submit", :value => "Get In"}/
           #tos_pos
             %p
               By Getting-In you agree to our
-              %a{:href => "#"} Terms of service and Privacy Policy  
+              %a{:href => "/terms_of_service.html"} Terms of service  
   
-  =render :partial => "welcome/footer"
+=render :partial => "welcome/footer"

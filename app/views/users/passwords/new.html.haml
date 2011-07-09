@@ -21,7 +21,9 @@
                     :class => 'inputbox', 
                     :input_html => { :size=> 30,:id=>"password-input",:class=>"input-deco"  }
         #forgot-site-connect-buttons
+          %input.connect-buttons{:role => "button", :type => "submit", :value => "Email Me"}/
+        /
           = f.button :submit,
                      :value=>"Email Me",
                      :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
-  =render :partial => "welcome/footer"
+=render :partial => "welcome/footer"
