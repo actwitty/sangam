@@ -1,4 +1,7 @@
 /=render :partial => '/users/sessions/new'
+= javascript_include_tag 'actwitty/placeholder.js'
+= javascript_include_tag 'actwitty/jquery.placeholder.js'
+= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 #page-wrapper
   #header
     #logo
@@ -21,8 +24,8 @@
         %h3.desc START ACTING WITTY
       %form
         #data-input
-          %input#email-input.input-deco{:size => "20", :type => "text"}
-            %input#password-input.input-deco{:size => "20", :type => "text"}
+          %input#email-input.input-deco{:size => "20", :type => "text", :placeholder => "Enter Email"}
+            %input#password-input.input-deco{:size => "20", :type => "text", :placeholder => "Enter Password"}
         #data-input-actions
           %input.input-deco{:name => "remember-me", :type => "checkbox", :value => "Remember Me"}
             Remember Me

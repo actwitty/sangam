@@ -23,6 +23,9 @@ javascripts:
     - public/javascripts/plugins/profile_view.js
     - public/javascripts/cal.js
     - public/javascripts/jquery.nivo.slider.pack.js
+    - public/javascripts/actwitty/placeholder.js
+    - public/javascripts/actwitty/jquery.placeholder.js
+    - public/javascripts/actwitty/jquery-placeholder-0.1.js
   jquery_devel:
     - public/javascripts/application.js
     - public/javascripts/rails.js
@@ -61,6 +64,8 @@ javascripts:
     - public/javascripts/vendor/jquery.autoSuggest.custom.js
   profile:
     - public/javascripts/vendor/jquery.autoSuggest.custom.js
+
+
 
 stylesheets:
   defaults:

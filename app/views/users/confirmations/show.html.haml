@@ -1,3 +1,6 @@
+= javascript_include_tag 'actwitty/placeholder.js'
+= javascript_include_tag 'actwitty/jquery.placeholder.js'
+= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 #confirmation-page-wrapper
   #confirmation-header
     =render :partial => "welcome/logo"
@@ -12,13 +15,13 @@
             %ul#confirmation-input-list
               %li.confirmation-fields
                 %label.confirmation-labels First Name
-                = f.input :first_name,:label=>false, :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
+                = f.input :first_name,:label=>false, :placeholder => "Enter First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
                 /
                   %label.confirmation-labels First Name
                   %input#1password-input.confirmation-input.input-deco{:name => "firstname_confirmation", :size => "40", :type => "text"}
               %li.confirmation-fields
                 %label.confirmation-labels Last Name
-                = f.input :last_name,:label=>false, :input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
+                = f.input :last_name,:label=>false, :placeholder => "Enter Last Name",:input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
                 /
                   %label.confirmation-labels Last Name
                   %input#2password-input.confirmation-input.input-deco{:name => "lastname_confirmation", :size => "40", :type => "text"}
@@ -36,14 +39,14 @@
                           %label{:for => "confirm-gender-other"} other
               %li.confirmation-fields
                 %label.confirmation-labels Date of Birth
-                = f.input :dob, :label=> false, :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco dob"}
+                = f.input :dob, :label=> false, :placeholder => "Enter Date of Birth", :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco dob"}
                 /
                   %label.confirmation-labels Date of Birth
                   %input#dob-input.confirmation-input.input-deco{:name => "dob_confirmation", :size => "20", :type => "text"}
                     %label.dob-highlight mm/dd/yyyy
               %li.confirmation-fields
                 %label.confirmation-labels City
-                = f.input :home_location, :label =>false, :input_html => { :size => 30, :class=>"confirmation-input input-deco" }
+                = f.input :home_location, :label =>false, :placeholder => "Enter City", :input_html => { :size => 30, :class=>"confirmation-input input-deco" }
                 /
                   %label.confirmation-labels City
                   %input#3password-input.confirmation-input.input-deco{:name => "city_confirmation", :size => "40", :type => "text"}

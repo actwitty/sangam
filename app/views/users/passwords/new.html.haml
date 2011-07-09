@@ -1,3 +1,6 @@
+= javascript_include_tag 'actwitty/placeholder.js'
+= javascript_include_tag 'actwitty/jquery.placeholder.js'
+= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 #page-wrapper
   #header
     =render :partial => "welcome/logo"
@@ -13,7 +16,7 @@
       = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :post }) do |f|
         #data-input
           = f.input :email ,
-                    :placeholder => "Email", 
+                    :placeholder => "Type Your Email-id",
                     :label => false, 
                     :class => 'inputbox', 
                     :input_html => { :size=> 30,:id=>"password-input",:class=>"input-deco"  }
