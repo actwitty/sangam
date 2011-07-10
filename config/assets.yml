@@ -12,7 +12,7 @@ javascripts:
   actwittyall:
     - public/javascripts/rails.js
     - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
-    - public/javascripts/application.js
+    - public/javascripts/actwitty/application.js
     - public/javascripts/plugins/ui-watermark/ui.watermark.js
     - public/javascripts/rails.validations.js
     - public/javascripts/rails.validations.custom.js
