@@ -24,9 +24,3 @@ public/uploads/**/*.*
 test
 spec
 backup
-app/stylesheets/*
-app/stylesheets/**/*
-public/stylesheets/*
-public/stylesheets/**/*
-public/javascripts/*
-public/javascripts/**/*
