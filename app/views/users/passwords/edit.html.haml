@@ -5,10 +5,9 @@
   #forgot-site-connect
     #forgot-sign_in_up.forgot-reset
       #forgot-sign-connect-desc
-        %h3#forgot-desc.desc Forgot Your Password?
+        %h3#forgot-desc.desc Reset Your Password?
         %p
-          Please enter any email address that we may have.
-          We'll send you an email that will allow you to reset your password.
+          Change your account settings by entering new password.
       = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :put }) do |f|
         =f.input :reset_password_token, :as => :hidden
         #data-input
