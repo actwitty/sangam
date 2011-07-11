@@ -59,6 +59,7 @@
           }
         });
 
+
       var addError = function(element, message) {
         clientSideValidations.formBuilders[settings.type].add(element, settings, message);
       }
