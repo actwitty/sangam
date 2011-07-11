@@ -1,6 +1,7 @@
 class AuthenticationsController < ApplicationController
   def auth_signin
     # @authentications = current_user.authentications if current_user
+    # Added For Test Only One comment line is added
     provider = params['provider']
     uid = params['uid']
     @welcome_username="user"
