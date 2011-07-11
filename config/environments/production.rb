@@ -58,6 +58,6 @@ Sangam::Application.configure do
     :port => 587,
     :authentication => :plain,
     :user_name => "no-reply@actwitty.com",
-    :password => 'actwitty2011'
+    :password => 'actwitty08032011'
   }
 end
