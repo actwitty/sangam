@@ -198,14 +198,21 @@ body {
   */
 }
 
-/* line 191, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 192, ../../../app/stylesheets/actwitty/mainpage.scss */
+#data-input span {
+  font-size: 12px;
+  color: #ccc;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+/* line 199, ../../../app/stylesheets/actwitty/mainpage.scss */
 .inputform {
   margin-left: 30px;
   height: auto;
   width: 100%;
 }
 
-/* line 197, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 205, ../../../app/stylesheets/actwitty/mainpage.scss */
 #sign_in_up {
   display: block;
   float: right;
@@ -215,7 +222,7 @@ body {
   opacity: 0.7;
   background: #445D73;
   height: auto;
-  width: 470px;
+  width: 490px;
   padding: 10px 0 0 20px;
   margin-top: 30px;
   margin-right: 500px;
@@ -236,20 +243,27 @@ body {
   */
 }
 
-/* line 230, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 238, ../../../app/stylesheets/actwitty/mainpage.scss */
 .main-input-list {
   list-style-type: none;
   margin-left: 40px;
+  width: 100px;
 }
 
-/* line 234, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 244, ../../../app/stylesheets/actwitty/mainpage.scss */
+.main-input-list span {
+  font-size: 12px;
+  color: #ddd;
+}
+
+/* line 248, ../../../app/stylesheets/actwitty/mainpage.scss */
 .main-input-list .email-input {
   float: left;
   padding: 3px;
   width: 260px;
 }
 
-/* line 240, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 254, ../../../app/stylesheets/actwitty/mainpage.scss */
 .password-input {
   float: left;
   padding: 3px;
@@ -258,27 +272,27 @@ body {
   width: 260px;
 }
 
-/* line 248, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 262, ../../../app/stylesheets/actwitty/mainpage.scss */
 .remember-main {
   float: none;
   margin-left: 0px;
   margin-top: 5px;
 }
 
-/* line 254, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 268, ../../../app/stylesheets/actwitty/mainpage.scss */
 #data-input-actions {
   float: left;
   margin-top: 10px;
   margin-right: 40px;
 }
 
-/* line 260, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 274, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon {
   padding: 0;
   margin: 0;
 }
 
-/* line 265, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 279, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium {
   width: 32px;
   height: 30px;
@@ -286,82 +300,82 @@ body {
   background: transparent url(/images/actwitty/icons-medium.png) no-repeat;
 }
 
-/* line 272, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 286, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.linkedin {
   background-position: 0px 0px;
 }
 
-/* line 276, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 290, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.twitter {
   background-position: 0px -30px;
   float: right;
   margin-right: 30px;
 }
 
-/* line 282, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 296, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.facebook {
   background-position: 0px -60px;
   float: right;
 }
 
-/* line 287, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 301, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.foursquare {
   background-position: 0px -90px;
 }
 
-/* line 291, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 305, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.crunchbase {
   background-position: 0px -120px;
 }
 
-/* line 295, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 309, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.gmail {
   background-position: 0px -150px;
 }
 
-/* line 299, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 313, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.google-calendar {
   background-position: 0px -180px;
 }
 
-/* line 303, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 317, ../../../app/stylesheets/actwitty/mainpage.scss */
 #top {
   background: gray;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-/* line 308, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 322, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-content {
   display: block;
   padding: 10px;
   margin-left: 100px;
 }
 
-/* line 314, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 328, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-header {
   float: left;
   padding: 10px;
 }
 
-/* line 319, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 333, ../../../app/stylesheets/actwitty/mainpage.scss */
 a {
   text-decoration: none;
   color: white;
 }
 
-/* line 324, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 338, ../../../app/stylesheets/actwitty/mainpage.scss */
 div.footers {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-/* line 328, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 342, ../../../app/stylesheets/actwitty/mainpage.scss */
 .input-deco {
   border: 1px solid gray;
   height: 30px;
   margin-top: 3px;
 }
 
-/* line 334, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 348, ../../../app/stylesheets/actwitty/mainpage.scss */
 #site-connect-buttons {
   margin-top: 10px;
   margin-left: 115px;
@@ -369,18 +383,18 @@ div.footers {
   float: left;
 }
 
-/* line 341, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 355, ../../../app/stylesheets/actwitty/mainpage.scss */
 #signinbutton {
   /*margin-left:60px;*/
 }
 
-/* line 346, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 360, ../../../app/stylesheets/actwitty/mainpage.scss */
 #site-connect-nav {
   width: 100%;
   height: 30px;
 }
 
-/* line 352, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 366, ../../../app/stylesheets/actwitty/mainpage.scss */
 #resend-confirm-nav {
   width: 80px;
   float: left;
@@ -391,7 +405,7 @@ div.footers {
   margin-left: 5px;
 }
 
-/* line 362, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 376, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-password-nav {
   width: 80px;
   float: left;
@@ -421,7 +435,7 @@ div.footers {
   margin-left: 20px;
 }
 */
-/* line 391, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 405, ../../../app/stylesheets/actwitty/mainpage.scss */
 .button {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: #ffffff;
@@ -441,7 +455,7 @@ div.footers {
   text-align: center;
 }
 
-/* line 410, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 424, ../../../app/stylesheets/actwitty/mainpage.scss */
 .connect-buttons {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: #ffffff;
@@ -500,17 +514,17 @@ div.footers {
   transition: color 0.25s ease-in-out;
 }
 
-/* line 476, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 490, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-site-connect-buttons .connect-buttons {
   width: 120px;
 }
 
-/* line 480, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 494, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-site-connect-buttons #reset-password-btn {
   width: 200px;
 }
 
-/* line 484, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 498, ../../../app/stylesheets/actwitty/mainpage.scss */
 .connect-buttons:hover {
   cursor: pointer;
   color: #f5f6fa;
@@ -519,43 +533,43 @@ div.footers {
   transition: color 0.25s ease-in-out;
 }
 
-/* line 494, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 508, ../../../app/stylesheets/actwitty/mainpage.scss */
 #validation-errors {
   display: block;
   background: green;
 }
 
-/* line 499, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 513, ../../../app/stylesheets/actwitty/mainpage.scss */
 #email-error {
   float: left;
   margin-left: 20px;
   color: black;
 }
 
-/* line 505, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 519, ../../../app/stylesheets/actwitty/mainpage.scss */
 #password-error {
   float: left;
   margin-left: 160px;
   color: black;
 }
 
-/* line 511, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 525, ../../../app/stylesheets/actwitty/mainpage.scss */
 #email-col {
   float: left;
 }
 
-/* line 515, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 529, ../../../app/stylesheets/actwitty/mainpage.scss */
 #password-col {
   float: left;
 }
 
-/* line 519, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 533, ../../../app/stylesheets/actwitty/mainpage.scss */
 .listing {
   /*display:inline;*/
   list-style-type: none;
 }
 
-/* line 523, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 537, ../../../app/stylesheets/actwitty/mainpage.scss */
 #info-section {
   background: white;
   width: 100%;
@@ -564,7 +578,7 @@ div.footers {
   margin-bottom: 5px;
 }
 
-/* line 532, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 546, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-text {
   width: 90%;
   height: 350px;
@@ -585,7 +599,7 @@ div.footers {
   margin-left: 70px;
 }
 
-/* line 553, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 567, ../../../app/stylesheets/actwitty/mainpage.scss */
 #simplegallery1 {
   position: relative;
   /*keep this intact*/
@@ -598,20 +612,20 @@ div.footers {
   float: left;
 }
 
-/* line 564, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 578, ../../../app/stylesheets/actwitty/mainpage.scss */
 #simplegallery1 .gallerydesctext {
   text-align: left;
   padding: 2px 5px;
 }
 
-/* line 570, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 584, ../../../app/stylesheets/actwitty/mainpage.scss */
 .actwitty-info {
   width: 600px;
   height: 100%;
   display: block;
 }
 
-/* line 577, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 591, ../../../app/stylesheets/actwitty/mainpage.scss */
 .actwitty-info img {
   width: 500px;
   height: 210px;
@@ -619,7 +633,7 @@ div.footers {
   margin-left: 50px;
 }
 
-/* line 584, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 598, ../../../app/stylesheets/actwitty/mainpage.scss */
 .actwitty-info h4 {
   width: 160px;
   text-align: center;
@@ -640,21 +654,21 @@ div.footers {
   -o-box-shadow: 0 0 3px #3a3a3a;
 }
 
-/* line 605, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 619, ../../../app/stylesheets/actwitty/mainpage.scss */
 .actwitty-info h4 span {
   font-size: 15px;
   font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
   color: #87ceeb;
 }
 
-/* line 612, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 626, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-t1 {
   float: left;
   opacity: 0.9;
   width: 462px;
 }
 
-/* line 619, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 633, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-t2 {
   float: left;
   border-left: 1px solid #DDDFE1;
@@ -662,27 +676,27 @@ div.footers {
   opacity: 0.7;
 }
 
-/* line 627, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 641, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-t3 {
   margin-left: 100px;
   float: left;
   opacity: 0.9;
 }
 
-/* line 633, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 647, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-t4 {
   float: left;
   opacity: 0.9;
   border-right: 1px solid #DDDFE1;
 }
 
-/* line 639, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 653, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-t5 {
   float: left;
   opacity: 0.9;
 }
 
-/* line 646, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 660, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-text .insist {
   font-size: 42px;
   font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
@@ -694,7 +708,7 @@ div.footers {
   margin-top: 0px;
 }
 
-/* line 658, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 672, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-text .insist_2 {
   font-size: 42px;
   font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
@@ -707,7 +721,7 @@ div.footers {
   margin-top: 5px;
 }
 
-/* line 671, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 685, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-text .insist_3 {
   font-size: 42px;
   font-family: Verdana Bold, Geneva Bold, sans-serif Bold;
@@ -719,7 +733,7 @@ div.footers {
   margin-left: 30px;
 }
 
-/* line 683, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 697, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-text .detail {
   font-size: 25px;
   font-family: Verdana, Geneva, sans-serif;
@@ -730,14 +744,14 @@ div.footers {
   margin-top: 22px;
 }
 
-/* line 695, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 709, ../../../app/stylesheets/actwitty/mainpage.scss */
 #actwitty-mobile {
   height: 80px;
   width: 100%;
   margin-bottom: -20px;
 }
 
-/* line 700, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 714, ../../../app/stylesheets/actwitty/mainpage.scss */
 #download-section {
   display: block;
   float: right;
@@ -766,7 +780,7 @@ div.footers {
   */
 }
 
-/* line 728, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 742, ../../../app/stylesheets/actwitty/mainpage.scss */
 #download-desc {
   /*padding:10px;*/
   font-size: 10px;
@@ -776,7 +790,7 @@ div.footers {
   color: #87CEEB;
 }
 
-/* line 737, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 751, ../../../app/stylesheets/actwitty/mainpage.scss */
 #download-list {
   display: block;
   background: white;
@@ -792,7 +806,7 @@ div.footers {
   -o-box-shadow: 0 0 6px #fffdf9;
 }
 
-/* line 752, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 766, ../../../app/stylesheets/actwitty/mainpage.scss */
 .download-src {
   padding-top: 10px;
   /*padding-left: 10px;*/
@@ -800,38 +814,38 @@ div.footers {
   height: 30px;
 }
 
-/* line 759, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 773, ../../../app/stylesheets/actwitty/mainpage.scss */
 .android {
   margin-left: 60px;
 }
 
-/* line 763, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 777, ../../../app/stylesheets/actwitty/mainpage.scss */
 .apple {
   margin-left: 10px;
 }
 
-/* line 766, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 780, ../../../app/stylesheets/actwitty/mainpage.scss */
 #input-form {
   margin-left: 30px;
 }
 
-/* line 770, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 784, ../../../app/stylesheets/actwitty/mainpage.scss */
 .main-input-list {
   list-style-type: none;
 }
 
-/* line 774, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 788, ../../../app/stylesheets/actwitty/mainpage.scss */
 #remember-box {
   margin-left: 40px;
 }
 
-/* line 778, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 792, ../../../app/stylesheets/actwitty/mainpage.scss */
 .remember-list {
   display: inline;
 }
 
 /*-------------------------- Forgot Password Page ---------------------*/
-/* line 783, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 797, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-site-connect {
   /*background:#373735;*/
   background: white;
@@ -848,7 +862,7 @@ div.footers {
   -o-box-shadow: 0 0 6px #fff;
 }
 
-/* line 801, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 815, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-sign_in_up {
   display: block;
   float: right;
@@ -874,7 +888,7 @@ div.footers {
   -o-box-shadow: 0 0 6px #3a3a3a;
 }
 
-/* line 826, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 840, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-sign-connect-desc {
   /*padding:10px;*/
   font-size: 14px;
@@ -883,13 +897,13 @@ div.footers {
   color: #87CEEB;
 }
 
-/* line 834, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 848, ../../../app/stylesheets/actwitty/mainpage.scss */
 #forgot-site-connect-buttons {
   display: block;
 }
 
 /*------------------------- confirmation page ------------------------------*/
-/* line 839, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 853, ../../../app/stylesheets/actwitty/mainpage.scss */
 #confirmation-page-wrapper {
   background: white;
   height: 750px;
@@ -898,25 +912,25 @@ div.footers {
   padding: 0;
 }
 
-/* line 847, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 861, ../../../app/stylesheets/actwitty/mainpage.scss */
 .confirmation-input-list {
   list-style-type: none;
 }
 
-/* line 851, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 865, ../../../app/stylesheets/actwitty/mainpage.scss */
 .confirmation-fields {
   list-style-type: none;
   padding: 0px 10px 0px 10px;
   border: 1px solid #fff;
 }
 
-/* line 857, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 871, ../../../app/stylesheets/actwitty/mainpage.scss */
 .confirmation-input {
   margin-left: 60px;
   margin-top: 10px;
 }
 
-/* line 862, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 876, ../../../app/stylesheets/actwitty/mainpage.scss */
 .confirmation-labels {
   display: block;
   float: left;
@@ -930,7 +944,7 @@ div.footers {
   color: #87CEEB;
 }
 
-/* line 875, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 889, ../../../app/stylesheets/actwitty/mainpage.scss */
 #confirmation-header {
   /*background:#484848;*/
   background: #fff;
@@ -950,7 +964,7 @@ div.footers {
   */
 }
 
-/* line 894, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 908, ../../../app/stylesheets/actwitty/mainpage.scss */
 #confirmation-page {
   /*background:#373735;*/
   background: white;
@@ -959,7 +973,7 @@ div.footers {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-/* line 902, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 916, ../../../app/stylesheets/actwitty/mainpage.scss */
 #confirmation-page-block {
   display: block;
   float: right;
@@ -984,7 +998,7 @@ div.footers {
 }
 
 /* line 659, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 927, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 941, ../../../app/stylesheets/actwitty/mainpage.scss */
 .confirm-policies {
   width: 300px;
   height: 100px;
@@ -998,7 +1012,7 @@ div.footers {
 }
 
 /* line 672, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 940, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 954, ../../../app/stylesheets/actwitty/mainpage.scss */
 #confirm-desc {
   font-size: 30px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
@@ -1007,33 +1021,33 @@ div.footers {
 }
 
 /* line 678, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 948, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 962, ../../../app/stylesheets/actwitty/mainpage.scss */
 #confirm-button {
   width: 180px;
   margin-left: 160px;
 }
 
 /* line 683, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 955, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 969, ../../../app/stylesheets/actwitty/mainpage.scss */
 #profile_submit {
   margin-left: 260px;
 }
 
 /* line 688, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 960, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 974, ../../../app/stylesheets/actwitty/mainpage.scss */
 #profile_submit:hover {
   cursor: pointer;
 }
 
 /* line 693, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 965, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 979, ../../../app/stylesheets/actwitty/mainpage.scss */
 #tos_pos {
   display: block;
   margin-top: 90px;
 }
 
 /* line 698, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 971, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 985, ../../../app/stylesheets/actwitty/mainpage.scss */
 #tos_pos p {
   text-align: center;
   text-decoration: none;
@@ -1044,14 +1058,14 @@ div.footers {
 }
 
 /* line 708, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 981, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 995, ../../../app/stylesheets/actwitty/mainpage.scss */
 #tos_pos a {
   color: blue;
   text-decoration: none;
 }
 
 /* ########################## Footer Content ########################*/
-/* line 987, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1001, ../../../app/stylesheets/actwitty/mainpage.scss */
 #page-footer {
   margin-top: 80px;
   /*margin-bottom: 10px;*/
@@ -1067,7 +1081,7 @@ div.footers {
 }
 
 /* line 728, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1004, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1018, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-content {
   display: block;
   height: 20px;
@@ -1077,7 +1091,7 @@ div.footers {
 }
 
 /* line 734, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1013, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1027, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-header {
   margin: 0;
   display: block;
@@ -1089,7 +1103,7 @@ div.footers {
   color: gray;
 }
 
-/* line 1027, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1041, ../../../app/stylesheets/actwitty/mainpage.scss */
 .terms_of_service {
   display: block;
   font-size: 12px;
@@ -1098,7 +1112,7 @@ div.footers {
   margin-left: 300px;
 }
 
-/* line 1036, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1050, ../../../app/stylesheets/actwitty/mainpage.scss */
 #best-viewed {
   float: right;
   margin-right: 60px;
@@ -1107,7 +1121,7 @@ div.footers {
 }
 
 /* line 759, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1044, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1058, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-header a {
   text-decoration: none;
   color: #F4F4F4;
@@ -1116,14 +1130,14 @@ div.footers {
 }
 
 /* line 764, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1052, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1066, ../../../app/stylesheets/actwitty/mainpage.scss */
 div.footers {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
 /*#############################Sign-Up Welcome Message ##############################*/
 /* line 772, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1058, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1072, ../../../app/stylesheets/actwitty/mainpage.scss */
 .welcome-message {
   width: 600px;
   height: auto;
@@ -1140,7 +1154,7 @@ div.footers {
 }
 
 /* line 788, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1074, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1088, ../../../app/stylesheets/actwitty/mainpage.scss */
 .welcome-message h4 {
   color: #333;
   font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
@@ -1150,7 +1164,7 @@ div.footers {
 }
 
 /* line 796, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1083, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1097, ../../../app/stylesheets/actwitty/mainpage.scss */
 .welcome-message h3 {
   color: #0a67a3;
   font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
@@ -1161,7 +1175,7 @@ div.footers {
 
 /*################################### Date Picker ###################################*/
 /* line 808, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1093, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1107, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker {
   border-collapse: collapse;
   border: 1px solid #999;
@@ -1173,26 +1187,26 @@ div.footers {
 }
 
 /* line 818, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1104, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1118, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tr.controls th {
   height: 22px;
   font-size: 11px;
 }
 
 /* line 823, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1110, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1124, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker select {
   font-size: 11px;
 }
 
 /* line 827, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1115, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1129, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tr.days th {
   height: 18px;
 }
 
 /* line 831, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1120, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1134, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tfoot td {
   height: 18px;
   text-align: center;
@@ -1200,20 +1214,20 @@ div.footers {
 }
 
 /* line 837, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1127, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1141, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker th, .datepicker tfoot td {
   background: #87cbee;
   font: 10px/18px Verdana, Arial, Helvetica, sans-serif;
 }
 
 /* line 842, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1133, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1147, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker th span, .datepicker tfoot td span {
   font-weight: normal;
 }
 
 /* line 847, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1138, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1152, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td {
   width: 24px;
   border: 1px solid blue;
@@ -1225,19 +1239,19 @@ div.footers {
 }
 
 /* line 857, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1149, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1163, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td.date {
   cursor: pointer;
 }
 
 /* line 861, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1154, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1168, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td.date.over {
   background-color: #00cfff;
 }
 
 /* line 865, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1159, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1173, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td.date.chosen {
   font-weight: bold;
   background-color: #0386a5;
@@ -1245,7 +1259,7 @@ div.footers {
 
 /*######################## SLIDER CSS #######################*/
 /* line 875, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1166, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1180, ../../../app/stylesheets/actwitty/mainpage.scss */
 #slider {
   position: relative;
   margin-top: 20px;
@@ -1257,7 +1271,7 @@ div.footers {
 }
 
 /* line 881, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1177, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1191, ../../../app/stylesheets/actwitty/mainpage.scss */
 #slider img {
   position: absolute;
   top: 0px;
@@ -1266,7 +1280,7 @@ div.footers {
 }
 
 /* line 887, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1185, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1199, ../../../app/stylesheets/actwitty/mainpage.scss */
 #slider a {
   border: 0;
   display: block;
@@ -1274,7 +1288,7 @@ div.footers {
 
 /* The Nivo Slider styles */
 /* line 894, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1192, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1206, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivoSlider {
   position: relative;
   width: 430px;
@@ -1282,7 +1296,7 @@ div.footers {
 }
 
 /* line 897, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1201, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1215, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivoSlider img {
   position: absolute;
   top: 0px;
@@ -1291,7 +1305,7 @@ div.footers {
 
 /* If an image is wrapped in a link */
 /* line 903, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1209, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1223, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivoSlider a.nivo-imageLink {
   position: absolute;
   top: 0px;
@@ -1307,7 +1321,7 @@ div.footers {
 
 /* The slices and boxes in the Slider */
 /* line 916, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1224, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1238, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-slice {
   display: block;
   position: absolute;
@@ -1316,7 +1330,7 @@ div.footers {
 }
 
 /* line 922, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1232, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1246, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-box {
   display: block;
   position: absolute;
@@ -1325,7 +1339,7 @@ div.footers {
 
 /* Caption styles */
 /* line 928, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1240, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1254, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-caption {
   position: absolute;
   left: 0px;
@@ -1339,27 +1353,27 @@ div.footers {
 }
 
 /* line 938, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1253, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1267, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-caption p {
   padding: 5px;
   margin: 0;
 }
 
 /* line 942, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1259, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1273, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-caption a {
   display: inline !important;
 }
 
 /* line 945, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1264, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1278, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-html-caption {
   display: none;
 }
 
 /* Direction nav styles (e.g. Next & Prev) */
 /* line 949, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1270, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1284, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-directionNav a {
   position: absolute;
   margin-top: 80%;
@@ -1369,20 +1383,20 @@ div.footers {
 }
 
 /* line 955, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1279, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1293, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-prevNav {
   left: 0px;
 }
 
 /* line 958, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1284, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1298, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-nextNav {
   right: 0px;
 }
 
 /* Control nav styles (e.g. 1,2,3...) */
 /* line 962, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1290, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1304, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-controlNav a {
   position: relative;
   z-index: 9;
@@ -1390,13 +1404,13 @@ div.footers {
 }
 
 /* line 967, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1297, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1311, ../../../app/stylesheets/actwitty/mainpage.scss */
 .nivo-controlNav a.active {
   font-weight: bold;
 }
 
 /* line 970, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1302, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1316, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivoSlider {
   position: relative;
   background: white url(loading.gif) no-repeat 50% 50%;
@@ -1406,7 +1420,7 @@ div.footers {
 }
 
 /* line 977, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1311, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1325, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivoSlider img {
   position: absolute;
   top: 0px;
@@ -1417,14 +1431,14 @@ div.footers {
 }
 
 /* line 983, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1321, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1335, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivoSlider a {
   border: 0;
   display: block;
 }
 
 /* line 988, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1327, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1341, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-controlNav {
   position: absolute;
   left: 50%;
@@ -1434,7 +1448,7 @@ div.footers {
 }
 
 /* line 994, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1336, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1350, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-controlNav a {
   display: block;
   width: 22px;
@@ -1447,13 +1461,13 @@ div.footers {
 }
 
 /* line 1004, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1348, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1362, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-controlNav a.active {
   background-position: 0 -22px;
 }
 
 /* line 1008, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1353, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1367, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-directionNav a {
   display: block;
   width: 30px;
@@ -1464,33 +1478,33 @@ div.footers {
 }
 
 /* line 1016, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1363, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1377, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default a.nivo-nextNav {
   background-position: -30px 0;
   right: 15px;
 }
 
 /* line 1020, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1369, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1383, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default a.nivo-prevNav {
   left: 15px;
 }
 
 /* line 1024, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1374, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1388, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-caption {
   font-family: Helvetica, Arial, sans-serif;
 }
 
 /* line 1027, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1379, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1393, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-caption a {
   color: #fff;
   border-bottom: 1px dotted #fff;
 }
 
 /* line 1031, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1385, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1399, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-default .nivo-caption a:hover {
   color: #fff;
 }
@@ -1505,7 +1519,7 @@ Author: Gilbert Pellegrom & Orman Clark
 Author URI: http://dev7studios.com
 */
 /* line 1046, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1399, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1413, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman.slider-wrapper {
   background: url(slider.png) no-repeat;
   width: 722px;
@@ -1516,7 +1530,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1055, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1409, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1423, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivoSlider {
   position: relative;
   width: 568px;
@@ -1526,7 +1540,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1062, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1418, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1432, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivoSlider img {
   position: absolute;
   top: 0px;
@@ -1539,14 +1553,14 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1070, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1430, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1444, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivoSlider a {
   border: 0;
   display: block;
 }
 
 /* line 1075, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1436, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1450, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-controlNav {
   position: absolute;
   left: 50%;
@@ -1556,7 +1570,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1081, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1445, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1459, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-controlNav a {
   display: block;
   width: 10px;
@@ -1569,13 +1583,13 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1091, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1457, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1471, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-controlNav a.active {
   background-position: 0 -10px;
 }
 
 /* line 1095, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1462, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1476, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-directionNav a {
   display: block;
   width: 25px;
@@ -1587,7 +1601,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1104, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1473, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1487, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman a.nivo-nextNav {
   background-position: 100% 50%;
   right: -40px;
@@ -1595,33 +1609,33 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1109, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1480, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1494, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman a.nivo-prevNav {
   left: -40px;
   padding-left: 20px;
 }
 
 /* line 1114, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1486, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1500, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-caption {
   font-family: Helvetica, Arial, sans-serif;
 }
 
 /* line 1117, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1491, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1505, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-caption a {
   color: #fff;
   border-bottom: 1px dotted #fff;
 }
 
 /* line 1121, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1497, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1511, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .nivo-caption a:hover {
   color: #fff;
 }
 
 /* line 1125, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1502, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1516, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-orman .ribbon {
   background: url(ribbon.png) no-repeat;
   width: 111px;
@@ -1642,7 +1656,7 @@ Author: Gilbert Pellegrom & Pascal Gartner
 Author URI: http://dev7studios.com
 */
 /* line 1147, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1522, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1536, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal.slider-wrapper {
   background: url(slider.png) no-repeat;
   width: 668px;
@@ -1653,7 +1667,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1156, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1532, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1546, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivoSlider {
   position: relative;
   width: 630px;
@@ -1663,7 +1677,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1163, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1541, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1555, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivoSlider img {
   position: absolute;
   top: 0px;
@@ -1676,14 +1690,14 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1171, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1553, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1567, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivoSlider a {
   border: 0;
   display: block;
 }
 
 /* line 1176, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1559, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1573, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-controlNav {
   background: url(controlnav.png) no-repeat;
   width: 251px;
@@ -1697,7 +1711,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1186, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1572, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1586, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-controlNav a {
   display: block;
   width: 22px;
@@ -1710,19 +1724,19 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1196, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1584, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1598, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-controlNav a.active {
   background-position: 0 -22px;
 }
 
 /* line 1200, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1589, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1603, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-directionNav a {
   display: none;
 }
 
 /* line 1204, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1594, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1608, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-caption {
   bottom: 40%;
   left: auto;
@@ -1737,7 +1751,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1216, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1608, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1622, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-caption p {
   padding: 5px 15px;
   color: #333;
@@ -1747,7 +1761,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1223, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1617, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1631, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .nivo-caption a {
   color: #333;
   font-weight: bold;
@@ -1756,7 +1770,7 @@ Author URI: http://dev7studios.com
 }
 
 /* line 1230, ../../../app/stylesheets/actwitty/mainpage.scss */
-/* line 1625, ../../../app/stylesheets/actwitty/mainpage.scss */
+/* line 1639, ../../../app/stylesheets/actwitty/mainpage.scss */
 .theme-pascal .ribbon {
   background: url(ribbon.png) no-repeat;
   width: 111px;
