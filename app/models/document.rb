@@ -15,7 +15,6 @@
 require 'file_size_validator'
 
 class Document < ActiveRecord::Base
-   include ActionView::Helpers::UrlHelper
    attr_accessible  :document_data , :owner_id, :activity_id, :document_name, :document_type
 
    belongs_to     :owner, :class_name => "User", :touch => true
@@ -28,22 +27,37 @@ class Document < ActiveRecord::Base
 
    validates_presence_of :document_name
 
+   validates_format_of :thumb_url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.thumb_url.nil?}
+   validates_format_of :url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.url.nil?}
+
    validates_length_of :document_name, :in => 3..255 #a.b
    validates_length_of :document_type, :in => 3..255
+   validates_length_of :url, :in => 1..AppConstants.max_url_length, :unless => Proc.new{|a| a.url.nil?}
+   validates_length_of :thumb_url, :in => 1..AppConstants.max_url_length, :unless => Proc.new{|a| a.thumb_url.nil?}
+
 
    mount_uploader :document_data, DocumentDataUploader
 
 
-   validates :document_data, :presence => true, :file_size => { :maximum => 0.5.megabytes.to_i }
+   validates :document_data, :presence => true, :file_size => { :maximum => AppConstants.max_document_size.megabytes.to_i }
 
    class << self
+
+     #this function is called from delayed job.. when upload i done through rails server.
+     #for normal uploads only documen name and URLS will come.
+     #for them Document.create! is sufficient
+
      def delay_create(owner_id, activity_id,path)
        name = File.basename(path)
        puts "==========================  #{path}"
        d = Document.create!(:owner_id => owner_id, :activity_id => (activity_id.nil? ? nil : activity_id) ,
                         :document_name => name, :document_type => MIME::Types.type_for(name.to_s).first.to_s,
                         :document_data => File.open(path))
-       #puts  d.document_data
+
+       d.url = d.document_data.url
+       d.thumb_url = d.document_data.thumb.url
+       d.save!
+       puts d.inspect
      rescue => e
        Rails.logger.error("Document => delay_create => Failed with #{e.message}")
      end

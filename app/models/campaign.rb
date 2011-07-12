@@ -30,10 +30,12 @@ class Campaign < ActiveRecord::Base
   validates_existence_of :activity_id, :allow_nil => true
   validates_existence_of :entity_id, :allow_nil => true
   validates_existence_of :location_id, :allow_nil => true
+  validates_existence_of :comment_id, :allow_nil => true
 
   validates_uniqueness_of :author_id, :scope => [:activity_id, :campaign_name],  :unless => Proc.new {|a| a.activity_id.nil?}
   validates_uniqueness_of :author_id, :scope => [:entity_id, :campaign_name], :unless => Proc.new {|a| a.entity_id.nil?}
   validates_uniqueness_of :author_id, :scope => [:location_id, :campaign_name], :unless => Proc.new {|a| a.location_id.nil?}
+  validates_uniqueness_of :author_id, :scope => [:comment_id, :campaign_name], :unless => Proc.new {|a| a.location_id.nil?}
   validates_uniqueness_of :father_id
 
 
@@ -54,12 +56,13 @@ class Campaign < ActiveRecord::Base
     # :author_id => 123
     # :campaign_name => "like"
     # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
-    # :campaign_comment => "xbcxbcnxbcnx" or nil
-    # :activity => {:user_id => 123, :activity_id => 234}
+    # :activity => {:user_id => 123, :id => 234}
     #                OR
-    # :entity => {:entity_id = 123}
+    # :entity => {:id = 123}
     #                OR
-    # :location => {:location_id => 123
+    # :location => {:id => 123}
+    # :comment => {:id => 123 }
+
     def create_campaign(params = {})
       new_hash = {}
 
@@ -68,21 +71,30 @@ class Campaign < ActiveRecord::Base
 
         options = params[:activity]
         user = User.find(options[:user_id])
-        activity = Activity.find(options[:activity_id])
+        activity = Activity.find(options[:id])
         #text = "<a href=/users/#{options[:user_id]}>#{user.username}s</a> <a href=/activities/#{options[:activity_id]}>#{activity.activity_name}</a>".html_safe
         text = "#{link_to_type(AppConstants.user_controller, AppConstants.campaign_username_class,user.username,
                   options[:user_id] )} #{link_to_type(AppConstants.activity_controller,
-                                         AppConstants.campaign_activity_class,activity.activity_name,options[:activity_id] )}".html_safe
+                                         AppConstants.campaign_activity_class,activity.activity_name,options[:id] )}".html_safe
         params[:activity_id] = activity.id
         params.delete(:activity)
 
       elsif params.has_key?(:entity)
 
         options = params[:entity]
-        entity = Entity.find(options[:entity_id])
+        entity = Entity.find(options[:id])
         #text = "<a href=/entities/#{options[:entity_id]}>#{entity.entity_name}</a>".html_safe
         text = "#{link_to_type(AppConstants.entity_controller, AppConstants.campaign_entity_class,entity.entity_name,
-                  options[:entity_id] )}".html_safe
+                  options[:id] )}".html_safe
+        params[:entity_id] = entity.id
+        params.delete(:entity)
+      elsif params.has_key?(:comment)
+
+        options = params[:comment]
+        entity = Entity.find(options[:id])
+        #text = "<a href=/entities/#{options[:entity_id]}>#{entity.entity_name}</a>".html_safe
+        text = "#{link_to_type(AppConstants.comment_controller, AppConstants.campaign_comment_class,entity.entity_name,
+                  options[:id] )}".html_safe
         params[:entity_id] = entity.id
         params.delete(:entity)
 

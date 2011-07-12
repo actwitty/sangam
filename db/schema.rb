@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110705061633) do
+ActiveRecord::Schema.define(:version => 20110712063048) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",     :null => false
@@ -65,14 +65,17 @@ ActiveRecord::Schema.define(:version => 20110705061633) do
     t.integer  "campaign_value", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comment_id"
   end
 
   add_index "campaigns", ["activity_id", "campaign_name"], :name => "index_campaigns_on_activity_id_and_campaign_name"
   add_index "campaigns", ["author_id", "activity_id", "campaign_name"], :name => "index_campaign_on_author_activity_name", :unique => true
-  add_index "campaigns", ["author_id", "activity_id", "campaign_name"], :name => "index_campaign_on_author_location_name", :unique => true
   add_index "campaigns", ["author_id", "campaign_name", "campaign_value"], :name => "index_campaign_on_author_name_value"
+  add_index "campaigns", ["author_id", "comment_id", "campaign_name"], :name => "index_campaign_on_author_comment_name", :unique => true
   add_index "campaigns", ["author_id", "entity_id", "campaign_name"], :name => "index_campaign_on_author_entity_name", :unique => true
+  add_index "campaigns", ["author_id", "location_id", "campaign_name"], :name => "index_campaign_on_author_location_name", :unique => true
   add_index "campaigns", ["campaign_name"], :name => "index_campaigns_on_campaign_name"
+  add_index "campaigns", ["comment_id", "campaign_name"], :name => "index_campaigns_on_comment_id_and_campaign_name"
   add_index "campaigns", ["entity_id", "campaign_name"], :name => "index_campaigns_on_entity_id_and_campaign_name"
   add_index "campaigns", ["father_id"], :name => "index_campaigns_on_father_id", :unique => true
   add_index "campaigns", ["location_id", "campaign_name"], :name => "index_campaigns_on_location_id_and_campaign_name"
@@ -80,7 +83,15 @@ ActiveRecord::Schema.define(:version => 20110705061633) do
   create_table "comments", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "author_id",   :null => false
+    t.integer  "activity_id", :null => false
+    t.integer  "father_id",   :null => false
+    t.text     "text",        :null => false
   end
+
+  add_index "comments", ["activity_id"], :name => "index_comments_on_activity_id"
+  add_index "comments", ["author_id", "activity_id"], :name => "index_comments_on_author_id_and_activity_id", :unique => true
+  add_index "comments", ["father_id"], :name => "index_comments_on_father_id", :unique => true
 
   create_table "contacts", :force => true do |t|
     t.integer  "status"
@@ -122,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20110705061633) do
     t.string   "document_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "thumb_url"
+    t.text     "url"
   end
 
   add_index "documents", ["activity_id"], :name => "index_documents_on_activity_id"
