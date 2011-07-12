@@ -1,20 +1,3 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: campaigns
-#
-#  id             :integer         not null, primary key
-#  author_id      :integer         not null
-#  activity_id    :integer
-#  entity_id      :integer
-#  location_id    :integer
-#  father_id      :integer         not null
-#  campaign_name  :string(255)     not null
-#  campaign_value :integer         not null
-#  created_at     :datetime
-#  updated_at     :datetime
-#
-
 class Campaign < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User"
@@ -61,7 +44,8 @@ class Campaign < ActiveRecord::Base
     # :entity => {:id = 123}
     #                OR
     # :location => {:id => 123}
-    # :comment => {:id => 123 }
+    #                 OR
+    # :comment => {:user_id => 123, :id => 234}
 
     def create_campaign(params = {})
       new_hash = {}
@@ -88,15 +72,19 @@ class Campaign < ActiveRecord::Base
                   options[:id] )}".html_safe
         params[:entity_id] = entity.id
         params.delete(:entity)
+
       elsif params.has_key?(:comment)
 
         options = params[:comment]
-        entity = Entity.find(options[:id])
-        #text = "<a href=/entities/#{options[:entity_id]}>#{entity.entity_name}</a>".html_safe
-        text = "#{link_to_type(AppConstants.comment_controller, AppConstants.campaign_comment_class,entity.entity_name,
-                  options[:id] )}".html_safe
-        params[:entity_id] = entity.id
-        params.delete(:entity)
+        user = User.find(options[:user_id])
+        comment = Comment.find(options[:id])
+
+        text = "#{link_to_type(AppConstants.user_controller, AppConstants.campaign_username_class,user.username,
+                  options[:user_id] )} #{link_to_type(AppConstants.comment_controller,
+                                         AppConstants.campaign_comment_class,AppConstants.default_comment_string,
+                                         options[:id] )}".html_safe
+        params[:comment_id] = comment.id
+        params.delete(:comment)
 
       elsif params.has_key?(:location)
         options = params[:location]
@@ -108,6 +96,7 @@ class Campaign < ActiveRecord::Base
         params.delete(:location)
       end
       puts new_hash
+
       params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{params[:campaign_name]}&" ,
                                          :text => text,:enrich => false).id
 
@@ -126,6 +115,8 @@ class Campaign < ActiveRecord::Base
   # :entity_id => 123
   #     OR
   # :location_id => 123
+  #     OR
+  #  :comment_id => 123
   # OUTPUT = [["campaign_name", "campaign_value", "author_id"], count]
   #[["join", 2, 1679], 1]
   #[["like", 1, 1677], 1]
@@ -141,3 +132,21 @@ class Campaign < ActiveRecord::Base
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: campaigns
+#
+#  id             :integer         not null, primary key
+#  author_id      :integer         not null
+#  activity_id    :integer
+#  entity_id      :integer
+#  location_id    :integer
+#  father_id      :integer         not null
+#  campaign_name  :string(255)     not null
+#  campaign_value :integer         not null
+#  created_at     :datetime
+#  updated_at     :datetime
+#  comment_id     :integer
+#
+

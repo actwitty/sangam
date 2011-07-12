@@ -8,6 +8,8 @@ development: &default
   #in megabytes
   max_document_size: 0.5
 
+  default_comment_string: "Comment"
+
   url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
 
   entity_controller:  "entities"
@@ -15,6 +17,7 @@ development: &default
   location_controller: "locations"
   activity_word_controller:  "activity_words"
   activity_controller: "activities"
+  comment_controller: "comments"
 
   #CSS class names for styling individual links
   activity_entity_class:  "activity_entity"
@@ -26,6 +29,7 @@ development: &default
   campaign_activity_class: "campaign_activity"
   campaign_entity_class: "campaign_entity"
   campaign_location_class: "campaign_location"
+  campaign_comment_class: "campaign_class"
 
   invalid_resource_id: 0
 

@@ -61,25 +61,30 @@ describe Campaign do
    @u3 = Factory(:user)
 
    @l1 = Factory(:location)
-   @a1 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+   @a1 = Activity.create_activity(:author_id => @u1.id, :author_full_name => "alok", :author_profile_photo => "alok",
+                                :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
+   puts @a1.attributes
+   @com1 = Comment.create_comment(:author_id => @u2.id, :activity_id => @a1, :text => "helllllloooo ")
    work_off
    @e1 = Factory(:entity)
    @c1 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
-                             :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+                             :activity => {:user_id => @u2.id, :id => @a1.id} )
    @c2 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "like", :campaign_value => 2,
-                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+                               :activity => {:user_id => @u2.id, :id => @a1.id} )
    @c3 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "support", :campaign_value => 3,
-                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+                               :activity => {:user_id => @u2.id, :id => @a1.id} )
    @c4 = Campaign.create_campaign(:author_id => @u1.id, :campaign_name => "like", :campaign_value => 1,
-                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+                               :activity => {:user_id => @u2.id, :id => @a1.id} )
    @c5 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
-                               :activity => {:user_id => @u2.id, :activity_id => @a1.id} )
+                               :activity => {:user_id => @u2.id, :id => @a1.id} )
    @c6 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
-                               :entity => {:entity_id => @e1.id} )
+                               :entity => {:id => @e1.id} )
    @c7 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
-                               :location => {:location_id => @l1.id} )
+                               :location => {:id => @l1.id} )
+   @c8 = Campaign.create_campaign(:author_id => @u3.id, :campaign_name => "join", :campaign_value => 2,
+                               :comment => {:author_id => @u1.id, :id => @com1.id} )
   end
   describe "Create" do
     it "should create campaigns on activities"  do
@@ -97,6 +102,9 @@ describe Campaign do
 
        puts @c6.father.activity_text
        puts @c7.father.activity_text
+
+       puts @c8.father.activity_name
+       puts @c8.father.activity_text
 
        @a1.destroy
 
@@ -138,6 +146,7 @@ describe Campaign do
 end
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -152,5 +161,6 @@ end
 #  campaign_value :integer         not null
 #  created_at     :datetime
 #  updated_at     :datetime
+#  comment_id     :integer
 #
 

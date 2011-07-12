@@ -19,17 +19,38 @@ class Comment < ActiveRecord::Base
 
   def ensure_destroy_cleanup
     #Delete to stop circular effect
+    puts "comment destroyed"
     self.father.delete
   end
+  class << self
 
+    # :author_id => 123
+    # :activity_id => 234
+    # :text => "hello"
+
+    def create_comment(params ={})
+      params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{AppConstants.default_comment_string}&" ,
+                                         :text => params[:text],:enrich => false).id
+      obj = Campaign.create!(params)
+      puts obj.inspect
+      return obj
+    rescue => e
+      Rails.logger.info("Comments => create_comment => #{e.message} =>  #{params.to_s}")
+      nil
+    end
+  end
 end
 
 # == Schema Information
 #
 # Table name: comments
 #
-#  id         :integer         not null, primary key
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  created_at  :datetime
+#  updated_at  :datetime
+#  author_id   :integer         not null
+#  activity_id :integer         not null
+#  father_id   :integer         not null
+#  text        :text            not null
 #
 
