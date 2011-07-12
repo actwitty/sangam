@@ -380,38 +380,6 @@ class User < ActiveRecord::Base
     lh
   end
 
-  # INPUT
-  #    :word => activity word or phrase in activity box
-  #    :text =>   ""entity box + @@ + location box" or nil
-  #    :location => {
-  #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
-  #                                      OR
-  #                  :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
-  #                                      OR
-  #                  :unresolved_location =>{:unresolved_location_name => "http://google.com"}
-  #                                      OR
-  #                                     nil
-  #                 }
-  #    :documents => ActionDispatch::HTTP::Uploader objects
-  #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
-  # OUTPUT => {"activity_name"=>"photgraphy", "activity_text"=>"idli vada at <a href=/users/57 class=\"activity_mention\">Alok Srivastava</a> with Robin Uthhapa",
-  #            "activity_word_id"=>104, "author_full_name"=>"lemony3 lime3", "author_id"=>59,
-  #            "author_profile_photo"=>"images/id_3", "base_location_data"=>{:type=>1, :url=>"http://google.com", :name=>"hello"}
-  #,            "base_location_id"=>103, "created_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00, "enriched"=>false, "id"=>148,
-  #            "updated_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00}
-
-  def create_activity(params={})
-    params[:author_id] = self.id
-    params[:author_full_name] = self.full_name
-
-    self.photo_small_url.blank? ? params[:author_profile_photo] = AppConstants.user_no_image :
-                                  params[:author_profile_photo] = self.photo_small_url
-
-    obj = Activity.create_activity(params)
-    a =  obj.attributes
-    a["id"] = obj.id
-    a
-  end
 
   #INPUT => AN array of actvitiy_ids for which enriched is false
   #OUTPUT => [{"activity_name"=>"photgraphy", "activity_text"=>"idli vada at <a href=/users/57 class=\"activity_mention\">Alok Srivastava</a> with Robin Uthhapa",
@@ -428,6 +396,71 @@ class User < ActiveRecord::Base
       en << a
     end
     en
+  end
+
+  # INPUT
+  #    :word => activity word or phrase in activity box
+  #    :text =>   ""entity box + @@ + location box" or nil
+  #    :location => {
+  #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
+  #                                      OR
+  #                  :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
+  #                                      OR
+  #                  :unresolved_location =>{:unresolved_location_name => "xyxzw"}
+  #                                      OR
+  #                                     nil
+  #                 }
+  #    :documents => [{:document_name => "a.jpg", :thumb_url => "https://s3.amazonaws.com/xyz",
+  #                   :url => "https://s3.amazonaws.com/abc" }, ]
+  #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
+  #
+  # OUTPUT => {"activity_name"=>"photgraphy", "activity_text"=>"idli vada at <a href=/users/57 class=\"activity_mention\">Alok Srivastava</a> with Robin Uthhapa",
+  #            "activity_word_id"=>104, "author_full_name"=>"lemony3 lime3", "author_id"=>59,
+  #            "author_profile_photo"=>"images/id_3", "base_location_data"=>{:type=>1, :url=>"http://google.com", :name=>"hello"}
+  #,            "base_location_id"=>103, "created_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00, "enriched"=>false, "id"=>148,
+  #            "updated_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00}
+
+  def create_activity(params={})
+    params[:author_id] = self.id
+    params[:author_full_name] = self.full_name
+
+    self.photo_small_url.blank? ? params[:author_profile_photo] = AppConstants.user_no_image :
+                                  params[:author_profile_photo] = self.photo_small_url
+
+    obj = Activity.create_activity(params)
+    if obj.blank?
+      return {}
+    end
+    a =  obj.attributes
+    a["id"] = obj.id
+    a
+  end
+
+  #COMMENT => to get a single activity of a user
+  #INPUT => activity_id
+  #OUPUT =>
+  def get_an_activity(activity_id)
+
+  end
+
+
+
+  def remove_activity(activity_id)
+
+  end
+
+
+  def create_comment(params = {})
+    params[:author_id] = self.id
+    params[:author_full_name] = self.full_name
+
+    self.photo_small_url.blank? ? params[:author_profile_photo] = AppConstants.user_no_image :
+                                  params[:author_profile_photo] = self.photo_small_url
+
+  end
+
+  def create_campaign(params = {})
+
   end
   # private methods
   private

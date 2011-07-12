@@ -61,7 +61,7 @@ describe Campaign do
    @u3 = Factory(:user)
 
    @l1 = Factory(:location)
-   @a1 = Activity.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+   @a1 = @u1.create_activity(:author_id => @u1.id, :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
    work_off

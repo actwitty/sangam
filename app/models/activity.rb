@@ -129,7 +129,7 @@ class Activity < ActiveRecord::Base
 
       rescue => e
         Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
-        {}
+        nil
       end
     end
   private
