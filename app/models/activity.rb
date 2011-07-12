@@ -18,12 +18,16 @@ class Activity < ActiveRecord::Base
 
   has_many    :mentions, :dependent => :destroy #destroy will happen from activity
   has_many    :campaigns, :dependent => :destroy
+  has_many    :comments, :dependent => :destroy
   has_many    :documents, :dependent => :nullify # documents have life time more than activity
 
   belongs_to     :base_location, :class_name => "Location"
 
   #:delete instead of :destroy to stop circular effect
   has_one       :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :delete
+
+  #:delete instead of :destroy to stop circular effect
+  has_one       :father_comment, :foreign_key => :father_id, :class_name => "Comment", :dependent => :delete
 
 
   validates_existence_of  :author_id
