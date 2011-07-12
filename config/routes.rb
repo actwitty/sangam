@@ -62,6 +62,8 @@ Sangam::Application.routes.draw do
   match '/about/show' => 'about#show'
   match '/team/show' => 'team#show'
 
+  match '/feedback/new' => 'feedback#new'
+  match '/feedback/create' => 'feedback#create'
 
   match '/sign_out' => 'welcome#new'
 
@@ -72,7 +74,7 @@ Sangam::Application.routes.draw do
   resources :profiles
   resources :authentications
   resources :contacts
-
+  resources :feedbacks
   resource  :documents
 
   # Sample resource route with options:

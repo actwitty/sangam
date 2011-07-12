@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712063048) do
+ActiveRecord::Schema.define(:version => 20110712080157) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",     :null => false
@@ -190,6 +190,14 @@ ActiveRecord::Schema.define(:version => 20110712063048) do
   add_index "entity_types", ["entity_id", "entity_type_uri", "entity_type_name"], :name => "index_on_entity_type_entity_uri_name"
   add_index "entity_types", ["entity_type_name"], :name => "index_entity_types_on_entity_type_name"
   add_index "entity_types", ["entity_type_uri", "entity_type_name"], :name => "index_on_entity_type_uri_name"
+
+  create_table "feedbacks", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "feedback_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "foreign_profiles", :force => true do |t|
     t.string   "name"
