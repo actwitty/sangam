@@ -3,11 +3,13 @@
 = simple_form_for(:user,@user, :url => user_registration_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
   %ul#data-input
     %li.main-input-list
+      %span Email
       = f.input :email ,
               :placeholder => "Email",
               :label => false,
               :input_html => { :class=>'input-deco email-input ',:size=>'30'}
     %li.main-input-list
+      %span Password
       = f.input :password , 
               :placeholder => "Password", 
               :label => false,

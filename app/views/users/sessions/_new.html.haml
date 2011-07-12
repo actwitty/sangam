@@ -3,15 +3,19 @@
 = simple_form_for(:user,@user, :url => user_session_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
   %ul#data-input
     %li.main-input-list
+      %span Email
       = f.input :email ,
                 :placeholder => "Email",
                 :label => false,
                 :input_html => { :class=>'input-deco email-input '}
+     
     %li.main-input-list
+      %span Password
       = f.input :password ,
                 :placeholder => "Password",
                 :label => false,
                 :input_html => { :class=>'input-deco password-input '}
+      
   #data-input-actions
     %ul#remember-box
       = f.input :remember_me,  :as => :boolean

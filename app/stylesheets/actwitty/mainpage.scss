@@ -188,6 +188,14 @@ body {
 }
 
 
+#data-input span
+{
+  font-size:12px;
+  color:#ccc;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+
 .inputform {
   margin-left: 30px;
   height: auto;
@@ -203,7 +211,7 @@ body {
   opacity:0.7;
   background:#445D73;
   height: auto;
-  width: 470px;
+  width: 490px;
   padding: 10px 0 0 20px;
   margin-top: 30px;
   margin-right: 500px;
@@ -230,6 +238,12 @@ body {
 .main-input-list {
   list-style-type: none;
   margin-left: 40px;
+  width:100px;
+}
+.main-input-list span
+{
+  font-size:12px;
+  color:#ddd;
 }
 .main-input-list .email-input {
   float: left;
