@@ -12,7 +12,6 @@ class CreateActivities < ActiveRecord::Migration
       t.integer  :author_id, :null => false
 
       t.integer :base_location_id
-      t.text    :base_location_data
 
       t.boolean :enriched
 
