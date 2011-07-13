@@ -141,7 +141,27 @@ module ActivityTextFormatter
     text
   end
 
+  def format_activity(params = {})
+    if params.blank?
+      return {}
+    end
+    result = {}
+    params.keys.each do|attr|
+      case attr
+        when "id"
+          result[:id] = params["id"]
+        when "author_id"
+          result[:user]  = {:id => params["author_id"], :full_name => params["full_name"], :photo => params["photo"]}
+        when "activity_word_id"
+          result[:word] = {:id => params["activity_word_id"], :name => params["activity_name"]}
+        when "updated_at"
+          result[:time] = params["updated_at"]
+        when "base_location_id"
+        when "activity_text"
 
+      end
+    end
+  end
   def test_format_text(text,entities)
     seed_hash ={}
 

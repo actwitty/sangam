@@ -34,7 +34,7 @@ class Activity < ActiveRecord::Base
   validates_existence_of  :activity_word_id
   validates_existence_of  :base_location_id, :allow_nil => true
 
-  validates_presence_of   :activity_name, :author_full_name, :author_profile_photo
+  validates_presence_of   :activity_name
 
   validates_length_of     :activity_text , :maximum => AppConstants.activity_text_length
 
@@ -45,8 +45,6 @@ class Activity < ActiveRecord::Base
     class << self
 
   #    :author_id => 123
-  #    :author_full_name => "alok"
-  #    :author_profile_photo => "images/profile/123"
   #    :activity => activity word or phrase in activity box
   #    :text =>   ""entity box + @@ + location box" or nil
   #    :location => {
@@ -72,7 +70,7 @@ class Activity < ActiveRecord::Base
         end
 
         #create the activity word
-        word_obj = ActivityWord.create_activity_word(params[:activity], relation = "verb-form")
+        word_obj = ActivityWord.create_activity_word(params[:activity], "verb-form")
 
         #Add activity_word to params hash for hub creation
         params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
@@ -89,8 +87,7 @@ class Activity < ActiveRecord::Base
         puts params
         #create activity => either root or child
         obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
-                                 :author_id => params[:author_id],:author_full_name =>params[:author_full_name],
-                                 :author_profile_photo => params[:author_profile_photo],:base_location_id => base_location_id,
+                                 :author_id => params[:author_id], :base_location_id => base_location_id,
                                  :base_location_data => base_location_hash,:enriched => false)
 
         #Generate Mentions
@@ -182,6 +179,7 @@ class Activity < ActiveRecord::Base
     end
 
 end
+
 
 # == Schema Information
 #

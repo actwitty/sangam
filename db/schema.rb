@@ -12,27 +12,6 @@
 
 ActiveRecord::Schema.define(:version => 20110712080157) do
 
-  create_table "activities", :force => true do |t|
-    t.integer  "activity_word_id",     :null => false
-    t.text     "activity_text",        :null => false
-    t.string   "activity_name",        :null => false
-    t.integer  "author_id",            :null => false
-    t.string   "author_full_name",     :null => false
-    t.string   "author_profile_photo", :null => false
-    t.integer  "base_location_id"
-    t.text     "base_location_data"
-    t.boolean  "enriched"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "activities", ["activity_word_id", "activity_name"], :name => "index_activities_on_activity_word_id_and_activity_name"
-  add_index "activities", ["author_id", "activity_name"], :name => "index_activities_on_author_id_and_activity_name"
-  add_index "activities", ["author_id", "activity_word_id", "activity_name"], :name => "index_activity_author_name_dict"
-  add_index "activities", ["base_location_id"], :name => "index_activities_on_base_location_id"
-  add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
-  add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
-
   create_table "activity_words", :force => true do |t|
     t.string   "word_name",  :null => false
     t.datetime "created_at"

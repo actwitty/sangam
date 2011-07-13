@@ -24,13 +24,15 @@ class Comment < ActiveRecord::Base
   end
   class << self
 
+
     # :author_id => 123
     # :activity_id => 234
     # :text => "hello"
 
     def create_comment(params ={})
-      params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{AppConstants.default_comment_string}&" ,
-                                         :text => params[:text],:enrich => false).id
+      params[:father_id] =  Activity.create_activity(:author_id => params[:author_id],
+                                                      :activity => "&#{AppConstants.default_comment_string}&" ,
+                                                    :text => params[:text],:enrich => false).id
       obj = Campaign.create!(params)
       puts obj.inspect
       return obj

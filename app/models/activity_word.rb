@@ -84,11 +84,12 @@ class ActivityWord < ActiveRecord::Base
 
     #return a JSON
     def GetRelatedWords(word, relation)
+      related_words = {}
       word =~ /^[A-Z]?[a-z]*/
       if $& == word
         word.downcase!
         related_words =  Wordnik.word.get_related_words(word, :limit => 50, :type => relation)
-        puts related_words.to_s
+        puts related_words
       end
       return related_words
     end

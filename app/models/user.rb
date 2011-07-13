@@ -422,10 +422,6 @@ class User < ActiveRecord::Base
 
   def create_activity(params={})
     params[:author_id] = self.id
-    params[:author_full_name] = self.full_name
-
-    self.photo_small_url.blank? ? params[:author_profile_photo] = AppConstants.user_no_image :
-                                  params[:author_profile_photo] = self.photo_small_url
 
     obj = Activity.create_activity(params)
     if obj.blank?
@@ -433,11 +429,13 @@ class User < ActiveRecord::Base
     end
     a =  obj.attributes
     a["id"] = obj.id
+    a["author_full_name"] = self.full_name
+    a["author_profile_photo"] = self. photo_small_url
     a
   end
 
-  #COMMENT => to get a single activity of a user
-  #INPUT => activity_id
+  #COMMENT => to get a single activity of a user.
+  #INPUT => activity_id = 123
   #OUPUT =>
   def get_an_activity(activity_id)
 
@@ -449,18 +447,49 @@ class User < ActiveRecord::Base
 
   end
 
-
+  #COMMENT => to get a single activity of a user. Always in context of current user
+  #INPUT =>
+  # :campaign_name => "like"
+  # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
+  # :activity => {:user_id => 123, :id => 234}
+  #                OR
+  # :entity => {:id = 123}
+  #                OR
+  # :location => {:id => 123}
+  #                 OR
+  # :comment => {:user_id => 123, :id => 234}
+  #
+  #OUPUT =>
   def create_comment(params = {})
     params[:author_id] = self.id
-    params[:author_full_name] = self.full_name
 
-    self.photo_small_url.blank? ? params[:author_profile_photo] = AppConstants.user_no_image :
-                                  params[:author_profile_photo] = self.photo_small_url
-
+    obj = Campaign.create_campaign(params)
+    if obj.blank?
+      return {}
+    end
+#    a =  obj.attributes
+#    a["id"] = obj.id
+#    a["author_full_name"] = self.full_name
+#    a["author_profile_photo"] = self. photo_small_url
+#    a
+    return current campaign count
   end
 
+  #COMMENT => to get a single activity of a user.
+  #INPUT => activity_id = 123
+  #OUPUT =>
   def create_campaign(params = {})
+    params[:author_id] = self.id
 
+    obj = Comment.create_campaign(params)
+    if obj.blank?
+      return {}
+    end
+    a =  obj.attributes
+    a["id"] = obj.id
+    a["author_full_name"] = self.full_name
+    a["author_profile_photo"] = self. photo_small_url
+    a
   end
   # private methods
   private

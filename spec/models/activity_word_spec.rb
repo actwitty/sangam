@@ -41,7 +41,7 @@ describe ActivityWord do
       w_id1 = ActivityWord.create_activity_word("test", "")
       w_id2 = ActivityWord.create_activity_word("DEepika")
       w_id3 = ActivityWord.create_activity_word("test", "verb-form")
-      w_id4 = ActivityWord.create_activity_word("eating")
+      w_id4 = ActivityWord.create_activity_word("eating","verb-form" )
       w_id5 = ActivityWord.create_activity_word("eat", "verb-form")
       w_id6 = ActivityWord.create_activity_word("Drink")
       w_id7 = ActivityWord.create_activity_word("tests")

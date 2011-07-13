@@ -81,7 +81,7 @@ class Entity < ActiveRecord::Base
          id = EntityType.create!(:entity_id => entity.id , :entity_type_uri => entry['id'],
                              :entity_type_name => entry['name'].downcase)
          end
-         puts "==== #{entity}"
+         puts "==== #{entity.inspect}"
          EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
 
       rescue => e

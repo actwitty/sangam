@@ -22,8 +22,7 @@ describe Activity do
 			  str = str + 'a'
 			end
 			a=Activity.new(:author_id => @u.id, :activity_word_id => @aw1.id,:activity_text => str,
-                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
-                     :author_profile_photo => "images/124"  )
+                     :activity_name => @aw.word_name  )
 			a.valid?
       a.should_not be_valid
 			a.errors[:activity_text].should_not be_blank
@@ -32,8 +31,7 @@ describe Activity do
      it "can be save with blank activity text" do
       str = ""
 			a=Activity.new(:author_id => @u.id, :activity_word_id => @aw1.id,:activity_text =>"",
-                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
-                     :author_profile_photo => "images/124"  )
+                     :activity_name => @aw.word_name )
 			a.valid?
       a.should_not be_valid
       a.errors[:activity_text].should be_blank
@@ -42,8 +40,7 @@ describe Activity do
     it "should must not be save without author" do
       lambda{
         a=Activity.create!(:activity_word_id => @aw1.id,:activity_text =>"alok",
-                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
-                     :author_profile_photo => "images/124"  )
+                     :activity_name => @aw.word_name )
 
       }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -51,8 +48,7 @@ describe Activity do
     it "should must not be saved with invalid author" do
       lambda {
         a=Activity.create!(:author_id => 123,:activity_word_id => @aw1.id,:activity_text =>"alok",
-                     :activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
-                     :author_profile_photo => "images/124"  )
+                     :activity_name => @aw.word_name  )
         a.errors[:author].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -60,15 +56,13 @@ describe Activity do
 
     it "should must not be saved without activity_name" do
       lambda {
-        a=Activity.create!(:author_id => 123,:activity_word_id => @aw1.id,:activity_text =>"alok",
-                     :author_full_name => "Alok Srivastava",:author_profile_photo => "images/124"  )
+        a=Activity.create!(:author_id => 123,:activity_word_id => @aw1.id,:activity_text =>"alok"  )
         a.errors[:activity_name].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
     end
        it "should must not be saved without activity_word_id" do
       lambda {
-        a=Activity.create!(:activity_text =>"alok",:activity_name => @aw.word_name,:author_full_name => "Alok Srivastava",
-                     :author_profile_photo => "images/124"  )
+        a=Activity.create!(:activity_text =>"alok",:activity_name => @aw.word_name )
         a.errors[:activity_word_id].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -295,21 +289,21 @@ describe Activity do
 
       wi = ActivityWord.where(:word_name => "eating").first
       e = Entity.where(:entity_name => "pizza").first
-      filter = {:word_id => wi.id}
+      filter = {:word_id => wi.id, :entity_id => e.id}
 
       h = @u.get_related_friends( filter)
       puts h.inspect
       h.should_not be_nil
 
-      h = @u.get_related_entities(@u.id,filter)
+      h = @u.get_related_entities(@u1.id,filter)
       puts h.inspect
       h.should_not be_nil
 
-      h = @u.get_related_locations(@u.id, filter)
+      h = @u.get_related_locations(@u1.id, filter)
       puts h.inspect
       h.should_not be_nil
 
-      h = @u.get_enriched_activities([act[:id], act5[:id], act7[:id]])
+      h = @u.get_enriched_activities([act["id"], act5["id"], act7["id"]])
       puts h.inspect
       h.should_not be_nil
     end

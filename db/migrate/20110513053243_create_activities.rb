@@ -10,12 +10,8 @@ class CreateActivities < ActiveRecord::Migration
       t.string  :activity_name, :null => false
 
       t.integer  :author_id, :null => false
-      t.string   :author_full_name, :null => false
-      t.string   :author_profile_photo, :null => false
-
 
       t.integer :base_location_id
-      t.text    :base_location_data
 
       t.boolean :enriched
 
