@@ -230,7 +230,8 @@
 				jQuery.data(jQuery(this).get(0), "simpleDatepicker", { hasDatepicker : false });
 				
 				// open a datepicker on the click event
-				jQuery(this).click(function (ev) {
+        // added to make datepicker appear for on tap events also along with click events
+        jQuery(this).bind('focus click',function (ev) {
 											 
 					var $this = jQuery(ev.target);
 					
