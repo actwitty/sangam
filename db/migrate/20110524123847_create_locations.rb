@@ -25,11 +25,11 @@ class CreateLocations < ActiveRecord::Migration
   end
 
   def self.down
-
+    
     remove_index :locations, [:location_type, :location_name]
     remove_index :locations, :location_name
-
-    remove_index :locations, [:location_lat,:location_long ], :unique => true
+ 
+    remove_index :locations, [:location_lat,:location_long ]
     remove_index :locations, :location_long
 
     remove_index :locations, :location_url

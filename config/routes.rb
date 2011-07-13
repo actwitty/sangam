@@ -2,7 +2,8 @@ Sangam::Application.routes.draw do
 
   #get "home/show"
   get "home/alpha"
-
+  get "/users/sign_in", :to => "welcome#new"
+  get "/users/sign_up", :to => "welcome#new"
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
                                       :sessions => "users/sessions",
