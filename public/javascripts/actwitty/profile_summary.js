@@ -1,3 +1,6 @@
+
+var the_big_filter_JSON={dummy:"dummy"};
+
 /* handle docs box */
 function create_and_docs_box(box_id, summary){
   docs_box= $("#" + box_id);
@@ -43,20 +46,19 @@ function create_and_add_friends_box(box_id, summary){
     $.each(summary.friends, function(i, friend){
 
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + friend.id;
-      var filter_hidden_id = filter_id + '_hidden';
       /* create a JSON of filter */
-      var filter_value = '{' +
-                            '\'user\':\'' + friend.id + '\',' +
-                            '\'channel_id\':\'' + summary.word.id + '\',' +
-                            '\'channel_name\':\'' + summary.word.name + '\'' +
-                          '}';
+      var filter_value = {
+                          user:friend.id ,
+                          channel_id:summary.word.id, 
+                          channel_name:summary.word.name  
+                    };
+      the_big_filter_JSON[filter_id] = filter_value;
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter" id="' + filter_id +'" >' +
                   '<img src="'+ friend.image + '"  width="25" height="25" alt="" />' +
                   '<span>' +
                       friend.name +
                   '</span>' +
-                  '<input type="hidden" id="' + filter_hidden_id + '" value ="' + filter_value + '"/>' +
                 '</a>' +
               '</li>';
 
@@ -86,13 +88,15 @@ function create_and_add_entities_box(box_id, summary){
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + entity.id;
       var filter_hidden_id = filter_id + '_hidden';
       /* create a JSON of filter */
-      var filter_value = '{' +
-                            '\'user\':\'' + summary.user.id + '\',' +
-                            '\'thing_id\':\'' + entity.id + '\',' +
-                            '\'thing_name\':\'' + entity.name + '\',' +
-                            '\'channel_id\':\'' + summary.word.id + '\',' +
-                            '\'channel_name\':\'' + summary.word.name + '\'' +
-                          '}';
+      var filter_value = {
+                            user:summary.user.id ,
+                            thing_id:entity.id,
+                            thing_name:entity.name,
+                            channel_id:summary.word.id, 
+                            channel_name:summary.word.name  
+                          };
+      the_big_filter_JSON[filter_id] = filter_value;
+
 
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter" id="' + filter_id +'" >' +
@@ -100,7 +104,6 @@ function create_and_add_entities_box(box_id, summary){
                   '<span>' +
                       entity.name +
                   '</span>' +
-                  '<input type="hidden" id="' + filter_hidden_id + '" value ="' + filter_value + '"/>' +
                 '</a>' +
               '</li>';
 
@@ -126,22 +129,22 @@ function create_and_add_locations_box(box_id, summary){
     var ul_box = $("#" + ul_box_id);
     $.each(summary.location, function(i, place){
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + place.id;
-      var filter_hidden_id = filter_id + '_hidden';
       /* create a JSON of filter */
-      var filter_value = '{' +
-                            '\'user\':\'' + summary.user.id + '\',' +
-                            '\'place_id\':\'' + place.id + '\',' +
-                            '\'place_name\':\'' + place.name + '\',' +
-                            '\'channel_id\':\'' + summary.word.id + '\',' +
-                            '\'channel_name\':\'' + summary.word.name + '\'' +
-                          '}';
+      var filter_value = {
+                            user:summary.user.id ,
+                            place_id:place.id,
+                            place_name:place.name,
+                            channel_id:summary.word.id, 
+                            channel_name:summary.word.name  
+                          };
+      the_big_filter_JSON[filter_id] = filter_value;
+
 
       var html='<li>' +
-                  '<a href="#" class="js_summary_filter_setter" id="' + filter_id +'" >' +
+                  '<a href="#" class="js_summary_filter_setter" id="' + filter_id + '"  >' +
                     '<span>' +
                          place.name +
                     '</span>' +
-                    '<input type="hidden" id="' + filter_hidden_id + '" value ="' + filter_value + '"/>' +
                   '</a>' +
                 '</li>';
 
@@ -158,12 +161,13 @@ function create_and_add_locations_box(box_id, summary){
 
 /* handle complete summary box */
 function create_and_add_summary(ul, summary){
- /* Fail safe, due to any reason this happens, reject the summary from being displayed again*/
+
+ /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
+ var unique_id =  summary.word.id + '' + summary.user.id;
  if ($("#" + unique_id ).length > 0){
    return;
  }
 
- var unique_id =  summary.word.id + '' + summary.user.id;
  var docs_box_id = unique_id + '_attachments';
  var friends_box_id = unique_id + '_friends';
  var entities_box_id = unique_id + '_entities';
@@ -171,16 +175,18 @@ function create_and_add_summary(ul, summary){
  var latest_text_box_id = unique_id + '_text';
  
  var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id;
- var filter_hidden_id = filter_id + '_hidden';
- /* create a JSON of filter */
- var filter_value = '{' +
-                      '\'user\':\'' + summary.user.id + '\',' +
-                      '\'channel_id\':\'' + summary.word.id + '\',' +
-                      '\'channel_name\':\'' + summary.word.name + '\'' +
-                    '}';
- var html ='<li class="summary_li">' +
-              '<div id="' + unique_id + '" class="summary_box">' +
+  /* create a JSON of filter */
+ var filter_value = {
+                      user:summary.user.id ,
+                      channel_id:summary.word.id, 
+                      channel_name:summary.word.name  
+                    };
+ the_big_filter_JSON[filter_id] = filter_value;
 
+
+ var html ='<li class="summary_li">' +
+              
+              '<div id="' + unique_id + '" class="summary_box">' +
                 /* summary user box */
                 '<div id="' + summary.user.user_id + '" class="summary_user_box">' +
                   '<a href="/home/show?id=' +  summary.user.id + '" class="summary_user_box_a">' +
@@ -200,7 +206,6 @@ function create_and_add_summary(ul, summary){
                       ', total wits to see:' + summary.count + 
                       ', Updated at ' + summary.time +
                     '</a>' +
-                    '<input type="hidden" id="' + filter_hidden_id + '" value ="' + filter_value + '"/>' +
                   '</div>'+
 
                   /* added last few friends active on this channel */
@@ -248,48 +253,67 @@ function create_and_add_summary(ul, summary){
 }
 
 
-function append_personal_summary(owner_id, summary_position){
+function append_personal_summary(owner_id){
+  var scroll = $(window).scrollTop();
+  var more_cookie =  $("#more_personal_cookie").val();
   $.ajax({
         url: '/activities/get_snapshots.json',
         type: 'GET',
-        data: {id : owner_id },
+        data: {id : owner_id, last_id : more_cookie },
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
           // if rails demands a redirect because of log in missing
            $.each(data, function(i,summary){
             if( summary ){
-                create_and_add_summary($("#personal_summary"),summary);          
+                create_and_add_summary($('#personal_summary'),summary);     
+                $("#more_personal_cookie").val(summary.id);
+                $(window).scrollTop(scroll);
             } 
           });
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {  
-          alert("There has been a problem generating summary. \n ActWitty is trying to solve.");
+          alert('There has been a problem generating summary. \n ActWitty is trying to solve.');
         }
     });
 
 }
 
-function append_friends_summary(owner_id, summary_position){
-
+function append_friends_summary(owner_id){
+  var scroll = $(window).scrollTop();
+  var more_cookie = $("#more_friends_cookie").val();
   $.ajax({
         url: '/activities/get_friends_snapshots.json',
         type: 'GET',
-        data: {id : owner_id },
+        data: {id : owner_id, last_id : more_cookie },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
           // if rails demands a redirect because of log in missing 
            $.each(data, function(i,summary){
             if( summary ){
-                create_and_add_summary($("#friends_summary"),summary); 
+                create_and_add_summary($('#friends_summary'),summary);     
+                $("#more_friends_cookie").val(summary.id);
+                $(window).scrollTop(scroll);
             } 
           });
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert("There has been a problem generating friends' summary. \n ActWitty is trying to solve.");
+            alert('There has been a problem generating summaries of followings. \n ActWitty is trying to solve.');
         }
     });
 }
+
+$(document).ready(function(){
+  /* Manage summary filters */
+    $('.js_summary_filter_setter').live('click', function(){
+      var filters_base_id = $(this).attr("id");
+      if (filters_base_id.length > 0){
+          alert(JSON.stringify(the_big_filter_JSON[filters_base_id]));
+          return;
+        }
+      alert("ActWitty will fix the problem with the filter");
+    });
+});

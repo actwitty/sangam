@@ -57,27 +57,22 @@ $(document).ready(function(){
       $("#filter_channel_id").attr("value", "");
       modify_filter({});
     });
+    /***********************************************************/
 
     $('#thing_filter_drop').live("click",function(){
       $("#filter_thing_name").attr("value", "");
       $("#filter_thing_id").attr("value", "");
       modify_filter({});
     });
+    /***********************************************************/
 
     $('#location_filter_drop').live("click",function(){
       $("#filter_location_name").attr("value", "");
       $("#filter_location_id").attr("value", "");
       modify_filter({});
     });
+    /***********************************************************/
 
-    $('.js_summary_filter_setter').live('click', function(){
-      var filters_base_id = $(this).attr("id");
-      if (filters_base_id){
-        filter_id = filters_base_id + '_hidden';
-        if( filter_id){
-          filter_json = $('#' + filter_id).attr('value');
-          alert(filter_json);
-        }
-      }
-    });
+   
+    /***********************************************************/
 });
