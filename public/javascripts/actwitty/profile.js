@@ -9,7 +9,6 @@
 
 
 $(document).ready(function(){
-  alert("In profile");
     var page_owner_id=$('#page_owner_id').attr("value");
     var session_owner_id=$('#session_owner_id').attr("value");
     var default_tab = $('#default_page_mode').attr("value");

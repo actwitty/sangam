@@ -7,7 +7,16 @@ class HomeController < ApplicationController
     @user=nil
     @profile_page =1
 
+    Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] User not signed in")
+    end
+
+
     if params[:mode] == 'filtered'
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] Stream page requested with filtered mode")
       @defaul_page_mode = 'filtered'
       params.except(:mode)
     end
@@ -17,7 +26,9 @@ class HomeController < ApplicationController
     if params[:id].nil?
       if user_signed_in?
         @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as no id mentioned")
       else
+        Rails.logger.info("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as no id mentioned")
         redirect_to :controller => "welcome", :action => "new"
       end
     else
@@ -25,11 +36,14 @@ class HomeController < ApplicationController
       if @user.nil?
         if user_signed_in?
           @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as incorrect id mentioned")
         else
+          Rails.logger.info("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
         end
       else
-        if user_signed_in?
+        if user_signed_in?  && @user.id != current_user.id
+          Rails.logger.info("[CNTRL] [HOME] [SHOW] Checking the follow/unfollow status")
           @follow = current_user.check_follower(@user.id)
         end
       end
