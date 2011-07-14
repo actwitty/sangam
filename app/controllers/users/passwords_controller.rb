@@ -2,17 +2,19 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # GET /resource/password/new
   def new
+    Rails.logger.info("[CNTRL] [PASSWORD] Password new request")
     build_resource({})
     render_with_scope :new
   end
 
   # POST /resource/password
   def create
+    Rails.logger.info("[CNTRL] [PASSWORD] Password create request")
     self.resource = resource_class.send_reset_password_instructions(params[resource_name])
 
     if resource.errors.empty?
-      set_flash_message :notice, :send_instructions
-       redirect_to after_sign_in_path_for(resource)
+      Rails.logger.info("[CNTRL] [PASSWORD] Sign in redirect")
+      redirect_to after_sign_in_path_for(resource)
     else
       render_with_scope :new
     end
@@ -20,6 +22,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # GET /resource/password/edit?reset_password_token=abcdef
   def edit
+    Rails.logger.info("[CNTRL] [PASSWORD] Password edit request")
     self.resource = resource_class.new
     resource.reset_password_token = params[:reset_password_token]
     render_with_scope :edit
@@ -27,11 +30,12 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # PUT /resource/password
   def update
-    puts params
+    Rails.logger.info("[CNTRL] [PASSWORD] Password update request")
     self.resource = resource_class.reset_password_by_token(params[resource_name])
 
     if resource.errors.empty?
       set_flash_message :notice, :updated
+      Rails.logger.info("[CNTRL] [PASSWORD] Sign in redirect")
       sign_in_and_redirect(resource_name, resource)
     else
       render_with_scope :edit

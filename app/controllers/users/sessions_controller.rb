@@ -1,7 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
 
    def failure
-
+       Rails.logger.info("[CNTRL] [SESSION] Failed to create session")
       @user = User.find_by_email(params[:user][:email])
       if !@user.nil?
           if !@user.confirmation_token.nil?
@@ -19,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
    end
 
   def create
-
+    Rails.logger.info("[CNTRL] [SESSION] Session create request")
     if request.xhr?
       resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
       @user = resource
@@ -30,11 +30,12 @@ class Users::SessionsController < Devise::SessionsController
       uid=params[:user][:uid]
 
       if !key.nil? && !provider.nil? && !uid.nil? && !key.empty? &&  !provider.empty? && !uid.empty?
+        Rails.logger.info("[CNTRL] [SESSION] Foreign Auth Save Provider #{provider} uid #{uid} key #{key}")
         authentication=Authentication.find_or_create_by_provider_and_uid(provider, uid)
         unless authentication.nil?
           if authentication.salt = key && authentication.user_id.nil?
             authentication.user_id = current_user.id
-            authentication.save
+            authentication.save!
           end
         end
       end
@@ -45,6 +46,12 @@ class Users::SessionsController < Devise::SessionsController
       #go on regular path for html requests
       super
     end
+
+    rescue => e
+      Rails.logger.error("[CNTRL] [SESSION] Error in User => Session => create => #{e}")
+      respond_to do |format|
+          format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
+      end
 
   end
 
