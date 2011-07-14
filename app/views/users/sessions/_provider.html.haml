@@ -1,0 +1,40 @@
+#forgot-site-connect
+    #forgot-sign_in_up
+        #forgot-sign-connect-desc
+            %h3#forgot-desc.desc Start With Actwitty
+            %p
+                Please enter any email address and password for Signup.
+
+
+        = simple_form_for(:user,@user, :url => user_session_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
+            %ul#data-input
+                %li.main-input-list
+                    = f.input :email ,
+                :placeholder => "Enter Valid Email-id",
+                :label => false,
+                :input_html => { :class=>'input-deco email-input ',:size=>'30'}
+                %li.main-input-list
+                    = f.input :password ,
+                :placeholder => "Enter Your Password",
+                :label => false,
+                :input_html => { :class=>'input-deco password-input ',:size=>'30'}
+                #data-input-actions
+                    %ul#remember-box
+                    = f.input :remember_me,  :as => :boolean
+                    %input#user_key{:name => "user[key]", :type => "hidden", :value => ""}/
+                    %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
+                    %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
+                %br/
+                #site-connect-buttons
+                    %input#signupbutton.connect-buttons.actwittysignup{:class => "{button:{label:'SignUp'}}", :role => "button", :type => "button", :value => "Sign Up"}/
+                    %input#signinbutton.connect-buttons.actwittysignin{:role => "button", :type => "button", :value => "Sign In"}/
+
+                    #site-connect-nav
+                        #resend-confirm-nav
+                            = link_to "Resend confirmation", new_confirmation_path(:user), :class=>"main-page-provider-navlinks"
+                        #forgot-password-nav
+                            = link_to "Forgot password", new_password_path(:user), :id=>"forgot-password", :class=>"main-page-provider-navlinks"
+=render :partial => "welcome/footer"
+
+
+
