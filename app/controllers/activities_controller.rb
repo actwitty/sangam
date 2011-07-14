@@ -62,94 +62,144 @@ class ActivitiesController < ApplicationController
   end
   def get_snapshots
     #incoming params
-    puts "User ID ====> " + params[:id]
-    puts "Position ====> " + params[:position]
-    position =  Integer(params[:position])
+    puts "Input params #{params}"
+    time=nil
 
-    if position == 0
-      user_snapshots= [ {:activity_word => {:word_id => 1923, :word_name => "Motorbiking"},
-                        :activity_count => 20,
-                        :user => {:user_id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
 
-                        :location => [{:location_id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}}] ,
-                        :documents => [{:document_id => 213, :document_name => "spring.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 215,:document_name => "spring_3.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_3.jpg"} ],
+    if time.nil?
+      user_snapshots= [
+          {
+            :word => {:id => 1923, :name => "Motorbiking"},
+            :time => "12:54:39",
+            :id => 101,
+            :count => 20,
+            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :location => [
+                          {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
+                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                         ],
+            :documents => [
+                            {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
+                          ],
 
-                        :recent_text => "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
-                                                 <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_me/images/test/spring.jpgntion\">PIZZA</a>",
-                        :entities => [{:entity_id => 2341, :entity_name => "parle biscuits", :entity_image => "/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2342, :entity_name => "sachin tendulkar", :entity_image => "/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2343, :entity_name => "sonia gandhi", :entity_image => "/images/actwitty/unknown_entity.png"}],
-                        :friends => [{:friend_id => 1001, :friend_name => "Alok Srivastava", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1002, :friend_name => "Milind Parab", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1003, :friend_name => "Samarth Deo", :friend_image => "/images/actwitty/default_user.gif"}]
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+                            <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
+            :entities => [
+                          {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2342, :name => "sachin tendulkar", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2343, :name => "sonia gandhi", :image => "/images/actwitty/unknown_entity.png"}
+                         ],
+            :friends => [
+                          {:id => 2, :name => "Alok Srivastava", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 3, :name => "Milind Parab", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 4, :name => "Samarth Deo", :image => "/images/actwitty/default_user.gif"}
+                        ]
 
-                      },
-                      {:activity_word => {:word_id => 1924, :word_name => "EggCurry"},
-                        :activity_count => 20,
-                        :user => {:user_id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+          },
+          {
+            :word => {:id => 1924, :name => "Motorbiking"},
+            :time => "12:54:39",
+            :id => 102,
+            :count => 20,
+            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :location => [
+                          {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
+                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                         ],
+            :documents => [
+                            {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
+                          ],
 
-                        :location => [{:location_id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}}] ,
-                        :documents => [{:document_id => 213, :document_name => "spring.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 215,:document_name => "spring_3.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_3.jpg"}  ],
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+                            <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
+            :entities => [
+                          {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2342, :name => "sachin tendulkar", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2343, :name => "sonia gandhi", :image => "/images/actwitty/unknown_entity.png"}
+                         ],
+            :friends => [
+                          {:id => 2, :name => "Alok Srivastava", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 3, :name => "Milind Parab", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 4, :name => "Samarth Deo", :image => "/images/actwitty/default_user.gif"}
+                        ]
 
-                        :recent_text => "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
-                                         <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>",
-                        :entities => [{:entity_id => 2341, :entity_name => "parle biscuits", :entity_image =>"/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2342, :entity_name => "sachin tendulkar", :entity_image => "/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2343, :entity_name => "sonia gandhi", :entity_image => "/images/actwitty/unknown_entity.png"}],
-                        :friends => [{:friend_id => 1001, :friend_name => "Alok Srivastava", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1002, :friend_name => "Milind Parab", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1003, :friend_name => "Samarth Deo", :friend_image => "/images/actwitty/default_user.gif"}]
-
-                      }
-                    ]
+          }
+      ]
     else
-      user_snapshots= [ {:activity_word => {:word_id => 1925, :word_name => "RubyOnRails"},
-                        :activity_count => 20,
-                        :user => {:user_id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+      user_snapshots= [
+          {
+            :word => {:id => 1925, :name => "NuclearPhysics"},
+            :time => "12:54:39",
+            :id => 103,
+            :count => 20,
+            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :location => [
+                          {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
+                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                         ],
+            :documents => [
+                            {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
+                          ],
 
-                        :location => [{:location_id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}}] ,
-                        :documents => [{:document_id => 213, :document_name => "spring.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 215,:document_name => "spring_3.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_3.jpg"} ],
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+                            <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
+            :entities => [
+                          {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2342, :name => "sachin tendulkar", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2343, :name => "sonia gandhi", :image => "/images/actwitty/unknown_entity.png"}
+                         ],
+            :friends => [
+                          {:id => 2, :name => "Alok Srivastava", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 3, :name => "Milind Parab", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 4, :name => "Samarth Deo", :image => "/images/actwitty/default_user.gif"}
+                        ]
 
-                        :recent_text => "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
-                                                 <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>",
-                        :entities => [{:entity_id => 2341, :entity_name => "parle biscuits", :entity_image => "/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2342, :entity_name => "sachin tendulkar", :entity_image => "/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2343, :entity_name => "sonia gandhi", :entity_image => "/images/actwitty/unknown_entity.png"}],
-                        :friends => [{:friend_id => 1001, :friend_name => "Alok Srivastava", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1002, :friend_name => "Milind Parab", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1003, :friend_name => "Samarth Deo", :friend_image => "/images/actwitty/default_user.gif"}]
+          },
+          {
+            :word => {:id => 1926, :name => "Abcdef"},
+            :time => "12:54:39",
+            :id => 104,
+            :count => 20,
+            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :location => [
+                          {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
+                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                         ],
+            :documents => [
+                            {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 214,:name => "spring_2.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                            {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
+                          ],
 
-                      },
-                      {:activity_word => {:word_id => 1926, :word_name => "HimachalPradesh"},
-                        :activity_count => 20,
-                        :user => {:user_id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+                            <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
+            :entities => [
+                          {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2342, :name => "sachin tendulkar", :image => "/images/actwitty/unknown_entity.png"},
+                          {:id => 2343, :name => "sonia gandhi", :image => "/images/actwitty/unknown_entity.png"}
+                         ],
+            :friends => [
+                          {:id => 2, :name => "Alok Srivastava", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 3, :name => "Milind Parab", :image => "/images/actwitty/default_user.gif"},
+                          {:id => 4, :name => "Samarth Deo", :image => "/images/actwitty/default_user.gif"}
+                        ]
 
-                        :location => [{:location_id => 23456, :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "marathalli"}}] ,
-                        :documents => [{:document_id => 213, :document_name => "spring.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring.jpg"},
-                                       {:document_id => 214,:document_name => "spring_2.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_2.jpg"},
-                                       {:document_id => 215,:document_name => "spring_3.jpg", :document_type => "image/jpg", :document_url => "/images/test/spring_3.jpg"}  ],
-
-                        :recent_text => "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
-                                         <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>",
-                        :entities => [{:entity_id => 2341, :entity_name => "parle biscuits", :entity_image =>"/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2342, :entity_name => "sachin tendulkar", :entity_image => "/images/actwitty/unknown_entity.png"},
-                                      {:entity_id => 2343, :entity_name => "sonia gandhi", :entity_image => "/images/actwitty/unknown_entity.png"}],
-                        :friends => [{:friend_id => 1001, :friend_name => "Alok Srivastava", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1002, :friend_name => "Milind Parab", :friend_image => "/images/actwitty/default_user.gif"},
-                                     {:friend_id => 1003, :friend_name => "Samarth Deo", :friend_image => "/images/actwitty/default_user.gif"}]
-
-                      }
-                    ]
+          }
+      ]
     end
 
 
