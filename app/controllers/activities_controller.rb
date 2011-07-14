@@ -22,8 +22,11 @@ class ActivitiesController < ApplicationController
                             :id =>  1234,
                             :user => { :id => 128, :full_name => "Abc Saxena", :photo => "/images/actwitty/default_user.gif" },
                             :time => "12:53:31",
-                            :word => { :id => 1923, :word_name => "Motorbiking" },
-                            :location => {:id => 23456, :geo_location => {:latitude => 23.6567, :longitude => 120.3, :name => "marathalli"}}   ,
+                            :word => { :id => 1923, :name => "Motorbiking" },
+                            :text =>  "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
+                                       <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>"
+                          },
+                        :location => {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
                             :documents =>
                               [
                                 {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -35,9 +38,6 @@ class ActivitiesController < ApplicationController
                                 {:id => 35, :name => "like", :count => 23, :user => true},
                                 {:id => 36, :name => "support", :count => 23, :user => false}
                               ],
-                            :text =>  "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
-                                       <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>"
-                          },
                       :comment =>
                         {
                           :count => 1,
@@ -151,9 +151,12 @@ class ActivitiesController < ApplicationController
                       }
                     ]
     end
-    puts user_snapshots
+
+
+
     if request.xhr?
-      render :json => user_snapshots
+      puts user_snapshots
+      render :json => user_snapshots, :status => 200
     end
   end
 
@@ -214,7 +217,7 @@ class ActivitiesController < ApplicationController
     puts user_snapshots
 
     if request.xhr?
-      render :json => user_snapshots
+      render :json => {}, :status => 200
     end
   end
 

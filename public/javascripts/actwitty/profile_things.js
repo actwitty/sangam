@@ -79,6 +79,7 @@ function getID(thing){
 
 /********************************************************************************************/
 $(document).ready(function(){
+  //alert("Inside profile_things.js ready");
   $("#search_things").live('keyup.autocomplete', function() {
     $(this).autocomplete(json_thing_data, {
       multiple: false,

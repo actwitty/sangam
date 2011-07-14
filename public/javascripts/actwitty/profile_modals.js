@@ -1,6 +1,7 @@
 
 
 $(document).ready(function(){
+      //alert("Inside profile_modals.js ready");
       $('#all_channels').click(function() { 
           $( "#channel-dialog-modal" ).attr("title", "Select a channel filter");
           $( "#channel-dialog-modal" ).empty();                                       

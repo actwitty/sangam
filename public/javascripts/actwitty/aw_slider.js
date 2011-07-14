@@ -1,6 +1,7 @@
 
 
 $(document).ready(function(){
+//    alert("aw_Slider is ready");
     $('div.aw_slider').live('mousemove',function(e){
       var div = $(this);
       var ul = $(this).children('ul.aw_slider');

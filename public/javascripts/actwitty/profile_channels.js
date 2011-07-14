@@ -78,6 +78,8 @@ function getID(channel){
 
 /********************************************************************************************/
 $(document).ready(function(){
+  //alert("Inside profile_channels.js ready");
+
   $("#search_channels").live('keyup.autocomplete', function() {
     $(this).autocomplete(json_channel_data, {
       multiple: false,

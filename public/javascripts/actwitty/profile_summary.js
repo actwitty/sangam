@@ -133,7 +133,6 @@ function create_and_add_summary(ul, summary){
  var entities_box_id = unique_id + '_entities';
  var locations_box_id = unique_id + '_locations';
  var latest_text_box_id = unique_id + '_text';
-
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again*/
  if ($("#" + unique_id ).length > 0){
    return;
@@ -199,7 +198,6 @@ function create_and_add_summary(ul, summary){
         
         /* overall summary div is added */        
         ul.append(html);
-
         /* handle individual divs */
         create_and_docs_box(docs_box_id, summary);       
         create_and_add_friends_box(friends_box_id, summary);
@@ -208,13 +206,14 @@ function create_and_add_summary(ul, summary){
 
 }
 
+
 function append_personal_summary(owner_id, summary_position){
   $.ajax({
-        url: '/activities/get_snapshots',
+        url: '/activities/get_snapshots.json',
         type: 'GET',
         data: {id : owner_id, position : summary_position },
         dataType: 'json',
-        contentType: 'application/json',
+        contentType: 'json',  
         success: function (data) {
           // if rails demands a redirect because of log in missing
            var count =0;
@@ -229,14 +228,18 @@ function append_personal_summary(owner_id, summary_position){
           $('#personal_count').val(current_count);
 
         },
-        error: function (error) {
-
+        error:function(XMLHttpRequest,textStatus, errorThrown) {   
+          alert(textStatus);
+          alert(XMLHttpRequest.responseText);
+          alert(errorThrown);
         }
     });
 
 }
 
 function append_friends_summary(owner_id, summary_position){
+
+  alert("Inside profile_summary.js for friends");
   $.ajax({
         url: '/activities/get_friends_snapshots',
         type: 'GET',

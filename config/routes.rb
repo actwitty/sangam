@@ -1,7 +1,9 @@
 Sangam::Application.routes.draw do
 
-  #get "home/show"
-  get "home/alpha"
+  get "home/show"
+  #get "home/alpha"
+  get '/users/sign_in' => 'welcome#new'
+  get '/users/sign_up' => 'welcome#new'
 
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
@@ -13,6 +15,7 @@ Sangam::Application.routes.draw do
   devise_scope :user do
     post "/confirm_user"  =>  "users/confirmations#accept"
   end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
