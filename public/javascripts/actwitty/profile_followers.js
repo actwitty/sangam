@@ -93,6 +93,7 @@ function getID(user){
 
 /********************************************************************************************/
 $(document).ready(function(){
+//alert("Inside profile_followers.js ready");
  $("#search_followers").live('keyup.autocomplete', function() {
    //TODO: check why JSON is not working here
     $(this).autocomplete('/contacts/followers', {

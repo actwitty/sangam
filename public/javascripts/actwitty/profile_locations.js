@@ -77,6 +77,7 @@ function getID(location){
 
 /********************************************************************************************/
 $(document).ready(function(){
+  //alert("Inside profile_locations.js ready");
   $("#search_locations").live('keyup.autocomplete', function() {
     $(this).autocomplete(json_location_data, {
       multiple: false,

@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
-  #before_filter :login_required
+  #before_filter :only_when_user_is_logged_in, :only => :show
 
 
    def show
+
     @user=nil
+    @profile_page =1
 
     if params[:mode] == 'filtered'
       @defaul_page_mode = 'filtered'

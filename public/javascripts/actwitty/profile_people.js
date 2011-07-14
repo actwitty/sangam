@@ -1,6 +1,7 @@
 
 
 $(document).ready(function(){
+      //alert("Inside profile_people.js ready");
       $('#all_followers').click(function() { 
           $( "#follower-dialog-modal" ).attr("title", "Manage followers");
           $( "#follower-dialog-modal" ).empty();                                       

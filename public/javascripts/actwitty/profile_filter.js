@@ -51,6 +51,7 @@ function get_filter(){
 }
 
 $(document).ready(function(){
+   //alert("Inside profile_filter.js ready");
     $('#channel_filter_drop').live("click",function(){
       $("#filter_channel_name").attr("value", "");
       $("#filter_channel_id").attr("value", "");

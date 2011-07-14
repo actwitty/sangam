@@ -1,27 +1,6 @@
 / Java scripts includes
-= javascript_include_tag 'redmond/js/jquery-ui-1.8.13.custom.min.js'
-= javascript_include_tag 'actwitty/aw_slider.js'
-= javascript_include_tag 'plugins/jquery-list-splitter/jquery.easyListSplitter.js'
-= javascript_include_tag 'actwitty/profile_filter.js'
-= javascript_include_tag 'actwitty/profile_channels.js'
-= javascript_include_tag 'actwitty/profile_locations.js'
-= javascript_include_tag 'actwitty/profile_things.js'
-= javascript_include_tag 'actwitty/profile_followers.js'
-= javascript_include_tag 'actwitty/profile_facebook.js'
-= javascript_include_tag 'actwitty/profile_followings.js'
-= javascript_include_tag 'actwitty/profile_follow.js'
-= javascript_include_tag 'actwitty/profile_summary.js'
-= javascript_include_tag 'actwitty/profile_stream.js'
-= javascript_include_tag 'actwitty/profile.js'
-= javascript_include_tag 'actwitty/profile_modals.js'
-= javascript_include_tag 'actwitty/profile_people.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/lib/thickbox-compressed.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/jquery.autocomplete.js'
+= include_javascripts :profile 
 = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
-
-
 %script{:src => "http://maps.google.com/maps/api/js?sensor=true&libraries=places", :type => "text/javascript"}
 = javascript_include_tag 'actwitty/home_page_inputs'
     
@@ -30,9 +9,10 @@
 
 / Here we go with main page
 
-#home_page_wrapper
-  .home_page_header
-    %img.aw_header_logo{:src => "/images/rails.png"}/
+#page-wrapper
+  / Welcome page header
+  #header
+    =render :partial => "welcome/logo" 
     /%textarea#searchall.home_page_people_search{:placeholder => "Search People"}
     %input#searchall.home_page_people_search{:type => "text",:placeholder => "Search"}/
     %ul.aw_header_nav
@@ -45,7 +25,7 @@
               %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
             %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}/
         %li.aw_header_navl
-          %a{:href => "#"} Home
+          %a{:href => "/home/show?id=#{current_user.id}"} Home
         %li.aw_header_navl
           %a{:href => "#"} Settings
         %li.aw_header_navl

@@ -1,9 +1,10 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+
 jQuery.ajaxSetup({
    cache: true,
-   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "application/json")}
  });
 
 $(document).ajaxSend(function(event, request, settings) {
@@ -31,7 +32,7 @@ $(document).ready(function(){
         beforeSend: function(){
           $('#LoadingDiv').css('display','block'); 
         },
-        success: function(){
+        success: function(data){
           
           $('#LoadingDiv').css('display','none');
         },
@@ -55,7 +56,7 @@ $(document).ready(function(){
         beforeSend: function(){
           $('#LoadingDiv').css('display','block'); 
         },
-        success: function(){
+        success: function(data){
           $('#LoadingDiv').css('display','none');
         },
       });

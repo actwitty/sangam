@@ -9,15 +9,14 @@
 
 
 $(document).ready(function(){
+  alert("In profile");
     var page_owner_id=$('#page_owner_id').attr("value");
     var session_owner_id=$('#session_owner_id').attr("value");
     var default_tab = $('#default_page_mode').attr("value");
     var populated_personal=false;
     var populated_friends=false;
     var populated_stream=false;
-
-    
-    
+   
     $("#sub_filter_tabs").tabs({cache: true,
         select: function(event, ui) {
           if(ui.panel.id == "Personal"){
@@ -44,8 +43,6 @@ $(document).ready(function(){
           }
         }
     });   
-
-
     if(default_tab && default_tab =='filtered'){
       var last_tab =  $('#sub_filter_tabs ul').tabs().size();
       $('#sub_filter_tabs').tabs('select', (last_tab - 1));
@@ -56,9 +53,9 @@ $(document).ready(function(){
       }
     }else{
       $('#sub_filter_tabs').tabs('select', 0);
-        var personal_summaries_count = parseInt($('#personal_count').val());
-        append_personal_summary(page_owner_id, personal_summaries_count);
-        populated_personal=true;
+      var personal_summaries_count = parseInt($('#personal_count').val());
+      append_personal_summary(page_owner_id, personal_summaries_count);
+      populated_personal=true;
     }
 
 
@@ -84,7 +81,7 @@ $(document).ready(function(){
     });
 
 
-  
+ 
 
   }); /* ready ends here */
 

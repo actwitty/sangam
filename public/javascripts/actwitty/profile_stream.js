@@ -165,7 +165,7 @@ function handle_stream_comments(box_id, stream, current_user_id){
     div.append(html);
   }
   
-  var html = '<ul class="comments_ul"> +
+  var html = '<ul class="comments_ul">' +
               '</ul>';
   
   div.append(html);
@@ -274,7 +274,7 @@ function create_and_add_stream(ul, stream, current_user_id){
                   '</div>' +
 
                 '</div>' +              
-             '</li>;
+             '</li>';
 
   ul.append(html);
 
@@ -328,6 +328,7 @@ function clear_streams(){
  * On load of page as well we need to do all these
  */
 function reload_streams_on_viewed_user(){
+  alert("Inside profile_stream.js ready");
   clear_streams();
   clear_related_friends();
   list_related_friends();
