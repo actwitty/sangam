@@ -78,10 +78,10 @@ class ActivitiesController < ApplicationController
             :time => "12:54:39",
             :id => 101,
             :count => 20,
-            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :user => {:id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -110,10 +110,10 @@ class ActivitiesController < ApplicationController
             :time => "12:54:39",
             :id => 102,
             :count => 20,
-            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :user => {:id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -145,10 +145,10 @@ class ActivitiesController < ApplicationController
             :time => "12:54:39",
             :id => 103,
             :count => 20,
-            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :user => {:id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -177,10 +177,10 @@ class ActivitiesController < ApplicationController
             :time => "12:54:39",
             :id => 104,
             :count => 20,
-            :user => {:id => 123, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+            :user => {:id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -238,7 +238,7 @@ class ActivitiesController < ApplicationController
             :user => {:id => 2, :full_name => "SomeOne", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -270,7 +270,7 @@ class ActivitiesController < ApplicationController
             :user => {:id => 3, :full_name => "AnyOne", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -305,7 +305,7 @@ class ActivitiesController < ApplicationController
             :user => {:id => 2, :full_name => "SomeOne", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
@@ -337,7 +337,7 @@ class ActivitiesController < ApplicationController
             :user => {:id => 3, :full_name => "NoOne", :photo => "/images/actwitty/default_user.gif"},
             :location => [
                           {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                          {:id => 23456, :name => "Samarths Home", :type => 3}
+                          {:id => 23457, :name => "Samarths Home", :type => 3}
                          ],
             :documents => [
                             {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},

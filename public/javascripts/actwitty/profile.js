@@ -32,19 +32,20 @@ $(document).ready(function(){
               }
             }else if(ui.panel.id == "Stream"){
               if(populated_stream == false){
-                append_stream(page_owner_id);
+                //append_stream(page_owner_id);
                 populated_stream=true;
               }
             }
             
           }
         }
-    });   
-    if(default_tab && default_tab =='filtered'){
+    });  
+    
+    if(default_tab.length > 0 && default_tab =='filtered'){
       var last_tab =  $('#sub_filter_tabs ul').tabs().size();
       $('#sub_filter_tabs').tabs('select', (last_tab - 1));
       if(populated_stream == false){
-        append_friends_summary(page_owner_id);
+        //append_friends_summary(page_owner_id);
         populated_stream=true;
       }
     }else{

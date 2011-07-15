@@ -1,11 +1,32 @@
 
 
-function modify_filter(filter_hash){
-  $.each(filter_hash, function(key, filter_val_array){
-    $("#filter_" + key +"_id").attr("value", filter_val_array[0]); 
-    $("#filter_" + key + "_name").attr("value", filter_val_array[1]);  
-  });
+function modify_filter(filter_json){
+  var page_owner_id=$('#page_owner_id').attr("value");
+  var need_redirect = false;
+  /* Decide on which user to go to */
+  if (filter_json.user){
+    if( filter_json.user != page_owner_id){
+      need_redirect=true;
+      page_owner_id = filter_json.user;
+    }
+  }
 
+  if( filter_json.channel_id && filter_json.channel_name ){
+    $("#filter_channel_id").attr("value", filter_json.channel_id); 
+    $("#filter_channel_name").attr("value", filter_json.channel_name);  
+  }
+
+  if( filter_json.location_id && filter_json.location_name){
+    $("#filter_location_id").attr("value", filter_json.location_id); 
+    $("#filter_location_name").attr("value", filter_json.location_name);  
+  }
+
+  if( filter_json.thing_id && filter_json.thing_name){
+    $("#filter_thing_id").attr("value", filter_json.thing_id); 
+    $("#filter_thing_name").attr("value", filter_json.thing_name);  
+  }
+
+  /* remove display of all filter disengage buttons */
   $("#stream_filters").empty();
 
   /* Channel */
@@ -23,12 +44,12 @@ function modify_filter(filter_hash){
 
   /* Location */
   if ($("#filter_location_id").attr("value").length > 0 && $("#filter_location_name").attr("value").length>0){
-    var html = '<input type="button" id="location_filter_drop " value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
+    var html = '<input type="button" id="location_filter_drop" value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
     $("#stream_filters").append(html);
   }
 
 
-  reload_streams_on_viewed_user();
+  //reload_streams_on_viewed_user();
 }
 
 function reset_filter(){
@@ -51,7 +72,6 @@ function get_filter(){
 }
 
 $(document).ready(function(){
-   //alert("Inside profile_filter.js ready");
     $('#channel_filter_drop').live("click",function(){
       $("#filter_channel_name").attr("value", "");
       $("#filter_channel_id").attr("value", "");

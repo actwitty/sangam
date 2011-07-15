@@ -103,9 +103,12 @@ $(document).ready(function(){
         if (ignore_thing_auto_complete == false){
           
           /* filter change transaction */
-          var new_filter = {};
-          new_filter["thing"] = [getID(item) , format(item)];
+          var new_filter = {
+                            thing_id:getID(item),
+                            thing_name:format(item)
+                           };
           modify_filter(new_filter);
+
 
           $("#thing-dialog-modal").dialog('close');
           ignore_thing_auto_complete = true;
@@ -116,13 +119,15 @@ $(document).ready(function(){
 
   $('.things_title').live('click', function () { 
     var base_id = $(this).attr('id');
-    var thing_id = $("#" + base_id + "_id").attr('value');
-    var thing_name = $("#" + base_id + "_name").attr('value');
+    var filter_thing_id = $("#" + base_id + "_id").attr('value');
+    var filter_thing_name = $("#" + base_id + "_name").attr('value');
     
     /* filter change transaction */
-    var new_filter = {};
-    new_filter["thing"] = [thing_id , thing_name];
-    modify_filter(new_filter);
+    var new_filter = {
+                            thing_id:filter_thing_id,
+                            thing_name:filter_thing_name
+                           };
+          modify_filter(new_filter);
     $( "#thing-dialog-modal" ).dialog('close');
   });
 

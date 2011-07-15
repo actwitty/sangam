@@ -132,8 +132,8 @@ function create_and_add_locations_box(box_id, summary){
       /* create a JSON of filter */
       var filter_value = {
                             user:summary.user.id ,
-                            place_id:place.id,
-                            place_name:place.name,
+                            location_id:place.id,
+                            location_name:place.name,
                             channel_id:summary.word.id, 
                             channel_name:summary.word.name  
                           };
@@ -311,7 +311,13 @@ $(document).ready(function(){
     $('.js_summary_filter_setter').live('click', function(){
       var filters_base_id = $(this).attr("id");
       if (filters_base_id.length > 0){
-          alert(JSON.stringify(the_big_filter_JSON[filters_base_id]));
+          var page_owner_id=$('#page_owner_id').attr("value");
+          var filter = the_big_filter_JSON[filters_base_id];
+          if(filter){
+            reset_filter();
+            modify_filter(filter);
+          }
+
           return;
         }
       alert("ActWitty will fix the problem with the filter");

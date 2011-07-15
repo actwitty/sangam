@@ -102,9 +102,12 @@ $(document).ready(function(){
     }).result(function(e, item) {
         if (ignore_channel_auto_complete == false){
           /* filter change transaction */
-          var new_filter = {};
-          new_filter["channel"] = [getID(item) , format(item)];
+           var new_filter = {
+                            channel_id:getID(item),
+                            channel_name:format(item)
+                           };
           modify_filter(new_filter);
+
 
           $("#channel-dialog-modal").dialog('close');
           ignore_channel_auto_complete = true;
@@ -115,12 +118,14 @@ $(document).ready(function(){
 
   $('.channels_title').live('click', function () { 
     var base_id = $(this).attr('id');
-    var channel_id = $("#" + base_id + "_id").attr('value');
-    var channel_name = $("#" + base_id + "_name").attr('value');
+    var filter_channel_id = $("#" + base_id + "_id").attr('value');
+    var filter_channel_name = $("#" + base_id + "_name").attr('value');
     
     /* filter change transaction */
-    var new_filter = {};
-    new_filter["channel"] = [channel_id , channel_name];
+    var new_filter = {
+                        channel_id:filter_channel_id,
+                        channel_name:filter_channel_name
+                     };
     modify_filter(new_filter);
     $( "#channel-dialog-modal" ).dialog('close');
   });
