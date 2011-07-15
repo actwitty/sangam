@@ -108,12 +108,12 @@
     #Personal.ui-tabs-panel.ui-widget-content.ui-corner-bottom
       %ul#personal_summary.summary_list
       %a#more_personal.more_personal{:href => "#"} More
-      %input{:type => "hidden", :id => "personal_count", :value => "0"}/
+      %input#more_personal_cookie{:type => "hidden", :value => "0"}
     -if user_signed_in?  && current_user.id == @user.id
       #Friends.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
         %ul#friends_summary.summary_list
         %a#more_friends.more_friends{:href => "#"} More
-        %input{:type => "hidden", :id => "friend_count", :value => "0"}/
+        %input#more_friends_cookie{:type => "hidden", :value => "0"}
     #Stream.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
       #stream_filters
       #stream_related_entities
@@ -122,7 +122,6 @@
       #stream_list_div 
         %ul#streams.stream_list
         %a#more_stream.more_streams{:href => "#"} More
-        %input{:type => "hidden", :id => "stream_count", :value => "0"}/
 
   #channel-dialog-modal
   #location-dialog-modal
