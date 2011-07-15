@@ -29,21 +29,26 @@
 .aw_sub_header_nav
 {
   display:inline;
+ 
 }
 .aw_sub_header_nav_r
 {
   float:right;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   list-style-type:none;
   display:inline;
   padding-right:10px;
+  padding-top:3px;
 }
 
 .aw_sub_header_nav_l
 {
   float:left;
+  color:#ccc;
   list-style-type:none;
   display:inline;
   padding-right:10px;
+  padding-top:3px;
 }
 
 
@@ -128,15 +133,12 @@ label.alternate_login_label
 {
   display:block;
   height:30px;
-  font: 12px Arial, Helvetica, sans-serif;
+  width:100%;
+  background:#445D73;
+  font-size: 16px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-.home_page_sub_filter_row
-{
-  display:block;
-  height:30px;
-  font: 12px Arial, Helvetica, sans-serif;
-}
 
 /*Input Section in row2 of home page*/
 .input_box{
@@ -231,17 +233,23 @@ ul.summary_list{
   overflow:auto;
   list-style: none;
   border:1px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 a.summary_user_box_a
 {
   float:left;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 img.summary_user_box_img
 {
   float:left;
   width:  40px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 .summary_main_box_header
@@ -250,9 +258,10 @@ img.summary_user_box_img
   font: 16px Arial, Helvetica, sans-serif;
   height: 16px;
   width: 100%;
-  background:cyan;
+  background:#445D73;
   border: 1px solid black;
   overflow: hidden;
+  color:#000000;
 
 }
 
@@ -263,6 +272,7 @@ img.summary_user_box_img
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  color:#000000;
 }
 
 .summary_main_box_friends
@@ -272,13 +282,40 @@ img.summary_user_box_img
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  
+}
+
+.summary_links_styling
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+.js_entity_mention
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+.js_user_mention
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+.more_loader
+{
+  font: 16px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 ul.summary_main_box_friends {
   display: block;
   list-style: none;
-  width: 100%
+  width: 100%;
+  color:#000000;
 }
+
 
 .summary_main_box_entities
 {
@@ -287,12 +324,14 @@ ul.summary_main_box_friends {
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  color:#000000;
 }
 
 ul.summary_main_box_entities{
   display: block;
   list-style: none;
-  width: 100%
+  width: 100%;
+  color:#000000;
 }
 
 .summary_main_box_locations
@@ -302,12 +341,14 @@ ul.summary_main_box_entities{
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  color:#000000;
 }
 
 ul.summary_main_box_locations{
   display: block;
   list-style: none;
-  width: 100%
+  width: 100%;
+  color:#000000;
 }
 
 .summary_main_box_latest
@@ -317,6 +358,7 @@ ul.summary_main_box_locations{
    border: 1px solid black;
    width: 10%;
    overflow: hidden;
+  color:#000000;
 }
 
 
@@ -326,6 +368,7 @@ ul.stream_list{
   overflow:auto;
   list-style: none;
   border:1px;
+  color:#000000;
 }
 
 .modal_channels_ul
@@ -355,3 +398,60 @@ ul.stream_list{
    list-style: none;
    width: 80%;
 }
+
+/*************************************** TABS START *******************************************/
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #ccc;
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #fff;
+	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+}
+
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+  color:#000000;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+  color:#000000;
+}
+/*************************************** TABS END *******************************************/
+

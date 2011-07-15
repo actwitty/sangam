@@ -323,17 +323,19 @@ function clear_streams(){
   $("#streams").empty();
 }
 
+
+
 /*
  * On change of filter we need to do all these
  * On load of page as well we need to do all these
  */
 function reload_streams_on_viewed_user(){
-  alert("Inside profile_stream.js ready");
-  clear_streams();
+  set_stream_to_focus_on_filter_change();
+  /*clear_streams();
   clear_related_friends();
   list_related_friends();
   clear_related_entities();
   list_related_entities();
   clear_related_locations();
-  list_related_locations();
+  list_related_locations();*/
 }

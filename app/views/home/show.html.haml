@@ -96,32 +96,33 @@
         %a#all_locations{:href => "#"} Locations
 
 
-  #sub_filter_tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
-    %ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-corner-all
-      %li#personal_tab_head.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active
-        %a{:href => "#Personal"} Personal
+  #sub_filter_tabs
+    %ul.tabs
+      %li#personal_tab_head
+        %a{:href => "#personal_tab"} Personal
       -if user_signed_in?  && current_user.id == @user.id
-        %li#friend_tab_head.ui-state-default.ui-corner-top
-          %a{:href => "#Friends"} Followings
-      %li#recent_tab_head.ui-state-default.ui-corner-top
-        %a{:href => "#Stream"} Stream
-    #Personal.ui-tabs-panel.ui-widget-content.ui-corner-bottom
-      %ul#personal_summary.summary_list
-      %a#more_personal.more_personal{:href => "#"} More
-      %input#more_personal_cookie{:type => "hidden", :value => "0"}
-    -if user_signed_in?  && current_user.id == @user.id
-      #Friends.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
-        %ul#friends_summary.summary_list
-        %a#more_friends.more_friends{:href => "#"} More
-        %input#more_friends_cookie{:type => "hidden", :value => "0"}
-    #Stream.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
-      #stream_filters
-      #stream_related_entities
-      #stream_related_activities
-      #stream_related_friends
-      #stream_list_div 
-        %ul#streams.stream_list
-        %a#more_stream.more_streams{:href => "#"} More
+        %li#followings_tab_head
+          %a{:href => "#followings_tab"} Followings
+      %li#streams_tab_head
+        %a{:href => "#streams_tab"} Stream
+    .tab_container
+      #personal_tab.tab_content
+        %ul#personal_summary.summary_list
+        %a#more_personal.more_loader{:href => "#"} More
+        %input#more_personal_cookie{:type => "hidden", :value => "0"}
+      -if user_signed_in?  && current_user.id == @user.id
+        #followings_tab.tab_content
+          %ul#friends_summary.summary_list
+          %a#more_friends.more_loader{:href => "#"} More
+          %input#more_friends_cookie{:type => "hidden", :value => "0"}
+      #streams_tab.tab_content
+        #stream_filters
+        #stream_related_entities
+        #stream_related_activities
+        #stream_related_friends
+        #stream_list_div 
+          %ul#streams.stream_list
+          %a#more_stream.more_loader{:href => "#"} More
 
   #channel-dialog-modal
   #location-dialog-modal

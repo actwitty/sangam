@@ -1,6 +1,9 @@
 
 
-function modify_filter(filter_json){
+function modify_filter(filter_json, reload){
+  if ( reload === undefined ){
+    reload=true;
+  }
   var page_owner_id=$('#page_owner_id').attr("value");
   var need_redirect = false;
   /* Decide on which user to go to */
@@ -47,19 +50,29 @@ function modify_filter(filter_json){
     var html = '<input type="button" id="location_filter_drop" value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
     $("#stream_filters").append(html);
   }
+  if(reload==true){
+    if ( need_redirect == true){
+      /* simple case redirect to stream tab of new user */
+      redirect_to_streams_filtered_of_other_user();
+    }else{
+      /* stay on current user and apply the new filter */
+      reload_streams_on_viewed_user();
+    }
+  }
 
-
-  //reload_streams_on_viewed_user();
 }
 
-function reset_filter(){
+function reset_filter(reload){
+  if ( reload === undefined ){
+    reload=true;
+  }
   $("#filter_channel_name").attr("value", "");
   $("#filter_channel_id").attr("value", "");
   $("#filter_thing_name").attr("value", "");
   $("#filter_thing_id").attr("value", "");
   $("#filter_location_name").attr("value", "");
   $("#filter_location_id").attr("value", "");
-  modify_filter({});
+  modify_filter({}, reload);
 }
 
 

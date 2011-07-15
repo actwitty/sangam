@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
                             :user => { :id => 128, :full_name => "Abc Saxena", :photo => "/images/actwitty/default_user.gif" },
                             :time => "12:53:31",
                             :word => { :id => 1923, :name => "Motorbiking" },
-                            :text =>  "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
+                            :text =>  "<a href=/entities/479 class=\"js_entity_mention\">pizza</a> at <a href=/entities/478 class=\"js_entity_mention\">pizza hut</a> with
                                        <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>"
                           },
                         :location => {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
                               :campaign => [
                                 {:id => 38, :name => "like", :count => 23, :user => true},
                                 {:id => 39, :name => "support", :count => 23, :user => false}],
-                               :text => "<a href=/entities/479 class=\"activity_entity\">pizza</a> at <a href=/entities/478 class=\"activity_entity\">pizza hut</a> with
+                               :text => "<a href=/entities/479 class=\"js_entity_mention\">pizza</a> at <a href=/entities/478 class=\"js_entity_mention\">pizza hut</a> with
                                         <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>"
                             }
                           ]
@@ -91,7 +91,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -123,7 +123,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -158,7 +158,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -190,7 +190,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -210,7 +210,7 @@ class ActivitiesController < ApplicationController
 
 
     if request.xhr?
-      puts user_snapshots
+      #puts user_snapshots
       render :json => user_snapshots, :status => 200
     end
   end
@@ -248,7 +248,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -280,7 +280,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -315,7 +315,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -347,7 +347,7 @@ class ActivitiesController < ApplicationController
                             {:id => 215,:name => "spring_3.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                           ],
 
-            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_activity_entity\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_activity_entity\">pizza hut</a> with
+            :recent_text => "<a href=\"#\" id=\"479\" class=\"js_entity_mention\">pizza</a> at <a href=\"#\" id=\"478\" class=\"js_entity_mention\">pizza hut</a> with
                             <a href=\"#\" id=\"2\" class=\"js_user_mention\">Alok Srivastava</a>",
             :entities => [
                           {:id => 2341, :name => "parle biscuits", :image => "/images/actwitty/unknown_entity.png"},
@@ -367,7 +367,7 @@ class ActivitiesController < ApplicationController
 
 
     if request.xhr?
-      puts user_snapshots
+      #puts user_snapshots
       render :json => user_snapshots, :status => 200
     end
   end

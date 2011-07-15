@@ -6,7 +6,13 @@
 
 
 
-
+function set_stream_to_focus_on_filter_change(){
+    $(".tab_content").hide();
+    $("ul.tabs li").removeClass("active");
+    $("ul.tabs li:last").addClass("active").show(); 
+	  $(".tab_content:last").show();
+    
+  }
 
 $(document).ready(function(){
     var page_owner_id=$('#page_owner_id').attr("value");
@@ -15,44 +21,76 @@ $(document).ready(function(){
     var populated_personal=false;
     var populated_friends=false;
     var populated_stream=false;
-   
-    $("#sub_filter_tabs").tabs({cache: true,
-        select: function(event, ui) {
-          if(ui.panel.id == "Personal"){
-              if(populated_personal == false){
-                append_personal_summary(page_owner_id);
-                populated_personal=true;
-              }
-          }else{
-            
-            if(ui.panel.id == "Friends"){
-              if(populated_friends == false){
-                append_friends_summary(page_owner_id);
-                populated_friends=true;
-              }
-            }else if(ui.panel.id == "Stream"){
-              if(populated_stream == false){
-                //append_stream(page_owner_id);
-                populated_stream=true;
-              }
-            }
-            
-          }
-        }
-    });  
-    
+  
+
+    //Hide all contents on page load
+	  $(".tab_content").hide(); 
+
+    //Decide to bring one tab on focus
     if(default_tab.length > 0 && default_tab =='filtered'){
-      var last_tab =  $('#sub_filter_tabs ul').tabs().size();
-      $('#sub_filter_tabs').tabs('select', (last_tab - 1));
+  	  $("ul.tabs li:last").addClass("active").show(); 
+	    $(".tab_content:last").show();
+      /* Bring in stream filtered view on focus*/
       if(populated_stream == false){
-        //append_friends_summary(page_owner_id);
+        //append_stream(page_owner_id);
         populated_stream=true;
       }
     }else{
-      $('#sub_filter_tabs').tabs('select', 0);
-      append_personal_summary(page_owner_id);
-      populated_personal=true;
+      /* Bring in personal summary on focus*/
+  	  $("ul.tabs li:first").addClass("active").show(); 
+	    $(".tab_content:first").show();
+      if(populated_personal == false){
+        append_personal_summary(page_owner_id);
+        populated_personal=true;
+      }
     }
+
+	  //Bind Click on the tab
+	  $("ul.tabs li").click(function() {
+      /* Remove active from all tabs */
+		  $("ul.tabs li").removeClass("active");
+
+
+		  $(this).addClass("active"); //Add "active" class to selected tab
+      
+      var tab_id = $(this).attr("id");
+
+      if(tab_id == "personal_tab_head"){
+
+        if(populated_personal == false){
+          append_personal_summary(page_owner_id);
+          populated_personal=true;
+        }
+
+      }else{
+        if(tab_id == "followings_tab_head"){
+
+          if(populated_friends == false){
+            append_friends_summary(page_owner_id);
+            populated_friends=true;
+          }
+
+        }else{
+    
+          if(tab_id == "streams_tab_head"){
+            if(populated_stream == false){
+              //append_stream(page_owner_id);
+              populated_stream=true;
+            }
+          }
+        }
+      }
+
+		  $(".tab_content").hide(); //Hide all tab content
+
+		  var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		  $(activeTab).fadeIn(); //Fade in the active ID content
+		  return false;
+	  });
+
+   
+    
+
 
 
     $('#more_personal').click(function() {
@@ -75,6 +113,7 @@ $(document).ready(function(){
     });
 
 
+  
  
 
   }); /* ready ends here */

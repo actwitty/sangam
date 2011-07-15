@@ -16,7 +16,7 @@ function create_and_docs_box(box_id, summary){
     var ul_box = $("#" + ul_box_id);  
     $.each(summary.documents, function(i, attachment){
      var html='<li>' +
-                '<a href="#">' +
+                '<a href="#" class="summary_links_styling">' +
                   '<img src="'+ attachment.url + '"  width="40" height="40" alt="" />' +
                   '<span>' +
                       attachment.name +
@@ -54,7 +54,7 @@ function create_and_add_friends_box(box_id, summary){
                     };
       the_big_filter_JSON[filter_id] = filter_value;
       var html='<li>' +
-                '<a href="#" class="js_summary_filter_setter" id="' + filter_id +'" >' +
+                '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
                   '<img src="'+ friend.image + '"  width="25" height="25" alt="" />' +
                   '<span>' +
                       friend.name +
@@ -99,7 +99,7 @@ function create_and_add_entities_box(box_id, summary){
 
 
       var html='<li>' +
-                '<a href="#" class="js_summary_filter_setter" id="' + filter_id +'" >' +
+                '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
                   '<img src="'+ entity.image + '"  width="25" height="25" alt="" />' +
                   '<span>' +
                       entity.name +
@@ -141,7 +141,7 @@ function create_and_add_locations_box(box_id, summary){
 
 
       var html='<li>' +
-                  '<a href="#" class="js_summary_filter_setter" id="' + filter_id + '"  >' +
+                  '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id + '"  >' +
                     '<span>' +
                          place.name +
                     '</span>' +
@@ -314,7 +314,8 @@ $(document).ready(function(){
           var page_owner_id=$('#page_owner_id').attr("value");
           var filter = the_big_filter_JSON[filters_base_id];
           if(filter){
-            reset_filter();
+            /* do not cause reload */
+            reset_filter(false);
             modify_filter(filter);
           }
 
