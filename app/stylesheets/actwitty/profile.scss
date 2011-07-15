@@ -291,11 +291,6 @@ img.summary_user_box_img
   color:#000000;
 }
 
-.js_entity_mention
-{
-  font: 12px Arial, Helvetica, sans-serif;
-  color:#000000;
-}
 
 .js_user_mention
 {
@@ -398,6 +393,188 @@ ul.stream_list{
    list-style: none;
    width: 80%;
 }
+
+
+/************************************ Stream Divs *********************************************/
+
+
+.stream_box
+{
+  width:800px;
+	border: 1px solid #000000;
+  float:left;
+  display: inline;
+}
+
+/************************************** Stream User Box ****************************************/
+.stream_user_box
+{
+  float:left;
+  width:  40px;
+  height:100%;
+  border: 1px solid #000000;
+  display: inline;
+}
+
+a.stream_user_box
+{
+  float:left;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+img.stream_user_box
+{
+  float:left;
+  width:  40px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+/****************/
+/* stream title box */
+.stream_title_box
+{
+  float:left;
+  float:top;
+	margin-left:0px; 
+  height:40px;
+  width:758px;
+  font: 20px Arial, Helvetica, sans-serif;
+  color:#fff;
+  background:#445D73;
+  text-align:left;
+  display:inline;
+}
+
+.stream_channel_box
+{
+  margin-left:10px;
+  margin-top:8px;
+  width:200px;
+	overflow: hidden;
+  display:inline;
+
+}
+
+.stream_location_box
+{
+  margin-left:10px;
+  margin-top:8px;
+	overflow: hidden;
+  width:200px;
+  height:20px;
+  display:inline;
+}
+
+.stream_time_box
+{
+  margin-left:30px;
+  margin-top:15px;
+	overflow: hidden;
+  width:200px;
+  color:#000000;
+  font:italic bold 12px Arial, Helvetica, sans-serif;
+  display:inline;
+  float:right;
+  text-align:right;
+
+}
+
+.stream_close_box
+{
+  margin-top:5px;
+	overflow: hidden;
+  color:#000000;
+  font: 8px Arial, Helvetica, sans-serif;
+  float:right;
+  display:inline;
+}
+
+
+.stream_text_box
+{
+  float:left;
+  margin-top:20px;
+  margin-left:30px;
+	margin-left:0px; 
+  width:730px;
+  font: 20px Arial, Helvetica, sans-serif;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:10px;
+  border: 1px solid #cccccc;
+}
+
+.js_entity_mention
+{
+  font: 14px Arial, Helvetica, sans-serif;
+  color:#ffffff;
+  margin-left:2px;
+  padding-left:1px;
+  padding-right:1px;
+  margin-right:2px;
+  background:#006699;
+  border:1px solid #003399;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+.js_user_mention
+{
+  font: 13px Arial, Helvetica, sans-serif;
+  color:#000000;
+  background:#cccccc;
+  border:1px solid #000000;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+.stream_doc_box
+{
+  float:right;
+  margin-top:20px;
+  margin-left:30px;
+	margin-right:10px; 
+  width:730px;
+  font: 20px Arial, Helvetica, sans-serif;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:10px;
+  border: 1px solid #cccccc;
+}
+
+.stream_campaign_box
+{
+
+}
+
+.stream_comment_box
+{
+
+}
+
+.stream_comment_title_box
+{
+
+}
+
+
 
 /*************************************** TABS START *******************************************/
 ul.tabs {

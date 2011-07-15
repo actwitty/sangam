@@ -1,19 +1,24 @@
 /*
- * Home page activities related jqueries
+ * home/show or profile page activities related jqueries
  *
  */
 
 
 
-
+/*
+ * Bring stream on focus whenever there is a change in filter
+ */
 function set_stream_to_focus_on_filter_change(){
     $(".tab_content").hide();
     $("ul.tabs li").removeClass("active");
     $("ul.tabs li:last").addClass("active").show(); 
 	  $(".tab_content:last").show();
     
-  }
+}
 
+/*
+ * Execute on load
+ */
 $(document).ready(function(){
     var page_owner_id=$('#page_owner_id').attr("value");
     var session_owner_id=$('#session_owner_id').attr("value");
@@ -23,7 +28,7 @@ $(document).ready(function(){
     var populated_stream=false;
   
 
-    //Hide all contents on page load
+    /* At very start Hide all contents on page load */
 	  $(".tab_content").hide(); 
 
     //Decide to bring one tab on focus
@@ -32,7 +37,7 @@ $(document).ready(function(){
 	    $(".tab_content:last").show();
       /* Bring in stream filtered view on focus*/
       if(populated_stream == false){
-        //append_stream(page_owner_id);
+        append_stream(page_owner_id);
         populated_stream=true;
       }
     }else{
@@ -44,8 +49,10 @@ $(document).ready(function(){
         populated_personal=true;
       }
     }
-
-	  //Bind Click on the tab
+    /***********************************************************/
+	  /*
+     * Bind Click on the tab
+     */
 	  $("ul.tabs li").click(function() {
       /* Remove active from all tabs */
 		  $("ul.tabs li").removeClass("active");
@@ -87,34 +94,37 @@ $(document).ready(function(){
 		  $(activeTab).fadeIn(); //Fade in the active ID content
 		  return false;
 	  });
-
+    /********************** click on tab ends here ****************************/
    
     
 
 
-
+    /*
+     * Bind click to more on personal summary
+     */
     $('#more_personal').click(function() {
       if(populated_personal == true){
         append_personal_summary(page_owner_id);
       }
     });
-
+    
+    /*
+     * Bind click to more on friends summary
+     */
     $('#more_friends').click(function() {
       if(populated_friends == true){
         append_friends_summary(page_owner_id);
       }
     });
 
+    /*
+     * Bind click to more on streams tab
+     */
      $('#more_streams').click(function() {
       if(populated_stream == true){
-        var streams_count = parseInt($('#stream_count').val());
-        append_friends_summary(page_owner_id, streams_count);
+        append_stream(page_owner_id);
       }
     });
-
-
-  
- 
 
   }); /* ready ends here */
 

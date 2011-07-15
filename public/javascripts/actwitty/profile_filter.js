@@ -5,6 +5,7 @@ function modify_filter(filter_json, reload){
     reload=true;
   }
   var page_owner_id=$('#page_owner_id').attr("value");
+  var session_owner_id=$('#session_owner_id').attr("value");
   var need_redirect = false;
   /* Decide on which user to go to */
   if (filter_json.user){
@@ -56,7 +57,7 @@ function modify_filter(filter_json, reload){
       redirect_to_streams_filtered_of_other_user();
     }else{
       /* stay on current user and apply the new filter */
-      reload_streams_on_viewed_user();
+      reload_streams_on_viewed_user(page_owner_id, session_owner_id);
     }
   }
 
@@ -78,9 +79,9 @@ function reset_filter(reload){
 
 function get_filter(){
   return { 
-           channel : $("#filter_channel_id").attr("value", ""),
-           thing : $("#filter_thing_id").attr("value", ""),
-           place : $("#filter_thing_id").attr("value", "")
+           word_id:$("#filter_channel_id").attr("value"),
+           entity_id:$("#filter_thing_id").attr("value"),
+           location_id:$("#filter_location_id").attr("value")
          }; 
 }
 

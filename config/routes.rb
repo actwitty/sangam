@@ -54,6 +54,7 @@ Sangam::Application.routes.draw do
   match '/contacts/unfollow' => 'contacts#unfollow'
   match '/contacts/provider_follow' => 'contacts#provider_follow'
 
+  match '/activities/get_activities' => 'activities#get_activities'
   match '/activities/top_activities' => 'activities#top_activities'
   match '/activities/get_snapshots' =>  'activities#get_snapshots'
   match '/activities/get_friends_snapshots' => 'activities#get_friends_snapshots'

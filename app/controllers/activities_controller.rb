@@ -17,23 +17,33 @@ class ActivitiesController < ApplicationController
     end
   end
    def get_activities
-    user_activities= [{:post =>
+    puts "---------------------------------------"
+    puts "#{params}"
+    puts "---------------------------------------"
+    user_activities= [
+                      {:post =>
                           {
                             :id =>  1234,
-                            :user => { :id => 128, :full_name => "Abc Saxena", :photo => "/images/actwitty/default_user.gif" },
+                            :user => { :id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif" },
                             :time => "12:53:31",
                             :word => { :id => 1923, :name => "Motorbiking" },
                             :text =>  "<a href=/entities/479 class=\"js_entity_mention\">pizza</a> at <a href=/entities/478 class=\"js_entity_mention\">pizza hut</a> with
-                                       <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>"
+                                       <a href=/users/3019 class=\"js_user_mention\">Alok Srivastava</a> <a href=/users/0 class=\"js_entity_mention\">PIZZA</a>, this is an interesting
+                                      text and I dont know how it is seen on the screen as its long enough post talking about the movie
+                                      <a href=/entities/481 class=\"js_entity_mention\">Kal Ho Na Ho</a> while I was eating pizza and
+                                      suddenly seeing <a href=/entities/482 class=\"js_entity_mention\">Shahrukh</a> selling pizza to
+                                       <a href=/entities/481 class=\"js_user_mention\">Karan Johar</a> I do not like such kind of stuff
+                                        but I watched the movie and ate my <a href=/entities/482 class=\"js_user_mention\">Burger</a>
+                                        extremely peacefully. Now lets see really how does this text appear."
                           },
-                        :location => {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
-                            :documents =>
+                      :location => {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
+                      :documents =>
                               [
                                 {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
                                 {:id => 214,:name => "autum.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
                                 {:id => 215,:name => "winter.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
                               ],
-                            :campaign =>
+                      :campaign =>
                               [
                                 {:id => 35, :name => "like", :count => 23, :user => true},
                                 {:id => 36, :name => "support", :count => 23, :user => false}
@@ -54,10 +64,12 @@ class ActivitiesController < ApplicationController
                             }
                           ]
                         }
-                    }]
+                      }
+
+                    ]
 
     if request.xhr?
-      render :json => user_activities
+      render :json => user_activities, :status => 200
     end
   end
   def get_snapshots
