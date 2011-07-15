@@ -26,6 +26,8 @@ Sangam::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
+  match '/home/settings' => 'home#settings'
+  match '/home/settings_save' => 'home#settings_save'
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
   match '/welcome/confirmation_wait' => 'welcome#confirmation_wait'

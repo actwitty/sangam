@@ -51,4 +51,32 @@ class HomeController < ApplicationController
 
   end
 
+  def settings
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
+	  @user = User.find_by_confirmation_token(params[:confirmation_token])
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
+	  if !@user.nil?
+	      @profile = Profile.find_by_user_id(@user.id)
+	      Rails.logger.info("[CNTRL][HOME][SETTINGS] If User is Not Nil, then profile: #{@profile.user_id}")
+	      puts @profile.user_id
+	      puts @profile.id
+	  end
+  end
+
+  def settings_save
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
+	  @user = User.find_by_confirmation_token(params[:confirmation_token])
+	  puts @user.id
+	  @profile = Profile.find_by_user_id(@user.id)
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:profile]}")
+	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
+	  if @profile.update_attributes(params[:profile])
+	    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
+	    redirect_to(home_show_url)
+	  end
+	 Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
+
+  end
+	
+
 end
