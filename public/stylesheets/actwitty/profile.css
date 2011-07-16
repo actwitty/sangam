@@ -374,8 +374,9 @@ ul.stream_list {
   color: #000000;
 }
 
-/* line 403, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 405, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_box {
+  margin-top: 15px;
   width: 800px;
   border: 1px solid #cccccc;
   float: left;
@@ -383,7 +384,7 @@ ul.stream_list {
 }
 
 /************************************** Stream User Box ****************************************/
-/* line 412, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 415, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_user_box {
   float: left;
   width: 40px;
@@ -391,14 +392,14 @@ ul.stream_list {
   display: inline;
 }
 
-/* line 421, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 424, ../../../app/stylesheets/actwitty/profile.scss */
 a.stream_user_box {
   float: left;
   font: 12px Arial, Helvetica, sans-serif;
   color: #000000;
 }
 
-/* line 428, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 431, ../../../app/stylesheets/actwitty/profile.scss */
 img.stream_user_box {
   float: left;
   width: 40px;
@@ -408,7 +409,7 @@ img.stream_user_box {
 
 /****************/
 /* stream title box */
-/* line 437, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 440, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_title_box {
   float: left;
   float: top;
@@ -422,7 +423,7 @@ img.stream_user_box {
   display: inline;
 }
 
-/* line 451, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 454, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_channel_box {
   margin-left: 10px;
   margin-top: 8px;
@@ -431,7 +432,7 @@ img.stream_user_box {
   display: inline;
 }
 
-/* line 461, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 464, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_location_box {
   margin-left: 10px;
   margin-top: 8px;
@@ -441,7 +442,7 @@ img.stream_user_box {
   display: inline;
 }
 
-/* line 471, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 474, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_time_box {
   margin-left: 30px;
   margin-top: 15px;
@@ -454,7 +455,7 @@ img.stream_user_box {
   text-align: right;
 }
 
-/* line 485, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 488, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_close_box {
   margin-top: 5px;
   overflow: hidden;
@@ -464,7 +465,7 @@ img.stream_user_box {
   display: inline;
 }
 
-/* line 499, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 502, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_text_box {
   float: left;
   margin-top: 20px;
@@ -477,7 +478,7 @@ img.stream_user_box {
   padding: 10px;
 }
 
-/* line 513, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 516, ../../../app/stylesheets/actwitty/profile.scss */
 .js_entity_mention {
   font: 13px Arial, Helvetica, sans-serif;
   color: #ffffff;
@@ -497,7 +498,7 @@ img.stream_user_box {
   -webkit-border-bottom-right-radius: 4px;
 }
 
-/* line 533, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 536, ../../../app/stylesheets/actwitty/profile.scss */
 .js_user_mention {
   font: 13px Arial, Helvetica, sans-serif;
   color: #000000;
@@ -513,7 +514,7 @@ img.stream_user_box {
   -webkit-border-bottom-right-radius: 4px;
 }
 
-/* line 549, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 552, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_doc_box {
   float: right;
   margin-top: 20px;
@@ -529,7 +530,7 @@ img.stream_user_box {
 }
 
 /************ comments ***********/
-/* line 567, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 570, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_box {
   float: right;
   margin-top: 20px;
@@ -544,7 +545,7 @@ img.stream_user_box {
   padding: 10px;
 }
 
-/* line 584, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 587, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_title_box {
   float: left;
   float: top;
@@ -558,18 +559,24 @@ img.stream_user_box {
   display: inline;
 }
 
-/* line 598, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 601, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_title_box_span {
   padding: 3px;
 }
 
-/* line 603, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 606, ../../../app/stylesheets/actwitty/profile.scss */
+.stream_post_all_comments {
+  padding: 3px;
+  float: right;
+}
+
+/* line 612, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comments_box_ul {
   display: block;
   list-style: none;
 }
 
-/* line 613, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 622, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_single_comment_box {
   float: left;
   margin-top: 4px;
@@ -584,7 +591,7 @@ img.stream_user_box {
   border: 1px solid #cccccc;
 }
 
-/* line 628, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 637, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_close_box {
   margin-top: 5px;
   overflow: hidden;
@@ -594,14 +601,14 @@ img.stream_user_box {
   display: inline;
 }
 
-/* line 638, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 647, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_close_btn {
   float: right;
   float: top;
   font: 10px Arial, Helvetica, sans-serif;
 }
 
-/* line 645, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 654, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_user_box {
   float: left;
   width: 31px;
@@ -611,7 +618,7 @@ img.stream_user_box {
   overflow: hidden;
 }
 
-/* line 655, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 664, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_user_box_img {
   float: left;
   width: 30px;
@@ -619,7 +626,7 @@ img.stream_user_box {
   display: block;
 }
 
-/* line 662, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 671, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_user_box_a {
   float: left;
   font: 11px Arial, Helvetica, sans-serif;
@@ -627,7 +634,7 @@ img.stream_user_box {
   display: block;
 }
 
-/* line 670, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 679, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_text_box {
   float: left;
   float: top;
@@ -641,7 +648,7 @@ img.stream_user_box {
   padding: 5px;
 }
 
-/* line 685, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 694, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_add_new_box {
   float: left;
   margin-top: 4px;
@@ -656,14 +663,14 @@ img.stream_user_box {
   padding: 2px;
 }
 
-/* line 701, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 710, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_text_area_box {
   display: inline;
   float: left;
   margin-left: 4px;
 }
 
-/* line 708, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 717, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_new_text_area {
   font-family: 12px Arial, Helvetica, sans-serif;
   border: 1px solid #cccccc;
@@ -673,7 +680,7 @@ img.stream_user_box {
   resize: none;
 }
 
-/* line 719, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 728, ../../../app/stylesheets/actwitty/profile.scss */
 .stream_comment_text_area_box_btn_box {
   display: inline;
   margin-left: 4px;
@@ -682,7 +689,7 @@ img.stream_user_box {
 
 /************ comments end ***********/
 /*************************************** TABS START *******************************************/
-/* line 737, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 746, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs {
   margin: 0;
   padding: 0;
@@ -695,7 +702,7 @@ ul.tabs {
   width: 100%;
 }
 
-/* line 747, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 756, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs li {
   float: left;
   margin: 0;
@@ -713,7 +720,7 @@ ul.tabs li {
   background: #e0e0e0;
 }
 
-/* line 760, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 769, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs li a {
   text-decoration: none;
   color: #000;
@@ -725,12 +732,12 @@ ul.tabs li a {
   outline: none;
 }
 
-/* line 769, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 778, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs li a:hover {
   background: #ccc;
 }
 
-/* line 772, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 781, ../../../app/stylesheets/actwitty/profile.scss */
 html ul.tabs li.active, html ul.tabs li.active a:hover {
   /*--Makes sure that the active tab does not listen to the hover properties--*/
   background: #fff;
@@ -738,7 +745,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
   /*--Makes the active tab look like it's connected with its content--*/
 }
 
-/* line 777, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 786, ../../../app/stylesheets/actwitty/profile.scss */
 .tab_container {
   border: 1px solid #999;
   border-top: none;
@@ -749,7 +756,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
   color: #000000;
 }
 
-/* line 785, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 794, ../../../app/stylesheets/actwitty/profile.scss */
 .tab_content {
   padding: 20px;
   font-size: 1.2em;

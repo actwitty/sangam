@@ -398,9 +398,12 @@ ul.stream_list{
   color:#000000;
 }
 
+.stream_list_li{
+}
 
 .stream_box
 {
+  margin-top:15px;
   width:800px;
 	border: 1px solid #cccccc;
   float:left;
@@ -597,6 +600,12 @@ img.stream_user_box
 .stream_comment_title_box_span
 {
   padding:3px;
+}
+
+.stream_post_all_comments
+{
+  padding:3px;
+  float:right;
 }
 
 .stream_comments_box_ul

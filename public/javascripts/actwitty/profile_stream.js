@@ -221,14 +221,14 @@ function handle_stream_comments(box_id, stream, current_user_id){
     var title_div = $("#" + title_div_id);
     if (parseInt(stream.comment.count) < 3){
       var html = '<span class="stream_comment_title_box_span" id="' + count_display_span_id  + '">' +
-                'Total Comments :' + stream.comment.count +
+                'Total Comments :  ' + stream.comment.count +
                '</span>';
       title_div.append(html);
     }else{
        var html = 
                '<span class="stream_comment_title_box_span" id="' + count_display_span_id + '">' +
-                  'Total Comments :' + stream.comment.count +
-                '</span>'; 
+                  'Total Comments :  ' + stream.comment.count +
+                '</span>' +
                 '<a href="#" class="js_show_all_comment_btn stream_post_all_comments" id="' + show_all_id + '">' +
                   'Show All' +
                 '</a>';
@@ -335,7 +335,7 @@ function create_and_add_stream(ul, stream, current_user_id){
   var time_box_id     = 'stream_time_box_'     + post.id;
   
   /* Main stream div definition */
-  var html = '<li id="main_stream_li_'+ post.id +'" class="stream_li" >' +
+  var html = '<li id="main_stream_li_'+ post.id +'" class="stream_list_li" >' +
                 '<div class="stream_box">' +
 
                     /* Post originator user */
@@ -427,9 +427,7 @@ function append_stream(owner_id, current_user_id){
            $.each(data, function(i,stream){
             if( stream ){
                 create_and_add_stream($("#streams"),stream , current_user_id);
-                alert("1");
                 $("#more_streams_cookie").val(stream.id);
-                alert("2");
             } 
           });
 
@@ -503,6 +501,7 @@ $(document).ready(function(){
     if(add_json){
       alert(JSON.stringify(add_json));
     }
+    return false;
   });
 
   /*
@@ -515,6 +514,7 @@ $(document).ready(function(){
     if(del_json){
       alert(JSON.stringify(del_json));
     }
+    return false;
   });
   /********************************/
 
@@ -527,6 +527,7 @@ $(document).ready(function(){
     if(del_json){
       alert(JSON.stringify(del_json));
     }
+    return false;
   });
   /********************************/
 
@@ -535,9 +536,10 @@ $(document).ready(function(){
    */
   $('.js_show_all_comment_btn').live('click', function(){
     alert("SHOW ALL BTN CLICKED ");
-     var all_json = the_big_comment_show_all_json[$(this).attr("id")];
+    var all_json = the_big_comment_show_all_json[$(this).attr("id")];
     if(all_json){
       alert(JSON.stringify(all_json));
     }
+    return false;
   });
 });
