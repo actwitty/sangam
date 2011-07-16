@@ -5,16 +5,6 @@
 
 
 
-/*
- * Bring stream on focus whenever there is a change in filter
- */
-function set_stream_to_focus_on_filter_change(){
-    $(".tab_content").hide();
-    $("ul.tabs li").removeClass("active");
-    $("ul.tabs li:last").addClass("active").show(); 
-	  $(".tab_content:last").show();
-    
-}
 
 /*
  * Execute on load

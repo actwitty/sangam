@@ -50,7 +50,7 @@ class ActivitiesController < ApplicationController
                               ],
                       :comment =>
                         {
-                          :count => 1,
+                          :count => 2,
                           :array => [
                             {
                               :id => 123,
@@ -60,7 +60,98 @@ class ActivitiesController < ApplicationController
                                 {:id => 38, :name => "like", :count => 23, :user => true},
                                 {:id => 39, :name => "support", :count => 23, :user => false}],
                                :text => "<a href=/entities/479 class=\"js_entity_mention\">pizza</a> at <a href=/entities/478 class=\"js_entity_mention\">pizza hut</a> with
-                                        <a href=/users/3019 class=\"activity_mention\">Alok Srivastava</a> <a href=/users/0 class=\"activity_mention\">PIZZA</a>"
+                                        <a href=/users/3019 class=\"js_user_mention\">Alok Srivastava</a> and <a href=/users/0 class=\"js_user_mention\">Samarth Deo</a>, This is an interesting
+                                        long comment. Lets see how it appears on the screen. I hope it doesn't matter how it looks. As long as it
+                                        does not break my JSON"
+                            },
+                           {
+                              :id => 124,
+                              :user => {:id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+                              :word => {:id => 1924, :name => "&comment&"},
+                              :campaign => [
+                                {:id => 38, :name => "like", :count => 23, :user => true},
+                                {:id => 39, :name => "support", :count => 23, :user => false}],
+                               :text => " I ate <a href=/entities/479 class=\"js_entity_mention\">pizza</a> at <a href=/entities/478 class=\"js_entity_mention\">pizza hut</a> with
+                                        <a href=/users/3019 class=\"js_user_mention\">Super Man</a> with lot of <a href=/users/0 class=\"js_entity_mention\">cheese</a> and
+                                        we both liked it."
+                            }
+                          ]
+                        }
+                      },
+                      {:post =>
+                          {
+                            :id =>  1235,
+                            :user => { :id => 2, :full_name => "Some Other Dude", :photo => "/images/actwitty/default_user.gif" },
+                            :time => "12:53:31",
+                            :word => { :id => 1923, :name => "Photography" },
+                            :text =>  "<a href=/entities/479 class=\"js_entity_mention\">Lalbagh</a> in <a href=/entities/478 class=\"js_entity_mention\">summers</a> with
+                                        with <a href=/users/3019 class=\"js_user_mention\">Deepika Padukone</a> is a great place to use your
+                                        <a href=/users/0 class=\"js_entity_mention\">Nikon</a> <a href=/users/0 class=\"js_entity_mention\">DSLR</a>.
+                                      We went for 10kms of run and then she decided that we will go for a  <a href=/users/0 class=\"js_entity_mention\">Nescafe</a>
+                                      and then I liked the idea to call <a href=/users/3019 class=\"js_user_mention\">Alok Shrivastava</a>  as
+                                      he always wanted to meet <a href=/users/3019 class=\"js_user_mention\">Deepika Padukone</a> and have coffee with
+                                      her. Then I used my phone to call him and then he felt bad as he could not join us for coffee.
+                                      After coffee I clicked her snaps with the backdrop of <a href=/entities/479 class=\"js_entity_mention\">Lalbagh</a>
+                                      The I called <a href=/users/3019 class=\"js_user_mention\">Anand Prakash</a> but he was busy with his coding
+                                      on <a href=/users/0 class=\"js_entity_mention\">Ruby on Rails</a> and he also could not join us."
+                          },
+                      :location => {:id => 23457, :lat => 23.6567, :long => 120.3, :name => "LalBagh, Bangalore", :type => 2},
+                      :documents =>
+                              [
+                                {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
+                                {:id => 214,:name => "autum.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
+                                {:id => 215,:name => "winter.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
+                              ],
+                      :campaign =>
+                              [
+                                {:id => 35, :name => "like", :count => 23, :user => true},
+                                {:id => 36, :name => "support", :count => 23, :user => false}
+                              ],
+                      :comment =>
+                        {
+                          :count => 4,
+                          :array => [
+                            {
+                              :id => 125,
+                              :user => {:id => 129, :full_name => "Samarth Deo", :photo => "/images/actwitty/default_user.gif"},
+                              :word => {:id => 1923, :name => "&comment&"},
+                              :campaign => [
+                                {:id => 38, :name => "like", :count => 23, :user => true},
+                                {:id => 39, :name => "support", :count => 23, :user => false}],
+                               :text => " Arre Sahi <a href=/entities/479 class=\"js_entity_mention\">Lal Bagh</a> at woh bhi pizza hut</a> with
+                                        <a href=/users/3019 class=\"js_user_mention\">Deepika Padukone</a> didi ke saath <a href=/users/3019 class=\"js_user_mention\">Alok Shrivastava</a> to
+                                        bahut dukhi honge. Khair aur kya kiya,   <a href=/entities/479 class=\"js_entity_mention\">Samosa</a>  khaya
+                                        ki nahi ?"
+                            },
+                           {
+                              :id => 126,
+                              :user => {:id => 1, :full_name => "Sudhanshu Saxena", :photo => "/images/actwitty/default_user.gif"},
+                              :word => {:id => 1923, :name => "&comment&"},
+                              :campaign => [
+                                {:id => 38, :name => "like", :count => 23, :user => true},
+                                {:id => 39, :name => "support", :count => 23, :user => false}],
+                               :text => " Nahi yaar
+                                        <a href=/users/3019 class=\"js_user_mention\">Samarth Deo</a> bas chaaye pi kar aaye"
+                            },
+                            {
+                              :id => 127,
+                              :user => {:id => 3, :full_name => "Anand Prakash", :photo => "/images/actwitty/default_user.gif"},
+                              :word => {:id => 1923, :name => "&comment&"},
+                              :campaign => [
+                                {:id => 38, :name => "like", :count => 23, :user => true},
+                                {:id => 39, :name => "support", :count => 23, :user => false}],
+                               :text => " Oh sirji
+                                        <a href=/users/3019 class=\"js_user_mention\">Alok Shrivastava</a> ko phone lagaate hain
+                                        maza aayegaa. He must be upset on not being able to meet <a href=/users/3019 class=\"js_user_mention\">Deepika Padukone</a>"
+                            },
+                              {
+                              :id => 128,
+                              :user => {:id => 4, :full_name => "Alok Shrivastava", :photo => "/images/actwitty/default_user.gif"},
+                              :word => {:id => 1923, :name => "&comment&"},
+                              :campaign => [
+                                {:id => 38, :name => "like", :count => 23, :user => true},
+                                {:id => 39, :name => "support", :count => 23, :user => false}],
+                               :text => "Kameenon"
                             }
                           ]
                         }

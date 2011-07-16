@@ -268,9 +268,9 @@ function append_personal_summary(owner_id){
             if( summary ){
                 create_and_add_summary($('#personal_summary'),summary);     
                 $("#more_personal_cookie").val(summary.id);
-                $(window).scrollTop(scroll);
             } 
           });
+          $(window).scrollTop(scroll);
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {  
@@ -295,9 +295,9 @@ function append_friends_summary(owner_id){
             if( summary ){
                 create_and_add_summary($('#friends_summary'),summary);     
                 $("#more_friends_cookie").val(summary.id);
-                $(window).scrollTop(scroll);
             } 
           });
+          $(window).scrollTop(scroll);
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
