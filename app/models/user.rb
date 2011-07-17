@@ -59,9 +59,10 @@ class User < ActiveRecord::Base
   has_many :activities, :foreign_key => :author_id , :dependent => :destroy
   has_many :documents, :foreign_key => :owner_id, :dependent => :destroy
 
-
-  #CREATE & DESTROY for hub, hub association, mentions, campaigns, entity_ownerships, location_ownerships  will happen from activity create & destroy
+  #CREATE & DESTROY for hub, hub association, mentions, campaigns, entity_ownerships,summaries location_ownerships  will happen from activity create & destroy
   #no explicit create & destroy is called by user for all these
+  has_many :summaries #destroy will happen through activity
+
   has_many :hubs
   has_many :entities, :through => :hubs, :uniq => true
   has_many :locations, :through => :hubs, :uniq => true
@@ -289,7 +290,8 @@ class User < ActiveRecord::Base
     entity_hash
   end
 
-  include LocationRoutines
+
+  include TextFormatter
 
   #sort_order => 1 (lexicographical)
   #sort_order => 2 (based on updated)
@@ -340,6 +342,7 @@ class User < ActiveRecord::Base
     end
     friends
   end
+
   #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
@@ -381,21 +384,24 @@ class User < ActiveRecord::Base
   end
 
 
-  #INPUT => AN array of actvitiy_ids for which enriched is false
-  #OUTPUT => [{"activity_name"=>"photgraphy", "activity_text"=>"idli vada at <a href=/users/57 class=\"activity_mention\">Alok Srivastava</a> with Robin Uthhapa",
-  #            "activity_word_id"=>104, "author_full_name"=>"lemony3 lime3", "author_id"=>59,
-  #            "author_profile_photo"=>"images/id_3", "base_location_data"=>{:type=>1, :url=>"http://google.com", :name=>"hello"}
-  #,            "base_location_id"=>103, "created_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00, "enriched"=>false, "id"=>148,
-  #            "updated_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00}]
-
+  #INPUT => AN array of activity_ids for which enriched is false
   def get_enriched_activities(activity_ids)
     en = []
-    Activity.where(:id => activity_ids, :enriched => true).all.each do |attr|
-      a = attr.attributes
-      a["id"] = attr.id
+
+    Activity.includes(:author, :base_location).where(:id => activity_ids, :enriched => true).all.each do |attr|
+      a = format_activity(attr)
       en << a
     end
+    puts en
     en
+  end
+
+
+  #Removes all occurrences of an entity from an activity
+  #INPUT => activity_id => 123, entity_id => 234
+  #OUTPUT => Activity Blob
+  def remove_entity_from_activity(activity_id, entity_id)
+
   end
 
   # INPUT
@@ -410,15 +416,18 @@ class User < ActiveRecord::Base
   #                                      OR
   #                                     nil
   #                 }
-  #    :documents => [{:document_name => "a.jpg", :thumb_url => "https://s3.amazonaws.com/xyz",
-  #                   :url => "https://s3.amazonaws.com/abc" }, ]
+  #    :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+  #                   :url => "https://s3.amazonaws.com/xyz.jpg" } ]
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
   #
-  # OUTPUT => {"activity_name"=>"photgraphy", "activity_text"=>"idli vada at <a href=/users/57 class=\"activity_mention\">Alok Srivastava</a> with Robin Uthhapa",
-  #            "activity_word_id"=>104, "author_full_name"=>"lemony3 lime3", "author_id"=>59,
-  #            "author_profile_photo"=>"images/id_3", "base_location_data"=>{:type=>1, :url=>"http://google.com", :name=>"hello"}
-  #,            "base_location_id"=>103, "created_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00, "enriched"=>false, "id"=>148,
-  #            "updated_at"=>Wed, 06 Jul 2011 10:06:31 UTC +00:00}
+  # OUTPUT => {:post=>{
+  #              :text=>"pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+  #              :word=>{:id=>836, :name=>"eating"},
+  #              :user=>{:id=>661, :full_name=>"lemony1 lime1",:photo=>"images/id_1"},
+  #              :id=>1356,
+  #              :time=>Thu, 14 Jul 2011 05:42:20 UTC +00:00},
+  #              :location=>{:type=>2, :lat=>#<BigDecimal:62b1fc8,'0.2345E2',18(18)>, :long=>#<BigDecimal:62b1de8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>315}
+  #             }
 
   def create_activity(params={})
     params[:author_id] = self.id
@@ -427,70 +436,383 @@ class User < ActiveRecord::Base
     if obj.blank?
       return {}
     end
-    a =  obj.attributes
-    a["id"] = obj.id
-    a["author_full_name"] = self.full_name
-    a["author_profile_photo"] = self. photo_small_url
+    a = format_activity(obj)
+    puts a
     a
   end
 
-  #COMMENT => to get a single activity of a user.
-  #INPUT => activity_id = 123
-  #OUPUT =>
-  def get_an_activity(activity_id)
+  #INPUT = Array of activity ids
+  def get_all_activity(activity_ids)
+    array = []
+    index = 0
+    hash = {}
+    Activity.includes(:author, :base_location).where(:id => activity_ids).order("updated_at DESC").all.each do |attr|
+      hash[attr.id] = index
+      array << format_activity(attr)
+      array[index][:comments] = {:count => attr.comments.size, :array => [] }
+      array[index][:documents]= {:count => attr.documents.size, :array => []}
+      array[index][:campaigns]= []
+      index = index + 1
+    end
 
+    Comment.includes(:author).where(:activity_id => activity_ids).all.each do |attr|
+       h = format_comment(attr)
+       array[hash[attr.activity_id]][:comments][:array] << h[:comment]
+    end
+
+    Document.where(:activity_id => activity_ids).all.each do |attr|
+       h = format_document(attr)
+       array[hash[attr.activity_id]][:documents][:array] << h[:document]
+    end
+
+
+    campaign_hash = {}
+    temp_hash = {}
+    index = 0
+    #Get all the campaigns grouped for those activity
+    Campaign.where(:activity_id => activity_ids).group(:activity_id, :campaign_name).count.each do |k,v|
+
+       h = {:name => k[1], :count => v , :user => false}
+       campaign_hash[k[0]].nil? ? campaign_hash[k[0]] = [h] : campaign_hash[k[0]] << h
+       temp_hash[{:id => k[0], :name => k[1]}] = campaign_hash[k[0]].count -1
+
+    end
+
+    #Get all the campaigns grouped for those activity by current user
+    #Set user_id if user has acted on  campaign
+    Campaign.where(:activity_id => activity_ids, :author_id => self.id).group(:activity_id, :campaign_name).count.
+        each do |k,v|
+        if !campaign_hash[k[0]].nil?
+          campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user] =  true
+          campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user_id] =  self.id
+       end
+    end
+
+
+    campaign_hash.each do |k,v|
+      v.each do |entry|
+       array[hash[k]][:campaigns] << entry
+      end
+    end
+    array
   end
 
+  #INPUT
+  #:user_id => 123
+  #:filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  def get_stream(params ={})
+    puts params.inspect
+    if params[:user_id] == self.id
+        user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        user << self.id
+    else
+        user = params[:user_id]
+    end
+
+    h = {}
+    h = process_filter(params[:filter])
+    h[:user_id] = user
+    h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+
+    puts h.inspect
+
+    activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+    puts activity.keys
+    array = get_all_activity(activity.keys)
+    puts array.to_json
+    array
+  end
+
+  #INPUT
+  #user_id => 123 #If same as current use then mix streams with friends other wise only user
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  def get_summary(params)
+    h = {}
+    user = nil
+    if params[:user_id] == self.id
+        user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        user << self.id
+    else
+        user = params[:user_id]
+    end
+
+    documents= {}
+    activities = {}
+    locations = {}
+    entities = {}
+    friends ={}
+    summaries = []
+    index = 0
+
+    h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+    h[:user_id] = user
+
+    summary = Summary.includes(:user).where(h).limit(AppConstants.max_number_of_summmary).order("updated_at DESC").
+        all.each do |attr|
+
+        summaries[index] ={:id => attr.id,
+                             :word => {:word_id => attr.activity_word_id, :name => attr.activity_name},
+                             :time => attr.updated_at,
+                             :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
+                             :count => attr.activities.size,
+                             :locations => [], :documents => [], :entities => [], :recent_text => [], :friends => []
+                              }
+        attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
+        attr.document_array.each {|idx| documents[idx].nil? ? documents[idx] = [index] : documents[idx] <<  index }
+        attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
+        attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
+
+        friends[attr.activity_word_id].nil? ? friends[attr.activity_word_id] = [index] : friends[attr.activity_word_id] << index
+        index = index + 1
+      end
+
+      Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
+        h = format_document(attr)
+        documents[attr.id].each do |idx|
+          summaries[idx][:documents] << h[:document]
+        end
+      end
+      documents = {}
+      Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
+        h = location_hash(attr)
+        h[:id] = attr.id
+        locations[attr.id].each do |idx|
+
+          summaries[idx][:locations] << h
+        end
+      end
+      locations={}
+      Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
+        entities[attr.id].each do |idx|
+          summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image => attr.entity_image }
+        end
+      end
+      entities ={}
+      Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
+        activities[attr.id].each do |idx|
+          summaries[idx][:recent_text] << attr.activity_text
+        end
+      end
 
 
+      activities = {}
+      #friends will only be fetched current use == visited user
+      if params[:user_id] == self.id
+
+        user.delete(self.id)
+        Summary.includes(:user).where(:activity_word_id => friends.keys, :user_id => user).
+            group(:user_id, :activity_word_id ).count.each do |k,v|
+            activities[k[0]] = k[1]
+        end
+
+        User.where(:id => activities.keys).all.each do |attr|
+
+          friends[activities[attr.id]].each do |idx|
+
+            #dont show a friend in his own summary as related friend
+            if summaries[idx][:user][:id] != attr.id
+
+              if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
+                summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
+              end
+
+            end
+
+          end
+
+        end
+      end
+    summaries
+  end
+  
+
+
+  #INPUT
+  #activity_id => 123
   def remove_activity(activity_id)
-
+    a = Activity.where(:id => activity_id, :author_id => self.id).first
+    return {} if a.blank?
+    a.destroy
+    a
   end
 
-  #COMMENT => to get a single activity of a user. Always in context of current user
+  #COMMENT => To Create a campaign
   #INPUT =>
   # :campaign_name => "like"
-  # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc
-  # :activity => {:user_id => 123, :id => 234}
+  # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc . AT PRESENT not USED THOUGH
+  # :activity_id => 234
   #                OR
-  # :entity => {:id = 123}
+  # :entity_id => 123
   #                OR
-  # :location => {:id => 123}
+  # :location_id => 123}
   #                 OR
-  # :comment => {:user_id => 123, :id => 234}
+  # :comment_id => 234}
   #
-  #OUPUT =>
-  def create_comment(params = {})
+  #OUTPUT => { :name => "like", :count => 23, :user => true, :user_id => 355}  #user_id is only present if :user => true
+  #                                    OR
+  #          {:name => "support", :count => 23, :user => false}
+  def create_campaign(params = {})
     params[:author_id] = self.id
 
     obj = Campaign.create_campaign(params)
     if obj.blank?
       return {}
     end
-#    a =  obj.attributes
-#    a["id"] = obj.id
-#    a["author_full_name"] = self.full_name
-#    a["author_profile_photo"] = self. photo_small_url
-#    a
-    return current campaign count
+    params.except!(:campaign_value,:author_id, :father_id )
+
+    h= Campaign.where( params).group(:campaign_name).count
+
+    ch = {}
+    ch[:count] = h.values[0].nil? ? 0 : h.values[0]
+
+    ch[:name] = params[:campaign_name]
+
+    ch[:user_id] = self.id
+    ch[:user] = true
+
+    puts ch
+    ch
   end
 
+  #COMMENT => To Remove a campaign. Only for the current_user. Output is remaining count
+  #INPUT => campaign_id => 1234
+  #OUTPUT => { :name => "like", :count => 23, :user => false}  #user will always be false as user can only delete his campaign
+                                                               #which is unique in scope of activity and campaign name
+  def remove_campaign(campaign_id)
+
+    campaign = Campaign.where(:id => campaign_id, :author_id => self.id).first
+
+    return {} if campaign.nil?
+
+    hash = campaign.attributes.except("campaign_value", "author_id", "father_id", "id", "created_at", "updated_at")
+
+    campaign.father.destroy
+    #group by campaign name for remaining count
+    h= Campaign.where(hash).group(:campaign_name).count
+
+    ch = {}
+
+    #user will always be false as user can only delete his campaign
+    #which is unique in scope of activity and campaign name
+    ch[:user] = false
+    ch[:count] = h.values[0].nil? ? 0 : h.values[0]
+    ch[:name] = hash["campaign_name"]
+
+    puts ch
+
+    ch
+
+  end
+
+  #COMMENT => All types of campaigns of an activity
+  #INPUT =>
+  # :activity_id => 234
+  #                OR
+  # :entity_id = 123
+  #                OR
+  # :location_id => 123
+  #                 OR
+  # :comment_id =>  234}
+  #OUTPUT => [
+  #           { :name => "like", :count => 23, :user => true, :user_id => 355},  #user_id is only present if :user => true
+  #           {:name => "support", :count => 23, :user => false}
+  #          ]
+
+  def get_all_campaign(params = {})
+    hash = {}
+    campaign = []
+    all_campaigns = Campaign.where(params).group(:campaign_name).count
+
+    params[:author_id] = self.id
+    user_campaigns = Campaign.where(params).group(:campaign_name).count
+
+    all_campaigns.each do |k,v|
+      user_campaigns.has_key?(k) ? user = true : user = false
+      hash = {:name => k, :count => v, :user => user }
+      hash[:user_id] = self.id if user == true
+      campaign << hash
+    end
+
+    puts campaign
+    campaign
+  end
+
+  #COMMENT => Get users in a campaign
+  #INPUT =>
+  # :campaign_name =>  "like" # or support or join etc
+  # :activity_id => 234
+  #                OR
+  # :entity_id => 123
+  #                OR
+  # :location_id => 123
+  #                 OR
+  # :comment_id =>  234}
+  #OUTPUT =>[
+  #           { :id => 128, :full_name => "Abc Saxena", :photo => "/images/actwitty/default_user.gif" },
+  #           { :id => 129, :full_name => "BBc Saxena", :photo => "/images/actwitty/default_user.gif" }
+  #         ]
+  def get_users_of_campaign(params)
+    user = []
+    Campaign.includes(:author).where(params ).order("updated_at DESC").all.each do |attr|
+      user << {:id => attr.author.id, :full_name => attr.author.full_name, :photo => attr.author.photo_small_url }
+    end
+    user
+  end
+
+
   #COMMENT => to get a single activity of a user.
-  #INPUT => activity_id = 123
-  #OUPUT =>
-  def create_campaign(params = {})
+  #INPUT => activity_id = 123, :author_id => 234, :text => "helllo"
+  #OUTPUT =>  {:comment=>{:id=>173, :user=>{:id=>747, :full_name=>"lemony2 lime2", :photo=>"images/id_2"},
+  #                       :text=>"hello ", :time=>Thu, 14 Jul 2011 14:13:29 UTC +00:00}}
+  def create_comment(params = {})
     params[:author_id] = self.id
 
-    obj = Comment.create_campaign(params)
+    obj = Comment.create_comment(params)
     if obj.blank?
       return {}
     end
-    a =  obj.attributes
-    a["id"] = obj.id
-    a["author_full_name"] = self.full_name
-    a["author_profile_photo"] = self. photo_small_url
+    a = format_comment(obj)
+    puts a
     a
   end
+
+  #COMMENT => to remove comment of current user
+  #INPUT => comment_id =. 1234
+  #OUTPUT =>  {:activity_id => 2345, :comment_count => 23}
+  def remove_comment(comment_id)
+
+    comment = Comment.where(:id => comment_id, :author_id => self.id).first
+
+    activity_id = comment.activity_id
+
+    return {} if comment.nil?
+
+    comment.destroy
+
+    #group by campaign name for remaining count
+    h= Comment.where(:activity_id => activity_id).count
+
+    ch = {}
+    ch[:activity_id] = activity_id
+    ch[:comment_count] = h
+    puts ch
+
+    ch
+  end
+  #INPUT => activity_id => 123
+  #OUTPUT =>  [{:comment=>{:id=>173, :user=>{:id=>747, :full_name=>"lemony2 lime2", :photo=>"images/id_2"},
+  #                       :text=>"hello ", :time=>Thu, 14 Jul 2011 14:13:29 UTC +00:00}}]
+  def load_all_comment(activity_id)
+    array = []
+    Comment.includes(:author).where(:activity_id => activity_id).each do |attr|
+      a = format_comment(attr)
+      array << a
+    end
+    puts array
+    array
+  end
+
   # private methods
   private
 
@@ -511,7 +833,11 @@ class User < ActiveRecord::Base
 
   def process_filter(filter)
 
+
+    return {} if filter.nil?
+
     h = {}
+
     if !filter[:word_id].blank?
       h[:activity_word_id] = filter[:word_id]
     end
@@ -522,6 +848,8 @@ class User < ActiveRecord::Base
        h[:entity_id] = filter[:entity_id]
     end
     h
-    end
+  end
+
+
 
 end

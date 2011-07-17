@@ -22,7 +22,7 @@ describe Activity do
 			  str = str + 'a'
 			end
 			a=Activity.new(:author_id => @u.id, :activity_word_id => @aw1.id,:activity_text => str,
-                     :activity_name => @aw.word_name  )
+                     :activity_name => @aw1.word_name  )
 			a.valid?
       a.should_not be_valid
 			a.errors[:activity_text].should_not be_blank
@@ -31,16 +31,16 @@ describe Activity do
      it "can be save with blank activity text" do
       str = ""
 			a=Activity.new(:author_id => @u.id, :activity_word_id => @aw1.id,:activity_text =>"",
-                     :activity_name => @aw.word_name )
+                     :activity_name => @aw1.word_name )
 			a.valid?
-      a.should_not be_valid
+      a.should be_valid
       a.errors[:activity_text].should be_blank
      end
 
     it "should must not be save without author" do
       lambda{
         a=Activity.create!(:activity_word_id => @aw1.id,:activity_text =>"alok",
-                     :activity_name => @aw.word_name )
+                     :activity_name => @aw1.word_name )
 
       }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -48,7 +48,7 @@ describe Activity do
     it "should must not be saved with invalid author" do
       lambda {
         a=Activity.create!(:author_id => 123,:activity_word_id => @aw1.id,:activity_text =>"alok",
-                     :activity_name => @aw.word_name  )
+                     :activity_name => @aw1.word_name  )
         a.errors[:author].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -62,7 +62,7 @@ describe Activity do
     end
        it "should must not be saved without activity_word_id" do
       lambda {
-        a=Activity.create!(:activity_text =>"alok",:activity_name => @aw.word_name )
+        a=Activity.create!(:activity_text =>"alok",:activity_name => @aw1.word_name )
         a.errors[:activity_word_id].should_not be_blank
         }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -72,7 +72,8 @@ describe Activity do
   describe "associations" do
 
     it "should respond to associations" do
-      @act.should respond_to(:author)
+      act = Factory(:activity)
+      act.should respond_to(:author)
     end
   end
 
@@ -121,19 +122,10 @@ describe Activity do
 
 
     it "User should be able to delete *only* his activities" do
-      # a  =@u2.activities.delete(@act_child_2) wil not work
-      #Need to do load all as in Rails 3 until ActiveRecord dose not get view object returned is still ActiveRecord::relation.
-      #This Since the new query API lazy loads the queries, they are not executed until they get to the view. so to force, load users all activities
-       a= @u2.activities.all
-       a.delete(@act_child_2).should be_nil
-       Activity.exists?(@act_child_2).should_not be_false
+
     end
     it "User should be able to destroy *only* his activities" do
-      lambda{
-        a=@u2.activities.find(@act_child_2)
-        a.destroy
-       }.should raise_error
-       Activity.exists?(@act_child_2).should_not be_false
+
     end
 
     it "should be not be able delete invalid comment " do
@@ -221,8 +213,7 @@ describe Activity do
   describe "Get Snapshots" do
     include DelayedJobSpecHelper
     it "should create the result as per spec"  do
-      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
-                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true)
 
@@ -303,12 +294,153 @@ describe Activity do
       puts h.inspect
       h.should_not be_nil
 
-      h = @u.get_enriched_activities([act["id"], act5["id"], act7["id"]])
+      h = @u.get_enriched_activities([act[:post][:id], act5[:post][:id], act7[:post][:id]])
       puts h.inspect
       h.should_not be_nil
+      a =@u.get_stream({:user_id => @u1.id,  :updated_at => Time.now.utc})
+      puts a.inspect
+
+      a = @u.get_stream({:user_id => @u.id})
+      puts a
+    end
+    it "should read create read and delete comments" do
+      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+                                                                :url => "https://s3.amazonaws.com/xyz.jpg" },
+                                                    {:thumb_url => "https://s3.amazonaws.com/abc_thumb.jpg",:url => "https://s3.amazonaws.com/abc.jpg" }])
+
+      puts act
+      work_off
+      com1 = @u1.create_comment(:activity_id => act[:post][:id], :text => "11111111111 1")
+      puts com1
+      com2 = @u.create_comment(:activity_id => act[:post][:id], :text => " 2222222222222 ")
+      puts com2
+      com3 = @u2.create_comment(:activity_id => act[:post][:id], :text => "3333333333333333")
+      puts com3
+      com4 = @u3.create_comment(:activity_id => act[:post][:id], :text => "444444444444444")
+      puts com4
+      com5 = @u3.create_comment(:activity_id => act[:post][:id], :text => "555555555555555")
+      puts com5
+
+       @c1 = Campaign.create_campaign( :author_id => @u.id, :campaign_name => "like", :campaign_value => 1,
+                             :activity_id => act[:post][:id] )
+       @c2 = Campaign.create_campaign( :author_id => @u3.id,:campaign_name => "like", :campaign_value => 2,
+                               :activity_id => act[:post][:id] )
+      @c3 = Campaign.create_campaign( :author_id => @u1.id,:campaign_name => "support", :campaign_value => 3,
+                               :activity_id => act[:post][:id])
+
+      act1 = @u1.create_activity( :activity => "eating" , :text => "pizza at sachin tendulkar",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/blk_thumb.jpg",
+                                                                :url => "https://s3.amazonaws.com/blk.jpg" },
+                                                    {:thumb_url => "https://s3.amazonaws.com/bbb_thumb.jpg",:url => "abc" }])
+      work_off
+      com11 = @u1.create_comment(:activity_id => act1[:post][:id], :text => "aaaaaaaaaaaaaaaaaa")
+      puts com1
+      com21 = @u.create_comment(:activity_id => act1[:post][:id], :text => " bbbbbbbbbbbbbbbbb ")
+
+      @c21 = Campaign.create_campaign( :author_id => @u3.id,:campaign_name => "like", :campaign_value => 2,
+                               :activity_id => act1[:post][:id] )
+      @c31 = Campaign.create_campaign( :author_id => @u1.id,:campaign_name => "support", :campaign_value => 3,
+                               :activity_id => act1[:post][:id])
+      com6 = @u3.create_comment(:activity_id => act[:post][:id], :text => "6666666666666666")
+      puts com6
+      act2 = @u2.create_activity( :activity => "eating" , :text => "burger at rahul dravid",
+                              :location =>  {:web_location =>{:web_location_url => "yahoo", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/ccc_thumb.jpg",
+                                                                :url => "https://s3.amazonaws.com/ccc.jpg" },
+                                                    {:thumb_url => "https://s3.amazonaws.com/ddd_thumb.jpg",:url => "https://s3.amazonaws.com/ddd.jpg" }])
+      work_off
+      l = @u.load_all_comment(act[:post][:id])
+      l.should_not be_blank
+
+      @u.remove_comment(com2[:comment][:id])
+      Comment.count.should == 7
+
+      a = Activity.where(:id => act[:post][:id]).first
+      puts a.comments.size
+
+      h = @u.get_all_activity([act[:post][:id], act1[:post][:id]])
+      puts h.inspect
+      h.should_not be_blank
+
+      @u.new_contact_request(@u1.id)
+      @u1.new_contact_request(@u.id)
+      @u.new_contact_request(@u2.id)
+      @u2.new_contact_request(@u.id)
+#      a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id]}, :updated_at => Time.now.utc})
+#      puts a.inspect
+#      a.should_not be_blank
+#      a = @u.remove_activity(act1[:post][:id])
+#      a.should be_blank
+      @u.documents.first.destroy
+      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc})
+      puts a
+    end
+    it "should be able to remove summary at last" do
+      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true)
+      act1 = @u.create_activity( :activity => "eating" , :text => "",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true)
+      act2 = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => false)
+      act3 = @u.create_activity( :activity => "eating" , :text => "", :enrich => true)
+      act4 = @u1.create_activity( :activity => "eating" , :text => "", :enrich => true)
+
+      a = Activity.where(:id => act[:post][:id]).first
+      a.destroy
+      s = Summary.where(:user_id => @u.id , :activity_word_id => act[:post][:word][:id]).first
+      puts s.inspect
+      s.should_not be_nil
+
+      a1 = Activity.where(:id => act1[:post][:id]).first
+      a1.destroy
+      s = Summary.where(:user_id => @u.id , :activity_word_id => act[:post][:word][:id]).first
+      puts s.inspect
+      s.should_not be_nil
+
+      a2 = Activity.where(:id => act2[:post][:id]).first
+      a2.destroy
+      s = Summary.where(:user_id => @u.id , :activity_word_id => act[:post][:word][:id]).first
+      puts s.inspect
+      s.should_not be_nil
+
+      a3 = Activity.where(:id => act3[:post][:id]).first
+      a3.destroy
+      s = Summary.where(:user_id => @u.id , :activity_word_id => act[:post][:word][:id]).first
+      puts s.inspect
+      s.should be_nil
+    end
+    it "should be able to add documents properly" do
+       act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+                                                                :url => "https://s3.amazonaws.com/xyz.jpg" },
+                                                    {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://a.com/xyz.jpg" },
+                                               {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://b.com/xyz.jpg" },
+                                           {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://c.com/xyz.jpg" }])
+
+       act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+                                                                :url => "https://s3.amazonaws.com/xyz.jpg" }])
+       work_off
+       a = Activity.where(:id => act[:post][:id]).first
+       a.documents.size.should == 1
     end
   end
 end
+
+
 
 
 
@@ -316,17 +448,17 @@ end
 #
 # Table name: activities
 #
-#  id                   :integer         not null, primary key
-#  activity_word_id     :integer         not null
-#  activity_text        :text            not null
-#  activity_name        :string(255)     not null
-#  author_id            :integer         not null
-#  author_full_name     :string(255)     not null
-#  author_profile_photo :string(255)     not null
-#  base_location_id     :integer
-#  base_location_data   :text
-#  enriched             :boolean
-#  created_at           :datetime
-#  updated_at           :datetime
+#  id               :integer         not null, primary key
+#  activity_word_id :integer         not null
+#  activity_text    :text
+#  activity_name    :string(255)     not null
+#  author_id        :integer         not null
+#  base_location_id :integer
+#  documents_count  :integer
+#  comments_count   :integer
+#  summary_id       :integer
+#  enriched         :boolean
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 

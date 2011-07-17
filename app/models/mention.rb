@@ -21,7 +21,7 @@ class Mention < ActiveRecord::Base
   validates_uniqueness_of :activity_id, :scope => :user_id
 
   class << self
-    include ActivityTextFormatter
+    include TextFormatter
 
     def create_mentions(text, activity)
        m = get_mentions(text)
@@ -35,13 +35,6 @@ class Mention < ActiveRecord::Base
 
        if m.length > 0
          text = flatten_mentions(text)
-
-         #Save the updated mention if enrich is not done
-         update = activity.update_attributes(:activity_text => text )
-
-         if !update
-           Rails.logger.error("Activity =. CreateMentions => Mentions Saving failed")
-         end
        end
        text
     end

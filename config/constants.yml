@@ -1,50 +1,58 @@
 # Enter your per-environment constants below
 
 development: &default
-  activity_text_length: 8192
-  comment_text_length: 2048
-  max_url_length: 1024
+  activity_text_length:                 8192
+  comment_text_length:                  2048
+  max_url_length:                       1024
+  activity_name_length:                 255
 
   #in megabytes
-  max_document_size: 0.5
+  max_document_size:                    0.5
 
-  default_comment_string: "Comment"
+  #in one pull of an activity or summary in order of latest updates
+  max_number_of_activities:             10
 
-  url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
+  max_number_of_a_type_in_summmary:     5
 
-  entity_controller:  "entities"
-  user_controller:  "users"
-  location_controller: "locations"
-  activity_word_controller:  "activity_words"
-  activity_controller: "activities"
-  comment_controller: "comments"
+  max_number_of_summmary:               10
+
+  default_comment_string:               "Comment"
+
+  url_validator:                        "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
+
+  entity_controller:                    "entities"
+  user_controller:                      "users"
+  location_controller:                  "locations"
+  activity_word_controller:             "activity_words"
+  activity_controller:                  "activities"
+  comment_controller:                   "comments"
 
   #CSS class names for styling individual links
-  activity_entity_class:  "activity_entity"
-  activity_mention_class: "activity_mention"
-  activity_location_class: "activity_location"
-  activity_word_class: "activity_word"
+  activity_entity_class:                "activity_entity"
+  activity_mention_class:               "activity_mention"
+  activity_location_class:              "activity_location"
+  activity_word_class:                  "activity_word"
 
-  campaign_username_class: "campaign_username"
-  campaign_activity_class: "campaign_activity"
-  campaign_entity_class: "campaign_entity"
-  campaign_location_class: "campaign_location"
-  campaign_comment_class: "campaign_class"
+  campaign_username_class:              "campaign_username"
+  campaign_activity_class:              "campaign_activity"
+  campaign_entity_class:                "campaign_entity"
+  campaign_location_class:              "campaign_location"
+  campaign_comment_class:               "campaign_class"
 
-  invalid_resource_id: 0
+  invalid_resource_id:                  0
 
-  entitiy_no_image: "images/entity/default.png"
-  user_no_image: "image/profile/default.png"
+  entitiy_no_image:                     "images/entity/default.png"
+  user_no_image:                        "image/profile/default.png"
 
-  summary_word_count: 15
-  summary_document_count: 5
-  summary_entity_count: 5
-  summary_location_count: 5
-  summary_friend_count: 5
-  summary_text_count: 5
-  summary_loop_count: 50
+  summary_word_count:                   15
+  summary_document_count:               5
+  summary_entity_count:                 5
+  summary_location_count:               5
+  summary_friend_count:                 5
+  summary_text_count:                   5
+  summary_loop_count:                   50
 
-  stream_max_count: 15
+  stream_max_count:                     15
 
 production:
   <<: *default

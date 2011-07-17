@@ -14,9 +14,11 @@ class ActivityWord < ActiveRecord::Base
   has_many :related_words, :foreign_key => :related_word_id, :class_name => "WordForm", :dependent => :destroy
 
   #should not get deleted
-  has_many :activities, :dependent => :destroy
+  has_many :activities  #:dependent => :nullify # some how if words get deleted activities should still be there
 
-  has_many :documents, :dependent => :nullify
+  has_many :documents  #:dependent => :nullify  # some how if words get deleted documents should still be there
+
+  has_many :summaries  #:dependent => :nullify  # some how if words get deleted summaries should still be there
 
   has_many :hubs
   has_many :entities, :through => :hubs
@@ -43,6 +45,7 @@ class ActivityWord < ActiveRecord::Base
 
     def create_activity_word(word, relation = "")
 
+      word.downcase!
       #finding first instead of creating as more chances of find than create for words
       word_rel = ActivityWord.where(:word_name => word)
 
@@ -54,6 +57,7 @@ class ActivityWord < ActiveRecord::Base
           word_obj = word_rel.first
         end
       rescue => e
+        Rails.logger.info("ActivityWord => Create_Activity_word => Failed => #{e.message} => for word #{word}")
         return nil
       end
 

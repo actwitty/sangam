@@ -7,6 +7,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :activity_id
       t.integer :entity_id
       t.integer :location_id
+      t.integer :comment_id
 
       t.integer :father_id, :null => false
 
@@ -22,19 +23,26 @@ class CreateCampaigns < ActiveRecord::Migration
     add_index :campaigns, [:author_id, :entity_id, :campaign_name], :unique => true,
               :name => "index_campaign_on_author_entity_name"
 
-    add_index :campaigns, [:author_id, :activity_id, :campaign_name], :unique => true,
+    add_index :campaigns, [:author_id, :location_id, :campaign_name], :unique => true,
               :name => "index_campaign_on_author_location_name"
+
+    add_index :campaigns, [:author_id, :comment_id, :campaign_name], :unique => true,
+              :name => "index_campaign_on_author_comment_name"
+
+
     #not needed below index as activity is always mapped to user - so same as above
 
     add_index :campaigns, [:activity_id,:campaign_name]
     add_index :campaigns, [:location_id,:campaign_name]
     add_index :campaigns, [:entity_id,:campaign_name]
+    add_index :campaigns, [:comment_id,:campaign_name]
 
     add_index :campaigns, :father_id, :unique => true
 
     add_index :campaigns, :campaign_name
 
     add_index :campaigns, [:author_id,:campaign_name, :campaign_value], :name => "index_campaign_on_author_name_value"
+    add_index :campaigns, :updated_at
 
   end
 
@@ -43,16 +51,20 @@ class CreateCampaigns < ActiveRecord::Migration
     remove_index :campaigns, :name => "index_campaign_on_author_activity_name"
     remove_index :campaigns, :name => "index_campaign_on_author_entity_name"
     remove_index :campaigns, :name => "index_campaign_on_author_location_name"
+    remove_index :campaigns, :name => "index_campaign_on_author_comment_name"
 
     remove_index :campaigns, [:activity_id,:campaign_name]
     remove_index :campaigns, [:entity_id,:campaign_name]
     remove_index :campaigns, [:location_id,:campaign_name]
+    remove_index :campaigns, [:comment_id,:campaign_name]
 
     remove_index :campaigns, :father_id
 
     remove_index :campaigns, :campaign_name
 
     remove_index :campaigns, :name => "index_campaign_on_author_name_value"
+
+    remove_index :campaigns, :updated_at
 
     drop_table :campaigns
   end

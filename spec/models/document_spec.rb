@@ -8,8 +8,8 @@ describe Document do
 
     it "should save the not create thumbnail for pdfs etc , other than images" do
       u = Factory(:user)
-      @doc = Document.create_document(u.id,nil, "#{Rails.root}/public/test/test.pdf")
-      @doc1 = Document.create_document(u.id,nil, "#{Rails.root}/public/test/test.pdf")
+      @doc = Document.create_document_uploader(u.id,Factory(:activity).id, "#{Rails.root}/public/test/test.pdf")
+      @doc1 = Document.create_document_uploader(u.id,Factory(:activity).id, "#{Rails.root}/public/test/test.pdf")
        puts "hello"
        work_off
       d_array= u.documents.all
@@ -24,16 +24,30 @@ describe Document do
 #      #d.destroy
     end
     it "should save the file in amazon bucket" do
-      @doc = Document.create_document(Factory(:user).id,nil, "#{Rails.root}/public/test/test.pdf")
+      @doc = Document.create_document_uploader(Factory(:user).id,Factory(:activity).id, "#{Rails.root}/public/test/test.pdf")
        puts "hello"
        work_off
        d = Document.where(:document_name => "test.pdf").first
        d.destroy
        d =  Document.where(:document_name => "test.pdf").first
        d.should be_nil
-      end
     end
+    it "should be able to create document metadata without uploader" do
+      @doc = Document.create_document(:owner_id => Factory(:user).id, :activity_id => Factory(:activity).id,
+                                      :activity_word_id => Factory(:activity_word).id,
+                                      :summary_id => Factory(:summary).id,
+                                      :url => "https://www.s3.amazon.com/1234/test.jpg",
+                                      :thumb_url => "https://www.s3.amazon.com/1234/234/thumb_test.jpg")
+      puts @doc.inspect
+      @doc.should_not be_nil
+
+      @doc.destroy
+      Document.count.should == 0
+    end
+  end
 end
+
+
 
 
 # == Schema Information
@@ -42,14 +56,15 @@ end
 #
 #  id               :integer         not null, primary key
 #  owner_id         :integer         not null
-#  activity_id      :integer
-#  activity_word_id :integer
+#  activity_id      :integer         not null
+#  activity_word_id :integer         not null
 #  document_name    :string(255)     not null
 #  document_type    :string(255)
 #  document_data    :string(255)
+#  summary_id       :integer         not null
+#  url              :text            not null
+#  thumb_url        :text
 #  created_at       :datetime
 #  updated_at       :datetime
-#  thumb_url        :text
-#  url              :text
 #
 

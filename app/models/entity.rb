@@ -1,17 +1,3 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: entities
-#
-#  id           :integer         not null, primary key
-#  entity_name  :string(255)     not null
-#  entity_guid  :string(255)     not null
-#  entity_image :string(255)     not null
-#  entity_doc   :text            not null
-#  created_at   :datetime
-#  updated_at   :datetime
-#
-
 ################# CAUTION!!  Should Not call delete of entity as we are going to hold them fore ever as of now :) #################
 class Entity < ActiveRecord::Base
 
@@ -36,9 +22,9 @@ class Entity < ActiveRecord::Base
 
   validates_length_of     :entity_name, :in => 1..255
   validates_length_of     :entity_guid, :in => 1..255
-  validates_length_of     :entity_image, :in => 1..255
+  validates_length_of     :entity_image, :in => 1..AppConstants.max_url_length
 
- # validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
+  #validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
 
   class << self
 
@@ -113,3 +99,17 @@ class Entity < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: entities
+#
+#  id           :integer         not null, primary key
+#  entity_name  :string(255)     not null
+#  entity_guid  :string(255)     not null
+#  entity_image :text            not null
+#  entity_doc   :text            not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

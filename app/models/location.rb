@@ -1,18 +1,3 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: locations
-#
-#  id            :integer         not null, primary key
-#  location_type :integer         not null
-#  location_name :text            not null
-#  location_url  :string(255)
-#  location_lat  :decimal(10, 7)
-#  location_long :decimal(10, 7)
-#  created_at    :datetime
-#  updated_at    :datetime
-#
-
 class Location < ActiveRecord::Base
   geocoded_by :address, :latitude  => :location_lat, :longitude => :location_long # ActiveRecord
 
@@ -39,7 +24,7 @@ class Location < ActiveRecord::Base
   validates_length_of :location_name , :in => 1..1024
 
   validates_uniqueness_of :location_url, :unless => Proc.new{|a|a.location_url.nil?}
-  validates_length_of     :location_url, :in => 1..255 , :unless => Proc.new{|a|a.location_url.nil?}
+  validates_length_of     :location_url, :in => 1..AppConstants.max_url_length , :unless => Proc.new{|a|a.location_url.nil?}
   validates_format_of     :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
 
   validates_numericality_of :location_lat,
@@ -170,3 +155,18 @@ class Location < ActiveRecord::Base
      end
    end
 end
+
+# == Schema Information
+#
+# Table name: locations
+#
+#  id            :integer         not null, primary key
+#  location_type :integer         not null
+#  location_name :text            not null
+#  location_url  :text
+#  location_lat  :decimal(10, 7)
+#  location_long :decimal(10, 7)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

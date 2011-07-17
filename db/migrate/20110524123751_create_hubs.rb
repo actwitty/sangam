@@ -17,6 +17,8 @@ class CreateHubs < ActiveRecord::Migration
       #but if deleted then it can be nullfied
       t.integer :location_id
 
+      t.integer :summary_id, :null => false
+
       t.timestamps
     end
     #these 3 index satisfies user filter requiremens
@@ -32,6 +34,11 @@ class CreateHubs < ActiveRecord::Migration
     add_index :hubs,  [:entity_id , :activity_id]
     add_index :hubs,  :activity_id
     add_index :hubs,  :activity_name
+
+    add_index :hubs, [:user_id, :summary_id]
+    add_index :hubs, :summary_id
+
+    add_index :hubs, :updated_at
 
     #TODO modify ass needed
 
@@ -52,7 +59,12 @@ class CreateHubs < ActiveRecord::Migration
     remove_index :hubs,  :activity_id
     remove_index :hubs,  :activity_name
 
-    #TODO modify ass needed
+    remove_index :hubs, [:user_id, :summary_id]
+    remove_index :hubs, :summary_id
+
+    remove_index :hubs, :updated_at
+
+    #TODO modify as needed
 
     drop_table :hubs
   end
