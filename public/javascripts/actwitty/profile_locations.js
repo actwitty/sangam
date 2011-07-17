@@ -77,6 +77,7 @@ function getID(location){
 
 /********************************************************************************************/
 $(document).ready(function(){
+  //alert("Inside profile_locations.js ready");
   $("#search_locations").live('keyup.autocomplete', function() {
     $(this).autocomplete(json_location_data, {
       multiple: false,
@@ -100,9 +101,12 @@ $(document).ready(function(){
         if (ignore_location_auto_complete == false){
           
           /* filter change transaction */
-          var new_filter = {};
-          new_filter["channel"] = [getID(item) , format(item)];
+          var new_filter = {
+                            channel_id:getID(item),
+                            channel_name:format(item)
+                           };
           modify_filter(new_filter);
+
 
           $("#location-dialog-modal").dialog('close');
           ignore_location_auto_complete = true;
@@ -113,12 +117,14 @@ $(document).ready(function(){
 
   $('.locations_title').live('click', function () { 
     var base_id = $(this).attr('id');
-    var location_id = $("#" + base_id + "_id").attr('value');
-    var location_name = $("#" + base_id + "_name").attr('value');
+    var filter_location_id = $("#" + base_id + "_id").attr('value');
+    var filter_location_name = $("#" + base_id + "_name").attr('value');
     
     /* filter change transaction */
-    var new_filter = {};
-    new_filter["location"] = [location_id , location_name];
+    var new_filter = {
+                      location_id:filter_location_id,
+                      location_name:filter_location_name
+                    };
     modify_filter(new_filter);
     $( "#location-dialog-modal" ).dialog('close');
   });

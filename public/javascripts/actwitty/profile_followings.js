@@ -89,8 +89,9 @@ function getID(user){
 
 /********************************************************************************************/
 $(document).ready(function(){
+//alert("Inside profile_followings.js ready");
  $("#search_followings").live('keyup.autocomplete', function() {
-   alert(json_followings_data);
+   //alert(json_followings_data);
     $(this).autocomplete('/contacts/followings', {
       multiple: false,
       delay: 0,

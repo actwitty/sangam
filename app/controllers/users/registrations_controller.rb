@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     process_authentication=false
-    Rails.logger.info( "create called with #{params}")
+    Rails.logger.info("[CNTRL] [REGISTRATION] Registration called with params #{params}")
     build_resource
 
     if !params.nil? && !params[:user].nil?
@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       provider=params[:user][:provider]
       uid=params[:user][:uid]
       if !key.nil? && !provider.nil? && !uid.nil? && !key.empty? &&  !provider.empty? && !uid.empty?
+        Rails.logger.info("[CNTRL] [REGISTRATION] Provider #{provider} UID #{uid} Key #{key}")
         process_authentication=true
       end
     end
@@ -22,12 +23,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save! 
 
       if process_authentication
+        Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
         authentication=Authentication.find_by_provider_and_uid(provider, uid)
         unless authentication.nil?
           if authentication.salt = key && authentication.user_id.nil?
             user = resource
             authentication.user_id = user.id
-            authentication.save
+            Rails.logger.info("[CNTRL] [REGISTRATION] Updating userid for authentication")
+            authentication.save!
           end
         end
       end
@@ -36,7 +39,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
       if request.xhr?
         respond_to do |format|
-          Rails.logger.info "xhr request, rendering partial confirmation wait"
+
+          Rails.logger.info("[CNTRL] [REGISTRATION] XHR Request render confirmation wait")
           #  format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
           format.js   { render :js => "window.location = '/welcome/confirmation_wait?email=#{@user.email}'" }
 
@@ -45,6 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
      
     else
+      Rails.logger.info("[CNTRL] [REGISTRATION] Error has occurred ")
       clean_up_passwords(resource)
       @user = resource
       puts @user.errors
@@ -54,7 +59,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   rescue => e
-    Rails.logger.info("Error in User => Registration => create => #{e}")
+    Rails.logger.error("[CNTRL] [REGISTRATION] Error in User => Registration => create => #{e}")
+    @user = resource
+    puts @user.errors
+    respond_to do |format|
+      format.html { render_with_scope :new }
+      format.js   {  }
+    end
+
   end
 
 

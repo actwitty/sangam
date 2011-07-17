@@ -1,9 +1,9 @@
 Sangam::Application.routes.draw do
 
-  #get "home/show"
-  get "home/alpha"
-  get "/users/sign_in", :to => "welcome#new"
-  get "/users/sign_up", :to => "welcome#new"
+  get "home/show"
+  #get "home/alpha"
+  get '/users/sign_in', :to => 'welcome#new'
+  get '/users/sign_up', :to => 'welcome#new'
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
                                       :sessions => "users/sessions",
@@ -15,6 +15,7 @@ Sangam::Application.routes.draw do
     post "/confirm_user"  =>  "users/confirmations#accept"
   end
 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -25,10 +26,12 @@ Sangam::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
+  match '/home/settings' => 'home#settings'
+  match '/home/settings_save' => 'home#settings_save'
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
   match '/welcome/confirmation_wait' => 'welcome#confirmation_wait'
-
+  match '/authentications/auth_signin_provider' => 'authentications#auth_signin_provider'
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 
 
@@ -51,6 +54,7 @@ Sangam::Application.routes.draw do
   match '/contacts/unfollow' => 'contacts#unfollow'
   match '/contacts/provider_follow' => 'contacts#provider_follow'
 
+  match '/activities/get_activities' => 'activities#get_activities'
   match '/activities/top_activities' => 'activities#top_activities'
   match '/activities/get_snapshots' =>  'activities#get_snapshots'
   match '/activities/get_friends_snapshots' => 'activities#get_friends_snapshots'

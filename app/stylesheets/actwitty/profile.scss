@@ -29,21 +29,26 @@
 .aw_sub_header_nav
 {
   display:inline;
+ 
 }
 .aw_sub_header_nav_r
 {
   float:right;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   list-style-type:none;
   display:inline;
   padding-right:10px;
+  padding-top:3px;
 }
 
 .aw_sub_header_nav_l
 {
   float:left;
+  color:#ccc;
   list-style-type:none;
   display:inline;
   padding-right:10px;
+  padding-top:3px;
 }
 
 
@@ -128,15 +133,12 @@ label.alternate_login_label
 {
   display:block;
   height:30px;
-  font: 12px Arial, Helvetica, sans-serif;
+  width:100%;
+  background:#445D73;
+  font-size: 16px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-.home_page_sub_filter_row
-{
-  display:block;
-  height:30px;
-  font: 12px Arial, Helvetica, sans-serif;
-}
 
 /*Input Section in row2 of home page*/
 .input_box{
@@ -231,17 +233,23 @@ ul.summary_list{
   overflow:auto;
   list-style: none;
   border:1px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 a.summary_user_box_a
 {
   float:left;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 img.summary_user_box_img
 {
   float:left;
   width:  40px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 .summary_main_box_header
@@ -250,9 +258,10 @@ img.summary_user_box_img
   font: 16px Arial, Helvetica, sans-serif;
   height: 16px;
   width: 100%;
-  background:cyan;
+  background:#445D73;
   border: 1px solid black;
   overflow: hidden;
+  color:#000000;
 
 }
 
@@ -263,6 +272,7 @@ img.summary_user_box_img
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  color:#000000;
 }
 
 .summary_main_box_friends
@@ -272,13 +282,35 @@ img.summary_user_box_img
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  
+}
+
+.summary_links_styling
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+
+.js_user_mention
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+.more_loader
+{
+  font: 16px Arial, Helvetica, sans-serif;
+  color:#000000;
 }
 
 ul.summary_main_box_friends {
   display: block;
   list-style: none;
-  width: 100%
+  width: 100%;
+  color:#000000;
 }
+
 
 .summary_main_box_entities
 {
@@ -287,12 +319,14 @@ ul.summary_main_box_friends {
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  color:#000000;
 }
 
 ul.summary_main_box_entities{
   display: block;
   list-style: none;
-  width: 100%
+  width: 100%;
+  color:#000000;
 }
 
 .summary_main_box_locations
@@ -302,12 +336,14 @@ ul.summary_main_box_entities{
    border: 1px solid black;
    width: 20%;
    overflow: hidden;
+  color:#000000;
 }
 
 ul.summary_main_box_locations{
   display: block;
   list-style: none;
-  width: 100%
+  width: 100%;
+  color:#000000;
 }
 
 .summary_main_box_latest
@@ -317,16 +353,11 @@ ul.summary_main_box_locations{
    border: 1px solid black;
    width: 10%;
    overflow: hidden;
+  color:#000000;
 }
 
 
-ul.stream_list{
-  width:100%;
-  height:100%;
-  overflow:auto;
-  list-style: none;
-  border:1px;
-}
+
 
 .modal_channels_ul
 {
@@ -355,3 +386,511 @@ ul.stream_list{
    list-style: none;
    width: 80%;
 }
+
+
+/************************************ Stream Divs *********************************************/
+ul.stream_list{
+  width:100%;
+  height:100%;
+  overflow:auto;
+  list-style: none;
+  border:1px;
+  color:#000000;
+}
+
+.stream_list_li{
+}
+
+.stream_box
+{
+  margin-top:15px;
+  width:800px;
+	border: 1px solid #cccccc;
+  float:left;
+  display: inline;
+}
+
+/************************************** Stream User Box ****************************************/
+.stream_user_box
+{
+  float:left;
+  width:  40px;
+  height:100%;
+//  border: 1px solid #cccccc;
+  display: inline;
+}
+
+a.stream_user_box
+{
+  float:left;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+
+img.stream_user_box
+{
+  float:left;
+  width:  40px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+}
+/****************/
+/* stream title box */
+.stream_title_box
+{
+  float:left;
+  float:top;
+	margin-left:0px; 
+  height:40px;
+  width:758px;
+  font: 20px Arial, Helvetica, sans-serif;
+  color:#fff;
+  background:#445D73;
+  text-align:left;
+  display:inline;
+}
+
+.stream_channel_box
+{
+  margin-left:10px;
+  margin-top:8px;
+  width:200px;
+	overflow: hidden;
+  display:inline;
+
+}
+
+.stream_location_box
+{
+  margin-left:10px;
+  margin-top:8px;
+	overflow: hidden;
+  width:200px;
+  height:20px;
+  display:inline;
+}
+
+.stream_time_box
+{
+  margin-left:30px;
+  margin-top:15px;
+	overflow: hidden;
+  width:200px;
+  color:#000000;
+  font:italic bold 12px Arial, Helvetica, sans-serif;
+  display:inline;
+  float:right;
+  text-align:right;
+
+}
+
+.stream_close_box
+{
+  margin-top:5px;
+	overflow: hidden;
+  color:#000000;
+  font: 8px Arial, Helvetica, sans-serif;
+  float:right;
+  display:inline;
+}
+
+.stream_close_button
+{
+}
+
+.stream_text_box
+{
+  float:left;
+  margin-top:20px;
+	margin-left:0px; 
+  width:730px;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:10px;
+  //border: 1px solid #cccccc;
+}
+
+.js_entity_mention
+{
+  font: 13px Arial, Helvetica, sans-serif;
+  color:#ffffff;
+  margin-left:2px;
+  padding-left:1px;
+  padding-right:1px;
+  margin-right:2px;
+  background:#006699;
+  border:1px solid #003399;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+.js_user_mention
+{
+  font: 13px Arial, Helvetica, sans-serif;
+  color:#000000;
+  background:#cccccc;
+  border:1px solid #000000;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+.stream_doc_box
+{
+  float:right;
+  margin-top:20px;
+  margin-left:30px;
+	margin-right:10px; 
+  width:730px;
+  font: 20px Arial, Helvetica, sans-serif;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:10px;
+  //border: 1px solid #cccccc;
+}
+
+
+/************ comments ***********/
+.stream_comment_box
+{
+  float:right;
+  margin-top:20px;
+  margin-left:60px;
+	margin-right:10px; 
+	margin-bottom:10px; 
+  width:700px;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:10px;
+  //border: 1px solid #cccccc;
+
+}
+
+.stream_comment_title_box
+{
+  float:left;
+  float:top;
+	margin-left:0px; 
+  height:20px;
+  width:700px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#fff;
+  background:#445D73;
+  text-align:left;
+  display:inline;
+}
+
+.stream_comment_title_box_span
+{
+  padding:3px;
+}
+
+.stream_post_all_comments
+{
+  padding:3px;
+  float:right;
+}
+
+.stream_comments_box_ul
+{
+  display:block;
+  list-style: none;
+}
+
+.stream_comment_li
+{
+}
+
+.stream_single_comment_box
+{
+  float:left;
+  margin-top:4px;
+	margin-right:4px; 
+	margin-bottom:4px; 
+  width:650px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+  text-align:left;
+  display:block; 
+  padding:2px;
+  border: 1px solid #cccccc;
+}
+
+.stream_comment_close_box
+{
+  margin-top:5px;
+	overflow: hidden;
+  color:#000000;
+  font: 8px Arial, Helvetica, sans-serif;
+  float:right;
+  display:inline;
+}
+
+.stream_comment_close_btn
+{
+  float:right;
+  float:top;
+  font: 10px Arial, Helvetica, sans-serif;
+}
+
+.stream_comment_user_box
+{
+  float:left;
+  width:31px;
+  height:100%;
+  display:block;
+  height:100%;
+  overflow: hidden;
+}
+
+.stream_comment_user_box_img
+{
+  float:left;
+  width:30px;
+  height:30px;
+  display:block;
+}
+.stream_comment_user_box_a
+{
+  float:left;
+  font: 11px Arial, Helvetica, sans-serif;
+  color:#000000;
+  display:block;
+}
+
+.stream_comment_text_box
+{
+  float:left;
+  float:top;
+  margin-top:5px;
+	margin-left:36px; 
+  width:510px;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:5px;
+ // border: 1px solid #cccccc;
+}
+
+.stream_comment_add_new_box
+{
+  float:left;
+  margin-top:4px;
+	margin-right:4px; 
+	margin-left:40px; 
+	margin-bottom:4px; 
+  width:650px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+  text-align:left;
+  display:block; 
+  padding:2px;
+  //border: 1px solid #cccccc;
+}
+
+.stream_comment_text_area_box
+{
+  display:inline;
+  float:left;
+	margin-left:4px; 
+}
+
+.stream_comment_new_text_area
+{
+  font-family: 12px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  height: 30px;
+  width: 510px;
+  margin-top: 2px;
+  resize:none;
+}
+
+
+.stream_comment_text_area_box_btn_box
+{
+  display:inline;
+	margin-left:4px; 
+  float:left;
+}
+
+.stream_comment_new_btn
+{
+}
+
+/************ comments end ***********/
+.stream_campaign_box
+{
+  float:left;
+  margin-top:4px;
+	margin-right:4px; 
+	margin-left:40px; 
+	margin-bottom:4px; 
+  width:650px;
+  padding:2px;
+
+}
+
+.streams_campaigns_ul
+{
+  font-family: Arial, Verdana;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stream_campaign_li
+{
+  display: block;
+  position: relative;
+  float: left;
+
+}
+
+.stream_campaign_display
+{
+}
+
+.stream_campaign_display_a
+{
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid #cccccc;
+  padding: 5px 15px 5px 15px;
+  margin-left: 1px;
+  white-space: nowrap;
+  font-family: 12px Arial, Helvetica, sans-serif;
+
+}
+
+.stream_campaign_display_a:hover
+{
+   background:#445D73;
+   color:#ffffff;
+}
+
+.stream_campaign_hover_box
+{
+  display:none;
+  border: 1px solid #cccccc;
+}
+
+.stream_campaign_li:hover span{
+    display: block;
+    position: absolute;
+}
+.stream_campaign_user_action_box
+{
+  color:#000000;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #cccccc;
+  margin-left: 1px;
+  background:#ffffff;
+}
+
+.stream_campaign_show_all_box
+{
+  color:#000000;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #cccccc;
+  margin-left: 1px;
+  background:#ffffff;
+}
+
+.campaign_user_action_a
+{
+  color:#000000;
+  font-family: 12px Arial, Helvetica, sans-serif;
+}
+
+.stream_campaign_user_action_box:hover
+{
+  background:#445D73;
+  color:#ffffff;
+}
+.campaign_show_all_a
+{
+  color:#000000;
+  font-family: 12px Arial, Helvetica, sans-serif;
+}
+
+.stream_campaign_show_all_box:hover
+{
+  background:#445D73;
+  color:#ffffff;
+}
+/*************************************** TABS START *******************************************/
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #ccc;
+}
+html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #fff;
+	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
+}
+
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+  color:#000000;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+  color:#000000;
+}
+/*************************************** TABS END *******************************************/
+

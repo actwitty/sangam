@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-
+   //alert("Inside profile_follow.js ready");
    $('.follow_button').live("click",function(){
       btn = $(this);
       friend_id = $("#" + btn.attr("id") + "_user_id").attr("value");

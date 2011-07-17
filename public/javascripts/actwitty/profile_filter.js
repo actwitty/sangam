@@ -1,11 +1,36 @@
 
 
-function modify_filter(filter_hash){
-  $.each(filter_hash, function(key, filter_val_array){
-    $("#filter_" + key +"_id").attr("value", filter_val_array[0]); 
-    $("#filter_" + key + "_name").attr("value", filter_val_array[1]);  
-  });
+function modify_filter(filter_json, reload){
+  if ( reload === undefined ){
+    reload=true;
+  }
+  var page_owner_id=$('#page_owner_id').attr("value");
+  var session_owner_id=$('#session_owner_id').attr("value");
+  var need_redirect = false;
+  /* Decide on which user to go to */
+  if (filter_json.user){
+    if( filter_json.user != page_owner_id){
+      need_redirect=true;
+      page_owner_id = filter_json.user;
+    }
+  }
 
+  if( filter_json.channel_id && filter_json.channel_name ){
+    $("#filter_channel_id").attr("value", filter_json.channel_id); 
+    $("#filter_channel_name").attr("value", filter_json.channel_name);  
+  }
+
+  if( filter_json.location_id && filter_json.location_name){
+    $("#filter_location_id").attr("value", filter_json.location_id); 
+    $("#filter_location_name").attr("value", filter_json.location_name);  
+  }
+
+  if( filter_json.thing_id && filter_json.thing_name){
+    $("#filter_thing_id").attr("value", filter_json.thing_id); 
+    $("#filter_thing_name").attr("value", filter_json.thing_name);  
+  }
+
+  /* remove display of all filter disengage buttons */
   $("#stream_filters").empty();
 
   /* Channel */
@@ -23,30 +48,40 @@ function modify_filter(filter_hash){
 
   /* Location */
   if ($("#filter_location_id").attr("value").length > 0 && $("#filter_location_name").attr("value").length>0){
-    var html = '<input type="button" id="location_filter_drop " value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
+    var html = '<input type="button" id="location_filter_drop" value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
     $("#stream_filters").append(html);
   }
+  if(reload==true){
+    if ( need_redirect == true){
+      /* simple case redirect to stream tab of new user */
+      redirect_to_streams_filtered_of_other_user();
+    }else{
+      /* stay on current user and apply the new filter */
+      reload_streams_on_viewed_user(page_owner_id, session_owner_id);
+    }
+  }
 
-
-  reload_streams_on_viewed_user();
 }
 
-function reset_filter(){
+function reset_filter(reload){
+  if ( reload === undefined ){
+    reload=true;
+  }
   $("#filter_channel_name").attr("value", "");
   $("#filter_channel_id").attr("value", "");
   $("#filter_thing_name").attr("value", "");
   $("#filter_thing_id").attr("value", "");
   $("#filter_location_name").attr("value", "");
   $("#filter_location_id").attr("value", "");
-  modify_filter({});
+  modify_filter({}, reload);
 }
 
 
 function get_filter(){
   return { 
-           channel : $("#filter_channel_id").attr("value", ""),
-           thing : $("#filter_thing_id").attr("value", ""),
-           place : $("#filter_thing_id").attr("value", "")
+           word_id:$("#filter_channel_id").attr("value"),
+           entity_id:$("#filter_thing_id").attr("value"),
+           location_id:$("#filter_location_id").attr("value")
          }; 
 }
 
@@ -56,16 +91,22 @@ $(document).ready(function(){
       $("#filter_channel_id").attr("value", "");
       modify_filter({});
     });
+    /***********************************************************/
 
     $('#thing_filter_drop').live("click",function(){
       $("#filter_thing_name").attr("value", "");
       $("#filter_thing_id").attr("value", "");
       modify_filter({});
     });
+    /***********************************************************/
 
     $('#location_filter_drop').live("click",function(){
       $("#filter_location_name").attr("value", "");
       $("#filter_location_id").attr("value", "");
       modify_filter({});
     });
+    /***********************************************************/
+
+   
+    /***********************************************************/
 });

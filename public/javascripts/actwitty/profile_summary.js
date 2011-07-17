@@ -1,3 +1,6 @@
+
+var the_big_filter_JSON={dummy:"dummy"};
+
 /* handle docs box */
 function create_and_docs_box(box_id, summary){
   docs_box= $("#" + box_id);
@@ -13,10 +16,10 @@ function create_and_docs_box(box_id, summary){
     var ul_box = $("#" + ul_box_id);  
     $.each(summary.documents, function(i, attachment){
      var html='<li>' +
-                '<a href="#">' +
-                  '<img src="'+ attachment.document_url + '"  width="40" height="40" alt="" />' +
+                '<a href="#" class="summary_links_styling">' +
+                  '<img src="'+ attachment.url + '"  width="40" height="40" alt="" />' +
                   '<span>' +
-                      attachment.document_name +
+                      attachment.name +
                   '</span>' +
                 '</a>' +
               '</li>';
@@ -41,11 +44,20 @@ function create_and_add_friends_box(box_id, summary){
     friends_box.append(html);
     var ul_box = $("#" + ul_box_id);
     $.each(summary.friends, function(i, friend){
+
+      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + friend.id;
+      /* create a JSON of filter */
+      var filter_value = {
+                          user:friend.id ,
+                          channel_id:summary.word.id, 
+                          channel_name:summary.word.name  
+                    };
+      the_big_filter_JSON[filter_id] = filter_value;
       var html='<li>' +
-                '<a href="/home/show?id=' + friend.friend_id +'">' +
-                  '<img src="'+ friend.friend_image + '"  width="25" height="25" alt="" />' +
+                '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
+                  '<img src="'+ friend.image + '"  width="25" height="25" alt="" />' +
                   '<span>' +
-                      friend.friend_name +
+                      friend.name +
                   '</span>' +
                 '</a>' +
               '</li>';
@@ -72,11 +84,25 @@ function create_and_add_entities_box(box_id, summary){
     entities_box.append(html);
     var ul_box = $("#" + ul_box_id);
     $.each(summary.entities, function(i, entity){
+      /* This filter id uniquely identifies filter */
+      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + entity.id;
+      var filter_hidden_id = filter_id + '_hidden';
+      /* create a JSON of filter */
+      var filter_value = {
+                            user:summary.user.id ,
+                            thing_id:entity.id,
+                            thing_name:entity.name,
+                            channel_id:summary.word.id, 
+                            channel_name:summary.word.name  
+                          };
+      the_big_filter_JSON[filter_id] = filter_value;
+
+
       var html='<li>' +
-                '<a href="#">' +
-                  '<img src="'+ entity.entity_image + '"  width="25" height="25" alt="" />' +
+                '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
+                  '<img src="'+ entity.image + '"  width="25" height="25" alt="" />' +
                   '<span>' +
-                      entity.entity_name +
+                      entity.name +
                   '</span>' +
                 '</a>' +
               '</li>';
@@ -102,17 +128,25 @@ function create_and_add_locations_box(box_id, summary){
     locations_box.append(html);
     var ul_box = $("#" + ul_box_id);
     $.each(summary.location, function(i, place){
-      if( place.geo_location ){
-        var html='<li>' +
-                  '<a href="#">' +
+      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + place.id;
+      /* create a JSON of filter */
+      var filter_value = {
+                            user:summary.user.id ,
+                            location_id:place.id,
+                            location_name:place.name,
+                            channel_id:summary.word.id, 
+                            channel_name:summary.word.name  
+                          };
+      the_big_filter_JSON[filter_id] = filter_value;
+
+
+      var html='<li>' +
+                  '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id + '"  >' +
                     '<span>' +
-                        'Geo: ' + place.geo_location.geo_name +
+                         place.name +
                     '</span>' +
                   '</a>' +
                 '</li>';
-      }else{
-        //TODO:
-      }
 
       ul_box.append(html);
     });
@@ -127,23 +161,35 @@ function create_and_add_locations_box(box_id, summary){
 
 /* handle complete summary box */
 function create_and_add_summary(ul, summary){
- var unique_id =  summary.activity_word.word_id + '' + summary.user.user_id;
+
+ /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
+ var unique_id =  summary.word.id + '' + summary.user.id;
+ if ($("#" + unique_id ).length > 0){
+   return;
+ }
+
  var docs_box_id = unique_id + '_attachments';
  var friends_box_id = unique_id + '_friends';
  var entities_box_id = unique_id + '_entities';
  var locations_box_id = unique_id + '_locations';
  var latest_text_box_id = unique_id + '_text';
+ 
+ var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id;
+  /* create a JSON of filter */
+ var filter_value = {
+                      user:summary.user.id ,
+                      channel_id:summary.word.id, 
+                      channel_name:summary.word.name  
+                    };
+ the_big_filter_JSON[filter_id] = filter_value;
 
- /* Fail safe, due to any reason this happens, reject the summary from being displayed again*/
- if ($("#" + unique_id ).length > 0){
-   return;
- }
+
  var html ='<li class="summary_li">' +
+              
               '<div id="' + unique_id + '" class="summary_box">' +
-
                 /* summary user box */
                 '<div id="' + summary.user.user_id + '" class="summary_user_box">' +
-                  '<a href="/home/show?id=' +  summary.user.user_id + '" class="summary_user_box_a">' +
+                  '<a href="/home/show?id=' +  summary.user.id + '" class="summary_user_box_a">' +
                     '<img src="' + summary.user.photo + '" alt="" class="summary_user_box_img" >' +
                       summary.user.full_name + 
                     '</img>'+
@@ -155,10 +201,10 @@ function create_and_add_summary(ul, summary){
 
                   /* summary box header */
                   '<div class="summary_main_box_header">'  +
-                    '<a href="/home/show?mode=album&id=' 
-                            +  summary.user.user_id + '&activity_id=' + summary.activity_word.word_id 
-                            + '" class="main_box_header_a" >' +
-                      summary.activity_word.word_name +  ', total wits to see:' + summary.activity_count +
+                    '<a href="#" class="main_box_header_a js_summary_filter_setter" id="'+ filter_id +'">' +
+                      summary.word.name +  
+                      ', total wits to see:' + summary.count + 
+                      ', Updated at ' + summary.time +
                     '</a>' +
                   '</div>'+
 
@@ -190,7 +236,6 @@ function create_and_add_summary(ul, summary){
 
                   /* added images box lets see if we have anything to add here */
                   '<div  class="summary_main_box_attachments" id="' + docs_box_id + '">' +
-                    '<h4> Last few attachments </h4>' +                    
                   '</div>' +
                   
                 '</div>'+
@@ -199,7 +244,6 @@ function create_and_add_summary(ul, summary){
         
         /* overall summary div is added */        
         ul.append(html);
-
         /* handle individual divs */
         create_and_docs_box(docs_box_id, summary);       
         create_and_add_friends_box(friends_box_id, summary);
@@ -208,57 +252,75 @@ function create_and_add_summary(ul, summary){
 
 }
 
-function append_personal_summary(owner_id, summary_position){
+
+function append_personal_summary(owner_id){
+  var scroll = $(window).scrollTop();
+  var more_cookie =  $("#more_personal_cookie").val();
   $.ajax({
-        url: '/activities/get_snapshots',
+        url: '/activities/get_snapshots.json',
         type: 'GET',
-        data: {id : owner_id, position : summary_position },
+        data: {id : owner_id, last_id : more_cookie },
         dataType: 'json',
-        contentType: 'application/json',
+        contentType: 'application/json',  
         success: function (data) {
           // if rails demands a redirect because of log in missing
-           var count =0;
            $.each(data, function(i,summary){
             if( summary ){
-                create_and_add_summary($("#personal_summary"),summary);          
-                count = i + 1;
+                create_and_add_summary($('#personal_summary'),summary);     
+                $("#more_personal_cookie").val(summary.id);
             } 
           });
-          var current_count = parseInt($('#personal_count').val());
-          current_count = current_count + count;
-          $('#personal_count').val(current_count);
+          $(window).scrollTop(scroll);
 
         },
-        error: function (error) {
-
+        error:function(XMLHttpRequest,textStatus, errorThrown) {  
+          alert('There has been a problem generating summary. \n ActWitty is trying to solve.');
         }
     });
 
 }
 
-function append_friends_summary(owner_id, summary_position){
+function append_friends_summary(owner_id){
+  var scroll = $(window).scrollTop();
+  var more_cookie = $("#more_friends_cookie").val();
   $.ajax({
-        url: '/activities/get_friends_snapshots',
+        url: '/activities/get_friends_snapshots.json',
         type: 'GET',
-        data: {id : owner_id, position : summary_position },
+        data: {id : owner_id, last_id : more_cookie },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
           // if rails demands a redirect because of log in missing 
-          var count = 0;
            $.each(data, function(i,summary){
             if( summary ){
-                create_and_add_summary($("#friends_summary"),summary); 
-                count = i + 1;
+                create_and_add_summary($('#friends_summary'),summary);     
+                $("#more_friends_cookie").val(summary.id);
             } 
           });
+          $(window).scrollTop(scroll);
 
-          var current_count = parseInt($('#friend_count').val());
-          current_count = current_count + count;
-          $('#friend_count').val(current_count);
         },
-        error: function (error) {
-
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem generating summaries of followings. \n ActWitty is trying to solve.');
         }
     });
 }
+
+$(document).ready(function(){
+  /* Manage summary filters */
+    $('.js_summary_filter_setter').live('click', function(){
+      var filters_base_id = $(this).attr("id");
+      if (filters_base_id.length > 0){
+          var page_owner_id=$('#page_owner_id').attr("value");
+          var filter = the_big_filter_JSON[filters_base_id];
+          if(filter){
+            /* do not cause reload */
+            reset_filter(false);
+            modify_filter(filter);
+          }
+
+          return;
+        }
+      alert("ActWitty will fix the problem with the filter");
+    });
+});

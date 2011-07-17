@@ -99,7 +99,7 @@ function get_all_facebookers(){
   
 /********************************************************************************************/
 $(document).ready(function(){
- 
+//  alert("Inside profile_facebook.js ready"); 
   $(".user_nav").live('click', function(){
     var click_id = $(this).attr("id");
     var user_id = $("#" + click_id + "_hidden").attr("value");
