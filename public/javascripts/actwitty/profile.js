@@ -27,7 +27,7 @@ $(document).ready(function(){
 	    $(".tab_content:last").show();
       /* Bring in stream filtered view on focus*/
       if(populated_stream == false){
-        append_stream(page_owner_id);
+        append_stream(page_owner_id,session_owner_id);
         populated_stream=true;
       }
     }else{
@@ -71,7 +71,7 @@ $(document).ready(function(){
     
           if(tab_id == "streams_tab_head"){
             if(populated_stream == false){
-              //append_stream(page_owner_id);
+              append_stream(page_owner_id,session_owner_id);
               populated_stream=true;
             }
           }
@@ -96,6 +96,8 @@ $(document).ready(function(){
       if(populated_personal == true){
         append_personal_summary(page_owner_id);
       }
+
+        return false;
     });
     
     /*
@@ -105,15 +107,15 @@ $(document).ready(function(){
       if(populated_friends == true){
         append_friends_summary(page_owner_id);
       }
+      return false;
     });
 
     /*
      * Bind click to more on streams tab
      */
      $('#more_streams').click(function() {
-      if(populated_stream == true){
-        append_stream(page_owner_id);
-      }
+        append_stream(page_owner_id, session_owner_id);
+        return false;
     });
 
   }); /* ready ends here */

@@ -5,7 +5,9 @@ var the_big_comment_show_all_json={ };
 var the_big_comment_count_json={ };
 var the_big_comment_delete_json={ };
 var the_big_stream_delete_json={ };
-var the_big_stream_campaign_json={ };
+var the_big_stream_campaign_manager_json={ };
+var the_big_stream_campaign_user_action={};
+var the_big_stream_campaign_show_all={};
 /**********************************/
 
 
@@ -64,50 +66,103 @@ function handle_stream_location(box_id, stream){
 /*
  * Render stream campaign
  */
-function handle_a_campaign(box_id, stream, current_user_id, post_id){
-/*
-  var div = $("#" + box_id);
-  campaign = stream.campaign;
-  var campaign_box_id = box_id + campaign.id;
-  var html = '<div class="campaign_box" ' + + '  >' +               
-                  '<span>' +
-                    campaign.count + ' people ' + campaign.name + ' this'  +
+function handle_a_campaign(ul_id, campaign,  stream_post_id){
+  var ul = $("#" + ul_id);
+
+  var campaigns_li_id = ul_id + "_"  + campaign.name;
+  
+  var li = $("#" + campaigns_li_id);
+  if(li.length > 0){
+
+  }else{
+    var html='<li class="stream_campaign_li" id="'+ campaigns_li_id +'">' +
+           '</li>';
+    ul.append(html);
+    li = $("#" + campaigns_li_id);
+  }
+
+ 
+
+  var users_campaign_id = 0;
+  if(campaign.id){
+      users_campaign_id = campaign.id;
+  }
+
+
+  var campaign_unique_handle = stream_post_id + '_' + campaign.name; 
+  var campaign_hover_span_id = campaign_unique_handle + '_hover_span';
+  var campaign_user_action_id = campaign_unique_handle + '_user';
+  var campaign_show_all_id = campaign_unique_handle + '_show_all';
+
+  var campaign_manager_json = {
+                                  li_id:campaigns_li_id,
+                                  ul:ul_id,
+                                  post_id:stream_post_id,
+                                  name:campaign.name,
+                                  count:campaign.count,
+                                  user_id:campaign.id,
+                                  user_state:campaign.user,
+                              };
+  var campaign_user_action_json = {
+                                    manager_id:campaign_unique_handle
+                                  };
+  var campaign_show_all_json = {
+                                    manager_id:campaign_unique_handle
+                                  };
+
+  the_big_stream_campaign_manager_json[campaign_unique_handle] = campaign_manager_json;
+  the_big_stream_campaign_user_action[campaign_user_action_id]=campaign_user_action_json;
+  the_big_stream_campaign_show_all[campaign_show_all_id]=campaign_show_all_json;
+
+  var campaign_text = campaign.name + 's: ' + campaign.count;
+  var user_campaign_text ="";
+  if( campaign.user == true ){
+      user_campaign_text = 'Un-' + campaign.name;
+  }else{
+      user_campaign_text = campaign.name; 
+  }
+
+
+  var html = '<div class="stream_campaign_display">' +
+                '<a href="#" class="stream_campaign_display_a">' +
+                   campaign_text +
+                  '</a>' +
+                  '<span class="stream_campaign_hover_box" id="' + campaign_hover_span_id + '">' +
+                    '<div class="stream_campaign_user_action_box">' +
+                      '<a href="#" class="campaign_user_action_a js_campaign_user_action" id="' + campaign_user_action_id + '">' +
+                       user_campaign_text +
+                      '</a>' +
+                    '</div>'+
+                    '<div class="stream_campaign_show_all_box">' +
+                      '<a href="#" class="campaign_show_all_a js_campaign_show_all" id="' + campaign_show_all_id + '">' +
+                        'Show All' +
+                      '</a>' +
+                    '</div>'+ 
                   '</span>' +
-               '</div>';
+             '</div>';
+  
+  li.append(html);
 
-  div.append(html); 
-
-  var campaign_btn_id =  "campaign_btn_" + campaign.id + "_" + post_id; 
-  var campaign_btn_val =  "campaign_btn_" + campaign.id + "_" + post_id + "_hidden"; 
-  if(campaign.user == true){
-    var html = '<input type="button" value="Un-' + campaign.name + '" class="campaign_btn" id="campaign_btn_' + campaign_btn_id + '/>' +
-               '<input type="hidden" id="' + campaign_btn_val + '" value ="' + campaign.id + '" />';
-
-    div.append(html);
-  }else
-
-    var html = '<input type="button" value="' + campaign.name + '" class="campaign_btn" id="campaign_btn_' + campaign_btn_id + '/>' +
-               '<input type="hidden" id="' + campaign_btn_val + '" value ="' + campaign.id + '" />';
-
-    div.append(html);
-*/
+  
 }
 
 /*
  * Render stream campaign
  */
-function handle_stream_campaign(box_id, post, current_user_id){
-  campaigns = post.campaign;
+function handle_stream_campaign(box_id, stream){
   var div=$("#" + box_id);
-  if(campaigns && campaigns.length){
-    $.each(campaigns, function(i,campaign){
+  if(stream.campaign){
+    var campaigns_ul_id = box_id + '_ul';
+    var html = '<ul class="streams_campaigns_ul" id="' + campaigns_ul_id + '">' +
+               '</ul>';
+    div.append(html);
+    $.each(stream.campaign, function(i,campaign){
       if( campaign ){
-          handle_a_campaign(box_id, campaign, current_user_id, post.id);
+          handle_a_campaign(campaigns_ul_id, campaign, stream.post.id);
       } 
     }); 
     
   }else{
-    /* campaigns not defined correctly */
     div.hide();
   }
 }
@@ -402,7 +457,7 @@ function create_and_add_stream(ul, stream, current_user_id){
   handle_stream_text(text_box_id, stream);
   handle_stream_docs(doc_box_id, stream);
   handle_stream_comments(comment_box_id, stream, current_user_id);
-  handle_stream_campaign(campaign_box_id, stream, current_user_id);
+  handle_stream_campaign(campaign_box_id, stream);
 }
 
 
@@ -412,12 +467,13 @@ function create_and_add_stream(ul, stream, current_user_id){
 function append_stream(owner_id, current_user_id){
   var scroll = $(window).scrollTop();
   var more_cookie = $("#more_streams_cookie").val();
-  
+  alert(more_cookie); 
   $.ajax({
         url: '/activities/get_activities.json',
         type: 'GET',
         data: {
-                id : owner_id, 
+                id : owner_id,
+                last_id : more_cookie,
                 filter : get_filter()
               },
         dataType: 'json',
@@ -427,7 +483,7 @@ function append_stream(owner_id, current_user_id){
            $.each(data, function(i,stream){
             if( stream ){
                 create_and_add_stream($("#streams"),stream , current_user_id);
-                $("#more_streams_cookie").val(stream.id);
+                $("#more_streams_cookie").val(stream.post.id);
             } 
           });
 
@@ -463,7 +519,9 @@ function clear_streams(){
   the_big_comment_count_json={ };
   the_big_comment_delete_json={ };
   the_big_stream_delete_json={ };
-  the_big_stream_campaign_json={ };
+  the_big_stream_campaign_manager_json={};
+  the_big_stream_campaign_user_action={};
+  the_big_stream_campaign_show_all={}
   /***********************/
 }
 
@@ -542,4 +600,39 @@ $(document).ready(function(){
     }
     return false;
   });
+
+  /*
+   * User action on campaign
+   */
+  $('.js_campaign_user_action').live('click', function(){
+    alert("USER ACTION ON CAMPAIGN ");
+    var user_json = the_big_stream_campaign_user_action[$(this).attr("id")];
+    if(user_json){
+      var manager_json = the_big_stream_campaign_manager_json[user_json.manager_id];
+      if(manager_json){
+        alert(JSON.stringify(manager_json));
+      }
+    }
+    return false;
+  });
+  /********************************/
+
+  /*
+   * User action on campaign
+   */
+  $('.js_campaign_show_all').live('click', function(){
+    alert("SHOW ALL ON CAMPAIGN ");
+    var user_json = the_big_stream_campaign_show_all[$(this).attr("id")];
+    if(user_json){
+      var manager_json = the_big_stream_campaign_manager_json[user_json.manager_id];
+      if(manager_json){
+        alert(JSON.stringify(manager_json));
+      }
+    }
+    return false;
+  });
+  /********************************/
+
+
+
 });
