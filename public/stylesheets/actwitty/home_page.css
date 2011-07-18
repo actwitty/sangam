@@ -31,17 +31,17 @@
 /* line 34, ../../../app/stylesheets/actwitty/home_page.scss */
 #followers_list .follow_button {
   background-color: #445D73;
-  float: right;
+  /*float:right;*/
 }
 
 /* line 39, ../../../app/stylesheets/actwitty/home_page.scss */
 #search_followings {
-  margin-left: 35px;
+  margin-left: 50px;
   /*background-color:#445D73;*/
 }
 
 /* line 44, ../../../app/stylesheets/actwitty/home_page.scss */
 #search_followers {
-  margin-left: 35px;
+  margin-left: 50px;
   /*background-color:#445D73;*/
 }

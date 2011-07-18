@@ -9,32 +9,40 @@
 function renderFollowers(json){
   var search_html = '<input type="text" id="search_followers" placeholder="Followers"/>';
   $("#follower-dialog-modal").append(search_html);
-  var html = '<ul id="followers_list" class="modal_friends_ul">' +
+   var html = '<ul id="followers_list" class="modal_friends_ul">' +
              '</ul>';
+
   
   $("#follower-dialog-modal").append(html);
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
         var li_id = "followers_li_" + user_data.user.id;
-        var html ='<li id="' + li_id  +  '" class="user_stamp">' +
-                    '<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
-                      '<img src="' + user_data.user.photo_small_url + '" alt="" class="img_stamp user_stamp" >' +
-                           user_data.user.full_name + 
-                      '</img>'+
-                    '</a>'+ 
-                    '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>'; 
-                  '</li>'; 
+    	var html= '<div id="' + li_id  +  '">' +
+	'<div id="ex1" >' +
+            '<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
+		'<img class="img" src="'+  user_data.user.photo_small_url  +'" height="55" width="50" align="left">'+
+		'<div id="txt">' + user_data.user.full_name + '</div>'+
+            '</a>'+ 
+        '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>'+
+	'</div>'+
+	'</div>';
+
 
 
         $('#followers_list').append(html);
 
       if (user_data.user.following){
-          var html = '<input type="button" class="follow_button" value="Un-Follow" id="follow_btn_' + user_data.user.id + '" />';
+   	    var html = '<div id="inner">'+
+		'<input type="button" class="follow_button" height="25" width="25" value="UF" id="follow_btn_' + user_data.user.id + '" />' +
+		'</div>';
+	
+           $("#" + li_id + " " + "#ex1").append(html);
 
-          $("#" + li_id).append(html);
         }else{
-          var html = '<input type="button" class="follow_button" value="Follow" id="follow_btn_' + user_data.user.id + '" />';
-          $("#" + li_id).append(html);
+           var html =  '<div id="inner">'+
+		'<input type="button" class="follow_button" height="25" width="25" value="F" id="follow_btn_' + user_data.user.id + '" />' + 
+		'</div>';
+           $( "#" + li_id + " " + "#ex1" ).append(html);
         }
 
         var html = '<input type="hidden" value="' +user_data.user.id + '" id="follow_btn_' + user_data.user.id + '_user_id" />';
@@ -57,6 +65,7 @@ function get_all_followers(){
     /*
      * Get data on ready
      */
+    /*alert("followers");*/
     $.ajax({
         url: '/contacts/followers',
         type: 'GET',

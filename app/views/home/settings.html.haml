@@ -3,23 +3,13 @@
     =render :partial => "welcome/logo"
     %input#searchall.home_page_people_search{:type => "text",:placeholder => "Search"}/
     %ul.aw_header_nav
-      -if user_signed_in?
-        -if current_user.id != @user.id
-          %li.aw_header_navl
-        -if !@follow
-          %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}
-        -else
-          %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
-        %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}/
       %li.aw_header_navl
         %a{:href => "/home/show?id=#{current_user.id}"} Home
       %li.aw_header_navl
         %a{:href => "/home/settings"} Settings
       %li.aw_header_navl
         %a{:href => "/users/sign_out"} Logout
-      -else
-      %li.aw_header_navl
-        %a{:href => "/"} SignIn
+
 
   /.home_page_header
   /  .home_page_photo
@@ -42,6 +32,7 @@
             %li.settings-fields
               %label.settings-labels First Name
               = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"settings-input input-deco" }
+              /%span.settings-suggest Change your First Name
 
             %li.settings-fields
               %label.settings-labels Last Name
@@ -49,7 +40,7 @@
 
             %li.settings-fields
               %label.settings-labels Gender
-              = f.input :sex, :label=> false,:collection => ['male','female','other'], :as => :radio,:input_html=>{:class=>"settings-input-gender input-deco-radio",:id=>"setting-gender-male"}
+              = f.input :sex, :label=> false, :collection => ['male','female','other'], :as => :select, :input_html => { :class=>"settings-input-gender input-deco"}
 
             %li.settings-fields
               %label.settings-labels Date of Birth
@@ -57,11 +48,12 @@
 
             %li.settings-fields
               %label.settings-labels City
-              = f.input :home_location, :label =>false, :placeholder => "City", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+              = f.input :home_location, :label =>false, :placeholder => "City", :input_html => { :size => 20, :class=>"settings-input input-deco" }
 
             %li.settings-fields
               %label.settings-labels Mobile Number
-              = f.input :mobile_number, :label =>false, :placeholder => "Mobile Number", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+              = f.input :mobile_number, :label =>false, :placeholder => "Mobile Number", :input_html => { :size => 20, :class=>"settings-input input-deco" }
+              /%span.settings-suggest Add your mobile number
 
             %li.settings-fields
               %label.settings-labels Email
@@ -73,27 +65,28 @@
 
             %li.settings-fields
               %label.settings-labels Address
-              = f.input :address, :label =>false, :placeholder => "Address", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+              = f.text_area :address, :cols=> 30 ,:rows => 5, :label =>false, :class=>"settings-textarea", :placeholder => "Address", :input_html => { :size => 30, :class=>"settings-textarea input-deco" }
+              /%span.settings-suggest Add/Change your address
 
             %li.settings-fields
-              %label.settings-labels Home Page
-              = f.input :home_page, :label =>false, :placeholder => "Home Page", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+              %label.settings-labels Website
+              = f.input :home_page, :label =>false, :placeholder => "http://", :input_html => { :size => 30, :class=>"settings-input input-deco" }
 
             %li.settings-fields
-              %label.settings-labels Hobby
-              = f.input :interest, :label =>false, :placeholder => "Hobby", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+              %label.settings-labels Interest
+              = f.input :interest, :label =>false, :placeholder => "Interest", :input_html => { :size => 30, :class=>"settings-input input-deco" }
 
-            %li.settings-fields
-              %label.settings-labels Latitude
-              = f.input :current_geo_lat, :label =>false, :placeholder => "Current Latitude", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+            /%li.settings-fields
+            /  %label.settings-labels Latitude
+            /  = f.input :current_geo_lat, :label =>false, :placeholder => "Current Latitude", :input_html => { :size => 30, :class=>"settings-input input-deco" }
 
-            %li.settings-fields
-              %label.settings-labels Longitude
-              = f.input :current_geo_long, :label =>false, :placeholder => "Current Longitude", :input_html => { :size => 30, :class=>"settings-input input-deco" }
+            /%li.settings-fields
+            /  %label.settings-labels Longitude
+            /  = f.input :current_geo_long, :label =>false, :placeholder => "Current Longitude", :input_html => { :size => 30, :class=>"settings-input input-deco" }
 
             %li.settings-fields
               %label.settings-labels Photo
-              = f.file_field :profile_photo_l, :label =>false, :class => "settings-input-photo input-deco-photo", :input_html => { :size => 10, :class=>"settings-input-photo input-deco" }
+              = f.file_field :profile_photo_l, :label =>false, :class => "settings-input-photo input-deco-photo", :input_html => { :size => 10, :class=>"input-deco" }
 
               %p= f.submit "Submit"
 
@@ -103,4 +96,4 @@
 
 
 
-/=render :partial => "welcome/footer"
+  /  =render :partial => "welcome/footer"

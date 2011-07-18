@@ -16,9 +16,11 @@ function renderFacebookers(json){
 
   var unfollow_html = '<ul id="unfollow_list" class="modal_fb_ul">' +
                     '</ul>';
-
+  $("#facebook-dialog-modal").append('<h3>Invite List</h3>'); 
   $("#facebook-dialog-modal").append(invite_html);  
+  $("#facebook-dialog-modal").append('</br></br></br><h3>Followers List</h3>'); 
   $("#facebook-dialog-modal").append(follow_html);  
+  $("#facebook-dialog-modal").append('</br></br></br><h3>Unfollowers List</h3>'); 
   $("#facebook-dialog-modal").append(unfollow_html);  
 
   $.each(json, function(i,data){
@@ -26,32 +28,48 @@ function renderFacebookers(json){
         var li_id = "fb_li_" + data.uid;
         var html="";
         if (!data.user_id){
-          html ='<li id="' + li_id  +  '" class="user_stamp">' +
-                    '<img src="' + data.image + '" alt="" >' + 
-                      data.name +
-                    '</img>'+
-                    '<input type="button" value="Invite" class="fb_invite" id="' + data.uid + '"/>' +    
-                '</li>';   
+        var html= '<div id="' + li_id  +  '" class="user_stamp">' +
+	'<div id="ex1" >' +
+	'<img class="img" src="' + data.image + '" height="55" width="50" align="left">'+
+       	'<div id="txt">' +  data.name + '</div>'+
+	'<div id="inner">'+
+		'<input type="button" bottom="40" height="25" width="25" value="In" class="fb_invite" id="' + data.uid + '"/>' +
+	'</div>'+
+	'</div>'+
+	'</div>';
+
+   
+    
 
           $('#invite_list').append(html);
         }else{
-          html ='<li id="' + li_id  +  '" class="user_stamp">' +
-                  '<a href="#" id="user_nav_' +  data.user_id + '" class="link_user_stamp user_nav">' +
-                    '<img src="' + data.image + '" alt="" class="img_stamp user_stamp" >' +
-                      data.name + 
-                    '</img>'+
-                  '</a>'+ 
-                  '<input type="hidden" id="user_nav_' +  data.user_id + '_hidden" value="' +  data.user_id + '"/>'; 
-                '</li>';
+         html='<div id="' + li_id  +  '" >' +
+		'<div id="ex1" >' +
+			'<a href="#" id="user_nav_' +  data.user_id + '" class="link_user_stamp user_nav">' +
+			       	'<img class="img" src="' + data.image + '" height="55" width="50" align="left">'+
+				'<div id="txt">' +  data.name + '</div>'+
+			'</a>'+ 
+			'<input type="hidden" id="user_nav_' +  data.user_id + '_hidden" value="' +  data.user_id + '"/>'+
+     		'</div>'+
+		'</div>';
+
+
           if (data.status == "Follow"){
             $('#follow_list').append(html);
-            var html = '<input type="button" class="follow_button" value="Un-Follow" id="follow_btn_' + data.user_id + '" />';
-            $('#' + li_id).append(html);
+      	    var html = '<div id="inner">'+
+		 	'<input type="button" height="25" width="25" value="UF" class="follow_button"   id="follow_btn_' + data.user_id + '" />' +
+			'</div>';
+	      $('#' + li_id + " " +  "#ex1").append(html);
+
 
           }else{
             $('#unfollow_list').append(html);
-            var html = '<input type="button" class="follow_button" value="Follow" id="follow_btn_' + data.user_id + '" />';
-            $('#' + li_id).append(html);
+	    var html = '<div id="inner">'+
+		 	'<input type="button" height="25" width="25" value="F" class="follow_button"  id="follow_btn_' + data.user_id + '" />' +
+			'</div>';
+
+            $('#' + li_id + " " + "#ex1").append(html);
+	   
           }
         }
 

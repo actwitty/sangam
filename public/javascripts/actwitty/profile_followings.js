@@ -17,21 +17,21 @@ function renderFollowings(json){
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
         var li_id = "followings_li_" + user_data.user.id;
-        var html ='<li id="' + li_id  +  '" class="user_stamp">' +
-                    '<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
-                      '<img src="' + user_data.user.photo_small_url + '" alt="" class="img_stamp user_stamp" >' +
-                           user_data.user.full_name + 
-                      '</img>'+
-                    '</a>'+ 
-                    '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>'; 
-                  '</li>'; 
+	var html= '<div id="ex1" >' +
+	'<div id="outer">'+
+        '<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
+	'<img class="img" src="' + user_data.user.photo_small_url + '" height="55" width="50" align="left">'+
+	'</a>' + 
+        '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>' + 
+	'</div>'+
+	'<div id="txt">' + user_data.user.full_name + '</div>'+
+	'<div id="inner">'+
+			'<input type="button" class="follow_button" height="25" width="25" value="UF" id="follow_btn_' + user_data.user.id + '" />' +
+	'</div>'+
+	'</div>';   
 
 
         $('#followings_list').append(html);
-
-        var html = '<input type="button" class="follow_button" value="Un-Follow" id="follow_btn_' + user_data.user.id + '" />';
-
-          $("#" + li_id).append(html);
 
         var html = '<input type="hidden" value="' +user_data.user.id + '" id="follow_btn_' + user_data.user.id + '_user_id" />';
         $("#" + li_id).append(html);
