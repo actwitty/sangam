@@ -1,7 +1,13 @@
 / Java scripts includes
-= include_javascripts :profile 
+= include_javascripts :profile
+= javascript_include_tag 'actwitty/activity'
+
 = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
+
+%script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"}
+%script{:src => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"}
 %script{:src => "http://maps.google.com/maps/api/js?sensor=true&libraries=places", :type => "text/javascript"}
+= javascript_include_tag 'actwitty/location'
 = javascript_include_tag 'actwitty/home_page_inputs'
     
 / *******************************************************
@@ -56,12 +62,12 @@
     / Home page main activity generator input boxes
     #home_page_input.input_box
       %label #
-      %input.channel_input_box{:name => "home_page_activity", 
+      %input#activity_field.channel_input_box{:name => "home_page_activity", 
                                :type => "text",
                                :placeholder => "Channel", 
                                :size=>"40"}
       %label @
-      %input#searchTextField.place_input_box{:name => "home_page_location", 
+      %input#location_field.place_input_box{:name => "home_page_location", 
                                              :type => "text",
                                              :placeholder => "Place",
                                              :size=>"40"}
@@ -71,10 +77,23 @@
                 :style=>"resize: none;", 
                 :cols=>"80", 
                 :rows=>"5",
-                :maxlength=>"500"}
-      %input#searchTextField1{:size => "50", :type => "hidden"}
+                :maxlength=>"500",
+                :id=>"entity_field"}
+      %br    
+      %input{:name => "campaign1", :type => "checkbox", :value => "Like"} Like
+      %input{:checked => "", :name => "campaign2", :type => "checkbox", :value => "Support"} Support
+      %input{:name => "campaign3", :type => "checkbox", :value => "Rate"} Rate
       %input#actwitty_generator{:type => "button", :value => "Go!"}
       %input#user_latlng{:name => "latlang", :type => "hidden"}
+
+      %input#geo_location{:size => "50", :type => "hidden", :value => ""}
+      %input#location_type{:name => "location_type", :type => "hidden", :value => ""}
+      %input#input_latlang{:name => "input_latlang", :type => "hidden", :value => ""}
+      %input#lat_value{:name => "input_latlang", :type => "hidden", :value => ""}
+      %input#lng_value{:name => "input_latlang", :type => "hidden", :value => ""}
+
+    
+
       #map
   / *************************************************
   %hr
