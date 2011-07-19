@@ -163,7 +163,6 @@ label.alternate_login_label
 {
   float:left;
   display:block;
-  border:2px solid green;
   margin-left:10px;
 }
 /******************facebook friends*******************/
@@ -363,6 +362,8 @@ img.summary_user_box_img
 {
   font: 16px Arial, Helvetica, sans-serif;
   color:#000000;
+  float:bottom;
+  float:right;
 }
 
 ul.summary_main_box_friends {
@@ -418,14 +419,7 @@ ul.summary_main_box_locations{
 }
 
 
-ul.stream_list{
-  width:100%;
-  height:100%;
-  overflow:auto;
-  list-style: none;
-  border:1px;
-  color:#000000;
-}
+
 
 .modal_channels_ul
 {
@@ -457,12 +451,40 @@ ul.stream_list{
 
 
 /************************************ Stream Divs *********************************************/
+div.streams_side_bars_box{
+  float:left;
+  width:20%;
+  height:600px;
+}
 
+div.stream_list_box{
+  float:left;
+  width:78%;
+  height:100%;
+}
+div.stream_more_box{
+  float:right;
+  width:20%;
+}
+
+ul.stream_list{
+  float:left;
+  padding-left:80px;
+  height:100%;
+  overflow:auto;
+  list-style: none;
+  border:1px;
+  color:#000000;
+}
+
+.stream_list_li{
+}
 
 .stream_box
 {
+  margin-top:15px;
   width:800px;
-	border: 1px solid #000000;
+	border: 1px solid #cccccc;
   float:left;
   display: inline;
 }
@@ -473,7 +495,7 @@ ul.stream_list{
   float:left;
   width:  40px;
   height:100%;
-  border: 1px solid #000000;
+//  border: 1px solid #cccccc;
   display: inline;
 }
 
@@ -551,26 +573,27 @@ img.stream_user_box
   display:inline;
 }
 
+.stream_close_button
+{
+}
 
 .stream_text_box
 {
   float:left;
   margin-top:20px;
-  margin-left:30px;
 	margin-left:0px; 
   width:730px;
-  font: 20px Arial, Helvetica, sans-serif;
   color:#000000;
   font: 16px Arial, Helvetica, sans-serif;
   text-align:left;
   display:block; 
   padding:10px;
-  border: 1px solid #cccccc;
+  //border: 1px solid #cccccc;
 }
 
 .js_entity_mention
 {
-  font: 14px Arial, Helvetica, sans-serif;
+  font: 13px Arial, Helvetica, sans-serif;
   color:#ffffff;
   margin-left:2px;
   padding-left:1px;
@@ -617,26 +640,461 @@ img.stream_user_box
   text-align:left;
   display:block; 
   padding:10px;
-  border: 1px solid #cccccc;
+  //border: 1px solid #cccccc;
 }
 
-.stream_campaign_box
-{
 
-}
-
+/************ comments ***********/
 .stream_comment_box
 {
+  float:right;
+  margin-top:20px;
+  margin-left:60px;
+	margin-right:10px; 
+	margin-bottom:10px; 
+  width:700px;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:10px;
+  //border: 1px solid #cccccc;
 
 }
 
 .stream_comment_title_box
 {
+  float:left;
+  float:top;
+	margin-left:0px; 
+  height:20px;
+  width:700px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#fff;
+  background:#445D73;
+  text-align:left;
+  display:inline;
+}
 
+.stream_comment_title_box_span
+{
+  padding:3px;
+}
+
+.stream_post_all_comments
+{
+  padding:3px;
+  float:right;
+}
+
+.stream_comments_box_ul
+{
+  display:block;
+  list-style: none;
+}
+
+.stream_comment_li
+{
+}
+
+.stream_single_comment_box
+{
+  float:left;
+  margin-top:4px;
+	margin-right:4px; 
+	margin-bottom:4px; 
+  width:650px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+  text-align:left;
+  display:block; 
+  padding:2px;
+  border: 1px solid #cccccc;
+}
+
+.stream_comment_close_box
+{
+  margin-top:5px;
+	overflow: hidden;
+  color:#000000;
+  font: 8px Arial, Helvetica, sans-serif;
+  float:right;
+  display:inline;
+}
+
+.stream_comment_close_btn
+{
+  float:right;
+  float:top;
+  font: 10px Arial, Helvetica, sans-serif;
+}
+
+.stream_comment_user_box
+{
+  float:left;
+  width:31px;
+  height:100%;
+  display:block;
+  height:100%;
+  overflow: hidden;
+}
+
+.stream_comment_user_box_img
+{
+  float:left;
+  width:30px;
+  height:30px;
+  display:block;
+}
+.stream_comment_user_box_a
+{
+  float:left;
+  font: 11px Arial, Helvetica, sans-serif;
+  color:#000000;
+  display:block;
+}
+
+.stream_comment_text_box
+{
+  float:left;
+  float:top;
+  margin-top:5px;
+	margin-left:36px; 
+  width:510px;
+  color:#000000;
+  font: 16px Arial, Helvetica, sans-serif;
+  text-align:left;
+  display:block; 
+  padding:5px;
+ // border: 1px solid #cccccc;
+}
+
+.stream_comment_add_new_box
+{
+  float:left;
+  margin-top:4px;
+	margin-right:4px; 
+	margin-left:40px; 
+	margin-bottom:4px; 
+  width:650px;
+  font: 12px Arial, Helvetica, sans-serif;
+  color:#000000;
+  text-align:left;
+  display:block; 
+  padding:2px;
+  //border: 1px solid #cccccc;
+}
+
+.stream_comment_text_area_box
+{
+  display:inline;
+  float:left;
+	margin-left:4px; 
+}
+
+.stream_comment_new_text_area
+{
+  font-family: 12px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  height: 30px;
+  width: 510px;
+  margin-top: 2px;
+  resize:none;
+}
+
+
+.stream_comment_text_area_box_btn_box
+{
+  display:inline;
+	margin-left:4px; 
+  float:left;
+}
+
+.stream_comment_new_btn
+{
+}
+
+/************ comments end ***********/
+.stream_campaign_box
+{
+  float:left;
+  margin-top:4px;
+	margin-right:4px; 
+	margin-left:40px; 
+	margin-bottom:4px; 
+  width:650px;
+  padding:2px;
+
+}
+
+.streams_campaigns_ul
+{
+  font-family: Arial, Verdana;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stream_campaign_li
+{
+  display: block;
+  position: relative;
+  float: left;
+
+}
+
+.stream_campaign_display
+{
+}
+
+.stream_campaign_display_a
+{
+  display: block;
+  text-decoration: none;
+  color: #000000;
+  border: 1px solid #cccccc;
+  padding: 5px 15px 5px 15px;
+  margin-left: 1px;
+  white-space: nowrap;
+  font-family: 12px Arial, Helvetica, sans-serif;
+
+}
+
+.stream_campaign_display_a:hover
+{
+   background:#445D73;
+   color:#ffffff;
+}
+
+.stream_campaign_hover_box
+{
+  display:none;
+  border: 1px solid #cccccc;
+}
+
+.stream_campaign_li:hover span{
+    display: block;
+    position: absolute;
+}
+.stream_campaign_user_action_box
+{
+  color:#000000;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #cccccc;
+  margin-left: 1px;
+  background:#ffffff;
+}
+
+.stream_campaign_show_all_box
+{
+  color:#000000;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid #cccccc;
+  margin-left: 1px;
+  background:#ffffff;
+}
+
+.campaign_user_action_a
+{
+  color:#000000;
+  font-family: 12px Arial, Helvetica, sans-serif;
+}
+
+.stream_campaign_user_action_box:hover
+{
+  background:#445D73;
+  color:#ffffff;
+}
+.campaign_show_all_a
+{
+  color:#000000;
+  font-family: 12px Arial, Helvetica, sans-serif;
+}
+
+.stream_campaign_show_all_box:hover
+{
+  background:#445D73;
+  color:#ffffff;
+}
+/**************************/
+/* stream side bar boxes */
+
+.stream_related_friends_box{
+  margin-top: 40px;
+  width:100%;
+  height:90px;
+  border: 1px solid #cccccc;
+}
+
+.stream_related_friends_title_box{
+  background:#445D73;
+  color:#ffffff;
+  width:100%;
+  float:left;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+ul.streams_side_ul_friends{
+	padding: 0;
+	float: left;
+	list-style: none;
+	width: 100%;
 }
 
 
 
+li.streams_side_li_friends{
+	float: left;
+  display:inline;
+  width:40px;
+  overflow:hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+	border: 1px solid #000000;
+  color:#000000;
+}
+
+.stream_friends_user_a{
+  float: left;
+  display:inline;
+}
+
+.stream_friend_name_span{
+  display:none;
+  font-family: 8px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color:#000000;
+  background:#ffffff;
+}
+
+.streams_side_li_friends:hover span{
+    display:block;
+    position: absolute;
+
+}
+
+/* entities sidebar box */
+
+.stream_related_entities_box{
+  margin-top: 40px;
+  width:100%;
+  height:90px;
+  border: 1px solid #cccccc;
+}
+
+.stream_related_entities_title_box{
+  background:#445D73;
+  color:#ffffff;
+  width:100%;
+  float:left;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+ul.streams_side_ul_entities{
+	padding: 0;
+	float: left;
+	list-style: none;
+	width: 100%;
+}
+
+
+
+li.streams_side_li_entities{
+	float: left;
+  display:inline;
+  width:40px;
+  overflow:hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+	border: 1px solid #000000;
+  color:#000000;
+}
+
+.stream_entities_image_a{
+  float: left;
+  display:inline;
+}
+
+.stream_entities_name_span{
+  display:none;
+  font-family: 8px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color:#000000;
+  background:#ffffff;
+}
+
+.streams_side_li_entities:hover span{
+    display:block;
+    position: absolute;
+
+}
+/*******/
+.stream_related_locations_box{
+  margin-top: 40px;
+  width:100%;
+  height:200px;
+  border: 1px solid #cccccc;
+}
+
+.stream_related_locations_title_box{
+  background:#445D73;
+  color:#ffffff;
+  width:100%;
+  float:left;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+ul.streams_side_ul_locations{
+	padding: 0;
+	float: left;
+	list-style: none;
+	width: 100%;
+}
+
+
+
+li.streams_side_li_locations{
+	float: left;
+  display:inline;
+  width:40px;
+  overflow:hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+	border: 1px solid #000000;
+  color:#000000;
+}
+
+.stream_locations_image_a{
+  float: left;
+  display:inline;
+}
+
+.stream_locations_name_span{
+  display:none;
+  font-family: 8px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color:#000000;
+  background:#ffffff;
+}
+
+.streams_side_li_locations:hover span{
+    display:block;
+    position: absolute;
+
+}
+/*****************/
+div.stream_related_channels_box{
+  width:100%;
+}
+
+div.stream_related_channels_title_box{
+  background:#445D73;
+  color:#ffffff;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+/*************************/
 /*************************************** TABS START *******************************************/
 ul.tabs {
 	margin: 0;

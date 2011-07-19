@@ -28,6 +28,19 @@ Sangam::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
   match '/home/settings' => 'home#settings'
   match '/home/settings_save' => 'home#settings_save'
+  match '/home/get_activities' => 'home#get_activities'
+  match '/home/get_entities' => 'home#get_entities'
+  match '/home/get_related_locations' => 'home#get_related_locations'
+  match '/home/get_enriched_activities' => 'home#get_enriched_activities'
+  match '/home/get_all_comments' => 'home#get_all_comments'
+  match '/home/get_all_campaigns' => 'home#get_all_campaigns'
+  match '/home/get_related_friends' => 'home#get_related_friends'
+  match '/home/update_campaign' => 'home#update_campaign'
+  match '/home/delete_campaign' => 'home#delete_campaign'
+  match '/home/delete_stream' => 'home#delete_stream'
+  match '/home/delete_stream' => 'home#delete_stream'
+
+
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
   match '/welcome/confirmation_wait' => 'welcome#confirmation_wait'

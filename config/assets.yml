@@ -30,6 +30,7 @@ javascripts:
     - public/javascripts/actwitty/profile_followings.js
     - public/javascripts/actwitty/profile_follow.js
     - public/javascripts/actwitty/profile_summary.js
+    - public/javascripts/actwitty/profile_streams_sidelists.js
     - public/javascripts/actwitty/profile_stream.js
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/profile_modals.js

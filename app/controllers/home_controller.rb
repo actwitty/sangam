@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   #before_filter :only_when_user_is_logged_in, :only => :show
 
-
+  ############################################
    def show
 
     @user=nil
@@ -50,7 +50,7 @@ class HomeController < ApplicationController
     end
 
   end
-
+  ############################################
   def settings
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
 	  @user = User.find_by_confirmation_token(params[:confirmation_token])
@@ -62,7 +62,7 @@ class HomeController < ApplicationController
 	      puts @profile.id
 	  end
   end
-
+  ############################################
   def settings_save
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
 	  @user = User.find_by_confirmation_token(params[:confirmation_token])
@@ -77,6 +77,138 @@ class HomeController < ApplicationController
 	 Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
 
   end
-	
+  ############################################
+  def get_activities
+    Rails.logger.info("[CNTRL][HOME][ACTIVITIES] Get activities")
+    Rails.logger.info("[CNTRL][HOME][ACTIVITIES] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+
+  end
+  ############################################
+  def get_entities
+    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities ")
+    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Params #{params}")
+
+    dummy_json=[
+                  {:id => 1, :name => "Pizza", :image => "/images/actwitty/unknown_entity.png" },
+                  {:id => 2, :name => "Burger", :image => "/images/actwitty/unknown_entity.png" },
+                  {:id => 3, :name => "Kal Ho Na Ho", :image => "/images/actwitty/unknown_entity.png" },
+                  {:id => 4, :name => "Sahib Sindh Sultan", :image => "/images/actwitty/unknown_entity.png" }
+                ]
+    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Returning dummy")
+    if request.xhr?
+      render :json => dummy_json, :status => 200
+    end
+    #send_json=current_user.get_related_entities(params[user_id],params[filter])
+    #if request.xhr?
+    #  render :json => {}, :status => 200
+    #end
+
+  end
+  ############################################
+  def get_related_locations
+    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Get related locations")
+    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Params #{params}")
+   dummy_json=[
+                  {:id => 1001, :type => 1, :url => "http://google.com", :name => "Google" },
+                  {:id => 1002, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york" },
+                  {:id => 1003, :type => 3, :name => "John's home" },
+                  {:id => 1004, :type => 1, :url => "http://www.amazon.com", :name => "Amazon"}
+                ]
+    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Returning dummy")
+    if request.xhr?
+      render :json => dummy_json, :status => 200
+    end
+
+    #send_json=current_user.get_related_locations(params[user_id],params[filter])
+    #if request.xhr?
+    #  render :json => {}, :status => 200
+    #end
+
+  end
+  ############################################
+  def get_enriched_activities
+    Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Get enriched  activities")
+    Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+  def get_all_comments
+    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] Get All Comments")
+    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+  def get_all_campaigns
+    Rails.logger.info("[CNTRL][HOME][ALL CAMPAIGNS] Get All Campaigns")
+    Rails.logger.info("[CNTRL][HOME][ALL CAMPAIGNS] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+  # User sign in required
+  def get_related_friends
+    Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Related friends request")
+    Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Params #{params}")
+    if user_signed_in?
+      #current_user.get_related_friends(params[filter])
+      dummy_json=[
+                    {:id => 1, :name => "Abc Def", :image => "/images/actwitty/default_user.gif" },
+                    {:id => 2, :name => "Xyz Pqr", :image => "/images/actwitty/default_user.gif" },
+                    {:id => 3, :name => "Mno Abc", :image => "/images/actwitty/default_user.gif" },
+                    {:id => 4, :name => "Bbb Ddd", :image => "/images/actwitty/default_user.gif" }
+                  ]
+      Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Returning dummy")
+      if request.xhr?
+        render :json => dummy_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+  ############################################
+
+  def update_campaign
+    Rails.logger.info("[CNTRL][HOME][UPDATE CAMPAIGN] Update user campaign")
+    Rails.logger.info("[CNTRL][HOME][UPDATE CAMPAIGN] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+  def delete_campaign
+    Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] Update user campaign")
+    Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+  def delete_stream
+    Rails.logger.info("[CNTRL][HOME][DELETE STREAM] Delete user stream")
+    Rails.logger.info("[CNTRL][HOME][DELETE STREAM] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+  def delete_comment
+    Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] Delete user comment")
+    Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] Params #{params}")
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
 
 end
