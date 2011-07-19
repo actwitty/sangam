@@ -71,7 +71,7 @@ $(document).ready(function(){
     
           if(tab_id == "streams_tab_head"){
             if(populated_stream == false){
-              append_stream(page_owner_id,session_owner_id);
+              reload_streams_on_viewed_user(page_owner_id,session_owner_id);
               populated_stream=true;
             }
           }

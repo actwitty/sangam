@@ -163,7 +163,6 @@ label.alternate_login_label
 {
   float:left;
   display:block;
-  border:2px solid green;
   margin-left:10px;
 }
 
@@ -302,6 +301,8 @@ img.summary_user_box_img
 {
   font: 16px Arial, Helvetica, sans-serif;
   color:#000000;
+  float:bottom;
+  float:right;
 }
 
 ul.summary_main_box_friends {
@@ -389,8 +390,25 @@ ul.summary_main_box_locations{
 
 
 /************************************ Stream Divs *********************************************/
+div.streams_side_bars_box{
+  float:left;
+  width:20%;
+  height:600px;
+}
+
+div.stream_list_box{
+  float:left;
+  width:78%;
+  height:100%;
+}
+div.stream_more_box{
+  float:right;
+  width:20%;
+}
+
 ul.stream_list{
-  width:100%;
+  float:left;
+  padding-left:80px;
   height:100%;
   overflow:auto;
   list-style: none;
@@ -838,6 +856,184 @@ img.stream_user_box
   background:#445D73;
   color:#ffffff;
 }
+/**************************/
+/* stream side bar boxes */
+
+.stream_related_friends_box{
+  margin-top: 40px;
+  width:100%;
+  height:90px;
+  border: 1px solid #cccccc;
+}
+
+.stream_related_friends_title_box{
+  background:#445D73;
+  color:#ffffff;
+  width:100%;
+  float:left;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+ul.streams_side_ul_friends{
+	padding: 0;
+	float: left;
+	list-style: none;
+	width: 100%;
+}
+
+
+
+li.streams_side_li_friends{
+	float: left;
+  display:inline;
+  width:40px;
+  overflow:hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+	border: 1px solid #000000;
+  color:#000000;
+}
+
+.stream_friends_user_a{
+  float: left;
+  display:inline;
+}
+
+.stream_friend_name_span{
+  display:none;
+  font-family: 8px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color:#000000;
+  background:#ffffff;
+}
+
+.streams_side_li_friends:hover span{
+    display:block;
+    position: absolute;
+
+}
+
+/* entities sidebar box */
+
+.stream_related_entities_box{
+  margin-top: 40px;
+  width:100%;
+  height:90px;
+  border: 1px solid #cccccc;
+}
+
+.stream_related_entities_title_box{
+  background:#445D73;
+  color:#ffffff;
+  width:100%;
+  float:left;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+ul.streams_side_ul_entities{
+	padding: 0;
+	float: left;
+	list-style: none;
+	width: 100%;
+}
+
+
+
+li.streams_side_li_entities{
+	float: left;
+  display:inline;
+  width:40px;
+  overflow:hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+	border: 1px solid #000000;
+  color:#000000;
+}
+
+.stream_entities_image_a{
+  float: left;
+  display:inline;
+}
+
+.stream_entities_name_span{
+  display:none;
+  font-family: 8px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color:#000000;
+  background:#ffffff;
+}
+
+.streams_side_li_entities:hover span{
+    display:block;
+    position: absolute;
+
+}
+/*******/
+.stream_related_locations_box{
+  margin-top: 40px;
+  width:100%;
+  height:200px;
+  border: 1px solid #cccccc;
+}
+
+.stream_related_locations_title_box{
+  background:#445D73;
+  color:#ffffff;
+  width:100%;
+  float:left;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+ul.streams_side_ul_locations{
+	padding: 0;
+	float: left;
+	list-style: none;
+	width: 100%;
+}
+
+
+
+li.streams_side_li_locations{
+	float: left;
+  display:inline;
+  width:40px;
+  overflow:hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+	border: 1px solid #000000;
+  color:#000000;
+}
+
+.stream_locations_image_a{
+  float: left;
+  display:inline;
+}
+
+.stream_locations_name_span{
+  display:none;
+  font-family: 8px Arial, Helvetica, sans-serif;
+  border: 1px solid #cccccc;
+  color:#000000;
+  background:#ffffff;
+}
+
+.streams_side_li_locations:hover span{
+    display:block;
+    position: absolute;
+
+}
+/*****************/
+div.stream_related_channels_box{
+  width:100%;
+}
+
+div.stream_related_channels_title_box{
+  background:#445D73;
+  color:#ffffff;
+  font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+/*************************/
 /*************************************** TABS START *******************************************/
 ul.tabs {
 	margin: 0;

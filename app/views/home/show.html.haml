@@ -117,13 +117,15 @@
           %input#more_friends_cookie{:type => "hidden", :value => "0"}
       #streams_tab.tab_content
         #stream_filters
-        #stream_related_entities
-        #stream_related_activities
-        #stream_related_friends
-        #stream_list_div 
+        %div#streams_side_bar.streams_side_bars_box
+          %div#stream_friends_box.stream_related_friends_box
+          %div#stream_entities_box.stream_related_entities_box
+          %div#stream_locations_box.stream_related_locations_box
+          %div#stream_channels_box.stream_related_channels_box
+        %div#streams_listing_div.stream_list_box
           %ul#streams.stream_list
-          %a#more_streams.more_loader{:href => "#"} More
-          %input#more_streams_cookie{:type => "hidden", :value => "0"}
+        %a#more_streams.more_loader{:href => "#"} More
+        %input#more_streams_cookie{:type => "hidden", :value => "0"}
 
   #channel-dialog-modal
   #location-dialog-modal

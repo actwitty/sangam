@@ -467,7 +467,8 @@ function create_and_add_stream(ul, stream, current_user_id){
 function append_stream(owner_id, current_user_id){
   var scroll = $(window).scrollTop();
   var more_cookie = $("#more_streams_cookie").val();
-  alert(more_cookie); 
+
+
   $.ajax({
         url: '/activities/get_activities.json',
         type: 'GET',
@@ -533,14 +534,19 @@ function clear_streams(){
  */
 function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
 
-  set_stream_to_focus_on_filter_change();
+  
   clear_streams();
   append_stream(page_owner_id, session_owner_id);
-  /*
+
   clear_related_friends();
-  list_related_friends();
+  if( session_owner_id){ 
+    list_related_friends();
+  }
+
+
   clear_related_entities();
   list_related_entities();
+  /*
   clear_related_locations();
   list_related_locations();*/
 }

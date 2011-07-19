@@ -57,6 +57,7 @@ function modify_filter(filter_json, reload){
       redirect_to_streams_filtered_of_other_user();
     }else{
       /* stay on current user and apply the new filter */
+      set_stream_to_focus_on_filter_change();
       reload_streams_on_viewed_user(page_owner_id, session_owner_id);
     }
   }
