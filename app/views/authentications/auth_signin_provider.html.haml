@@ -1,13 +1,10 @@
 #page-wrapper
-  / Welcome page header
   #header
     =render :partial => "welcome/logo"
-    /=render :partial => "users/sessions/foreign_auth"
-  %img{:src => @user_picture}
+  %img{:src => @welcome_user_picture}
   Hello
   %b= @welcome_username
   welcome to actwitty.com
-  /%img{:src => "#{@welcome_user_picture}"}
 
 
   #foreign_auths
@@ -27,6 +24,5 @@
 
 
 
-/=render :partial => "welcome/footer"
 
 

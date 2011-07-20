@@ -23,7 +23,7 @@ class AuthenticationsController < ApplicationController
   def auth_signin_provider
       provider = params['provider']
       puts "********************Auth Sign In Provider**********************"
-      Rails.logger.info("********************Auth Sign In Provider**********************")
+      Rails.logger.info("[CNTRL][Authentications] Auth Signin Provider")
 
       uid = params['uid']
       puts uid
@@ -33,16 +33,19 @@ class AuthenticationsController < ApplicationController
         authentication = Authentication.find_by_provider_and_uid(provider, uid)
         unless authentication.nil?
           @welcome_username = authentication.foreign_profile.name
-          #@welcome_user_picture = authentication.foreign_profile.image
-          puts @welcome_username
+          @welcome_user_picture = authentication.foreign_profile.image
+          if @welcome_user_picture.nil?
+            Rails.logger.info("[CNTRL][Authentications][AUTH SIGNIN PVDR] No User Picture From Provider")
+            @welcome_user_picture = "/images/user.png"
+          end
+          puts @welcome_user_picture
           @user_picture = "http://graph.facebook.com/#{uid}/picture/"
-          puts @user_picture
-
-          puts authentication
-          #puts authentication.foreign_profile.image
+          Rails.logger.info("[CNTRL][Authentications] Provider picture #{@user_picture}")
         else
+          Rails.logger.info("[CNTRL][Authentications][AUTH SIGNIN PVDR] Authentication fails")
           redirect_to "/"
         end
+        Rails.logger.info("[CNTRL][Authentications][AUTH SIGNIN PVDR] Exiting")
       end
   end	
 
