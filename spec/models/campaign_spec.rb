@@ -61,7 +61,7 @@ describe Campaign do
    @u3 = Factory(:user)
 
    @l1 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
-   @a1 = @u1.create_activity( :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+   @a1 = @u1.create_activity( :word => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
    @a1 = @a1[:post]
@@ -129,7 +129,7 @@ describe Campaign do
        @a.destroy
        c= Campaign.where(:id => @c3.id).first
        c.should be_nil
-       @a1 = @u2.create_activity( :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
+       @a1 = @u2.create_activity( :word => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
        @a1 = @a1[:post]

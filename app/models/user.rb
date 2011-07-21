@@ -500,13 +500,14 @@ class User < ActiveRecord::Base
 
   #INPUT
   #:user_id => 123
+  #:friend => true/false
   #:filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   def get_stream(params ={})
     puts params.inspect
     if params[:user_id] == self.id
-        user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-        user << self.id
+          user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+          user << self.id
     else
         user = params[:user_id]
     end
@@ -527,15 +528,31 @@ class User < ActiveRecord::Base
 
   #INPUT
   #user_id => 123 #If same as current use then mix streams with friends other wise only user
+  #:friend => true/false
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #OUTPUT
+  #[
+  # {:id=>24, :word=>{:word_id=>44, :name=>"eating"}, :time=>Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  # :user=>{:id=>39, :full_name=>"lemony3 lime3", :photo=>"images/id_3"}, :count=>1, :locations=>[],
+  # :documents=>[{:id=>30, :name=>"ddd.jpg", :url=>"https://s3.amazonaws.com/ddd.jpg", :thumb_url=>"https://s3.amazonaws.com/ddd_thumb.jpg"},
+  # {:id=>29, :name=>"ccc.jpg", :url=>"https://s3.amazonaws.com/ccc.jpg", :thumb_url=>"https://s3.amazonaws.com/ccc_thumb.jpg"}],
+  # :entities=>[{:id=>24, :name=>"rahul dravid", :image=>"/m/02cb7_j"}],
+  # :recent_text=>["burger at <a href=/entities/24 class=\"activity_entity\">rahul dravid</a>"],
+  # :friends=>[{:id=>38, :full_name=>"lemony2 lime2", :photo=>"images/id_2"}]
+  # }
+  #]
   def get_summary(params)
     h = {}
     user = nil
     if params[:user_id] == self.id
+      if params[:friend] == true
         user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-        user << self.id
+      else
+        user = self.id
+      end
     else
         user = params[:user_id]
+        params[:friend] = false
     end
 
     documents= {}
@@ -568,6 +585,7 @@ class User < ActiveRecord::Base
         index = index + 1
       end
 
+
       Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
         h = format_document(attr)
         documents[attr.id].each do |idx|
@@ -599,7 +617,7 @@ class User < ActiveRecord::Base
 
       activities = {}
       #friends will only be fetched current use == visited user
-      if params[:user_id] == self.id
+      if params[:friend] == true
 
         user.delete(self.id)
         Summary.includes(:user).where(:activity_word_id => friends.keys, :user_id => user).

@@ -376,7 +376,7 @@ describe Activity do
 #      a = @u.remove_activity(act1[:post][:id])
 #      a.should be_blank
       @u.documents.first.destroy
-      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc})
+      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc, :friend => true})
       puts a
     end
     it "should be able to remove summary at last" do
