@@ -363,11 +363,11 @@ class User < ActiveRecord::Base
 
   #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
-  #returns array of :type => 1, :url => "http://google.com", :name => "Google"
+  #returns array of :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR
-  #                 :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
+  #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
   #                                                      OR
-  #                 :type => 2, :name => "John's home"
+  #                 :id => 1234, :type => 2, :name => "John's home"
   def get_related_locations(user_id, filter = {})
     h = {}
     h = process_filter(filter)
@@ -430,6 +430,7 @@ class User < ActiveRecord::Base
   #             }
 
   def create_activity(params={})
+    params[:activity] = params[:word]
     params[:author_id] = self.id
 
     obj = Activity.create_activity(params)

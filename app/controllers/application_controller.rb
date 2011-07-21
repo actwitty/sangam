@@ -9,4 +9,6 @@ class ApplicationController < ActionController::Base
       redirect_to :controller=>'welcome', :action=>'new'
     end
   end
+
+
 end
