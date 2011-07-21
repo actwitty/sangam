@@ -48,12 +48,13 @@ class Activity < ActiveRecord::Base
 
   protected
     def clear_serialized_summary
-      s=Summary.where(:id => self.summary_id).first
-
-       if s.activity_array.include?(self.id)
-         puts "deleting activity"
-         s.activity_array.delete(self.id)
-       end
+      if !self.summary_id.nil?
+        s=Summary.where(:id => self.summary_id).first
+        if s.activity_array.include?(self.id)
+          puts "deleting activity"
+          s.activity_array.delete(self.id)
+        end
+      end
     end
   public
 
