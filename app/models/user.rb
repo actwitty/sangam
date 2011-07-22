@@ -401,7 +401,16 @@ class User < ActiveRecord::Base
   #INPUT => activity_id => 123, entity_id => 234
   #OUTPUT => Activity Blob
   def remove_entity_from_activity(activity_id, entity_id)
-
+    activity = Activity.where(:id => activity_id).first
+    if !activity.activity_text.blank?
+      activity.activity_text = unlink_an_entity(activity.activity_text,  entity_id)
+      activity.update_attributes(:activity_text => activity.activity_text)
+    end
+    activity = format_activity(activity)
+    activity
+  rescue => e
+    Rails.logger.error("User => remove_entity_from_activity => failed => #{e.message}")
+    {}
   end
 
   # INPUT
@@ -506,8 +515,8 @@ class User < ActiveRecord::Base
   def get_stream(params ={})
     puts params.inspect
     if params[:user_id] == self.id
-          user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-          user << self.id
+       user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+       user << self.id
     else
         user = params[:user_id]
     end
@@ -592,12 +601,12 @@ class User < ActiveRecord::Base
           summaries[idx][:documents] << h[:document]
         end
       end
+
       documents = {}
       Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
         h = location_hash(attr)
         h[:id] = attr.id
         locations[attr.id].each do |idx|
-
           summaries[idx][:locations] << h
         end
       end

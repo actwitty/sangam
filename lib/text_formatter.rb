@@ -53,7 +53,7 @@ module TextFormatter
 
   #convert an entity link into normal name without a link
   #this is used when entity id mentioned in entity url does not exist
-  def unlink_an_entity(text, entity_name, entity_id)
+  def unlink_an_entity(text,  entity_id)
     regex = /<a href=\/#{AppConstants.entity_controller}\/(#{entity_id}) class=\"#{AppConstants.activity_entity_class}\">([\w\s]+)<\/a>/i
     m = text.scan(regex)
     m.each do |m_array|
@@ -263,7 +263,7 @@ module TextFormatter
 #    text = unlink_a_mention(text,"PIZZA", 235)
 #    puts text
 #    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = unlink_an_entity(text,"pizza", 345)
+#    text = unlink_an_entity(text, 345)
 #    puts text
 #  end
 

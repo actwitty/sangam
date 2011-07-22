@@ -158,7 +158,9 @@ class Activity < ActiveRecord::Base
 
 
           puts obj.inspect
-          params[:summary_hash] = summary_hash
+
+          #Update Summary Data
+          summary.serialize_data(summary_hash)
 
           params[:text].blank? ? create_hub_entries(params) : post_proc_activity(params)
 
@@ -204,15 +206,14 @@ class Activity < ActiveRecord::Base
         else
           Hub.create!(hubs_hash)
         end
-        params[:summary_hash]["entity"]=entity
 
         #Update Activity Data
         obj = Activity.where(:id => params[:activity_hash]).first
         obj.update_attributes(:activity_text => params[:text],:enriched => true)
 
-        #Update Summary Data
+        #Update Summary's Entity Array
         summary = Summary.where(:id => params[:summary_id]).first
-        summary.serialize_data(params[:summary_hash])
+        summary.serialize_data({"entity" => entity})
 
       rescue => e
          Rails.logger.error("Activity => CreateHubEntries => Failed => #{e.message} => #{params} => hubs_hash = #{hubs_hash}")

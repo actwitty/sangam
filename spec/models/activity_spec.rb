@@ -306,7 +306,7 @@ describe Activity do
     it "should read create read and delete comments" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/xyz.jpg" },
                                                     {:thumb_url => "https://s3.amazonaws.com/abc_thumb.jpg",:url => "https://s3.amazonaws.com/abc.jpg" }])
@@ -332,7 +332,7 @@ describe Activity do
                                :activity_id => act[:post][:id])
 
       act1 = @u1.create_activity( :word => "eating" , :text => "pizza at sachin tendulkar",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/blk_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/blk.jpg" },
                                                     {:thumb_url => "https://s3.amazonaws.com/bbb_thumb.jpg",:url => "abc" }])
@@ -348,7 +348,7 @@ describe Activity do
       com6 = @u3.create_comment(:activity_id => act[:post][:id], :text => "6666666666666666")
       puts com6
       act2 = @u2.create_activity( :word => "eating" , :text => "burger at rahul dravid",
-                              :location =>  {:web_location =>{:web_location_url => "yahoo", :web_location_title => "hello"}},
+                             :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/ccc_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/ccc.jpg" },
                                                     {:thumb_url => "https://s3.amazonaws.com/ddd_thumb.jpg",:url => "https://s3.amazonaws.com/ddd.jpg" }])
@@ -366,10 +366,9 @@ describe Activity do
       puts h.inspect
       h.should_not be_blank
 
-      @u.new_contact_request(@u1.id)
-      @u1.new_contact_request(@u.id)
-      @u.new_contact_request(@u2.id)
-      @u2.new_contact_request(@u.id)
+      @u.follow(@u1.id)
+      @u.follow(@u2.id)
+
 #      a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id]}, :updated_at => Time.now.utc})
 #      puts a.inspect
 #      a.should_not be_blank
@@ -419,7 +418,7 @@ describe Activity do
       s.should be_nil
     end
     it "should be able to add documents properly" do
-       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
+       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
@@ -428,14 +427,17 @@ describe Activity do
                                                {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://b.com/xyz.jpg" },
                                            {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://c.com/xyz.jpg" }])
 
-       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
+       act1 = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/xyz.jpg" }])
        work_off
        a = Activity.where(:id => act[:post][:id]).first
-       a.documents.size.should == 1
+       a.documents.size.should == 4
+       e = a.entities.where(:entity_name => "pizza").first
+       a = @u.remove_entity_from_activity(a.id,e.id)
+       puts a
     end
   end
 end
