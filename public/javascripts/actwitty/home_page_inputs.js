@@ -174,7 +174,7 @@ $(document).ready(function() {
         post_activity = $('#activity_field').val();
       }
       var dataString = "word=" +  encodeURIComponent(post_activity) +
-                       "&text=" + encodeURIComponent($('#entity_field').val() + "@@" + $('#location_field').val()) +
+                       "&text=" + encodeURIComponent($('#entity_field').val() + 
                        "&enrich=true" +
                        "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN) +
                        get_location_string();

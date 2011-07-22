@@ -211,6 +211,7 @@ class Activity < ActiveRecord::Base
         obj.update_attributes(:activity_text => params[:text],:enriched => true)
 
         #Update Summary Data
+        Rails.logger.info("create_hub_entries => summary_hash => #{params[:summary_hash].inspect}")
         summary = Summary.where(:id => params[:summary_id]).first
         summary.serialize_data(params[:summary_hash])
 

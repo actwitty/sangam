@@ -1,9 +1,33 @@
 
 var the_big_filter_JSON={dummy:"dummy"};
+/* handle text box */
+function create_and_add_text_box(box_id, summary){
+  var text_box= $("#" + box_id);
+  if ( summary.recent_text && summary.recent_text.length  ){
+    var ul_box_id = box_id + "_ul"; 
+    var html = '<ul id="' + ul_box_id +  '" class="summary_main_box_recent_text">' +
+                '</ul>';
+    text_box.append(html);
+    var ul_box = $("#" + ul_box_id);
 
+    $.each(summary.recent_text, function(i, text){
+     var html='<li>' +
+                '<span>' +
+                    text +
+                '</span>' +
+              '</li>';
+
+     ul_box.append(html);
+    });
+      
+  }else{
+    /* hide if there is nothing to show */
+    text_box.hide();
+  }
+}
 /* handle docs box */
 function create_and_docs_box(box_id, summary){
-  docs_box= $("#" + box_id);
+  var docs_box= $("#" + box_id);
   if ( summary.documents && summary.documents.length  ){
     var ul_box_id = box_id + "_ul"; 
     var doc_box_id = box_id + "_slider";
@@ -36,7 +60,7 @@ function create_and_docs_box(box_id, summary){
 
 /* handle friends box */
 function create_and_add_friends_box(box_id, summary){
-  friends_box = $("#" + box_id);
+  var friends_box = $("#" + box_id);
   if( summary.friends && summary.friends.length ){
     var ul_box_id = box_id + "_ul"; 
     var html = '<ul id="' + ul_box_id +  '" class="summary_main_box_friends">' +
@@ -76,7 +100,7 @@ function create_and_add_friends_box(box_id, summary){
 
 /* handle entities box */
 function create_and_add_entities_box(box_id, summary){
-  entities_box = $("#" + box_id);
+  var entities_box = $("#" + box_id);
   if( summary.entities && summary.entities.length ){
     var ul_box_id = box_id + "_ul"; 
     var html = '<ul id="' + ul_box_id +  '" class="summary_main_box_entities">' +
@@ -120,8 +144,8 @@ function create_and_add_entities_box(box_id, summary){
 
 /* handle locations box */
 function create_and_add_locations_box(box_id, summary){
-  locations_box = $("#" + box_id);
-  if( summary.location && summary.location.length ){
+  var locations_box = $("#" + box_id);
+  if( summary.locations && summary.locations.length ){
     var ul_box_id = box_id + "_ul"; 
     var html = '<ul id="' + ul_box_id +  '" class="summary_main_box_locations">' +
                 '</ul>';
@@ -228,9 +252,7 @@ function create_and_add_summary(ul, summary){
                   /* added recent update text */
                   '<div  class="summary_main_box_latest" id="' + latest_text_box_id  + '">' +
                     '<h4> Latest text update </h4>' +
-                    '<p>' +
-                      summary.recent_text +
-                    '</p>' +
+                    
                   '</div>' +
 
 
@@ -245,7 +267,8 @@ function create_and_add_summary(ul, summary){
         /* overall summary div is added */        
         ul.append(html);
         /* handle individual divs */
-        create_and_docs_box(docs_box_id, summary);       
+        create_and_docs_box(docs_box_id, summary);  
+        create_and_add_text_box(latest_text_box_id, summary);
         create_and_add_friends_box(friends_box_id, summary);
         create_and_add_entities_box(entities_box_id, summary);
         create_and_add_locations_box(locations_box_id, summary)

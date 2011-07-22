@@ -1,8 +1,7 @@
 / Java scripts includes
-= include_javascripts :profile
+
 = javascript_include_tag 'actwitty/activity'
 
-= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
 
 %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"}
 %script{:src => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"}

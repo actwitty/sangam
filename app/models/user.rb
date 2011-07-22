@@ -507,7 +507,8 @@ class User < ActiveRecord::Base
   def get_stream(params ={})
     puts params.inspect
     if params[:user_id] == self.id
-          user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+          #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+          user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
           user << self.id
     else
         user = params[:user_id]
@@ -547,11 +548,15 @@ class User < ActiveRecord::Base
     user = nil
     if params[:user_id] == self.id
       if params[:friend] == true
-        user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting friends summary")
+        #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
       else
+        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting self summary #{self.inspect}")
         user = self.id
       end
     else
+        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
         params[:friend] = false
     end

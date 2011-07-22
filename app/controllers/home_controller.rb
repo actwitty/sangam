@@ -211,7 +211,10 @@ class HomeController < ApplicationController
   end
   ############################################
   def create_activity
+
+
     Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] Create activity requested with #{params}")
+
     if user_signed_in?
       if params[:enrich].blank?
         params[:enrich] = false
@@ -223,7 +226,6 @@ class HomeController < ApplicationController
         end
       end
       Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Calling model api")
-
       response_json=current_user.create_activity(params)
       Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Returned from model api #{response_json}")
        if request.xhr?
@@ -266,8 +268,9 @@ class HomeController < ApplicationController
   def get_friends_summary
     Rails.logger.info("[CNTRL][HOME][GET FRIENDS SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
-      if !params[:user_id].blank? && params[:user_id] != current_user.id
+      if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
         params[:friend]=true
+        params[:user_id]=current_user.id
         Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] Calling model api #{params}")
         response_json=current_user.get_summary(params)
         Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] returned from model api ")
