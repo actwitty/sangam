@@ -435,6 +435,7 @@ class User < ActiveRecord::Base
   #              :user=>{:id=>661, :full_name=>"lemony1 lime1",:photo=>"images/id_1"},
   #              :id=>1356,
   #              :time=>Thu, 14 Jul 2011 05:42:20 UTC +00:00},
+  #              :enriched=>false,
   #              :location=>{:type=>2, :lat=>#<BigDecimal:62b1fc8,'0.2345E2',18(18)>, :long=>#<BigDecimal:62b1de8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>315}
   #             }
 
@@ -515,8 +516,14 @@ class User < ActiveRecord::Base
   def get_stream(params ={})
     puts params.inspect
     if params[:user_id] == self.id
+<<<<<<< HEAD
        user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
        user << self.id
+=======
+          #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+          user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
+          user << self.id
+>>>>>>> 62635bc860f553bc0bf435797411dea4fa9db366
     else
         user = params[:user_id]
     end
@@ -555,11 +562,15 @@ class User < ActiveRecord::Base
     user = nil
     if params[:user_id] == self.id
       if params[:friend] == true
-        user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting friends summary")
+        #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
       else
+        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting self summary #{self.inspect}")
         user = self.id
       end
     else
+        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
         params[:friend] = false
     end

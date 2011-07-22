@@ -206,7 +206,7 @@ class Activity < ActiveRecord::Base
         else
           Hub.create!(hubs_hash)
         end
-
+       
         #Update Activity Data
         obj = Activity.where(:id => params[:activity_hash]).first
         obj.update_attributes(:activity_text => params[:text],:enriched => true)

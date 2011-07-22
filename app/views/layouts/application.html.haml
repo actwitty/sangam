@@ -8,10 +8,12 @@
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = include_stylesheets :defaults
     = include_javascripts :jquery
+    = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
     = javascript_include_tag :defaults
     :javascript
       !window.jQuery && document.write(unescape('%3Cscript src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"%3E%3C/script%3E'))
     = include_javascripts :actwittyall
+    = include_javascripts :profile
     
     = csrf_meta_tag
     

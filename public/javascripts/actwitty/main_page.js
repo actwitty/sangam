@@ -2,20 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 
-jQuery.ajaxSetup({
-   cache: true,
-   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "application/json")}
- });
 
-$(document).ajaxSend(function(event, request, settings) {
-  if (typeof(AUTH_TOKEN) == "undefined") return;  
-  if ( settings.type != 'GET' &&  settings.type != 'get') {
-        alert("before_send inside");
-        settings.data = settings.data || "";
-        settings.data = (settings.data ? settings.data + "&" : "")
-            + "authenticity_token=" + encodeURIComponent( AUTH_TOKEN );
-  }
-});
 
 $(document).ready(function(){
     $(".actwittysignup").live('click', function() {

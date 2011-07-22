@@ -28,9 +28,11 @@
  *      nil
  *  }
  *
+ *  [location][geo_location]=
+ *
  */
 function get_location_json(){
-
+  
   var location_type = $('#location_type').val();
   
   if(location_type == '1')
@@ -64,12 +66,73 @@ function get_location_json(){
 
 }
 
+/*
+ * clear all boxes
+ */
+function clear_all_boxes(){
+  $('#location_field').val("");
+  $('#lat_value').val("");
+  $('#geo_location').val("");
+  $('#location_field').val("");
+  $('#activity_field').val("");
+  $('#entity_field').val("");
+}
+
+
+/* get location string based on the type of location
+ * Type 1: Geo Location
+ * Type 2: URL
+ * Type 3: Other
+ *
+ *
+ */
+function get_location_string(){
+  
+  var location_type = $('#location_type').val();
+  var location_string=""; 
+  if(location_type == '1')
+  {
+     location_string = '&location[geo_location][geo_latitude]=' + $('#lat_value').val() +
+                       '&location[geo_location][geo_longitude]=' + $('#lng_value').val() +  
+                       '&location[geo_location][geo_name]=' + encodeURIComponent($('#geo_location').val());
+
+            
+  }
+  else if (location_type == '2')
+  {
+
+    location_string = '&web_location[location_field][geo_latitude]=' + encodeURIComponent($('#location_field').val()) +
+                      '&web_location[web_location_title][geo_longitude]=' + "hello";
+  }
+  else if (location_type == '3')
+  {
+    location_string = '&unresolved_location[unresolved_location_name]=' + encodeURIComponent($('#location_field').val());
+  }
+  
+  return location_string;
+}
+
+function post_activity_to_server(post_data){
+   $.ajax({
+        url: '/home/create_activity.json',
+        type: 'POST',
+        data: post_data,
+        dataType: 'json',
+        cache: true,
+        success: function (data) {
+          clear_all_boxes();
+          alert('A new post has been added.');
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
+        }
+    });
+}
 
 
 $(document).ready(function() {
   
    $("#actwitty_generator").click(function() {
-      alert("sad");   
       var latlang = document.getElementById('user_latlng').value;
       /* check if the location field is empty then set type as user input */
       if($('#location_field').val() == "")
@@ -103,39 +166,26 @@ $(document).ready(function() {
                 alert("Seems to be something of user's interest");
             }
        }
-
-
-       var post_data = 
-       {
-          word :$('#activity_field').val(),
-          text :$('#entity_field').val() + "@@" + $('#location_field').val(),
-          location_type : get_location_json()
-       };
       
-      alert(post_data);
-      var dataString = JSON.stringify(post_data);
-      alert(dataString); 
+      var post_activity="";
+      if(!$('#activity_field').val()){
+        post_activity = "shared";
+      }else{
+        post_activity = $('#activity_field').val();
+      }
+      var dataString = "word=" +  encodeURIComponent(post_activity) +
+                       "&text=" + encodeURIComponent($('#entity_field').val() + 
+                       "&enrich=true" +
+                       "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN) +
+                       get_location_string();
+                         
+      post_activity_to_server(dataString);
 
    });
 
 
    
-      /* 
-      $.ajax({
-	        url: "/testingjson/latlng",
-	        dataType: "json",
-	        type: "POST",
-	        processData: false,
-	        contentType: "application/json",
- 
-          data: dataString,
- 
-	        beforeSend: function(xhr)   
-	        {
-		        xhr.setRequestHeader("X-Http-Method-Override", "PUT");
-	        }
-      });
-      */
+     
      
  
     
