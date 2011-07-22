@@ -18,7 +18,7 @@ var the_big_stream_enriched_state={};
  */
 function handle_stream_docs(box_id, stream){
   docs_box= $("#" + box_id);
-  if ( stream.documents &&  stream.documents.length ){
+  if ( stream.documents &&  stream.documents.count ){
     var ul_box_id = box_id + "_ul"; 
     var doc_box_id = box_id + "_slider";
     var html = '<div  class="aw_slider" id="' + doc_box_id + '">' +                  
@@ -28,7 +28,7 @@ function handle_stream_docs(box_id, stream){
 
     docs_box.append(html);
     var ul_box = $("#" + ul_box_id);  
-    $.each(stream.documents, function(i, attachment){
+    $.each(stream.documents.array, function(i, attachment){
      var html='<li>' +
                 '<a href="#">' +
                   '<img src="'+ attachment.url + '"  width="40" height="40" alt="" />' +
@@ -257,7 +257,7 @@ function handle_stream_comments(box_id, stream, current_user_id){
                             post_id:stream.post.id
                       };
   var comment_count_json = {
-                            count : stream.comment.count,
+                            count : stream.comments.count,
                             display_span : count_display_span_id
                         };
 
@@ -272,18 +272,18 @@ function handle_stream_comments(box_id, stream, current_user_id){
   the_big_comment_count_json[stream.post.id] = comment_count_json; 
   the_big_comment_add_json[add_new_btn_id] = add_new_comment_json;
   /* context is set, go ahead */
-  if( stream.comment ){
+  if( stream.comments ){
    
     var title_div = $("#" + title_div_id);
-    if (parseInt(stream.comment.count) < 3){
+    if (parseInt(stream.comments.count) < 3){
       var html = '<span class="stream_comment_title_box_span" id="' + count_display_span_id  + '">' +
-                'Total Comments :  ' + stream.comment.count +
+                'Total Comments :  ' + stream.comments.count +
                '</span>';
       title_div.append(html);
     }else{
        var html = 
                '<span class="stream_comment_title_box_span" id="' + count_display_span_id + '">' +
-                  'Total Comments :  ' + stream.comment.count +
+                  'Total Comments :  ' + stream.comments.count +
                 '</span>' +
                 '<a href="#" class="js_show_all_comment_btn stream_post_all_comments" id="' + show_all_id + '">' +
                   'Show All' +
@@ -298,7 +298,7 @@ function handle_stream_comments(box_id, stream, current_user_id){
   
   div.append(html);
   ul = $("#" + box_id + " ul");
-  $.each(stream.comment.array, function(i,comment){
+  $.each(stream.comments.array, function(i,comment){
     if( comment ){
       var comment_box_id =  box_id + "_" + comment.id;
       var close_box_id =  comment_box_id + '_close'; 
@@ -466,7 +466,7 @@ function create_and_add_stream(ul, stream, current_user_id, prepend){
   handle_stream_comments(comment_box_id, stream, current_user_id);
   handle_stream_campaign(campaign_box_id, stream);
 
-  if( stream.enriched == false ){
+  if( stream.post.enriched == false ){
     the_big_stream_enriched_state[stream.post.id] = "PENDING";
   }
 }
@@ -484,7 +484,7 @@ function append_stream(owner_id, current_user_id){
 
 
   $.ajax({
-        url: '/activities/get_activities.json',
+        url: '/home/get_streams.json',
         type: 'GET',
         data: {
                 user_id : owner_id,
@@ -528,7 +528,7 @@ function set_stream_to_focus_on_filter_change(){
  */
 function clear_streams(){
   $("#streams").empty();
-  $("#more_streams_cookie").val(0);
+  $("#more_streams_cookie").val("");
   /* reset all big jsons */
   the_big_comment_add_json={ };
   the_big_comment_show_all_json={ };

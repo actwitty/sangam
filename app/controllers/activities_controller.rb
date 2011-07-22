@@ -49,17 +49,20 @@ class ActivitiesController < ApplicationController
                           },
                       :location => {:id => 23456, :lat => 23.6567, :long => 120.3, :name => "marathalli", :type => 2},
                       :documents =>
+                           {:count => 2,
+                            :array =>
                               [
                                 {:id => 213, :name => "spring.jpg", :type => "image/jpg", :url => "/images/test/spring.jpg"},
                                 {:id => 214,:name => "autum.jpg", :type => "image/jpg", :url => "/images/test/spring_2.jpg"},
                                 {:id => 215,:name => "winter.jpg", :type => "image/jpg", :url => "/images/test/spring_3.jpg"}
-                              ],
+                              ]
+                            },
                       :campaign =>
                               [
                                 {:id => 35, :name => "like", :count => 23, :user => true},
                                 {:id => 36, :name => "support", :count => 23, :user => false}
                               ],
-                      :comment =>
+                      :comments =>
                         {
                           :count => 2,
                           :array => [
