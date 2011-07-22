@@ -426,6 +426,7 @@ class User < ActiveRecord::Base
   #              :user=>{:id=>661, :full_name=>"lemony1 lime1",:photo=>"images/id_1"},
   #              :id=>1356,
   #              :time=>Thu, 14 Jul 2011 05:42:20 UTC +00:00},
+  #              :enriched=>false,
   #              :location=>{:type=>2, :lat=>#<BigDecimal:62b1fc8,'0.2345E2',18(18)>, :long=>#<BigDecimal:62b1de8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>315}
   #             }
 

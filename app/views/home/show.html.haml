@@ -128,12 +128,12 @@
       #personal_tab.tab_content
         %ul#personal_summary.summary_list
         %a#more_personal.more_loader{:href => "#"} More
-        %input#more_personal_cookie{:type => "hidden", :value => "0"}
+        %input#more_personal_cookie{:type => "hidden", :value => ""}
       -if user_signed_in?  && current_user.id == @user.id
         #followings_tab.tab_content
           %ul#friends_summary.summary_list
           %a#more_friends.more_loader{:href => "#"} More
-          %input#more_friends_cookie{:type => "hidden", :value => "0"}
+          %input#more_friends_cookie{:type => "hidden", :value => ""}
       #streams_tab.tab_content
         #stream_filters
         %div#streams_side_bar.streams_side_bars_box
@@ -144,7 +144,7 @@
         %div#streams_listing_div.stream_list_box
           %ul#streams.stream_list
         %a#more_streams.more_loader{:href => "#"} More
-        %input#more_streams_cookie{:type => "hidden", :value => "0"}
+        %input#more_streams_cookie{:type => "hidden", :value => ""}
 
   #channel-dialog-modal
   #location-dialog-modal

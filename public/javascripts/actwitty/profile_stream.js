@@ -8,6 +8,7 @@ var the_big_stream_delete_json={ };
 var the_big_stream_campaign_manager_json={ };
 var the_big_stream_campaign_user_action={};
 var the_big_stream_campaign_show_all={};
+var the_big_stream_enriched_state={};
 /**********************************/
 
 
@@ -373,9 +374,12 @@ function handle_stream_time(box_id, stream){
 /*
  * Create div on facebook
  */
-function create_and_add_stream(ul, stream, current_user_id){
+function create_and_add_stream(ul, stream, current_user_id, prepend){
   var post = stream.post;
   var comments = stream.comment;
+  if(prepend===undefined){
+    prepend=false;
+  }
   
   /* Fail safe, due to any reason this happens, reject the stream from being displayed again*/
   if ($("#" + post.id ).length > 0){
@@ -449,8 +453,11 @@ function create_and_add_stream(ul, stream, current_user_id){
 
                   '</div>' + /* stream_box */        
               '</li>';
-
-  ul.append(html);
+  if(prepend == true){
+    ul.prepend(html);
+  }else{
+    ul.append(html);
+  }
   handle_stream_location(location_box_id, stream);
   handle_stream_time(time_box_id, stream);
   handle_stream_close(close_box_id, stream, current_user_id);
@@ -458,7 +465,14 @@ function create_and_add_stream(ul, stream, current_user_id){
   handle_stream_docs(doc_box_id, stream);
   handle_stream_comments(comment_box_id, stream, current_user_id);
   handle_stream_campaign(campaign_box_id, stream);
+
+  if( stream.enriched == false ){
+    the_big_stream_enriched_state[stream.post.id] = "PENDING";
+  }
 }
+
+
+
 
 
 /*
@@ -473,8 +487,8 @@ function append_stream(owner_id, current_user_id){
         url: '/activities/get_activities.json',
         type: 'GET',
         data: {
-                id : owner_id,
-                last_id : more_cookie,
+                user_id : owner_id,
+                updated_at : more_cookie,
                 filter : get_filter()
               },
         dataType: 'json',
@@ -484,6 +498,7 @@ function append_stream(owner_id, current_user_id){
            $.each(data, function(i,stream){
             if( stream ){
                 create_and_add_stream($("#streams"),stream , current_user_id);
+                
                 $("#more_streams_cookie").val(stream.post.id);
             } 
           });
@@ -522,7 +537,8 @@ function clear_streams(){
   the_big_stream_delete_json={ };
   the_big_stream_campaign_manager_json={};
   the_big_stream_campaign_user_action={};
-  the_big_stream_campaign_show_all={}
+  the_big_stream_campaign_show_all={};
+  the_big_stream_enriched_state={};
   /***********************/
 }
 

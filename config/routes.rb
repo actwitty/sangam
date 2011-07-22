@@ -39,6 +39,10 @@ Sangam::Application.routes.draw do
   match '/home/delete_campaign' => 'home#delete_campaign'
   match '/home/delete_stream' => 'home#delete_stream'
   match '/home/delete_stream' => 'home#delete_stream'
+  match '/home/create_activity' => 'home#create_activity'
+  match  '/home/get_summary' => 'home#get_summary'
+  match  '/home/get_friends_summary' => 'home#get_friends_summary'
+  match  '/home/get_streams' => 'home#get_streams'
 
 
   match '/authentications/failure' => 'authentications#failure'

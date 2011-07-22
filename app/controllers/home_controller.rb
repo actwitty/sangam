@@ -210,5 +210,84 @@ class HomeController < ApplicationController
     end
   end
   ############################################
+  def create_activity
+    Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] Create activity requested with #{params}")
+    if user_signed_in?
+      if params[:enrich].blank?
+        params[:enrich] = false
+      else
+        if params[:enrich] == "true"
+          params[:enrich] = true
+        else
+          params[:enrich] = false
+        end
+      end
+      Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Calling model api")
 
+      response_json=current_user.create_activity(params)
+      Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Returned from model api #{response_json}")
+       if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] No sign in, not creating any activity")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+  ############################################
+  def get_streams
+    Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
+
+    if request.xhr?
+      render :json => {}, :status => 400
+    end
+  end
+  ############################################
+   def get_summary
+    Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
+    if user_signed_in?
+       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api")
+       response_json=current_user.get_summary(params)
+       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.error("[CNTRL][HOME][GET SUMMARY] Get summary failed as user is not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+  ############################################
+  def get_friends_summary
+    Rails.logger.info("[CNTRL][HOME][GET FRIENDS SUMMARY] user get summary requested with params #{params}")
+    if user_signed_in?
+      if !params[:user_id].blank? && params[:user_id] != current_user.id
+        params[:friend]=true
+        Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] Calling model api #{params}")
+        response_json=current_user.get_summary(params)
+        Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] returned from model api ")
+        if request.xhr?
+          Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] sending response JSON #{response_json}")
+          render :json => response_json, :status => 200
+        end
+      else
+        Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of other users")
+        if request.xhr?
+          render :json => {}, :status => 400
+        end
+      end
+    else
+      Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Get summary failed as user is not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+  ############################################
 end
+

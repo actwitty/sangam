@@ -127,7 +127,7 @@ function create_and_add_locations_box(box_id, summary){
                 '</ul>';
     locations_box.append(html);
     var ul_box = $("#" + ul_box_id);
-    $.each(summary.location, function(i, place){
+    $.each(summary.locations, function(i, place){
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + place.id;
       /* create a JSON of filter */
       var filter_value = {
@@ -163,7 +163,7 @@ function create_and_add_locations_box(box_id, summary){
 function create_and_add_summary(ul, summary){
 
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
- var unique_id =  summary.word.id + '' + summary.user.id;
+ var unique_id =  summary.word.word_id + '' + summary.user.id;
  if ($("#" + unique_id ).length > 0){
    return;
  }
@@ -174,11 +174,11 @@ function create_and_add_summary(ul, summary){
  var locations_box_id = unique_id + '_locations';
  var latest_text_box_id = unique_id + '_text';
  
- var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id;
+ var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id;
   /* create a JSON of filter */
  var filter_value = {
                       user:summary.user.id ,
-                      channel_id:summary.word.id, 
+                      channel_id:summary.word.word_id, 
                       channel_name:summary.word.name  
                     };
  the_big_filter_JSON[filter_id] = filter_value;
@@ -257,9 +257,9 @@ function append_personal_summary(owner_id){
   var scroll = $(window).scrollTop();
   var more_cookie =  $("#more_personal_cookie").val();
   $.ajax({
-        url: '/activities/get_snapshots.json',
+        url: '/home/get_summary.json',
         type: 'GET',
-        data: {id : owner_id, last_id : more_cookie },
+        data: {user_id : owner_id, updated_at : more_cookie },
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
@@ -267,7 +267,7 @@ function append_personal_summary(owner_id){
            $.each(data, function(i,summary){
             if( summary ){
                 create_and_add_summary($('#personal_summary'),summary);     
-                $("#more_personal_cookie").val(summary.id);
+                $("#more_personal_cookie").val(summary.time);
             } 
           });
           $(window).scrollTop(scroll);
@@ -284,9 +284,9 @@ function append_friends_summary(owner_id){
   var scroll = $(window).scrollTop();
   var more_cookie = $("#more_friends_cookie").val();
   $.ajax({
-        url: '/activities/get_friends_snapshots.json',
+        url: '/home/get_friends_summary.json',
         type: 'GET',
-        data: {id : owner_id, last_id : more_cookie },
+        data: {user_id : owner_id, updated_at : more_cookie },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -294,7 +294,7 @@ function append_friends_summary(owner_id){
            $.each(data, function(i,summary){
             if( summary ){
                 create_and_add_summary($('#friends_summary'),summary);     
-                $("#more_friends_cookie").val(summary.id);
+                $("#more_friends_cookie").val(summary.time);
             } 
           });
           $(window).scrollTop(scroll);
