@@ -516,14 +516,9 @@ class User < ActiveRecord::Base
   def get_stream(params ={})
     puts params.inspect
     if params[:user_id] == self.id
-<<<<<<< HEAD
-       user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-       user << self.id
-=======
           #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
           user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
           user << self.id
->>>>>>> 62635bc860f553bc0bf435797411dea4fa9db366
     else
         user = params[:user_id]
     end
