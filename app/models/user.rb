@@ -402,12 +402,15 @@ class User < ActiveRecord::Base
   #OUTPUT => Activity Blob
   def remove_entity_from_activity(activity_id, entity_id)
     activity = Activity.where(:id => activity_id).first
+
     if !activity.activity_text.blank?
       activity.activity_text = unlink_an_entity(activity.activity_text,  entity_id)
       activity.update_attributes(:activity_text => activity.activity_text)
     end
+
     activity = format_activity(activity)
     activity
+
   rescue => e
     Rails.logger.error("User => remove_entity_from_activity => failed => #{e.message}")
     {}
