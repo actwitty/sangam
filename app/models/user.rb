@@ -325,7 +325,7 @@ class User < ActiveRecord::Base
 
     friend_objs = {}
 
-    users = get_contacts
+    users = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
