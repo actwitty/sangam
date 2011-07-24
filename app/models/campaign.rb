@@ -6,6 +6,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :entity
   belongs_to :location
   belongs_to :comment
+  belongs_to :document
 
   belongs_to :father, :class_name => "Activity"
 
@@ -16,6 +17,7 @@ class Campaign < ActiveRecord::Base
   validates_existence_of :entity_id, :allow_nil => true
   validates_existence_of :location_id, :allow_nil => true
   validates_existence_of :comment_id, :allow_nil => true
+  validates_existence_of :document_id, :allow_nil => true
 
   validates_uniqueness_of :author_id, :scope => [:activity_id, :campaign_name],  :unless => Proc.new {|a| a.activity_id.nil?}
   validates_uniqueness_of :author_id, :scope => [:entity_id, :campaign_name], :unless => Proc.new {|a| a.entity_id.nil?}

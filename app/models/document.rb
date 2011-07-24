@@ -10,6 +10,9 @@ class Document < ActiveRecord::Base
 
    belongs_to     :activity, :counter_cache => true
 
+   has_many       :comments,  :dependent => :destroy
+   has_many       :campaigns,  :dependent => :destroy
+
    validates_existence_of :owner_id
    validates_existence_of :activity_id
    validates_existence_of :activity_word_id
