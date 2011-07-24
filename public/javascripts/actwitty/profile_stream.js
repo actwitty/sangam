@@ -561,16 +561,45 @@ function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
 
 
   clear_related_entities();
-  list_related_entities();
-  /*
+  list_related_entities(page_owner_id);
+  
   clear_related_locations();
-  list_related_locations();*/
+  list_related_locations(page_owner_id);
+
+  clear_related_channels();
+  list_related_channels(page_owner_id);
 }
 
 /*
  * Add the live bindings
  */
 $(document).ready(function(){
+
+  function delete_stream(post_id){
+    var stream_li_id = 'main_stream_li_'+ post_id;
+    $.ajax({
+        url: '/home/delete_stream.json',
+        type: 'POST',
+        data: {
+               
+              },
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
+        }
+    });
+  }
+
+
+
+
+
+
+
   /*
    * Comment add button clicked
    */
@@ -602,7 +631,7 @@ $(document).ready(function(){
    * Stream delete button clicked
    */
   $('.js_stream_delete_btn').live('click', function(){
-    alert("STREAM DELETE CLICKED ");
+    //alert("STREAM DELETE CLICKED ");
     var del_json = the_big_stream_delete_json[$(this).attr("id")];
     if(del_json){
       alert(JSON.stringify(del_json));

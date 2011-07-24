@@ -40,14 +40,15 @@ function renderThings(json){
 /* Global data */
 var json_thing_data;
 var ignore_thing_auto_complete = false;
-function get_all_things(){
+function get_all_things(userid){
     /*
      * Get data on ready
      */
+    alert("reached here");
     $.ajax({
-        url: '/entities/top_entities',
+        url: '/home/get_entities.json',
         type: 'GET',
-        data: {},
+        data: {user_id:userid, filter:get_empty_filter()},
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {

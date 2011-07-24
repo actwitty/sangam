@@ -79,7 +79,7 @@ function populate_filtered_entities(box_id, entities){
               '</li>';
       
      ul.append(html);
-     the_big_related_entities_json[link_id] = entity.id;
+     the_big_related_entities_json[link_id] = {id:entity.id, name:entity.name};
 
     });
   
@@ -94,6 +94,7 @@ function populate_filtered_locations(box_id, locations){
   if( !locations && locations.length <= 0 ){
     return;
   }
+
   var div = $("#" + box_id);
   var ul_id = "FILTERED_STREAM_LOCATIONS_UL";
   var title_html = '<div class="stream_related_locations_title_box">' +
@@ -108,41 +109,68 @@ function populate_filtered_locations(box_id, locations){
 
 
   var ul = $("#" + ul_id);
-  $.each(entities, function(i, entity){
+  $.each(locations, function(i, location){
      var link_id = "stream_location_id_" + location.id;
      var html='<li class="streams_side_li_locations">' +
                 '<a href="#" class="js_related_locations stream_locations_a" id="' + link_id + '">' +
+                  '<span class="stream_locations_span">' +
+                    location.name +
+                  '</span>' +
                 '</a>' +
-                '<span class="stream_location_type_span">' +
-                      location.type +
-                '</span>' +
               '</li>';
       
      ul.append(html);
-     the_big_related_entities_json[link_id] = location.id;
+     the_big_related_locations_json[link_id] = {id:location.id, name:location.name};
 
     });
   
   var related_locations_div=$("#stream_locations_box");
-  related_entities_div.show();
+  related_locations_div.show();
 }
 /************************************/
 
+/*
+ * Populate related channels
+ */
 
 
+function populate_filtered_channels(box_id, channels){
+  if( !channels && locatchannelsions.length <= 0 ){
+    return;
+  }
+
+  var div = $("#" + box_id);
+  var ul_id = "FILTERED_STREAM_CHANNELSS_UL";
+  var title_html = '<div class="stream_related_channels_title_box">' +
+                    '<span>' +
+                      'Related Channels' +
+                    '</span>' +
+                   '</div>';
+  var html = '<ul class="streams_side_ul_channels" id="' + ul_id +'">' +
+             '</ul>';
+  div.append(title_html);
+  div.append(html);
 
 
+  var ul = $("#" + ul_id);
+  $.each(channels, function(i, channel){
+     var link_id = "stream_location_id_" + channel.id;
+     var html='<li class="streams_side_li_locations">' +
+                '<a href="#" class="js_related_locations stream_channels_a" id="' + link_id + '">' +
+                  '<span class="stream_locations_span">' +
+                    channel.name +
+                  '</span>' +
+                '</a>' +
+              '</li>';
+      
+     ul.append(html);
+     the_big_related_channels_json[link_id] = {id:channel.id, name:channel.name};
 
-
-
-
-
-
-
-
-
-
-
+    });
+  
+  var related_channels_div=$("#stream_channels_box");
+  related_channels_div.show();
+}
 
 
 /************************************/
@@ -209,7 +237,7 @@ function list_related_channels(owner_id){
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-           populate_filtered_entities("stream_channels_box", data);
+           populate_filtered_channels("stream_channels_box", data);
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem getting related channels list. \n ActWitty is trying to solve.');
@@ -286,11 +314,16 @@ $(document).ready(function(){
    * A related entity clicked
    */
   $('.js_related_entities').live('click', function(){
-    alert("RELATED ENTITY: STAY ON PAGE CHANGE FILTER");
+
     //the_big_comment_count_json
     var entity = the_big_related_entities_json[$(this).attr("id")];
     if(entity){
-      alert("Entity id:" + entity);
+      //alert("Entity id:" + entity.id);
+      var new_filter = {
+                         thing_id:entity.id,
+                         thing_name:entity.name
+                       }; 
+      modify_filter(new_filter);
     }
     return false;
   });
@@ -303,7 +336,7 @@ $(document).ready(function(){
     //the_big_comment_count_json
     var channel = the_big_related_channels_json[$(this).attr("id")];
     if(channel){
-      alert("Channel id:" + channel);
+      alert("Channel id:" + channel.id);
     }
     return false;
   });
@@ -312,11 +345,16 @@ $(document).ready(function(){
    * A related location clicked
    */
   $('.js_related_locations').live('click', function(){
-    alert("RELATED LOCATION: STAY ON PAGE CHANGE FILTER");
+    //alert("RELATED LOCATION: STAY ON PAGE CHANGE FILTER");
     //the_big_comment_count_json
-    var location_id = the_big_related_locations_json[$(this).attr("id")];
-    if(location_id){
-      alert("Location id:" + location_id);
+    var location = the_big_related_locations_json[$(this).attr("id")];
+    if(location){
+      //alert("Location id:" + location.id);
+      var new_filter = {
+                         location_id:location.id,
+                         location_name:location.name                      
+                      };
+      modify_filter(new_filter);
     }
     return false;
   });

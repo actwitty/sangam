@@ -86,6 +86,14 @@ function get_filter(){
          }; 
 }
 
+function get_empty_filter(){
+  return { 
+           word_id:"",
+           entity_id:"",
+           location_id:""
+         }; 
+}
+
 $(document).ready(function(){
     $('#channel_filter_drop').live("click",function(){
       $("#filter_channel_name").attr("value", "");

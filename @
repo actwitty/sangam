@@ -80,7 +80,7 @@ $(document).ready(function(){
   //alert("Inside profile_locations.js ready");
   $("#search_locations").live('keyup.autocomplete', function() {
 
-    $(this).autocomplete("/home/get_related_locations.json", {
+    $(this).autocomplete(json_location_data, {
       multiple: false,
       delay: 0,
       //cacheLength:1000,

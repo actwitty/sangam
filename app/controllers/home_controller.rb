@@ -79,53 +79,58 @@ class HomeController < ApplicationController
   end
   ############################################
   def get_activities
-    Rails.logger.info("[CNTRL][HOME][ACTIVITIES] Get activities")
-    Rails.logger.info("[CNTRL][HOME][ACTIVITIES] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+   Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
+   if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
+      response_json=current_user.get_related_locations(params[:user_id], params[:filter])
+      Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
 
   end
   ############################################
   def get_entities
-    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities ")
-    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Params #{params}")
 
-    dummy_json=[
-                  {:id => 1, :name => "Pizza", :image => "/images/actwitty/unknown_entity.png" },
-                  {:id => 2, :name => "Burger", :image => "/images/actwitty/unknown_entity.png" },
-                  {:id => 3, :name => "Kal Ho Na Ho", :image => "/images/actwitty/unknown_entity.png" },
-                  {:id => 4, :name => "Sahib Sindh Sultan", :image => "/images/actwitty/unknown_entity.png" }
-                ]
-    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Returning dummy")
-    if request.xhr?
-      render :json => dummy_json, :status => 200
+    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
+
+    if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] calling model api #{params}")
+      response_json=current_user.get_related_entities(params[:user_id], params[:filter])
+      Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
-    #send_json=current_user.get_related_entities(params[user_id],params[filter])
-    #if request.xhr?
-    #  render :json => {}, :status => 200
-    #end
 
   end
   ############################################
   def get_related_locations
-    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Get related locations")
-    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Params #{params}")
-   dummy_json=[
-                  {:id => 1001, :type => 1, :url => "http://google.com", :name => "Google" },
-                  {:id => 1002, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york" },
-                  {:id => 1003, :type => 3, :name => "John's home" },
-                  {:id => 1004, :type => 1, :url => "http://www.amazon.com", :name => "Amazon"}
-                ]
-    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Returning dummy")
-    if request.xhr?
-      render :json => dummy_json, :status => 200
+   Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Get related locations #{params}")
+   if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] calling model api #{params}")
+      response_json=current_user.get_related_locations(params[:user_id], params[:filter])
+      Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
-
-    #send_json=current_user.get_related_locations(params[user_id],params[filter])
-    #if request.xhr?
-    #  render :json => {}, :status => 200
-    #end
 
   end
   ############################################
@@ -155,19 +160,14 @@ class HomeController < ApplicationController
   ############################################
   # User sign in required
   def get_related_friends
-    Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Related friends request")
-    Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Params #{params}")
+    Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Related friends request #{params}")
+
     if user_signed_in?
-      #current_user.get_related_friends(params[filter])
-      dummy_json=[
-                    {:id => 1, :name => "Abc Def", :image => "/images/actwitty/default_user.gif" },
-                    {:id => 2, :name => "Xyz Pqr", :image => "/images/actwitty/default_user.gif" },
-                    {:id => 3, :name => "Mno Abc", :image => "/images/actwitty/default_user.gif" },
-                    {:id => 4, :name => "Bbb Ddd", :image => "/images/actwitty/default_user.gif" }
-                  ]
-      Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Returning dummy")
+      Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] calling model api Filter:#{params[:filter]}")
+      response_json=current_user.get_related_friends(params[:filter])
+      Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] model returned #{response_json}")
       if request.xhr?
-        render :json => dummy_json, :status => 200
+        render :json => response_json, :status => 200
       end
     else
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] User not signed in")
@@ -195,10 +195,26 @@ class HomeController < ApplicationController
   end
   ############################################
   def delete_stream
-    Rails.logger.info("[CNTRL][HOME][DELETE STREAM] Delete user stream")
-    Rails.logger.info("[CNTRL][HOME][DELETE STREAM] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+    Rails.logger.info("[CNTRL][HOME][DELETE STREAM] Delete user stream #{params}")
+    if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][DELETE STREAM] calling model api #{params[:post_id]}")
+      response=current_user.remove_activity
+      if response.nil?
+        Rails.logger.info("[CNTRL][HOME][DELETE STREAM] failed to delete #{params[:post_id]}")
+        if request.xhr?
+          render :json => {}, :status => 400
+        end
+      else
+        if request.xhr?
+          Rails.logger.info("[CNTRL][HOME][DELETE STREAM] deleted successfully #{params[:post_id]}")
+          render :json => {}, :status => 200
+        end
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][DELETE STREAM] User not signed in #{params[:post_id]}")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
   end
   ############################################

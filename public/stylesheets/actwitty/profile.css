@@ -1028,57 +1028,79 @@ ul.streams_side_ul_locations {
   float: left;
   list-style: none;
   width: 100%;
+  border: 1px solid #000000;
 }
 
-/* line 1057, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1058, ../../../app/stylesheets/actwitty/profile.scss */
 li.streams_side_li_locations {
   float: left;
-  display: inline;
-  width: 40px;
+  height: 18px;
+  overflow: hidden;
+  display: block;
   overflow: hidden;
   margin-left: 2px;
   margin-top: 2px;
-  border: 1px solid #000000;
   color: #000000;
-}
-
-/* line 1068, ../../../app/stylesheets/actwitty/profile.scss */
-.stream_locations_image_a {
-  float: left;
-  display: inline;
+  border: 1px solid #cccccc;
 }
 
 /* line 1073, ../../../app/stylesheets/actwitty/profile.scss */
-.stream_locations_name_span {
-  display: none;
+.stream_locations_span {
   font-family: 8px Arial, Helvetica, sans-serif;
-  border: 1px solid #cccccc;
   color: #000000;
   background: #ffffff;
 }
 
-/* line 1081, ../../../app/stylesheets/actwitty/profile.scss */
-.streams_side_li_locations:hover span {
-  display: block;
-  position: absolute;
-}
-
 /*****************/
-/* line 1087, ../../../app/stylesheets/actwitty/profile.scss */
-div.stream_related_channels_box {
+/* line 1082, ../../../app/stylesheets/actwitty/profile.scss */
+.stream_related_channels_box {
+  margin-top: 40px;
   width: 100%;
+  height: 200px;
+  border: 1px solid #cccccc;
 }
 
-/* line 1091, ../../../app/stylesheets/actwitty/profile.scss */
-div.stream_related_channels_title_box {
+/* line 1089, ../../../app/stylesheets/actwitty/profile.scss */
+.stream_related_channels_title_box {
   background: #445D73;
   color: #ffffff;
+  width: 100%;
+  float: left;
   font-family: 16px Arial, Helvetica, sans-serif;
+}
+
+/* line 1097, ../../../app/stylesheets/actwitty/profile.scss */
+ul.streams_side_ul_channels {
+  padding: 0;
+  float: left;
+  list-style: none;
+  width: 100%;
+  border: 1px solid #000000;
+}
+
+/* line 1107, ../../../app/stylesheets/actwitty/profile.scss */
+li.streams_side_li_channels {
+  float: left;
+  height: 18px;
+  overflow: hidden;
+  display: block;
+  overflow: hidden;
+  margin-left: 2px;
+  margin-top: 2px;
+  color: #000000;
+  border: 1px solid #cccccc;
+}
+
+/* line 1122, ../../../app/stylesheets/actwitty/profile.scss */
+.stream_channels_span {
+  font-family: 8px Arial, Helvetica, sans-serif;
+  color: #000000;
+  background: #ffffff;
 }
 
 /*************************/
 /*************************************** TABS START *******************************************/
-/* line 1099, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1130, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs {
   margin: 0;
   padding: 0;
@@ -1091,7 +1113,7 @@ ul.tabs {
   width: 100%;
 }
 
-/* line 1109, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1140, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs li {
   float: left;
   margin: 0;
@@ -1109,7 +1131,7 @@ ul.tabs li {
   background: #e0e0e0;
 }
 
-/* line 1122, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1153, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs li a {
   text-decoration: none;
   color: #000;
@@ -1121,12 +1143,12 @@ ul.tabs li a {
   outline: none;
 }
 
-/* line 1131, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1162, ../../../app/stylesheets/actwitty/profile.scss */
 ul.tabs li a:hover {
   background: #ccc;
 }
 
-/* line 1134, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1165, ../../../app/stylesheets/actwitty/profile.scss */
 html ul.tabs li.active, html ul.tabs li.active a:hover {
   /*--Makes sure that the active tab does not listen to the hover properties--*/
   background: #fff;
@@ -1134,7 +1156,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
   /*--Makes the active tab look like it's connected with its content--*/
 }
 
-/* line 1139, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1170, ../../../app/stylesheets/actwitty/profile.scss */
 .tab_container {
   border: 1px solid #999;
   border-top: none;
@@ -1145,7 +1167,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
   color: #000000;
 }
 
-/* line 1147, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 1178, ../../../app/stylesheets/actwitty/profile.scss */
 .tab_content {
   padding: 20px;
   font-size: 1.2em;
