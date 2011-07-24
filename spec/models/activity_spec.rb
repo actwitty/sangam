@@ -257,12 +257,12 @@ describe Activity do
       params[:user_id] =  @u.id
       params[:current_user] =  @u
 
-      @u.new_contact_request(@u1.id)
-      @u1.new_contact_request(@u.id)
-      @u.new_contact_request(@u2.id)
-      @u2.new_contact_request(@u.id)
-      @u.new_contact_request(@u3.id)
-      @u3.new_contact_request(@u.id)
+      @u.follow(@u1.id)
+      @u1.follow(@u.id)
+      @u.follow(@u2.id)
+      @u2.follow(@u.id)
+      @u.follow(@u3.id)
+      @u3.follow(@u.id)
 
       params[:scope] = 0
       params[:order] = "2011-07-05T07:28:56Z"
@@ -390,6 +390,7 @@ describe Activity do
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => false)
+      work_off
       act3 = @u.create_activity( :word => "eating" , :text => "", :enrich => true)
       act4 = @u1.create_activity( :word => "eating" , :text => "", :enrich => true)
 

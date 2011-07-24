@@ -43,6 +43,7 @@ development: &default
 
   entitiy_no_image:                     "images/entity/default.png"
   user_no_image:                        "image/profile/default.png"
+  entity_base_url:                      "http://www.freebase.com/view"
 
   summary_word_count:                   15
   summary_document_count:               5
@@ -50,7 +51,7 @@ development: &default
   summary_location_count:               5
   summary_friend_count:                 5
   summary_text_count:                   5
-  summary_loop_count:                   50
+
 
   stream_max_count:                     15
 
