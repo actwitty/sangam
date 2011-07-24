@@ -275,13 +275,13 @@ class User < ActiveRecord::Base
 
   #sort_order => 1 (lexicographical)
   #sort_order => 2 (based on updated)
-  #returns hash of : {:name => "pizza" , :id => 123 }
+  #returns hash of : {:name => "pizza" , :id => 123, :image =>  }
   def get_user_entities(sort_order)
 
     entity_hash = []
 
     h = entities.order("updated_at DESC").each do |attr|
-      entity_hash <<  {:name => attr.entity_name,:id => attr.id}
+      entity_hash <<  {:name => attr.entity_name,:id => attr.id, :image =>AppConstants.entity_base_url + attr.entity_image}
     end
 
     if !sort_order.blank?  and sort_order == 1
@@ -325,7 +325,7 @@ class User < ActiveRecord::Base
 
     friend_objs = {}
 
-    users = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
+    users = get_followings
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
@@ -352,11 +352,11 @@ class User < ActiveRecord::Base
     h[:user_id] = user_id
 
     h = Hub.where(h).group(:entity_id).order("MAX(updated_at) DESC").count
-    e = Entity.where(:id => h.keys).group(:id, :entity_name).order("MAX(updated_at) DESC").count
+    e = Entity.where(:id => h.keys).group(:id, :entity_name, :entity_image).order("MAX(updated_at) DESC").count
 
     entity_hash = []
     e.each do |k,v|
-      entity_hash << {:id => k[0], :name => k[1]}
+      entity_hash << {:id => k[0], :name => k[1], :image  => AppConstants.entity_base_url + k[2]}
     end
     entity_hash
   end
@@ -619,7 +619,8 @@ class User < ActiveRecord::Base
       locations={}
       Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
         entities[attr.id].each do |idx|
-          summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image => attr.entity_image }
+          summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>
+              AppConstants.entity_base_url + attr.entity_image }
         end
       end
       entities ={}
