@@ -1,0 +1,12 @@
+.ral
+  %label Add attachments
+  #progress_bar.ui-progress-bar.ui-container
+  
+  :plain      
+    #{s3_uploader(:max_filesize => 500.megabytes)}
+  %ul
+    %li
+      %a#add_file_button.js_add_files_button{:href => "#"} Choose File
+      /%a{:id => "pickfiles", :href => "#", :class => "medium silver button ram"} Choose File
+      %label#file_name
+       

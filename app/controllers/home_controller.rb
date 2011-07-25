@@ -135,11 +135,23 @@ class HomeController < ApplicationController
   end
   ############################################
   def get_enriched_activities
-    Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Get enriched  activities")
-    Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+    Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Get enriched  activities #{params}")
+
+
+    if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] calling model api Filter:#{params[:filter]}")
+      response_json=current_user.get_enriched_activities(params[:post_ids])
+      Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
+
   end
   ############################################
   def get_all_comments
@@ -198,7 +210,7 @@ class HomeController < ApplicationController
     Rails.logger.info("[CNTRL][HOME][DELETE STREAM] Delete user stream #{params}")
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][DELETE STREAM] calling model api #{params[:post_id]}")
-      response=current_user.remove_activity
+      response=current_user.remove_activity(params[:post_id])
       if response.nil?
         Rails.logger.info("[CNTRL][HOME][DELETE STREAM] failed to delete #{params[:post_id]}")
         if request.xhr?
@@ -218,11 +230,57 @@ class HomeController < ApplicationController
     end
   end
   ############################################
+  def create_comment
+    Rails.logger.info("[CNTRL][HOME][CREATE COMMENT] create user comment #{params}")
+    if user_signed_in?
+      model_params={}
+
+      model_params[:author_id] =  current_user.id
+      model_params[:text] = params[:text]
+      model_params[:activity_id] = params[:activity_id]
+      Rails.logger.info("[CNTRL][HOME][CREATE COMMENT] calling model api #{model_params}")
+      response_json=current_user.create_comment(model_params)
+      if response_json.nil?
+        Rails.logger.info("[CNTRL][HOME][CREATE COMMENT] failed to create #{model_params}")
+        if request.xhr?
+          render :json => {}, :status => 400
+        end
+      else
+        if request.xhr?
+          Rails.logger.info("[CNTRL][HOME][CREATE COMMENT] created successfully #{response_json}")
+          render :json => response_json, :status => 200
+        end
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][CREATE STREAM] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+  ############################################
   def delete_comment
-    Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] Delete user comment")
-    Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+    Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] create user comment #{params}")
+    if user_signed_in?
+
+      Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] calling model api #{params[:comment_id]}")
+      response_json=current_user.remove_comment(params[:comment_id])
+      if response_json.nil?
+        Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] failed to create #{model_params}")
+        if request.xhr?
+          render :json => {}, :status => 400
+        end
+      else
+        if request.xhr?
+          Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] created successfully #{response_json}")
+          render :json => response_json, :status => 200
+        end
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][DELETE STREAM] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
   end
   ############################################

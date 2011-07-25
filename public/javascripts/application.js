@@ -1,4 +1,7 @@
-
+jQuery.ajaxSetup({ 
+  'cache' : true,
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+});
 
 
 $(document).ajaxSend(function(event, request, settings) {

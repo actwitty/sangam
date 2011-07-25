@@ -19,6 +19,8 @@ javascripts:
     - public/javascripts/rails.validations.custom.js
     - public/javascripts/cal.js
   profile:
+    - public/javascripts/plugins/actwitty-custom.js
+    - public/javascripts/actwitty/actwitty_profile_helpers.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
     - public/javascripts/plugins/jquery-autocomplete/lib/thickbox-compressed.js
@@ -76,6 +78,10 @@ javascripts:
 
 stylesheets:
   defaults:
+    - public/stylesheets/actwitty/actwitty-profile.css
+    - public/stylesheets/actwitty/actwitty-profile-settings.css
+    - public/stylesheets/actwitty/actwitty-profile-summary.css
+    - public/stylesheets/actwitty/actwitty-comments-streams.css
     - public/stylesheets/actwitty/signin.css
     - public/stylesheets/actwitty/about.css
     - public/stylesheets/actwitty/profile.css
@@ -83,6 +89,7 @@ stylesheets:
     - public/stylesheets/actwitty/simple_form.css
     - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/home_page.css
+    - public/stylesheets/actwitty/pluploader.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
     - public/stylesheets/actwitty/mainpage.css
