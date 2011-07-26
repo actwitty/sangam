@@ -329,7 +329,9 @@ class User < ActiveRecord::Base
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
-
+    puts "-------------------------------- 1"
+    puts   users
+    puts "-------------------------------- 1"
     h = {}
     h = process_filter(filter)
     h[:user_id] = friend_objs.keys
@@ -340,6 +342,8 @@ class User < ActiveRecord::Base
       friends << {:id => friend_objs[k].id, :name => friend_objs[k].full_name,
                    :image => friend_objs[k].photo_small_url}
     end
+
+
     friends
   end
 

@@ -15,8 +15,8 @@ javascripts:
     - public/javascripts/actwitty/main_page.js
     - public/javascripts/plugins/ui-watermark/ui.watermark.js
     - public/javascripts/plugins/jquery_ujs.js
-    - public/javascripts/rails.validations.js
-    - public/javascripts/rails.validations.custom.js
+    - public/javascripts/plugins/rails.validations.js
+    - public/javascripts/plugins/rails.validations.custom.js
     - public/javascripts/cal.js
   profile:
     - public/javascripts/plugins/actwitty-custom.js
