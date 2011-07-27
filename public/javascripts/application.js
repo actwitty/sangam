@@ -1,8 +1,10 @@
-
+jQuery.ajaxSetup({ 
+  'cache' : true,
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+});
 
 
 $(document).ajaxSend(function(event, request, settings) {
-   alert("before_send inside");
   if (typeof(AUTH_TOKEN) == "undefined") return;
   // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
   settings.data = settings.data || "";

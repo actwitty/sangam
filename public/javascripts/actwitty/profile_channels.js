@@ -38,15 +38,15 @@ function renderChannels(json){
 /* Global data */
 var json_channel_data;
 var ignore_channel_auto_complete = false;
-function get_all_channels(){
+function get_all_channels(userid){
 
     /*
      * Get data on ready
      */
     $.ajax({
-        url: '/activities/top_activities',
+        url: '/home/get_activities.json',
         type: 'GET',
-        data: {},
+        data: {user_id:userid, filter:get_empty_filter()},
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {

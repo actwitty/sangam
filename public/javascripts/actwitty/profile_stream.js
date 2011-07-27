@@ -180,7 +180,7 @@ function handle_stream_text(box_id, stream){
                 post.text +
              '</span>';
 
-        div.append(html);
+        div.html(html);
     
   }else{
     /* text not defined correctly */
@@ -201,7 +201,7 @@ function handle_stream_close(box_id, stream, current_user_id){
   var close_btn_json = {
                           stream_id : stream.post.id 
                        };
-  var close_btn_id = "CLOSE_STREAM_BTN_" + stream.id;
+  var close_btn_id = "CLOSE_STREAM_BTN_" + stream.post.id ;
   the_big_stream_delete_json[close_btn_id] = close_btn_json;
   /******************/
   var html = '<input type="button" value="x" id="' + close_btn_id + '" class="js_stream_delete_btn stream_close_button"/>';
@@ -236,6 +236,43 @@ function handle_comment_close_box(box_id, comment, comment_post_id, current_user
 }
 
 
+function handle_stream_single_comment(comment, ul_id, comment_post_id, current_user_id){
+
+  var ul = $("#" + ul_id);
+  var comment_box_id =  ul_id + "_" + comment.id;
+  var close_box_id =  comment_box_id + '_close'; 
+  var comment_li_id = 'comment_li_' + comment.id;
+  var html = '<li class="stream_comment_li" id="' + comment_li_id + '">' +
+                '<div class="stream_single_comment_box" id="' + comment_box_id + '">' +
+                    
+                  /* close box */
+                  '<div class="stream_comment_close_box" id="'+ close_box_id +'">' +
+                  '</div>' +
+
+                  /* user box */
+                  '<div class="stream_comment_user_box">' +
+                    '<a href="/home/show?id=' +  comment.user.id + '" class="stream_comment_user_box_a">' +
+                      '<img src="' + comment.user.photo + '" alt="" class="stream_comment_user_box_img" >' +
+                        comment.user.full_name + 
+                      '</img>'+
+                    '</a>'+  
+                  '</div>' +
+
+
+                  /* comment text box */
+                  '<div class="stream_comment_text_box">' +
+                    '<span>' +
+                      comment.text +
+                    '</span>'+  
+                  '</div>' +
+
+                   
+                '</div>' +
+              '</li>';
+      ul.append(html);
+      handle_comment_close_box(close_box_id, comment, comment_post_id, current_user_id);
+}
+
 /*
  * Render stream comments
  */
@@ -264,7 +301,8 @@ function handle_stream_comments(box_id, stream, current_user_id){
 
   var add_new_comment_json = {
                                 post_id:stream.post.id,
-                                text_id:add_new_textarea_id
+                                text_id:add_new_textarea_id,
+                                ul_id:comments_ul_id
                              };
   
 
@@ -297,42 +335,10 @@ function handle_stream_comments(box_id, stream, current_user_id){
               '</ul>';
   
   div.append(html);
-  ul = $("#" + box_id + " ul");
+  
   $.each(stream.comments.array, function(i,comment){
     if( comment ){
-      var comment_box_id =  box_id + "_" + comment.id;
-      var close_box_id =  comment_box_id + '_close'; 
-      var comment_li_id = 'comment_li_' + comment.id;
-      var html = '<li class="stream_comment_li" id="' + comment_li_id + '">' +
-                  '<div class="stream_single_comment_box" id="' + comment_box_id + '">' +
-                    
-                    /* close box */
-                    '<div class="stream_comment_close_box" id="'+ close_box_id +'">' +
-                    '</div>' +
-
-                    /* user box */
-                    '<div class="stream_comment_user_box">' +
-                      '<a href="/home/show?id=' +  comment.user.id + '" class="stream_comment_user_box_a">' +
-                        '<img src="' + comment.user.photo + '" alt="" class="stream_comment_user_box_img" >' +
-                          comment.user.full_name + 
-                        '</img>'+
-                      '</a>'+  
-                    '</div>' +
-
-
-                    /* comment text box */
-                    '<div class="stream_comment_text_box">' +
-                      '<span>' +
-                        comment.text +
-                      '</span>'+  
-                    '</div>' +
-
-                   
-                  '</div>' +
-                 '</li>';
-      ul.append(html);
-      handle_comment_close_box(close_box_id, comment, stream.post.id, current_user_id);
-        
+      handle_stream_single_comment(comment, comments_ul_id, stream.post.id, current_user_id); 
     }
 
   });
@@ -370,9 +376,102 @@ function handle_stream_time(box_id, stream){
 }
 
 
+/************************************/
+/*
+ * Handling enrich updates through polling
+ */
+/************************************/
+function setup_polling_for_enrich(){
+  var check_data=0;
+  for(var i in the_big_stream_enriched_state) { 
+    check_data++;
+    break;
+  }
+  if (check_data == 1) {
+    setTimeout(update_enriched_streams, 60000);
+  }
+}
+
+/************************************/
+
+function get_enriched_streams(post_ids_arr){
+   $.ajax({
+        url: '/home/get_enriched_activities.json',
+        type: 'GET',
+        data: {
+                 "post_ids" : post_ids_arr
+              },
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+          // if rails demands a redirect because of log in missing 
+           $.each(data, function(i,stream){
+            if( stream.post.enriched == true ){
+              handle_stream_text(the_big_stream_enriched_state[stream.post.id].text_box, 
+                                stream);
+              /* remove the element from the list of un enriched streams */
+              delete the_big_stream_enriched_state[stream.post.id];
+            }
+          });
+
+           setup_polling_for_enrich();
+
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
+        }
+    });
+}
+
+
+
+/************************************/
+function update_enriched_streams () {
+
+  var post_ids_arr = [];
+  var i=0;
+  for(var key in the_big_stream_enriched_state) {
+    post_ids_arr[i] = key;
+    i++;
+  }
+  get_enriched_streams(post_ids_arr);
+}
+/*********************************************/
+
+
 
 /*
- * Create div on facebook
+ * On change of filter we need to do all these
+ * On load of page as well we need to do all these
+ */
+function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
+
+  
+  clear_streams();
+  append_stream(page_owner_id, session_owner_id);
+
+  clear_related_friends();
+  if( session_owner_id){ 
+    list_related_friends();
+  }
+
+  clear_related_entities();
+  list_related_entities(page_owner_id);
+  
+  clear_related_locations();
+  list_related_locations(page_owner_id);
+
+  clear_related_channels();
+  list_related_channels(page_owner_id);
+  
+
+}
+
+
+/*********************************************/
+
+/*
+ * Create div
  */
 function create_and_add_stream(ul, stream, current_user_id, prepend){
   var post = stream.post;
@@ -467,7 +566,7 @@ function create_and_add_stream(ul, stream, current_user_id, prepend){
   handle_stream_campaign(campaign_box_id, stream);
 
   if( stream.post.enriched == false ){
-    the_big_stream_enriched_state[stream.post.id] = "PENDING";
+    the_big_stream_enriched_state[stream.post.id] = {text_box : text_box_id};
   }
 }
 
@@ -501,7 +600,12 @@ function append_stream(owner_id, current_user_id){
                 
                 $("#more_streams_cookie").val(stream.post.id);
             } 
+
+           
           });
+
+            /* set up polling for checking enriching */
+            setup_polling_for_enrich();
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
@@ -509,7 +613,87 @@ function append_stream(owner_id, current_user_id){
         }
     });
     $(window).scrollTop(scroll);
+
+  
 }
+
+/*comment related apis*/
+//INPUT => activity_id = 123, :author_id => 234, :text => "helllo"
+function add_comment(add_json){
+    var comment_data={
+                        activity_id:add_json.post_id,
+                        text:$("#" + add_json.text_id).val()
+                      };
+    var current_user_id=$('#session_owner_id').attr("value");
+    $.ajax({
+        url: '/home/create_comment.json',
+        type: 'POST',
+        data: comment_data,
+        dataType: 'json',
+        success: function (data) {
+          handle_stream_single_comment( data.comment, 
+                                        add_json.ul_id, 
+                                        add_json.post_id, 
+                                        current_user_id );
+          $("#" + add_json.text_id).val("");
+
+          count_json=the_big_comment_count_json[add_json.post_id];
+          count_json.count = count_json.count + 1;
+
+          count_span_str = 'Total Comments :  ' + count_json.count;
+          $("#" + count_json.display_span).html(count_span_str);
+          the_big_comment_count_json[add_json.post_id] = count_json;
+         
+         
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
+        }
+    });
+}
+
+//#INPUT => comment_id = 1234
+function delete_comment(post_id, comment_id){
+    var comment_li_id = 'comment_li_' + comment_id;
+    $.ajax({
+        url: '/home/delete_comment.json',
+        type: 'POST',
+        data: {"comment_id":comment_id},
+        dataType: 'json',
+        success: function (data) {
+          $("#" + comment_li_id).remove();
+          count_json=the_big_comment_count_json[post_id];
+          count_json.count = data.comment_count;
+
+
+          count_span_str = 'Total Comments :  ' + count_json.count;
+          $("#" + count_json.display_span).html(count_span_str);
+          the_big_comment_count_json[post_id] = count_json;
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+        }
+    });
+}
+
+//#INPUT => activity_id => 123
+function show_all_comments(post_id){
+    var stream_li_id = 'main_stream_li_' + post_id;
+    $.ajax({
+        url: '/home/get_all_comments.json',
+        type: 'POST',
+        data: comment_data,
+        dataType: 'json',
+        success: function (data) {
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
+        }
+    });
+}
+/**************************/
+
+
 
 
 /*
@@ -544,42 +728,45 @@ function clear_streams(){
 
 
 
-/*
- * On change of filter we need to do all these
- * On load of page as well we need to do all these
- */
-function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
-
-  
-  clear_streams();
-  append_stream(page_owner_id, session_owner_id);
-
-  clear_related_friends();
-  if( session_owner_id){ 
-    list_related_friends();
-  }
-
-
-  clear_related_entities();
-  list_related_entities();
-  /*
-  clear_related_locations();
-  list_related_locations();*/
-}
 
 /*
  * Add the live bindings
  */
 $(document).ready(function(){
+  
+  /*
+   * Delete stream
+   */
+  function delete_stream(post_id){
+    var stream_li_id = 'main_stream_li_' + post_id;
+    $.ajax({
+        url: '/home/delete_stream.json',
+        type: 'POST',
+        data: "post_id=" + post_id,
+        dataType: 'json',
+        success: function (data) {
+          $("#" + stream_li_id).remove();
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
+        }
+    });
+  }
+
+
   /*
    * Comment add button clicked
    */
   $('.js_add_new_comment').live('click', function(){
-    alert("ADD NEW COMMENT BUTTON CLICKED");
     //the_big_comment_count_json
     var add_json = the_big_comment_add_json[$(this).attr("id")];
     if(add_json){
-      alert(JSON.stringify(add_json));
+                  
+      if( !$("#" + add_json.text_id).val() || jQuery.trim($("#" + add_json.text_id).val()) == "" ){
+        alert("Nothing written on comment");
+        return;
+      }
+      add_comment( add_json);
     }
     return false;
   });
@@ -588,11 +775,10 @@ $(document).ready(function(){
    * Comment delete button clicked
    */
   $('.js_comment_delete_btn').live('click', function(){
-    alert("DELETE CLICKED ");
     //the_big_comment_count_json
     var del_json = the_big_comment_delete_json[$(this).attr("id")];
     if(del_json){
-      alert(JSON.stringify(del_json));
+      delete_comment(del_json.post_id, del_json.comment_id);
     }
     return false;
   });
@@ -602,10 +788,9 @@ $(document).ready(function(){
    * Stream delete button clicked
    */
   $('.js_stream_delete_btn').live('click', function(){
-    alert("STREAM DELETE CLICKED ");
     var del_json = the_big_stream_delete_json[$(this).attr("id")];
     if(del_json){
-      alert(JSON.stringify(del_json));
+      delete_stream(del_json.stream_id);
     }
     return false;
   });
@@ -658,3 +843,4 @@ $(document).ready(function(){
 
 
 });
+/************************************/

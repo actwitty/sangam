@@ -131,8 +131,15 @@ function post_activity_to_server(post_data){
 
 
 $(document).ready(function() {
-  
    $("#actwitty_generator").click(function() {
+      if(!$('#activity_field').val() && !$('#location_field').val() &&
+        !$('#entity_field').val()){
+        alert("Nothing set to generate a post");
+        return false;
+      }
+
+          
+
       var latlang = document.getElementById('user_latlng').value;
       /* check if the location field is empty then set type as user input */
       if($('#location_field').val() == "")
@@ -173,13 +180,15 @@ $(document).ready(function() {
       }else{
         post_activity = $('#activity_field').val();
       }
-      var dataString = "word=" +  encodeURIComponent(post_activity) +
-                       "&text=" + encodeURIComponent($('#entity_field').val() + 
+      var data_string = "word=" +  encodeURIComponent(post_activity) +
+                       "&text=" + encodeURIComponent($('#entity_field').val()) + 
                        "&enrich=true" +
                        "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN) +
                        get_location_string();
                          
-      post_activity_to_server(dataString);
+      post_activity_to_server(data_string);
+
+      return false;
 
    });
 

@@ -1,0 +1,403 @@
+@charset "UTF-8";
+/* line 2, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+#summaries {
+  margin: 0;
+  width: 100%;
+  /*display:none;*/
+  margin-top: 80px;
+}
+
+/* line 11, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-list {
+  list-style-type: none;
+  height: auto;
+  /*border:1px solid blue;*/
+  /*padding:5px;*/
+  margin-top: 10px;
+  margin-left: -10px;
+}
+
+/* line 24, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.list {
+  margin: 0;
+}
+
+/* line 28, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary {
+  border: 0px solid red;
+  border-top: 1px solid #ddd;
+  /*height:340px;*/
+  height: auto;
+  width: 580px;
+  margin-left: -40px;
+  padding: 15px 10px 10px 15px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+
+/* line 43, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-header {
+  display: block;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 10px;
+  border: 0px solid blue;
+  /*background-color:#1e1e1e;*/
+}
+
+/* line 55, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-author {
+  width: 60px;
+  height: 60px;
+  float: left;
+}
+
+/* line 61, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-author span {
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  color: #333;
+  padding: 0 0 0 10px;
+  font-family: “Lucida Grande”, sans-serif;
+}
+
+/* line 71, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-img {
+  width: 40px;
+  height: 40px;
+  /*border:1px solid red;*/
+  padding: 5px;
+  margin: 5px 0 0 5px;
+  float: left;
+}
+
+/* line 81, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-title-count {
+  display: block;
+  float: left;
+  margin-left: 120px;
+  margin-top: 15px;
+  width: 60%;
+  border: 1px solid #00bfff;
+  height: 40px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /*border-top-right-radius: 10px;*/
+}
+
+/* line 96, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-label {
+  font-size: 20px;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  float: left;
+  color: #333;
+  vertical-align: middle;
+  margin-top: 5px;
+  font-weight: bold;
+  padding: 3px 0 0 10px;
+}
+
+/* line 108, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-update-time {
+  color: #ddd;
+  font-size: 12px;
+  font-family: “Lucida Grande”, sans-serif;
+  float: right;
+}
+
+/* line 117, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-info {
+  border: 0px solid red;
+  height: auto;
+  margin-left: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  width: 65%;
+  padding: 6px;
+  float: left;
+}
+
+/* line 136, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-row1 {
+  width: 100%;
+  height: auto;
+  border: 0px solid blue;
+  display: block;
+}
+
+/* line 144, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.s-p-c {
+  width: 110px;
+  height: 30px;
+  border: 0px solid red;
+  float: right;
+  margin-top: 40px;
+  margin-right: 90px;
+}
+
+/* line 154, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-post-count {
+  color: #ccc;
+  font-size: 20px;
+  font-family: “Lucida Grande”, sans-serif;
+}
+
+/* line 160, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stats-top-things {
+  height: auto;
+  width: 230px;
+  margin-top: 10px;
+  margin-left: 0px;
+  background-color: #fff;
+  -moz-border-radius: 0 20px 20px 0px;
+  -webkit-border-radius: 0 20px 20px 0px;
+  border: 1px solid #ddd;
+}
+
+/* line 175, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-row2 {
+  width: 100%;
+  height: auto;
+  border: 0px solid blue;
+}
+
+/* line 181, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stats-top-locations {
+  height: auto;
+  width: 230px;
+  margin-top: -50px;
+  margin-left: 350px;
+  background-color: #fff;
+  -moz-border-radius: 20px 0 0 20px;
+  -webkit-border-radius: 20px 0px 0px 20px;
+  border: 1px solid #ddd;
+}
+
+/* line 194, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-row3 {
+  width: 100%;
+  height: auto;
+  border: 0px solid blue;
+}
+
+/* line 200, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stats-top-friends {
+  height: 120px;
+  width: 80%;
+  margin-top: -50px;
+  margin-left: 0px;
+  width: 230px;
+  background-color: #fff;
+  -moz-border-radius: 0 20px 20px 0px;
+  -webkit-border-radius: 0 20px 20px 0px;
+  border: 1px solid #ddd;
+}
+
+/* line 212, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-statlabel-div {
+  height: 30px;
+  border: 0px solid blue;
+}
+
+/* line 217, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-label {
+  display: block;
+  font-size: 14px;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  font-weight: bold;
+  float: left;
+  color: #58c0d3;
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* line 230, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-text-list {
+  height: auto;
+  margin-top: 5px;
+  display: block;
+}
+
+/* line 238, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-list {
+  list-style-type: none;
+  /*border:1px solid green;*/
+  margin-top: 5px;
+  height: auto;
+}
+
+/* line 245, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-list-of-stats {
+  list-style-type: none;
+  /*border:1px solid red;*/
+  margin-top: 5px;
+  height: 35px;
+  margin-left: -30px;
+}
+
+/* line 254, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-list-friends {
+  list-style-type: none;
+  /*border:1px solid green;*/
+  margin-top: 5px;
+  height: auto;
+  width: auto;
+  border: 0px solid blue;
+}
+
+/* line 265, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-list-of-stats-friends {
+  list-style-type: none;
+  display: inline;
+  border: 0px solid red;
+  margin-top: 5px;
+  height: 40px;
+  width: 40px;
+  /*margin-left:-30px;*/
+}
+
+/* line 277, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-list-of-stats img {
+  width: 25px;
+  height: 25px;
+}
+
+/* line 283, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-list-of-stats a {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 14px;
+  font-family: “Lucida Grande”, sans-serif;
+}
+
+/* line 293, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-top-friends-img {
+  font-size: 14px;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  height: 30px;
+}
+
+/* line 301, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+a.summary-top-friends-img {
+  position: relative;
+  z-index: 0;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 308, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+a.summary-top-friends-img img {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  text-decoration: none;
+  padding: 5px;
+}
+
+/* line 316, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+a.summary-top-friends-img span {
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  top: 15px;
+  left: -50px;
+  width: 80px;
+}
+
+/* line 329, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-row5 {
+  width: 100%;
+  height: auto;
+  border: 0px solid blue;
+}
+
+/* line 337, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stats-top-posts {
+  height: auto;
+  width: 80%;
+  margin-top: 2px;
+  margin-left: 20px;
+  background-color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border: 0px solid red;
+}
+
+/* line 351, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-post {
+  height: 60px;
+  width: 100%;
+  border: 0px solid green;
+}
+
+/* line 358, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-top-posts-section {
+  width: 100%;
+  height: auto;
+}
+
+/* line 364, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-post-actor {
+  width: 50px;
+  font-size: 12px;
+  float: left;
+  margin-left: 10px;
+  border: 0px solid black;
+}
+
+/* line 373, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-post-actor img {
+  width: 30px;
+  height: 30px;
+  border: none;
+}
+
+/* line 381, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-post-actor a {
+  text-decoration: none;
+  font-size: 10px;
+  color: #36c;
+}
+
+/* line 389, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-stat-post-text {
+  float: left;
+  width: 350px;
+  height: 20px;
+  overflow: hidden;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+/* line 400, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-post-btn {
+  height: 20px;
+  width: 100%;
+  border: 0px solid blue;
+}
+
+/* line 406, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-post-btn span {
+  padding: 0;
+  margin: 0;
+  width: 15px;
+  height: 15px;
+  float: right;
+  background: url("images/close.png");
+}
+
+/* line 419, ../../../app/stylesheets/actwitty/actwitty-profile-summary.scss */
+.summary-row4 {
+  width: 100%;
+  height: 120px;
+  border: 1px solid red;
+}

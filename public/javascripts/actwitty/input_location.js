@@ -10,7 +10,6 @@ var defaultBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(-33.8474, 151.2631));
 
 function initialize() {
-  alert("map initialize");
   map = new google.maps.Map(document.getElementById('map'));
   map.setMapTypeId('roadmap');
   map.fitBounds(defaultBounds);

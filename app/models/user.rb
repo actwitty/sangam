@@ -329,7 +329,9 @@ class User < ActiveRecord::Base
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
-
+    puts "-------------------------------- 1"
+    puts   users
+    puts "-------------------------------- 1"
     h = {}
     h = process_filter(filter)
     h[:user_id] = friend_objs.keys
@@ -340,6 +342,8 @@ class User < ActiveRecord::Base
       friends << {:id => friend_objs[k].id, :name => friend_objs[k].full_name,
                    :image => friend_objs[k].photo_small_url}
     end
+
+
     friends
   end
 
@@ -402,12 +406,15 @@ class User < ActiveRecord::Base
   #OUTPUT => Activity Blob
   def remove_entity_from_activity(activity_id, entity_id)
     activity = Activity.where(:id => activity_id).first
+
     if !activity.activity_text.blank?
       activity.activity_text = unlink_an_entity(activity.activity_text,  entity_id)
       activity.update_attributes(:activity_text => activity.activity_text)
     end
+
     activity = format_activity(activity)
     activity
+
   rescue => e
     Rails.logger.error("User => remove_entity_from_activity => failed => #{e.message}")
     {}
