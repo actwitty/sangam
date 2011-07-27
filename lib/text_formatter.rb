@@ -187,7 +187,6 @@ module TextFormatter
       hash[:location] = location_hash(activity.base_location)
       hash[:location][:id] = activity.base_location_id
     end
-    formatter_test
     hash
   end
 
@@ -238,39 +237,39 @@ module TextFormatter
     end
   end
 
-
-  def test_format_text(text,entities)
-    seed_hash ={}
-
-    text = flatten_mentions(text)
-
-    text = mask_mentions(text, 0, seed_hash)
-    text = flatten_entities(text, entities, seed_hash.length)
-    text = unmask_mentions(text, seed_hash)
-    text
-  end
-  def formatter_test
-    text = "pizZa at PizZa frieds hUt at dominos Pizza at pizza Frieds hello   <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention> "
-    puts text
-    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-    m = get_mentions(text)
-    puts m
-    puts m[0].class
-    puts m[0]
-    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = untag_a_mention(text, 234)
+#
+#  def test_format_text(text,entities)
+#    seed_hash ={}
+#
+#    text = flatten_mentions(text)
+#
+#    text = mask_mentions(text, 0, seed_hash)
+#    text = flatten_entities(text, entities, seed_hash.length)
+#    text = unmask_mentions(text, seed_hash)
+#    text
+#  end
+#  def formatter_test
+#    text = "pizZa at PizZa frieds hUt at dominos Pizza at pizza Frieds hello   <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention> "
 #    puts text
 #    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-    text = test_format_text(text, {  "pizza"=> 345, "Pizza Frieds hut" => 234, "frieds" => 456})
-    puts text
-    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-    text = unlink_a_mention(text,"PIZZA", 235)
-    puts text
-    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-    text = unlink_an_entity(text, 345)
-    puts text
-    text = remove_all_mentions(text)
-    puts text
-  end
+#    m = get_mentions(text)
+#    puts m
+#    puts m[0].class
+#    puts m[0]
+#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+##    text = untag_a_mention(text, 234)
+##    puts text
+##    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+#    text = test_format_text(text, {  "pizza"=> 345, "Pizza Frieds hut" => 234, "frieds" => 456})
+#    puts text
+#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+#    text = unlink_a_mention(text,"PIZZA", 235)
+#    puts text
+#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+#    text = unlink_an_entity(text, 345)
+#    puts text
+#    text = remove_all_mentions(text)
+#    puts text
+#  end
 
 end

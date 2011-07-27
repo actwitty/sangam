@@ -370,17 +370,17 @@ describe Activity do
       @u.follow(@u1.id)
       @u.follow(@u2.id)
 
-      e = Entity.where(:entity_name => "sachin tendulkar").first
+      e = Entity.where(:entity_name => "pizza").first
 
      a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id],:entity_id => e.id },
                        :updated_at => Time.now.utc})
      puts a.inspect
-#      a.should_not be_blank
-#      a = @u.remove_activity(act1[:post][:id])
-#      a.should be_blank
-#      @u.documents.first.destroy
-#      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc, :friend => true})
-#      puts a
+      a.should_not be_blank
+      a = @u.remove_activity(act1[:post][:id])
+      a.should be_blank
+      @u.documents.first.destroy
+      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc, :friend => true})
+      puts a
     end
     it "should be able to remove summary at last" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
@@ -464,20 +464,20 @@ describe Activity do
       @com_d = @u2.create_comment( :document_id => @doc.id, :text => "Wow nice photo ")
 
        @e1 = Factory(:entity)
-#       @c1 = Campaign.create_campaign( :author_id => @u1.id, :name => "like", :value => 1,
-#                                 :activity_id => @a1[:id] )
-#       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
-#                                   :activity_id => @a1[:id] )
-#       @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
-#                                   :activity_id => @a1[:id] )
-#       @c4 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
-#                                   :activity_id => @a1[:id] )
-#       @c5 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-#                               :entity_id => @e1.id )
-#       @c6 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-#                               :location_id => @l1.id )
-#       @c7 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-#                               :comment_id => @com1[:comment][:id] )
+       @c1 = Campaign.create_campaign( :author_id => @u1.id, :name => "like", :value => 1,
+                                 :activity_id => @a1[:id] )
+       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
+                                   :activity_id => @a1[:id] )
+       @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
+                                   :activity_id => @a1[:id] )
+       @c4 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
+                                   :activity_id => @a1[:id] )
+       @c5 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :entity_id => @e1.id )
+       @c6 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :location_id => @l1.id )
+       @c7 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :comment_id => @com1[:comment][:id] )
        @c8 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
                                :document_id => @doc.id )
        work_off

@@ -329,9 +329,7 @@ class User < ActiveRecord::Base
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
-    puts "-------------------------------- 1"
-    puts   users
-    puts "-------------------------------- 1"
+
     h = {}
     h = process_filter(filter)
     h[:user_id] = friend_objs.keys
@@ -342,8 +340,6 @@ class User < ActiveRecord::Base
       friends << {:id => friend_objs[k].id, :name => friend_objs[k].full_name,
                    :image => friend_objs[k].photo_small_url}
     end
-
-
     friends
   end
 
@@ -406,15 +402,12 @@ class User < ActiveRecord::Base
   #OUTPUT => Activity Blob
   def remove_entity_from_activity(activity_id, entity_id)
     activity = Activity.where(:id => activity_id).first
-
     if !activity.activity_text.blank?
       activity.activity_text = unlink_an_entity(activity.activity_text,  entity_id)
       activity.update_attributes(:activity_text => activity.activity_text)
     end
-
     activity = format_activity(activity)
     activity
-
   rescue => e
     Rails.logger.error("User => remove_entity_from_activity => failed => #{e.message}")
     {}
@@ -526,8 +519,8 @@ class User < ActiveRecord::Base
       if params[:friend] == true
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting friends stream")
         #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-        user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
-        user.blank? ? user = self.id : user << self.id
+        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
+        user.blank? ? user = [self.id] : user << self.id
       else
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting self stream #{self.inspect}")
         user = self.id
@@ -581,8 +574,8 @@ class User < ActiveRecord::Base
       if params[:friend] == true
         Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting friends summary")
         #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-        user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
-        user.blank? ? user = self.id : user << self.id
+        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
+        user.blank? ? user = [self.id] : user << self.id
       else
         Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting self summary #{self.inspect}")
         user = self.id
@@ -625,63 +618,71 @@ class User < ActiveRecord::Base
       end
 
 
-      Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
-        h = format_document(attr)
-        documents[attr.id].each do |idx|
-          summaries[idx][:documents] << h[:document]
-        end
+    Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
+      h = format_document(attr)
+      documents[attr.id].each do |idx|
+        summaries[idx][:documents] << h[:document]
       end
+    end
 
-      documents = {}
-      Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
-        h = location_hash(attr)
-        h[:id] = attr.id
-        locations[attr.id].each do |idx|
-          summaries[idx][:locations] << h
-        end
+    documents = {}
+    Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
+      h = location_hash(attr)
+      h[:id] = attr.id
+      locations[attr.id].each do |idx|
+        summaries[idx][:locations] << h
       end
-      locations={}
-      Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
-        entities[attr.id].each do |idx|
-          summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>
-              AppConstants.entity_base_url + attr.entity_image }
-        end
+    end
+
+    locations={}
+    Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
+      entities[attr.id].each do |idx|
+        summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>
+            AppConstants.entity_base_url + attr.entity_image }
       end
-      entities ={}
-      Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
-        activities[attr.id].each do |idx|
-          summaries[idx][:recent_text] << attr.activity_text
-        end
+    end
+    entities ={}
+
+    Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
+      activities[attr.id].each do |idx|
+        summaries[idx][:recent_text] << attr.activity_text
       end
+    end
+    activities = {}
 
+    #FETCH RELATED FRIEND
 
-      activities = {}
-      #friends will only be fetched current use == visited user
-      if params[:friend] == true
+    #friends will only be fetched current use == visited user
+    if params[:friend] == true
+      #user's friends are already populated in user ARRAY
+      user.delete(self.id)
+    else
+      #other wise get the user's followings and populate the related followings
+      user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
+    end
 
-        user.delete(self.id)
-        Summary.includes(:user).where(:activity_word_id => friends.keys, :user_id => user).
-            group(:user_id, :activity_word_id ).count.each do |k,v|
-            activities[k[0]] = k[1]
-        end
+    Summary.includes(:user).where(:activity_word_id => friends.keys, :user_id => user).
+          group(:user_id, :activity_word_id ).count.each do |k,v|
+      activities[k[0]] = k[1]
+    end
 
-        User.where(:id => activities.keys).all.each do |attr|
-          # activities[attr.id] => activity_word_id
-          friends[activities[attr.id]].each do |idx|
+    User.where(:id => activities.keys).all.each do |attr|
+      # activities[attr.id] => activity_word_id
+      friends[activities[attr.id]].each do |idx|
 
-            #dont show a friend in his own summary as related friend
-            if summaries[idx][:user][:id] != attr.id
+        #dont show a friend in his own summary as related friend
+        if summaries[idx][:user][:id] != attr.id
 
-              if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
-                summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
-              end
-
-            end
-
+          if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
+            summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
           end
 
         end
+
       end
+
+    end
+    #FETCHING RELATED FRIEND -- DONE
     summaries
   end
   
