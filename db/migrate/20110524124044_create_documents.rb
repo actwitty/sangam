@@ -4,10 +4,13 @@ class CreateDocuments < ActiveRecord::Migration
       t.integer :owner_id , :null => false
       t.integer :activity_id, :null => false
       t.integer :activity_word_id, :null => false
-      t.string  :document_name, :null => false
+      t.string  :name, :null => false
 
-      t.string :document_type
+      t.string :mime
       t.string :document_data
+      t.string :caption
+
+      t.integer :comments_count
 
       t.integer :summary_id, :null => false
 
@@ -17,9 +20,9 @@ class CreateDocuments < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :documents, [:owner_id,:document_type]
-    add_index :documents, :document_type
-    add_index :documents, [:activity_word_id, :document_type]
+    add_index :documents, [:owner_id,:mime]
+    add_index :documents, :mime
+    add_index :documents, [:activity_word_id, :mime]
     add_index :documents, :activity_id
     add_index :documents, :summary_id
     add_index :documents, :updated_at
@@ -27,9 +30,9 @@ class CreateDocuments < ActiveRecord::Migration
 
   def self.down
 
-    remove_index :documents, [:owner_id,:document_type]
-    remove_index :documents, :document_type
-    remove_index :documents, [:activity_word_id, :document_type]
+    remove_index :documents, [:owner_id,:mime]
+    remove_index :documents, :mime
+    remove_index :documents, [:activity_word_id, :mime]
     remove_index :documents, :activity_id
     remove_index :documents, :summary_id
     remove_index :documents, :updated_at

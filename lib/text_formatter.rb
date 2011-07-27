@@ -1,4 +1,5 @@
 module TextFormatter
+  include TranslateText
 
   #generates the masking string to mark an entity or mention for easy replacement
   def generate_seed(idx, str)
@@ -12,7 +13,8 @@ module TextFormatter
 
   #convert to html urls
   def link_to_type(controller, klass, name, id)
-    "<a href=/#{controller}/#{id} class=\"#{klass}\">#{name}</a>".html_safe
+    #"<a href=/#{controller}/#{id} class=\"#{klass}\">#{name}</a>".html_safe
+    "<a href=\# value=#{id} class=#{klass}>#{name}</a>".html_safe
   end
 
   #add entity references in text
@@ -54,7 +56,7 @@ module TextFormatter
   #convert an entity link into normal name without a link
   #this is used when entity id mentioned in entity url does not exist
   def unlink_an_entity(text,  entity_id)
-    regex = /<a href=\/#{AppConstants.entity_controller}\/(#{entity_id}) class=\"#{AppConstants.activity_entity_class}\">([\w\s]+)<\/a>/i
+    regex = /<a href=\# value=(#{entity_id}) class=#{AppConstants.activity_entity_class}>([\w\s]+)<\/a>/i
     m = text.scan(regex)
     m.each do |m_array|
       text.gsub!( /#{link_to_type(AppConstants.entity_controller,AppConstants.activity_entity_class, m_array[1], m_array[0])}/ ,m_array[1])
@@ -86,8 +88,7 @@ module TextFormatter
   #This will be used when sending the activity text for entity search
   #TODO - NOT UTF8 Compliance
   def remove_all_mentions(text)
-    txt = text.gsub(/<a href=\/#{AppConstants.user_controller}\/\d+
-                     class=\"#{AppConstants.activity_mention_class}\">[\w\s]+<\/a>/, "")
+    txt = text.gsub(/<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>/, "")
     txt = txt.strip
   end
 
@@ -116,7 +117,7 @@ module TextFormatter
   #This will be done before processing the entity replacement as otherwise entity can replace mentions in some corner cases
   #TODO - NOT UTF8 Compliance
   def mask_mentions(text, seed_index, seed_hash)
-    regex = /<a href=\/#{AppConstants.user_controller}\/\d+ class=\"#{AppConstants.activity_mention_class}\">[\w\s]+<\/a>/
+    regex = /<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>/
     m = text.scan(regex)
     i =seed_index
     m.each do |attr|
@@ -164,6 +165,7 @@ module TextFormatter
 
   #formats an activity object to compatible format for sending outside
   def format_activity(activity)
+
     hash = {}
     if activity.blank?
       return {}
@@ -175,7 +177,7 @@ module TextFormatter
         :user => {:id => author.id, :full_name => author.full_name, :photo => author.photo_small_url},
         :word => {:id => activity.activity_word_id, :name => activity.activity_name},
         :time => activity.updated_at,
-        :text => activity.activity_text,
+        :text => translate_activity_text(activity),
         :enriched => activity.enriched,
         :summary_id => activity.summary_id
 
@@ -185,6 +187,7 @@ module TextFormatter
       hash[:location] = location_hash(activity.base_location)
       hash[:location][:id] = activity.base_location_id
     end
+    formatter_test
     hash
   end
 
@@ -213,9 +216,10 @@ module TextFormatter
 
     hash[:document] = {
               :id => document.id,
-              :name =>  document.document_name,
+              :name =>  document.name,
               :url => document.url,
               :thumb_url => document.thumb_url,
+              :caption => document.caption
               #:time =>  document.updated_at
            }
     hash
@@ -228,9 +232,9 @@ module TextFormatter
       return {}
     end
     if user_id.nil?
-      hash[:campaign] = { :name => campaign.campaign_name, :count=> campaign.count,:user => false }
+      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => false }
     else
-      hash[:campaign] = { :name => campaign.campaign_name, :count=> campaign.count,:user => true, :user_id =>campaign.user_id }
+      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => true, :user_id =>campaign.user_id }
     end
   end
 
@@ -245,26 +249,28 @@ module TextFormatter
     text = unmask_mentions(text, seed_hash)
     text
   end
-#  def formatter_test
-#    text = "pizZa at PizZa frieds hUt at dominos Pizza at pizza Frieds hello   <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention> "
+  def formatter_test
+    text = "pizZa at PizZa frieds hUt at dominos Pizza at pizza Frieds hello   <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention> "
+    puts text
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+    m = get_mentions(text)
+    puts m
+    puts m[0].class
+    puts m[0]
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+#    text = untag_a_mention(text, 234)
 #    puts text
 #    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    m = get_mentions(text)
-#    puts m
-#    puts m[0].class
-#    puts m[0]
-#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-##    text = untag_a_mention(text, 234)
-##    puts text
-##    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = test_format_text(text, {  "pizza"=> 345, "Pizza Frieds hut" => 234, "frieds" => 456})
-#    puts text
-#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = unlink_a_mention(text,"PIZZA", 235)
-#    puts text
-#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = unlink_an_entity(text, 345)
-#    puts text
-#  end
+    text = test_format_text(text, {  "pizza"=> 345, "Pizza Frieds hut" => 234, "frieds" => 456})
+    puts text
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+    text = unlink_a_mention(text,"PIZZA", 235)
+    puts text
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+    text = unlink_an_entity(text, 345)
+    puts text
+    text = remove_all_mentions(text)
+    puts text
+  end
 
 end

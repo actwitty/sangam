@@ -257,6 +257,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
@@ -267,8 +268,8 @@ end
 #  activity_name    :string(255)     not null
 #  author_id        :integer         not null
 #  base_location_id :integer
-#  documents_count  :integer
 #  comments_count   :integer
+#  documents_count  :integer
 #  summary_id       :integer
 #  enriched         :boolean
 #  created_at       :datetime

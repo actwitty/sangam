@@ -481,7 +481,7 @@ class User < ActiveRecord::Base
     temp_hash = {}
     index = 0
     #Get all the campaigns grouped for those activity
-    Campaign.where(:activity_id => activity_ids).group(:activity_id, :campaign_name).count.each do |k,v|
+    Campaign.where(:activity_id => activity_ids).group(:activity_id, :name).count.each do |k,v|
 
        h = {:name => k[1], :count => v , :user => false}
        campaign_hash[k[0]].nil? ? campaign_hash[k[0]] = [h] : campaign_hash[k[0]] << h
@@ -491,7 +491,7 @@ class User < ActiveRecord::Base
 
     #Get all the campaigns grouped for those activity by current user
     #Set user_id if user has acted on  campaign
-    Campaign.where(:activity_id => activity_ids, :author_id => self.id).group(:activity_id, :campaign_name).count.
+    Campaign.where(:activity_id => activity_ids, :author_id => self.id).group(:activity_id, :name).count.
         each do |k,v|
         if !campaign_hash[k[0]].nil?
           campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user] =  true
@@ -514,23 +514,37 @@ class User < ActiveRecord::Base
   #:filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   def get_stream(params ={})
-    puts params.inspect
+
     if params[:user_id] == self.id
-          #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-          user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
-          user << self.id
+      if params[:friend] == true
+        Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting friends stream")
+        #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
+        user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
+      else
+        Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting self stream #{self.inspect}")
+        user = self.id
+      end
     else
+        Rails.logger.debug("[MODEL] [USER] [GET STREAM] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
+        params[:friend] = false
     end
 
     h = {}
-    h = process_filter(params[:filter])
-    h[:user_id] = user
-    h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
 
-    puts h.inspect
+    #use HUB only if entity filter is there
+    if !params[:filter].nil? && !params[:filter][:entity_id].nil?
+      h = process_filter(params[:filter])
+      h[:user_id] = user
+      h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+      activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+    else
+      h = process_filter(params[:filter])
+      h[:author_id] = user
+      h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+      activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
+    end
 
-    activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
     puts activity.keys
     array = get_all_activity(activity.keys)
     puts array.to_json
@@ -596,6 +610,7 @@ class User < ActiveRecord::Base
         attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
         attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
 
+        #creates the hash mapping words to respective index
         friends[attr.activity_word_id].nil? ? friends[attr.activity_word_id] = [index] : friends[attr.activity_word_id] << index
         index = index + 1
       end
@@ -642,7 +657,7 @@ class User < ActiveRecord::Base
         end
 
         User.where(:id => activities.keys).all.each do |attr|
-
+          # activities[attr.id] => activity_word_id
           friends[activities[attr.id]].each do |idx|
 
             #dont show a friend in his own summary as related friend
@@ -674,8 +689,8 @@ class User < ActiveRecord::Base
 
   #COMMENT => To Create a campaign
   #INPUT =>
-  # :campaign_name => "like"
-  # :campaign_value => any integer index .. for example like =1 super-like  = 2 etc . AT PRESENT not USED THOUGH
+  # :name => "like"
+  # :value => any integer index .. for example like =1 super-like  = 2 etc . AT PRESENT not USED THOUGH
   # :activity_id => 234
   #                OR
   # :entity_id => 123
@@ -694,14 +709,14 @@ class User < ActiveRecord::Base
     if obj.blank?
       return {}
     end
-    params.except!(:campaign_value,:author_id, :father_id )
+    params.except!(:value,:author_id, :father_id )
 
-    h= Campaign.where( params).group(:campaign_name).count
+    h= Campaign.where( params).group(:name).count
 
     ch = {}
     ch[:count] = h.values[0].nil? ? 0 : h.values[0]
 
-    ch[:name] = params[:campaign_name]
+    ch[:name] = params[:name]
 
     ch[:user_id] = self.id
     ch[:user] = true
@@ -720,11 +735,11 @@ class User < ActiveRecord::Base
 
     return {} if campaign.nil?
 
-    hash = campaign.attributes.except("campaign_value", "author_id", "father_id", "id", "created_at", "updated_at")
+    hash = campaign.attributes.except("value", "author_id", "father_id", "id", "created_at", "updated_at")
 
     campaign.father.destroy
     #group by campaign name for remaining count
-    h= Campaign.where(hash).group(:campaign_name).count
+    h= Campaign.where(hash).group(:name).count
 
     ch = {}
 
@@ -732,7 +747,7 @@ class User < ActiveRecord::Base
     #which is unique in scope of activity and campaign name
     ch[:user] = false
     ch[:count] = h.values[0].nil? ? 0 : h.values[0]
-    ch[:name] = hash["campaign_name"]
+    ch[:name] = hash["name"]
 
     puts ch
 
@@ -757,10 +772,10 @@ class User < ActiveRecord::Base
   def get_all_campaign(params = {})
     hash = {}
     campaign = []
-    all_campaigns = Campaign.where(params).group(:campaign_name).count
+    all_campaigns = Campaign.where(params).group(:name).count
 
     params[:author_id] = self.id
-    user_campaigns = Campaign.where(params).group(:campaign_name).count
+    user_campaigns = Campaign.where(params).group(:name).count
 
     all_campaigns.each do |k,v|
       user_campaigns.has_key?(k) ? user = true : user = false
@@ -775,7 +790,7 @@ class User < ActiveRecord::Base
 
   #COMMENT => Get users in a campaign
   #INPUT =>
-  # :campaign_name =>  "like" # or support or join etc
+  # :name =>  "like" # or support or join etc
   # :activity_id => 234
   #                OR
   # :entity_id => 123

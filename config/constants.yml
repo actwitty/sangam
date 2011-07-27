@@ -3,11 +3,15 @@
 development: &default
   activity_text_length:                 8192
   comment_text_length:                  2048
-  max_url_length:                       1024
+  url_length:                           1024
   activity_name_length:                 255
+  caption_text_length:                  64
 
   #in megabytes
   max_document_size:                    0.5
+
+  #after this length "..." will be shown
+  max_string_len_for_display:           10
 
   #in one pull of an activity or summary in order of latest updates
   max_number_of_activities:             10
@@ -15,6 +19,8 @@ development: &default
   max_number_of_a_type_in_summmary:     5
 
   max_number_of_summmary:               10
+
+
 
   default_comment_string:               "Comment"
 
@@ -26,19 +32,28 @@ development: &default
   activity_word_controller:             "activity_words"
   activity_controller:                  "activities"
   comment_controller:                   "comments"
+  document_controller:                  "documents"
 
   #CSS class names for styling individual links
-  activity_entity_class:                "activity_entity"
-  activity_mention_class:               "activity_mention"
-  activity_location_class:              "activity_location"
-  activity_word_class:                  "activity_word"
+  activity_entity_class:                "js_activity_entity"
+  activity_mention_class:               "js_activity_mention"
+  activity_location_class:              "js_activity_location"
+  activity_word_class:                  "js_activity_word"
 
-  campaign_username_class:              "campaign_username"
+  campaign_username_class:              "js_campaign_username"
   campaign_activity_class:              "campaign_activity"
-  campaign_entity_class:                "campaign_entity"
-  campaign_location_class:              "campaign_location"
-  campaign_comment_class:               "campaign_class"
+  campaign_entity_class:                "js_campaign_entity"
+  campaign_location_class:              "js_campaign_location"
+  campaign_comment_class:               "js_campaign_comment"
+  campaign_authorname_class:            "js_campaign_author_name"
+  campaign_document_class:              "js_campaign_document"
 
+  comment_authorname_class:             "js_comment_author_name"
+  comment_activity_class:               "js_comment_activity"
+  comment_document_class:               "js_comment_document"
+  comment_username_class:               "js_comment_username"
+
+  comment_class:
   invalid_resource_id:                  0
 
   entitiy_no_image:                     "images/entity/default.png"

@@ -101,7 +101,7 @@ describe Activity do
 
   describe "Update Tree" do
 
-    it "should be able to add cmment on the activity" do
+    it "should be able to add comment on the activity" do
 
     end
 
@@ -141,6 +141,7 @@ describe Activity do
 
     end
   end
+
 
   describe "create_activity " do
     include DelayedJobSpecHelper
@@ -324,11 +325,11 @@ describe Activity do
       com5 = @u3.create_comment(:activity_id => act[:post][:id], :text => "555555555555555")
       puts com5
 
-       @c1 = Campaign.create_campaign( :author_id => @u.id, :campaign_name => "like", :campaign_value => 1,
+       @c1 = Campaign.create_campaign( :author_id => @u.id, :name => "like", :value => 1,
                              :activity_id => act[:post][:id] )
-       @c2 = Campaign.create_campaign( :author_id => @u3.id,:campaign_name => "like", :campaign_value => 2,
+       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
                                :activity_id => act[:post][:id] )
-      @c3 = Campaign.create_campaign( :author_id => @u1.id,:campaign_name => "support", :campaign_value => 3,
+      @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
                                :activity_id => act[:post][:id])
 
       act1 = @u1.create_activity( :word => "eating" , :text => "pizza at sachin tendulkar",
@@ -341,9 +342,9 @@ describe Activity do
       puts com1
       com21 = @u.create_comment(:activity_id => act1[:post][:id], :text => " bbbbbbbbbbbbbbbbb ")
 
-      @c21 = Campaign.create_campaign( :author_id => @u3.id,:campaign_name => "like", :campaign_value => 2,
+      @c21 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
                                :activity_id => act1[:post][:id] )
-      @c31 = Campaign.create_campaign( :author_id => @u1.id,:campaign_name => "support", :campaign_value => 3,
+      @c31 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
                                :activity_id => act1[:post][:id])
       com6 = @u3.create_comment(:activity_id => act[:post][:id], :text => "6666666666666666")
       puts com6
@@ -369,14 +370,17 @@ describe Activity do
       @u.follow(@u1.id)
       @u.follow(@u2.id)
 
-#      a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id]}, :updated_at => Time.now.utc})
-#      puts a.inspect
+      e = Entity.where(:entity_name => "sachin tendulkar").first
+
+     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id],:entity_id => e.id },
+                       :updated_at => Time.now.utc})
+     puts a.inspect
 #      a.should_not be_blank
 #      a = @u.remove_activity(act1[:post][:id])
 #      a.should be_blank
-      @u.documents.first.destroy
-      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc, :friend => true})
-      puts a
+#      @u.documents.first.destroy
+#      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc, :friend => true})
+#      puts a
     end
     it "should be able to remove summary at last" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
@@ -440,7 +444,49 @@ describe Activity do
        a = @u.remove_entity_from_activity(a.id,e.id)
        puts a
     end
-  end
+    it "should be able to get the languages based activities" do
+      @a1 =  @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+                                                                :url => "https://s3.amazonaws.com/xyz.jpg" },
+                                                    {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://a.com/xyz.jpg" },
+                                               {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://b.com/xyz.jpg" },
+                                           {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://c.com/xyz.jpg" }])
+
+      @a1 = @a1[:post]
+      @l1 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
+      @com1 = @u1.create_comment( :activity_id => @a1[:id], :text => "helllllloooo ")
+
+      @e1 = Factory(:entity)
+
+      @doc = Document.where(:activity_id => @a1[:id]).first
+      @com_d = @u2.create_comment( :document_id => @doc.id, :text => "Wow nice photo ")
+
+       @e1 = Factory(:entity)
+#       @c1 = Campaign.create_campaign( :author_id => @u1.id, :name => "like", :value => 1,
+#                                 :activity_id => @a1[:id] )
+#       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
+#                                   :activity_id => @a1[:id] )
+#       @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
+#                                   :activity_id => @a1[:id] )
+#       @c4 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
+#                                   :activity_id => @a1[:id] )
+#       @c5 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+#                               :entity_id => @e1.id )
+#       @c6 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+#                               :location_id => @l1.id )
+#       @c7 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+#                               :comment_id => @com1[:comment][:id] )
+       @c8 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :document_id => @doc.id )
+       work_off
+       a =@u1.get_stream({:user_id => @u1.id, :updated_at => Time.now.utc})
+       puts a
+       puts a.size
+       a.should_not be_nil
+    end
+end
 end
 
 
@@ -457,8 +503,8 @@ end
 #  activity_name    :string(255)     not null
 #  author_id        :integer         not null
 #  base_location_id :integer
-#  documents_count  :integer
 #  comments_count   :integer
+#  documents_count  :integer
 #  summary_id       :integer
 #  enriched         :boolean
 #  created_at       :datetime
