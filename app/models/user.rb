@@ -520,6 +520,7 @@ class User < ActiveRecord::Base
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting friends stream")
         #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
         user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
+        user.blank? ? user = self.id : user << self.id
       else
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting self stream #{self.inspect}")
         user = self.id
@@ -574,6 +575,7 @@ class User < ActiveRecord::Base
         Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting friends summary")
         #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
         user = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
+        user.blank? ? user = self.id : user << self.id
       else
         Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting self summary #{self.inspect}")
         user = self.id
