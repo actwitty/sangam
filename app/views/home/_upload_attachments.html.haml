@@ -1,12 +1,8 @@
-.ral
-  %label Add attachments
-  #progress_bar.ui-progress-bar.ui-container
+%h4 Attach files
+%form{:method => "post"}
+  #uploader
+    %p You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.
   
-  :plain      
-    #{s3_uploader(:max_filesize => 500.megabytes)}
-  %ul
-    %li
-      %a#add_file_button.js_add_files_button{:href => "#"} Choose File
-      /%a{:id => "pickfiles", :href => "#", :class => "medium silver button ram"} Choose File
-      %label#file_name
+:plain      
+  #{s3_uploader(:max_filesize => 500.megabytes)}
        

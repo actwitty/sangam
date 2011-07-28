@@ -441,6 +441,17 @@ function update_enriched_streams () {
 
 
 /*
+ *
+ */
+function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id){
+    params='id=' + page_owner_id +'&mode=filtered&' + get_long_string_filter();
+    alert('/home/show?' + params);
+    window.location.href ='/home/show?' + params;
+}
+
+
+
+/*
  * On change of filter we need to do all these
  * On load of page as well we need to do all these
  */

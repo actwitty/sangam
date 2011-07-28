@@ -54,7 +54,7 @@ function modify_filter(filter_json, reload){
   if(reload==true){
     if ( need_redirect == true){
       /* simple case redirect to stream tab of new user */
-      redirect_to_streams_filtered_of_other_user();
+      redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id);
     }else{
       /* stay on current user and apply the new filter */
       set_stream_to_focus_on_filter_change();
@@ -84,6 +84,17 @@ function get_filter(){
            entity_id:$("#filter_thing_id").attr("value"),
            location_id:$("#filter_location_id").attr("value")
          }; 
+}
+
+function get_long_string_filter(){
+  var filter= 'c_id=' + encodeURIComponent( $("#filter_channel_id").attr("value")) +
+              '&c_name=' + encodeURIComponent( $("#filter_channel_name").attr("value")) +
+              '&e_id=' + encodeURIComponent( $("#filter_thing_id").attr("value")) +
+              '&e_name=' + encodeURIComponent( $("#filter_thing_name").attr("value")) +
+              '&l_id=' + encodeURIComponent( $("#filter_location_id").attr("value")) +
+              '&l_name=' + encodeURIComponent( $("#filter_location_name").attr("value"));
+  return filter;
+
 }
 
 function get_empty_filter(){

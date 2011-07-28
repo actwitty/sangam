@@ -8,10 +8,11 @@ javascripts:
     - public/javascripts/vendor/swfobject.js
     - public/javascripts/vendor/web_socket.js
   jquery:
-    - public/javascripts/redmond/js/jquery-1.5.1.min.js
-  actwittyall:
+    - public/javascripts/jquery/jquery-1.6.2.min.js
     - public/javascripts/rails.js
-    - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
+    - public/javascripts/application.js
+  actwittyall:
+    - public/javascripts/jquery/jquery-ui-1.8.14/ui/minified/jquery-ui.min.js
     - public/javascripts/actwitty/main_page.js
     - public/javascripts/plugins/ui-watermark/ui.watermark.js
     - public/javascripts/plugins/jquery_ujs.js
@@ -20,6 +21,8 @@ javascripts:
     - public/javascripts/cal.js
   profile:
     - public/javascripts/plugins/actwitty-custom.js
+    - public/javascripts/plupload/plupload.full.js
+    - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
     - public/javascripts/actwitty/actwitty_profile_helpers.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
@@ -41,21 +44,6 @@ javascripts:
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/profile_modals.js
     - public/javascripts/actwitty/profile_people.js
-  jquery_devel:
-    - public/javascripts/rails.js
-    - public/javascripts/redmond/js/jquery-1.5.1.min.js
-    - public/javascripts/redmond/js/jquery-ui-1.8.13.custom.min.js
-    - public/javascripts/redmond/development-bundle/external/jquery.metadata.js
-    - public/javascripts/actwitty/getting_in.js
-    - public/javascripts/plugins/ui-watermark/ui.watermark.js
-    - public/javascripts/rails.validations.js
-    - public/javascripts/rails.validations.custom.js
-    - public/javascripts/plugins/profile_view.js
-    - public/javascripts/cal.js
-    - public/javascripts/jquery.nivo.slider.pack.js
-    - public/javascripts/actwitty/jquery-placeholder-0.1.js
-    - public/javascripts/actwitty/jquery.placeholder.js
-    - public/javascripts/actwitty/placeholder.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js
@@ -74,14 +62,14 @@ javascripts:
     - public/javascripts/vendor/mailchimp/jquery.validate.js
     - public/javascripts/vendor/mailchimp/jquery126.min.js
 
-
-
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/actwitty-profile.css
     - public/stylesheets/actwitty/actwitty-profile-settings.css
     - public/stylesheets/actwitty/actwitty-profile-summary.css
     - public/stylesheets/actwitty/actwitty-comments-streams.css
+    - public/stylesheets/plupload/jquery.ui.plupload.css
+    - public/stylesheets/plupload/jquery.plupload.queue.css
     - public/stylesheets/actwitty/signin.css
     - public/stylesheets/actwitty/about.css
     - public/stylesheets/actwitty/profile.css
@@ -89,9 +77,8 @@ stylesheets:
     - public/stylesheets/actwitty/simple_form.css
     - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/home_page.css
-    - public/stylesheets/actwitty/pluploader.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
-    - public/stylesheets/redmond/css/redmond/jquery-ui-1.8.13.custom.css
+    - public/javascripts/jquery/jquery-ui-1.8.14/themes/base/minified/jquery-ui.min.css
     - public/stylesheets/actwitty/mainpage.css
 
 

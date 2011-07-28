@@ -1,14 +1,3 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: users
-#
-#  id                   :integer         not null, primary key
-#  email                :string(255)
-#  encrypted_password   :string(128)     default("")
-#  reset_password_token :string(255)
-#  remember_created_at  :datetime
-#  sign_in_count        :integer         default(0)
 #  current_sign_in_at   :datetime
 #  last_sign_in_at      :datetime
 #  current_sign_in_ip   :string(255)
@@ -329,9 +318,7 @@ class User < ActiveRecord::Base
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
-    puts "-------------------------------- 1"
-    puts   users
-    puts "-------------------------------- 1"
+
     h = {}
     h = process_filter(filter)
     h[:user_id] = friend_objs.keys
@@ -342,8 +329,6 @@ class User < ActiveRecord::Base
       friends << {:id => friend_objs[k].id, :name => friend_objs[k].full_name,
                    :image => friend_objs[k].photo_small_url}
     end
-
-
     friends
   end
 
