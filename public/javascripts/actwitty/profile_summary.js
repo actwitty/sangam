@@ -81,7 +81,7 @@ function create_and_add_friends_box(box_id, summary){
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
                   '<img src="'+ friend.image + '"  width="25" height="25" alt="" />' +
                   '<span>' +
-                      friend.name +
+                      friend.full_name +
                   '</span>' +
                 '</a>' +
               '</li>';

@@ -23,11 +23,8 @@ module UploadsHelper
     options[:s3_config_filename] ||= "#{Rails.root}/config/amazon_s3.yml"
     config = YAML.load_file(options[:s3_config_filename])[Rails.env].symbolize_keys
     bucket            = config[:bucket_name]
-    puts bucket
     access_key_id     = config[:access_key_id]
-    puts access_key_id
     secret_access_key = config[:secret_access_key]
-    puts secret_access_key
 
     options[:key] ||= 'test'  # folder on AWS to store file in
     options[:acl] ||= 'public-read'
@@ -51,38 +48,39 @@ module UploadsHelper
           ['starts-with', '$name', ''],
           ['starts-with', '$Filename', '']
         ]
-      }").gsub(/\n|\r/, '');
+      }").gsub(/\n|\r/, '')
 
     signature = Base64.encode64(
                   OpenSSL::HMAC.digest(
                     OpenSSL::Digest::Digest.new('sha1'),
-                    secret_access_key, policy)).gsub("\n","");
+                    secret_access_key, policy)).gsub("\n","")
+   puts signature
 
-    out = "";
+    out = ""
 
     out << javascript_tag("$(function() {
+	$('#uploader').plupload({
+		// General settings
+		runtimes : 'flash',
+		url : 'https://s3.amazonaws.com/#{bucket}',
+		max_file_size : '5mb',
+		max_file_count: 20, // user can add no more then 20 files at a time
+		unique_names : true,
+		multiple_queues : true,
 
-      /*
-       * S3 Uploader instance
-      */
-      // image uploader via plupload
-        var uploader = new plupload.Uploader({
-            runtimes : 'flash,silverlight',
-            browse_button : 'pickfiles',
-            max_file_size : '5mb',
-            //url : 'http://#{bucket}.s3.amazonaws.com/',
-            url : 'https://s3.amazonaws.com/#{bucket}',
-            flash_swf_url: '/javascripts/plupload/plupload.flash.swf',
-            silverlight_xap_url: '/javascripts/plupload/plupload.silverlight.xap',
-            //CONFIG:Image upload quality
-            resize : {width : 640, height : 480, quality : 70},
-            //CONFIG:Disabled multi selection
-            //multi_selection: true,
-            multipart: true,
-            multipart_params: {
-              'key': 'test/' + get_jquery_utc_time() + '_#{current_user.id}_${filename}',
-              // adding this to keep consistency across the runtimes
-              'Filename': get_jquery_utc_time() + '_#{current_user.id}_${filename}', 
+		// Resize images on clientside if we can
+		resize : {width : 640, height : 480, quality : 80},
+		
+		// Rename files by clicking on their titles
+		rename: true,
+		
+		// Sort files
+  		sortable: true,
+
+    multipart: true,
+    multipart_params: {
+              'key': 'test/${filename}',
+              'Filename': '${filename}', // adding this to keep consistency across the runtimes
         			'acl': '#{options[:acl]}',
         			'Content-Type': '#{options[:content_type]}',
         			'success_action_status': '201',
@@ -90,50 +88,42 @@ module UploadsHelper
         			'policy': '#{policy}',
         			'signature': '#{signature}'
              },
-            filters : [
+
+		// Specify what files to browse for
+		filters : [
                 {title : '#{options[:filter_title]}', extensions : '#{options[:filter_extentions]}'}
             ],
-            file_data_name: 'file'
-        });
-        
-				// instantiates the uploader
-        uploader.init();
-        
-        // shows the progress bar and kicks off uploading
-        uploader.bind('FilesAdded', function(up, files) {
-          //CONFIG: Event on files added.
+		file_data_name: 'file',
+		// Flash settings
+		flash_swf_url: '/javascripts/plupload/plupload.flash.swf',
 
-        });
+		// Silverlight settings
+		silverlight_xap_url: '/javascripts/plupload/plupload.silverlight.xap',
+	});
 
-        // binds progress to progress bar
-        uploader.bind('UploadProgress', function(up, file) {
-          //CONFIG: File by file upload progress callback                               
-        });
-       
-        uploader.bind('UploadComplete', function(up, files) {
-          //CONFIG: File upload of a file done
-       }
-     
-    });
+	// Client side form validation
+	$('form').submit(function(e) {
+		var uploader = $('#uploader').plupload('getUploader');
 
-        // shows error object in the browser console (for now)
-        uploader.bind('Error', function(up, error) {
-          // unfortunately PLUpload gives some extremely vague 
-          // Flash error messages so you have to use WireShark
-          // for debugging them (read the README)
-          
-          alert('There was an error.  Check the browser console log for more info');
-          console.log('Expand the error object below to see the error. Use WireShark to debug.');
-          
-          console.log(error);
-        });
-       $('#uploadfiles').live('click', function(){
-          //CONFIG: Upload button clicked
-            uploader.start();
-            e.preventDefault();
-      });
-      
-    });")
+		// Validate number of uploaded files
+		if (uploader.total.uploaded == 0) {
+			// Files in queue upload them first
+			if (uploader.files.length > 0) {
+				// When all files are uploaded submit form
+				uploader.bind('UploadProgress', function() {
+					if (uploader.total.uploaded == uploader.files.length)
+						$('form').submit();
+				});
+
+				uploader.start();
+			} else
+				alert('You must at least upload one file.');
+
+			e.preventDefault();
+		}
+	});
+
+});")
   
   end
 end

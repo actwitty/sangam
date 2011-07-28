@@ -11,7 +11,7 @@
         %span Home
     #home_page_nav
       %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}/
-      %span.user_name_top_bar #{current_user.full_name}
+      %span.user_name_top_bar #{@user.full_name}
       #settings
         %a.button_aw_drpdn{:href => "#"}
           / span class="txt">Settings</span
@@ -24,3 +24,11 @@
               %a{:href => "/help/show"} Help
             %li
               %a{:href => "/users/sign_out"} Logout
+    #follow.top_bar_follow
+      -if user_signed_in?
+        -if current_user.id != @user.id
+          -if !@follow
+            %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}  
+          -else
+            %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
+          %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}

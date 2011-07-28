@@ -5,7 +5,8 @@ class HomeController < ApplicationController
    def show
 
     @user=nil
-    @profile_page =1
+    @profile_page = 1
+    @filtered_mode = ""
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
     if user_signed_in?
@@ -17,7 +18,11 @@ class HomeController < ApplicationController
 
     if params[:mode] == 'filtered'
       Rails.logger.info("[CNTRL] [HOME] [SHOW] Stream page requested with filtered mode")
-      @defaul_page_mode = 'filtered'
+      @filtered_mode = 'filtered'
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] Stream page requested with filtered mode set #{@filtered_mode}")
+      if !params[:c_id].blank? &&  !params[:c_name].blank?
+
+      end
       params.except(:mode)
     end
     #if no id mentioned or user not found try to fall back to current user
@@ -346,7 +351,9 @@ class HomeController < ApplicationController
    def get_summary
     Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
-       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api")
+       params[:friend]=true
+       params[:user_id]=Integer(params[:user_id])
+       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params}")
        response_json=current_user.get_summary(params)
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
       if request.xhr?

@@ -185,7 +185,7 @@ $(document).ready(function() {
                        "&enrich=true" +
                        "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN) +
                        get_location_string();
-                         
+      $('#uploader_start').trigger('click');  
       post_activity_to_server(data_string);
 
       return false;
