@@ -425,8 +425,9 @@ class User < ActiveRecord::Base
   #                                      OR
   #                                     nil
   #                 }
-  #    :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
-  #                   :url => "https://s3.amazonaws.com/xyz.jpg" } ]
+  #    :documents => [{:caption => "abcd", :thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+  #                   :url => "https://s3.amazonaws.com/xyz.jpg" } ]  #caption and thumb_url is optional
+  #    :campaign_types => 1 to 7 #at present each bit represent on campaign type. 0 => like, 1=>support,, :join=>2
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
   #
   # OUTPUT => {:post=>{
@@ -453,6 +454,7 @@ class User < ActiveRecord::Base
   end
 
   #INPUT = Array of activity ids
+  #OUTPUT =
   def get_all_activity(activity_ids)
     array = []
     index = 0
@@ -466,10 +468,11 @@ class User < ActiveRecord::Base
       index = index + 1
     end
 
-    Comment.includes(:author).where(:activity_id => activity_ids).all.each do |attr|
-       h = format_comment(attr)
-       array[hash[attr.activity_id]][:comments][:array] << h[:comment]
-    end
+    #Commenting this whole blob. As per New UX only count is needed
+#    Comment.includes(:author).where(:activity_id => activity_ids).all.each do |attr|
+#       h = format_comment(attr)
+#       array[hash[attr.activity_id]][:comments][:array] << h[:comment]
+#    end
 
     Document.where(:activity_id => activity_ids).all.each do |attr|
        h = format_document(attr)

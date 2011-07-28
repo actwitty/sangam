@@ -179,7 +179,8 @@ module TextFormatter
         :time => activity.updated_at,
         :text => translate_activity_text(activity),
         :enriched => activity.enriched,
-        :summary_id => activity.summary_id
+        :summary_id => activity.summary_id,
+        :campaign_types => activity.campaign_types
 
     }
 

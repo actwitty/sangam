@@ -17,6 +17,14 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :comments_count
       t.integer :documents_count
 
+      t.integer :campaign_types
+      t.integer :shared_status  #0 => saved, 1 => public share, 2 => private 3 => shared to group of people or group.
+                                #when this value is 3, we need to see access_visibility table to see the access
+      t.integer :access_visibility
+
+      t.integer :source_type  #0 => actwitty, 1 => facebook, 2=> twitter, 3 => G+, 4 => DropBox, 5 => Mobile ...
+      t.integer :source_id   # this table will store analytics related to respective social source for this post
+
       t.integer :summary_id
 
       t.boolean :enriched

@@ -72,7 +72,7 @@ class Activity < ActiveRecord::Base
   #                                      OR
   #                                     nil
   #                 }
-  #    :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "https://s3.amazonaws.com/xyz.jpg" }]
+  #    :documents => [{:caption => "hello",:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "https://s3.amazonaws.com/xyz.jpg" }]
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
 
       def create_activity(params={})
@@ -147,8 +147,14 @@ class Activity < ActiveRecord::Base
           if !params[:documents].blank?
             d_array = []
             params[:documents].each do |attr|
-              d = Document.create_document(:owner_id => params[:author_id], :activity_id => obj.id, :activity_word_id => word_obj.id,
-                                       :summary_id => params[:summary_id], :url => attr[:url], :thumb_url => attr[:thumb_url])
+              doc_hash = {:owner_id => params[:author_id], :activity_id => obj.id, :activity_word_id => word_obj.id,
+                                       :summary_id => params[:summary_id], :url => attr[:url]}
+
+              #These two are optional
+              doc_hash[:thumb_url] = attr[:thumb_url] if  !attr[:thumb_url].nil?
+              doc_hash[:caption] = attr[:caption] if  !attr[:caption].nil?
+
+              d = Document.create_document(doc_hash)
               d_array << d.id if !d.nil?
             end
 

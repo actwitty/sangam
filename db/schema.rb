@@ -13,13 +13,18 @@
 ActiveRecord::Schema.define(:version => 20110712080157) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "activity_word_id", :null => false
+    t.integer  "activity_word_id",  :null => false
     t.text     "activity_text"
-    t.string   "activity_name",    :null => false
-    t.integer  "author_id",        :null => false
+    t.string   "activity_name",     :null => false
+    t.integer  "author_id",         :null => false
     t.integer  "base_location_id"
     t.integer  "comments_count"
     t.integer  "documents_count"
+    t.integer  "campaign_types"
+    t.integer  "shared_status"
+    t.integer  "access_visibility"
+    t.integer  "source_type"
+    t.integer  "source_id"
     t.integer  "summary_id"
     t.boolean  "enriched"
     t.datetime "created_at"

@@ -301,7 +301,7 @@ describe Activity do
       a =@u.get_stream({:user_id => @u1.id,  :updated_at => Time.now.utc})
       puts a.inspect
 
-      a = @u.get_stream({:user_id => @u.id})
+      a = @u.get_stream({:user_id => @u.id, :friend => true})
       puts a
     end
     it "should read create read and delete comments" do
@@ -372,7 +372,7 @@ describe Activity do
 
       e = Entity.where(:entity_name => "pizza").first
 
-     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id],:entity_id => e.id },
+     a =@u.get_stream({:user_id => @u.id,
                        :updated_at => Time.now.utc})
      puts a.inspect
       a.should_not be_blank
@@ -393,7 +393,7 @@ describe Activity do
       act2 = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => false)
+                              :enrich => true)
       work_off
       act3 = @u.create_activity( :word => "eating" , :text => "", :enrich => true)
       act4 = @u1.create_activity( :word => "eating" , :text => "", :enrich => true)
@@ -448,9 +448,9 @@ describe Activity do
       @a1 =  @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
+                              :enrich => true, :documents => [{:caption => "hello man",
                                                                 :url => "https://s3.amazonaws.com/xyz.jpg" },
-                                                    {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://a.com/xyz.jpg" },
+                                                    {:caption => "aaaaabbbbbbbccccc", :thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://a.com/xyz.jpg" },
                                                {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://b.com/xyz.jpg" },
                                            {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://c.com/xyz.jpg" }])
 
@@ -460,8 +460,13 @@ describe Activity do
 
       @e1 = Factory(:entity)
 
-      @doc = Document.where(:activity_id => @a1[:id]).first
-      @com_d = @u2.create_comment( :document_id => @doc.id, :text => "Wow nice photo ")
+      @doc = Document.where(:activity_id => @a1[:id]).all
+      puts Document.count
+      @doc.each do |attr|
+        puts attr.caption
+        puts attr.id
+      end
+      @com_d = @u2.create_comment( :document_id => @doc.first.id, :text => "Wow nice photo ")
 
        @e1 = Factory(:entity)
        @c1 = Campaign.create_campaign( :author_id => @u1.id, :name => "like", :value => 1,
@@ -479,7 +484,7 @@ describe Activity do
        @c7 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
                                :comment_id => @com1[:comment][:id] )
        @c8 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-                               :document_id => @doc.id )
+                               :document_id => @doc.first.id )
        work_off
        a =@u1.get_stream({:user_id => @u1.id, :updated_at => Time.now.utc})
        puts a
