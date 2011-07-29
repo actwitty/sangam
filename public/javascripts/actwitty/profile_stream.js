@@ -620,7 +620,7 @@ function append_stream(owner_id, current_user_id){
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
+            alert('There has been a problem getting streams. \n ActWitty is trying to solve.');
         }
     });
     $(window).scrollTop(scroll);

@@ -525,19 +525,18 @@ $.widget("ui.plupload", {
 
 			if (file.status === plupload.DONE) {
 				if (file.target_name) {
-					fields += '<input type="hidden" name="' + id + '_tmpname" value="'+plupload.xmlEncode(file.target_name)+'" />';
+					fields += '<input type="hidden" name="' + id + '_tmpname" value="'+ plupload.xmlEncode(file.target_name)+'" />';
 				}
-				fields += '<input type="hidden" name="' + id + '_name" value="'+plupload.xmlEncode(file.name)+'" />';
+				fields += '<input type="hidden" name="' + id + '_name" value="'+ plupload.xmlEncode(file.name)+'" />';
 				fields += '<input type="hidden" name="' + id + '_status" value="' + (file.status === plupload.DONE ? 'done' : 'failed') + '" />';
 
 				count++;
 				self.counter.val(count);
 			}
-
 			filelist.append(
 				'<tr class="ui-state-default plupload_file" id="' + file.id + '">' +
 					'<td class="plupload_cell plupload_file_name"><span>' + file.name + '</span></td>' +
-					'<td class="plupload_cell plupload_file_caption"><input type="text" placeholder="caption"/> </td>' +
+					'<td class="plupload_cell plupload_file_caption"><input type="text" class="js_plupload_caption" placeholder="caption" id="file_caption_' + file.id + '" value="' + get_caption_value('file_caption_' + file.id) +  '"/> </td>' +
 					'<td class="plupload_cell plupload_file_status">' + file.percent + '%</td>' +
 					'<td class="plupload_cell plupload_file_size">' + plupload.formatSize(file.size) + '</td>' +
 					'<td class="plupload_cell plupload_file_action"><div class="ui-icon"></div>' + fields + '</td>' +

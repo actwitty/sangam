@@ -278,7 +278,7 @@ function create_and_add_summary(ul, summary){
 
 function append_personal_summary(owner_id){
   var scroll = $(window).scrollTop();
-  var more_cookie =  $("#more_personal_cookie").val();
+  var more_cookie =  $("#more_channels_cookie").val();
   $.ajax({
         url: '/home/get_summary.json',
         type: 'GET',
@@ -289,8 +289,8 @@ function append_personal_summary(owner_id){
           // if rails demands a redirect because of log in missing
            $.each(data, function(i,summary){
             if( summary ){
-                create_and_add_summary($('#personal_summary'),summary);     
-                $("#more_personal_cookie").val(summary.time);
+                create_and_add_summary($('#channels'),summary);     
+                $("#more_channels_cookie").val(summary.time);
             } 
           });
           $(window).scrollTop(scroll);
@@ -303,31 +303,6 @@ function append_personal_summary(owner_id){
 
 }
 
-function append_friends_summary(owner_id){
-  var scroll = $(window).scrollTop();
-  var more_cookie = $("#more_friends_cookie").val();
-  $.ajax({
-        url: '/home/get_friends_summary.json',
-        type: 'GET',
-        data: {user_id : owner_id, updated_at : more_cookie },
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-          // if rails demands a redirect because of log in missing 
-           $.each(data, function(i,summary){
-            if( summary ){
-                create_and_add_summary($('#friends_summary'),summary);     
-                $("#more_friends_cookie").val(summary.time);
-            } 
-          });
-          $(window).scrollTop(scroll);
-
-        },
-        error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem generating summaries of followings. \n ActWitty is trying to solve.');
-        }
-    });
-}
 
 $(document).ready(function(){
   /* Manage summary filters */

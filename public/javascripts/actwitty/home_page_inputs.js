@@ -9,7 +9,9 @@
 
 
 
-
+var document_upload_handling_json={};
+var document_caption_cache={};
+var documents_to_upload_count=0;
 
 
 
@@ -76,6 +78,10 @@ function clear_all_boxes(){
   $('#location_field').val("");
   $('#activity_field').val("");
   $('#entity_field').val("");
+
+  document_upload_handling_json={};
+  document_caption_cache={};
+  documents_to_upload_count=0;
 }
 
 
@@ -129,6 +135,83 @@ function post_activity_to_server(post_data){
     });
 }
 
+$(".js_plupload_caption").live('change', function(){	
+  var id = $(this).attr('id');
+  document_caption_cache[id] = $(this).val();
+
+});
+
+function get_caption_value(id){
+  if (document_caption_cache[id]){
+    return document_caption_cache[id];
+  }else{
+    return "";
+  }
+
+}
+
+function add_document_to_json(id, url_val, caption_val){
+  var document_json = { url:url_val, caption:caption_val};
+  document_upload_handling_json[id] = document_json;
+}
+
+function document_set_pending_upload_count(count_to_upload){
+  documents_to_upload_count=count_to_upload;
+}
+
+function document_upload_complete(){
+  var latlang = document.getElementById('user_latlng').value;
+  /* check if the location field is empty then set type as user input */
+  if($('#location_field').val() == "")
+  {
+      $('#location_type').val('3');
+  }
+  /* 
+   * check if the geolocation field set from google map is same as in the location field then 
+   * set type as geolocation 
+   */
+   else if($('#geo_location').val() == $('#location_field').val())
+   {
+      $('#input_latlang').val($('#user_latlng').val());	
+      $('#location_type').val('1');
+      // alert($('#geo_location').val());
+      // alert("seems to be a location with positions as:" + $('#lat_value').val() + "  " + $('#lng_value').val());	
+    }
+    else
+    {
+      /* if location field is set as url */
+      if($('#location_field').val().match(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
+      {
+        $('#location_type').val('2');
+        //alert("seems to be an url");
+      }
+      /* else set it as other type*/
+      else
+      { 
+        $('#location_type').val('3');
+        //alert("Seems to be something of user's interest");
+      }
+    }
+      
+    var post_activity="";
+    if(!$('#activity_field').val()){
+      post_activity = "shared";
+    }else{
+      post_activity = $('#activity_field').val();
+    }
+    
+    var data_string = "word=" +  encodeURIComponent(post_activity) +
+                       "&text=" + encodeURIComponent($('#entity_field').val()) + 
+                       "&enrich=true" +
+                       "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN) +
+                       get_location_string();
+
+   
+    alert(JSON.stringify(document_upload_handling_json));
+    post_activity_to_server(data_string);
+
+}
+
 
 $(document).ready(function() {
    $("#actwitty_generator").click(function() {
@@ -138,56 +221,16 @@ $(document).ready(function() {
         return false;
       }
 
+      /* trigger upload */
+      if(documents_to_upload_count > 0){
+        $('#uploader_start').trigger('click');  
+      }else{
+          /* nothing to wait for */
+         document_upload_complete();
+      }
           
 
-      var latlang = document.getElementById('user_latlng').value;
-      /* check if the location field is empty then set type as user input */
-      if($('#location_field').val() == "")
-      {
-           alert("Nothing entered by user!!!!");
-           $('#location_type').val('3');
-      }
-      /* 
-       * check if the geolocation field set from google map is same as in the location field then 
-       * set type as geolocation 
-       */
-      else if($('#geo_location').val() == $('#location_field').val())
-      {
-          $('#input_latlang').val($('#user_latlng').val());	
-          $('#location_type').val('1');
-          alert($('#geo_location').val());
-          alert("seems to be a location with positions as:" + $('#lat_value').val() + "  " + $('#lng_value').val());	
-      }
-      else
-      {
-           /* if location field is set as url */
-           if($('#location_field').val().match(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
-           {
-               $('#location_type').val('2');
-               alert("seems to be an url");
-            }
-            /* else set it as other type*/
-            else
-            { 
-                $('#location_type').val('3');
-                alert("Seems to be something of user's interest");
-            }
-       }
       
-      var post_activity="";
-      if(!$('#activity_field').val()){
-        post_activity = "shared";
-      }else{
-        post_activity = $('#activity_field').val();
-      }
-      var data_string = "word=" +  encodeURIComponent(post_activity) +
-                       "&text=" + encodeURIComponent($('#entity_field').val()) + 
-                       "&enrich=true" +
-                       "&authenticity_token=" + encodeURIComponent(AUTH_TOKEN) +
-                       get_location_string();
-      $('#uploader_start').trigger('click');  
-      post_activity_to_server(data_string);
-
       return false;
 
    });

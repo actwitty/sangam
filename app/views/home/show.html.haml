@@ -87,23 +87,15 @@
 
   #sub_filter_tabs
     %ul.tabs
-      %li#personal_tab_head
-        %a{:href => "#personal_tab"} Personal
-      -if user_signed_in?  && current_user.id == @user.id
-        %li#followings_tab_head
-          %a{:href => "#followings_tab"} Followings
+      %li#channels_tab_head
+        %a{:href => "#channels_tab"} Channels
       %li#streams_tab_head
-        %a{:href => "#streams_tab"} Stream
+        %a{:href => "#streams_tab"} Streams
     .tab_container
-      #personal_tab.tab_content
-        %ul#personal_summary.summary_list
-        %a#more_personal.more_loader{:href => "#"} More
-        %input#more_personal_cookie{:type => "hidden", :value => ""}
-      -if user_signed_in?  && current_user.id == @user.id
-        #followings_tab.tab_content
-          %ul#friends_summary.summary_list
-          %a#more_friends.more_loader{:href => "#"} More
-          %input#more_friends_cookie{:type => "hidden", :value => ""}
+      #channels_tab.tab_content
+        %ul#channels.summary_list
+        %a#more_channels.more_loader{:href => "#"} More
+        %input#more_channels_cookie{:type => "hidden", :value => ""}
       #streams_tab.tab_content
         #stream_filters
         %div#streams_side_bar.streams_side_bars_box
