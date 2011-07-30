@@ -37,7 +37,8 @@ describe Document do
                                       :activity_word_id => Factory(:activity_word).id,
                                       :summary_id => Factory(:summary).id,
                                       :url => "https://www.s3.amazon.com/1234/test.jpg",
-                                      :thumb_url => "https://www.s3.amazon.com/1234/234/thumb_test.jpg")
+                                      :thumb_url => "https://www.s3.amazon.com/1234/234/thumb_test.jpg",
+                                      :uploaded => true)
       puts @doc.inspect
       @doc.should_not be_nil
 

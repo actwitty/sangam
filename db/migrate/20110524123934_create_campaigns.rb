@@ -5,17 +5,31 @@ class CreateCampaigns < ActiveRecord::Migration
       t.integer :author_id, :null => false
 
       t.integer :activity_id
+
       t.integer :entity_id
+
       t.integer :location_id
+
       t.integer :comment_id
+
       t.integer :document_id
 
       t.integer :father_id, :null => false
 
-      t.string  :name, :null => false
+      t.text  :name, :null => false
+
       t.integer  :value,:null => false
 
+      t.integer :status, :null => false                 # 0 => saved, 1 => public share, 2 => private
+                                        # 3 => shared to group of people or group.When this value is 3,
+                                        # we need to see access_visibility table to see the access
+
+
+      t.text    :source_name, :null => false            #"actwitty", "facebook", # "twitter",
+                                        # "G+", "DropBox", "Mobile +919980906102","a@b.com
+
       t.timestamps
+
     end
 
     add_index :campaigns, [:author_id, :activity_id, :name], :unique => true,
@@ -47,8 +61,12 @@ class CreateCampaigns < ActiveRecord::Migration
     add_index :campaigns, :name
 
     add_index :campaigns, [:author_id,:name, :value], :name => "index_campaign_on_author_name_value"
+
     add_index :campaigns, :updated_at
 
+    add_index :campaigns, [:status, :author_id ]
+
+    add_index :campaigns, [:source_name, :author_id]
   end
 
   def self.down
@@ -72,6 +90,10 @@ class CreateCampaigns < ActiveRecord::Migration
     remove_index :campaigns, :name => "index_campaign_on_author_name_value"
 
     remove_index :campaigns, :updated_at
+
+    remove_index :campaigns, [:status, :author_id ]
+
+    remove_index :campaigns, [:source_name, :author_id]
 
     drop_table :campaigns
   end

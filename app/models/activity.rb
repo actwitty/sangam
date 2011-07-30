@@ -38,11 +38,15 @@ class Activity < ActiveRecord::Base
   validates_existence_of  :summary_id, :allow_nil => true
   validates_existence_of  :base_location_id, :allow_nil => true
 
-  validates_presence_of   :activity_name
+  validates_presence_of   :activity_name,  :campaign_types, :source_name, :status
 
-  validates_length_of     :activity_text , :maximum => AppConstants.activity_text_length
+  validates_length_of     :activity_name,  :in => 1..AppConstants.activity_name_length
 
-  validates_length_of     :activity_name,   :in => 1..AppConstants.activity_name_length
+  validates_length_of     :source_name,    :in => 1..AppConstants.source_name_length
+
+  validates_length_of     :sub_title,      :maximum => AppConstants.sub_title_length, :unless => Proc.new{|a| a.sub_title.nil?}
+
+  validates_length_of     :activity_text , :maximum => AppConstants.activity_text_length, :unless => Proc.new{|a| a.activity_text.nil?}
 
   before_destroy    :clear_serialized_summary
 
@@ -72,7 +76,13 @@ class Activity < ActiveRecord::Base
   #                                      OR
   #                                     nil
   #                 }
-  #    :documents => [{:caption => "hello",:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "https://s3.amazonaws.com/xyz.jpg" }]
+  #    :documents => [{:caption =-> "hello",:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "https://s3.amazonaws.com/xyz.jpg" }],
+  #    :campaign_types => 1 to 7 or nil #at present each bit represent on campaign type.
+  #                         bit 0 => like, bit 1=>support,bit 2=> :join  #defualt is 1 ( like)
+  #    :status => 0 or 1   #0 => saved, 1 => public share, #default => 1
+  #    :source_name =>  "actwitty" or "twitter", or "facebook" or "gplus" or "dropbox" or "tumblr" or "posterous",
+  #                       or custom email or mobile number #defualt is actwitty
+  #    :sub_title => "hello sudha baby" or nil #optional
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
 
       def create_activity(params={})
@@ -85,12 +95,8 @@ class Activity < ActiveRecord::Base
           return {}
         end
 
-
         #create the activity word
         word_obj = ActivityWord.create_activity_word(params[:activity], "verb-form")
-
-        #Add activity_word to params hash for hub creation
-        params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
 
 
         #summary is processed earlier as to keep counter_cache active.
@@ -106,16 +112,27 @@ class Activity < ActiveRecord::Base
         end
 
 
+        #set mandatory parameters if missing
+        params[:status] = AppConstants.state_public if params[:status].nil?
+        params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+        params[:campaign_types] =  AppConstants.campaign_like if params[:campaign_types].nil?
+
+
         #create activity => either root or child
         obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
-                                 :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false)
-
-        #Add activity to params hash for hub creation
-        params[:activity_hash] = obj.id
+                               :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false,
+                               :status => params[:status], :campaign_types => params[:campaign_types],
+                               :source_name => params[:source_name], :sub_title => params[:sub_title])
 
 
         #Not done for comments and campaign
         if params[:enrich] == true
+
+          #Add activity_word to params hash for hub creation
+          params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
+
+          #Add activity to params hash for hub creation
+          params[:activity_hash] = obj.id
 
           #Serialize Most recent activity texts
           if !obj.activity_text.blank?
@@ -148,7 +165,7 @@ class Activity < ActiveRecord::Base
             d_array = []
             params[:documents].each do |attr|
               doc_hash = {:owner_id => params[:author_id], :activity_id => obj.id, :activity_word_id => word_obj.id,
-                                       :summary_id => params[:summary_id], :url => attr[:url]}
+                                       :summary_id => params[:summary_id], :url => attr[:url], :uploaded => true}
 
               #These two are optional
               doc_hash[:thumb_url] = attr[:thumb_url] if  !attr[:thumb_url].nil?
@@ -264,6 +281,11 @@ end
 
 
 
+
+
+
+
+
 # == Schema Information
 #
 # Table name: activities
@@ -276,6 +298,10 @@ end
 #  base_location_id :integer
 #  comments_count   :integer
 #  documents_count  :integer
+#  campaign_types   :integer         default(1)
+#  status           :integer         default(1)
+#  source_name      :string(64)      default("actwitty")
+#  sub_title        :string(255)
 #  summary_id       :integer
 #  enriched         :boolean
 #  created_at       :datetime

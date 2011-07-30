@@ -17,15 +17,16 @@ class Document < ActiveRecord::Base
    validates_existence_of :activity_word_id
    validates_existence_of :summary_id
 
-   validates_presence_of  :name, :url, :mime
+   validates_presence_of  :name, :url, :mime, :source_name, :status
 
    validates_format_of    :thumb_url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.thumb_url.nil?}
    validates_format_of    :url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.url.nil?}
 
-   validates_length_of    :name, :in => 3..255 #a.b
-   validates_length_of    :mime, :in => 3..255
-   validates_length_of    :url, :in => 1..AppConstants.url_length, :unless => Proc.new{|a| a.url.nil?}
-   validates_length_of    :thumb_url, :in => 1..AppConstants.url_length, :unless => Proc.new{|a| a.thumb_url.nil?}
+   validates_length_of    :name, :in => 1..AppConstants.document_name_length
+   validates_length_of    :mime, :in => 1..AppConstants.document_mime_length
+   validates_length_of    :url, :in => 1..AppConstants.url_length
+   validates_length_of    :source_name,    :in => 1..AppConstants.source_name_length
+   validates_length_of    :thumb_url, :maximum => AppConstants.url_length, :unless => Proc.new{|a| a.thumb_url.nil?}
    validates_length_of    :caption, :in => 1..AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?}
 
 
@@ -56,11 +57,17 @@ class Document < ActiveRecord::Base
          name = File.basename(params[:url])
          type =  MIME::Types.type_for(File.basename(params[:url]).to_s).first.to_s
 
+         #set mandatory parameters if missing
+         params[:status] = AppConstants.state_public if params[:status].nil?
+         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+
          d = Document.create!(:owner_id => params[:owner_id], :activity_id => params[:activity_id] ,
                               :activity_word_id => params[:activity_word_id],
-                          :summary_id => params[:summary_id], :name => name, :mime => type,
-                          :url => params[:url], :thumb_url => params[:thumb_url],
-                          :caption => params[:caption])
+                              :summary_id => params[:summary_id], :name => name, :mime => type,
+                              :url => params[:url], :thumb_url => params[:thumb_url],
+                              :caption => params[:caption],
+                              :status => params[:status], :source_name => params[:source_name],
+                              :uploaded => params[:uploaded])
        rescue => e
          Rails.logger.error("Document => create_document => Failed =>  #{e.message} #{name}  #{type}")
          nil

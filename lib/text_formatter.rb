@@ -180,9 +180,11 @@ module TextFormatter
         :text => translate_activity_text(activity),
         :enriched => activity.enriched,
         :summary_id => activity.summary_id,
+        :sub_title => activity.sub_title,
+        :source_name => activity.source_name,
+        :status => activity.status,
         :campaign_types => activity.campaign_types
-
-    }
+      }
 
     if !activity.base_location_id.blank?
       hash[:location] = location_hash(activity.base_location)
@@ -202,7 +204,9 @@ module TextFormatter
               :id => comment.id,
               :user => {:id => comment.author_id, :full_name => author.full_name,:photo => author.photo_small_url},
               :text => comment.text,
-              :time => comment.updated_at
+              :time => comment.updated_at,
+#              :source_name => comment.source_name,
+#              :status => comment.status
            }
     hash
   end
@@ -219,8 +223,11 @@ module TextFormatter
               :name =>  document.name,
               :url => document.url,
               :thumb_url => document.thumb_url,
-              :caption => document.caption
+              :caption => document.caption,
               #:time =>  document.updated_at
+              :source_name => document.source_name,
+              :status => document.status,
+              :uploaded => document.uploaded
            }
     hash
   end

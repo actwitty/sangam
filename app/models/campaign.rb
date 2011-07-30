@@ -31,9 +31,12 @@ class Campaign < ActiveRecord::Base
   validates_uniqueness_of :father_id
 
 
-  validates_presence_of :name, :value
+  validates_presence_of :name, :value, :source_name, :status
 
-  validates_length_of :name, :in => 1..255
+  validates_length_of   :name, :in => 1..AppConstants.campaign_name_length
+
+  validates_length_of   :source_name,    :in => 1..AppConstants.source_name_length
+
   validates_numericality_of :value
 
   after_destroy :ensure_destroy_cleanup
@@ -126,10 +129,16 @@ class Campaign < ActiveRecord::Base
 
       text = text.to_yaml
 
+      #Create Father activity
       params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{params[:name]}&" ,
-                                         :text => text,:enrich => false).id
+                                         :text => text,:enrich => false, :campaign_types => AppConstants.campaign_none).id
+
+      #set mandatory parameters if missing
+      params[:status] = AppConstants.state_public if params[:status].nil?
+      params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
 
       campaign = Campaign.create!(params)
+
       return campaign
 
     rescue => e

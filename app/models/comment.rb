@@ -13,8 +13,11 @@ class Comment < ActiveRecord::Base
 
   validates_existence_of :author_id, :father_id
 
-  validates_presence_of :text
-  validates_length_of :text, :in => 1..AppConstants.comment_text_length
+  validates_presence_of :text, :source_name, :status
+
+  validates_length_of   :text, :in => 1..AppConstants.comment_text_length
+
+  validates_length_of   :source_name,    :in => 1..AppConstants.source_name_length
 
   has_many :campaigns, :dependent => :destroy
 
@@ -79,7 +82,12 @@ class Comment < ActiveRecord::Base
       text = text.to_yaml
       params[:father_id] =  Activity.create_activity(:author_id => params[:author_id],
                                                       :activity => "&#{AppConstants.default_comment_string}&" ,
-                                                    :text => text,:enrich => false).id
+                                                    :text => text,:enrich => false,
+                                                    :campaign_types => AppConstants.campaign_none).id
+
+      #set mandatory parameters if missing
+      params[:status] = AppConstants.state_public if params[:status].nil?
+      params[:source_name] = AppConstants.source_actwitty if params[:source_name].nil?
 
       obj = Comment.create!(params)
       puts obj.inspect

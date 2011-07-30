@@ -344,9 +344,11 @@ class User < ActiveRecord::Base
     e = Entity.where(:id => h.keys).group(:id, :entity_name, :entity_image).order("MAX(updated_at) DESC").count
 
     entity_hash = []
+
     e.each do |k,v|
       entity_hash << {:id => k[0], :name => k[1], :image  => AppConstants.entity_base_url + k[2]}
     end
+
     entity_hash
   end
 
@@ -363,12 +365,15 @@ class User < ActiveRecord::Base
     h[:user_id] = user_id
 
     lh = []
+
     h = Hub.where(h).group(:location_id).order("MAX(updated_at) DESC").count
+
     Location.where(:id => h.keys).order("updated_at DESC").all.each do |attr|
       l = location_hash(attr)
       l[:id] = attr.id
       lh <<  l
     end
+
     lh
   end
 
@@ -381,6 +386,7 @@ class User < ActiveRecord::Base
       a = format_activity(attr)
       en << a
     end
+
     puts en
     en
   end
@@ -390,21 +396,25 @@ class User < ActiveRecord::Base
   #INPUT => activity_id => 123, entity_id => 234
   #OUTPUT => Activity Blob
   def remove_entity_from_activity(activity_id, entity_id)
+
     activity = Activity.where(:id => activity_id).first
+
     if !activity.activity_text.blank?
       activity.activity_text = unlink_an_entity(activity.activity_text,  entity_id)
       activity.update_attributes(:activity_text => activity.activity_text)
     end
+
     activity = format_activity(activity)
     activity
+
   rescue => e
     Rails.logger.error("User => remove_entity_from_activity => failed => #{e.message}")
     {}
   end
 
   # INPUT
-  #    :word => activity word or phrase in activity box
-  #    :text =>   ""entity box + @@ + location box" or nil
+  #    :word => activity word or phrase in activity box  [MANDATORY]
+  #    :text =>   ""entity box + @@ + location box" or nil [OPTIONAL]
   #    :location => {
   #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
   #                                      OR
@@ -413,11 +423,32 @@ class User < ActiveRecord::Base
   #                  :unresolved_location =>{:unresolved_location_name => "xyxzw"}
   #                                      OR
   #                                     nil
-  #                 }
+  #                 } [OPTIONAL]
+  #
   #    :documents => [{:caption => "abcd", :thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
-  #                   :url => "https://s3.amazonaws.com/xyz.jpg" } ]  #caption and thumb_url is optional
-  #    :campaign_types => 1 to 7 #at present each bit represent on campaign type. 0 => like, 1=>support,, :join=>2
+  #                   :url => "https://s3.amazonaws.com/xyz.jpg" } ]#caption and thumb_url is optional in document
+  #                  [OPTIONAL]
+  #
+  #    :campaign_types => 1 to 7  #  Need to set by client. At present each bit represent on campaign type.
+  #                         bit 0 => like, bit 1=>support,bit 2=> :join  #defualt is 1 ( like).
+  #                        Check CAMPAIGN_TYPES in constant.yml
+  #                        [MANDATORY]
+  #
+  #    :status => 0 or 1   # 0 => saved, 1 => public share, #default => 1
+  #                        #Need to set by client.
+  #                        Check STATUS in constant.yml
+  #                        [MANDATORY]
+  #
+  #    :source_name =>  "actwitty" or "twitter", or "facebook" or "gplus" or "dropbox" or "tumblr" or "posterous",
+  #                      or custom email or mobile number #defualt is actwitty. Need to set by client.
+  #                      Check SOURCE_NAME in constant.yml
+  #                      [MANDATORY]
+  #
+  #    :sub_title => "hello sudha baby" or nil. Need to set by client.
+  #                      [OPTIONAL]
+  #
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
+  #                     [MANDATORY]
   #
   # OUTPUT => {:post=>{
   #              :text=>"pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
@@ -426,11 +457,16 @@ class User < ActiveRecord::Base
   #              :id=>1356,
   #              :time=>Thu, 14 Jul 2011 05:42:20 UTC +00:00},
   #              :enriched=>false,
+  #              :campaign_types => 1 to 7 or nil #( as set by client) at present each bit represent on campaign type. bit 0 => like, bit 1=>support,bit 2=> :join
+  #              :sub_title => "hello sudha baby" or nil
+  #              :source_name => "actwitty"
+  #              :status => 0 or 1 or 2 ( as set by client)
   #              :location=>{:type=>2, :lat=>#<BigDecimal:62b1fc8,'0.2345E2',18(18)>, :long=>#<BigDecimal:62b1de8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>315}
   #             }
 
   def create_activity(params={})
-    params[:activity] = params[:word]
+
+    params[:activity]= params[:word]
     params[:author_id] = self.id
 
     obj = Activity.create_activity(params)
@@ -440,6 +476,7 @@ class User < ActiveRecord::Base
     a = format_activity(obj)
     puts a
     a
+
   end
 
   #INPUT = Array of activity ids
@@ -505,6 +542,41 @@ class User < ActiveRecord::Base
   #:friend => true/false
   #:filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #OUTPUT
+  #[
+  # {
+  # :post=>
+  #  {
+  #   :id=>11, :user=>{:id=>5, :full_name=>"lemony1 lime1", :photo=>"images/id_1"},
+  #   :word=>{:id=>10, :name=>"eating"}, :time=>Sat, 30 Jul 2011 21:41:56 UTC +00:00,
+  #   :text=>"<a href=# value=11 class=js_activity_entity>pizza</a>  with <a href=# value=5 class=js_activity_mention>Alok Srivastava</a>",
+  #   :enriched=>true, :summary_id=>9, :sub_title=>nil, :source_name=>"actwitty", :status=>1, :campaign_types=>1
+  #  },
+  # :location=>
+  #  {
+  #   :type=>2, :lat=>#<BigDecimal:9de78e0,'0.2345E2',18(18)>, :long=>#<BigDecimal:9de77c8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>8
+  #  },
+  #  :comments=>
+  #  {
+  #   :count=>5, :array=>[]
+  #  },
+
+  ## COMMENT - In documents these fields are added and they will be returned too in streams
+  ## COMMENT - :caption=> "abcds", :source_name=>"actwitty", :status=>1, :uploaded=>true
+  ## COMMENT  uploaded field tells that document is uploaded doc or mentioned document. It is boolean
+  #
+  # :documents=>
+  #  {
+  #   :count=>2,
+  #   :array=>[
+  #           {:id=>1, :name=>"xyz.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg", :caption=>nil, :source_name=>"actwitty", :status=>1, :uploaded=>true},
+  #           {:id=>2, :name=>"abc.jpg", :url=>"https://s3.amazonaws.com/abc.jpg", :caption=>nil, :source_name=>"actwitty", :status=>1, :uploaded=>true}
+  #           ]
+  #  },
+  # :campaigns=>
+  #     [{:name=>"support", :count=>1, :user=>true, :user_id=>5}, {:name=>"like", :count=>2, :user=>false}]
+  #}
+  #]
   def get_stream(params ={})
 
     if params[:user_id] == self.id
@@ -905,3 +977,39 @@ class User < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :integer         not null, primary key
+#  email                :string(255)
+#  encrypted_password   :string(128)     default("")
+#  reset_password_token :string(255)
+#  remember_created_at  :datetime
+#  sign_in_count        :integer         default(0)
+#  current_sign_in_at   :datetime
+#  last_sign_in_at      :datetime
+#  current_sign_in_ip   :string(255)
+#  last_sign_in_ip      :string(255)
+#  confirmation_token   :string(255)
+#  confirmed_at         :datetime
+#  confirmation_sent_at :datetime
+#  failed_attempts      :integer         default(0)
+#  unlock_token         :string(255)
+#  locked_at            :datetime
+#  authentication_token :string(255)
+#  username             :string(255)
+#  show_help            :boolean
+#  disable_email        :boolean
+#  full_name            :string(255)
+#  photo_small_url      :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  invitation_token     :string(60)
+#  invitation_sent_at   :datetime
+#  invitation_limit     :integer
+#  invited_by_id        :integer
+#  invited_by_type      :string(255)
+#
+

@@ -372,7 +372,7 @@ describe Activity do
 
       e = Entity.where(:entity_name => "pizza").first
 
-     a =@u.get_stream({:user_id => @u.id,
+     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id], :entity_id => e.id},
                        :updated_at => Time.now.utc})
      puts a.inspect
       a.should_not be_blank
@@ -498,6 +498,11 @@ end
 
 
 
+
+
+
+
+
 # == Schema Information
 #
 # Table name: activities
@@ -510,6 +515,10 @@ end
 #  base_location_id :integer
 #  comments_count   :integer
 #  documents_count  :integer
+#  campaign_types   :integer         default(1)
+#  status           :integer         default(1)
+#  source_name      :string(64)      default("actwitty")
+#  sub_title        :string(255)
 #  summary_id       :integer
 #  enriched         :boolean
 #  created_at       :datetime
