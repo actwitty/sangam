@@ -43,7 +43,7 @@ class Document < ActiveRecord::Base
       def clear_serialized_summary
         s=Summary.where(:id => self.summary_id).first
 
-         if s.document_array.include?(self.id)
+         if !s.document_array.nil? && s.document_array.include?(self.id)
            puts "deleting document"
            s.document_array.delete(self.id)
          end
