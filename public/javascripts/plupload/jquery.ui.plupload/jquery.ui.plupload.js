@@ -58,12 +58,7 @@ function renderUI(obj) {
 								'</div>' +
               '</td>' +
               '<td class="plupload_cell plupload_file_caption">' +
-								'<div class="plupload_buttons"><!-- Visible -->' +
 									'<a class="plupload_start" >' + _('Start Upload') + '</a>&nbsp;' +
-								//	'<a class="plupload_button plupload_stop plupload_hidden">'+_('Stop Upload') + '</a>&nbsp;' +
-								'</div>' +
-
-								'<div class="plupload_started plupload_hidden"><!-- Hidden -->' +
 
 									'<div class="plupload_progress plupload_right">' +
 										'<div class="plupload_progress_container"></div>' +
@@ -73,7 +68,6 @@ function renderUI(obj) {
 
 									'<div class="plupload_clearer">&nbsp;</div>' +
 
-								'</div>' +
 							'</td>' +
 							'<td class="plupload_file_status"><span class="plupload_total_status">0%</span></td>' +
 							'<td class="plupload_file_size"><span class="plupload_total_file_size">0 kb</span></td>' +
@@ -139,21 +133,15 @@ $.widget("ui.plupload", {
 		// buttons
 		this.browse_button = $('.plupload_add', this.container).attr('id', id + '_browse');
 		this.start_button = $('.plupload_start', this.container).attr('id', id + '_start');
-		this.stop_button = $('.plupload_stop', this.container).attr('id', id + '_stop');
 
 		if ($.ui.button) {
 			this.browse_button.button({
 				icons: { primary: 'ui-icon-circle-plus' }
 			});
 
-			this.start_button.button({
-				icons: { primary: 'ui-icon-circle-arrow-e' },
-				disabled: true
-			});
-
-			this.stop_button.button({
-				icons: { primary: 'ui-icon-circle-close' }
-			});
+      this.start_button.button({
+				disabled: true,
+			}).hide();
 		}
 
 		// all buttons are optional, so they can be disabled and hidden
@@ -166,9 +154,6 @@ $.widget("ui.plupload", {
 			this.start_button.button('disable').hide();
 		}
 
-		if (!this.options.buttons.stop) {
-			this.stop_button.button('disable').hide();
-		}
 
 		// progressbar
 		this.progressbar = $('.plupload_progress_container', this.container);		
@@ -209,10 +194,6 @@ $.widget("ui.plupload", {
 				e.preventDefault();
 			});
 
-			self.stop_button.click(function(e) {
-				uploader.stop();
-				e.preventDefault();
-			});
 		});
 
 
@@ -359,14 +340,10 @@ $.widget("ui.plupload", {
 			if (!value.start) {
 				self.start_button.button('disable').hide();
 			} else {
-				self.start_button.button('enable').show();
+				self.start_button.button('enable').hide();;
 			}
 
-			if (!value.stop) {
-				self.stop_button.button('disable').hide();
-			} else {
-				self.start_button.button('enable').show();	
-			}
+			
 		}
 
 		self.uploader.settings[key] = value;	
@@ -421,10 +398,6 @@ $.widget("ui.plupload", {
 
 			$(self.start_button).button('disable');
 
-			$([])
-				.add(self.stop_button)
-				.add('.plupload_started')
-					.removeClass('plupload_hidden');
 
 			$('.plupload_upload_status', self.element).text(
 				_('Uploaded %d/%d files').replace('%d/%d', uploader.total.uploaded+'/'+uploader.files.length)
@@ -434,10 +407,6 @@ $.widget("ui.plupload", {
 
 		} else {
 
-			$([])
-				.add(self.stop_button)
-				.add('.plupload_started')
-					.addClass('plupload_hidden');
 
 			if (self.options.multiple_queues) {
 				$(self.start_button).button('enable');
@@ -525,19 +494,18 @@ $.widget("ui.plupload", {
 
 			if (file.status === plupload.DONE) {
 				if (file.target_name) {
-					fields += '<input type="hidden" name="' + id + '_tmpname" value="'+plupload.xmlEncode(file.target_name)+'" />';
+					fields += '<input type="hidden" name="' + id + '_tmpname" value="'+ plupload.xmlEncode(file.target_name)+'" />';
 				}
-				fields += '<input type="hidden" name="' + id + '_name" value="'+plupload.xmlEncode(file.name)+'" />';
+				fields += '<input type="hidden" name="' + id + '_name" value="'+ plupload.xmlEncode(file.name)+'" />';
 				fields += '<input type="hidden" name="' + id + '_status" value="' + (file.status === plupload.DONE ? 'done' : 'failed') + '" />';
 
 				count++;
 				self.counter.val(count);
 			}
-
 			filelist.append(
 				'<tr class="ui-state-default plupload_file" id="' + file.id + '">' +
 					'<td class="plupload_cell plupload_file_name"><span>' + file.name + '</span></td>' +
-					'<td class="plupload_cell plupload_file_caption"><input type="text" placeholder="caption"/> </td>' +
+					'<td class="plupload_cell plupload_file_caption"><input type="text" class="js_plupload_caption" placeholder="caption" id="file_caption_' + file.id + '" value="' + get_caption_value('file_caption_' + file.id) +  '"/> </td>' +
 					'<td class="plupload_cell plupload_file_status">' + file.percent + '%</td>' +
 					'<td class="plupload_cell plupload_file_size">' + plupload.formatSize(file.size) + '</td>' +
 					'<td class="plupload_cell plupload_file_action"><div class="ui-icon"></div>' + fields + '</td>' +
@@ -563,7 +531,8 @@ $.widget("ui.plupload", {
 		if (uploader.total.queued === 0) {
 			$('.ui-button-text', self.browse_button).text(_('Add Files'));
 		} else {
-			$('.ui-button-text', self.browse_button).text(_('%d files added').replace('%d', uploader.total.queued));
+			//$('.ui-button-text', self.browse_button).text(_('%d files added').replace('%d', uploader.total.queued));
+			$('.ui-button-text', self.browse_button).text(_('Add More'));
 		}
 
 

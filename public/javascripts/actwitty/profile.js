@@ -16,13 +16,13 @@ $(document).ready(function(){
     var populated_personal=false;
     var populated_friends=false;
     var populated_stream=false;
-  
-
+ 
+    
     /* At very start Hide all contents on page load */
 	  $(".tab_content").hide(); 
 
     //Decide to bring one tab on focus
-    if(default_tab.length > 0 && default_tab =='filtered'){
+    if(default_tab =='filtered'){
   	  $("ul.tabs li:last").addClass("active").show(); 
 	    $(".tab_content:last").show();
       /* Bring in stream filtered view on focus*/
@@ -52,7 +52,7 @@ $(document).ready(function(){
       
       var tab_id = $(this).attr("id");
 
-      if(tab_id == "personal_tab_head"){
+      if(tab_id == "channels_tab_head"){
 
         if(populated_personal == false){
           append_personal_summary(page_owner_id);
@@ -60,22 +60,12 @@ $(document).ready(function(){
         }
 
       }else{
-        if(tab_id == "followings_tab_head"){
-
-          if(populated_friends == false){
-            append_friends_summary(page_owner_id);
-            populated_friends=true;
-          }
-
-        }else{
-    
-          if(tab_id == "streams_tab_head"){
+        if(tab_id == "streams_tab_head"){
             if(populated_stream == false){
               reload_streams_on_viewed_user(page_owner_id,session_owner_id);
               populated_stream=true;
             }
           }
-        }
       }
 
 		  $(".tab_content").hide(); //Hide all tab content

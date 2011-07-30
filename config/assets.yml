@@ -21,7 +21,8 @@ javascripts:
     - public/javascripts/cal.js
   profile:
     - public/javascripts/plugins/actwitty-custom.js
-    - public/javascripts/plupload/plupload.full.js
+    - public/javascripts/plupload/plupload.js
+    - public/javascripts/plupload/plupload.flash.js
     - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
     - public/javascripts/actwitty/actwitty_profile_helpers.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js

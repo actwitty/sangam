@@ -196,7 +196,7 @@ class User < ActiveRecord::Base
   end
 
   def get_followers
-    users_list = nil
+    users_list = []
     friends_id_list = Contact.select("user_id").where(:friend_id => id).map(&:user_id)
 
     if !friends_id_list.nil? && friends_id_list.count() != 0
@@ -220,7 +220,7 @@ class User < ActiveRecord::Base
   end
 
   def get_followings
-    users_list=nil
+    users_list=[]
     friends_id_list = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
 
     if !friends_id_list.nil? && friends_id_list.count() != 0

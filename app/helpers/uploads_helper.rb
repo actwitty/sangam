@@ -75,11 +75,11 @@ module UploadsHelper
 		rename: true,
 		
 		// Sort files
-  		sortable: true,
+  	sortable: true,
 
     multipart: true,
     multipart_params: {
-              'key': 'test/${filename}',
+              'key': 'test/' + '${filename}',
               'Filename': '${filename}', // adding this to keep consistency across the runtimes
         			'acl': '#{options[:acl]}',
         			'Content-Type': '#{options[:content_type]}',
@@ -97,32 +97,40 @@ module UploadsHelper
 		// Flash settings
 		flash_swf_url: '/javascripts/plupload/plupload.flash.swf',
 
-		// Silverlight settings
-		silverlight_xap_url: '/javascripts/plupload/plupload.silverlight.xap',
 	});
 
-	// Client side form validation
-	$('form').submit(function(e) {
-		var uploader = $('#uploader').plupload('getUploader');
+  /* user id and timestamp to prefix a file */
+  function get_file_prefix(){
+    var user_id = '#{current_user.id}';
+    var now = new Date();
+    var file_name = user_id + '_' + now.getTime() + '_';
+    return file_name;
+  }
 
-		// Validate number of uploaded files
-		if (uploader.total.uploaded == 0) {
-			// Files in queue upload them first
-			if (uploader.files.length > 0) {
-				// When all files are uploaded submit form
-				uploader.bind('UploadProgress', function() {
-					if (uploader.total.uploaded == uploader.files.length)
-						$('form').submit();
-				});
+  /* Single file upload handler */
+  var uploader=$('#uploader').plupload('getUploader');
+  uploader.bind('UploadFile',function(up,file){
+    var caption_id = 'file_caption_' + file.id;
+    var caption = $('#' + caption_id).val(); 
+    var file_name = file.name;
+    var prefix = get_file_prefix();
+    var url = up.settings.url + '/' + 'test/' + prefix + file.name;
+    up.settings.multipart_params['key']='test/' + prefix + '${filename}';
+    up.settings.multipart_params['Filename']= prefix + '${filename}';
 
-				uploader.start();
-			} else
-				alert('You must at least upload one file.');
+    add_document_to_json(file.id, url, caption );
+  });
 
-			e.preventDefault();
-		}
-	});
+  uploader.bind('FileUploaded', function(up, file, response) {
+    if( uploader.total.uploaded == uploader.files.length){
+      document_upload_complete();
+    }
+  });
 
+  uploader.bind('QueueChanged', function(up, file, response) {
+    var count_to_upload = uploader.files.length -  uploader.total.uploaded;
+    document_set_pending_upload_count(count_to_upload);
+  });
 });")
   
   end
