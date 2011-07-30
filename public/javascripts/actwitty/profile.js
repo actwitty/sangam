@@ -22,7 +22,7 @@ $(document).ready(function(){
 	  $(".tab_content").hide(); 
 
     //Decide to bring one tab on focus
-    if(default_tab.length > 0 && default_tab =='filtered'){
+    if(default_tab =='filtered'){
   	  $("ul.tabs li:last").addClass("active").show(); 
 	    $(".tab_content:last").show();
       /* Bring in stream filtered view on focus*/

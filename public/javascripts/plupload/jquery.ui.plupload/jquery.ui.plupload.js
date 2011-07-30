@@ -531,7 +531,8 @@ $.widget("ui.plupload", {
 		if (uploader.total.queued === 0) {
 			$('.ui-button-text', self.browse_button).text(_('Add Files'));
 		} else {
-			$('.ui-button-text', self.browse_button).text(_('%d files added').replace('%d', uploader.total.queued));
+			//$('.ui-button-text', self.browse_button).text(_('%d files added').replace('%d', uploader.total.queued));
+			$('.ui-button-text', self.browse_button).text(_('Add More'));
 		}
 
 
