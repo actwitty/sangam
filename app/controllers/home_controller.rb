@@ -293,7 +293,7 @@ class HomeController < ApplicationController
 
 
     Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] Create activity requested with #{params}")
-
+    @success=false
     if user_signed_in?
       if params[:enrich].blank?
         params[:enrich] = false
@@ -304,11 +304,29 @@ class HomeController < ApplicationController
           params[:enrich] = false
         end
       end
-      Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Calling model api")
+
+      if params[:status] && !params[:status].blank?
+       params[:status] = Integer(params[:status])
+      end
+      if params[:campaign_types] && !params[:campaign_types].blank?
+        params[:campaign_types] = Integer(params[:campaign_types])
+      end
+
+      if !params[:documents].nil?
+       doc_arr = Array.new()
+       params[:documents].each do |index, doc_hash|
+        doc_arr = doc_arr << doc_hash
+       end
+       params[:documents]= doc_arr
+      end
+      Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Calling model api with #{params}")
       response_json=current_user.create_activity(params)
       Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Returned from model api #{response_json}")
-       if request.xhr?
-        render :json => response_json, :status => 200
+      @success=true
+
+
+      respond_to do |format|
+        format.json
       end
     else
       Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] No sign in, not creating any activity")

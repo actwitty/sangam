@@ -1,0 +1,6 @@
+-if @success
+  $("#js_input_box").html("#{escape_javascript(render(:partial => "/home/input_box.html.haml"))}");
+  alert("New post added");
+  clear_all_input_jsons();
+-else
+  alert("Failed to create post.\n Actwitty is trying to solve the problem.");

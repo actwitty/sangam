@@ -20,17 +20,21 @@ javascripts:
     - public/javascripts/plugins/rails.validations.custom.js
     - public/javascripts/cal.js
   profile:
-    - public/javascripts/plugins/actwitty-custom.js
-    - public/javascripts/plupload/plupload.js
-    - public/javascripts/plupload/plupload.flash.js
-    - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
-    - public/javascripts/actwitty/actwitty_profile_helpers.js
+    - public/javascripts/plugins/jquery.elastic.source.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
     - public/javascripts/plugins/jquery-autocomplete/lib/thickbox-compressed.js
     - public/javascripts/plugins/jquery-autocomplete/jquery.autocomplete.js
-    - public/javascripts/actwitty/aw_slider.js
+    - public/javascripts/plupload/plupload.js
+    - public/javascripts/plupload/plupload.flash.js
+    - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
+    - public/javascripts/plugins/actwitty-custom.js
     - public/javascripts/plugins/jquery-list-splitter/jquery.easyListSplitter.js
+    - public/javascripts/actwitty/alpha/custom.js
+    - public/javascripts/actwitty/home_page_inputs.js
+    - public/javascripts/actwitty/alpha/actwitty_profile_helpers.js
+  pressed:
+    - public/javascripts/actwitty/aw_slider.js
     - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_locations.js
@@ -65,10 +69,9 @@ javascripts:
 
 stylesheets:
   defaults:
-    - public/stylesheets/actwitty/actwitty-profile.css
-    - public/stylesheets/actwitty/actwitty-profile-settings.css
-    - public/stylesheets/actwitty/actwitty-profile-summary.css
-    - public/stylesheets/actwitty/actwitty-comments-streams.css
+    - public/stylesheets/actwitty/alpha/home_layout.css
+    - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
+    - public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
     - public/stylesheets/plupload/jquery.ui.plupload.css
     - public/stylesheets/plupload/jquery.plupload.queue.css
     - public/stylesheets/actwitty/signin.css
@@ -80,6 +83,5 @@ stylesheets:
     - public/stylesheets/actwitty/home_page.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/javascripts/jquery/jquery-ui-1.8.14/themes/base/minified/jquery-ui.min.css
-    - public/stylesheets/actwitty/mainpage.css
 
 

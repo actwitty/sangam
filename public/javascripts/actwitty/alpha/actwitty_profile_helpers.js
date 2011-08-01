@@ -49,10 +49,11 @@ $(document).ready(function(){
       
     });
 
+    $("#attachment").live("click",function(){
+        $("#input-attachments-section").show();
+        $(this).hide();
+    });
 
-
-
-  
     /* to display the comment input system for inputting comments.  like google+ */ 
     $(".add-comment").click(function(event){
       $(this).next().show();
@@ -65,16 +66,6 @@ $(document).ready(function(){
     });
 
 
-    /* to display the input system for creating posts.....  like google+ */ 
-    $(".add-page-input").click(function(event){
-      $(this).hide();
-      $(".home_page_inputs").slideToggle("medium");
-    });
-
-    $(".p-i-c").click(function(event){
-      $(".home_page_inputs").slideToggle("medium");
-      $(".add-page-input").show();
-    });
 
 
     //Default Actions on tabs for me/friends/streams
@@ -111,7 +102,6 @@ $(document).ready(function(){
    
 
     $(".post-like-link").click(function() {
-        alert("fdgdfgd");
         $(".liking-it").css('display','block');
     });
    
@@ -124,72 +114,6 @@ $(document).ready(function(){
      */
      
     
-
-    $(".count-enable").blur(function() {
-        $("#input-char-count").hide();
-    });
-    
-    $(".count-enable").bind('focus keyup', function() {
-        $("#input-char-count").show();
-        var maxlength = $(this).attr("maxlength");
-        $(this).val($(this).val().slice(0,maxlength));
-        var remaining_length = maxlength - $(this).val().length;
-        $("#char-count").text(": "+ remaining_length);
-
-    });
-
-    $("#attachment").click(function(){
-        $("#input-attachments-section").show();
-         $("#attachment-list").append(" <div class='input-attachment'> " +
-                    "<input type='file' class='choose-attach'> " +
-                    "<input type='text' placeholder='Caption' class='attach-caption'/>" +
-                    "<input type='button' value='Delete' class='delete-attach'/>" +
-                "</div>");
-        $(this).hide();
-    });
-
-
-
-    /* delete all the attachments... thus deleting all the elements with class as 
-     * input attachment
-     */
-    $("#delete-all-attachment").click(function(){
-        $("#input-attachments-section").hide();
-        $(".input-attachment").remove();
-        $("#attachment").show();
-    });
-    
-    
-    
-    /* not used probably...keep it */ 
-    $(".delete-attachment").click(function(){
-        $(this).parent().remove();
-        alert($('.attachment-list').children.length);
-    });
-    
-    /* to get functionality of add more images*/ 
-    $("#add-more-attachment").click(function(){
-        $("#attachment-list").append(" <div class='input-attachment'> " +
-                    "<input type='file' class='choose-attach'> " +
-                    "<input type='text' placeholder='Caption' class='attach-caption'/>" +
-                    "<input type='button' value='Delete' class='delete-attach'/>" +
-                "</div>");
-        $(this).disabled = true;
-    });
-
-
-    /* to get functionality of delete a particular attachment
-     * in case all the attachments are deleted, we will close the attachment box and
-     * move to add-image box as we do in delete all
-     * 
-     */
-    $(".delete-attach").live('click', function() {
-       $(this).parent().remove(); 
-       if ($("#attachment-list").children().length == 0) {
-          $("#input-attachments-section").hide();
-          $("#attachment").show();
-       }
-    });
 
     $(".dropdown").click(function () {
         /*$("ul.the_menu").slideToggle("medium");*/
@@ -205,14 +129,6 @@ $(document).ready(function(){
         $(this).parent().next().slideToggle("medium");
     });
 
-    $(".campaign-btn").click(function () {
-        $(this).toggleClass('selected-camp');
-        $(this).prev().show();
-    });
-   
-    $(".del-camp").click(function () {
-        $(this).next().toggleClass('selected-camp');
-        $(this).hide();
-    });
+
 
 });

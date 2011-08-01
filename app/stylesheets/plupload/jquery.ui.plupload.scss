@@ -5,10 +5,10 @@
 
 .plupload_wrapper {
 	font: normal 11px Verdana,sans-serif;
-	width: 100%;
+	width: 575px;
 }
 
-.plupload .plupload_container input {width: 98%;}
+.plupload .plupload_container input {}
 .plupload .plupload_filelist_footer {}
 .plupload .plupload_filelist_header {}
 div.plupload .plupload_file {border-width: 0 0 1px 0}
@@ -35,19 +35,51 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 }
 .plupload_header_text {font: normal 12px sans-serif;}
 
-.plupload_filelist,
+
 .plupload_filelist_content {
 	border-collapse: collapse;
 	margin: 0;
 	padding: 0;
-	width: 100%;
+  width:520px;
+  overflow:hidden;
+  table-layout:fixed;
 }
 
-.plupload_cell {padding: 8px 6px;}
+.plupload_filelist{
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+  width:520px;
+}
+
+.plupload_header_cell {
+  overflow:hidden;
+  height:20px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size:14px;
+  vertical-align:middle;
+}
+
+.plupload_cell {
+  overflow:hidden;
+ 
+}
+
+
+.plupload_internal_cell{
+  white-space:nowrap;
+  overflow:hidden;
+  height:20px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size:12px;
+  vertical-align:middle;
+}
 
 .plupload_file {
 	border-left: none;
 	border-right: none;
+  height:20px;
+  width:100%;
 }
 
 .plupload_scroll {
@@ -57,16 +89,10 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 	overflow-y: auto;
 }
 
-.plupload_file_size, .plupload_file_status {text-align: right;}
-.plupload_file_size, .plupload_file_status {width: 52px;}
-.plupload_file_action {width: 16px;}
+.plupload_file_action, .plupload_file_size, .plupload_file_status {width: 20px;}
 .plupload_file_name {
 	overflow: hidden;
 	padding-left: 10px;
-}
-
-.plupload_file_rename {
-	width:95%;	
 }
 
 .plupload_progress {width: 60px;}

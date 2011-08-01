@@ -81,7 +81,7 @@ function get_location_json(){
 /*
  * clear all boxes
  */
-function clear_all_input_jsons(){
+function clear_all_jsons(){
   /*$('#location_field').val("");
   $('#lat_value').val("");
   $('#geo_location').val("");
@@ -136,16 +136,15 @@ function post_activity_to_server(post_data){
         url: '/home/create_activity.json',
         type: 'POST',
         data: post_data,
-        dataType:"script",
+        dataType: 'json',
         cache: true,
         success: function (data) {
+          clear_all_boxes();
+          alert('A new post has been added.');
         },
-        error: function(jqXHR, textStatus, errorThrown){
-          console.log(jqXHR);
-          console.log(textStatus);
-          console.log(errorThrown);
-          alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
-      },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in creating activity. \n ActWitty is trying to solve.' + textStatus);
+        }
     });
 }
 
@@ -295,7 +294,7 @@ function document_upload_complete(){
 
 
 $(document).ready(function() {
-   $("#actwitty_generator").live('click', function(){
+   $("#actwitty_generator").click(function() {
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
         alert("Nothing set to generate a post");

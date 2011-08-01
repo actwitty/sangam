@@ -1,41 +1,33 @@
-#profile_header
-  .wrapper.col1
-    #header
+.wrapper.col1
+  #header
+    #top-bar
       #logo
-        %h1
-          %a{:href => "http://www.actwitty.com"} actWITTy
-      %br.clear/
-
-  .profile-header-info
-    %a{:href => "http://www.actwitty.com"}
-      %img#site_logo_img{:height => "50", :src => "/images/actwitty/actwitty_logo.png", :width => "150"}/
-    .search_bar
-      %input.searchit{:placeholder => "Search...", :type => "text", :width => "30"}
-        / input type="submit" class="search_submit" value=""
-    .profile_home_icon
-      %a.nav_info{:href => "/home/show?id=#{current_user.id}"}
-        %img.profile_link_icons{:src => "/images/actwitty/home_icon.png"}/
-        %span Home
-    #home_page_nav
-      %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}/
-      %span.user_name_top_bar #{@user.full_name}
-      #settings
-        %a.button_aw_drpdn{:href => "#"}
-          / span class="txt">Settings</span
-          %span.ar &#9660;
-        .options-menu
-          %ul
-            %li
-              %a{:href => "/home/settings"} Settings
-            %li
-              %a{:href => "/help/show"} Help
-            %li
-              %a{:href => "/users/sign_out"} Logout
-    #follow.top_bar_follow
-      -if user_signed_in?
-        -if current_user.id != @user.id
-          -if !@follow
-            %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}  
-          -else
-            %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
-          %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}
+        %a{:href => "http://www.actwitty.com"}
+          %img{:height => "50", :src => "/images/alpha/actwitty.png", :width => "120"}
+      #searchwrapper
+        %form{:action => ""}
+          %input.searchbox{:name => "s", :placedholder => "Search", :type => "text"}
+      #home_page_nav
+        #settings
+          #p-topbar-home
+          -if user_signed_in?
+            %a.button{:href => "/home/show?id=#{@user.id}"}
+              %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}/
+            .options-menu
+              %ul
+                %li
+                  %a{:href => "/home/settings"} settings
+                %li
+                  %a{:href => "/help/show"} help center
+                %li
+                  %a{:href => "/users/sign_out"} logout
+    %br.clear/
+/
+  #follow.top_bar_follow
+    -if user_signed_in?
+      -if current_user.id != @user.id
+        -if !@follow
+          %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}  
+        -else
+          %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
+        %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}
