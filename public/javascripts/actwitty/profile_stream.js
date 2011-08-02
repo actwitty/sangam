@@ -599,7 +599,8 @@ function append_stream(owner_id, current_user_id){
         data: {
                 user_id : owner_id,
                 updated_at : more_cookie,
-                filter : get_filter()
+                filter : get_filter(),
+                friend:get_others_filter_state()
               },
         dataType: 'json',
         contentType: 'application/json',

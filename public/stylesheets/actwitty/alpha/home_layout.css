@@ -922,56 +922,59 @@ html ul.p-cstab li.p-st-tab.active {
 }
 
 /* line 875, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
-.p-flt-actor span {
+.p-flt-holder {
   padding: 0px 0 0 0;
   margin-top: 5px;
   border: 0px solid blue;
   font-size: 22px;
+  overflow: hidden;
+  width: 140px;
+  height: 30px;
 }
 
-/* line 885, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 887, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-st-flt-default {
   background: #cccccc;
   color: #ffffff;
 }
 
-/* line 890, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 892, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-st-flt-channel {
   background: #903737;
   color: #a4a88d;
 }
 
-/* line 897, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 899, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-st-flt-entity {
   background: #adb093;
   color: #a4a88d;
 }
 
-/* line 904, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 906, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-st-flt-location {
   background: #274521;
   color: #a4a88d;
 }
 
 /* -------------------------------Left Bar Filter ----------------------------------*/
-/* line 913, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 915, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #channels_left_side_bar {
   display: none;
 }
 
-/* line 917, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 919, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #streams_left_side_bar {
   display: none;
 }
 
-/* line 922, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 924, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-con-l-fltr {
   width: 190px;
   height: auto;
   border: 1px solid #fff;
 }
 
-/* line 929, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 931, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-l-fltr-1 {
   width: 190px;
   height: 300px;
@@ -979,7 +982,7 @@ html ul.p-cstab li.p-st-tab.active {
   position: absolute;
 }
 
-/* line 941, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 943, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-content-type-fltr-sect {
   height: 160px;
   width: 160px;
@@ -988,7 +991,7 @@ html ul.p-cstab li.p-st-tab.active {
   display: block;
 }
 
-/* line 950, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 952, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-cont-typ-fltr {
   height: 43px;
   margin-top: 7px;
@@ -999,62 +1002,62 @@ html ul.p-cstab li.p-st-tab.active {
   float: left;
 }
 
-/* line 960, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 962, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-cont-typ-fltr:hover {
   cursor: pointer;
 }
 
-/* line 964, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 966, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-all {
   background-image: url("/images/alpha/all_unselected.png");
 }
 
-/* line 965, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 967, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-all:hover {
   background-image: url("/images/alpha/all_hover.png");
 }
 
-/* line 966, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 968, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-drafts {
   background-image: url("/images/alpha/drafts_unselected.png");
 }
 
-/* line 967, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 969, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-drafts:hover {
   background-image: url("/images/alpha/images/drafts_hover.png");
 }
 
-/* line 968, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 970, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-videos {
   background-image: url("/images/alpha/videos_unselected.png");
 }
 
-/* line 969, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 971, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-videos:hover {
   background-image: url("/images/alpha/images/videos_hover.png");
 }
 
-/* line 970, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 972, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-images {
   background-image: url("/images/alpha/images_unselected.png");
 }
 
-/* line 971, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 973, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-images:hover {
   background-image: url("/images/alpha/images/images_hover.png");
 }
 
-/* line 972, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 974, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-twitter {
   background-image: url("/images/alpha/twitter_unselected.png");
 }
 
-/* line 973, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 975, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #cont-typ-fltr-twitter:hover {
   background-image: url("/images/alpha/twitter_hover.png");
 }
 
-/* line 977, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 979, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-l-fltr-2 {
   width: 100%;
   width: 190px;
@@ -1064,24 +1067,24 @@ html ul.p-cstab li.p-st-tab.active {
   position: absolute;
 }
 
-/* line 986, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 988, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-related-fltrs-sect {
   height: auto;
 }
 
-/* line 992, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 994, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-rel-fltrs {
   width: 100%;
 }
 
-/* line 996, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 998, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-rel-fltrs span {
   float: right;
   text-decoration: underline;
   font-weight: bold;
 }
 
-/* line 1003, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1005, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-rel-fltr-tags {
   width: 100%;
   height: auto;
@@ -1089,14 +1092,14 @@ html ul.p-cstab li.p-st-tab.active {
   float: right;
 }
 
-/* line 1012, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1014, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-fltr-tag-list {
   display: block;
   float: right;
   margin: 2px 2px;
 }
 
-/* line 1018, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1020, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-fltr-tag-list span {
   background: #585858;
   padding: 2px;
@@ -1111,36 +1114,36 @@ html ul.p-cstab li.p-st-tab.active {
   padding: 2px;
 }
 
-/* line 1034, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1036, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 ul.p-fltr-tag-list {
   list-style: none;
 }
 
-/* line 1039, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1041, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 ul.p-fltr-tag-list li {
   display: inline;
   background: #EED5B7;
   padding: 2px;
 }
 
-/* line 1047, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1049, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-fltr-tag-list span.p-selected-fltr-entity {
   background: #2D7010;
   color: #fff;
 }
 
 /* ------------------------------- Right Bar Filter ---------------------------------*/
-/* line 1053, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1055, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #channels_right_side_bar {
   display: none;
 }
 
-/* line 1057, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1059, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #streams_right_side_bar {
   display: none;
 }
 
-/* line 1061, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1063, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-con-r-fltr {
   width: 150px;
   height: auto;
@@ -1148,7 +1151,7 @@ ul.p-fltr-tag-list li {
   margin-left: 10px;
 }
 
-/* line 1068, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1070, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-content {
   width: 150px;
   height: auto;
@@ -1156,7 +1159,7 @@ ul.p-fltr-tag-list li {
   margin-left: 20px;
 }
 
-/* line 1077, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1079, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-st {
   width: 100%;
   width: 180px;
@@ -1166,12 +1169,12 @@ ul.p-fltr-tag-list li {
   position: fixed;
 }
 
-/* line 1087, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1089, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-st-by {
   height: 180px;
 }
 
-/* line 1092, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1095, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-me {
   margin-top: 7px;
   width: 80px;
@@ -1182,13 +1185,18 @@ ul.p-fltr-tag-list li {
   float: left;
 }
 
-/* line 1101, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1106, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-r-fltr-me-active {
+  background-image: url("/images/alpha/me_selected.png");
+}
+
+/* line 1110, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-me:hover {
   background-image: url("/images/alpha/me_hover.png");
   cursor: pointer;
 }
 
-/* line 1103, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1112, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-others {
   margin-top: 7px;
   width: 80px;
@@ -1199,13 +1207,38 @@ ul.p-fltr-tag-list li {
   float: left;
 }
 
-/* line 1112, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1121, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-others:hover {
   background-image: url("/images/alpha/others_hover.png");
   cursor: pointer;
 }
 
-/* line 1115, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1124, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-r-fltr-others-active {
+  background-image: url("/images/alpha/others_selected.png");
+}
+
+/* line 1128, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-r-userinfo {
+  height: 180px;
+  font-size: 22px;
+  border: 2px solid #ccc;
+}
+
+/* line 1134, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-r-userinfo a img {
+  height: 100px;
+  width: 100px;
+}
+
+/* line 1142, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-r-userinfo .follow_button {
+  float: right;
+  float: bottom;
+  margin-top: 105px;
+}
+
+/* line 1150, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-search-fltr {
   width: 100%;
   width: 150px;
@@ -1214,52 +1247,52 @@ ul.p-fltr-tag-list li {
   position: fixed;
 }
 
-/* line 1126, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1161, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-search-fltr-bar {
   height: 25px;
   background: #ddd;
   padding: 3px;
 }
 
-/* line 1132, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1167, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-search-fltr-bar span {
   float: right;
   color: #333;
   font-size: 14px;
 }
 
-/* line 1139, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1174, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-by {
   width: 100%;
   height: 15px;
   margin: 2px 0 2px 0;
 }
 
-/* line 1145, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1180, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-r-fltr-by span {
   font-size: 11px;
   text-decoration: underline;
 }
 
 /* ----------------------------------------  Content stream -------------------------------------*/
-/* line 1152, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1187, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #channels_main_bar {
   display: none;
 }
 
-/* line 1156, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1191, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #streams_main_bar {
   display: none;
 }
 
-/* line 1160, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1195, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #p-content-sect {
   padding: 0px 0;
   border: 0px solid red;
   margin-top: 0px;
 }
 
-/* line 1166, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1201, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #p-content-sect ul, #p-content-sect p {
   margin: 0;
   padding: 0;
@@ -1267,7 +1300,7 @@ ul.p-fltr-tag-list li {
   display: inline;
 }
 
-/* line 1175, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1210, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #p-content-sect li {
   display: block;
   float: left;
@@ -1275,7 +1308,7 @@ ul.p-fltr-tag-list li {
   padding: 0;
 }
 
-/* line 1186, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1221, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-content {
   width: 600px;
   height: auto;
@@ -1283,7 +1316,7 @@ ul.p-fltr-tag-list li {
   background: #fff;
 }
 
-/* line 1194, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1229, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-aw-post {
   height: auto;
   width: 100%;
@@ -1294,39 +1327,39 @@ ul.p-fltr-tag-list li {
   padding: 10px;
 }
 
-/* line 1207, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1242, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel {
   width: 100%;
   height: 30px;
   border: 0px solid red;
 }
 
-/* line 1214, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1249, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel-desc {
   float: right;
 }
 
-/* line 1219, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1254, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel-label {
   font-size: 16px;
   color: #e5e5e5;
 }
 
-/* line 1224, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1259, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel-name {
   font-size: 18px;
   background: #903737;
   color: #a4a88d;
 }
 
-/* line 1232, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1267, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-subtitle {
   width: 100%;
   height: 30px;
   border: 0px solid blue;
 }
 
-/* line 1239, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1274, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-subtitle-name {
   float: right;
   font-size: 21px;
@@ -1335,7 +1368,7 @@ ul.p-fltr-tag-list li {
   color: #333;
 }
 
-/* line 1248, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1283, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-time {
   width: 100%;
   height: 20px;
@@ -1343,33 +1376,33 @@ ul.p-fltr-tag-list li {
   border: 0px solid green;
 }
 
-/* line 1255, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1290, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-time-content {
   float: right;
   font-size: 10px;
 }
 
-/* line 1260, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1295, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-date {
   width: 100%;
   height: 20px;
   border: 0px solid blue;
 }
 
-/* line 1266, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1301, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-date-content {
   float: right;
   font-size: 12px;
 }
 
-/* line 1272, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1307, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-content {
   width: 100%;
   height: auto;
   border: 0px solid red;
 }
 
-/* line 1279, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1314, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-content p {
   margin-left: 10px;
   font-size: 14px;

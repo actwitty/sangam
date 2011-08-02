@@ -871,13 +871,15 @@ html ul.p-cstab li.p-st-tab.active  {
   border:4px solid #afaf93;
 }
 
-.p-flt-actor span
+.p-flt-holder
 {
   padding:0px 0 0 0 ;
   margin-top:5px;
   border:0px solid blue;
   font-size:22px;
-
+  overflow:hidden;
+  width:140px;
+  height:30px;
   
 }
 
@@ -1088,6 +1090,7 @@ ul.p-fltr-tag-list li
   height:180px;
 }
 
+
 .p-r-fltr-me
 {
     margin-top:7px;
@@ -1098,6 +1101,12 @@ ul.p-fltr-tag-list li
     background-repeat:no-repeat;
     float:left;
 }
+
+.p-r-fltr-me-active
+{
+    background-image:url("/images/alpha/me_selected.png");
+}
+
 .p-r-fltr-me:hover { background-image:url("/images/alpha/me_hover.png"); cursor:pointer ;}
 .p-r-fltr-others
 {
@@ -1110,6 +1119,32 @@ ul.p-fltr-tag-list li
     float:left;
 }
 .p-r-fltr-others:hover { background-image:url("/images/alpha/others_hover.png"); cursor:pointer ;}
+
+.p-r-fltr-others-active
+{
+    background-image:url("/images/alpha/others_selected.png");
+}
+
+.p-r-userinfo{
+  height:180px;
+  font-size:22px;
+  border:2px solid #ccc;
+}
+
+.p-r-userinfo a img{
+  height:100px;
+  width:100px;
+}
+
+.p-r-userinfo a span{
+}
+
+.p-r-userinfo .follow_button{
+  float:right;
+  float:bottom;
+  margin-top:105px;
+}
+
 
 .p-r-search-fltr
 {

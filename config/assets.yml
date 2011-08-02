@@ -35,6 +35,7 @@ javascripts:
     - public/javascripts/actwitty/home_page_inputs.js
     - public/javascripts/actwitty/alpha/actwitty_profile_helpers.js
     - public/javascripts/actwitty/aw_slider.js
+    - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_things.js

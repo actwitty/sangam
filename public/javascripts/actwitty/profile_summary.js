@@ -69,7 +69,7 @@ function create_and_add_friends_box(box_id, summary){
       the_big_filter_JSON[filter_id] = filter_value;
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
-                  '<img src="'+ friend.image + '"  width="25" height="25" alt="" />' +
+                  '<img src="'+ friend.photo + '"  width="25" height="25" alt="" />' +
                   '<span>' +
                       friend.full_name +
                   '</span>' +
@@ -95,17 +95,15 @@ function create_and_add_entities_box(box_id, summary){
     $.each(summary.entities, function(i, entity){
       /* This filter id uniquely identifies filter */
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + entity.id;
-      var filter_hidden_id = filter_id + '_hidden';
       /* create a JSON of filter */
       var filter_value = {
                             user:summary.user.id ,
                             thing_id:entity.id,
                             thing_name:entity.name,
-                            channel_id:summary.word.id, 
+                            channel_id:summary.word.word_id, 
                             channel_name:summary.word.name  
                           };
       the_big_filter_JSON[filter_id] = filter_value;
-
 
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
@@ -140,7 +138,7 @@ function create_and_add_locations_box(box_id, summary){
                             user:summary.user.id ,
                             location_id:place.id,
                             location_name:place.name,
-                            channel_id:summary.word.id, 
+                            channel_id:summary.word.word_id,
                             channel_name:summary.word.name  
                           };
       the_big_filter_JSON[filter_id] = filter_value;
@@ -197,7 +195,7 @@ function create_and_add_summary(summary_box, summary){
                   '</a>'+ 
                 '</div>'+
 
-                '<div class="summary_channel_box js_summary_filter_setter" >' +
+                '<div class="summary_channel_box js_summary_filter_setter" id="'+ filter_id +'" >' +
                   '<span>'  +
                      summary.word.name + 
                   '</span>' +
@@ -271,7 +269,7 @@ function append_personal_summary(owner_id){
   $.ajax({
         url: '/home/get_summary.json',
         type: 'GET',
-        data: {user_id : owner_id, updated_at : more_cookie },
+        data: {user_id : owner_id, updated_at:more_cookie, friend:get_others_filter_state() },
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
@@ -296,6 +294,12 @@ function append_personal_summary(owner_id){
 
 }
 
+function reload_summary_page(owner_id){
+  $('#channels_display_list').html("");
+  $("#more_channels_cookie").val("");
+  append_personal_summary(owner_id);
+
+}
 
 $(document).ready(function(){
   /* Manage summary filters */
@@ -310,7 +314,7 @@ $(document).ready(function(){
             modify_filter(filter);
           }
 
-          return;
+          return false;
         }
       alert("ActWitty will fix the problem with the filter");
     });
