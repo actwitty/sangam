@@ -44,11 +44,13 @@ function modify_filter(filter_json, reload, onload){
     //var html = '<input type="button" id="channel_filter_drop" value="'+ $("#filter_channel_name").attr("value") +' X"/>'; 
     $("#fltr_channel_id").html($("#filter_channel_name").attr("value"));
     $("#fltr_channel_id").parent().addClass('p-st-flt-channel');
+    $('#channel_filter_drop').show();
   }else{
     if ($("#fltr_channel_id").parent().is('.p-st-flt-channel')) {
       $("#fltr_channel_id").parent().removeClass('p-st-flt-channel');
     }
     $("#fltr_channel_id").html("all channels");
+    $('#channel_filter_drop').hide();
   }
 
   /* Thing */
@@ -56,10 +58,12 @@ function modify_filter(filter_json, reload, onload){
    //var html = '<input type="button" id="thing_filter_drop" value="'+ $("#filter_thing_name").attr("value") +' X"/>'; 
    $("#fltr_entity_id").html($("#filter_thing_name").attr("value"));
    $("#fltr_entity_id").parent().addClass('p-st-flt-entity');
+    $('#thing_filter_drop').show();
   }else{
     if ($("#fltr_entity_id").parent().is('.p-st-flt-entity')) {
       $("#fltr_entity_id").parent().removeClass('p-st-flt-entity');
       $("#fltr_entity_id").html("all objects");
+    $('#thing_filter_drop').hide();
     }
   }
 
@@ -70,11 +74,13 @@ function modify_filter(filter_json, reload, onload){
     //var html = '<input type="button" id="location_filter_drop" value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
    $("#fltr_location_id").html($("#filter_location_name").attr("value"));
    $("#fltr_location_id").parent().addClass('p-st-flt-location');
+    $('#location_filter_drop').show();
   }else{
     if ($("#fltr_location_id").parent().is('.p-st-flt-location')) {
       $("#fltr_location_id").parent().removeClass('p-st-flt-location');
     }
       $("#fltr_location_id").html("all locations");
+    $('#location_filter_drop').hide();
   }
   if(onload == false){
     if(reload==true){

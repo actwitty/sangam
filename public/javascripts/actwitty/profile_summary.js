@@ -63,7 +63,7 @@ function create_and_add_friends_box(box_id, summary){
       /* create a JSON of filter */
       var filter_value = {
                           user:friend.id ,
-                          channel_id:summary.word.id, 
+                          channel_id:summary.word.word_id, 
                           channel_name:summary.word.name  
                     };
       the_big_filter_JSON[filter_id] = filter_value;

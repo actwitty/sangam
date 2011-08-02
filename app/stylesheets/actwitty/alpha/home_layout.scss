@@ -862,7 +862,7 @@ html ul.p-cstab li.p-st-tab.active  {
 }
 .p-flt-actor
 {
-  width:150px;
+  width:140px;
   height:34px;
   display:inline-block;
   float:left;
@@ -881,6 +881,31 @@ html ul.p-cstab li.p-st-tab.active  {
   width:140px;
   height:30px;
   
+}
+
+.del-fltr
+{
+  color:green;
+  width:9px;
+  height:9px;
+  border:0px solid red;
+  font-size:8px;
+  margin-top:0px;
+  margin-left:0px;
+  float:top;
+  float:right;
+  background:url("/images/alpha/close_mini.png");
+ // display:none;
+}
+
+.del-fltr:hover
+{
+  cursor:pointer;
+}
+
+.del-fltr-inactive
+{
+  display:none;
 }
 
 .p-st-flt-default
