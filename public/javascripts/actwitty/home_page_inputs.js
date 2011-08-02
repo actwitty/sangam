@@ -13,6 +13,7 @@ var document_upload_handling_json={};
 var document_caption_cache={};
 var documents_to_upload_count=0;
 var campaigns_manager={};
+campaigns_manager["Like"] = true;
 
 function set_campaign_status(campain_type, state){
   campaigns_manager[campain_type] = state;
@@ -82,17 +83,11 @@ function get_location_json(){
  * clear all boxes
  */
 function clear_all_input_jsons(){
-  /*$('#location_field').val("");
-  $('#lat_value').val("");
-  $('#geo_location').val("");
-  $('#location_field').val("");
-  $('#activity_field').val("");
-  $('#entity_field').val("");*/
+  
 
   document_upload_handling_json={};
   document_caption_cache={};
   documents_to_upload_count=0;
-  campaigns_manager={};
 }
 
 
@@ -139,6 +134,9 @@ function post_activity_to_server(post_data){
         dataType:"script",
         cache: true,
         success: function (data) {
+          alert("New post added");
+          reset_to_default();
+          clear_all_input_jsons();
         },
         error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);

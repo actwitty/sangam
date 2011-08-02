@@ -1,6 +1,4 @@
 -if @success
-  $("#js_input_box").html("#{escape_javascript(render(:partial => "/home/input_box.html.haml"))}");
-  alert("New post added");
-  clear_all_input_jsons();
+  $("#input-attachments-section").html("#{escape_javascript(render(:partial => "home/upload_attachments.html.haml"))}");
 -else
   alert("Failed to create post.\n Actwitty is trying to solve the problem.");
