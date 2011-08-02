@@ -1,0 +1,16 @@
+.p-r-content
+  .p-r-fltr-st
+    -if user_signed_in?
+      -if current_user.id == @user.id
+        .p-r-fltr-st-by
+          .p-r-fltr-me
+          .p-r-fltr-others
+    .p-r-search-fltr
+      .p-r-search-fltr-bar
+        %span Search Filters
+      .p-r-fltr-by
+        %span Filter by Followers >
+      .p-r-fltr-by
+        %span Filter by Locations >
+      .p-r-fltr-by
+        %span Filter by Entities >

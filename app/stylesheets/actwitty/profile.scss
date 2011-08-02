@@ -231,193 +231,256 @@ div#inner:hover input.follow_button{
 
 /****************************** Side Bar Filters on Activities/entities/friends***************************/
 
-li.user_stamp
+
+.channels_list
 {
   display:block;
-  list-style:none;
-  list-style-type:none;
-  margin-top:-2px;
-  margin-left:-2px;
+  width:95%;
 }
-
-a.link_user_stamp.user_stamp
-{
-  font: 12px Arial, Helvetica, sans-serif;
-  margin-top:-2px;
-  margin-left:-2px;
-}
-
-img.img_stamp.user_stamp
-{
-  width:  40px;
-  height: 40px;
-  font: 12px Arial, Helvetica, sans-serif;
-  margin-top:-2px;
-  margin-left:-2px;
-}
-
 
 .summary_box
 {
-  width: 90%;
-  height: 150px;
-  border: 1px solid black;
+  width:90%;
+  margin-top:10px;
+  display:block;
+  float:right;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:10px;
+  border:2px solid #ccc;
 }
 
 
+  
+
 .summary_user_box
 {
-  width: 5%;
-  height: 100%;
-  float: left;
-  border: 1px solid black;
-  font: 10px Arial, Helvetica, sans-serif;
+  margin:10px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size:12px;
   overflow: hidden;
+  color:#000000;
+  width:80px;
+  height:80px;
+  float:right;
+  display:block;
   
+}
+
+.summary_user_box a img
+{
+  float:left;
+  display:block;
+  width:40px;
+  height:40px;
+}
+
+.summary_channel_box
+{
+  margin:10px;
+  width:150px;
+  height:34px;
+  display:block;
+  float:left;
+  border:4px solid #afaf93;
+  background:#903737;
+}
+
+.summary_channel_box span
+{
+  padding:0px 0 0 0 ;
+  margin-top:5px;
+  overflow:hidden;
+  font-size:22px;
+  color:#a4a88d;
+}
+
+.summary_update_time_box
+{
+  float:left;
+  margin-top:65px;
+  margin-left:-170px;
+  display:block;
+  font-style:italic;
+}
+
+.summary_total_posts_box
+{
+  float:left;
+  margin-top:80px;
+  margin-left:-195px;
+  display:block;
+  font-style:italic;
 }
 
 .summary_main_box
 {
-  height:100%;
-  width: 94%;
-  float: left;
-  border: 1px solid black;
-  font: 12px Arial, Helvetica, sans-serif;
-  overflow: hidden;
-
-}
-
-ul.summary_list{
+  padding-left:10px;
+  margin-top:10px;
   width:100%;
-  height:100%;
-  overflow:auto;
-  list-style: none;
-  border:1px;
-  font: 12px Arial, Helvetica, sans-serif;
-  color:#000000;
-}
-
-a.summary_user_box_a
-{
   float:left;
-  font: 12px Arial, Helvetica, sans-serif;
-  color:#000000;
+  overflow:hidden;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size:12px;
+  display:block;
 }
 
-img.summary_user_box_img
-{
-  float:left;
-  width:  40px;
-  font: 12px Arial, Helvetica, sans-serif;
-  color:#000000;
-}
-
-.summary_main_box_header
-{
-  float:left;
-  font: 16px Arial, Helvetica, sans-serif;
-  height: 16px;
-  width: 100%;
-  background:#445D73;
-  border: 1px solid black;
-  overflow: hidden;
-  color:#000000;
-
-}
 
 .summary_main_box_attachments
 {
    float:left;
    font: 12px Arial, Helvetica, sans-serif;
-   border: 1px solid black;
-   width: 20%;
+   border: 1px solid #ccc;
+   width: 80%;
    overflow: hidden;
-  color:#000000;
+   color:#000000;
+   margin-top:2px;
+   margin-bottom:2px;
 }
 
+.summary_main_box_attachments span
+{
+  font: 16px Arial, Helvetica, sans-serif;
+}
 .summary_main_box_friends
 {
    float:left;
    font: 12px Arial, Helvetica, sans-serif;
    border: 1px solid black;
-   width: 20%;
+   width: 100%;
    overflow: hidden;
+   display:block;
   
 }
 
-.summary_links_styling
-{
-  font: 12px Arial, Helvetica, sans-serif;
-  color:#000000;
-}
-
-
-.js_user_mention
-{
-  font: 12px Arial, Helvetica, sans-serif;
-  color:#000000;
-}
-
-.more_loader
+.summary_main_box_friends span
 {
   font: 16px Arial, Helvetica, sans-serif;
-  color:#000000;
-  float:bottom;
-  float:right;
-}
-
-ul.summary_main_box_friends {
-  display: block;
-  list-style: none;
-  width: 100%;
-  color:#000000;
 }
 
 
 .summary_main_box_entities
 {
    float:left;
-   font: 12px Arial, Helvetica, sans-serif;
-   border: 1px solid black;
-   width: 20%;
+   border:1px solid #ccc;
+   width: 80%;
+   display:block;
    overflow: hidden;
-  color:#000000;
+   color:#000000;
+   margin-top:2px;
 }
 
-ul.summary_main_box_entities{
-  display: block;
-  list-style: none;
-  width: 100%;
-  color:#000000;
+.summary_main_box_entities span
+{
+   width:100%;
+   font: 16px Arial, Helvetica, sans-serif;
+}
+.summary_main_box_entities li
+{
+   overflow: hidden;
+   margin-top:10px;
+   margin-left:10px;
+   width:80px;
+}
+
+.summary_main_box_entities li a span
+{
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
 .summary_main_box_locations
 {
    float:left;
-   font: 12px Arial, Helvetica, sans-serif;
-   border: 1px solid black;
-   width: 20%;
+   border:1px solid #ccc;
+   width: 80%;
+   display:block;
    overflow: hidden;
-  color:#000000;
+   color:#000000;
+   margin-top:2px;
 }
 
-ul.summary_main_box_locations{
-  display: block;
-  list-style: none;
-  width: 100%;
-  color:#000000;
+.summary_main_box_locations span
+{
+    width:100%;
+    font: 16px Arial, Helvetica, sans-serif;
+}
+
+.summary_main_box_locations li
+{
+   display:block;
+   overflow: hidden;
+   width: 100%;
+}
+
+.summary_main_box_locations li span
+{
+  font: 12px Arial, Helvetica, sans-serif;
 }
 
 .summary_main_box_latest
 {
    float:left;
-   font: 12px Arial, Helvetica, sans-serif;
-   border: 1px solid black;
-   width: 10%;
+   border:1px solid #ccc;
+   width: 80%;
+   display:block;
    overflow: hidden;
-  color:#000000;
+   color:#000000;
+   margin-top:2px;
+}
+.summary_main_box_latest span 
+{
+  width:100%;
+  font: 16px Arial, Helvetica, sans-serif;
+}
+.summary_main_box_latest li
+{
+  display:block;
+  overflow: hidden;
+  width: 100%;
+  font: 12px Arial, Helvetica, sans-serif;
+  border:1px solid #ccc;
 }
 
+.summary_main_box_latest li span
+{
+  font: 13px Arial, Helvetica, sans-serif;
+}
+
+.summary_main_box_latest li span .js_activity_entity
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  margin-left:2px;
+  padding-left:1px;
+  padding-right:1px;
+  margin-right:2px;
+  background:#adb093;
+  color:black;
+  border:0px solid #003399;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+.more_loader
+{
+  font: 20px Arial, Helvetica, sans-serif;
+  color:#000000;
+  border:1px solid #ccc;
+  width:80%;
+  height:30px;
+  float:bottom;
+  text-align:center;
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-right:50px;
+  margin-left:50px;
+  float:right;
+}
 
 
 
@@ -1124,59 +1187,3 @@ li.streams_side_li_channels{
 }
 
 /*************************/
-/*************************************** TABS START *******************************************/
-ul.tabs {
-	margin: 0;
-	padding: 0;
-	float: left;
-	list-style: none;
-	height: 32px; /*--Set height of tabs--*/
-	border-bottom: 1px solid #999;
-	border-left: 1px solid #999;
-	width: 100%;
-}
-ul.tabs li {
-	float: left;
-	margin: 0;
-	padding: 0;
-	height: 31px; /*--Subtract 1px from the height of the unordered list--*/
-	line-height: 31px; /*--Vertically aligns the text within the tab--*/
-	border: 1px solid #999;
-	border-left: none;
-	margin-bottom: -1px; /*--Pull the list item down 1px--*/
-	overflow: hidden;
-	position: relative;
-	background: #e0e0e0;
-}
-ul.tabs li a {
-	text-decoration: none;
-	color: #000;
-	display: block;
-	font-size: 1.2em;
-	padding: 0 20px;
-	border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
-	outline: none;
-}
-ul.tabs li a:hover {
-	background: #ccc;
-}
-html ul.tabs li.active, html ul.tabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
-	background: #fff;
-	border-bottom: 1px solid #fff; /*--Makes the active tab look like it's connected with its content--*/
-}
-
-.tab_container {
-	border: 1px solid #999;
-	border-top: none;
-	overflow: hidden;
-	clear: both;
-	float: left; width: 100%;
-  color:#000000;
-}
-.tab_content {
-	padding: 20px;
-	font-size: 1.2em;
-  color:#000000;
-}
-/*************************************** TABS END *******************************************/
-

@@ -1,7 +1,49 @@
 =render :partial => "home/top_bar" 
 -if user_signed_in?
+  -if current_user.id == @user.id
+    #js_input_box
+      =render :partial => "home/input_box" 
 
-  #js_input_box
-    =render :partial => "home/input_box" 
-/ -if current_user.id != @user.id
-/    =render :partial => "home/input_box" 
+.wrapper.col3
+  #p-ch-st-tab-sect
+    #p-ch-st-tab
+      %ul.p-cstab
+        %li#channels_tab_head.p-ch-tab
+          %a{:href => "#channels_tab"} Channels
+        %li#streams_tab_head.p-st-tab
+          %a{:href => "#streams_tab"} Streams
+          
+          
+
+.wrapper.col4
+  #p-content-sect
+    %ul
+      / #### Start of Left Side Filters ####
+      %li.p-con-l-fltr
+        #channels_left_side_bar
+          =render :partial => "home/channel_left_side"
+        #streams_left_side_bar
+          =render :partial => "home/stream_left_side"
+      / #### Start of Main Content Bar  ####
+      %li.p-content
+        #channels_main_bar
+          =render :partial => "home/channel_main_content"
+        #streams_main_bar
+          =render :partial => "home/stream_main_content"
+      / #### Start of Right filter Bar  ####
+      %li.p-con-r-fltr.right-filters
+        #channels_right_side_bar
+          =render :partial => "home/channel_right_side"
+        #streams_right_side_bar
+          =render :partial => "home/stream_right_side"
+
+/Secret cookies
+%input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+-if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+
+
+

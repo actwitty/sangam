@@ -1,0 +1,7 @@
+.p-r-content
+  .p-r-fltr-st
+    -if user_signed_in?
+      -if current_user.id == @user.id
+        .p-r-fltr-st-by
+          .p-r-fltr-me
+          .p-r-fltr-others

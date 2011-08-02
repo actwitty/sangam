@@ -21,6 +21,7 @@ javascripts:
     - public/javascripts/cal.js
   profile:
     - public/javascripts/plugins/jquery.elastic.source.js
+    - public/javascripts/plugins/jquery.timeago.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
     - public/javascripts/plugins/jquery-autocomplete/lib/thickbox-compressed.js
@@ -33,9 +34,7 @@ javascripts:
     - public/javascripts/actwitty/alpha/custom.js
     - public/javascripts/actwitty/home_page_inputs.js
     - public/javascripts/actwitty/alpha/actwitty_profile_helpers.js
-  pressed:
     - public/javascripts/actwitty/aw_slider.js
-    - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_things.js
@@ -49,6 +48,7 @@ javascripts:
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/profile_modals.js
     - public/javascripts/actwitty/profile_people.js
+    
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js

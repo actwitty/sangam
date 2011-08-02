@@ -60,8 +60,8 @@ development: &default
   comment_class:
   invalid_resource_id:                  0
 
-  entitiy_no_image:                     "images/entity/default.png"
-  user_no_image:                        "image/profile/default.png"
+  entitiy_no_image:                     "/images/entity/default.png"
+  user_no_image:                        "/images/profile/default.png"
   entity_base_url:                      "http://www.freebase.com/view"
 
   summary_word_count:                   15
