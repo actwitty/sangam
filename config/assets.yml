@@ -22,6 +22,7 @@ javascripts:
   profile:
     - public/javascripts/plugins/jquery.elastic.source.js
     - public/javascripts/plugins/jquery.timeago.js
+    - public/javascripts/plugins/date.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
     - public/javascripts/plugins/jquery-autocomplete/lib/thickbox-compressed.js
@@ -72,7 +73,7 @@ stylesheets:
   defaults:
     - public/stylesheets/actwitty/alpha/home_layout.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
-    - public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    - public/stylesheets/actwitty/alpha/comments-streams.css
     - public/stylesheets/plupload/jquery.ui.plupload.css
     - public/stylesheets/plupload/jquery.plupload.queue.css
     - public/stylesheets/actwitty/signin.css

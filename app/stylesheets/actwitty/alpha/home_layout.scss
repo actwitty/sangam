@@ -405,7 +405,7 @@ opacity:40%;
   margin-top:5px;
   margin-bottom:5px;
   height:30px;
-  border:1px solid #ddd;
+  border:1px solid #000;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
@@ -895,7 +895,7 @@ html ul.p-cstab li.p-st-tab.active  {
   float:top;
   float:right;
   background:url("/images/alpha/close_mini.png");
- // display:none;
+  display:none;
 }
 
 .del-fltr:hover
@@ -1250,6 +1250,25 @@ ul.p-fltr-tag-list li
   background:#fff;
 }
 
+.p-content .js_activity_entity
+{
+  margin-left:2px;
+  padding-left:1px;
+  padding-right:1px;
+  margin-right:2px;
+  background:#adb093;
+  color:black;
+  border:0px solid #003399;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
 .p-aw-post
 {
   height:auto;
@@ -1260,6 +1279,37 @@ ul.p-fltr-tag-list li
   margin-left:10px;
   padding:10px;
 
+}
+
+.p-awp-user
+{
+  width:100%;
+  height:80px;
+  float:right;
+  display:block;
+  border:0px solid red;
+  overflow:hidden;
+}
+
+
+.p-awp-user a
+{
+  width:80px;
+  float:right;
+
+}
+
+.p-awp-close
+{
+  width:100%;
+  float:right;
+  float:top;
+}
+
+.p-awp-close input
+{
+  float:right;
+  float:top;
 }
 
 
@@ -1309,6 +1359,7 @@ ul.p-fltr-tag-list li
   width:100%;
   height:20px;
   margin-top:5px;
+  float:right;
   border:0px solid green;
 }
 .p-awp-time-content
@@ -1331,6 +1382,7 @@ ul.p-fltr-tag-list li
 .p-awp-content
 {
   width:100%;
+  float:right;
   height:auto;
   border:0px solid red;
 }
@@ -1342,7 +1394,13 @@ ul.p-fltr-tag-list li
   color:#333;
 }
 
-
+.p-awp-view-attachments
+{
+  width:100%;
+  float:right;
+  height:auto;
+  border:0px solid red;
+}
 
 
 /*

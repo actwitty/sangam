@@ -443,7 +443,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   margin-top: 5px;
   margin-bottom: 5px;
   height: 30px;
-  border: 1px solid #ddd;
+  border: 1px solid #000;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
@@ -944,6 +944,7 @@ html ul.p-cstab li.p-st-tab.active {
   float: top;
   float: right;
   background: url("/images/alpha/close_mini.png");
+  display: none;
 }
 
 /* line 902, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
@@ -1341,6 +1342,25 @@ ul.p-fltr-tag-list li {
 }
 
 /* line 1254, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-content .js_activity_entity {
+  margin-left: 2px;
+  padding-left: 1px;
+  padding-right: 1px;
+  margin-right: 2px;
+  background: #adb093;
+  color: black;
+  border: 0px solid #003399;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+}
+
+/* line 1273, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-aw-post {
   height: auto;
   width: 100%;
@@ -1351,39 +1371,68 @@ ul.p-fltr-tag-list li {
   padding: 10px;
 }
 
-/* line 1267, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1285, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-user {
+  width: 100%;
+  height: 80px;
+  float: right;
+  display: block;
+  border: 0px solid red;
+  overflow: hidden;
+}
+
+/* line 1296, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-user a {
+  width: 80px;
+  float: right;
+}
+
+/* line 1303, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-close {
+  width: 100%;
+  float: right;
+  float: top;
+}
+
+/* line 1310, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-close input {
+  float: right;
+  float: top;
+}
+
+/* line 1317, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel {
   width: 100%;
   height: 30px;
   border: 0px solid red;
 }
 
-/* line 1274, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1324, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel-desc {
   float: right;
 }
 
-/* line 1279, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1329, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel-label {
   font-size: 16px;
   color: #e5e5e5;
 }
 
-/* line 1284, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1334, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-channel-name {
   font-size: 18px;
   background: #903737;
   color: #a4a88d;
 }
 
-/* line 1292, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1342, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-subtitle {
   width: 100%;
   height: 30px;
   border: 0px solid blue;
 }
 
-/* line 1299, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1349, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-subtitle-name {
   float: right;
   font-size: 21px;
@@ -1392,45 +1441,55 @@ ul.p-fltr-tag-list li {
   color: #333;
 }
 
-/* line 1308, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1358, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-time {
   width: 100%;
   height: 20px;
   margin-top: 5px;
+  float: right;
   border: 0px solid green;
 }
 
-/* line 1315, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1366, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-time-content {
   float: right;
   font-size: 10px;
 }
 
-/* line 1320, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1371, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-date {
   width: 100%;
   height: 20px;
   border: 0px solid blue;
 }
 
-/* line 1326, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1377, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-date-content {
   float: right;
   font-size: 12px;
 }
 
-/* line 1332, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1383, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-content {
   width: 100%;
+  float: right;
   height: auto;
   border: 0px solid red;
 }
 
-/* line 1339, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 1391, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-content p {
   margin-left: 10px;
   font-size: 14px;
   color: #333;
+}
+
+/* line 1398, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-view-attachments {
+  width: 100%;
+  float: right;
+  height: auto;
+  border: 0px solid red;
 }
 
 /*

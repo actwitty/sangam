@@ -3,14 +3,12 @@
 var others_filter_state=true;
 /***********************************************************/
 
-function modify_filter(filter_json, reload, onload){
+function modify_filter(filter_json, reload){
   if ( reload === undefined ){
     reload=true;
   }
 
-  if( onload === undefined){
-    onload = false;
-  }
+
   var page_owner_id=$('#page_owner_id').attr("value");
   var session_owner_id=$('#session_owner_id').attr("value");
   var need_redirect = false;
@@ -82,8 +80,7 @@ function modify_filter(filter_json, reload, onload){
       $("#fltr_location_id").html("all locations");
     $('#location_filter_drop').hide();
   }
-  if(onload == false){
-    if(reload==true){
+  if(reload==true){
       if ( need_redirect == true){
         /* simple case redirect to stream tab of new user */
         redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id);
@@ -92,8 +89,8 @@ function modify_filter(filter_json, reload, onload){
         set_stream_to_focus_on_filter_change();
         reload_streams_on_viewed_user(page_owner_id, session_owner_id);
       }
-    }
   }
+  
 
 }
 /***********************************************************/
@@ -206,6 +203,7 @@ $(document).ready(function(){
       if(others_filter_state == true){
         enable_me_mode();
         others_filter_state=false;
+        modify_filter({},true);
       }
     });
 
@@ -221,15 +219,18 @@ $(document).ready(function(){
       if(others_filter_state == false){
         enable_others_mode();
         others_filter_state=true;
+        modify_filter({},true);
       }
     });
 
     if( page_owner_id == session_owner_id){
       $("#channel_others").addClass("p-r-fltr-others-active");
       $("#stream_others").addClass("p-r-fltr-others-active");
+    }else{
+      others_filter_state=false;
     }
 
-    modify_filter({},false,true);
+    modify_filter({},false);
 
 
 

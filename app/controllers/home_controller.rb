@@ -171,10 +171,28 @@ class HomeController < ApplicationController
   end
   ############################################
   def get_all_comments
-    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] Get All Comments")
-    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+
+    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] get all comments #{params}")
+    if user_signed_in?
+      if params[:activity_id].blank?
+        render :json => {}, :status => 400
+        return
+      end
+      params[:activity_id]=Integer(params[:activity_id])
+
+      Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] calling model api #{params[:activity_id]}")
+      response_json=current_user.load_all_comment(params[:activity_id])
+
+      if request.xhr?
+        Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] created successfully #{response_json}")
+        render :json => response_json, :status => 200
+      end
+
+    else
+      Rails.logger.info("[CNTRL][HOME][CREATE STREAM] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
   end
   ############################################

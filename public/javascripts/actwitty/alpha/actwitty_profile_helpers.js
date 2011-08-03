@@ -63,11 +63,6 @@ $(document).ready(function(){
     }
   });
   
-    /* to view comments on streams */
-    $(".view-comments").click(function(event){
-      $(this).parent().next().slideToggle();
-      
-    });
 
     $("#attachment").live("click",function(){
          $("#input-attachments-section").slideToggle("medium");

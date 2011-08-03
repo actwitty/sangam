@@ -193,13 +193,6 @@ span.name a
 
 
 
-
-
-
-
-
-
-
 .p-awp-view-comment
 {
   height:17px;
@@ -222,6 +215,7 @@ span.name a
 {
   width:100%;
   height:auto;
+  float:right;
   border:0px solid red;
   display:none;
 }
@@ -234,6 +228,19 @@ span.name a
   margin-bottom:5px;
 }
 
+
+.p-st-comment-close
+{
+  float:right;
+  width:100%;
+  height:12px;
+}
+
+.p-st-comment-close-btn
+{
+  float:right;
+  font-size:8px;
+}
 
 
 .author
@@ -291,3 +298,30 @@ span.p-st-comment-actor a
 .p-comment-text
 {
 }
+
+.p-st-comment-new
+{
+  width:100%;
+  float:right;
+  display:block;
+}
+
+.p-st-comment-text-box
+{
+  width:100%;
+  padding:1px;
+  margin-left:0px;
+  margin-top:5px;
+  margin-bottom:5px;
+  height:30px;
+  border:1px solid #000;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+.p-st-comment-add-btn
+{
+ 
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+
