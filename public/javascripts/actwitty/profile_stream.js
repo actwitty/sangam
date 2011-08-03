@@ -414,19 +414,20 @@ function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
   clear_streams();
   append_stream(page_owner_id, session_owner_id);
 
+  clear_related_entities();
+  list_related_entities(page_owner_id);
+
+  clear_related_locations();
+  list_related_locations(page_owner_id);
+
   clear_related_friends();
   if( session_owner_id){ 
     list_related_friends();
   }
-
-  clear_related_entities();
-  list_related_entities(page_owner_id);
   
-  clear_related_locations();
-  list_related_locations(page_owner_id);
 
-  clear_related_channels();
-  list_related_channels(page_owner_id);
+  //clear_related_channels();
+  //list_related_channels(page_owner_id);
   
 
 }

@@ -922,8 +922,8 @@ html ul.p-cstab li.p-st-tab.active  {
 
 .p-st-flt-entity
 {
-  background:#adb093;
-  color:#a4a88d;
+  background:#943988;;
+  color:#ffffff;
 }
 
 
@@ -1056,6 +1056,48 @@ html ul.p-cstab li.p-st-tab.active  {
   padding:2px;
 }
 
+
+.p-fltr-tag-list-location
+{
+  display:block;
+  float:right;
+  margin:2px 2px;
+}
+.p-fltr-tag-list-location span
+{
+  background:#274521;
+  color:#a4a88d;
+  padding:2px;
+  font-weight:normal;
+  -moz-border-radius: 10px ; 
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px ;
+  -webkit-border-radius: 10px ;
+  text-decoration:none;
+  font-size:10px;
+  padding:2px;
+}
+
+.p-fltr-tag-list-entity
+{
+  display:block;
+  float:right;
+  margin:2px 2px;
+}
+.p-fltr-tag-list-entity span
+{
+  background:#943988;
+  color:#ffffff;
+  padding:2px;
+  font-weight:normal;
+  -moz-border-radius: 10px ; 
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px ;
+  -webkit-border-radius: 10px ;
+  text-decoration:none;
+  font-size:10px;
+  padding:2px;
+}
 
 ul.p-fltr-tag-list
 {
@@ -1250,23 +1292,23 @@ ul.p-fltr-tag-list li
   background:#fff;
 }
 
-.p-content .js_activity_entity
+.p-content .js_activity_entity__
 {
-  margin-left:2px;
-  padding-left:1px;
-  padding-right:1px;
+  margin-left:1px;
+  padding-left:5px;
+  padding-right:5px;
   margin-right:2px;
-  background:#adb093;
-  color:black;
+  background:#943988;
+  color:#ffffff;
   border:0px solid #003399;
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-right-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 4px;
-  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
 }
 
 .p-aw-post
@@ -1392,6 +1434,7 @@ ul.p-fltr-tag-list li
   margin-left:10px;
   font-size:14px;
   color:#333;
+  line-height:18px;
 }
 
 .p-awp-view-attachments
