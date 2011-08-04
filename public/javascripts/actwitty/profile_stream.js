@@ -398,7 +398,7 @@ function update_enriched_streams () {
  */
 function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id){
     params='id=' + page_owner_id +'&mode=filtered&' + get_long_string_filter();
-    alert('/home/show?' + params);
+    //alert('/home/show?' + params);
     window.location.href ='/home/show?' + params;
 }
 
@@ -481,7 +481,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                       '<div class="p-awp-channel">' +
                         '<div class="p-awp-channel-desc">' +
                           '<label class="p-awp-channel-label">'  +
-                            'Channel::' +
+                            'Channel:' +
                           '</label>' +
                           '<span class="p-awp-channel-name">' +
                             post.word.name +
