@@ -24,7 +24,7 @@ class Location < ActiveRecord::Base
   validates_length_of :location_name , :in => 1..1024
 
   validates_uniqueness_of :location_url, :unless => Proc.new{|a|a.location_url.nil?}
-  validates_length_of     :location_url, :in => 1..AppConstants.max_url_length , :unless => Proc.new{|a|a.location_url.nil?}
+  validates_length_of     :location_url, :in => 1..AppConstants.url_length , :unless => Proc.new{|a|a.location_url.nil?}
   validates_format_of     :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
 
   validates_numericality_of :location_lat,

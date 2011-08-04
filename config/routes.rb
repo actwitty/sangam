@@ -28,6 +28,24 @@ Sangam::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
   match '/home/settings' => 'home#settings'
   match '/home/settings_save' => 'home#settings_save'
+  match '/home/get_activities' => 'home#get_activities'
+  match '/home/get_entities' => 'home#get_entities'
+  match '/home/get_related_locations' => 'home#get_related_locations'
+  match '/home/get_enriched_activities' => 'home#get_enriched_activities'
+  match '/home/get_all_comments' => 'home#get_all_comments'
+  match '/home/get_all_campaigns' => 'home#get_all_campaigns'
+  match '/home/get_related_friends' => 'home#get_related_friends'
+  match '/home/update_campaign' => 'home#update_campaign'
+  match '/home/delete_campaign' => 'home#delete_campaign'
+  match '/home/delete_stream' => 'home#delete_stream'
+  match '/home/delete_comment' => 'home#delete_comment'
+  match '/home/create_comment' => 'home#create_comment'
+  match '/home/create_activity' => 'home#create_activity'
+  match  '/home/get_summary' => 'home#get_summary'
+  match  '/home/get_friends_summary' => 'home#get_friends_summary'
+  match  '/home/get_streams' => 'home#get_streams'
+
+
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
   match '/welcome/confirmation_wait' => 'welcome#confirmation_wait'
@@ -53,6 +71,8 @@ Sangam::Application.routes.draw do
   match '/contacts/follow' => 'contacts#follow'
   match '/contacts/unfollow' => 'contacts#unfollow'
   match '/contacts/provider_follow' => 'contacts#provider_follow'
+
+  match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
 
   match '/activities/get_activities' => 'activities#get_activities'
   match '/activities/top_activities' => 'activities#top_activities'

@@ -22,7 +22,7 @@ class Entity < ActiveRecord::Base
 
   validates_length_of     :entity_name, :in => 1..255
   validates_length_of     :entity_guid, :in => 1..255
-  validates_length_of     :entity_image, :in => 1..AppConstants.max_url_length
+  validates_length_of     :entity_image, :in => 1..AppConstants.url_length
 
   #validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
 

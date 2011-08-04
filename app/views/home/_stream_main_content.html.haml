@@ -1,0 +1,30 @@
+#p-st-fltr-box
+  .p-st-filter-sect
+    %ul.p-st-filter
+      %li.p-st-flt-label
+        %span show containing:
+      %li.p-st-filter-box
+        #channel_filter_drop.del-fltr
+        .p-flt-actor.p-st-flt-default
+          .p-flt-holder#fltr_channel_id all channels
+      %li.p-st-filter-box
+        #thing_filter_drop.del-fltr
+        .p-flt-actor.p-st-flt-default
+          .p-flt-holder#fltr_entity_id all objects
+      %li.p-st-filter-box
+        #location_filter_drop.del-fltr
+        .p-flt-actor.p-st-flt-default
+          .p-flt-holder#fltr_location_id all locations
+#streams_tab.p-cstab_content
+  #streams_list.p-awp-post-stream
+  %a#more_streams.more_loader{:href => "#"} More
+  %input#more_streams_cookie{:type => "hidden", :value => ""}
+
+/Filter
+%input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }
+%input#filter_thing_id{:name => "filter_thing_id", :type => "hidden", :value => "#{@filter_entity_id}" }
+%input#filter_channel_id{:name => "filter_channel_id", :type => "hidden", :value => "#{@filter_channel_id}" }
+
+%input#filter_location_name{:name => "filter_location_name", :type => "hidden", :value => "#{@filter_location_name}" }
+%input#filter_thing_name{:name => "filter_thing_name", :type => "hidden", :value => "#{@filter_entity_name}" }
+%input#filter_channel_name{:name => "filter_channel_name", :type => "hidden", :value => "#{@filter_channel_name}" }

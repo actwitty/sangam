@@ -56,6 +56,10 @@ require 'freebase_wrapper'
     filter_count+=1
    end
 		result["name"]=item["anchor"]
+    unless result["/common/topic/image"].empty?
+       result["/common/topic/image"]=result["/common/topic/image"].take(1)
+       result["/common/topic/image"][0]["id"]=Freebase.get_image_url(result["/common/topic/image"][0]["id"])
+    end
 		return result
 	end
 
@@ -88,7 +92,7 @@ require 'freebase_wrapper'
 		end
 
 		data["keywords"].each do |item|
-			if query=~/#{item["name"]}/i
+			if query=~/\b#{item["name"]}\b/i
         alt=markupName.select {|l| item["name"].casecmp(l)==0}
 				if alt.empty?
 					result=freebase_search item["name"]
@@ -138,10 +142,10 @@ def entity_sanity_check(query,entities)
     markupName=[]
     entities=[]
 
-    formatted_query=titlecase(query)+"\n"+query
+    formatted_query=titlecase(query)+'. '+query
     zemanta_get_markup_entity(formatted_query,entities,markupName)
     zemanta_get_suggestion_entity(formatted_query,entities,markupName)
-    entity_sanity_check(query,entities)
+    #entity_sanity_check(query,entities)
 		return entities
 
   end

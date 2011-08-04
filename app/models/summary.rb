@@ -88,6 +88,7 @@ class Summary < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: summaries
@@ -98,6 +99,10 @@ end
 #  activity_name    :string(255)     not null
 #  activities_count :integer
 #  documents_count  :integer
+#  location_array   :text
+#  entity_array     :text
+#  activity_array   :text
+#  document_array   :text
 #  created_at       :datetime
 #  updated_at       :datetime
 #

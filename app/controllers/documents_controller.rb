@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
 #    @a = Activity.create_activity(:author_id => @u.id,  :activity => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
 #                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
 #                              :enrich => true)
-#    @document = Document.new(:owner_id => @u.id,:activity_id => @a.id, :document_type => "application/pdf")
+#    @document = Document.new(:owner_id => @u.id,:activity_id => @a.id, :type => "application/pdf")
 #  end
 #  def create
 ##    @document = Document.new(params[:document])

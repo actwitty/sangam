@@ -20,16 +20,16 @@ describe Document do
         puts d.id
         puts d.document_data.thumb.url
       end
-#      puts d.document_type
+#      puts d.type
 #      #d.destroy
     end
     it "should save the file in amazon bucket" do
       @doc = Document.create_document_uploader(Factory(:user).id,Factory(:activity).id, "#{Rails.root}/public/test/test.pdf")
        puts "hello"
        work_off
-       d = Document.where(:document_name => "test.pdf").first
+       d = Document.where(:name => "test.pdf").first
        d.destroy
-       d =  Document.where(:document_name => "test.pdf").first
+       d =  Document.where(:name => "test.pdf").first
        d.should be_nil
     end
     it "should be able to create document metadata without uploader" do
@@ -37,7 +37,8 @@ describe Document do
                                       :activity_word_id => Factory(:activity_word).id,
                                       :summary_id => Factory(:summary).id,
                                       :url => "https://www.s3.amazon.com/1234/test.jpg",
-                                      :thumb_url => "https://www.s3.amazon.com/1234/234/thumb_test.jpg")
+                                      :thumb_url => "https://www.s3.amazon.com/1234/234/thumb_test.jpg",
+                                      :uploaded => true)
       puts @doc.inspect
       @doc.should_not be_nil
 
@@ -50,6 +51,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -58,9 +61,11 @@ end
 #  owner_id         :integer         not null
 #  activity_id      :integer         not null
 #  activity_word_id :integer         not null
-#  document_name    :string(255)     not null
-#  document_type    :string(255)
+#  name             :string(255)     not null
+#  mime             :string(255)
 #  document_data    :string(255)
+#  caption          :string(255)
+#  comments_count   :integer
 #  summary_id       :integer         not null
 #  url              :text            not null
 #  thumb_url        :text

@@ -11,4 +11,7 @@ Factory.define :activity do |f|
   f.association :activity_word, :factory => :activity_word
   f.sequence(:activity_text) {|n| "MyText #{n}" }
   f.sequence(:activity_name) {|n| "Activity #{n}" }
+  f.sequence(:source_name)  {|n| AppConstants.source_actwitty}
+  f.sequence(:status)  {|n| AppConstants.state_public}
+  f.sequence(:campaign_types)  {|n| AppConstants.campaign_like}
 end

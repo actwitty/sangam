@@ -5,6 +5,7 @@ class SetDefaultValues < ActiveRecord::Migration
   end
 
   def self.down
-    raise ActiveRecord::IrreversibleMigration, "Can't remove the default"
+    #not needed
+    #raise ActiveRecord::IrreversibleMigration, "Can't remove the default"
   end
 end

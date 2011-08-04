@@ -1,0 +1,20 @@
+en:
+  activity_type:
+    comment: "comment"
+    activity: "post"
+    document: "document"
+    entity: "entity"
+    location: "location"
+
+  campaign_activity_text:
+    comment: "%{author} %{campaign} %{user}'s %{resource_type} %{resource_name}"
+    activity: "%{author} %{campaign} %{user}'s %{resource_type} on %{resource_name}"
+    document: "%{author} %{campaign} %{user}'s %{resource_name}"
+    entity: "%{author} %{campaign} %{resource_name}"
+    location: "%{author} %{campaign} %{resource_type} %{resource_name}"
+
+
+  comment_activity_text:  
+    activity: "%{author} commented on %{user}'s %{resource_type} %{resource_name}"
+    document: "%{author} commented on %{user}'s %{resource_name}"
+    

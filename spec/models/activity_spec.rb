@@ -101,7 +101,7 @@ describe Activity do
 
   describe "Update Tree" do
 
-    it "should be able to add cmment on the activity" do
+    it "should be able to add comment on the activity" do
 
     end
 
@@ -141,6 +141,7 @@ describe Activity do
 
     end
   end
+
 
   describe "create_activity " do
     include DelayedJobSpecHelper
@@ -213,37 +214,37 @@ describe Activity do
   describe "Get Snapshots" do
     include DelayedJobSpecHelper
     it "should create the result as per spec"  do
-      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+      act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true)
 
 
-      act3 = @u.create_activity( :activity => "singing" , :text => "AR rehman's jai ho",
+      act3 = @u.create_activity( :word => "singing" , :text => "AR rehman's jai ho",
                               :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
                               :enrich => true)
-      act4 = @u.create_activity( :activity => "painting" , :text => "Sachin tendulkar  rahul dravid",
+      act4 = @u.create_activity( :word => "painting" , :text => "Sachin tendulkar  rahul dravid",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
                               :enrich => true)
-      act4 = @u.create_activity( :activity => "eating" , :text => "pizza Britney spears  rahul dravid pizza pizza hut",
+      act4 = @u.create_activity( :word => "eating" , :text => "pizza Britney spears  rahul dravid pizza pizza hut",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "tundi"}},
                               :enrich => true)
-      act2 = @u1.create_activity( :activity => "eating" , :text => "pizza at sachin tendulkar with
+      act2 = @u1.create_activity( :word => "eating" , :text => "pizza at sachin tendulkar with
                                   <mention><name>PIZZA<name><id>235<id><mention>",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true)
-       act5 = @u1.create_activity( :activity => "photgraphy" , :text => "Burger at Dominos with Rahul Dravid",
+       act5 = @u1.create_activity( :word => "photgraphy" , :text => "Burger at Dominos with Rahul Dravid",
                               :location => {:unresolved_location =>{:unresolved_location_name =>  "Cool Place"}},
                               :enrich => true)
-       act6 = @u2.create_activity( :activity => "eating" , :text => "Dal roti at McDonald's with MS Dhoni",
+       act6 = @u2.create_activity( :word => "eating" , :text => "Dal roti at McDonald's with MS Dhoni",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
                               :enrich => true)
-       act7 = @u2.create_activity( :activity => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
+       act7 = @u2.create_activity( :word => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
                               :location => {:web_location =>{:web_location_url => "google.com", :web_location_title => "hello"}},
                              :enrich => true)
-      act4 = @u.create_activity( :activity => "listening" , :text => "Nakkad wale khisko from delhi belly",
+      act4 = @u.create_activity( :word => "listening" , :text => "Nakkad wale khisko from delhi belly",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
-      act5 = @u1.create_activity( :activity => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
+      act5 = @u1.create_activity( :word => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
 
@@ -257,12 +258,12 @@ describe Activity do
       params[:user_id] =  @u.id
       params[:current_user] =  @u
 
-      @u.new_contact_request(@u1.id)
-      @u1.new_contact_request(@u.id)
-      @u.new_contact_request(@u2.id)
-      @u2.new_contact_request(@u.id)
-      @u.new_contact_request(@u3.id)
-      @u3.new_contact_request(@u.id)
+      @u.follow(@u1.id)
+      @u1.follow(@u.id)
+      @u.follow(@u2.id)
+      @u2.follow(@u.id)
+      @u.follow(@u3.id)
+      @u3.follow(@u.id)
 
       params[:scope] = 0
       params[:order] = "2011-07-05T07:28:56Z"
@@ -300,13 +301,13 @@ describe Activity do
       a =@u.get_stream({:user_id => @u1.id,  :updated_at => Time.now.utc})
       puts a.inspect
 
-      a = @u.get_stream({:user_id => @u.id})
+      a = @u.get_stream({:user_id => @u.id, :friend => true})
       puts a
     end
     it "should read create read and delete comments" do
-      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+      act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/xyz.jpg" },
                                                     {:thumb_url => "https://s3.amazonaws.com/abc_thumb.jpg",:url => "https://s3.amazonaws.com/abc.jpg" }])
@@ -324,15 +325,15 @@ describe Activity do
       com5 = @u3.create_comment(:activity_id => act[:post][:id], :text => "555555555555555")
       puts com5
 
-       @c1 = Campaign.create_campaign( :author_id => @u.id, :campaign_name => "like", :campaign_value => 1,
+       @c1 = Campaign.create_campaign( :author_id => @u.id, :name => "like", :value => 1,
                              :activity_id => act[:post][:id] )
-       @c2 = Campaign.create_campaign( :author_id => @u3.id,:campaign_name => "like", :campaign_value => 2,
+       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
                                :activity_id => act[:post][:id] )
-      @c3 = Campaign.create_campaign( :author_id => @u1.id,:campaign_name => "support", :campaign_value => 3,
+      @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
                                :activity_id => act[:post][:id])
 
-      act1 = @u1.create_activity( :activity => "eating" , :text => "pizza at sachin tendulkar",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+      act1 = @u1.create_activity( :word => "eating" , :text => "pizza at sachin tendulkar",
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/blk_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/blk.jpg" },
                                                     {:thumb_url => "https://s3.amazonaws.com/bbb_thumb.jpg",:url => "abc" }])
@@ -341,14 +342,14 @@ describe Activity do
       puts com1
       com21 = @u.create_comment(:activity_id => act1[:post][:id], :text => " bbbbbbbbbbbbbbbbb ")
 
-      @c21 = Campaign.create_campaign( :author_id => @u3.id,:campaign_name => "like", :campaign_value => 2,
+      @c21 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
                                :activity_id => act1[:post][:id] )
-      @c31 = Campaign.create_campaign( :author_id => @u1.id,:campaign_name => "support", :campaign_value => 3,
+      @c31 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
                                :activity_id => act1[:post][:id])
       com6 = @u3.create_comment(:activity_id => act[:post][:id], :text => "6666666666666666")
       puts com6
-      act2 = @u2.create_activity( :activity => "eating" , :text => "burger at rahul dravid",
-                              :location =>  {:web_location =>{:web_location_url => "yahoo", :web_location_title => "hello"}},
+      act2 = @u2.create_activity( :word => "eating" , :text => "burger at rahul dravid",
+                             :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/ccc_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/ccc.jpg" },
                                                     {:thumb_url => "https://s3.amazonaws.com/ddd_thumb.jpg",:url => "https://s3.amazonaws.com/ddd.jpg" }])
@@ -366,33 +367,36 @@ describe Activity do
       puts h.inspect
       h.should_not be_blank
 
-      @u.new_contact_request(@u1.id)
-      @u1.new_contact_request(@u.id)
-      @u.new_contact_request(@u2.id)
-      @u2.new_contact_request(@u.id)
-#      a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id]}, :updated_at => Time.now.utc})
-#      puts a.inspect
-#      a.should_not be_blank
-#      a = @u.remove_activity(act1[:post][:id])
-#      a.should be_blank
+      @u.follow(@u1.id)
+      @u.follow(@u2.id)
+
+      e = Entity.where(:entity_name => "pizza").first
+
+     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id], :entity_id => e.id},
+                       :updated_at => Time.now.utc})
+     puts a.inspect
+      a.should_not be_blank
+      a = @u.remove_activity(act1[:post][:id])
+      a.should be_blank
       @u.documents.first.destroy
-      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc})
+      a = @u.get_summary({:user_id => @u.id, :updated_at => Time.now.utc, :friend => true})
       puts a
     end
     it "should be able to remove summary at last" do
-      act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+      act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true)
-      act1 = @u.create_activity( :activity => "eating" , :text => "",
+      act1 = @u.create_activity( :word => "eating" , :text => "",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true)
-      act2 = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+      act2 = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => false)
-      act3 = @u.create_activity( :activity => "eating" , :text => "", :enrich => true)
-      act4 = @u1.create_activity( :activity => "eating" , :text => "", :enrich => true)
+                              :enrich => true)
+      work_off
+      act3 = @u.create_activity( :word => "eating" , :text => "", :enrich => true)
+      act4 = @u1.create_activity( :word => "eating" , :text => "", :enrich => true)
 
       a = Activity.where(:id => act[:post][:id]).first
       a.destroy
@@ -419,7 +423,7 @@ describe Activity do
       s.should be_nil
     end
     it "should be able to add documents properly" do
-       act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
@@ -428,17 +432,72 @@ describe Activity do
                                                {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://b.com/xyz.jpg" },
                                            {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://c.com/xyz.jpg" }])
 
-       act = @u.create_activity( :activity => "eating" , :text => "pizza at pizza hut with
+       act1 = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
                                                                 :url => "https://s3.amazonaws.com/xyz.jpg" }])
        work_off
        a = Activity.where(:id => act[:post][:id]).first
-       a.documents.size.should == 1
+       a.documents.size.should == 4
+       e = a.entities.where(:entity_name => "pizza").first
+       a = @u.remove_entity_from_activity(a.id,e.id)
+       puts a
     end
-  end
+    it "should be able to get the languages based activities" do
+      @a1 =  @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{:caption => "hello man",
+                                                                :url => "https://s3.amazonaws.com/xyz.jpg" },
+                                                    {:caption => "aaaaabbbbbbbccccc", :thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://a.com/xyz.jpg" },
+                                               {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://b.com/xyz.jpg" },
+                                           {:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",:url => "http://c.com/xyz.jpg" }])
+
+      @a1 = @a1[:post]
+      @l1 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
+      @com1 = @u1.create_comment( :activity_id => @a1[:id], :text => "helllllloooo ")
+
+      @e1 = Factory(:entity)
+
+      @doc = Document.where(:activity_id => @a1[:id]).all
+      puts Document.count
+      @doc.each do |attr|
+        puts attr.caption
+        puts attr.id
+      end
+      @com_d = @u2.create_comment( :document_id => @doc.first.id, :text => "Wow nice photo ")
+
+       @e1 = Factory(:entity)
+       @c1 = Campaign.create_campaign( :author_id => @u1.id, :name => "like", :value => 1,
+                                 :activity_id => @a1[:id] )
+       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
+                                   :activity_id => @a1[:id] )
+       @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
+                                   :activity_id => @a1[:id] )
+       @c4 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
+                                   :activity_id => @a1[:id] )
+       @c5 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :entity_id => @e1.id )
+       @c6 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :location_id => @l1.id )
+       @c7 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :comment_id => @com1[:comment][:id] )
+       @c8 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
+                               :document_id => @doc.first.id )
+       work_off
+       a =@u1.get_stream({:user_id => @u1.id, :updated_at => Time.now.utc})
+       puts a
+       puts a.size
+       a.should_not be_nil
+    end
 end
+end
+
+
+
+
+
 
 
 
@@ -454,8 +513,12 @@ end
 #  activity_name    :string(255)     not null
 #  author_id        :integer         not null
 #  base_location_id :integer
-#  documents_count  :integer
 #  comments_count   :integer
+#  documents_count  :integer
+#  campaign_types   :integer         default(1)
+#  status           :integer         default(1)
+#  source_name      :string(64)      default("actwitty")
+#  sub_title        :string(255)
 #  summary_id       :integer
 #  enriched         :boolean
 #  created_at       :datetime

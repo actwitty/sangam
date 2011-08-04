@@ -6,22 +6,22 @@
 /*
  * Render locations 
  */
-function renderThings(json){
-  var search_html = '<input type="text" id="search_locations" placeholder="Things"/>';
+function renderLocations(json){
+  var search_html = '<input type="text" id="search_locations" placeholder="Locations"/>';
   $("#location-dialog-modal").append(search_html);
   var html = '<ul id="locations_list" class="modal_locations_ul">' +
              '</ul>';
   
   $("#location-dialog-modal").append(html);
 
-  $.each(json, function(i,activity){
-      if( activity){
-        var html ='<li id=locations_li_' + activity.id  +  ' class="locations_dialog_list">' +
-                    '<a href="#" class="locations_title" id="location_id_' + activity.id + '">' +
-                      activity.name +
+  $.each(json, function(i,location){
+      if( location){
+        var html ='<li id=locations_li_' + location.id  +  ' class="locations_dialog_list">' +
+                    '<a href="#" class="locations_title" id="location_id_' + location.id + '">' +
+                      location.name +
                     '</a>'+
-                  '<input type="hidden"  id="location_id_' + activity.id + '_id" value="' +  activity.id + '"/>' +
-                  '<input type="hidden"  id="location_id_' + activity.id + '_name" value="' +  activity.name + '"/>' +
+                  '<input type="hidden"  id="location_id_' + location.id + '_id" value="' +  location.id + '"/>' +
+                  '<input type="hidden"  id="location_id_' + location.id + '_name" value="' +  location.name + '"/>' +
                       
                   '</li>';
 
@@ -38,14 +38,14 @@ function renderThings(json){
 /* Global data */
 var json_location_data;
 var ignore_location_auto_complete = false;
-function get_all_locations(){
+function get_all_locations(userid){
     /*
      * Get data on ready
      */
     $.ajax({
-        url: '/entities/top_entities',
+        url: '/home/get_related_locations.json',
         type: 'GET',
-        data: {},
+        data: {user_id:userid, filter:get_empty_filter()},
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -53,7 +53,7 @@ function get_all_locations(){
           if (data && data.location) {
             window.location.href = data.location;
           }else{
-            renderThings(data);
+            renderLocations(data);
             json_location_data=data;
           }
         },
@@ -79,7 +79,8 @@ function getID(location){
 $(document).ready(function(){
   //alert("Inside profile_locations.js ready");
   $("#search_locations").live('keyup.autocomplete', function() {
-    $(this).autocomplete(json_location_data, {
+
+    $(this).autocomplete("/home/get_related_locations.json", {
       multiple: false,
       delay: 0,
       //cacheLength:1000,
@@ -90,7 +91,7 @@ $(document).ready(function(){
               data: row,
               value: row.name,
               result: row.name
-            }
+            };
         });
       },
       formatItem: function(item) {
@@ -102,8 +103,8 @@ $(document).ready(function(){
           
           /* filter change transaction */
           var new_filter = {
-                            channel_id:getID(item),
-                            channel_name:format(item)
+                            location_id:getID(item),
+                            location_name:format(item)
                            };
           modify_filter(new_filter);
 
