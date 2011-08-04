@@ -3,8 +3,9 @@
  */
 var modal_registration_prefix="JS_AW_MODAL_";
 var the_big_modal_manager_json = {
+    /* Related friends modal configuration */
     "JS_AW_MODAL_related_friends"  :  {
-                                          renderer_fn:function aw_modal_related_friends_caller(){
+                                          renderer_fn:function aw_modal_related_friends_caller(win_id, trigger_id){
                                                   alert("calling related friends renderer");
                                                   //aw_modal_related_friends_renderer();
                                           },
@@ -16,6 +17,7 @@ var the_big_modal_manager_json = {
                                           data_json:{}
 
                                       },
+    /* Related entities modal configuration */
     "JS_AW_MODAL_related_entities"  :  {
                                           renderer_fn:function aw_modal_related_friends_caller(){
                                                   alert("calling related entities renderer");
@@ -28,7 +30,8 @@ var the_big_modal_manager_json = {
                                           height:300,
                                           data_json:{}
 
-                                      }
+                                      },
+    /* Related locations modal configuration */
      "JS_AW_MODAL_related_locations"  :  {
                                           renderer_fn:function aw_modal_related_friends_caller(){
                                                   alert("calling related locations renderer");
@@ -60,12 +63,10 @@ function aw_modal_set_data( registered_modal_id, json_data){
 /*
  * Call the target renderer of internal modal
  */
-function aw_modal_dialog_maker(registered_modal_id, container_window_id){
+function aw_modal_dialog_maker(registered_modal_id, container_window_id, trigger_id){
   if(the_big_modal_manager_json[registered_modal_id]){
     if(the_big_modal_manager_json[registered_modal_id].renderer_fn){
-      var fn_name = the_big_modal_manager_json[registered_modal_id].renderer_fn();
-      eval( fn_name + "( )" );
-      return true;
+      return the_big_modal_manager_json[registered_modal_id].renderer_fn(container_window_id,trigger_id);
     }else{
       return false;
     }
@@ -82,7 +83,9 @@ function aw_modal_dialog_maker(registered_modal_id, container_window_id){
  */
 $(document).ready(function() {  
  
-    //select all the a tag with name equal to modal
+    /*
+     * Click is made live with an intention to support image and video modals
+     */
     $('.js_modal_dialog_link').live("click", function(e) {
         //Cancel the link behavior
         e.preventDefault();
@@ -138,7 +141,7 @@ $(document).ready(function() {
         
       
         if( registered_modal_id.length ){
-          var ret_code = aw_modal_dialog_maker(registered_modal_id, modal_window_id);
+          var ret_code = aw_modal_dialog_maker(registered_modal_id, modal_window_id, $(this).attr("id"));
           if(!ret_code){
             /*hide the parent of modal window box*/
             $(this).next().hide();
@@ -149,64 +152,22 @@ $(document).ready(function() {
      
     });
      
-    //if close button is clicked
+    /*
+     * Click is made live with an intention to support image and video modals
+     */
     $('.js_modal_close').live("click", function (e) {
         //Cancel the link behavior
         e.preventDefault();
         $(this).parent().parent().hide();
     });     
      
-    //if bkg mask is clicked
-    $('.modal_mask').click(function () {
+    /*
+     * Click is made live with an intention to support image and video modals
+     */
+    $('.modal_mask').live("click",function () {
         $(this).parent().hide();
     });         
      
 });
 
-/*
-$(document).ready(function(){
-      var page_owner_id=$('#page_owner_id').attr("value");
-      //alert("Inside profile_modals.js ready");
-      $('#all_channels').click(function() { 
-          $( "#channel-dialog-modal" ).attr("title", "Select a channel filter");
-          $( "#channel-dialog-modal" ).empty();                                       
-          $( "#channel-dialog-modal" ).dialog({
-			                                  height: 500,
-                                        width: 800,
-			                                  modal: true
-		                                  });                                  
-          get_all_channels(page_owner_id);
-      });
-
-     $('#all_things').click(function() {
-
-          $( "#thing-dialog-modal" ).attr("title", "Select a thing filter");
-          $( "#thing-dialog-modal" ).empty();                                       
-          $( "#thing-dialog-modal" ).dialog({
-			                                  height: 500,
-                                        width: 800,
-			                                  modal: true
-		                                  });  
-          get_all_things(page_owner_id);
-     });
-    
-     $('#all_locations').click(function() {
-          var html= '<p>' +
-                      'LOCATION' +
-                    '</p>';
-          $( "#location-dialog-modal" ).empty();                                       
-          $( "#location-dialog-modal" ).append(html);                                
-          $( "#location-dialog-modal" ).dialog({
-			                                  height: 500,
-                                        width: 800,
-			                                  modal: true
-		                                  });   
-           get_all_locations(page_owner_id);
-     });
-
-
-  }); */
-
-
-  
 

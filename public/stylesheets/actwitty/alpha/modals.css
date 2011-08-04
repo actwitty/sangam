@@ -17,6 +17,12 @@
 }
 
 /* line 12, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+.modal_close {
+  float: right;
+  width: 100%;
+}
+
+/* line 17, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .modal_window {
   display: none;
   /*--hidden by default--*/
