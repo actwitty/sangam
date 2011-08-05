@@ -598,7 +598,7 @@ class User < ActiveRecord::Base
     h = {}
 
     #use HUB only if entity filter is there
-    if !params[:filter].nil? && !params[:filter][:entity_id].nil?
+    if !params[:filter].nil? && !params[:filter][:entity_id].blank?
       h = process_filter(params[:filter])
       h[:user_id] = user
       h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
