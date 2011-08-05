@@ -2,12 +2,14 @@
  * Main json that will hold all the data for rendering of modal screen
  */
 var modal_registration_prefix="JS_AW_MODAL_";
+
+
 var the_big_modal_manager_json = {
     /* Related friends modal configuration */
     "JS_AW_MODAL_related_friends"  :  {
                                           renderer_fn:function aw_modal_related_friends_caller(win_id, trigger_id){
-                                                  //return aw_modal_related_friends_renderer(win_id, trigger_id);
-                                                  return true;
+                                            //return aw_modal_related_friends_renderer(win_id, trigger_id);
+                                            return true;
                                           },
                                           title:"Related Friends",
                                           top:20,
@@ -19,8 +21,8 @@ var the_big_modal_manager_json = {
                                       },
     /* Related entities modal configuration */
     "JS_AW_MODAL_related_entities"  :  {
-                                          renderer_fn:function aw_modal_related_friends_caller(win_id, trigger_id){
-                                                  return aw_entities_render_related_modal(win_id, trigger_id);
+                                          renderer_fn:function aw_modal_related_entities_caller(win_id, trigger_id){
+                                            return aw_entities_render_related_modal(win_id, trigger_id);
                                           },
                                           title:"Related Entities",
                                           top:50,
@@ -30,20 +32,63 @@ var the_big_modal_manager_json = {
                                           data_json:{}
 
                                       },
-    /* Related locations modal configuration */
-     "JS_AW_MODAL_related_locations"  :  {
-                                          renderer_fn:function aw_modal_related_friends_caller(){
-                                                  //alert("calling related locations renderer");
-                                                  //return aw_modal_related_friends_renderer(win_id, trigger_id);
+    /* All entities modal configuration */
+    "JS_AW_MODAL_all_entities"  :  {
+                                          renderer_fn:function aw_modal_all_entities_caller(win_id, trigger_id){
+                                            return aw_entities_render_all_modal(win_id, trigger_id);
                                           },
-                                          title:"Related Locations",
-                                          top:20,
-                                          left:20,
-                                          width:300,
-                                          height:300,
+                                          title:"All Entities",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
                                           data_json:{}
 
-                                      }
+                                      },
+                                      
+    /* Related locations modal configuration */
+     "JS_AW_MODAL_related_locations"  :  {
+                                          renderer_fn:function aw_modal_related_locations_caller(win_id, trigger_id){
+                                            return aw_locations_render_related_modal(win_id, trigger_id);
+                                          },
+                                          title:"Related Locations",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
+                                          data_json:{}
+
+                                      },
+    /* All locations modal configuration */
+     "JS_AW_MODAL_all_locations"  :  {
+                                          renderer_fn:function aw_modal_all_locations_caller(win_id, trigger_id){
+                                            //alert("calling related locations renderer");
+                                            return aw_locations_render_all_modal(win_id, trigger_id);
+                                          },
+                                          title:"All Locations",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
+                                          data_json:{}
+
+                                     
+                                     },
+    /* All channels modal configuration */
+    "JS_AW_MODAL_all_channels" : {
+                                          renderer_fn:function aw_modal_all_channels_caller(win_id, trigger_id){
+                                            //alert("calling related locations renderer");
+                                            return aw_channels_render_all_modal(win_id, trigger_id);
+                                          },
+                                          title:"All Channels",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
+                                          data_json:{}
+
+                                     
+                                   }
                                   };
 
 

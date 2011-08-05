@@ -60,5 +60,55 @@
 
 .entities_box_internal a span{
 }
+
+.entities_box_images{
+  height:40;
+  width:40;
+}
 /*************** entity box *****************/
+
+/****************** location box *************/
+.locations_box {
+                height:90px;
+                width:120px;
+             }
+
+.locations_box_internal{
+        width:80%;
+        overflow:hidden;
+        float:left;
+}
+
+.locations_box_internal a img{
+  height:40px;
+  width:40px;
+}
+
+.locations_box_internal a span{
+  height:40px;
+  width:40px;
+}
+
+
+/****************** location box *************/
+
+
+/****************** channel box *************/
+.channels_box {
+                height:90px;
+                width:120px;
+             }
+
+.channels_box_internal{
+        width:80%;
+        overflow:hidden;
+        float:left;
+}
+
+
+.channels_box_internal a span{
+}
+
+
+/****************** channel box *************/
 

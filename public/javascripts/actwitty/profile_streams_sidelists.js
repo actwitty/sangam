@@ -25,6 +25,9 @@ function populate_filtered_friends(box_id, friends){
       
      div.append(html);
      the_big_related_friend_json[link_id] = friend.id;
+     if(i>3){
+       return false;
+     }
 
     });
   
@@ -77,7 +80,9 @@ function populate_filtered_locations(box_id, locations){
       
      div.append(html);
      the_big_related_locations_json[link_id] = {id:location.id, name:location.name};
-
+     if(i>2){
+       return false;
+     }
     });
   
 }
@@ -148,7 +153,7 @@ function list_related_friends(){
 /************************************/
 function list_related_entities(owner_id){
     $.ajax({
-        url: '/home/get_entities.json',
+        url: '/home/get_related_entities.json',
         type: 'GET',
         data: { user_id : owner_id, filter : get_filter() },
         dataType: 'json',
@@ -177,6 +182,9 @@ function list_related_locations(owner_id){
         contentType: 'application/json',
         success: function (data) {
            populate_filtered_locations("stream_related_locations", data);
+           
+           /* set context for location */
+           aw_locations_set_related_modal_data(data);
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem getting related locations list. \n ActWitty is trying to solve.');
@@ -250,7 +258,10 @@ $(document).ready(function(){
     //the_big_comment_count_json
     var friend = the_big_related_friend_json[$(this).attr("id")];
     if(friend){
-      alert("Friend id:" + friend);
+      var new_filter = {
+                         user:friend,
+                       }; 
+      modify_filter(new_filter);
     }
     return false;
   });

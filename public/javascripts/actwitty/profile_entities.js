@@ -5,62 +5,25 @@
 var the_big_modal_entities_json = {};
 
 
-/*
- * Render things 
- */
-function render_entities(json){
-  var search_html = '<input type="text" id="search_things" placeholder="Things"/>';
-  $("#thing-dialog-modal").append(search_html);
-  var html = '<ul id="things_list" class="modal_things_ul">' +
-             '</ul>';
-  
-  $("#thing-dialog-modal").append(html);
 
-  $.each(json, function(i,thing){
-      if( thing){
-        var html ='<li id=things_li_' + thing.id  +  ' class="things_dialog_list">' +
-                    '<a href="#" class="things_title" id="thing_id_' + thing.id + '">' +
-                      '<img src="' + thing.image +  '">' +
-                        thing.name +
-                       '</img>' + 
-                    '</a>'+
-                  '<input type="hidden"  id="thing_id_' + thing.id + '_id" value="' +  thing.id + '"/>' +
-                  '<input type="hidden"  id="thing_id_' + thing.id + '_name" value="' +  thing.name + '"/>' +
-                      
-                  '</li>';
-
-        $('#things_list').append(html);
-        
-          
-      }
-  });
-
-
-
-}
 
 /* Global data */
-var json_thing_data;
 var ignore_entity_auto_complete = false;
-function get_all_things(userid){
+function get_all_entities(userid, render_div_id){
     /*
      * Get data on ready
      */
-    alert("reached here");
     $.ajax({
         url: '/home/get_entities.json',
         type: 'GET',
-        data: {user_id:userid, filter:get_empty_filter()},
+        data: {user_id:userid, sort_order:1},
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-          /* if rails demands a redirect because of log in missing */
-          if (data && data.location) {
-            window.location.href = data.location;
-          }else{
-            render_entities(data);
-            json_thing_data=data;
-          }
+          /* set context for the modal dialog */
+          aw_entities_set_all_entities_modal_data(data);
+          var tabs_data = aw_modal_get_data("JS_AW_MODAL_all_entities");
+          aw_boxer_render_tabs(render_div_id, tabs_data);
         },
         error: function (error) {
 
@@ -87,7 +50,7 @@ $(document).ready(function(){
 		  matchContains: true,
 		  highlightItem: false,
       formatItem: function(entity) {
-        return '<img alt="" class="img_stamp user_stamp" src="'+ entity.image + '">   ' + entity.name + '</img>';
+        return '<img alt="" class="p-st-fltr-search-img" src="'+ entity.image + '">   ' + entity.name + '</img>';
       }
 
     }).result(function(e, entity) {
@@ -117,7 +80,9 @@ $(document).ready(function(){
                        }; 
       modify_filter(new_filter);
     }
-    aw_modal_close("JS_AW_MODAL_related_entities");
+
+    var modal_win_id = $(this).parents('.modal_window:first').attr("id");
+    aw_modal_close(modal_win_id);
     return false;
   });
 
@@ -129,7 +94,7 @@ function get_entities_json_data(id){
     var aw_modal_data = aw_modal_get_data("JS_AW_MODAL_related_entities");
     return aw_modal_data.data;
   }else{
-    return aw_modal_get_data("JS_AW_MODAL_all_entities").data_json;
+    return aw_modal_get_data("JS_AW_MODAL_all_entities").data;
   }
 }
 
@@ -150,7 +115,14 @@ function aw_entities_set_related_modal_data(json_data){
   aw_modal_set_data("JS_AW_MODAL_related_entities", modal_data);
 }
 
-function aw_entities_set_all_entities_modal_data(){
+function aw_entities_set_all_entities_modal_data(json_data){
+  
+  var modal_data = {
+                      type:"entities",
+                      class:"entities_box",
+                      data:json_data
+                   };
+  aw_modal_set_data("JS_AW_MODAL_all_entities", modal_data);
 
 }
 
@@ -158,9 +130,8 @@ function aw_render_entities_internal(entity, div_id){
      var link_id = "stream_related_modal_" + entity.id;
      var html='<div class="entities_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_entities" id="' + link_id + '">' +
-                  '<img src="' + entity.image +  '"/>' +
+                  '<img class="entities_box_images" src="' + entity.image +  '"/>' +
                     entity.name +
-                  '</img>' + 
                 '</a>'+
                
               '</div>';
@@ -184,6 +155,26 @@ function aw_entities_render_related_modal(win_id, trigger_id){
 
   var tabs_data = aw_modal_get_data("JS_AW_MODAL_related_entities");
   aw_boxer_render_tabs(id, tabs_data);
+  return true;
+}
+
+
+function aw_entities_render_all_modal(win_id, trigger_id){
+  the_big_modal_entities_json={};
+  var id = win_id + '_modal_div';
+  var div = $("#" + win_id);
+  var search_html = '<div class="search_box">' +
+                      '<input type="text" id="js_entities_modal_all" class="js_search_entities " placeholder="Entities"/>' +
+                    '</div>';
+
+  div.append(search_html);
+  ignore_entity_auto_complete=false;
+  var html = '<div  id="' + id + '">' +
+             '</div>';
+  div.append(html);
+  
+  var page_owner_id=$('#page_owner_id').attr("value");
+  get_all_entities( page_owner_id, id); 
   return true;
 }
 

@@ -40,8 +40,8 @@ javascripts:
     - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_modals.js
     - public/javascripts/actwitty/profile_entities.js
-    - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_locations.js
+    - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_followers.js
     - public/javascripts/actwitty/profile_facebook.js
     - public/javascripts/actwitty/profile_followings.js

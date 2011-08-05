@@ -12,12 +12,20 @@ var the_big_json_renderers={
                                "video" : function aw_boxer_render_video(data, internal_id){
                                                     //render_image_internal(box_id, new_tab_id, data, internal_id);
                                                 },
-                               "friends" : function aw_boxer_render_friends( data, internal_id){
+                               "related_friends" : function aw_boxer_render_friends( data, internal_id){
                                                    return aw_render_friends_internal(data, internal_id);
                                                },
                               "entities" : function aw_boxer_render_entities(data, internal_id){
                                                     return aw_render_entities_internal(data, internal_id);
-                                               }
+                                               },
+                              "locations" : function aw_boxer_render_locations(data, internal_id){
+                                                    return aw_render_locations_internal(data, internal_id);
+                                               },
+                               "channels" : function aw_boxer_render_channels(data, internal_id){
+                                                    return aw_render_channels_internal(data, internal_id);
+                                               },
+
+                              
 
                            };
 

@@ -28,8 +28,10 @@ Sangam::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
   match '/home/settings' => 'home#settings'
   match '/home/settings_save' => 'home#settings_save'
-  match '/home/get_activities' => 'home#get_activities'
+  match '/home/get_channels' => 'home#get_channels'
   match '/home/get_entities' => 'home#get_entities'
+  match '/home/get_related_entities' => 'home#get_related_entities'
+  match '/home/get_locations' => 'home#get_locations'
   match '/home/get_related_locations' => 'home#get_related_locations'
   match '/home/get_enriched_activities' => 'home#get_enriched_activities'
   match '/home/get_all_comments' => 'home#get_all_comments'
