@@ -19,10 +19,14 @@
 /* line 12, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .modal_close {
   float: right;
-  width: 100%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  margin-right: 20px;
+  color: #ccc;
 }
 
-/* line 17, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+/* line 21, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .modal_window {
   display: none;
   /*--hidden by default--*/
@@ -30,11 +34,10 @@
   padding: 20px;
   border: 10px solid #ddd;
   float: left;
-  font-size: 1.2em;
+  font-size: 12px;
   position: fixed;
-  top: 50%;
-  left: 50%;
   z-index: 99999;
+  overflow-y: scroll;
   /*--CSS3 Box Shadows--*/
   -webkit-box-shadow: 0px 0px 20px #000;
   -moz-box-shadow: 0px 0px 20px #000;
@@ -43,4 +46,21 @@
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+/* line 41, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+.search_box {
+  width: 100%;
+  float: left;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid red;
+}
+
+/* line 48, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+.search_box input {
+  width: 100px;
+  margin: 10px 10px 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #ccc;
 }

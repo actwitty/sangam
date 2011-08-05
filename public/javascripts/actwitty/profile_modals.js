@@ -6,36 +6,35 @@ var the_big_modal_manager_json = {
     /* Related friends modal configuration */
     "JS_AW_MODAL_related_friends"  :  {
                                           renderer_fn:function aw_modal_related_friends_caller(win_id, trigger_id){
-                                                  alert("calling related friends renderer");
-                                                  //aw_modal_related_friends_renderer();
+                                                  //return aw_modal_related_friends_renderer(win_id, trigger_id);
+                                                  return true;
                                           },
                                           title:"Related Friends",
                                           top:20,
                                           left:20,
-                                          width:300,
+                                          width:800,
                                           height:300,
-                                          data_json:{}
+                                          data_json:{},
 
                                       },
     /* Related entities modal configuration */
     "JS_AW_MODAL_related_entities"  :  {
-                                          renderer_fn:function aw_modal_related_friends_caller(){
-                                                  alert("calling related entities renderer");
-                                                  //aw_modal_related_friends_renderer();
+                                          renderer_fn:function aw_modal_related_friends_caller(win_id, trigger_id){
+                                                  return aw_entities_render_related_modal(win_id, trigger_id);
                                           },
                                           title:"Related Entities",
-                                          top:20,
-                                          left:20,
-                                          width:300,
-                                          height:300,
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
                                           data_json:{}
 
                                       },
     /* Related locations modal configuration */
      "JS_AW_MODAL_related_locations"  :  {
                                           renderer_fn:function aw_modal_related_friends_caller(){
-                                                  alert("calling related locations renderer");
-                                                  //aw_modal_related_friends_renderer();
+                                                  //alert("calling related locations renderer");
+                                                  //return aw_modal_related_friends_renderer(win_id, trigger_id);
                                           },
                                           title:"Related Locations",
                                           top:20,
@@ -59,6 +58,16 @@ function aw_modal_set_data( registered_modal_id, json_data){
     alert("There is a problem in caching modal rendering data. \n Actwitty is trying to solve the problem");
   }
 }
+/*
+ * get data json for the modal
+ */
+function aw_modal_get_data( registered_modal_id){
+  if(the_big_modal_manager_json[registered_modal_id]){
+    return the_big_modal_manager_json[registered_modal_id].data_json;
+  }else{
+    return {};
+  }
+}
 
 /*
  * Call the target renderer of internal modal
@@ -78,6 +87,11 @@ function aw_modal_dialog_maker(registered_modal_id, container_window_id, trigger
 }
 
 
+function aw_modal_close(registered_modal_id){
+  $("#" + registered_modal_id).html("");
+  $("#" + registered_modal_id).parent().hide();
+
+}
 /*
  * Register modal handler on init
  */
@@ -121,8 +135,12 @@ $(document).ready(function() {
            var config_json = the_big_modal_manager_json[registered_modal_id];
            if(config_json){
              modal_window.css({'width':config_json.width,'height':config_json.height});
-             modal_bkg_mask.css({'top':config_json.top,'left':config_json.left});
+             modal_window.css({'top':config_json.top,'left':config_json.left});
            }
+         }else{
+              //Set the popup window to center
+              modal_window.css('top',  winH/2 - modal_window.height()/2);
+              modal_window.css('left', winW/2 - modal_window.width()/2);
          }
 
 
@@ -130,18 +148,16 @@ $(document).ready(function() {
         var winH = $(window).height();
         var winW = $(window).width();
                
-        //Set the popup window to center
-        modal_window.css('top',  winH/2 - modal_window.height()/2);
-        modal_window.css('left', winW/2 - modal_window.width()/2);
+     
      
         //transition effect
         modal_window.fadeIn(2000); 
 
-        var modal_window_id = modal_window.attr("id");
+         modal_window.attr("id", registered_modal_id);
         
       
         if( registered_modal_id.length ){
-          var ret_code = aw_modal_dialog_maker(registered_modal_id, modal_window_id, $(this).attr("id"));
+          var ret_code = aw_modal_dialog_maker(registered_modal_id, registered_modal_id, $(this).attr("id"));
           if(!ret_code){
             /*hide the parent of modal window box*/
             $(this).next().hide();
@@ -158,6 +174,7 @@ $(document).ready(function() {
     $('.js_modal_close').live("click", function (e) {
         //Cancel the link behavior
         e.preventDefault();
+        $(this).parent().prev().html("");
         $(this).parent().parent().hide();
     });     
      
@@ -165,6 +182,7 @@ $(document).ready(function() {
      * Click is made live with an intention to support image and video modals
      */
     $('.modal_mask').live("click",function () {
+        $(this).prev().html("");
         $(this).parent().hide();
     });         
      

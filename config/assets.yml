@@ -36,10 +36,12 @@ javascripts:
     - public/javascripts/actwitty/home_page_inputs.js
     - public/javascripts/actwitty/alpha/actwitty_profile_helpers.js
     - public/javascripts/actwitty/aw_slider.js
+    - public/javascripts/actwitty/boxer.js
     - public/javascripts/actwitty/profile_filter.js
+    - public/javascripts/actwitty/profile_modals.js
+    - public/javascripts/actwitty/profile_entities.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_locations.js
-    - public/javascripts/actwitty/profile_entities.js
     - public/javascripts/actwitty/profile_followers.js
     - public/javascripts/actwitty/profile_facebook.js
     - public/javascripts/actwitty/profile_followings.js
@@ -48,7 +50,6 @@ javascripts:
     - public/javascripts/actwitty/profile_streams_sidelists.js
     - public/javascripts/actwitty/profile_stream.js
     - public/javascripts/actwitty/profile.js
-    - public/javascripts/actwitty/profile_modals.js
     - public/javascripts/actwitty/profile_people.js
     
   main:
@@ -75,6 +76,7 @@ stylesheets:
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
     - public/stylesheets/actwitty/alpha/comments-streams.css
     - public/stylesheets/actwitty/alpha/modals.css
+    - public/stylesheets/actwitty/alpha/boxer.css
     - public/stylesheets/plupload/jquery.ui.plupload.css
     - public/stylesheets/plupload/jquery.plupload.queue.css
     - public/stylesheets/actwitty/signin.css
@@ -85,6 +87,6 @@ stylesheets:
     - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/home_page.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
-    - public/javascripts/jquery/jquery-ui-1.8.14/themes/base/minified/jquery-ui.min.css
+    - public/stylesheets/plugins/jquery-autocomplete/lib/thickbox.css
 
 

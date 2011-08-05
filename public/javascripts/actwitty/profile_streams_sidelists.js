@@ -50,6 +50,10 @@ function populate_filtered_entities(box_id, entities){
      div.append(html);
      the_big_related_entities_json[link_id] = {id:entity.id, name:entity.name};
 
+     if(i>2){
+       return false;
+     }
+
     });
   
 }
@@ -151,6 +155,9 @@ function list_related_entities(owner_id){
         contentType: 'application/json',
         success: function (data) {
            populate_filtered_entities("stream_related_entities", data);
+
+           /* set context for the modal dialog */
+           aw_entities_set_related_modal_data(data);
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem getting related entities list. \n ActWitty is trying to solve.');
