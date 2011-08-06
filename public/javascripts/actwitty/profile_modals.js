@@ -133,8 +133,10 @@ function aw_modal_dialog_maker(registered_modal_id, container_window_id, trigger
 
 
 function aw_modal_close(registered_modal_id){
-  $("#" + registered_modal_id).html("");
-  $("#" + registered_modal_id).parent().hide();
+  $('#modal_box_window_id').empty();
+  $("#modal_box_id").hide();
+  $('#modal_box_window_id').hide();
+  $('#modal_box_mask_id').hide();
 
 }
 /*
