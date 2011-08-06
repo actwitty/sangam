@@ -933,7 +933,10 @@ html ul.p-cstab li.p-st-tab.active  {
   color:#a4a88d;
 }
 
-
+.p-st-fltr-search-img{
+  height:30px;
+  width:30px;
+}
 
 
 /* -------------------------------Left Bar Filter ----------------------------------*/
@@ -1026,6 +1029,11 @@ html ul.p-cstab li.p-st-tab.active  {
   font-weight:bold;
 }
 
+.p-rel-fltrs span:hover
+{
+  cursor:pointer;
+}
+
 .p-rel-fltr-tags
 {
   width:100%;
@@ -1061,39 +1069,57 @@ html ul.p-cstab li.p-st-tab.active  {
 {
   display:block;
   float:right;
+  width:80px;
+  overflow:hidden;
+  height:14px;
   margin:2px 2px;
-}
-.p-fltr-tag-list-location span
-{
   background:#274521;
-  color:#a4a88d;
-  padding:2px;
-  font-weight:normal;
   -moz-border-radius: 10px ; 
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px ;
   -webkit-border-radius: 10px ;
   text-decoration:none;
+  text-align:center;
+}
+.p-fltr-tag-list-location span
+{
+
+  color:#a4a88d;
+  background:#274521;
+  padding:2px;
+  font-weight:normal;
+  text-decoration:none;
   font-size:10px;
   padding:2px;
+  width:100%;
+  
 }
 
 .p-fltr-tag-list-entity
 {
   display:block;
   float:right;
+  width:80px;
+  overflow:hidden;
+  height:14px;
   margin:2px 2px;
+  background:#943988;
+  -moz-border-radius: 10px ; 
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px ;
+  -webkit-border-radius: 10px ;
+  text-decoration:none;
+  text-align:center;
+
+ 
 }
 .p-fltr-tag-list-entity span
 {
   background:#943988;
   color:#ffffff;
+  width:100%;
   padding:2px;
   font-weight:normal;
-  -moz-border-radius: 10px ; 
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px ;
-  -webkit-border-radius: 10px ;
   text-decoration:none;
   font-size:10px;
   padding:2px;
@@ -1249,6 +1275,10 @@ ul.p-fltr-tag-list li
   text-decoration:underline;
 }
 
+.p-r-fltr-by span:hover
+{
+  cursor:pointer;
+}
 
 /* ----------------------------------------  Content stream -------------------------------------*/
 #channels_main_bar{

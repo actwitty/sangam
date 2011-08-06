@@ -32,7 +32,7 @@ class HomeController < ApplicationController
 
       if !params[:l_id].blank? &&  !params[:l_name].blank?
         @filter_location_id=params[:l_id]
-        @ffilter_location_name=params[:l_name]
+        @filter_location_name=params[:l_name]
       end
       params.except(:mode)
     end
@@ -94,11 +94,16 @@ class HomeController < ApplicationController
 
   end
   ############################################
-  def get_activities
+  def get_channels
    Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
-      response_json=current_user.get_related_locations(params[:user_id], params[:filter])
+      if (current_user.id == Integer(params[:user_id]))
+        response_json=current_user.get_user_activities(params[:sort_order])
+      else
+        other_user = @user=User.find_by_id(params[:id])
+         response_json=other_user.get_user_activities(params[:sort_order])
+      end
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
       if request.xhr?
         render :json => response_json, :status => 200
@@ -112,7 +117,7 @@ class HomeController < ApplicationController
 
   end
   ############################################
-  def get_entities
+  def get_related_entities
 
     Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
 
@@ -125,6 +130,32 @@ class HomeController < ApplicationController
       end
     else
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+   ############################################
+  def get_entities
+
+    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
+
+    if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][USER ENTITIES] calling model api #{params}")
+
+       if (current_user.id == Integer(params[:user_id]))
+        response_json=current_user.get_user_entities(params[:sort_order])
+      else
+        other_user = @user=User.find_by_id(params[:id])
+         response_json=other_user.get_user_entities(params[:sort_order])
+      end
+      Rails.logger.info("[CNTRL][HOME][USER ENTITIES] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][USER ENTITIES] User not signed in")
       if request.xhr?
         render :json => {}, :status => 400
       end
@@ -149,6 +180,31 @@ class HomeController < ApplicationController
     end
 
   end
+   #####################################################
+   def get_locations
+   Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] Get related locations #{params}")
+   if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] calling model api #{params}")
+       if (current_user.id == Integer(params[:user_id]))
+        response_json=current_user.get_user_locations(params[:sort_order])
+      else
+        other_user = @user=User.find_by_id(params[:id])
+         response_json=other_user.get_user_locations(params[:sort_order])
+      end
+      Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+
+
   ############################################
   def get_enriched_activities
     Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Get enriched  activities #{params}")
