@@ -67,9 +67,9 @@ var the_big_modal_manager_json = {
                                           },
                                           title:"All Locations",
                                           top:50,
-                                          left:300,
-                                          width:650,
-                                          height:400,
+                                          left:200,
+                                          width:850,
+                                          height:700,
                                           data_json:{}
 
                                      

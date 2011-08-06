@@ -606,6 +606,8 @@ class User < ActiveRecord::Base
     else
       h = process_filter(params[:filter])
       h[:author_id] = user
+      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+      h.delete(:location_id)
       h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
       activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
     end
