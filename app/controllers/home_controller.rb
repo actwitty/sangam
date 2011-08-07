@@ -21,7 +21,18 @@ class HomeController < ApplicationController
       @filtered_mode = 'filtered'
       Rails.logger.info("[CNTRL] [HOME] [SHOW] Stream page requested with filtered mode set #{@filtered_mode}")
       if !params[:c_id].blank? &&  !params[:c_name].blank?
+        @filter_channel_name=params[:c_name]
+        @filter_channel_id=params[:c_id]
+      end
 
+      if !params[:e_id].blank? &&  !params[:e_name].blank?
+        @filter_entity_id=params[:e_id]
+        @filter_entity_name=params[:e_name]
+      end
+
+      if !params[:l_id].blank? &&  !params[:l_name].blank?
+        @filter_location_id=params[:l_id]
+        @filter_location_name=params[:l_name]
       end
       params.except(:mode)
     end
@@ -83,11 +94,16 @@ class HomeController < ApplicationController
 
   end
   ############################################
-  def get_activities
+  def get_channels
    Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
-      response_json=current_user.get_related_locations(params[:user_id], params[:filter])
+      if (current_user.id == Integer(params[:user_id]))
+        response_json=current_user.get_user_activities(params[:sort_order])
+      else
+        other_user = @user=User.find_by_id(params[:id])
+         response_json=other_user.get_user_activities(params[:sort_order])
+      end
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
       if request.xhr?
         render :json => response_json, :status => 200
@@ -101,7 +117,7 @@ class HomeController < ApplicationController
 
   end
   ############################################
-  def get_entities
+  def get_related_entities
 
     Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
 
@@ -114,6 +130,32 @@ class HomeController < ApplicationController
       end
     else
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+   ############################################
+  def get_entities
+
+    Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
+
+    if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][USER ENTITIES] calling model api #{params}")
+
+       if (current_user.id == Integer(params[:user_id]))
+        response_json=current_user.get_user_entities(params[:sort_order])
+      else
+        other_user = @user=User.find_by_id(params[:id])
+         response_json=other_user.get_user_entities(params[:sort_order])
+      end
+      Rails.logger.info("[CNTRL][HOME][USER ENTITIES] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][USER ENTITIES] User not signed in")
       if request.xhr?
         render :json => {}, :status => 400
       end
@@ -138,6 +180,31 @@ class HomeController < ApplicationController
     end
 
   end
+   #####################################################
+   def get_locations
+   Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] Get related locations #{params}")
+   if user_signed_in?
+      Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] calling model api #{params}")
+       if (current_user.id == Integer(params[:user_id]))
+        response_json=current_user.get_user_locations(params[:sort_order])
+      else
+        other_user = @user=User.find_by_id(params[:id])
+         response_json=other_user.get_user_locations(params[:sort_order])
+      end
+      Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+
+
   ############################################
   def get_enriched_activities
     Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Get enriched  activities #{params}")
@@ -160,10 +227,28 @@ class HomeController < ApplicationController
   end
   ############################################
   def get_all_comments
-    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] Get All Comments")
-    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+
+    Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] get all comments #{params}")
+    if user_signed_in?
+      if params[:activity_id].blank?
+        render :json => {}, :status => 400
+        return
+      end
+      params[:activity_id]=Integer(params[:activity_id])
+
+      Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] calling model api #{params[:activity_id]}")
+      response_json=current_user.load_all_comment(params[:activity_id])
+
+      if request.xhr?
+        Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] created successfully #{response_json}")
+        render :json => response_json, :status => 200
+      end
+
+    else
+      Rails.logger.info("[CNTRL][HOME][CREATE STREAM] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
   end
   ############################################
@@ -293,7 +378,7 @@ class HomeController < ApplicationController
 
 
     Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] Create activity requested with #{params}")
-
+    @success=false
     if user_signed_in?
       if params[:enrich].blank?
         params[:enrich] = false
@@ -304,11 +389,29 @@ class HomeController < ApplicationController
           params[:enrich] = false
         end
       end
-      Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Calling model api")
+
+      if params[:status] && !params[:status].blank?
+       params[:status] = Integer(params[:status])
+      end
+      if params[:campaign_types] && !params[:campaign_types].blank?
+        params[:campaign_types] = Integer(params[:campaign_types])
+      end
+
+      if !params[:documents].nil?
+       doc_arr = Array.new()
+       params[:documents].each do |index, doc_hash|
+        doc_arr = doc_arr << doc_hash
+       end
+       params[:documents]= doc_arr
+      end
+      Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Calling model api with #{params}")
       response_json=current_user.create_activity(params)
       Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Returned from model api #{response_json}")
-       if request.xhr?
-        render :json => response_json, :status => 200
+      @success=true
+
+
+      respond_to do |format|
+        format.json
       end
     else
       Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] No sign in, not creating any activity")
@@ -321,12 +424,21 @@ class HomeController < ApplicationController
   def get_streams
     Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
     if user_signed_in?
+      if params[:friend].blank?
+        params[:friend] = false
+      else
+        if params[:friend] == "true"
+          params[:friend] = true
+        else
+          params[:friend] = false
+        end
+      end
       if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
-        params[:friend]=true
+
         params[:user_id]=Integer(params[:user_id])
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of current users")
       else
-        params[:friend]=false
+
         params[:user_id]=Integer(params[:user_id])
 
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of other users")
@@ -351,7 +463,15 @@ class HomeController < ApplicationController
    def get_summary
     Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
-       params[:friend]=true
+      if params[:friend].blank?
+        params[:friend] = false
+      else
+        if params[:friend] == "true"
+          params[:friend] = true
+        else
+          params[:friend] = false
+        end
+      end
        params[:user_id]=Integer(params[:user_id])
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params}")
        response_json=current_user.get_summary(params)
@@ -367,33 +487,22 @@ class HomeController < ApplicationController
       end
     end
   end
+
+
   ############################################
-  def get_friends_summary
-    Rails.logger.info("[CNTRL][HOME][GET FRIENDS SUMMARY] user get summary requested with params #{params}")
+
+  def delete_entities_from_post
+    Rails.logger.info("[CNTRL][HOME][DELETE ENTITIES] user delete entities from post #{params}")
+    activity_id = Integer(params[:post_id])
+    entity_id = Integer(params[:entity_id])
     if user_signed_in?
-      if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
-        params[:friend]=true
-        params[:user_id]=current_user.id
-        Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] Calling model api #{params}")
-        response_json=current_user.get_summary(params)
-        Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] returned from model api ")
-        if request.xhr?
-          Rails.logger.debug("[CNTRL][HOME][GET FRIENDS SUMMARY] sending response JSON #{response_json}")
-          render :json => response_json, :status => 200
-        end
-      else
-        Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of other users")
-        if request.xhr?
-          render :json => {}, :status => 400
-        end
-      end
-    else
-      Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Get summary failed as user is not signed in")
+      response_json = current_user.remove_entity_from_activity(activity_id, entity_id)
       if request.xhr?
-        render :json => {}, :status => 400
+        Rails.logger.debug("[CNTRL][HOME][DELETE ENTITIES] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
       end
+
     end
   end
-  ############################################
 end
 

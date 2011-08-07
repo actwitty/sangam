@@ -837,7 +837,7 @@ class User < ActiveRecord::Base
     end
 
     User.where(:id => activities.keys).all.each do |attr|
-      # activities[attr.id] => activity_word_id
+      # activities[attr.id] => activity_word_id                                                  get
       friends[activities[attr.id]].each do |idx|
 
         #dont show a friend in his own summary as related friend

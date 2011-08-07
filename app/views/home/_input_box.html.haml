@@ -1,0 +1,66 @@
+/ Java scripts includes
+%script{:src => "http://maps.google.com/maps/api/js?sensor=true&libraries=places", :type => "text/javascript"}
+= javascript_include_tag 'actwitty/input_location'
+
+.wrapper.col2
+  #p-ip-sect
+    #input-box
+      .input-whats-up
+        %input.add-page-input{:name => "add-page-input", :placeholder => "Whats Up....", :type => "text", :value => "Whats Up"}/
+      .home_page_inputs
+        / #### Home Page input starts  ####
+        .close.page_input_close
+          %span.p-i-c
+        .activity_location
+          .activities
+            %img.symbol_icon{:src => "/images/alpha/hash1.jpg"}
+            %input#activity_field.activity_input.input_text_box.count-enable{:maxlength => "32", :placeholder => "activity", :type => "text"}/
+          .locations
+            %img.symbol_icon{:src => "/images/alpha/at.jpg"}
+            %input#location_field.searchTextField.input_text_box.location_input.count-enable{:maxlength => "140", :type => "text"}/
+        .input_title
+          %input#title_field.input_text_box.count-enable{:maxlength => "255", :type => "text",:placeholder => "title"}/ 
+        .entity_maps
+          #entity_div
+            %textarea#entity_field.input_text_box.count-enable{:maxlength => "1024", :placeholder => "description"}
+          #map
+        #input_addons
+          %li.input_addons_links
+            %a#attachment.info{:href => "#"}
+              %img.link_addon_icons{:src => "/images/alpha/add_img.jpg"}/
+              %span add image
+        #input_campaign.campaign
+          %span Ask For
+          .campaign-type
+            .del-camp
+            %input.campaign-btn.camp-like.selected-camp{:type => "submit", :value => "Like"}
+          .campaign-type
+            .del-camp
+            %input.campaign-btn.camp-join{:type => "submit", :value => "Join"}
+          .campaign-type
+            .del-camp
+            %input.campaign-btn.camp-support{:type => "submit", :value => "Support"}
+        #input-attachments-section
+          /html.haml is mentioned in partial as it may be called in JSON request mode
+          =render :partial => "home/upload_attachments.html.haml"   
+        #post_submit
+          %input#actwitty_generator.post_submit_button{:type => "submit", :value => "Publish"}
+            .post-fb-twt
+              %img{:src => "/images/alpha/fb_pub.jpeg"}/
+              .fbtwt-pub
+                %input{:name => "fb_publish", :type => "checkbox", :value => "fb_publish"}/
+              %img{:src => "/images/alpha/twt_pub.jpeg"}/
+              .fbtwt-pub
+                %input{:name => "twt_publish", :type => "checkbox", :value => "twt_publish"}/
+
+        
+        #input-char-count
+          %span#char-count : 120
+          %span Characters Remaining :
+
+        %input#user_latlng{:name => "latlang", :type => "hidden"}
+        %input#geo_location{:size => "50", :type => "hidden", :value => ""}
+        %input#location_type{:name => "location_type", :type => "hidden", :value => ""}
+        %input#input_latlang{:name => "input_latlang", :type => "hidden", :value => ""}
+        %input#lat_value{:name => "input_latlang", :type => "hidden", :value => ""}
+        %input#lng_value{:name => "input_latlang", :type => "hidden", :value => ""}

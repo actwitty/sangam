@@ -1,6 +1,58 @@
 $(document).ready(function(){
+  $(window).scroll(function(){
+
+    //$(".p-st-filter").css("top",Math.max(0,230-$(this).scrollTop()));
+    var totalHeight = $("#top-bar").height() + $("#input-box").height();
+    //if($(this).scrollTop() > ( $("#top-bar").height() + $("#input-box").height() )
+    if($(this).scrollTop() > totalHeight )
+    {
+      $(".p-st-filter").css("position","fixed");
+      $(".p-st-filter").css("top",50);
+      
+      $(".p-l-fltr-1").css("position","fixed");
+      $(".p-l-fltr-1").css("top",50);
+      
+      $(".p-l-fltr-2").css("position","fixed");
+      $(".p-l-fltr-2").css("top",50);
+    
+      $(".p-r-fltr-st").css("position","fixed");
+      $(".p-r-fltr-st").css("top",50);
+  
+      $(".p-r-search-fltr").css("position","fixed");
+      $(".p-r-search-fltr").css("top",50);
+      
+      //alert(totalHeight);
+
+    }
+    else
+    {
+      $(".p-st-filter").css("position","absolute");
+      $(".p-st-filter").css("top","");
+      
+      $(".p-l-fltr-1").css("position","absolute");
+      $(".p-l-fltr-1").css("top","");
+      
+      $(".p-l-fltr-2").css("position","absolute");
+      $(".p-l-fltr-2").css("top","");
+
+      $(".p-r-fltr-st").css("position","absolute");
+      $(".p-r-fltr-st").css("top","");
+  
+      $(".p-r-search-fltr").css("position","absolute");
+      $(".p-r-search-fltr").css("top","");
+    }
+  });
+  
+    /* to view comments on streams */
+    $(".view-comments").click(function(event){
+      $(this).parent().next().slideToggle();
+      
+    });
 
 
+
+
+  
     /* to display the comment input system for inputting comments.  like google+ */ 
     $(".add-comment").click(function(event){
       $(this).next().show();
@@ -88,21 +140,56 @@ $(document).ready(function(){
 
     $("#attachment").click(function(){
         $("#input-attachments-section").show();
+         $("#attachment-list").append(" <div class='input-attachment'> " +
+                    "<input type='file' class='choose-attach'> " +
+                    "<input type='text' placeholder='Caption' class='attach-caption'/>" +
+                    "<input type='button' value='Delete' class='delete-attach'/>" +
+                "</div>");
         $(this).hide();
     });
+
+
+
+    /* delete all the attachments... thus deleting all the elements with class as 
+     * input attachment
+     */
     $("#delete-all-attachment").click(function(){
         $("#input-attachments-section").hide();
+        $(".input-attachment").remove();
         $("#attachment").show();
     });
+    
+    
+    
+    /* not used probably...keep it */ 
     $(".delete-attachment").click(function(){
         $(this).parent().remove();
+        alert($('.attachment-list').children.length);
     });
     
+    /* to get functionality of add more images*/ 
     $("#add-more-attachment").click(function(){
-        $("#attachment-list").append("<div class='input-attachment'><img src='photo.jpg'><a href='#' class='delete-attachment'>delete</a></div>");
+        $("#attachment-list").append(" <div class='input-attachment'> " +
+                    "<input type='file' class='choose-attach'> " +
+                    "<input type='text' placeholder='Caption' class='attach-caption'/>" +
+                    "<input type='button' value='Delete' class='delete-attach'/>" +
+                "</div>");
+        $(this).disabled = true;
     });
 
 
+    /* to get functionality of delete a particular attachment
+     * in case all the attachments are deleted, we will close the attachment box and
+     * move to add-image box as we do in delete all
+     * 
+     */
+    $(".delete-attach").live('click', function() {
+       $(this).parent().remove(); 
+       if ($("#attachment-list").children().length == 0) {
+          $("#input-attachments-section").hide();
+          $("#attachment").show();
+       }
+    });
 
     $(".dropdown").click(function () {
         /*$("ul.the_menu").slideToggle("medium");*/
@@ -118,7 +205,14 @@ $(document).ready(function(){
         $(this).parent().next().slideToggle("medium");
     });
 
+    $(".campaign-btn").click(function () {
+        $(this).toggleClass('selected-camp');
+        $(this).prev().show();
+    });
+   
+    $(".del-camp").click(function () {
+        $(this).next().toggleClass('selected-camp');
+        $(this).hide();
+    });
 
-
-    
- });
+});

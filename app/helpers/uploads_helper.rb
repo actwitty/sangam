@@ -64,7 +64,7 @@ module UploadsHelper
 		runtimes : 'flash',
 		url : 'https://s3.amazonaws.com/#{bucket}',
 		max_file_size : '5mb',
-		max_file_count: 20, // user can add no more then 20 files at a time
+		max_file_count: 5, // user can add no more then 5 files at a time
 		unique_names : true,
 		multiple_queues : true,
 

@@ -1,0 +1,115 @@
+/* line 1, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.ntabs {
+  margin-right: 5px;
+  float: left;
+  margin: 5px 5px 5px 5px;
+  border: 1px solid #BDC7D5;
+  padding: 5px 8px 5px 8px;
+  position: relative;
+  border: 1px solid red;
+}
+
+/* line 11, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.ctab {
+  background: #E7EDF6;
+  position: relative;
+  top: 2px;
+  border-bottom-width: 2;
+}
+
+/* line 17, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.boxer_close {
+  float: right;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  align: center;
+}
+
+/* line 24, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.close {
+  text-decoration: none;
+  color: #ccc;
+  font-weight: bold;
+  width: 100%;
+  font-size: 14px;
+  top: -3px;
+  left: 157px;
+         /*padding: 0 4px;
+		     margin-top:10px;
+		     margin-bottom:30px;
+		     margin-right:15px;*/
+  -webkit-border-radius: .2em;
+  -moz-border-radius: .2em;
+  border-radius: .2em;
+}
+
+/* line 41, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.close:hover {
+  background: #999;
+  color: #333;
+}
+
+/*************** entity box *****************/
+/* line 47, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.entities_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 52, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.entities_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 64, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.entities_box_images {
+  height: 40;
+  width: 40;
+}
+
+/*************** entity box *****************/
+/****************** location box *************/
+/* line 71, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.locations_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 76, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.locations_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 82, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.locations_box_internal a img {
+  height: 40px;
+  width: 40px;
+}
+
+/* line 87, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.locations_box_internal a span {
+  height: 40px;
+  width: 40px;
+}
+
+/****************** location box *************/
+/****************** channel box *************/
+/* line 97, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.channels_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 102, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.channels_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/****************** channel box *************/
