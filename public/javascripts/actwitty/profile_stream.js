@@ -1,4 +1,4 @@
-/**********************************/
+1/**********************************/
 /* Big global jsons which need to maintain context for dynamism*/
 var the_big_comment_add_json={ };
 var the_big_comment_show_all_json={ };
@@ -18,30 +18,25 @@ var the_big_stream_entity_deletes={};
 /*
  * Render stream docs
  */
+
+
+
+
+/* Attaching the docs with rel attribute
+ * This rel attribute will start iwth fnc_group (for fancy box group)
+ * There are different version of fancy box which can also be used.
+ * The current one in place is for image gallery
+ */
 function handle_stream_docs(box_id, stream){
   docs_box= $("#" + box_id);
   if ( stream.documents &&  stream.documents.count ){
-    var ul_box_id = box_id + "_ul"; 
-    var doc_box_id = box_id + "_slider";
-    var html = '<div  class="aw_slider" id="' + doc_box_id + '">' +                  
-                  '<ul id="' + ul_box_id +  '" class="aw_slider">' +
-                  '</ul>' +
-                '</div>' ;
-
-    docs_box.append(html);
-    var ul_box = $("#" + ul_box_id);  
+    var ul_box = $("#" + box_id);
     $.each(stream.documents.array, function(i, attachment){
-     var html='<li>' +
-                '<a href="#">' +
-                  '<img src="'+ attachment.url + '"  width="40" height="40" alt="" />' +
-                  '<span>' +
-                      attachment.name +
-                  '</span>' +
-                '</a>' +
-              '</li>';
-
+     var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title=""><img alt="" src="'+ attachment.url + '"  width="50" height="50" alt="" /></a>'; 
      ul_box.append(html);
     });
+    /* activate fancy box  */
+    activate_fancybox_group(box_id);
   }else{
     /* hide if there is nothing to show */
     docs_box.hide();
@@ -541,7 +536,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '</div>' +
                   
                     /* Post attachment */
-                    '<div class="p-awp-view-attachments" id="' + doc_box_id + '" >' +
+                    '<div class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
                     '</div>' +
 
                     /* Post campaigns */
@@ -569,6 +564,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   handle_stream_docs(doc_box_id, stream);
   setup_comment_handling(comment_box_id,  post.id, comment_show_all_id);
   handle_stream_campaign(campaign_box_id, stream);
+
 
   if( stream.post.enriched == false ){
     the_big_stream_enriched_state[stream.post.id] = {text_box : text_box_id};

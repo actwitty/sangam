@@ -27,7 +27,8 @@ class Document < ActiveRecord::Base
    validates_length_of    :url, :in => 1..AppConstants.url_length
    validates_length_of    :source_name,    :in => 1..AppConstants.source_name_length
    validates_length_of    :thumb_url, :maximum => AppConstants.url_length, :unless => Proc.new{|a| a.thumb_url.nil?}
-   validates_length_of    :caption, :in => 1..AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?}
+   validates_length_of    :caption, :maximum => AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?} 
+   #validates_length_of    :caption, :in => 1..AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?}
 
 
 #   mount_uploader         :document_data, DocumentDataUploader

@@ -20,36 +20,33 @@ function create_and_add_text_box(box_id, summary){
     text_box.hide();
   }
 }
-/* handle docs box */
+
+
+
+/* handle docs box 
+ * fancy box activated
+ * */
 function create_and_docs_box(box_id, summary){
-  var docs_box= $("#" + box_id);
-  if ( summary.documents && summary.documents.length  ){
-    var ul_box_id = box_id + "_ul"; 
-    var doc_box_id = box_id + "_slider";
-    var html = '<div  class="aw_slider" id="' + doc_box_id + '">' +                  
-                  '<ul id="' + ul_box_id +  '" class="aw_slider">' +
-                  '</ul>' +
-                '</div>' ;
-
-    docs_box.append(html);
-    var ul_box = $("#" + ul_box_id);  
+  docs_box= $("#" + box_id);
+  if ( summary.documents &&  summary.documents.length ){
+    var ul_box = $("#" + box_id);
     $.each(summary.documents, function(i, attachment){
-     var html='<li>' +
-                '<a href="#" class="summary_links_styling">' +
-                  '<img src="'+ attachment.url + '"  width="40" height="40" alt="" />' +
-                  '<span>' +
-                      attachment.name +
-                  '</span>' +
-                '</a>' +
-              '</li>';
-
+     var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title=""><img alt="" src="'+ attachment.url + '"  width="50" height="50" alt="" /></a>'; 
      ul_box.append(html);
     });
+    /* activate fancy box  */
+    activate_fancybox_group(box_id);
   }else{
     /* hide if there is nothing to show */
     docs_box.hide();
   }
+  
 }
+
+
+
+
+
 /******************************************************************/
 
 

@@ -834,7 +834,7 @@ html ul.p-cstab li.p-st-tab.active  {
   width:620px;
   list-style:none;
   position:absolute;
-  z-index:2000;
+  z-index:1000;
   background:#CCCCCC;
   border:0px solid red;
 }
@@ -1467,13 +1467,19 @@ ul.p-fltr-tag-list li
   line-height:18px;
 }
 
-.p-awp-view-attachments
+.p-awp-view-attachment
 {
   width:100%;
   float:right;
   height:auto;
-  border:0px solid red;
+  border:0px solid #fff;
+  margin-top:8px;
 }
+.p-awp-view-attachment a
+{
+  margin-left:5px;
+}
+
 
 
 /*
