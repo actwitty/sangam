@@ -48,7 +48,7 @@ Sangam::Application.routes.draw do
   match  '/home/get_friends_summary' => 'home#get_friends_summary'
   match  '/home/get_streams' => 'home#get_streams'
 
-  match 'view' => '/home/get_single_activity'
+  match '/view' => 'home#get_single_activity'
 
 
   match '/authentications/failure' => 'authentications#failure'

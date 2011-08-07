@@ -1,4 +1,15 @@
+
 /*
+ * NOTE: suggested file name for this file profile_helpers.js
+ *
+ */
+ 
+ 
+ 
+ 
+ 
+ 
+ /*
  * Api's for enabling fancybox on attachments in streams as well as channels.
  * Fancy box is used to show the gallery of attachments which when clicked opens the
  * attachments in modal.
@@ -17,3 +28,24 @@ function activate_fancybox_group(post_group){
 				}
 	});
 }
+
+
+
+/*
+ * API for read more expander plugin
+ */
+function setup_readmore(content_class,slice_at) {
+  $(content_class).expander({
+      slicePoint:slice_at,  // default is 100
+      expandText:'read more', // default is 'read more...'
+      userCollapseText: '...less'  // default is '[collapse expanded text]'
+  });
+}
+
+
+
+
+
+
+
+
