@@ -184,6 +184,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -196,8 +197,10 @@ end
 #  comment_id  :integer
 #  document_id :integer
 #  father_id   :integer         not null
-#  name        :string(255)     not null
+#  name        :text            not null
 #  value       :integer         not null
+#  status      :integer         not null
+#  source_name :text            not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

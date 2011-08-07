@@ -16,6 +16,7 @@ class CreateActivities < ActiveRecord::Migration
 
       t.integer :comments_count
       t.integer :documents_count
+      t.integer :tags_count
 
       t.integer :campaign_types, :null => false         # 1 to 7 or nil #at present each bit represent on campaign type. bit 0 => like,
                                         # bit 1=>support,bit 2=> :join
@@ -33,15 +34,15 @@ class CreateActivities < ActiveRecord::Migration
 
       t.boolean :enriched
 
-
+      t.boolean :meta_activity
       t.timestamps
     end
 
       add_index :activities, [:author_id, :activity_word_id]
 
-#      add_index :activities, [:activity_word_id, :activity_name]
+      add_index :activities, :activity_word_id
 
-      add_index :activities, [:author_id, :activity_name]
+      add_index :activities, [:activity_name, :author_id ]
 
       add_index :activities, :updated_at
 
@@ -49,9 +50,7 @@ class CreateActivities < ActiveRecord::Migration
 
       add_index :activities, [:id, :enriched]
 
-      add_index :activities, [:author_id, :summary_id]
-
-      add_index :activities, :summary_id
+      add_index :activities, [:summary_id, :author_id]
 
       add_index :activities, [ :status, :author_id]
 
@@ -59,15 +58,19 @@ class CreateActivities < ActiveRecord::Migration
 
       add_index :activities, [:source_name, :activity_word_id]
 
+      add_index :activities, [:meta_activity, :author_id]
+
+      add_index :activities, :created_at
+
   end
 
   def self.down
 
       remove_index :activities, [:author_id, :activity_word_id]
 
-#      remove_index :activities, [:activity_word_id, :activity_name]
+      remove_index :activities, :activity_word_id
 
-      remove_index :activities, [:author_id, :activity_name]
+      remove_index :activities, [:activity_name, :author_id]
 
       remove_index :activities, :updated_at
 
@@ -75,15 +78,17 @@ class CreateActivities < ActiveRecord::Migration
 
       remove_index :activities, [:id, :enriched]
 
-      remove_index :activities, [:author_id, :summary_id]
-
-      remove_index :activities, :summary_id
+      remove_index :activities, [:summary_id, :author_id]
 
       remove_index :activities, [ :status, :author_id]
 
       remove_index :activities, :name => "index_activities_on_source_author_word"
 
       remove_index :activities, [:source_name, :activity_word_id]
+
+      remove_index :activities, [:meta_activity, :author_id]
+
+      remove_index :activities, :created_at
 
       drop_table :activities
   end

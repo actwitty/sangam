@@ -82,11 +82,11 @@ class Comment < ActiveRecord::Base
       text = text.to_yaml
       params[:father_id] =  Activity.create_activity(:author_id => params[:author_id],
                                                       :activity => "&#{AppConstants.default_comment_string}&" ,
-                                                    :text => text,:enrich => false,
+                                                    :text => text,:enrich => false,:meta_activity => true,
                                                     :campaign_types => AppConstants.campaign_none).id
 
       #set mandatory parameters if missing
-      params[:status] = AppConstants.state_public if params[:status].nil?
+      params[:status] = AppConstants.status_public if params[:status].nil?
       params[:source_name] = AppConstants.source_actwitty if params[:source_name].nil?
 
       obj = Comment.create!(params)
@@ -101,6 +101,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: comments
@@ -111,6 +112,8 @@ end
 #  document_id :integer
 #  father_id   :integer         not null
 #  text        :text            not null
+#  status      :integer         not null
+#  source_name :text            not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

@@ -1,28 +1,3 @@
-#  current_sign_in_at   :datetime
-#  last_sign_in_at      :datetime
-#  current_sign_in_ip   :string(255)
-#  last_sign_in_ip      :string(255)
-#  confirmation_token   :string(255)
-#  confirmed_at         :datetime
-#  confirmation_sent_at :datetime
-#  failed_attempts      :integer         default(0)
-#  unlock_token         :string(255)
-#  locked_at            :datetime
-#  authentication_token :string(255)
-#  username             :string(255)
-#  show_help            :boolean
-#  disable_email        :boolean
-#  full_name            :string(255)
-#  photo_small_url      :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
-#  invitation_token     :string(60)
-#  invitation_sent_at   :datetime
-#  invitation_limit     :integer
-#  invited_by_id        :integer
-#  invited_by_type      :string(255)
-#
-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -242,12 +217,15 @@ class User < ActiveRecord::Base
   end
 
 
-  #sort_order => 1 (lexicographical)
-  #sort_order => 2 (based on updated)
+  #INPUT user_id => 123
+  #sort_order => 1 (lexicographical) or  2 (based on updated)
   #returns hash of : {:name => "eating" ,:id => 123 }
-  def get_user_activities( sort_order)
+  #   OR
+  #    {} if invalid user
+  def get_user_activities( user_id, sort_order)
 
-     h = Activity.where(:author_id => self.id).group(:activity_word_id, :activity_name).
+
+     h = Activity.where(:author_id => user_id, :status => AppConstants.status_public).group(:activity_word_id, :activity_name).
          order("MAX(updated_at)  DESC").count
 
      word_hash = []
@@ -256,21 +234,28 @@ class User < ActiveRecord::Base
         word_hash << {:name => k[1], :id => k[0]}
      end
 
-     if !sort_order.blank?  and sort_order == 1
+     if !sort_order.blank? && sort_order == 1
         word_hash = word_hash.sort {|x, y| x[:name] <=> y[:name] }
      end
-        word_hash
-     end
 
-  #sort_order => 1 (lexicographical)
-  #sort_order => 2 (based on updated)
-  #returns hash of : {:name => "pizza" , :id => 123, :image =>  }
-  def get_user_entities(sort_order)
+     word_hash
+  end
+
+  #INPUT user_id => 123
+  #sort_order => 1 (lexicographical) or  2 (based on updated)
+  #OUTPUT hash of : {:name => "pizza" , :id => 123, :image =>  }
+  #                            OR
+  #                 {} if invalid user
+  def get_user_entities(user_id, sort_order)
 
     entity_hash = []
 
-    h = entities.order("updated_at DESC").each do |attr|
-      entity_hash <<  {:name => attr.entity_name,:id => attr.id, :image =>AppConstants.entity_base_url + attr.entity_image}
+    user = User.where(:id => user_id).first
+    if user.nil?
+      return {}
+    end
+    h = user.entities.order("updated_at DESC").each do |attr|
+      entity_hash <<  {:name => attr.entity_name,:id => attr.id, :image => attr.entity_image}
     end
 
     if !sort_order.blank?  and sort_order == 1
@@ -282,19 +267,25 @@ class User < ActiveRecord::Base
 
   include TextFormatter
 
-  #sort_order => 1 (lexicographical)
-  #sort_order => 2 (based on updated)
-  #returns: array of :type => 1, :url => "http://google.com", :name => "Google"
+  #INPUT user_id => 123
+  #sort_order => 1 (lexicographical) or  2 (based on updated)
+  #OUTPUT array of :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR
   #                 :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
   #                                                      OR
   #                 :type => 2, :name => "John's home"]
+  #                                   OR
+  #                                 {} if invalid user
 
-  def get_user_locations( sort_order)
+  def get_user_locations( user_id, sort_order)
 
     lh = []
+    user = User.where(:id => user_id).first
+    if user.nil?
+      return {}
+    end
 
-    h = locations.order("updated_at DESC").each do |attr|
+    h = user.locations.order("updated_at DESC").each do |attr|
       l = location_hash(attr)
       l[:id] = attr.id
       lh <<  l
@@ -346,7 +337,7 @@ class User < ActiveRecord::Base
     entity_hash = []
 
     e.each do |k,v|
-      entity_hash << {:id => k[0], :name => k[1], :image  => AppConstants.entity_base_url + k[2]}
+      entity_hash << {:id => k[0], :name => k[1], :image  =>  k[2]}
     end
 
     entity_hash
@@ -392,6 +383,16 @@ class User < ActiveRecord::Base
   end
 
 
+  #OUTPUT
+  # See get_stream output
+  def get_draft_activity
+    activity = Activity.where(:status => AppConstants.status_saved, :author_id => self.id).group(:id).order("MAX(updated_at) DESC").count
+    array = get_all_activity(activity.keys)
+    puts array.to_json
+    array
+  end
+
+
   #Removes all occurrences of an entity from an activity
   #INPUT => activity_id => 123, entity_id => 234
   #OUTPUT => Activity Blob
@@ -404,11 +405,28 @@ class User < ActiveRecord::Base
       activity.update_attributes(:activity_text => activity.activity_text)
     end
 
+    #Destroy Hub entries for that
+    Hub.destroy_all(:activity_id => activity_id, :entity_id => entity_id)
+
+    #Reset Summary for entity id
+    if !activity.summary_id.nil?
+
+      s = Summary.where(:id => activity.summary_id).first
+
+      #Recreate Entity Array for given summary
+      s.entity_array = []
+      a = Hub.where(:summary_id => activity.summary_id, :entity_id.not_eq => nil).group(:entity_id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+      s.entity_array = a.keys if !a.blank?
+
+      s.update_attributes(:entity_array => s.entity_array)
+    end
+
     activity = format_activity(activity)
     activity
 
   rescue => e
-    Rails.logger.error("User => remove_entity_from_activity => failed => #{e.message}")
+    Rails.logger.error("[MODEL] [User] [remove_entity_from_activity] [rescue] => failed => #{e.message}")
     {}
   end
 
@@ -425,8 +443,8 @@ class User < ActiveRecord::Base
   #                                     nil
   #                 } [OPTIONAL]
   #
-  #    :documents => [{:caption => "abcd", :thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",
-  #                   :url => "https://s3.amazonaws.com/xyz.jpg" } ]#caption and thumb_url is optional in document
+  #    :documents => [{:caption => "abcd", :thumb_url => "https://s3.amazonaws.com/thumb_xyz.jpg"
+  #                             :url => "https://s3.amazonaws.com/xyz.jpg" } ]#caption and thumb_url is optional in document
   #                  [OPTIONAL]
   #
   #    :campaign_types => 1 to 7  #  Need to set by client. At present each bit represent on campaign type.
@@ -449,7 +467,7 @@ class User < ActiveRecord::Base
   #
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
   #                     [MANDATORY]
-  #
+  #    :tags => [{:tag => "jump"}, {:tag => "india"}]
   # OUTPUT => {:post=>{
   #              :text=>"pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
   #              :word=>{:id=>836, :name=>"eating"},
@@ -468,6 +486,7 @@ class User < ActiveRecord::Base
 
     params[:activity]= params[:word]
     params[:author_id] = self.id
+    params[:meta_activity] = false
 
     obj = Activity.create_activity(params)
     if obj.blank?
@@ -479,17 +498,45 @@ class User < ActiveRecord::Base
 
   end
 
+  #INPUT
+  #activity_id => 123
+  def remove_activity(activity_id)
+    a = Activity.where(:id => activity_id, :author_id => self.id).first
+    return {} if a.blank?
+    a.destroy
+    a
+  end
+
+  #INPUT { :activity_id => 123,
+  #        REST ALL SAME PARAMETER AS create_activity
+  #      }
+  #OUTOUT => Same as create_activtiy
+
+  def update_activity(params)
+    a = remove_activity(params[:activity_id])
+    #false activity
+    if a.blank?
+      return {}
+    end
+    params.delete(:activity_id)
+    a = create_activity(params)
+    a
+  end
+
   #INPUT = Array of activity ids
-  #OUTPUT =
+  #OUTPUT =   See get_stream output
   def get_all_activity(activity_ids)
+
     array = []
     index = 0
     hash = {}
+
     Activity.includes(:author, :base_location).where(:id => activity_ids).order("updated_at DESC").all.each do |attr|
       hash[attr.id] = index
       array << format_activity(attr)
       array[index][:comments] = {:count => attr.comments.size, :array => [] }
       array[index][:documents]= {:count => attr.documents.size, :array => []}
+      array[index][:tags]=      {:count => attr.tags.size, :array => []}
       array[index][:campaigns]= []
       index = index + 1
     end
@@ -505,6 +552,10 @@ class User < ActiveRecord::Base
        array[hash[attr.activity_id]][:documents][:array] << h[:document]
     end
 
+    Tag.where(:activity_id => activity_ids).all.each do |attr|
+       h = format_tag(attr)
+       array[hash[attr.activity_id]][:tags][:array] << h[:tag]
+    end
 
     campaign_hash = {}
     temp_hash = {}
@@ -537,6 +588,8 @@ class User < ActiveRecord::Base
     array
   end
 
+
+  #COMMENT - Only returns public post which has summary
   #INPUT
   #:user_id => 123
   #:friend => true/false
@@ -560,17 +613,30 @@ class User < ActiveRecord::Base
   #  {
   #   :count=>5, :array=>[]
   #  },
-
+  #
+  # #COMMENT => Tag type check in constants,yml #TAG TYPE
+  # :tags =>
+  #  {
+  #   :count => 3,
+  #   array => [{:id => 1, :name => "maradona", :type => 1, :ty :source_name=>"actwitty",  :status=>1},
+  #             {:id => 3, :name => "sachin tendulkar", :type => 2, :ty :source_name=>"actwitty",  :status=>1}
+  #             {:id => 2, :name => "kapil dev", :type => 3, :source_name=>"actwitty",  :status=>1}
+  #  }
+  #
+  #
   ## COMMENT - In documents these fields are added and they will be returned too in streams
   ## COMMENT - :caption=> "abcds", :source_name=>"actwitty", :status=>1, :uploaded=>true
-  ## COMMENT  uploaded field tells that document is uploaded doc or mentioned document. It is boolean
+  ## COMMENT - uploaded field tells that document is uploaded doc or mentioned document. It is boolean
+  ## COMMENT - category tell whether its image/video/audio/application  application represents generic documents and other types
   #
   # :documents=>
   #  {
   #   :count=>2,
   #   :array=>[
-  #           {:id=>1, :name=>"xyz.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg", :caption=>nil, :source_name=>"actwitty", :status=>1, :uploaded=>true},
-  #           {:id=>2, :name=>"abc.jpg", :url=>"https://s3.amazonaws.com/abc.jpg", :caption=>nil, :source_name=>"actwitty", :status=>1, :uploaded=>true}
+  #           {:id=>1, :name=>"xyz.jpg",:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg",
+  #                               :caption=>nil, :source_name=>"actwitty",  :status=>1, :uploaded=>true, :category => "image"},
+  #           {:id=>2, :name=>"abc.jpg",:thumb_url => nil, :url=>"https://s3.amazonaws.com/abc.jpg", :caption=>nil, :source_name=>"actwitty",
+  #                                                                    :status=>1, :uploaded=>true, :category => "image"}
   #           ]
   #  },
   # :campaigns=>
@@ -579,35 +645,54 @@ class User < ActiveRecord::Base
   #]
   def get_stream(params ={})
 
+    h = process_filter(params[:filter])
+
     if params[:user_id] == self.id
       if params[:friend] == true
+
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting friends stream")
-        #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
         user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
         user.blank? ? user = [self.id] : user << self.id
+
       else
+
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting self stream #{self.inspect}")
         user = self.id
+
       end
     else
+
         Rails.logger.debug("[MODEL] [USER] [GET STREAM] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
         params[:friend] = false
+
     end
 
-    h = {}
+    h[:status] =  AppConstants.status_public
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
 
     #use HUB only if entity filter is there
-    if !params[:filter].nil? && !params[:filter][:entity_id].nil?
-      h = process_filter(params[:filter])
+    #FIXME - TODO
+    if !h[:entity_id].blank?
+
       h[:user_id] = user
-      h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+      # need to check this anyway  - For time being
+      # we have to delete hub
+      h.delete(:status)
       activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+
     else
-      h = process_filter(params[:filter])
+
       h[:author_id] = user
-      h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+
+      h[:meta_activity] = false
+
+      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+      h.delete(:location_id)
+
+      #show only public post.. Need to take care private and shared post
       activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
+
     end
 
     puts activity.keys
@@ -622,12 +707,24 @@ class User < ActiveRecord::Base
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
   #[
-  # {:id=>24, :word=>{:word_id=>44, :name=>"eating"}, :time=>Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  # {:id=>24,
+  #
+  # :word=>{:word_id=>44, :name=>"eating"},
+  #
+  # :time=>Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  #
   # :user=>{:id=>39, :full_name=>"lemony3 lime3", :photo=>"images/id_3"}, :count=>1, :locations=>[],
-  # :documents=>[{:id=>30, :name=>"ddd.jpg", :url=>"https://s3.amazonaws.com/ddd.jpg", :thumb_url=>"https://s3.amazonaws.com/ddd_thumb.jpg"},
-  # {:id=>29, :name=>"ccc.jpg", :url=>"https://s3.amazonaws.com/ccc.jpg", :thumb_url=>"https://s3.amazonaws.com/ccc_thumb.jpg"}],
+  #
+  # :documents=>[{:id=>30, :name=>"ddd.jpg", :url=>"https://s3.amazonaws.com/ddd.jpg",
+  #           :thumb_url=>"https://s3.amazonaws.com/ddd_thumb.jpg", :caption=>nil, :source_name=>"actwitty",
+  #            :status=>1, :uploaded=>true, :category => "image"}]
+  #
+  # :tags => [{:id => 1, :name => "maradona", :type => 1, :ty :source_name=>"actwitty",  :status=>1}]
+  #
   # :entities=>[{:id=>24, :name=>"rahul dravid", :image=>"/m/02cb7_j"}],
+  #
   # :recent_text=>["burger at <a href=/entities/24 class=\"activity_entity\">rahul dravid</a>"],
+  #
   # :friends=>[{:id=>38, :full_name=>"lemony2 lime2", :photo=>"images/id_2"}]
   # }
   #]
@@ -651,6 +748,7 @@ class User < ActiveRecord::Base
     end
 
     documents= {}
+    tags = {}
     activities = {}
     locations = {}
     entities = {}
@@ -658,7 +756,7 @@ class User < ActiveRecord::Base
     summaries = []
     index = 0
 
-    h[:updated_at.lt] = params[:updated_at].to_time.utc if !params[:updated_at].blank?
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
     h[:user_id] = user
 
     summary = Summary.includes(:user).where(h).limit(AppConstants.max_number_of_summmary).order("updated_at DESC").
@@ -669,10 +767,11 @@ class User < ActiveRecord::Base
                              :time => attr.updated_at,
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
                              :count => attr.activities.size,
-                             :locations => [], :documents => [], :entities => [], :recent_text => [], :friends => []
+                             :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
         attr.document_array.each {|idx| documents[idx].nil? ? documents[idx] = [index] : documents[idx] <<  index }
+        attr.tag_array.each       {|idx| tags[idx].nil? ? tags[idx] = [index] : tags[idx] <<  index }
         attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
         attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
 
@@ -688,8 +787,16 @@ class User < ActiveRecord::Base
         summaries[idx][:documents] << h[:document]
       end
     end
-
     documents = {}
+
+    Tag.where(:id => tags.keys).order("updated_at DESC").all.each do|attr|
+      h = format_tag(attr)
+      tags[attr.id].each do |idx|
+        summaries[idx][:tags] << h[:tag]
+      end
+    end
+    tags = {}
+
     Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
       h = location_hash(attr)
       h[:id] = attr.id
@@ -697,12 +804,11 @@ class User < ActiveRecord::Base
         summaries[idx][:locations] << h
       end
     end
-
     locations={}
+
     Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
       entities[attr.id].each do |idx|
-        summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>
-            AppConstants.entity_base_url + attr.entity_image }
+        summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
       end
     end
     entities ={}
@@ -749,17 +855,7 @@ class User < ActiveRecord::Base
     #FETCHING RELATED FRIEND -- DONE
     summaries
   end
-  
 
-
-  #INPUT
-  #activity_id => 123
-  def remove_activity(activity_id)
-    a = Activity.where(:id => activity_id, :author_id => self.id).first
-    return {} if a.blank?
-    a.destroy
-    a
-  end
 
   #COMMENT => To Create a campaign
   #INPUT =>
@@ -937,6 +1033,131 @@ class User < ActiveRecord::Base
     array
   end
 
+
+  #INPUT => document_id
+  #OUTPUT => deleted doc or blank {}
+  def remove_document(document_id)
+    d = Document.where(:owner_id => self.id, :id => document_id).first
+    if d.blank?
+      return {}
+    end
+
+    d.destroy
+    Document.reset_summary(d.summary_id)
+    d
+  end
+
+  #COMMENT - Only returns public post which has summary
+  #INPUT
+  #user_id => 123 #If same as current use then mix streams with friends other wise only user
+  #:friend => true/false
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+
+  def get_document_summary(params)
+
+    h = {}
+    user = nil
+
+    if params[:user_id] == self.id
+      if params[:friend] == true
+
+        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENT_SUMMARY] Requesting friends stream")
+        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
+        user.blank? ? user = [self.id] : user << self.id
+      else
+
+        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENT_SUMMARY] Requesting self stream #{self.inspect}")
+        user = self.id
+
+      end
+    else
+
+        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENT_SUMMARY] Foreign user trying to access #{self.inspect}")
+        user = params[:user_id]
+    end
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:user_id] = user
+
+    doc_hash = {}
+
+    Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
+      if !attr.document_array.blank?
+        doc_hash[attr.document_array[0]]= {
+            :word => {:word_id => attr.activity_word_id, :name => attr.activity_name},
+            :time => attr.updated_at,
+            :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
+            :count => attr.documents_count,
+            :document => nil
+        }
+      end
+    end
+    Document.where(:id => doc_hash.keys).all.each do |attr|
+      h = format_document(attr)
+      doc_hash[attr.id][:document] = h[:document]
+    end
+    #TODO need to get saved docs too
+
+    doc_hash.values
+  end
+
+  #COMMENT - Only returns public post which has summary
+  #INPUT
+  #:user_id => 123
+  #:friend => true/false
+  #:filter => {:word_id => 123,
+  #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
+  #            :location_id => 789 }
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)            .yml
+
+  def get_document_stream(params)
+    h = {}
+    user = nil
+
+    h = process_filter(params[:filter])
+
+    if params[:user_id] == self.id
+      if params[:friend] == true
+
+        Rails.logger.debug("[MODEL] [USER] [GET_USER_DOCUMENTS] Requesting friends stream")
+        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
+        user.blank? ? user = [self.id] : user << self.id
+
+
+      else
+
+        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENTS] Requesting self stream #{self.inspect}")
+        user = self.id
+
+      end
+    else
+
+        Rails.logger.debug("[MODEL] [USER] [GET_USER_DOCUMENTS] Foreign user trying to access #{self.inspect}")
+        user = params[:user_id]
+        params[:friend] = false
+
+    end
+
+    h[:status] =  AppConstants.status_public
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+
+    #documents can not have entity
+    h.delete(:entity_id) if !h[:entity_id].blank?
+
+    doc_array = []
+
+    Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
+        limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
+      h = format_document(attr)
+      doc_array <<  {
+                      :word => {:word_id => attr.activity_word_id, :name => attr.activity_word.word_name},
+                      :time => attr.updated_at,
+                      :user => {:id => attr.owner_id, :full_name => attr.owner.full_name, :photo => attr.owner.photo_small_url},
+                      :document => h[:document]
+                    }
+    end
+    doc_array
+  end
   # private methods
   private
 
@@ -970,6 +1191,9 @@ class User < ActiveRecord::Base
     end
     if !filter[:entity_id].blank?
        h[:entity_id] = filter[:entity_id]
+    end
+    if !filter[:source_name].blank?
+      h[:source_name] = filter[:source_name]
     end
     h
   end

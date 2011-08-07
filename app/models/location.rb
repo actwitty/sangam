@@ -19,9 +19,10 @@ class Location < ActiveRecord::Base
   has_many :base_activities, :foreign_key => :base_location_id, :class_name => "Activity", :dependent => :nullify
 
   validates_presence_of :location_type, :location_name
-  validates_numericality_of :location_type, :greater_than_or_equal_to => 1 , :less_than_or_equal_to => 3
+  validates_numericality_of :location_type, :greater_than_or_equal_to => AppConstants.location_type_web,
+                            :less_than_or_equal_to => AppConstants.location_type_unresolved
 
-  validates_length_of :location_name , :in => 1..1024
+  validates_length_of :location_name , :in => 1..AppConstants.location_name_length
 
   validates_uniqueness_of :location_url, :unless => Proc.new{|a|a.location_url.nil?}
   validates_length_of     :location_url, :in => 1..AppConstants.url_length , :unless => Proc.new{|a|a.location_url.nil?}
@@ -43,17 +44,18 @@ class Location < ActiveRecord::Base
       if ! (/^(http|https):\/\// =~ new_hash[:web_location_url])
          new_hash[:web_location_url] = "http://"  + new_hash[:web_location_url]
       end
-      h = {:location_type => 1, :location_url => new_hash[:web_location_url], :location_name => new_hash[:web_location_title]}
+      h = {:location_type => AppConstants.location_type_web, :location_url => new_hash[:web_location_url],
+           :location_name => new_hash[:web_location_title]}
 
     elsif !location_hash[:geo_location].nil?
 
       new_hash = location_hash[:geo_location]
-      h = {:location_type => 2, :location_lat => new_hash[:geo_latitude],:location_long => new_hash[:geo_longitude],
-          :location_name => new_hash[:geo_name]}
+      h = {:location_type => AppConstants.location_type_geo, :location_lat => new_hash[:geo_latitude],
+           :location_long => new_hash[:geo_longitude], :location_name => new_hash[:geo_name]}
 
     elsif !location_hash[:unresolved_location].nil?
       new_hash = location_hash[:unresolved_location]
-      h = {:location_type => 3, :location_name => new_hash[:unresolved_location_name]}
+      h = {:location_type => AppConstants.location_type_unresolved, :location_name => new_hash[:unresolved_location_name]}
     end
     l = Location.create!(h)
 

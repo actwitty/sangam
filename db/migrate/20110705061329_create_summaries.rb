@@ -8,11 +8,14 @@ class CreateSummaries < ActiveRecord::Migration
 
       t.integer :activities_count
       t.integer :documents_count
+      t.integer :tags_count
 
       t.text :location_array
       t.text :entity_array
       t.text :activity_array
       t.text :document_array
+      t.text :tag_array
+
       t.timestamps
 
     end

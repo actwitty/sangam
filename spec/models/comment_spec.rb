@@ -6,6 +6,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: comments
@@ -16,6 +17,8 @@ end
 #  document_id :integer
 #  father_id   :integer         not null
 #  text        :text            not null
+#  status      :integer         not null
+#  source_name :text            not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

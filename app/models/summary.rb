@@ -4,6 +4,7 @@ class Summary < ActiveRecord::Base
   serialize :document_array, Array
   serialize :activity_array, Array
   serialize :location_array, Array
+  serialize :tag_array, Array
 
   has_many    :activities, :order => "updated_at DESC"
 
@@ -12,6 +13,8 @@ class Summary < ActiveRecord::Base
   has_many    :locations, :through => :hubs, :uniq => true, :order => "updated_at DESC"
 
   has_many    :documents,:order => "updated_at DESC"
+
+  has_many    :tags,     :order => "updated_at DESC"
 
   belongs_to  :user, :touch => true
   belongs_to  :activity_word, :touch => true
@@ -29,7 +32,7 @@ class Summary < ActiveRecord::Base
         Rails.logger.info("Summary Getting Deleted #{self.inspect}")
       else
         Rails.logger.info("Summary Safe #{self.inspect}")
-        return false
+        false
       end
     end
   public
@@ -39,6 +42,7 @@ class Summary < ActiveRecord::Base
     #         {"location" => [1,2,3]},
     #         {"activity" => [2]}.
     #         {"entity" => [2,4,5]}
+    #         {"tag"  => [2,3,4]}
     def serialize_data(params)
         array = []
         hash = {}
@@ -72,7 +76,7 @@ class Summary < ActiveRecord::Base
       def create_summary(params)
          summary = Summary.create!(:activity_word_id => params[:activity_word_id], :user_id => params[:user_id],
                              :activity_name => params[:activity_name],:document_array => [],
-                             :activity_array => [], :location_array => [], :entity_array => [])
+                             :activity_array => [], :location_array => [], :entity_array => [], :tag_array => [])
       rescue => e
          Rails.logger.info("Summary => create_summary => Rescue " +  e.message )
          summary = nil
@@ -89,6 +93,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: summaries
@@ -99,10 +105,12 @@ end
 #  activity_name    :string(255)     not null
 #  activities_count :integer
 #  documents_count  :integer
+#  tags_count       :integer
 #  location_array   :text
 #  entity_array     :text
 #  activity_array   :text
 #  document_array   :text
+#  tag_array        :text
 #  created_at       :datetime
 #  updated_at       :datetime
 #

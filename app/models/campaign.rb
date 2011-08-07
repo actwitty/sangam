@@ -131,10 +131,11 @@ class Campaign < ActiveRecord::Base
 
       #Create Father activity
       params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{params[:name]}&" ,
-                                         :text => text,:enrich => false, :campaign_types => AppConstants.campaign_none).id
+                                         :text => text,:enrich => false, :campaign_types => AppConstants.campaign_none,
+                                         :meta_activity => true).id
 
       #set mandatory parameters if missing
-      params[:status] = AppConstants.state_public if params[:status].nil?
+      params[:status] = AppConstants.status_public if params[:status].nil?
       params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
 
       campaign = Campaign.create!(params)
@@ -176,6 +177,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -188,8 +190,10 @@ end
 #  comment_id  :integer
 #  document_id :integer
 #  father_id   :integer         not null
-#  name        :string(255)     not null
+#  name        :text            not null
 #  value       :integer         not null
+#  status      :integer         not null
+#  source_name :text            not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #
