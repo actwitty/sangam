@@ -67,9 +67,9 @@ var the_big_modal_manager_json = {
                                           },
                                           title:"All Locations",
                                           top:50,
-                                          left:300,
-                                          width:650,
-                                          height:400,
+                                          left:200,
+                                          width:850,
+                                          height:700,
                                           data_json:{}
 
                                      
@@ -133,8 +133,10 @@ function aw_modal_dialog_maker(registered_modal_id, container_window_id, trigger
 
 
 function aw_modal_close(registered_modal_id){
-  $("#" + registered_modal_id).html("");
-  $("#" + registered_modal_id).parent().hide();
+  $('#modal_box_window_id').empty();
+  $("#modal_box_id").hide();
+  $('#modal_box_window_id').hide();
+  $('#modal_box_mask_id').hide();
 
 }
 /*
@@ -150,16 +152,16 @@ $(document).ready(function() {
         e.preventDefault();
         //Get the A tag
         /* show the modal dialogs parent window*/
-        $(this).next().show();
 
-        var modal_window = $(this).parent().find('.modal_window');
-        var modal_bkg_mask = $(this).parent().find(".modal_mask");
+        var modal_window =   $('#modal_box_window_id');
+        var modal_bkg_mask = $('#modal_box_mask_id');
 
+
+        $("#modal_box_id").show();
 
         //Get the screen height and width
         var mask_height = $(document).height();
         var mask_width = $(window).width();
-        
         //Set height and width to mask to fill up the whole screen
         modal_bkg_mask.css({'width':mask_width,'height':mask_height});
         
@@ -198,17 +200,18 @@ $(document).ready(function() {
         //transition effect
         modal_window.fadeIn(2000); 
 
-         modal_window.attr("id", registered_modal_id);
-        
-      
         if( registered_modal_id.length ){
-          var ret_code = aw_modal_dialog_maker(registered_modal_id, registered_modal_id, $(this).attr("id"));
+          var ret_code = aw_modal_dialog_maker(registered_modal_id, "modal_box_window_id", $(this).attr("id"));
           if(!ret_code){
             /*hide the parent of modal window box*/
-            $(this).next().hide();
+            $("#modal_box_id").hide();
+            $('#modal_box_window_id').hide();
+            $('#modal_box_mask_id').hide();
           }
         }else{
-            $(this).next().hide();
+            $("#modal_box_id").hide();
+            $('#modal_box_window_id').hide();
+            $('#modal_box_mask_id').hide();
         }
      
     });
@@ -219,16 +222,20 @@ $(document).ready(function() {
     $('.js_modal_close').live("click", function (e) {
         //Cancel the link behavior
         e.preventDefault();
-        $(this).parent().prev().html("");
-        $(this).parent().parent().hide();
+        $('#modal_box_window_id').empty();
+        $('#modal_box_window_id').hide();
+        $('#modal_box_mask_id').hide();
+        $("#modal_box_id").hide();
     });     
      
     /*
      * Click is made live with an intention to support image and video modals
      */
     $('.modal_mask').live("click",function () {
-        $(this).prev().html("");
-        $(this).parent().hide();
+        $('#modal_box_window_id').empty();
+        $("#modal_box_id").hide();
+        $('#modal_box_window_id').hide();
+        $('#modal_box_mask_id').hide();
     });         
      
 });
