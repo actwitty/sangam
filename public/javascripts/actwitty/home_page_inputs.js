@@ -286,7 +286,7 @@ function document_upload_complete(){
                     };
 
    
-    //alert(JSON.stringify(post_json));
+    alert(JSON.stringify(post_json));
     post_activity_to_server(post_json);
 
 }

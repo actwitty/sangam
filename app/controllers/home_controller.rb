@@ -490,5 +490,19 @@ class HomeController < ApplicationController
 
 
   ############################################
+
+  def delete_entities_from_post
+    Rails.logger.info("[CNTRL][HOME][DELETE ENTITIES] user delete entities from post #{params}")
+    activity_id = Integer(params[:post_id])
+    entity_id = Integer(params[:entity_id])
+    if user_signed_in?
+      response_json = current_user.remove_entity_from_activity(activity_id, entity_id)
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][DELETE ENTITIES] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+
+    end
+  end
 end
 

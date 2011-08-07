@@ -9,6 +9,8 @@ var the_big_stream_campaign_manager_json={ };
 var the_big_stream_campaign_user_action={};
 var the_big_stream_campaign_show_all={};
 var the_big_stream_enriched_state={};
+var the_big_stream_post_text={};
+var the_big_stream_entity_deletes={};
 /**********************************/
 
 
@@ -152,16 +154,40 @@ function handle_stream_campaign(box_id, stream){
   }
 }
 
+function append_entity_delete(post_id){
+    /*handle entity delete*/
+   var entity_del_json = the_big_stream_post_text[post_id];
+    if ( entity_del_json ){
+      var box_id = entity_del_json.text_box;
+      var user_id = entity_del_json.user;
+      var current_user_id=$('#session_owner_id').attr("value");  
+
+      if(current_user_id == user_id){
+        $("#" + box_id).find(".js_activity_entity").each(function(){
+          $(this).addClass("js_handle_stream_entity_mention");
+          var entity_id = $(this).attr("value");
+          var remove_val = {post_id:post_id , entity:entity_id };
+
+          var remove_id = post_id + entity_id + "_rem";
+          the_big_stream_entity_deletes[remove_id] = remove_val;
+          var hover_html = '<span>' +
+                              '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> Remove </a>' +
+                           '</span>';
+          $(this).append(hover_html);
+        });
+      }
+    }
+    return;
+}
 
 /*
  * Render stream text
  */
-function handle_stream_text(box_id, stream){
+function handle_stream_text( box_id, post_text){
   var div=$("#" + box_id);
-  post = stream.post;
-  if(post.text && post.text.length){
+  if(post_text && post_text.length){
         var html='<p>' +
-                post.text +
+                post_text +
              '</p>';
 
         div.html(html);
@@ -349,31 +375,39 @@ function setup_polling_for_enrich(){
 
 function get_enriched_streams(post_ids_arr){
    $.ajax({
-        url: '/home/get_enriched_activities.json',
-        type: 'GET',
-        data: {
-                 "post_ids" : post_ids_arr
-              },
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-          // if rails demands a redirect because of log in missing 
-           $.each(data, function(i,stream){
-            if( stream.post.enriched == true ){
-              handle_stream_text(the_big_stream_enriched_state[stream.post.id].text_box, 
-                                stream);
-              /* remove the element from the list of un enriched streams */
-              delete the_big_stream_enriched_state[stream.post.id];
-            }
-          });
+
+            url: '/home/get_enriched_activities.json',
+            type: 'GET',
+            data: {
+                    "post_ids" : post_ids_arr
+                  },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+              // if rails demands a redirect because of log in missing 
+            $.each(data, function(i,stream){
+              var box_id = the_big_stream_enriched_state[stream.post.id].text_box;
+              if( stream.post.enriched == true ){
+                handle_stream_text(box_id, 
+                                stream.post.text);
+                the_big_stream_post_text[stream.post.id] = {
+                                                          text_box : box_id,
+                                                          user : stream.post.user.id
+                                                         };
+                append_entity_delete(stream.post.id);
+                // remove the element from the list of un enriched streams 
+                delete the_big_stream_enriched_state[stream.post.id];
+              }
+            });
 
            setup_polling_for_enrich();
 
         },
-        error:function(XMLHttpRequest,textStatus, errorThrown) {
+        error:function(XMLHttpRequest,textStatus, errorThrown){ 
             alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
         }
     });
+   
 }
 
 
@@ -410,7 +444,6 @@ function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner
  */
 function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
 
-  
   clear_streams();
   append_stream(page_owner_id, session_owner_id);
 
@@ -460,7 +493,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var comment_show_all_id = comment_box_id + '_show_all';
   var date_js = Date.parse('t');
   /* Main stream div definition */
-  var html = '<div id="main_stream_li_'+ post.id +'" class="p-aw-post" >' +
+  var html = '<div id="main_stream_li_'+ post.id +'" class="p-aw-post" value="' + post.id + '">' +
 
                     /* Post originator user */
                     '<div class="p-awp-user">' +
@@ -532,7 +565,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     streams_box.append(html);
   }
   handle_stream_close(close_box_id, stream, current_user_id);
-  handle_stream_text(text_box_id, stream);
+  handle_stream_text(text_box_id, stream.post.text);
   handle_stream_docs(doc_box_id, stream);
   setup_comment_handling(comment_box_id,  post.id, comment_show_all_id);
   handle_stream_campaign(campaign_box_id, stream);
@@ -540,6 +573,12 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   if( stream.post.enriched == false ){
     the_big_stream_enriched_state[stream.post.id] = {text_box : text_box_id};
   }
+
+  the_big_stream_post_text[post.id] = {
+                                          text_box : text_box_id,
+                                          user : post.user.id
+                                        };
+  append_entity_delete(post.id);
 
   if(!get_others_filter_state()){
     $(".p-awp-user").hide();
@@ -574,7 +613,7 @@ function append_stream(owner_id, current_user_id){
            $.each(data, function(i,stream){
             if( stream ){
                 create_and_add_stream($("#streams_list"),stream , current_user_id);
-                $("#more_streams_cookie").val(stream.post.id);
+                $("#more_streams_cookie").val(stream.post.time);
             } 
 
            
@@ -652,6 +691,25 @@ function delete_comment(post_id, comment_id){
     });
 }
 
+
+function delete_entity_from_post(post_id, entity_id){
+    $.ajax({
+        url: '/home/delete_entities_from_post.json',
+        type: 'POST',
+        data: {post_id:post_id, entity_id:entity_id},
+        dataType: 'json',
+        success: function (data) {
+           alert("delete called");
+           var box_id = the_big_stream_post_text[data.post.id].text_box;
+           handle_stream_text( box_id, data.post.text);
+           append_entity_delete(data.post.id); 
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting entity from post. \n ActWitty is trying to solve.');
+        }
+    });
+}
+
 //#INPUT => activity_id => 123
 function show_all_comments(post_id, this_id){
     var current_user_id=$('#session_owner_id').attr("value");
@@ -710,8 +768,11 @@ function clear_streams(){
   the_big_stream_campaign_user_action={};
   the_big_stream_campaign_show_all={};
   the_big_stream_enriched_state={};
+  the_big_stream_post_text={};
+  the_big_stream_entity_deletes={};
   /***********************/
 }
+
 
 
 
@@ -720,7 +781,6 @@ function clear_streams(){
  * Add the live bindings
  */
 $(document).ready(function(){
-  
   /*
    * Delete stream
    */
@@ -827,6 +887,12 @@ $(document).ready(function(){
   });
   /********************************/
 
+  $('.js_entity_delete').live('click' , function(){
+
+    alert(the_big_stream_entity_deletes[$(this).attr("id")]);
+    delete_entity_from_post(the_big_stream_entity_deletes[$(this).attr("id")]["post_id"], 
+                            the_big_stream_entity_deletes[$(this).attr("id")]["entity"]);
+  });
 
 
 });

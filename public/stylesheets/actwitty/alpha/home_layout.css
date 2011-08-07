@@ -1573,3 +1573,27 @@ ul.p-fltr-tag-list li {
   border:0px solid red;
 }
 */
+/* line 1487, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+a.js_handle_stream_entity_mention {
+  position: relative;
+  z-index: 24;
+}
+
+/* line 1493, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+a.js_handle_stream_entity_mention:hover {
+  z-index: 25;
+}
+
+/* line 1498, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+a.js_handle_stream_entity_mention span {
+  display: none;
+}
+
+/* line 1503, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+a.js_handle_stream_entity_mention:hover span {
+  display: block;
+  position: absolute;
+  background-color: #6699ff;
+  color: #fff;
+  border: 2px solid #ccc;
+}

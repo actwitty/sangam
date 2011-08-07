@@ -30,6 +30,7 @@ Sangam::Application.routes.draw do
   match '/home/settings_save' => 'home#settings_save'
   match '/home/get_channels' => 'home#get_channels'
   match '/home/get_entities' => 'home#get_entities'
+  match '/home/delete_entities_from_post' => 'home#delete_entities_from_post'
   match '/home/get_related_entities' => 'home#get_related_entities'
   match '/home/get_locations' => 'home#get_locations'
   match '/home/get_related_locations' => 'home#get_related_locations'
@@ -46,6 +47,8 @@ Sangam::Application.routes.draw do
   match  '/home/get_summary' => 'home#get_summary'
   match  '/home/get_friends_summary' => 'home#get_friends_summary'
   match  '/home/get_streams' => 'home#get_streams'
+
+  match 'view' => '/home/get_single_activity'
 
 
   match '/authentications/failure' => 'authentications#failure'
