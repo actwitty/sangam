@@ -44,9 +44,10 @@ Sangam::Application.routes.draw do
   match '/home/delete_comment' => 'home#delete_comment'
   match '/home/create_comment' => 'home#create_comment'
   match '/home/create_activity' => 'home#create_activity'
-  match  '/home/get_summary' => 'home#get_summary'
-  match  '/home/get_friends_summary' => 'home#get_friends_summary'
-  match  '/home/get_streams' => 'home#get_streams'
+  match '/home/get_summary' => 'home#get_summary'
+  match '/home/get_friends_summary' => 'home#get_friends_summary'
+  match '/home/get_streams' => 'home#get_streams'
+  match '/home/remove_document' => 'home#remove_document'
 
   match '/view' => 'home#get_single_activity'
 
@@ -78,12 +79,6 @@ Sangam::Application.routes.draw do
   match '/contacts/provider_follow' => 'contacts#provider_follow'
 
   match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
-
-  match '/activities/get_activities' => 'activities#get_activities'
-  match '/activities/top_activities' => 'activities#top_activities'
-  match '/activities/get_snapshots' =>  'activities#get_snapshots'
-  match '/activities/get_friends_snapshots' => 'activities#get_friends_snapshots'
-  match '/entities/top_entities' => 'entities#top_entities'
 
 
   match '/facebook/facebook_friends_list' => 'facebook#facebook_friends_list'

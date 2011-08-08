@@ -527,6 +527,7 @@ class HomeController < ApplicationController
     activity_id = Integer(params[:post_id])
     entity_id = Integer(params[:entity_id])
     if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
       response_json = current_user.remove_entity_from_activity(activity_id, entity_id)
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][DELETE ENTITIES] sending response JSON #{response_json}")
@@ -535,8 +536,22 @@ class HomeController < ApplicationController
 
     end
   end
+   ################################################
+   def remove_document
+    Rails.logger.info("[CNTRL][HOME][REMOVE DOCUMENT] user delete entities from post #{params}")
+    doc_id = Integer(params[:doc_id])
 
-  ################################################
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
+      response_json = remove_document.remove_entity_from_activity(doc_id)
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][REMOVE DOCUMENT] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+
+    end
+   end
+  ##############################################
   def activity
     @user=current_user
     @profile_page = 1

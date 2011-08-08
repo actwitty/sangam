@@ -19,12 +19,7 @@ var the_big_stream_entity_deletes={};
 
 /*
  * Render stream docs
- */
-
-
-
-
-/* Attaching the docs with rel attribute
+ * Attaching the docs with rel attribute
  * This rel attribute will start iwth fnc_group (for fancy box group)
  * There are different version of fancy box which can also be used.
  * The current one in place is for image gallery
@@ -115,7 +110,9 @@ function handle_like_campaign(div_id, stream){
 
   
 }
-
+/*
+ * Show all users in a campaign
+ */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
   $.each(likes, function(i,like){
@@ -234,7 +231,6 @@ function handle_stream_close(box_id, stream, current_user_id){
                        };
   var close_btn_id = "CLOSE_STREAM_BTN_" + stream.post.id ;
   the_big_stream_delete_json[close_btn_id] = close_btn_json;
-  /******************/
   var html = '<input type="button" value="x" id="' + close_btn_id + '" class="js_stream_delete_btn stream_close_button"/>';
   div.append(html);
 }
@@ -865,8 +861,26 @@ function show_all_campaigns(campaign_manager_json){
           }
       });
 }
-
-
+/**************************/
+/*
+ *  Remove document from post
+ */
+function remove_document_from_post(document_id){
+   $.ajax({
+          url: '/home/remove_document.json',
+          type: 'POST',
+          data: { 
+                  doc_id:document_id, 
+                },
+          dataType: 'json',
+          success: function (data) {
+            /*remove that document*/
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+          }
+      });
+}
 /**************************/
 
 
@@ -985,7 +999,7 @@ $(document).ready(function(){
   /********************************/
 
   /*
-   * User action on campaign
+   * User action show all
    */
   $('.js_campaign_show_all').live('click', function(){
     var div_id = $(this).attr("value");
@@ -995,12 +1009,22 @@ $(document).ready(function(){
   });
   /********************************/
 
+  /*
+   * Delete entity mentioned in text
+   */
+
   $('.js_entity_delete').live('click' , function(){
 
     delete_entity_from_post(the_big_stream_entity_deletes[$(this).attr("id")]["post_id"], 
                             the_big_stream_entity_deletes[$(this).attr("id")]["entity"]);
   });
 
+  /*
+   * Remove an attached document
+   */
+  $('.js_remove_attached_doc').live('click', function(){
+    remove_document_from_post();
+  });
 
 });
 /************************************/
