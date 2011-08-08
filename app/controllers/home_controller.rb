@@ -241,12 +241,26 @@ class HomeController < ApplicationController
     end
   end
   ############################################
-  def get_all_campaigns
-    Rails.logger.info("[CNTRL][HOME][ALL CAMPAIGNS] Get All Campaigns")
-    Rails.logger.info("[CNTRL][HOME][ALL CAMPAIGNS] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+  def get_users_of_campaign
+    Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] Update user campaign")
+    Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] Params #{params}")
+    if user_signed_in?
+      args={}
+      args[:activity_id] = Integer(params[:activity_id])
+      args[:name] = params[:name]
+      Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] calling model api Filter:#{args}")
+        response_json=current_user.get_users_of_campaign(args)
+        Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] model returned #{response_json}")
+        if request.xhr?
+          render :json => response_json, :status => 200
+        end
+    else
+      Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
+
   end
   ############################################
   # User sign in required
@@ -269,19 +283,47 @@ class HomeController < ApplicationController
   end
   ############################################
 
-  def update_campaign
-    Rails.logger.info("[CNTRL][HOME][UPDATE CAMPAIGN] Update user campaign")
-    Rails.logger.info("[CNTRL][HOME][UPDATE CAMPAIGN] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+  def create_campaign
+    Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] Update user campaign")
+    Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] Params #{params}")
+     if user_signed_in?
+      args={}
+      args[:activity_id] = Integer(params[:activity_id])
+      args[:value] = Integer(params[:value])
+      args[:name] = params[:name]
+      Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] calling model api Filter:#{args}")
+      response_json=current_user.create_campaign(args)
+      Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
+
   end
   ############################################
   def delete_campaign
     Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] Update user campaign")
     Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] Params #{params}")
-    if request.xhr?
-      render :json => {}, :status => 400
+     if user_signed_in?
+      args={}
+      args[:activity_id] = Integer(params[:activity_id])
+      args[:name] = params[:name]
+      Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] calling model api Filter:#{args}")
+      response_json=current_user.remove_campaign(args)
+      Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] model returned #{response_json}")
+      if request.xhr?
+        render :json => response_json, :status => 200
+      end
+    else
+      Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
   end
   ############################################
