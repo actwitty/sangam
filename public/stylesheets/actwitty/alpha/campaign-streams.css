@@ -1,61 +1,11 @@
-@charset "UTF-8";
 /* ################################### CSS for Comment Streams ################################*/
-/* line 4, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.tl-post-comments {
-  display: block;
-  width: 480px;
-  /*max-height:180px;*/
-  height: auto;
-  /*overflow-y:scroll;*/
-  overflow-x: hidden;
-  /*border:1px solid green;*/
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
-}
-
-/* line 16, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.add-comment {
-  border: 1px solid #ddd;
-  height: 30px;
-  width: 100%;
-  margin: 0;
-}
-
-/* line 25, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.add-comment-text {
-  border: 1px solid #ddd;
-  height: 30px;
-  width: 100%;
-  margin: 0;
-}
-
-/* line 33, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.submit-comment {
-  height: 60px;
-  width: 100%;
-  display: none;
-}
-
-/* line 41, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.btn-comments {
-  background-color: #00ced1;
-  border: none;
-  height: 18px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  font-size: 12px;
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
-  font-weight: normal;
-}
-
-/* line 57, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 6, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign {
   height: 17px;
   width: 100%;
 }
 
-/* line 63, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 12, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign span {
   float: right;
   font-size: 13px;
@@ -63,13 +13,13 @@
   text-decoration: underline;
 }
 
-/* line 70, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-awp-view-comment span:hover {
+/* line 19, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-view-campaign span:hover {
   cursor: pointer;
 }
 
-/* line 75, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-awp-comments-section {
+/* line 24, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-campaigns-section {
   width: 100%;
   height: auto;
   float: right;
@@ -77,102 +27,34 @@
   display: none;
 }
 
-/* line 84, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-awp-comment {
+/* line 33, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-campaign {
   height: auto;
   border: 0px solid green;
   margin-top: 20px;
   margin-bottom: 5px;
 }
 
-/* line 93, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-close {
-  float: right;
-  width: 100%;
-  height: 12px;
-}
-
-/* line 100, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-close-btn {
-  float: right;
-  font-size: 8px;
-}
-
-/* line 107, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 42, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .author {
   border: 0px solid green;
   width: 100%;
   height: auto;
 }
 
-/* line 113, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-actor-image {
+/* line 49, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-st-campaign-actor-image {
   width: 30px;
   height: 30px;
   float: left;
   margin: 2px 5px 2px 5px;
 }
 
-/* line 121, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-actor-desc {
+/* line 57, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-st-campaign-actor-desc {
   width: 500px;
   height: 35px;
   border: 0px solid red;
   float: left;
   display: block;
-}
-
-/* line 129, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.wrote {
-  font-size: 8px;
-  color: #454545;
-}
-
-/* line 134, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-submitdate {
-  float: right;
-  font-size: 9px;
-  color: #454545;
-}
-
-/* line 141, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-span.p-st-comment-actor a {
-  border: 0px solid red;
-  margin-top: -10px;
-  color: #c19135;
-  font-weight: bold;
-}
-
-/* line 149, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-content {
-  width: 480px;
-  height: auto;
-  border: 0px solid red;
-  margin-left: 50px;
-  text-align: left;
-  color: #333;
-}
-
-/* line 163, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-new {
-  width: 100%;
-  float: right;
-  display: block;
-}
-
-/* line 170, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-text-box {
-  width: 100%;
-  padding: 1px;
-  margin-left: 0px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  height: 30px;
-  border: 1px solid #000;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-
-/* line 182, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.p-st-comment-add-btn {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }

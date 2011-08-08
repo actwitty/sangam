@@ -8,7 +8,6 @@ var the_big_comment_delete_json={ };
 var the_big_stream_delete_json={ };
 
 var the_big_stream_campaign_manager_json={ };
-var the_big_stream_campaign_user_action={};
 var the_big_stream_campaign_show_all={};
 var the_big_stream_enriched_state={};
 var the_big_stream_post_text={};
@@ -58,57 +57,41 @@ function handle_stream_docs(box_id, stream){
 /*
  * Render stream campaign
  */
+
+function get_campaign_likes_label(count){
+  if(count>1){
+    return '' + count + ' Likes';
+  }else{
+    return '' + count + ' Like';
+  }
+}
+
 function handle_like_campaign(div_id, campaign,  stream_post_id){
   var div = $("#" + div_id);
-  var link = div_id + '_link";
+  var link = div_id + "_link";
+  var text_id = div_id + "_span";
   
-  var users_campaign_id = 0;
-  if(campaign.user && campaign.user_id){
-      users_campaign_id = campaign.user_id;
-  }
-
+  
 
 
   var campaign_manager_json = {
                                   campaign_div_id:div_id,
+                                  name:"like",
                                   user:campaign.user,
                                   post_id:stream_post_id,
-                                  link_id:link,
-                                  count:campaign.count,
+                                  count:campaign.count
                               };
 
-  the_big_stream_campaign_manager_json[link_id] = campaign_manager_json;
-  the_big_stream_campaign_user_action[campaign_user_action_id]=campaign_user_action_json;
-  the_big_stream_campaign_show_all[campaign_show_all_id]=campaign_show_all_json;
+ the_big_stream_campaign_manager_json[div_id] = campaign_manager_json;
 
-  var campaign_text = campaign.name + 's: ' + campaign.count;
-  var user_campaign_text ="";
-  if( campaign.user == true ){
-      user_campaign_text = 'Un-' + campaign.name;
-  }else{
-      user_campaign_text = campaign.name; 
-  }
-
-
-  var html = '<div class="stream_campaign_display">' +
-                '<a href="#" class="stream_campaign_display_a">' +
-                   campaign_text +
-                  '</a>' +
-                  '<span class="stream_campaign_hover_box" id="' + campaign_hover_span_id + '">' +
-                    '<div class="stream_campaign_user_action_box">' +
-                      '<a href="#" class="campaign_user_action_a js_campaign_user_action" id="' + campaign_user_action_id + '">' +
-                       user_campaign_text +
-                      '</a>' +
-                    '</div>'+
-                    '<div class="stream_campaign_show_all_box">' +
-                      '<a href="#" class="campaign_show_all_a js_campaign_show_all" id="' + campaign_show_all_id + '">' +
-                        'Show All' +
-                      '</a>' +
-                    '</div>'+ 
-                  '</span>' +
-             '</div>';
+  var html = '<span>' +
+                  get_campaign_likes_label() + 
+             '</span>';
   
-  li.append(html);
+  
+               
+  
+  div.append(html);
 
   
 }
@@ -775,11 +758,9 @@ function clear_streams(){
   /* reset all big jsons */
   the_big_comment_add_json={ };
   the_big_comment_show_all_json={ };
-  the_big_comment_count_json={ };
   the_big_comment_delete_json={ };
   the_big_stream_delete_json={ };
   the_big_stream_campaign_manager_json={};
-  the_big_stream_campaign_user_action={};
   the_big_stream_campaign_show_all={};
   the_big_stream_enriched_state={};
   the_big_stream_post_text={};
