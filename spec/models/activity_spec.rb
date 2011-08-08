@@ -372,9 +372,11 @@ describe Activity do
 
       e = Entity.where(:entity_name => "pizza").first
 
-     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id], :entity_id => e.id},
+     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id],:entity_id => e.id, :location_id => a.base_location_id},
                        :updated_at => Time.now.utc})
-     puts a.inspect
+     puts "================"
+     puts a
+      puts "================"
       a.should_not be_blank
       a = @u.remove_activity(act1[:post][:id])
       a.should be_blank
