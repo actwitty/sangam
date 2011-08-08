@@ -88,7 +88,21 @@ var the_big_modal_manager_json = {
                                           data_json:{}
 
                                      
-                                   }
+                                   },
+     "JS_AW_MODAL_image" : {
+                                          renderer_fn:function aw_modal_image(win_id, trigger_id){
+                                            //alert("calling related locations renderer");
+                                            return aw_channels_render_image(win_id, trigger_id);
+                                          },
+                                          title:"All Channels",
+                                          top:50,
+                                          left:350,
+                                          width:450,
+                                          height:200,
+                                          data_json:{}
+
+                                     
+                                   }                                      
                                   };
 
 
@@ -152,6 +166,7 @@ $(document).ready(function() {
         e.preventDefault();
         //Get the A tag
         /* show the modal dialogs parent window*/
+        alert("clicked");
 
         var modal_window =   $('#modal_box_window_id');
         var modal_bkg_mask = $('#modal_box_mask_id');

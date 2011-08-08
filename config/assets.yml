@@ -55,7 +55,16 @@ javascripts:
     - public/javascripts/actwitty/profile_stream.js
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/profile_people.js
-    
+    - public/javascripts/actwitty/profile_people.js
+    - public/javascripts/actwitty/profile_images.js
+    - public/javascripts/actwitty/profile_videos.js
+    - public/javascripts/actwitty/render_image.js
+    - public/javascripts/actwitty/render_video.js
+    - public/javascripts/actwitty/youtube.js
+    - public/javascripts/actwitty/play_video.js
+    - public/javascripts/actwitty/imagepopout_main.js
+    - public/javascripts/actwitty/test_data_json.js
+    - public/javascripts/actwitty/jyoutube.js  
 
 
   main:
