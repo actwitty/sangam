@@ -8,17 +8,31 @@
   width:100%;
 }
 
-.p-awp-view-campaign span
+
+.p-awp-view-campaign_all
+{
+  width:100%;
+  float:right;
+}
+.p-awp-view-campaign_all span
 {
   float:right;
   font-size:13px;
   color:#353535;
   text-decoration:underline;
 }
+
 .p-awp-view-campaign span:hover
 {
   cursor:pointer;
 }
+.p-awp-view-campaign_all a img
+{
+  float:right;
+  height:25px;
+  width:50px;
+}
+
 
 .p-awp-campaigns-section
 {

@@ -90,6 +90,7 @@ stylesheets:
     - public/stylesheets/actwitty/alpha/home_layout.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
     - public/stylesheets/actwitty/alpha/comments-streams.css
+    - public/stylesheets/actwitty/alpha/campaign-streams.css
     - public/stylesheets/actwitty/alpha/modals.css
     - public/stylesheets/actwitty/alpha/boxer.css
     - public/stylesheets/actwitty/alpha/jquery.fancybox-1.3.4.css

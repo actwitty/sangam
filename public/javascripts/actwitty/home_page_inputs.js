@@ -181,7 +181,7 @@ function get_documents_json(){
 }
 
 function get_campaigns(){
-  var campaigns = 0;
+  var campaigns = 1;
   for (var key in campaigns_manager) {
     if ( key == "Like" ){
       campaigns |= 1;

@@ -60,34 +60,54 @@ function handle_stream_docs(box_id, stream){
 
 function get_campaign_likes_label(count){
   if(count>1){
-    return '' + count + ' Likes';
+    return '' + count + ' Likes >';
   }else{
-    return '' + count + ' Like';
+    return '' + count + ' Like >';
   }
 }
 
-function handle_like_campaign(div_id, campaign,  stream_post_id){
+function handle_like_campaign(div_id, stream){
   var div = $("#" + div_id);
   var link = div_id + "_link";
   var text_id = div_id + "_span";
-  
-  
+  var user_status = false;
+  var total_count = 0;
+  var img_src = '/images/alpha/like.png';
 
-
+  $.each(stream.campaigns, function(i,campaign){
+    if( campaign.name == "like" ){
+       if(campaign.user ){
+         user_status = campaign.user;
+       }
+       total_count = campaign.count;
+    } 
+  }); 
   var campaign_manager_json = {
                                   campaign_div_id:div_id,
                                   name:"like",
-                                  user:campaign.user,
-                                  post_id:stream_post_id,
-                                  count:campaign.count
+                                  user:user_status,
+                                  post_id:stream.post.id,
+                                  count: total_count
                               };
 
  the_big_stream_campaign_manager_json[div_id] = campaign_manager_json;
+ if (user_status == true){
+   img_src = '/images/alpha/unlike.png';
+ }
 
-  var html = '<span>' +
-                  get_campaign_likes_label() + 
-             '</span>';
-  
+  var html = '<div class="p-awp-view-campaign_all ">' +
+                
+                '<span class="js_campaign_show_all" id="' + text_id + '" value="' + div_id + '" >' +
+                    get_campaign_likes_label(total_count) + 
+                '</span>' +
+
+                '<a id="' + link + '" value="' + div_id + '" class="js_like_user_action">' +
+                  '<img src="' + img_src + '" />' +
+                '</a>' + 
+            '</div>' +
+            '<div class="p-awp-campaigns-section">' +
+            '</div>';
+    
   
                
   
@@ -96,18 +116,37 @@ function handle_like_campaign(div_id, campaign,  stream_post_id){
   
 }
 
+function show_all_stream_campaigns(likes, div){
+  var likes_html="";
+  $.each(likes, function(i,like){
+    var like_html = '<div class="author">' +
+                        '<div class="p-st-comment-actor-image">' +
+                          '<a href="/home/show?id=' +  like.id + '">' +
+                            '<img class="avatar" src="' + like.photo + '" width="32" height="32" alt="" />' +
+                          '</a>' +
+                        '</div>' +
+                        '<div class="p-st-comment-actor-desc">' +
+                          '<span class="p-st-comment-actor">' +
+                            '<a href="/home/show?id=' +  like.id + '">' +
+                              like.full_name +
+                            '</a>' +
+                          '</span>' +
+                        '</div>' +
+                      '</div>';
+    likes_html = likes_html + like_html;
+  }); 
+  div.html(likes_html);
+      
+      
+}
+
 /*
  * Render stream campaign
  */
 function handle_stream_campaign(box_id, stream){
   var div=$("#" + box_id);
-  if(stream.campaign){
-    $.each(stream.campaign, function(i,campaign){
-      if( campaign.name == "like" ){
-          handle_like_campaign(div, campaign, stream.post.id);
-      } 
-    }); 
-    
+  if(stream.post.campaign_types == 1){
+    handle_like_campaign(box_id, stream);
   }else{
     div.hide();
   }
@@ -138,6 +177,9 @@ function append_entity_delete(post_id){
     }
     return;
 }
+
+
+
 
 /*
  * Render stream text
@@ -725,9 +767,107 @@ function show_all_comments(post_id, all_id){
         }
     });
 }
+
+/*
+* Delete stream
+*/
+function delete_stream(post_id){
+  var stream_li_id = 'main_stream_li_' + post_id;
+  $.ajax({
+    url: '/home/delete_stream.json',
+    type: 'POST',
+    data: "post_id=" + post_id,
+    dataType: 'json',
+    success: function (data) {
+      $("#" + stream_li_id).remove();
+    },
+    error:function(XMLHttpRequest,textStatus, errorThrown) {
+      alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
+    }
+  });
+}
+
+
+/*
+ * process user campaign action
+ */
+function process_user_campaign_action(campaign_manager_json){
+ 
+    if( campaign_manager_json.user == false){
+      $.ajax({
+          url: '/home/create_campaign.json',
+          type: 'POST',
+          data: { 
+                  name:campaign_manager_json.name, 
+                  value:1, 
+                  activity_id:campaign_manager_json.post_id
+                },
+          dataType: 'json',
+          success: function (data) {
+            if( data.name == "like" && data.user==true ){
+              campaign_manager_json.user= true;
+              var link_id = campaign_manager_json.campaign_div_id + '_link'; 
+              var span_id = campaign_manager_json.campaign_div_id + '_span';
+              campaign_manager_json.count = data.count;
+              $("#" + span_id).html(get_campaign_likes_label(campaign_manager_json.count));
+              $("#" + link_id).html('<img src="/images/alpha/unlike.png" />');
+            }
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+          }
+      });
+    }else{
+       $.ajax({
+          url: '/home/delete_campaign.json',
+          type: 'POST',
+          data: { 
+                  name:campaign_manager_json.name, 
+                  activity_id:campaign_manager_json.post_id
+                },
+          dataType: 'json',
+          success: function (data) {
+            if( data.name == "like" && data.user==true ){
+              campaign_manager_json.user= false;
+              var link_id = campaign_manager_json.campaign_div_id + '_link'; 
+              var span_id = campaign_manager_json.campaign_div_id + '_span';
+              campaign_manager_json.count = data.count;
+              $("#" + span_id).html(get_campaign_likes_label(campaign_manager_json.count));
+              $("#" + link_id).html('<img src="/images/alpha/like.png" />');
+            } 
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+          }
+      });
+    }
+}
+
 /**************************/
+/*
+ *  Show all campaigns
+ */
+function show_all_campaigns(campaign_manager_json){
+  $.ajax({
+          url: '/home/get_users_of_campaign.json',
+          type: 'GET',
+         data: { 
+                  name:campaign_manager_json.name, 
+                  activity_id:campaign_manager_json.post_id
+                },
+          dataType: 'json',
+          success: function (data) {
+            show_all_stream_campaigns(data, $("#" + campaign_manager_json.campaign_div_id).next());
+            $("#" + campaign_manager_json.campaign_div_id).next().slideToggle();
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+          }
+      });
+}
 
 
+/**************************/
 
 
 /*
@@ -776,25 +916,6 @@ function clear_streams(){
  * Add the live bindings
  */
 $(document).ready(function(){
-  /*
-   * Delete stream
-   */
-  function delete_stream(post_id){
-    var stream_li_id = 'main_stream_li_' + post_id;
-    $.ajax({
-        url: '/home/delete_stream.json',
-        type: 'POST',
-        data: "post_id=" + post_id,
-        dataType: 'json',
-        success: function (data) {
-          $("#" + stream_li_id).remove();
-        },
-        error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
-        }
-    });
-  }
-
 
   /*
    * Comment add button clicked
@@ -855,14 +976,10 @@ $(document).ready(function(){
   /*
    * User action on campaign
    */
-  $('.js_campaign_user_action').live('click', function(){
-    var user_json = the_big_stream_campaign_user_action[$(this).attr("id")];
-    if(user_json){
-      var manager_json = the_big_stream_campaign_manager_json[user_json.manager_id];
-      if(manager_json){
-        alert(JSON.stringify(manager_json));
-      }
-    }
+  $('.js_like_user_action').live('click', function(){
+    var div_id = $(this).attr("value");
+    campaign_manager = the_big_stream_campaign_manager_json[div_id];
+    process_user_campaign_action(campaign_manager);
     return false;
   });
   /********************************/
@@ -871,14 +988,9 @@ $(document).ready(function(){
    * User action on campaign
    */
   $('.js_campaign_show_all').live('click', function(){
-    alert("SHOW ALL ON CAMPAIGN ");
-    var user_json = the_big_stream_campaign_show_all[$(this).attr("id")];
-    if(user_json){
-      var manager_json = the_big_stream_campaign_manager_json[user_json.manager_id];
-      if(manager_json){
-        alert(JSON.stringify(manager_json));
-      }
-    }
+    var div_id = $(this).attr("value");
+    campaign_manager = the_big_stream_campaign_manager_json[div_id];
+    show_all_campaigns(campaign_manager); 
     return false;
   });
   /********************************/
