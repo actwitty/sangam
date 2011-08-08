@@ -567,7 +567,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   handle_stream_docs(doc_box_id, stream);
   setup_comment_handling(comment_box_id,  post.id, comment_show_all_id, stream.comments.count);
   handle_stream_campaign(campaign_box_id, stream);
-  setup_readmore("div.p-awp-content p",100); /* read more for content with character slice at 100 */
+  setup_readmore("div#"+ text_box_id + " p",100); /* read more for content with character slice at 100 */
 
   
 
