@@ -113,7 +113,7 @@ module TranslateText
     text = ""
     hash = YAML::load(activity.activity_text)
 
-    if !activity.summary_id.nil?
+    if activity.meta_activity == false
       return activity.activity_text
     end
 

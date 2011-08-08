@@ -84,11 +84,11 @@ module TextFormatter
     text
   end
 
-  #Removes the mentions from text
+  #Removes the mentions and tags from text. Regex is OR for mentions and tags
   #This will be used when sending the activity text for entity search
   #TODO - NOT UTF8 Compliance
-  def remove_all_mentions(text)
-    txt = text.gsub(/<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>/, "")
+  def remove_mentions_and_tags(text)
+    txt = text.gsub(/(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])/, "")
     txt = txt.strip
   end
 
@@ -113,16 +113,21 @@ module TextFormatter
     text
   end
 
-  #Masks the mentions with seeds
+  #Masks the mentions and tags with seeds. Regex is OR for mentions and tags
   #This will be done before processing the entity replacement as otherwise entity can replace mentions in some corner cases
   #TODO - NOT UTF8 Compliance
-  def mask_mentions(text, seed_index, seed_hash)
-    regex = /<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>/
+  def mask_activity_text(text, seed_index, seed_hash)
+    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])/
     m = text.scan(regex)
+
     i =seed_index
     m.each do |attr|
-      seed_hash[attr] = generate_seed(i, attr)
-      text = text.gsub(attr , "#{seed_hash[attr]}" )
+      #attr will be in format of [mention, nil] or [nil, tag] because of OR in regex
+      attr = attr.compact
+
+      seed_hash[attr[0]] = generate_seed(i, attr[0])
+      text = text.gsub(attr[0] , "#{seed_hash[attr[0]]}" )
+
       i = i+ 1
     end
     text
@@ -130,7 +135,7 @@ module TextFormatter
 
 
   #this is used in after flatten_entities to restore mentions
-  def unmask_mentions(text, seed_hash)
+  def unmask_activity_text(text, seed_hash)
     seed_hash.each do |key, value|
        text.gsub!(value ,key)
     end
@@ -139,23 +144,67 @@ module TextFormatter
 
   def mark_entities(text, entities)
     seed_hash ={}
-    text = mask_mentions(text, 0, seed_hash)
+    text = mask_activity_text(text, 0, seed_hash)
     text = flatten_entities(text, entities, seed_hash.length)
-    text = unmask_mentions(text, seed_hash)
+    text = unmask_activity_text(text, seed_hash)
     text
+  end
+
+  #need to write strong parser for remote docs
+  #this is temporary for time being.. need to make all the parse in one call
+  # like mentions, documents and hashes
+  #TODO
+  def get_documents(text)
+    array = []
+
+    str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
+                |#{AppConstants.audio_sources}"
+    arr = text.scan(/((http:\/\/|https:\/\/)(www.)?(#{str}){1}(\/[^\s]*)?)/)
+
+    arr.each do |attr|
+
+      if attr[3] =~ /#{AppConstants.document_sources}/
+        array << {:mime => AppConstants.mime_remote_document, :url => attr[0], :provider => attr[3], :uploaded => false}
+
+      elsif attr[3] =~ /#{AppConstants.image_sources}/
+        array << {:mime => AppConstants.mime_remote_image, :url => attr[0], :provider => attr[3],:uploaded => false}
+
+      elsif attr[3] =~ /#{AppConstants.video_sources}/
+        array << {:mime => AppConstants.mime_remote_video, :url => attr[0], :provider => attr[3],:uploaded => false}
+
+      elsif attr[3] =~ /#{AppConstants.audio_sources}/
+        array << {:mime => AppConstants.mime_remote_music, :url => attr[0], :provider => attr[3],:uploaded => false}
+      end
+
+    end
+
+    array
+  end
+  #need to write strong parser for remote docs
+  #this is temporary for time being.. need to make all the parse in one call
+  # like mentions, documents and hashes
+  #TODO
+  def get_tags(text)
+    arr = text.scan(/(#[\w\d]+[^\s])/)
+    array = []
+
+    arr.each do |attr|
+      array << {:name => attr[0], :tag_type => AppConstants.tag_type_hash}
+    end
+    array
   end
 
   #format a location object to generic form
   def location_hash(loc)
     h = {}
     case loc.location_type
-      when 1
-        h = {:type => 1, :url => loc.location_url, :name => loc.location_name}
-      when 2
-        h = {:type => 2, :lat => loc.location_lat, :long => loc.location_long,
+      when AppConstants.location_type_web
+        h = {:type => AppConstants.location_type_web, :url => loc.location_url, :name => loc.location_name}
+      when AppConstants.location_type_geo
+        h = {:type => AppConstants.location_type_geo, :lat => loc.location_lat, :long => loc.location_long,
             :name => loc.location_name}
-      when 3
-        h = {:type => 3, :name => loc.location_name}
+      when AppConstants.location_type_unresolved
+        h = {:type => AppConstants.location_type_unresolved, :name => loc.location_name}
       else
         h = {}
     end
@@ -227,7 +276,8 @@ module TextFormatter
               #:time =>  document.updated_at
               :source_name => document.source_name,
               :status => document.status,
-              :uploaded => document.uploaded
+              :uploaded => document.uploaded,
+              :category => document.category
            }
     hash
   end
@@ -245,39 +295,54 @@ module TextFormatter
     end
   end
 
-#
-#  def test_format_text(text,entities)
-#    seed_hash ={}
-#
-#    text = flatten_mentions(text)
-#
-#    text = mask_mentions(text, 0, seed_hash)
-#    text = flatten_entities(text, entities, seed_hash.length)
-#    text = unmask_mentions(text, seed_hash)
-#    text
-#  end
-#  def formatter_test
-#    text = "pizZa at PizZa frieds hUt at dominos Pizza at pizza Frieds hello   <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention> "
+  #format tag
+  def format_tag(tag)
+    hash = {}
+    if tag.blank?
+      return {}
+    end
+
+    hash[:tag] = {
+              :id => tag.id,
+              :name =>  tag.name,
+              :type => tag.tag_type,
+              :source_name => tag.source_name,
+              :status => tag.status,
+           }
+    hash
+  end
+  def test_format_text(text,entities)
+    seed_hash ={}
+
+    text = flatten_mentions(text)
+
+    text = mask_activity_text(text, 0, seed_hash)
+    text = flatten_entities(text, entities, seed_hash.length)
+    text = unmask_activity_text(text, seed_hash)
+    text
+  end
+  def formatter_test
+    text = "pizZa at PizZa frieds hUt at dominos Pizza at pizza Frieds hello   <mention><name>Alok Srivastava<name><id>234<id><mention> pizza eating <mention><name>PIZZA<name><id>235<id><mention> "
+    puts text
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+    m = get_mentions(text)
+    puts m
+    puts m[0].class
+    puts m[0]
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+#    text = untag_a_mention(text, 234)
 #    puts text
 #    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    m = get_mentions(text)
-#    puts m
-#    puts m[0].class
-#    puts m[0]
-#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-##    text = untag_a_mention(text, 234)
-##    puts text
-##    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = test_format_text(text, {  "pizza"=> 345, "Pizza Frieds hut" => 234, "frieds" => 456})
-#    puts text
-#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = unlink_a_mention(text,"PIZZA", 235)
-#    puts text
-#    puts "+++++++++++++++++++++++++++++++++++++++++++++"
-#    text = unlink_an_entity(text, 345)
-#    puts text
-#    text = remove_all_mentions(text)
-#    puts text
-#  end
+    text = test_format_text(text, {  "pizza"=> 345, "Pizza Frieds hut" => 234, "frieds" => 456})
+    puts text
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+    text = unlink_a_mention(text,"PIZZA", 235)
+    puts text
+    puts "+++++++++++++++++++++++++++++++++++++++++++++"
+    text = unlink_an_entity(text, 345)
+    puts text
+    text = remove_mentions_and_tags(text)
+    puts text
+  end
 
 end

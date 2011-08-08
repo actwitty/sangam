@@ -4,6 +4,7 @@ class Document < ActiveRecord::Base
 
    belongs_to     :owner, :class_name => "User"
    belongs_to     :activity_word
+   belongs_to     :location
 
    belongs_to     :summary, :counter_cache => true
 
@@ -13,22 +14,24 @@ class Document < ActiveRecord::Base
    has_many       :campaigns,  :dependent => :destroy, :order => "updated_at DESC"
 
    validates_existence_of :owner_id
-   validates_existence_of :activity_id
-   validates_existence_of :activity_word_id
-   validates_existence_of :summary_id
+   validates_existence_of :activity_id , :allow_nil => true
+   validates_existence_of :activity_word_id  , :allow_nil => true
+   validates_existence_of :summary_id , :allow_nil => true
+   validates_existence_of :location_id , :allow_nil => true
 
-   validates_presence_of  :name, :url, :mime, :source_name, :status
+   validates_presence_of  :name, :url, :mime, :source_name, :provider, :category, :status
 
+   validates_format_of    :url , :with =>  eval(AppConstants.url_validator)
    validates_format_of    :thumb_url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.thumb_url.nil?}
-   validates_format_of    :url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.url.nil?}
 
    validates_length_of    :name, :in => 1..AppConstants.document_name_length
    validates_length_of    :mime, :in => 1..AppConstants.document_mime_length
    validates_length_of    :url, :in => 1..AppConstants.url_length
-   validates_length_of    :source_name,    :in => 1..AppConstants.source_name_length
    validates_length_of    :thumb_url, :maximum => AppConstants.url_length, :unless => Proc.new{|a| a.thumb_url.nil?}
-   validates_length_of    :caption, :in => 1..AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?}
-
+   validates_length_of    :source_name,  :in => 1..AppConstants.source_name_length
+   validates_length_of    :caption, :maximum => AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?}
+   validates_length_of    :provider, :in => 1..AppConstants.document_provider_length
+   validates_length_of    :category, :in => 1..AppConstants.document_category_length
 
 #   mount_uploader         :document_data, DocumentDataUploader
 #
@@ -37,39 +40,80 @@ class Document < ActiveRecord::Base
 #                          :file_size => { :maximum => AppConstants.max_document_size.megabytes.to_i }
 
 
-   before_destroy    :clear_serialized_summary
-
-   protected
-      def clear_serialized_summary
-        s=Summary.where(:id => self.summary_id).first
-
-         if !s.document_array.nil? && s.document_array.include?(self.id)
-           puts "deleting document"
-           s.document_array.delete(self.id)
-         end
-      end
 
    public
+
      class << self
+       #This clears and adjusts the summary of document being deleted ""explicitly"
+       #This function should always be called after deleting document explicitly
+       #and not as outcome of activity delete
+       def reset_summary(summary_id)
+
+          a = nil
+          s = nil
+          puts "deleting document pre"
+
+          if summary_id.nil?
+            return
+          end
+
+          #Remove from summary
+          s=Summary.where(:id => summary_id).first
+         #Recreate Document Array for given summary
+          s.document_array = []
+          a = Document.where(:summary_id => summary_id).group(:id).limit(AppConstants.max_number_of_a_type_in_summmary).
+              order("MAX(created_at) DESC").count
+          s.document_array = a.keys if !a.blank?
+          s.update_attributes(:document_array  => s.document_array)
+
+         #this block only bring one document
+#          if !s.blank? && !s.document_array.nil?
+#             puts "deleting document"
+#
+#             #Get the minimum element from document array
+#             id  = s.document_array.min
+#
+#             if s.document_array.include?(params[:id])
+#
+#               #then delete the input id form document array
+#               s.document_array.delete(params[:id])
+#
+#               #find the id which is just less than minimum present in doc array
+#               d = Document.where(:id.lt => id, :summary_id => s.id).first
+#
+#               s.serialize_data({"document"  => [d.id]}) if !d.blank?
+#
+#             end
+#
+#          end
+       end
 
        #for normal uploads only document name and URLS will come.
        def create_document(params)
-         name = File.basename(params[:url])
-         type =  MIME::Types.type_for(File.basename(params[:url]).to_s).first.to_s
+
+         params[:provider]= AppConstants.provider_actwitty if params[:provider].nil?
+
+         #uploaded will be set false in mentioned links
+         params[:uploaded] = true if params[:uploaded].nil?
+
+         params[:uploaded] == true ? name = File.basename(params[:url]) : name = "remote"
+
+         params[:mime] = MIME::Types.type_for(File.basename(params[:url]).to_s).first.to_s if params[:mime].nil?
+         params[:category] = params[:mime].split('/')[0]
 
          #set mandatory parameters if missing
-         params[:status] = AppConstants.state_public if params[:status].nil?
+         params[:status] = AppConstants.status_public if params[:status].nil?
          params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
 
          d = Document.create!(:owner_id => params[:owner_id], :activity_id => params[:activity_id] ,
                               :activity_word_id => params[:activity_word_id],
-                              :summary_id => params[:summary_id], :name => name, :mime => type,
-                              :url => params[:url], :thumb_url => params[:thumb_url],
-                              :caption => params[:caption],
-                              :status => params[:status], :source_name => params[:source_name],
-                              :uploaded => params[:uploaded])
+                              :summary_id => params[:summary_id], :name => name, :mime => params[:mime],
+                              :url => params[:url], :thumb_url => params[:thumb_url],:caption => params[:caption],
+                              :source_name => params[:source_name],
+                              :uploaded => params[:uploaded],:provider => params[:provider],
+                              :category => params[:category], :location_id => params[:location_id], :status => params[:status])
        rescue => e
-         Rails.logger.error("Document => create_document => Failed =>  #{e.message} #{name}  #{type}")
+         Rails.logger.error("Document => create_document => Failed =>  #{e.message} #{name} ")
          nil
        end
 
@@ -122,22 +166,30 @@ end
 
 
 
+
+
+
 # == Schema Information
 #
 # Table name: documents
 #
 #  id               :integer         not null, primary key
 #  owner_id         :integer         not null
-#  activity_id      :integer         not null
-#  activity_word_id :integer         not null
-#  name             :string(255)     not null
-#  mime             :string(255)
-#  document_data    :string(255)
-#  caption          :string(255)
+#  activity_id      :integer
+#  activity_word_id :integer
+#  name             :text            not null
+#  mime             :text
+#  caption          :text
 #  comments_count   :integer
-#  summary_id       :integer         not null
+#  summary_id       :integer
 #  url              :text            not null
 #  thumb_url        :text
+#  status           :integer         not null
+#  source_name      :text            not null
+#  uploaded         :boolean         not null
+#  provider         :text            not null
+#  category         :text            not null
+#  location_id      :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #

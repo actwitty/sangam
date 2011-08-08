@@ -171,7 +171,7 @@ function aw_locations_render_all_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_locations_modal_all" class="js_search_locations " placeholder="Entities"/>' +
+                      '<input type="text" id="js_locations_modal_all" class="js_search_locations " placeholder="Locations"/>' +
                     '</div>';
 
   div.append(search_html);

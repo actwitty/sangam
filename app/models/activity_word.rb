@@ -51,7 +51,6 @@ class ActivityWord < ActiveRecord::Base
 
       begin
         if word_rel.blank?
-          puts "hello !"
           word_obj = ActivityWord.create!(:word_name => word.downcase)
         else
           word_obj = word_rel.first
@@ -73,8 +72,7 @@ class ActivityWord < ActiveRecord::Base
       end
 
       ActivityWord.CreateRelatedWords(word_obj, relation)
-      puts
-      return word_obj
+      word_obj
     end
 
     #return the objects of related activity words. Defaults to verb-form

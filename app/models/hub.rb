@@ -14,11 +14,12 @@ class Hub < ActiveRecord::Base
   validates_existence_of  :entity_id , :allow_nil => true
   validates_existence_of  :location_id , :allow_nil => true
 
-  validates_presence_of :activity_name
+  validates_presence_of   :source_name, :status
 
-  validates_length_of   :activity_name , :in => 1..AppConstants.activity_name_length
+  validates_length_of     :source_name,  :in => 1..AppConstants.source_name_length
 
 end
+
 
 # == Schema Information
 #
@@ -26,12 +27,13 @@ end
 #
 #  id               :integer         not null, primary key
 #  activity_id      :integer         not null
-#  activity_name    :string(255)     not null
 #  activity_word_id :integer         not null
 #  entity_id        :integer
 #  user_id          :integer         not null
 #  location_id      :integer
 #  summary_id       :integer         not null
+#  source_name      :text            not null
+#  status           :integer         not null
 #  created_at       :datetime
 #  updated_at       :datetime
 #

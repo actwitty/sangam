@@ -11,6 +11,11 @@ development: &default
   document_name_length:                 255
   document_mime_length:                 64
   campaign_name_length:                 64
+  document_provider_length:             64
+  document_category_length:             32
+  tag_length:                           64
+  location_name_length:                 1024
+  max_number_of_documents_pulled:       24
 
   #in megabytes
   max_document_size:                    0.5
@@ -73,12 +78,16 @@ development: &default
 
 
   stream_max_count:                     15
+  #LOCATION_TYPE
+  location_type_web:                    1
+  location_type_geo:                    2
+  location_type_unresolved:             3
 
   #STATUS
-  state_saved:                     0
-  state_public:                    1
-  state_private:                   2
-  state_shared:                    3  #need the loop visibility later
+  status_saved:                     1
+  status_public:                    2
+  status_private:                   3
+  status_shared:                    4  #need the loop visibility later
 
   #these are defined SOURCE_NAME
   #there can be custom sources like emails and mobile number
@@ -91,11 +100,51 @@ development: &default
   source_posterous:               "posterous"
 
   #CAMPAIGN_TYPES
-  campaign_none:                       0  #used for internal activities generated because of commenting or campaign creation
-  campaign_like:                       1
-  campaign_support:                    2
+  campaign_none:                       1  #used for internal activities generated because of commenting or campaign creation
+  campaign_like:                       2
+  campaign_support:                    3
   campaign_join:                       4
 
+  #document providers
+  provider_actwitty:                  "actwitty.com"
+  provider_dropbox:                   "dropbox.com"
+  provider_youtube:                   "youtube.com"
+  provider_vimeo:                     "vimeo.com"
+  provider_flickr:                    "flickr.com"
+  provider_twitpic:                   "twitpic.com"
+  provider_lastfm:                     "last.fm"
+  provider_spotify:                    "spotify.com"
+
+  #Remote Document mime - They are custom not standard
+  #TODO need to check properly
+  #Refer http://en.wikipedia.org/wiki/Internet_media_type
+  mime_remote_image:                 "image/remote"
+  mime_remote_video:                 "video/remote"
+  mime_remote_document:              "application/remote"
+  mime_remote_music:                 "audio/remote"
+
+  #TAG TYPE
+  tag_type_hash:                     1    #mentioned
+  tag_type_blog:                     2    #explicitly mentioned by user as blog tags
+  tag_type_semantic:                 3    #tags from sources like zemanta
+
+#  #Document category
+#  category_image:                     "image"
+#  category_audio:                     "audio"
+#  category_video:                     "video"
+#  category_document:                  "application"
+
+  #Video Sources
+  video_sources:                      youtube.com|vimeo.com
+
+  #Image Sources
+  image_sources:                      flickr.com|twitpic.com
+
+  #document sources
+  document_sources:                   dropbox.com
+
+  #audio Sources
+  audio_sources:                      last.fm|spotify.com
 
 production:
   <<: *default

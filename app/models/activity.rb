@@ -22,8 +22,12 @@ class Activity < ActiveRecord::Base
 
   has_many    :comments, :dependent => :destroy, :order => "updated_at DESC"
 
-  # documents have life time more than activity
-  has_many    :documents, :dependent => :nullify, :order => "updated_at DESC"
+  has_many    :tags, :dependent => :destroy, :order => "updated_at DESC"
+
+  # documents have life time more than activity.
+  # Documents will be removed from activity destroy as special handling is needed rather than usual destroy
+  # UPDATE 03/07/2011 - Now we are destroying  document with post.. so we are putting dependent destroy
+  has_many    :documents,  :dependent => :destroy, :order => "updated_at DESC"
 
   #:destroy is not causing circular effect as there is father "delete" in campaign
   has_one       :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :destroy
@@ -48,18 +52,73 @@ class Activity < ActiveRecord::Base
 
   validates_length_of     :activity_text , :maximum => AppConstants.activity_text_length, :unless => Proc.new{|a| a.activity_text.nil?}
 
-  before_destroy    :clear_serialized_summary
+  before_destroy          :clear_dependent_data
 
   protected
-    def clear_serialized_summary
-      if !self.summary_id.nil?
-        s=Summary.where(:id => self.summary_id).first
-        if s.activity_array.include?(self.id)
-          puts "deleting activity"
-          s.activity_array.delete(self.id)
+    def clear_dependent_data
+
+      if self.meta_activity == false
+        #clear the documents
+
+        # UPDATE 03/07/2011 - Now we are destroying  document with post.. so we are putting dependent destroy
+        # and commenting below 3 queries
+
+#        #First Collect all the document ids of activity
+#        ids = Document.where(:activity_id => self.id, :summary_id => self.summary_id).group(:id).count
+
+#        #delete mentioned document first
+#        Document.destroy_all(:activity_id => self.id, :uploaded => false)
+#
+#        #then nullify uploaded document
+#        Document.where(:uploaded => true,:activity_id => self.id).update_all(:activity_id => nil, :activity_word_id => nil,
+#                                                                            :summary_id => nil)
+
+        #reset summary data
+        if !self.summary_id.nil?
+          s = Summary.where(:id => self.summary_id).first
+          puts "resetting activity summary"
+
+          a = s.activity_array.min
+          #then delete the input id form activity array
+          if s.activity_array.include?(self.id)
+            s.activity_array.delete(self.id)
+
+            #find the id which is just less than minimum present in activity array
+            a = Activity.where(:id.lt => a, :summary_id => self.summary_id ).first
+
+            s.activity_array << a.id if !a.blank?
+          end
+
+          #Recreate Document Array for given summary
+          s.document_array = []
+          a = Document.where(:summary_id => self.summary_id).group(:id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+          s.document_array = a.keys if !a.blank?
+
+          #Recreate Location Array for given summary
+          s.location_array = []
+          a = Hub.where(:summary_id => self.summary_id, :location_id.not_eq => nil).group(:location_id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+          s.location_array = a.keys if !a.blank?
+
+          #Recreate Entity Array for given summary
+          s.entity_array = []
+          a = Hub.where(:summary_id => self.summary_id, :entity_id.not_eq => nil).group(:entity_id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+          s.entity_array = a.keys if !a.blank?
+
+          #Recreate Entity Array for given summary
+          s.tag_array = []
+          a = Tag.where(:summary_id => self.summary_id).group(:id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+          s.tag_array = a.keys if !a.blank?
+
+          s.update_attributes(s.attributes)
         end
       end
     end
+
+
   public
 
     class << self
@@ -84,24 +143,37 @@ class Activity < ActiveRecord::Base
   #                       or custom email or mobile number #defualt is actwitty
   #    :sub_title => "hello sudha baby" or nil #optional
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
+  #    :meta_activity => true/false #true for comment, campaign father activity creation otherwise false
 
       def create_activity(params={})
 
         summary = nil
         summary_hash = {}
+        document_ids = []
+        array = []
+        tag_ids =[]
 
         #don allow space separated words
         if !params[:activity].scan(/\s+/).blank?
           return {}
         end
 
-        #create the activity word
+        #set mandatory parameters if missing
+        params[:status] = AppConstants.status_public if params[:status].nil?
+        params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+        params[:campaign_types] =  AppConstants.campaign_like if params[:campaign_types].nil?
+
+
+        ################################### Create Activity Word ################################################
+
         word_obj = ActivityWord.create_activity_word(params[:activity], "verb-form")
 
-
+        #################################### CREATE SUMMARY ######################################################
         #summary is processed earlier as to keep counter_cache active.
         #counter_cache only works for create & destroy methods
-        if params[:enrich] == true #Not done for comments and campaign
+        #Not done for comments and campaign and saved activity
+
+        if params[:meta_activity] == false && params[:status] != AppConstants.status_saved
           #create summary
           summary = Summary.create_summary(:user_id => params[:author_id],:activity_word_id => word_obj.id, :activity_name => params[:activity])
           if summary.nil?
@@ -111,22 +183,21 @@ class Activity < ActiveRecord::Base
           params[:summary_id] = summary.id
         end
 
-
-        #set mandatory parameters if missing
-        params[:status] = AppConstants.state_public if params[:status].nil?
-        params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
-        params[:campaign_types] =  AppConstants.campaign_like if params[:campaign_types].nil?
+        ###################################### CREATE ACTIVITY #################################################
 
 
         #create activity => either root or child
         obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
                                :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false,
                                :status => params[:status], :campaign_types => params[:campaign_types],
-                               :source_name => params[:source_name], :sub_title => params[:sub_title])
+                               :source_name => params[:source_name], :sub_title => params[:sub_title],
+                               :meta_activity => params[:meta_activity])
 
 
+
+        ######################################## START PROCESSING NON META ACTIVITY ###########################
         #Not done for comments and campaign
-        if params[:enrich] == true
+        if params[:meta_activity] == false
 
           #Add activity_word to params hash for hub creation
           params[:activity_word_hash] = {:word => params[:activity], :id => word_obj.id}
@@ -140,7 +211,7 @@ class Activity < ActiveRecord::Base
           end
 
 
-          #create location
+          ####################################### Create Location #############################################
           if !params[:location].blank?
            loc= Location.create_location(params[:location])
            if !loc.nil?
@@ -151,42 +222,78 @@ class Activity < ActiveRecord::Base
            end
           end
 
-
-          #Generate Mentions
+          ###################################Generate Mentions#################################################
           params[:text] = Mention.create_mentions(params[:text], obj)
-
 
           #Save location and Mentions too
           obj.update_attributes(:activity_text => params[:text],:base_location_id => params[:location_hash] )
 
 
-          #create documents
+          ##################################CREATE DOCUMENTS #####################################################
+          #first get the mentioned document links
+          array = []
+          array = get_documents(params[:text]) if !params[:text].blank?
+          !params[:documents].blank? ? params[:documents].concat(array) : (params[:documents] = array if !array.blank?)
+
           if !params[:documents].blank?
-            d_array = []
             params[:documents].each do |attr|
-              doc_hash = {:owner_id => params[:author_id], :activity_id => obj.id, :activity_word_id => word_obj.id,
-                                       :summary_id => params[:summary_id], :url => attr[:url], :uploaded => true}
+              d = Document.create_document(:owner_id => params[:author_id], :activity_id => obj.id, :activity_word_id => word_obj.id,
+                         :source_name =>params[:source_name],:summary_id => params[:summary_id], :url => attr[:url],
+                         :thumb_url => attr[:thumb_url], :provider => attr[:provider],:uploaded => attr[:uploaded],
+                         :mime => attr[:mime], :caption => attr[:caption], :location_id => params[:location_hash],
+                         :status => params[:status] )
 
-              #These two are optional
-              doc_hash[:thumb_url] = attr[:thumb_url] if  !attr[:thumb_url].nil?
-              doc_hash[:caption] = attr[:caption] if  !attr[:caption].nil?
-
-              d = Document.create_document(doc_hash)
-              d_array << d.id if !d.nil?
+              document_ids << d.id if !d.nil?
             end
 
             #Serialize Most recent docs
-            summary_hash["document"] = d_array
+            summary_hash["document"] = document_ids
           end
 
+          #################################CREATE HASH TAGS######################################################
+          #first get the mentioned tags
+          array = []
+          array = get_tags(params[:text]) if !params[:text].blank?
+          puts params[:tags]
+          !params[:tags].blank? ? params[:tags].concat(array) :(params[:tags] = array if !array.blank?)
 
+          if !params[:tags].blank?
+            params[:tags].each do |attr|
+
+              t =Tag.create_tag(:author_id => params[:author_id], :activity_id => obj.id,
+                          :activity_word_id => word_obj.id, :source_name => params[:source_name],:name => attr[:name],
+                          :tag_type => attr[:tag_type], :location_id => params[:location_hash],
+                         :status => params[:status])
+
+              tag_ids << t.id if !t.nil?
+
+            end
+            #Serialize Most recent tags
+            summary_hash["tag"] = tag_ids
+          end
+
+          ################################# SERIALIZE TO SUMMARY ###################################################
           puts obj.inspect
 
-          #Update Summary Data
-          summary.serialize_data(summary_hash)
+          #Update Summary Data - Dont do it for saved data
+          if params[:status] != AppConstants.status_saved
+            summary.serialize_data(summary_hash)
+          else
+            return obj
+          end
 
-          params[:text].blank? ? create_hub_entries(params) : post_proc_activity(params)
+          ################################# CREATE HUB ENTRIES OR POST PROC ########################################
+          #for blank text also hub entries are created. It can be removed if user's dependency on activity_word_id and
+          #location is completely done through activity table. But some day if we want to give multiple locations in post
+          #then this kind of processing is must as user has to be linked to hub for locations always. anyway not much
+          # costly. so lets keep it
 
+          #Dont do it for saved data
+          if params[:text].blank?
+              create_hub_entries(params)
+          else
+              post_proc_activity(params)
+          end
         end
 
         return obj
@@ -209,10 +316,11 @@ class Activity < ActiveRecord::Base
 
         hubs_hash[:activity_id] =  params[:activity_hash]
         hubs_hash[:activity_word_id] =  params[:activity_word_hash][:id]
-        hubs_hash[:activity_name] =  params[:activity_word_hash][:word]
+#        hubs_hash[:activity_name] =  params[:activity_word_hash][:word]
         hubs_hash[:user_id] = params[:author_id]
         hubs_hash[:summary_id] = params[:summary_id]
-
+        hubs_hash[:source_name] = params[:source_name]
+        hubs_hash[:status]= params[:status]
 
         if !params[:location_hash].nil?
           hubs_hash[:location_id] = params[:location_hash]
@@ -244,7 +352,7 @@ class Activity < ActiveRecord::Base
 
       def post_proc_activity(params={})
 
-         temp_text = remove_all_mentions(params[:text])
+         temp_text = remove_mentions_and_tags(params[:text])
          entities=get_entities(temp_text)
 
 
@@ -286,6 +394,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: activities
@@ -293,17 +403,19 @@ end
 #  id               :integer         not null, primary key
 #  activity_word_id :integer         not null
 #  activity_text    :text
-#  activity_name    :string(255)     not null
+#  activity_name    :text            not null
 #  author_id        :integer         not null
 #  base_location_id :integer
 #  comments_count   :integer
 #  documents_count  :integer
-#  campaign_types   :integer         default(1)
-#  status           :integer         default(1)
-#  source_name      :string(64)      default("actwitty")
-#  sub_title        :string(255)
+#  tags_count       :integer
+#  campaign_types   :integer         not null
+#  status           :integer         not null
+#  source_name      :text            not null
+#  sub_title        :text
 #  summary_id       :integer
 #  enriched         :boolean
+#  meta_activity    :boolean
 #  created_at       :datetime
 #  updated_at       :datetime
 #

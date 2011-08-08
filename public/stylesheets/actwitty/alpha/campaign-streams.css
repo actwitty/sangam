@@ -1,0 +1,60 @@
+/* ################################### CSS for Comment Streams ################################*/
+/* line 6, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-view-campaign {
+  height: 17px;
+  width: 100%;
+}
+
+/* line 12, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-view-campaign span {
+  float: right;
+  font-size: 13px;
+  color: #353535;
+  text-decoration: underline;
+}
+
+/* line 19, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-view-campaign span:hover {
+  cursor: pointer;
+}
+
+/* line 24, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-campaigns-section {
+  width: 100%;
+  height: auto;
+  float: right;
+  border: 0px solid red;
+  display: none;
+}
+
+/* line 33, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-awp-campaign {
+  height: auto;
+  border: 0px solid green;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/* line 42, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.author {
+  border: 0px solid green;
+  width: 100%;
+  height: auto;
+}
+
+/* line 49, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-st-campaign-actor-image {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin: 2px 5px 2px 5px;
+}
+
+/* line 57, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+.p-st-campaign-actor-desc {
+  width: 500px;
+  height: 35px;
+  border: 0px solid red;
+  float: left;
+  display: block;
+}

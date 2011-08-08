@@ -118,6 +118,12 @@ $(document).ready(function(){
     });
 
 
+    $("div.p-awp-content p").expander({
+      slicePoint:       100,  // default is 100
+      expandText:         'read more', // default is 'read more...'
+      userCollapseText: '...less'  // default is '[collapse expanded text]'
+    });
+
     
 
   }); /* ready ends here */

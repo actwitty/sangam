@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110712080157) do
+ActiveRecord::Schema.define(:version => 20110803050456) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id", :null => false
@@ -20,25 +20,29 @@ ActiveRecord::Schema.define(:version => 20110712080157) do
     t.integer  "base_location_id"
     t.integer  "comments_count"
     t.integer  "documents_count"
+    t.integer  "tags_count"
     t.integer  "campaign_types",   :null => false
     t.integer  "status",           :null => false
     t.text     "source_name",      :null => false
     t.text     "sub_title"
     t.integer  "summary_id"
     t.boolean  "enriched"
+    t.boolean  "meta_activity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["author_id", "activity_name"], :name => "index_activities_on_author_id_and_activity_name"
+  add_index "activities", ["activity_name", "author_id"], :name => "index_activities_on_activity_name_and_author_id"
+  add_index "activities", ["activity_word_id"], :name => "index_activities_on_activity_word_id"
   add_index "activities", ["author_id", "activity_word_id"], :name => "index_activities_on_author_id_and_activity_word_id"
-  add_index "activities", ["author_id", "summary_id"], :name => "index_activities_on_author_id_and_summary_id"
   add_index "activities", ["base_location_id"], :name => "index_activities_on_base_location_id"
+  add_index "activities", ["created_at"], :name => "index_activities_on_created_at"
   add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
+  add_index "activities", ["meta_activity", "author_id"], :name => "index_activities_on_meta_activity_and_author_id"
   add_index "activities", ["source_name", "activity_word_id"], :name => "index_activities_on_source_name_and_activity_word_id"
   add_index "activities", ["source_name", "author_id", "activity_word_id"], :name => "index_activities_on_source_author_word"
   add_index "activities", ["status", "author_id"], :name => "index_activities_on_status_and_author_id"
-  add_index "activities", ["summary_id"], :name => "index_activities_on_summary_id"
+  add_index "activities", ["summary_id", "author_id"], :name => "index_activities_on_summary_id_and_author_id"
   add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
 
   create_table "activity_words", :force => true do |t|
@@ -151,33 +155,36 @@ ActiveRecord::Schema.define(:version => 20110712080157) do
 
   create_table "documents", :force => true do |t|
     t.integer  "owner_id",         :null => false
-    t.integer  "activity_id",      :null => false
-    t.integer  "activity_word_id", :null => false
+    t.integer  "activity_id"
+    t.integer  "activity_word_id"
     t.text     "name",             :null => false
     t.text     "mime"
     t.text     "caption"
     t.integer  "comments_count"
-    t.integer  "summary_id",       :null => false
+    t.integer  "summary_id"
     t.text     "url",              :null => false
     t.text     "thumb_url"
     t.integer  "status",           :null => false
     t.text     "source_name",      :null => false
     t.boolean  "uploaded",         :null => false
+    t.text     "provider",         :null => false
+    t.text     "category",         :null => false
+    t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "documents", ["activity_id"], :name => "index_documents_on_activity_id"
   add_index "documents", ["activity_word_id", "mime"], :name => "index_documents_on_activity_word_id_and_mime"
-  add_index "documents", ["mime"], :name => "index_documents_on_mime"
+  add_index "documents", ["category", "owner_id"], :name => "index_documents_on_category_and_owner_id"
+  add_index "documents", ["created_at"], :name => "index_documents_on_created_at"
   add_index "documents", ["owner_id", "mime"], :name => "index_documents_on_owner_id_and_mime"
+  add_index "documents", ["provider", "owner_id"], :name => "index_documents_on_provider_and_owner_id"
   add_index "documents", ["source_name", "activity_word_id"], :name => "index_documents_on_source_name_and_activity_word_id"
   add_index "documents", ["source_name", "owner_id", "activity_word_id"], :name => "index_documents_on_source_owner_word"
-  add_index "documents", ["status", "owner_id"], :name => "index_documents_on_status_and_owner_id"
   add_index "documents", ["summary_id"], :name => "index_documents_on_summary_id"
   add_index "documents", ["updated_at"], :name => "index_documents_on_updated_at"
   add_index "documents", ["uploaded", "owner_id"], :name => "index_documents_on_uploaded_and_owner_id"
-  add_index "documents", ["uploaded", "source_name"], :name => "index_documents_on_uploaded_and_source_name"
 
   create_table "entities", :force => true do |t|
     t.string   "entity_name",  :null => false
@@ -258,23 +265,26 @@ ActiveRecord::Schema.define(:version => 20110712080157) do
 
   create_table "hubs", :force => true do |t|
     t.integer  "activity_id",      :null => false
-    t.string   "activity_name",    :null => false
     t.integer  "activity_word_id", :null => false
     t.integer  "entity_id"
     t.integer  "user_id",          :null => false
     t.integer  "location_id"
     t.integer  "summary_id",       :null => false
+    t.text     "source_name",      :null => false
+    t.integer  "status",           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "hubs", ["activity_id"], :name => "index_hubs_on_activity_id"
-  add_index "hubs", ["activity_name"], :name => "index_hubs_on_activity_name"
   add_index "hubs", ["activity_word_id", "entity_id"], :name => "index_hubs_on_activity_word_id_and_entity_id"
   add_index "hubs", ["activity_word_id", "user_id"], :name => "index_hubs_on_activity_word_id_and_user_id"
+  add_index "hubs", ["created_at"], :name => "index_hubs_on_created_at"
   add_index "hubs", ["entity_id", "activity_id"], :name => "index_hubs_on_entity_id_and_activity_id"
   add_index "hubs", ["entity_id", "user_id"], :name => "index_hubs_on_entity_id_and_user_id"
   add_index "hubs", ["location_id", "user_id"], :name => "index_hubs_on_location_id_and_user_id"
+  add_index "hubs", ["source_name", "activity_word_id"], :name => "index_hubs_on_source_name_and_activity_word_id"
+  add_index "hubs", ["source_name", "user_id", "activity_word_id"], :name => "index_hubs_on_source_user_word"
   add_index "hubs", ["summary_id"], :name => "index_hubs_on_summary_id"
   add_index "hubs", ["updated_at"], :name => "index_hubs_on_updated_at"
   add_index "hubs", ["user_id", "activity_word_id", "entity_id"], :name => "index_hubs_on_user_activity_entity"
@@ -373,10 +383,12 @@ ActiveRecord::Schema.define(:version => 20110712080157) do
     t.string   "activity_name",    :null => false
     t.integer  "activities_count"
     t.integer  "documents_count"
+    t.integer  "tags_count"
     t.text     "location_array"
     t.text     "entity_array"
     t.text     "activity_array"
     t.text     "document_array"
+    t.text     "tag_array"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -385,6 +397,24 @@ ActiveRecord::Schema.define(:version => 20110712080157) do
   add_index "summaries", ["activity_word_id"], :name => "index_summaries_on_activity_word_id"
   add_index "summaries", ["updated_at"], :name => "index_summaries_on_updated_at"
   add_index "summaries", ["user_id", "activity_word_id"], :name => "index_summaries_on_user_id_and_activity_word_id", :unique => true
+
+  create_table "tags", :force => true do |t|
+    t.integer  "author_id",        :null => false
+    t.integer  "activity_word_id", :null => false
+    t.integer  "summary_id"
+    t.integer  "activity_id",      :null => false
+    t.text     "name",             :null => false
+    t.integer  "tag_type",         :null => false
+    t.text     "source_name",      :null => false
+    t.integer  "location_id"
+    t.integer  "status",           :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["activity_id"], :name => "index_tags_on_activity_id"
+  add_index "tags", ["activity_word_id"], :name => "index_tags_on_activity_word_id"
+  add_index "tags", ["author_id", "activity_word_id"], :name => "index_tags_on_author_id_and_activity_word_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

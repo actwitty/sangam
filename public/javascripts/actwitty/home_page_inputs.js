@@ -282,11 +282,11 @@ function document_upload_complete(){
                       campaign_types:get_campaigns(),
                       source_name:"actwitty",
                       sub_title:$('#title_field').val(),
-                      status:1
+                      status:2
                     };
 
    
-    //alert(JSON.stringify(post_json));
+    alert(JSON.stringify(post_json));
     post_activity_to_server(post_json);
 
 }

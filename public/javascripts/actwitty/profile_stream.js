@@ -1,14 +1,18 @@
-/**********************************/
+1/**********************************/
 /* Big global jsons which need to maintain context for dynamism*/
 var the_big_comment_add_json={ };
 var the_big_comment_show_all_json={ };
-var the_big_comment_count_json={ };
 var the_big_comment_delete_json={ };
+
+
 var the_big_stream_delete_json={ };
+
 var the_big_stream_campaign_manager_json={ };
-var the_big_stream_campaign_user_action={};
 var the_big_stream_campaign_show_all={};
 var the_big_stream_enriched_state={};
+var the_big_stream_post_text={};
+
+var the_big_stream_entity_deletes={};
 /**********************************/
 
 
@@ -16,30 +20,32 @@ var the_big_stream_enriched_state={};
 /*
  * Render stream docs
  */
+
+
+
+
+/* Attaching the docs with rel attribute
+ * This rel attribute will start iwth fnc_group (for fancy box group)
+ * There are different version of fancy box which can also be used.
+ * The current one in place is for image gallery
+ */
 function handle_stream_docs(box_id, stream){
   docs_box= $("#" + box_id);
   if ( stream.documents &&  stream.documents.count ){
-    var ul_box_id = box_id + "_ul"; 
-    var doc_box_id = box_id + "_slider";
-    var html = '<div  class="aw_slider" id="' + doc_box_id + '">' +                  
-                  '<ul id="' + ul_box_id +  '" class="aw_slider">' +
-                  '</ul>' +
-                '</div>' ;
-
-    docs_box.append(html);
-    var ul_box = $("#" + ul_box_id);  
+    var ul_box = $("#" + box_id);
     $.each(stream.documents.array, function(i, attachment){
-     var html='<li>' +
-                '<a href="#">' +
-                  '<img src="'+ attachment.url + '"  width="40" height="40" alt="" />' +
-                  '<span>' +
-                      attachment.name +
-                  '</span>' +
-                '</a>' +
-              '</li>';
-
+     var caption = "";
+     if(attachment.caption && attachment.caption.length){
+       caption = attachment.caption;
+     }
+     var html='<a rel="fnc_group_'+ box_id +
+              '" href="' + attachment.url + '" title="' + caption  + '">' + 
+              '<img alt="" src="'+ attachment.url + '"  width="50" height="50" alt="" />' +
+              '</a>'; 
      ul_box.append(html);
     });
+    /* activate fancy box  */
+    activate_fancybox_group(box_id);
   }else{
     /* hide if there is nothing to show */
     docs_box.hide();
@@ -51,82 +57,41 @@ function handle_stream_docs(box_id, stream){
 /*
  * Render stream campaign
  */
-function handle_a_campaign(ul_id, campaign,  stream_post_id){
-  var ul = $("#" + ul_id);
 
-  var campaigns_li_id = ul_id + "_"  + campaign.name;
-  
-  var li = $("#" + campaigns_li_id);
-  if(li.length > 0){
-
+function get_campaign_likes_label(count){
+  if(count>1){
+    return '' + count + ' Likes';
   }else{
-    var html='<li class="stream_campaign_li" id="'+ campaigns_li_id +'">' +
-           '</li>';
-    ul.append(html);
-    li = $("#" + campaigns_li_id);
+    return '' + count + ' Like';
   }
+}
 
- 
+function handle_like_campaign(div_id, campaign,  stream_post_id){
+  var div = $("#" + div_id);
+  var link = div_id + "_link";
+  var text_id = div_id + "_span";
+  
+  
 
-  var users_campaign_id = 0;
-  if(campaign.id){
-      users_campaign_id = campaign.id;
-  }
-
-
-  var campaign_unique_handle = stream_post_id + '_' + campaign.name; 
-  var campaign_hover_span_id = campaign_unique_handle + '_hover_span';
-  var campaign_user_action_id = campaign_unique_handle + '_user';
-  var campaign_show_all_id = campaign_unique_handle + '_show_all';
 
   var campaign_manager_json = {
-                                  li_id:campaigns_li_id,
-                                  ul:ul_id,
+                                  campaign_div_id:div_id,
+                                  name:"like",
+                                  user:campaign.user,
                                   post_id:stream_post_id,
-                                  name:campaign.name,
-                                  count:campaign.count,
-                                  user_id:campaign.id,
-                                  user_state:campaign.user,
+                                  count:campaign.count
                               };
-  var campaign_user_action_json = {
-                                    manager_id:campaign_unique_handle
-                                  };
-  var campaign_show_all_json = {
-                                    manager_id:campaign_unique_handle
-                                  };
 
-  the_big_stream_campaign_manager_json[campaign_unique_handle] = campaign_manager_json;
-  the_big_stream_campaign_user_action[campaign_user_action_id]=campaign_user_action_json;
-  the_big_stream_campaign_show_all[campaign_show_all_id]=campaign_show_all_json;
+ the_big_stream_campaign_manager_json[div_id] = campaign_manager_json;
 
-  var campaign_text = campaign.name + 's: ' + campaign.count;
-  var user_campaign_text ="";
-  if( campaign.user == true ){
-      user_campaign_text = 'Un-' + campaign.name;
-  }else{
-      user_campaign_text = campaign.name; 
-  }
-
-
-  var html = '<div class="stream_campaign_display">' +
-                '<a href="#" class="stream_campaign_display_a">' +
-                   campaign_text +
-                  '</a>' +
-                  '<span class="stream_campaign_hover_box" id="' + campaign_hover_span_id + '">' +
-                    '<div class="stream_campaign_user_action_box">' +
-                      '<a href="#" class="campaign_user_action_a js_campaign_user_action" id="' + campaign_user_action_id + '">' +
-                       user_campaign_text +
-                      '</a>' +
-                    '</div>'+
-                    '<div class="stream_campaign_show_all_box">' +
-                      '<a href="#" class="campaign_show_all_a js_campaign_show_all" id="' + campaign_show_all_id + '">' +
-                        'Show All' +
-                      '</a>' +
-                    '</div>'+ 
-                  '</span>' +
-             '</div>';
+  var html = '<span>' +
+                  get_campaign_likes_label() + 
+             '</span>';
   
-  li.append(html);
+  
+               
+  
+  div.append(html);
 
   
 }
@@ -137,13 +102,9 @@ function handle_a_campaign(ul_id, campaign,  stream_post_id){
 function handle_stream_campaign(box_id, stream){
   var div=$("#" + box_id);
   if(stream.campaign){
-    var campaigns_ul_id = box_id + '_ul';
-    var html = '<ul class="streams_campaigns_ul" id="' + campaigns_ul_id + '">' +
-               '</ul>';
-    div.append(html);
     $.each(stream.campaign, function(i,campaign){
-      if( campaign ){
-          handle_a_campaign(campaigns_ul_id, campaign, stream.post.id);
+      if( campaign.name == "like" ){
+          handle_like_campaign(div, campaign, stream.post.id);
       } 
     }); 
     
@@ -152,16 +113,40 @@ function handle_stream_campaign(box_id, stream){
   }
 }
 
+function append_entity_delete(post_id){
+    /*handle entity delete*/
+   var entity_del_json = the_big_stream_post_text[post_id];
+    if ( entity_del_json ){
+      var box_id = entity_del_json.text_box;
+      var user_id = entity_del_json.user;
+      var current_user_id=$('#session_owner_id').attr("value");  
+
+      if(current_user_id == user_id){
+        $("#" + box_id).find(".js_activity_entity").each(function(){
+          $(this).addClass("js_handle_stream_entity_mention");
+          var entity_id = $(this).attr("value");
+          var remove_val = {post_id:post_id , entity:entity_id };
+
+          var remove_id = post_id + entity_id + "_rem";
+          the_big_stream_entity_deletes[remove_id] = remove_val;
+          var hover_html = '<span>' +
+                              '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> Remove </a>' +
+                           '</span>';
+          $(this).append(hover_html);
+        });
+      }
+    }
+    return;
+}
 
 /*
  * Render stream text
  */
-function handle_stream_text(box_id, stream){
+function handle_stream_text( box_id, post_text){
   var div=$("#" + box_id);
-  post = stream.post;
-  if(post.text && post.text.length){
+  if(post_text && post_text.length){
         var html='<p>' +
-                post.text +
+                post_text +
              '</p>';
 
         div.html(html);
@@ -171,6 +156,26 @@ function handle_stream_text(box_id, stream){
     div.hide();
   }
 }
+
+/*
+ * Render stream location
+ */
+function handle_stream_location(box_id, location){
+     var div = $("#" + box_id);
+     if ( location && location.name && location.name.length){
+      var html='<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
+                '<div class="p-awp-location-name">' +
+                  '<span >' +
+                    location.name +
+                  '</span>' +
+                '</div>';
+      div.html(html);
+     }else{
+       div.hide();
+     }
+               
+}
+
 
 /*
  * Render stream close button
@@ -195,7 +200,7 @@ function handle_stream_close(box_id, stream, current_user_id){
 /*
  * Render comments close button
  */
-function handle_comment_close_box(box_id, comment, comment_post_id, current_user_id){
+function handle_comment_close_box(box_id, comment, comment_post_id, current_user_id, comment_id, show_all_id){
   var div=$("#" + box_id);
   if(current_user_id != comment.user.id){
     div.hide();
@@ -208,19 +213,22 @@ function handle_comment_close_box(box_id, comment, comment_post_id, current_user
    */
   var comment_close_json = {
                             comment_id : comment.id,
-                            post_id : comment_post_id
+                            comment_del_id : comment_id,
+                            post_id : comment_post_id,
+                            all_id: show_all_id
                            };
   var comment_close_id = 'COMMENT_CLOSE_BTN_' + comment.id;
   the_big_comment_delete_json[comment_close_id] = comment_close_json;
   /******************************/
 
 
-  var html = '<input type="button" value="Remove" id="' + comment_close_id + '" class="js_comment_delete_btn p-st-comment-close-btn"/>';
+  var html = '<input type="button" value="Remove" id="' + comment_close_id + '"' + 
+                    'class="js_comment_delete_btn p-st-comment-close-btn"/>';
   div.append(html);
 }
 
 
-function handle_stream_single_comment(comment, div_id, comment_post_id, current_user_id){
+function handle_stream_single_comment(comment, div_id, comment_post_id, current_user_id, show_all_id){
 
   var div = $("#" + div_id);
   var comment_box_id =  div_id + "_" + comment.id;
@@ -253,64 +261,56 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                  '</div>' +
               '</div>';
       div.append(html);
-      handle_comment_close_box(close_box_id, comment, comment_post_id, current_user_id);
+      handle_comment_close_box(close_box_id, 
+                               comment, 
+                               comment_post_id, 
+                               current_user_id, 
+                               comment_id, 
+                               show_all_id);
+
 }
 
 /*
  * Render stream comments
  */
-function setup_comment_handling(box_id, id, show_all_id){
+function setup_comment_handling(box_id, id, show_all_id, comment_count){
 
   var show_all_json = {post_id:id,
-                      div_id:box_id};
+                      div_id:box_id,
+                      all_id:show_all_id,
+                      count:comment_count};
 
 
   the_big_comment_show_all_json[show_all_id] = show_all_json;
 }
 
-function show_all_stream_comments(comments, post_id, current_user_id, click_id){
+function show_all_stream_comments(comments, post_id, current_user_id, show_all_id){
 
 
   var comments_count=0;
-  var comments_div_id = the_big_comment_show_all_json[click_id].div_id;
-
+  var comments_div_id = the_big_comment_show_all_json[show_all_id].div_id;
   var div = $("#" + comments_div_id);
   div.html("");
-
   var add_new_btn_id = 'COMMENT_ADD_NEW_BTN_' + post_id;
   var add_new_textarea_id = 'COMMENT_ADD_NEW_TEXT_' + post_id;
   var count_display_span_id = 'COUNT_DISPLAY_SPAN_' + post_id;
-
-  var comment_count_json = {
-                            count : comments.length
-                            //,
-                            //display_span : count_display_span_id
-                        };
 
 
   var add_new_comment_json = {
                                 post_id:post_id,
                                 text_id:add_new_textarea_id,
-                                div_id:comments_div_id
+                                div_id:comments_div_id,
+                                all_id:show_all_id
                              };
-  the_big_comment_count_json[post_id] = comment_count_json; 
   the_big_comment_add_json[add_new_btn_id] = add_new_comment_json;
 
 
   if( comments && comments.length){
     comments_count = comments.length;
   }
- 
-  /* context is set, go ahead */
-  
-  $.each(comments, function(i,data){
-    if( data && data.comment ){
-      handle_stream_single_comment(data.comment, comments_div_id, post_id, current_user_id); 
-    }
 
-  });
 
-    /* add new comments */
+   /* add new comments */
     var html = 
                '<div class="p-st-comment-new">' +
                   '<div class="stream_comment_text_area_box">' +
@@ -322,11 +322,29 @@ function show_all_stream_comments(comments, post_id, current_user_id, click_id){
                   '</div>' +
                '</div>'; 
     div.append(html);
+
+
+  /* context is set, go ahead */
+  
+  $.each(comments, function(i,data){
+    if( data && data.comment ){
+      handle_stream_single_comment(data.comment, comments_div_id, post_id, current_user_id, show_all_id); 
+    }
+
+  });
+
+   
     div.show();
 }
 
 
-
+function get_comment_head_label(count){
+  if (count > 1){
+    return '' + count + ' Comments >';
+  }else{
+    return '' + count + ' Comment >';
+  }
+}
 
 
 /************************************/
@@ -349,31 +367,39 @@ function setup_polling_for_enrich(){
 
 function get_enriched_streams(post_ids_arr){
    $.ajax({
-        url: '/home/get_enriched_activities.json',
-        type: 'GET',
-        data: {
-                 "post_ids" : post_ids_arr
-              },
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-          // if rails demands a redirect because of log in missing 
-           $.each(data, function(i,stream){
-            if( stream.post.enriched == true ){
-              handle_stream_text(the_big_stream_enriched_state[stream.post.id].text_box, 
-                                stream);
-              /* remove the element from the list of un enriched streams */
-              delete the_big_stream_enriched_state[stream.post.id];
-            }
-          });
+
+            url: '/home/get_enriched_activities.json',
+            type: 'GET',
+            data: {
+                    "post_ids" : post_ids_arr
+                  },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+              // if rails demands a redirect because of log in missing 
+            $.each(data, function(i,stream){
+              var box_id = the_big_stream_enriched_state[stream.post.id].text_box;
+              if( stream.post.enriched == true ){
+                handle_stream_text(box_id, 
+                                stream.post.text);
+                the_big_stream_post_text[stream.post.id] = {
+                                                          text_box : box_id,
+                                                          user : stream.post.user.id
+                                                         };
+                append_entity_delete(stream.post.id);
+                // remove the element from the list of un enriched streams 
+                delete the_big_stream_enriched_state[stream.post.id];
+              }
+            });
 
            setup_polling_for_enrich();
 
         },
-        error:function(XMLHttpRequest,textStatus, errorThrown) {
+        error:function(XMLHttpRequest,textStatus, errorThrown){ 
             alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
         }
     });
+   
 }
 
 
@@ -410,7 +436,6 @@ function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner
  */
 function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
 
-  
   clear_streams();
   append_stream(page_owner_id, session_owner_id);
 
@@ -455,12 +480,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var doc_box_id      = 'stream_doc_box_'      + post.id;
   var campaign_box_id = 'stream_campaign_box_' + post.id;
   var text_box_id     = 'stream_text_box_'     + post.id;
+  var location_box_id = 'stream_location_box_' + post.id;
   var close_box_id    = 'stream_close_box_'    + post.id; 
   var comment_box_id  = 'stream_comment_box_'  + post.id;
   var comment_show_all_id = comment_box_id + '_show_all';
   var date_js = Date.parse('t');
   /* Main stream div definition */
-  var html = '<div id="main_stream_li_'+ post.id +'" class="p-aw-post" >' +
+  var html = '<div id="main_stream_li_'+ post.id +'" class="p-aw-post" value="' + post.id + '">' +
 
                     /* Post originator user */
                     '<div class="p-awp-user">' +
@@ -507,19 +533,23 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '<div class="p-awp-content" id="' + text_box_id + '" >' +
                     '</div>' +
                   
+                    /* Post text*/
+                    '<div class="p-awp-location" id="' + location_box_id + '" >' +
+                    '</div>' +
                     /* Post attachment */
-                    '<div class="p-awp-view-attachments" id="' + doc_box_id + '" >' +
+                    '<div class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
                     '</div>' +
 
                     /* Post campaigns */
-                    '<div class="p-awp-view-comment" id="' + campaign_box_id + '" >' +
+                    '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
                     '</div>' +
        
 
                     '<div class="p-awp-view-comment">' +
-                      '<span class="view-comments js_show_all_comment_btn" id=' + comment_show_all_id + '>Comments ></span>' +
+                      '<span class="view-comments js_show_all_comment_btn" id=' + comment_show_all_id + '>' +
+                          get_comment_head_label(stream.comments.count) +
+                      '</span>' +
                     '</div>' +              
-                  
                     
                     /* Post comments */
                     '<div class="p-awp-comments-section" id="' + comment_box_id + '" >' +
@@ -532,14 +562,25 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     streams_box.append(html);
   }
   handle_stream_close(close_box_id, stream, current_user_id);
-  handle_stream_text(text_box_id, stream);
+  handle_stream_text(text_box_id, stream.post.text);
+  handle_stream_location(location_box_id, stream.location);
   handle_stream_docs(doc_box_id, stream);
-  setup_comment_handling(comment_box_id,  post.id, comment_show_all_id);
+  setup_comment_handling(comment_box_id,  post.id, comment_show_all_id, stream.comments.count);
   handle_stream_campaign(campaign_box_id, stream);
+  setup_readmore("div.p-awp-content p",100); /* read more for content with character slice at 100 */
+
+  
+
 
   if( stream.post.enriched == false ){
     the_big_stream_enriched_state[stream.post.id] = {text_box : text_box_id};
   }
+
+  the_big_stream_post_text[post.id] = {
+                                          text_box : text_box_id,
+                                          user : post.user.id
+                                        };
+  append_entity_delete(post.id);
 
   if(!get_others_filter_state()){
     $(".p-awp-user").hide();
@@ -574,7 +615,7 @@ function append_stream(owner_id, current_user_id){
            $.each(data, function(i,stream){
             if( stream ){
                 create_and_add_stream($("#streams_list"),stream , current_user_id);
-                $("#more_streams_cookie").val(stream.post.id);
+                $("#more_streams_cookie").val(stream.post.time);
             } 
 
            
@@ -610,15 +651,15 @@ function add_comment(add_json){
           handle_stream_single_comment( data.comment, 
                                         add_json.div_id, 
                                         add_json.post_id, 
-                                        current_user_id );
+                                        current_user_id,
+                                        add_json.all_id);
           $("#" + add_json.text_id).val("");
-
-          count_json=the_big_comment_count_json[add_json.post_id];
-          count_json.count = count_json.count + 1;
-
-          count_span_str = 'Total Comments :  ' + count_json.count;
-          //$("#" + count_json.display_span).html(count_span_str);
-          the_big_comment_count_json[add_json.post_id] = count_json;
+          var comment_count = the_big_comment_show_all_json[add_json.all_id].count + 1;
+          the_big_comment_show_all_json[add_json.all_id].count = comment_count;
+          var all_id = add_json.all_id;
+          alert(all_id);
+          alert(get_comment_head_label(comment_count));
+          $("#" + all_id).html(get_comment_head_label(comment_count));
          
          
         },
@@ -629,22 +670,18 @@ function add_comment(add_json){
 }
 
 //#INPUT => comment_id = 1234
-function delete_comment(post_id, comment_id){
-    var comment_li_id = 'comment_li_' + comment_id;
+function delete_comment(post_id, comment_id, del_id, all_id){
     $.ajax({
         url: '/home/delete_comment.json',
         type: 'POST',
         data: {"comment_id":comment_id},
         dataType: 'json',
         success: function (data) {
-          $("#" + comment_li_id).remove();
-          count_json=the_big_comment_count_json[post_id];
-          count_json.count = data.comment_count;
+          $("#" + del_id).empty().remove();
+          var comment_count = the_big_comment_show_all_json[all_id].count - 1;
+          the_big_comment_show_all_json[all_id].count = comment_count;
+          $("#" + all_id).html(get_comment_head_label(comment_count));
 
-
-          count_span_str = 'Total Comments :  ' + count_json.count;
-          //$("#" + count_json.display_span).html(count_span_str);
-          the_big_comment_count_json[post_id] = count_json;
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
@@ -652,8 +689,26 @@ function delete_comment(post_id, comment_id){
     });
 }
 
+
+function delete_entity_from_post(post_id, entity_id){
+    $.ajax({
+        url: '/home/delete_entities_from_post.json',
+        type: 'POST',
+        data: {post_id:post_id, entity_id:entity_id},
+        dataType: 'json',
+        success: function (data) {
+           var box_id = the_big_stream_post_text[data.post.id].text_box;
+           handle_stream_text( box_id, data.post.text);
+           append_entity_delete(data.post.id); 
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting entity from post. \n ActWitty is trying to solve.');
+        }
+    });
+}
+
 //#INPUT => activity_id => 123
-function show_all_comments(post_id, this_id){
+function show_all_comments(post_id, all_id){
     var current_user_id=$('#session_owner_id').attr("value");
     $.ajax({
         url: '/home/get_all_comments.json',
@@ -662,7 +717,7 @@ function show_all_comments(post_id, this_id){
         dataType: 'json',
         success: function (data) {
 
-          show_all_stream_comments(data, post_id, current_user_id, this_id);
+          show_all_stream_comments(data, post_id, current_user_id, all_id);
           $(this).parent().next().slideToggle();
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
@@ -703,15 +758,16 @@ function clear_streams(){
   /* reset all big jsons */
   the_big_comment_add_json={ };
   the_big_comment_show_all_json={ };
-  the_big_comment_count_json={ };
   the_big_comment_delete_json={ };
   the_big_stream_delete_json={ };
   the_big_stream_campaign_manager_json={};
-  the_big_stream_campaign_user_action={};
   the_big_stream_campaign_show_all={};
   the_big_stream_enriched_state={};
+  the_big_stream_post_text={};
+  the_big_stream_entity_deletes={};
   /***********************/
 }
+
 
 
 
@@ -720,7 +776,6 @@ function clear_streams(){
  * Add the live bindings
  */
 $(document).ready(function(){
-  
   /*
    * Delete stream
    */
@@ -748,7 +803,6 @@ $(document).ready(function(){
     //the_big_comment_count_json
     var add_json = the_big_comment_add_json[$(this).attr("id")];
     if(add_json){
-                  
       if( !$("#" + add_json.text_id).val() || jQuery.trim($("#" + add_json.text_id).val()) == "" ){
         alert("Nothing written on comment");
         return;
@@ -765,7 +819,11 @@ $(document).ready(function(){
     //the_big_comment_count_json
     var del_json = the_big_comment_delete_json[$(this).attr("id")];
     if(del_json){
-      delete_comment(del_json.post_id, del_json.comment_id);
+      delete_comment(del_json.post_id, 
+                    del_json.comment_id, 
+                    del_json.comment_del_id,
+                    del_json.all_id);
+
     }
     return false;
   });
@@ -789,7 +847,6 @@ $(document).ready(function(){
   $('.js_show_all_comment_btn').live('click', function(){
     var all_json = the_big_comment_show_all_json[$(this).attr("id")];
     if(all_json){
-      //alert(JSON.stringify(all_json));
       show_all_comments(all_json.post_id, $(this).attr("id"));
     }
     return false;
@@ -799,7 +856,6 @@ $(document).ready(function(){
    * User action on campaign
    */
   $('.js_campaign_user_action').live('click', function(){
-    alert("USER ACTION ON CAMPAIGN ");
     var user_json = the_big_stream_campaign_user_action[$(this).attr("id")];
     if(user_json){
       var manager_json = the_big_stream_campaign_manager_json[user_json.manager_id];
@@ -827,6 +883,11 @@ $(document).ready(function(){
   });
   /********************************/
 
+  $('.js_entity_delete').live('click' , function(){
+
+    delete_entity_from_post(the_big_stream_entity_deletes[$(this).attr("id")]["post_id"], 
+                            the_big_stream_entity_deletes[$(this).attr("id")]["entity"]);
+  });
 
 
 });

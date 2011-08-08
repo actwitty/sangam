@@ -58,7 +58,7 @@ require 'freebase_wrapper'
 		result["name"]=item["anchor"]
     unless result["/common/topic/image"].empty?
        result["/common/topic/image"]=result["/common/topic/image"].take(1)
-       result["/common/topic/image"][0]["id"]=Freebase.get_image_url(result["/common/topic/image"][0]["id"])
+       result["/common/topic/image"][0]["id"]=Freebase.get_thumb_image_url(result["/common/topic/image"][0]["id"])
     end
 		return result
 	end

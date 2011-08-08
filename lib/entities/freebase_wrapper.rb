@@ -6,7 +6,9 @@ require 'json'
 class Freebase
 MQL_URL= 'http://api.freebase.com/api/service/mqlread'
 SEARCH_URL = 'http://api.freebase.com/api/service/search'
-DATA_URL= 'http://api.freebase.com/api/trans/raw'
+IMAGE_RAW_URL= 'http://api.freebase.com/api/trans/raw'
+IMAGE_THUMB_URL= 'http://api.freebase.com/api/trans/image_thumb'
+
 
     class << self
     
@@ -33,8 +35,12 @@ DATA_URL= 'http://api.freebase.com/api/trans/raw'
         get_response(SEARCH_URL,parameters)
       end
 
-      def get_image_url(id)
-        url=DATA_URL+id
+      def get_raw_image_url(id)
+        url=IMAGE_RAW_URL+id
+      end
+      
+      def get_thumb_image_url(id)
+        url=IMAGE_THUMB_URL+id
       end
 
 
