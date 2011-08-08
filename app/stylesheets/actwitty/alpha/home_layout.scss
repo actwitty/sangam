@@ -1467,6 +1467,47 @@ ul.p-fltr-tag-list li
   line-height:18px;
 }
 
+.p-awp-location{
+  width:100%;
+  float:right;
+  height:auto;
+  border:0px solid red;
+}
+.p-awp-location img{
+  float:left;
+  height:40px;
+  width:40px;
+
+}
+
+.p-awp-location-name
+{
+  float:left;
+  margin:2px 2px;
+  background:#274521;
+  -moz-border-radius: 10px ; 
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px ;
+  -webkit-border-radius: 10px ;
+  text-decoration:none;
+  text-align:center;
+}
+.p-fltr-tag-list-location span
+{
+
+  color:#a4a88d;
+  background:#274521;
+  padding:2px;
+  font-weight:normal;
+  text-decoration:none;
+  font-size:10px;
+  padding:2px;
+  width:100%;
+  
+}
+
+
+
 .p-awp-view-attachment
 {
   width:100%;

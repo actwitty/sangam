@@ -98,12 +98,9 @@ class HomeController < ApplicationController
    Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
-      if (current_user.id == Integer(params[:user_id]))
-        response_json=current_user.get_user_activities(params[:sort_order])
-      else
-        other_user = @user=User.find_by_id(params[:id])
-         response_json=other_user.get_user_activities(params[:sort_order])
-      end
+      params[:user_id] == Integer(params[:user_id]);
+      response_json=current_user.get_user_activities( params[:user_id], params[:sort_order])
+
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
       if request.xhr?
         render :json => response_json, :status => 200
@@ -144,12 +141,9 @@ class HomeController < ApplicationController
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][USER ENTITIES] calling model api #{params}")
 
-       if (current_user.id == Integer(params[:user_id]))
-        response_json=current_user.get_user_entities(params[:sort_order])
-      else
-        other_user = @user=User.find_by_id(params[:id])
-         response_json=other_user.get_user_entities(params[:sort_order])
-      end
+      params[:user_id] == Integer(params[:user_id]);
+      response_json=current_user.get_user_entities( params[:user_id], params[:sort_order])
+
       Rails.logger.info("[CNTRL][HOME][USER ENTITIES] model returned #{response_json}")
       if request.xhr?
         render :json => response_json, :status => 200
@@ -185,12 +179,7 @@ class HomeController < ApplicationController
    Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] Get related locations #{params}")
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] calling model api #{params}")
-       if (current_user.id == Integer(params[:user_id]))
-        response_json=current_user.get_user_locations(params[:sort_order])
-      else
-        other_user = @user=User.find_by_id(params[:id])
-         response_json=other_user.get_user_locations(params[:sort_order])
-      end
+      response_json=current_user.get_user_locations( params[:user_id], params[:sort_order])
       Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] model returned #{response_json}")
       if request.xhr?
         render :json => response_json, :status => 200
@@ -502,6 +491,20 @@ class HomeController < ApplicationController
         render :json => response_json, :status => 200
       end
 
+    end
+  end
+
+  ################################################
+  def activity
+    @user=current_user
+    @profile_page = 1
+
+
+    Rails.logger.info("[CNTRL] [HOME] [ACTIVITY] Activity show request with #{params}")
+     if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [ACTIVITY] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [ACTIVITY] User not signed in")
     end
   end
 end

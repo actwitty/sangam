@@ -1,0 +1,187 @@
+/* ################################### CSS for Comment Streams ################################*/
+
+.tl-post-comments
+{
+  display:block;
+  width:480px;
+  /*max-height:180px;*/
+  height:auto;
+  /*overflow-y:scroll;*/
+  overflow-x:hidden;
+  /*border:1px solid green;*/
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+}
+
+.add-comment
+{
+  border:1px solid #ddd;
+  height:30px;
+  width:100%;
+  margin:0;
+  
+}
+
+.add-comment-text
+{
+  border:1px solid #ddd;
+  height:30px;
+  width:100%;
+  margin:0;
+}
+
+.submit-comment
+{
+  height:60px;
+  width:100%;
+  display:none;
+}
+
+
+.btn-comments
+{
+  background-color:#00ced1;
+  border:none;
+  height:18px;
+   -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+   font-size:12px;
+	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  font-weight:normal;
+}
+
+
+
+.p-awp-view-campaign
+{
+  height:17px;
+  width:100%;
+}
+
+.p-awp-view-campaign span
+{
+  float:right;
+  font-size:13px;
+  color:#353535;
+  text-decoration:underline;
+}
+.p-awp-view-comment span:hover
+{
+  cursor:pointer;
+}
+
+.p-awp-comments-section
+{
+  width:100%;
+  height:auto;
+  float:right;
+  border:0px solid red;
+  display:none;
+}
+
+.p-awp-comment
+{
+  height:auto;
+  border:0px solid green;
+  margin-top:20px;
+  margin-bottom:5px;
+}
+
+
+.p-st-comment-close
+{
+  float:right;
+  width:100%;
+  height:12px;
+}
+
+.p-st-comment-close-btn
+{
+  float:right;
+  font-size:8px;
+}
+
+
+.author
+{
+  border:0px solid green;
+  width:100%;
+  height:auto;
+}
+.p-st-comment-actor-image
+{
+  width:30px;
+  height:30px;
+  float:left;
+  margin:2px 5px 2px 5px;
+}
+
+.p-st-comment-actor-desc
+{
+  width:500px;
+  height:35px;
+  border:0px solid red;
+  float:left;
+  display:block;
+}
+.wrote
+{
+  font-size:8px;
+  color:#454545;
+}
+.p-st-comment-submitdate
+{
+  float:right;
+  font-size:9px;
+  color:#454545;
+}
+
+span.p-st-comment-actor a
+{
+  border:0px solid red;
+  margin-top:-10px;
+  color:#c19135;
+  font-weight:bold;
+}
+
+.p-st-comment-content
+{
+  width:480px;
+  height:auto;
+  border:0px solid red;
+  margin-left:50px;
+  text-align:left;
+  color:#333;
+}
+
+.p-comment-text
+{
+}
+
+.p-st-comment-new
+{
+  width:100%;
+  float:right;
+  display:block;
+}
+
+.p-st-comment-text-box
+{
+  width:100%;
+  padding:1px;
+  margin-left:0px;
+  margin-top:5px;
+  margin-bottom:5px;
+  height:30px;
+  border:1px solid #000;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+.p-st-comment-add-btn
+{
+ 
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+

@@ -56,7 +56,7 @@ function create_and_add_friends_box(box_id, summary){
   if( summary.friends && summary.friends.length ){
     $.each(summary.friends, function(i, friend){
 
-      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + friend.id;
+      var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id + '_' + friend.id;
       /* create a JSON of filter */
       var filter_value = {
                           user:friend.id ,
@@ -91,7 +91,7 @@ function create_and_add_entities_box(box_id, summary){
   if( summary.entities && summary.entities.length ){
     $.each(summary.entities, function(i, entity){
       /* This filter id uniquely identifies filter */
-      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + entity.id;
+      var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id + '_' + entity.id;
       /* create a JSON of filter */
       var filter_value = {
                             user:summary.user.id ,
@@ -129,7 +129,7 @@ function create_and_add_locations_box(box_id, summary){
   if( summary.locations && summary.locations.length ){
   
     $.each(summary.locations, function(i, place){
-      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + place.id;
+      var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id + '_' + place.id;
       /* create a JSON of filter */
       var filter_value = {
                             user:summary.user.id ,
