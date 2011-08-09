@@ -224,6 +224,7 @@ class User < ActiveRecord::Base
   #    {} if invalid user
   def get_user_activities( user_id, sort_order)
 
+     Rails.logger.debug("[MODEL] [User] [get_user_activities] entering ")
 
      h = Activity.where(:author_id => user_id, :status => AppConstants.status_public).group(:activity_word_id, :activity_name).
          order("MAX(updated_at)  DESC").count
@@ -237,8 +238,9 @@ class User < ActiveRecord::Base
      if !sort_order.blank? && sort_order == 1
         word_hash = word_hash.sort {|x, y| x[:name] <=> y[:name] }
      end
-
+     Rails.logger.debug("[MODEL] [User] [get_user_activities] leaving ")
      word_hash
+
   end
 
   #INPUT user_id => 123
@@ -247,6 +249,8 @@ class User < ActiveRecord::Base
   #                            OR
   #                 {} if invalid user
   def get_user_entities(user_id, sort_order)
+
+    Rails.logger.debug("[MODEL] [User] [get_user_entities] entering ")
 
     entity_hash = []
 
@@ -261,7 +265,10 @@ class User < ActiveRecord::Base
     if !sort_order.blank?  and sort_order == 1
       entity_hash = entity_hash.sort {|x, y| x[:name] <=> y[:name] }
     end
+    Rails.logger.debug("[MODEL] [User] [get_user_entities] leaving ")
     entity_hash
+
+
   end
 
 
@@ -279,6 +286,8 @@ class User < ActiveRecord::Base
 
   def get_user_locations( user_id, sort_order)
 
+    Rails.logger.debug("[MODEL] [User] [get_user_locations] entering ")
+
     lh = []
     user = User.where(:id => user_id).first
     if user.nil?
@@ -294,8 +303,9 @@ class User < ActiveRecord::Base
     if !sort_order.blank?  and sort_order == 1
       lh = lh.sort {|x, y| x[:name] <=> y[:name] }
     end
-
+    Rails.logger.debug("[MODEL] [User] [get_user_locations] leaving ")
     lh
+
     end
 
   #always current_user's id (logged in)
@@ -303,6 +313,7 @@ class User < ActiveRecord::Base
   #returns array of {:id => 123, :name => "samarth" , :image => "images/234"}
   def get_related_friends(filter = {})
 
+    Rails.logger.debug("[MODEL] [User] [get_related_friends] entering ")
     friend_objs = {}
 
     users = get_followings
@@ -320,13 +331,17 @@ class User < ActiveRecord::Base
       friends << {:id => friend_objs[k].id, :name => friend_objs[k].full_name,
                    :image => friend_objs[k].photo_small_url}
     end
+    Rails.logger.debug("[MODEL] [User] [get_related_friends] leaving ")
     friends
+
   end
 
   #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
   def get_related_entities(user_id, filter = {})
+
+    Rails.logger.debug("[MODEL] [User] [get_related_entities] entering ")
     h = {}
     h = process_filter(filter)
     h[:user_id] = user_id
@@ -339,8 +354,9 @@ class User < ActiveRecord::Base
     e.each do |k,v|
       entity_hash << {:id => k[0], :name => k[1], :image  =>  k[2]}
     end
-
+    Rails.logger.debug("[MODEL] [User] [get_related_entities] leaving ")
     entity_hash
+
   end
 
   #user_id => 123
@@ -351,6 +367,8 @@ class User < ActiveRecord::Base
   #                                                      OR
   #                 :id => 1234, :type => 2, :name => "John's home"
   def get_related_locations(user_id, filter = {})
+
+    Rails.logger.debug("[MODEL] [User] [get_related_locations] entering ")
     h = {}
     h = process_filter(filter)
     h[:user_id] = user_id
@@ -364,13 +382,15 @@ class User < ActiveRecord::Base
       l[:id] = attr.id
       lh <<  l
     end
-
+    Rails.logger.debug("[MODEL] [User] [get_related_locations] leaving ")
     lh
+
   end
 
 
   #INPUT => AN array of activity_ids for which enriched is false
   def get_enriched_activities(activity_ids)
+    Rails.logger.debug("[MODEL] [User] [get_enriched_activities] entering ")
     en = []
 
     Activity.includes(:author, :base_location).where(:id => activity_ids, :enriched => true).all.each do |attr|
@@ -379,17 +399,22 @@ class User < ActiveRecord::Base
     end
 
     puts en
+    Rails.logger.debug("[MODEL] [User] [get_enriched_activities] leaving ")
     en
+
   end
 
 
   #OUTPUT
   # See get_stream output
   def get_draft_activity
+    Rails.logger.debug("[MODEL] [User] [get_draft_activity] entering ")
     activity = Activity.where(:status => AppConstants.status_saved, :author_id => self.id).group(:id).order("MAX(updated_at) DESC").count
     array = get_all_activity(activity.keys)
     puts array.to_json
+    Rails.logger.debug("[MODEL] [User] [get_draft_activity] leaving ")
     array
+
   end
 
 
@@ -397,12 +422,17 @@ class User < ActiveRecord::Base
   #INPUT => activity_id => 123, entity_id => 234
   #OUTPUT => Activity Blob
   def remove_entity_from_activity(activity_id, entity_id)
+    Rails.logger.debug("[MODEL] [User] [remove_entity_from_activity] entering ")
 
     activity = Activity.where(:id => activity_id).first
 
     if !activity.activity_text.blank?
-      activity.activity_text = unlink_an_entity(activity.activity_text,  entity_id)
-      activity.update_attributes(:activity_text => activity.activity_text)
+       text = unlink_an_entity(activity.activity_text,  entity_id)
+       Activity.update_all({:activity_text=> text},{:id => activity_id})
+    else
+      Rails.logger.debug("[MODEL] [User] [remove_entity_from_activity] activity_text blank => LEAVING")
+      activity = format_activity(activity)
+      return activity
     end
 
     #Destroy Hub entries for that
@@ -417,14 +447,18 @@ class User < ActiveRecord::Base
       s.entity_array = []
       a = Hub.where(:summary_id => activity.summary_id, :entity_id.not_eq => nil).group(:entity_id).
               limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+
       s.entity_array = a.keys if !a.blank?
 
       s.update_attributes(:entity_array => s.entity_array)
+      #Summary.update_all({:entity_array => [s.entity_array]}, {:id => activity.summary_id})
     end
+    s = Summary.where(:id => activity.summary_id).first
 
     activity = format_activity(activity)
-    activity
 
+    Rails.logger.debug("[MODEL] [User] [remove_entity_from_activity] leaving")
+    activity
   rescue => e
     Rails.logger.error("[MODEL] [User] [remove_entity_from_activity] [rescue] => failed => #{e.message}")
     {}
@@ -484,42 +518,72 @@ class User < ActiveRecord::Base
 
   def create_activity(params={})
 
+    Rails.logger.debug("[MODEL] [User] [create_activity] entering ")
+
     params[:activity]= params[:word]
     params[:author_id] = self.id
     params[:meta_activity] = false
 
     obj = Activity.create_activity(params)
     if obj.blank?
+      Rails.logger.error("[MODEL] [User] [create_activity] [ERROR] returning empty json ")
       return {}
     end
     a = format_activity(obj)
     puts a
-    a
 
+    Rails.logger.debug("[MODEL] [User] [create_activity] leaving ")
+    a
   end
 
   #INPUT
   #activity_id => 123
   def remove_activity(activity_id)
+
+    Rails.logger.debug("[MODEL] [User] [remove_entity] entering ")
+
     a = Activity.where(:id => activity_id, :author_id => self.id).first
-    return {} if a.blank?
+    if a.blank?
+      Rails.logger.debug("[MODEL] [User] [remove_activity] [ERROR] returning empty json ")
+      return {}
+    end
     a.destroy
+
+
+    Rails.logger.debug("[MODEL] [User] [remove_entity] leaving ")
     a
   end
-
+  #INPUT { :activity_id => 123,
+  #        :status => 1 or 2
+  #      }
+  #OUTOUT => Same as create_activity
+  def update_activity_status(params)
+    activity= Activity.where(:author_id => self.id, :id => params[:activity_id]).first
+    f = activity.update_attributes(:status => params[:status])
+    if f == true
+      activity.status = params[:status]
+    end
+    activity = format_activity(activity)
+    activity
+  end
   #INPUT { :activity_id => 123,
   #        REST ALL SAME PARAMETER AS create_activity
   #      }
-  #OUTOUT => Same as create_activtiy
+  #OUTOUT => Same as create_activity
 
   def update_activity(params)
+
+    Rails.logger.debug("[MODEL] [User] [update_activity] entering ")
     a = remove_activity(params[:activity_id])
     #false activity
     if a.blank?
+      Rails.logger.debug("[MODEL] [User] [update_activity] [ERROR] returning empty json ")
       return {}
     end
     params.delete(:activity_id)
     a = create_activity(params)
+
+    Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
     a
   end
 
@@ -527,6 +591,7 @@ class User < ActiveRecord::Base
   #OUTPUT =   See get_stream output
   def get_all_activity(activity_ids)
 
+    Rails.logger.debug("[MODEL] [User] [get_all_activity] entering ")
     array = []
     index = 0
     hash = {}
@@ -585,6 +650,8 @@ class User < ActiveRecord::Base
        array[hash[k]][:campaigns] << entry
       end
     end
+
+    Rails.logger.debug("[MODEL] [User] [get_all_activity] leaving")
     array
   end
 
@@ -645,24 +712,25 @@ class User < ActiveRecord::Base
   #]
   def get_stream(params ={})
 
+    Rails.logger.debug("[MODEL] [USER] [get_stream] entering")
     h = process_filter(params[:filter])
 
     if params[:user_id] == self.id
       if params[:friend] == true
 
-        Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting friends stream")
+        Rails.logger.debug("[MODEL] [USER] [get_stream] Requesting friends stream")
         user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
         user.blank? ? user = [self.id] : user << self.id
 
       else
 
-        Rails.logger.debug("[MODEL] [USER] [GET STREAM] Requesting self stream #{self.inspect}")
+        Rails.logger.debug("[MODEL] [USER] [get_stream] Requesting self stream #{self.inspect}")
         user = self.id
 
       end
     else
 
-        Rails.logger.debug("[MODEL] [USER] [GET STREAM] Foreign user trying to access #{self.inspect}")
+        Rails.logger.debug("[MODEL] [USER] [get_stream] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
         params[:friend] = false
 
@@ -679,6 +747,7 @@ class User < ActiveRecord::Base
       # need to check this anyway  - For time being
       # we have to delete hub
       h.delete(:status)
+      Rails.logger.debug("[MODEL] [USER] [get_stream] => Hub/Entity based filtering => #{h.inspect}")
       activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
 
     else
@@ -689,16 +758,20 @@ class User < ActiveRecord::Base
 
       h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
       h.delete(:location_id)
+      Rails.logger.debug("[MODEL] [USER] [get_stream] => Activity based filtering => #{h.inspect}")
 
       #show only public post.. Need to take care private and shared post
       activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
+
 
     end
 
     puts activity.keys
     array = get_all_activity(activity.keys)
     puts array.to_json
+    Rails.logger.debug("[MODEL] [USER] [get_stream] leaving")
     array
+
   end
 
   #INPUT
@@ -729,8 +802,12 @@ class User < ActiveRecord::Base
   # }
   #]
   def get_summary(params)
+
+    Rails.logger.debug("[MODEL] [USER] [get_summary] entering")
+
     h = {}
     user = nil
+
     if params[:user_id] == self.id
       if params[:friend] == true
         Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting friends summary")
@@ -763,7 +840,7 @@ class User < ActiveRecord::Base
         all.each do |attr|
 
         summaries[index] ={:id => attr.id,
-                             :word => {:word_id => attr.activity_word_id, :name => attr.activity_name},
+                             :word => {:id => attr.activity_word_id, :name => attr.activity_name},
                              :time => attr.updated_at,
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
                              :count => attr.activities.size,
@@ -825,8 +902,10 @@ class User < ActiveRecord::Base
     #friends will only be fetched current use == visited user
     if params[:friend] == true
       #user's friends are already populated in user ARRAY
+      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - OTHERS MODE" )
       user.delete(self.id)
     else
+      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - ME MODE" )
       #other wise get the user's followings and populate the related followings
       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
     end
@@ -852,8 +931,11 @@ class User < ActiveRecord::Base
       end
 
     end
+
+    Rails.logger.debug("[MODEL] [USER] [get_summary] leaving")
     #FETCHING RELATED FRIEND -- DONE
     summaries
+
   end
 
 
@@ -873,10 +955,14 @@ class User < ActiveRecord::Base
   #                                    OR
   #          {:name => "support", :count => 23, :user => false}
   def create_campaign(params = {})
+
+    Rails.logger.debug("[MODEL] [USER] [create_campaign] entering")
+
     params[:author_id] = self.id
 
     obj = Campaign.create_campaign(params)
     if obj.blank?
+      Rails.logger.debug("[MODEL] [USER] [create_campaign] leaving => returning blank json as campaign object is blank")
       return {}
     end
     params.except!(:value,:author_id, :father_id )
@@ -892,18 +978,32 @@ class User < ActiveRecord::Base
     ch[:user] = true
 
     puts ch
+    Rails.logger.debug("[MODEL] [USER] [create_campaign] leaving")
+
     ch
   end
 
   #COMMENT => To Remove a campaign. Only for the current_user. Output is remaining count
-  #INPUT => campaign_id => 1234
+  #INPUT => {
+  #         :activity_id => 1234 # OR :entity_id = 123 OR :location_id => 123 OR :comment_id =>  234 OR :document_id => 2345
+  #         :user_id => 234,
+  #         :name => "like"
+  #         }
   #OUTPUT => { :name => "like", :count => 23, :user => false}  #user will always be false as user can only delete his campaign
                                                                #which is unique in scope of activity and campaign name
-  def remove_campaign(campaign_id)
+  def remove_campaign(params)
 
-    campaign = Campaign.where(:id => campaign_id, :author_id => self.id).first
+    Rails.logger.debug("[MODEL] [USER] [remove_campaign] entering")
 
-    return {} if campaign.nil?
+    params[:author_id] = params[:user_id]
+    params.delete(:user_id)
+
+    campaign = Campaign.where(params).first
+
+    if campaign.nil?
+      Rails.logger.debug("[MODEL] [USER] [remove_campaign] leaving => returning blank json")
+      return {}
+    end
 
     hash = campaign.attributes.except("value", "author_id", "father_id", "id", "created_at", "updated_at")
 
@@ -920,9 +1020,9 @@ class User < ActiveRecord::Base
     ch[:name] = hash["name"]
 
     puts ch
+    Rails.logger.debug("[MODEL] [USER] [remove_campaign] leaving")
 
     ch
-
   end
 
   #COMMENT => All types of campaigns of an activity
@@ -933,13 +1033,18 @@ class User < ActiveRecord::Base
   #                OR
   # :location_id => 123
   #                 OR
-  # :comment_id =>  234}
+  # :comment_id =>  234
+  #                  OR
+  # :document_id => 2345}
   #OUTPUT => [
   #           { :name => "like", :count => 23, :user => true, :user_id => 355},  #user_id is only present if :user => true
   #           {:name => "support", :count => 23, :user => false}
   #          ]
 
   def get_all_campaign(params = {})
+
+    Rails.logger.debug("[MODEL] [USER] [get_all_campaign] entering")
+
     hash = {}
     campaign = []
     all_campaigns = Campaign.where(params).group(:name).count
@@ -955,6 +1060,8 @@ class User < ActiveRecord::Base
     end
 
     puts campaign
+    Rails.logger.debug("[MODEL] [USER] [get_all_campaign] leaving")
+
     campaign
   end
 
@@ -973,10 +1080,12 @@ class User < ActiveRecord::Base
   #           { :id => 129, :full_name => "BBc Saxena", :photo => "/images/actwitty/default_user.gif" }
   #         ]
   def get_users_of_campaign(params)
+    Rails.logger.debug("[MODEL] [USER] [get_users_of_campaign] entering")
     user = []
     Campaign.includes(:author).where(params ).order("updated_at DESC").all.each do |attr|
       user << {:id => attr.author.id, :full_name => attr.author.full_name, :photo => attr.author.photo_small_url }
     end
+    Rails.logger.debug("[MODEL] [USER] [get_users_of_campaign] leaving")
     user
   end
 
@@ -986,15 +1095,20 @@ class User < ActiveRecord::Base
   #OUTPUT =>  {:comment=>{:id=>173, :user=>{:id=>747, :full_name=>"lemony2 lime2", :photo=>"images/id_2"},
   #                       :text=>"hello ", :time=>Thu, 14 Jul 2011 14:13:29 UTC +00:00}}
   def create_comment(params = {})
+
+    Rails.logger.debug("[MODEL] [USER] [create_comment] entering")
     params[:author_id] = self.id
 
     obj = Comment.create_comment(params)
     if obj.blank?
+      Rails.logger.debug("[MODEL] [USER] [create_comment] returning blank JSON")
       return {}
     end
     a = format_comment(obj)
     puts a
+    Rails.logger.debug("[MODEL] [USER] [create_comment] leaving")
     a
+
   end
 
   #COMMENT => to remove comment of current user
@@ -1002,11 +1116,15 @@ class User < ActiveRecord::Base
   #OUTPUT =>  {:activity_id => 2345, :comment_count => 23}
   def remove_comment(comment_id)
 
+    Rails.logger.debug("[MODEL] [USER] [remove_comment] entering")
     comment = Comment.where(:id => comment_id, :author_id => self.id).first
 
     activity_id = comment.activity_id
 
-    return {} if comment.nil?
+    if comment.nil?
+      Rails.logger.debug("[MODEL] [USER] [load_all_comment]returning blank JSON")
+      return {}
+    end
 
     comment.destroy
 
@@ -1017,19 +1135,24 @@ class User < ActiveRecord::Base
     ch[:activity_id] = activity_id
     ch[:comment_count] = h
     puts ch
-
+    Rails.logger.debug("[MODEL] [USER] [remove_comment] leaving")
     ch
   end
   #INPUT => activity_id => 123
   #OUTPUT =>  [{:comment=>{:id=>173, :user=>{:id=>747, :full_name=>"lemony2 lime2", :photo=>"images/id_2"},
   #                       :text=>"hello ", :time=>Thu, 14 Jul 2011 14:13:29 UTC +00:00}}]
   def load_all_comment(activity_id)
+
+    Rails.logger.debug("[MODEL] [USER] [load_all_comment] entering")
+
     array = []
     Comment.includes(:author).where(:activity_id => activity_id).each do |attr|
       a = format_comment(attr)
       array << a
     end
+
     puts array
+    Rails.logger.debug("[MODEL] [USER] [load_all_comment] leaving")
     array
   end
 
@@ -1037,13 +1160,20 @@ class User < ActiveRecord::Base
   #INPUT => document_id
   #OUTPUT => deleted doc or blank {}
   def remove_document(document_id)
+
+    Rails.logger.debug("[MODEL] [USER] [load_all_comment] entering")
+
     d = Document.where(:owner_id => self.id, :id => document_id).first
+
     if d.blank?
+      Rails.logger.debug("[MODEL] [USER] [remove_document] returning blank JSON")
       return {}
     end
 
     d.destroy
     Document.reset_summary(d.summary_id)
+
+    Rails.logger.debug("[MODEL] [USER] [load_all_comment] leaving")
     d
   end
 
@@ -1055,24 +1185,25 @@ class User < ActiveRecord::Base
 
   def get_document_summary(params)
 
+    Rails.logger.debug("[MODEL] [USER] [get_document_summary] entering")
     h = {}
     user = nil
 
     if params[:user_id] == self.id
       if params[:friend] == true
 
-        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENT_SUMMARY] Requesting friends stream")
+        Rails.logger.debug("[MODEL] [USER] [get_document_summary] Requesting friends stream")
         user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
         user.blank? ? user = [self.id] : user << self.id
       else
 
-        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENT_SUMMARY] Requesting self stream #{self.inspect}")
+        Rails.logger.debug("[MODEL] [USER] [get_document_summary] Requesting self stream #{self.inspect}")
         user = self.id
 
       end
     else
 
-        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENT_SUMMARY] Foreign user trying to access #{self.inspect}")
+        Rails.logger.debug("[MODEL] [USER] [get_document_summary] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
     end
 
@@ -1084,7 +1215,7 @@ class User < ActiveRecord::Base
     Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
       if !attr.document_array.blank?
         doc_hash[attr.document_array[0]]= {
-            :word => {:word_id => attr.activity_word_id, :name => attr.activity_name},
+            :word => {:id => attr.activity_word_id, :name => attr.activity_name},
             :time => attr.updated_at,
             :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
             :count => attr.documents_count,
@@ -1097,7 +1228,7 @@ class User < ActiveRecord::Base
       doc_hash[attr.id][:document] = h[:document]
     end
     #TODO need to get saved docs too
-
+    Rails.logger.debug("[MODEL] [USER] [get_document_summary] leaving")
     doc_hash.values
   end
 
@@ -1111,6 +1242,8 @@ class User < ActiveRecord::Base
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)            .yml
 
   def get_document_stream(params)
+
+    Rails.logger.debug("[MODEL] [USER] [get_document_stream] entering")
     h = {}
     user = nil
 
@@ -1119,20 +1252,20 @@ class User < ActiveRecord::Base
     if params[:user_id] == self.id
       if params[:friend] == true
 
-        Rails.logger.debug("[MODEL] [USER] [GET_USER_DOCUMENTS] Requesting friends stream")
+        Rails.logger.debug("[MODEL] [USER] [get_document_stream] Requesting friends stream")
         user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
         user.blank? ? user = [self.id] : user << self.id
 
 
       else
 
-        Rails.logger.debug("[MODEL] [USER] [GET_DOCUMENTS] Requesting self stream #{self.inspect}")
+        Rails.logger.debug("[MODEL] [USER] [get_document_stream] Requesting self stream #{self.inspect}")
         user = self.id
 
       end
     else
 
-        Rails.logger.debug("[MODEL] [USER] [GET_USER_DOCUMENTS] Foreign user trying to access #{self.inspect}")
+        Rails.logger.debug("[MODEL] [USER] [get_document_stream] Foreign user trying to access #{self.inspect}")
         user = params[:user_id]
         params[:friend] = false
 
@@ -1150,12 +1283,13 @@ class User < ActiveRecord::Base
         limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
       h = format_document(attr)
       doc_array <<  {
-                      :word => {:word_id => attr.activity_word_id, :name => attr.activity_word.word_name},
+                      :word => {:id => attr.activity_word_id, :name => attr.activity_word.word_name},
                       :time => attr.updated_at,
                       :user => {:id => attr.owner_id, :full_name => attr.owner.full_name, :photo => attr.owner.photo_small_url},
                       :document => h[:document]
                     }
     end
+    Rails.logger.debug("[MODEL] [USER] [get_document_stream] leaving")
     doc_array
   end
   # private methods

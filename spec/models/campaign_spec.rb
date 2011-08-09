@@ -64,6 +64,8 @@ describe Campaign do
    @a1 = @u1.create_activity( :word => "eating123456789" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "123456789011 marathalli"}},
                               :enrich => true)
+   puts @a1
+
    @a1 = @a1[:post]
    @a= Activity.where(:id => @a1[:id]).first
    @com1 = @u2.create_comment( :activity_id => @a1[:id], :text => "helllllloooo ")
@@ -156,7 +158,8 @@ describe Campaign do
                                :activity_id =>  @a1[:id] )
       @c4.should be_blank
       puts @c1
-      a = @u1.remove_campaign(@c1.id)
+#      a = @u1.remove_campaign(@c1.id)
+      a = @u1.remove_campaign({:activity_id => @a1[:id], :user_id => @u1.id, :name => "like"})
       puts a
       @c4 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
                                :activity_id => @a1[:id] )
