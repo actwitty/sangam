@@ -6,54 +6,55 @@
   #p-ip-sect
     #input-box
       .input-whats-up
-        %input.add-page-input{:name => "add-page-input", :placeholder => "Whats Up....", :type => "text", :value => "Whats Up"}/
+        %input.add-page-input.trans{:name => "add-page-input", :placeholder => "Whats Up....", :type => "text", :value => "Whats Up"}/
       .home_page_inputs
-        / #### Home Page input starts  ####
         .close.page_input_close
           %span.p-i-c
         .activity_location
           .activities
-            %img.symbol_icon{:src => "/images/alpha/hash1.jpg"}
-            %input#activity_field.activity_input.input_text_box.count-enable{:maxlength => "32", :placeholder => "activity", :type => "text"}/
+            %img.symbol_icon{:src => "/images/alpha/hash_icon.png"}
+              %input#activity_field.activity_input.input_text_box.count-enable.no-ol{:maxlength => "32", :type => "text"}/
+              #activity_box_desc
+                %img{:src => "/images/alpha/channel_text.png"}
           .locations
-            %img.symbol_icon{:src => "/images/alpha/at.jpg"}
-            %input#location_field.searchTextField.input_text_box.location_input.count-enable{:maxlength => "140", :type => "text"}/
-        .input_title
-          %input#title_field.input_text_box.count-enable{:maxlength => "255", :type => "text",:placeholder => "title"}/ 
+            %img.symbol_icon{:src => "/images/alpha/at_icon.png"}
+              %input#location_field.searchTextField.input_text_box.location_input.count-enable.no-ol{:maxlength => "140", :type => "text"}/
+              #location_box_desc
+                %img{:src => "/images/alpha/location_text.png"}
         .entity_maps
+          #subtitle-div
+            #subtitle-box
+              .subtitle
+                %input#title_field.subtitle_input.input_text_box.count-enable.no-ol{:maxlength => "32", :type => "text"}/
+                #subtitle_box_desc
+                  %img{:src => "/images/alpha/subtitle_text.png"}
           #entity_div
-            %textarea#entity_field.input_text_box.count-enable{:maxlength => "1024", :placeholder => "description"}
+            #entity-box
+              #input_addons
+                %a#attachment.info.input_addons_links{:href => "#"}
+                  %img.link_addon_icons{:src => "/images/alpha/camera_icon.png"}/
+                  %span add image
+              %textarea#entity_field.entity_input.count-enable.no-ol{:maxlength => "600", :type => "text"}
+              #entity_box_desc
+                %img{:src => "/images/alpha/post_text.png"}
           #map
-        #input_addons
-          %li.input_addons_links
-            %a#attachment.info{:href => "#"}
-              %img.link_addon_icons{:src => "/images/alpha/add_img.jpg"}/
-              %span add image
-        #input_campaign.campaign
-          %span Ask For
-          .campaign-type
-            .del-camp
-            %input.campaign-btn.camp-like.selected-camp{:type => "submit", :value => "Like"}
-          .campaign-type
-            .del-camp
-            %input.campaign-btn.camp-join{:type => "submit", :value => "Join"}
-          .campaign-type
-            .del-camp
-            %input.campaign-btn.camp-support{:type => "submit", :value => "Support"}
         #input-attachments-section
-          /html.haml is mentioned in partial as it may be called in JSON request mode
-          =render :partial => "home/upload_attachments.html.haml"   
+          =render :partial => "home/upload_attachments.html.haml"
+          /#attachment-list
+          /#input-addmore-attachments
+          /  %a#add-more-attachment.info{:href => "#"} Add More
+          /  %a#delete-all-attachment.info{:href => "#"} Delete All   -
         #post_submit
-          %input#actwitty_generator.post_submit_button{:type => "submit", :value => "Publish"}
-            .post-fb-twt
-              %img{:src => "/images/alpha/fb_pub.jpeg"}/
-              .fbtwt-pub
-                %input{:name => "fb_publish", :type => "checkbox", :value => "fb_publish"}/
-              %img{:src => "/images/alpha/twt_pub.jpeg"}/
-              .fbtwt-pub
-                %input{:name => "twt_publish", :type => "checkbox", :value => "twt_publish"}/
-
-        
+          #actwitty_generator
+          #save-or-pub
+          #save_submit_button
+          .post-fb-twt
+            %img{:src => "/images/alpha/fb_pub.jpeg"}/
+            .fbtwt-pub
+              %input{:name => "fb_publish", :type => "checkbox", :value => "fb_publish"}/
+            %img{:src => "/images/alpha/twt_pub.jpeg"}/
+            .fbtwt-pub
+              %input{:name => "twt_publish", :type => "checkbox", :value => "twt_publish"}/
         #input-char-count
           %span#char-count : 120
           %span Characters Remaining :
