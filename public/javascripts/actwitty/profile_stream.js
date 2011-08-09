@@ -580,6 +580,16 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '<div class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
                     '</div>' +
 
+                    /* Share FB */
+                    '<div class="p-awp-share"  >' +
+                      '<div class="fb_share_div" >' +
+                        '<a name="fb_share" type="box_count" expr:share_url="' +'http://localhost:3000/view?id=' + post.id + '" ' + 
+                          'href="http://www.facebook.com/sharer.php" id="fb_share">Share</a>' + 
+                        '<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">' +
+                        '</script>' +
+                      '</div>' +
+                    '</div>' +
+
                     /* Post campaigns */
                     '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
                     '</div>' +
