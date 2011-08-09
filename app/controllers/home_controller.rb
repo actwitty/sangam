@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @user=nil
     @profile_page = 1
     @filtered_mode = ""
+    @page_mode="profile_main"
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
     if user_signed_in?
@@ -538,7 +539,7 @@ class HomeController < ApplicationController
   end
    ################################################
    def remove_document
-    Rails.logger.info("[CNTRL][HOME][REMOVE DOCUMENT] user delete entities from post #{params}")
+    Rails.logger.info("[CNTRL][HOME][REMOVE DOCUMENT] user delete documents #{params}")
     doc_id = Integer(params[:doc_id])
 
     if user_signed_in?
@@ -553,15 +554,30 @@ class HomeController < ApplicationController
    end
   ##############################################
   def activity
+    Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
     @user=current_user
     @profile_page = 1
+    @page_mode="single_post"
+    @post_id = params[:id]
+  end
 
 
-    Rails.logger.info("[CNTRL] [HOME] [ACTIVITY] Activity show request with #{params}")
-     if user_signed_in?
-      Rails.logger.info("[CNTRL] [HOME] [ACTIVITY] User signed in #{current_user.id} #{current_user.full_name}")
+  def get_single_activity
+   Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
+   activity_id = Integer(params[:activity_id])
+   activity_ids = [activity_id]
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
+      response_json = current_user.get_all_activity(activity_ids)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME]GET SINGLE ACTIVITY] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
     else
-      Rails.logger.info("[CNTRL] [HOME] [ACTIVITY] User not signed in")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
     end
   end
 end

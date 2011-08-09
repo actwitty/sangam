@@ -554,7 +554,9 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                       '</div>' +
 
                       '<div class="p-awp-subtitle">' +
-                        '<span class="p-awp-subtitle-name">' + post.sub_title +'</span>' +
+                        '<a href="/view?id=' + post.id + '">' +
+                          '<span class="p-awp-subtitle-name">' + post.sub_title +'</span>' +
+                        '</a>' +
                       '</div>' +
 
                       '<div class="p-awp-time">' +
@@ -648,7 +650,7 @@ function append_stream(owner_id, current_user_id){
               },
         dataType: 'json',
         contentType: 'application/json',
-        success: function (data) {
+       success: function (data) {
           // if rails demands a redirect because of log in missing 
            $.each(data, function(i,stream){
             if( stream ){

@@ -4,21 +4,22 @@
  */
 
 
-
-
 /*
- * Execute on load
+ * Globals
+ *
  */
-$(document).ready(function(){
+var default_tab = $('#default_page_mode').attr("value");
+var populated_personal=false;
+var populated_friends=false;
+var populated_stream=false;
 
-    
+
+function main_profile_initializer(){
     var page_owner_id=$('#page_owner_id').attr("value");
     var session_owner_id=$('#session_owner_id').attr("value");
-    var default_tab = $('#default_page_mode').attr("value");
-    var populated_personal=false;
-    var populated_friends=false;
-    var populated_stream=false;
- 
+    
+    
+    profile_filter_init(); 
    
     /* At very start Hide all contents on page load */
 	  $(".tab_content").hide(); 
@@ -47,8 +48,19 @@ $(document).ready(function(){
         populated_personal=true;
       }
     }
-    /***********************************************************/
-	  /*
+}
+
+/*
+ * Execute on load
+ */
+$(document).ready(function(){
+
+   
+    var page_owner_id=$('#page_owner_id').attr("value");
+    var session_owner_id=$('#session_owner_id').attr("value");
+	 
+    
+    /*
      * Bind Click on the tab
      */
 	  $("ul.p-cstab li").click(function() {

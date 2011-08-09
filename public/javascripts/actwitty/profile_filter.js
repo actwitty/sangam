@@ -145,14 +145,37 @@ function get_empty_filter(){
 function get_others_filter_state(){
   return others_filter_state;
 }
-
+/***********************************************************/
+function enable_me_mode(){
+  $("#channel_others").removeClass("p-r-fltr-others-active");
+  $("#stream_others").removeClass("p-r-fltr-others-active");
+  $("#channel_me").addClass("p-r-fltr-me-active");
+  $("#stream_me").addClass("p-r-fltr-me-active");
+}
 
 /***********************************************************/
+function enable_others_mode(){
+  $("#channel_me").removeClass("p-r-fltr-me-active");
+  $("#stream_me").removeClass("p-r-fltr-me-active");
+  $("#channel_others").addClass("p-r-fltr-others-active");
+  $("#stream_others").addClass("p-r-fltr-others-active");
+}
 
-$(document).ready(function(){
-    /* enable others mode */
+/***********************************************************/
+function profile_filter_init(){
     var page_owner_id=$('#page_owner_id').attr("value");
     var session_owner_id=$('#session_owner_id').attr("value");
+    if( page_owner_id == session_owner_id){
+      $("#channel_others").addClass("p-r-fltr-others-active");
+      $("#stream_others").addClass("p-r-fltr-others-active");
+    }else{
+      others_filter_state=false;
+    }
+    modify_filter({},false);
+}
+/***********************************************************/
+$(document).ready(function(){
+    /* enable others mode */
     $('#channel_filter_drop').live("click",function(){
       $("#filter_channel_name").attr("value", "");
       $("#filter_channel_id").attr("value", "");
@@ -174,23 +197,6 @@ $(document).ready(function(){
     });
     /***********************************************************/
     
-   
-   
-    /***********************************************************/
-    function enable_me_mode(){
-      $("#channel_others").removeClass("p-r-fltr-others-active");
-      $("#stream_others").removeClass("p-r-fltr-others-active");
-      $("#channel_me").addClass("p-r-fltr-me-active");
-      $("#stream_me").addClass("p-r-fltr-me-active");
-    }
-
-    function enable_others_mode(){
-      $("#channel_me").removeClass("p-r-fltr-me-active");
-      $("#stream_me").removeClass("p-r-fltr-me-active");
-      $("#channel_others").addClass("p-r-fltr-others-active");
-      $("#stream_others").addClass("p-r-fltr-others-active");
-    }
-
     $('#channel_me').click(function () {
       if(others_filter_state == true){
         enable_me_mode();
@@ -198,6 +204,7 @@ $(document).ready(function(){
         reload_summary_page(page_owner_id);
       }
     });
+    /***********************************************************/
 
     $('#stream_me').click(function () {
       if(others_filter_state == true){
@@ -207,6 +214,7 @@ $(document).ready(function(){
       }
     });
 
+    /***********************************************************/
     $('#channel_others').click(function () {
       if(others_filter_state == false){
         enable_others_mode();
@@ -215,6 +223,7 @@ $(document).ready(function(){
       }
     });
 
+    /***********************************************************/
     $('#stream_others').click(function () {
       if(others_filter_state == false){
         enable_others_mode();
@@ -223,14 +232,8 @@ $(document).ready(function(){
       }
     });
 
-    if( page_owner_id == session_owner_id){
-      $("#channel_others").addClass("p-r-fltr-others-active");
-      $("#stream_others").addClass("p-r-fltr-others-active");
-    }else{
-      others_filter_state=false;
-    }
-
-    modify_filter({},false);
+    /***********************************************************/
+    
 
 
 
