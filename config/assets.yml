@@ -55,6 +55,7 @@ javascripts:
     - public/javascripts/actwitty/profile_stream.js
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/single_post.js
+    - public/javascripts/actwitty/drafts.js
     - public/javascripts/actwitty/profile_main.js
     - public/javascripts/actwitty/profile_people.js
     - public/javascripts/actwitty/profile_images.js
