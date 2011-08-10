@@ -23,12 +23,47 @@ function show_all_drafts(){
     });
 }
 
+function aw_publish_drafted_stream(post_id){
+  var stream_render_id = get_stream_ele_id(post_id);
+  $.ajax({
+    url: '/home/publish_activity.json',
+    type: 'POST',
+    data: {activity_id:post_id},
+    dataType: 'json',
+    success: function (data) {
+      if(data && data.post && data.post.status == 2){
+        $("#" + stream_render_id).empty().remove();
+      }
+    },
+    error:function(XMLHttpRequest,textStatus, errorThrown) {
+      alert('There has been a problem in publishing the stream. \n ActWitty is trying to solve.');
+    }
+  });
+}
+
+function aw_edit_drafted_stream(post_id){
+  var stream_render_id = get_stream_ele_id(post_id);
+  $.ajax({
+    url: '/home/publish_activity.json',
+    type: 'POST',
+    data: {activity_id:post_id},
+    dataType: 'json',
+    success: function (data) {
+      if(data && data.post && data.post.status == 2){
+        $("#" + stream_render_id).empty().remove();
+      }
+    },
+    error:function(XMLHttpRequest,textStatus, errorThrown) {
+      alert('There has been a problem in publishing the stream. \n ActWitty is trying to solve.');
+    }
+  });
+}
+
 /*
  * Execute on load
  */
 $(document).ready(function(){
   $(' #cont-typ-fltr-drafts').click(function(){
-    alert("i m in");
     window.location = "/home/drafts";
   });
 

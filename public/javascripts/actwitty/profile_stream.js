@@ -511,8 +511,12 @@ function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
 
 /*********************************************/
 
-
-
+function get_stream_ele_id(post_id, prefix){
+  if( prefix == undefined){
+    prefix="aw";
+  }
+  return prefix + 'stream_render_id_' + post_id;
+}
 
 /*
  * Create div
@@ -528,13 +532,14 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   if ($("#" + post.id ).length > 0){
    return;
   }
-  var doc_box_id      = 'stream_doc_box_'      + post.id;
-  var campaign_box_id = 'stream_campaign_box_' + post.id;
-  var text_box_id     = 'stream_text_box_'     + post.id;
-  var location_box_id = 'stream_location_box_' + post.id;
-  var action_box_id    = 'stream_action_box_'    + post.id; 
-  var comment_box_id  = 'stream_comment_box_'  + post.id;
-  var comment_box_show_all_div_id  = 'stream_comment_box_show_'  + post.id;
+  var stream_render_id= get_stream_ele_id(post.id);
+  var doc_box_id      =  stream_render_id + '_docs';
+  var campaign_box_id =  stream_render_id + '_campaigns';
+  var text_box_id     =  stream_render_id + '_text';
+  var location_box_id =  stream_render_id + '_location';
+  var action_box_id   = stream_render_id + '_action';
+  var comment_box_id  = stream_render_id + '_comments';
+  var comment_box_show_all_div_id  = stream_render_id + '_show_all';
   var date_js = Date.parse('t');
 
   var external_shares="";
@@ -551,7 +556,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
   }
   /* Main stream div definition */
-  var html = '<div id="main_stream_li_'+ post.id +'" class="p-aw-post" value="' + post.id + '">' +
+  var stream_ele_id = get_stream_ele_id(post.id);
+  var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
 
                     /* Post originator user */
                     '<div class="p-awp-user">' +
@@ -803,14 +809,14 @@ function show_all_comments(post_id, all_id){
 * Delete stream
 */
 function delete_stream(post_id){
-  var stream_li_id = 'main_stream_li_' + post_id;
+  var stream_render_id = get_stream_ele_id(post_id);
   $.ajax({
     url: '/home/delete_stream.json',
     type: 'POST',
     data: "post_id=" + post_id,
     dataType: 'json',
     success: function (data) {
-      $("#" + stream_li_id).remove();
+      $("#" + stream_render_id).empty().remove();
     },
     error:function(XMLHttpRequest,textStatus, errorThrown) {
       alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
@@ -858,7 +864,7 @@ function process_user_campaign_action(campaign_manager_json){
                 },
           dataType: 'json',
           success: function (data) {
-            if( data.name == "like" && data.user==true ){
+            if( data.name == "like" && data.user==false ){
               campaign_manager_json.user= false;
               var link_id = campaign_manager_json.campaign_div_id + '_link'; 
               var span_id = campaign_manager_json.campaign_div_id + '_span';
@@ -1025,10 +1031,10 @@ $(document).ready(function(){
   /*
    * Stream publish button clicked
    */
-  $('.js_stream_delete_btn').live('click', function(){
+  $('.js_stream_publish_btn').live('click', function(){
     var publish_json = the_big_stream_actions_json[$(this).parent().attr("id")];
     if(publish_json){
-      alert("publish:" + publish_json.stream_id);
+      aw_publish_drafted_stream( publish_json.stream_id);
     }
     return false;
   });

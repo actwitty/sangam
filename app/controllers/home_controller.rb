@@ -313,7 +313,8 @@ class HomeController < ApplicationController
      if user_signed_in?
       args={}
       args[:activity_id] = Integer(params[:activity_id])
-      args[:name] = params[:name]
+      args[:user_id] = current_user.id
+       args[:name] = params[:name]
       Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] calling model api Filter:#{args}")
       response_json=current_user.remove_campaign(args)
       Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] model returned #{response_json}")
@@ -604,6 +605,28 @@ class HomeController < ApplicationController
         render :json => {}, :status => 400
       end
     end
+
+  end
+  ######################################
+  def publish_activity
+    Rails.logger.info("[CNTRL][HOME][PUBLISH ACTIVITY] request params #{params}")
+    args={}
+    args[:activity_id] = Integer(params[:activity_id])
+    args[:status] = 2
+    if user_signed_in?
+         Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
+         response_json = current_user.update_activity_status(args)
+
+         if request.xhr?
+           Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
+           render :json => response_json, :status => 200
+         end
+       else
+         if request.xhr?
+           render :json => {}, :status => 400
+         end
+       end
+
 
   end
   ######################################
