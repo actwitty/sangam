@@ -5,7 +5,7 @@ var the_big_comment_show_all_json={ };
 var the_big_comment_delete_json={ };
 
 
-var the_big_stream_delete_json={ };
+var the_big_stream_actions_json={ };
 
 var the_big_stream_campaign_manager_json={ };
 var the_big_stream_campaign_show_all={};
@@ -35,7 +35,7 @@ function handle_stream_docs(box_id, stream){
      }
      var html='<a rel="fnc_group_'+ box_id +
               '" href="' + attachment.url + '" title="' + caption  + '">' + 
-              '<img alt="" src="'+ attachment.url + '"  width="50" height="50" alt="" />' +
+              '<img alt="" src="'+ attachment.thumb_url + '"  width="50" height="50" alt="" />' +
               '</a>'; 
      ul_box.append(html);
     });
@@ -219,20 +219,28 @@ function handle_stream_location(box_id, location){
 /*
  * Render stream close button
  */
-function handle_stream_close(box_id, stream, current_user_id){
+function handle_stream_actions(box_id, stream, current_user_id){
   var div=$("#" + box_id);
   if(current_user_id != stream.post.user.id){
     div.hide();
     return;
   }
-  /* set context for dynamism */
-  var close_btn_json = {
+  /* set context on parent div  */
+  var action_btn_json = {
                           stream_id : stream.post.id 
                        };
-  var close_btn_id = "CLOSE_STREAM_BTN_" + stream.post.id ;
-  the_big_stream_delete_json[close_btn_id] = close_btn_json;
-  var html = '<input type="button" value="x" id="' + close_btn_id + '" class="js_stream_delete_btn stream_close_button"/>';
+ 
+  the_big_stream_actions_json[box_id] = action_btn_json;
+
+  if( stream.post.status == 1){
+    var html = '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
+               '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' ;
+    div.append(html);
+  }
+
+  var html = '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>';
   div.append(html);
+  
 }
 
 /*
@@ -311,22 +319,27 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
 /*
  * Render stream comments
  */
-function setup_comment_handling(box_id, id, show_all_id, comment_count){
+function setup_comment_handling(all_box_id, box_id, postid, comment_count){
+  var comment_show_all_id = box_id + '_show_all';
+  var html = '<span class="view-comments js_show_all_comment_btn" id=' + comment_show_all_id + '>' +
+                get_comment_head_label(comment_count) +
+             '</span>';
+  $("#" + all_box_id).html(html);  
 
-  var show_all_json = {post_id:id,
+  var show_all_json = {post_id:postid,
                       div_id:box_id,
-                      all_id:show_all_id,
+                      all_id:comment_show_all_id,
                       count:comment_count};
 
 
-  the_big_comment_show_all_json[show_all_id] = show_all_json;
+  the_big_comment_show_all_json[comment_show_all_id] = show_all_json;
 }
 
-function show_all_stream_comments(comments, post_id, current_user_id, show_all_id){
+function show_all_stream_comments(comments, post_id, current_user_id, comment_show_all_id){
 
 
   var comments_count=0;
-  var comments_div_id = the_big_comment_show_all_json[show_all_id].div_id;
+  var comments_div_id = the_big_comment_show_all_json[comment_show_all_id].div_id;
   var div = $("#" + comments_div_id);
   div.html("");
   var add_new_btn_id = 'COMMENT_ADD_NEW_BTN_' + post_id;
@@ -338,7 +351,7 @@ function show_all_stream_comments(comments, post_id, current_user_id, show_all_i
                                 post_id:post_id,
                                 text_id:add_new_textarea_id,
                                 div_id:comments_div_id,
-                                all_id:show_all_id
+                                all_id:comment_show_all_id
                              };
   the_big_comment_add_json[add_new_btn_id] = add_new_comment_json;
 
@@ -366,7 +379,7 @@ function show_all_stream_comments(comments, post_id, current_user_id, show_all_i
   
   $.each(comments, function(i,data){
     if( data && data.comment ){
-      handle_stream_single_comment(data.comment, comments_div_id, post_id, current_user_id, show_all_id); 
+      handle_stream_single_comment(data.comment, comments_div_id, post_id, current_user_id, comment_show_all_id); 
     }
 
   });
@@ -519,10 +532,24 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var campaign_box_id = 'stream_campaign_box_' + post.id;
   var text_box_id     = 'stream_text_box_'     + post.id;
   var location_box_id = 'stream_location_box_' + post.id;
-  var close_box_id    = 'stream_close_box_'    + post.id; 
+  var action_box_id    = 'stream_action_box_'    + post.id; 
   var comment_box_id  = 'stream_comment_box_'  + post.id;
-  var comment_show_all_id = comment_box_id + '_show_all';
+  var comment_box_show_all_div_id  = 'stream_comment_box_show_'  + post.id;
   var date_js = Date.parse('t');
+
+  var external_shares="";
+  if ( post.status == 2){
+    /* Share FB */
+    external_shares= '<div class="p-awp-share"  >' +
+                      '<div class="fb_share_div" >' +
+                        '<a name="fb_share" type="box_count" expr:share_url="' +'http://localhost:3000/view?id=' + post.id + '" ' + 
+                          'href="http://www.facebook.com/sharer.php" id="fb_share">Share</a>' + 
+                        '<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">' +
+                        '</script>' +
+                      '</div>' +
+                    '</div>';
+
+  }
   /* Main stream div definition */
   var html = '<div id="main_stream_li_'+ post.id +'" class="p-aw-post" value="' + post.id + '">' +
 
@@ -536,7 +563,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                         '</a>'+  
                     '</div>' +
                      /* post close */
-                     '<div class="p-awp-close" id="' + close_box_id + '" >' +
+                     '<div class="p-awp-actions" id="' + action_box_id + '" >' +
                      '</div>' +
 
 
@@ -579,26 +606,16 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     /* Post attachment */
                     '<div class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
                     '</div>' +
-
-                    /* Share FB */
-                    '<div class="p-awp-share"  >' +
-                      '<div class="fb_share_div" >' +
-                        '<a name="fb_share" type="box_count" expr:share_url="' +'http://localhost:3000/view?id=' + post.id + '" ' + 
-                          'href="http://www.facebook.com/sharer.php" id="fb_share">Share</a>' + 
-                        '<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">' +
-                        '</script>' +
-                      '</div>' +
-                    '</div>' +
+                    
+                    external_shares +
+                    
 
                     /* Post campaigns */
                     '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
                     '</div>' +
        
 
-                    '<div class="p-awp-view-comment">' +
-                      '<span class="view-comments js_show_all_comment_btn" id=' + comment_show_all_id + '>' +
-                          get_comment_head_label(stream.comments.count) +
-                      '</span>' +
+                    '<div class="p-awp-view-comment" id="' + comment_box_show_all_div_id + '">' +
                     '</div>' +              
                     
                     /* Post comments */
@@ -611,12 +628,18 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   }else{
     streams_box.append(html);
   }
-  handle_stream_close(close_box_id, stream, current_user_id);
+  handle_stream_actions(action_box_id, stream, current_user_id);
   handle_stream_text(text_box_id, stream.post.text);
   handle_stream_location(location_box_id, stream.location);
   handle_stream_docs(doc_box_id, stream);
-  setup_comment_handling(comment_box_id,  post.id, comment_show_all_id, stream.comments.count);
-  handle_stream_campaign(campaign_box_id, stream);
+
+  if( post.status == 2){
+    setup_comment_handling(comment_box_show_all_div_id,
+                           comment_box_id,  
+                           post.id,
+                           stream.comments.count);
+    handle_stream_campaign(campaign_box_id, stream);
+  }
   setup_readmore("div#"+ text_box_id + " p",100); /* read more for content with character slice at 100 */
 
   
@@ -925,7 +948,7 @@ function clear_streams(){
   the_big_comment_add_json={ };
   the_big_comment_show_all_json={ };
   the_big_comment_delete_json={ };
-  the_big_stream_delete_json={ };
+  the_big_stream_actions_json={ };
   the_big_stream_campaign_manager_json={};
   the_big_stream_campaign_show_all={};
   the_big_stream_enriched_state={};
@@ -980,9 +1003,32 @@ $(document).ready(function(){
    * Stream delete button clicked
    */
   $('.js_stream_delete_btn').live('click', function(){
-    var del_json = the_big_stream_delete_json[$(this).attr("id")];
+    var del_json = the_big_stream_actions_json[$(this).parent().attr("id")];
     if(del_json){
       delete_stream(del_json.stream_id);
+    }
+    return false;
+  });
+  /********************************/
+  /*
+   * Stream edit button clicked
+   */
+  $('.js_stream_edit_btn').live('click', function(){
+    var edit_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    if(edit_json){
+      //delete_stream(del_json.stream_id);
+      alert("edit:" + edit_json.stream_id);
+    }
+    return false;
+  });
+  /********************************/
+  /*
+   * Stream publish button clicked
+   */
+  $('.js_stream_delete_btn').live('click', function(){
+    var publish_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    if(publish_json){
+      alert("publish:" + publish_json.stream_id);
     }
     return false;
   });

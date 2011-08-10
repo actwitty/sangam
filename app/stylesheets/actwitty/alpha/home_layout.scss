@@ -1643,7 +1643,7 @@ ul.p-fltr-tag-list li
 
 }
 
-div.p-awp-close
+div.p-awp-actions
 {
   width:100%;
   /*float:right;
@@ -1653,11 +1653,33 @@ div.p-awp-close
 
 }
 
-div.p-awp-close input
+
+
+div.p-awp-actions .p-awp-close
 {
   float:right;
+  margin-left:5px;
   /*float:top;*/
 }
+
+div.p-awp-actions .p-awp-publish
+{
+  float:left;
+  margin-left:10px;
+  padding-left:2px;
+  padding-right:2px;
+  /*float:top;*/
+}
+
+div.p-awp-actions .p-awp-edit
+{
+  float:left;
+  margin-left:10px;
+  padding-left:2px;
+  padding-right:2px;
+  /*float:top;*/
+}
+
 
 
 .p-awp-channel

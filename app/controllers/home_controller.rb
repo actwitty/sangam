@@ -407,8 +407,6 @@ class HomeController < ApplicationController
   end
   ############################################
   def create_activity
-
-
     Rails.logger.info("[CNTRL][HOME][CREATE ACTIVITY] Create activity requested with #{params}")
     @success=false
     if user_signed_in?
@@ -560,7 +558,7 @@ class HomeController < ApplicationController
     @page_mode="single_post"
     @post_id = params[:id]
   end
-
+  ##############################################
 
   def get_single_activity
    Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
@@ -571,7 +569,7 @@ class HomeController < ApplicationController
       response_json = current_user.get_all_activity(activity_ids)
 
       if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME]GET SINGLE ACTIVITY] sending response JSON #{response_json}")
+        Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
         render :json => response_json, :status => 200
       end
     else
@@ -580,5 +578,38 @@ class HomeController < ApplicationController
       end
     end
   end
+  ######################################
+
+  def drafts
+    Rails.logger.info("[CNTRL][HOME][ DRAFTS ] request params #{params}")
+    @user=current_user
+    @profile_page = 1
+    @page_mode="drafts"
+
+  end
+  ######################################
+  def get_draft_activities
+    Rails.logger.info("[CNTRL][HOME][GET DRAFT ACTIVITIES] request params #{params}")
+
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] returned from model api")
+      response_json = current_user.get_draft_activity()
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+  ######################################
+  def edit_box
+
+  end
+  ######################################
 end
 

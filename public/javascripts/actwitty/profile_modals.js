@@ -166,7 +166,7 @@ $(document).ready(function() {
         e.preventDefault();
         //Get the A tag
         /* show the modal dialogs parent window*/
-        alert("clicked");
+        //alert("clicked");
 
         var modal_window =   $('#modal_box_window_id');
         var modal_bkg_mask = $('#modal_box_mask_id');
