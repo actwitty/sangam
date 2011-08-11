@@ -698,5 +698,29 @@ class HomeController < ApplicationController
     @post_id = params[:post_id]
   end
   ######################################
+  def entity_page
+
+  end
+  ######################################
+  def get_entity_stream
+
+  end
+  ######################################
+  def location_page
+
+  end
+  ######################################
+  def get_location_stream
+
+  end
+  ######################################
+   def channel_page
+
+  end
+  ######################################
+  def get_channel_stream
+
+  end
+  ######################################
 end
 

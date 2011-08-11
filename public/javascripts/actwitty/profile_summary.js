@@ -56,11 +56,11 @@ function create_and_add_friends_box(box_id, summary){
   if( summary.friends && summary.friends.length ){
     $.each(summary.friends, function(i, friend){
 
-      var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id + '_' + friend.id;
+      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + friend.id;
       /* create a JSON of filter */
       var filter_value = {
                           user:friend.id ,
-                          channel_id:summary.word.word_id, 
+                          channel_id:summary.word.id, 
                           channel_name:summary.word.name  
                     };
       the_big_filter_JSON[filter_id] = filter_value;
@@ -91,13 +91,13 @@ function create_and_add_entities_box(box_id, summary){
   if( summary.entities && summary.entities.length ){
     $.each(summary.entities, function(i, entity){
       /* This filter id uniquely identifies filter */
-      var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id + '_' + entity.id;
+      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + entity.id;
       /* create a JSON of filter */
       var filter_value = {
                             user:summary.user.id ,
                             thing_id:entity.id,
                             thing_name:entity.name,
-                            channel_id:summary.word.word_id, 
+                            channel_id:summary.word.id, 
                             channel_name:summary.word.name  
                           };
       the_big_filter_JSON[filter_id] = filter_value;
@@ -129,13 +129,13 @@ function create_and_add_locations_box(box_id, summary){
   if( summary.locations && summary.locations.length ){
   
     $.each(summary.locations, function(i, place){
-      var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id + '_' + place.id;
+      var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + place.id;
       /* create a JSON of filter */
       var filter_value = {
                             user:summary.user.id ,
                             location_id:place.id,
                             location_name:place.name,
-                            channel_id:summary.word.word_id,
+                            channel_id:summary.word.id,
                             channel_name:summary.word.name  
                           };
       the_big_filter_JSON[filter_id] = filter_value;
@@ -163,7 +163,7 @@ function create_and_add_locations_box(box_id, summary){
 /* handle complete summary box */
 function create_and_add_summary(summary_box, summary){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
- var unique_id =  'SUMMARY_' + summary.word.word_id + '_' + summary.user.id;
+ var unique_id =  'SUMMARY_' + summary.word.id + '_' + summary.user.id;
  if ($("#" + unique_id ).length > 0){
    return;
  }
@@ -173,11 +173,11 @@ function create_and_add_summary(summary_box, summary){
  var locations_box_id = unique_id + '_locations';
  var latest_text_box_id = unique_id + '_text';
  
- var filter_id =  'FS_' + summary.word.word_id + '_' + summary.user.id;
+ var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id;
   /* create a JSON of filter */
  var filter_value = {
                       user:summary.user.id ,
-                      channel_id:summary.word.word_id, 
+                      channel_id:summary.word.id, 
                       channel_name:summary.word.name  
                     };
  the_big_filter_JSON[filter_id] = filter_value;
@@ -273,7 +273,8 @@ function append_personal_summary(owner_id){
           // if rails demands a redirect because of log in missing
            $.each(data, function(i,summary){
             if( summary ){
-                create_and_add_summary($('#channels_display_list'),summary);     
+                //alert(JSON.stringify(summary));
+                create_and_add_summary($('#channels_display_list'),summary);
                 $("#more_channels_cookie").val(summary.time);
             } 
           });
