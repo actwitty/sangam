@@ -1,5 +1,5 @@
 require "query_manager"
-require "sanitize"
+
 #TODO add i18n error messages in all validations
 #TODO move all constants to environments
 class Activity < ActiveRecord::Base
