@@ -193,9 +193,25 @@ module TextFormatter
     end
     array
   end
+  def format_activity_word(word)
+    h = {}
+    h = {:id => word.id,
+         :name => word.word_name
+        }
+    h
+  end
 
+  def format_entity(entity)
+    h = {}
+    h = {:id => entity.id,
+         :name => entity.entity_name,
+         :image => entity.entity_image,
+         :description => nil
+        }
+    h
+  end
   #format a location object to generic form
-  def location_hash(loc)
+  def format_location(loc)
     h = {}
     case loc.location_type
       when AppConstants.location_type_web
@@ -208,7 +224,8 @@ module TextFormatter
       else
         h = {}
     end
-      h
+    h[:id] = loc.id if !h.blank?
+    h
   end
 
 
@@ -236,8 +253,8 @@ module TextFormatter
       }
 
     if !activity.base_location_id.blank?
-      hash[:location] = location_hash(activity.base_location)
-      hash[:location][:id] = activity.base_location_id
+      hash[:location] = format_location(activity.base_location)
+      #hash[:location][:id] = activity.base_location_id
     end
     hash
   end

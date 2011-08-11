@@ -27,9 +27,22 @@ class Mention < ActiveRecord::Base
        m = get_mentions(text)
 
        m.each do |attr|
-         obj = Mention.create(:user_id => attr[0].to_i, :activity_id => activity.id)
-         if obj.id.nil?
-           text= untag_a_mention(text,attr[0].to_i )
+         begin
+           obj = Mention.create!(:user_id => attr[0].to_i, :activity_id => activity.id)
+           if obj.id.nil?
+             Rails.logger.debug("[MODEL] [MENTION] [create_mentions] mention creation failed for user #{attr[0].to_i} and #{activity.id}")
+             text= untag_a_mention(text,attr[0].to_i )
+           end
+         rescue => e
+            #Validation Uniqueness fails
+            if /has already been taken/ =~ e.message
+               #means mention is correct
+               Rails.logger.info("[MODEL] [MENTION] [create_mentions] [rescue] => Uniq index found " )
+            else
+              #otherwise just untag the mention
+              Rails.logger.info("[MODEL] [MENTION] [create_mentions] [rescue] =>  " +  e.message )
+              text= untag_a_mention(text,attr[0].to_i )
+            end
          end
        end
 

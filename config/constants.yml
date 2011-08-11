@@ -67,7 +67,8 @@ development: &default
 
   entitiy_no_image:                     "/images/entity/default.png"
   user_no_image:                        "/images/profile/default.png"
-  entity_base_url:                      "http://www.freebase.com/view"
+  entity_image_thumb_base:               "http://api.freebase.com/api/trans/image_thumb/guid/"
+  entity_image_raw_base:                 "http://api.freebase.com/api/trans/raw/guid/"
 
   summary_word_count:                   15
   summary_document_count:               5

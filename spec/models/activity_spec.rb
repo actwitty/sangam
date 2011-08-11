@@ -284,6 +284,7 @@ describe Activity do
 
       wi = ActivityWord.where(:word_name => "eating").first
       e = Entity.where(:entity_name => "pizza").first
+      l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
       filter = {:word_id => wi.id, :entity_id => e.id, :source_name => "actwitty"}
 
       h = @u.get_related_friends( filter)
@@ -306,6 +307,15 @@ describe Activity do
 
       a = @u.get_stream({:user_id => @u.id, :friend => true})
       puts a
+
+      puts "Entity Stream"
+      a = @u.get_entity_stream({:entity_id => e.id})
+      puts a.inspect
+      puts "location Stream"
+      a = @u.get_location_stream({:location_id => l.id})
+      puts a.inspect
+      a = @u.get_activity_stream({:word_id => wi.id})
+      puts a.inspect
     end
     it "should read create read and delete comments" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
@@ -574,7 +584,8 @@ describe Activity do
       #a.destroy
       h[:activity_id] = a.id
 
-      @u.update_activity( h)
+      c = @u.update_activity( h)
+      puts c
       work_off
 
       b= @u.get_draft_activity
@@ -612,7 +623,7 @@ describe Activity do
       puts a
 
     end
-    it "shoud update the activity status" do
+    it "should update the activity status" do
       a = @u.create_activity( :word => "marry" , :text => "sachin tendulakr and rahul dravid
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
@@ -628,7 +639,49 @@ describe Activity do
 
       b.status.should ==  AppConstants.status_public
     end
+    it "should update the activity properly " do
+      a = @u.create_activity(:word => "eating" , :text => "pizza at tomato ketchup with PIZZA at
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?v=oIWxnfO7eJM&feature=feedrec wow
+                                   http://www.google.com/123 at www.vimeo.com eating with
+                                   http://twitpic.com/123/group/564 at dropbox.com/data?id=123 ate ate #eating at #pizza",
 
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:caption => "hello man",:url => "https://s3.amazonaws.com/xyz.jpg" },
+                                             {:caption => "aaaaabbbbbbbccccc", :url => "http://a.com/xyz.jpg" },
+                                             {:url => "http://b.com/xyz.jpg" },
+                                             {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
+                              :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
+                                            AppConstants.status_saved)
+      h = { :word => "marry" , :text => "sachin tendulakr and rahul dravid
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
+                                                    {:url => "http://a.com/xyz.jpg" },
+                                               {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
+                                            AppConstants.status_saved,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
+
+      puts "============================="
+      h[:activity_id] = a[:post][:id]
+      c = @u.update_activity( h)
+
+      work_off
+      puts c
+
+      c.should_not be_blank
+
+      a = Activity.where(:id => c[:post][:id]).first
+      puts a.inspect
+      puts "============================="
+
+      h[:status] = 2
+      h.delete(:update)
+      c = @u.publish_activity( h)
+      work_off
+      puts c.inspect
+    end
 
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY

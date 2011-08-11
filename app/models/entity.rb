@@ -34,7 +34,7 @@ class Entity < ActiveRecord::Base
   #  '/common/topic/alias'=>[],      //alias name  optional array form
   #  '/common/topic/image'=>[{'id'=>nil}],  //image optional array of hashes. hash con
   #  'key'=>{'namespace'=>'/wikipedia/en_id','value'=>nil}   // wikipedia link in hash form value will contain wikipedia content id  optional
-  #   'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
+  #  'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
   #
     def create_entities(owner_id = nil, entity_hash ={})
 
@@ -44,8 +44,9 @@ class Entity < ActiveRecord::Base
 
       begin
 
-      entity_hash['/common/topic/image'].blank? ? entity_image = AppConstants.entitiy_no_image :
-                                                  entity_image = entity_hash['/common/topic/image'][0]['id']
+      entity_hash['image'].blank? ? entity_image = AppConstants.entitiy_no_image :
+                                                  entity_image = entity_hash['image']
+      entity_hash.delete('image') if !entity_hash['image'].blank?
 
       entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
                               :entity_doc => entity_hash, :entity_image => entity_image)

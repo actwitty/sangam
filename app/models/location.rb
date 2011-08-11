@@ -79,7 +79,7 @@ class Location < ActiveRecord::Base
       location_ids= Location.where("location_url LIKE :loc_url_http or
                                                     location_url LIKE :loc_url_https",
                                 {:loc_url_http => "http://#{web_hash[:web_location_url]}%",
-                                :loc_url_https => "https://#{web_hash[:web_location_url]}%"})
+                                :loc_url_https => "https://#{web_hash[:web_location_url]}%"}).all
 
     elsif !search_hash[:geo_location].nil? and !search_hash[:geo_location][:geo_latitude].blank? and
                                           !search_hash[:geo_location][:geo_longitude].blank?
@@ -87,9 +87,9 @@ class Location < ActiveRecord::Base
 
       if geo_hash[:range].nil?
         location_ids= Location.where("location_lat = :geo_lat AND location_long = :geo_long",
-               {:geo_lat => geo_hash[:geo_latitude],:geo_long => geo_hash[:geo_longitude]})
+               {:geo_lat => geo_hash[:geo_latitude],:geo_long => geo_hash[:geo_longitude]}).all
       else
-        location_ids = Location.near([geo_hash[:geo_latitude], geo_hash[:geo_longitude]],geo_hash[:range])
+        location_ids = Location.near([geo_hash[:geo_latitude], geo_hash[:geo_longitude]],geo_hash[:range]).all
         #location_ids= Location.where(:id => wls)
       end
 

@@ -65,6 +65,7 @@ describe Location do
     end
     it "should search all urls and return location ids" do
       location_ids = Location.search_location({:web_location => {:web_location_url => "go"}})
+      Rails.logger.info "relation returned"
       #location_ids.should be_blank
       location_ids.count.should == 1
 
@@ -83,12 +84,14 @@ describe Location do
     end
     it "should search all near geo location  and return location ids" do
       location_ids = Location.search_location({:geo_location => {:geo_latitude => 23, :geo_longitude => 120, :range => 50}})
+      Rails.logger.info "relation returned"
       puts location_ids[0].location_type
       location_ids.length.should == 2
 
     end
      it "should search a near geo location  and return its location id" do
       location_ids = Location.search_location({:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3}})
+      Rails.logger.info "relation returned"
       location_ids.each do |loc|
         puts loc.location_type
       end
