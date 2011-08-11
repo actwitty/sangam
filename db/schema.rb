@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803050456) do
+ActiveRecord::Schema.define(:version => 20110810075555) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id", :null => false
@@ -263,6 +263,11 @@ ActiveRecord::Schema.define(:version => 20110803050456) do
     t.datetime "updated_at"
   end
 
+  create_table "garbage_documents", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "hubs", :force => true do |t|
     t.integer  "activity_id",      :null => false
     t.integer  "activity_word_id", :null => false
@@ -304,11 +309,11 @@ ActiveRecord::Schema.define(:version => 20110803050456) do
   add_index "location_hubs", ["web_join_id", "unresolved_join_id"], :name => "index_location_hub_on_web_unresolved"
 
   create_table "locations", :force => true do |t|
-    t.integer  "location_type",                                :null => false
-    t.text     "location_name",                                :null => false
+    t.integer  "location_type",                                 :null => false
+    t.text     "location_name",                                 :null => false
     t.text     "location_url"
-    t.decimal  "location_lat",  :precision => 10, :scale => 7
-    t.decimal  "location_long", :precision => 10, :scale => 7
+    t.decimal  "location_lat",  :precision => 18, :scale => 15
+    t.decimal  "location_long", :precision => 18, :scale => 15
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -38,17 +38,17 @@ describe Location do
 
   describe "Read" do
     before(:each) do
-      @id1 = Location.create_location(:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"})
+      @id1 = Location.create_location(:geo_location => {:geo_latitude => 12.971598739498852, :geo_longitude => 77.5945627000001, :geo_name => "sj"})
       @id2 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
-      @id3 = Location.create_location(:geo_location => {:geo_latitude => 23.4567, :geo_longitude => 120, :geo_name => "sj"})
+      @id3 = Location.create_location(:geo_location => {:geo_latitude => 12.971598739498852, :geo_longitude => 77.5945627000001, :geo_name => "sj"})
       @id4 = Location.create_location(:unresolved_location =>{:unresolved_location_name => "http://google.com"})
       @id5 = Location.create_location(:geo_location => {:geo_latitude => 23.4767, :geo_longitude => 120.6, :geo_name => "sj"})
       @id6 = Location.create_location(:geo_location => {:geo_latitude => 24.4767, :geo_longitude => 121, :geo_name => "sj"})
       @id7 = Location.create_location(:web_location =>{:web_location_url => "http://GOoogLe1.com", :web_location_title => "hello"})
       @id8 = Location.create_location(:web_location =>{:web_location_url => "gooogle1.com", :web_location_title => "hello"})
       @id9 = Location.create_location(:unresolved_location =>{:unresolved_location_name => "http://google.com"})
-      @id10 = Location.create_location(:geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"})
-      @id11 = Location.create_location(:geo_location => {:geo_latitude => 123.6567, :geo_longitude => 120.3, :geo_name => "sj"})
+      @id10 = Location.create_location(:geo_location => {:geo_latitude => 12.971598739498852, :geo_longitude => 78.5945627000001, :geo_name => "sj"})
+      @id11 = Location.create_location(:geo_location => {:geo_latitude => 12.971598739498852, :geo_longitude => 78.5945627000001, :geo_name => "sj"})
       @id12 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hahahaha"})
     end
     it "should be able to get location name even if it collides" do

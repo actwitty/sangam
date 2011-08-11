@@ -35,8 +35,6 @@ require 'freebase_wrapper'
  			end
     end
     #ALOK ADDING IT FOR IMAGE
-    puts "******************************"
-    puts entity.inspect
     unless entity["guid"].blank?
       entity["image"]=Freebase.get_thumb_image_url("/guid/" + entity["guid"][1..-1])
     end
