@@ -104,7 +104,7 @@ function create_and_add_entities_box(box_id, summary){
 
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
-                  '<img src="'+ entity.image + '"  width="40" height="40" alt="" />' +
+                  '<img src="'+ entity.image  + '?maxwidth=40&maxheight=40"  width="40" height="40" alt="" />' +
                   '<span>' +
                       '<br/>' +
                       entity.name +

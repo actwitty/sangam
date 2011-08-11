@@ -614,21 +614,81 @@ class HomeController < ApplicationController
     args[:activity_id] = Integer(params[:activity_id])
     args[:status] = 2
     if user_signed_in?
-         Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
-         response_json = current_user.update_activity_status(args)
+      Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
+      response_json = current_user.publish_activity(args)
 
-         if request.xhr?
-           Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
-           render :json => response_json, :status => 200
-         end
-       else
-         if request.xhr?
-           render :json => {}, :status => 400
-         end
-       end
-
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
 
   end
+  ######################################
+   def process_edit_activity
+    Rails.logger.info("[CNTRL][HOME][PROCESS EDITED ACTIVITY] request params #{params}")
+
+    if !params[:status].blank?
+      params[:status]= Integer(params[:status])
+
+    else
+      render :json => {}, :status => 400
+      reutrn
+    end
+
+    if !params[:activity_id].blank?
+      params[:activity_id] = Integer(params[:activity_id])
+    else
+      render :json => {}, :status => 400
+      return
+    end
+
+    if params[:enrich].blank?
+        params[:enrich] = false
+    else
+      if params[:enrich] == "true"
+        params[:enrich] = true
+      else
+        params[:enrich] = false
+      end
+    end
+
+
+    if params[:campaign_types] && !params[:campaign_types].blank?
+      params[:campaign_types] = Integer(params[:campaign_types])
+    else
+      params[:campaign_types] = 1
+    end
+
+
+    if !params[:documents].blank?
+      doc_arr = Array.new()
+      params[:documents].each do |index, doc_hash|
+        doc_arr = doc_arr << doc_hash
+      end
+      params[:documents]= doc_arr
+    end
+
+    response_json={}
+    if user_signed_in?
+        Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] calling  model api with #{params}")
+        response_json = current_user.update_activity(params)
+        Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] returned response JSON #{response_json}")
+    else
+        render :json => {}, :status => 400
+        return
+    end
+
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] sending response JSON #{response_json}")
+      render :json => response_json, :status => 200
+    end
+
+   end
   ######################################
   def edit_box
     Rails.logger.info("[CNTRL][HOME][ EDIT BOX] request params #{params}")
