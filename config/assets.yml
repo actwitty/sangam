@@ -58,6 +58,9 @@ javascripts:
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/single_post.js
     - public/javascripts/actwitty/edit_box_page.js
+    - public/javascripts/actwitty/entity_page.js
+    - public/javascripts/actwitty/channel_page.js
+    - public/javascripts/actwitty/location_page.js
     - public/javascripts/actwitty/drafts.js
     - public/javascripts/actwitty/profile_main.js
     - public/javascripts/actwitty/profile_people.js

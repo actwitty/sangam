@@ -21,6 +21,12 @@ $(document).ready(function(){
     show_all_drafts();
   }else if( page_context == "edit"){
     init_edit_box();
+  }else if( page_context == "entity"){
+    show_all_on_entity();
+  }else if( page_context == "location"){
+    show_all_on_location();
+  }else if( page_context == "channel"){
+    show_all_on_channel();
   }
 
 });
