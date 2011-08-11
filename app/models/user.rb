@@ -216,7 +216,7 @@ class User < ActiveRecord::Base
     end
   end
 
-
+  include TextFormatter
   #INPUT user_id => 123
   #sort_order => 1 (lexicographical) or  2 (based on updated)
   #returns hash of : {:name => "eating" ,:id => 123 }
@@ -226,20 +226,21 @@ class User < ActiveRecord::Base
 
      Rails.logger.debug("[MODEL] [User] [get_user_activities] entering ")
 
-     h = Activity.where(:author_id => user_id, :status => AppConstants.status_public).group(:activity_word_id, :activity_name).
-         order("MAX(updated_at)  DESC").count
+     h = Activity.where(:author_id => user_id, :status => AppConstants.status_public, :meta_activity => false).
+         group(:activity_word_id, :activity_name).order("MAX(updated_at)  DESC").count
 
-     word_hash = []
+     word_array = []
 
      h.each do |k,v|
-        word_hash << {:name => k[1], :id => k[0]}
+#        word_hash << {:name => k[1], :id => k[0]}
+       word_array << {:name => k[1], :id => k[0]}
      end
 
      if !sort_order.blank? && sort_order == 1
-        word_hash = word_hash.sort {|x, y| x[:name] <=> y[:name] }
+        word_array = word_array.sort {|x, y| x[:name] <=> y[:name] }
      end
      Rails.logger.debug("[MODEL] [User] [get_user_activities] leaving ")
-     word_hash
+     word_array
 
   end
 
@@ -252,27 +253,25 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [User] [get_user_entities] entering ")
 
-    entity_hash = []
+    entity_array = []
 
     user = User.where(:id => user_id).first
     if user.nil?
       return {}
     end
     h = user.entities.order("updated_at DESC").each do |attr|
-      entity_hash <<  {:name => attr.entity_name,:id => attr.id, :image => attr.entity_image}
+      #entity_hash <<  {:name => attr.entity_name,:id => attr.id, :image => attr.entity_image}
+      entity_array << format_entity(attr)
     end
 
     if !sort_order.blank?  and sort_order == 1
-      entity_hash = entity_hash.sort {|x, y| x[:name] <=> y[:name] }
+      entity_array = entity_array.sort {|x, y| x[:name] <=> y[:name] }
     end
     Rails.logger.debug("[MODEL] [User] [get_user_entities] leaving ")
-    entity_hash
+    entity_array
 
 
   end
-
-
-  include TextFormatter
 
   #INPUT user_id => 123
   #sort_order => 1 (lexicographical) or  2 (based on updated)
@@ -295,8 +294,8 @@ class User < ActiveRecord::Base
     end
 
     h = user.locations.order("updated_at DESC").each do |attr|
-      l = location_hash(attr)
-      l[:id] = attr.id
+      l = format_location(attr)
+#      l[:id] = attr.id
       lh <<  l
     end
 
@@ -347,15 +346,16 @@ class User < ActiveRecord::Base
     h[:user_id] = user_id
 
     h = Hub.where(h).group(:entity_id).order("MAX(updated_at) DESC").count
-    e = Entity.where(:id => h.keys).group(:id, :entity_name, :entity_image).order("MAX(updated_at) DESC").count
+    e = Entity.where(:id => h.keys).order("updated_at DESC").all
 
-    entity_hash = []
+    entity_array = []
 
-    e.each do |k,v|
-      entity_hash << {:id => k[0], :name => k[1], :image  =>  k[2]}
+    e.each do |attr|
+      #entity_array << {:id => k[0], :name => k[1], :image  =>  k[2]}
+      entity_array << format_entity(attr)
     end
     Rails.logger.debug("[MODEL] [User] [get_related_entities] leaving ")
-    entity_hash
+    entity_array
 
   end
 
@@ -378,8 +378,8 @@ class User < ActiveRecord::Base
     h = Hub.where(h).group(:location_id).order("MAX(updated_at) DESC").count
 
     Location.where(:id => h.keys).order("updated_at DESC").all.each do |attr|
-      l = location_hash(attr)
-      l[:id] = attr.id
+      l = format_location(attr)
+      #l[:id] = attr.id
       lh <<  l
     end
     Rails.logger.debug("[MODEL] [User] [get_related_locations] leaving ")
@@ -524,6 +524,8 @@ class User < ActiveRecord::Base
     params[:author_id] = self.id
     params[:meta_activity] = false
 
+    puts params[:update]
+
     obj = Activity.create_activity(params)
     if obj.blank?
       Rails.logger.error("[MODEL] [User] [create_activity] [ERROR] returning empty json ")
@@ -540,47 +542,72 @@ class User < ActiveRecord::Base
   #activity_id => 123
   def remove_activity(activity_id)
 
-    Rails.logger.debug("[MODEL] [User] [remove_entity] entering ")
+    Rails.logger.debug("[MODEL] [USER] [remove_activity] entering ")
 
     a = Activity.where(:id => activity_id, :author_id => self.id).first
     if a.blank?
-      Rails.logger.debug("[MODEL] [User] [remove_activity] [ERROR] returning empty json ")
+      Rails.logger.debug("[MODEL] [User] [remove_activity] returning empty json ")
       return {}
     end
     a.destroy
-
-
-    Rails.logger.debug("[MODEL] [User] [remove_entity] leaving ")
+    Rails.logger.debug("[MODEL] [User] [remove_activity] leaving ")
     a
   end
+
   #INPUT { :activity_id => 123,
   #        :status => 1 or 2
   #      }
   #OUTOUT => Same as create_activity
-  def update_activity_status(params)
-    activity= Activity.where(:author_id => self.id, :id => params[:activity_id]).first
-    f = activity.update_attributes(:status => params[:status])
-    if f == true
-      activity.status = params[:status]
+  ##COMMENT => Changes state from saved to publish or private state. Dont use this api to change from
+  ##           private to public or vice versa .. its only from saved to public state as it destroys
+  ##           the previous activity and re-creates the new one.
+  ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
+
+  def publish_activity(params)
+    puts params[:update]
+    Rails.logger.debug("[MODEL] [USER] [update_activity_status] entering")
+
+    a = remove_activity(params[:activity_id])
+
+    if a.blank?
+      Rails.logger.debug("[MODEL] [User] [update_activity_status]  returning empty json ")
+      return {}
     end
-    activity = format_activity(activity)
+
+    params.delete(:activity_id)
+    activity = create_activity(params)
+
+    Rails.logger.debug("[MODEL] [USER] [update_activity_status] leaving")
     activity
   end
+
   #INPUT { :activity_id => 123,
   #        REST ALL SAME PARAMETER AS create_activity
   #      }
   #OUTOUT => Same as create_activity
-
+  ##COMMENT => It is used for normal edits of activities. State change can also happen BUT only from PUBLIC to
+  ##           PRIVATE and VICE VERSA and NOT FROM SAVED to PUBLIC/PRIVATE
+  ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
   def update_activity(params)
 
     Rails.logger.debug("[MODEL] [User] [update_activity] entering ")
-    a = remove_activity(params[:activity_id])
+
+    a = Activity.where(:id => params[:activity_id]).first
     #false activity
     if a.blank?
       Rails.logger.debug("[MODEL] [User] [update_activity] [ERROR] returning empty json ")
       return {}
     end
-    params.delete(:activity_id)
+
+    #delete existing documents
+    a.documents.clear
+
+    #delete existing tags
+    a.tags.clear
+
+    #params.delete(:activity_id)
+    params[:update] = true
+
     a = create_activity(params)
 
     Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
@@ -712,8 +739,11 @@ class User < ActiveRecord::Base
   #]
   def get_stream(params ={})
 
+    user = nil
+
     Rails.logger.debug("[MODEL] [USER] [get_stream] entering")
     h = process_filter(params[:filter])
+
 
     if params[:user_id] == self.id
       if params[:friend] == true
@@ -730,11 +760,12 @@ class User < ActiveRecord::Base
       end
     else
 
-        Rails.logger.debug("[MODEL] [USER] [get_stream] Foreign user trying to access #{self.inspect}")
-        user = params[:user_id]
-        params[:friend] = false
+      Rails.logger.debug("[MODEL] [USER] [get_stream] Foreign user trying to access #{self.inspect}")
+      user = params[:user_id]
+      params[:friend] = false
 
     end
+
 
     h[:status] =  AppConstants.status_public
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
@@ -743,7 +774,7 @@ class User < ActiveRecord::Base
     #FIXME - TODO
     if !h[:entity_id].blank?
 
-      h[:user_id] = user
+      h[:user_id] = user if !user.blank?
       # need to check this anyway  - For time being
       # we have to delete hub
       h.delete(:status)
@@ -752,7 +783,7 @@ class User < ActiveRecord::Base
 
     else
 
-      h[:author_id] = user
+      h[:author_id] = user if !user.blank?
 
       h[:meta_activity] = false
 
@@ -875,8 +906,8 @@ class User < ActiveRecord::Base
     tags = {}
 
     Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
-      h = location_hash(attr)
-      h[:id] = attr.id
+      h = format_location(attr)
+      #h[:id] = attr.id
       locations[attr.id].each do |idx|
         summaries[idx][:locations] << h
       end
@@ -885,7 +916,8 @@ class User < ActiveRecord::Base
 
     Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
       entities[attr.id].each do |idx|
-        summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
+        #summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
+        summaries[idx][:entities] << format_entity(attr)
       end
     end
     entities ={}
@@ -938,7 +970,112 @@ class User < ActiveRecord::Base
 
   end
 
+  #INPUT => {:word_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #OUTPUT => { :id => 12435, :name => "eating" ,
+  #:stream => [{:post => .... }]# same as stream
+  ##COMMENT => If updated_at parameter is sent, it means client already has entity info so, only stream part will be
+  #sent.
 
+  def get_activity_stream(params)
+    h = {}
+
+    Rails.logger.debug("[MODEL] [USER] [get_activity_stream] entering")
+
+    a = ActivityWord.where(:id => params[:word_id]).first
+    if a.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_activity_stream] returning blank JSON")
+      return {}
+    end
+
+    hash ={:id => params[:word_id], :name => a.word_name }
+
+    h[:status]   = AppConstants.status_public
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:activity_word_id] =  params[:word_id]
+
+    activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
+
+    hash[:stream] = get_all_activity(activity.keys)
+    Rails.logger.debug("[MODEL] [USER] [get_activity_stream] leaving")
+    hash
+  end
+  #INPUT => {:entity_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #OUTPUT => { :id => 12435, :image => "http://freebase.com",:description => "http://freebase.com"
+  #:stream => [{:post => .... }]# same as stream
+  ##COMMENT => If updated_at parameter is sent, it means client already has entity info so, only stream part will be
+  #sent.
+  ##COMMENT=> Wikipedia description is optional. Still need to get the proper url for description even for
+  # freebase as new apis are changed
+  def get_entity_stream(params)
+    h = {}
+
+    Rails.logger.debug("[MODEL] [USER] [get_entity_stream] entering")
+
+    e = Entity.where(:id => params[:entity_id]).first
+    if e.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_entity_stream] returning blank JSON")
+      return {}
+    end
+
+    hash = format_entity(e)
+
+#    if params[:updated_at].blank?
+#
+#      #collect entity type
+#      EntityType.where(:entity_id => e.id).all.each do |attr|
+#        hash[:types] << attr.entity_type_name
+#      end
+#      hash[:types] = hash[:types].uniq
+#    end
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:entity_id] =  params[:entity_id]
+
+    activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+
+    hash[:stream] = get_all_activity(activity.keys)
+    Rails.logger.debug("[MODEL] [USER] [get_entity_stream] leaving")
+    hash
+
+  end
+
+  #INPUT => {:location_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #OUTPUT => { :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
+  #                                                      OR
+  #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
+  #                                                      OR
+  #                :id => 1234, :type => 2, :name => "John's home" ,
+  #:stream => [{:post => .... }]# same as stream
+  ##COMMENT => If updated_at parameter is sent, it means client already has entity info so, only stream part will be
+  #sent.
+  ##COMMENT=> Near location search is pending
+  def get_location_stream(params)
+
+    h = {}
+    Rails.logger.debug("[MODEL] [USER] [get_location_stream] entering")
+
+
+    l = Location.where(:id => params[:location_id]).first
+    if l.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_location_stream] returning blank JSON")
+      return {}
+    end
+
+    hash = format_location(l)
+    #hash[:id] = l.id
+
+    h[:status]   = AppConstants.status_public
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+
+    h[:base_location_id] =  params[:location_id]
+    h[:meta_activity] = false
+
+    activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
+
+    hash[:stream] = get_all_activity(activity.keys)
+    Rails.logger.debug("[MODEL] [USER] [get_location_stream] leaving")
+    hash
+  end
   #COMMENT => To Create a campaign
   #INPUT =>
   # :name => "like"

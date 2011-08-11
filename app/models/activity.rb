@@ -162,7 +162,7 @@ class Activity < ActiveRecord::Base
         params[:status] = AppConstants.status_public if params[:status].nil?
         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
         params[:campaign_types] =  AppConstants.campaign_like if params[:campaign_types].nil?
-
+        params[:update] = false if params[:update].nil?
 
         ################################### Create Activity Word ################################################
 
@@ -183,16 +183,20 @@ class Activity < ActiveRecord::Base
           params[:summary_id] = summary.id
         end
 
-        ###################################### CREATE ACTIVITY #################################################
+        ###################################### CREATE OR UPDATE ACTIVITY #################################################
+        h = {:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
+             :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false,
+             :status => params[:status], :campaign_types => params[:campaign_types],:source_name => params[:source_name],
+             :sub_title => params[:sub_title],:meta_activity => params[:meta_activity]}
 
 
-        #create activity => either root or child
-        obj = Activity.create!(:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
-                               :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false,
-                               :status => params[:status], :campaign_types => params[:campaign_types],
-                               :source_name => params[:source_name], :sub_title => params[:sub_title],
-                               :meta_activity => params[:meta_activity])
-
+        if params[:update] == false
+          #create activity => either root or child
+          obj = Activity.create!(h)
+        else
+          obj = Activity.where(:id => params[:activity_id]).first
+          obj.update_attributes!(h)
+        end
 
 
         ######################################## START PROCESSING NON META ACTIVITY ###########################

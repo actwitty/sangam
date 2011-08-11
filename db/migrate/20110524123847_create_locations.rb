@@ -7,8 +7,8 @@ class CreateLocations < ActiveRecord::Migration
 
       t.text   :location_url
 
-      t.decimal :location_lat, :precision => 10, :scale => 7
-      t.decimal :location_long, :precision => 10, :scale => 7
+      t.decimal :location_lat, :precision => 18, :scale => 15
+      t.decimal :location_long, :precision => 18, :scale => 15
 
       t.timestamps
 

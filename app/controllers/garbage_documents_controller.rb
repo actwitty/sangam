@@ -1,0 +1,2 @@
+class GarbageDocumentsController < ApplicationController
+end
