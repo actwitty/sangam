@@ -50,7 +50,7 @@ $(document).ready(function(){
 		  matchContains: true,
 		  highlightItem: false,
       formatItem: function(entity) {
-        return '<img alt="" class="p-st-fltr-search-img" src="'+ entity.image + '">   ' + entity.name + '</img>';
+        return '<img alt="" class="p-st-fltr-search-img" src="'+ entity.image + '?maxwidth=40&maxheight=40">   ' + entity.name + '</img>';
       }
 
     }).result(function(e, entity) {
@@ -130,7 +130,7 @@ function aw_render_entities_internal(entity, div_id){
      var link_id = "stream_related_modal_" + entity.id;
      var html='<div class="entities_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_entities" id="' + link_id + '">' +
-                  '<img class="entities_box_images" src="' + entity.image +  '"/>' +
+                  '<img class="entities_box_images" src="' + entity.image +  '?maxwidth=40&maxheight=40"/>' +
                     entity.name +
                 '</a>'+
                

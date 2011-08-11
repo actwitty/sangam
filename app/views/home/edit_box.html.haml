@@ -3,7 +3,7 @@
   -if current_user.id == @user.id
     #js_input_box
       =render :partial => "home/input_box"
-      #pre_uploaded_docs
+      
 
 %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
 %input#post_id{ :type => "hidden", :value => "#{@post_id}" }

@@ -333,6 +333,8 @@ function change_max_file_that_can_be_uploaded(change_count){
 /***************************************/
 
 $(document).ready(function() {
+   /* get user channels from rails */
+
    $("#actwitty_generator").live('click', function(){
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
@@ -354,6 +356,7 @@ $(document).ready(function() {
 
 
    $("#save_submit_button").live('click', function(){
+     alert("i m hit");
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
         alert("Nothing set to save a post");
@@ -372,4 +375,21 @@ $(document).ready(function() {
 
    });
 
-  });
+  /***************************/
+   fetch_user_channels();
+   $("#activity_field").live('keyup.autocomplete', function() {
+    var json_data = get_user_channels();
+    //TODO: check why JSON is not working here
+    
+      $(this).autocomplete(json_data, {
+     	  minChars: 0,
+		    matchContains: true,
+		    highlightItem: false,
+        formatItem: function(activity) {
+          return activity.name;
+        }
+      });
+    });
+   /******************************/
+
+});
