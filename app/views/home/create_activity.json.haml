@@ -1,9 +1,4 @@
 -if @success
-  alert(get_current_page_context());
-  if(get_current_page_context() == "profile_main"){
-    $("#input-attachments-section").html("#{escape_javascript(render(:partial => "home/upload_attachments.html.haml"))}");
-  }else{
-    alert("post processed");
-  }
+  $("#input-attachments-section").html("#{escape_javascript(render(:partial => "home/upload_attachments.html.haml"))}");
 -else
   alert("Failed to create post.\n Actwitty is trying to solve the problem.");

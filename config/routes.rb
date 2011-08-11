@@ -56,6 +56,7 @@ Sangam::Application.routes.draw do
   match '/home/get_draft_activities' => 'home#get_draft_activities'
   match '/home/publish_activity' => 'home#publish_activity'
   match '/home/edit_box' => 'home#edit_box'
+  match '/home/process_edit_activity' => 'home#process_edit_activity'
 
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'

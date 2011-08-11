@@ -68,11 +68,17 @@ function populate_to_input(post_json){
   }
   
   /* text */
-  $('#entity_field').val(post_json.post.text);
+  if(post_json.post.text){
+    $('#entity_field').val(post_json.post.text);
+  }
   /* title */ 
-  $('#title_field').val(post_json.post.sub_title);
+  if(post_json.post.sub_title){
+    $('#title_field').val(post_json.post.sub_title);
+  }
   /* channel */
-  $('#activity_field').val(post_json.post.word.name);
+  if(post_json.post.word.name){
+    $('#activity_field').val(post_json.post.word.name);
+  }
   change_max_file_that_can_be_uploaded(post_json.documents.count * -1);
   append_pre_uploaded_docs(post_json.documents);
 
@@ -96,7 +102,7 @@ function init_edit_box(){
         success: function (data) {
           // if rails demands a redirect because of log in missing 
            document_pre_uploaded_handling_json={};
-           alert(JSON.stringify(data)); 
+           //alert(JSON.stringify(data)); 
            $.each(data, function(i,post_json){
             if( post_json ){
                 populate_to_input(post_json);

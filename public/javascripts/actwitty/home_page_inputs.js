@@ -131,7 +131,10 @@ function get_location_string(){
 }
 
 function post_activity_to_server(post_data){
-   $.ajax({
+
+   var page_context = get_current_page_context();
+   if(page_context == "profile_main"){
+      $.ajax({
         url: '/home/create_activity.json',
         type: 'POST',
         data: post_data,
@@ -141,19 +144,34 @@ function post_activity_to_server(post_data){
           alert("New post added");
           reset_to_default();
           clear_all_input_jsons();
-          if ( get_current_page_context() == "edit" ){
-            if( data && data.post && data.post.id){
-                window.location = 'http://localhost:3000/view?id=' + data.post.id;
-            }
-          }
         },
-        error: function(jqXHR, textStatus, errorThrown){
+          error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
           alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
-      },
-    });
+        },
+      });
+   }else{
+     post_data.activity_id = $("#post_id").val(); 
+     $.ajax({
+        url: '/home/process_edit_activity.json',
+        type: 'POST',
+        data: post_data,
+        dataType:"json",
+        cache: true,
+        success: function (data) {
+          alert("Post processed");
+          window.location.href = "/view?id=" + data.post.id; 
+        },
+          error: function(jqXHR, textStatus, errorThrown){
+          console.log(jqXHR);
+          console.log(textStatus);
+          console.log(errorThrown);
+          alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
+        },
+      });
+   }
 }
 
 $(".js_plupload_caption").live('change', function(){	
@@ -356,7 +374,6 @@ $(document).ready(function() {
 
 
    $("#save_submit_button").live('click', function(){
-     alert("i m hit");
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
         alert("Nothing set to save a post");
