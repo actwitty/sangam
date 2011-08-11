@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include ActionView::Helpers
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -525,7 +526,6 @@ class User < ActiveRecord::Base
     params[:activity]= params[:word]
     params[:author_id] = self.id
     params[:meta_activity] = false
-    #params[:text] = sanitize(params[:text])
 
     obj = Activity.create_activity(params)
     if obj.blank?

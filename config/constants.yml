@@ -147,6 +147,9 @@ development: &default
   #audio Sources
   audio_sources:                      last.fm|spotify.com
 
+  #Tag List
+  tag_list:                           %w(b i u mention img name id a)
+
 production:
   <<: *default
   #constant1:  "overriden value1"

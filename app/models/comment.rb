@@ -1,5 +1,7 @@
 class Comment < ActiveRecord::Base
 
+  include  ActionView::Helpers
+
   belongs_to :author, :class_name => "User"
   belongs_to :activity,  :touch => true, :counter_cache => true
   belongs_to :document,  :touch => true, :counter_cache => true
@@ -19,16 +21,25 @@ class Comment < ActiveRecord::Base
 
   validates_length_of   :source_name,    :in => 1..AppConstants.source_name_length
 
-  has_many :campaigns, :dependent => :destroy
+  has_many              :campaigns, :dependent => :destroy
 
-  after_destroy :ensure_destroy_cleanup
-  after_create  :touch_hubs
+  after_destroy         :ensure_destroy_cleanup
+
+  after_create          :touch_hubs
+
+  before_save           :sanitize_data
+
+  def sanitize_data
+    Rails.logger.debug("[MODEL] [COMMENT] [sanitize_data] ")
+    self.text = sanitize(self.text, :tags => AppConstants.tag_list) if !self.text.blank?
+  end
 
   def touch_hubs
     Hub.where(:activity_id =>self.activity_id).all.each do |attr|
       attr.touch
     end
   end
+
   def ensure_destroy_cleanup
     #Delete to stop circular effect
     puts "comment destroyed"

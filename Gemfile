@@ -34,9 +34,9 @@ gem 'json'
 gem 'annotate'
 
 #File uploading
-gem "fog"
-gem "carrierwave", :git => 'git://github.com/jnicklas/carrierwave.git'
-gem "rmagick"
+##gem "fog"
+##gem "carrierwave", :git => 'git://github.com/jnicklas/carrierwave.git'
+#gem "rmagick"
 
 
 gem 'mini_magick', '3.2'

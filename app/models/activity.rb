@@ -1,7 +1,10 @@
 require "query_manager"
+require "sanitize"
 #TODO add i18n error messages in all validations
 #TODO move all constants to environments
 class Activity < ActiveRecord::Base
+
+  include  ActionView::Helpers
 
   belongs_to      :author, :class_name => "User" #, :touch => true user is touched through summary
   belongs_to      :summary, :touch => true, :counter_cache => true, :dependent => :destroy
@@ -54,7 +57,17 @@ class Activity < ActiveRecord::Base
 
   before_destroy          :clear_dependent_data
 
+  before_save             :sanitize_data
+
   protected
+
+    def sanitize_data
+      self.activity_text = sanitize(self.activity_text, :tags => AppConstants.tag_list) if !self.activity_text.blank?
+      self.activity_name = sanitize(self.activity_name, :tags => AppConstants.tag_list) if !self.activity_name.blank?
+      self.sub_title = sanitize(self.sub_title, :tags => AppConstants.tag_list) if !self.sub_title.blank?
+      Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data] ")
+    end
+
     def clear_dependent_data
 
       if self.meta_activity == false
@@ -74,6 +87,7 @@ class Activity < ActiveRecord::Base
 #                                                                            :summary_id => nil)
 
         #reset summary data
+
         if !self.summary_id.nil?
           s = Summary.where(:id => self.summary_id).first
           puts "resetting activity summary"
@@ -123,6 +137,7 @@ class Activity < ActiveRecord::Base
 
     class << self
 
+
   #    :author_id => 123
   #    :activity => activity word or phrase in activity box
   #    :text =>   ""entity box + @@ + location box" or nil
@@ -163,6 +178,7 @@ class Activity < ActiveRecord::Base
         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
         params[:campaign_types] =  AppConstants.campaign_like if params[:campaign_types].nil?
         params[:update] = false if params[:update].nil?
+
 
         ################################### Create Activity Word ################################################
 

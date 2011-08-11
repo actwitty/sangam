@@ -1,4 +1,7 @@
 class Location < ActiveRecord::Base
+
+  include  ActionView::Helpers
+
   geocoded_by :address, :latitude  => :location_lat, :longitude => :location_long # ActiveRecord
 
   has_many :hubs, :dependent => :nullify
@@ -22,19 +25,25 @@ class Location < ActiveRecord::Base
   validates_numericality_of :location_type, :greater_than_or_equal_to => AppConstants.location_type_web,
                             :less_than_or_equal_to => AppConstants.location_type_unresolved
 
-  validates_length_of :location_name , :in => 1..AppConstants.location_name_length
+  validates_length_of       :location_name , :in => 1..AppConstants.location_name_length
 
-  validates_uniqueness_of :location_url, :unless => Proc.new{|a|a.location_url.nil?}
-  validates_length_of     :location_url, :in => 1..AppConstants.url_length , :unless => Proc.new{|a|a.location_url.nil?}
-  validates_format_of     :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
+  validates_uniqueness_of   :location_url, :unless => Proc.new{|a|a.location_url.nil?}
+  validates_length_of       :location_url, :in => 1..AppConstants.url_length , :unless => Proc.new{|a|a.location_url.nil?}
+  validates_format_of       :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
 
   validates_numericality_of :location_lat,
                             :greater_than_or_equal_to => -90 ,:less_than_or_equal_to => 90, :unless => Proc.new{|a|a.location_lat.nil?}
   validates_numericality_of :location_long,
                             :greater_than_or_equal_to => -180 ,:less_than_or_equal_to => 180, :unless => Proc.new{|a|a.location_long.nil?}
 
-  validates_uniqueness_of  :location_lat, :scope => :location_long, :unless => Proc.new{|a|a.location_lat.nil?}
+  validates_uniqueness_of   :location_lat, :scope => :location_long, :unless => Proc.new{|a|a.location_lat.nil?}
 
+  before_save               :sanitize_data
+
+  def sanitize_data
+    self.location_name = sanitize(self.location_name, :tags => AppConstants.tag_list) if !self.location_name.blank?
+    Rails.logger.debug("[MODEL] [LOCATION] [sanitize_data] ")
+  end
 
   def self.create_location(location_hash ={})
 

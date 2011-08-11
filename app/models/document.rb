@@ -2,6 +2,8 @@
 
 class Document < ActiveRecord::Base
 
+  include  ActionView::Helpers
+
    belongs_to     :owner, :class_name => "User"
    belongs_to     :activity_word
    belongs_to     :location
@@ -39,7 +41,12 @@ class Document < ActiveRecord::Base
 #   validates              :document_data, #:presence => true, #commenting as data uploader is not used from Rails server
 #                          :file_size => { :maximum => AppConstants.max_document_size.megabytes.to_i }
 
+   before_save           :sanitize_data
 
+   def sanitize_data
+     Rails.logger.debug("[MODEL] [DOCUMENT] [sanitize_data] ")
+     self.caption = sanitize(self.caption, :tags => AppConstants.tag_list) if !self.caption.blank?
+   end
 
    public
 

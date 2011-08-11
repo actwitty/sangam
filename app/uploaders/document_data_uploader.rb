@@ -1,5 +1,6 @@
 # encoding: utf-8
-
+# Commenting as Carrier Wave gem is commented and not used
+=begin
 class DocumentDataUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
@@ -99,4 +100,4 @@ class DocumentDataUploader < CarrierWave::Uploader::Base
     end
 
  end
-
+=end
