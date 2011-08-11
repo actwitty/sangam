@@ -631,7 +631,11 @@ class HomeController < ApplicationController
   end
   ######################################
   def edit_box
-
+    Rails.logger.info("[CNTRL][HOME][ EDIT BOX] request params #{params}")
+    @user=current_user
+    @profile_page = 1
+    @page_mode="edit"
+    @post_id = params[:post_id]
   end
   ######################################
 end

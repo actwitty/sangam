@@ -1,0 +1,14 @@
+=render :partial => "home/top_bar" 
+-if user_signed_in?
+  -if current_user.id == @user.id
+    #js_input_box
+      =render :partial => "home/input_box"
+      #pre_uploaded_docs
+
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#post_id{ :type => "hidden", :value => "#{@post_id}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+-if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    

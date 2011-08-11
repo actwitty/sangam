@@ -299,9 +299,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   width: 624px;
   height: auto;
   border: 1px solid #ddd;
-  background-image: url("/images/alpha/blue_back.png");
-  background-repeat: repeat;
-  /*background:#c8c8c8;*/
+  background: #659EC7;
 }
 
 /* line 270, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */

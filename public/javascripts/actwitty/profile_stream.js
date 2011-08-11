@@ -1022,8 +1022,8 @@ $(document).ready(function(){
   $('.js_stream_edit_btn').live('click', function(){
     var edit_json = the_big_stream_actions_json[$(this).parent().attr("id")];
     if(edit_json){
-      //delete_stream(del_json.stream_id);
-      alert("edit:" + edit_json.stream_id);
+      //alert("edit:" + edit_json.stream_id);
+      aw_edit_drafted_stream(edit_json.stream_id);
     }
     return false;
   });
