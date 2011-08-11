@@ -31,7 +31,7 @@ class Comment < ActiveRecord::Base
 
   def sanitize_data
     Rails.logger.debug("[MODEL] [COMMENT] [sanitize_data] ")
-    self.text = sanitize(self.text, :tags => AppConstants.tag_list) if !self.text.blank?
+    self.text = sanitize(self.text) if !self.text.blank?
   end
 
   def touch_hubs

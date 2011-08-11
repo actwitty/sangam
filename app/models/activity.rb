@@ -63,8 +63,8 @@ class Activity < ActiveRecord::Base
 
     def sanitize_data
       self.activity_text = sanitize(self.activity_text, :tags => AppConstants.tag_list) if !self.activity_text.blank?
-      self.activity_name = sanitize(self.activity_name, :tags => AppConstants.tag_list) if !self.activity_name.blank?
-      self.sub_title = sanitize(self.sub_title, :tags => AppConstants.tag_list) if !self.sub_title.blank?
+      self.activity_name = sanitize(self.activity_name) if !self.activity_name.blank?
+      self.sub_title = sanitize(self.sub_title) if !self.sub_title.blank?
       Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data] ")
     end
 

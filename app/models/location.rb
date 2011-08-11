@@ -41,7 +41,7 @@ class Location < ActiveRecord::Base
   before_save               :sanitize_data
 
   def sanitize_data
-    self.location_name = sanitize(self.location_name, :tags => AppConstants.tag_list) if !self.location_name.blank?
+    self.location_name = sanitize(self.location_name) if !self.location_name.blank?
     Rails.logger.debug("[MODEL] [LOCATION] [sanitize_data] ")
   end
 

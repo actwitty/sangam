@@ -45,7 +45,7 @@ class Document < ActiveRecord::Base
 
    def sanitize_data
      Rails.logger.debug("[MODEL] [DOCUMENT] [sanitize_data] ")
-     self.caption = sanitize(self.caption, :tags => AppConstants.tag_list) if !self.caption.blank?
+     self.caption = sanitize(self.caption) if !self.caption.blank?
    end
 
    public
