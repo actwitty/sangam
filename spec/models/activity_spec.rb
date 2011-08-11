@@ -615,11 +615,11 @@ describe Activity do
       puts s.inspect
 
       puts "get document summary"
-      a = @u.get_document_summary({:user_id=> @u.id})
+      a = @u.get_document_summary({:user_id=> @u1.id, :category => "image"})
       puts a
 
       puts "get document stream"
-      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}})
+      a = @u.get_document_stream({:user_id=> @u1.id, :filter => {:source_name => "actwitty"}, :category => "image"})
       puts a
 
     end
