@@ -33,6 +33,7 @@ javascripts:
     - public/javascripts/plupload/plupload.flash.js
     - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
     - public/javascripts/plugins/actwitty-custom.js
+    - public/javascripts/plugins/jquery.alphanumeric.pack.js
     - public/javascripts/plugins/expander_readmore.js
     - public/javascripts/plugins/jquery-list-splitter/jquery.easyListSplitter.js
     - public/javascripts/actwitty/alpha/custom.js
@@ -55,6 +56,8 @@ javascripts:
     - public/javascripts/actwitty/profile_stream.js
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/single_post.js
+    - public/javascripts/actwitty/edit_box_page.js
+    - public/javascripts/actwitty/drafts.js
     - public/javascripts/actwitty/profile_main.js
     - public/javascripts/actwitty/profile_people.js
     - public/javascripts/actwitty/profile_images.js

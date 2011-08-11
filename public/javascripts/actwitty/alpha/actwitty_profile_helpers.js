@@ -194,6 +194,7 @@ $(document).ready(function(){
     $('#entity_field').elastic();
 		$('#entity_field').trigger('update');
 
-
+    /* to make sure that only alphanumeric characters are allowed in activity field*/
+    $("#activity_field").alphanumeric();
 
 });

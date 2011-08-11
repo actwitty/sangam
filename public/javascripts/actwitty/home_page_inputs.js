@@ -10,6 +10,7 @@
 
 
 var document_upload_handling_json={};
+var thumb_upload_handling_json={};
 var document_caption_cache={};
 var documents_to_upload_count=0;
 var campaigns_manager={};
@@ -86,8 +87,11 @@ function clear_all_input_jsons(){
   
 
   document_upload_handling_json={};
+  thumb_upload_handling_json={};
   document_caption_cache={};
   documents_to_upload_count=0;
+  g_max_files_that_can_be_uploaded = 5;
+  g_status_of_post=2;
 }
 
 
@@ -137,6 +141,11 @@ function post_activity_to_server(post_data){
           alert("New post added");
           reset_to_default();
           clear_all_input_jsons();
+          if ( get_current_page_context() == "edit" ){
+            if( data && data.post && data.post.id){
+                window.location = 'http://localhost:3000/view?id=' + data.post.id;
+            }
+          }
         },
         error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
@@ -167,6 +176,12 @@ function add_document_to_json(id, url_val, caption_val){
   document_upload_handling_json[id] = document_json;
 }
 
+
+function add_document_thumb_to_json(id, thumb_url_val){
+  var thumb_json = { url:thumb_url_val};
+  thumb_upload_handling_json[id] = thumb_json;
+}
+
 function document_set_pending_upload_count(count_to_upload){
   documents_to_upload_count=count_to_upload;
 }
@@ -175,8 +190,15 @@ function document_set_pending_upload_count(count_to_upload){
 function get_documents_json(){
   var doc_arr = Array();
   for (var key in document_upload_handling_json) {
+    document_upload_handling_json[key].thumb_url = thumb_upload_handling_json[key].url;
     doc_arr.push(document_upload_handling_json[key]);
   }
+  /* handle the case for the preuploaded images */
+  var preuploaded_docs=get_preuploaded_doc(); 
+  for (var key in preuploaded_docs) {
+    doc_arr.push(preuploaded_docs[key]);
+  }
+  /*************************************************/
   return doc_arr;
 }
 
@@ -245,7 +267,7 @@ function document_upload_complete(){
    */
    else if($('#geo_location').val() == $('#location_field').val())
    {
-      $('#input_latlang').val($('#user_latlng').val());	
+      //$('#input_latlang').val($('#user_latlng').val());	
       $('#location_type').val('1');
       // alert($('#geo_location').val());
       // alert("seems to be a location with positions as:" + $('#lat_value').val() + "  " + $('#lng_value').val());	
@@ -282,7 +304,7 @@ function document_upload_complete(){
                       campaign_types:get_campaigns(),
                       source_name:"actwitty",
                       sub_title:$('#title_field').val(),
-                      status:2
+                      status:get_generate_status()
                     };
 
    
@@ -290,7 +312,25 @@ function document_upload_complete(){
     post_activity_to_server(post_json);
 
 }
+/***************************************/
+var g_status_of_post=2;
+function set_generate_status(status){
+  g_status_of_post = status;
+}
 
+function get_generate_status(){
+  return g_status_of_post;
+}
+/***************************************/
+var g_max_files_that_can_be_uploaded = 5;
+function get_max_file_that_can_be_uploaded(){
+  return g_max_files_that_can_be_uploaded;
+}
+
+function change_max_file_that_can_be_uploaded(change_count){
+  get_max_file_that_can_be_uploaded += change_count;
+}
+/***************************************/
 
 $(document).ready(function() {
    $("#actwitty_generator").live('click', function(){
@@ -299,7 +339,27 @@ $(document).ready(function() {
         alert("Nothing set to generate a post");
         return false;
       }
+      set_generate_status(2);
+      /* trigger upload */
+      if(documents_to_upload_count > 0){
+        $('#uploader_start').trigger('click');  
+      }else{
+          /* nothing to wait for */
+         document_upload_complete();
+      }
+      
+      return false;
 
+   });
+
+
+   $("#save_submit_button").live('click', function(){
+      if(!$('#activity_field').val() && !$('#location_field').val() &&
+        !$('#entity_field').val()){
+        alert("Nothing set to save a post");
+        return false;
+      }
+      set_generate_status(1);
       /* trigger upload */
       if(documents_to_upload_count > 0){
         $('#uploader_start').trigger('click');  

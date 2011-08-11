@@ -1,7 +1,7 @@
 $(function() {
 
 //var ID1 = $(".img_hover").attr("id");
-alert("hello");
+//alert("hello");
 
 $('.ntabs').hover(
 //$('.img_hover').hover(

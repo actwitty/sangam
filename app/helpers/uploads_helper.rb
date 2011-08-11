@@ -32,8 +32,7 @@ module UploadsHelper
     options[:max_filesize] ||= 500.megabytes
     options[:content_type] ||= 'image/' # Videos would be binary/octet-stream
     options[:filter_title] ||= 'Images'
-    options[:filter_extentions] ||= 'jpg,jpeg,gif,png,bmp'
-
+    options[:filter_extentions] ||= 'jpg,jpeg,gif,png,bmp,JPG,JPEG,GIF,PNG,BMP,Jpg,Gif,Jpeg,Bmp'
     id = options[:id] ? "_#{options[:id]}" : ''
 
     policy = Base64.encode64(
@@ -64,7 +63,7 @@ module UploadsHelper
 		runtimes : 'flash',
 		url : 'https://s3.amazonaws.com/#{bucket}',
 		max_file_size : '5mb',
-		max_file_count: 5, // user can add no more then 5 files at a time
+		max_file_count: get_max_file_that_can_be_uploaded(), // user can add no more then 5 files at a time
 		unique_names : true,
 		multiple_queues : true,
 
@@ -79,7 +78,7 @@ module UploadsHelper
 
     multipart: true,
     multipart_params: {
-              'key': 'test/' + '${filename}',
+              'key': 'test/${filename}',
               'Filename': '${filename}', // adding this to keep consistency across the runtimes
         			'acl': '#{options[:acl]}',
         			'Content-Type': '#{options[:content_type]}',
@@ -109,22 +108,48 @@ module UploadsHelper
 
   /* Single file upload handler */
   var uploader=$('#uploader').plupload('getUploader');
+  var queuefile=new Array();
   uploader.bind('UploadFile',function(up,file){
+
     var caption_id = 'file_caption_' + file.id;
     var caption = $('#' + caption_id).val(); 
     var file_name = file.name;
     var prefix = get_file_prefix();
     var url = up.settings.url + '/' + 'test/' + prefix + file.name;
-    up.settings.multipart_params['key']='test/' + prefix + '${filename}';
-    up.settings.multipart_params['Filename']= prefix + '${filename}';
+    var thumb_url = up.settings.url + '/' + 'test/thumb_' + prefix + file.name;
+		
+    
 
-    add_document_to_json(file.id, url, caption );
+	if(jQuery.inArray(file.name, queuefile)>=0){
+    up.settings.multipart_params['key']='test/thumb_' + prefix + '${filename}';
+    up.settings.multipart_params['Filename']='thumb_' + prefix + '${filename}'; 
+    up.settings.resize={width : 100, height : 100};
+		add_document_thumb_to_json(file.id, thumb_url );
+  }
+  else
+  {
+		up.settings.multipart_params['key']='test/' + prefix + '${filename}';
+    up.settings.multipart_params['Filename']= prefix + '${filename}';      
+		up.settings.resize= {width : 640, height : 480, quality :80};
+		add_document_to_json(file.id, url, caption );
+   } 
+
+    
   });
 
   uploader.bind('FileUploaded', function(up, file, response) {
-    if( uploader.total.uploaded == uploader.files.length){
-      document_upload_complete();
-    }
+   
+
+	if(jQuery.inArray(file.name, queuefile)<0){
+    	queuefile.push(file.name);       
+      file.status=plupload.QUEUED;       
+      
+    }else{
+		 if( uploader.total.uploaded == uploader.files.length){
+        document_upload_complete();
+    	}
+	  }
+       
   });
 
   uploader.bind('QueueChanged', function(up, file, response) {

@@ -215,4 +215,7 @@ $(document).ready(function(){
         $(this).hide();
     });
 
+    /* to make sure that only alphanumeric characters are allowed in activity field*/
+    $("#activity_field").alphanumeric();
+
 });

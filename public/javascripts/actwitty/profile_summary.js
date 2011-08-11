@@ -31,7 +31,7 @@ function create_and_docs_box(box_id, summary){
   if ( summary.documents &&  summary.documents.length ){
     var ul_box = $("#" + box_id);
     $.each(summary.documents, function(i, attachment){
-     var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title=""><img alt="" src="'+ attachment.url + '"  width="50" height="50" alt="" /></a>'; 
+     var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title=""><img alt="" src="'+ attachment.thumb_url + '"  width="50" height="50" alt="" /></a>'; 
      ul_box.append(html);
     });
     /* activate fancy box  */

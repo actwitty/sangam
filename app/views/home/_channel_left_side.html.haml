@@ -1,4 +1,18 @@
-.p-l-followers
-  %a#all_followers{:href => "#"}  #{@user.followers_count()} Followers >
-.p-l-followings
-  %a#all_followings{:href => "#"} #{@user.followings_count()} Followings >
+.p-l-fltr-1
+
+  .p-content-type-fltr-sect
+    #cont-typ-fltr-all.p-cont-typ-fltr
+      %span
+    #cont-typ-fltr-drafts.p-cont-typ-fltr
+      %span
+    #cont-typ-fltr-videos.p-cont-typ-fltr
+      %span
+    #cont-typ-fltr-images.p-cont-typ-fltr
+      %span
+    #cont-typ-fltr-twitter.p-cont-typ-fltr
+      %span
+.p-l-fltr-2
+  .p-l-followers
+    %a#all_followers{:href => "#"}  #{@user.followers_count()} Followers >
+  .p-l-followings
+    %a#all_followings{:href => "#"} #{@user.followings_count()} Followings >

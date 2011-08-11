@@ -12,10 +12,7 @@
 /*global window:false, escape:false */
 
 /*!@@version@@*/
-function get_me_a_name(){
-  alert("hello");
-  return "mynameisbond.png";
-}
+
 (function() {
 	var count = 0, runtimes = [], i18n = {}, mimes = {},
 		xmlEncodeChars = {'<' : 'lt', '>' : 'gt', '&' : 'amp', '"' : 'quot', '\'' : '#39'},
