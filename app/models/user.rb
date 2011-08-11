@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable,:token_authenticatable,
@@ -523,8 +525,7 @@ class User < ActiveRecord::Base
     params[:activity]= params[:word]
     params[:author_id] = self.id
     params[:meta_activity] = false
-
-    puts params[:update]
+    #params[:text] = sanitize(params[:text])
 
     obj = Activity.create_activity(params)
     if obj.blank?
@@ -555,7 +556,7 @@ class User < ActiveRecord::Base
   end
 
   #INPUT { :activity_id => 123,
-  #        :status => 1 or 2
+  #        :status => 1
   #      }
   #OUTOUT => Same as create_activity
   ##COMMENT => Changes state from saved to publish or private state. Dont use this api to change from
@@ -565,19 +566,19 @@ class User < ActiveRecord::Base
 
   def publish_activity(params)
     puts params[:update]
-    Rails.logger.debug("[MODEL] [USER] [update_activity_status] entering")
+    Rails.logger.debug("[MODEL] [USER] [publish_activity] entering")
 
     a = remove_activity(params[:activity_id])
 
     if a.blank?
-      Rails.logger.debug("[MODEL] [User] [update_activity_status]  returning empty json ")
+      Rails.logger.debug("[MODEL] [User] [publish_activity]  returning empty json ")
       return {}
     end
 
     params.delete(:activity_id)
     activity = create_activity(params)
 
-    Rails.logger.debug("[MODEL] [USER] [update_activity_status] leaving")
+    Rails.logger.debug("[MODEL] [USER] [publish_activity] leaving")
     activity
   end
 

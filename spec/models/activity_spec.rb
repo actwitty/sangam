@@ -641,6 +641,7 @@ describe Activity do
     end
     it "should update the activity properly " do
       a = @u.create_activity(:word => "eating" , :text => "pizza at tomato ketchup with PIZZA at
+                                   <script>alert(alok)</script>
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
                                    <mention><name>PIZZA<name><id>235<id><mention> hello
                                    http://www.youtube.com/watch?v=oIWxnfO7eJM&feature=feedrec wow
@@ -655,13 +656,12 @@ describe Activity do
                                              {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
                               :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
                                             AppConstants.status_saved)
-      h = { :word => "marry" , :text => "sachin tendulakr and rahul dravid
-                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+      h = { :word => "marry" , :text => "i am happy to travel",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
                                                     {:url => "http://a.com/xyz.jpg" },
                                                {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
-                                            AppConstants.status_saved,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
+                                            AppConstants.status_public,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
 
       puts "============================="
       h[:activity_id] = a[:post][:id]
@@ -676,11 +676,13 @@ describe Activity do
       puts a.inspect
       puts "============================="
 
-      h[:status] = 2
-      h.delete(:update)
-      c = @u.publish_activity( h)
+#      h[:status] = 2
+#      h.delete(:update)
+#      c = @u.publish_activity( h)
       work_off
       puts c.inspect
+      a = @u.get_draft_activity
+      puts a
     end
 
 #    TEST REMOVE ENTITY

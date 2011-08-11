@@ -2,10 +2,10 @@ class CreateLocations < ActiveRecord::Migration
   def self.up
     create_table :locations do |t|
 
-      t.integer   :location_type, :null => false    #Url => 1 , Geo location =2, [Url, GeoLocation] =>3, unknown ( only a name) => 4
-      t.text     :location_name, :null => false
+      t.integer :location_type, :null => false    #Url => 1 , Geo location =2, [Url, GeoLocation] =>3, unknown ( only a name) => 4
+      t.text    :location_name, :null => false
 
-      t.text   :location_url
+      t.text    :location_url
 
       t.decimal :location_lat, :precision => 18, :scale => 15
       t.decimal :location_long, :precision => 18, :scale => 15
