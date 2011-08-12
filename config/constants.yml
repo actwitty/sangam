@@ -148,7 +148,7 @@ development: &default
   audio_sources:                      last.fm|spotify.com
 
   #Tag List
-  tag_list:                           %w(b i u mention img name id a)
+  tag_list:                           %w(b i u mention img name id a value)
 
 production:
   <<: *default
