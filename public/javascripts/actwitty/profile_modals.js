@@ -8,8 +8,7 @@ var the_big_modal_manager_json = {
     /* Related friends modal configuration */
     "JS_AW_MODAL_related_friends"  :  {
                                           renderer_fn:function aw_modal_related_friends_caller(win_id, trigger_id){
-                                            //return aw_modal_related_friends_renderer(win_id, trigger_id);
-                                            return true;
+                                            return aw_friends_render_related_modal(win_id, trigger_id);
                                           },
                                           title:"Related Friends",
                                           top:20,

@@ -14,6 +14,7 @@ function populate_filtered_friends(box_id, friends){
   }
   var div = $("#" + box_id);
 
+  //alert(JSON.stringify(friends));
 
   $.each(friends, function(i, friend){
      var link_id = "stream_friend_id_" + friend.id;
@@ -142,6 +143,9 @@ function list_related_friends(){
         contentType: 'application/json',
         success: function (data) {
            populate_filtered_friends("stream_related_friends", data);
+
+           /* set context for the modal dialog */
+           aw_friends_set_related_modal_data(data);
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem getting related friends list. \n ActWitty is trying to solve.');

@@ -267,7 +267,15 @@ class HomeController < ApplicationController
   # User sign in required
   def get_related_friends
     Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Related friends request #{params}")
-
+    if params[:filter][:word_id].blank?
+      params[:filter].delete(:word_id)
+    end
+    if params[:filter][:entity_id].blank?
+      params[:filter].delete(:entity_id)
+    end
+    if params[:filter][:location_id].blank?
+    params[:filter].delete(:location_id)
+    end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] calling model api Filter:#{params[:filter]}")
       response_json=current_user.get_related_friends(params[:filter])
