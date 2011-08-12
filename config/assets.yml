@@ -98,6 +98,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/alpha/home_layout.css
+    - public/stylesheets/actwitty/alpha/multimedia.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
     - public/stylesheets/actwitty/alpha/comments-streams.css
     - public/stylesheets/actwitty/alpha/campaign-streams.css

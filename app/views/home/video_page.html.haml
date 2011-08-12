@@ -1,0 +1,52 @@
+=render :partial => "home/top_bar" 
+-if user_signed_in?
+  -if current_user.id == @user.id
+    #js_input_box
+      =render :partial => "home/input_box" 
+
+.wrapper.col3
+  #p-ch-st-tab-sect_mm
+    #p-ch-st-tab_mm
+      %ul.p-cstab_mm
+        %li#channels_video_tab_head.p-ch-tab_mm.js_video_tab_click
+          %a{:href => "#channels_tab"} Video Channels
+        %li#streams_video_tab_head.p-st-tab_mm.js_video_tab_click
+          %a{:href => "#streams_tab"} Video Streams
+          
+          
+
+.wrapper.col4
+  #p-content-sect
+    %ul
+      / #### Start of Left Side Filters ####
+      %li.p-con-l-fltr
+        #channels_left_side_bar
+          =render :partial => "home/channel_left_side"
+      / #### Start of Main Content Bar  ####
+      %li.p-content_mm
+        #channels_video_main_bar
+          #channels_video_tab.p-cstab_content_mm
+            #channels_video_display_list.channels_list
+            %a#more_channels_video.more_loader{:href => "#"} More Channels
+            %input#more_channels_video_cookie{:type => "hidden", :value => ""}
+        #streams_video_main_bar
+          #streams_video_tab.p-cstab_content_mm
+            #streams_video_list.p-awp-post-stream
+            %a#more_streams_video.more_loader{:href => "#"} More Streams
+            %input#more_streams_video_cookie{:type => "hidden", :value => ""}
+      %li.p-con-r-fltr.right-filters
+        #channels_right_side_bar
+          =render :partial => "home/channel_right_side"
+      / #### Start of Right filter Bar  ####
+
+/Secret cookies
+%input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+-if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+
+
+

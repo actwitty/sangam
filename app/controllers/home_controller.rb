@@ -804,5 +804,114 @@ class HomeController < ApplicationController
 
   end
   ######################################
+
+  def image_page
+    Rails.logger.info("[CNTRL][HOME][ IMAGE PAGE] request params #{params}")
+
+    @profile_page = 1
+    @page_mode="image"
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [IMAGE] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [IMAGE] User not signed in")
+    end
+
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    @follow = true
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [IMAGE] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [IMAGE] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      @user=User.find_by_id(params[:id])
+      if @user.nil?
+        if user_signed_in?
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      else
+        if user_signed_in?  && @user.id != current_user.id
+          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Checking the follow/unfollow status")
+          @follow = current_user.check_follower(@user.id)
+        end
+      end
+    end
+
+
+  end
+  ######################################
+
+  def get_image_channel
+
+  end
+  ######################################
+
+  def get_image_stream
+
+  end
+  ######################################
+  def video_page
+    Rails.logger.info("[CNTRL][HOME][ VIDEO PAGE] request params #{params}")
+
+    @profile_page = 1
+    @page_mode="video"
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [VIDEO] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [VIDEO] User not signed in")
+    end
+
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    @follow = true
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [VIDEO] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [VIDEO] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      @user=User.find_by_id(params[:id])
+      if @user.nil?
+        if user_signed_in?
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      else
+        if user_signed_in?  && @user.id != current_user.id
+          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Checking the follow/unfollow status")
+          @follow = current_user.check_follower(@user.id)
+        end
+      end
+    end
+
+
+  end
+  ######################################
+  def get_video_channel
+
+  end
+  ######################################
+
+  def get_video_stream
+
+  end
+  ######################################
+
+
+  #######################################
 end
 

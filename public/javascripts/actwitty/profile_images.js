@@ -6,7 +6,7 @@ $(document).ready(function() {
      * Click is made live with an intention to support image and video modals
      */
     
-    $('#cont-typ-fltr-images').live("click", function() {
+    $('#cont-typ-fltr-images_disabled').live("click", function() {
       //alert("images cool");
       var html = '<div id="tabul" class="p-cstab_content  "></div>';
       $('.p-awp-post-stream').hide();
@@ -246,6 +246,57 @@ function aw_channels_render_image(win_id, trigger_id){
     }
   
   return true;
+}
+
+
+/*
+ * Register handlers here
+ */
+$(document).ready(function() {  
+  $(".js_image_tab_click").click(function(){
+      /* Remove active from all tabs */
+		  $(".js_image_tab_click").removeClass("active");
+
+
+		  $(this).addClass("active"); //Add "active" class to selected tab
+      
+      var tab_id = $(this).attr("id");
+
+      if(tab_id == "channels_image_tab_head"){
+        $("#streams_image_main_bar").hide();
+        $("#channels_image_main_bar").fadeIn();
+
+      }else if(tab_id == "streams_image_tab_head"){
+        $("#channels_image_main_bar").hide();
+        $("#streams_image_main_bar").fadeIn();
+          
+      }
+
+
+		  var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		  $(activeTab).fadeIn(); //Fade in the active ID content
+    return false;
+  });
+});
+
+/*
+ * Main render of images page
+ */
+function show_images_init(){
+    var page_owner_id=$('#page_owner_id').attr("value");
+    var session_owner_id=$('#session_owner_id').attr("value");
+    
+    
+   
+    /* At very start Hide all contents on page load */
+
+      $("#channels_image_main_bar").show();
+      $("#streams_image_main_bar").hide();
+      $("#channels_left_side_bar").show();
+      $("#channels_right_side_bar").show();
+  	  $("ul.p-cstab_mm li:first").addClass("active").show();
+
+
 }
 
 
