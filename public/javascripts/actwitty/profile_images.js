@@ -14,7 +14,7 @@ $(document).ready(function() {
       $('#streams_tab').hide();
       $('#tabul_videos').hide();
       $('#tabul_videos').remove();
-      //$('#tabul').remove();
+      $('#tabul').remove();
       $('#tabul').show();
       //alert("images cool1");
       $('#streams_main_bar').append(html);
