@@ -1,0 +1,39 @@
+=render :partial => "home/top_bar" 
+-if user_signed_in?
+  -if current_user.id == @user.id
+    #js_input_box
+      =render :partial => "home/input_box" 
+
+
+.wrapper.col3
+  #p-ch-st-tab-sect
+    #p-ch-st-tab
+      .p-cstab
+        #channel_stream_header
+        #streams_list.p-awp-post-stream 
+        %a#more_channel_streams.more_loader{:href => "#"} More
+        %input#more_channel_streams_cookie{:type => "hidden", :value => ""}
+          
+          
+
+.wrapper.col4
+  #p-content-sect
+    %ul
+      / #### Start of Left Side Filters ####
+      %li.p-con-l-fltr
+        #channels_left_side_bar
+          =render :partial => "home/channel_left_side"
+      / #### Start of Main Content Bar  ####
+
+/Secret cookies
+%input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+%input#channel_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@channel_id}" }
+-if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+
+
+

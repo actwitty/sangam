@@ -698,5 +698,103 @@ class HomeController < ApplicationController
     @post_id = params[:post_id]
   end
   ######################################
+  def entity_page
+    Rails.logger.info("[CNTRL][HOME][ ENTITY PAGE] request params #{params}")
+
+    @user=current_user
+    @profile_page = 1
+    @page_mode="entity"
+    @entity_id = params[:entity_id]
+
+  end
+  ######################################
+  def get_entity_stream
+    Rails.logger.info("[CNTRL][HOME][GET ENTITY STREAM] request params #{params}")
+    if params[:entity_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:entity_id] = Integer(params[:entity_id])
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] returned from model api with #{params}")
+      response_json = current_user.get_entity_stream(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+  ######################################
+  def location_page
+    Rails.logger.info("[CNTRL][HOME][ LOCATION PAGE] request params #{params}")
+
+    @user=current_user
+    @profile_page = 1
+    @page_mode="location"
+    @location_id = params[:location_id]
+
+  end
+  ######################################
+  def get_location_stream
+    Rails.logger.info("[CNTRL][HOME][GET LOCATION STREAM] request params #{params}")
+    if params[:location_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:word_id] = Integer(params[:location_id])
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] returned from model api with #{params}")
+      response_json = current_user.get_location_stream(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+  ######################################
+   def channel_page
+    Rails.logger.info("[CNTRL][HOME][ CHANNEL PAGE] request params #{params}")
+    @user=current_user
+    @profile_page = 1
+    @page_mode="channel"
+    @channel_id = params[:channel_id]
+
+  end
+  ######################################
+  def get_activity_stream
+    Rails.logger.info("[CNTRL][HOME][GET CHANNEL STREAM] request params #{params}")
+    if params[:word_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:word_id] = Integer(params[:word_id])
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] returned from model api with #{params}")
+      response_json = current_user.get_activity_stream(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+  ######################################
 end
 
