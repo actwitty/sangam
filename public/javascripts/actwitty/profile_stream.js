@@ -161,9 +161,10 @@ function append_entity_delete(post_id){
         $("#" + box_id).find(".js_activity_entity").each(function(){
           $(this).addClass("js_handle_stream_entity_mention");
           var entity_id = $(this).attr("value");
+          $(this).attr("href","/entity_page?entity_id=" +  entity_id);
           var remove_val = {post_id:post_id , entity:entity_id };
-
-          var remove_id = post_id + entity_id + "_rem";
+          
+          var remove_id = post_id + '_' + entity_id + "_rem";
           the_big_stream_entity_deletes[remove_id] = remove_val;
           var hover_html = '<span>' +
                               '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> Remove </a>' +
@@ -204,9 +205,11 @@ function handle_stream_location(box_id, location){
      if ( location && location.name && location.name.length){
       var html='<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
                 '<div class="p-awp-location-name">' +
-                  '<span >' +
-                    location.name +
-                  '</span>' +
+                  '<a href="/location_page?location_id=' + location.id + '">' +
+                    '<span >' +
+                      location.name +
+                    '</span>' +
+                  '</a>' +
                 '</div>';
       div.html(html);
      }else{
@@ -528,11 +531,14 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     prepend=false;
   }
   
+  
+  var stream_render_id= get_stream_ele_id(post.id);
+
   /* Fail safe, due to any reason this happens, reject the stream from being displayed again*/
-  if ($("#" + post.id ).length > 0){
+  if ($("#" + stream_render_id ).length > 0){
    return;
   }
-  var stream_render_id= get_stream_ele_id(post.id);
+
   var doc_box_id      =  stream_render_id + '_docs';
   var campaign_box_id =  stream_render_id + '_campaigns';
   var text_box_id     =  stream_render_id + '_text';
@@ -575,14 +581,16 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
                     /*************************** Title box ****************************/ 
                       /* Post channel user */
-                      '<div class="p-awp-channel">' +
+                      '<div class="p-awp-channel js_channel_div_show">' +
                         '<div class="p-awp-channel-desc">' +
                           '<label class="p-awp-channel-label">'  +
                             'Channel:' +
                           '</label>' +
-                          '<span class="p-awp-channel-name">' +
-                            post.word.name +
-                          '</span>' +
+                          '<a href="/channel_page?channel_id=' +  post.word.id + '">' +
+                            '<span class="p-awp-channel-name">' +
+                              post.word.name +
+                            '</span>' +
+                          '</a>' +
                         '</div>' +
                       '</div>' +
 
@@ -607,7 +615,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '</div>' +
                   
                     /* Post text*/
-                    '<div class="p-awp-location" id="' + location_box_id + '" >' +
+                    '<div class="p-awp-location js_location_hide" id="' + location_box_id + '" >' +
                     '</div>' +
                     /* Post attachment */
                     '<div class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
@@ -636,6 +644,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   }
   handle_stream_actions(action_box_id, stream, current_user_id);
   handle_stream_text(text_box_id, stream.post.text);
+
   handle_stream_location(location_box_id, stream.location);
   handle_stream_docs(doc_box_id, stream);
 
@@ -736,8 +745,8 @@ function add_comment(add_json){
           var comment_count = the_big_comment_show_all_json[add_json.all_id].count + 1;
           the_big_comment_show_all_json[add_json.all_id].count = comment_count;
           var all_id = add_json.all_id;
-          alert(all_id);
-          alert(get_comment_head_label(comment_count));
+          //alert(all_id);
+          //alert(get_comment_head_label(comment_count));
           $("#" + all_id).html(get_comment_head_label(comment_count));
          
          
@@ -1076,7 +1085,6 @@ $(document).ready(function(){
   /*
    * Delete entity mentioned in text
    */
-
   $('.js_entity_delete').live('click' , function(){
 
     delete_entity_from_post(the_big_stream_entity_deletes[$(this).attr("id")]["post_id"], 

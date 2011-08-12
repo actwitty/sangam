@@ -8,13 +8,17 @@ function show_all_drafts(){
         data: {},
         success: function (data) {
           // if rails demands a redirect because of log in missing 
-           $.each(data, function(i,stream){
-            if( stream ){
-                create_and_add_stream($("#streams_list"),stream , current_user_id);
-            } 
-          });
+          if (data.length){
+             $.each(data, function(i,stream){
+              if( stream ){
+                  create_and_add_stream($("#streams_list"), stream, current_user_id);
+              } 
+            });
+          }else{
+            $("#streams_list").html("<br/> <br/> No streams drafted");
+          }
             
-          ("#channels_left_side_bar").fadeIn();
+          $("#channels_left_side_bar").fadeIn();
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {

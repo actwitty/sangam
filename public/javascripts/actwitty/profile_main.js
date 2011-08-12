@@ -27,6 +27,11 @@ $(document).ready(function(){
     show_all_on_location();
   }else if( page_context == "channel"){
     show_all_on_channel();
+  }else if( page_context == "image"){
+    //show_images();
+  }else if( page_context == "video"){
+    //show_videos();
   }
+
 
 });
