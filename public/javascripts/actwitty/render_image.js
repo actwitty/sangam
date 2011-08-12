@@ -9,6 +9,13 @@ function get_image_context(id){
     var image_id = internal_id;
     var scale_image = new Image();
     scale_image.src = data.img;
+    /*
+    theImage.load(function(){
+    var imgwidth     = $(this).width;
+    var imgheight    = $(this).height; 
+    });
+    */
+
     scale_image.width = data.width;
     scale_image.height = data.height;
 
@@ -80,14 +87,16 @@ function get_image_context(id){
 
 	  var image_html  = '<img src="/images/' +  data.img  + '"' +
                        'style="height:'+h+'px;width:'+w+'px;margin-top:'+top_margin+'px;margin-left:'+left_margin+'px;"' +
-                       'class="imgsrc ' + data.jquery_class + ' " id="' + image_id + '">';
+                       'class="imgsrc ' + data.jquery_class + ' " id="' + image_id + '">'+
+                       '<img id="source_image" src="/images/'+ data.source +'" style="display:none;">';
     
     var click_id =  new_tab_id;
     $("#"+ new_tab_id ).addClass("js_modal_dialog_link");  
     $("#"+ new_tab_id ).addClass("JS_AW_MODAL_image"); 
-    alert("Next");
     //alert($("#"+ new_tab_id ).next("div").attr("id"));
     //alert(new_tab_id);
+    var img_div_window =   $('#' + new_tab_id);
+    img_div_window.css({'width':150,'height':100});
     //alert(click_id);
     
     the_big_image_click_manager_json[click_id] = {

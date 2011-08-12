@@ -11,7 +11,7 @@
 							img:   "111.jpg",
 							author: "sachin",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "f.jpeg"
            
         					},
         					{
@@ -22,7 +22,7 @@
 							img:   "112.jpg", 
 							author:"raina",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "t.jpeg"
         					},
 						{
             						title: "Box1",
@@ -32,7 +32,7 @@
 							img:   "6.jpg",
 							author:"zaheer",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "f.jpeg"
         					},
         					{
             						title: "Box2",
@@ -42,7 +42,7 @@
 							img:   "7.jpg",
 							author:"prasad",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "t.jpeg"
         					},
 						{
             						title: "Box1",
@@ -52,7 +52,7 @@
 							img:   "8.jpg",
 							author:"dhoni",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "f.jpeg"
         					},
         					{
             						title: "Box2",
@@ -62,7 +62,7 @@
 							img:   "9.bmp",
 							author:"gautam",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "t.jpeg"
         					},
 						{
             	title: "Box1",
@@ -72,7 +72,7 @@
 							img:   "2g.gif",
 							author:"praveen",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "f.jpeg"
         					},
         			{
             	title: "Box2",
@@ -82,7 +82,7 @@
 							img:   "1g.gif",
 							author:"amit",
 							jquery_class:"img_hover",
-              source: "facebook.jpg"
+              source: "f.jpeg"
         					}
                
     					 ]
@@ -112,7 +112,7 @@
 							height:"100",
 							author:"amit",
               title: "New Video",
-              url:"http://www.youtube.com/watch?v=u616beCdBrQ&feature=topvideos_music"
+              url:"http://www.youtube.com/watch?v=JKk76qLFY68&feature=grec_index"
         			},
               {
             	title: "Box2",
@@ -131,6 +131,24 @@
 							author:"amit",
               title: "New Video",
               url:"http://www.youtube.com/watch?v=ekge2Cy9xk0&feature=related"
+        			},
+              {
+            	title: "Box2",
+							id:    "101",
+							width: "200",
+							height:"100",
+							author:"amit",
+              title: "New Video",
+              url:"http://www.youtube.com/watch?v=QBBWKvY-VDc"
+        			},
+              {
+            	title: "Box2",
+							id:    "101",
+							width: "200",
+							height:"100",
+							author:"amit",
+              title: "New Video",
+              url:"http://www.youtube.com/watch?v=nTasT5h0LEg"
         			} 
         				
                

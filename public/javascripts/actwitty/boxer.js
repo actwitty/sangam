@@ -52,7 +52,8 @@ function addtab(box_id, position, data, type, boxer_class)
   var box = $("#" + box_id);
 
   /* add a new tab */
-  var html = '<div id="' + new_tab_id + '" class="ntabs js_aw_ntabs ' + boxer_class +  '"' + 'style="height:100px;width:150px;">' +
+  var html = '<div id="' + new_tab_id + '" class="ntabs js_aw_ntabs ' + boxer_class +  '"' +
+  //'style="height:100px;width:150px;">' +
              '</div>';
   box.append(html);
   tab = $("#" + new_tab_id);

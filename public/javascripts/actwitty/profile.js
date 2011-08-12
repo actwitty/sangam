@@ -91,6 +91,11 @@ $(document).ready(function(){
         $("#streams_left_side_bar").fadeIn();
         $("#streams_main_bar").fadeIn();
         $("#streams_right_side_bar").fadeIn();
+        //Added Because of the Image and Video Tab
+        $("#streams_tab").show();
+        $("#streams_list").show();
+        $("#tabul").hide();
+        $("#tabul_videos").hide();
         if(populated_stream == false){
           reload_streams_on_viewed_user(page_owner_id,session_owner_id);
           populated_stream=true;
