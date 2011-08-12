@@ -76,9 +76,11 @@ gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
 gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delayed_job_active_record.git'
 
 
-
 #easy ARel
 gem "squeel" # Last officially released gem
+
+#aws
+gem "right_aws"
 
 group :development do
 
