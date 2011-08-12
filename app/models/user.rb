@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include ActionView::Helpers
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -24,7 +23,8 @@ class User < ActiveRecord::Base
 
 ##### ALOK changed it  ##########################
   has_many :activities, :foreign_key => :author_id , :dependent => :destroy
-  has_many :documents, :foreign_key => :owner_id, :dependent => :destroy
+  has_many :documents, :foreign_key => :owner_id
+  has_many :tags, :foreign_key => :author_id
 
   #CREATE & DESTROY for hub, hub association, mentions, campaigns, entity_ownerships,summaries location_ownerships  will happen from activity create & destroy
   #no explicit create & destroy is called by user for all these
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :hubs
   has_many :entities, :through => :hubs, :uniq => true
   has_many :locations, :through => :hubs, :uniq => true
-  has_many  :activity_words, :through => :hubs, :uniq => true
+  has_many :activity_words, :through => :hubs, :uniq => true
 
   has_many :mentions
   has_many :campaigns,:foreign_key => :author_id
@@ -1320,12 +1320,15 @@ class User < ActiveRecord::Base
   #user_id => 123 #If same as current use then mix streams with friends other wise only user
   #:friend => true/false
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #:category => "image" or "video"
 
   def get_document_summary(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_document_summary] entering")
     h = {}
     user = nil
+
+    return {} if (params[:user_id].blank? || params[:category].blank?)
 
     if params[:user_id] == self.id
       if params[:friend] == true
@@ -1345,10 +1348,12 @@ class User < ActiveRecord::Base
         user = params[:user_id]
     end
 
+
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
     h[:user_id] = user
 
     doc_hash = {}
+
 
     Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
       if !attr.document_array.blank?
@@ -1361,12 +1366,25 @@ class User < ActiveRecord::Base
         }
       end
     end
-    Document.where(:id => doc_hash.keys).all.each do |attr|
+
+    puts doc_hash.keys
+    #doc_hash.keys will give public docs as summary does not exist for saved docs
+    h = {:id => doc_hash.keys, :category => params[:category]}
+#    h[:status] = AppConstants.status_public
+
+    Document.where(h).all.each do |attr|
       h = format_document(attr)
       doc_hash[attr.id][:document] = h[:document]
     end
+
     #TODO need to get saved docs too
     Rails.logger.debug("[MODEL] [USER] [get_document_summary] leaving")
+
+    #delete those keys in which doc_hash[key][document] is still nil.
+    #this is possible as summary does not contaon info about about
+    doc_hash.each do |k,v|
+      doc_hash.delete(k) if doc_hash[k][:document].blank?
+    end
     doc_hash.values
   end
 
@@ -1377,13 +1395,16 @@ class User < ActiveRecord::Base
   #:filter => {:word_id => 123,
   #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
   #            :location_id => 789 }
-  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)            .yml
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+  #:category => "image" or "video"
 
   def get_document_stream(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] entering")
     h = {}
     user = nil
+
+    return {} if (params[:user_id].blank? || params[:category].blank?)
 
     h = process_filter(params[:filter])
 
@@ -1411,6 +1432,8 @@ class User < ActiveRecord::Base
 
     h[:status] =  AppConstants.status_public
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:owner_id] = user
+    h[:category] = params[:category]
 
     #documents can not have entity
     h.delete(:entity_id) if !h[:entity_id].blank?

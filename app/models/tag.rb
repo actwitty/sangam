@@ -8,16 +8,16 @@ class Tag < ActiveRecord::Base
 
    belongs_to     :activity, :counter_cache => true
 
-  validates_existence_of  :author_id, :activity_word_id,:activity_id
-  validates_existence_of  :summary_id, :allow_nil => true
-  validates_existence_of  :location_id, :allow_nil => true
+   validates_existence_of  :author_id, :activity_word_id,:activity_id
+   validates_existence_of  :summary_id, :allow_nil => true
+   validates_existence_of  :location_id, :allow_nil => true
 
-  validates_presence_of :name, :tag_type, :source_name, :status
+   validates_presence_of :name, :tag_type, :source_name, :status
 
-  validates_length_of :name, :in => 1..AppConstants.tag_length
-  validates_length_of :source_name, :in => 1..AppConstants.source_name_length
+   validates_length_of :name, :in => 1..AppConstants.tag_length
+   validates_length_of :source_name, :in => 1..AppConstants.source_name_length
 
-  validates_inclusion_of :tag_type, :in => 1..3
+   validates_inclusion_of :tag_type, :in => 1..3
 
   class << self
     def create_tag(params)
