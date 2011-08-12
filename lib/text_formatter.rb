@@ -13,7 +13,6 @@ module TextFormatter
 
   #convert to html urls
   def link_to_type(controller, klass, name, id)
-    #"<a href=/#{controller}/#{id} class=\"#{klass}\">#{name}</a>".html_safe
     "<a href=\# value=#{id} class=#{klass}>#{name}</a>".html_safe
   end
 
@@ -286,7 +285,6 @@ module TextFormatter
 
     hash[:document] = {
               :id => document.id,
-              :name =>  document.name,
               :url => document.url,
               :thumb_url => document.thumb_url,
               :caption => document.caption,
@@ -294,8 +292,9 @@ module TextFormatter
               :source_name => document.source_name,
               :status => document.status,
               :uploaded => document.uploaded,
-              :category => document.category
-           }
+              :category => document.category,
+              :activity_id => document.activity_id,
+              :summary_id => document.summary_id           }
     hash
   end
   #formats an campaign  ( extra => user_id which tells if current user is there & count )

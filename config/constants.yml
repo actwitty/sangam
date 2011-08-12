@@ -148,7 +148,10 @@ development: &default
   audio_sources:                      last.fm|spotify.com
 
   #Tag List
-  tag_list:                           %w(b i u mention img name id a)
+  sanity_tags:                           %w(b i u mention img name id a)
+
+  #attributes List
+  sanity_attributes:                    %w(href value class)
 
 production:
   <<: *default
