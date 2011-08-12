@@ -1,14 +1,10 @@
-*
+/*
  * Home page things related jqueries
  *
  */
-var the_big_modal_friends_json = {};
-
-
-
-
+var the_big_modal_related_friends_json = {};
 /* Global data */
-var ignore_friend_auto_complete = false;
+var ignore_friend_related_auto_complete = false;
 
 
 
@@ -17,8 +13,8 @@ var ignore_friend_auto_complete = false;
 
 $(document).ready(function(){
   
-  $(".js_search_friends").live('keyup.autocomplete', function() {
-    var json_data = get_friends_json_data($(this).attr("id"));
+  $(".js_search_related_friends").live('keyup.autocomplete', function() {
+    var json_data = get_friends_json_data();
     //alert(JSON.stringify(json_data));
    //TODO: check why JSON is not working here
     $(this).autocomplete(json_data, {
@@ -27,33 +23,30 @@ $(document).ready(function(){
 		  matchContains: true,
 		  highlightItem: false,
       formatItem: function(friend) {
-        return friend.name;
+        return '<img alt="" class="p-st-fltr-search-img" src="'+ friend.image + '?maxwidth=40&maxheight=40">   ' + friend.name + '</img>';
       }
 
     }).result(function(e, friend) {
-      if (ignore_friend_auto_complete == false){
+      if (ignore_friend_related_auto_complete == false){
           var new_filter = {
-                            friend_id:friend.id,
-                            friend_name:friend.name
+                            user:friend.id,
                            };
           modify_filter(new_filter);
-          aw_modal_close(get_friends_modal_id($(this).attr("id")));
-          ignore_friend_auto_complete=true;
+          aw_modal_close("JS_AW_MODAL_related_friends");
+          ignore_friend_related_auto_complete=true;
         }
     });
   });
 
 
 
-  $('.js_modal_friends').live('click', function(){
+  $('.js_modal_related_friends').live('click', function(){
 
     //the_big_comment_count_json
-    var friend = the_big_modal_friends_json[$(this).attr("id")];
-    if(friend){
-      //alert("Channel id:" + friend.id);
+    var user_json = the_big_modal_related_friends_json[$(this).attr("id")];
+    if(user_json){
       var new_filter = {
-                         friend_id:friend.id,
-                         friend_name:friend.name
+                         user:user_json.user_id
                        }; 
       modify_filter(new_filter);
     }
@@ -66,65 +59,46 @@ $(document).ready(function(){
 });
 
 
-function get_friends_json_data(id){
-  if(id == "js_friends_modal_related"){
-    var aw_modal_data = aw_modal_get_data("JS_AW_MODAL_related_friends");
-    return aw_modal_data.data;
-  }else{
-    return aw_modal_get_data("JS_AW_MODAL_all_friends").data;
-  }
+function get_friends_json_data(){
+    return aw_modal_get_data("JS_AW_MODAL_related_friends").data;
 }
 
-function get_friends_modal_id(id){
-  if(id == "js_friends_modal_related"){
-    return "JS_AW_MODAL_related_friends";
-  }else{
-    return "JS_AW_MODAL_all_friends";
-  }
-}
 
 function aw_friends_set_related_modal_data(json_data){
   var modal_data = {
-                      type:"friends",
-                      class:"friends_box",
+                      type:"related_friends",
+                      class:"related_friends_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_related_friends", modal_data);
 }
 
-function aw_friends_set_all_friends_modal_data(json_data){
-  
-  var modal_data = {
-                      type:"friends",
-                      class:"friends_box",
-                      data:json_data
-                   };
-  aw_modal_set_data("JS_AW_MODAL_all_friends", modal_data);
 
-}
 
-function aw_render_friends_internal(friend, div_id){
+function aw_render_friends_related_internal(friend, div_id){
      var link_id = "stream_related_modal_" + friend.id;
-     var html='<div class="friends_box_internal" id="' + div_id + '">' +
-                '<a href="#" class="js_modal_friends" id="' + link_id + '">' +
+     var html='<div class="related_friends_box_internal" id="' + div_id + '">' +
+                '<a href="#" class="js_modal_related_friends" id="' + link_id + '">' +
+                  '<img class="friends_box_images" src="' + friend.image +  '?maxwidth=40&maxheight=40"/>' +
                     friend.name +
                 '</a>'+
                
               '</div>';
-     the_big_modal_friends_json[link_id] = {id:friend.id, name:friend.name};
+     the_big_modal_related_friends_json[link_id] = {user_id: friend.id};
      return html;
 }
 
 function aw_friends_render_related_modal(win_id, trigger_id){
-  the_big_modal_friends_json={};
+  the_big_modal_related_friends_json={};
+  alert("i m in");
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_friends_modal_related" class="js_search_friends " placeholder="Channels"/>' +
+                      '<input type="text" id="js_friends_modal_related" class="js_search_related_friends" placeholder="People"/>' +
                     '</div>';
 
   div.append(search_html);
-  ignore_friend_auto_complete=false;
+  ignore_friend_related_auto_complete=false;
   var html = '<div  id="' + id + '">' +
              '</div>';
   div.append(html);
@@ -135,24 +109,7 @@ function aw_friends_render_related_modal(win_id, trigger_id){
 }
 
 
-function aw_friends_render_all_modal(win_id, trigger_id){
-  the_big_modal_friends_json={};
-  var id = win_id + '_modal_div';
-  var div = $("#" + win_id);
-  var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_friends_modal_all" class="js_search_friends " placeholder="Channels"/>' +
-                    '</div>';
 
-  div.append(search_html);
-  ignore_friend_auto_complete=false;
-  var html = '<div  id="' + id + '">' +
-             '</div>';
-  div.append(html);
-  
-  var page_owner_id=$('#page_owner_id').attr("value");
-  get_all_friends( page_owner_id, id); 
-  return true;
-}
 
 
 

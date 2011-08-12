@@ -46,6 +46,7 @@ javascripts:
     - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_modals.js
     - public/javascripts/actwitty/profile_entities.js
+    - public/javascripts/actwitty/profile_related_followings.js
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_followers.js

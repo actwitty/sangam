@@ -111,4 +111,27 @@
 
 
 /****************** channel box *************/
+/*************** related friends box *****************/
+.related_friends_box {
+                height:90px;
+                width:120px;
+             }
+
+.related_friends_box_internal{
+        width:80%;
+        overflow:hidden;
+        float:left;
+}
+
+.related_friends_box_internal a img{
+}
+
+.related_friends_box_internal a span{
+}
+
+.friends_box_images{
+  height:40;
+  width:40;
+}
+/*************** related friends box *****************/
 
