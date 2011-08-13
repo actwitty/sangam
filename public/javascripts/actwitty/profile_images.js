@@ -248,10 +248,168 @@ function aw_channels_render_image(win_id, trigger_id){
   return true;
 }
 
+var the_big_image_channel_manager_json={};
+
+function  get_channel_image_id(data){
+  return "channel_image_ele_" + data.word.id + "_" + data.user.id;
+}
+
+function get_source_image_url(source){
+  var source_img_url ="/images/alpha/at.jpg"; /* initialize with actwitty image source */
+  if(source == "twitter"){
+    source_img_url="/images/alpha/twitter.jpeg";
+  }else if(source == "facebook"){
+    source_img_url="/images/alpha/facebook.jpeg";
+  }else if(source == "dropbox"){
+    source_img_url="/images/alpha/dropbox.jpeg";
+  }
+
+  return source_img_url;
+}
+function aw_image_channel_renderer(div_id, data){
+  /*
+    [{"word":{"id":1,"name":"travel"},"time":"2011-08-12T06:29:55Z","user":{"id":1,"full_name":"Sudhanshu Saxena","photo":"/images/profile/default.png"},"count":3,"document":{"id":3,"url":"https://s3.amazonaws.com/TestCloudActwitty/test/1_1313061424036_Mario.jpeg","thumb_url":"https://s3.amazonaws.com/TestCloudActwitty/test/thumb_1_1313061427501_Mario.jpeg","caption":"Mario image","source_name":"actwitty","status":2,"uploaded":true,"category":"image","activity_id":11,"summary_id":1}}] */
+
+
+  var channel_img_ele_id = get_channel_image_id(data);
+
+  if( $("#" + channel_img_ele_id).length){
+    /*something bad happened element is already rendered in DOM*/
+    return;
+  }
+ 
+  /* set context to manage all clicks */
+  the_big_image_channel_manager_json[channel_img_ele_id] = data;
+
+  /* pickup url thumb if available*/
+  var img_url= data.document.url;
+  if( data.document.thumb_url.length){
+    img_url =  data.document.url;
+  }
+  //aw_image_fit_to_size 
+  var channel_img_id = channel_img_ele_id + '_img';
+
+  
+ var html = '<div class="mm-img-channel-parent-box" id="' + channel_img_ele_id + '">' +
+             
+                '<div class="mm-img-channel-src-box">' +
+                  '<img src="' + get_source_image_url(data.document.source_name) + '"/>' +
+                '</div>' +
+
+                /* user box put up here */
+                '<div class="mm-img-channel-user-box">' +
+                  /* user image */
+                  '<div class="mm-img-channel-user-image-box js_img_channel_user_click">' +
+                    '<img  src="' + data.user.photo + '" />' +
+                  '</div>' +
+
+                  /* user name */
+                  '<div class="mm-img-channel-user-name-box js_img_channel_user_click">' +
+                    '<span>' +
+                      data.user.full_name + 
+                    '</span>' +
+                  '</div>' +
+                '</div>' +
+
+              /* main image put up here */
+              '<div class="mm-img-channel-img-box js_img_channel_main_click">' +
+                  '<img id="' + channel_img_id + '" src="" class="js_channel_image_load" />' +
+              '</div>' +
+
+              
+
+              /* user box put up here */
+              '<div class="mm-img-channel-count-box js_img_channel_main_click">' +
+                 '<span>' +
+                    data.count + 
+                  '</span>' +
+              '</div>' +
+
+              /* channels box put up here */
+              '<div class="mm-img-channel-display-box js_img_channel_main_click">' +
+                  '<span>' +
+                    data.word.name + 
+                  '</span>' +
+              '</div>' +
+
+            '</div>';
+    
+    $("#" + div_id).append(html);
+    $("#" + channel_img_id).attr("src", img_url);
+
+
+    $('#' + channel_img_id).one('load', function() {  
+      var img = $(this);
+      setTimeout(function(){
+        alert("load image done");
+        var image_json = {
+                         width:img.width,
+                         height:img.height
+                       };
+        var box_json = {
+                         width:200,
+                         height:150
+                       };
+                        
+        var resize_json = aw_image_fit_to_size(image_json, box_json);
+        alert(JSON.stringify(resize_json));
+        img.attr("height", resize_json.height);
+        img.attr("width", resize_json.width);
+
+        img.show();
+        var manager_id=img.closest(".mm-img-channel-parent-box").attr("id");
+        //alert(JSON.stringify(the_big_image_channel_manager_json[manager_id]));
+      }, 1000);
+  }).each(function() {
+    if(this.complete) $(this).load();
+  });
+            
+
+    
+}
 
 /*
  * Register handlers here
  */
+var g_is_image_channels_populated=false;
+var g_is_image_streams_populated=false;
+
+function append_image_channels(){
+   var page_owner_id=$('#page_owner_id').attr("value");
+   var friends_val = true;
+   var updated_at_val = $('#more_streams_image_cookie').val();
+
+   $.ajax({
+
+            url: '/home/get_document_channel.json',
+            type: 'GET',
+            data: {
+                    user_id : page_owner_id,
+                    friend : friends_val,
+                    updated_at : updated_at_val,
+                    category : "image"
+                  },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                  //alert(JSON.stringify(data));
+                  $.each(data, function(i,channel){
+
+                  
+                    /* div id and channel data*/
+                    aw_image_channel_renderer("channels_image_display_list", channel);
+                    /* set last image as cookie */
+                    $('#more_streams_image_cookie').val(channel.time);
+                  });
+              },
+            error:function(XMLHttpRequest,textStatus, errorThrown){ 
+               alert('There has been a problem getting image summaries. \n ActWitty is trying to solve.');
+            }
+            }); 
+
+}
+
+
 $(document).ready(function() {  
   $(".js_image_tab_click").click(function(){
       /* Remove active from all tabs */
@@ -265,6 +423,10 @@ $(document).ready(function() {
       if(tab_id == "channels_image_tab_head"){
         $("#streams_image_main_bar").hide();
         $("#channels_image_main_bar").fadeIn();
+        if(!g_is_image_channels_populated){
+          append_image_channels();
+          g_is_image_channels_populated = true;
+        }
 
       }else if(tab_id == "streams_image_tab_head"){
         $("#channels_image_main_bar").hide();
@@ -277,6 +439,30 @@ $(document).ready(function() {
 		  $(activeTab).fadeIn(); //Fade in the active ID content
     return false;
   });
+  
+  $("#more_streams_image").click(function(){
+    append_image_channels();
+  });
+
+
+  /****************************************************/
+  /* jump to stream of current or remote user */
+  $('.js_img_channel_main_click').live('click', function(){
+    var manager_id=$(this).closest(".mm-img-channel-parent-box").attr("id");
+    alert(JSON.stringify(the_big_image_channel_manager_json[manager_id]));
+  });
+    
+  /* jump to user on click */
+  $('.js_img_channel_user_click').live('click', function(){
+    alert("clicked js_img_channel_user_click");
+    var manager_id=$(this).closest(".mm-img-channel-parent-box").attr("id");
+    alert(JSON.stringify(the_big_image_channel_manager_json[manager_id]));
+  });
+
+  
+  /****************************************************/
+  
+
 });
 
 /*
@@ -286,7 +472,6 @@ function show_images_init(){
     var page_owner_id=$('#page_owner_id').attr("value");
     var session_owner_id=$('#session_owner_id').attr("value");
     
-    
    
     /* At very start Hide all contents on page load */
 
@@ -295,6 +480,12 @@ function show_images_init(){
       $("#channels_left_side_bar").show();
       $("#channels_right_side_bar").show();
   	  $("ul.p-cstab_mm li:first").addClass("active").show();
+
+      if(!g_is_image_channels_populated){
+        the_big_image_channel_manager_json={};
+        append_image_channels();
+        g_is_image_channels_populated = true;
+      }
 
 
 }

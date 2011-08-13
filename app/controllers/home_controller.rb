@@ -789,7 +789,7 @@ class HomeController < ApplicationController
     end
     params[:word_id] = Integer(params[:word_id])
     if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] returned from model api with #{params}")
+      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] calling  model api with #{params}")
       response_json = current_user.get_activity_stream(params)
 
       if request.xhr?
@@ -849,12 +849,77 @@ class HomeController < ApplicationController
   end
   ######################################
 
-  def get_image_channel
+  def get_document_channel
+   Rails.logger.info("[CNTRL][HOME][GET DOCUMENT CHANNEL] request params #{params}")
+
+    if params[:user_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:user_id] = Integer(params[:user_id])
+
+
+    if params[:friend].blank?
+      params[:friend] = false
+    else
+      if params[:friend] == "true"
+        params[:friend] = true
+      else
+        params[:friend] = false
+      end
+    end
+
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT CHANNEL] calling  model api with #{params}")
+      response_json = current_user.get_document_summary(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT CHANNEL] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
 
   end
   ######################################
 
-  def get_image_stream
+  def get_document_stream
+    Rails.logger.info("[CNTRL][HOME][GET DOCUMENT STREAM] request params #{params}")
+
+    if params[:user_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:user_id] = Integer(params[:user_id])
+
+
+    if params[:friend].blank?
+      params[:friend] = false
+    else
+      if params[:friend] == "true"
+        params[:friend] = true
+      else
+        params[:friend] = false
+      end
+    end
+
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT STREAM] calling  model api with #{params}")
+      response_json = current_user.get_document_stream(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT STREAM] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
 
   end
   ######################################
@@ -900,16 +965,6 @@ class HomeController < ApplicationController
 
 
   end
-  ######################################
-  def get_video_channel
-
-  end
-  ######################################
-
-  def get_video_stream
-
-  end
-  ######################################
 
 
   #######################################

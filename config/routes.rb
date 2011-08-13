@@ -75,12 +75,13 @@ Sangam::Application.routes.draw do
   match '/home/get_activity_stream' => 'home#get_activity_stream'
 
   match '/image_page' => 'home#image_page'
-  match '/home/get_image_channel' => 'home#get_image_channel'
-  match '/home/get_image_stream' => 'home#get_image_stream'
-
   match '/video_page' => 'home#video_page'
-  match '/home/get_video_channel' => 'home#get_video_channel'
-  match '/home/get_video_stream' => 'home#get_video_stream'
+
+  match '/home/get_document_channel' => 'home#get_document_channel'
+  match '/home/get_document_stream' => 'home#get_document_stream'
+
+
+
 
 
   #match '/contacts/add' => 'contacts#add'
