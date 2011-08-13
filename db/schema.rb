@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810075555) do
+ActiveRecord::Schema.define(:version => 20110811140059) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id", :null => false
@@ -264,6 +264,10 @@ ActiveRecord::Schema.define(:version => 20110810075555) do
   end
 
   create_table "garbage_documents", :force => true do |t|
+    t.text     "table_name", :null => false
+    t.text     "url",        :null => false
+    t.text     "thumb_url"
+    t.integer  "action",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -381,6 +385,11 @@ ActiveRecord::Schema.define(:version => 20110810075555) do
 
   add_index "profiles", ["first_name", "last_name"], :name => "index_profiles_on_first_name_and_last_name"
   add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
+
+  create_table "social_counters", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "summaries", :force => true do |t|
     t.integer  "user_id",          :null => false

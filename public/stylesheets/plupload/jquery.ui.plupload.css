@@ -1,10 +1,9 @@
-@charset "UTF-8";
 /*
    Plupload
 ------------------------------------------------------------------- */
 /* line 6, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_wrapper {
-  font: normal 11px Verdana,sans-serif;
+  font-size: 11px;
   width: 575px;
 }
 
@@ -26,15 +25,15 @@ div.plupload div.plupload_header {
 
 /* line 32, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_header_title {
-  font: normal 12px sans-serif;
+  font-size: 12px;
 }
 
-/* line 36, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 37, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_header_text {
-  font: normal 12px sans-serif;
+  font-size: 12px;
 }
 
-/* line 39, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 42, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_filelist_content {
   border-collapse: collapse;
   margin: 0;
@@ -44,7 +43,7 @@ div.plupload div.plupload_header {
   table-layout: fixed;
 }
 
-/* line 48, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 51, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_filelist {
   border-collapse: collapse;
   margin: 0px;
@@ -52,31 +51,29 @@ div.plupload div.plupload_header {
   width: 520px;
 }
 
-/* line 55, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 58, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_header_cell {
   overflow: hidden;
   height: 20px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 14px;
   vertical-align: middle;
 }
 
-/* line 63, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 65, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_cell {
   overflow: hidden;
 }
 
-/* line 69, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 71, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_internal_cell {
   white-space: nowrap;
   overflow: hidden;
   height: 20px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 12px;
   vertical-align: middle;
 }
 
-/* line 78, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 79, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_file {
   border-left: none;
   border-right: none;
@@ -84,7 +81,7 @@ div.plupload div.plupload_header {
   width: 100%;
 }
 
-/* line 85, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 86, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_scroll {
   max-height: 60px;
   min-height: 80px;
@@ -92,62 +89,62 @@ div.plupload div.plupload_header {
   overflow-y: auto;
 }
 
-/* line 92, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 93, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_file_action, .plupload_file_size, .plupload_file_status {
   width: 20px;
 }
 
-/* line 93, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 94, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_file_name {
   overflow: hidden;
   padding-left: 10px;
 }
 
-/* line 98, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 99, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_progress {
   width: 60px;
 }
 
-/* line 99, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 100, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_progress_container {
   padding: 1px;
 }
 
 /* Floats */
-/* line 104, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 105, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_right {
   float: right;
 }
 
-/* line 105, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 106, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_left {
   float: left;
 }
 
-/* line 106, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 107, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_clear, .plupload_clearer {
   clear: both;
 }
 
-/* line 107, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 108, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_clearer, .plupload_progress_bar {
   display: block;
   font-size: 0;
   line-height: 0;
 }
 
-/* line 112, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 113, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_clearer {
   height: 0;
 }
 
 /* Misc */
-/* line 115, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 116, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_hidden {
   display: none;
 }
 
-/* line 118, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 119, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_droptext {
   background: transparent;
   text-align: center;
@@ -156,19 +153,19 @@ div.plupload div.plupload_header {
   line-height: 165px;
 }
 
-/* line 126, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 127, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_buttons, .plupload_upload_status {
   float: left;
   display: inline;
 }
 
-/* line 131, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 132, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_button {
   cursor: pointer;
   display: inline;
 }
 
-/* line 133, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 134, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_message {
   position: absolute;
   top: 0px;
@@ -177,29 +174,29 @@ div.plupload div.plupload_header {
   width: 100%;
 }
 
-/* line 141, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 142, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_message p {
   padding: 0.7em;
   margin: 0;
 }
 
-/* line 146, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 147, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_message strong {
   font-weight: bold;
 }
 
-/* line 150, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 151, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_message i {
   font-style: italic;
 }
 
-/* line 154, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 155, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_message p span.ui-icon {
   float: left;
   margin-right: 0.3em;
 }
 
-/* line 160, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 161, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload_message_close {
   position: absolute;
   top: 5px;
@@ -207,7 +204,7 @@ div.plupload div.plupload_header {
   cursor: pointer;
 }
 
-/* line 167, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
+/* line 168, ../../../app/stylesheets/plupload/jquery.ui.plupload.scss */
 .plupload .ui-sortable-placeholder {
   height: 35px;
 }

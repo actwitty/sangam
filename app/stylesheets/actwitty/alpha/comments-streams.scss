@@ -9,7 +9,6 @@
   /*overflow-y:scroll;*/
   overflow-x:hidden;
   /*border:1px solid green;*/
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
 }
 /*
 .comments-label
@@ -25,7 +24,6 @@
 {
   margin-top:15px;
   font-size:16px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   color:#00BFFF;
   text-align:center;
 }
@@ -115,7 +113,6 @@ li.comment_last
   text-transform: none;
   color:#000;
   font-size:13px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
 }
 
 .comments .commentlist li .avatar
@@ -187,7 +184,6 @@ span.name a
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
    font-size:12px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   font-weight:normal;
 }
 
@@ -315,13 +311,13 @@ span.p-st-comment-actor a
   margin-bottom:5px;
   height:30px;
   border:1px solid #000;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
 .p-st-comment-add-btn
 {
  
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
 

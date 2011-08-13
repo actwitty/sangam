@@ -66,11 +66,10 @@ ul.p-cstab_mm li a {
   padding: 0 20px;
   outline: none;
   font-size: 16px;
-  font-family: "Lucida Grande", sans-serif;
   font-weight: bold;
 }
 
-/* line 76, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 75, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 ul.p-cstab_mm li.p-ch-tab_mm:hover {
   color: #00BFFF;
   background: #cccccc;
@@ -78,7 +77,7 @@ ul.p-cstab_mm li.p-ch-tab_mm:hover {
   border-right: 1px solid #afafaf;
 }
 
-/* line 83, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 82, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 ul.p-cstab_mm li.p-st-tab_mm:hover {
   color: #00BFFF;
   background: #cccccc;
@@ -88,7 +87,7 @@ ul.p-cstab_mm li.p-st-tab_mm:hover {
   border-right: 5px solid #afafaf;
 }
 
-/* line 92, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 91, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 html ul.p-cstab_mm li.p-ch-tab_mm.active {
   color: #00BFFF;
   background: #fff;
@@ -97,7 +96,7 @@ html ul.p-cstab_mm li.p-ch-tab_mm.active {
   border-right: 1px solid #afafaf;
 }
 
-/* line 100, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 99, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 html ul.p-cstab_mm li.p-st-tab_mm.active {
   color: #00BFFF;
   background: #fff;
@@ -106,7 +105,7 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   border-right: 5px solid #afafaf;
 }
 
-/* line 112, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 111, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .p-cstab_content_mm {
   border: 5px solid  #afafaf;
   border-top: none;
@@ -118,7 +117,7 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   color: #000000;
 }
 
-/* line 123, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 122, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .p-content_mm {
   width: 600px;
   height: auto;
@@ -126,12 +125,12 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   background: #fff;
 }
 
-/* line 130, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 129, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 #channels_image_main_bar {
   display: none;
 }
 
-/* line 134, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 133, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 #streams_image_main_bar {
   display: none;
 }

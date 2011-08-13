@@ -89,7 +89,6 @@ div#inner:hover input.follow_button{
 .summary_user_box
 {
   margin:10px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:12px;
   overflow: hidden;
   color:#000000;
@@ -158,7 +157,6 @@ div#inner:hover input.follow_button{
   width:100%;
   float:left;
   overflow:hidden;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:12px;
   display:block;
 }
@@ -167,7 +165,7 @@ div#inner:hover input.follow_button{
 .summary_main_box_attachments
 {
    float:left;
-   font: 12px Arial, Helvetica, sans-serif;
+   font-size:12px;
    border: 1px solid #ccc;
    width: 80%;
    overflow: hidden;
@@ -178,7 +176,7 @@ div#inner:hover input.follow_button{
 
 .summary_main_box_attachments span
 {
-  font: 16px Arial, Helvetica, sans-serif;
+  font-size:16px;
 }
 .summary_main_box_friends
 {
@@ -195,7 +193,7 @@ div#inner:hover input.follow_button{
 .summary_main_box_friends span
 {
   width:100%;
-  font: 16px Arial, Helvetica, sans-serif;
+  font-size:16px;
 }
 
 .summary_main_box_friends li
@@ -208,7 +206,7 @@ div#inner:hover input.follow_button{
 
 .summary_main_box_friends li a span
 {
-  font: 12px Arial, Helvetica, sans-serif;
+  font-size:12px;
 }
 
 .summary_main_box_entities
@@ -225,7 +223,7 @@ div#inner:hover input.follow_button{
 .summary_main_box_entities span
 {
    width:100%;
-   font: 16px Arial, Helvetica, sans-serif;
+   font-size:16px;
 }
 .summary_main_box_entities li
 {
@@ -237,7 +235,7 @@ div#inner:hover input.follow_button{
 
 .summary_main_box_entities li a span
 {
-  font: 12px Arial, Helvetica, sans-serif;
+  font-size:12px;
 }
 
 .summary_main_box_locations
@@ -254,7 +252,7 @@ div#inner:hover input.follow_button{
 .summary_main_box_locations span
 {
     width:100%;
-    font: 16px Arial, Helvetica, sans-serif;
+    font-size:16px;
 }
 
 .summary_main_box_locations li
@@ -266,7 +264,7 @@ div#inner:hover input.follow_button{
 
 .summary_main_box_locations li span
 {
-  font: 12px Arial, Helvetica, sans-serif;
+  font-size:12px;
 }
 
 .summary_main_box_latest
@@ -282,25 +280,25 @@ div#inner:hover input.follow_button{
 .summary_main_box_latest span 
 {
   width:100%;
-  font: 16px Arial, Helvetica, sans-serif;
+  font-size:16px;
 }
 .summary_main_box_latest li
 {
   display:block;
   overflow: hidden;
   width: 100%;
-  font: 12px Arial, Helvetica, sans-serif;
+  font-size:12px;
   border:1px solid #ccc;
 }
 
 .summary_main_box_latest li span
 {
-  font: 13px Arial, Helvetica, sans-serif;
+  font-size:13px;
 }
 
 .summary_main_box_latest li span .js_activity_entity
 {
-  font: 12px Arial, Helvetica, sans-serif;
+  font-sixe:12px;
   margin-left:2px;
   padding-left:1px;
   padding-right:1px;
@@ -320,7 +318,7 @@ div#inner:hover input.follow_button{
 
 .more_loader
 {
-  font: 20px Arial, Helvetica, sans-serif;
+  font-size:20px;
   color:#000000;
   border:1px solid #ccc;
   width:80%;

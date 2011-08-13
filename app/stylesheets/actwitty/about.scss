@@ -29,7 +29,6 @@ p.team
 p.title {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size:30px;
   align:left;
   text-align:center;
@@ -40,7 +39,6 @@ p.title {
 p.heading {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size:22px;
   color:#2F2F2F;
   text-align:center;
@@ -49,7 +47,6 @@ p.heading {
 p.description {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:16px;
   color:#2F2F2F;
 }
@@ -66,14 +63,12 @@ p.multi-column {
   color:#2F2F2F;
   width: 50%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 
   font-size:16px;
 }
 
 .multi-column span.heading
 {
-  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
   font-size:18px;
   color:#009ACD;
 }
