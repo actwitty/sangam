@@ -5,7 +5,7 @@
 .plupload_button {
 	display: -moz-inline-box; /* FF < 3*/
 	display: inline;
-	font: normal 12px sans-serif;
+	font:12px;
 	text-decoration: none;
   color: #42454a;
   border: 1px solid #bababa;
@@ -41,7 +41,6 @@
 }
 
 .plupload_wrapper {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 	width:100%;
 }
 
@@ -53,7 +52,7 @@
 
 .plupload_container input {
 	//border: 1px solid #DDD;
-	font: normal 11px Verdana,sans-serif;
+	font-size:11px;
 	width: 600px;
 }
 
@@ -67,11 +66,11 @@
 	color: #FFF;
 }
 .plupload_header_title {
-	font: normal 18px sans-serif;
+	font-size: 18px;
 	//padding: 6px 0 3px;
 }
 .plupload_header_text {
-	font: normal 12px sans-serif;
+	font:12px;
 }
 
 .plupload_filelist {
@@ -119,7 +118,6 @@
 
 .attachment_file_name{
   font-size:13px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 .plupload_file_caption {
     width: 170px;
@@ -127,7 +125,6 @@
     padding:2px;
     float: left; 
     font-size:13px;
-    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   }
 .caption_div{
   width:160px;

@@ -4,7 +4,7 @@
 
 
 .plupload_wrapper {
-	font: normal 11px Verdana,sans-serif;
+	font-size: 11px;
 	width: 575px;
 }
 
@@ -30,10 +30,13 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
  // background-image: url('/images/plupload/plupload-bw.png');
  }
 .plupload_header_title {
-	font: normal 12px sans-serif;
+	font-size: 12px;
 	//padding: 6px 0 3px;
 }
-.plupload_header_text {font: normal 12px sans-serif;}
+.plupload_header_text 
+{
+  font-size:12px;
+}
 
 
 .plupload_filelist_content {
@@ -55,7 +58,6 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 .plupload_header_cell {
   overflow:hidden;
   height:20px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:14px;
   vertical-align:middle;
 }
@@ -70,7 +72,6 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
   white-space:nowrap;
   overflow:hidden;
   height:20px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:12px;
   vertical-align:middle;
 }

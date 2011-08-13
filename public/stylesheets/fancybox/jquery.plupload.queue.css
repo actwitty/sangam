@@ -48,7 +48,7 @@
 
 /* line 43, ../../../app/stylesheets/fancybox/jquery.plupload.queue.scss */
 .plupload_wrapper {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
   width: 100%;
 }
 
@@ -152,7 +152,7 @@
 /* line 120, ../../../app/stylesheets/fancybox/jquery.plupload.queue.scss */
 .attachment_file_name {
   font-size: 13px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
 /* line 124, ../../../app/stylesheets/fancybox/jquery.plupload.queue.scss */
@@ -162,7 +162,7 @@
   padding: 2px;
   float: left;
   font-size: 13px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
 /* line 132, ../../../app/stylesheets/fancybox/jquery.plupload.queue.scss */

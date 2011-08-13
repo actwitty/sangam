@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* line 1, ../../../app/stylesheets/actwitty/about.scss */
 #team {
   width: 650px;
@@ -32,33 +31,30 @@ p.team {
 p.title {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size: 30px;
   align: left;
   text-align: center;
   color: #009ACD;
 }
 
-/* line 40, ../../../app/stylesheets/actwitty/about.scss */
+/* line 39, ../../../app/stylesheets/actwitty/about.scss */
 p.heading {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size: 22px;
   color: #2F2F2F;
   text-align: center;
 }
 
-/* line 49, ../../../app/stylesheets/actwitty/about.scss */
+/* line 47, ../../../app/stylesheets/actwitty/about.scss */
 p.description {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 16px;
   color: #2F2F2F;
 }
 
-/* line 57, ../../../app/stylesheets/actwitty/about.scss */
+/* line 54, ../../../app/stylesheets/actwitty/about.scss */
 p.multi-column {
   -moz-column-count: 2;
   -moz-column-gap: 20px;
@@ -71,18 +67,16 @@ p.multi-column {
   color: #2F2F2F;
   width: 50%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 16px;
 }
 
-/* line 75, ../../../app/stylesheets/actwitty/about.scss */
+/* line 71, ../../../app/stylesheets/actwitty/about.scss */
 .multi-column span.heading {
-  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
   font-size: 18px;
   color: #009ACD;
 }
 
-/* line 82, ../../../app/stylesheets/actwitty/about.scss */
+/* line 77, ../../../app/stylesheets/actwitty/about.scss */
 .team_img {
   margin: auto;
   align: center;

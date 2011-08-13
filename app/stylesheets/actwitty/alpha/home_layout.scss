@@ -37,14 +37,31 @@
 
 
 
+/*
+ * To apply actwitty font : gnuolane.
+ * This has been used by embedding ttf file kept in public folder
+ */
+
+@font-face {
+  font-family: 'actwitty-font';
+  src: url( "/font/gnuolane.ttf" ) format("truetype");
+}
+
 body{
 	margin:0;
 	padding:0;
 	font-size:12px;
-	font-family:verdana, Arial, Helvetica, sans-serif;
+  font-family:'actwitty-font';
 	color:#CCCCCC;
 	background-color:#fff;
 	}
+
+
+input[type=text]
+{
+  font-family:'actwitty-font';
+}
+
 
 img{border:0; padding:0; margin:0;}
 .clear{clear: both;}
@@ -66,7 +83,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	padding:0 0 8px 0;
 	font-size:22px;
 	font-weight:normal;
-	font-family:Georgia, "Times New Roman", Times, serif;
 	border-bottom:1px dashed #DDDDDD;
 	}
 
@@ -92,7 +108,6 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 {
 	padding:0px 0;
 	z-index:1000;
-	font-family:Georgia, "Times New Roman", Times, serif;
   width:605px;
   height:50px;
   border:0px solid red;
@@ -298,7 +313,6 @@ opacity:40%;
   top:0px; /*this positions the tooltip*/
   left:0px; /*this positions the tooltip*/
   padding:5px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:16px;
   text-align:center;
 }
@@ -336,6 +350,7 @@ opacity:40%;
 .input-whats-up
 {
   margin-top:20px;
+  
 }
 .add-page-input
 {
@@ -345,7 +360,6 @@ opacity:40%;
   padding:3px;
   margin-left:5px;
   margin-top:10px;
-
 }
 
 .page_input_close span
@@ -449,7 +463,6 @@ opacity:40%;
   margin-bottom:5px;
   height:30px;
   border:1px solid gray;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   border:0px solid #ddd;
 }
 
@@ -463,7 +476,6 @@ opacity:40%;
   margin-bottom:5px;
   height:30px;
   border:1px solid #000;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   opacity:0.8;
 }
 
@@ -492,7 +504,6 @@ opacity:40%;
   margin-bottom:5px;
   display:block;
   border:1px solid #ddd;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   opacity:0.8;
 }
 */
@@ -584,7 +595,6 @@ opacity:40%;
   */
   display:block;
   border:0px solid red;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color:gray;
   width:92.5%;
   height:25px;
@@ -675,7 +685,6 @@ opacity:40%;
 #input_campaign
 {
   /*border:1px solid gray;*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color:#ccc;
   padding:5px 0 5px 0;
   margin-top:10px;
@@ -695,7 +704,6 @@ opacity:40%;
 #campaign_label
 {
   margin-left:13px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-weight:bold;
   font-size:14px;
   display:inline-block;
@@ -884,7 +892,6 @@ opacity:40%;
 #input-addmore-attachments a
 {
   float:right;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-weight:normal;
   font-size:14px;
   color:#7D9EC0;
@@ -915,7 +922,6 @@ opacity:40%;
 {
   text-decoration:none;
   text-align:center;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-weight:normal;
   font-size:10px;
   padding:5px;
@@ -937,7 +943,6 @@ opacity:40%;
 {
   float:right;
   font-size:12px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-weight:normal;
   color:#7a7a7a;
 }
@@ -955,7 +960,6 @@ a.info:hover span {
   /*border:1px solid #fff;*/
   background:#87ceeb; 
   color:#fff;
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   font-size:14px;
   text-align:center;
   padding:5px;
@@ -1035,7 +1039,6 @@ ul.p-cstab li a {
 	padding: 0 20px;
 	outline: none;
   font-size:16px;
-	font-family:  "Lucida Grande", sans-serif;
   font-weight:bold;
 }
 
@@ -1856,8 +1859,17 @@ a.js_handle_stream_entity_mention:hover span
 
 
 
+/*
 
+.add-page-input
+{
+ 
+  font-family:'actwitty-font';
+}
 
-
-
-
+.actwitty-fontify
+{
+ 
+  font-family:'actwitty-font';
+}
+*/

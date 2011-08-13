@@ -56,7 +56,7 @@ div.plupload div.plupload_header {
 .plupload_header_cell {
   overflow: hidden;
   height: 20px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
   font-size: 14px;
   vertical-align: middle;
 }
@@ -71,7 +71,7 @@ div.plupload div.plupload_header {
   white-space: nowrap;
   overflow: hidden;
   height: 20px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
   font-size: 12px;
   vertical-align: middle;
 }
