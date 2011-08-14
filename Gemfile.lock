@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/alindeman/no_peeping_toms.git
+  revision: 83dbd4cb993ae8e78a38a0f5cad784ca58bb0dcd
+  specs:
+    no_peeping_toms (2.1.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/collectiveidea/delayed_job.git
   revision: 4b0f030982721f6ba829f557f3a297e6bfd0b355
   specs:
@@ -302,6 +310,7 @@ DEPENDENCIES
   json
   koala
   mini_magick (= 3.2)
+  no_peeping_toms!
   omniauth (>= 0.2.0)
   pg
   rails (= 3.0.7)

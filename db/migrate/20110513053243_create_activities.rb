@@ -33,8 +33,9 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :summary_id
 
       t.boolean :enriched
-
       t.boolean :meta_activity
+      t.boolean :blank_text
+
       t.timestamps
     end
 

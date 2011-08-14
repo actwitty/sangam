@@ -181,6 +181,7 @@ describe Location do
 end
 
 
+
 # == Schema Information
 #
 # Table name: locations
@@ -189,8 +190,8 @@ end
 #  location_type :integer         not null
 #  location_name :text            not null
 #  location_url  :text
-#  location_lat  :decimal(10, 7)
-#  location_long :decimal(10, 7)
+#  location_lat  :decimal(18, 15)
+#  location_long :decimal(18, 15)
 #  created_at    :datetime
 #  updated_at    :datetime
 #

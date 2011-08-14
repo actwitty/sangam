@@ -287,9 +287,12 @@ describe Activity do
       l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
       filter = {:word_id => wi.id, :entity_id => e.id, :source_name => "actwitty"}
 
+      puts "============================================================="
       h = @u.get_related_friends( filter)
       puts h.inspect
       h.should_not be_nil
+      puts "============================================================="
+
 
       h = @u.get_related_entities(@u1.id,filter)
       puts h.inspect
@@ -615,11 +618,11 @@ describe Activity do
       puts s.inspect
 
       puts "get document summary"
-      a = @u.get_document_summary({:user_id=> @u1.id, :category => "image"})
+      a = @u.get_document_summary({:user_id=> @u.id, :category => "image"})
       puts a
 
       puts "get document stream"
-      a = @u.get_document_stream({:user_id=> @u1.id, :filter => {:source_name => "actwitty"}, :category => "image"})
+      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "image"})
       puts a
 
     end
@@ -640,6 +643,17 @@ describe Activity do
       b.status.should ==  AppConstants.status_public
     end
     it "should update the activity properly " do
+      a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
+
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_saved)
       a = @u.create_activity(:word => "eating" , :text => "pizza at tomato ketchup with PIZZA at
                                    <script>alert(alok)</script>
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
@@ -656,17 +670,23 @@ describe Activity do
                                              {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
                               :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
                                             AppConstants.status_saved)
-      h = { :word => "marry" , :text => "i am happy to travel",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
-                                                    {:url => "http://a.com/xyz.jpg" },
-                                               {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
+      h = { :word => "marry" , :text => "i uploaded three pictures http://www.flickr.com/photos/cubagallery/4678462424/
+http://www.flickr.com/photos/itzafineday/131415487/
+http://www.flickr.com/photos/cubagallery/4233446476/",
+                              :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/2.jpg" },
+                                                    {:url => "http://a.com/2_1.jpg" },
+                                               {:url => "http://b.com/2_2.jpg" },{:url => "https://s3.amazonaws.com/xyz.jpg" }], :status =>
                                             AppConstants.status_public,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
-
+      work_off
+      b = @u.get_summary({:user_id => @u.id})
+      puts b
       puts "============================="
       h[:activity_id] = a[:post][:id]
-      c = @u.update_activity( h)
-
+      c = nil
+      ActiveRecord::Observer.with_observers(:document_observer) do
+        c = @u.update_activity( h)
+      end
       work_off
       puts c
 
@@ -675,16 +695,88 @@ describe Activity do
       a = Activity.where(:id => c[:post][:id]).first
       puts a.inspect
       puts "============================="
-
+      b = @u.get_summary({:user_id => @u.id})
+      puts b
 #      h[:status] = 2
 #      h.delete(:update)
 #      c = @u.publish_activity( h)
       work_off
+      puts Summary.count
       puts c.inspect
       a = @u.get_draft_activity
-      puts a
+      b = @u.get_stream({:user_id => @u.id})
+      puts b
     end
+    it "should delete activity properly " do
+      a = @u.create_activity(:word => "eating" , :text => "pizza at tomato ketchup with PIZZA at
+                                   <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?v=oIWxnfO7eJM&feature=feedrec wow
+                                   http://www.google.com/123 at www.vimeo.com eating with
+                                   http://twitpic.com/123/group/564 at dropbox.com/data?id=123 ate ate #eating at #pizza",
 
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:caption => "hello man",:url => "https://s3.amazonaws.com/xyz.jpg" },
+                                             {:caption => "aaaaabbbbbbbccccc", :url => "http://a.com/xyz.jpg" },
+                                             {:url => "http://b.com/xyz.jpg" },
+                                             {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
+                              :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
+                                            AppConstants.status_public)
+
+      a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
+
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_public)
+      a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
+                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
+                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
+
+                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
+                                            AppConstants.status_public)
+      a3 = @u.create_activity(:word => "eating" , :text => "sachin tendulkar http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+
+      a4 = @u.create_activity(:word => "eating" , :text => "http://dropbox.com/123 http://www.vimeo.com/watch?555 #pizza",
+                              :location =>  {:web_location =>{:web_location_url => "5OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :tags => [{:name => "jump5"}, {:name => "Anna hazare 5"}], :status =>
+                                            AppConstants.status_public)
+      a5 = @u.create_activity(:word => "eating" , :text => nil,
+                              :location =>  {:web_location =>{:web_location_url => "6OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :tags => [{:name => "jump6"}, {:name => "Anna hazare 6"}], :status =>
+                                            AppConstants.status_public)
+      a6 = @u.create_activity(:word => "eating" , :text => "hanging out with samarth and sachin",
+                              :location =>  {:web_location =>{:web_location_url => "7OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :tags => [{:name => "jump7"}, {:name => "Anna hazare 7"}], :status =>
+                                            AppConstants.status_saved)
+      b = @u.get_summary({:user_id => @u.id})
+      puts b
+      b.should_not be_blank
+      ActiveRecord::Observer.with_observers(:document_observer) do
+        Activity.destroy_all(:id => a[:post][:id])
+      end
+      puts "======================================="
+
+      b = @u.get_summary({:user_id => @u.id})
+      puts b
+      b.should_not be_blank
+      Activity.create_s3_connection
+    end
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY
 #    CLEAN GET STREAM
@@ -696,6 +788,7 @@ describe Activity do
 
   end
 end
+
 
 
 
@@ -728,6 +821,7 @@ end
 #  summary_id       :integer
 #  enriched         :boolean
 #  meta_activity    :boolean
+#  blank_text       :boolean
 #  created_at       :datetime
 #  updated_at       :datetime
 #

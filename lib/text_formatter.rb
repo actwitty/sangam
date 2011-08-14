@@ -116,12 +116,22 @@ module TextFormatter
   #This will be done before processing the entity replacement as otherwise entity can replace mentions in some corner cases
   #TODO - NOT UTF8 Compliance
   def mask_activity_text(text, seed_index, seed_hash)
-    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])/
+
+    str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
+                |#{AppConstants.audio_sources}"
+
+    #Regex for mention or hashtag or url
+    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?(www.)?(#{str}){1}(\/[^\s]*)?)/
+
     m = text.scan(regex)
 
     i =seed_index
     m.each do |attr|
-      #attr will be in format of [mention, nil] or [nil, tag] because of OR in regex
+
+      #strip array into only 3  fields as url can have many fields matched like http://, www. etc
+      attr = attr[0..2]
+
+      #attr will be in format of [mention, nil, nil] or [nil, tag, nil] or [nil, nil, http://google.com] because of OR in regex
       attr = attr.compact
 
       seed_hash[attr[0]] = generate_seed(i, attr[0])
