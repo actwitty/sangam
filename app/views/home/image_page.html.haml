@@ -5,13 +5,13 @@
       =render :partial => "home/input_box" 
 
 .wrapper.col3
-  #p-ch-st-tab-sect
-    #p-ch-st-tab
-      %ul.p-cstab
-        %li#channels_tab_head.p-ch-tab
-          %a.actwitty-fontify{:href => "#channels_tab"} Channels
-        %li#streams_tab_head.p-st-tab
-          %a{:href => "#streams_tab"} Streams
+  #p-ch-st-tab-sect_mm
+    #p-ch-st-tab_mm
+      %ul.p-cstab_mm
+        %li#channels_image_tab_head.p-ch-tab_mm.js_image_tab_click
+          %a{:href => "#channels_tab"} Image Channels
+        %li#streams_image_tab_head.p-st-tab_mm.js_image_tab_click
+          %a{:href => "#streams_tab"} Image Streams
           
           
 
@@ -22,20 +22,22 @@
       %li.p-con-l-fltr
         #channels_left_side_bar
           =render :partial => "home/channel_left_side"
-        #streams_left_side_bar
-          =render :partial => "home/stream_left_side"
       / #### Start of Main Content Bar  ####
-      %li.p-content
-        #channels_main_bar
-          =render :partial => "home/channel_main_content"
-        #streams_main_bar
-          =render :partial => "home/stream_main_content"
-      / #### Start of Right filter Bar  ####
+      %li.p-content_mm
+        #channels_image_main_bar
+          #channels_image_tab.p-cstab_content_mm
+            #channels_image_display_list
+            %a#more_channels_image.more_loader{:href => "#"} More Channels
+            %input#more_channels_image_cookie{:type => "hidden", :value => ""}
+        #streams_image_main_bar
+          #streams_image_tab.p-cstab_content_mm
+            #streams_image_list
+            %a#more_streams_image.more_loader{:href => "#"} More Streams
+            %input#more_streams_image_cookie{:type => "hidden", :value => ""}
       %li.p-con-r-fltr.right-filters
         #channels_right_side_bar
           =render :partial => "home/channel_right_side"
-        #streams_right_side_bar
-          =render :partial => "home/stream_right_side"
+      / #### Start of Right filter Bar  ####
 
 /Secret cookies
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
@@ -45,6 +47,7 @@
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 - else
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+
 
 
 

@@ -5,13 +5,13 @@
       =render :partial => "home/input_box" 
 
 .wrapper.col3
-  #p-ch-st-tab-sect
-    #p-ch-st-tab
-      %ul.p-cstab
-        %li#channels_tab_head.p-ch-tab
-          %a.actwitty-fontify{:href => "#channels_tab"} Channels
-        %li#streams_tab_head.p-st-tab
-          %a{:href => "#streams_tab"} Streams
+  #p-ch-st-tab-sect_mm
+    #p-ch-st-tab_mm
+      %ul.p-cstab_mm
+        %li#channels_video_tab_head.p-ch-tab_mm.js_video_tab_click
+          %a{:href => "#channels_tab"} Video Channels
+        %li#streams_video_tab_head.p-st-tab_mm.js_video_tab_click
+          %a{:href => "#streams_tab"} Video Streams
           
           
 
@@ -22,20 +22,22 @@
       %li.p-con-l-fltr
         #channels_left_side_bar
           =render :partial => "home/channel_left_side"
-        #streams_left_side_bar
-          =render :partial => "home/stream_left_side"
       / #### Start of Main Content Bar  ####
-      %li.p-content
-        #channels_main_bar
-          =render :partial => "home/channel_main_content"
-        #streams_main_bar
-          =render :partial => "home/stream_main_content"
-      / #### Start of Right filter Bar  ####
+      %li.p-content_mm
+        #channels_video_main_bar
+          #channels_video_tab.p-cstab_content_mm
+            #channels_video_display_list.channels_list
+            %a#more_channels_video.more_loader{:href => "#"} More Channels
+            %input#more_channels_video_cookie{:type => "hidden", :value => ""}
+        #streams_video_main_bar
+          #streams_video_tab.p-cstab_content_mm
+            #streams_video_list.p-awp-post-stream
+            %a#more_streams_video.more_loader{:href => "#"} More Streams
+            %input#more_streams_video_cookie{:type => "hidden", :value => ""}
       %li.p-con-r-fltr.right-filters
         #channels_right_side_bar
           =render :partial => "home/channel_right_side"
-        #streams_right_side_bar
-          =render :partial => "home/stream_right_side"
+      / #### Start of Right filter Bar  ####
 
 /Secret cookies
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }

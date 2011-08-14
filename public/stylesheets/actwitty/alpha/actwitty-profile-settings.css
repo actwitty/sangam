@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /* line 1, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 #settings {
   width: 100px;
@@ -150,12 +149,11 @@ Button Menu
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF',GradientType=0 );
   color: #ddd;
   text-decoration: none;
-  font-family: “Lucida Grande”, sans-serif;
   text-align: center;
   zoom: 1;
 }
 
-/* line 137, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 136, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li a span {
   position: absolute;
   bottom: -1px;
@@ -172,7 +170,7 @@ Button Menu
 /*---------------------------
 Button Menu li hover
 ---------------------------*/
-/* line 153, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 152, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li:hover a {
   border-color: #d7dbea;
   color: #fff;
@@ -186,7 +184,7 @@ Button Menu li hover
   */
 }
 
-/* line 166, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 165, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li:hover a span {
   display: block;
 }

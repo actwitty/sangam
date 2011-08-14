@@ -267,7 +267,15 @@ class HomeController < ApplicationController
   # User sign in required
   def get_related_friends
     Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] Related friends request #{params}")
-
+    if params[:filter][:word_id].blank?
+      params[:filter].delete(:word_id)
+    end
+    if params[:filter][:entity_id].blank?
+      params[:filter].delete(:entity_id)
+    end
+    if params[:filter][:location_id].blank?
+    params[:filter].delete(:location_id)
+    end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] calling model api Filter:#{params[:filter]}")
       response_json=current_user.get_related_friends(params[:filter])
@@ -781,7 +789,7 @@ class HomeController < ApplicationController
     end
     params[:word_id] = Integer(params[:word_id])
     if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] returned from model api with #{params}")
+      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] calling  model api with #{params}")
       response_json = current_user.get_activity_stream(params)
 
       if request.xhr?
@@ -796,5 +804,169 @@ class HomeController < ApplicationController
 
   end
   ######################################
+
+  def image_page
+    Rails.logger.info("[CNTRL][HOME][ IMAGE PAGE] request params #{params}")
+
+    @profile_page = 1
+    @page_mode="image"
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [IMAGE] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [IMAGE] User not signed in")
+    end
+
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    @follow = true
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [IMAGE] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [IMAGE] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      @user=User.find_by_id(params[:id])
+      if @user.nil?
+        if user_signed_in?
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      else
+        if user_signed_in?  && @user.id != current_user.id
+          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Checking the follow/unfollow status")
+          @follow = current_user.check_follower(@user.id)
+        end
+      end
+    end
+
+
+  end
+  ######################################
+
+  def get_document_channel
+   Rails.logger.info("[CNTRL][HOME][GET DOCUMENT CHANNEL] request params #{params}")
+
+    if params[:user_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:user_id] = Integer(params[:user_id])
+
+
+    if params[:friend].blank?
+      params[:friend] = false
+    else
+      if params[:friend] == "true"
+        params[:friend] = true
+      else
+        params[:friend] = false
+      end
+    end
+
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT CHANNEL] calling  model api with #{params}")
+      response_json = current_user.get_document_summary(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT CHANNEL] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+
+  end
+  ######################################
+
+  def get_document_stream
+    Rails.logger.info("[CNTRL][HOME][GET DOCUMENT STREAM] request params #{params}")
+
+    if params[:user_id].blank?
+      render :json => {}, :status => 400
+      return
+    end
+    params[:user_id] = Integer(params[:user_id])
+
+
+    if params[:friend].blank?
+      params[:friend] = false
+    else
+      if params[:friend] == "true"
+        params[:friend] = true
+      else
+        params[:friend] = false
+      end
+    end
+
+    if user_signed_in?
+      Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT STREAM] calling  model api with #{params}")
+      response_json = current_user.get_document_stream(params)
+
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT STREAM] sending response JSON #{response_json}")
+        render :json => response_json, :status => 200
+      end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+  ######################################
+  def video_page
+    Rails.logger.info("[CNTRL][HOME][ VIDEO PAGE] request params #{params}")
+
+    @profile_page = 1
+    @page_mode="video"
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [VIDEO] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [VIDEO] User not signed in")
+    end
+
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    @follow = true
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [VIDEO] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [VIDEO] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      @user=User.find_by_id(params[:id])
+      if @user.nil?
+        if user_signed_in?
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      else
+        if user_signed_in?  && @user.id != current_user.id
+          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Checking the follow/unfollow status")
+          @follow = current_user.check_follower(@user.id)
+        end
+      end
+    end
+
+
+  end
+
+
+  #######################################
 end
 

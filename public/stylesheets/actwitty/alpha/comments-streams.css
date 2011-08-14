@@ -9,7 +9,6 @@
   /*overflow-y:scroll;*/
   overflow-x: hidden;
   /*border:1px solid green;*/
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
 }
 
 /*
@@ -26,7 +25,6 @@
 {
   margin-top:15px;
   font-size:16px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   color:#00BFFF;
   text-align:center;
 }
@@ -116,7 +114,6 @@ li.comment_last
   text-transform: none;
   color:#000;
   font-size:13px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
 }
 
 .comments .commentlist li .avatar
@@ -152,7 +149,7 @@ span.name a
 
 */
 /* ################################ To submit comments ############################*/
-/* line 156, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 153, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .add-comment {
   border: 1px solid #ddd;
   height: 30px;
@@ -160,7 +157,7 @@ span.name a
   margin: 0;
 }
 
-/* line 165, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 162, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .add-comment-text {
   border: 1px solid #ddd;
   height: 30px;
@@ -168,14 +165,14 @@ span.name a
   margin: 0;
 }
 
-/* line 173, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 170, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .submit-comment {
   height: 60px;
   width: 100%;
   display: none;
 }
 
-/* line 181, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 178, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .btn-comments {
   background-color: #00ced1;
   border: none;
@@ -185,17 +182,16 @@ span.name a
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   font-size: 12px;
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   font-weight: normal;
 }
 
-/* line 197, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 193, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-awp-view-comment {
   height: 17px;
   width: 100%;
 }
 
-/* line 203, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 199, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-awp-view-comment span {
   float: right;
   font-size: 13px;
@@ -203,12 +199,12 @@ span.name a
   text-decoration: underline;
 }
 
-/* line 210, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 206, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-awp-view-comment span:hover {
   cursor: pointer;
 }
 
-/* line 215, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 211, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-awp-comments-section {
   width: 100%;
   height: auto;
@@ -217,7 +213,7 @@ span.name a
   display: none;
 }
 
-/* line 224, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 220, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-awp-comment {
   height: auto;
   border: 0px solid green;
@@ -225,27 +221,27 @@ span.name a
   margin-bottom: 5px;
 }
 
-/* line 233, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 229, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-close {
   float: right;
   width: 100%;
   height: 12px;
 }
 
-/* line 240, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 236, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-close-btn {
   float: right;
   font-size: 8px;
 }
 
-/* line 247, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 243, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .author {
   border: 0px solid green;
   width: 100%;
   height: auto;
 }
 
-/* line 253, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 249, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-actor-image {
   width: 30px;
   height: 30px;
@@ -253,7 +249,7 @@ span.name a
   margin: 2px 5px 2px 5px;
 }
 
-/* line 261, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 257, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-actor-desc {
   width: 500px;
   height: 35px;
@@ -262,20 +258,20 @@ span.name a
   display: block;
 }
 
-/* line 269, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 265, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .wrote {
   font-size: 8px;
   color: #454545;
 }
 
-/* line 274, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 270, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-submitdate {
   float: right;
   font-size: 9px;
   color: #454545;
 }
 
-/* line 281, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 277, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 span.p-st-comment-actor a {
   border: 0px solid red;
   margin-top: -10px;
@@ -283,7 +279,7 @@ span.p-st-comment-actor a {
   font-weight: bold;
 }
 
-/* line 289, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 285, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-content {
   width: 480px;
   height: auto;
@@ -293,14 +289,14 @@ span.p-st-comment-actor a {
   color: #333;
 }
 
-/* line 303, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 299, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-new {
   width: 100%;
   float: right;
   display: block;
 }
 
-/* line 310, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 306, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-text-box {
   width: 100%;
   padding: 1px;
@@ -309,10 +305,10 @@ span.p-st-comment-actor a {
   margin-bottom: 5px;
   height: 30px;
   border: 1px solid #000;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
-/* line 322, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+/* line 318, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
 .p-st-comment-add-btn {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }

@@ -113,3 +113,24 @@
 }
 
 /****************** channel box *************/
+/*************** related friends box *****************/
+/* line 115, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.related_friends_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 120, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.related_friends_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 132, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.friends_box_images {
+  height: 40;
+  width: 40;
+}
+
+/*************** related friends box *****************/

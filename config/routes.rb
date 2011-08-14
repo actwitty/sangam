@@ -74,6 +74,15 @@ Sangam::Application.routes.draw do
   match '/channel_page' => 'home#channel_page'
   match '/home/get_activity_stream' => 'home#get_activity_stream'
 
+  match '/image_page' => 'home#image_page'
+  match '/video_page' => 'home#video_page'
+
+  match '/home/get_document_channel' => 'home#get_document_channel'
+  match '/home/get_document_stream' => 'home#get_document_stream'
+
+
+
+
 
   #match '/contacts/add' => 'contacts#add'
   #match '/contacts/accept' => 'contacts#accept'
@@ -104,6 +113,9 @@ Sangam::Application.routes.draw do
   match '/feedback/create' => 'feedback#create'
 
   match '/sign_out' => 'welcome#new'
+
+
+
 
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):

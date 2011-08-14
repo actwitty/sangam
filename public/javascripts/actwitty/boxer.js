@@ -13,7 +13,7 @@ var the_big_json_renderers={
                                                 return render_video_internal( data, internal_id, new_tab_id);
                                                 },
                                "related_friends" : function aw_boxer_render_friends( data, internal_id, new_tab_id){
-                                                return aw_render_friends_internal(data, internal_id, new_tab_id);
+                                                return aw_render_friends_related_internal(data, internal_id, new_tab_id);
                                                },
                               "entities" : function aw_boxer_render_entities(data, internal_id, new_tab_id){
                                                 return aw_render_entities_internal(data, internal_id, new_tab_id);
@@ -52,7 +52,8 @@ function addtab(box_id, position, data, type, boxer_class)
   var box = $("#" + box_id);
 
   /* add a new tab */
-  var html = '<div id="' + new_tab_id + '" class="ntabs js_aw_ntabs ' + boxer_class +  '"' + 'style="height:100px;width:150px;">' +
+  var html = '<div id="' + new_tab_id + '" class="ntabs js_aw_ntabs ' + boxer_class +  '"' +
+  //'style="height:100px;width:150px;">' +
              '</div>';
   box.append(html);
   tab = $("#" + new_tab_id);

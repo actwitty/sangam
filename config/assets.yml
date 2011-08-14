@@ -46,6 +46,7 @@ javascripts:
     - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_modals.js
     - public/javascripts/actwitty/profile_entities.js
+    - public/javascripts/actwitty/profile_related_followings.js
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_followers.js
@@ -72,7 +73,8 @@ javascripts:
     - public/javascripts/actwitty/play_video.js
     - public/javascripts/actwitty/imagepopout_main.js
     - public/javascripts/actwitty/test_data_json.js
-    - public/javascripts/actwitty/jyoutube.js  
+    - public/javascripts/actwitty/jyoutube.js
+    #- public/javascripts/actwitty/jquery_002.js
 
 
   main:
@@ -96,6 +98,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/alpha/home_layout.css
+    - public/stylesheets/actwitty/alpha/multimedia.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
     - public/stylesheets/actwitty/alpha/comments-streams.css
     - public/stylesheets/actwitty/alpha/campaign-streams.css
