@@ -29,7 +29,7 @@ module TextFormatter
    #assign ids also - ids will be same as of actual entity.
    #exmaple =>> Entity_hash => {"Pizza Hut"=> 2345}, In text should be "piZZa hUt" => 2345, "pizza hut" => 2345
    entity_hash.each do |key, value|
-     arr = text.scan(/#{key}/i)
+     arr = text.scan(/#{key}\b/i)
      arr.each do |attr|
       all_case[attr] = value
      end

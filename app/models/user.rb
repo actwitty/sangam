@@ -854,6 +854,8 @@ class User < ActiveRecord::Base
   #
   # :user=>{:id=>39, :full_name=>"lemony3 lime3", :photo=>"images/id_3"}, :count=>1, :locations=>[],
   #
+  # :activity_count => 23, :document_count =>12, :tag_count => 34,
+  #
   # :documents=>[{:id=>30, :name=>"ddd.jpg", :url=>"https://s3.amazonaws.com/ddd.jpg",
   #           :thumb_url=>"https://s3.amazonaws.com/ddd_thumb.jpg", :caption=>nil, :source_name=>"actwitty",
   #            :status=>1, :uploaded=>true, :category => "image"}]
@@ -909,7 +911,8 @@ class User < ActiveRecord::Base
                              :word => {:id => attr.activity_word_id, :name => attr.activity_name},
                              :time => attr.updated_at,
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
-                             :count => attr.activities.size,
+                             :activity_count => attr.activities.size,
+                             :document_count => attr.documents.size, :tag_count => attr.tags.size,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
@@ -1428,7 +1431,7 @@ class User < ActiveRecord::Base
   #:friend => true/false
   #:filter => {:word_id => 123,
   #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
-  #            :location_id => 789 }
+  #            :location_id => 789, :entity_id => 234 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #:category => "image" or "video"
 
@@ -1464,15 +1467,28 @@ class User < ActiveRecord::Base
 
     end
 
-    h[:status] =  AppConstants.status_public
+
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
-    h[:owner_id] = user
-    h[:category] = params[:category]
+
 
     #documents can not have entity
-    h.delete(:entity_id) if !h[:entity_id].blank?
+    #h.delete(:entity_id) if !h[:entity_id].blank?
 
     doc_array = []
+    if !h[:entity_id].blank?
+
+      h[:user_id] = user if !user.blank?
+      h.delete(:status)
+      Rails.logger.debug("[MODEL] [USER] [get_document_stream] => Hub/Entity based filtering => #{h.inspect}")
+
+      activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+      h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
+    else
+
+      h[:owner_id] = user
+      h[:category] = params[:category]
+      h[:status] =  AppConstants.status_public
+    end
 
     Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
         limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
@@ -1484,6 +1500,7 @@ class User < ActiveRecord::Base
                       :document => h[:document]
                     }
     end
+
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] leaving")
     doc_array
   end

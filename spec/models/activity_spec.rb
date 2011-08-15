@@ -635,7 +635,13 @@ describe Activity do
                                                {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
                                             AppConstants.status_saved,:tags => [{:name => "sleeping"}, {:name => "maradona"}])
       puts a[:post][:status]
-      @u.update_activity_status({:activity_id => a[:post][:id], :status => AppConstants.status_public})
+      a = @u.publish_activity({:activity_id => a[:post][:id], :word => "marry" , :text => "sachin tendulakr and rahul dravid
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
+                                                    {:url => "http://a.com/xyz.jpg" },
+                                               {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :tags => [{:name => "sleeping"}, {:name => "maradona"}],
+                              :status => AppConstants.status_public})
 
       b = Activity.where(:id => a[:post][:id]).first
       puts b.status
@@ -775,7 +781,6 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       b = @u.get_summary({:user_id => @u.id})
       puts b
       b.should_not be_blank
-      Activity.create_s3_connection
     end
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY

@@ -19,24 +19,24 @@ class Activity < ActiveRecord::Base
   has_many         :entities, :through => :hubs
   has_many         :locations,:through => :hubs
 
-  has_many    :mentions, :dependent => :destroy #destroy will happen from activity
+  has_many         :mentions, :dependent => :destroy #destroy will happen from activity
 
-  has_many    :campaigns, :dependent => :destroy, :order => "updated_at DESC"
+  has_many         :campaigns, :dependent => :destroy, :order => "updated_at DESC"
 
-  has_many    :comments, :dependent => :destroy, :order => "updated_at DESC"
+  has_many         :comments, :dependent => :destroy, :order => "updated_at DESC"
 
-  has_many    :tags, :dependent => :destroy, :order => "updated_at DESC"
+  has_many         :tags, :dependent => :destroy, :order => "updated_at DESC"
 
   # documents have life time more than activity.
   # Documents will be removed from activity destroy as special handling is needed rather than usual destroy
   # UPDATE 03/07/2011 - Now we are destroying  document with post.. so we are putting dependent destroy
-  has_many    :documents,  :dependent => :destroy, :order => "updated_at DESC"
+  has_many        :documents,  :dependent => :destroy, :order => "updated_at DESC"
 
   #:destroy is not causing circular effect as there is father "delete" in campaign
-  has_one       :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :destroy
+  has_one         :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :destroy
 
    #:destroy is not causing circular effect as there is father "delete" in comment
-  has_one       :father_comment, :foreign_key => :father_id, :class_name => "Comment", :dependent => :destroy
+  has_one         :father_comment, :foreign_key => :father_id, :class_name => "Comment", :dependent => :destroy
 
 
   validates_existence_of  :author_id
@@ -58,26 +58,32 @@ class Activity < ActiveRecord::Base
   before_save             :sanitize_data
 
   after_destroy           :rebuild_summary
-  before_destroy           :check_destroy
 
   protected
-    def check_destroy
-      puts "activity before destroy"
-    end
+
     def sanitize_data
+
+      Rails.logger.info("[MODEL] [ACTIVITY] [sanitize_data] - Before Save entering")
+
       self.activity_text = sanitize(self.activity_text, :tags => AppConstants.sanity_tags, :attributes => AppConstants.sanity_attributes) if !self.activity_text.blank?
       self.activity_name = sanitize(self.activity_name) if !self.activity_name.blank?
       self.sub_title = sanitize(self.sub_title) if !self.sub_title.blank?
-      Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data] ")
+
+      Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data]- Before Save leaving")
+
     end
 
     def rebuild_summary
-      puts "activity after destroy"
+      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary] - After Destroy entering")
+
       if !self.summary_id.blank?
         s = Summary.where(:id => self.summary_id).first
         s.rebuild_a_summary if !s.nil?
       end
+
+      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary] - After Destroy leaving")
     end
+
   public
 
     class << self
@@ -105,6 +111,8 @@ class Activity < ActiveRecord::Base
   #    :meta_activity => true/false #true for comment, campaign father activity creation otherwise false
 
       def create_activity(params={})
+
+        Rails.logger.info("[MODEL] [ACTIVITY] [create_activity] entering")
 
         summary = nil
         summary_hash = {}
@@ -259,10 +267,12 @@ class Activity < ActiveRecord::Base
           end
         end
 
+        Rails.logger.info("[MODEL] [ACTIVITY] [create_activity] leaving ")
+
         return obj
 
       rescue => e
-        Rails.logger.error("Activity => CreateActivity failed with #{e.message} for #{params.to_s}")
+        Rails.logger.error("[MODEL] [ACTIVITY] [create_activity] rescue => CreateActivity failed with #{e.message} for #{params.to_s}")
         nil
       end
     end
@@ -274,6 +284,9 @@ class Activity < ActiveRecord::Base
       include TextFormatter
 
       def create_hub_entries(params = {})
+
+        Rails.logger.info("[MODEL] [ACTIVITY] [create_hub_entries] entering ")
+
         hubs_hash = {}
         entity = []
 
@@ -309,11 +322,14 @@ class Activity < ActiveRecord::Base
         summary = Summary.where(:id => params[:summary_id]).first
         summary.serialize_data({"entity" => entity})
 
+        Rails.logger.info("[MODEL] [ACTIVITY] [create_hub_entries] leaving ")
       rescue => e
-         Rails.logger.error("Activity => CreateHubEntries => Failed => #{e.message} => #{params} => hubs_hash = #{hubs_hash}")
+         Rails.logger.error("[MODEL] [ACTIVITY] [create_hub_entries] rescue failed => #{e.message} => #{params} => hubs_hash = #{hubs_hash}")
       end
 
       def post_proc_activity(params={})
+
+         Rails.logger.info("[MODEL] [ACTIVITY] [post_proc_activity] entering =>  #{params.to_s}")
          #TODO may need need to remove links also
          temp_text = remove_mentions_and_tags(params[:text])
 
@@ -340,7 +356,7 @@ class Activity < ActiveRecord::Base
 
          create_hub_entries(params)
 
-         Rails.logger.error("Activity => PostProcActivity Enrich =>  #{params.to_s}")
+         Rails.logger.info("[MODEL] [ACTIVITY] [post_proc_activity] leaving ")
       end
 
       handle_asynchronously :post_proc_activity
