@@ -272,6 +272,7 @@ function aw_image_channel_renderer(div_id, data){
 
 
   var channel_img_ele_id = get_channel_image_id(data);
+   var channel_img_id = channel_img_ele_id + '_img';
 
   if( $("#" + channel_img_ele_id).length){
     /*something bad happened element is already rendered in DOM*/
@@ -280,17 +281,17 @@ function aw_image_channel_renderer(div_id, data){
  
   /* set context to manage all clicks */
   the_big_image_channel_manager_json[channel_img_ele_id] = data;
+  the_big_image_channel_manager_json[channel_img_ele_id].img_box = channel_img_id;
+  the_big_image_channel_manager_json[channel_img_ele_id].scaled = false;
 
   /* pickup url thumb if available*/
   var img_url= data.document.url;
   if( data.document.thumb_url.length){
     img_url =  data.document.url;
   }
-  //aw_image_fit_to_size 
-  var channel_img_id = channel_img_ele_id + '_img';
-
+ 
   
- var html = '<div class="mm-img-channel-parent-box" id="' + channel_img_ele_id + '">' +
+  var html = '<div class="mm-img-channel-parent-box" id="' + channel_img_ele_id + '">' +
              
                 '<div class="mm-img-channel-src-box">' +
                   '<img src="' + get_source_image_url(data.document.source_name) + '"/>' +
@@ -313,7 +314,7 @@ function aw_image_channel_renderer(div_id, data){
 
               /* main image put up here */
               '<div class="mm-img-channel-img-box js_img_channel_main_click">' +
-                  '<img id="' + channel_img_id + '" src="" class="js_channel_image_load" />' +
+                  '<img id="' + channel_img_id + '" src="' + img_url + '" class="js_channel_image_load" />' +
               '</div>' +
 
               
@@ -333,38 +334,8 @@ function aw_image_channel_renderer(div_id, data){
               '</div>' +
 
             '</div>';
-    
+
     $("#" + div_id).append(html);
-    $("#" + channel_img_id).attr("src", img_url);
-
-
-    $('#' + channel_img_id).one('load', function() {  
-      var img = $(this);
-      setTimeout(function(){
-        alert("load image done");
-        var image_json = {
-                         width:img.width,
-                         height:img.height
-                       };
-        var box_json = {
-                         width:200,
-                         height:150
-                       };
-                        
-        var resize_json = aw_image_fit_to_size(image_json, box_json);
-        alert(JSON.stringify(resize_json));
-        img.attr("height", resize_json.height);
-        img.attr("width", resize_json.width);
-
-        img.show();
-        var manager_id=img.closest(".mm-img-channel-parent-box").attr("id");
-        //alert(JSON.stringify(the_big_image_channel_manager_json[manager_id]));
-      }, 1000);
-  }).each(function() {
-    if(this.complete) $(this).load();
-  });
-            
-
     
 }
 
@@ -410,7 +381,7 @@ function append_image_channels(){
 }
 
 
-$(document).ready(function() {  
+$(document).ready(function() {
   $(".js_image_tab_click").click(function(){
       /* Remove active from all tabs */
 		  $(".js_image_tab_click").removeClass("active");
@@ -461,7 +432,43 @@ $(document).ready(function() {
 
   
   /****************************************************/
-  
+  $(window).load(function() {
+    //var imageWidth = $('img').outerWidth();
+   //console.log(imageWidth);
+   //alert("in load");
+   console.log(JSON.stringify(the_big_image_channel_manager_json));
+   setTimeout( function(){
+     $.each(the_big_image_channel_manager_json, function(key) {
+      var json = the_big_image_channel_manager_json[key];
+       //alert(JSON.stringify(json));
+      var scaled = json.scaled;
+      var img_box_id = json.img_box;
+      //alert(img_box_id);
+      if ( !scaled ){
+       
+        var image_json = {
+                         width:$("#" + img_box_id).outerWidth(),
+                         height:$("#" + img_box_id).outerHeight()
+                       };
+        var box_json = {
+                         width:200,
+                         height:150
+                       };
+                        
+        var resize_json = aw_image_fit_to_size(image_json, box_json);
+        //$("#" + img_box_id).attr("height", resize_json.height);
+        //$("#" + img_box_id).attr("width", resize_json.width);
+        $("#" + img_box_id).outerWidth(resize_json.width);
+        $("#" + img_box_id).outerHeight(resize_json.width);
+
+        //$("#" + img_box_id).show();
+        
+        json.scaled = true;
+        the_big_image_channel_manager_json[key] = json;
+      }
+    });
+   },0);
+  }); 
 
 });
 

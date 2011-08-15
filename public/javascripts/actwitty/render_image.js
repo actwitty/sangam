@@ -17,8 +17,8 @@ function aw_image_fit_to_size(image, box){
   var temp = 0;
   var w = 0;
   var h = 0;
-  alert(JSON.stringify(image));
-  alert(JSON.stringify(box));
+  //alert(JSON.stringify(image));
+  //alert(JSON.stringify(box));
 
   if (image.height < image.width){
 	  /* wide image case (landscape) */

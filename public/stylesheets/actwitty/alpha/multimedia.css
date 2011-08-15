@@ -137,7 +137,7 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
 
 /********************************************************/
 /*                 Channel Images Boxing ***************/
-/* line 139, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 138, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-parent-box {
   border: 2px solid  #ccc;
   width: 280px;
@@ -148,18 +148,19 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   float: left;
 }
 
-/* line 151, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 150, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-src-box {
   border: 0px solid  green;
   width: 40px;
   float: left;
 }
 
-/* line 156, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 155, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-src-box img {
   width: 30px;
   height: 30px;
   padding: 2px;
+  display: none;
 }
 
 /* line 162, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
@@ -205,26 +206,25 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   width: 40px;
   height: 40px;
   padding: 2px;
-  display: none;
 }
 
-/* line 205, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 204, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-user-name-box {
   overflow: hidden;
   display: none;
 }
 
-/* line 210, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 209, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-user-name-box:hover {
   cursor: pointer;
 }
 
-/* line 214, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 213, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-user-name-box span {
   padding: 2px;
 }
 
-/* line 218, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 217, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-count-box {
   border: 0px solid  red;
   margin-right: 5px;
@@ -237,12 +237,12 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   float: right;
 }
 
-/* line 232, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 231, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-count-box:hover {
   cursor: pointer;
 }
 
-/* line 236, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 235, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-display-box {
   border: 0px solid  #111;
   width: 90%;
@@ -257,12 +257,12 @@ html ul.p-cstab_mm li.p-st-tab_mm.active {
   text-align: center;
 }
 
-/* line 250, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 249, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-display-box:hover {
   cursor: pointer;
 }
 
-/* line 254, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
+/* line 253, ../../../../app/stylesheets/actwitty/alpha/multimedia.scss */
 .mm-img-channel-display-box span {
   padding: 0px 0 0 0;
   margin-top: 5px;

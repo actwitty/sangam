@@ -38,9 +38,7 @@ function main_profile_initializer(){
       }
     }else{
       /* Bring in personal summary on focus*/
-      $("#channels_left_side_bar").show();
       $("#channels_main_bar").show();
-      $("#channels_right_side_bar").show();
   	  $("ul.p-cstab li:first").addClass("active").show(); 
 	    $(".tab_content:first").show();
       if(populated_personal == false){
@@ -76,18 +74,14 @@ $(document).ready(function(){
         $("#streams_left_side_bar").hide();
         $("#streams_main_bar").hide();
         $("#streams_right_side_bar").hide();
-        $("#channels_left_side_bar").fadeIn();
         $("#channels_main_bar").fadeIn();
-        $("#channels_right_side_bar").fadeIn();
         if(populated_personal == false){
           append_personal_summary(page_owner_id);
           populated_personal=true;
         }
 
       }else if(tab_id == "streams_tab_head"){
-        $("#channels_left_side_bar").hide();
         $("#channels_main_bar").hide();
-        $("#channels_right_side_bar").hide();
         $("#streams_left_side_bar").fadeIn();
         $("#streams_main_bar").fadeIn();
         $("#streams_right_side_bar").fadeIn();
