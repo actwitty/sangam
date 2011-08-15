@@ -17,8 +17,6 @@ $(document).ready(function(){
     main_profile_initializer();  /* in profile.js */
   }else if( page_context == "single_post") {
     single_post_initializer();  /* in single_post.js */
-  }else if( page_context == "drafts") {
-    show_all_drafts();       /* in drafts.js */
   }else if( page_context == "edit"){
     init_edit_box();         /* in edit_box_page.js */
   }else if( page_context == "entity"){
@@ -27,10 +25,6 @@ $(document).ready(function(){
     show_all_on_location(); /* in location_page.js */
   }else if( page_context == "channel"){
     show_all_on_channel(); /* in channel_page.js */
-  }else if( page_context == "image"){
-    show_images_init();   /* in profile_images.js */
-  }else if( page_context == "video"){
-    show_videos_init();      /* in profile_videos.js */
   }
 
 

@@ -340,7 +340,6 @@ function setup_comment_handling(all_box_id, box_id, postid, comment_count){
 
 function show_all_stream_comments(comments, post_id, current_user_id, comment_show_all_id){
 
-
   var comments_count=0;
   var comments_div_id = the_big_comment_show_all_json[comment_show_all_id].div_id;
   var div = $("#" + comments_div_id);
@@ -489,7 +488,7 @@ function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner
  * On load of page as well we need to do all these
  */
 function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
-
+  aw_lib_console_log("debug", "reload_streams_on_viewed_user: page:" + page_owner_id + ' session:' + session_owner_id);
   clear_streams();
   append_stream(page_owner_id, session_owner_id);
 

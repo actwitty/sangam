@@ -15,8 +15,8 @@ var populated_stream=false;
 
 
 function main_profile_initializer(){
-    var page_owner_id=$('#page_owner_id').attr("value");
-    var session_owner_id=$('#session_owner_id').attr("value");
+    var page_owner_id=aw_lib_get_page_owner_id();
+    var session_owner_id=aw_lib_get_session_owner_id();
     
     
     profile_filter_init(); 
@@ -53,15 +53,17 @@ function main_profile_initializer(){
  */
 $(document).ready(function(){
 
-   
-    var page_owner_id=$('#page_owner_id').attr("value");
-    var session_owner_id=$('#session_owner_id').attr("value");
+     aw_lib_console_log("debug", "profile.js:ready called"); 
+     var page_owner_id=aw_lib_get_page_owner_id();
+     var session_owner_id=aw_lib_get_session_owner_id();  
 	 
     
     /*
      * Bind Click on the tab
      */
 	  $("ul.p-cstab li").click(function() {
+     
+      aw_lib_console_log("debug", "profile.js: tab clicked"); 
       /* Remove active from all tabs */
 		  $("ul.p-cstab li").removeClass("active");
 
@@ -69,8 +71,9 @@ $(document).ready(function(){
 		  $(this).addClass("active"); //Add "active" class to selected tab
       
       var tab_id = $(this).attr("id");
-
+      
       if(tab_id == "channels_tab_head"){
+        aw_lib_console_log("debug", "profile.js: channels tab selected"); 
         $("#streams_left_side_bar").hide();
         $("#streams_main_bar").hide();
         $("#streams_right_side_bar").hide();
@@ -81,18 +84,19 @@ $(document).ready(function(){
         }
 
       }else if(tab_id == "streams_tab_head"){
+        aw_lib_console_log("debug", "profile.js: streams tab selected"); 
         $("#channels_main_bar").hide();
         $("#streams_left_side_bar").fadeIn();
         $("#streams_main_bar").fadeIn();
         $("#streams_right_side_bar").fadeIn();
         if(populated_stream == false){
+          aw_lib_console_log("debug", "profile.js: reload streams"); 
           reload_streams_on_viewed_user(page_owner_id,session_owner_id);
           populated_stream=true;
         }
           
       }
 
-		  $(".tab_content").hide(); //Hide all tab content
 
 		  var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
 		  $(activeTab).fadeIn(); //Fade in the active ID content
@@ -107,6 +111,7 @@ $(document).ready(function(){
      * Bind click to more on personal summary
      */
     $('#more_personal').click(function() {
+      aw_lib_console_log("debug", "profile.js:more personal summary clicked");
       if(populated_personal == true){
         append_personal_summary(page_owner_id);
       }
@@ -119,13 +124,14 @@ $(document).ready(function(){
      * Bind click to more on streams tab
      */
      $('#more_streams').click(function() {
+        aw_lib_console_log("debug", "profile.js:more personal streams clicked");
         append_stream(page_owner_id, session_owner_id);
         return false;
     });
 
 
     $("div.p-awp-content p").expander({
-      slicePoint:       100,  // default is 100
+      slicePoint:       300,  // default is 100
       expandText:         'read more', // default is 'read more...'
       userCollapseText: '...less'  // default is '[collapse expanded text]'
     });

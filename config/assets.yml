@@ -42,6 +42,7 @@ javascripts:
     - public/javascripts/actwitty/alpha/actwitty_profile_helpers.js
     - public/javascripts/actwitty/aw_slider.js
     - public/javascripts/actwitty/boxer.js
+    - public/javascripts/actwitty/profile_lib.js
     - public/javascripts/actwitty/profile_attachments.js
     - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_modals.js
