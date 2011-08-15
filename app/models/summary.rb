@@ -25,16 +25,69 @@ class Summary < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :activity_word_id
 
   before_destroy :ensure_proper_destroy
+  after_destroy  :check_destroy
+  public
+    def check_destroy
+      puts "summary after destroy"
+    end
+    def rebuild_a_summary
 
-  protected
+       s = self
+
+       if self.nil?
+         return
+       end
+
+       Rails.logger.info("[MODEL] [SUMMARY] [reset_summary] resetting activity summary #{self.inspect}")
+
+       #Recreate Document Array for given summary
+       s.activity_array = []
+       a = Activity.where(:summary_id => self.id, :blank_text => false).group(:id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+       s.activity_array = a.keys if !a.blank?
+
+
+       #Recreate Document Array for given summary
+       s.document_array = []
+       a = Document.where(:summary_id => self.id).group(:id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+       s.document_array = a.keys if !a.blank?
+
+       #Recreate Location Array for given summary
+       s.location_array = []
+       a = Activity.where(:summary_id => self.id, :base_location_id.not_eq => nil).group(:base_location_id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+         s.location_array = a.keys if !a.blank?
+
+       #Recreate Entity Array for given summary
+       s.entity_array = []
+       a = Hub.where(:summary_id => self.id, :entity_id.not_eq => nil).group(:entity_id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+       s.entity_array = a.keys if !a.blank?
+
+       #Recreate Entity Array for given summary
+       s.tag_array = []
+       a = Tag.where(:summary_id => self.id).group(:id).
+              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
+       s.tag_array = a.keys if !a.blank?
+
+       s.update_attributes(s.attributes)
+
+       Summary.reset_counters(self.id,:activities, :tags, :documents)
+
+    end
+
     def ensure_proper_destroy
+      puts "before summary destroy"
       if self.activities.size == 1
         Rails.logger.info("Summary Getting Deleted #{self.inspect}")
       else
         Rails.logger.info("Summary Safe #{self.inspect}")
+        #cant call rebuild_a_summary from here as this is making the transaction itself false
         false
       end
     end
+
   public
     include RingBuffer
 

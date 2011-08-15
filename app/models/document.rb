@@ -12,8 +12,10 @@ class Document < ActiveRecord::Base
 
    belongs_to     :activity, :counter_cache => true
 
-   has_many       :comments,  :dependent => :destroy, :order => "updated_at DESC"
-   has_many       :campaigns,  :dependent => :destroy, :order => "updated_at DESC"
+  #TODO commenting it for time being.. we can enable it but as this feature is not in scope
+  #so commented. Though this feature is complete in implementation
+#   has_many       :comments,  :dependent => :destroy, :order => "updated_at DESC"
+#   has_many       :campaigns,  :dependent => :destroy, :order => "updated_at DESC"
 
    validates_existence_of :owner_id
    validates_existence_of :activity_id , :allow_nil => true
@@ -42,6 +44,12 @@ class Document < ActiveRecord::Base
 #                          :file_size => { :maximum => AppConstants.max_document_size.megabytes.to_i }
 
    before_save           :sanitize_data
+
+   after_destroy         :store_for_cloud_delete
+
+   def store_for_cloud_delete
+
+   end
 
    def sanitize_data
      Rails.logger.debug("[MODEL] [DOCUMENT] [sanitize_data] ")

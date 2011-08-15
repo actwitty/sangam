@@ -594,22 +594,56 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [update_activity] entering ")
 
     a = Activity.where(:id => params[:activity_id]).first
+
     #false activity
     if a.blank?
       Rails.logger.debug("[MODEL] [User] [update_activity] [ERROR] returning empty json ")
       return {}
     end
 
-    #delete existing documents
-    a.documents.clear
+    #store summary_id to see if summary id is not changed in update
+    prev_summary_id = a.summary_id
+
+    #delete existing documents which are not in input params
+    url = []
+
+    #collect params docs in array
+    params[:documents].each do |attr|
+      url << attr[:url]
+    end
+
+    #remove the existing activity docs if input params docs is blank
+    destroy_ids = []
+    delete_ids = []
+    if url.blank?
+       a.documents.clear if a.documents.size > 0
+    else
+      a.documents.each do |attr|
+        url.include?(attr.url) ? delete_ids << attr.id : destroy_ids << attr.id
+      end
+      Document.destroy_all(:id => destroy_ids) if !destroy_ids.blank?
+      Document.delete_all(:id => delete_ids) if !delete_ids.blank?
+    end
 
     #delete existing tags
-    a.tags.clear
+    a.tags.clear if a.tags.size > 0
+
+    #delete related hubs
+    a.hubs.clear
 
     #params.delete(:activity_id)
     params[:update] = true
 
     a = create_activity(params)
+
+    #store summary_id to see if summary id is not changed in update
+    if a[:post][:summary_id] != prev_summary_id
+      Summary.destroy_all(:id => prev_summary_id)
+      s = Summary.where(:id => prev_summary_id).first
+      if !s.blank?
+        s.rebuild_a_summary
+      end
+    end
 
     Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
     a

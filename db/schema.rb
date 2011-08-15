@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
     t.integer  "summary_id"
     t.boolean  "enriched"
     t.boolean  "meta_activity"
+    t.boolean  "blank_text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

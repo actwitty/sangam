@@ -156,10 +156,11 @@ def entity_sanity_check(query,entities)
     markupName=[]
     entities=[]
 
-    formatted_query=titlecase(query)+'. '+query
+    #formatted_query=titlecase(query)+'. '+query
+    formatted_query=query
     zemanta_get_markup_entity(formatted_query,entities,markupName)
     zemanta_get_suggestion_entity(formatted_query,entities,markupName)
-    #entity_sanity_check(query,entities)
+    entity_sanity_check(query,entities)
 		return entities
 
   end

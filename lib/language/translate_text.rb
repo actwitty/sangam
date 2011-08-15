@@ -111,11 +111,12 @@ module TranslateText
   #meta activities should always be in serialized YAML
   def translate_activity_text(activity)
     text = ""
-    hash = YAML::load(activity.activity_text)
 
     if activity.meta_activity == false
       return activity.activity_text
     end
+
+    hash = YAML::load(activity.activity_text)
 
     if !activity.activity_text.blank?
       if hash[:model] == "campaign"

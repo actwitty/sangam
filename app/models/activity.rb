@@ -55,12 +55,15 @@ class Activity < ActiveRecord::Base
 
   validates_length_of     :activity_text , :maximum => AppConstants.activity_text_length, :unless => Proc.new{|a| a.activity_text.nil?}
 
-  before_destroy          :clear_dependent_data
-
   before_save             :sanitize_data
 
-  protected
+  after_destroy           :rebuild_summary
+  before_destroy           :check_destroy
 
+  protected
+    def check_destroy
+      puts "activity before destroy"
+    end
     def sanitize_data
       self.activity_text = sanitize(self.activity_text, :tags => AppConstants.sanity_tags, :attributes => AppConstants.sanity_attributes) if !self.activity_text.blank?
       self.activity_name = sanitize(self.activity_name) if !self.activity_name.blank?
@@ -68,76 +71,17 @@ class Activity < ActiveRecord::Base
       Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data] ")
     end
 
-    def clear_dependent_data
-
-      if self.meta_activity == false
-        #clear the documents
-
-        # UPDATE 03/07/2011 - Now we are destroying  document with post.. so we are putting dependent destroy
-        # and commenting below 3 queries
-
-#        #First Collect all the document ids of activity
-#        ids = Document.where(:activity_id => self.id, :summary_id => self.summary_id).group(:id).count
-
-#        #delete mentioned document first
-#        Document.destroy_all(:activity_id => self.id, :uploaded => false)
-#
-#        #then nullify uploaded document
-#        Document.where(:uploaded => true,:activity_id => self.id).update_all(:activity_id => nil, :activity_word_id => nil,
-#                                                                            :summary_id => nil)
-
-        #reset summary data
-
-        if !self.summary_id.nil?
-          s = Summary.where(:id => self.summary_id).first
-          puts "resetting activity summary"
-
-          a = s.activity_array.min
-          #then delete the input id form activity array
-          if s.activity_array.include?(self.id)
-            s.activity_array.delete(self.id)
-
-            #find the id which is just less than minimum present in activity array
-            a = Activity.where(:id.lt => a, :summary_id => self.summary_id ).first
-
-            s.activity_array << a.id if !a.blank?
-          end
-
-          #Recreate Document Array for given summary
-          s.document_array = []
-          a = Document.where(:summary_id => self.summary_id).group(:id).
-              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
-          s.document_array = a.keys if !a.blank?
-
-          #Recreate Location Array for given summary
-          s.location_array = []
-          a = Hub.where(:summary_id => self.summary_id, :location_id.not_eq => nil).group(:location_id).
-              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
-          s.location_array = a.keys if !a.blank?
-
-          #Recreate Entity Array for given summary
-          s.entity_array = []
-          a = Hub.where(:summary_id => self.summary_id, :entity_id.not_eq => nil).group(:entity_id).
-              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
-          s.entity_array = a.keys if !a.blank?
-
-          #Recreate Entity Array for given summary
-          s.tag_array = []
-          a = Tag.where(:summary_id => self.summary_id).group(:id).
-              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
-          s.tag_array = a.keys if !a.blank?
-
-          s.update_attributes(s.attributes)
-        end
+    def rebuild_summary
+      puts "activity after destroy"
+      if !self.summary_id.blank?
+        s = Summary.where(:id => self.summary_id).first
+        s.rebuild_a_summary if !s.nil?
       end
     end
-
-
   public
 
     class << self
-
-
+       include CloudAws
   #    :author_id => 123
   #    :activity => activity word or phrase in activity box
   #    :text =>   ""entity box + @@ + location box" or nil
@@ -178,7 +122,7 @@ class Activity < ActiveRecord::Base
         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
         params[:campaign_types] =  AppConstants.campaign_like if params[:campaign_types].nil?
         params[:update] = false if params[:update].nil?
-
+        params[:text].blank? ? params[:blank_text] = true : params[:blank_text] = false
 
         ################################### Create Activity Word ################################################
 
@@ -203,7 +147,7 @@ class Activity < ActiveRecord::Base
         h = {:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
              :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false,
              :status => params[:status], :campaign_types => params[:campaign_types],:source_name => params[:source_name],
-             :sub_title => params[:sub_title],:meta_activity => params[:meta_activity]}
+             :sub_title => params[:sub_title],:meta_activity => params[:meta_activity], :blank_text => params[:blank_text] }
 
 
         if params[:update] == false
@@ -274,7 +218,7 @@ class Activity < ActiveRecord::Base
           #first get the mentioned tags
           array = []
           array = get_tags(params[:text]) if !params[:text].blank?
-          puts params[:tags]
+
           !params[:tags].blank? ? params[:tags].concat(array) :(params[:tags] = array if !array.blank?)
 
           if !params[:tags].blank?
@@ -283,7 +227,7 @@ class Activity < ActiveRecord::Base
               t =Tag.create_tag(:author_id => params[:author_id], :activity_id => obj.id,
                           :activity_word_id => word_obj.id, :source_name => params[:source_name],:name => attr[:name],
                           :tag_type => attr[:tag_type], :location_id => params[:location_hash],
-                         :status => params[:status])
+                         :status => params[:status], :summary_id => params[:summary_id])
 
               tag_ids << t.id if !t.nil?
 
@@ -293,7 +237,6 @@ class Activity < ActiveRecord::Base
           end
 
           ################################# SERIALIZE TO SUMMARY ###################################################
-          puts obj.inspect
 
           #Update Summary Data - Dont do it for saved data
           if params[:status] != AppConstants.status_saved
@@ -371,10 +314,10 @@ class Activity < ActiveRecord::Base
       end
 
       def post_proc_activity(params={})
-
+         #TODO may need need to remove links also
          temp_text = remove_mentions_and_tags(params[:text])
-         entities=get_entities(temp_text)
 
+         entities=get_entities(temp_text)
 
          entities.each do |entity|
            obj = Entity.create_entities(params[:author_id],entity)
@@ -416,6 +359,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
@@ -436,6 +380,7 @@ end
 #  summary_id       :integer
 #  enriched         :boolean
 #  meta_activity    :boolean
+#  blank_text       :boolean
 #  created_at       :datetime
 #  updated_at       :datetime
 #

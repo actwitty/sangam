@@ -26,7 +26,7 @@ development: &default
   #in one pull of an activity or summary in order of latest updates
   max_number_of_activities:             10
 
-  max_number_of_a_type_in_summmary:     5
+  max_number_of_a_type_in_summmary:     6
 
   max_number_of_summmary:               10
 
@@ -148,10 +148,16 @@ development: &default
   audio_sources:                      last.fm|spotify.com
 
   #Tag List
-  sanity_tags:                           %w(b i u mention img name id a)
+  sanity_tags:                        %w(b i u mention img name id a)
 
   #attributes List
   sanity_attributes:                    %w(href value class)
+
+  #cloud actions
+  cloud_action_document_destroy:      1
+
+  #number of documents to deleted from garbage_document table at once
+  max_document_destroy_from_cloud:    2
 
 production:
   <<: *default
