@@ -133,6 +133,8 @@ function show_all_stream_campaigns(likes, div){
     likes_html = likes_html + like_html;
   }); 
   div.html(likes_html);
+  //div.slideToggle();
+  //div.append(likes_html);
       
       
 }
@@ -339,7 +341,8 @@ function setup_comment_handling(all_box_id, box_id, postid, comment_count){
 }
 
 function show_all_stream_comments(comments, post_id, current_user_id, comment_show_all_id){
-
+ 
+  //alert("show_all_stream_comments");
   var comments_count=0;
   var comments_div_id = the_big_comment_show_all_json[comment_show_all_id].div_id;
   var div = $("#" + comments_div_id);
@@ -374,7 +377,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                     '<input type="button"  value="Post" class="js_add_new_comment p-st-comment-add-btn" id="' + add_new_btn_id + '"/>' +
                   '</div>' +
                '</div>'; 
-    div.append(html);
+    //div.append(html);
+    div.html(html);
 
 
   /* context is set, go ahead */
@@ -386,8 +390,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   });
 
-   
-    div.show();
+    //div.show();
+    div.slideToggle();
 }
 
 
@@ -488,7 +492,7 @@ function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner
  * On load of page as well we need to do all these
  */
 function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
-  aw_lib_console_log("debug", "reload_streams_on_viewed_user: page:" + page_owner_id + ' session:' + session_owner_id);
+
   clear_streams();
   append_stream(page_owner_id, session_owner_id);
 
@@ -546,7 +550,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var comment_box_id  = stream_render_id + '_comments';
   var comment_box_show_all_div_id  = stream_render_id + '_show_all';
   var date_js = Date.parse('t');
-
+  var time_js = new Date().toString('HH:mm tt');
   var external_shares="";
   if ( post.status == 2){
     /* Share FB */
@@ -600,7 +604,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                       '</div>' +
 
                       '<div class="p-awp-time">' +
-                        '<span class="p-awp-time-content">' + date_js.toString("hh:mm tt") + '</span>' +
+                        '<span class="p-awp-time-content">' + time_js + '</span>' +
                       '</div>' +
 
                       '<div class="p-awp-date">' +
@@ -625,6 +629,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
                     /* Post campaigns */
                     '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
+                    '</div>' +
+                    '<div class="p-awp-view-campaign-comments" id="' + campaign_box_id + '_comment" >' +
                     '</div>' +
        
 
@@ -803,9 +809,10 @@ function show_all_comments(post_id, all_id){
         data: {activity_id:post_id},
         dataType: 'json',
         success: function (data) {
-
           show_all_stream_comments(data, post_id, current_user_id, all_id);
-          $(this).parent().next().slideToggle();
+          /*****************************************Error On Slidetoggle****************************/
+          $(this).parent().next().slidToggle(200);
+          //$("#awstream_render_id_4_comments").next().slidToggle();
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
@@ -893,6 +900,7 @@ function process_user_campaign_action(campaign_manager_json){
  *  Show all campaigns
  */
 function show_all_campaigns(campaign_manager_json){
+  //alert(JSON.stringify(campaign_manager_json));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
@@ -902,7 +910,9 @@ function show_all_campaigns(campaign_manager_json){
                 },
           dataType: 'json',
           success: function (data) {
+            //show_all_stream_campaigns(data, $("#" + campaign_manager_json.campaign_div_id));
             show_all_stream_campaigns(data, $("#" + campaign_manager_json.campaign_div_id).next());
+            /*****************************************Error On Slidetoggle****************************/
             $("#" + campaign_manager_json.campaign_div_id).next().slideToggle();
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
@@ -1074,7 +1084,9 @@ $(document).ready(function(){
    * User action show all
    */
   $('.js_campaign_show_all').live('click', function(){
-    var div_id = $(this).attr("value");
+    //var div_id = $(this).attr("value");
+    /****************************Changed For the Like SlideToggle***div_id*********************************/
+    var div_id = $(this).parent().parent().attr("id");
     campaign_manager = the_big_stream_campaign_manager_json[div_id];
     show_all_campaigns(campaign_manager); 
     return false;
