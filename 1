@@ -15,16 +15,14 @@ var the_big_stream_post_text={};
 var the_big_stream_entity_deletes={};
 /**********************************/
 
-function getEmbeddedPlayer( url, height, width){
+function getEmbeddedPlayer(url, height, width){
 	var output = '';
-  
 	var youtubeUrl = url.match(/watch\?v=([a-zA-Z0-9\-_]+)/);
 	var vimeoUrl = url.match(/^http:\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/);
 	if( youtubeUrl ){
-	  output = '<iframe class="video" width="'+width+'" height="'+height+'" src="http://www.youtube.com/embed/'+youtubeUrl[1]+'?wmode=transparent" frameborder="0" wmode="Opaque"></iframe>';
-    
+		output = '<iframe width="'+width+'" height="'+height+'" src="http://www.youtube.com/embed/'+youtubeUrl[1]+'?rel=0" frameborder="0" allowfullscreen>';
 	}else if(vimeoUrl){
-		output =  '<iframe class="video" src="http://player.vimeo.com/video/'+vimeoUrl[3]+'" width="'+width+'" height="'+height+'" frameborder="0" ></iframe>';
+		output =  '<iframe src="http://player.vimeo.com/video/'+vimeoUrl[3]+'" width="'+width+'" height="'+height+'" frameborder="0"></iframe>';
 	}else{
 		output = '<p>no video url found - only vimeo and youtube supported</p>';
 	}
@@ -38,44 +36,32 @@ function getEmbeddedPlayer( url, height, width){
  * There are different version of fancy box which can also be used.
  * The current one in place is for image gallery
  */
-function handle_stream_docs(type, box_id, stream){
+function handle_stream_docs(box_id, stream){
   docs_box= $("#" + box_id);
   if ( stream.documents &&  stream.documents.count ){
     var ul_box = $("#" + box_id);
     $.each(stream.documents.array, function(i, attachment){
-      var caption = "";
-      if(attachment.caption && attachment.caption.length){
-        caption = attachment.caption;
-      }
-      var thumb_nail = attachment.url; 
-      if (attachment.thumb_url){
-        thumb_nail = attachment.thumb_url; 
-      }
-      if( attachment.category == type && type == "image" ){
-        aw_lib_console_log ("debug", "stream attaching thumb url:" + thumb_nail);
-        var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '">' + 
+     var caption = "";
+     if(attachment.caption && attachment.caption.length){
+       caption = attachment.caption;
+     }
+     var thumb_nail = attachment.url; 
+     if (attachment.thumb_url){
+       thumb_nail = attachment.thumb_url; 
+     }
+     aw_lib_console_log ("debug", "stream attaching thumb url:" + thumb_nail);
+     if( attachment.category == "image" ){
+       var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '">' + 
                   '<img alt="" src="'+ thumb_nail + '"  width="50" height="50" alt="" />' +
                 '</a>'; 
-        ul_box.append(html);
-      }
-     
-    });
+     }
 
-    $.each(stream.documents.array, function(i, attachment){
-      var thumb_nail = attachment.url; 
-      if (attachment.thumb_url){
-        thumb_nail = attachment.thumb_url; 
-      }
-      if( attachment.category == type && type == "video" ){
-        aw_lib_console_log ("debug", "stream attaching video url:" + thumb_nail);
-        var html=getEmbeddedPlayer( attachment.url, 180, 240);
-        
-        ul_box.append(html);
-      }
      
+     ul_box.append(html);
     });
     /* activate fancy box  */
     activate_fancybox_group(box_id);
+    activate_fancybox_video_group();
   }else{
     /* hide if there is nothing to show */
     docs_box.hide();
@@ -574,7 +560,6 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   }
 
   var doc_box_id      =  stream_render_id + '_docs';
-  var video_doc_box_id = stream_render_id + '_videos';
   var campaign_box_id =  stream_render_id + '_campaigns';
   var text_box_id     =  stream_render_id + '_text';
   var location_box_id =  stream_render_id + '_location';
@@ -653,11 +638,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '<div class="p-awp-location js_location_hide" id="' + location_box_id + '" >' +
                     '</div>' +
                     /* Post attachment */
-                    '<div style="z-index:1;" class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
-                    '</div>' +
-
-                    /* Post video attachment */
-                    '<div style="z-index:1;" class="p-awp-view-video-attachment" id="' + video_doc_box_id + '" >' +
+                    '<div class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
                     '</div>' +
                     
                     external_shares +
@@ -685,8 +666,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   handle_stream_text(text_box_id, stream.post.text);
 
   handle_stream_location(location_box_id, stream.location);
-  handle_stream_docs("image", doc_box_id, stream);
-  handle_stream_docs("video", video_doc_box_id, stream);
+  handle_stream_docs(doc_box_id, stream);
 
   if( post.status == 2){
     setup_comment_handling(comment_box_show_all_div_id,

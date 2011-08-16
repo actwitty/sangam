@@ -104,7 +104,7 @@ class HomeController < ApplicationController
 
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
       if request.xhr?
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -125,7 +125,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_related_entities(params[:user_id], params[:filter])
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] model returned #{response_json}")
       if request.xhr?
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -149,7 +149,7 @@ class HomeController < ApplicationController
 
       Rails.logger.info("[CNTRL][HOME][USER ENTITIES] model returned #{response_json}")
       if request.xhr?
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -168,7 +168,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_related_locations(params[:user_id], params[:filter])
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] model returned #{response_json}")
       if request.xhr?
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -187,7 +187,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_user_locations( params[:user_id], params[:sort_order])
       Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] model returned #{response_json}")
       if request.xhr?
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -237,7 +237,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] created successfully #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
 
@@ -260,7 +260,7 @@ class HomeController < ApplicationController
         response_json=current_user.get_users_of_campaign(args)
         Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] model returned #{response_json}")
         if request.xhr?
-          expires_in 5.minutes
+          #expires_in 5.minutes
           render :json => response_json, :status => 200
         end
     else
@@ -289,7 +289,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_related_friends(params[:filter])
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] model returned #{response_json}")
       if request.xhr?
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -497,7 +497,7 @@ class HomeController < ApplicationController
         Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
         if request.xhr?
           Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
-          expires_in 5.minutes
+          #expires_in 5.minutes
           render :json => response_json, :status => 200
         end
 
@@ -527,7 +527,7 @@ class HomeController < ApplicationController
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -590,7 +590,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -618,7 +618,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -640,7 +640,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -744,7 +744,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -778,7 +778,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -811,7 +811,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -893,7 +893,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT CHANNEL] sending response JSON #{response_json}")
-        expires_in 5.minutes
+        #expires_in 5.minutes
         render :json => response_json, :status => 200
       end
     else

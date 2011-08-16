@@ -1095,7 +1095,7 @@ html ul.p-cstab li.p-st-tab.active  {
 .p-st-fltr-box
 {
   width:100%;
-  height:50ipx;
+  height:50px;
  
 }
 .p-st-filter-sect
@@ -1810,6 +1810,25 @@ div.p-awp-actions .p-awp-edit
 
 
 
+.p-awp-view-video-attachment
+{
+  width:100%;
+  float:right;
+  height:auto;
+  border:0px solid #fff;
+  margin-top:8px;
+  z-index:1;
+
+}
+
+
+.p-awp-view-video-attachment .video
+{
+  float:left;
+  margin:5px;
+  border:2px solid #fff;
+}
+
 .p-awp-view-attachment
 {
   width:100%;
@@ -1817,7 +1836,9 @@ div.p-awp-actions .p-awp-edit
   height:auto;
   border:0px solid #fff;
   margin-top:8px;
+  z-index:1;
 }
+
 .p-awp-view-attachment a
 {
   margin-left:5px;
