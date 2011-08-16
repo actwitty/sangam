@@ -36,7 +36,9 @@ require 'freebase_wrapper'
     end
     #ALOK ADDING IT FOR IMAGE
     unless entity["guid"].blank?
-      entity["image"]=Freebase.get_thumb_image_url("/guid/" + entity["guid"][1..-1])
+      #entity["image"]=Freebase.get_thumb_image_url("/guid/" + entity["guid"][1..-1])
+      #lets truncate the url we will add it will send over network
+      entity["image"]=entity["guid"][1..-1]
     end
 		return entity
 	end
@@ -72,7 +74,9 @@ require 'freebase_wrapper'
 #    end
 
     unless result["guid"].blank?
-      result["image"]=Freebase.get_thumb_image_url("/guid/" + result["guid"][1..-1])
+      #result["image"]=Freebase.get_thumb_image_url("/guid/" + result["guid"][1..-1])
+      #lets truncate the url we will add it will send over network
+      result["image"]=result["guid"][1..-1]
     end
 		return result
 	end

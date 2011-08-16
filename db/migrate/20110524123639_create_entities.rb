@@ -9,6 +9,8 @@
         t.text   :entity_image, :null => false
 
         t.text     :entity_doc, :null => false
+
+        t.text  :social_counters
 				t.timestamps
       end
 

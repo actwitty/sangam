@@ -554,17 +554,21 @@ describe Activity do
                               :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
                                                     {:url => "http://a.com/xyz.jpg" },
                                                {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
-                                            AppConstants.status_saved,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
+                                            AppConstants.status_public,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
       work_off
       id = a[:post][:id]
 
-      a = @u.get_stream({:user_id => @u.id})
-      puts a.inspect
-      a.should_not be_nil
-      a = @u.get_draft_activity
+      b = @u.get_stream({:user_id => @u.id})
+      puts b.inspect
+      b.should_not be_nil
 
       puts "======================draft====================="
+
+      params = {:filter => {:word_id => a[:post][:word][:id], :location_id => a[:location][:id]}}
+      puts params.inspect
+      a = @u.get_draft_activity(params)
       puts a.inspect
+
       a = Activity.where(:id => id).first
       s = Summary.where(:id => a.summary_id).first
 
@@ -591,8 +595,8 @@ describe Activity do
       puts c
       work_off
 
-      b= @u.get_draft_activity
-      puts b
+#      b= @u.get_draft_activity
+#      puts b
       s = Summary.where(:id => a.summary_id).first
 
       puts "=====================summary again again===================="
@@ -622,7 +626,7 @@ describe Activity do
       puts a
 
       puts "get document stream"
-      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "image"})
+      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty", :entity_id => e.id}, :category => "image"})
       puts a
 
     end
@@ -782,6 +786,50 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       puts b
       b.should_not be_blank
     end
+    it "should create the social counter properly" do
+      a = @u.create_activity(:word => "eating" , :text => "pizza at tomato ketchup with PIZZA at
+                                   <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?v=oIWxnfO7eJM&feature=feedrec wow
+                                   http://www.google.com/123 at www.vimeo.com eating with
+                                   http://form6.twitpic.com/ard_yt.jpeg at dropbox.com/data?id=123 ate ate #eating at #pizza",
+
+                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:caption => "hello man",:url => "https://s3.amazonaws.com/xyz.jpg" },
+                                             {:caption => "aaaaabbbbbbbccccc", :url => "http://a.com/xyz.jpg" },
+                                             {:url => "http://b.com/xyz.jpg" },
+                                             {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
+                              :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
+                                            AppConstants.status_public)
+            a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
+
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_public)
+      s1 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
+      s2 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "twitter", :action => "share"})
+      s3 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
+      s4 = @u.create_social_counter({:author_id => @u.id ,:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
+      puts s1.inspect
+      a = Activity.where(:id => a[:post][:id]).first
+      puts a.social_counters
+      puts "====================="
+      s = Summary.where(:id => a.summary_id).first
+      puts s.social_counters
+      a = @u.get_social_counter({:activity_id => a.id})
+      puts a
+      a= @u.get_stream({:user_id => @u.id})
+      puts a
+    end
+
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY
 #    CLEAN GET STREAM

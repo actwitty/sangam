@@ -343,7 +343,7 @@ class Activity < ActiveRecord::Base
              if  params[:entity_hash].nil?
                params[:entity_hash] = {}
              end
-              params[:entity_hash][entity['name']]  = obj.id
+              params[:entity_hash][obj.entity_name]  = obj.id
 
            end
          end

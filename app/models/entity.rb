@@ -38,15 +38,26 @@ class Entity < ActiveRecord::Base
   #
     def create_entities(owner_id = nil, entity_hash ={})
 
+      entity_type = nil
       if !entity_hash.has_key?('mid') or entity_hash['mid'].nil?
         return nil
       end
 
       begin
 
-      entity_hash['image'].blank? ? entity_image = AppConstants.entitiy_no_image :
-                                                  entity_image = entity_hash['image']
-      entity_hash.delete('image') if !entity_hash['image'].blank?
+      entity_hash['image'].blank? ? entity_image = AppConstants.entitiy_no_image : entity_image = entity_hash['image']
+
+      #delete unnecessary information
+      entity_hash.delete('image') if !entity_hash['image'].nil?
+      entity_hash.delete('relevance:score') if !entity_hash['relevance:score'].nil?
+      entity_hash.delete('/common/topic/image') if !entity_hash['/common/topic/image'].nil?
+      entity_hash.delete('guid') if !entity_hash['guid'].nil?
+
+
+      if !entity_hash['type'].blank?
+        entity_type =  entity_hash['type']
+        entity_hash.delete('type')
+      end
 
       entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
                               :entity_doc => entity_hash, :entity_image => entity_image)
@@ -61,13 +72,17 @@ class Entity < ActiveRecord::Base
           return entity
         end
       end
-
+      entity_hash.delete('mid') if !entity_hash['mid'].blank?
+      entity_hash.delete('name') if !entity_hash['name'].blank?
       begin
 
-         entity_hash['type'].each do |entry|
+         entity_type.each do |entry|
          id = EntityType.create!(:entity_id => entity.id , :entity_type_uri => entry['id'],
                              :entity_type_name => entry['name'].downcase)
          end
+
+         entity_hash.delete('type') if !entity_hash['type'].blank?
+
          puts "==== #{entity.inspect}"
          EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
 

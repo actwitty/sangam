@@ -407,15 +407,36 @@ class User < ActiveRecord::Base
 
   end
 
-
+  #INPUT
+  #:filter => {:word_id => 123,
+  #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
+  #            :location_id => 789, :entity_id => 234 }
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
   # See get_stream output
-  def get_draft_activity
-    Rails.logger.debug("[MODEL] [User] [get_draft_activity] entering ")
-    activity = Activity.where(:status => AppConstants.status_saved, :author_id => self.id).group(:id).order("MAX(updated_at) DESC").count
+  def get_draft_activity(params)
+
+    Rails.logger.debug("[MODEL] [USER] [get_draft_activity] entering")
+
+    h = process_filter(params[:filter])
+
+    h[:status] =  AppConstants.status_saved
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+
+    h[:author_id] = self.id
+    h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+
+    h.delete(:entity_id) if !h[:entity_id].blank?   #remove entity_id as drafts can have
+
+    h.delete(:location_id)
+
+    activity = Activity.where(h).group(:id).order("MAX(updated_at) DESC").count
+
     array = get_all_activity(activity.keys)
-    puts array.to_json
+
     Rails.logger.debug("[MODEL] [User] [get_draft_activity] leaving ")
+
     array
 
   end
@@ -664,6 +685,7 @@ class User < ActiveRecord::Base
       array[index][:comments] = {:count => attr.comments.size, :array => [] }
       array[index][:documents]= {:count => attr.documents.size, :array => []}
       array[index][:tags]=      {:count => attr.tags.size, :array => []}
+      array[index][:social_counters] = attr.social_counters
       array[index][:campaigns]= []
       index = index + 1
     end
@@ -913,6 +935,7 @@ class User < ActiveRecord::Base
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
+                             :social_counters => attr.social_counters,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
@@ -1504,6 +1527,33 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] leaving")
     doc_array
   end
+
+  def create_social_counter(params)
+    Rails.logger.debug("[MODEL] [USER] [create_social_counter] entering")
+    a = SocialCounter.create_social_counter(params)
+    if a.nil?
+      return {}
+    end
+    a = format_social_counter(a)
+    Rails.logger.debug("[MODEL] [USER] [create_social_counter] leaving")
+    a
+  end
+
+    #          :activity_id => 123 or nil
+    #                 OR
+    #           :summary_id => 123 or nil
+    #                 OR
+    #           :location_id => 123 or nil
+    #                 OR
+    #           :entity_id => 234 or nil
+    #                 OR
+    #           :document_id => 456 or nil
+    def get_social_counter(params)
+      Rails.logger.debug("[MODEL] [USER] [get_social_counter] entering")
+      a = SocialCounter.get_social_counter(params)
+      Rails.logger.debug("[MODEL] [USER] [get_social_counter] leaving")
+      a
+    end
   # private methods
   private
 

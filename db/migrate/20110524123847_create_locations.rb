@@ -10,6 +10,8 @@ class CreateLocations < ActiveRecord::Migration
       t.decimal :location_lat, :precision => 18, :scale => 15
       t.decimal :location_long, :precision => 18, :scale => 15
 
+      t.text :social_counters
+
       t.timestamps
 
     end

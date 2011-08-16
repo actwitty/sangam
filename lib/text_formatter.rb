@@ -121,7 +121,7 @@ module TextFormatter
                 |#{AppConstants.audio_sources}"
 
     #Regex for mention or hashtag or url
-    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?(www.)?(#{str}){1}(\/[^\s]*)?)/
+    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?([^\s]*.)?(#{str}){1}(\/[^\s]*)?)/
 
     m = text.scan(regex)
 
@@ -168,7 +168,7 @@ module TextFormatter
 
     str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
                 |#{AppConstants.audio_sources}"
-    arr = text.scan(/((http:\/\/|https:\/\/)(www.)?(#{str}){1}(\/[^\s]*)?)/)
+    arr = text.scan(/((http:\/\/|https:\/\/)([^\s]*.)?(#{str}){1}(\/[^\s]*))/)
 
     arr.each do |attr|
 
@@ -214,11 +214,22 @@ module TextFormatter
     h = {}
     h = {:id => entity.id,
          :name => entity.entity_name,
-         :image => entity.entity_image,
-         :description => nil
+         :image => AppConstants.entity_image_thumb_base + entity.entity_image,
+         :description => (!entity.entity_doc['key'].blank? && !entity.entity_doc['key']['value'].blank?) ?
+                          AppConstants.entity_description_url + entity.entity_doc['key']['value'] : nil
         }
     h
   end
+  #format social counter
+  def format_social_counter(attr)
+
+    if attr.nil?
+      return {}
+    end
+    hash = {}
+    hash = {:source_name => attr.source_name, :action => attr.action}
+  end
+
   #format a location object to generic form
   def format_location(loc)
     h = {}
