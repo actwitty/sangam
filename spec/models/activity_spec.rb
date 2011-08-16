@@ -789,7 +789,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
                                    <mention><name>PIZZA<name><id>235<id><mention> hello
                                    http://www.youtube.com/watch?v=oIWxnfO7eJM&feature=feedrec wow
                                    http://www.google.com/123 at www.vimeo.com eating with
-                                   http://twitpic.com/123/group/564 at dropbox.com/data?id=123 ate ate #eating at #pizza",
+                                   http://form6.twitpic.com/ard_yt.jpeg at dropbox.com/data?id=123 ate ate #eating at #pizza",
 
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true,
@@ -821,6 +821,8 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       s = Summary.where(:id => a.summary_id).first
       puts s.social_counters
       a = @u.get_social_counter({:activity_id => a.id})
+      puts a
+      a= @u.get_stream({:user_id => @u.id})
       puts a
     end
 

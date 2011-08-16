@@ -121,7 +121,7 @@ module TextFormatter
                 |#{AppConstants.audio_sources}"
 
     #Regex for mention or hashtag or url
-    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?(www.)?(#{str}){1}(\/[^\s]*)?)/
+    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?([^\s]*.)?(#{str}){1}(\/[^\s]*)?)/
 
     m = text.scan(regex)
 
@@ -168,7 +168,7 @@ module TextFormatter
 
     str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
                 |#{AppConstants.audio_sources}"
-    arr = text.scan(/((http:\/\/|https:\/\/)(www.)?(#{str}){1}(\/[^\s]*)?)/)
+    arr = text.scan(/((http:\/\/|https:\/\/)([^\s]*.)?(#{str}){1}(\/[^\s]*))/)
 
     arr.each do |attr|
 

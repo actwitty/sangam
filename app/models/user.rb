@@ -410,7 +410,7 @@ class User < ActiveRecord::Base
 
   #OUTPUT
   # See get_stream output
-  def get_draft_activity
+  def get_draft_activity(params)
     Rails.logger.debug("[MODEL] [User] [get_draft_activity] entering ")
     activity = Activity.where(:status => AppConstants.status_saved, :author_id => self.id).group(:id).order("MAX(updated_at) DESC").count
     array = get_all_activity(activity.keys)
@@ -1508,11 +1508,13 @@ class User < ActiveRecord::Base
   end
 
   def create_social_counter(params)
+    Rails.logger.debug("[MODEL] [USER] [create_social_counter] entering")
     a = SocialCounter.create_social_counter(params)
     if a.nil?
       return {}
     end
     a = format_social_counter(a)
+    Rails.logger.debug("[MODEL] [USER] [create_social_counter] leaving")
     a
   end
 
@@ -1526,7 +1528,10 @@ class User < ActiveRecord::Base
     #                 OR
     #           :document_id => 456 or nil
     def get_social_counter(params)
-      SocialCounter.get_social_counter(params)
+      Rails.logger.debug("[MODEL] [USER] [get_social_counter] entering")
+      a = SocialCounter.get_social_counter(params)
+      Rails.logger.debug("[MODEL] [USER] [get_social_counter] leaving")
+      a
     end
   # private methods
   private
