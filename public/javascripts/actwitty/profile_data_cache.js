@@ -1,72 +1,107 @@
-the_big_profile_data_cache={};
+
 /*
- * cache_suffixes 
- *
- * MY_CHANNELS
- * SUBSCRIBED_CHANNELS
- * ALL_CHANNELS
- *
- * MY_STREAMS
- * SUBSCRIBED_STREAMS
- * ALL_STREAMS
- *
- * MY_PICS
- * SUBSCRIBED_PICS
- * ALL_PICS
- *
- * MY_VIDEOS
- * SUBSCRIBED_VIDEOS
- * ALL_VIDEOS
+ * classes
+ * div.js_aw_info_parent_container
+ *  div.js_aw_info_container
+ *  input.js_aw_info_more
+ *  
  *
  */
+var g_aw_filter_insensitive_ids=[
+                                  'js_channels_list',
+                                ];
+/***********************************************/
 
-var g_aw_filter_sensitive_cache_keys=[
-                                'MY_STREAMS',
-                                'SUBSCRIBED_STREAMS',
-                                'ALL_STREAMS',
+var g_aw_filter_sensitive_ids=[
+                                  'js_streams_list',
 
-                                'MY_PICS',
-                                'SUBSCRIBED_PICS',
-                                'ALL_PICS',
+                                  'js_images_list',
 
-                                'MY_VIDEOS',
-                                'SUBSCRIBED_VIDEOS',
-                                'ALL_VIDEOS'
-                            ];
+                                  'js_videos_list',
+
+                                  'js_drafts'
+
+                              ];
+/***********************************************/
 
 
-
-function aw_cache_set_into_cache(key, json){
-  aw_lib_console_log("debug", "set cache entry for key: " + key);
-  var page_owner = aw_lib_get_page_owner_id();
-  key = key + '_' + page_owner;
-  the_big_profile_data_cache[key] = json; 
+/*
+ * Deselect all other sections on summary page
+ * Select the specific scope
+ */ 
+function toggle_scope_on_summary_page(id){
+  aw_lib_console_log("debug", "toggle_scope_on_summary_page");
+  $.each(g_aw_filter_insensitive_ids, function(index, key) {
+    /* clear tabls on filter change */
+    $("#" + key).hide();
+  });
+  $("#" + id).fadeIn();
 }
-
-function aw_cache_get_from_cache(key){
-
-  aw_lib_console_log("debug", "called get  cached entry for key: " + key);
-  var page_owner = aw_lib_get_page_owner_id();
-  key = key + '_' + page_owner;
-  var ret_json = {valid:false, value:undefined};
-  if ( the_big_profile_data_cache[key] ){
-    aw_lib_console_log("info", "returning cached entry for key: " + key);
-    ret_json = {valid:true, value:the_big_profile_data_cache[key]};
-  }
- 
-  return ret_json;
-
+/***********************************************/
+/*
+ * Deselect all other sections on streams page
+ * Select the specific scope
+ */ 
+function toggle_scope_on_stream_page(id){
+  aw_lib_console_log("debug", "toggle_scope_on_summary_page");
+  $.each(g_aw_filter_sensitive_ids, function(index, key) {
+    /* clear tabls on filter change */
+    $("#" + key).hide();
+  });
+  $("#" + id).fadeIn();
 }
+/***********************************************/
 
-function aw_cache_reset_on_filter_change(){
+
+/*****************************************************************/
+
+/*
+ * call on reset
+ */
+function aw_reset_dynamic_info_on_filter(){
   aw_lib_console_log("info", "flush cache on change of filter");
-  var page_owner = aw_lib_get_page_owner_id();
-  $.each(g_aw_filter_sensitive_cache_keys, function(index, key) {
-    var cache_key = key + '_' + page_owner;
-    if( the_big_profile_data_cache[cache_key] ){
-      aw_lib_console_log("info", "deleteing cached entry for key: " + cache_key);
-      delete the_big_profile_data_cache[cache_key];
-    }
+  $.each(g_aw_filter_sensitive_ids, function(index, key) {
+    /* clear tabls on filter change */
+    $("#" + key).html("");
+    g_aw_dynamic_info_state[key] = {populated:false,updated_at:''};
+  });
+}
+/*****************************************************************/
+
+/*
+ * call on init
+ */
+function aw_init_dynamic_info(){
+  aw_lib_console_log("info", "init dynamic info");
+  $.each(g_aw_filter_insensitive_ids, function(index, key) {
+    /* clear tabls on filter change */
+    $("#" + key).find('.js_aw_info_container').remove();
+    g_aw_dynamic_info_state[key] = {populated:false,updated_at:''};
   });
 
+  aw_reset_dynamic_info_on_filter();
 }
+/*****************************************************************/
+
+/*
+ *
+ * {user_id : owner_id, updated_at:more_cookie, friend:get_others_filter_state() }
+    var page_owner_id=$('#page_owner_id').attr("value");
+    var session_owner_id=$('#session_owner_id').attr("value");
+    if( page_owner_id == session_owner_id){
+      $("#channel_others").addClass("p-r-fltr-others-active");
+      $("#stream_others").addClass("p-r-fltr-others-active");
+    }else{
+      others_filter_state=false;
+    }
+
+    */
+
+/*****************************************************************/
+$(document).ready(function(){
+
+  $(".js_more_on_info"){
+  }
+  
+});
+/*****************************************************************/
