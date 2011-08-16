@@ -15,6 +15,7 @@ class CreateSummaries < ActiveRecord::Migration
       t.text :activity_array
       t.text :document_array
       t.text :tag_array
+      t.text :social_counters
 
       t.timestamps
 

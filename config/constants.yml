@@ -8,6 +8,7 @@ development: &default
   caption_text_length:                  64
   sub_title_length:                     255
   source_name_length:                   64
+  action_name_length:                   64    #actions like from "share", "post" "comment" "like" etc
   document_name_length:                 255
   document_mime_length:                 64
   campaign_name_length:                 64
@@ -69,6 +70,7 @@ development: &default
   user_no_image:                        "/images/profile/default.png"
   entity_image_thumb_base:               "http://api.freebase.com/api/trans/image_thumb/guid/"
   entity_image_raw_base:                 "http://api.freebase.com/api/trans/raw/guid/"
+  entity_description_url:               "http://en.wikipedia.org/wiki/index.html?curid="
 
   summary_word_count:                   15
   summary_document_count:               5

@@ -664,6 +664,7 @@ class User < ActiveRecord::Base
       array[index][:comments] = {:count => attr.comments.size, :array => [] }
       array[index][:documents]= {:count => attr.documents.size, :array => []}
       array[index][:tags]=      {:count => attr.tags.size, :array => []}
+      array[index][:social_counters] = attr.social_counters
       array[index][:campaigns]= []
       index = index + 1
     end
@@ -913,6 +914,7 @@ class User < ActiveRecord::Base
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
+                             :social_counters => attr.social_counters,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
@@ -1504,6 +1506,28 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] leaving")
     doc_array
   end
+
+  def create_social_counter(params)
+    a = SocialCounter.create_social_counter(params)
+    if a.nil?
+      return {}
+    end
+    a = format_social_counter(a)
+    a
+  end
+
+    #          :activity_id => 123 or nil
+    #                 OR
+    #           :summary_id => 123 or nil
+    #                 OR
+    #           :location_id => 123 or nil
+    #                 OR
+    #           :entity_id => 234 or nil
+    #                 OR
+    #           :document_id => 456 or nil
+    def get_social_counter(params)
+      SocialCounter.get_social_counter(params)
+    end
   # private methods
   private
 

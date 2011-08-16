@@ -214,11 +214,22 @@ module TextFormatter
     h = {}
     h = {:id => entity.id,
          :name => entity.entity_name,
-         :image => entity.entity_image,
-         :description => nil
+         :image => AppConstants.entity_image_thumb_base + entity.entity_image,
+         :description => (!entity.entity_doc['key'].blank? && !entity.entity_doc['key']['value'].blank?) ?
+                          AppConstants.entity_description_url + entity.entity_doc['key']['value'] : nil
         }
     h
   end
+  #format social counter
+  def format_social_counter(attr)
+
+    if attr.nil?
+      return {}
+    end
+    hash = {}
+    hash = {:source_name => attr.source_name, :action => attr.action}
+  end
+
   #format a location object to generic form
   def format_location(loc)
     h = {}

@@ -35,6 +35,8 @@ class CreateDocuments < ActiveRecord::Migration
 
       t.integer :location_id
 
+      t.text :social_counters
+
       t.timestamps
     end
 

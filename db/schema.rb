@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
     t.boolean  "enriched"
     t.boolean  "meta_activity"
     t.boolean  "blank_text"
+    t.text     "social_counters"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -171,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
     t.text     "provider",         :null => false
     t.text     "category",         :null => false
     t.integer  "location_id"
+    t.text     "social_counters"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -188,10 +190,11 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
   add_index "documents", ["uploaded", "owner_id"], :name => "index_documents_on_uploaded_and_owner_id"
 
   create_table "entities", :force => true do |t|
-    t.string   "entity_name",  :null => false
-    t.string   "entity_guid",  :null => false
-    t.text     "entity_image", :null => false
-    t.text     "entity_doc",   :null => false
+    t.string   "entity_name",     :null => false
+    t.string   "entity_guid",     :null => false
+    t.text     "entity_image",    :null => false
+    t.text     "entity_doc",      :null => false
+    t.text     "social_counters"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -314,11 +317,12 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
   add_index "location_hubs", ["web_join_id", "unresolved_join_id"], :name => "index_location_hub_on_web_unresolved"
 
   create_table "locations", :force => true do |t|
-    t.integer  "location_type",                                 :null => false
-    t.text     "location_name",                                 :null => false
+    t.integer  "location_type",                                   :null => false
+    t.text     "location_name",                                   :null => false
     t.text     "location_url"
-    t.decimal  "location_lat",  :precision => 18, :scale => 15
-    t.decimal  "location_long", :precision => 18, :scale => 15
+    t.decimal  "location_lat",    :precision => 18, :scale => 15
+    t.decimal  "location_long",   :precision => 18, :scale => 15
+    t.text     "social_counters"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -388,6 +392,14 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
   add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
 
   create_table "social_counters", :force => true do |t|
+    t.text     "source_name", :null => false
+    t.text     "action",      :null => false
+    t.integer  "activity_id"
+    t.integer  "document_id"
+    t.integer  "summary_id"
+    t.integer  "location_id"
+    t.integer  "entity_id"
+    t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -404,6 +416,7 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
     t.text     "activity_array"
     t.text     "document_array"
     t.text     "tag_array"
+    t.text     "social_counters"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
