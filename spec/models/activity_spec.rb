@@ -558,13 +558,17 @@ describe Activity do
       work_off
       id = a[:post][:id]
 
-      a = @u.get_stream({:user_id => @u.id})
-      puts a.inspect
-      a.should_not be_nil
-      a = @u.get_draft_activity
+      b = @u.get_stream({:user_id => @u.id})
+      puts b.inspect
+      b.should_not be_nil
 
       puts "======================draft====================="
+
+      params = {:filter => {:word_id => a[:post][:word][:id], :location_id => a[:location][:id]}}
+      puts params.inspect
+      a = @u.get_draft_activity(params)
       puts a.inspect
+
       a = Activity.where(:id => id).first
       s = Summary.where(:id => a.summary_id).first
 
@@ -591,8 +595,8 @@ describe Activity do
       puts c
       work_off
 
-      b= @u.get_draft_activity
-      puts b
+#      b= @u.get_draft_activity
+#      puts b
       s = Summary.where(:id => a.summary_id).first
 
       puts "=====================summary again again===================="

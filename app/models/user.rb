@@ -407,15 +407,36 @@ class User < ActiveRecord::Base
 
   end
 
-
+  #INPUT
+  #:filter => {:word_id => 123,
+  #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
+  #            :location_id => 789, :entity_id => 234 }
+  #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
   # See get_stream output
   def get_draft_activity(params)
-    Rails.logger.debug("[MODEL] [User] [get_draft_activity] entering ")
-    activity = Activity.where(:status => AppConstants.status_saved, :author_id => self.id).group(:id).order("MAX(updated_at) DESC").count
+
+    Rails.logger.debug("[MODEL] [USER] [get_draft_activity] entering")
+
+    h = process_filter(params[:filter])
+
+    h[:status] =  AppConstants.status_saved
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+
+    h[:author_id] = self.id
+    h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+
+    h.delete(:entity_id) if !h[:entity_id].blank?   #remove entity_id as drafts can have
+
+    h.delete(:location_id)
+
+    activity = Activity.where(h).group(:id).order("MAX(updated_at) DESC").count
+
     array = get_all_activity(activity.keys)
-    puts array.to_json
+
     Rails.logger.debug("[MODEL] [User] [get_draft_activity] leaving ")
+
     array
 
   end
