@@ -83,25 +83,5 @@ function aw_init_dynamic_info(){
 }
 /*****************************************************************/
 
-/*
- *
- * {user_id : owner_id, updated_at:more_cookie, friend:get_others_filter_state() }
-    var page_owner_id=$('#page_owner_id').attr("value");
-    var session_owner_id=$('#session_owner_id').attr("value");
-    if( page_owner_id == session_owner_id){
-      $("#channel_others").addClass("p-r-fltr-others-active");
-      $("#stream_others").addClass("p-r-fltr-others-active");
-    }else{
-      others_filter_state=false;
-    }
 
-    */
-
-/*****************************************************************/
-$(document).ready(function(){
-
-  $(".js_more_on_info"){
-  }
-  
-});
 /*****************************************************************/
