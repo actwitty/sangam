@@ -4,8 +4,9 @@ class Summary < ActiveRecord::Base
   serialize :document_array, Array
   serialize :activity_array, Array
   serialize :location_array, Array
-  serialize :tag_array, Array
+  serialize :tag_array,       Array
   serialize :social_counters, Array
+  serialize :theme_data,      Hash
 
   has_many    :activities, :order => "updated_at DESC"
 
@@ -17,8 +18,13 @@ class Summary < ActiveRecord::Base
 
   has_many    :tags,     :order => "updated_at DESC"
 
+  has_one     :theme
+
   belongs_to  :user, :touch => true
   belongs_to  :activity_word, :touch => true
+  belongs_to  :theme
+
+  validates_existence_of  :user_id, :activity_word_id
 
   validates_presence_of :activity_name
   validates_length_of   :activity_name , :in => 1..AppConstants.activity_name_length
@@ -28,6 +34,7 @@ class Summary < ActiveRecord::Base
   before_destroy :ensure_proper_destroy
   after_destroy  :check_destroy
   public
+
     def check_destroy
       puts "summary after destroy"
     end
@@ -126,11 +133,21 @@ class Summary < ActiveRecord::Base
     end
     class << self
 
+      include TextFormatter
+
       #INPUT => :activity_word_id => 123, :user_id => 123, :activity_name => "eating""
       def create_summary(params)
+
          summary = Summary.create!(:activity_word_id => params[:activity_word_id], :user_id => params[:user_id],
                              :activity_name => params[:activity_name],:document_array => [],
                              :activity_array => [], :location_array => [], :entity_array => [], :tag_array => [])
+         a = Theme.create_theme(:fg_color => AppConstants.theme_default_fg_color,
+                                :bg_color => AppConstants.theme_default_bg_color,
+                                :summary_id => summary.id,
+                                :author_id => summary.user_id
+                                )
+         summary.theme_data = format_theme(a) if !a.nil?
+         return summary
       rescue => e
          Rails.logger.info("Summary => create_summary => Rescue " +  e.message )
          summary = nil

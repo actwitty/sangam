@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811140059) do
+ActiveRecord::Schema.define(:version => 20110816174153) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id", :null => false
@@ -192,8 +192,8 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
   create_table "entities", :force => true do |t|
     t.string   "entity_name",     :null => false
     t.string   "entity_guid",     :null => false
-    t.text     "entity_image",    :null => false
-    t.text     "entity_doc",      :null => false
+    t.text     "entity_image"
+    t.text     "entity_doc"
     t.text     "social_counters"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -417,6 +417,7 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
     t.text     "document_array"
     t.text     "tag_array"
     t.text     "social_counters"
+    t.text     "theme_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -443,6 +444,16 @@ ActiveRecord::Schema.define(:version => 20110811140059) do
   add_index "tags", ["activity_id"], :name => "index_tags_on_activity_id"
   add_index "tags", ["activity_word_id"], :name => "index_tags_on_activity_word_id"
   add_index "tags", ["author_id", "activity_word_id"], :name => "index_tags_on_author_id_and_activity_word_id"
+
+  create_table "themes", :force => true do |t|
+    t.text     "bg_color"
+    t.text     "fg_color"
+    t.integer  "author_id",  :null => false
+    t.integer  "summary_id", :null => false
+    t.text     "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"

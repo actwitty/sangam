@@ -1554,6 +1554,19 @@ class User < ActiveRecord::Base
       Rails.logger.debug("[MODEL] [USER] [get_social_counter] leaving")
       a
     end
+    #INPUT
+    #     :fg_color =>"0xffffff23"  #RGBA
+    #     :bg_color =>"0xffffff23"  #RGBA
+    #              OR
+    #     :url => "http://s3.amazonaws.com/a.jpg"
+    #     :style => 1 or 2 or 3 # 1=> centered , 2=> tiled, 3 => stretched
+    #
+    #     :author_id => 123 #MANDATORY
+    #     :summary_id => 234 #OPTIONAL
+    #     :default => true/false #resets to default
+    def update_theme(params)
+      Theme.update_theme(params)
+    end
   # private methods
   private
 

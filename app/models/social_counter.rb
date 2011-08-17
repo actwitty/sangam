@@ -48,14 +48,14 @@ class SocialCounter < ActiveRecord::Base
           a = Activity.where(:id => params[:activity_id]).first
           a.social_counters = []
           result.each do |k,v|
-            a.social_counters << ( k << v )
+            a.social_counters << {:source_name => k[0], :action => k[1], :count => v}
           end
           a.update_attributes(:social_counters => a.social_counters)
 
           s = Summary.where(:id => params[:summary_id]).first
           s.social_counters = []
           where(:summary_id => params[:summary_id]).group(:source_name, :action).count.each do |k,v|
-            s.social_counters << (k << v)
+            s.social_counters << {:source_name => k[0], :action => k[1], :count => v}
           end
           s.update_attributes(:social_counters => s.social_counters)
 
@@ -64,7 +64,7 @@ class SocialCounter < ActiveRecord::Base
           d = Document.where(:id => params[:document_id]).first
           d.social_counters = []
           result.each do |k,v|
-            d.social_counters << ( k << v )
+            d.social_counters << {:source_name => k[0], :action => k[1], :count => v}
           end
           d.update_attributes(:social_counters => d.social_counters)
 
@@ -73,7 +73,7 @@ class SocialCounter < ActiveRecord::Base
           l = Location.where(:id => params[:document_id]).first
           l.social_counters = []
           result.each do |k,v|
-            l.social_counters << ( k << v )
+            l.social_counters << {:source_name => k[0], :action => k[1], :count => v}
           end
           l.update_attributes(:social_counters => l.social_counters)
 
@@ -82,7 +82,7 @@ class SocialCounter < ActiveRecord::Base
           e = Entity.where(:id => params[:entity_id]).first
           e.social_counters = []
           result.each do |k,v|
-            e.social_counters << ( k << v )
+            e.social_counters << {:source_name => k[0], :action => k[1], :count => v}
           end
           e.update_attributes(:social_counters => e.social_counters)
 
