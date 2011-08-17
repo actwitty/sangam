@@ -104,7 +104,7 @@ class HomeController < ApplicationController
 
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
       if request.xhr?
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -125,7 +125,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_related_entities(params[:user_id], params[:filter])
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] model returned #{response_json}")
       if request.xhr?
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -149,7 +149,7 @@ class HomeController < ApplicationController
 
       Rails.logger.info("[CNTRL][HOME][USER ENTITIES] model returned #{response_json}")
       if request.xhr?
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -168,7 +168,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_related_locations(params[:user_id], params[:filter])
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] model returned #{response_json}")
       if request.xhr?
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -187,7 +187,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_user_locations( params[:user_id], params[:sort_order])
       Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] model returned #{response_json}")
       if request.xhr?
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -237,7 +237,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.info("[CNTRL][HOME][ALL COMMENTS] created successfully #{response_json}")
-        #expires_in 5.minutes
+        #expires_in 10.minutes
         render :json => response_json, :status => 200
       end
 
@@ -260,7 +260,7 @@ class HomeController < ApplicationController
         response_json=current_user.get_users_of_campaign(args)
         Rails.logger.info("[CNTRL][HOME][GET ALL CAMPAIGNS] model returned #{response_json}")
         if request.xhr?
-          #expires_in 5.minutes
+          expires_in 10.minutes
           render :json => response_json, :status => 200
         end
     else
@@ -289,7 +289,7 @@ class HomeController < ApplicationController
       response_json=current_user.get_related_friends(params[:filter])
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] model returned #{response_json}")
       if request.xhr?
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -497,7 +497,7 @@ class HomeController < ApplicationController
         Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
         if request.xhr?
           Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
-          #expires_in 5.minutes
+          expires_in 10.minutes
           render :json => response_json, :status => 200
         end
 
@@ -527,7 +527,7 @@ class HomeController < ApplicationController
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -590,7 +590,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        #expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -599,26 +599,18 @@ class HomeController < ApplicationController
       end
     end
   end
-  ######################################
 
-  def drafts
-    Rails.logger.info("[CNTRL][HOME][ DRAFTS ] request params #{params}")
-    @user=current_user
-    @profile_page = 1
-    @page_mode="drafts"
-
-  end
   ######################################
   def get_draft_activities
     Rails.logger.info("[CNTRL][HOME][GET DRAFT ACTIVITIES] request params #{params}")
 
     if user_signed_in?
       Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] returned from model api")
-      response_json = current_user.get_draft_activity()
+      response_json = current_user.get_draft_activity(params)
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+
         render :json => response_json, :status => 200
       end
     else
@@ -640,7 +632,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -711,14 +703,7 @@ class HomeController < ApplicationController
     end
 
    end
-  ######################################
-  def edit_box
-    Rails.logger.info("[CNTRL][HOME][ EDIT BOX] request params #{params}")
-    @user=current_user
-    @profile_page = 1
-    @page_mode="edit"
-    @post_id = params[:post_id]
-  end
+
   ######################################
   def entity_page
     Rails.logger.info("[CNTRL][HOME][ ENTITY PAGE] request params #{params}")
@@ -744,7 +729,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        #expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -778,7 +763,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        #expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -811,7 +796,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        #expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -819,50 +804,6 @@ class HomeController < ApplicationController
         render :json => {}, :status => 400
       end
     end
-
-  end
-  ######################################
-
-  def image_page
-    Rails.logger.info("[CNTRL][HOME][ IMAGE PAGE] request params #{params}")
-
-    @profile_page = 1
-    @page_mode="image"
-    if user_signed_in?
-      Rails.logger.info("[CNTRL] [HOME] [IMAGE] User signed in #{current_user.id} #{current_user.full_name}")
-    else
-      Rails.logger.info("[CNTRL] [HOME] [IMAGE] User not signed in")
-    end
-
-    #if no id mentioned or user not found try to fall back to current user
-    #if user not logged in then go to sign in page
-    @follow = true
-    if params[:id].nil?
-      if user_signed_in?
-        @user=current_user
-        Rails.logger.info("[CNTRL] [HOME] [IMAGE] Setting user id to current user as no id mentioned")
-      else
-        Rails.logger.info("[CNTRL] [HOME] [IMAGE] Redirecting to welcome new as no id mentioned")
-        redirect_to :controller => "welcome", :action => "new"
-      end
-    else
-      @user=User.find_by_id(params[:id])
-      if @user.nil?
-        if user_signed_in?
-          @user=current_user
-          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Setting user id to current user as incorrect id mentioned")
-        else
-          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Redirecting to welcome new as incorrect id mentioned")
-          redirect_to :controller => "welcome", :action => "new"
-        end
-      else
-        if user_signed_in?  && @user.id != current_user.id
-          Rails.logger.info("[CNTRL] [HOME] [IMAGE] Checking the follow/unfollow status")
-          @follow = current_user.check_follower(@user.id)
-        end
-      end
-    end
-
 
   end
   ######################################
@@ -893,7 +834,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT CHANNEL] sending response JSON #{response_json}")
-        #expires_in 5.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -932,6 +873,7 @@ class HomeController < ApplicationController
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET DOCUMENT STREAM] sending response JSON #{response_json}")
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
     else
@@ -942,50 +884,6 @@ class HomeController < ApplicationController
 
   end
   ######################################
-  def video_page
-    Rails.logger.info("[CNTRL][HOME][ VIDEO PAGE] request params #{params}")
 
-    @profile_page = 1
-    @page_mode="video"
-    if user_signed_in?
-      Rails.logger.info("[CNTRL] [HOME] [VIDEO] User signed in #{current_user.id} #{current_user.full_name}")
-    else
-      Rails.logger.info("[CNTRL] [HOME] [VIDEO] User not signed in")
-    end
-
-    #if no id mentioned or user not found try to fall back to current user
-    #if user not logged in then go to sign in page
-    @follow = true
-    if params[:id].nil?
-      if user_signed_in?
-        @user=current_user
-        Rails.logger.info("[CNTRL] [HOME] [VIDEO] Setting user id to current user as no id mentioned")
-      else
-        Rails.logger.info("[CNTRL] [HOME] [VIDEO] Redirecting to welcome new as no id mentioned")
-        redirect_to :controller => "welcome", :action => "new"
-      end
-    else
-      @user=User.find_by_id(params[:id])
-      if @user.nil?
-        if user_signed_in?
-          @user=current_user
-          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Setting user id to current user as incorrect id mentioned")
-        else
-          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Redirecting to welcome new as incorrect id mentioned")
-          redirect_to :controller => "welcome", :action => "new"
-        end
-      else
-        if user_signed_in?  && @user.id != current_user.id
-          Rails.logger.info("[CNTRL] [HOME] [VIDEO] Checking the follow/unfollow status")
-          @follow = current_user.check_follower(@user.id)
-        end
-      end
-    end
-
-
-  end
-
-
-  #######################################
 end
 

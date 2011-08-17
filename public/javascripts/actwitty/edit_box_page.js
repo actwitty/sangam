@@ -85,12 +85,13 @@ function populate_to_input(post_json){
   
 }
 
-function init_edit_box(){
-  $(".close.page_input_close").hide();
-  $(".input-whats-up").hide();
+function init_edit_box(post_id){
+  $(".add-page-input").hide();
   $(".home_page_inputs").show();
-  var post_id = $("#post_id").val();
-  alert(post_id); 
+
+  $("#attachment").show();
+  $("#input-attachments-section").slideToggle("medium");
+
   $.ajax({
         url: '/home/get_single_activity.json',
         type: 'GET',
@@ -120,17 +121,12 @@ function init_edit_box(){
 
 $(document).ready(function() {
  $(".js_perupload_remove").live("click",function(){
-      alert("Remove:" + $(this).attr("id"));
-      alert(JSON.stringify(document_pre_uploaded_handling_json));
       delete document_pre_uploaded_handling_json[$(this).parent().attr("id")];
       $(this).parent().empty().remove();
-      alert(JSON.stringify(document_pre_uploaded_handling_json));
 
   });
   
   $(".js_perupload_caption").live("change", function(){
-      alert("Text:" + $(this).attr("id"));
       remove_preuploaded_doc(id);
-      alert(JSON.stringify(document_pre_uploaded_handling_json));
   });
 });

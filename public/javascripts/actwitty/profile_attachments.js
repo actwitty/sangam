@@ -37,6 +37,8 @@ function activate_fancybox_group(post_group){
 
 
 
+
+
 /*
  * API for read more expander plugin
  */

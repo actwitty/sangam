@@ -266,7 +266,12 @@ function append_personal_summary(owner_id){
   $.ajax({
         url: '/home/get_summary.json',
         type: 'GET',
-        data: {user_id : owner_id, updated_at:more_cookie, friend:get_others_filter_state() },
+        data: {
+                user_id : owner_id, 
+                updated_at:more_cookie, 
+                friend:get_others_filter_state(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
@@ -286,7 +291,7 @@ function append_personal_summary(owner_id){
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {  
-          alert('There has been a problem generating summary. \n ActWitty is trying to solve.');
+          aw_lib_alert('There has been a problem generating summary. \n ActWitty is trying to solve.');
         }
     });
 
@@ -314,6 +319,15 @@ $(document).ready(function(){
 
           return false;
         }
-      alert("ActWitty will fix the problem with the filter");
+      aw_lib_alert("ActWitty will fix the problem with the filter");
+    });
+
+    /*
+     * Bind click to more on personal summary
+     */
+    $('#more_personal').click(function() {
+      aw_lib_console_log("debug", "profile.js:more personal summary clicked");
+      append_personal_summary(page_owner_id);
+      return false;
     });
 });

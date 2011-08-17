@@ -1,70 +1,101 @@
 
+function get_or_create_a_video_box(box_id, stream){
+  var small_box_id = 'video_box_' + stream.document.activity_id;
+  var div =  $("#" + box_id);
+  var small_div = $("#" + small_box_id);
+  if( small_div.length == 0 ){
+    var html = '<div class="p-st-docs-per-activity" id="' + small_box_id + '">' +
 
+                '<div class="p-st-docs-user">' +
 
-$(document).ready(function() {  
- 
-    /*
-     * Click is made live with an intention to support video and video modals
-     */
-   
-    $('#cont-typ-fltr-videos_disabled').live("click", function() {
-      alert("video");
-      var html = '<div id="tabul_videos" class="p-cstab_content"></div>';
-      $('.p-awp-post-stream').hide();
-      $('#p-st-fltr-box').hide();
-      $('#streams_tab').hide();
-      //$('#container').hide();
-      $('#tabul').hide();
-      $('#tabul').remove();
-      $('#tabul_videos').remove();
-      $('#tabul_videos').show();
-      $('#streams_main_bar').append(html);
-      aw_boxer_render_tabs("tabul_videos", get_base_json_unit_test_video());
+                  '<div class="p-st-user-pic">' +
+                    '<img src="' + stream.user.photo + '"/>' +
+                  '</div>' +
+
+                  '<div class="p-st-user-name">' +
+                    '<span>' +
+                      stream.user.full_name +
+                    '</span>' +
+                  '</div>' +
+
+                '</div>' +
+                
+                '<div class="p-awp-view-video-attachment">' +
+
+                  '<div class="p-st-docs-list-channel-box">' +
+
+                    '<div class="p-st-docs-list-channel">' +
+                      '<span>' +
+                        'Channel: ' + stream.word.name +
+                      '</span>' +
+                    '</div>' +
+
+                    '<div class="p-st-docs-list-view-post">' +
+                      '<a href="/view?id=' + stream.document.activity_id + '">Goto Post</a>' +
+                    '</div>' +
+
+                  '</div>' +
+
+                '</div>' +
+
+               '</div>';
+    div.append(html);
+    small_div = $("#" + small_box_id);
+  }
+
+  return small_div;
+
+}
+
+function append_video_docs(box_id, stream){
+  var div_internal = get_or_create_a_video_box(box_id, stream);
+    var caption = "";
+    if(stream.document.caption && stream.document.caption.length){
+      caption = stream.document.caption;
+    }
+  
+    var div_video = div_internal.find(".p-awp-view-video-attachment"); 
+    var html=getEmbeddedPlayer( stream.document.url, 180, 240);
+    div_video.append(html);
+    
+     
+
+}
+
+function show_all_videos(){
+   var more_cookie = $("#more_streams_videos_cookie").val();
+   $.ajax({
+        url: '/home/get_document_stream.json',
+        type: 'GET',
+        dataType:"json",
+        cache: true,
+        data: {
+                 user_id:aw_lib_get_page_owner_id(),
+                 filter : get_filter(),
+                 updated_at : more_cookie,
+                 friend:get_others_filter_state(),
+                 category : "video",
+                 cache_cookie:aw_lib_get_cache_cookie_id()
+              },
+        success: function (data) {
+          // if rails demands a redirect because of log in missing
+          if (data.length){
+             $.each(data, function(i,stream){
+              if( stream ){
+                  
+                  append_video_docs("streams_videos_list", stream);
+                  $("#more_streams_videos_cookie").val(stream.time);
+              } 
+            });
+             $(window).scrollTop(scroll);
+          }else{
+            $("#streams_videos_list").html("<br/> <br/> No videos to show");
+          }
+            
+
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            aw_lib_alert('There has been a problem getting videos. \n ActWitty is trying to solve.');
+        }
     });
-   
-  $(".js_video_tab_click").click(function(){
-      /* Remove active from all tabs */
-		  $(".js_video_tab_click").removeClass("active");
-
-
-		  $(this).addClass("active"); //Add "active" class to selected tab
-      
-      var tab_id = $(this).attr("id");
-
-      if(tab_id == "channels_video_tab_head"){
-        $("#streams_video_main_bar").hide();
-        $("#channels_video_main_bar").fadeIn();
-
-      }else if(tab_id == "streams_video_tab_head"){
-        $("#channels_video_main_bar").hide();
-        $("#streams_video_main_bar").fadeIn();
-        
-      }
-
-
-		  var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		  $(activeTab).fadeIn(); //Fade in the active ID content
-    return false;
-  });
-});
-
-/*
- * Main render of videos page
- */
-function show_videos_init(){
-    var page_owner_id=$('#page_owner_id').attr("value");
-    var session_owner_id=$('#session_owner_id').attr("value");
-    
-    
-   
-    /* At very start Hide all contents on page load */
-
-      /* Bring in personal summary on focus*/
-      $("#channels_video_main_bar").show();
-      $("#streams_video_main_bar").hide();
-      $("#channels_left_side_bar").show();
-      $("#channels_right_side_bar").show();
-  	  $("ul.p-cstab_mm li:first").addClass("active").show();
-
-
 }

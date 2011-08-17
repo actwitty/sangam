@@ -1,30 +1,51 @@
+
+
 function show_all_drafts(){
-   var current_user_id=$('#session_owner_id').attr("value");
+   var more_cookie = $("#more_streams_drafts_cookie").val();
    $.ajax({
         url: '/home/get_draft_activities.json',
         type: 'GET',
         dataType:"json",
-        cache: true,
-        data: {},
+        cache: false,
+        data: {
+                 filter : get_filter(),
+                 updated_at : more_cookie,
+                 cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         success: function (data) {
-          // if rails demands a redirect because of log in missing 
+          // if rails demands a redirect because of log in missing
           if (data.length){
              $.each(data, function(i,stream){
               if( stream ){
-                  create_and_add_stream($("#streams_list"), stream, current_user_id);
+                  
+                  create_and_add_stream($("#streams_drafts_list"), stream, aw_lib_get_session_owner_id());
+                  $("#more_streams_drafts_cookie").val(stream.post.time);
               } 
             });
+             $(window).scrollTop(scroll);
           }else{
-            $("#streams_list").html("<br/> <br/> No streams drafted");
+            $("#streams_drafts_list").html("<br/> <br/> No streams drafted");
           }
             
-          $("#channels_left_side_bar").fadeIn();
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem getting post. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem getting post. \n ActWitty is trying to solve.');
         }
     });
+
+}
+var g_aw_reedit_mode = 0;
+function aw_get_reedit_mode(){
+  return g_aw_reedit_mode;
+}
+
+function aw_edit_drafted_stream(post_id){
+  /* Go into edit mode */
+  var stream_render_id = get_stream_ele_id(post_id);
+  $("#" + stream_render_id).empty().remove();
+  g_aw_reedit_mode = 1;
+  init_edit_box(post_id);
 }
 
 function aw_publish_drafted_stream(post_id){
@@ -40,24 +61,11 @@ function aw_publish_drafted_stream(post_id){
       }
     },
     error:function(XMLHttpRequest,textStatus, errorThrown) {
-      alert('There has been a problem in publishing the stream. \n ActWitty is trying to solve.');
+      aw_lib_alert('There has been a problem in publishing the stream. \n ActWitty is trying to solve.');
     }
   });
 }
 
-function aw_edit_drafted_stream(post_id){
-  /* Go into edit mode */
-  var stream_render_id = get_stream_ele_id(post_id);
-  $("#" + stream_render_id).empty().remove();
-  window.open("/home/edit_box?post_id=" + post_id, 'Actwitty Edit Post');
-}
 
-/*
- * Execute on load
- */
-$(document).ready(function(){
-  $(' #cont-typ-fltr-drafts').click(function(){
-    window.location = "/home/drafts";
-  });
 
-});
+

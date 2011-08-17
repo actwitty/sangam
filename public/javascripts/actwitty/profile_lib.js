@@ -8,6 +8,11 @@ function aw_lib_get_page_owner_id(){
  return page_owner_id;
 }
 
+function aw_lib_get_cache_cookie_id(){
+ var cache_cookie_id=$('#cache_cookie_id').attr("value");
+ return cache_cookie_id;
+}
+
 jQuery.fn.log = function (msg) {
                                   console.log("%s: %o", msg, this);
                                   return this;

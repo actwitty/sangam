@@ -484,7 +484,7 @@ function get_enriched_streams(post_ids_arr){
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown){ 
-            alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
         }
     });
    
@@ -512,7 +512,7 @@ function update_enriched_streams () {
  */
 function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id){
     params='id=' + page_owner_id +'&mode=filtered&' + get_long_string_filter();
-    //alert('/home/show?' + params);
+    //aw_lib_alert('/home/show?' + params);
     window.location.href ='/home/show?' + params;
 }
 
@@ -734,7 +734,8 @@ function append_stream(owner_id, current_user_id){
                 user_id : owner_id,
                 updated_at : more_cookie,
                 filter : get_filter(),
-                friend:get_others_filter_state()
+                friend:get_others_filter_state(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
         contentType: 'application/json',
@@ -754,7 +755,7 @@ function append_stream(owner_id, current_user_id){
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem getting streams. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem getting streams. \n ActWitty is trying to solve.');
         }
     });
     $(window).scrollTop(scroll);
@@ -792,7 +793,7 @@ function add_comment(add_json){
          
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
         }
     });
 }
@@ -812,7 +813,7 @@ function delete_comment(post_id, comment_id, del_id, all_id){
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
         }
     });
 }
@@ -830,7 +831,7 @@ function delete_entity_from_post(post_id, entity_id){
            append_entity_delete(data.post.id); 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting entity from post. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in deleting entity from post. \n ActWitty is trying to solve.');
         }
     });
 }
@@ -849,7 +850,7 @@ function show_all_comments(post_id, all_id){
           $(this).parent().next().slideToggle();
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
         }
     });
 }
@@ -868,7 +869,7 @@ function delete_stream(post_id){
       $("#" + stream_render_id).empty().remove();
     },
     error:function(XMLHttpRequest,textStatus, errorThrown) {
-      alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
+      aw_lib_alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
     }
   });
 }
@@ -900,7 +901,7 @@ function process_user_campaign_action(campaign_manager_json){
             }
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
           }
       });
     }else{
@@ -923,7 +924,7 @@ function process_user_campaign_action(campaign_manager_json){
             } 
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
           }
       });
     }
@@ -947,7 +948,7 @@ function show_all_campaigns(campaign_manager_json){
             $("#" + campaign_manager_json.campaign_div_id).next().slideToggle();
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
           }
       });
 }
@@ -967,7 +968,7 @@ function remove_document_from_post(document_id){
             /*remove that document*/
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
           }
       });
 }
@@ -997,8 +998,19 @@ function set_stream_to_focus_on_filter_change(){
  * Clear stream div completely
  */
 function clear_streams(){
-  $("#streams_list").empty();
+
+  $("#streams_list").html("");
   $("#more_streams_cookie").val("");
+
+  $("#streams_drafts_list").html("");
+  $("#more_streams_drafts_cookie").val("");
+
+  $("#streams_videos_list").html("");
+  $("#more_streams_videos_cookie").val("");
+
+  $("#streams_images_list").html("");
+  $("#more_streams_images_cookie").val("");
+
   /* reset all big jsons */
   the_big_comment_add_json={ };
   the_big_comment_show_all_json={ };
@@ -1029,7 +1041,7 @@ $(document).ready(function(){
     var add_json = the_big_comment_add_json[$(this).attr("id")];
     if(add_json){
       if( !$("#" + add_json.text_id).val() || jQuery.trim($("#" + add_json.text_id).val()) == "" ){
-        alert("Nothing written on comment");
+        aw_lib_alert("Nothing written on comment");
         return;
       }
       add_comment( add_json);
@@ -1071,7 +1083,9 @@ $(document).ready(function(){
   $('.js_stream_edit_btn').live('click', function(){
     var edit_json = the_big_stream_actions_json[$(this).parent().attr("id")];
     if(edit_json){
-      //alert("edit:" + edit_json.stream_id);
+      //aw_lib_alert("edit:" + edit_json.stream_id);
+      var stream_render_id = get_stream_ele_id(edit_json.stream_id);
+      $("#" + stream_render_id).empty().remove();
       aw_edit_drafted_stream(edit_json.stream_id);
     }
     return false;
@@ -1083,6 +1097,8 @@ $(document).ready(function(){
   $('.js_stream_publish_btn').live('click', function(){
     var publish_json = the_big_stream_actions_json[$(this).parent().attr("id")];
     if(publish_json){
+      var stream_render_id = get_stream_ele_id(publish_json.stream_id);
+      $("#" + stream_render_id).empty().remove();
       aw_publish_drafted_stream( publish_json.stream_id);
     }
     return false;
@@ -1137,6 +1153,15 @@ $(document).ready(function(){
   $('.js_remove_attached_doc').live('click', function(){
     remove_document_from_post();
   });
+
+    /*
+     * Bind click to more on streams tab
+     */
+     $('#more_streams').click(function() {
+        aw_lib_console_log("debug", "profile.js:more personal streams clicked");
+        append_stream(page_owner_id, session_owner_id);
+        return false;
+    });
 
 });
 /************************************/
