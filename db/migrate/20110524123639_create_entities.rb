@@ -6,9 +6,9 @@
 
         #uniqe global uid
         t.string    :entity_guid, :null => false
-        t.text   :entity_image, :null => false
+        t.text   :entity_image
 
-        t.text     :entity_doc, :null => false
+        t.text     :entity_doc
 
         t.text  :social_counters
 				t.timestamps

@@ -17,8 +17,6 @@ $(document).ready(function(){
     main_profile_initializer();  /* in profile.js */
   }else if( page_context == "single_post") {
     single_post_initializer();  /* in single_post.js */
-  }else if( page_context == "edit"){
-    init_edit_box();         /* in edit_box_page.js */
   }else if( page_context == "entity"){
     show_all_on_entity();   /* in entity_page.js */
   }else if( page_context == "location"){

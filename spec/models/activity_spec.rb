@@ -713,7 +713,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       work_off
       puts Summary.count
       puts c.inspect
-      a = @u.get_draft_activity
+      a = @u.get_draft_activity({:filter => {:word_id => a.activity_word_id}})
       b = @u.get_stream({:user_id => @u.id})
       puts b
     end
@@ -803,31 +803,40 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
                                              {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
                               :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
                                             AppConstants.status_public)
-            a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
-                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
-                                   <mention><name>PIZZA<name><id>235<id><mention> hello
-                                   http://www.youtube.com/watch?222
-                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true,
-                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
-                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
-
-                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
-                                            AppConstants.status_public)
+#      a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+#                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+#                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+#                                   http://www.youtube.com/watch?222
+#                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+#                              :enrich => true,
+#                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+#                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
+#
+#                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+#                                            AppConstants.status_public)
       s1 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
       s2 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "twitter", :action => "share"})
       s3 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
-      s4 = @u.create_social_counter({:author_id => @u.id ,:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
+      #s4 = @u.create_social_counter({:author_id => @u.id ,:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       puts s1.inspect
       a = Activity.where(:id => a[:post][:id]).first
       puts a.social_counters
       puts "====================="
       s = Summary.where(:id => a.summary_id).first
-      puts s.social_counters
+      puts s.inspect
       a = @u.get_social_counter({:activity_id => a.id})
       puts a
       a= @u.get_stream({:user_id => @u.id})
       puts a
+#      a = Theme.create_theme({:fg_color => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
+#      puts a.inspect
+#      a = Theme.create_theme({:url => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
+#      puts a.inspect
+      s = Summary.where(:id => s.id).first
+      puts s.inspect
+      @u.update_theme({:url => "http://a.com", :author_id => s.user_id, :summary_id => s.id,:default => false})
+      s = Summary.where(:id => s.id).first
+      puts s.inspect
     end
 
 #    TEST REMOVE ENTITY

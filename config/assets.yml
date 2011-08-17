@@ -43,6 +43,7 @@ javascripts:
     - public/javascripts/actwitty/aw_slider.js
     - public/javascripts/actwitty/boxer.js
     - public/javascripts/actwitty/profile_lib.js
+    - public/javascripts/actwitty/profile_mode_manager.js
     - public/javascripts/actwitty/profile_attachments.js
     - public/javascripts/actwitty/profile_filter.js
     - public/javascripts/actwitty/profile_modals.js
@@ -56,6 +57,7 @@ javascripts:
     - public/javascripts/actwitty/profile_follow.js
     - public/javascripts/actwitty/profile_summary.js
     - public/javascripts/actwitty/profile_streams_sidelists.js
+    - public/javascripts/actwitty/drafts.js
     - public/javascripts/actwitty/profile_stream.js
     - public/javascripts/actwitty/profile.js
     - public/javascripts/actwitty/single_post.js
@@ -63,7 +65,6 @@ javascripts:
     - public/javascripts/actwitty/entity_page.js
     - public/javascripts/actwitty/channel_page.js
     - public/javascripts/actwitty/location_page.js
-    - public/javascripts/actwitty/drafts.js
     - public/javascripts/actwitty/profile_main.js
     - public/javascripts/actwitty/profile_people.js
     - public/javascripts/actwitty/profile_images.js
@@ -99,6 +100,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/alpha/home_layout.css
+    - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
     - public/stylesheets/actwitty/alpha/comments-streams.css

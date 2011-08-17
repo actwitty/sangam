@@ -16,9 +16,23 @@
         .p-flt-actor.p-st-flt-default
           .p-flt-holder#fltr_location_id all locations
 #streams_tab.p-cstab_content
-  #streams_list.p-awp-post-stream
-  %a#more_streams.more_loader{:href => "#"} More
-  %input#more_streams_cookie{:type => "hidden", :value => ""}
+  #js_streams_list
+    #streams_list.p-awp-post-stream
+    %a#more_streams.more_loader{:href => "#"} More
+    %input#more_streams_cookie{:type => "hidden", :value => ""}
+  #js_drafts_list
+    #streams_drafts_list.p-awp-post-stream
+    %a#more_streams_drafts.more_loader{:href => "#"} More
+    %input#more_streams_drafts_cookie{:type => "hidden", :value => ""}
+  #js_images_list
+    #streams_images_list.p-awp-post-stream
+    %a#more_streams_images.more_loader{:href => "#"} More
+    %input#more_streams_images_cookie{:type => "hidden", :value => ""}
+  #js_videos_list
+    #streams_videos_list.p-awp-post-stream
+    %a#more_streams_videos.more_loader{:href => "#"} More
+    %input#more_streams_videos_cookie{:type => "hidden", :value => ""}
+     
 
 /Filter
 %input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }

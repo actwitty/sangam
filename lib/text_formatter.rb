@@ -159,6 +159,7 @@ module TextFormatter
     text
   end
 
+
   #need to write strong parser for remote docs
   #this is temporary for time being.. need to make all the parse in one call
   # like mentions, documents and hashes
@@ -201,6 +202,18 @@ module TextFormatter
       array << {:name => attr[0], :tag_type => AppConstants.tag_type_hash}
     end
     array
+  end
+
+  def format_theme(theme)
+    h = {}
+    h = {
+         :fg_color => theme.fg_color,
+         :bg_color => theme.bg_color,
+         :url => theme.url,
+         :user_id => theme.author_id,
+         :summary_id => theme.summary_id
+        }
+    h
   end
   def format_activity_word(word)
     h = {}

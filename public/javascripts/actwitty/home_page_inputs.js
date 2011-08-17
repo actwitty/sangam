@@ -132,8 +132,8 @@ function get_location_string(){
 
 function post_activity_to_server(post_data){
 
-   var page_context = get_current_page_context();
-   if(page_context == "profile_main"){
+   var reedit_mode = aw_get_reedit_mode();
+   if(reedit_mode != 1){
       $.ajax({
         url: '/home/create_activity.json',
         type: 'POST',
