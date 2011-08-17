@@ -1095,7 +1095,7 @@ html ul.p-cstab li.p-st-tab.active  {
 .p-st-fltr-box
 {
   width:100%;
-  height:50ipx;
+  height:50px;
  
 }
 .p-st-filter-sect
@@ -1269,12 +1269,20 @@ html ul.p-cstab li.p-st-tab.active  {
 
 #cont-typ-fltr-all { background-image: url("/images/alpha/all_unselected.png");}
 #cont-typ-fltr-all:hover { background-image: url("/images/alpha/all_hover.png");}
+
+
 #cont-typ-fltr-drafts  { background-image: url("/images/alpha/drafts_unselected.png"); }
-#cont-typ-fltr-drafts:hover  { background-image: url("/images/alpha/images/drafts_hover.png"); }
+#cont-typ-fltr-drafts:hover  { background-image: url("/images/alpha/drafts_hover.png"); }
+
+
 #cont-typ-fltr-videos  { background-image: url("/images/alpha/videos_unselected.png"); }
-#cont-typ-fltr-videos:hover  { background-image: url("/images/alpha/images/videos_hover.png"); }
+#cont-typ-fltr-videos:hover  { background-image: url("/images/alpha/videos_hover.png"); }
+
+
 #cont-typ-fltr-images  { background-image: url("/images/alpha/images_unselected.png"); }
-#cont-typ-fltr-images:hover  { background-image: url("/images/alpha/images/images_hover.png"); }
+#cont-typ-fltr-images:hover  { background-image: url("/images/alpha/images_hover.png"); }
+
+
 #cont-typ-fltr-twitter { background-image: url("/images/alpha/twitter_unselected.png");}
 #cont-typ-fltr-twitter:hover { background-image: url("/images/alpha/twitter_hover.png");}
 
@@ -1810,6 +1818,25 @@ div.p-awp-actions .p-awp-edit
 
 
 
+.p-awp-view-video-attachment
+{
+  width:100%;
+  float:right;
+  height:auto;
+  border:0px solid #fff;
+  margin-top:8px;
+  z-index:1;
+
+}
+
+
+.p-awp-view-video-attachment .video
+{
+  float:left;
+  margin:5px;
+  border:2px solid #fff;
+}
+
 .p-awp-view-attachment
 {
   width:100%;
@@ -1817,7 +1844,9 @@ div.p-awp-actions .p-awp-edit
   height:auto;
   border:0px solid #fff;
   margin-top:8px;
+  z-index:1;
 }
+
 .p-awp-view-attachment a
 {
   margin-left:5px;

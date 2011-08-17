@@ -52,10 +52,9 @@ Sangam::Application.routes.draw do
   match '/view' => 'home#activity'
   match '/home/get_single_activity' => 'home#get_single_activity'
 
-  match '/home/drafts' => 'home#drafts'
   match '/home/get_draft_activities' => 'home#get_draft_activities'
   match '/home/publish_activity' => 'home#publish_activity'
-  match '/home/edit_box' => 'home#edit_box'
+
   match '/home/process_edit_activity' => 'home#process_edit_activity'
 
   match '/authentications/failure' => 'authentications#failure'
@@ -74,8 +73,6 @@ Sangam::Application.routes.draw do
   match '/channel_page' => 'home#channel_page'
   match '/home/get_activity_stream' => 'home#get_activity_stream'
 
-  match '/image_page' => 'home#image_page'
-  match '/video_page' => 'home#video_page'
 
   match '/home/get_document_channel' => 'home#get_document_channel'
   match '/home/get_document_stream' => 'home#get_document_stream'

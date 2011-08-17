@@ -138,7 +138,10 @@ function list_related_friends(){
     $.ajax({
         url: '/home/get_related_friends.json',
         type: 'GET',
-        data: { filter : get_filter() },
+        data: { 
+                filter : get_filter(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -159,7 +162,10 @@ function list_related_entities(owner_id){
     $.ajax({
         url: '/home/get_related_entities.json',
         type: 'GET',
-        data: { user_id : owner_id, filter : get_filter() },
+        data: { 
+                user_id : owner_id, filter : get_filter(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -181,7 +187,10 @@ function list_related_locations(owner_id){
     $.ajax({
         url: '/home/get_related_locations.json',
         type: 'GET',
-        data: { user_id : owner_id, filter : get_filter() },
+        data: { 
+                user_id : owner_id, filter : get_filter(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -202,7 +211,10 @@ function list_related_channels(owner_id){
     $.ajax({
         url: '/home/get_activities.json',
         type: 'GET',
-        data: { user_id : owner_id, filter : get_filter() },
+        data: { 
+                user_id : owner_id, filter : get_filter(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
