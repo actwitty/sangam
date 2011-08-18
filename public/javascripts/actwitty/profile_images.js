@@ -25,13 +25,17 @@ function get_or_create_a_box(box_id, stream){
                 '<div class="p-st-docs-user">' +
 
                   '<div class="p-st-user-pic">' +
-                    '<img src="' + stream.user.photo + '"/>' +
+                    '<a href="/home/show?id=' +  stream.user.id + '" >' +
+                      '<img src="' + stream.user.photo + '"/>' +
+                    '</a>' +
                   '</div>' +
 
                   '<div class="p-st-user-name">' +
-                    '<span>' +
-                      stream.user.full_name +
-                    '</span>' +
+                    '<a href="/home/show?id=' +  stream.user.id + '" >' +
+                      '<span>' +
+                        stream.user.full_name +
+                      '</span>' +
+                    '</a>' +
                   '</div>' +
 
                 '</div>' +
@@ -41,9 +45,11 @@ function get_or_create_a_box(box_id, stream){
                   '<div class="p-st-docs-list-channel-box">' +
 
                     '<div class="p-st-docs-list-channel">' +
-                      '<span>' +
-                        'Channel: ' + stream.word.name +
-                      '</span>' +
+                      '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
+                        '<span>' +
+                          'Channel: ' + stream.word.name +
+                        '</span>' +
+                      '</a>' +
                     '</div>' +
 
                     '<div class="p-st-docs-list-view-post">' +
@@ -81,7 +87,7 @@ function append_stream_docs(box_id, stream){
    
     aw_lib_console_log ("debug", "image stream attaching thumb url:" + thumb_nail);
     var html='<a rel="fnc_group_docs_page_'+ box_id +'" href="' + stream.document.url + '" title="' + caption  + '" class="p-st-docs-image">' + 
-                  '<img alt="" src="'+ thumb_nail + '"  width="50" height="50" alt="" />' +
+                  '<img alt="" src="'+ thumb_nail + '"  width="60"  alt="" />' +
               '</a>'; 
     div_internal.append(html);
     
@@ -95,7 +101,7 @@ function create_and_append_documents( data ){
 
 function show_all_images(){
    var more_cookie = $("#more_streams_images_cookie").val();
-   
+   var scroll = $(window).scrollTop();
    $.ajax({
         url: '/home/get_document_stream.json',
         type: 'GET',
@@ -121,7 +127,10 @@ function show_all_images(){
             });
              $(window).scrollTop(scroll);
           }else{
-            $("#streams_images_list").html("<br/> <br/> No images to show for this filter");
+            if( more_cookie.length == 0){
+              $("#streams_images_list").html("<br/> <br/> No images to show for this filter");
+            }
+            aw_lib_alert('No images to display');
           }
             
 
@@ -131,6 +140,20 @@ function show_all_images(){
         }
     });
 }
+
+/*
+ * Add the live bindings
+ */
+$(document).ready(function(){
+    /*
+     * Bind click to more on streams tab
+     */
+     $('#more_streams_images').click(function() {
+        aw_lib_console_log("debug", "more images clicked on streams page");
+        show_all_images();
+        return false;
+    });
+});
 
 
 

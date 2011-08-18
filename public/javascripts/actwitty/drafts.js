@@ -24,7 +24,10 @@ function show_all_drafts(){
             });
              $(window).scrollTop(scroll);
           }else{
-            $("#streams_drafts_list").html("<br/> <br/> No streams drafted");
+            if( more_cookie.length == 0){
+              $("#streams_drafts_list").html("<br/> <br/> No drafts to show");
+            }
+            aw_lib_alert('No drafts to show');
           }
             
 
@@ -68,4 +71,16 @@ function aw_publish_drafted_stream(post_id){
 
 
 
-
+/*
+ * Add the live bindings
+ */
+$(document).ready(function(){
+    /*
+     * Bind click to more on streams tab
+     */
+     $('#more_streams_drafts').click(function() {
+        aw_lib_console_log("debug", "more drafts clicked on streams page");
+        show_all_drafts();
+        return false;
+    });
+});

@@ -25,9 +25,11 @@ function get_or_create_a_video_box(box_id, stream){
                   '<div class="p-st-docs-list-channel-box">' +
 
                     '<div class="p-st-docs-list-channel">' +
-                      '<span>' +
-                        'Channel: ' + stream.word.name +
-                      '</span>' +
+                      '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
+                        '<span>' +
+                          'Channel: ' + stream.word.name +
+                        '</span>' +
+                      '</a>' +
                     '</div>' +
 
                     '<div class="p-st-docs-list-view-post">' +
@@ -64,6 +66,7 @@ function append_video_docs(box_id, stream){
 
 function show_all_videos(){
    var more_cookie = $("#more_streams_videos_cookie").val();
+   var scroll = $(window).scrollTop();
    $.ajax({
         url: '/home/get_document_stream.json',
         type: 'GET',
@@ -89,7 +92,10 @@ function show_all_videos(){
             });
              $(window).scrollTop(scroll);
           }else{
-            $("#streams_videos_list").html("<br/> <br/> No videos to show");
+            if( more_cookie.length == 0){
+              $("#streams_videos_list").html("<br/> <br/> No videos to show");
+            }
+            aw_lib_alert('No videos to display');
           }
             
 
@@ -99,3 +105,18 @@ function show_all_videos(){
         }
     });
 }
+
+
+/*
+ * Add the live bindings
+ */
+$(document).ready(function(){
+    /*
+     * Bind click to more on streams tab
+     */
+     $('#more_streams_videos').click(function() {
+        aw_lib_console_log("debug", "more videos clicked on streams page");
+        show_all_videos();
+        return false;
+    });
+});

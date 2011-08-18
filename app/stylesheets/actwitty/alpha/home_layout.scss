@@ -1606,7 +1606,9 @@ ul.p-fltr-tag-list li
   background:#fff;
 }
 
-.p-content .js_activity_entity__
+
+
+.js_mention_highlight
 {
   margin-left:1px;
   padding-left:5px;
@@ -1674,6 +1676,15 @@ div.p-awp-actions .p-awp-close
 }
 
 div.p-awp-actions .p-awp-publish
+{
+  float:left;
+  margin-left:10px;
+  padding-left:2px;
+  padding-right:2px;
+  /*float:top;*/
+}
+
+div.p-awp-actions .p-awp-mention
 {
   float:left;
   margin-left:10px;
@@ -1846,10 +1857,41 @@ div.p-awp-actions .p-awp-edit
   margin-top:8px;
   z-index:1;
 }
+.p-awp-view-attachment-inner-box{
+  float:left;
+  margin:2px;
+  padding:2px;
+  height:auto;
+  border:1px solid #ccc;
+
+}
+
+.delete-image-box
+{
+  width:100%;
+}
+
+.delete-image-cntrl{
+  color:green;
+  width:9px;
+  height:9px;
+  display:block;
+  border:0px solid red;
+  font-size:8px;
+  margin-top:0px;
+  margin-left:0px;
+  float:top;
+  float:right;
+  background:url("/images/alpha/close_mini.png");
+}
+
+.delete-image-cntrl:hover
+{
+  cursor:pointer;
+}
 
 .p-awp-view-attachment a
 {
-  margin-left:5px;
 }
 
 

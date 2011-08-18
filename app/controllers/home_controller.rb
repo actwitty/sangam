@@ -37,6 +37,12 @@ class HomeController < ApplicationController
       end
       params.except(:mode)
     end
+
+    #default show streams list
+    @stream_mode = 'js_streams_list'
+    if !params[:stream_mode].blank?
+      @stream_mode = params[:stream_mode]
+    end
     #if no id mentioned or user not found try to fall back to current user
     #if user not logged in then go to sign in page
     @follow = true
@@ -561,8 +567,8 @@ class HomeController < ApplicationController
     doc_id = Integer(params[:doc_id])
 
     if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
-      response_json = remove_document.remove_entity_from_activity(doc_id)
+      Rails.logger.debug("[CNTRL][HOME][REMOVE DOCUMENT] returned from model api")
+      response_json = current_user.remove_document(doc_id)
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][REMOVE DOCUMENT] sending response JSON #{response_json}")
         render :json => response_json, :status => 200

@@ -18,12 +18,7 @@
 
 .wrapper.col4
   #p-content-sect
-    %ul
-      / #### Start of Left Side Filters ####
-      %li.p-con-l-fltr
-        #channels_left_side_bar
-          =render :partial => "home/channel_left_side"
-      / #### Start of Main Content Bar  ####
+   
 
 /Secret cookies
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }

@@ -35,6 +35,7 @@
 
 /Secret cookies
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
+%input#stream_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@stream_mode}" }
 %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
 %input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
