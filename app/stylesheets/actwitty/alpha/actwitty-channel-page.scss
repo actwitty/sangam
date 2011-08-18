@@ -35,20 +35,35 @@
   width:120px;
   height:30px;
 }
-
+.p-channelp-tab:hover
+{
+  cursor:pointer;
+}
 #p-channelp-tab-all
 {
   margin-left:30px;
   border:0px solid red;
+  background:#ddd;
 }
-
+#p-channelp-tab-all span
+{
+  text-align:center;
+  font-size:22px;
+  padding:5px;
+}
 
 #p-channelp-tab-mine
 {
   margin-left:10px;
   border:0px solid red;
+  background:#ddd;
 }
-
+#p-channelp-tab-mine span
+{
+  text-align:center;
+  font-size:22px;
+  padding:5px;
+}
 
 
 /*############### Channel page content section ################ */
@@ -72,7 +87,7 @@
   width:28%;
   height:200px;
   float:left;
-  border:1px solid green;
+  border:0px solid green;
 }
 
 
@@ -168,7 +183,7 @@
 
 .p-channelp-post-analytic
 {
-  width:9%;
+  width:7%;
   height:140px;
   background:#fff;
   float:left;
@@ -422,7 +437,7 @@ ul .p-channelp-post-relelem
 {
   width:100%;
   height:60px;
-  border:1px solid red;
+  border:0px solid red;
 }
 
 .p-channelp-author-img-sect img
@@ -434,7 +449,7 @@ ul .p-channelp-post-relelem
 {
   width:100%;
   height:30px;
-  border:1px solid blue;
+  border:0px solid blue;
 }
 
 .p-channelp-author-name span
@@ -447,14 +462,14 @@ ul .p-channelp-post-relelem
 {
   width:100%;
   height:auto;
-  border:1px solid red;
+  border:0px solid red;
 }
 
 .p-channelp-auth-last-upd-hd
 {
   width:100%;
   height:20px;
-  border:1px solid blue;
+  border:0px solid blue;
 }
 .p-channelp-auth-last-upd-hd span
 {
