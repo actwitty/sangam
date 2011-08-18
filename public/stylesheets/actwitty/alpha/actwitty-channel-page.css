@@ -1,0 +1,474 @@
+/*
+ * Note:: Channel page has a little bit different config than stream page hence different layout
+ * to make it easy to change and maintain.
+ * 
+ * General conventions
+ * -------------------
+ * 1. p-channelp is the suffix foro all css related to Channel section.
+ * 2. p in -channlep indication page.
+ * 3. p-channelp : means profile-channle page
+ * 4. lu: latest updates
+ * 5. cu: channel updates
+ *
+ */
+/* line 17, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-sect {
+  padding: 0px 0;
+  border: 0px solid red;
+  margin-top: 0px;
+}
+
+/* line 25, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-tabs-section {
+  width: 100%;
+  height: 40px;
+  border: 0px solid blue;
+  padding: 5px;
+}
+
+/* line 33, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-tab {
+  float: left;
+  width: 120px;
+  height: 30px;
+}
+
+/* line 40, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-tab-all {
+  margin-left: 30px;
+  border: 0px solid red;
+}
+
+/* line 47, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-tab-mine {
+  margin-left: 10px;
+  border: 0px solid red;
+}
+
+/*############### Channel page content section ################ */
+/* line 56, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-content {
+  width: 100%;
+  height: auto;
+  border: 0px solid green;
+}
+
+/* line 63, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-posts {
+  width: 70%;
+  height: 400px;
+  float: left;
+  border: 0px solid blue;
+}
+
+/* line 71, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-author-section {
+  width: 28%;
+  height: 200px;
+  float: left;
+  border: 1px solid green;
+}
+
+/* ############ Channle post section ###########*/
+/* line 82, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post {
+  width: 100%;
+  height: auto;
+  border: 0px solid red;
+  margin-top: 10px;
+}
+
+/* line 91, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-header {
+  width: 100%;
+  height: 60px;
+  border: 0px solid green;
+}
+
+/* line 98, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-tab {
+  float: left;
+  width: 60px;
+  height: 30px;
+  background: #eaa440;
+  margin-top: 30px;
+}
+
+/* line 107, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-author {
+  float: right;
+  width: auto;
+  height: 100%;
+  background: #e0e0e0;
+  margin-right: 65px;
+}
+
+/* line 116, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-author-name {
+  float: left;
+  width: 140px;
+  height: 40px;
+  border: 0px solid red;
+  margin-top: 20px;
+  position: relative;
+}
+
+/* line 126, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-author-name span {
+  border: 0px solid blue;
+  position: absolute;
+  bottom: 0px;
+  font-size: 24px;
+  color: #30a3ad;
+}
+
+/* line 135, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-author-img {
+  float: right;
+  width: 60px;
+  height: 100%;
+  border: 0px solid blue;
+}
+
+/* line 144, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-info {
+  width: 100%;
+  height: 150px;
+  border: 0px solid #8B3E2F;
+}
+
+/* line 151, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lu {
+  width: 55%;
+  height: 140px;
+  background: #FFF;
+  float: left;
+}
+
+/* line 160, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-cu {
+  width: 35%;
+  height: 140px;
+  background: #CDC8B1;
+  float: left;
+  margin-left: 5px;
+}
+
+/* line 170, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-analytic {
+  width: 9%;
+  height: 140px;
+  background: #fff;
+  float: left;
+}
+
+/* line 178, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-like {
+  width: 100%;
+  height: 40px;
+  background: #b847cf;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/* line 186, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-like p center {
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+/* line 194, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-post {
+  width: 100%;
+  height: 40px;
+  background: #afa3ad;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/* line 206, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-post p center {
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+/* line 217, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lu-header {
+  width: 100%;
+  height: 20px;
+  font-size: 16px;
+}
+
+/* line 223, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lu-header span {
+  float: left;
+}
+
+/* line 228, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lup {
+  width: 100%;
+  height: 60px;
+  background: #e0e0e0;
+  margin-top: 1px;
+}
+
+/* line 235, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lup-time {
+  height: 15px;
+  width: 100%;
+}
+
+/* line 240, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lup-time span {
+  float: right;
+  font-size: 10px;
+  color: #f9f9f9;
+}
+
+/* line 247, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lup-text {
+  margin-left: 10px;
+}
+
+/* line 252, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-lup-text p {
+  font-size: 13px;
+  color: #838383;
+}
+
+/* line 260, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-related-info {
+  margin-top: 10px;
+  width: 100%;
+  height: 150px;
+  border: 0px solid blue;
+}
+
+/* line 268, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-rel-frnd {
+  width: 55%;
+  height: 150px;
+  border: 0px solid red;
+  float: left;
+}
+
+/* line 276, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-friend-header {
+  width: 100%;
+  height: 20px;
+}
+
+/* line 282, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-friend-header span {
+  text-align: left;
+  color: #000;
+}
+
+/* line 289, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-rel-frnd div {
+  /*margin-left:20px;
+  margin-top:30px;*/
+  border: 0px solid blue;
+}
+
+/* line 296, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-rel-frnd div img {
+  padding: 5px;
+}
+
+/* line 301, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-elem {
+  width: 21%;
+  height: 150px;
+  background: #fff;
+  float: left;
+  margin-left: 4px;
+}
+
+/* line 309, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-elem-header {
+  width: 100%;
+  height: 20px;
+}
+
+/* line 315, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-elem-header span {
+  text-align: left;
+  color: #000;
+}
+
+/* line 321, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+ul .p-channelp-post-relelem {
+  list-style-type: none;
+  background: #ff7575;
+  border: 0px solid red;
+}
+
+/* line 327, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-relelem {
+  border: 0px solid blue;
+  background: #ff7575;
+}
+
+/* line 332, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-relelem-sect {
+  width: 100%;
+  height: 90%;
+  background: #ff7575;
+}
+
+/* line 338, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-relelem li {
+  border: 0px solid red;
+  width: 100%;
+}
+
+/* line 345, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+#p-channelp-posts ul {
+  display: block;
+  list-style-type: none;
+}
+
+/* line 353, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-loc {
+  width: 21%;
+  height: 150px;
+  float: left;
+  margin-left: 4px;
+}
+
+/* line 362, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-loc-header {
+  width: 100%;
+  height: 20px;
+}
+
+/* line 368, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-loc-header span {
+  text-align: left;
+  color: #000;
+}
+
+/* line 374, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-relloc-sect {
+  width: 100%;
+  height: 90%;
+  background: #94e375;
+}
+
+/* line 380, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-relloc li {
+  border: 0px solid red;
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* line 387, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-img-header {
+  width: 100%;
+  height: 20px;
+}
+
+/* line 392, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-img-header span {
+  text-align: left;
+  color: #000;
+}
+
+/* line 400, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-post-rel-img {
+  width: 100%;
+  height: 140px;
+}
+
+/* line 406, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-rel-img div {
+  margin-left: 20px;
+  margin-top: 30px;
+  border: 0px solid blue;
+}
+
+/* line 413, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-rel-img div img {
+  padding: 5px;
+}
+
+/*#### Channel Author Section #### */
+/* line 422, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-author-img-sect {
+  width: 100%;
+  height: 60px;
+  border: 1px solid red;
+}
+
+/* line 429, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-author-img-sect img {
+  float: right;
+}
+
+/* line 434, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-author-name {
+  width: 100%;
+  height: 30px;
+  border: 1px solid blue;
+}
+
+/* line 441, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-author-name span {
+  float: right;
+  color: #30a3ad;
+}
+
+/* line 447, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-sect {
+  width: 100%;
+  height: auto;
+  border: 1px solid red;
+}
+
+/* line 454, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-hd {
+  width: 100%;
+  height: 20px;
+  border: 1px solid blue;
+}
+
+/* line 460, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-hd span {
+  float: right;
+}
+
+/* line 465, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-post {
+  margin-top: 5px;
+  width: 100%;
+  height: auto;
+  background: #e0e0e0;
+}
+
+/* line 473, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-post-time {
+  width: 100%;
+  height: 12px;
+}
+
+/* line 478, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-post-time span {
+  float: right;
+  color: #fff;
+}
+
+/* line 485, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-post-text {
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+}
+
+/* line 491, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channelp-auth-last-upd-post-text p {
+  color: #fff;
+  font-size: 14px;
+}

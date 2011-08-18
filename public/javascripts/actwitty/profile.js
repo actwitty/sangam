@@ -34,11 +34,13 @@ function main_profile_initializer(){
       aw_reload_streams_on_viewed_user();
     }else{
       /* Bring in personal summary on focus*/
-      $("#channels_main_bar").show();
+      //$("#channels_main_bar").show();
+      $("#p-channelp-sect").show();
   	  $("ul.p-cstab li:first").addClass("active").show(); 
-      $('#channels_display_list').html("");
+      //$('#channels_display_list').html("");
       $("#more_channels_cookie").val("");
       append_personal_summary(page_owner_id);
+      attach_channel_author_section(page_owner_id);
     }
 }
 
@@ -71,14 +73,17 @@ $(document).ready(function(){
         $("#streams_left_side_bar").hide();
         $("#streams_main_bar").hide();
         $("#streams_right_side_bar").hide();
-        $("#channels_main_bar").fadeIn();
+        //$("#channels_main_bar").fadeIn();
         $('#channels_display_list').html("");
+        $("#p-channelp-sect").fadeIn();
         $("#more_channels_cookie").val("");
         append_personal_summary(page_owner_id);
+        attach_channel_author_section(page_owner_id);
 
       }else if(tab_id == "streams_tab_head"){
         aw_lib_console_log("debug", "profile.js: streams tab selected"); 
-        $("#channels_main_bar").hide();
+        /*$("#channels_main_bar").hide();*/
+        $("#p-channelp-sect").hide(); 
         $("#streams_left_side_bar").fadeIn();
         $("#streams_main_bar").fadeIn();
         $("#streams_right_side_bar").fadeIn();
