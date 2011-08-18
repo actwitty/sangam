@@ -1019,12 +1019,16 @@ function set_stream_to_focus_on_filter_change(){
     $("ul.p-cstab li").removeClass("active");
     $("ul.p-cstab li:last").addClass("active").show();
 
-    $("#channels_left_side_bar").hide();
-    $("#channels_main_bar").hide();
-    $("#channels_right_side_bar").hide();
+    //$("#channels_left_side_bar").hide();
+    //$("#channels_main_bar").hide();
+    //$("#channels_right_side_bar").hide();
+    $("#p-channelp-sect").hide();
+
     $("#streams_left_side_bar").fadeIn();
     $("#streams_main_bar").fadeIn();
     $("#streams_right_side_bar").fadeIn();
+
+
 }
 
 
