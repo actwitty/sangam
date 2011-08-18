@@ -38,6 +38,7 @@ function main_profile_initializer(){
       $("#p-channelp-sect").show();
   	  $("ul.p-cstab li:first").addClass("active").show(); 
       //$('#channels_display_list').html("");
+      $('#p-channelp-posts').html("");
       $("#more_channels_cookie").val("");
       append_personal_summary(page_owner_id);
       attach_channel_author_section(page_owner_id);
@@ -74,8 +75,9 @@ $(document).ready(function(){
         $("#streams_main_bar").hide();
         $("#streams_right_side_bar").hide();
         //$("#channels_main_bar").fadeIn();
-        $('#channels_display_list').html("");
+        //$('#channels_display_list').html("");
         $("#p-channelp-sect").fadeIn();
+        $('#p-channelp-posts').html("");
         $("#more_channels_cookie").val("");
         append_personal_summary(page_owner_id);
         attach_channel_author_section(page_owner_id);
