@@ -83,11 +83,11 @@ function modify_filter(filter_json, reload){
   if(reload==true){
       if ( need_redirect == true){
         /* simple case redirect to stream tab of new user */
-        redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id);
+        aw_redirect_to_streams_filtered_of_other_user();
       }else{
         /* stay on current user and apply the new filter */
         set_stream_to_focus_on_filter_change();
-        reload_streams_on_viewed_user(page_owner_id, session_owner_id);
+        aw_reload_streams_on_viewed_user();
       }
   }
   

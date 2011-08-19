@@ -51,6 +51,7 @@ javascripts:
     - public/javascripts/actwitty/profile_related_followings.js
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
+    - public/javascripts/actwitty/profile_stream_share.js
     - public/javascripts/actwitty/profile_followers.js
     - public/javascripts/actwitty/profile_facebook.js
     - public/javascripts/actwitty/profile_followings.js
@@ -103,6 +104,7 @@ stylesheets:
     - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
+    - public/stylesheets/actwitty/alpha/actwitty-channel-page.css
     - public/stylesheets/actwitty/alpha/comments-streams.css
     - public/stylesheets/actwitty/alpha/campaign-streams.css
     - public/stylesheets/actwitty/alpha/share-streams.css

@@ -1,4 +1,4 @@
-1/**********************************/
+/**********************************/
 /* Big global jsons which need to maintain context for dynamism*/
 var the_big_comment_add_json={ };
 var the_big_comment_show_all_json={ };
@@ -42,6 +42,7 @@ function handle_stream_docs(type, box_id, stream){
   docs_box= $("#" + box_id);
   if ( stream.documents &&  stream.documents.count ){
     var ul_box = $("#" + box_id);
+   
     $.each(stream.documents.array, function(i, attachment){
       var caption = "";
       if(attachment.caption && attachment.caption.length){
@@ -53,10 +54,24 @@ function handle_stream_docs(type, box_id, stream){
       }
       if( attachment.category == type && type == "image" ){
         aw_lib_console_log ("debug", "stream attaching thumb url:" + thumb_nail);
+
+        var inner_box_id = box_id + "_" + attachment.id;
+        var box_html = '<div class="p-awp-view-attachment-inner-box" id="' + inner_box_id + '">' +
+                   '</div>';
+        ul_box.append(box_html);
+        var attachment_box = $("#" + inner_box_id);
+       
+
         var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '">' + 
-                  '<img alt="" src="'+ thumb_nail + '"  width="50" height="50" alt="" />' +
+                  '<img alt="" src="'+ thumb_nail + '"   width="60" alt="" />' +
                 '</a>'; 
-        ul_box.append(html);
+        if(aw_lib_get_session_owner_id() == stream.post.user.id){
+          var close_html = '<div class="delete-image-box">' +
+                            '<div class="delete-image-cntrl js_remove_attached_doc" id="' + attachment.id + '" />' +
+                           '</div>';
+          attachment_box.append(close_html);
+        }
+        attachment_box.append(html);
       }
      
     });
@@ -70,7 +85,18 @@ function handle_stream_docs(type, box_id, stream){
         aw_lib_console_log ("debug", "stream attaching video url:" + thumb_nail);
         var html=getEmbeddedPlayer( attachment.url, 180, 240);
         
-        ul_box.append(html);
+        var inner_box_id = box_id + "_" + attachment.id;
+        var box_html = '<div class="p-awp-view-attachment-inner-box" id="' + inner_box_id + '">' +
+                   '</div>';
+        ul_box.append(box_html);
+        var attachment_box = $("#" + inner_box_id);
+        if(aw_lib_get_session_owner_id() == stream.post.user.id){
+          var close_html = '<div class="delete-image-box">' +
+                            '<div class="delete-image-cntrl js_remove_attached_doc" value="' + attachment.id + '" />' +
+                           '</div>';
+          attachment_box.append(close_html);
+        }
+        attachment_box.append(html);
       }
      
     });
@@ -150,6 +176,7 @@ function handle_like_campaign(div_id, stream){
  */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
+  //alert("show_all_stream_campaigns" + div);
   $.each(likes, function(i,like){
     var like_html = '<div class="author">' +
                         '<div class="p-st-comment-actor-image">' +
@@ -168,8 +195,7 @@ function show_all_stream_campaigns(likes, div){
     likes_html = likes_html + like_html;
   }); 
   div.html(likes_html);
-      
-      
+  //div.append(likes_html);
 }
 
 /*
@@ -190,7 +216,7 @@ function append_entity_delete(post_id){
     if ( entity_del_json ){
       var box_id = entity_del_json.text_box;
       var user_id = entity_del_json.user;
-      var current_user_id=$('#session_owner_id').attr("value");  
+      var current_user_id=aw_lib_get_page_owner_id();  
 
       if(current_user_id == user_id){
         $("#" + box_id).find(".js_activity_entity").each(function(){
@@ -259,10 +285,6 @@ function handle_stream_location(box_id, location){
  */
 function handle_stream_actions(box_id, stream, current_user_id){
   var div=$("#" + box_id);
-  if(current_user_id != stream.post.user.id){
-    div.hide();
-    return;
-  }
   /* set context on parent div  */
   var action_btn_json = {
                           stream_id : stream.post.id 
@@ -271,13 +293,20 @@ function handle_stream_actions(box_id, stream, current_user_id){
   the_big_stream_actions_json[box_id] = action_btn_json;
 
   if( stream.post.status == 1){
-    var html = '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
-               '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' ;
+    if(current_user_id == stream.post.user.id){
+      var html = '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
+                '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' ;
+      div.append(html);
+    }
+  }else{
+    var html = '<input type="button" value="Mentions" class="js_stream_enrich_btn p-awp-mention"/>' ;
     div.append(html);
   }
-
-  var html = '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>';
-  div.append(html);
+  
+  if(current_user_id == stream.post.user.id){
+    var html = '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>';
+    div.append(html);
+  }
   
 }
 
@@ -374,7 +403,8 @@ function setup_comment_handling(all_box_id, box_id, postid, comment_count){
 }
 
 function show_all_stream_comments(comments, post_id, current_user_id, comment_show_all_id){
-
+ 
+  //alert("show_all_stream_comments");
   var comments_count=0;
   var comments_div_id = the_big_comment_show_all_json[comment_show_all_id].div_id;
   var div = $("#" + comments_div_id);
@@ -409,7 +439,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                     '<input type="button"  value="Post" class="js_add_new_comment p-st-comment-add-btn" id="' + add_new_btn_id + '"/>' +
                   '</div>' +
                '</div>'; 
-    div.append(html);
+    //div.append(html);
+    div.html(html);
 
 
   /* context is set, go ahead */
@@ -421,8 +452,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   });
 
-   
-    div.show();
+    //div.show();
+    div.slideToggle();
 }
 
 
@@ -471,9 +502,10 @@ function get_enriched_streams(post_ids_arr){
                 handle_stream_text(box_id, 
                                 stream.post.text);
                 the_big_stream_post_text[stream.post.id] = {
-                                                          text_box : box_id,
-                                                          user : stream.post.user.id
-                                                         };
+                                                              text_box : box_id,
+                                                              user : stream.post.user.id,
+                                                              mentions_state:false
+                                                           };
                 append_entity_delete(stream.post.id);
                 // remove the element from the list of un enriched streams 
                 delete the_big_stream_enriched_state[stream.post.id];
@@ -507,43 +539,7 @@ function update_enriched_streams () {
 
 
 
-/*
- *
- */
-function redirect_to_streams_filtered_of_other_user(page_owner_id, session_owner_id){
-    params='id=' + page_owner_id +'&mode=filtered&' + get_long_string_filter();
-    //aw_lib_alert('/home/show?' + params);
-    window.location.href ='/home/show?' + params;
-}
 
-
-
-/*
- * On change of filter we need to do all these
- * On load of page as well we need to do all these
- */
-function reload_streams_on_viewed_user(page_owner_id, session_owner_id){
-  aw_lib_console_log("debug", "reload_streams_on_viewed_user: page:" + page_owner_id + ' session:' + session_owner_id);
-  clear_streams();
-  append_stream(page_owner_id, session_owner_id);
-
-  clear_related_entities();
-  list_related_entities(page_owner_id);
-
-  clear_related_locations();
-  list_related_locations(page_owner_id);
-
-  clear_related_friends();
-  if( session_owner_id){ 
-    list_related_friends();
-  }
-  
-
-  //clear_related_channels();
-  //list_related_channels(page_owner_id);
-  
-
-}
 
 
 /*********************************************/
@@ -582,19 +578,10 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var comment_box_id  = stream_render_id + '_comments';
   var comment_box_show_all_div_id  = stream_render_id + '_show_all';
   var date_js = Date.parse('t');
-
+  var time_js = new Date().toString('HH:mm tt');
   var external_shares="";
   if ( post.status == 2){
-    /* Share FB */
-    external_shares= '<div class="p-awp-share"  >' +
-                      '<div class="fb_share_div" >' +
-                        '<a name="fb_share" type="box_count" expr:share_url="' +'http://localhost:3000/view?id=' + post.id + '" ' + 
-                          'href="http://www.facebook.com/sharer.php" id="fb_share">Share</a>' + 
-                        '<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript">' +
-                        '</script>' +
-                      '</div>' +
-                    '</div>';
-
+    var external_shares = get_socialize_html(stream); 
   }
   /* Main stream div definition */
   var stream_ele_id = get_stream_ele_id(post.id);
@@ -636,7 +623,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                       '</div>' +
 
                       '<div class="p-awp-time">' +
-                        '<span class="p-awp-time-content">' + date_js.toString("hh:mm tt") + '</span>' +
+                        '<span class="p-awp-time-content">' + time_js + '</span>' +
                       '</div>' +
 
                       '<div class="p-awp-date">' +
@@ -665,6 +652,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
                     /* Post campaigns */
                     '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
+                    '</div>' +
+                    '<div class="p-awp-view-campaign-comments" id="' + campaign_box_id + '_comment" >' +
                     '</div>' +
        
 
@@ -706,12 +695,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
   the_big_stream_post_text[post.id] = {
                                           text_box : text_box_id,
-                                          user : post.user.id
+                                          user : post.user.id,
+                                          mentions_state:false
                                         };
   append_entity_delete(post.id);
 
   if(!get_others_filter_state()){
-    $(".p-awp-user").hide();
+    $(".p-awp-ser").hide();
   }
 }
 
@@ -740,18 +730,24 @@ function append_stream(owner_id, current_user_id){
         dataType: 'json',
         contentType: 'application/json',
        success: function (data) {
-          // if rails demands a redirect because of log in missing 
-           $.each(data, function(i,stream){
-            if( stream ){
+          // if rails demands a redirect because of log in missing
+          if(data.length){
+            $.each(data, function(i,stream){
+              if( stream ){
                 create_and_add_stream($("#streams_list"),stream , current_user_id);
                 $("#more_streams_cookie").val(stream.post.time);
-            } 
+              } 
 
            
-          });
-
+            });
             /* set up polling for checking enriching */
             setup_polling_for_enrich();
+          }else{
+            if( more_cookie.length == 0){
+              $("#streams_list").html("<br/> <br/> No streams to show");
+            }
+            aw_lib_alert('No streams to show');
+          }
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
@@ -845,9 +841,9 @@ function show_all_comments(post_id, all_id){
         data: {activity_id:post_id},
         dataType: 'json',
         success: function (data) {
-
           show_all_stream_comments(data, post_id, current_user_id, all_id);
-          $(this).parent().next().slideToggle();
+          /*****************************************Error On Slidetoggle****************************/
+          $(this).parent().next().slidToggle(200);
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             aw_lib_alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
@@ -929,12 +925,37 @@ function process_user_campaign_action(campaign_manager_json){
       });
     }
 }
-
+  /**********Like************/
+function aw_channels_render_like(win_id, trigger_id){
+  var id = win_id + '_modal_div';
+  var div = $("#" + win_id);
+  var div_id = $("#" + trigger_id).parent().parent().attr("id");
+  campaign_manager = the_big_stream_campaign_manager_json[div_id];
+  //alert(JSON.stringify(campaign_manager));
+  $.ajax({
+          url: '/home/get_users_of_campaign.json',
+          type: 'GET',
+         data: { 
+                  name:campaign_manager.name, 
+                  activity_id:campaign_manager.post_id
+                },
+          dataType: 'json',
+          success: function (data) {
+            show_all_stream_campaigns(data, div);
+            /*****************************************Error On Slidetoggle****************************/
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
+          }
+      });
+  return true;
+}
 /**************************/
 /*
- *  Show all campaigns
+ *  Show all campaigns Like
  */
 function show_all_campaigns(campaign_manager_json){
+  //alert(JSON.stringify(campaign_manager_json));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
@@ -945,7 +966,9 @@ function show_all_campaigns(campaign_manager_json){
           dataType: 'json',
           success: function (data) {
             show_all_stream_campaigns(data, $("#" + campaign_manager_json.campaign_div_id).next());
+            /*****************************************Error On Slidetoggle****************************/
             $("#" + campaign_manager_json.campaign_div_id).next().slideToggle();
+            //alert("show_all_campaigns");
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
             aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
@@ -956,7 +979,7 @@ function show_all_campaigns(campaign_manager_json){
 /*
  *  Remove document from post
  */
-function remove_document_from_post(document_id){
+function remove_document_from_post(document_id, close_box){
    $.ajax({
           url: '/home/remove_document.json',
           type: 'POST',
@@ -966,6 +989,9 @@ function remove_document_from_post(document_id){
           dataType: 'json',
           success: function (data) {
             /*remove that document*/
+           var parent_box = close_box.closest(".p-awp-view-attachment-inner-box");
+           parent_box.empty().remove();
+
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
             aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
@@ -979,38 +1005,27 @@ function remove_document_from_post(document_id){
  * Bring stream on focus whenever there is a change in filter
  */
 function set_stream_to_focus_on_filter_change(){
-    $(".tab_content").hide();
     $("ul.p-cstab li").removeClass("active");
     $("ul.p-cstab li:last").addClass("active").show();
-    $(".tab_content:last").show();
 
+    //$("#channels_left_side_bar").hide();
+    //$("#channels_main_bar").hide();
+    //$("#channels_right_side_bar").hide();
+    $("#p-channelp-sect").hide();
 
-    $("#channels_left_side_bar").hide();
-    $("#channels_main_bar").hide();
-    $("#channels_right_side_bar").hide();
     $("#streams_left_side_bar").fadeIn();
     $("#streams_main_bar").fadeIn();
     $("#streams_right_side_bar").fadeIn();
+
+
 }
 
 
 /*
  * Clear stream div completely
  */
-function clear_streams(){
-
-  $("#streams_list").html("");
-  $("#more_streams_cookie").val("");
-
-  $("#streams_drafts_list").html("");
-  $("#more_streams_drafts_cookie").val("");
-
-  $("#streams_videos_list").html("");
-  $("#more_streams_videos_cookie").val("");
-
-  $("#streams_images_list").html("");
-  $("#more_streams_images_cookie").val("");
-
+function aw_stream_clear_stream_jsons(){
+  
   /* reset all big jsons */
   the_big_comment_add_json={ };
   the_big_comment_show_all_json={ };
@@ -1103,6 +1118,27 @@ $(document).ready(function(){
     }
     return false;
   });
+ /********************************/
+  /*
+   * Stream enrich button clicked
+   */
+  $('.js_stream_enrich_btn').live('click', function(){
+    var enrich_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    var post_id = enrich_json.stream_id;
+
+     
+    var text_box_id = the_big_stream_post_text[post_id].text_box;
+    var text_box = $("#" + text_box_id);
+    var mentions_state = the_big_stream_post_text[post_id].mentions_state;
+    if(!mentions_state){
+      text_box.find(".js_activity_entity").addClass("js_mention_highlight");
+      the_big_stream_post_text[post_id].mentions_state=true;
+    }else{
+      text_box.find(".js_activity_entity").removeClass("js_mention_highlight");
+      the_big_stream_post_text[post_id].mentions_state=false;
+    }
+
+  });
   /********************************/
 
   /*
@@ -1111,7 +1147,7 @@ $(document).ready(function(){
   $('.js_show_all_comment_btn').live('click', function(){
     var all_json = the_big_comment_show_all_json[$(this).attr("id")];
     if(all_json){
-      show_all_comments(all_json.post_id, $(this).attr("id"));
+       show_all_comments(all_json.post_id, $(this).attr("id"));
     }
     return false;
   });
@@ -1131,9 +1167,13 @@ $(document).ready(function(){
    * User action show all
    */
   $('.js_campaign_show_all').live('click', function(){
-    var div_id = $(this).attr("value");
-    campaign_manager = the_big_stream_campaign_manager_json[div_id];
-    show_all_campaigns(campaign_manager); 
+    var cls = $(this).attr("class");
+    /****************************Changed For the Like SlideToggle***div_id*********************************/
+    var div_id = $(this).parent().parent().attr("id");
+    $("."+ cls ).addClass("js_modal_dialog_link");  
+    $("."+ cls ).addClass("JS_AW_MODAL_like"); 
+    //campaign_manager = the_big_stream_campaign_manager_json[div_id];
+    //show_all_campaigns(campaign_manager); 
     return false;
   });
   /********************************/
@@ -1151,7 +1191,7 @@ $(document).ready(function(){
    * Remove an attached document
    */
   $('.js_remove_attached_doc').live('click', function(){
-    remove_document_from_post();
+    remove_document_from_post($(this).attr("id"), $(this));
   });
 
     /*
@@ -1159,7 +1199,8 @@ $(document).ready(function(){
      */
      $('#more_streams').click(function() {
         aw_lib_console_log("debug", "profile.js:more personal streams clicked");
-        append_stream(page_owner_id, session_owner_id);
+        append_stream(aw_lib_get_page_owner_id(), 
+                  aw_lib_get_session_owner_id());
         return false;
     });
 

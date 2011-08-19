@@ -92,6 +92,7 @@ function clear_all_input_jsons(){
   documents_to_upload_count=0;
   g_max_files_that_can_be_uploaded = 5;
   g_status_of_post=2;
+
 }
 
 
@@ -141,15 +142,16 @@ function post_activity_to_server(post_data){
         dataType:"script",
         cache: true,
         success: function (data) {
-          alert("New post added");
           reset_to_default();
           clear_all_input_jsons();
+          $("#pre_uploaded_docs").html("");
+          aw_lib_alert("New post added");
         },
           error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
-          alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
+          aw_lib_alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
         },
       });
    }else{
@@ -161,14 +163,16 @@ function post_activity_to_server(post_data){
         dataType:"json",
         cache: true,
         success: function (data) {
-          alert("Post processed");
-          window.location.href = "/view?id=" + data.post.id; 
+          reset_to_default();
+          clear_all_input_jsons();
+          $("#pre_uploaded_docs").html("");
+          aw_lib_alert("Post processed");
         },
           error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
-          alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
+          aw_lib_alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
         },
       });
    }
@@ -326,7 +330,7 @@ function document_upload_complete(){
                     };
 
    
-    alert(JSON.stringify(post_json));
+    //alert(JSON.stringify(post_json));
     post_activity_to_server(post_json);
 
 }
@@ -352,7 +356,7 @@ function change_max_file_that_can_be_uploaded(change_count){
 
 $(document).ready(function() {
    /* get user channels from rails */
-
+  
    $("#actwitty_generator").live('click', function(){
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
