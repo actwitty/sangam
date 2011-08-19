@@ -10,15 +10,17 @@ class Summary < ActiveRecord::Base
 
   has_many    :activities, :order => "updated_at DESC"
 
-  has_many    :entities, :through => :hubs, :uniq => true, :order => "updated_at DESC"
+  has_many    :entities,   :through => :hubs, :uniq => true, :order => "updated_at DESC"
 
-  has_many    :locations, :through => :hubs, :uniq => true, :order => "updated_at DESC"
+  has_many    :locations,  :through => :hubs, :uniq => true, :order => "updated_at DESC"
 
-  has_many    :documents,:order => "updated_at DESC"
+  has_many    :documents,  :order => "updated_at DESC"
 
-  has_many    :tags,     :order => "updated_at DESC"
+  has_many    :tags,       :order => "updated_at DESC"
 
   has_one     :theme
+
+  has_many    :summary_subscribes
 
   belongs_to  :user, :touch => true
   belongs_to  :activity_word, :touch => true
@@ -31,14 +33,24 @@ class Summary < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, :scope => :activity_word_id
 
-  before_destroy :ensure_proper_destroy
-  after_destroy  :check_destroy
+  before_destroy :ensure_safe_destroy
+
+  after_destroy  :ensure_destroy_of_theme_and_summary_subscribe
+
+
   public
 
-    def check_destroy
-      puts "summary after destroy"
+    #need to destroy the associations this way as summary deletion is reference counter based. So  if summary
+    #does not get deleted, associations will be deleted with dependent => destroy/delete. So using after_destroy
+    def ensure_destroy_of_theme_and_summary_subscribe
+      Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_theme_and_summary_subscribe] entering #{self.inspect}")
+      SummarySubscribe.destroy_all(:summary_id => self.id)
+      Theme.delete_all(:summary_id => self.id)
+      Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_theme_and_summary_subscribe] Leaving")
     end
-    def rebuild_a_summary
+
+
+  def rebuild_a_summary
 
        s = self
 
@@ -85,7 +97,8 @@ class Summary < ActiveRecord::Base
 
     end
 
-    def ensure_proper_destroy
+
+  def ensure_safe_destroy
       puts "before summary destroy"
       if self.activities.size == 1
         Rails.logger.info("Summary Getting Deleted #{self.inspect}")

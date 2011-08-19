@@ -14,9 +14,9 @@ class CreateActivities < ActiveRecord::Migration
 
       t.integer :base_location_id
 
-      t.integer :comments_count
-      t.integer :documents_count
-      t.integer :tags_count
+      t.integer :comments_count, :default => 0
+      t.integer :documents_count, :default => 0
+      t.integer :tags_count, :default => 0
 
       t.integer :campaign_types, :null => false         # 1 to 7 or nil #at present each bit represent on campaign type. bit 0 => like,
                                         # bit 1=>support,bit 2=> :join

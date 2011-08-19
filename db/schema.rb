@@ -10,20 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110816174153) do
+ActiveRecord::Schema.define(:version => 20110818033521) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "activity_word_id", :null => false
+    t.integer  "activity_word_id",                :null => false
     t.text     "activity_text"
-    t.text     "activity_name",    :null => false
-    t.integer  "author_id",        :null => false
+    t.text     "activity_name",                   :null => false
+    t.integer  "author_id",                       :null => false
     t.integer  "base_location_id"
-    t.integer  "comments_count"
-    t.integer  "documents_count"
-    t.integer  "tags_count"
-    t.integer  "campaign_types",   :null => false
-    t.integer  "status",           :null => false
-    t.text     "source_name",      :null => false
+    t.integer  "comments_count",   :default => 0
+    t.integer  "documents_count",  :default => 0
+    t.integer  "tags_count",       :default => 0
+    t.integer  "campaign_types",                  :null => false
+    t.integer  "status",                          :null => false
+    t.text     "source_name",                     :null => false
     t.text     "sub_title"
     t.integer  "summary_id"
     t.boolean  "enriched"
@@ -405,12 +405,12 @@ ActiveRecord::Schema.define(:version => 20110816174153) do
   end
 
   create_table "summaries", :force => true do |t|
-    t.integer  "user_id",          :null => false
-    t.integer  "activity_word_id", :null => false
-    t.string   "activity_name",    :null => false
-    t.integer  "activities_count"
-    t.integer  "documents_count"
-    t.integer  "tags_count"
+    t.integer  "user_id",                         :null => false
+    t.integer  "activity_word_id",                :null => false
+    t.string   "activity_name",                   :null => false
+    t.integer  "activities_count", :default => 0
+    t.integer  "documents_count",  :default => 0
+    t.integer  "tags_count",       :default => 0
     t.text     "location_array"
     t.text     "entity_array"
     t.text     "activity_array"
@@ -426,6 +426,18 @@ ActiveRecord::Schema.define(:version => 20110816174153) do
   add_index "summaries", ["activity_word_id"], :name => "index_summaries_on_activity_word_id"
   add_index "summaries", ["updated_at"], :name => "index_summaries_on_updated_at"
   add_index "summaries", ["user_id", "activity_word_id"], :name => "index_summaries_on_user_id_and_activity_word_id", :unique => true
+
+  create_table "summary_subscribes", :force => true do |t|
+    t.integer  "summary_id",    :null => false
+    t.integer  "subscriber_id", :null => false
+    t.integer  "owner_id",      :null => false
+    t.text     "summary_name",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "summary_subscribes", ["subscriber_id"], :name => "index_summary_subscribes_on_subscriber_id"
+  add_index "summary_subscribes", ["summary_id", "subscriber_id"], :name => "index_summary_subscribes_on_summary_id_and_subscriber_id", :unique => true
 
   create_table "tags", :force => true do |t|
     t.integer  "author_id",        :null => false

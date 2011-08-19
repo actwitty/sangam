@@ -6,6 +6,8 @@ class Activity < ActiveRecord::Base
 
   include  ActionView::Helpers
 
+  serialize :social_counters, Array
+
   belongs_to      :author, :class_name => "User" #, :touch => true user is touched through summary
   belongs_to      :summary, :touch => true, :counter_cache => true, :dependent => :destroy
 
@@ -38,6 +40,7 @@ class Activity < ActiveRecord::Base
    #:destroy is not causing circular effect as there is father "delete" in comment
   has_one         :father_comment, :foreign_key => :father_id, :class_name => "Comment", :dependent => :destroy
 
+  has_many        :social_counters, :dependent => :destroy
 
   validates_existence_of  :author_id
   validates_existence_of  :activity_word_id

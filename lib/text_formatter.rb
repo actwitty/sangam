@@ -169,7 +169,7 @@ module TextFormatter
 
     str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
                 |#{AppConstants.audio_sources}"
-    arr = text.scan(/((http:\/\/|https:\/\/)([^\s]*.)?(#{str}){1}(\/[^\s]*))/)
+    arr = text.scan(/((http:\/\/|https:\/\/)([^\s]*.)?(#{str}){1}(\/[^\s]+))/)
 
     arr.each do |attr|
 
@@ -282,7 +282,8 @@ module TextFormatter
         :sub_title => activity.sub_title,
         :source_name => activity.source_name,
         :status => activity.status,
-        :campaign_types => activity.campaign_types
+        :campaign_types => activity.campaign_types,
+        :social_counters => activity.social_counters
       }
 
     if !activity.base_location_id.blank?

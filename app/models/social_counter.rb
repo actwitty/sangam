@@ -1,10 +1,26 @@
 class SocialCounter < ActiveRecord::Base
   validates_presence_of :source_name, :action
 
+  belongs_to :summary
+  belongs_to :author, :class_name => "User"
+  belongs_to :location
+  belongs_to :entity
+  belongs_to :activity
+  belongs_to :document
+
+
+  validates_existence_of :summary_id, :allow_nil => true
+  validates_existence_of :document_id, :allow_nil => true
+  validates_existence_of :author_id, :allow_nil => true
+  validates_existence_of :location_id, :allow_nil => true
+  validates_existence_of :entity_id, :allow_nil => true
+  validates_existence_of :activity_id, :allow_nil => true
+
   validates_length_of :source_name, :in => 1..AppConstants.source_name_length
   validates_length_of :action,      :in => 1..AppConstants.action_name_length
 
   class << self
+    #INPUT
     #           :activity_id => 123 or nil
     #                 OR
     #           :summary_id => 123 or nil
@@ -14,6 +30,10 @@ class SocialCounter < ActiveRecord::Base
     #           :entity_id => 234 or nil
     #                 OR
     #           :document_id => 456 or nil
+    #OUTPUT
+    #          [{:source_name=>"twitter", :action=>"share", :count=>1}
+    #            {:source_name=>"facebook", :action=>"share", :count=>2}]
+
     def get_social_counter(params)
       result = where(params).group(:source_name, :action).count
       array = []

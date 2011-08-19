@@ -267,6 +267,11 @@ describe Activity do
       @u2.follow(@u.id)
       @u.follow(@u3.id)
       @u3.follow(@u.id)
+#      @u1.subscribe_summary(act[:post][:summary_id])
+#      @u2.subscribe_summary(act3[:post][:summary_id])
+#      @u1.subscribe_summary(act6[:post][:summary_id])
+#      @u.subscribe_summary(act2[:post][:summary_id])
+#      @u.subscribe_summary(act6[:post][:summary_id])
 
       params[:scope] = 0
       params[:order] = "2011-07-05T07:28:56Z"
@@ -293,31 +298,76 @@ describe Activity do
       h.should_not be_nil
       puts "============================================================="
 
-
+      puts "Related Entity"
       h = @u.get_related_entities(@u1.id,filter)
       puts h.inspect
       h.should_not be_nil
 
+      puts "Related Location"
       h = @u.get_related_locations(@u1.id, filter)
       puts h.inspect
       h.should_not be_nil
 
+      puts "Enriched Activity"
       h = @u.get_enriched_activities([act[:post][:id], act5[:post][:id], act7[:post][:id]])
       puts h.inspect
       h.should_not be_nil
-      a =@u.get_stream({:user_id => @u1.id,  :updated_at => Time.now.utc})
-      puts a.inspect
 
-      a = @u.get_stream({:user_id => @u.id, :friend => true})
+      puts "Get Stream 1"
+      a =@u.get_stream({:user_id => @u1.id, :page_type => AppConstants.page_state_user, :updated_at => Time.now.utc})
+      puts a
+
+      puts "Get Summary 1"
+      a =@u.get_summary({:user_id => @u1.id, :page_type => AppConstants.page_state_user, :updated_at => Time.now.utc})
+      puts a
+
+
+      puts "Get Stream 2"
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all,:friend => true})
+      puts a
+
+      puts "Get Summary 2"
+      a =@u.get_summary({:user_id => @u1.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+
+      a = Activity.where(:id => act2[:post][:id]).first
+      a.destroy
+      puts "Get Stream 2A"
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all,:friend => true})
+      puts a
+
+      puts "Get Summary 2A"
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+
+      a = Activity.where(:id => act[:post][:id]).first
+      a.destroy
+      puts "Get Stream 2B"
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all,:friend => true})
+      puts a
+
+      puts "Get Summary 2B"
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+
+      puts "Get Stream 3"
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_subscribed,:friend => true})
+      puts a
+
+      puts "Get Summary 3"
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_subscribed, :friend => true})
       puts a
 
       puts "Entity Stream"
       a = @u.get_entity_stream({:entity_id => e.id})
       puts a.inspect
+
       puts "location Stream"
-      a = @u.get_location_stream({:location_id => l.id})
+      a = @u.get_location_stream( {:location_id => l.id})
       puts a.inspect
-      a = @u.get_activity_stream({:word_id => wi.id})
+
+      puts "Activity Stream"
+      a = @u.get_activity_stream({:filter => {:word_id => wi.id}})
       puts a.inspect
     end
     it "should read create read and delete comments" do
@@ -803,17 +853,17 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
                                              {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
                               :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
                                             AppConstants.status_public)
-#      a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
-#                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
-#                                   <mention><name>PIZZA<name><id>235<id><mention> hello
-#                                   http://www.youtube.com/watch?222
-#                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
-#                              :enrich => true,
-#                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
-#                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
-#
-#                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
-#                                            AppConstants.status_public)
+      a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
+
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_public)
       s1 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
       s2 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "twitter", :action => "share"})
       s3 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
@@ -837,6 +887,78 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       @u.update_theme({:url => "http://a.com", :author_id => s.user_id, :summary_id => s.id,:default => false})
       s = Summary.where(:id => s.id).first
       puts s.inspect
+#      a = Activity.where(:id => a1[:post][:id]).first
+#      a.destroy
+#      Activity.destroy_all
+      a = @u.get_stream({:user_id => @u.id, :page_state => AppConstants.page_state_all})
+
+    end
+    it "should create and use the summary subscription properly" do
+      a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222 http://form6.flickr.com/ wow
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
+
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_public)
+      a2 = @u.create_activity(:word => "marry" , :text => "http://www.vimeo.com/watch?333",
+                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
+                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
+
+                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
+                                            AppConstants.status_public)
+      a3 = @u3.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+
+      @u1.subscribe_summary(a1[:post][:summary_id])
+      @u2.subscribe_summary(a1[:post][:summary_id])
+      @u1.subscribe_summary(a3[:post][:summary_id])
+      @u1.subscribe_summary(a2[:post][:summary_id])
+      puts "get summary 1"
+      a = @u1.get_subscriber_summary
+      puts a
+      puts "Get Followers"
+      user = Contact.where(:user_id => @u1.id).all
+      puts user.inspect
+      puts "get subscriber 1"
+      a = @u1.get_summary_subscribers(a1[:post][:summary_id])
+      puts a
+      @u1.unsubscribe_summary(a3[:post][:summary_id])
+      puts "get summary 2"
+      a = @u1.get_subscriber_summary
+      puts a
+      @u1.subscribe_summary( a1[:post][:summary_id])
+      puts "get summary 3"
+      a = @u1.get_subscriber_summary
+      puts a
+      puts "get subscriber 2"
+      a = @u1.get_summary_subscribers(a1[:post][:summary_id])
+      puts a
+      @u1.subscribe_summary( a3[:post][:summary_id])
+      a = @u1.get_document_stream({:user_id => @u1.id,:category => "image", :page_type => AppConstants.page_state_all})
+      puts a
+      puts "unsubscribe 1"
+      @u1.unsubscribe_summary(a1[:post][:summary_id])
+
+      a = @u1.get_document_stream({:user_id => @u2.id,:category => "image", :page_type => AppConstants.page_state_subscribed })
+      puts a
+      puts "Summary"
+      a = @u1.get_document_summary({:user_id => @u1.id, :category => "image", :page_type => AppConstants.page_state_subscribed,
+                                  })
+      puts a
+
+      a = Activity.where(:id => a2[:post][:id]).first
+      a.destroy
+      a = @u1.get_document_summary({:user_id => @u1.id, :category => "image", :page_type => AppConstants.page_state_all})
+      puts a
     end
 
 #    TEST REMOVE ENTITY

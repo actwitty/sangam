@@ -3,11 +3,20 @@ class Theme < ActiveRecord::Base
   belongs_to  :author, :class_name => "User"
   belongs_to  :summary
 
+  validates_existence_of  :summary_id, :allow_nil => true
+  validates_existence_of  :author_id
+
   validates_length_of     :url, :maximum => AppConstants.url_length
   validates_length_of     :fg_color, :is => 10 , :unless => Proc.new {|a| a.fg_color.nil?}
   validates_length_of     :bg_color, :is => 10 , :unless => Proc.new {|a| a.bg_color.nil?}
 
   validates_uniqueness_of  :author_id, :scope => :summary_id
+
+  after_destroy            :clear_theme
+
+  def clear_theme
+    Rails.logger.info("[MODEL] [THEME] [clear_theme] deleting")
+  end
 
   class << self
     include TextFormatter

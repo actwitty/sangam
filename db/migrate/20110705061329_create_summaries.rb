@@ -6,9 +6,9 @@ class CreateSummaries < ActiveRecord::Migration
       t.integer :activity_word_id, :null => false
       t.string  :activity_name, :null => false
 
-      t.integer :activities_count
-      t.integer :documents_count
-      t.integer :tags_count
+      t.integer :activities_count, :default => 0
+      t.integer :documents_count, :default => 0
+      t.integer :tags_count, :default => 0
 
       t.text :location_array
       t.text :entity_array

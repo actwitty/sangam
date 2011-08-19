@@ -346,7 +346,7 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [get_related_entities] entering ")
     h = {}
     h = process_filter(filter)
-    h[:user_id] = user_id
+    h[:user_id] = user_id if !user_id.blank?
 
     h = Hub.where(h).group(:entity_id).order("MAX(updated_at) DESC").count
     e = Entity.where(:id => h.keys).order("updated_at DESC").all
@@ -374,7 +374,7 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [get_related_locations] entering ")
     h = {}
     h = process_filter(filter)
-    h[:user_id] = user_id
+    h[:user_id] = user_id  if !user_id.blank?
 
     lh = []
 
@@ -658,6 +658,7 @@ class User < ActiveRecord::Base
     a = create_activity(params)
 
     #store summary_id to see if summary id is not changed in update
+    #TODO Social counters update when summary changes
     if a[:post][:summary_id] != prev_summary_id
       Summary.destroy_all(:id => prev_summary_id)
       s = Summary.where(:id => prev_summary_id).first
@@ -680,13 +681,14 @@ class User < ActiveRecord::Base
     hash = {}
 
     Activity.includes(:author, :base_location).where(:id => activity_ids).order("updated_at DESC").all.each do |attr|
-      hash[attr.id] = index
+
       array << format_activity(attr)
       array[index][:comments] = {:count => attr.comments.size, :array => [] }
       array[index][:documents]= {:count => attr.documents.size, :array => []}
       array[index][:tags]=      {:count => attr.tags.size, :array => []}
       array[index][:social_counters] = attr.social_counters
       array[index][:campaigns]= []
+      hash[attr.id] = index
       index = index + 1
     end
 
@@ -743,7 +745,8 @@ class User < ActiveRecord::Base
   #COMMENT - Only returns public post which has summary
   #INPUT
   #:user_id => 123
-  #:friend => true/false
+  #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+  ##             OR 4(AppConstants.page_state_public)
   #:filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
@@ -796,42 +799,18 @@ class User < ActiveRecord::Base
   #]
   def get_stream(params ={})
 
-    user = nil
-
     Rails.logger.debug("[MODEL] [USER] [get_stream] entering")
-    h = process_filter(params[:filter])
 
+    h = process_filter_modified(params)
 
-    if params[:user_id] == self.id
-      if params[:friend] == true
-
-        Rails.logger.debug("[MODEL] [USER] [get_stream] Requesting friends stream")
-        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
-        user.blank? ? user = [self.id] : user << self.id
-
-      else
-
-        Rails.logger.debug("[MODEL] [USER] [get_stream] Requesting self stream #{self.inspect}")
-        user = self.id
-
-      end
-    else
-
-      Rails.logger.debug("[MODEL] [USER] [get_stream] Foreign user trying to access #{self.inspect}")
-      user = params[:user_id]
-      params[:friend] = false
-
+    if h.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_stream] Leaving => Blank has returned by process_filter => #{params.inspect}")
+      return {}
     end
 
-
-    h[:status] =  AppConstants.status_public
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
-
     #use HUB only if entity filter is there
-    #FIXME - TODO
     if !h[:entity_id].blank?
 
-      h[:user_id] = user if !user.blank?
       # need to check this anyway  - For time being
       # we have to delete hub
       h.delete(:status)
@@ -840,7 +819,9 @@ class User < ActiveRecord::Base
 
     else
 
-      h[:author_id] = user if !user.blank?
+      h[:status] =  AppConstants.status_public
+      h[:author_id] = h[:user_id] if !h[:user_id].blank?
+      h.delete(:user_id)
 
       h[:meta_activity] = false
 
@@ -850,21 +831,17 @@ class User < ActiveRecord::Base
 
       #show only public post.. Need to take care private and shared post
       activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
-
-
     end
 
-    puts activity.keys
     array = get_all_activity(activity.keys)
-    puts array.to_json
     Rails.logger.debug("[MODEL] [USER] [get_stream] leaving")
     array
-
   end
 
   #INPUT
   #user_id => 123 #If same as current use then mix streams with friends other wise only user
-  #:friend => true/false
+  #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+  ##             OR 4(AppConstants.page_state_public)
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
   #[
@@ -895,23 +872,11 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [USER] [get_summary] entering")
 
-    h = {}
-    user = nil
+    h = process_filter_modified(params)
 
-    if params[:user_id] == self.id
-      if params[:friend] == true
-        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting friends summary")
-        #user =  contacts.select("friend_id").where(:status => Contact.statusStringToKey['Connected']).map(&:friend_id)
-        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
-        user.blank? ? user = [self.id] : user << self.id
-      else
-        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Requesting self summary #{self.inspect}")
-        user = self.id
-      end
-    else
-        Rails.logger.debug("[MODEL] [USER] [GET SUMMARY] Foreign user trying to access #{self.inspect}")
-        user = params[:user_id]
-        params[:friend] = false
+    if h.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_summary] Leaving => Blank has returned by process_filter => #{params.inspect}")
+      return {}
     end
 
     documents= {}
@@ -923,8 +888,9 @@ class User < ActiveRecord::Base
     summaries = []
     index = 0
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
-    h[:user_id] = user
+    h[:id] = h[:summary_id] if !h[:summary_id].blank?
+    h.delete(:summary_id)
+    user = h[:user_id]
 
     summary = Summary.includes(:user).where(h).limit(AppConstants.max_number_of_summmary).order("updated_at DESC").
         all.each do |attr|
@@ -935,7 +901,7 @@ class User < ActiveRecord::Base
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
-                             :social_counters => attr.social_counters,
+                             :social_counters => attr.social_counters, :theme_data => attr.theme_data,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
@@ -993,10 +959,10 @@ class User < ActiveRecord::Base
     #FETCH RELATED FRIEND
 
     #friends will only be fetched current use == visited user
-    if params[:friend] == true
+    if params[:page_type] == AppConstants.page_state_all
       #user's friends are already populated in user ARRAY
       Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - OTHERS MODE" )
-      user.delete(self.id)
+      user.delete(self.id) if user.blank?
     else
       Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - ME MODE" )
       #other wise get the user's followings and populate the related followings
@@ -1079,15 +1045,6 @@ class User < ActiveRecord::Base
     end
 
     hash = format_entity(e)
-
-#    if params[:updated_at].blank?
-#
-#      #collect entity type
-#      EntityType.where(:entity_id => e.id).all.each do |attr|
-#        hash[:types] << attr.entity_type_name
-#      end
-#      hash[:types] = hash[:types].uniq
-#    end
 
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
     h[:entity_id] =  params[:entity_id]
@@ -1375,10 +1332,13 @@ class User < ActiveRecord::Base
     d
   end
 
+
+
   #COMMENT - Only returns public post which has summary
   #INPUT
   #user_id => 123 #If same as current use then mix streams with friends other wise only user
-  #:friend => true/false
+  #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+  #
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #:category => "image" or "video"
 
@@ -1390,33 +1350,20 @@ class User < ActiveRecord::Base
 
     return {} if (params[:user_id].blank? || params[:category].blank?)
 
-    if params[:user_id] == self.id
-      if params[:friend] == true
+    h = process_filter_modified(params)
 
-        Rails.logger.debug("[MODEL] [USER] [get_document_summary] Requesting friends stream")
-        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
-        user.blank? ? user = [self.id] : user << self.id
-      else
-
-        Rails.logger.debug("[MODEL] [USER] [get_document_summary] Requesting self stream #{self.inspect}")
-        user = self.id
-
-      end
-    else
-
-        Rails.logger.debug("[MODEL] [USER] [get_document_summary] Foreign user trying to access #{self.inspect}")
-        user = params[:user_id]
+    if h.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_document_summary] Leaving => Blank has returned by process_filter => #{params.inspect}")
+      return {}
     end
-
-
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
-    h[:user_id] = user
 
     doc_hash = {}
 
+    h[:id] = h[:summary_id] if !h[:summary_id].blank?
+    h.delete(:summary_id)
 
     Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
-      if !attr.document_array.blank?
+      if attr.document_array.size > 0
         doc_hash[attr.document_array[0]]= {
             :word => {:id => attr.activity_word_id, :name => attr.activity_name},
             :time => attr.updated_at,
@@ -1427,10 +1374,8 @@ class User < ActiveRecord::Base
       end
     end
 
-    puts doc_hash.keys
-    #doc_hash.keys will give public docs as summary does not exist for saved docs
+    #doc_hash.keys will give status_public docs as summary does not exist for saved docs
     h = {:id => doc_hash.keys, :category => params[:category]}
-#    h[:status] = AppConstants.status_public
 
     Document.where(h).all.each do |attr|
       h = format_document(attr)
@@ -1441,19 +1386,24 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [get_document_summary] leaving")
 
     #delete those keys in which doc_hash[key][document] is still nil.
-    #this is possible as summary does not contaon info about about
+    #this is possible as summary does not contain info about about
     doc_hash.each do |k,v|
       doc_hash.delete(k) if doc_hash[k][:document].blank?
     end
     doc_hash.values
   end
 
+
+
+
   #COMMENT - Only returns public post which has summary
   #INPUT
   #:user_id => 123
-  #:friend => true/false
+  #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+  ##             OR 4(AppConstants.page_state_public)
   #:filter => {:word_id => 123,
   #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
+  #            :entity_id => 235,
   #            :location_id => 789, :entity_id => 234 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #:category => "image" or "video"
@@ -1463,58 +1413,46 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] entering")
     h = {}
     user = nil
+    summary = nil
 
-    return {} if (params[:user_id].blank? || params[:category].blank?)
+    if params[:category].blank?
 
-    h = process_filter(params[:filter])
-
-    if params[:user_id] == self.id
-      if params[:friend] == true
-
-        Rails.logger.debug("[MODEL] [USER] [get_document_stream] Requesting friends stream")
-        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
-        user.blank? ? user = [self.id] : user << self.id
-
-
-      else
-
-        Rails.logger.debug("[MODEL] [USER] [get_document_stream] Requesting self stream #{self.inspect}")
-        user = self.id
-
-      end
-    else
-
-        Rails.logger.debug("[MODEL] [USER] [get_document_stream] Foreign user trying to access #{self.inspect}")
-        user = params[:user_id]
-        params[:friend] = false
+      Rails.logger.debug("[MODEL] [USER] [get_document_stream] category cant be blank => return blank json => #{params.inspect}")
+      return {}
 
     end
 
+    h = process_filter_modified(params)
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
-
-
-    #documents can not have entity
-    #h.delete(:entity_id) if !h[:entity_id].blank?
+    if h.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_document_stream] Leaving => Blank has returned by process_filter => #{params.inspect}")
+      return {}
+    end
 
     doc_array = []
+
     if !h[:entity_id].blank?
 
-      h[:user_id] = user if !user.blank?
-      h.delete(:status)
       Rails.logger.debug("[MODEL] [USER] [get_document_stream] => Hub/Entity based filtering => #{h.inspect}")
 
+      h[:user_id] = user if !user.blank?   #this will be true for page_state_user or page_state_all
+
       activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+
       h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
+
     else
 
-      h[:owner_id] = user
+      h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
+      h.delete(:user_id)
       h[:category] = params[:category]
       h[:status] =  AppConstants.status_public
+
     end
 
     Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
         limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
+
       h = format_document(attr)
       doc_array <<  {
                       :word => {:id => attr.activity_word_id, :name => attr.activity_word.word_name},
@@ -1528,6 +1466,20 @@ class User < ActiveRecord::Base
     doc_array
   end
 
+
+
+  #INPUT  => {:source_name => "facebook", or ""google" etc
+  #           :action => "share" or "like" etc
+  #           :author_id => 123 [OPTIONAL]
+  #
+  #           :activity_id => 123 or nil
+  #           :summary_id => 123 or nil
+  #                 OR
+  #           :location_id => 123 or nil
+  #                 OR
+  #           :entity_id => 234 or nil
+  #                 OR
+  #           :document_id => 456 or nil
   def create_social_counter(params)
     Rails.logger.debug("[MODEL] [USER] [create_social_counter] entering")
     a = SocialCounter.create_social_counter(params)
@@ -1539,34 +1491,102 @@ class User < ActiveRecord::Base
     a
   end
 
-    #          :activity_id => 123 or nil
-    #                 OR
-    #           :summary_id => 123 or nil
-    #                 OR
-    #           :location_id => 123 or nil
-    #                 OR
-    #           :entity_id => 234 or nil
-    #                 OR
-    #           :document_id => 456 or nil
-    def get_social_counter(params)
-      Rails.logger.debug("[MODEL] [USER] [get_social_counter] entering")
-      a = SocialCounter.get_social_counter(params)
-      Rails.logger.debug("[MODEL] [USER] [get_social_counter] leaving")
-      a
-    end
-    #INPUT
-    #     :fg_color =>"0xffffff23"  #RGBA
-    #     :bg_color =>"0xffffff23"  #RGBA
-    #              OR
-    #     :url => "http://s3.amazonaws.com/a.jpg"
-    #     :style => 1 or 2 or 3 # 1=> centered , 2=> tiled, 3 => stretched
-    #
-    #     :author_id => 123 #MANDATORY
-    #     :summary_id => 234 #OPTIONAL
-    #     :default => true/false #resets to default
-    def update_theme(params)
-      Theme.update_theme(params)
-    end
+
+  #INPUT
+  #           :activity_id => 123 or nil
+  #                 OR
+  #           :summary_id => 123 or nil
+  #                 OR
+  #           :location_id => 123 or nil
+  #                 OR
+  #           :entity_id => 234 or nil
+  #                 OR
+  #           :document_id => 456 or nil
+  #OUTPUT
+  #          [{:source_name=>"twitter", :action=>"share", :count=>1}
+  #            {:source_name=>"facebook", :action=>"share", :count=>2}]
+  def get_social_counter(params)
+    Rails.logger.debug("[MODEL] [USER] [get_social_counter] entering")
+    a = SocialCounter.get_social_counter(params)
+    Rails.logger.debug("[MODEL] [USER] [get_social_counter] leaving")
+    a
+  end
+
+
+  #INPUT
+  #     :fg_color =>"0xffffff23"  #RGBA
+  #     :bg_color =>"0xffffff23"  #RGBA
+  #              OR
+  #     :url => "http://s3.amazonaws.com/a.jpg"
+  #     :style => 1 or 2 or 3 # 1=> centered , 2=> tiled, 3 => stretched
+  #
+  #     :author_id => 123 #MANDATORY
+  #     :summary_id => 234 #OPTIONAL
+  #     :default => true/false #resets to default
+  def update_theme(params)
+    Rails.logger.debug("[MODEL] [USER] [update_theme] entering")
+    a = Theme.update_theme(params)
+    Rails.logger.debug("[MODEL] [USER] [update_theme] leaving")
+    a
+  end
+
+
+  #INPUT
+  # :summary_id => 123
+  #OUTPUT
+  # [{ :subscriber_name => "alok",:subscriber_id => 234,:subscriber_photo =>"http://a.com"}]
+  def get_summary_subscribers(summary_id)
+    Rails.logger.debug("[MODEL] [USER] [get_summary_subscribers] entering")
+    a = SummarySubscribe.get_summary_subscribers(summary_id)
+    Rails.logger.debug("[MODEL] [USER] [get_summary_subscribers] leaving")
+    a
+  end
+
+
+  #INPUT
+  #
+  #OUTPUT
+  # [{:summary_name => "eating", :summary_id => 123, :owner_name => "alok",:owner_id => 234,:owner_photo =>"http://a.com"}]
+  def get_subscriber_summary
+    Rails.logger.debug("[MODEL] [USER] [get_subscriber_summary] entering")
+    a = SummarySubscribe.get_subscriber_summary(self.id)
+    Rails.logger.debug("[MODEL] [USER] [get_subscriber_summary] leaving")
+    a
+  end
+
+
+  #INPUT
+  #{
+  #summary_id => 234
+  #}
+  #OUTPUT
+  # count
+  def unsubscribe_summary(summary_id)
+    params ={}
+    Rails.logger.debug("[MODEL] [USER] [unsubscribe_summary] entering")
+    params[:subscriber_id] = self.id
+    params[:summary_id] = summary_id
+    a = SummarySubscribe.unsubscribe_summary(params)
+    Rails.logger.debug("[MODEL] [USER] [unsubscribe_summary] leaving")
+    a
+  end
+
+
+  #INPUT
+  #{
+  #summary_id => 234
+  #}
+  #OUTPUT
+  #objects
+  def subscribe_summary(summary_id)
+    params = {}
+    Rails.logger.debug("[MODEL] [USER] [subscribe_summary] entering")
+    params[:subscriber_id] = self.id
+    params[:summary_id] = summary_id
+    a = SummarySubscribe.subscribe_summary(params)
+    Rails.logger.debug("[MODEL] [USER] [subscribe_summary] leaving")
+    a
+  end
   # private methods
   private
 
@@ -1583,7 +1603,6 @@ class User < ActiveRecord::Base
        self.username = self.email
     end
   end
-
 
   def process_filter(filter)
 
@@ -1604,6 +1623,67 @@ class User < ActiveRecord::Base
     if !filter[:source_name].blank?
       h[:source_name] = filter[:source_name]
     end
+    h
+  end
+
+  #If No User is given or No Page_Type is give always PUBLIC data will come
+  #For Subscribed Page => Always self user subscription
+  #For All page => Always self user followers channel
+  #For User page => params[:user_id] is used.
+  def process_filter_modified(params)
+
+
+    h = {}
+    user = nil
+    summary = nil
+
+    h = process_filter(params[:filter])
+
+    #if no user is given, it means need public to view documents only on filters
+    if params[:user_id].blank? || params[:page_type].blank?
+
+      Rails.logger.debug("[MODEL] [USER] [process_filter] page_state = page_state_public as user or page_type is blank => #{params.inspect}")
+      params[:page_type] = AppConstants.page_state_public
+
+    end
+
+    #Subscribed Page  => Always with self
+    if params[:page_type] == AppConstants.page_state_subscribed
+      #only Self can access the subscribed and of its known
+      summary =  SummarySubscribe.where(:subscriber_id => self.id).group(:summary_id).count
+
+      if summary.blank?
+        Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_subscribed => No Subscriber=>
+                             #{params.inspect}")
+        return {}
+      end
+
+      h[:summary_id] = summary.keys
+      Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_subscribed => #{self.inspect}")
+
+    end
+
+    #All Page => Always with self
+    if params[:page_type] == AppConstants.page_state_all
+
+       Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_all => #{params.inspect}")
+       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
+       user.blank? ? user = [self.id] : user << self.id
+       h[:user_id] = user
+
+    end
+
+    #USER/ME Page
+    if params[:page_type] == AppConstants.page_state_user
+
+       Rails.logger.debug("[MODEL] [USER] [process_filter] page_state = page_state_user => #{params.inspect}")
+       h[:user_id] = params[:user_id]
+
+    end
+
+    #DEFAULT IS PUBLIC => IN this page user and summary variables will be nil. So only on filters
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
     h
   end
 

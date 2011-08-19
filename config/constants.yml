@@ -164,6 +164,12 @@ development: &default
   theme_default_fg_color:             "0xffffff00"
   theme_default_bg_color:             "0xffffff00"
 
+  #PAGE STATES
+  page_state_user:                    1
+  page_state_subscribed:              2
+  page_state_all:                     3
+  page_state_public:                  4
+
 production:
   <<: *default
   #constant1:  "overriden value1"
