@@ -1,3 +1,8 @@
+/*
+ * NOTE :: There are certain sections where html code has been commented.
+ * plz keep it for a while to have a ref.
+ */
+
 
 var the_big_filter_JSON={dummy:"dummy"};
 /* handle text box */
@@ -6,11 +11,21 @@ function create_and_add_text_box(box_id, summary){
   if ( summary.recent_text && summary.recent_text.length  ){
 
     $.each(summary.recent_text, function(i, text){
-     var html='<li>' +
+     shortText = text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
+     var html = '<div class="p-channelp-post-lup">' +
+                    '<div class="p-channelp-post-lup-time">' +
+                      '<span> 2 mins ago </span>' +
+                    '</div>' +
+                    '<div class="p-channelp-post-lup-text">' +
+                      '<p>' + shortText + '</p>' +
+                    '</div>'+
+                  '</div>';
+     /*var html='<li>' +
                 '<span>' +
                     text +
                 '</span>' +
               '</li>';
+     */
 
      text_box.append(html);
     });
@@ -38,7 +53,9 @@ function create_and_docs_box(box_id, summary){
     activate_fancybox_group(box_id);
   }else{
     /* hide if there is nothing to show */
-    docs_box.hide();
+    var html = '<span> No attachments found </span>';
+    docs_box.append(html);
+    //docs_box.hide();
   }
   
 }
@@ -64,20 +81,22 @@ function create_and_add_friends_box(box_id, summary){
                           channel_name:summary.word.name  
                     };
       the_big_filter_JSON[filter_id] = filter_value;
-      var html='<li>' +
-                '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
+      //var html='<li>' +
+      var html =  '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
                   '<img src="'+ friend.photo + '"  width="25" height="25" alt="" />' +
                   '<span>' +
                       friend.full_name +
                   '</span>' +
-                '</a>' +
-              '</li>';
+                '</a>';
+              //'</li>';
 
       friends_box.append(html);
     });
 
   }else{
-    friends_box.hide();
+    var html='<span> No records Found </span>';
+    friends_box.append(html);              
+    //friends_box.hide();
   }
   
 }
@@ -104,9 +123,8 @@ function create_and_add_entities_box(box_id, summary){
 
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
-                  '<img src="'+ entity.image  + '?maxwidth=40&maxheight=40"  width="40" height="40" alt="" />' +
+                  /*'<img src="'+ entity.image  + '?maxwidth=40&maxheight=40"  width="40" height="40" alt="" />' +*/
                   '<span>' +
-                      '<br/>' +
                       entity.name +
                   '</span>' +
                 '</a>' +
@@ -116,7 +134,11 @@ function create_and_add_entities_box(box_id, summary){
     });
 
   }else{
-    entities_box.hide();
+    var html='<li>' +
+                  '<span> No records found</span>' +
+              '</li>';
+    entities_box.append(html);
+    //entities_box.hide();
   }
 }
 
@@ -158,7 +180,52 @@ function create_and_add_locations_box(box_id, summary){
 }
 
 
+
+function create_and_add_last_updates_in_auth_sect(box_id)
+{
+  var latest_update_box = $("#" + box_id);
+  var html = '<div class="p-channelp-auth-last-upd-post">'+
+                '<div class="p-channelp-auth-last-upd-post-time">'+
+                    '<span>2 mins ago</span>'+
+                '</div>' +
+                '<div class="p-channelp-auth-last-upd-post-text">' +
+                    '<p>alok purchased and repaired by some the of the most known persons...</p>'
+                '</div>' +
+             '</div>';
+  latest_update_box.append(html);
+
+}
+
 /*******************************************************************/
+
+
+function create_and_add_summary_author(author_box, owner_id)
+{
+  /*
+   */
+   var unique_id =  'SUMMARY_AUTHOR_' + owner_id;
+   if ($("#" + unique_id ).length > 0){
+     return;
+   }
+   var latest_update_id = unique_id + '_latest_update'; 
+   
+   var html =   '<div class="p-channelp-author-img-sect">' +
+                  '<img src="/images/profile/default.png">' +
+                '</div>' +
+                '<div class="p-channelp-author-name">' +
+                   '<span>Samarth Deo</span>' +
+                '</div>' +
+                '<div class="p-channelp-auth-last-upd-sect" id="' + latest_update_id + '">' +
+                   '<div class="p-channelp-auth-last-upd-hd">' +
+                      '<span>Last Updates :</span>' +
+                   '</div>' +
+                '</div>';
+    
+    $("#p-channelp-author-section").html(html);
+    create_and_add_last_updates_in_auth_sect(latest_update_id);
+    
+}
+
 
 /* handle complete summary box */
 function create_and_add_summary(summary_box, summary){
@@ -183,79 +250,95 @@ function create_and_add_summary(summary_box, summary){
  the_big_filter_JSON[filter_id] = filter_value;
 
 
- var html =  '<div id="' + unique_id + '" class="summary_box" >' +
-                /* summary user box */
-                '<div class="summary_user_box">' +
-                  '<a href="/home/show?id=' +  summary.user.id + '" >' +
-                    '<img src="' + summary.user.photo + '" alt="" />' +
-                    '<br/>' + summary.user.full_name + 
-                  '</a>'+ 
-                '</div>'+
+ var html = '<div class="p-channelp-post">' +
+              '<div class="p-channelp-post-header">' +
+                '<div class="p-channelp-post-tab">' +
+                '</div>' +
+                '<div class="p-channelp-post-author">' +
+                  '<div class="p-channelp-post-author-img">' +
+                    '<a href="/home/show?id=' +  summary.user.id + '" >' +  
+                      '<img src="' + summary.user.photo + '" alt="">' +
+                    '</a>'+ 
+                  '</div>' +
+                  '<div class="p-channelp-post-author-name">' +
+                    '<span>' + summary.user.full_name+ '</span>' +
+                  '</div>' +
+                '</div>' +
+              '</div> ' +
+              
 
-                '<div class="summary_channel_box js_summary_filter_setter" id="'+ filter_id +'" >' +
+              '<div class="p-channelp-post-info">' +
+                '<div class="p-channelp-post-lu" id="' + latest_text_box_id  + '">' +
+                  '<div class="p-channelp-post-lu-header">' +
+                    '<span>Last Updates</span>' +
+                  '</div>' +
+                '</div>' +
+            
+                '<div class="p-channelp-post-cu">' +
                   '<span>'  +
                      summary.word.name + 
                   '</span>' +
                 '</div>' +
-
-                '<div class="summary_update_time_box" >' +
-                    '<span>'  +
-                      'Last updated: ' +
-                    '</span>' +
-                    '<abbr class="timeago" title="' + summary.time + '"></abbr>' +
+                '<div class="p-channelp-post-analytic">' +
+                  '<div class="p-channelp-post-like">' +
+                    '<p><center>' + summary.count + '</center></p> <p> <center>Likes</center></p>' +
+                  '</div>' +
+                  '<div class="p-channelp-post-post">' +
+                    '<p><center>' + summary.count + '</center></p> <p> <center>posts</center></p>' +
+                  '</div>' +
                 '</div>' +
+              '</div>' +
 
-                '<div class="summary_total_posts_box" >' +
-                    '<span>'  +
-                      'Total updates: ' + summary.count +
-                    '</span>' +
+              '<div class="p-channelp-related-info">' +
+                '<div class="p-channelp-rel-frnd" >' +
+                  '<div class="p-channelp-post-rel-friend-header">' +
+                    '<span>Related Friends :</span>'+
+                  '</div>' +
+                  '<div id="' + friends_box_id + '">' +
+                  '</div>' +
                 '</div>' +
-
-                
-                
-                /* summary main box */
-                '<div class="summary_main_box">' +
-
-
-                  /* added last few friends active on this channel */
-                  '<div  class="summary_main_box_friends" id="' + friends_box_id + '">' +
-                    '<span> Friends doing same thing <br/></span>' + 
+                '<div class="p-channelp-post-rel-elem" >' +
+                  '<div class="p-channelp-post-rel-elem-header">' +
+                    '<span>Related Elements :</span>'+
                   '</div>' +
-
-
-                  /* added last few entities on this channel */
-                  '<div  class="summary_main_box_entities" id="' + entities_box_id  + '">' +
-                    '<span> Latest objects: <br/></span>' + 
+                  '<div class="p-channelp-post-relelem-sect">' +
+                    '<ul class="p-channelp-post-relelem" id="' + entities_box_id  + '">' +
+                    '</ul>' +
                   '</div>' +
-
-                  /* added last few locations on this channel */
-                  '<div  class="summary_main_box_locations" id="' + locations_box_id  + '">' +
-                    '<span> Latest locations: <br/></span>' + 
-                  '</div>' +
-
-
-                  /* added recent update text */
-                  '<div  class="summary_main_box_latest" id="' + latest_text_box_id  + '">' +
-                    '<span> Latest updates: <br/></span>' + 
-                  '</div>' +
-
-
-                  /* added images box lets see if we have anything to add here */
-                  '<div  class="summary_main_box_attachments" id="' + docs_box_id + '">' +
-                    '<span> Latest attachments: <br/></span>' + 
-                  '</div>' +
-
                 '</div>' +
-                  
-              '</div>';
+                '<div class="p-channelp-post-rel-loc" >' +
+                  '<div class="p-channelp-post-rel-loc-header">' +
+                    '<span>Related Locations :</span>'+
+                  '</div>' +
+                  '<div class="p-channelp-post-relloc-sect">' +
+                    '<ul class="p-channelp-post-relelem" id="' + locations_box_id  + '">' +
+                    '</ul>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              '<div class="p-channelp-post-rel-img" >' +
+                '<div class="p-channelp-post-rel-img-header">' +
+                    '<span>Related Images :</span>'+
+                '</div>' +
+                '<div class="p-channelp-rel-img">' +
+                  '<div id="' + docs_box_id + '">' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+            '</div>';
+
+
         /* overall summary div is added */        
         summary_box.append(html);
         /* handle individual divs */
+        //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary);  
         create_and_add_text_box(latest_text_box_id, summary);
         create_and_add_friends_box(friends_box_id, summary);
         create_and_add_entities_box(entities_box_id, summary);
-        create_and_add_locations_box(locations_box_id, summary)
+        create_and_add_locations_box(locations_box_id, summary);
 
 }
 
@@ -279,7 +362,8 @@ function append_personal_summary(owner_id){
            $.each(data, function(i,summary){
             if( summary ){
                 //alert(JSON.stringify(summary));
-                create_and_add_summary($('#channels_display_list'),summary);
+                //create_and_add_summary($('#channels_display_list'),summary);
+                create_and_add_summary($('#p-channelp-posts'),summary);
                 $("#more_channels_cookie").val(summary.time);
             } 
           });
@@ -296,6 +380,18 @@ function append_personal_summary(owner_id){
     });
 
 }
+
+
+/*
+ * To fetch and create the author section (on right side) of channel page
+ */
+function attach_channel_author_section(owner_id){
+  /* 
+   * I am not sure of api to call hence leaving it blank...
+   */
+   create_and_add_summary_author($('#p-channelp-author-section'),owner_id);
+}
+
 
 function reload_summary_page(owner_id){
   $('#channels_display_list').html("");

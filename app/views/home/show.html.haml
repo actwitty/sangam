@@ -24,14 +24,26 @@
           =render :partial => "home/stream_left_side"
       / #### Start of Main Content Bar  ####
       %li.p-content
-        #channels_main_bar
-          =render :partial => "home/channel_main_content"
+        /#channels_main_bar
+        /  =render :partial => "home/channel_main_content"
         #streams_main_bar
           =render :partial => "home/stream_main_content"
       / #### Start of Right filter Bar  ####
       %li.p-con-r-fltr.right-filters
         #streams_right_side_bar
           =render :partial => "home/stream_right_side"
+  #p-channelp-sect
+    #p-content-sect
+      / #### channel page tabs section ####
+      #p-channelp-tabs-section
+        #p-channelp-tab-all.p-channelp-tab
+          %span All Channels
+        #p-channelp-tab-mine.p-channelp-tab
+          %span My Channels
+      / #### channel page content section ####
+      #p-channelp-content
+        =render :partial => "home/channelp_posts"
+        =render :partial => "home/channelp_author_section"
 
 /Secret cookies
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
