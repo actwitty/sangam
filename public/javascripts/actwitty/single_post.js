@@ -1,3 +1,4 @@
+
 function single_post_initializer(){
   var post_id=$('#post_id').attr("value");
   var current_user_id=$('#session_owner_id').attr("value");

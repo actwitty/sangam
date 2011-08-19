@@ -583,38 +583,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var time_js = new Date().toString('HH:mm tt');
   var external_shares="";
   if ( post.status == 2){
-    /* Share FB */
-    
-    var url = 'http://localhost:3000/view?id=' + post.id;
-    var host = window.location.hostname;
-    var twit = 'http://twitter.com/home?status='+ post.sub_title+'%20'+url;
-    var facebook = 'http://www.facebook.com/sharer.php?u='+url
-    var digg = 'http://digg.com/submit?phase=2&url='+url+'&amp;title='+ post.sub_title;
-    var stumbleupon = 'http://stumbleupon.com/submit?url='+url+'&amp;title='+ post.sub_title;
-    var buzz = 'http://www.google.com/reader/link?url='+url+'&amp;title='+ post.sub_title+'&amp;srcURL='+host;
-    var delicious  = 'http://del.icio.us/post?url='+url+'&amp;title='+ post.sub_title;
-
-    var external_shares = '<div id="socializethis">' +
-                    '<span>' + 
-                          'Share <br/>' + 
-                          '<a href="#min" id="minimize" title="Minimize"> <img src="/images/alpha/shares/plus.png" />' +
-                          '</a>' +
-                    '</span>' +
-                    '<div id="sicons">' +
-                      '<a href="'+twit+'" id="twit" title="Share on twitter"><img src="/images/alpha/shares/twitter.png"  alt="Share on Twitter" width="32" height="32" /></a>' +
-
-                      '<a href="'+facebook+'" id="facebook" title="Share on Facebook"><img src="/images/alpha/shares/facebook.png"  alt="Share on facebook" width="32" height="32" /></a>' +
-
-                      '<a href="'+digg+'" id="digg" title="Share on Digg"><img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="32" height="32" /></a>' +
-                      '<a href="'+stumbleupon+'" id="stumbleupon" title="Share on Stumbleupon"><img src="/images/alpha/shares/stumbleupon.png"  alt="Share on Stumbleupon" width="32" height="32" /></a>' +
-
-                      '<a href="'+delicious+'" id="delicious" title="Share on Del.icio.us"><img src="/images/alpha/shares/delicious.png"  alt="Share on Delicious" width="32" height="32" /></a>' +
-                      
-                      '<a href="'+buzz+'" id="buzz" title="Share on Buzz"><img src="/images/alpha/shares/google-buzz.png"  alt="Share on Buzz" width="32" height="32" /></a>' +
-                  
-                    '</div>' +
-                  
-                  '</div>';
+    var external_shares = get_socialize_html(post.id, post.sub_title); 
   }
   /* Main stream div definition */
   var stream_ele_id = get_stream_ele_id(post.id);

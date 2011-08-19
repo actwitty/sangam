@@ -115,7 +115,21 @@ var the_big_modal_manager_json = {
                                           data_json:{}
 
                                      
-                                   }                                   
+                                   },
+    "JS_AW_MODAL_share" : {
+                                          renderer_fn:function aw_modal_share(win_id, trigger_id){
+                                            //alert("calling related locations renderer");
+                                            return aw_render_share_externally(win_id, trigger_id);
+                                          },
+                                          title:"Share the post",
+                                          top:50,
+                                          left:350,
+                                          width:450,
+                                          height:200,
+                                          data_json:{}
+
+                                     
+                                   }             
                                   };
 
 

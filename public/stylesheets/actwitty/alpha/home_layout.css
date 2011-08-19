@@ -2001,3 +2001,7 @@ a.js_handle_stream_entity_mention:hover span {
 }
 */
 /***********************************************/
+/* line 1949, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.js_socialize_icons {
+  display: none;
+}

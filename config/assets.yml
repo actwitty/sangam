@@ -51,6 +51,7 @@ javascripts:
     - public/javascripts/actwitty/profile_related_followings.js
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
+    - public/javascripts/actwitty/profile_stream_share.js
     - public/javascripts/actwitty/profile_followers.js
     - public/javascripts/actwitty/profile_facebook.js
     - public/javascripts/actwitty/profile_followings.js
