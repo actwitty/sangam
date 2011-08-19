@@ -703,9 +703,10 @@ class HomeController < ApplicationController
         return
     end
 
-    if request.xhr?
-      Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] sending response JSON #{response_json}")
-      render :json => response_json, :status => 200
+    @success=true
+
+    respond_to do |format|
+      format.json
     end
 
    end
@@ -890,6 +891,44 @@ class HomeController < ApplicationController
 
   end
   ######################################
+
+   def update_social_media_share
+    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] request params #{params}")
+
+    if params[:activity_id].blank? ||  params[:summary_id].blank?  ||  params[:source_name].blank?
+      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] returned as summary or activity is nil")
+      return
+    end
+
+    args = {}
+    args[:activity_id] = Integer(params[:activity_id])
+    args[:summary_id] = Integer(params[:summary_id])
+    args[:source_name] = params[:source_name]
+    args[:action] = params[:action_type]
+    args[:author_id] = current_user.id
+    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
+    response_json = current_user.create_social_counter(args)
+    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
+    if request.xhr?
+      render :json => {}, :status => 200
+    end
+   end
+
+  ######################################
+
+  def get_social_counter
+   Rails.logger.info("[CNTRL][HOME][GET SOCIAL MEDIA SHARE] request params #{params}")
+   unless params[:activity_id].blank?
+     args = {}
+     args[:activity_id] = Integer(params[:activity_id])
+     Rails.logger.info("[CNTRL][HOME][GET SOCIAL MEDIA SHARE] calling model api #{args}")
+     response_json = current_user.get_social_counter(args)
+     Rails.logger.info("[CNTRL][HOME][GET SOCIAL MEDIA SHARE] response from model #{response_json}")
+     if request.xhr?
+      render :json => response_json, :status => 200
+    end
+   end
+  end
 
 end
 

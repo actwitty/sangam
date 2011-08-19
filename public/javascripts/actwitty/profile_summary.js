@@ -45,9 +45,21 @@ function create_and_docs_box(box_id, summary){
   docs_box= $("#" + box_id);
   if ( summary.documents &&  summary.documents.length ){
     var ul_box = $("#" + box_id);
+   
     $.each(summary.documents, function(i, attachment){
-     var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title=""><img alt="" src="'+ attachment.thumb_url + '"  width="50" height="50" alt="" /></a>'; 
-     ul_box.append(html);
+      
+      if(attachment.category == "image"){
+        var thumb_url = attachment.url;
+       
+       if( attachment.thumb_url ) {
+          thumb_url = attachment.thumb_url;
+        }
+       
+       var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title="">' +
+                  '<img alt="" src="'+ thumb_url + '"  width="50"  alt="" />' +
+                '</a>'; 
+        ul_box.append(html);
+      }
     });
     /* activate fancy box  */
     activate_fancybox_group(box_id);

@@ -43,8 +43,6 @@ function handle_stream_docs(type, box_id, stream){
   if ( stream.documents &&  stream.documents.count ){
     var ul_box = $("#" + box_id);
    
-
-   
     $.each(stream.documents.array, function(i, attachment){
       var caption = "";
       if(attachment.caption && attachment.caption.length){
@@ -583,7 +581,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var time_js = new Date().toString('HH:mm tt');
   var external_shares="";
   if ( post.status == 2){
-    var external_shares = get_socialize_html(post.id, post.sub_title); 
+    var external_shares = get_socialize_html(stream); 
   }
   /* Main stream div definition */
   var stream_ele_id = get_stream_ele_id(post.id);

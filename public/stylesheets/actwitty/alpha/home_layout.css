@@ -2005,3 +2005,19 @@ a.js_handle_stream_entity_mention:hover span {
 .js_socialize_icons {
   display: none;
 }
+
+/* line 1953, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.socialize_box {
+  padding: 2px;
+  border: 1px solid #ccc;
+  margin: 2px;
+  display: inline-block;
+}
+
+/* line 1963, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.socialize_box span {
+  text-align: center;
+  padding: 2px;
+  padding-bottom: 5px;
+  margin: 2px;
+}
