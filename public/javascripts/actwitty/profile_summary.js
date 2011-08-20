@@ -364,7 +364,7 @@ function append_personal_summary(owner_id){
         data: {
                 user_id : owner_id, 
                 updated_at:more_cookie, 
-                friend:get_others_filter_state(),
+                page_type:aw_get_channel_scope(),
                 cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
@@ -405,8 +405,8 @@ function attach_channel_author_section(owner_id){
 }
 
 
-function reload_summary_page(owner_id){
-  $('#channels_display_list').html("");
+function aw_summary_reload_tab(owner_id){
+  $('#p-channelp-posts').html("");
   $("#more_channels_cookie").val("");
   append_personal_summary(owner_id);
 

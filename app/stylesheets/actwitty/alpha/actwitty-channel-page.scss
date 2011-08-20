@@ -33,7 +33,7 @@
 {
   float:left;
   width:120px;
-  height:30px;
+  height:20px;
 }
 .p-channelp-tab:hover
 {
@@ -43,12 +43,30 @@
 {
   margin-left:30px;
   border:0px solid red;
-  background:#ddd;
 }
 #p-channelp-tab-all span
 {
   text-align:center;
-  font-size:22px;
+  font-size:14px;
+  padding:5px;
+}
+
+.p-channelp-unselected{
+  background:#ddd;
+}
+.p-channelp-selected{
+  background:#1589FF;
+}
+
+#p-channelp-tab-subscribed
+{
+  margin-left:10px;
+  border:0px solid red;
+}
+#p-channelp-tab-subscribed span
+{
+  text-align:center;
+  font-size:14px;
   padding:5px;
 }
 
@@ -56,12 +74,11 @@
 {
   margin-left:10px;
   border:0px solid red;
-  background:#ddd;
 }
 #p-channelp-tab-mine span
 {
   text-align:center;
-  font-size:22px;
+  font-size:14px;
   padding:5px;
 }
 

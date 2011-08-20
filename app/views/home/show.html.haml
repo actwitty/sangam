@@ -35,11 +35,15 @@
   #p-channelp-sect
     #p-content-sect
       / #### channel page tabs section ####
-      #p-channelp-tabs-section
-        #p-channelp-tab-all.p-channelp-tab
-          %span All Channels
-        #p-channelp-tab-mine.p-channelp-tab
-          %span My Channels
+      -if user_signed_in?
+        -if current_user.id == @user.id
+          #p-channelp-tabs-section
+            #p-channelp-tab-all.p-channelp-tab.p-channelp-unselected.js_channel_scope
+              %span All Channels
+            #p-channelp-tab-subscribed.p-channelp-tab.p-channelp-unselected.js_channel_scope
+              %span Subscribed Channels
+            #p-channelp-tab-mine.p-channelp-tab.p-channelp-unselected.js_channel_scope
+              %span My Channels
       / #### channel page content section ####
       #p-channelp-content
         =render :partial => "home/channelp_posts"
