@@ -28,58 +28,33 @@ class CreateHubs < ActiveRecord::Migration
 
       t.timestamps
     end
-    #these 3 index satisfies user filter requiremens
-    add_index :hubs,  [ :activity_word_id, :user_id]
-    add_index :hubs,  [ :entity_id,        :user_id]
-    add_index :hubs,  [ :location_id,      :user_id]
 
-    #these satisfies all location based queries
-    add_index :hubs,  [ :user_id, :activity_word_id, :entity_id] , :name => "index_hubs_on_user_activity_entity"
-    add_index :hubs,  [ :activity_word_id, :entity_id]
+    add_index :hubs, :activity_id
+    add_index :hubs, :entity_id
+    add_index :hubs, :location_id
+    add_index :hubs, :user_id
 
-    #remaining  indexes
-    add_index :hubs,  [:entity_id , :activity_id]
-    add_index :hubs,  :activity_id
+    add_index :hubs, [:summary_id, :entity_id]
 
-    add_index :hubs, [:user_id, :summary_id]
-    add_index :hubs, :summary_id
+    #add_index :hubs, [:activity_word_id, :location_id, :source_name, :entity_id, :user_id, :updated_at]
 
+    add_index :hubs, :source_name
     add_index :hubs, :updated_at
-    add_index :hubs, :created_at
-
-    add_index :hubs, [:source_name, :user_id,  :activity_word_id],:name => "index_hubs_on_source_user_word"
-    add_index :hubs, [:source_name, :activity_word_id]
-
-    #TODO modify ass needed
 
   end
 
   def self.down
-    #these 3 index satisfies user filter requiremens
-    remove_index :hubs,  [ :activity_word_id, :user_id]
-    remove_index :hubs,  [ :entity_id, :user_id]
-    remove_index :hubs,  [ :location_id,:user_id]
+    remove_index :hubs, :activity_id
+    remove_index :hubs, :entity_id
+    remove_index :hubs, :location_id
+    remove_index :hubs, :user_id
 
-    #these satisfies all location based queries
-    remove_index :hubs,  :name => "index_hubs_on_user_activity_entity"
-    remove_index :hubs,  [ :activity_word_id, :entity_id]
+    remove_index :hubs, [:summary_id, :entity_id]
 
-    #remaining  indexes
-    remove_index :hubs,  [:entity_id , :activity_id]
-    remove_index :hubs,  :activity_id
+    #remove_index :hubs, [:activity_word_id, :location_id, :source_name, :entity_id, :user_id, :updated_at]
 
-    remove_index :hubs, [:user_id, :summary_id]
-    remove_index :hubs, :summary_id
-
+    remove_index :hubs, :source_name
     remove_index :hubs, :updated_at
-
-    remove_index :hubs, :created_at
-
-    remove_index :hubs, :name => "index_hubs_on_source_user_word"
-    remove_index :hubs, [:source_name, :activity_word_id]
-
-
-    #TODO modify as needed
 
     drop_table :hubs
   end

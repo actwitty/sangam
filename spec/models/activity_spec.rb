@@ -261,17 +261,17 @@ describe Activity do
       params[:user_id] =  @u.id
       params[:current_user] =  @u
 
-      @u.follow(@u1.id)
-      @u1.follow(@u.id)
-      @u.follow(@u2.id)
-      @u2.follow(@u.id)
-      @u.follow(@u3.id)
-      @u3.follow(@u.id)
-#      @u1.subscribe_summary(act[:post][:summary_id])
-#      @u2.subscribe_summary(act3[:post][:summary_id])
-#      @u1.subscribe_summary(act6[:post][:summary_id])
-#      @u.subscribe_summary(act2[:post][:summary_id])
-#      @u.subscribe_summary(act6[:post][:summary_id])
+#      @u.follow(@u1.id)
+#      @u1.follow(@u.id)
+#      @u.follow(@u2.id)
+#      @u2.follow(@u.id)
+#      @u.follow(@u3.id)
+#      @u3.follow(@u.id)
+      @u1.subscribe_summary(act[:post][:summary_id])
+      @u2.subscribe_summary(act3[:post][:summary_id])
+      @u1.subscribe_summary(act6[:post][:summary_id])
+      @u.subscribe_summary(act2[:post][:summary_id])
+      @u.subscribe_summary(act6[:post][:summary_id])
 
       params[:scope] = 0
       params[:order] = "2011-07-05T07:28:56Z"
@@ -290,7 +290,7 @@ describe Activity do
       wi = ActivityWord.where(:word_name => "eating").first
       e = Entity.where(:entity_name => "pizza").first
       l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
-      filter = {:word_id => wi.id, :entity_id => e.id, :source_name => "actwitty"}
+      filter = {:word_id => wi.id,  :source_name => "actwitty"}
 
       puts "Related Friends"
       h = @u.get_related_friends( filter)

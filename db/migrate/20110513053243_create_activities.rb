@@ -41,57 +41,62 @@ class CreateActivities < ActiveRecord::Migration
       t.timestamps
     end
 
-      add_index :activities, [:author_id, :activity_word_id]
+       add_index :activities, [:summary_id, :blank_text]
 
-      add_index :activities, :activity_word_id
+       add_index :activities, [:summary_id, :base_location_id]
 
-      add_index :activities, [:activity_name, :author_id ]
+       add_index :activities, :base_location_id
 
-      add_index :activities, :updated_at
+       add_index :activities, [:author_id, :status, :meta_activity], :name => "index_activities_on_author_status_meta"
 
-      add_index :activities, :base_location_id
+       add_index :activities, [:activity_word_id, :source_name, :updated_at, :status, :meta_activity, :base_location_id, :author_id ],
+                               :name => "index_activities_on_word_source_time_status_meta_loc_author"
 
-      add_index :activities, [:id, :enriched]
+       add_index :activities, [:source_name, :updated_at, :status, :meta_activity, :base_location_id, :author_id ],
+                               :name => "index_activities_on_source_time_status_meta_loc_author"
 
-      add_index :activities, [:summary_id, :author_id]
+       add_index :activities, [:updated_at, :status, :meta_activity, :base_location_id, :author_id ],
+                               :name => "index_activities_on_time_status_meta_loc_author"
 
-      add_index :activities, [ :status, :author_id]
+       add_index :activities, [:activity_word_id, :source_name, :summary_id, :updated_at, :status, :meta_activity,:base_location_id],
+                                :name => "index_activities_on_word_source_summary_time_status_meta_loc"
 
-      add_index :activities, [ :source_name, :author_id,  :activity_word_id],:name => "index_activities_on_source_author_word"
+       add_index :activities, [:source_name, :summary_id, :updated_at, :status, :meta_activity,:base_location_id],
+                                :name => "index_activities_on_source_summary_time_status_meta_loc"
 
-      add_index :activities, [:source_name, :activity_word_id]
+       add_index :activities, [:summary_id, :updated_at, :status, :meta_activity,:base_location_id],
+                                :name => "index_activities_on_summary_time_status_meta_loc"
 
-      add_index :activities, [:meta_activity, :author_id]
-
-      add_index :activities, :created_at
+       add_index :activities, [:id, :author_id]
+       add_index :activities, [:id, :enriched]
 
   end
 
   def self.down
 
-      remove_index :activities, [:author_id, :activity_word_id]
+      remove_index :activities, [:summary_id, :blank_text]
 
-      remove_index :activities, :activity_word_id
-
-      remove_index :activities, [:activity_name, :author_id]
-
-      remove_index :activities, :updated_at
+      remove_index :activities, [:summary_id, :base_location_id]
 
       remove_index :activities, :base_location_id
 
+      remove_index :activities, :name => "index_activities_on_author_status_meta"
+
+      remove_index :activities, :name => "index_activities_on_word_source_time_status_meta_loc_author"
+
+      remove_index :activities, :name => "index_activities_on_source_time_status_meta_loc_author"
+
+      remove_index :activities, :name => "index_activities_on_time_status_meta_loc_author"
+
+      remove_index :activities, :name => "index_activities_on_word_source_summary_time_status_meta_loc"
+
+      remove_index :activities, :name => "index_activities_on_source_summary_time_status_meta_loc"
+
+      remove_index :activities, :name => "index_activities_on_summary_time_status_meta_loc"
+
+      remove_index :activities, [:id, :author_id]
+
       remove_index :activities, [:id, :enriched]
-
-      remove_index :activities, [:summary_id, :author_id]
-
-      remove_index :activities, [ :status, :author_id]
-
-      remove_index :activities, :name => "index_activities_on_source_author_word"
-
-      remove_index :activities, [:source_name, :activity_word_id]
-
-      remove_index :activities, [:meta_activity, :author_id]
-
-      remove_index :activities, :created_at
 
       drop_table :activities
   end
