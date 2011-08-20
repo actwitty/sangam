@@ -2,7 +2,8 @@
 
 class Document < ActiveRecord::Base
 
-  include  ActionView::Helpers
+   include  ActionView::Helpers
+   serialize       :social_counters_array, Array
 
    belongs_to     :owner, :class_name => "User"
    belongs_to     :activity_word

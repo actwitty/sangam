@@ -340,13 +340,20 @@ class User < ActiveRecord::Base
 
   #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
+  #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+  ##             OR 4(AppConstants.page_state_public)
   #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
-  def get_related_entities(user_id, filter = {})
+  def get_related_entities(user_id, filter = {}, page_type = AppConstants.page_state_user)
 
     Rails.logger.debug("[MODEL] [User] [get_related_entities] entering ")
     h = {}
-    h = process_filter(filter)
-    h[:user_id] = user_id if !user_id.blank?
+
+    params = {:filter => filter, :user_id => user_id, :page_type => page_type}
+    h = process_filter_modified(params)
+    if h.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_related_entities] Leaving => Blank has returned by process_filter => #{params}")
+      return {}
+    end
 
     h = Hub.where(h).group(:entity_id).order("MAX(updated_at) DESC").count
     e = Entity.where(:id => h.keys).order("updated_at DESC").all
@@ -362,20 +369,28 @@ class User < ActiveRecord::Base
 
   end
 
+  #INPUT
   #user_id => 123
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
-  #returns array of :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
+  #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+  ##             OR 4(AppConstants.page_state_public)
+  #OUTPUT array of :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR
   #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
   #                                                      OR
   #                 :id => 1234, :type => 2, :name => "John's home"
-  def get_related_locations(user_id, filter = {})
+  def get_related_locations(user_id, filter = {}, page_type = AppConstants.page_state_user)
 
     Rails.logger.debug("[MODEL] [User] [get_related_locations] entering ")
     h = {}
-    h = process_filter(filter)
-    h[:user_id] = user_id  if !user_id.blank?
 
+    params = {:filter => filter, :user_id => user_id, :page_type => page_type}
+    h = process_filter_modified(params)
+
+    if h.blank?
+      Rails.logger.debug("[MODEL] [USER] [get_related_locations] Leaving => Blank has returned by process_filter => #{params}")
+      return {}
+    end
     lh = []
 
     h = Hub.where(h).group(:location_id).order("MAX(updated_at) DESC").count
@@ -686,7 +701,6 @@ class User < ActiveRecord::Base
       array[index][:comments] = {:count => attr.comments.size, :array => [] }
       array[index][:documents]= {:count => attr.documents.size, :array => []}
       array[index][:tags]=      {:count => attr.tags.size, :array => []}
-      array[index][:social_counters] = attr.social_counters
       array[index][:campaigns]= []
       hash[attr.id] = index
       index = index + 1
@@ -901,7 +915,7 @@ class User < ActiveRecord::Base
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
-                             :social_counters => attr.social_counters, :theme_data => attr.theme_data,
+                             :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }

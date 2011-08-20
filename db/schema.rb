@@ -13,23 +13,23 @@
 ActiveRecord::Schema.define(:version => 20110818033521) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "activity_word_id",                :null => false
+    t.integer  "activity_word_id",                     :null => false
     t.text     "activity_text"
-    t.text     "activity_name",                   :null => false
-    t.integer  "author_id",                       :null => false
+    t.text     "activity_name",                        :null => false
+    t.integer  "author_id",                            :null => false
     t.integer  "base_location_id"
-    t.integer  "comments_count",   :default => 0
-    t.integer  "documents_count",  :default => 0
-    t.integer  "tags_count",       :default => 0
-    t.integer  "campaign_types",                  :null => false
-    t.integer  "status",                          :null => false
-    t.text     "source_name",                     :null => false
+    t.integer  "comments_count",        :default => 0
+    t.integer  "documents_count",       :default => 0
+    t.integer  "tags_count",            :default => 0
+    t.integer  "campaign_types",                       :null => false
+    t.integer  "status",                               :null => false
+    t.text     "source_name",                          :null => false
     t.text     "sub_title"
     t.integer  "summary_id"
     t.boolean  "enriched"
     t.boolean  "meta_activity"
     t.boolean  "blank_text"
-    t.text     "social_counters"
+    t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,23 +156,23 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "documents", :force => true do |t|
-    t.integer  "owner_id",         :null => false
+    t.integer  "owner_id",              :null => false
     t.integer  "activity_id"
     t.integer  "activity_word_id"
-    t.text     "name",             :null => false
+    t.text     "name",                  :null => false
     t.text     "mime"
     t.text     "caption"
     t.integer  "comments_count"
     t.integer  "summary_id"
-    t.text     "url",              :null => false
+    t.text     "url",                   :null => false
     t.text     "thumb_url"
-    t.integer  "status",           :null => false
-    t.text     "source_name",      :null => false
-    t.boolean  "uploaded",         :null => false
-    t.text     "provider",         :null => false
-    t.text     "category",         :null => false
+    t.integer  "status",                :null => false
+    t.text     "source_name",           :null => false
+    t.boolean  "uploaded",              :null => false
+    t.text     "provider",              :null => false
+    t.text     "category",              :null => false
     t.integer  "location_id"
-    t.text     "social_counters"
+    t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -190,11 +190,11 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   add_index "documents", ["uploaded", "owner_id"], :name => "index_documents_on_uploaded_and_owner_id"
 
   create_table "entities", :force => true do |t|
-    t.string   "entity_name",     :null => false
-    t.string   "entity_guid",     :null => false
+    t.string   "entity_name",           :null => false
+    t.string   "entity_guid",           :null => false
     t.text     "entity_image"
     t.text     "entity_doc"
-    t.text     "social_counters"
+    t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -317,12 +317,12 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   add_index "location_hubs", ["web_join_id", "unresolved_join_id"], :name => "index_location_hub_on_web_unresolved"
 
   create_table "locations", :force => true do |t|
-    t.integer  "location_type",                                   :null => false
-    t.text     "location_name",                                   :null => false
+    t.integer  "location_type",                                         :null => false
+    t.text     "location_name",                                         :null => false
     t.text     "location_url"
-    t.decimal  "location_lat",    :precision => 18, :scale => 15
-    t.decimal  "location_long",   :precision => 18, :scale => 15
-    t.text     "social_counters"
+    t.decimal  "location_lat",          :precision => 18, :scale => 15
+    t.decimal  "location_long",         :precision => 18, :scale => 15
+    t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -405,18 +405,18 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   end
 
   create_table "summaries", :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.integer  "activity_word_id",                :null => false
-    t.string   "activity_name",                   :null => false
-    t.integer  "activities_count", :default => 0
-    t.integer  "documents_count",  :default => 0
-    t.integer  "tags_count",       :default => 0
+    t.integer  "user_id",                              :null => false
+    t.integer  "activity_word_id",                     :null => false
+    t.string   "activity_name",                        :null => false
+    t.integer  "activities_count",      :default => 0
+    t.integer  "documents_count",       :default => 0
+    t.integer  "tags_count",            :default => 0
     t.text     "location_array"
     t.text     "entity_array"
     t.text     "activity_array"
     t.text     "document_array"
     t.text     "tag_array"
-    t.text     "social_counters"
+    t.text     "social_counters_array"
     t.text     "theme_data"
     t.datetime "created_at"
     t.datetime "updated_at"

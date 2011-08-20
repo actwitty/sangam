@@ -36,7 +36,7 @@ class CreateActivities < ActiveRecord::Migration
       t.boolean :meta_activity
       t.boolean :blank_text
 
-      t.text :social_counters
+      t.text :social_counters_array
 
       t.timestamps
     end

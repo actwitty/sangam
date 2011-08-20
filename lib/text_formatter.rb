@@ -283,7 +283,7 @@ module TextFormatter
         :source_name => activity.source_name,
         :status => activity.status,
         :campaign_types => activity.campaign_types,
-        :social_counters => activity.social_counters
+        :social_counters => activity.social_counters_array
       }
 
     if !activity.base_location_id.blank?

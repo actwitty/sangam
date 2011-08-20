@@ -10,7 +10,7 @@
 
         t.text     :entity_doc
 
-        t.text  :social_counters
+        t.text  :social_counters_array
 				t.timestamps
       end
 

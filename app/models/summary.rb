@@ -5,7 +5,7 @@ class Summary < ActiveRecord::Base
   serialize :activity_array, Array
   serialize :location_array, Array
   serialize :tag_array,       Array
-  serialize :social_counters, Array
+  serialize :social_counters_array, Array
   serialize :theme_data,      Hash
 
   has_many    :activities, :order => "updated_at DESC"
