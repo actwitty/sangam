@@ -366,12 +366,12 @@ class User < ActiveRecord::Base
   #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
   ##             OR 4(AppConstants.page_state_public)
   #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
-  def get_related_entities(user_id, filter = {}, page_type = AppConstants.page_state_user)
+  def get_related_entities(user_id, filter = {}, page_type = AppConstants.page_state_user, updated_at = nil)
 
     Rails.logger.debug("[MODEL] [User] [get_related_entities] entering ")
     h = {}
 
-    params = {:filter => filter, :user_id => user_id, :page_type => page_type}
+    params = {:filter => filter, :user_id => user_id, :page_type => page_type, :updated_at => updated_at}
     h = process_filter_modified(params)
 
     if h.blank?
@@ -404,12 +404,12 @@ class User < ActiveRecord::Base
   #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
   #                                                      OR
   #                 :id => 1234, :type => 2, :name => "John's home"
-  def get_related_locations(user_id, filter = {}, page_type = AppConstants.page_state_user)
+  def get_related_locations(user_id, filter = {}, page_type = AppConstants.page_state_user,  updated_at = nil)
 
     Rails.logger.debug("[MODEL] [User] [get_related_locations] entering ")
     h = {}
 
-    params = {:filter => filter, :user_id => user_id, :page_type => page_type}
+    params = {:filter => filter, :user_id => user_id, :page_type => page_type, :updated_at => updated_at}
     h = process_filter_modified(params)
 
     if h.blank?
