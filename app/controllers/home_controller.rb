@@ -101,6 +101,16 @@ class HomeController < ApplicationController
 
   end
   ############################################
+  def search_people
+    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search params : #{params}")
+    response = User.search(params[:q])
+    response_json = response.to_json
+    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search response : #{response_json}")
+    if request.xhr?
+        render :json => response_json, :status => 200
+    end
+  end
+  ############################################
   def get_channels
    Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
    if user_signed_in?
@@ -890,6 +900,7 @@ class HomeController < ApplicationController
     args[:source_name] = params[:source_name]
     args[:action] = params[:action_type]
     args[:author_id] = current_user.id
+
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
     response_json = current_user.create_social_counter(args)
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")

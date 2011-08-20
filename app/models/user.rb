@@ -209,7 +209,7 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
-    if search
+    unless search.blank?
       select("id,full_name,photo_small_url").order("full_name").
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
