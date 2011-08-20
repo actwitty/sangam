@@ -798,7 +798,8 @@ function delete_comment(post_id, comment_id, del_id, all_id){
         data: {"comment_id":comment_id},
         dataType: 'json',
         success: function (data) {
-          $("#" + del_id).empty().remove();
+          $("#" + del_id).html('');
+          $("#" + del_id).remove();
           var comment_count = the_big_comment_show_all_json[all_id].count - 1;
           the_big_comment_show_all_json[all_id].count = comment_count;
           $("#" + all_id).html(get_comment_head_label(comment_count));
@@ -858,7 +859,8 @@ function delete_stream(post_id){
     data: "post_id=" + post_id,
     dataType: 'json',
     success: function (data) {
-      $("#" + stream_render_id).empty().remove();
+      $("#" + stream_render_id).html('');
+      $("#" + stream_render_id).remove();
     },
     error:function(XMLHttpRequest,textStatus, errorThrown) {
       aw_lib_alert('There has been a problem in deleting the stream. \n ActWitty is trying to solve.');
@@ -986,7 +988,8 @@ function remove_document_from_post(document_id, close_box){
           success: function (data) {
             /*remove that document*/
            var parent_box = close_box.closest(".p-awp-view-attachment-inner-box");
-           parent_box.empty().remove();
+           parent_box.html('');
+           parent_box.remove();
 
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
@@ -1096,7 +1099,8 @@ $(document).ready(function(){
     if(edit_json){
       //aw_lib_alert("edit:" + edit_json.stream_id);
       var stream_render_id = get_stream_ele_id(edit_json.stream_id);
-      $("#" + stream_render_id).empty().remove();
+      $("#" + stream_render_id).html('');
+      $("#" + stream_render_id).remove();
       aw_edit_drafted_stream(edit_json.stream_id);
     }
     return false;
@@ -1109,7 +1113,8 @@ $(document).ready(function(){
     var publish_json = the_big_stream_actions_json[$(this).parent().attr("id")];
     if(publish_json){
       var stream_render_id = get_stream_ele_id(publish_json.stream_id);
-      $("#" + stream_render_id).empty().remove();
+      $("#" + stream_render_id).html('');
+      $("#" + stream_render_id).remove();
       aw_publish_drafted_stream( publish_json.stream_id);
     }
     return false;

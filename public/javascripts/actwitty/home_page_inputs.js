@@ -144,7 +144,7 @@ function post_activity_to_server(post_data){
         success: function (data) {
           reset_to_default();
           clear_all_input_jsons();
-          $("#pre_uploaded_docs").html("");
+          $("#pre_uploaded_docs").empty();
           aw_lib_alert("New post added");
         },
           error: function(jqXHR, textStatus, errorThrown){
@@ -165,7 +165,7 @@ function post_activity_to_server(post_data){
         success: function (data) {
           reset_to_default();
           clear_all_input_jsons();
-          $("#pre_uploaded_docs").html("");
+          $("#pre_uploaded_docs").empty();
           aw_lib_alert("Post processed");
         },
           error: function(jqXHR, textStatus, errorThrown){

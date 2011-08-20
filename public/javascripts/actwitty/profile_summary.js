@@ -406,7 +406,7 @@ function attach_channel_author_section(owner_id){
 
 
 function aw_summary_reload_tab(owner_id){
-  $('#p-channelp-posts').html("");
+  $('#p-channelp-posts').html('');
   $("#more_channels_cookie").val("");
   append_personal_summary(owner_id);
 

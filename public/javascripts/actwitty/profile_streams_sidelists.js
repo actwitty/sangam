@@ -232,7 +232,7 @@ function list_related_channels(owner_id){
 function clear_related_friends() {
   var related_friends_div=$("#stream_related_friends");
   if( related_friends_div.length > 0 ){
-    related_friends_div.empty();
+    related_friends_div.html('');
   }
   the_big_related_friend_json={};
 
@@ -242,14 +242,14 @@ function clear_related_friends() {
 /************************************/
 function clear_related_entities() {
   var related_entities_div=$("#stream_related_entities");
-  related_entities_div.html("");
+  related_entities_div.html('');
   the_big_related_entities_json={};
 }
 
 /************************************/
 function clear_related_locations() {
   var related_locations_div=$("#stream_related_locations");
-  related_locations_div.html("");
+  related_locations_div.html('');
   the_big_related_locations_json={};
 
 }
@@ -258,7 +258,7 @@ function clear_related_locations() {
 /************************************/
 function clear_related_channels() {
   var related_locations_div=$("#stream_channels_box");
-  related_locations_div.html("");
+  related_locations_div.html('');
   the_big_related_channels_json={};
 
 }

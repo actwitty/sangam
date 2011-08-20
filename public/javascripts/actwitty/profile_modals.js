@@ -264,7 +264,7 @@ $(document).ready(function() {
     $('.js_modal_close').live("click", function (e) {
         //Cancel the link behavior
         e.preventDefault();
-        $('#modal_box_window_id').empty();
+        $('#modal_box_window_id').html('');
         $('#modal_box_window_id').hide();
         $('#modal_box_mask_id').hide();
         $("#modal_box_id").hide();
@@ -274,7 +274,7 @@ $(document).ready(function() {
      * Click is made live with an intention to support image and video modals
      */
     $('.modal_mask').live("click",function () {
-        $('#modal_box_window_id').empty();
+        $('#modal_box_window_id').html('');
         $("#modal_box_id").hide();
         $('#modal_box_window_id').hide();
         $('#modal_box_mask_id').hide();

@@ -145,12 +145,6 @@ function get_empty_filter(){
 function get_others_filter_state(){
 }
 /***********************************************************/
-function enable_me_mode(){
-  $("#channel_others").removeClass("p-r-fltr-others-active");
-  $("#stream_others").removeClass("p-r-fltr-others-active");
-  $("#channel_me").addClass("p-r-fltr-me-active");
-  $("#stream_me").addClass("p-r-fltr-me-active");
-}
 
 /***********************************************************/
 function aw_get_channel_scope(){
@@ -162,10 +156,17 @@ function aw_get_stream_scope(){
 }
 /***********************************************************/
 function profile_filter_init(){
-    $("#p-channelp-tab-subscribed").addClass("p-channelp-selected");
-    $("#stream_all").removeClass("p-r-fltr-all-active");
-    $("#stream_subscribed").addClass("p-r-fltr-subscribed-active");
-    $("#stream_mine").removeClass("p-r-fltr-mine-active");
+    if(aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
+      $("#p-channelp-tab-subscribed").addClass("p-channelp-selected");
+      $("#stream_subscribed").addClass("p-r-fltr-subscribed-active");
+      g_channel_scope = 2;
+      g_stream_scope = 2;
+    }else{
+      $("#p-channelp-tab-mine").addClass("p-channelp-selected");
+      $("#stream_mine").addClass("p-r-fltr-subscribed-active");
+      g_channel_scope = 1;
+      g_stream_scope = 1;
+    }
     modify_filter({},false);
 }
 /***********************************************************/
