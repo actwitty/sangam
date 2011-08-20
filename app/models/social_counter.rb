@@ -66,45 +66,45 @@ class SocialCounter < ActiveRecord::Base
         if !params[:activity_id].nil?
 
           a = Activity.where(:id => params[:activity_id]).first
-          a.social_counters = []
+          a.social_counters_array = []
           result.each do |k,v|
-            a.social_counters << {:source_name => k[0], :action => k[1], :count => v}
+            a.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
           end
-          a.update_attributes(:social_counters => a.social_counters)
+          a.update_attributes(:social_counters_array => a.social_counters_array)
 
           s = Summary.where(:id => params[:summary_id]).first
-          s.social_counters = []
+          s.social_counters_array = []
           where(:summary_id => params[:summary_id]).group(:source_name, :action).count.each do |k,v|
-            s.social_counters << {:source_name => k[0], :action => k[1], :count => v}
+            s.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
           end
-          s.update_attributes(:social_counters => s.social_counters)
+          s.update_attributes(:social_counters_array => s.social_counters_array)
 
         elsif !params[:document_id].nil?
 
           d = Document.where(:id => params[:document_id]).first
-          d.social_counters = []
+          d.social_counters_array = []
           result.each do |k,v|
-            d.social_counters << {:source_name => k[0], :action => k[1], :count => v}
+            d.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
           end
-          d.update_attributes(:social_counters => d.social_counters)
+          d.update_attributes(:social_counters_array => d.social_counters_array)
 
         elsif !params[:location_id].nil?
 
           l = Location.where(:id => params[:document_id]).first
-          l.social_counters = []
+          l.social_counters_array = []
           result.each do |k,v|
-            l.social_counters << {:source_name => k[0], :action => k[1], :count => v}
+            l.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
           end
-          l.update_attributes(:social_counters => l.social_counters)
+          l.update_attributes(:social_counters_array => l.social_counters_array)
 
         else  !params[:entity_id].nil?
 
           e = Entity.where(:id => params[:entity_id]).first
-          e.social_counters = []
+          e.social_counters_array = []
           result.each do |k,v|
-            e.social_counters << {:source_name => k[0], :action => k[1], :count => v}
+            e.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
           end
-          e.update_attributes(:social_counters => e.social_counters)
+          e.update_attributes(:social_counters_array => e.social_counters_array)
 
         end
 

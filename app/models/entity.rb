@@ -2,6 +2,7 @@
 class Entity < ActiveRecord::Base
 
   serialize :entity_doc, Hash
+  serialize       :social_counters_array, Array
 
   # this nullify is in case some body deletes an entity for a reason . this SHOULD NOT happen though
   has_many      :hubs, :dependent => :nullify

@@ -6,7 +6,7 @@ class Activity < ActiveRecord::Base
 
   include  ActionView::Helpers
 
-  serialize :social_counters, Array
+  serialize       :social_counters_array, Array
 
   belongs_to      :author, :class_name => "User" #, :touch => true user is touched through summary
   belongs_to      :summary, :touch => true, :counter_cache => true, :dependent => :destroy

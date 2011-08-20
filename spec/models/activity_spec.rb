@@ -292,83 +292,115 @@ describe Activity do
       l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
       filter = {:word_id => wi.id, :entity_id => e.id, :source_name => "actwitty"}
 
-      puts "============================================================="
+      puts "Related Friends"
       h = @u.get_related_friends( filter)
       puts h.inspect
       h.should_not be_nil
       puts "============================================================="
 
       puts "Related Entity"
+      h = @u.get_related_entities(@u1.id,filter, AppConstants.page_state_subscribed)
+      puts h.inspect
+      h.should_not be_nil
+      puts "*************************************************************"
+      h = @u.get_related_entities(@u1.id,filter, AppConstants.page_state_all)
+      puts h.inspect
+      h.should_not be_nil
+      puts "*************************************************************"
       h = @u.get_related_entities(@u1.id,filter)
       puts h.inspect
       h.should_not be_nil
+      puts "============================================================="
 
       puts "Related Location"
-      h = @u.get_related_locations(@u1.id, filter)
+      h = @u.get_related_locations(@u1.id,filter, AppConstants.page_state_subscribed)
       puts h.inspect
       h.should_not be_nil
+      puts "*************************************************************"
+      h = @u.get_related_locations(@u1.id,filter, AppConstants.page_state_all)
+      puts h.inspect
+      h.should_not be_nil
+      puts "*************************************************************"
+      h = @u.get_related_locations(@u1.id,filter)
+      puts h.inspect
+      h.should_not be_nil
+      puts "============================================================="
 
       puts "Enriched Activity"
       h = @u.get_enriched_activities([act[:post][:id], act5[:post][:id], act7[:post][:id]])
       puts h.inspect
       h.should_not be_nil
+      puts "============================================================="
 
       puts "Get Stream 1"
       a =@u.get_stream({:user_id => @u1.id, :page_type => AppConstants.page_state_user, :updated_at => Time.now.utc})
       puts a
+      puts "============================================================="
 
       puts "Get Summary 1"
       a =@u.get_summary({:user_id => @u1.id, :page_type => AppConstants.page_state_user, :updated_at => Time.now.utc})
       puts a
+      puts "============================================================="
 
 
       puts "Get Stream 2"
       a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all,:friend => true})
       puts a
+      puts "============================================================="
 
       puts "Get Summary 2"
       a =@u.get_summary({:user_id => @u1.id, :page_type => AppConstants.page_state_all, :friend => true})
       puts a
+      puts "============================================================="
 
       a = Activity.where(:id => act2[:post][:id]).first
       a.destroy
       puts "Get Stream 2A"
       a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all,:friend => true})
       puts a
+      puts "============================================================="
 
       puts "Get Summary 2A"
       a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
       puts a
+      puts "============================================================="
 
       a = Activity.where(:id => act[:post][:id]).first
       a.destroy
       puts "Get Stream 2B"
       a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all,:friend => true})
       puts a
+      puts "============================================================="
 
       puts "Get Summary 2B"
       a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
       puts a
+      puts "============================================================="
 
       puts "Get Stream 3"
       a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_subscribed,:friend => true})
       puts a
+      puts "============================================================="
 
       puts "Get Summary 3"
       a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_subscribed, :friend => true})
       puts a
+      puts "============================================================="
 
       puts "Entity Stream"
       a = @u.get_entity_stream({:entity_id => e.id})
       puts a.inspect
+      puts "============================================================="
 
       puts "location Stream"
       a = @u.get_location_stream( {:location_id => l.id})
-      puts a.inspect
+      puts a
+      puts "============================================================="
 
       puts "Activity Stream"
       a = @u.get_activity_stream({:filter => {:word_id => wi.id}})
-      puts a.inspect
+      puts a
+      puts "============================================================="
     end
     it "should read create read and delete comments" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with

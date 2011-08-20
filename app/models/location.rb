@@ -1,6 +1,7 @@
 class Location < ActiveRecord::Base
 
   include  ActionView::Helpers
+  serialize       :social_counters_array, Array
 
   geocoded_by :address, :latitude  => :location_lat, :longitude => :location_long # ActiveRecord
 
