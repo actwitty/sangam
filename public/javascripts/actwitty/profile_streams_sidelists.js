@@ -140,6 +140,7 @@ function list_related_friends(){
         type: 'GET',
         data: { 
                 filter : get_filter(),
+                page_type:aw_get_stream_scope(),
                 cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
@@ -163,7 +164,9 @@ function list_related_entities(owner_id){
         url: '/home/get_related_entities.json',
         type: 'GET',
         data: { 
-                user_id : owner_id, filter : get_filter(),
+                user_id : owner_id, 
+                filter : get_filter(),
+                page_type:aw_get_stream_scope(),
                 cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
@@ -188,7 +191,9 @@ function list_related_locations(owner_id){
         url: '/home/get_related_locations.json',
         type: 'GET',
         data: { 
-                user_id : owner_id, filter : get_filter(),
+                user_id : owner_id, 
+                filter : get_filter(),
+                page_type:aw_get_stream_scope(),
                 cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
