@@ -478,14 +478,10 @@ class HomeController < ApplicationController
   def get_streams
     Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
     if user_signed_in?
-      if params[:friend].blank?
-        params[:friend] = false
+      if params[:page_type].blank?
+        params[:page_type] = 1
       else
-        if params[:friend] == "true"
-          params[:friend] = true
-        else
-          params[:friend] = false
-        end
+        params[:page_type] = Integer(params[:page_type])
       end
       if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
 
@@ -518,14 +514,10 @@ class HomeController < ApplicationController
    def get_summary
     Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
-      if params[:friend].blank?
-        params[:friend] = false
+      if params[:page_type].blank?
+        params[:page_type] = 1
       else
-        if params[:friend] == "true"
-          params[:friend] = true
-        else
-          params[:friend] = false
-        end
+        params[:page_type] = Integer(params[:page_type])
       end
        params[:user_id]=Integer(params[:user_id])
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params}")
@@ -825,14 +817,10 @@ class HomeController < ApplicationController
     params[:user_id] = Integer(params[:user_id])
 
 
-    if params[:friend].blank?
-      params[:friend] = false
+    if params[:page_type].blank?
+        params[:page_type] = 1
     else
-      if params[:friend] == "true"
-        params[:friend] = true
-      else
-        params[:friend] = false
-      end
+        params[:page_type] = Integer(params[:page_type])
     end
 
     if user_signed_in?
@@ -864,14 +852,10 @@ class HomeController < ApplicationController
     params[:user_id] = Integer(params[:user_id])
 
 
-    if params[:friend].blank?
-      params[:friend] = false
+    if params[:page_type].blank?
+      params[:page_type] = 1
     else
-      if params[:friend] == "true"
-        params[:friend] = true
-      else
-        params[:friend] = false
-      end
+      params[:page_type] = Integer(params[:page_type])
     end
 
     if user_signed_in?

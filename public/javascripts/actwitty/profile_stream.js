@@ -113,7 +113,6 @@ function handle_stream_docs(type, box_id, stream){
 /*
  * Render stream campaign
  */
-
 function get_campaign_likes_label(count){
   if(count>1){
     return '' + count + ' Likes >';
@@ -700,9 +699,6 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                                         };
   append_entity_delete(post.id);
 
-  if(!get_others_filter_state()){
-    $(".p-awp-ser").hide();
-  }
 }
 
 
@@ -724,7 +720,7 @@ function append_stream(owner_id, current_user_id){
                 user_id : owner_id,
                 updated_at : more_cookie,
                 filter : get_filter(),
-                friend:get_others_filter_state(),
+                page_type:aw_get_stream_scope(),
                 cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',

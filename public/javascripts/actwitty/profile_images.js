@@ -112,7 +112,7 @@ function show_all_images(){
                  user_id:aw_lib_get_page_owner_id(),
                  filter:get_filter(),
                  updated_at:more_cookie,
-                 friend:get_others_filter_state(),
+                 page_type:aw_get_stream_scope(),
                  cache_cookie:aw_lib_get_cache_cookie_id(),
                  category:"image"
               },

@@ -1,6 +1,6 @@
 /***********************************************************/
-
-var others_filter_state=true;
+var g_channel_scope = 2;
+var g_stream_scope = 2;
 /***********************************************************/
 
 function modify_filter(filter_json, reload){
@@ -143,7 +143,6 @@ function get_empty_filter(){
 /***********************************************************/
 
 function get_others_filter_state(){
-  return others_filter_state;
 }
 /***********************************************************/
 function enable_me_mode(){
@@ -154,23 +153,19 @@ function enable_me_mode(){
 }
 
 /***********************************************************/
-function enable_others_mode(){
-  $("#channel_me").removeClass("p-r-fltr-me-active");
-  $("#stream_me").removeClass("p-r-fltr-me-active");
-  $("#channel_others").addClass("p-r-fltr-others-active");
-  $("#stream_others").addClass("p-r-fltr-others-active");
+function aw_get_channel_scope(){
+  return g_channel_scope;
 }
-
+/***********************************************************/
+function aw_get_stream_scope(){
+  return g_stream_scope;
+}
 /***********************************************************/
 function profile_filter_init(){
-    var page_owner_id=$('#page_owner_id').attr("value");
-    var session_owner_id=$('#session_owner_id').attr("value");
-    if( page_owner_id == session_owner_id){
-      $("#channel_others").addClass("p-r-fltr-others-active");
-      $("#stream_others").addClass("p-r-fltr-others-active");
-    }else{
-      others_filter_state=false;
-    }
+    $("#p-channelp-tab-subscribed").addClass("p-channelp-selected");
+    $("#stream_all").removeClass("p-r-fltr-all-active");
+    $("#stream_subscribed").addClass("p-r-fltr-subscribed-active");
+    $("#stream_mine").removeClass("p-r-fltr-mine-active");
     modify_filter({},false);
 }
 /***********************************************************/
@@ -197,40 +192,47 @@ $(document).ready(function(){
     });
     /***********************************************************/
     
-    $('#channel_me').click(function () {
-      if(others_filter_state == true){
-        enable_me_mode();
-        others_filter_state=false;
-        reload_summary_page(page_owner_id);
+    $('.js_channel_scope').click(function () {
+      $(".p-channelp-tab").removeClass("p-channelp-selected"); 
+      $(this).addClass("p-channelp-selected");
+      if( $(this).attr("id") == "p-channelp-tab-all" ){
+        g_channel_scope = 3;
+      }else if ( $(this).attr("id") == "p-channelp-tab-subscribed" ){
+        g_channel_scope = 2;
+      }else if ( $(this).attr("id") == "p-channelp-tab-mine" ){
+        g_channel_scope = 1;
       }
+      
+      aw_summary_reload_tab(aw_lib_get_page_owner_id());
+       
     });
     /***********************************************************/
+    $('.js_stream_scope').click(function() {
+      var stream_scope_select = $(this).attr("id");
+       
+      if( stream_scope_select == "stream_mine"){
+        g_stream_scope = 1;
+        $("#stream_all").removeClass("p-r-fltr-all-active");
+        $("#stream_subscribed").removeClass("p-r-fltr-subscribed-active");
+        $("#stream_mine").addClass("p-r-fltr-mine-active");
 
-    $('#stream_me').click(function () {
-      if(others_filter_state == true){
-        enable_me_mode();
-        others_filter_state=false;
-        modify_filter({},true);
+      }else if ( stream_scope_select == "stream_subscribed"){
+        g_stream_scope = 2;
+        $("#stream_all").removeClass("p-r-fltr-all-active");
+        $("#stream_subscribed").addClass("p-r-fltr-subscribed-active");
+        $("#stream_mine").removeClass("p-r-fltr-mine-active");
+
+      }else if ( stream_scope_select == "stream_all"){
+        g_stream_scope = 3;
+        $("#stream_all").addClass("p-r-fltr-all-active");
+        $("#stream_subscribed").removeClass("p-r-fltr-subscribed-active");
+        $("#stream_mine").removeClass("p-r-fltr-mine-active");
+
       }
+      aw_reload_streams_on_viewed_user();
     });
 
-    /***********************************************************/
-    $('#channel_others').click(function () {
-      if(others_filter_state == false){
-        enable_others_mode();
-        others_filter_state=true;
-        reload_summary_page(page_owner_id);
-      }
-    });
-
-    /***********************************************************/
-    $('#stream_others').click(function () {
-      if(others_filter_state == false){
-        enable_others_mode();
-        others_filter_state=true;
-        modify_filter({},true);
-      }
-    });
+    
 
     /***********************************************************/
     
