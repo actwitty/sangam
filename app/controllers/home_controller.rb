@@ -113,6 +113,11 @@ class HomeController < ApplicationController
   ############################################
   def get_channels
    Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
+    if params[:page_type].blank?
+      params[:page_type] = 1
+   else
+      params[:page_type] = Integer(params[:page_type])
+   end
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
       params[:user_id] == Integer(params[:user_id]);
@@ -135,6 +140,11 @@ class HomeController < ApplicationController
   def get_related_entities
 
     Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
+    if params[:page_type].blank?
+      params[:page_type] = 1
+   else
+      params[:page_type] = Integer(params[:page_type])
+   end
 
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] calling model api #{params}")
@@ -156,7 +166,11 @@ class HomeController < ApplicationController
   def get_entities
 
     Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
-
+    if params[:page_type].blank?
+      params[:page_type] = 1
+   else
+      params[:page_type] = Integer(params[:page_type])
+   end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][USER ENTITIES] calling model api #{params}")
 
@@ -179,6 +193,11 @@ class HomeController < ApplicationController
   ############################################
   def get_related_locations
    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Get related locations #{params}")
+   if params[:page_type].blank?
+    params[:page_type] = 1
+   else
+    params[:page_type] = Integer(params[:page_type])
+   end
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] calling model api #{params}")
       response_json=current_user.get_related_locations(params[:user_id], params[:filter])
@@ -198,6 +217,13 @@ class HomeController < ApplicationController
    #####################################################
    def get_locations
    Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] Get related locations #{params}")
+
+   if params[:page_type].blank?
+    params[:page_type] = 1
+   else
+    params[:page_type] = Integer(params[:page_type])
+   end
+
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] calling model api #{params}")
       response_json=current_user.get_user_locations( params[:user_id], params[:sort_order])
@@ -298,7 +324,13 @@ class HomeController < ApplicationController
       params[:filter].delete(:entity_id)
     end
     if params[:filter][:location_id].blank?
-    params[:filter].delete(:location_id)
+       params[:filter].delete(:location_id)
+    end
+
+    if params[:page_type].blank?
+      params[:page_type] = 1
+    else
+      params[:page_type] = Integer(params[:page_type])
     end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] calling model api Filter:#{params[:filter]}")
