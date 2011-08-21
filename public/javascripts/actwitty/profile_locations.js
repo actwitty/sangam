@@ -133,13 +133,28 @@ function get_location_image_for_type(type){
 
 function aw_render_locations_internal(location, div_id){
      var link_id = "stream_related_modal_" + location.id;
+     var str;
+     //alert(location.name.length);
+     if( location.name.length > 35 )
+     {  
+       //alert("if");  
+       var limit = 35;                // The number of characters to show
+       str = location.name;        // Getting the text
+       var strtemp = str.substr(0,limit);   // Get the visible part of the string
+       str = strtemp+ '....' + '<span class="hide">' + str.substr(limit,str.length) + '</span>';  // Recompose the string with the span tag wrapped around the hidden part of it
+     }
+     else
+     {
+       //alert("else");
+       str = location.name;
+     }
+
      
      var html='<div class="locations_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_locations" id="' + link_id + '">' +
                   '<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
-                    location.name +
-                '</a>'+
-               
+                    str + 
+                  '</a>'+
               '</div>';
      the_big_modal_locations_json[link_id] = {id:location.id, name:location.name};
      return html;
@@ -150,7 +165,10 @@ function aw_locations_render_related_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_locations_modal_related" class="js_search_locations " placeholder="Locations"/>' +
+                      '<ul class="modal_ul">' +
+                        '<li><label class="lab_search_box">Search by Related Location</label></li>' +
+                        '<li><input type="text" id="js_locations_modal_related" class="js_search_locations " placeholder="Locations"/></li>' +
+                     '</ul>' + 
                     '</div>';
 
   div.append(search_html);
@@ -171,7 +189,10 @@ function aw_locations_render_all_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_locations_modal_all" class="js_search_locations " placeholder="Locations"/>' +
+                      '<ul class="modal_ul">' +
+                        '<li><label class="lab_search_box">Search by Location</label></li>' +
+                        '<li><input type="text" id="js_locations_modal_all" class="js_search_locations " placeholder="Locations"/></li>' +
+                      '</ul>' +   
                     '</div>';
 
   div.append(search_html);

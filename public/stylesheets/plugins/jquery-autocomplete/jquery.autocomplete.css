@@ -27,7 +27,8 @@
   when scroll mode will be used
   */
   /*width: 100%;*/
-  font: menu;
+  /*font: menu;*/
+  font-family: 'actwitty-font';
   font-size: 12px;
   /* 
   it is very important, if line-height not setted or setted 
@@ -37,18 +38,19 @@
   overflow: hidden;
 }
 
-/* line 37, ../../../../app/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.scss */
+/* line 38, ../../../../app/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_loading {
   background: white url("indicator.gif") right center no-repeat;
 }
 
-/* line 41, ../../../../app/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.scss */
+/* line 42, ../../../../app/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_odd {
   background-color: #eee;
 }
 
-/* line 45, ../../../../app/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.scss */
+/* line 46, ../../../../app/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_over {
-  background-color: #0A246A;
+  /*background-color: #0A246A;*/
+  background-color: #ccc;
   color: white;
 }
