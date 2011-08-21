@@ -293,35 +293,35 @@ describe Activity do
       filter = {:word_id => wi.id,  :source_name => "actwitty"}
 
       puts "Related Friends"
-      h = @u.get_related_friends( filter)
+      h = @u.get_related_friends( {:filter => filter})
       puts h.inspect
       h.should_not be_nil
       puts "============================================================="
 
       puts "Related Entity"
-      h = @u.get_related_entities(@u1.id,filter, AppConstants.page_state_subscribed)
+      h = @u.get_related_entities({:user_id => @u1.id,:filter => filter, :page_type => AppConstants.page_state_subscribed})
       puts h.inspect
       h.should_not be_nil
       puts "*************************************************************"
-      h = @u.get_related_entities(@u1.id,filter, AppConstants.page_state_all)
+      h = @u.get_related_entities({:user_id => @u1.id,:filter => filter, :page_type => AppConstants.page_state_all})
       puts h.inspect
       h.should_not be_nil
       puts "*************************************************************"
-      h = @u.get_related_entities(@u1.id,filter)
+      h = @u.get_related_entities({:user_id => @u1.id,:filter => filter, :page_type => AppConstants.page_state_user})
       puts h.inspect
       h.should_not be_nil
       puts "============================================================="
 
       puts "Related Location"
-      h = @u.get_related_locations(@u1.id,filter, AppConstants.page_state_subscribed)
+      h = @u.get_related_locations({:user_id => @u1.id,:filter => filter, :page_type => AppConstants.page_state_subscribed})
       puts h.inspect
       h.should_not be_nil
       puts "*************************************************************"
-      h = @u.get_related_locations(@u1.id,filter, AppConstants.page_state_all)
+      h = @u.get_related_locations({:user_id => @u1.id,:filter => filter, :page_type => AppConstants.page_state_all})
       puts h.inspect
       h.should_not be_nil
       puts "*************************************************************"
-      h = @u.get_related_locations(@u1.id,filter)
+      h = @u.get_related_locations({:user_id => @u1.id,:filter => filter, :page_type => AppConstants.page_state_user})
       puts h.inspect
       h.should_not be_nil
       puts "============================================================="
