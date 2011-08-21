@@ -311,22 +311,46 @@ class User < ActiveRecord::Base
     end
 
   #always current_user's id (logged in)
+  #INPUT
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
-  #returns array of {:id => 123, :name => "samarth" , :image => "images/234"}
-  def get_related_friends(filter = {})
+  #OUTPUT array of {:id => 123, :name => "samarth" , :image => "images/234"}
+  def get_related_friends(params)
 
     Rails.logger.debug("[MODEL] [User] [get_related_friends] entering ")
     friend_objs = {}
 
     users = get_followings
+
+    if users.blank?
+      Rails.logger.debug("[MODEL] [User] [get_related_friends] No User followings ")
+      return {}
+    end
+
     users.each do |attr|
       friend_objs[attr.id] = attr
     end
 
     h = {}
-    h = process_filter(filter)
-    h[:user_id] = friend_objs.keys
-    h = Hub.where(h).group(:user_id).order("MAX(updated_at) DESC").count
+    h = process_filter(params[:filter])
+
+    if !h[:entity_id].blank?
+
+      h[:user_id] = friend_objs.keys
+      h = Hub.where(h).group(:user_id).order("MAX(updated_at) DESC").count
+
+    else
+
+      h[:status] = AppConstants.status_public
+      h[:meta_activity] = false
+
+      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+      h.delete(:location_id)
+
+      h[:author_id] = friend_objs.keys
+
+      h = Activity.where(h).group(:author_id).order("MAX(updated_at) DESC").count
+    end
+
 
     friends = []
     h.each do |k,v|
@@ -343,19 +367,20 @@ class User < ActiveRecord::Base
   #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
   ##             OR 4(AppConstants.page_state_public)
   #returns array of {:id => 123, :name => "pizza" , :image => "entity/234"}
-  def get_related_entities(user_id, filter = {}, page_type = AppConstants.page_state_user)
+  def get_related_entities(params)
 
     Rails.logger.debug("[MODEL] [User] [get_related_entities] entering ")
     h = {}
 
-    params = {:filter => filter, :user_id => user_id, :page_type => page_type}
     h = process_filter_modified(params)
+
     if h.blank?
       Rails.logger.debug("[MODEL] [USER] [get_related_entities] Leaving => Blank has returned by process_filter => #{params}")
       return {}
     end
 
-    h = Hub.where(h).group(:entity_id).order("MAX(updated_at) DESC").count
+    h = Hub.where(h).group(:entity_id).limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(updated_at) DESC").count
+
     e = Entity.where(:id => h.keys).order("updated_at DESC").all
 
     entity_array = []
@@ -374,26 +399,39 @@ class User < ActiveRecord::Base
   #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
   ##             OR 4(AppConstants.page_state_public)
+  #:updated_at =>  nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT array of :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR
   #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
   #                                                      OR
   #                 :id => 1234, :type => 2, :name => "John's home"
-  def get_related_locations(user_id, filter = {}, page_type = AppConstants.page_state_user)
+  def get_related_locations(params)
 
     Rails.logger.debug("[MODEL] [User] [get_related_locations] entering ")
     h = {}
 
-    params = {:filter => filter, :user_id => user_id, :page_type => page_type}
     h = process_filter_modified(params)
 
     if h.blank?
       Rails.logger.debug("[MODEL] [USER] [get_related_locations] Leaving => Blank has returned by process_filter => #{params}")
       return {}
     end
+
     lh = []
 
-    h = Hub.where(h).group(:location_id).order("MAX(updated_at) DESC").count
+    if !h[:entity_id].blank?
+      h = Hub.where(h).group(:location_id).limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(updated_at) DESC").count
+    else
+      h[:status] = AppConstants.status_public
+      h[:meta_activity] = false
+
+      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+      h.delete(:location_id)
+
+      h[:author_id] = h[:user_id] if !h[:user_id].blank?
+      h.delete(:user_id)
+      h = Activity.where(h).group(:base_location_id).limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(updated_at) DESC").count
+    end
 
     Location.where(:id => h.keys).order("updated_at DESC").all.each do |attr|
       l = format_location(attr)
@@ -435,16 +473,18 @@ class User < ActiveRecord::Base
 
     h = process_filter(params[:filter])
 
-    h[:status] =  AppConstants.status_saved
-
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
 
-    h[:author_id] = self.id
+    h[:status] =  AppConstants.status_saved
+
+    h[:meta_activity] = false
+
     h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
+    h.delete(:location_id)
 
     h.delete(:entity_id) if !h[:entity_id].blank?   #remove entity_id as drafts can have
 
-    h.delete(:location_id)
+    h[:author_id] = self.id
 
     activity = Activity.where(h).group(:id).order("MAX(updated_at) DESC").count
 
@@ -834,13 +874,15 @@ class User < ActiveRecord::Base
     else
 
       h[:status] =  AppConstants.status_public
-      h[:author_id] = h[:user_id] if !h[:user_id].blank?
-      h.delete(:user_id)
 
       h[:meta_activity] = false
 
       h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
       h.delete(:location_id)
+
+      h[:author_id] = h[:user_id] if !h[:user_id].blank?
+      h.delete(:user_id)
+
       Rails.logger.debug("[MODEL] [USER] [get_stream] => Activity based filtering => #{h.inspect}")
 
       #show only public post.. Need to take care private and shared post
@@ -899,6 +941,8 @@ class User < ActiveRecord::Base
     locations = {}
     entities = {}
     friends ={}
+    subscribed = {}
+
     summaries = []
     index = 0
 
@@ -923,6 +967,8 @@ class User < ActiveRecord::Base
         attr.tag_array.each       {|idx| tags[idx].nil? ? tags[idx] = [index] : tags[idx] <<  index }
         attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
         attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
+
+        subscribed[attr.id]  = index
 
         #creates the hash mapping words to respective index
         friends[attr.activity_word_id].nil? ? friends[attr.activity_word_id] = [index] : friends[attr.activity_word_id] << index
@@ -970,6 +1016,18 @@ class User < ActiveRecord::Base
     end
     activities = {}
 
+    # Mark Summaries which user has not subscribed. This will be only applicable if page_state == all or public
+    #TODO => Public summary marking is blocked as of now
+
+    if (params[:user_id] != self.id)||(params[:page_type] == AppConstants.page_state_all)
+
+      SummarySubscribe.where(:summary_id => subscribed.keys, :subscriber_id => self.id ).all.each do |attr|
+        summaries[subscribed[attr.summary_id]][:subscribed] = true
+      end
+
+    end
+    subscribed = {}
+
     #FETCH RELATED FRIEND
 
     #friends will only be fetched current use == visited user
@@ -989,7 +1047,7 @@ class User < ActiveRecord::Base
     end
 
     User.where(:id => activities.keys).all.each do |attr|
-      # activities[attr.id] => activity_word_id                                                  get
+      # activities[attr.id] => activity_word_id
       friends[activities[attr.id]].each do |idx|
 
         #dont show a friend in his own summary as related friend
@@ -1030,9 +1088,11 @@ class User < ActiveRecord::Base
 
     hash ={:id => params[:word_id], :name => a.word_name }
 
-    h[:status]   = AppConstants.status_public
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
     h[:activity_word_id] =  params[:word_id]
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+
+    h[:status]   = AppConstants.status_public
 
     activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
 
@@ -1060,8 +1120,9 @@ class User < ActiveRecord::Base
 
     hash = format_entity(e)
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
     h[:entity_id] =  params[:entity_id]
+
+    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
 
     activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
 
@@ -1096,11 +1157,12 @@ class User < ActiveRecord::Base
     hash = format_location(l)
     #hash[:id] = l.id
 
-    h[:status]   = AppConstants.status_public
     params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:status]   = AppConstants.status_public
+
+    h[:meta_activity] = false
 
     h[:base_location_id] =  params[:location_id]
-    h[:meta_activity] = false
 
     activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
 

@@ -211,7 +211,8 @@ module TextFormatter
          :bg_color => theme.bg_color,
          :url => theme.url,
          :user_id => theme.author_id,
-         :summary_id => theme.summary_id
+         :summary_id => theme.summary_id,
+         :time => theme.updated_at
         }
     h
   end
@@ -228,8 +229,10 @@ module TextFormatter
     h = {:id => entity.id,
          :name => entity.entity_name,
          :image => AppConstants.entity_image_thumb_base + entity.entity_image,
+         :time => entity.updated_at,
          :description => (!entity.entity_doc['key'].blank? && !entity.entity_doc['key']['value'].blank?) ?
                           AppConstants.entity_description_url + entity.entity_doc['key']['value'] : nil
+
         }
     h
   end
@@ -240,7 +243,7 @@ module TextFormatter
       return {}
     end
     hash = {}
-    hash = {:source_name => attr.source_name, :action => attr.action}
+    hash = {:source_name => attr.source_name, :action => attr.action, :time => attr.updated_at}
   end
 
   #format a location object to generic form
@@ -258,6 +261,7 @@ module TextFormatter
         h = {}
     end
     h[:id] = loc.id if !h.blank?
+    h[:time] = loc.updated_at
     h
   end
 
@@ -323,7 +327,7 @@ module TextFormatter
               :url => document.url,
               :thumb_url => document.thumb_url,
               :caption => document.caption,
-              #:time =>  document.updated_at
+              :time =>  document.updated_at,
               :source_name => document.source_name,
               :status => document.status,
               :uploaded => document.uploaded,
@@ -340,9 +344,9 @@ module TextFormatter
       return {}
     end
     if user_id.nil?
-      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => false }
+      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => false, :time => campaign.updated_at }
     else
-      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => true, :user_id =>campaign.user_id }
+      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => true, :user_id =>campaign.user_id, :time => campaign.updated_at }
     end
   end
 
@@ -359,6 +363,7 @@ module TextFormatter
               :type => tag.tag_type,
               :source_name => tag.source_name,
               :status => tag.status,
+              :time => tag.updated_at,
            }
     hash
   end

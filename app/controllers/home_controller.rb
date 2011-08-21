@@ -148,7 +148,7 @@ class HomeController < ApplicationController
 
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] calling model api #{params}")
-      response_json=current_user.get_related_entities(params[:user_id], params[:filter])
+      response_json=current_user.get_related_entities(params)
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] model returned #{response_json}")
       if request.xhr?
         expires_in 10.minutes
@@ -200,7 +200,7 @@ class HomeController < ApplicationController
    end
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] calling model api #{params}")
-      response_json=current_user.get_related_locations(params[:user_id], params[:filter])
+      response_json=current_user.get_related_locations(params)
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] model returned #{response_json}")
       if request.xhr?
         expires_in 10.minutes
@@ -334,7 +334,7 @@ class HomeController < ApplicationController
     end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] calling model api Filter:#{params[:filter]}")
-      response_json=current_user.get_related_friends(params[:filter])
+      response_json=current_user.get_related_friends(params)
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] model returned #{response_json}")
       if request.xhr?
         expires_in 10.minutes

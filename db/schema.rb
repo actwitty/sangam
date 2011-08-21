@@ -34,18 +34,18 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["activity_name", "author_id"], :name => "index_activities_on_activity_name_and_author_id"
-  add_index "activities", ["activity_word_id"], :name => "index_activities_on_activity_word_id"
-  add_index "activities", ["author_id", "activity_word_id"], :name => "index_activities_on_author_id_and_activity_word_id"
+  add_index "activities", ["activity_word_id", "source_name", "summary_id", "updated_at", "status", "meta_activity", "base_location_id"], :name => "index_activities_on_word_source_summary_time_status_meta_loc"
+  add_index "activities", ["activity_word_id", "source_name", "updated_at", "status", "meta_activity", "base_location_id", "author_id"], :name => "index_activities_on_word_source_time_status_meta_loc_author"
+  add_index "activities", ["author_id", "status", "meta_activity"], :name => "index_activities_on_author_status_meta"
   add_index "activities", ["base_location_id"], :name => "index_activities_on_base_location_id"
-  add_index "activities", ["created_at"], :name => "index_activities_on_created_at"
+  add_index "activities", ["id", "author_id"], :name => "index_activities_on_id_and_author_id"
   add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
-  add_index "activities", ["meta_activity", "author_id"], :name => "index_activities_on_meta_activity_and_author_id"
-  add_index "activities", ["source_name", "activity_word_id"], :name => "index_activities_on_source_name_and_activity_word_id"
-  add_index "activities", ["source_name", "author_id", "activity_word_id"], :name => "index_activities_on_source_author_word"
-  add_index "activities", ["status", "author_id"], :name => "index_activities_on_status_and_author_id"
-  add_index "activities", ["summary_id", "author_id"], :name => "index_activities_on_summary_id_and_author_id"
-  add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
+  add_index "activities", ["source_name", "summary_id", "updated_at", "status", "meta_activity", "base_location_id"], :name => "index_activities_on_source_summary_time_status_meta_loc"
+  add_index "activities", ["source_name", "updated_at", "status", "meta_activity", "base_location_id", "author_id"], :name => "index_activities_on_source_time_status_meta_loc_author"
+  add_index "activities", ["summary_id", "base_location_id"], :name => "index_activities_on_summary_id_and_base_location_id"
+  add_index "activities", ["summary_id", "blank_text"], :name => "index_activities_on_summary_id_and_blank_text"
+  add_index "activities", ["summary_id", "updated_at", "status", "meta_activity", "base_location_id"], :name => "index_activities_on_summary_time_status_meta_loc"
+  add_index "activities", ["updated_at", "status", "meta_activity", "base_location_id", "author_id"], :name => "index_activities_on_time_status_meta_loc_author"
 
   create_table "activity_words", :force => true do |t|
     t.string   "word_name",  :null => false
@@ -290,18 +290,12 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   end
 
   add_index "hubs", ["activity_id"], :name => "index_hubs_on_activity_id"
-  add_index "hubs", ["activity_word_id", "entity_id"], :name => "index_hubs_on_activity_word_id_and_entity_id"
-  add_index "hubs", ["activity_word_id", "user_id"], :name => "index_hubs_on_activity_word_id_and_user_id"
-  add_index "hubs", ["created_at"], :name => "index_hubs_on_created_at"
-  add_index "hubs", ["entity_id", "activity_id"], :name => "index_hubs_on_entity_id_and_activity_id"
-  add_index "hubs", ["entity_id", "user_id"], :name => "index_hubs_on_entity_id_and_user_id"
-  add_index "hubs", ["location_id", "user_id"], :name => "index_hubs_on_location_id_and_user_id"
-  add_index "hubs", ["source_name", "activity_word_id"], :name => "index_hubs_on_source_name_and_activity_word_id"
-  add_index "hubs", ["source_name", "user_id", "activity_word_id"], :name => "index_hubs_on_source_user_word"
-  add_index "hubs", ["summary_id"], :name => "index_hubs_on_summary_id"
+  add_index "hubs", ["entity_id"], :name => "index_hubs_on_entity_id"
+  add_index "hubs", ["location_id"], :name => "index_hubs_on_location_id"
+  add_index "hubs", ["source_name"], :name => "index_hubs_on_source_name"
+  add_index "hubs", ["summary_id", "entity_id"], :name => "index_hubs_on_summary_id_and_entity_id"
   add_index "hubs", ["updated_at"], :name => "index_hubs_on_updated_at"
-  add_index "hubs", ["user_id", "activity_word_id", "entity_id"], :name => "index_hubs_on_user_activity_entity"
-  add_index "hubs", ["user_id", "summary_id"], :name => "index_hubs_on_user_id_and_summary_id"
+  add_index "hubs", ["user_id"], :name => "index_hubs_on_user_id"
 
   create_table "location_hubs", :force => true do |t|
     t.integer  "web_join_id"
