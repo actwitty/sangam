@@ -126,8 +126,15 @@ function aw_entities_set_all_entities_modal_data(json_data){
 
 }
 
-function aw_render_entities_internal(entity, div_id){
+function aw_render_entities_internal(entity, div_id, new_tab_id){
      var link_id = "stream_related_modal_" + entity.id;
+     //var main_div = $('.entities_box_internal').parent().attr("id");
+     //var main_id = $('#main_div');
+     //alert(main_id + entity.image);
+     //alert("cool");
+     //alert($('.entities_box_internal').parent().attr("id"));
+     //main_div.css({'background-image': url( entity.image )});
+
      var html='<div class="entities_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_entities" id="' + link_id + '">' +
                   '<img class="entities_box_images" src="' + entity.image +  '?maxwidth=40&maxheight=40"/>' +
@@ -144,7 +151,10 @@ function aw_entities_render_related_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_entities_modal_related" class="js_search_entities " placeholder="Entities"/>' +
+                      '<ul class="modal_ul">' +
+                        '<li><label class="lab_search_box">Search by Related Entities</label></li>' +
+                        '<li><input type="text" id="js_entities_modal_related" class="js_search_entities " placeholder="Entities"/></li>' +
+                      '</ul>' +
                     '</div>';
 
   div.append(search_html);
@@ -164,7 +174,10 @@ function aw_entities_render_all_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_entities_modal_all" class="js_search_entities " placeholder="Entities"/>' +
+                       '<ul class="modal_ul">' +
+                        '<li><label class="lab_search_box">Search by Entities</label></li>' +
+                        '<li><input type="text" id="js_entities_modal_all" class="js_search_entities " placeholder="Entities"/></li>' +
+                        '</ul>' +
                     '</div>';
 
   div.append(search_html);

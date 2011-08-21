@@ -163,7 +163,11 @@ function aw_channels_render_all_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_channels_modal_all" class="js_search_channels " placeholder="Channels"/>' +
+                      '<ul class="modal_ul">' +
+
+                      '<li><label class="lab_search_box">Search by Channel</label></li>' +
+                      '<li><input type="text" id="js_channels_modal_all" class="js_search_channels " placeholder="Channels"/></li>' +
+                      '</ul>' +
                     '</div>';
 
   div.append(search_html);
