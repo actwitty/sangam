@@ -119,6 +119,7 @@ class HomeController < ApplicationController
     response_json=current_user.get_subscribers(user_id)
     Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] response json : #{response_json}")
     if request.xhr?
+      expires_in 10.minutes
       render :json => response_json
     end
   end
@@ -130,6 +131,7 @@ class HomeController < ApplicationController
     response_json=current_user.get_subscriptions(user_id)
     Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] response json : #{response_json}")
     if request.xhr?
+      expires_in 10.minutes
       render :json => response_json
     end
   end

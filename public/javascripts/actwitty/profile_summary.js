@@ -244,6 +244,7 @@ function create_and_add_subscriptions_in_auth_sect()
         type: 'GET',
         data: { 
                 user_id:aw_lib_get_page_owner_id(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
         contentType: 'application/json',
@@ -282,6 +283,7 @@ function create_and_add_subscribers_in_auth_sect()
         type: 'GET',
         data: { 
                 user_id:aw_lib_get_page_owner_id(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
         contentType: 'application/json',
@@ -320,15 +322,37 @@ function create_and_add_last_updates_in_auth_sect(box_id)
                     '<p>alok purchased and repaired by some the of the most known persons...</p>' +
                 '</div>' +
              '</div>' +
+
              '<div class="p-channelp-auth-subscriptions" id="owners_subscription_list">' +
              '</div>' +
              '<div class="p-channelp-auth-subscribers" id="owners_subscribers_list" >' +
              '</div>';
+
+  html = html + get_add_channel_html(); 
+             
   latest_update_box.append(html);
 
 }
 
+/*******************************************************************/
+function get_add_channel_html(){
+  var html="";
+  if ( aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id() ){
+     html = '<div class="js_summary_add_channel_base p-channelp-auth-add-channel">' +
+             '<span>' + 
+                  '<a  class="js_add_channel_minimize" > Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+                  '</a>' +
+             '</span>' +
+             '<div class="js_summary_add_channel_box p-channelp-auth-add-channel-box">' +
+                '<span>' +
+                  "i go i come" + 
+                '</span>' +
+             '</div>' + 
+            '</div>';
+  }
+  return html;
 
+}
 
 
 /*******************************************************************/
@@ -345,17 +369,16 @@ function create_and_add_summary_author(author_box, owner_id)
    var latest_update_id = unique_id + '_latest_update'; 
    
    var html =   '<div class="p-channelp-author-img-sect">' +
-                  '<img src="/images/profile/default.png">' +
+                  '<img src="' + aw_lib_get_page_owner_photo() + '">' +
                 '</div>' +
                 '<div class="p-channelp-author-name">' +
-                   '<span>Samarth Deo</span>' +
+                   '<span>' + aw_lib_get_page_owner_name() + '</span>' +
                 '</div>' +
                 '<div class="p-channelp-auth-last-upd-sect" id="' + latest_update_id + '">' +
                    '<div class="p-channelp-auth-last-upd-hd">' +
                       '<span>Last Updates :</span>' +
                    '</div>' +
                 '</div>';
-    
     $("#p-channelp-author-section").html(html);
     create_and_add_last_updates_in_auth_sect(latest_update_id);
     
@@ -620,4 +643,19 @@ $(document).ready(function(){
       append_personal_summary(page_owner_id);
       return false;
     });
+    /***********************/
+    $(".js_add_channel_minimize").live('click',function(){
+    var add_new_block = $(this).closest(".js_summary_add_channel_base").find(".js_summary_add_channel_box");
+    
+    var post_id = get_post_id_on_click($(this));
+    if(add_new_block.css('display') == 'none'){ 
+      add_new_block.show('slow'); 
+      $(this).find('img').attr("src", "/images/alpha/shares/minus.png");
+    } else { 
+      add_new_block.hide('slow'); 
+      $(this).find('img').attr("src", "/images/alpha/shares/plus.png");
+    }
+  });
 });
+
+
