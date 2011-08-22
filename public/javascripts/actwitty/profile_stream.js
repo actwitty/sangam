@@ -92,7 +92,7 @@ function handle_stream_docs(type, box_id, stream){
         var attachment_box = $("#" + inner_box_id);
         if(aw_lib_get_session_owner_id() == stream.post.user.id){
           var close_html = '<div class="delete-image-box">' +
-                            '<div class="delete-image-cntrl js_remove_attached_doc" value="' + attachment.id + '" />' +
+                            '<div class="delete-image-cntrl js_remove_attached_doc" id="' + attachment.id + '" />' +
                            '</div>';
           attachment_box.append(close_html);
         }
@@ -1192,6 +1192,7 @@ $(document).ready(function(){
    * Remove an attached document
    */
   $('.js_remove_attached_doc').live('click', function(){
+    alert($(this).attr("id"));
     remove_document_from_post($(this).attr("id"), $(this));
   });
 

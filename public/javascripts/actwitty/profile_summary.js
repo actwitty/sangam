@@ -76,13 +76,20 @@ function create_and_docs_box(box_id, summary){
 /* handle subscribe box */
 function create_add_add_subscribe_box(box_id, summary){
   var subsc_box = $("#" + box_id);
-  if(summary.user.id == aw_lib_get_session_owner_id() ){
+  if(aw_lib_get_session_owner_id() != -1 &&
+     summary.user.id != aw_lib_get_session_owner_id() ){
     var html="";
-    if(summary.subscribed && summary.subscribed == true){
-      html='<a class="p-channel-subscribe-btn js_subscribe_summary" >SUBSCRIBE </a>';
+    if(aw_get_channel_scope() == 2 &&
+        aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id()){
+        html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE</a>';
     }else{
-      html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE </a>';
+      if(summary.subscribed && summary.subscribed == true){
+        html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE</a>';
+      }else{
+        html='<a class="p-channel-subscribe-btn js_subscribe_summary" >SUBSCRIBE</a>';
+      }
     }
+    subsc_box.append(html);
   }else{
     subsc_box.hide();
   }
@@ -260,6 +267,7 @@ function create_and_add_summary(summary_box, summary){
  if ($("#" + unique_id ).length > 0){
    return;
  }
+ aw_lib_console_log("profile_summary.js:create_and_add_summary called");
  var docs_box_id = unique_id + '_attachments';
  var friends_box_id = unique_id + '_friends';
  var subscribe_box_id = unique_id + '_subscribe';
@@ -362,6 +370,7 @@ function create_and_add_summary(summary_box, summary){
 
         /* overall summary div is added */        
         summary_box.append(html);
+        aw_lib_console_log("profile_summary.js:create_and_add_summary html appended");
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary); 
@@ -378,6 +387,7 @@ function create_and_add_summary(summary_box, summary){
 function append_personal_summary(owner_id){
   var scroll = $(window).scrollTop();
   var more_cookie =  $("#more_channels_cookie").val();
+  aw_lib_console_log("profile_summary.js:append_personal_summary");
   $.ajax({
         url: '/home/get_summary.json',
         type: 'GET',
@@ -434,6 +444,7 @@ function aw_summary_reload_tab(owner_id){
 
 function subscribe_summary(trigger_ele, sub_summary_id, action ){
     var post_url="";
+    aw_lib_console_log("profile_summary.js:called subscribe/unsubscribe summary");
     if( action == true ){
       post_url = '/home/subscribe_summary.json';
     }else{
@@ -445,9 +456,17 @@ function subscribe_summary(trigger_ele, sub_summary_id, action ){
         data: {summary_id:sub_summary_id},
         dataType: 'json',
         success: function (data) {
-          if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id()){
-            $(this).closest('.js_summary_base_div').hide();
+          if(action == true){
+            trigger_ele.html('UNSUBSCRIBE');
+          }else{
+            trigger_ele.html('SUBSCRIBE');
+            if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id() &&
+              aw_get_channel_scope() == 2 ){
+              trigger_ele.closest('.js_summary_base_div').hide();
+            }
           }
+         
+        return false;
          
          
         },
@@ -478,7 +497,8 @@ $(document).ready(function(){
       aw_lib_alert("ActWitty will fix the problem with the filter");
     });
     /**********************/
-    $(".js_subscribe_summary").live('click', function){
+    $(".js_subscribe_summary").live('click', function(){
+      aw_lib_console_log("profile_summary.js:clicked subscribe/unsubscribe summary");
       var summary_id =$(this).closest('.js_summary_base_div').find('.js_summary_id_hidden').val();
       var action = $(this).html();
       if (action == 'SUBSCRIBE'){
@@ -487,7 +507,7 @@ $(document).ready(function(){
         subscribe_summary($(this), summary_id, false);
       }
       
-    }
+    });
     /*
      * Bind click to more on personal summary
      */

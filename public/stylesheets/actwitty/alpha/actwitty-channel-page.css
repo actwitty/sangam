@@ -514,3 +514,16 @@ ul .p-channelp-post-relelem {
   color: #fff;
   font-size: 14px;
 }
+
+/* line 529, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channel-subscribe-btn {
+  padding: 2px;
+  margin: 2px;
+  border: 1px solid #ccc;
+  background-color: #e0e0e0;
+}
+
+/* line 536, ../../../../app/stylesheets/actwitty/alpha/actwitty-channel-page.scss */
+.p-channel-subscribe-btn:hover {
+  cursor: pointer;
+}

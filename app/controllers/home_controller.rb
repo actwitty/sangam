@@ -961,14 +961,14 @@ class HomeController < ApplicationController
 #######################################
   def subscribe_summary
    Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] request params #{params}")
-   unless params[:activity_id].blank?
+   unless params[:summary_id].blank?
 
      summary_id = Integer(params[:summary_id])
      Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] calling model api #{summary_id}")
      response_json = current_user.subscribe_summary(summary_id)
      Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] response from model #{response_json}")
      if request.xhr?
-      render :json => response_json, :status => 200
+      render :json => {}, :status => 200
     end
    else
      render :json => {}, :status => 400
@@ -978,14 +978,14 @@ class HomeController < ApplicationController
 #######################################
   def unsubscribe_summary
    Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] request params #{params}")
-   unless params[:activity_id].blank?
+   unless params[:summary_id].blank?
 
      summary_id = Integer(params[:summary_id])
      Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] calling model api #{summary_id}")
      response_json = current_user.unsubscribe_summary(summary_id)
      Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] response from model #{response_json}")
      if request.xhr?
-      render :json => response_json, :status => 200
+      render :json => {}, :status => 200
     end
    else
      render :json => {}, :status => 400
