@@ -94,7 +94,10 @@ function aw_friends_render_related_modal(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
-                      '<input type="text" id="js_friends_modal_related" class="js_search_related_friends" placeholder="People"/>' +
+                      '<ul class="modal_ul">' +
+                        '<li><label class="lab_search_box">Search by Friends</label></li>' +
+                        '<li><input type="text" id="js_friends_modal_related" class="js_search_related_friends" placeholder="People"/></li>' +
+                       '</ul>' +  
                     '</div>';
 
   div.append(search_html);
