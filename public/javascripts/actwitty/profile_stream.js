@@ -1169,10 +1169,16 @@ $(document).ready(function(){
    */
   $('.js_campaign_show_all').live('click', function(){
     var cls = $(this).attr("class");
+    var nxt = $(this).next().children().attr("src");
+    //alert(nxt);
     /****************************Changed For the Like SlideToggle***div_id*********************************/
     var div_id = $(this).parent().parent().attr("id");
+    //if(nxt == "/images/alpha/unlike.png")
+    {
+     //alert("1"); 
     $("."+ cls ).addClass("js_modal_dialog_link");  
     $("."+ cls ).addClass("JS_AW_MODAL_like"); 
+    }
     //campaign_manager = the_big_stream_campaign_manager_json[div_id];
     //show_all_campaigns(campaign_manager); 
     return false;

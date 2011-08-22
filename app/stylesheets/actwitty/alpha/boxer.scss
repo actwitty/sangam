@@ -5,7 +5,8 @@
           border: 1px solid #BDC7D5;
           padding: 5px 8px 5px 8px;
 		      position: relative;
-          border:1px solid red;
+          /*border:1px solid red;*/
+          border:1px solid #ccc;
        }
 
  .ctab {
@@ -74,7 +75,7 @@
              }
 
 .locations_box_internal{
-        width:80%;
+       width:80%;
         overflow:hidden;
         float:left;
 }
@@ -87,6 +88,18 @@
 .locations_box_internal a span{
   height:40px;
   width:40px;
+}
+.locations_box_images{
+  margin-left:35px;
+  margin-top:15px;
+}
+.js_modal_locations{
+  word-wrap: break-word;
+  display:inline-block;
+  text-align:center;
+}
+.hide{
+  display: none;
 }
 
 
