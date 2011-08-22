@@ -52,9 +52,9 @@ javascripts:
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_stream_share.js
-    - public/javascripts/actwitty/profile_followers.js
+    - public/javascripts/actwitty/profile_subscribers.js
     - public/javascripts/actwitty/profile_facebook.js
-    - public/javascripts/actwitty/profile_followings.js
+    - public/javascripts/actwitty/profile_subscriptions.js
     - public/javascripts/actwitty/profile_follow.js
     - public/javascripts/actwitty/profile_summary.js
     - public/javascripts/actwitty/profile_streams_sidelists.js

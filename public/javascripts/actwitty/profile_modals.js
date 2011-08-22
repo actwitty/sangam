@@ -11,10 +11,6 @@ var the_big_modal_manager_json = {
                                             return aw_friends_render_related_modal(win_id, trigger_id);
                                           },
                                           title:"Related Friends",
-                                          /*top:20,
-                                          left:20,
-                                          width:800,
-                                          height:300,*/
                                           top:50,
                                           left:300,
                                           width:650,
@@ -120,20 +116,33 @@ var the_big_modal_manager_json = {
 
                                      
                                    },
-    "JS_AW_MODAL_share" : {
-                                          renderer_fn:function aw_modal_share(win_id, trigger_id){
-                                            //alert("calling related locations renderer");
-                                            return aw_render_share_externally(win_id, trigger_id);
+    "JS_AW_MODAL_subscriber" : {
+                                          renderer_fn:function aw_modal_subscribers(win_id, trigger_id){
+                                            return aw_subscriber_modal(win_id, trigger_id);
                                           },
-                                          title:"Share the post",
+                                          title:"Subscribers",
                                           top:50,
-                                          left:350,
-                                          width:450,
-                                          height:200,
+                                          left:300,
+                                          width:650,
+                                          height:400,
+                                          data_json:{}
+
+
+                                     
+                                   },
+    "JS_AW_MODAL_subscription" : {
+                                          renderer_fn:function aw_modal_subscriptions(win_id, trigger_id){
+                                            return aw_subscription_modal(win_id, trigger_id);
+                                          },
+                                           title:"Subscriptions",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
                                           data_json:{}
 
                                      
-                                   }             
+                                   }        
                                   };
 
 

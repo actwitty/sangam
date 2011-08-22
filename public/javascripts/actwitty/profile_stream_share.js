@@ -15,42 +15,42 @@ function get_socialize_html(stream){
                           '<div class="js_socialize_icons">' +
                             
                             '<div class="socialize_box" >' +
-                              '<img src="/images/alpha/shares/twitter.png"  alt="Share on Twitter" width="25" height="25" class="JS_AW_MODAL_share JS_SHARE_TWITTER" id="twitter_share_' + stream.post.id + '" />' +
+                              '<img src="/images/alpha/shares/twitter.png"  alt="Share on Twitter" width="25" height="25" class="js_share_post_externally JS_SHARE_TWITTER" id="twitter_share_' + stream.post.id + '" />' +
                               '<span class="twitter_text">' +
                                 '0' +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
-                              '<img src="/images/alpha/shares/facebook.png"  alt="Share on facebook" width="25" height="25" class="JS_AW_MODAL_share JS_SHARE_FACEBOOK" id="facebook_share_' + stream.post.id + '"/>' +
+                              '<img src="/images/alpha/shares/facebook.png"  alt="Share on facebook" width="25" height="25" class="js_share_post_externally JS_SHARE_FACEBOOK" id="facebook_share_' + stream.post.id + '"/>' +
                               '<span class="facebook_text">' +
                                 '0' +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
-                              '<img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="25" height="25" class="JS_AW_MODAL_share JS_SHARE_DIGG" id="digg_share_' + stream.post.id + '" />' +
+                              '<img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="25" height="25" class="js_share_post_externally JS_SHARE_DIGG" id="digg_share_' + stream.post.id + '" />' +
                               '<span class="digg_text">' +
                                 '0' +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
-                              '<img src="/images/alpha/shares/stumbleupon.png"  alt="Share on Stumbleupon" width="25" height="25" class="JS_AW_MODAL_share JS_SHARE_STUMBLEUPON" id="stumbleupon_share_' + stream.post.id + '" />' +
+                              '<img src="/images/alpha/shares/stumbleupon.png"  alt="Share on Stumbleupon" width="25" height="25" class="js_share_post_externally JS_SHARE_STUMBLEUPON" id="stumbleupon_share_' + stream.post.id + '" />' +
                               '<span class="stumbleupon_text">' +
                                 '0' +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
-                              '<img src="/images/alpha/shares/delicious.png"  alt="Share on Delicious" width="25" height="25" class="JS_AW_MODAL_share JS_SHARE_DELICIOUS" id="delicious_share_' + stream.post.id + '" />' +
+                              '<img src="/images/alpha/shares/delicious.png"  alt="Share on Delicious" width="25" height="25" class="js_share_post_externally JS_SHARE_DELICIOUS" id="delicious_share_' + stream.post.id + '" />' +
                               '<span class="delicious_text">' +
                                 '0' +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
-                              '<img src="/images/alpha/shares/buzz.png"  alt="Share on Buzz" width="25" height="25" class="JS_AW_MODAL_share JS_SHARE_BUZZ" id="buzz_share_' + stream.post.id + '" />' +
+                              '<img src="/images/alpha/shares/buzz.png"  alt="Share on Buzz" width="25" height="25" class="js_share_post_externally JS_SHARE_BUZZ" id="buzz_share_' + stream.post.id + '" />' +
                               '<span class="buzz_text">' +
                                 '0' +
                               '</span>' +
@@ -220,7 +220,7 @@ $(document).ready(function(){
   /*
    * open a modal
    */
-  $(".JS_AW_MODAL_share").live('click', function(){
+  $(".js_share_post_externally").live('click', function(){
     return aw_render_share_externally($(this).attr('id'));
   });
   

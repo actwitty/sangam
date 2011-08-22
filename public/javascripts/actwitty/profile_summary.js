@@ -212,6 +212,101 @@ function create_and_add_locations_box(box_id, summary){
   }
 }
 
+/*******************************************************************/
+function populate_people_list_on_summary(box_id, data){
+  var div = $("#" + box_id);
+
+
+  $.each(data.user, function(i, user){
+     var html='<div class="p-channel-people-box">' +
+                '<a href="/home/show?id=' + user.id + '">' +
+                  '<img src="'+ user.photo + '"  width="30" height="30" alt="" />' +
+                '</a>' +
+              '</div>';
+      
+     div.append(html);
+     if(i>5){
+       return false;
+     }
+
+    });
+  
+  div.show();
+}
+
+/*******************************************************************/
+function create_and_add_subscriptions_in_auth_sect()
+{
+   $("#" + "owners_subscription_list").empty();
+
+   $.ajax({
+        url: '/home/get_subscriptions.json',
+        type: 'GET',
+        data: { 
+                user_id:aw_lib_get_page_owner_id(),
+              },
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+           if(data && data.user && data.user.length != 0) {
+             var html = '<span class="p-channel-people-head  JS_AW_MODAL_subscription js_modal_dialog_link">' +
+                          data.user.length +' Subscriptions from  >' +
+                        '</span>' +
+                        '<div class="p-channel-people-list" id="subscriptions_list_box">' +
+                        '</div>';
+             $("#" + "owners_subscription_list").append(html);
+             populate_people_list_on_summary("subscriptions_list_box", data);
+             /* set context for the modal dialog */
+             aw_subscription_modal_data(data.user);
+           }else{
+             $("#" + "owners_subscription_list").html('<span>No subscribers to the channels.</span>');
+           }
+
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem getting subscribers list. \n ActWitty is trying to solve.');
+        }
+    });
+
+  
+
+}
+
+/*******************************************************************/
+function create_and_add_subscribers_in_auth_sect()
+{
+  $("#" + "owners_subscribers_list").empty();
+  
+   $.ajax({
+        url: '/home/get_subscribers.json',
+        type: 'GET',
+        data: { 
+                user_id:aw_lib_get_page_owner_id(),
+              },
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+           if(data && data.user && data.user.length != 0) {
+             var html = '<span class="p-channel-people-head  JS_AW_MODAL_subscriber js_modal_dialog_link">' +
+                          data.user.length + ' Subscribers of channels >' +
+                        '</span>' +
+                        '<div class="p-channel-people-list" id="subscribers_list_box">' +
+                        '</div>';
+             $("#" + "owners_subscribers_list").append(html);
+             populate_people_list_on_summary("subscribers_list_box", data);
+             /* set context for the modal dialog */
+             aw_subscriber_modal_data(data.user);
+           }else{
+             $("#" + "owners_subscribers_list").html('<span>No subscribers to the channels.</span>');
+           }
+
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            alert('There has been a problem getting subscribers list. \n ActWitty is trying to solve.');
+        }
+    });
+
+}
 
 
 function create_and_add_last_updates_in_auth_sect(box_id)
@@ -222,12 +317,19 @@ function create_and_add_last_updates_in_auth_sect(box_id)
                     '<span>2 mins ago</span>'+
                 '</div>' +
                 '<div class="p-channelp-auth-last-upd-post-text">' +
-                    '<p>alok purchased and repaired by some the of the most known persons...</p>'
+                    '<p>alok purchased and repaired by some the of the most known persons...</p>' +
                 '</div>' +
+             '</div>' +
+             '<div class="p-channelp-auth-subscriptions" id="owners_subscription_list">' +
+             '</div>' +
+             '<div class="p-channelp-auth-subscribers" id="owners_subscribers_list" >' +
              '</div>';
   latest_update_box.append(html);
 
 }
+
+
+
 
 /*******************************************************************/
 
@@ -432,6 +534,8 @@ function attach_channel_author_section(owner_id){
    * I am not sure of api to call hence leaving it blank...
    */
    create_and_add_summary_author($('#p-channelp-author-section'),owner_id);
+   create_and_add_subscribers_in_auth_sect();
+   create_and_add_subscriptions_in_auth_sect();
 }
 
 

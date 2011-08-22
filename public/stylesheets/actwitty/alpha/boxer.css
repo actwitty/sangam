@@ -153,3 +153,45 @@
 }
 
 /*************** related friends box *****************/
+/*************** subscribers box *****************/
+/* line 151, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscriber_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 156, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscriber_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 168, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscriber_box_images {
+  height: 40;
+  width: 40;
+}
+
+/*************** subscribers box *****************/
+/*************** subscription box *****************/
+/* line 174, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscription_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 179, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscription_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 191, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscription_box_images {
+  height: 40;
+  width: 40;
+}
+
+/*************** subscription box *****************/

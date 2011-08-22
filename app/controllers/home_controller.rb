@@ -55,7 +55,8 @@ class HomeController < ApplicationController
         redirect_to :controller => "welcome", :action => "new"
       end
     else
-      @user=User.find_by_id(params[:id])
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
       if @user.nil?
         if user_signed_in?
           @user=current_user
@@ -108,6 +109,28 @@ class HomeController < ApplicationController
     Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search response : #{response_json}")
     if request.xhr?
         render :json => response_json, :status => 200
+    end
+  end
+  ############################################
+  def subscribers
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] request params : #{params}")
+    user_id =  Integer(params[:user_id])
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] model api : #{user_id}")
+    response_json=current_user.get_subscribers(user_id)
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] response json : #{response_json}")
+    if request.xhr?
+      render :json => response_json
+    end
+  end
+  ############################################
+ def subscriptions
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] request params : #{params}")
+    user_id =  Integer(params[:user_id])
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] model api : #{user_id}")
+    response_json=current_user.get_subscriptions(user_id)
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] response json : #{response_json}")
+    if request.xhr?
+      render :json => response_json
     end
   end
   ############################################

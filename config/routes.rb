@@ -79,7 +79,8 @@ Sangam::Application.routes.draw do
   match '/home/get_document_channel' => 'home#get_document_channel'
   match '/home/get_document_stream' => 'home#get_document_stream'
 
-
+  match '/home/get_subscribers' => 'home#subscribers'
+  match '/home/get_subscriptions' => 'home#subscriptions'
 
 
 
@@ -92,12 +93,11 @@ Sangam::Application.routes.draw do
   #match '/contacts/friendship' => 'contacts#friendship'
 
   match '/contacts/facebook_friends' => 'contacts#facebook_friends'
-  match '/contacts/search' => 'contacts#search'
-  match '/contacts/followers' => 'contacts#followers'
-  match '/contacts/followings' => 'contacts#followings'
-  match '/contacts/follow' => 'contacts#follow'
-  match '/contacts/unfollow' => 'contacts#unfollow'
   match '/contacts/provider_follow' => 'contacts#provider_follow'
+
+  #match '/contacts/follow' => 'contacts#follow'
+  #match '/contacts/unfollow' => 'contacts#unfollow'
+
 
   match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
 

@@ -537,9 +537,37 @@ ul .p-channelp-post-relelem
   cursor:pointer;
 }
 
+.p-channel-people-head
+{
+  width:100%;
+  height:15px;
+  margin:2px 0 2px 0;
+  float:left;
+}
+.p-channel-people-head
+{
+  font-size:11px;
+  text-decoration:underline;
+}
 
+.p-channel-people-head:hover
+{
+  cursor:pointer;
+}
 
+.p-channel-people-list
+{
+  width:100%;
+  float:left;
+}
 
+.p-channel-people-box
+{
+  display:inline-block;
+  padding:2px;
+  margin:2px;
+  border:1px solid #ccc;
+}
 
 
 

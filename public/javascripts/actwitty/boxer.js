@@ -24,6 +24,13 @@ var the_big_json_renderers={
                                "channels" : function aw_boxer_render_channels(data, internal_id, new_tab_id){
                                                 return aw_render_channels_internal(data, internal_id, new_tab_id);
                                                },
+                               "subscriber" : function aw_boxer_render_subscribers(data, internal_id, new_tab_id){
+                                                return aw_render_subscriber_internal(data, internal_id, new_tab_id);
+                                               },
+                               "subscription" : function aw_boxer_render_subscriptions(data, internal_id, new_tab_id){
+                                                return aw_render_subscription_internal(data, internal_id, new_tab_id);
+                                               },
+
 
                               
 
