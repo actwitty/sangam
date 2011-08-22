@@ -115,6 +115,8 @@ Sangam::Application.routes.draw do
   match '/home/update_social_media_share' => 'home#update_social_media_share'
   match '/home/get_social_counter' => 'home#get_social_counter'
 
+  match '/home/subscribe_summary' => 'home#subscribe_summary'
+  match '/home/unsubscribe_summary' => 'home#unsubscribe_summary'
 
 
 

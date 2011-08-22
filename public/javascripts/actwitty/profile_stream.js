@@ -21,7 +21,7 @@ function getEmbeddedPlayer( url, height, width){
 	var youtubeUrl = url.match(/watch\?v=([a-zA-Z0-9\-_]+)/);
 	var vimeoUrl = url.match(/^http:\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/);
 	if( youtubeUrl ){
-	  output = '<iframe class="video" width="'+width+'" height="'+height+'" src="http://www.youtube.com/embed/'+youtubeUrl[1]+'?wmode=transparent" frameborder="0" wmode="Opaque"></iframe>';
+	  output = '<iframe class="video" width="'+width+'" height="'+height+'" src="http://www.youtube.com/embed/'+youtubeUrl[1]+'?wmode=transparent"></iframe>';
     
 	}else if(vimeoUrl){
 		output =  '<iframe class="video" src="http://player.vimeo.com/video/'+vimeoUrl[3]+'" width="'+width+'" height="'+height+'" frameborder="0" ></iframe>';

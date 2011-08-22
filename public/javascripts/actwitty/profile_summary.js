@@ -73,7 +73,21 @@ function create_and_docs_box(box_id, summary){
 }
 
 
+/* handle subscribe box */
+function create_add_add_subscribe_box(box_id, summary){
+  var subsc_box = $("#" + box_id);
+  if(summary.user.id == aw_lib_get_session_owner_id() ){
+    var html="";
+    if(summary.subscribed && summary.subscribed == true){
+      html='<a class="p-channel-subscribe-btn js_subscribe_summary" >SUBSCRIBE </a>';
+    }else{
+      html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE </a>';
+    }
+  }else{
+    subsc_box.hide();
+  }
 
+}
 
 
 /******************************************************************/
@@ -248,6 +262,7 @@ function create_and_add_summary(summary_box, summary){
  }
  var docs_box_id = unique_id + '_attachments';
  var friends_box_id = unique_id + '_friends';
+ var subscribe_box_id = unique_id + '_subscribe';
  var entities_box_id = unique_id + '_entities';
  var locations_box_id = unique_id + '_locations';
  var latest_text_box_id = unique_id + '_text';
@@ -262,7 +277,8 @@ function create_and_add_summary(summary_box, summary){
  the_big_filter_JSON[filter_id] = filter_value;
 
 
- var html = '<div class="p-channelp-post">' +
+ var html = '<div class="p-channelp-post js_summary_base_div">' +
+              '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
               '<div class="p-channelp-post-header">' +
                 '<div class="p-channelp-post-tab">' +
                 '</div>' +
@@ -290,6 +306,8 @@ function create_and_add_summary(summary_box, summary){
                   '<span>'  +
                      summary.word.name + 
                   '</span>' +
+                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">'
+                  '</div>' +
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
@@ -346,15 +364,17 @@ function create_and_add_summary(summary_box, summary){
         summary_box.append(html);
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
-        create_and_docs_box(docs_box_id, summary);  
+        create_and_docs_box(docs_box_id, summary); 
+        create_add_add_subscribe_box(subscribe_box_id, summary);
         create_and_add_text_box(latest_text_box_id, summary);
         create_and_add_friends_box(friends_box_id, summary);
         create_and_add_entities_box(entities_box_id, summary);
         create_and_add_locations_box(locations_box_id, summary);
 
 }
-
-
+/*
+ *
+ */
 function append_personal_summary(owner_id){
   var scroll = $(window).scrollTop();
   var more_cookie =  $("#more_channels_cookie").val();
@@ -412,6 +432,34 @@ function aw_summary_reload_tab(owner_id){
 
 }
 
+function subscribe_summary(trigger_ele, sub_summary_id, action ){
+    var post_url="";
+    if( action == true ){
+      post_url = '/home/subscribe_summary.json';
+    }else{
+      post_url = '/home/unsubscribe_summary.json';
+    }
+    $.ajax({
+        url: post_url,
+        type: 'POST',
+        data: {summary_id:sub_summary_id},
+        dataType: 'json',
+        success: function (data) {
+          if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id()){
+            $(this).closest('.js_summary_base_div').hide();
+          }
+         
+         
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            aw_lib_alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
+        }
+    });
+}
+
+
+
+
 $(document).ready(function(){
   /* Manage summary filters */
     $('.js_summary_filter_setter').live('click', function(){
@@ -429,7 +477,17 @@ $(document).ready(function(){
         }
       aw_lib_alert("ActWitty will fix the problem with the filter");
     });
-
+    /**********************/
+    $(".js_subscribe_summary").live('click', function){
+      var summary_id =$(this).closest('.js_summary_base_div').find('.js_summary_id_hidden').val();
+      var action = $(this).html();
+      if (action == 'SUBSCRIBE'){
+        subscribe_summary($(this), summary_id, true);
+      }else{
+        subscribe_summary($(this), summary_id, false);
+      }
+      
+    }
     /*
      * Bind click to more on personal summary
      */
