@@ -70,7 +70,8 @@ javascripts:
     - public/javascripts/actwitty/profile_people.js
     - public/javascripts/actwitty/profile_images.js
     - public/javascripts/actwitty/profile_videos.js
-    #- public/javascripts/actwitty/text_limit.js   
+    - public/javascripts/actwitty/tooltip.js   
+    - public/javascripts/actwitty/map.js   
 
 
   main:
