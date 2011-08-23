@@ -48,13 +48,14 @@
   margin-bottom: 5px;
 }
 
-/* line 56, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
-.author {
-  border: 0px solid green;
-  width: 100%;
-  height: auto;
+/*
+.author
+{
+  border:0px solid green;
+  width:100%;
+  height:auto;
 }
-
+*/
 /* line 63, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-st-campaign-actor-image {
   width: 30px;

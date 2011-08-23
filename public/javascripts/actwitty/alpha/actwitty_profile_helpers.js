@@ -71,12 +71,12 @@ $(document).ready(function(){
     });
 
     /* to display the comment input system for inputting comments.  like google+ */ 
-    $(".add-comment").click(function(event){
+    $(".add-comment").live("click",function(){
       $(this).next().show();
       $(this).hide();
     });
   
-    $(".cancel-comment-btn").click(function(event){
+    $(".cancel-comment-btn").live("click",function(){
       var parentTag = $(this).parent().prev().show();
       $(this).parent().hide();
     });
