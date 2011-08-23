@@ -104,7 +104,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	}
 
 /* ----------------------------------------------Header-------------------------------------*/
-
+/*
 #header
 {
 	padding:0px 0;
@@ -124,6 +124,40 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   -webkit-box-shadow: 4px 4px 4px #b0b0b0;
   box-shadow: 4px 4px 4px #b0b0b0;
 }
+*/
+
+
+
+#header
+{
+	padding:0px 0;
+  height:50px;
+  border:0px solid red;
+  z-index:1200;
+}
+
+#header-proxy
+{
+  position:fixed;
+  width:990px;
+  height:auto;
+  background:#fff;
+  border:0px solid red;
+  z-index:2000;
+}
+#top-bar
+{
+  /*position:fixed;*/
+  border:0px solid blue;
+  background:#454545;
+  width:624px;
+  height:50px;
+  margin-left:190px;
+  -moz-box-shadow: 4px 4px 4px #b0b0b0;
+  -webkit-box-shadow: 4px 4px 4px #b0b0b0;
+  box-shadow: 4px 4px 4px #b0b0b0;
+}
+
 
 #header h1, #header p
 {
