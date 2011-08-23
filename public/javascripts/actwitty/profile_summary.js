@@ -5,12 +5,65 @@
 
 
 var the_big_filter_JSON={dummy:"dummy"};
+function get_base_theme_image_url(){
+  return "https://s3.amazonaws.com/TestCloudActwitty/channel_themes/";
+}
+function get_summary_theme_images(){
+  var images = [
+                 'bubbles.jpg',
+                 'gray.jpg',
+                 'orange.jpg',
+                 'skycurtain.jpg',
+                 'coffee.jpg',
+                 'green.jpg',
+                 'pebbles.jpg',
+                 'wood.jpg',
+                'kaliedoscope.jpg',
+                'pink.jpg',
+                'yellow.jpg',
+                'forest.jpg',
+                'marine.jpg',
+                'red.jpg'
+               ];
+  return images;
+}
+
+function get_img_list_html(){
+  var html="";
+  jQuery.each(get_summary_theme_images(), function() {
+    html = html + '<img src="' + get_base_theme_image_url() + this + '" class="js_theme_image p-channelp-summary-theme-img"/>';
+  });
+
+  return html;
+}
+
+function get_summary_theme_html(summary){
+  var html="";
+  if ( aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id() &&
+      summary.user.id == aw_lib_get_session_owner_id() ){
+     html = '<div class="js_summary_theme_base p-channelp-summary-theme">' +
+             '<span>' + 
+                  '<a  class="js_set_theme_minimize p-channelp-summary-theme-show" > Theme  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+                  '</a>' +
+             '</span>' +
+             '<div class="js_summary_theme_list_box p-channelp-theme-img-list-box">' +
+                 get_img_list_html() +
+             '</div>' + 
+            '</div>';
+  }
+  return html;
+}
+
+
 /* handle text box */
 function create_and_add_text_box(box_id, summary){
   var text_box= $("#" + box_id);
   if ( summary.recent_text && summary.recent_text.length  ){
 
     $.each(summary.recent_text, function(i, text){
+     if(i>1){
+       return;
+     }
      shortText = text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
      var html = '<div class="p-channelp-post-lup">' +
                     '<div class="p-channelp-post-lup-time">' +
@@ -20,14 +73,9 @@ function create_and_add_text_box(box_id, summary){
                       '<p>' + shortText + '</p>' +
                     '</div>'+
                   '</div>';
-     /*var html='<li>' +
-                '<span>' +
-                    text +
-                '</span>' +
-              '</li>';
-     */
 
      text_box.append(html);
+     
     });
       
   }else{
@@ -57,7 +105,7 @@ function create_and_docs_box(box_id, summary){
        
        var html='<a rel="fnc_group_'+box_id+'" href="'+ attachment.url + '" title="">' +
                   '<img alt="" src="'+ thumb_url + '"  width="50"  alt="" />' +
-                '</a>'; 
+                '</a>';
         ul_box.append(html);
       }
     });
@@ -244,6 +292,7 @@ function create_and_add_subscriptions_in_auth_sect()
         type: 'GET',
         data: { 
                 user_id:aw_lib_get_page_owner_id(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
         contentType: 'application/json',
@@ -264,7 +313,7 @@ function create_and_add_subscriptions_in_auth_sect()
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem getting subscribers list. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem getting subscribers list. \n ActWitty is trying to solve.');
         }
     });
 
@@ -282,6 +331,7 @@ function create_and_add_subscribers_in_auth_sect()
         type: 'GET',
         data: { 
                 user_id:aw_lib_get_page_owner_id(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
               },
         dataType: 'json',
         contentType: 'application/json',
@@ -302,7 +352,7 @@ function create_and_add_subscribers_in_auth_sect()
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem getting subscribers list. \n ActWitty is trying to solve.');
+            aw_lib_alert('There has been a problem getting subscribers list. \n ActWitty is trying to solve.');
         }
     });
 
@@ -320,15 +370,38 @@ function create_and_add_last_updates_in_auth_sect(box_id)
                     '<p>alok purchased and repaired by some the of the most known persons...</p>' +
                 '</div>' +
              '</div>' +
+
              '<div class="p-channelp-auth-subscriptions" id="owners_subscription_list">' +
              '</div>' +
              '<div class="p-channelp-auth-subscribers" id="owners_subscribers_list" >' +
              '</div>';
+
+  html = html + get_add_channel_html(); 
+             
   latest_update_box.append(html);
 
 }
 
+/*******************************************************************/
+function get_add_channel_html(){
+  var html="";
+  if ( aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id() ){
+     html = '<div class="js_summary_add_channel_base p-channelp-auth-add-channel">' +
+             '<span>' + 
+                  '<a  class="js_add_channel_minimize" > Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+                  '</a>' +
+             '</span>' +
+             '<div class="js_summary_add_channel_box p-channelp-auth-add-channel-box">' +
+                '<span>' +
+                  '<input id="js_new_channel_field" class="activity_input input_text_box" type="text" />' +
+                  '<input id="js_new_channel_button" type="button" value="Create" />' +
+                '</span>' +
+             '</div>' + 
+            '</div>';
+  }
+  return html;
 
+}
 
 
 /*******************************************************************/
@@ -345,17 +418,16 @@ function create_and_add_summary_author(author_box, owner_id)
    var latest_update_id = unique_id + '_latest_update'; 
    
    var html =   '<div class="p-channelp-author-img-sect">' +
-                  '<img src="/images/profile/default.png">' +
+                  '<img src="' + aw_lib_get_page_owner_photo() + '">' +
                 '</div>' +
                 '<div class="p-channelp-author-name">' +
-                   '<span>Samarth Deo</span>' +
+                   '<span>' + aw_lib_get_page_owner_name() + '</span>' +
                 '</div>' +
                 '<div class="p-channelp-auth-last-upd-sect" id="' + latest_update_id + '">' +
                    '<div class="p-channelp-auth-last-upd-hd">' +
                       '<span>Last Updates :</span>' +
                    '</div>' +
                 '</div>';
-    
     $("#p-channelp-author-section").html(html);
     create_and_add_last_updates_in_auth_sect(latest_update_id);
     
@@ -387,23 +459,29 @@ function create_and_add_summary(summary_box, summary){
  the_big_filter_JSON[filter_id] = filter_value;
 
 
- var html = '<div class="p-channelp-post js_summary_base_div">' +
+ var html = '<div class="p-channelp-post js_summary_base_div" id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
+
               '<div class="p-channelp-post-header">' +
+
                 '<div class="p-channelp-post-tab">' +
                 '</div>' +
+
                 '<div class="p-channelp-post-author">' +
+
                   '<div class="p-channelp-post-author-img">' +
                     '<a href="/home/show?id=' +  summary.user.id + '" >' +  
                       '<img src="' + summary.user.photo + '" alt="">' +
                     '</a>'+ 
-                  '</div>' +
+                   '</div>' +
+
                   '<div class="p-channelp-post-author-name">' +
                     '<span>' + summary.user.full_name+ '</span>' +
                   '</div>' +
+
                 '</div>' +
               '</div> ' +
-              
+             
 
               '<div class="p-channelp-post-info">' +
                 '<div class="p-channelp-post-lu" id="' + latest_text_box_id  + '">' +
@@ -412,11 +490,11 @@ function create_and_add_summary(summary_box, summary){
                   '</div>' +
                 '</div>' +
             
-                '<div class="p-channelp-post-cu">' +
+                '<div class="p-channelp-post-cu js_word_name_box">' +
                   '<span>'  +
                      summary.word.name + 
                   '</span>' +
-                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">'
+                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
                   '</div>' +
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
@@ -427,8 +505,10 @@ function create_and_add_summary(summary_box, summary){
                     '<p><center>' + summary.count + '</center></p> <p> <center>posts</center></p>' +
                   '</div>' +
                 '</div>' +
+
               '</div>' +
 
+              get_summary_theme_html(summary) +
               '<div class="p-channelp-related-info">' +
                 '<div class="p-channelp-rel-frnd" >' +
                   '<div class="p-channelp-post-rel-friend-header">' +
@@ -472,6 +552,13 @@ function create_and_add_summary(summary_box, summary){
 
         /* overall summary div is added */        
         summary_box.append(html);
+        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        if( summary.theme_data.url && summary.theme_data.url){
+          background_theme = summary.theme_data.url;
+        }
+        var word_name_box = $('#' + unique_id).find('.js_word_name_box');
+        word_name_box.css('background-image', 'url('+ background_theme + ')');  
+          
         aw_lib_console_log("profile_summary.js:create_and_add_summary html appended");
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
@@ -539,6 +626,7 @@ function attach_channel_author_section(owner_id){
 }
 
 
+/**********************/
 function aw_summary_reload_tab(owner_id){
   $('#p-channelp-posts').html('');
   $("#more_channels_cookie").val("");
@@ -546,6 +634,7 @@ function aw_summary_reload_tab(owner_id){
 
 }
 
+/**********************/
 function subscribe_summary(trigger_ele, sub_summary_id, action ){
     var post_url="";
     aw_lib_console_log("profile_summary.js:called subscribe/unsubscribe summary");
@@ -579,10 +668,37 @@ function subscribe_summary(trigger_ele, sub_summary_id, action ){
         }
     });
 }
+/**********************/
+function update_summary_theme(trigger_ele){
+  var summary_id_val = trigger_ele.closest('.js_summary_base_div').find('.js_summary_id_hidden').val();
+  var url_val = trigger_ele.attr("src");
+  var default_val = false;
+  
+  var json_data = { 
+                    summary_id:summary_id_val,
+                    url:url_val,
+                  };
 
+  $.ajax({
+        url: '/home/update_summary_theme.json',
+        type: 'POST',
+        data: json_data,
+        dataType: 'json',
+        success: function (data) {
+          var word_name_box = trigger_ele.closest('.js_summary_base_div').find('.js_word_name_box');
+          word_name_box.css('background-image', 'url('+ url_val + ')');  
+          return false;
+         
+         
+        },
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
+            aw_lib_alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
+        }
+    });
 
+}
 
-
+/**********************/
 $(document).ready(function(){
   /* Manage summary filters */
     $('.js_summary_filter_setter').live('click', function(){
@@ -620,4 +736,55 @@ $(document).ready(function(){
       append_personal_summary(page_owner_id);
       return false;
     });
+    /***********************/
+    $(".js_add_channel_minimize").live('click',function(){
+      var add_new_block = $(this).closest(".js_summary_add_channel_base").find(".js_summary_add_channel_box");
+    
+      if(add_new_block.css('display') == 'none'){ 
+        add_new_block.show('slow'); 
+        $(this).find('img').attr("src", "/images/alpha/shares/minus.png");
+      } else { 
+        add_new_block.hide('slow'); 
+        $(this).find('img').attr("src", "/images/alpha/shares/plus.png");
+      }
+      return false;
+    });
+    /*************************/
+    $("#js_new_channel_button").live('click', function(){
+     var new_channel = $("#js_new_channel_field").val();
+     if(new_channel.length == 0){
+       aw_lib_alert("Channel name cannot be left blank");
+       return false;
+      }
+
+      var post_json = { 
+                      word : new_channel,
+                      enrich : true,
+                      source_name:"actwitty",
+                      text : "created a new channel"
+                    };
+       post_activity_to_server(post_json, false, true);
+       $("#js_new_channel_field").val('');
+       return false;
+    });
+    /*************************/
+    $(".js_set_theme_minimize").live('click',function(){
+      var add_new_block = $(this).closest(".js_summary_theme_base").find(".js_summary_theme_list_box");
+    
+      if(add_new_block.css('display') == 'none'){ 
+        add_new_block.show('slow'); 
+        $(this).find('img').attr("src", "/images/alpha/shares/minus.png");
+      } else { 
+        add_new_block.hide('slow'); 
+        $(this).find('img').attr("src", "/images/alpha/shares/plus.png");
+      }
+      return false;
+    });
+    /*************************/
+    $(".js_theme_image").live('click', function(){
+      update_summary_theme($(this));
+    });
+    /*************************/
 });
+
+

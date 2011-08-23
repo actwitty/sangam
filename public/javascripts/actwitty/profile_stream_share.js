@@ -8,7 +8,7 @@ function get_socialize_html(stream){
                           '<input type="hidden" value="' + stream.post.summary_id + '" class="socialize_summary_id" />' +
                           '<input type="hidden" value="' + stream.post.sub_title + '" class="socialize_post_title" />' +
                           '<span>' + 
-                            '<a  class="js_socialize_minimize" > Share <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+                            '<a  class="js_socialize_minimize" > Share  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
                             '</a>' +
                           '</span>' +
                           '<div class="js_socialize_icons">' +

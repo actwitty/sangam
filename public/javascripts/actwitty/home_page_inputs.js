@@ -131,10 +131,17 @@ function get_location_string(){
   return location_string;
 }
 
-function post_activity_to_server(post_data){
+function post_activity_to_server(post_data, clear, force_edit_mode){
+  if(clear == undefined){
+    clear = true;
+  }
+
+  if(force_edit_mode == undefined){
+    force_edit_mode = false;
+  }
 
    var reedit_mode = aw_get_reedit_mode();
-   if(reedit_mode != 1){
+   if(reedit_mode != 1 || force_edit_mode == true){
       $.ajax({
         url: '/home/create_activity.json',
         type: 'POST',
@@ -142,10 +149,12 @@ function post_activity_to_server(post_data){
         dataType:"script",
         cache: true,
         success: function (data) {
-          reset_to_default();
-          clear_all_input_jsons();
-          $("#pre_uploaded_docs").empty();
-          aw_lib_alert("New post added");
+          if( clear ) {
+            reset_to_default();
+            clear_all_input_jsons();
+            $("#pre_uploaded_docs").empty();
+            aw_lib_alert("New post added");
+          }
         },
           error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
@@ -163,10 +172,12 @@ function post_activity_to_server(post_data){
         dataType:"json",
         cache: true,
         success: function (data) {
-          reset_to_default();
-          clear_all_input_jsons();
-          $("#pre_uploaded_docs").empty();
-          aw_lib_alert("Post processed");
+          if( clear ) {
+            reset_to_default();
+            clear_all_input_jsons();
+            $("#pre_uploaded_docs").empty();
+            aw_lib_alert("Post processed");
+          }
         },
           error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);

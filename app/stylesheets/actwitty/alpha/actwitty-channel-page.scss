@@ -190,14 +190,20 @@
 
 .p-channelp-post-cu
 {
-  width:35%;
+  width:242px;
   height:140px;
   background:#CDC8B1;
   float:left;
   margin-left:5px;
 }
-
-
+.p-channelp-post-cu span{
+  font-size:35px;
+  color:#fff;
+  text-align:center;
+  text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
+}
 .p-channelp-post-analytic
 {
   width:7%;
@@ -569,5 +575,51 @@ ul .p-channelp-post-relelem
   border:1px solid #ccc;
 }
 
+.p-channel-people-box span:hover
+{
+  cursor:pointer;
+}
+.p-channelp-auth-add-channel
+{
+  width:100%;
+}
+
+.p-channelp-auth-add-channel span:hover
+{
+  margin-top:10px;
+  cursor:pointer;
+}
+
+.p-channelp-auth-add-channel-box
+{
+  display:none;
+}
 
 
+
+.p-channelp-summary-theme{
+  width:100%;
+  height:50px;
+  display:block;
+}
+.p-channelp-summary-theme-show{
+  float:left;
+}
+.p-channelp-summary-theme-show{
+   cursor:pointer;
+}
+.p-channelp-theme-img-list-box{
+  width:100%;
+  display:none;
+  margin:2px;
+}
+.p-channelp-summary-theme-img{
+  width:24px;
+  padding:2px;
+  margin:2px;
+  float:left;
+}
+
+.p-channelp-summary-theme-img:hover{
+   cursor:pointer;
+}

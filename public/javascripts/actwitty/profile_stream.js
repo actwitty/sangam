@@ -582,6 +582,11 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   if ( post.status == 2){
     var external_shares = get_socialize_html(stream); 
   }
+  
+  var title = "";
+  if ( post.sub_title){
+    title = post.sub_title;
+  }
   /* Main stream div definition */
   var stream_ele_id = get_stream_ele_id(post.id);
   var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
@@ -617,7 +622,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
                       '<div class="p-awp-subtitle">' +
                         '<a href="/view?id=' + post.id + '">' +
-                          '<span class="p-awp-subtitle-name">' + post.sub_title +'</span>' +
+                          '<span class="p-awp-subtitle-name">' + title +'</span>' +
                         '</a>' +
                       '</div>' +
 
