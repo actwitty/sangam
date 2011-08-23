@@ -1862,7 +1862,7 @@ ul.p-fltr-tag-list li {
 .p-awp-post-contents {
   width: 85%;
   height: auto;
-  border: 0px solid red;
+  border: 0px solid green;
   display: inline-block;
   background: #cecece;
   margin-left: 10px;
@@ -1870,10 +1870,10 @@ ul.p-fltr-tag-list li {
 
 /* line 1795, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-post-like-info {
-  width: 10%;
+  width: 7%;
   min-height: 30px;
-  border: 0px solid green;
-  display: inline-block;
+  border: 0px solid blue;
+  display: inline;
   position: absolute;
   margin-top: 10px;
   background: #b847cf;

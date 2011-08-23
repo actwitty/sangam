@@ -169,9 +169,9 @@ function handle_like_campaign(div_id, stream){
   var html = '<a id="' + link + '" value="' + div_id + '" class="js_like_user_action">' +
                   like_text +
              '</a>';
-  var like_count_html = '<center>'+total_count+'</center><center>Like'+get_pluralize_form(total_count)+'</center>';
-  
+  var like_count_html = get_campaign_likes_label(total_count);
   /*
+  var like_count_html = '<center>'+total_count+'</center><center>Like'+get_pluralize_form(total_count)+'</center>';
   var html2 = '<div class="p-awp-view-campaign_all ">' +
                 
                 '<span class="js_campaign_show_all" id="' + text_id + '" value="' + div_id + '" >' +
