@@ -132,12 +132,27 @@ function get_location_image_for_type(type){
 }
 
 function aw_render_locations_internal(location, div_id){
+     //alert(JSON.stringify(location));
      var link_id = "stream_related_modal_" + location.id;
+     var loc_id = "stream_related_modal_" + location.id + "_loc";
      var str;
      //alert(location.name.length);
+     //var nt = getmapinfo(location.lat,location.lang,link_id);
+     /**********************************************************/
+     /*
+    var latlng = new google.maps.LatLng(location.lat, location.lang);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById(loc_id),
+        myOptions);
+    */
+     /**********************************************************/
+
      if( location.name.length > 35 )
      {  
-       //alert("if");  
        var limit = 35;                // The number of characters to show
        str = location.name;        // Getting the text
        var strtemp = str.substr(0,limit);   // Get the visible part of the string
@@ -145,18 +160,20 @@ function aw_render_locations_internal(location, div_id){
      }
      else
      {
-       //alert("else");
        str = location.name;
      }
 
      
-     var html='<div class="locations_box_internal" id="' + div_id + '">' +
+     var html='<div id="toolTipLayer" style="position: absolute; right: 0px; visibility: visible;left: 100px; top: -30px; "></div>' +
+              '<div class="locations_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_locations" id="' + link_id + '">' +
                   '<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
-                    str + 
+                  //'<div id="' + loc_id + 'style="width:120px; height:90px"></div>' +
+                  '<span onmouseover="toolTip(&#39;'+location.name+ '&#39;)" onmouseout="toolTip()">'+ str +'</span>'+
                   '</a>'+
               '</div>';
-     the_big_modal_locations_json[link_id] = {id:location.id, name:location.name};
+
+              the_big_modal_locations_json[link_id] = {id:location.id, name:location.name};
      return html;
 }
 
