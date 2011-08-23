@@ -93,7 +93,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 /* ----------------------------------------------Generalise-------------------------------------*/
 
-#header,#p-ip-sect ,#p-ch-st-tab-sect,#p-content-sect 
+/*#header,#p-ip-sect ,#p-ch-st-tab-sect,#p-content-sect */
+#header,#p-ch-st-tab-sect,#p-content-sect,#p-input-box-div,#p-ip-sect 
 {
 	position:relative;
 	margin:0 auto 0;
@@ -967,7 +968,9 @@ a.info:hover span {
 
 
 
-/* ----------------------------------------------Channel Stream Tab-------------------------------------*/
+/* ----------------------------------------------Channel Stream Tab------------------------------------- */
+
+
 
 
 #p-ch-st-tab-sect
@@ -975,15 +978,23 @@ a.info:hover span {
   padding:0px 0;
   border:0px solid green;
 }
-
 #p-ch-st-tab
 {
-  width:605px;
+  width:990px;
   height:50px;
   border:0px solid blue;
-  margin-left:195px;
+  
 }
 
+#p-ch-st-tab-proxy
+{
+  width:990px;;
+  height:45px;
+  border-bottom:4px solid #eaa440;
+  background:#fff;
+  position:absolute;
+  z-index:1200;
+}
 
 ul.p-cstab {
 	margin: 0;
@@ -995,11 +1006,12 @@ ul.p-cstab {
   border-bottom: 0px solid #ddd;
 	width: 620px;
   display:block;
-  background:#afafaf;
+  background:#eaa440;
   border:0px solid blue;
-  margin-left:2px;
+  margin-left:195px;
+  /*position:absolute;
+  z-index:2000;*/
 }
-
 
 ul.p-cstab li {
   display:block;
@@ -1008,26 +1020,24 @@ ul.p-cstab li {
 	padding: 0px 0px;
 	height: 38px;
 	line-height: 38px;
-	margin-bottom: -1px;
+	border: 0px solid #ddd;
+  margin-top:1px;
+  margin-left:0px;
+	margin-bottom: 3px;
 	position: relative;
-  background:#afafaf;
-  width:304px;
+  background:#eaa440;
+  /*background:#fff;*/
+  width:303px;
   text-align:center;
-  border-bottom:5px solid white;
-  border-top:5px solid #afafaf;
+  border-bottom:5px solid #fff;
+  border-top:5px solid #eaa440;
 }
 
-ul.p-cstab li.p-ch-tab {
-  border-left:5px solid  #afafaf;
-  border-right:1px solid #afafaf;
+ul.p-cstab li.p-ch-tab
+{
+  margin-left:7px;
+  /*background:#fff;*/
 }
-
-
-ul.p-cstab li.p-st-tab {
-  border-left:1px solid  #afafaf;
-  border-right:5px solid #afafaf;
-}
-
 
 
 
@@ -1042,43 +1052,29 @@ ul.p-cstab li a {
   font-weight:bold;
 }
 
-
-
 ul.p-cstab li.p-ch-tab:hover {
   color:#00BFFF;
-  background: #cccccc;
-  border-left:5px solid #afafaf;
-  border-right:1px solid #afafaf;
+  background: #e3bd87;
 }
 
 ul.p-cstab li.p-st-tab:hover {
   color:#00BFFF;
-  background: #cccccc;
+  background: #e3bd87;
   text-decoration:none;
-  border-right:1px solid #afafaf;
-  border-bottom:5px solid white;
-  border-right:5px solid #afafaf;
 }
+
 
 html ul.p-cstab li.p-ch-tab.active  {
 	color:#00BFFF;
   background: #fff;
   text-decoration:none;
-  border-left:5px solid #afafaf;
-  border-right:1px solid #afafaf;
 }
 
 html ul.p-cstab li.p-st-tab.active  {
 	color:#00BFFF;
   background: #fff;
   text-decoration:none;
-  border-left:1px solid #afafaf;
-  border-right:5px solid #afafaf;
 }
-
-
-
-
 
 .p-cstab_content {
 	border: 0px solid  #afafaf;
@@ -1113,7 +1109,7 @@ html ul.p-cstab li.p-st-tab.active  {
   list-style:none;
   position:absolute;
   z-index:1000;
-  /*background:#CCCCCC;*/
+  background:#fff;
   border:0px solid red;
   border-top:1px solid #ddd;
   border-bottom:1px solid #ddd;

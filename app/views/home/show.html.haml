@@ -4,14 +4,27 @@
     #js_input_box
       =render :partial => "home/input_box" 
 
+
+
+
 .wrapper.col3
   #p-ch-st-tab-sect
     #p-ch-st-tab
-      %ul.p-cstab
-        %li#channels_tab_head.p-ch-tab
-          %a.actwitty-fontify{:href => "#channels_tab"} CHANNELS
-        %li#streams_tab_head.p-st-tab
-          %a{:href => "#streams_tab"} STREAMS
+      #p-ch-st-tab-proxy
+        %ul.p-cstab
+          %li#channels_tab_head.p-ch-tab
+            %a{:href => "#timeline-streams"} Channels
+          %li#streams_tab_head.p-st-tab
+            %a{:href => "#timeline-streams"} Streams
+/
+  .wrapper.col3
+    #p-ch-st-tab-sect
+      #p-ch-st-tab
+        %ul.p-cstab
+          %li#channels_tab_head.p-ch-tab
+            %a.actwitty-fontify{:href => "#channels_tab"} CHANNELS
+          %li#streams_tab_head.p-st-tab
+            %a{:href => "#streams_tab"} STREAMS
           
           
 
