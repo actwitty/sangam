@@ -1018,5 +1018,29 @@ class HomeController < ApplicationController
 
   end
 #######################################
+  def update_summary_theme
+    Rails.logger.info("[CNTRL][HOME][UPDATE SUMMARY THEME] request params #{params}")
+    unless user_signed_in?
+      render :json => {}, :status => 400
+      return
+    end
+    unless params[:summary_id].blank? && params[:url].blank?
+      args={}
+      args[:summary_id] = Integer(params[:summary_id])
+      args[:author_id] = current_user.id
+      #args[:style] = 2
+      args[:default]=false
+      args[:url]=params[:url]
+      Rails.logger.info("[CNTRL][HOME][UPDATE SUMMARY THEME] calling model api #{args}")
+      response_json = current_user.update_theme(args)
+      Rails.logger.info("[CNTRL][HOME][UPDATE SUMMARY THEME] response from model #{response_json}")
+        if request.xhr?
+          render :json => response_json, :status => 200
+        end
+    else
+        render :json => {}, :status => 400
+    end
+
+  end
 end
 

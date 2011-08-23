@@ -82,6 +82,8 @@ Sangam::Application.routes.draw do
   match '/home/get_subscribers' => 'home#subscribers'
   match '/home/get_subscriptions' => 'home#subscriptions'
 
+  match '/home/update_summary_theme' => 'home#update_summary_theme'
+
 
 
   #match '/contacts/add' => 'contacts#add'
