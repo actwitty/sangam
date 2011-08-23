@@ -121,6 +121,19 @@ function create_and_docs_box(box_id, summary){
 }
 
 
+function get_subscription_box_element(type)
+{
+  if(type == 'UNSUBSCRIBE') {
+    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
+  }else if(type == 'SUBSCRIBE'){
+      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
+  }else{
+    return '';
+  }
+
+}
+
+
 /* handle subscribe box */
 function create_add_add_subscribe_box(box_id, summary){
   var subsc_box = $("#" + box_id);
@@ -129,17 +142,22 @@ function create_add_add_subscribe_box(box_id, summary){
     var html="";
     if(aw_get_channel_scope() == 2 &&
         aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id()){
-        html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE</a>';
+        //html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE</a>';
+        html=get_subscription_box_element('UNSUBSCRIBE');
     }else{
       if(summary.subscribed && summary.subscribed == true){
-        html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE</a>';
+        //html='<a class="p-channel-subscribe-btn js_subscribe_summary" >UNSUBSCRIBE</a>';
+        html=get_subscription_box_element('UNSUBSCRIBE');
       }else{
-        html='<a class="p-channel-subscribe-btn js_subscribe_summary" >SUBSCRIBE</a>';
+        //html='<a class="p-channel-subscribe-btn js_subscribe_summary" >SUBSCRIBE</a>';
+        html=get_subscription_box_element('SUBSCRIBE');
       }
     }
     subsc_box.append(html);
   }else{
-    subsc_box.hide();
+    html=get_subscription_box_element('');
+    subsc_box.append(html);
+    //subsc_box.hide();
   }
 
 }
@@ -491,11 +509,23 @@ function create_and_add_summary(summary_box, summary){
                 '</div>' +
             
                 '<div class="p-channelp-post-cu js_word_name_box">' +
+                  '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
+                    '<img src="images/subscribed.png">'+
+                  '</div>'+
+                  
+                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
+                  '</div>' +
+                  '<hr class="p-channelp-post-cu-bar"/>'+
+                  '<div class="p-channelp-post-title">'+
+                     '<center><span>' + summary.word.name + '</span></center>'+
+                  '</div>'+
+                  /*
                   '<span>'  +
                      summary.word.name + 
                   '</span>' +
                   '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
                   '</div>' +
+                  */
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
@@ -650,9 +680,13 @@ function subscribe_summary(trigger_ele, sub_summary_id, action ){
         dataType: 'json',
         success: function (data) {
           if(action == true){
-            trigger_ele.html('UNSUBSCRIBE');
+            alert("unsubcring");
+            //trigger_ele.html('UNSUBSCRIBE');
+            trigger_ele.html(get_subscription_box_element('UNSUBSCRIBE'));
           }else{
-            trigger_ele.html('SUBSCRIBE');
+            alert("subscribing");
+            //trigger_ele.html('SUBSCRIBE');
+            trigger_ele.html(get_subscription_box_element('SUBSCRIBE'));
             if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id() &&
               aw_get_channel_scope() == 2 ){
               trigger_ele.closest('.js_summary_base_div').hide();
@@ -720,8 +754,11 @@ $(document).ready(function(){
     $(".js_subscribe_summary").live('click', function(){
       aw_lib_console_log("profile_summary.js:clicked subscribe/unsubscribe summary");
       var summary_id =$(this).closest('.js_summary_base_div').find('.js_summary_id_hidden').val();
-      var action = $(this).html();
-      if (action == 'SUBSCRIBE'){
+      /* old code is commented for a while to have quick ref */
+      //var action = $(this).html();
+      var action = $(this).attr('id');
+      //if (action == 'SUBSCRIBE'){
+      if (action == 'subscribed_channel'){
         subscribe_summary($(this), summary_id, true);
       }else{
         subscribe_summary($(this), summary_id, false);

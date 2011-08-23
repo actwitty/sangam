@@ -196,6 +196,13 @@
   float:left;
   margin-left:5px;
 }
+.p-channelp-post-cu-bar
+{
+  width:80%;
+  color:#ddd;
+  margin:0 auto;
+}
+
 .p-channelp-post-cu span{
   font-size:35px;
   color:#fff;
@@ -204,6 +211,23 @@
   -moz-text-shadow: 0 0 2px #000;
   -webkit-text-shadow: 0 0 2px #000;
 }
+
+.p-channelp-post-subs-info
+{
+  width:100%;
+  height:60px;
+  border:0px solid green;
+}
+.p-channelp-post-subs-info img
+{
+  margin-top:10px;
+  margin-left:20px;
+}
+
+
+
+
+
 .p-channelp-post-analytic
 {
   width:7%;
@@ -288,7 +312,8 @@
 
 .p-channelp-post-lup-text p
 {
-  font-size:13px;
+  font-size:16px;
+  font-family:"Georgia";
   color:#838383;
 }
 
