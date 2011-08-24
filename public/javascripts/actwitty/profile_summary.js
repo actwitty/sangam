@@ -510,7 +510,7 @@ function create_and_add_summary(summary_box, summary){
             
                 '<div class="p-channelp-post-cu js_word_name_box">' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
-                    '<img src="images/subscribed.png">'+
+                    '<img src="/images/alpha/subscribed.png">'+
                   '</div>'+
                   
                   '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
