@@ -660,6 +660,11 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                           '<span class="p-awp-channel-name">' + post.word.name + '</span>'+
                           '</a>' +
                         '</div>'+
+                        '<a href="/location_page?location_id=' + stream.location.id + '">' +
+                          '<span class="p-awp-location-name" >' + 
+                            '@' + stream.location.name +
+                          '</span>' +
+                        '</a>' +
                       '</div>'+
                       '<div class="p-awp-stream-post-author-section">'+
                         '<a href="/home/show?id=' +  post.user.id + '" >' +
@@ -678,11 +683,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                    '<div class="p-awp-post-info">' +
                       '<div class="p-awp-post-contents">'+
                       '<div class="p-awp-subtitle">'+
+                        /*
                         '<a href="/location_page?location_id=' + stream.location.id + '">' +
                           '<span class="p-awp-location-name" >' + 
                             '@' + stream.location.name +
                           '</span>' +
                         '</a>' +
+                        */
                         '<a href="/view?id=' + post.id + '">' +
                           '<span class="p-awp-subtitle-name">' + subtitle +'</span>' +
                         '</a>' +

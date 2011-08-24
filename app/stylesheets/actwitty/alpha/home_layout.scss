@@ -1429,6 +1429,7 @@ html ul.p-cstab li.p-st-tab.active  {
   -webkit-border-radius: 0px ;
   text-decoration:none;
   text-align:center;
+  padding:2px;
 
  
 }
@@ -1580,7 +1581,7 @@ ul.p-fltr-tag-list li
   width:100%;
   width:150px;
   height:auto;
-  margin-top:160px;
+  /*margin-top:160px;*/
   position:fixed;
 }
 
@@ -1698,19 +1699,20 @@ ul.p-fltr-tag-list li
 .p-awp-stream-post-info
 {
   width:85%;
-  height:51px;
+  height:53px;
   border:0px solid red;
   position:relative;
   margin-left:10px;
+  margin-bottom:2px;
 }
 .p-awp-channel
 {
-  width:45%;
-  height:30px;
+  width:60%;
+  height:50px;
   border:0px solid red;
   float:left;
   position:absolute;
-  margin-top:20px;
+  margin-top:0px;
 }
 
 .p-awp-channel-desc
@@ -1732,12 +1734,13 @@ ul.p-fltr-tag-list li
 }
 .p-awp-stream-post-author-section
 {
-  width:50%;
+  width:40%;
   height:50px;
   border:0px solid blue;
   margin-left:15px;
   display:inline-block;
   float:right;
+  overflow:hidden;
 }
 
 .p-awp-post-author
@@ -1815,10 +1818,10 @@ ul.p-fltr-tag-list li
 .p-awp-location-name
 {
   float:left;
-  font-size:12px;
-  padding:3px;
-  color:#fff;
-  font-family:"Georgia";
+  font-size:14px;
+  color:#333;
+  /*font-family:"Georgia";*/
+  overflow:hidden;
 }
 
 .p-awp-subtitle-name

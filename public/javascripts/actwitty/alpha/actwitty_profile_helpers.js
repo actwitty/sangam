@@ -39,7 +39,7 @@ $(document).ready(function(){
       $(".p-r-fltr-st").css("top",100);
   
       $(".p-r-search-fltr").css("position","fixed");
-      $(".p-r-search-fltr").css("top",100);
+      $(".p-r-search-fltr").css("top",260);
       
       /*
       $("ul.p-cstab").css("position","fixed");
