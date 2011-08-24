@@ -155,7 +155,6 @@ function create_add_add_subscribe_box(box_id, summary){
     }
     subsc_box.append(html);
   }else{
-    alert("sammy");
     subsc_box.append(" ");
     //subsc_box.hide();
   }
@@ -680,11 +679,9 @@ function subscribe_summary(trigger_ele, sub_summary_id, action ){
         dataType: 'json',
         success: function (data) {
           if(action == true){
-            alert("unsubcring");
             //trigger_ele.html('UNSUBSCRIBE');
             trigger_ele.html(get_subscription_box_element('UNSUBSCRIBE'));
           }else{
-            alert("subscribing");
             //trigger_ele.html('SUBSCRIBE');
             trigger_ele.html(get_subscription_box_element('SUBSCRIBE'));
             if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id() &&

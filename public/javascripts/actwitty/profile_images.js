@@ -20,47 +20,35 @@ function get_or_create_a_box(box_id, stream){
   var div =  $("#" + box_id);
   var small_div = $("#" + small_box_id);
   if( small_div.length == 0 ){
-    var html = '<div class="p-st-docs-per-activity" id="' + small_box_id + '">' +
 
-                '<div class="p-st-docs-user">' +
-
-                  '<div class="p-st-user-pic">' +
-                    '<a href="/home/show?id=' +  stream.user.id + '" >' +
-                      '<img src="' + stream.user.photo + '"/>' +
-                    '</a>' +
-                  '</div>' +
-
-                  '<div class="p-st-user-name">' +
-                    '<a href="/home/show?id=' +  stream.user.id + '" >' +
-                      '<span>' +
-                        stream.user.full_name +
-                      '</span>' +
-                    '</a>' +
-                  '</div>' +
-
-                '</div>' +
-                
-                '<div class="p-st-docs-list">' +
-
-                  '<div class="p-st-docs-list-channel-box">' +
-
-                    '<div class="p-st-docs-list-channel">' +
-                      '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
-                        '<span>' +
-                          'Channel: ' + stream.word.name +
-                        '</span>' +
-                      '</a>' +
-                    '</div>' +
-
-                    '<div class="p-st-docs-list-view-post">' +
-                      '<a href="/view?id=' + stream.document.activity_id + '">Goto Post</a>' +
-                    '</div>' +
-
-                  '</div>' +
-
-                '</div>' +
-
-               '</div>';
+  var html = '<div class="p-st-docs-per-activity" id="' + small_box_id + '">' +
+                   '<div class="p-awp-stream-post-info">' +
+                      '<div class="p-awp-channel">'+
+                        '<div class="p-awp-channel-desc">'+
+                          '<label class="p-awp-channel-label">CHANNEL : </label>'+
+                          '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
+                          '<span class="p-awp-channel-name">' + stream.word.name + '</span>'+
+                          '</a>' +
+                        '</div>'+
+                      '</div>'+
+                      '<div class="p-awp-stream-post-author-section">'+
+                        '<a href="/home/show?id=' +  stream.user.id + '" >' +
+                        '<div class="p-awp-post-author">'+
+                          '<div class="p-awp-post-author-img">'+
+                            '<img src="' + stream.user.photo + '" alt="" />' +
+                          '</div>'+
+                          '<div class="p-awp-post-author-name">'+
+                            '<span>' + stream.user.full_name + '</span>'+
+                          '</div>'+
+                        '</div>'+
+                        '</a>'+
+                      '</div>'+
+                   '</div>'+  
+                   '<div style="z-index:1;" class="p-awp-view-attachment p-awp-view-images">' +
+                   '</div>' +
+            '</div>';
+    
+    
     div.append(html);
     small_div = $("#" + small_box_id);
   }
@@ -71,30 +59,35 @@ function get_or_create_a_box(box_id, stream){
 
 
 function append_stream_docs(box_id, stream){
+  var small_box_id = 'docs_box_' + stream.document.activity_id;
   var div_internal = get_or_create_a_box(box_id, stream);
-  
-    var caption = "";
-    if(stream.document.caption && stream.document.caption.length){
-      caption = stream.document.caption;
-    }
-  
-    var thumb_nail = stream.document.url; 
+ 
+  var img_box_div = $("#" + small_box_id + " div.p-awp-view-images");
 
-    if (stream.document.thumb_url){
-      thumb_nail = stream.document.thumb_url; 
-    }
-  
+  var caption = "";
+  if(stream.document.caption && stream.document.caption.length){
+    caption = stream.document.caption;
+  }
+  var thumb_nail = stream.document.url; 
+  if (stream.document.thumb_url){
+    thumb_nail = stream.document.thumb_url; 
+  }
    
-    aw_lib_console_log ("debug", "image stream attaching thumb url:" + thumb_nail);
-    var html='<a rel="fnc_group_docs_page_'+ box_id +'" href="' + stream.document.url + '" title="' + caption  + '" class="p-st-docs-image">' + 
-                  '<img alt="" src="'+ thumb_nail + '"  width="60"  alt="" />' +
-              '</a>'; 
-    div_internal.append(html);
-    
-    activate_fancybox_doc_page_group(box_id, stream);
-     
+  aw_lib_console_log ("debug", "image stream attaching thumb url:" + thumb_nail);
+  
+  var html= '<div class="p-awp-view-attachment-inner-box">' +
+              '<a rel="fnc_group_docs_page_'+ box_id +'" href="' + stream.document.url + '" title="' + caption  + '" class="p-st-docs-image">' + 
+                '<img alt="" src="'+ thumb_nail + '"  width="60"  alt="" />' +
+              '</a>' +
+            '</div>';
 
+  //div_internal.append(html);
+  img_box_div.append(html);
+
+  activate_fancybox_doc_page_group(box_id, stream);
 }
+
+
 
 function create_and_append_documents( data ){
 }
