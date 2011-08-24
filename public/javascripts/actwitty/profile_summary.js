@@ -508,12 +508,12 @@ function create_and_add_summary(summary_box, summary){
                 '</div>' +
             
                 '<div class="p-channelp-post-cu js_word_name_box">' +
-                  /*'<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
-                    '<img src="/images/alpha/subscribed.png">'+
+                  '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
                   '</div>'+
-                  */
-                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
+                  
+                  /*'<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
                   '</div>' +
+                  */
                   '<hr class="p-channelp-post-cu-bar"/>'+
                   '<div class="p-channelp-post-title">'+
                      '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
