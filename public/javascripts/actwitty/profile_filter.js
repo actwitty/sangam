@@ -8,9 +8,8 @@ function modify_filter(filter_json, reload){
     reload=true;
   }
 
-
-  var page_owner_id=$('#page_owner_id').attr("value");
-  var session_owner_id=$('#session_owner_id').attr("value");
+  var page_owner_id=aw_lib_get_page_owner_id();
+  var session_owner_id=aw_lib_get_session_owner_id();
   var need_redirect = false;
   /* Decide on which user to go to */
   if (filter_json.user){
@@ -83,7 +82,7 @@ function modify_filter(filter_json, reload){
   if(reload==true){
       if ( need_redirect == true){
         /* simple case redirect to stream tab of new user */
-        aw_redirect_to_streams_filtered_of_other_user();
+        aw_redirect_to_streams_filtered_of_other_user(filter_json.user);
       }else{
         /* stay on current user and apply the new filter */
         set_stream_to_focus_on_filter_change();

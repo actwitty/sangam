@@ -124,9 +124,9 @@ function create_and_docs_box(box_id, summary){
 function get_subscription_box_element(type)
 {
   if(type == 'UNSUBSCRIBE') {
-    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
+    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
   }else if(type == 'SUBSCRIBE'){
-      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
+      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
   }else{
     return '';
   }
@@ -155,8 +155,8 @@ function create_add_add_subscribe_box(box_id, summary){
     }
     subsc_box.append(html);
   }else{
-    html=get_subscription_box_element('');
-    subsc_box.append(html);
+    alert("sammy");
+    subsc_box.append(" ");
     //subsc_box.hide();
   }
 
@@ -509,15 +509,15 @@ function create_and_add_summary(summary_box, summary){
                 '</div>' +
             
                 '<div class="p-channelp-post-cu js_word_name_box">' +
-                  '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
-                    '<img src="images/subscribed.png">'+
+                  /*'<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
+                    '<img src="/images/alpha/subscribed.png">'+
                   '</div>'+
-                  
+                  */
                   '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
                   '</div>' +
                   '<hr class="p-channelp-post-cu-bar"/>'+
                   '<div class="p-channelp-post-title">'+
-                     '<center><span>' + summary.word.name + '</span></center>'+
+                     '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
                   '</div>'+
                   /*
                   '<span>'  +
@@ -738,7 +738,6 @@ $(document).ready(function(){
     $('.js_summary_filter_setter').live('click', function(){
       var filters_base_id = $(this).attr("id");
       if (filters_base_id.length > 0){
-          var page_owner_id=$('#page_owner_id').attr("value");
           var filter = the_big_filter_JSON[filters_base_id];
           if(filter){
             /* do not cause reload */

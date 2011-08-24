@@ -71,7 +71,7 @@ function clear_all_stream_modes(){
 /*
  *
  */
-function aw_redirect_to_streams_filtered_of_other_user(){
+function aw_redirect_to_streams_filtered_of_other_user(page_owner_id){
     params='id=' + page_owner_id +'&mode=filtered&stream_mode=' + g_aw_current_active_mode + "&" + get_long_string_filter();
     window.location.href ='/home/show?' + params;
 }

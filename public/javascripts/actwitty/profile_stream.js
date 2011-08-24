@@ -1251,6 +1251,7 @@ $(document).ready(function(){
    * User action show all
    */
   $('.js_campaign_show_all').live('click', function(){
+    alert("likes");
     var cls = $(this).attr("class");
     var nxt = $(this).next().children().attr("src");
     //alert(nxt);
@@ -1301,6 +1302,16 @@ $(document).ready(function(){
   $(".p-awp-view-all-images-div span").live('click',function() {
     $(this).parent().next().children("a").trigger("click");
   });
+  
+  /*
+   *
+   */
+
+  $("div.p-awp-content p").expander({
+      slicePoint:       300,  // default is 100
+      expandText:         'read more', // default is 'read more...'
+      userCollapseText: '...less'  // default is '[collapse expanded text]'
+    });
 
 
 });
