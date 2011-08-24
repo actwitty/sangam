@@ -38,12 +38,22 @@ function getEmbeddedPlayer( url, height, width){
  * There are different version of fancy box which can also be used.
  * The current one in place is for image gallery
  */
-function handle_stream_docs(type, box_id, stream){
+function handle_stream_docs(type, box_id, stream,view_all_id){
   aw_lib_console_log("debug", "stream html handle docs called");
   docs_box= $("#" + box_id);
+  docs_view_all = $("#" + box_id + " div.p-awp-view-all-images-div");
   if ( stream.documents &&  stream.documents.count ){
     var ul_box = $("#" + box_id);
-   
+    
+
+    if(stream.documents.array.length < 5){
+      docs_view_all.hide();
+    }else{
+      if(view_all_id != ""){
+        $("#"+view_all_id).html('View All ' + stream.documents.array.length + ' Images');
+      }
+    }
+
     $.each(stream.documents.array, function(i, attachment){
       var caption = "";
       if(attachment.caption && attachment.caption.length){
@@ -57,8 +67,14 @@ function handle_stream_docs(type, box_id, stream){
         aw_lib_console_log ("debug", "stream attaching thumb url:" + thumb_nail);
 
         var inner_box_id = box_id + "_" + attachment.id;
-        var box_html = '<div class="p-awp-view-attachment-inner-box" id="' + inner_box_id + '">' +
+        /* currently 6 is the max number of images shown as icon-attachment */
+        if(i>6){
+          var box_html = '<div class="p-awp-view-attachment-inner-box hide_it" id="' + inner_box_id + '">' +
                    '</div>';
+        }else{
+          var box_html = '<div class="p-awp-view-attachment-inner-box" id="' + inner_box_id + '">' +
+                   '</div>';
+        }
         ul_box.append(box_html);
         var attachment_box = $("#" + inner_box_id);
        
@@ -610,7 +626,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var text_box_id     =  stream_render_id + '_text';
   var location_box_id =  stream_render_id + '_location';
   var action_box_id   = stream_render_id + '_action';
-  
+  var view_all_image_id = doc_box_id + '_all';
+
   var comment_box_id  = stream_render_id + '_comments';
   var comment_box_show_all_div_id  = stream_render_id + '_show_all';
   var comment_show_all_id = comment_box_id + '_show_all';
@@ -620,9 +637,11 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var date_js = Date.parse('t');
   var time_js = new Date().toString('HH:mm tt');
   var external_shares="";
+  var external_icon_shares="";
   var subtitle = "";
   if ( post.status == 2){
     var external_shares = get_socialize_html(stream); 
+    var external_icon_shares = get_socialize_icon_html(stream); 
   }
   if(post.sub_title)
   {
@@ -686,16 +705,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                    '</div>'+
  
                    
-                   '<div class="p-awp-post-opt" >' +
-                     '<input type=hidden value="'+ action_box_id + '">'+
-                     '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point"> Mentions </div> '+ 
-                     '<div class="p-awp-post-like hover_point" id="' + campaign_box_id + '">'+'</div>' +
-                     '<div class="p-awp-post-comments hover_point js_show_all_comment_btn" id="' + comment_show_all_id + '">' 
-                     + get_comment_head_label(stream.comments.count)+ '</div> ' +
-                   '</div>' +
+                   
                     
                     /* Post attachment */
                     '<div style="z-index:1;" class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
+                      '<div class="p-awp-view-all-images-div">' +
+                        '<span id="'+ view_all_image_id +'">View All Images</span>'+
+                      '</div>' +
                     '</div>' +
 
                     /* Post video attachment */
@@ -704,6 +720,18 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     
                     external_shares +
                     
+                    /* general operation on a post - mention/likes/comments */
+                    '<div class="p-awp-post-opt" >' +
+                     '<input type=hidden value="'+ action_box_id + '">'+
+                     '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point"> Mentions </div> '+ 
+                     '<div class="p-awp-post-like hover_point" id="' + campaign_box_id + '">'+'</div>' +
+                     //'<div class="js_socialize_minimize p-awp-post-mentions hover_point"> Share </div> '+ 
+
+                     '<div class="p-awp-post-comments hover_point js_show_all_comment_btn" id="' + comment_show_all_id + '">' 
+                     + get_comment_head_label(stream.comments.count)+ '</div> ' +
+                    '</div>' +
+                    
+                    //external_icon_shares +
 
                     /* Post campaigns */
                     '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
@@ -726,8 +754,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   handle_stream_text(text_box_id, stream.post.text);
 
   handle_stream_location(location_box_id, stream.location);
-  handle_stream_docs("image", doc_box_id, stream);
-  handle_stream_docs("video", video_doc_box_id, stream);
+  handle_stream_docs("image", doc_box_id, stream,view_all_image_id);
+  handle_stream_docs("video", video_doc_box_id, stream,"");
 
   if( post.status == 2){
     setup_comment_handling(comment_box_show_all_div_id,
@@ -1257,15 +1285,23 @@ $(document).ready(function(){
     remove_document_from_post($(this).attr("id"), $(this));
   });
 
-    /*
-     * Bind click to more on streams tab
-     */
-     $('#more_streams').click(function() {
-        aw_lib_console_log("debug", "profile.js:more personal streams clicked");
-        append_stream(aw_lib_get_page_owner_id(), 
-                  aw_lib_get_session_owner_id());
-        return false;
-    });
+  /*
+   * Bind click to more on streams tab
+   */
+  $('#more_streams').click(function() {
+     aw_lib_console_log("debug", "profile.js:more personal streams clicked");
+     append_stream(aw_lib_get_page_owner_id(), 
+               aw_lib_get_session_owner_id());
+     return false;
+  });
+    
+  /*
+   *
+   */
+  $(".p-awp-view-all-images-div span").live('click',function() {
+    $(this).parent().next().children("a").trigger("click");
+  });
+
 
 });
 /************************************/

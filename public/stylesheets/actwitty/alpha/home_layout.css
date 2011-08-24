@@ -1852,7 +1852,7 @@ ul.p-fltr-tag-list li {
 /* ########### Stream page Content realted section ############ */
 /* line 1779, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-post-info {
-  width: 100%;
+  width: 590px;
   height: auto;
   border: 0px solid red;
   position: relative;
@@ -2200,48 +2200,54 @@ div.p-awp-actions .p-awp-edit {
   width: 100%;
 }
 
-/* line 2147, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
-.p-awp-view-video-attachment {
-  width: 100%;
-  float: right;
-  height: auto;
-  border: 0px solid #fff;
-  margin-top: 8px;
-  z-index: 1;
-}
-
-/* line 2159, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
-.p-awp-view-video-attachment .video {
-  float: left;
-  margin: 5px;
-  border: 2px solid #fff;
-}
-
-/* line 2166, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2144, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-view-attachment {
-  width: 100%;
-  float: right;
+  width: 550px;
+  /*float:right;*/
   height: auto;
-  border: 0px solid #fff;
+  border: 0px solid red;
   margin-top: 8px;
   z-index: 1;
+  overflow: hidden;
 }
 
-/* line 2174, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2155, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-view-all-images-div {
+  width: 100%;
+  height: 20px;
+  border: 0px solid blue;
+}
+
+/* line 2161, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-view-all-images-div span {
+  float: right;
+  font-size: 14px;
+  color: green;
+  margin-right: 40px;
+}
+
+/* line 2168, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+div.p-awp-view-all-images-div span:hover {
+  cursor: pointer;
+}
+
+/* line 2175, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-view-attachment-inner-box {
-  float: left;
+  width: 60px;
   margin: 2px;
   padding: 2px;
-  height: auto;
   border: 1px solid #ccc;
+  display: inline-block;
 }
 
-/* line 2184, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2187, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .delete-image-box {
-  width: 100%;
+  width: 60px;
+  height: 9px;
+  display: block;
 }
 
-/* line 2188, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2193, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .delete-image-cntrl {
   color: green;
   width: 9px;
@@ -2256,9 +2262,26 @@ div.p-awp-actions .p-awp-edit {
   background: url("/images/alpha/close_mini.png");
 }
 
-/* line 2203, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2208, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .delete-image-cntrl:hover {
   cursor: pointer;
+}
+
+/* line 2213, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-view-video-attachment {
+  width: 100%;
+  float: right;
+  height: auto;
+  border: 0px solid #fff;
+  margin-top: 8px;
+  z-index: 1;
+}
+
+/* line 2225, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-awp-view-video-attachment .video {
+  float: left;
+  margin: 5px;
+  border: 2px solid #fff;
 }
 
 /*
@@ -2267,23 +2290,23 @@ div.p-awp-actions .p-awp-edit {
   border:0px solid red;
 }
 */
-/* line 2221, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2245, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 a.js_handle_stream_entity_mention {
   position: relative;
   z-index: 24;
 }
 
-/* line 2227, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2251, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 a.js_handle_stream_entity_mention:hover {
   z-index: 25;
 }
 
-/* line 2232, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2256, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 a.js_handle_stream_entity_mention span {
   display: none;
 }
 
-/* line 2237, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2261, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 a.js_handle_stream_entity_mention:hover span {
   display: block;
   position: absolute;
@@ -2307,12 +2330,22 @@ a.js_handle_stream_entity_mention:hover span {
 }
 */
 /***********************************************/
-/* line 2263, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
-.js_socialize_icons {
-  display: none;
+/* line 2288, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.js_socialize_post {
+  width: 100%;
+  height: auto;
+  border: 0px solid red;
 }
 
-/* line 2267, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2294, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.js_socialize_icons {
+  width: 480px;
+  height: 50px;
+  display: none;
+  border: 0px solid blue;
+}
+
+/* line 2301, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .socialize_box {
   padding: 2px;
   border: 1px solid #ccc;
@@ -2320,10 +2353,16 @@ a.js_handle_stream_entity_mention:hover span {
   display: inline-block;
 }
 
-/* line 2277, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2311, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .socialize_box span {
   text-align: center;
   padding: 2px;
   padding-bottom: 5px;
   margin: 2px;
+}
+
+/* #### CSS Globals #### */
+/* line 2322, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.hide_it {
+  display: none;
 }

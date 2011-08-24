@@ -60,6 +60,64 @@ function get_socialize_html(stream){
   return socialize_html;
 }
 
+
+function get_socialize_icon_html(stream){
+  var title="";
+  var stream_socialize_id = stream.post.id + '_social';
+  if( stream.post.sub_title == undefined) {
+    title = stream.post.sub_title;
+  }
+  
+   var socialize_html = '<div class="js_socialize_icons' + stream_socialize_id + '">' +
+                            '<input type="hidden" value="' + stream.post.id + '" class="socialize_post_id" />' +
+                            '<input type="hidden" value="' + stream.post.summary_id + '" class="socialize_summary_id" />' +
+                            '<input type="hidden" value="' + stream.post.sub_title + '" class="socialize_post_title" />' +
+                            '<div class="socialize_box" >' +
+                              '<img src="/images/alpha/shares/twitter.png"  alt="Share on Twitter" width="25" height="25" class="js_share_post_externally JS_SHARE_TWITTER" id="twitter_share_' + stream.post.id + '" />' +
+                              '<span class="twitter_text">' +
+                                '0' +
+                              '</span>' +
+                            '</div>' +
+                           
+                            '<div class="socialize_box" >' +
+                              '<img src="/images/alpha/shares/facebook.png"  alt="Share on facebook" width="25" height="25" class="js_share_post_externally JS_SHARE_FACEBOOK" id="facebook_share_' + stream.post.id + '"/>' +
+                              '<span class="facebook_text">' +
+                                '0' +
+                              '</span>' +
+                            '</div>' +
+                           
+                            '<div class="socialize_box" >' +
+                              '<img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="25" height="25" class="js_share_post_externally JS_SHARE_DIGG" id="digg_share_' + stream.post.id + '" />' +
+                              '<span class="digg_text">' +
+                                '0' +
+                              '</span>' +
+                            '</div>' +
+                           
+                            '<div class="socialize_box" >' +
+                              '<img src="/images/alpha/shares/stumbleupon.png"  alt="Share on Stumbleupon" width="25" height="25" class="js_share_post_externally JS_SHARE_STUMBLEUPON" id="stumbleupon_share_' + stream.post.id + '" />' +
+                              '<span class="stumbleupon_text">' +
+                                '0' +
+                              '</span>' +
+                            '</div>' +
+                           
+                            '<div class="socialize_box" >' +
+                              '<img src="/images/alpha/shares/delicious.png"  alt="Share on Delicious" width="25" height="25" class="js_share_post_externally JS_SHARE_DELICIOUS" id="delicious_share_' + stream.post.id + '" />' +
+                              '<span class="delicious_text">' +
+                                '0' +
+                              '</span>' +
+                            '</div>' +
+                           
+                            '<div class="socialize_box" >' +
+                              '<img src="/images/alpha/shares/buzz.png"  alt="Share on Buzz" width="25" height="25" class="js_share_post_externally JS_SHARE_BUZZ" id="buzz_share_' + stream.post.id + '" />' +
+                              '<span class="buzz_text">' +
+                                '0' +
+                              '</span>' +
+                            '</div>' +
+                        '</div>';
+                  
+  return socialize_html;
+}
+
 /*
  * Get post url for sharing
  */

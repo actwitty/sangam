@@ -1777,7 +1777,7 @@ ul.p-fltr-tag-list li
 /* ########### Stream page Content realted section ############ */
 .p-awp-post-info
 {
-  width:100%;
+  width:590px;
   height:auto;
   border:0px solid red;
   position:relative;
@@ -2140,49 +2140,54 @@ div.p-awp-actions .p-awp-edit
 
 
 
-
-
-
-.p-awp-view-video-attachment
-{
-  width:100%;
-  float:right;
-  height:auto;
-  border:0px solid #fff;
-  margin-top:8px;
-  z-index:1;
-
-}
-
-
-.p-awp-view-video-attachment .video
-{
-  float:left;
-  margin:5px;
-  border:2px solid #fff;
-}
-
 .p-awp-view-attachment
 {
-  width:100%;
-  float:right;
+  width:550px;
+  /*float:right;*/
   height:auto;
-  border:0px solid #fff;
+  border:0px solid red;
   margin-top:8px;
   z-index:1;
+  overflow:hidden;
 }
-.p-awp-view-attachment-inner-box{
-  float:left;
+
+.p-awp-view-all-images-div
+{
+  width:100%;
+  height:20px;
+  border:0px solid blue;
+}
+.p-awp-view-all-images-div span
+{
+  float:right;
+  font-size:14px;
+  color:green;
+  margin-right:40px;
+}
+div.p-awp-view-all-images-div span:hover
+{
+  cursor:pointer;
+}
+
+
+
+.p-awp-view-attachment-inner-box
+{
+  width:60px;
+  
   margin:2px;
   padding:2px;
-  height:auto;
   border:1px solid #ccc;
+  display:inline-block;
+
 
 }
 
 .delete-image-box
 {
-  width:100%;
+  width:60px;
+  height:9px;
+  display:block;
 }
 
 .delete-image-cntrl{
@@ -2204,9 +2209,28 @@ div.p-awp-actions .p-awp-edit
   cursor:pointer;
 }
 
-.p-awp-view-attachment a
+.p-awp-view-video-attachment
 {
+  width:100%;
+  float:right;
+  height:auto;
+  border:0px solid #fff;
+  margin-top:8px;
+  z-index:1;
+
 }
+
+
+.p-awp-view-video-attachment .video
+{
+  float:left;
+  margin:5px;
+  border:2px solid #fff;
+}
+
+
+
+
 
 
 
@@ -2260,8 +2284,18 @@ a.js_handle_stream_entity_mention:hover span
 */
 
 /***********************************************/
+.js_socialize_post
+{
+  width:100%;
+  height:auto;
+  border:0px solid red;
+}
+
 .js_socialize_icons{
+  width:480px;
+  height:50px;
   display:none;
+  border:0px solid blue;
 }
 
 .socialize_box{
@@ -2279,4 +2313,12 @@ a.js_handle_stream_entity_mention:hover span
   padding:2px;
   padding-bottom:5px;
   margin:2px;
+}
+
+
+
+/* #### CSS Globals #### */
+.hide_it
+{
+  display:none;
 }

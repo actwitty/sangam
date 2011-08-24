@@ -27,7 +27,7 @@ $(document).ready(function(){
     if($(this).scrollTop() > totalHeight )
     {
       $(".p-st-filter").css("position","fixed");
-      $(".p-st-filter").css("top",100);
+      $(".p-st-filter").css("top",98);
       
       $(".p-l-fltr-1").css("position","fixed");
       $(".p-l-fltr-1").css("top",100);
