@@ -481,7 +481,7 @@ function create_and_add_summary(summary_box, summary){
 
               '<div class="p-channelp-post-header">' +
 
-                '<div class="p-channelp-post-tab">' +
+                '<div class="p-channelp-post-tab"> More/Less' +
                 '</div>' +
 
                 '<div class="p-channelp-post-author">' +
@@ -818,6 +818,17 @@ $(document).ready(function(){
       update_summary_theme($(this));
     });
     /*************************/
+
+    /*
+     *    Collaspsible effect on more/less on channel summary
+     */
+    $(".p-channelp-post-tab").live('click',function(){
+      $(this).closest(".p-channelp-post").find(".p-channelp-related-info").slideToggle();
+      $(this).closest(".p-channelp-post").find(".p-channelp-post-rel-img").slideToggle();
+    });
+
+
+
 });
 
 
