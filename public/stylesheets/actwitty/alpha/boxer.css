@@ -6,10 +6,11 @@
   border: 1px solid #BDC7D5;
   padding: 5px 8px 5px 8px;
   position: relative;
-  border: 1px solid red;
+  /*border:1px solid red;*/
+  border: 1px solid #ccc;
 }
 
-/* line 11, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 12, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .ctab {
   background: #E7EDF6;
   position: relative;
@@ -17,7 +18,7 @@
   border-bottom-width: 2;
 }
 
-/* line 17, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 18, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .boxer_close {
   float: right;
   width: 16px;
@@ -26,7 +27,7 @@
   align: center;
 }
 
-/* line 24, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 25, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .close {
   text-decoration: none;
   color: #ccc;
@@ -44,27 +45,27 @@
   border-radius: .2em;
 }
 
-/* line 41, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 42, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .close:hover {
   background: #999;
   color: #333;
 }
 
 /*************** entity box *****************/
-/* line 47, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 48, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .entities_box {
   height: 90px;
   width: 120px;
 }
 
-/* line 52, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 53, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .entities_box_internal {
   width: 80%;
   overflow: hidden;
   float: left;
 }
 
-/* line 64, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 65, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .entities_box_images {
   height: 40;
   width: 40;
@@ -72,40 +73,58 @@
 
 /*************** entity box *****************/
 /****************** location box *************/
-/* line 71, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 72, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .locations_box {
   height: 90px;
   width: 120px;
 }
 
-/* line 76, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 77, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .locations_box_internal {
   width: 80%;
   overflow: hidden;
   float: left;
 }
 
-/* line 82, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 83, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .locations_box_internal a img {
   height: 40px;
   width: 40px;
 }
 
-/* line 87, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 88, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .locations_box_internal a span {
   height: 40px;
   width: 40px;
 }
 
+/* line 92, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.locations_box_images {
+  margin-left: 35px;
+  margin-top: 15px;
+}
+
+/* line 96, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.js_modal_locations {
+  word-wrap: break-word;
+  display: inline-block;
+  text-align: center;
+}
+
+/* line 101, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.hide {
+  display: none;
+}
+
 /****************** location box *************/
 /****************** channel box *************/
-/* line 97, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 110, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .channels_box {
   height: 90px;
   width: 120px;
 }
 
-/* line 102, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 115, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .channels_box_internal {
   width: 80%;
   overflow: hidden;
@@ -114,23 +133,65 @@
 
 /****************** channel box *************/
 /*************** related friends box *****************/
-/* line 115, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 128, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .related_friends_box {
   height: 90px;
   width: 120px;
 }
 
-/* line 120, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 133, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .related_friends_box_internal {
   width: 80%;
   overflow: hidden;
   float: left;
 }
 
-/* line 132, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+/* line 145, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
 .friends_box_images {
   height: 40;
   width: 40;
 }
 
 /*************** related friends box *****************/
+/*************** subscribers box *****************/
+/* line 151, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscriber_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 156, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscriber_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 168, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscriber_box_images {
+  height: 40;
+  width: 40;
+}
+
+/*************** subscribers box *****************/
+/*************** subscription box *****************/
+/* line 174, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscription_box {
+  height: 90px;
+  width: 120px;
+}
+
+/* line 179, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscription_box_internal {
+  width: 80%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 191, ../../../../app/stylesheets/actwitty/alpha/boxer.scss */
+.subscription_box_images {
+  height: 40;
+  width: 40;
+}
+
+/*************** subscription box *****************/

@@ -24,6 +24,13 @@ var the_big_json_renderers={
                                "channels" : function aw_boxer_render_channels(data, internal_id, new_tab_id){
                                                 return aw_render_channels_internal(data, internal_id, new_tab_id);
                                                },
+                               "subscriber" : function aw_boxer_render_subscribers(data, internal_id, new_tab_id){
+                                                return aw_render_subscriber_internal(data, internal_id, new_tab_id);
+                                               },
+                               "subscription" : function aw_boxer_render_subscriptions(data, internal_id, new_tab_id){
+                                                return aw_render_subscription_internal(data, internal_id, new_tab_id);
+                                               },
+
 
                               
 
@@ -52,8 +59,8 @@ function addtab(box_id, position, data, type, boxer_class)
   var box = $("#" + box_id);
 
   /* add a new tab */
-  var html = '<div id="' + new_tab_id + '" class="ntabs js_aw_ntabs ' + boxer_class +  '"' +
-  //'style="height:100px;width:150px;">' +
+  var html = '<div id="' + new_tab_id + '" class="ntabs js_aw_ntabs ' + boxer_class +  '">' +
+  //'style="height:100px;width:150px;">' + 
              '</div>';
   box.append(html);
   tab = $("#" + new_tab_id);
@@ -70,7 +77,7 @@ function addtab(box_id, position, data, type, boxer_class)
   the_big_json_tab_close[close_btn_id]={tab:new_tab_id, box:box_id};
   var close_html = '<div class="boxer_close">'+
                      '<a href="" id="' + close_btn_id + '" class="close js_aw_ntabs_close">' +
-                        'x' +
+                        '<img src="/images/alpha/close.png">' +
                       '</a>'
                    '</div>';
 

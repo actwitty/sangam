@@ -4,14 +4,27 @@
     #js_input_box
       =render :partial => "home/input_box" 
 
+
+
+
 .wrapper.col3
   #p-ch-st-tab-sect
     #p-ch-st-tab
-      %ul.p-cstab
-        %li#channels_tab_head.p-ch-tab
-          %a.actwitty-fontify{:href => "#channels_tab"} Channels
-        %li#streams_tab_head.p-st-tab
-          %a{:href => "#streams_tab"} Streams
+      #p-ch-st-tab-proxy
+        %ul.p-cstab
+          %li#channels_tab_head.p-ch-tab
+            %a{:href => "#timeline-streams"} CHANNELS
+          %li#streams_tab_head.p-st-tab
+            %a{:href => "#timeline-streams"} STREAMS
+/
+  .wrapper.col3
+    #p-ch-st-tab-sect
+      #p-ch-st-tab
+        %ul.p-cstab
+          %li#channels_tab_head.p-ch-tab
+            %a.actwitty-fontify{:href => "#channels_tab"} CHANNELS
+          %li#streams_tab_head.p-st-tab
+            %a{:href => "#streams_tab"} STREAMS
           
           
 
@@ -53,9 +66,11 @@
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
 %input#stream_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@stream_mode}" }
 %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
 %input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
--if user_signed_in?
+- if user_signed_in?
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 - else
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    

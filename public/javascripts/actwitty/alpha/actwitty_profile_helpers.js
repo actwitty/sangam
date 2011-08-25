@@ -20,27 +20,34 @@ function reset_to_default(){
 $(document).ready(function(){
   $(window).scroll(function(){
 
-    //$(".p-st-filter").css("top",Math.max(0,230-$(this).scrollTop()));
-    var totalHeight = $("#top-bar").height() + $("#input-box").height();
+   //$(".p-st-filter").css("top",Math.max(0,230-$(this).scrollTop()));
+    //var totalHeight = $("#p-ch-st-tab").height() + $("#input-box").height();
+    var totalHeight = $("#input-box").height();
     //if($(this).scrollTop() > ( $("#top-bar").height() + $("#input-box").height() )
     if($(this).scrollTop() > totalHeight )
     {
       $(".p-st-filter").css("position","fixed");
-      $(".p-st-filter").css("top",50);
+      $(".p-st-filter").css("top",98);
       
       $(".p-l-fltr-1").css("position","fixed");
-      $(".p-l-fltr-1").css("top",50);
+      $(".p-l-fltr-1").css("top",100);
       
       $(".p-l-fltr-2").css("position","fixed");
-      $(".p-l-fltr-2").css("top",50);
+      $(".p-l-fltr-2").css("top",100);
     
       $(".p-r-fltr-st").css("position","fixed");
-      $(".p-r-fltr-st").css("top",50);
+      $(".p-r-fltr-st").css("top",100);
   
       $(".p-r-search-fltr").css("position","fixed");
-      $(".p-r-search-fltr").css("top",50);
-
+      $(".p-r-search-fltr").css("top",260);
       
+      /*
+      $("ul.p-cstab").css("position","fixed");
+      $("ul.p-cstab").css("top",50);
+      */
+      $("#p-ch-st-tab-proxy").css("position","fixed");
+      $("#p-ch-st-tab-proxy").css("top",50);
+
       //alert(totalHeight);
 
     }
@@ -60,6 +67,13 @@ $(document).ready(function(){
   
       $(".p-r-search-fltr").css("position","absolute");
       $(".p-r-search-fltr").css("top","");
+      /*
+      $("ul.p-cstab").css("position","absolute");
+      $("ul.p-cstab").css("top","");
+      */
+      $("#p-ch-st-tab-proxy").css("position","absolute");
+      $("#p-ch-st-tab-proxy").css("top","");
+
     }
   });
   
@@ -71,12 +85,12 @@ $(document).ready(function(){
     });
 
     /* to display the comment input system for inputting comments.  like google+ */ 
-    $(".add-comment").click(function(event){
+    $(".add-comment").live("click",function(){
       $(this).next().show();
       $(this).hide();
     });
   
-    $(".cancel-comment-btn").click(function(event){
+    $(".cancel-comment-btn").live("click",function(){
       var parentTag = $(this).parent().prev().show();
       $(this).parent().hide();
     });

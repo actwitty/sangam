@@ -25,5 +25,37 @@ $(document).ready(function(){
     show_all_on_channel(); /* in channel_page.js */
   }
 
+  /** General functions to support auto complete based search **/
+  function format(user) {
+    return '<img alt="" class="p-st-fltr-search-img" src="'+ user.photo_small_url + '">   ' + user.full_name + "</img>";
+  }
+
+  function getID(user){
+    return user.id;
+  }
+
+   $("#username_search").autocomplete("/home/search_people" , {
+     	minChars: 3,
+      delay:400,
+		  width: 215,
+		  matchContains: true,
+		  highlightItem: false,
+      parse: function(data) {
+        return $.map(data, function(row) {
+          return {
+            data: row.user,
+            value: row.user.full_name,
+            result: row.user.full_name
+          }
+        });
+      },
+      formatItem: function(item) {
+        return format(item);
+      },
+
+    }).result(function(e, item) {
+      window.location.href = "/home/show?id=" + getID(item);
+      
+    });
 
 });

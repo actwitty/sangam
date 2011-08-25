@@ -52,9 +52,9 @@ javascripts:
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_stream_share.js
-    - public/javascripts/actwitty/profile_followers.js
+    - public/javascripts/actwitty/profile_subscribers.js
     - public/javascripts/actwitty/profile_facebook.js
-    - public/javascripts/actwitty/profile_followings.js
+    - public/javascripts/actwitty/profile_subscriptions.js
     - public/javascripts/actwitty/profile_follow.js
     - public/javascripts/actwitty/profile_summary.js
     - public/javascripts/actwitty/profile_streams_sidelists.js
@@ -70,14 +70,8 @@ javascripts:
     - public/javascripts/actwitty/profile_people.js
     - public/javascripts/actwitty/profile_images.js
     - public/javascripts/actwitty/profile_videos.js
-    - public/javascripts/actwitty/render_image.js
-    - public/javascripts/actwitty/render_video.js
-    - public/javascripts/actwitty/youtube.js
-    - public/javascripts/actwitty/play_video.js
-    - public/javascripts/actwitty/imagepopout_main.js
-    - public/javascripts/actwitty/test_data_json.js
-    - public/javascripts/actwitty/jyoutube.js
-    #- public/javascripts/actwitty/jquery_002.js
+    - public/javascripts/actwitty/tooltip.js   
+    - public/javascripts/actwitty/map.js   
 
 
   main:

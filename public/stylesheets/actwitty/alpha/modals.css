@@ -18,15 +18,29 @@
 
 /* line 12, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .modal_close {
-  float: right;
+  display: none;
+  /*--hidden by default--*/
+  /*float:right;
+  font-size:16px;
+  border: 1px solid #ddd;
+  margin-top:10px;
+  margin-right:20px;*/
   font-size: 16px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
-  margin-right: 20px;
-  color: #ccc;
+  position: fixed;
+  border: 1px solid #ddd;
+  background: #FFFFFF;
+  z-index: 9999;
+  /*color: #ccc;*/
+  -webkit-box-shadow: 0px 0px 20px #000;
+  -moz-box-shadow: 0px 0px 20px #000;
+  box-shadow: 0px 0px 20px #000;
+  /*--CSS3 Rounded Corners--*/
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
-/* line 21, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+/* line 34, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .modal_window {
   display: none;
   /*--hidden by default--*/
@@ -37,7 +51,7 @@
   font-size: 12px;
   position: fixed;
   z-index: 99999;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
   /*--CSS3 Box Shadows--*/
   -webkit-box-shadow: 0px 0px 20px #000;
   -moz-box-shadow: 0px 0px 20px #000;
@@ -48,19 +62,40 @@
   border-radius: 10px;
 }
 
-/* line 41, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+/* line 55, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .search_box {
   width: 100%;
   float: left;
   margin: 10px 10px 10px 10px;
-  border: 1px solid red;
+  /*border: 1px solid #ccc;*/
 }
 
-/* line 48, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+/* line 62, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
 .search_box input {
-  width: 100px;
+  height: 30px;
+  width: 450px;
   margin: 10px 10px 10px 10px;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #ccc;
+}
+
+/* line 71, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+.js_search_locations {
+  height: 30px;
+  width: 580px;
+}
+
+/* line 75, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+.lab_search_box {
+  font-size: 16px;
+}
+
+/* line 79, ../../../../app/stylesheets/actwitty/alpha/modals.scss */
+.modal_ul {
+  list-style-type: none;
+  /*margin-left: 5px;
+  padding: 0;
+  margin-left: 0;
+  font-weight: bold;*/
 }

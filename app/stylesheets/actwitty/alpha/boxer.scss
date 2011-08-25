@@ -5,7 +5,8 @@
           border: 1px solid #BDC7D5;
           padding: 5px 8px 5px 8px;
 		      position: relative;
-          border:1px solid red;
+          /*border:1px solid red;*/
+          border:1px solid #ccc;
        }
 
  .ctab {
@@ -74,7 +75,7 @@
              }
 
 .locations_box_internal{
-        width:80%;
+       width:80%;
         overflow:hidden;
         float:left;
 }
@@ -87,6 +88,18 @@
 .locations_box_internal a span{
   height:40px;
   width:40px;
+}
+.locations_box_images{
+  margin-left:35px;
+  margin-top:15px;
+}
+.js_modal_locations{
+  word-wrap: break-word;
+  display:inline-block;
+  text-align:center;
+}
+.hide{
+  display: none;
 }
 
 
@@ -134,4 +147,50 @@
   width:40;
 }
 /*************** related friends box *****************/
+/*************** subscribers box *****************/
+.subscriber_box {
+                height:90px;
+                width:120px;
+             }
+
+.subscriber_box_internal{
+        width:80%;
+        overflow:hidden;
+        float:left;
+}
+
+.subscriber_box_internal a img{
+}
+
+.subscriber_box_internal a span{
+}
+
+.subscriber_box_images{
+  height:40;
+  width:40;
+}
+/*************** subscribers box *****************/
+/*************** subscription box *****************/
+.subscription_box {
+                height:90px;
+                width:120px;
+             }
+
+.subscription_box_internal{
+        width:80%;
+        overflow:hidden;
+        float:left;
+}
+
+.subscription_box_internal a img{
+}
+
+.subscription_box_internal a span{
+}
+
+.subscription_box_images{
+  height:40;
+  width:40;
+}
+/*************** subscription box *****************/
 

@@ -134,21 +134,24 @@ span.name a
   color:#1874CD;
 }
 
-.post-comment
-{
-  height:auto;
-  width:480px;
 
-
-  margin-left:50px;
-  display:block;
-  margin-top:-15px;
-  padding-bottom:15px;
-}
 
 */
 
 /* ################################ To submit comments ############################*/
+
+
+.post-comment
+{
+  height:auto;
+  width:380px;
+  margin-left:160px;
+  display:block;
+  margin-top:0px;
+  padding-bottom:15px;
+}
+
+
 .add-comment
 {
   border:1px solid #ddd;
@@ -170,13 +173,15 @@ span.name a
 {
   height:60px;
   width:100%;
+  margin-bottom:10px;
   display:none;
+
 }
 
 
 .btn-comments
 {
-  background-color:#00ced1;
+  background-color:#454545;
   border:none;
   height:18px;
    -moz-border-radius: 2px;
@@ -184,7 +189,17 @@ span.name a
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
    font-size:12px;
-  font-weight:normal;
+	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  font-weight:bold;
+  margin-top:10px;
+  color:#ddd;
+  margin-left:10px;
+  padding:3px;
+}
+
+.btn-comments:hover
+{
+  cursor:pointer;
 }
 
 
@@ -211,7 +226,7 @@ span.name a
 {
   width:100%;
   height:auto;
-  float:right;
+  /*float:right;*/
   border:0px solid red;
   display:none;
 }
@@ -221,13 +236,33 @@ span.name a
   display:none;
 }
 
+
+
+
+/*## Actual comment list ##*/
+.p-awp-comment-list
+{
+  width:100%;
+  height:auto;
+  border:0px solid red;
+  display:inline-block;
+}
+
 .p-awp-comment
 {
   height:auto;
   border:0px solid green;
-  margin-top:20px;
-  margin-bottom:5px;
+  width:100%;
+  display:inline-block;
+
 }
+.clearing 
+{
+  clear:both;
+  height:1px;
+  overflow:hidden;
+}
+
 
 
 .p-st-comment-close
@@ -242,6 +277,93 @@ span.name a
   float:right;
   font-size:8px;
 }
+
+
+.author
+{
+  border:0px solid green;
+  width:160px;
+  height:50px;
+  margin-top:5px;
+  float:left;
+  background:#92cfd4;
+}
+.p-st-comment-actor
+{
+  color:#fff;
+  font-size:16px;
+}
+div.p-st-comment-actor center a
+{
+  color:#fff;
+}
+.p-st-comment-actor-image
+{
+  border:0px solid red;
+  color:#c19135;
+  width:35px;
+  height:40px;
+  float:right;
+}
+.p-st-comment-actor-image img
+{
+  width:35px;
+  height:50px;
+}
+
+.p-st-comment-actor-desc
+{
+  width:120px;
+  height:40px;
+  border:0px solid red;
+  float:left;
+  
+}
+
+.p-st-comment-submitdate
+{
+  font-size:9px;
+  color:#454545;
+  width:100%;
+  height:15px;
+  margin-top:10px;
+}
+
+
+
+.p-st-comment-content
+{
+  width:380px;
+  height:auto;
+  color:#6e6e6e;
+  margin-top:5px;
+  margin-left:4px;
+  display:inline-block;
+  background:#eeeeee;
+  font-family:"Georgia";
+  font-size:16px;
+  min-height:50px;
+}
+div.p-st-comment-content p
+{
+  font-size:16px;
+}
+
+
+
+
+
+/* commented for a while for ref...... plz dont remove it for timebeing
+.p-awp-comment
+{
+  height:auto;
+  border:0px solid green;
+  margin-top:20px;
+  margin-bottom:5px;
+}
+
+
+
 
 
 .author
@@ -299,11 +421,15 @@ span.p-st-comment-actor a
 .p-comment-text
 {
 }
+*/
+
+
+
+
 
 .p-st-comment-new
 {
   width:100%;
-  float:right;
   display:block;
 }
 

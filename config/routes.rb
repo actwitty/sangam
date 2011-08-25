@@ -49,6 +49,8 @@ Sangam::Application.routes.draw do
   match '/home/get_streams' => 'home#get_streams'
   match '/home/remove_document' => 'home#remove_document'
 
+  match '/home/search_people' => 'home#search_people'
+
   match '/view' => 'home#activity'
   match '/home/get_single_activity' => 'home#get_single_activity'
 
@@ -77,7 +79,10 @@ Sangam::Application.routes.draw do
   match '/home/get_document_channel' => 'home#get_document_channel'
   match '/home/get_document_stream' => 'home#get_document_stream'
 
+  match '/home/get_subscribers' => 'home#subscribers'
+  match '/home/get_subscriptions' => 'home#subscriptions'
 
+  match '/home/update_summary_theme' => 'home#update_summary_theme'
 
 
 
@@ -90,12 +95,11 @@ Sangam::Application.routes.draw do
   #match '/contacts/friendship' => 'contacts#friendship'
 
   match '/contacts/facebook_friends' => 'contacts#facebook_friends'
-  match '/contacts/search' => 'contacts#search'
-  match '/contacts/followers' => 'contacts#followers'
-  match '/contacts/followings' => 'contacts#followings'
-  match '/contacts/follow' => 'contacts#follow'
-  match '/contacts/unfollow' => 'contacts#unfollow'
   match '/contacts/provider_follow' => 'contacts#provider_follow'
+
+  #match '/contacts/follow' => 'contacts#follow'
+  #match '/contacts/unfollow' => 'contacts#unfollow'
+
 
   match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
 
@@ -113,6 +117,8 @@ Sangam::Application.routes.draw do
   match '/home/update_social_media_share' => 'home#update_social_media_share'
   match '/home/get_social_counter' => 'home#get_social_counter'
 
+  match '/home/subscribe_summary' => 'home#subscribe_summary'
+  match '/home/unsubscribe_summary' => 'home#unsubscribe_summary'
 
 
 

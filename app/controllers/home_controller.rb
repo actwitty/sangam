@@ -55,7 +55,8 @@ class HomeController < ApplicationController
         redirect_to :controller => "welcome", :action => "new"
       end
     else
-      @user=User.find_by_id(params[:id])
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
       if @user.nil?
         if user_signed_in?
           @user=current_user
@@ -101,8 +102,47 @@ class HomeController < ApplicationController
 
   end
   ############################################
+  def search_people
+    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search params : #{params}")
+    response = User.search(params[:q])
+    response_json = response.to_json
+    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search response : #{response_json}")
+    if request.xhr?
+        render :json => response_json, :status => 200
+    end
+  end
+  ############################################
+  def subscribers
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] request params : #{params}")
+    user_id =  Integer(params[:user_id])
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] model api : #{user_id}")
+    response_json=current_user.get_subscribers(user_id)
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] response json : #{response_json}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json
+    end
+  end
+  ############################################
+ def subscriptions
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] request params : #{params}")
+    user_id =  Integer(params[:user_id])
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] model api : #{user_id}")
+    response_json=current_user.get_subscriptions(user_id)
+    Rails.logger.info("[CNTRL][HOME][SUBSCRIPTIONS] response json : #{response_json}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json
+    end
+  end
+  ############################################
   def get_channels
    Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
+    if params[:page_type].blank?
+      params[:page_type] = 1
+   else
+      params[:page_type] = Integer(params[:page_type])
+   end
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
       params[:user_id] == Integer(params[:user_id]);
@@ -125,10 +165,15 @@ class HomeController < ApplicationController
   def get_related_entities
 
     Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
+    if params[:page_type].blank?
+      params[:page_type] = 1
+   else
+      params[:page_type] = Integer(params[:page_type])
+   end
 
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] calling model api #{params}")
-      response_json=current_user.get_related_entities(params[:user_id], params[:filter])
+      response_json=current_user.get_related_entities(params)
       Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] model returned #{response_json}")
       if request.xhr?
         expires_in 10.minutes
@@ -146,7 +191,11 @@ class HomeController < ApplicationController
   def get_entities
 
     Rails.logger.info("[CNTRL][HOME][RELATED ENTITIES] Get entities #{params}")
-
+    if params[:page_type].blank?
+      params[:page_type] = 1
+   else
+      params[:page_type] = Integer(params[:page_type])
+   end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][USER ENTITIES] calling model api #{params}")
 
@@ -169,9 +218,14 @@ class HomeController < ApplicationController
   ############################################
   def get_related_locations
    Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] Get related locations #{params}")
+   if params[:page_type].blank?
+    params[:page_type] = 1
+   else
+    params[:page_type] = Integer(params[:page_type])
+   end
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] calling model api #{params}")
-      response_json=current_user.get_related_locations(params[:user_id], params[:filter])
+      response_json=current_user.get_related_locations(params)
       Rails.logger.info("[CNTRL][HOME][RELATED LOCATIONS] model returned #{response_json}")
       if request.xhr?
         expires_in 10.minutes
@@ -188,6 +242,13 @@ class HomeController < ApplicationController
    #####################################################
    def get_locations
    Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] Get related locations #{params}")
+
+   if params[:page_type].blank?
+    params[:page_type] = 1
+   else
+    params[:page_type] = Integer(params[:page_type])
+   end
+
    if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][USER LOCATIONS] calling model api #{params}")
       response_json=current_user.get_user_locations( params[:user_id], params[:sort_order])
@@ -288,11 +349,17 @@ class HomeController < ApplicationController
       params[:filter].delete(:entity_id)
     end
     if params[:filter][:location_id].blank?
-    params[:filter].delete(:location_id)
+       params[:filter].delete(:location_id)
+    end
+
+    if params[:page_type].blank?
+      params[:page_type] = 1
+    else
+      params[:page_type] = Integer(params[:page_type])
     end
     if user_signed_in?
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] calling model api Filter:#{params[:filter]}")
-      response_json=current_user.get_related_friends(params[:filter])
+      response_json=current_user.get_related_friends(params)
       Rails.logger.info("[CNTRL][HOME][RELATED FRIENDS] model returned #{response_json}")
       if request.xhr?
         expires_in 10.minutes
@@ -890,6 +957,7 @@ class HomeController < ApplicationController
     args[:source_name] = params[:source_name]
     args[:action] = params[:action_type]
     args[:author_id] = current_user.id
+
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
     response_json = current_user.create_social_counter(args)
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
@@ -911,8 +979,68 @@ class HomeController < ApplicationController
      if request.xhr?
       render :json => response_json, :status => 200
     end
+   else
+    render :json => {}, :status => 400
    end
   end
+#######################################
+  def subscribe_summary
+   Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] request params #{params}")
+   unless params[:summary_id].blank?
 
+     summary_id = Integer(params[:summary_id])
+     Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] calling model api #{summary_id}")
+     response_json = current_user.subscribe_summary(summary_id)
+     Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] response from model #{response_json}")
+     if request.xhr?
+      render :json => {}, :status => 200
+    end
+   else
+     render :json => {}, :status => 400
+   end
+
+  end
+#######################################
+  def unsubscribe_summary
+   Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] request params #{params}")
+   unless params[:summary_id].blank?
+
+     summary_id = Integer(params[:summary_id])
+     Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] calling model api #{summary_id}")
+     response_json = current_user.unsubscribe_summary(summary_id)
+     Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] response from model #{response_json}")
+     if request.xhr?
+      render :json => {}, :status => 200
+    end
+   else
+     render :json => {}, :status => 400
+   end
+
+  end
+#######################################
+  def update_summary_theme
+    Rails.logger.info("[CNTRL][HOME][UPDATE SUMMARY THEME] request params #{params}")
+    unless user_signed_in?
+      render :json => {}, :status => 400
+      return
+    end
+    unless params[:summary_id].blank? && params[:url].blank?
+      args={}
+      args[:summary_id] = Integer(params[:summary_id])
+      args[:author_id] = current_user.id
+      #args[:style] = 2
+      args[:default]=false
+      args[:url]=params[:url]
+      Rails.logger.info("[CNTRL][HOME][UPDATE SUMMARY THEME] calling model api #{args}")
+      response_json = current_user.update_theme(args)
+      Rails.logger.info("[CNTRL][HOME][UPDATE SUMMARY THEME] response from model #{response_json}")
+        if request.xhr?
+          render :json => response_json, :status => 200
+        end
+    else
+        render :json => {}, :status => 400
+    end
+
+  end
 end
 

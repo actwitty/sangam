@@ -173,6 +173,39 @@ class User < ActiveRecord::Base
     end
   end
 
+  def get_subscribers(user_id)
+    users_list = Array.new
+    friends_id_list = Contact.select("user_id").where(:friend_id => user_id).map(&:user_id)
+    if !friends_id_list.nil? && friends_id_list.count() != 0
+    User.select("id,full_name,photo_small_url")
+                        .where("id in (?)", friends_id_list ).each do  |attr|
+                          users_list << { :id => attr.id,
+                                          :name => attr.full_name,
+                                          :photo => attr.photo_small_url }
+
+
+      end
+    end
+    response = {:user => users_list}
+  end
+
+  def get_subscriptions(user_id)
+    users_list = Array.new
+    friends_id_list = Contact.select("friend_id").where(:user_id => user_id).map(&:friend_id)
+    if !friends_id_list.nil? && friends_id_list.count() != 0
+      User.select("id,full_name,photo_small_url")
+                        .where("id in (?)", friends_id_list ).each do  |attr|
+                          users_list << { :id => attr.id,
+                                          :name => attr.full_name,
+                                          :photo => attr.photo_small_url }
+
+
+      end
+    end
+    response = {:user => users_list}
+
+  end
+
   def get_followers
     users_list = []
     friends_id_list = Contact.select("user_id").where(:friend_id => id).map(&:user_id)
@@ -209,7 +242,7 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
-    if search
+    unless search.blank?
       select("id,full_name,photo_small_url").order("full_name").
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,

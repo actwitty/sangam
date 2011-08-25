@@ -11,10 +11,10 @@ var the_big_modal_manager_json = {
                                             return aw_friends_render_related_modal(win_id, trigger_id);
                                           },
                                           title:"Related Friends",
-                                          top:20,
-                                          left:20,
-                                          width:800,
-                                          height:300,
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
                                           data_json:{},
 
                                       },
@@ -67,8 +67,8 @@ var the_big_modal_manager_json = {
                                           title:"All Locations",
                                           top:50,
                                           left:200,
-                                          width:850,
-                                          height:700,
+                                          width:750,
+                                          height:400,
                                           data_json:{}
 
                                      
@@ -109,27 +109,40 @@ var the_big_modal_manager_json = {
                                           },
                                           title:"All Channels",
                                           top:50,
-                                          left:350,
+                                          left:390,
                                           width:450,
                                           height:200,
                                           data_json:{}
 
                                      
                                    },
-    "JS_AW_MODAL_share" : {
-                                          renderer_fn:function aw_modal_share(win_id, trigger_id){
-                                            //alert("calling related locations renderer");
-                                            return aw_render_share_externally(win_id, trigger_id);
+    "JS_AW_MODAL_subscriber" : {
+                                          renderer_fn:function aw_modal_subscribers(win_id, trigger_id){
+                                            return aw_subscriber_modal(win_id, trigger_id);
                                           },
-                                          title:"Share the post",
+                                          title:"Subscribers",
                                           top:50,
-                                          left:350,
-                                          width:450,
-                                          height:200,
+                                          left:300,
+                                          width:650,
+                                          height:400,
+                                          data_json:{}
+
+
+                                     
+                                   },
+    "JS_AW_MODAL_subscription" : {
+                                          renderer_fn:function aw_modal_subscriptions(win_id, trigger_id){
+                                            return aw_subscription_modal(win_id, trigger_id);
+                                          },
+                                           title:"Subscriptions",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
                                           data_json:{}
 
                                      
-                                   }             
+                                   }        
                                   };
 
 
@@ -176,6 +189,7 @@ function aw_modal_dialog_maker(registered_modal_id, container_window_id, trigger
 function aw_modal_close(registered_modal_id){
   $('#modal_box_window_id').empty();
   $("#modal_box_id").hide();
+  $(".modal_close").hide();
   $('#modal_box_window_id').hide();
   $('#modal_box_mask_id').hide();
 
@@ -197,9 +211,11 @@ $(document).ready(function() {
 
         var modal_window =   $('#modal_box_window_id');
         var modal_bkg_mask = $('#modal_box_mask_id');
-
+        var modal_close = $('#modal_c');
+        //alert(modal_window);
 
         $("#modal_box_id").show();
+        $(".modal_close").show();
 
         //Get the screen height and width
         var mask_height = $(document).height();
@@ -225,11 +241,20 @@ $(document).ready(function() {
            if(config_json){
              modal_window.css({'width':config_json.width,'height':config_json.height});
              modal_window.css({'top':config_json.top,'left':config_json.left});
+             //alert("if"); 
+             //modal_close.css({'width':config_json.width,'height':config_json.height});
+             modal_close.css({'margin-top':config_json.top-15,'margin-left':config_json.width+config_json.left+60});
+
            }
          }else{
               //Set the popup window to center
+              //alert("else"); 
               modal_window.css('top',  winH/2 - modal_window.height()/2);
               modal_window.css('left', winW/2 - modal_window.width()/2);
+
+              modal_close.css('top',  winH/2 - modal_window.height()/2);
+              modal_close.css('left', winW/2 - modal_window.width()/2);
+
          }
 
 
@@ -247,11 +272,13 @@ $(document).ready(function() {
           if(!ret_code){
             /*hide the parent of modal window box*/
             $("#modal_box_id").hide();
+            $(".modal_close").hide();
             $('#modal_box_window_id').hide();
             $('#modal_box_mask_id').hide();
           }
         }else{
             $("#modal_box_id").hide();
+            $(".modal_close").hide();
             $('#modal_box_window_id').hide();
             $('#modal_box_mask_id').hide();
         }
@@ -264,18 +291,20 @@ $(document).ready(function() {
     $('.js_modal_close').live("click", function (e) {
         //Cancel the link behavior
         e.preventDefault();
-        $('#modal_box_window_id').empty();
+        $('#modal_box_window_id').html('');
         $('#modal_box_window_id').hide();
         $('#modal_box_mask_id').hide();
         $("#modal_box_id").hide();
+        $(".modal_close").hide();
     });     
      
     /*
      * Click is made live with an intention to support image and video modals
      */
     $('.modal_mask').live("click",function () {
-        $('#modal_box_window_id').empty();
+        $('#modal_box_window_id').html('');
         $("#modal_box_id").hide();
+        $(".modal_close").hide();
         $('#modal_box_window_id').hide();
         $('#modal_box_mask_id').hide();
     });         
