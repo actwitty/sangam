@@ -22,11 +22,11 @@ class Campaign < ActiveRecord::Base
 #  validates_existence_of :comment_id, :allow_nil => true
 #  validates_existence_of :document_id, :allow_nil => true
 
-  validates_uniqueness_of :author_id, :scope => [:activity_id, :name],  :unless => Proc.new {|a| a.activity_id.nil?}
-  validates_uniqueness_of :author_id, :scope => [:entity_id, :name], :unless => Proc.new {|a| a.entity_id.nil?}
-  validates_uniqueness_of :author_id, :scope => [:location_id, :name], :unless => Proc.new {|a| a.location_id.nil?}
-  validates_uniqueness_of :author_id, :scope => [:comment_id, :name], :unless => Proc.new {|a| a.comment_id.nil?}
-  validates_uniqueness_of :author_id, :scope => [:document_id, :name], :unless => Proc.new {|a| a.document_id.nil?}
+  validates_uniqueness_of :activity_id, :scope => [:author_id, :name],  :unless => Proc.new {|a| a.activity_id.nil?}
+  validates_uniqueness_of :entity_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.entity_id.nil?}
+  validates_uniqueness_of :location_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.location_id.nil?}
+  validates_uniqueness_of :comment_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.comment_id.nil?}
+  validates_uniqueness_of :document_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.document_id.nil?}
 
   validates_uniqueness_of :father_id
 
@@ -136,7 +136,7 @@ class Campaign < ActiveRecord::Base
 
       #set mandatory parameters if missing
       params[:status] = AppConstants.status_public if params[:status].nil?
-      params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+      params[:source_name] =  AppConstants.source_actwitty_meta if params[:source_name].nil?
 
       campaign = Campaign.create!(params)
 

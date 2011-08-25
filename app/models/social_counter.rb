@@ -61,7 +61,8 @@ class SocialCounter < ActiveRecord::Base
         params = params.except(:source_name, :action)
         params.delete(:author_id) if !params[:author_id].blank?
 
-        result = SocialCounter.where(params).group(:source_name, :action).count
+        h = pq_social_counter_filter(params)
+        result = SocialCounter.where(h).group(:source_name, :action).count
 
         if !params[:activity_id].nil?
 

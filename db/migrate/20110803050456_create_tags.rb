@@ -30,7 +30,11 @@ class CreateTags < ActiveRecord::Migration
 
     add_index :tags, :activity_word_id
 
+    add_index :tags, :summary_id
+
     add_index :tags, :activity_id
+
+    add_index :tags, :updated_at
   end
 
   def self.down
@@ -38,7 +42,11 @@ class CreateTags < ActiveRecord::Migration
 
     remove_index :tags, :activity_word_id
 
+    remove_index :tags, :summary_id
+
     remove_index :tags, :activity_id
+
+    remove_index :tags, :updated_at
 
     drop_table :tags
   end

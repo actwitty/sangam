@@ -98,7 +98,7 @@ class Comment < ActiveRecord::Base
 
       #set mandatory parameters if missing
       params[:status] = AppConstants.status_public if params[:status].nil?
-      params[:source_name] = AppConstants.source_actwitty if params[:source_name].nil?
+      params[:source_name] = AppConstants.source_actwitty_meta if params[:source_name].nil?
 
       obj = Comment.create!(params)
       puts obj.inspect

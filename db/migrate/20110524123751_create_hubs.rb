@@ -30,11 +30,20 @@ class CreateHubs < ActiveRecord::Migration
     end
 
     add_index :hubs, :activity_id
-    add_index :hubs, :entity_id
-    add_index :hubs, :location_id
     add_index :hubs, :user_id
+    add_index :hubs, :summary_id
 
-    add_index :hubs, [:summary_id, :entity_id]
+    add_index :hubs, [ :entity_id, :summary_id ]
+
+    add_index :hubs, [ :location_id, :summary_id]
+
+    add_index :hubs, [ :activity_word_id, :summary_id,]
+
+    add_index :hubs, [ :entity_id, :user_id ]
+
+    add_index :hubs, [ :location_id, :user_id ]
+
+    add_index :hubs, [ :activity_word_id, :user_id ]
 
     #add_index :hubs, [:activity_word_id, :location_id, :source_name, :entity_id, :user_id, :updated_at]
 
@@ -45,13 +54,22 @@ class CreateHubs < ActiveRecord::Migration
 
   def self.down
     remove_index :hubs, :activity_id
-    remove_index :hubs, :entity_id
-    remove_index :hubs, :location_id
     remove_index :hubs, :user_id
+    remove_index :hubs, :summary_id
 
-    remove_index :hubs, [:summary_id, :entity_id]
+    remove_index :hubs, [ :entity_id, :summary_id ]
 
-    #remove_index :hubs, [:activity_word_id, :location_id, :source_name, :entity_id, :user_id, :updated_at]
+    remove_index :hubs, [ :location_id, :summary_id]
+
+    remove_index :hubs, [ :activity_word_id, :summary_id,]
+
+    remove_index :hubs, [ :entity_id, :user_id ]
+
+    remove_index :hubs, [ :location_id, :user_id ]
+
+    remove_index :hubs, [ :activity_word_id, :user_id ]
+
+    #add_index :hubs, [:activity_word_id, :location_id, :source_name, :entity_id, :user_id, :updated_at]
 
     remove_index :hubs, :source_name
     remove_index :hubs, :updated_at

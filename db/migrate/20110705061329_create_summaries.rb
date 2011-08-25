@@ -25,6 +25,8 @@ class CreateSummaries < ActiveRecord::Migration
     add_index :summaries, [:user_id, :activity_word_id], :unique => true
     add_index :summaries, :activity_word_id
     add_index :summaries, :activity_name
+    add_index :summaries, [:user_id, :updated_at]
+    add_index :summaries, [:id, :updated_at]
     add_index :summaries, :updated_at
   end
 
@@ -32,6 +34,8 @@ class CreateSummaries < ActiveRecord::Migration
     remove_index :summaries, [:user_id, :activity_word_id]
     remove_index :summaries, :activity_word_id
     remove_index :summaries, :activity_name
+    remove_index :summaries, [:user_id, :updated_at]
+    remove_index :summaries, [:id, :updated_at]
     remove_index :summaries, :updated_at
 
     drop_table :summaries

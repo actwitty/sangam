@@ -16,7 +16,7 @@ development: &default
   document_category_length:             32
   tag_length:                           64
   location_name_length:                 1024
-  max_number_of_documents_pulled:       24
+  max_number_of_documents_pulled:       50
 
   #in megabytes
   max_document_size:                    0.5
@@ -25,11 +25,11 @@ development: &default
   max_string_len_for_display:           10
 
   #in one pull of an activity or summary in order of latest updates
-  max_number_of_activities:             10
+  max_number_of_activities:             50
 
   max_number_of_a_type_in_summmary:     6
 
-  max_number_of_summmary:               10
+  max_number_of_summmary:               50
 
 
   default_comment_string:               "Comment"
@@ -95,6 +95,7 @@ development: &default
   #these are defined SOURCE_NAME
   #there can be custom sources like emails and mobile number
   source_actwitty:                "actwitty"
+  source_actwitty_meta:           "actwitty_meta"
   source_twitter:                 "twitter"
   source_facebook:                "facebook"
   source_dropbox:                 "dropbox"

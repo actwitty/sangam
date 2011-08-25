@@ -147,6 +147,7 @@ class Summary < ActiveRecord::Base
     class << self
 
       include TextFormatter
+      include QueryPlanner
 
       #INPUT => :activity_word_id => 123, :user_id => 123, :activity_name => "eating""
       def create_summary(params)
@@ -162,12 +163,18 @@ class Summary < ActiveRecord::Base
          summary.theme_data = format_theme(a) if !a.nil?
          return summary
       rescue => e
+
          Rails.logger.info("Summary => create_summary => Rescue " +  e.message )
          summary = nil
+
          #Validation Uniqueness fails
          if /has already been taken/ =~ e.message
+
            params.delete(:activity_name)
+
+           params = pq_summary_filter(params)
            summary = Summary.where(params).first
+
            Rails.logger.info("Summary => create_summary => Rescue => Uniq index found " + params.to_s)
          end
         return summary
