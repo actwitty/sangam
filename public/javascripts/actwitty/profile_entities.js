@@ -137,7 +137,7 @@ function aw_render_entities_internal(entity, div_id, new_tab_id){
 
      var html='<div class="entities_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_entities" id="' + link_id + '">' +
-                  '<img class="entities_box_images" src="' + entity.image +  '?maxwidth=40&maxheight=40"/>' +
+                  '<img class="entities_box_images" src="' + entity.image +  '?maxwidth=120&maxheight=90"/>' +
                     entity.name +
                 '</a>'+
                

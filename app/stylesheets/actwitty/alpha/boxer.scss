@@ -10,7 +10,7 @@
        }
 
  .ctab {
-          background: #E7EDF6;
+          /*background: #E7EDF6;*/
           position: relative;
           top: 2px;
           border-bottom-width: 2;
@@ -21,7 +21,7 @@
         height:16px;
         border:1px solid #ccc;
         align:center;
-}
+ }
 .close{
          text-decoration: none;
          color: #ccc;
@@ -37,12 +37,17 @@
          -webkit-border-radius: .2em;
          -moz-border-radius: .2em;
          border-radius: .2em;
+         
       }
 	
 .close:hover {
                 background: #999;
                 color: #333;
              }
+ #span_hover{
+    //position: absolute;
+    //z-index: 100;
+ }
 
 /*************** entity box *****************/
 .entities_box {
@@ -57,14 +62,22 @@
 }
 
 .entities_box_internal a img{
+  height:90px;
+  width:120px;
+  z-index:-200;
+  position: fixed;
 }
 
 .entities_box_internal a span{
+  height:5px;
+  width:40px;
+  z-index:300;
+  position: absolute;
 }
 
 .entities_box_images{
-  height:40;
-  width:40;
+  /*height:40;
+  width:40;*/
 }
 /*************** entity box *****************/
 
@@ -75,28 +88,32 @@
              }
 
 .locations_box_internal{
-       width:80%;
-        overflow:hidden;
-        float:left;
+  width:80%;
+  overflow:hidden;
+  float:left;
 }
 
 .locations_box_internal a img{
-  height:40px;
-  width:40px;
+  height:90px;
+  width:120px;
+  z-index:-200;
+  position: fixed;
 }
 
 .locations_box_internal a span{
-  height:40px;
+  height:5px;
   width:40px;
+  z-index:300;
+  position: absolute;
 }
 .locations_box_images{
-  margin-left:35px;
-  margin-top:15px;
+  /*margin-left:1px;
+  margin-top:1px;*/
 }
 .js_modal_locations{
-  word-wrap: break-word;
+  /*word-wrap: break-word;
   display:inline-block;
-  text-align:center;
+  text-align:center;*/
 }
 .hide{
   display: none;
