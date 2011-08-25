@@ -14,29 +14,29 @@
           .activities
             %img.symbol_icon{:src => "/images/alpha/hash_icon.png"}
               %input#activity_field.activity_input.input_text_box.count-enable.no-ol{:maxlength => "32", :type => "text"}/
-              #activity_box_desc
-                %img{:src => "/images/alpha/channel_text.png"}
+              /#activity_box_desc
+              /  %img{:src => "/images/alpha/channel_text.png"}
           .locations
             %img.symbol_icon{:src => "/images/alpha/at_icon.png"}
               %input#location_field.searchTextField.input_text_box.location_input.count-enable.no-ol{:maxlength => "140", :type => "text"}/
-              #location_box_desc
-                %img{:src => "/images/alpha/location_text.png"}
+              /#location_box_desc
+              /  %img{:src => "/images/alpha/location_text.png"}
         .entity_maps
           #subtitle-div
             #subtitle-box
               .subtitle
                 %input#title_field.subtitle_input.input_text_box.count-enable.no-ol{:maxlength => "32", :type => "text"}/
-                #subtitle_box_desc
-                  %img{:src => "/images/alpha/subtitle_text.png"}
+                /#subtitle_box_desc
+                /  %img{:src => "/images/alpha/subtitle_text.png"}
           #entity_div
             #entity-box
+              %textarea#entity_field.entity_input.count-enable.no-ol{:maxlength => "600", :type => "text"}
               #input_addons
                 %a#attachment.info.input_addons_links{:href => "#"}
                   %img.link_addon_icons{:src => "/images/alpha/camera_icon.png"}/
                   %span add image
-              %textarea#entity_field.entity_input.count-enable.no-ol{:maxlength => "600", :type => "text"}
-              #entity_box_desc
-                %img{:src => "/images/alpha/post_text.png"}
+              /#entity_box_desc
+              /  %img{:src => "/images/alpha/post_text.png"}
           #map
         #pre_uploaded_docs
         #input-attachments-section
@@ -67,3 +67,4 @@
         %input#input_latlang{:name => "input_latlang", :type => "hidden", :value => ""}
         %input#lat_value{:name => "input_latlang", :type => "hidden", :value => ""}
         %input#lng_value{:name => "input_latlang", :type => "hidden", :value => ""}
+

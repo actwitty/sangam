@@ -86,8 +86,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	border-bottom:1px dashed #DDDDDD;
 	}
 
-.col1{color:#D2D2D2; background-color:#FFFFFD;}
-.col2{color:#FFFFFF; background-color:#FFFFFD;}
+.col1{color:#D2D2D2; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;}
+.col2{color:#FFFFFF; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;}
 .col3{color:#000000; background-color:#FFFFFD;}
 .col4{color:#666666; background-color:#FFFFFD;}
 
@@ -141,9 +143,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   position:fixed;
   width:990px;
   height:auto;
-  background:#fff;
   border:0px solid red;
   z-index:2000;
+  background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;
 }
 #top-bar
 {
@@ -294,9 +297,15 @@ opacity:40%;
 
 
 /* ----------------------------------------------Profile page input-------------------------------------*/
+
+#js_input_box
+{
+  margin-top:-20px;
+}
+
 #p-ip-sect{
 	padding:0px 0;
-  border:1px solid #fff;
+  border:0px solid #fff;
   width:605px;
   /*margin-top:10px;*/
 }
@@ -306,12 +315,10 @@ opacity:40%;
   margin-bottom:5px;
   width:624px;
   height:auto;
-  border:1px solid #ddd;
-  background-image:url("/images/alpha/blue_back.png");
+  border:0px solid #ddd;
+  background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;
-  
 
-  /*background:#c8c8c8;*/
 }
 
 
@@ -439,10 +446,14 @@ opacity:40%;
   border:0px solid blue;
   margin-left:20px;
 }
+#activity_field, #location_field, #title_field, #entity_field
+{
+  border:2px solid #333;
+}
 .activity_input
 {
   margin-left:0px;
-  border:0px solid #ddd;
+  border:1px solid #333;
   opacity:0.8;
 }
 #activity_box_desc
@@ -510,7 +521,7 @@ opacity:40%;
   margin-top:5px;
   margin-bottom:5px;
   height:30px;
-  border:1px solid #000;
+  border:2px solid #333;
   opacity:0.8;
 }
 
@@ -530,18 +541,12 @@ opacity:40%;
   width:15px;
   height:15px;
 }
-/*
+
 #title_field
 {
-  padding:2px;
-  margin-left:20px;
-  margin-top:5px;
-  margin-bottom:5px;
-  display:block;
-  border:1px solid #ddd;
-  opacity:0.8;
+  border-bottom-style:none;
 }
-*/
+
 .symbol
 {
   color:#87CEEB;
@@ -563,9 +568,12 @@ opacity:40%;
 #subtitle-div
 {
   width:100%;
-  height:50px;
+  height:40px;
   display:block;
   border:0px solid blue;
+  padding:0;
+  margin:0;
+  margin-bottom:-2px;
 }
 #subtitle-box
 {
@@ -573,7 +581,8 @@ opacity:40%;
   width:47%;
   height:40px;
   border:0px solid red;
-   
+  margin-right:2px;
+  border-bottom-style:none;
 }
 .subtitle_input
 {
@@ -610,6 +619,8 @@ opacity:40%;
   height:auto;
   border:0px solid blue;
   opacity:0.8;
+  padding:0;
+  margin:0;
 }
 #entity-box
 {
@@ -618,6 +629,10 @@ opacity:40%;
   border:0px solid green;
   margin-bottom:10px;
   opacity:0.8;
+}
+#entity_field
+{
+  border-bottom-style:none;
 }
 .entity_input
 {
@@ -635,7 +650,10 @@ opacity:40%;
   height:25px;
   opacity:0.8;
 }
-
+#entity-box
+{
+  border:0px solid red;
+}
 #entity_box_desc
 {
   float:left;
@@ -685,6 +703,8 @@ opacity:40%;
   /*margin-bottom:-8px;*/
   background:#fff;
   opacity:0.8;
+  border:2px solid #333;
+  border-top-style:none;
 }
 .input_addons_links
 {
@@ -855,7 +875,7 @@ opacity:40%;
 #save-or-pub
 {
   margin-right:20px;
-  margin-top:10px;
+  margin-top:5px;
   margin-bottom:10px;
   /*background-color:#92d050;*/
   color:#282828;
@@ -870,12 +890,13 @@ opacity:40%;
   margin-top:0px;
   margin-bottom:10px;
   color:#282828;
-  width:67px;
-  height:24px;
+  width:56px;
+  height:17px;
   float:right;
-  background-image: url("/images/alpha/publish_unselected_button.png"); 
+  background-image: url("/images/alpha/publish_normal_button.png"); 
+  background-repeat:no-repeat;
 }
-#post_submit_button:hover 
+#actwitty_generator:hover 
 { 
   background-image: url("/images/alpha/publish_hover_button.png");
   cursor:pointer;
@@ -887,10 +908,11 @@ opacity:40%;
   margin-bottom:10px;
   /*background-color:#92d050;*/
   color:#282828;
-  width:67px;
-  height:24px;
+  width:39px;
+  height:17px;
   float:right;
-  background-image: url("/images/alpha/save_unselected_button.png"); 
+  background-image: url("/images/alpha/save_normal_button.png");
+  background-repeat:no-repeat;
   
 }
 #save_submit_button:hover 
@@ -2325,3 +2347,4 @@ a.js_handle_stream_entity_mention:hover span
 {
   display:none;
 }
+
