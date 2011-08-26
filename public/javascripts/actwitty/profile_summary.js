@@ -124,9 +124,9 @@ function create_and_docs_box(box_id, summary){
 function get_subscription_box_element(type)
 {
   if(type == 'UNSUBSCRIBE') {
-    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
+    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
   }else if(type == 'SUBSCRIBE'){
-      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
+      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
   }else{
     return '';
   }
@@ -155,8 +155,7 @@ function create_add_add_subscribe_box(box_id, summary){
     }
     subsc_box.append(html);
   }else{
-    html=get_subscription_box_element('');
-    subsc_box.append(html);
+    subsc_box.append(" ");
     //subsc_box.hide();
   }
 
@@ -482,7 +481,7 @@ function create_and_add_summary(summary_box, summary){
 
               '<div class="p-channelp-post-header">' +
 
-                '<div class="p-channelp-post-tab">' +
+                '<div class="p-channelp-post-tab"> More/Less' +
                 '</div>' +
 
                 '<div class="p-channelp-post-author">' +
@@ -510,14 +509,11 @@ function create_and_add_summary(summary_box, summary){
             
                 '<div class="p-channelp-post-cu js_word_name_box">' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
-                    '<img src="/images/alpha/subscribed.png">'+
                   '</div>'+
                   
-                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
-                  '</div>' +
                   '<hr class="p-channelp-post-cu-bar"/>'+
                   '<div class="p-channelp-post-title">'+
-                     '<center><span>' + summary.word.name + '</span></center>'+
+                     '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
                   '</div>'+
                   /*
                   '<span>'  +
@@ -529,10 +525,10 @@ function create_and_add_summary(summary_box, summary){
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
-                    '<p><center>' + summary.count + '</center></p> <p> <center>Likes</center></p>' +
+                    '<p><center>' + 'unknown' + '</center></p> <p> <center>Likes</center></p>' +
                   '</div>' +
                   '<div class="p-channelp-post-post">' +
-                    '<p><center>' + summary.count + '</center></p> <p> <center>posts</center></p>' +
+                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>posts</center></p>' +
                   '</div>' +
                 '</div>' +
 
@@ -680,11 +676,9 @@ function subscribe_summary(trigger_ele, sub_summary_id, action ){
         dataType: 'json',
         success: function (data) {
           if(action == true){
-            alert("unsubcring");
             //trigger_ele.html('UNSUBSCRIBE');
             trigger_ele.html(get_subscription_box_element('UNSUBSCRIBE'));
           }else{
-            alert("subscribing");
             //trigger_ele.html('SUBSCRIBE');
             trigger_ele.html(get_subscription_box_element('SUBSCRIBE'));
             if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id() &&
@@ -738,7 +732,6 @@ $(document).ready(function(){
     $('.js_summary_filter_setter').live('click', function(){
       var filters_base_id = $(this).attr("id");
       if (filters_base_id.length > 0){
-          var page_owner_id=$('#page_owner_id').attr("value");
           var filter = the_big_filter_JSON[filters_base_id];
           if(filter){
             /* do not cause reload */
@@ -822,6 +815,17 @@ $(document).ready(function(){
       update_summary_theme($(this));
     });
     /*************************/
+
+    /*
+     *    Collaspsible effect on more/less on channel summary
+     */
+    $(".p-channelp-post-tab").live('click',function(){
+      $(this).closest(".p-channelp-post").find(".p-channelp-related-info").slideToggle();
+      $(this).closest(".p-channelp-post").find(".p-channelp-post-rel-img").slideToggle();
+    });
+
+
+
 });
 
 

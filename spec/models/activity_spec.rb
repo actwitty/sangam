@@ -398,7 +398,12 @@ describe Activity do
       puts "============================================================="
 
       puts "Activity Stream"
-      a = @u.get_activity_stream({:filter => {:word_id => wi.id}})
+      a = @u.get_activity_stream({:word_id => wi.id})
+      puts a
+      puts "============================================================="
+
+      puts "Top Recent Summary"
+      a = @u.get_recent_public_summary
       puts a
       puts "============================================================="
     end
@@ -581,7 +586,8 @@ describe Activity do
        @c8 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
                                :document_id => @doc.first.id )
        work_off
-       a =@u1.get_stream({:user_id => @u1.id, :updated_at => Time.now.utc})
+       e = Entity.where(:entity_name => "pizza").first
+       a =@u1.get_stream({:user_id => @u1.id, :filter => {:entity_id => e.id}, :updated_at => Time.now.utc})
        puts a
        puts a.size
        a.should_not be_nil
@@ -633,20 +639,23 @@ describe Activity do
      h = { :word => "marry" , :text => "sachin tendulakr and rahul dravid
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
-                                                    {:url => "http://a.com/xyz.jpg" },
-                                               {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
+                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/2.jpg" },
+                                                    {:url => "http://a.com/2.jpg" },
+                                               {:url => "http://b.com/2.jpg" },{:url => "http://c.com/2.jpg" }], :status =>
                                             AppConstants.status_public,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
+      a6 =  @u.create_activity( :word => "marry" , :text => "deepika padukone and salman khan looks great",
+                              :location =>  {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :enrich => true,:status => AppConstants.status_saved)
       work_off
       id = a[:post][:id]
-
-      b = @u.get_stream({:user_id => @u.id})
-      puts b.inspect
-      b.should_not be_nil
+#
+#      b = @u.get_stream({:user_id => @u.id,  :page_type => AppConstants.page_state_user})
+#      puts b.inspect
+#      b.should_not be_nil
 
       puts "======================draft====================="
 
-      params = {:filter => {:word_id => a[:post][:word][:id], :location_id => a[:location][:id]}}
+      params = {:filter => {:word_id => a6[:post][:word][:id], :location_id => a6[:location][:id]}}
       puts params.inspect
       a = @u.get_draft_activity(params)
       puts a.inspect
@@ -656,26 +665,28 @@ describe Activity do
 
       puts "=====================summary===================="
       puts s.inspect
-      id = s.document_array[0]
+#      id = s.document_array[0]
 
-      d=Document.where(:id => id).first
+      d=Document.where(:activity_id => id).first
       @u.remove_document(d.id)
 
       s = Summary.where(:id => a.summary_id).first
 
       puts "=====================summary again===================="
       puts s.inspect
-      puts Document.count
+#      puts Document.count
 
-      summary = @u.get_summary({:user_id => @u.id})
+      summary = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts summary
 
       #a.destroy
       h[:activity_id] = a.id
 
       c = @u.update_activity( h)
-      puts c
+      #puts c
       work_off
+      summary = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
+      puts summary
 
 #      b= @u.get_draft_activity
 #      puts b
@@ -683,7 +694,7 @@ describe Activity do
 
       puts "=====================summary again again===================="
       puts s.inspect
-      summary = @u.get_summary({:user_id => @u.id})
+      summary = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts summary
 
       Document.all.each do |attr|
@@ -856,7 +867,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
                               :enrich => true,
                               :tags => [{:name => "jump7"}, {:name => "Anna hazare 7"}], :status =>
                                             AppConstants.status_saved)
-      b = @u.get_summary({:user_id => @u.id})
+      b = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts b
       b.should_not be_blank
       ActiveRecord::Observer.with_observers(:document_observer) do
@@ -864,7 +875,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       end
       puts "======================================="
 
-      b = @u.get_summary({:user_id => @u.id})
+      b = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts b
       b.should_not be_blank
     end
@@ -898,7 +909,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
                                             AppConstants.status_public)
       s1 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
       s2 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "twitter", :action => "share"})
-      s3 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
+      s3 = @u.create_social_counter({:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       #s4 = @u.create_social_counter({:author_id => @u.id ,:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       puts s1.inspect
       a = Activity.where(:id => a[:post][:id]).first
@@ -908,7 +919,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       puts s.inspect
       a = @u.get_social_counter({:activity_id => a.id})
       puts a
-      a= @u.get_stream({:user_id => @u.id})
+      a= @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts a
 #      a = Theme.create_theme({:fg_color => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
 #      puts a.inspect
@@ -922,8 +933,10 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
 #      a = Activity.where(:id => a1[:post][:id]).first
 #      a.destroy
 #      Activity.destroy_all
-      a = @u.get_stream({:user_id => @u.id, :page_state => AppConstants.page_state_all})
-
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
+      puts a
+      a = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
+      puts a
     end
     it "should create and use the summary subscription properly" do
       a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>

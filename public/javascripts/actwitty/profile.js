@@ -8,13 +8,13 @@
  * Globals
  *
  */
-var default_tab = $('#default_page_mode').attr("value");
 
 
 function main_profile_initializer(){
     var page_owner_id=aw_lib_get_page_owner_id();
     var session_owner_id=aw_lib_get_session_owner_id();
     
+    var default_tab = $('#default_page_mode').attr("value");
     /* initialize filters for carry forward to another page*/
     profile_filter_init();
 
@@ -23,7 +23,6 @@ function main_profile_initializer(){
     aw_toggle_scope_on_stream_page(aw_get_current_stream_mode());
 
     /* At very start Hide all contents on page load */
-
     //Decide to bring one tab on focus
     if(default_tab =='filtered'){
   	  $("ul.p-cstab li:last").addClass("active").show();
@@ -101,21 +100,10 @@ $(document).ready(function(){
 	  });
     /********************** click on tab ends here ****************************/
    
-    
-
-
-    
-    
-   
    
 
 
-    $("div.p-awp-content p").expander({
-      slicePoint:       300,  // default is 100
-      expandText:         'read more', // default is 'read more...'
-      userCollapseText: '...less'  // default is '[collapse expanded text]'
-    });
-
+    
     
 
   }); /* ready ends here */

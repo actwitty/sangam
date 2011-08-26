@@ -45,29 +45,27 @@ class CreateActivities < ActiveRecord::Migration
 
        add_index :activities, [:summary_id, :base_location_id]
 
-       add_index :activities, :base_location_id
+       add_index :activities, [:author_id, :status, :meta_activity]
 
-       add_index :activities, [:author_id, :status, :meta_activity], :name => "index_activities_on_author_status_meta"
+       add_index :activities, [:author_id, :activity_word_id, :status]
 
-       add_index :activities, [:activity_word_id, :source_name, :updated_at, :status, :meta_activity, :base_location_id, :author_id ],
-                               :name => "index_activities_on_word_source_time_status_meta_loc_author"
+       add_index :activities, [:author_id, :base_location_id, :status]
 
-       add_index :activities, [:source_name, :updated_at, :status, :meta_activity, :base_location_id, :author_id ],
-                               :name => "index_activities_on_source_time_status_meta_loc_author"
+       add_index :activities, [:author_id, :source_name, :status]
 
-       add_index :activities, [:updated_at, :status, :meta_activity, :base_location_id, :author_id ],
-                               :name => "index_activities_on_time_status_meta_loc_author"
+       add_index :activities, [:activity_word_id, :base_location_id, :source_name, :status],
+                 :name => "index_activities_on_word_loc_source_status"
 
-       add_index :activities, [:activity_word_id, :source_name, :summary_id, :updated_at, :status, :meta_activity,:base_location_id],
-                                :name => "index_activities_on_word_source_summary_time_status_meta_loc"
+       add_index :activities, [:source_name, :status]
 
-       add_index :activities, [:source_name, :summary_id, :updated_at, :status, :meta_activity,:base_location_id],
-                                :name => "index_activities_on_source_summary_time_status_meta_loc"
+       add_index :activities, [:base_location_id, :status]
 
-       add_index :activities, [:summary_id, :updated_at, :status, :meta_activity,:base_location_id],
-                                :name => "index_activities_on_summary_time_status_meta_loc"
+       add_index :activities, [:activity_word_id, :status]
+
+       add_index :activities, :updated_at
 
        add_index :activities, [:id, :author_id]
+
        add_index :activities, [:id, :enriched]
 
   end
@@ -78,21 +76,23 @@ class CreateActivities < ActiveRecord::Migration
 
       remove_index :activities, [:summary_id, :base_location_id]
 
-      remove_index :activities, :base_location_id
+      remove_index :activities, [:author_id, :status, :meta_activity]
 
-      remove_index :activities, :name => "index_activities_on_author_status_meta"
+      remove_index :activities, [:author_id, :activity_word_id, :status]
 
-      remove_index :activities, :name => "index_activities_on_word_source_time_status_meta_loc_author"
+      remove_index :activities, [:author_id, :base_location_id, :status]
 
-      remove_index :activities, :name => "index_activities_on_source_time_status_meta_loc_author"
+      remove_index :activities, [:author_id, :source_name, :status]
 
-      remove_index :activities, :name => "index_activities_on_time_status_meta_loc_author"
+      remove_index :activities, :name => "index_activities_on_word_loc_source_status"
 
-      remove_index :activities, :name => "index_activities_on_word_source_summary_time_status_meta_loc"
+      remove_index :activities, [:source_name, :status]
 
-      remove_index :activities, :name => "index_activities_on_source_summary_time_status_meta_loc"
+      remove_index :activities, [:base_location_id, :status]
 
-      remove_index :activities, :name => "index_activities_on_summary_time_status_meta_loc"
+      remove_index :activities, [:activity_word_id, :status]
+
+      remove_index :activities, :updated_at
 
       remove_index :activities, [:id, :author_id]
 

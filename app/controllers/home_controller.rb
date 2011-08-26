@@ -77,7 +77,8 @@ class HomeController < ApplicationController
   ############################################
   def settings
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
-	  @user = User.find_by_confirmation_token(params[:confirmation_token])
+    @profile_page = 1
+	  @user = current_user 
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
 	  if !@user.nil?
 	      @profile = Profile.find_by_user_id(@user.id)
@@ -1042,5 +1043,8 @@ class HomeController < ApplicationController
     end
 
   end
+  ####################################
+
+  ####################
 end
 

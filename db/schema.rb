@@ -34,18 +34,19 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["activity_word_id", "source_name", "summary_id", "updated_at", "status", "meta_activity", "base_location_id"], :name => "index_activities_on_word_source_summary_time_status_meta_loc"
-  add_index "activities", ["activity_word_id", "source_name", "updated_at", "status", "meta_activity", "base_location_id", "author_id"], :name => "index_activities_on_word_source_time_status_meta_loc_author"
-  add_index "activities", ["author_id", "status", "meta_activity"], :name => "index_activities_on_author_status_meta"
-  add_index "activities", ["base_location_id"], :name => "index_activities_on_base_location_id"
+  add_index "activities", ["activity_word_id", "base_location_id", "source_name", "status"], :name => "index_activities_on_word_loc_source_status"
+  add_index "activities", ["activity_word_id", "status"], :name => "index_activities_on_activity_word_id_and_status"
+  add_index "activities", ["author_id", "activity_word_id", "status"], :name => "index_activities_on_author_id_and_activity_word_id_and_status"
+  add_index "activities", ["author_id", "base_location_id", "status"], :name => "index_activities_on_author_id_and_base_location_id_and_status"
+  add_index "activities", ["author_id", "source_name", "status"], :name => "index_activities_on_author_id_and_source_name_and_status"
+  add_index "activities", ["author_id", "status", "meta_activity"], :name => "index_activities_on_author_id_and_status_and_meta_activity"
+  add_index "activities", ["base_location_id", "status"], :name => "index_activities_on_base_location_id_and_status"
   add_index "activities", ["id", "author_id"], :name => "index_activities_on_id_and_author_id"
   add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
-  add_index "activities", ["source_name", "summary_id", "updated_at", "status", "meta_activity", "base_location_id"], :name => "index_activities_on_source_summary_time_status_meta_loc"
-  add_index "activities", ["source_name", "updated_at", "status", "meta_activity", "base_location_id", "author_id"], :name => "index_activities_on_source_time_status_meta_loc_author"
+  add_index "activities", ["source_name", "status"], :name => "index_activities_on_source_name_and_status"
   add_index "activities", ["summary_id", "base_location_id"], :name => "index_activities_on_summary_id_and_base_location_id"
   add_index "activities", ["summary_id", "blank_text"], :name => "index_activities_on_summary_id_and_blank_text"
-  add_index "activities", ["summary_id", "updated_at", "status", "meta_activity", "base_location_id"], :name => "index_activities_on_summary_time_status_meta_loc"
-  add_index "activities", ["updated_at", "status", "meta_activity", "base_location_id", "author_id"], :name => "index_activities_on_time_status_meta_loc_author"
+  add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
 
   create_table "activity_words", :force => true do |t|
     t.string   "word_name",  :null => false
@@ -86,21 +87,14 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
     t.datetime "updated_at"
   end
 
+  add_index "campaigns", ["activity_id", "author_id", "name"], :name => "index_campaign_on_activity_author_name", :unique => true
   add_index "campaigns", ["activity_id", "name"], :name => "index_campaigns_on_activity_id_and_name"
-  add_index "campaigns", ["author_id", "activity_id", "name"], :name => "index_campaign_on_author_activity_name", :unique => true
-  add_index "campaigns", ["author_id", "comment_id", "name"], :name => "index_campaign_on_author_comment_name", :unique => true
-  add_index "campaigns", ["author_id", "document_id", "name"], :name => "index_campaign_on_author_document_name", :unique => true
-  add_index "campaigns", ["author_id", "entity_id", "name"], :name => "index_campaign_on_author_entity_name", :unique => true
-  add_index "campaigns", ["author_id", "location_id", "name"], :name => "index_campaign_on_author_location_name", :unique => true
-  add_index "campaigns", ["author_id", "name", "value"], :name => "index_campaign_on_author_name_value"
-  add_index "campaigns", ["comment_id", "name"], :name => "index_campaigns_on_comment_id_and_name"
-  add_index "campaigns", ["document_id", "name"], :name => "index_campaigns_on_document_id_and_name"
-  add_index "campaigns", ["entity_id", "name"], :name => "index_campaigns_on_entity_id_and_name"
-  add_index "campaigns", ["father_id"], :name => "index_campaigns_on_father_id", :unique => true
-  add_index "campaigns", ["location_id", "name"], :name => "index_campaigns_on_location_id_and_name"
+  add_index "campaigns", ["comment_id", "author_id", "name"], :name => "index_campaign_on_comment_author_name", :unique => true
+  add_index "campaigns", ["document_id", "author_id", "name"], :name => "index_campaign_on_document_author_name", :unique => true
+  add_index "campaigns", ["entity_id", "author_id", "name"], :name => "index_campaign_on_entity_author_name", :unique => true
+  add_index "campaigns", ["location_id", "author_id", "name"], :name => "index_campaign_on_location_author_name", :unique => true
   add_index "campaigns", ["name"], :name => "index_campaigns_on_name"
-  add_index "campaigns", ["source_name", "author_id"], :name => "index_campaigns_on_source_name_and_author_id"
-  add_index "campaigns", ["status", "author_id"], :name => "index_campaigns_on_status_and_author_id"
+  add_index "campaigns", ["source_name"], :name => "index_campaigns_on_source_name"
   add_index "campaigns", ["updated_at"], :name => "index_campaigns_on_updated_at"
 
   create_table "comments", :force => true do |t|
@@ -116,12 +110,8 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   end
 
   add_index "comments", ["activity_id"], :name => "index_comments_on_activity_id"
-  add_index "comments", ["author_id", "activity_id"], :name => "index_comments_on_author_id_and_activity_id"
-  add_index "comments", ["author_id", "document_id"], :name => "index_comments_on_author_id_and_document_id"
-  add_index "comments", ["document_id"], :name => "index_comments_on_document_id"
+  add_index "comments", ["author_id", "id"], :name => "index_comments_on_author_id_and_id"
   add_index "comments", ["father_id"], :name => "index_comments_on_father_id", :unique => true
-  add_index "comments", ["source_name", "author_id"], :name => "index_comments_on_source_name_and_author_id"
-  add_index "comments", ["status", "author_id"], :name => "index_comments_on_status_and_author_id"
   add_index "comments", ["updated_at"], :name => "index_comments_on_updated_at"
 
   create_table "contacts", :force => true do |t|
@@ -177,17 +167,20 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
     t.datetime "updated_at"
   end
 
-  add_index "documents", ["activity_id"], :name => "index_documents_on_activity_id"
-  add_index "documents", ["activity_word_id", "mime"], :name => "index_documents_on_activity_word_id_and_mime"
-  add_index "documents", ["category", "owner_id"], :name => "index_documents_on_category_and_owner_id"
-  add_index "documents", ["created_at"], :name => "index_documents_on_created_at"
-  add_index "documents", ["owner_id", "mime"], :name => "index_documents_on_owner_id_and_mime"
-  add_index "documents", ["provider", "owner_id"], :name => "index_documents_on_provider_and_owner_id"
-  add_index "documents", ["source_name", "activity_word_id"], :name => "index_documents_on_source_name_and_activity_word_id"
-  add_index "documents", ["source_name", "owner_id", "activity_word_id"], :name => "index_documents_on_source_owner_word"
-  add_index "documents", ["summary_id"], :name => "index_documents_on_summary_id"
+  add_index "documents", ["activity_id", "category", "status"], :name => "index_documents_on_activity_id_and_category_and_status"
+  add_index "documents", ["category", "status"], :name => "index_documents_on_category_and_status"
+  add_index "documents", ["id", "category"], :name => "index_documents_on_id_and_category"
+  add_index "documents", ["owner_id", "activity_word_id", "location_id"], :name => "index_documents_on_owner_word_location"
+  add_index "documents", ["owner_id", "category", "status"], :name => "index_documents_on_owner_id_and_category_and_status"
+  add_index "documents", ["owner_id", "id"], :name => "index_documents_on_owner_id_and_id"
+  add_index "documents", ["owner_id", "location_id"], :name => "index_documents_on_owner_id_and_location_id"
+  add_index "documents", ["owner_id", "source_name"], :name => "index_documents_on_owner_id_and_source_name"
+  add_index "documents", ["status"], :name => "index_documents_on_status"
+  add_index "documents", ["summary_id", "activity_word_id", "location_id"], :name => "index_documents_on_summary_word_location"
+  add_index "documents", ["summary_id", "category", "status"], :name => "index_documents_on_summary_id_and_category_and_status"
+  add_index "documents", ["summary_id", "location_id"], :name => "index_documents_on_summary_id_and_location_id"
+  add_index "documents", ["summary_id", "source_name"], :name => "index_documents_on_summary_id_and_source_name"
   add_index "documents", ["updated_at"], :name => "index_documents_on_updated_at"
-  add_index "documents", ["uploaded", "owner_id"], :name => "index_documents_on_uploaded_and_owner_id"
 
   create_table "entities", :force => true do |t|
     t.string   "entity_name",           :null => false
@@ -290,10 +283,14 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   end
 
   add_index "hubs", ["activity_id"], :name => "index_hubs_on_activity_id"
-  add_index "hubs", ["entity_id"], :name => "index_hubs_on_entity_id"
-  add_index "hubs", ["location_id"], :name => "index_hubs_on_location_id"
+  add_index "hubs", ["activity_word_id", "summary_id"], :name => "index_hubs_on_activity_word_id_and_summary_id"
+  add_index "hubs", ["activity_word_id", "user_id"], :name => "index_hubs_on_activity_word_id_and_user_id"
+  add_index "hubs", ["entity_id", "summary_id"], :name => "index_hubs_on_entity_id_and_summary_id"
+  add_index "hubs", ["entity_id", "user_id"], :name => "index_hubs_on_entity_id_and_user_id"
+  add_index "hubs", ["location_id", "summary_id"], :name => "index_hubs_on_location_id_and_summary_id"
+  add_index "hubs", ["location_id", "user_id"], :name => "index_hubs_on_location_id_and_user_id"
   add_index "hubs", ["source_name"], :name => "index_hubs_on_source_name"
-  add_index "hubs", ["summary_id", "entity_id"], :name => "index_hubs_on_summary_id_and_entity_id"
+  add_index "hubs", ["summary_id"], :name => "index_hubs_on_summary_id"
   add_index "hubs", ["updated_at"], :name => "index_hubs_on_updated_at"
   add_index "hubs", ["user_id"], :name => "index_hubs_on_user_id"
 
@@ -398,6 +395,15 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
     t.datetime "updated_at"
   end
 
+  add_index "social_counters", ["activity_id"], :name => "index_social_counters_on_activity_id"
+  add_index "social_counters", ["author_id"], :name => "index_social_counters_on_author_id"
+  add_index "social_counters", ["document_id"], :name => "index_social_counters_on_document_id"
+  add_index "social_counters", ["entity_id"], :name => "index_social_counters_on_entity_id"
+  add_index "social_counters", ["location_id"], :name => "index_social_counters_on_location_id"
+  add_index "social_counters", ["source_name", "action"], :name => "index_social_counters_on_source_name_and_action"
+  add_index "social_counters", ["summary_id", "activity_id"], :name => "index_social_counters_on_summary_id_and_activity_id"
+  add_index "social_counters", ["updated_at"], :name => "index_social_counters_on_updated_at"
+
   create_table "summaries", :force => true do |t|
     t.integer  "user_id",                              :null => false
     t.integer  "activity_word_id",                     :null => false
@@ -418,8 +424,10 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
 
   add_index "summaries", ["activity_name"], :name => "index_summaries_on_activity_name"
   add_index "summaries", ["activity_word_id"], :name => "index_summaries_on_activity_word_id"
+  add_index "summaries", ["id", "updated_at"], :name => "index_summaries_on_id_and_updated_at"
   add_index "summaries", ["updated_at"], :name => "index_summaries_on_updated_at"
   add_index "summaries", ["user_id", "activity_word_id"], :name => "index_summaries_on_user_id_and_activity_word_id", :unique => true
+  add_index "summaries", ["user_id", "updated_at"], :name => "index_summaries_on_user_id_and_updated_at"
 
   create_table "summary_subscribes", :force => true do |t|
     t.integer  "summary_id",    :null => false
@@ -430,6 +438,7 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
     t.datetime "updated_at"
   end
 
+  add_index "summary_subscribes", ["subscriber_id", "owner_id"], :name => "index_summary_subscribes_on_subscriber_id_and_owner_id"
   add_index "summary_subscribes", ["subscriber_id"], :name => "index_summary_subscribes_on_subscriber_id"
   add_index "summary_subscribes", ["summary_id", "subscriber_id"], :name => "index_summary_subscribes_on_summary_id_and_subscriber_id", :unique => true
 
@@ -450,6 +459,8 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   add_index "tags", ["activity_id"], :name => "index_tags_on_activity_id"
   add_index "tags", ["activity_word_id"], :name => "index_tags_on_activity_word_id"
   add_index "tags", ["author_id", "activity_word_id"], :name => "index_tags_on_author_id_and_activity_word_id"
+  add_index "tags", ["summary_id"], :name => "index_tags_on_summary_id"
+  add_index "tags", ["updated_at"], :name => "index_tags_on_updated_at"
 
   create_table "themes", :force => true do |t|
     t.text     "bg_color"

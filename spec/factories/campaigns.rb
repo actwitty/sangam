@@ -3,7 +3,7 @@
 Factory.define :campaign do |f|
   f.sequence(:name)  {|n| "campaign name #{n}"}
   f.sequence(:value)  {|n| "value #{n}"}
-  f.sequence(:source_name)  {|n| AppConstants.source_actwitty}
+  f.sequence(:source_name)  {|n| AppConstants.source_actwitty_meta}
   f.sequence(:status)  {|n| AppConstants.status_public}
   f.association :author, :factory => :user
   f.association :father, :factory => :activity

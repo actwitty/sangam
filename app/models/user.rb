@@ -253,6 +253,8 @@ class User < ActiveRecord::Base
   end
 
   include TextFormatter
+  include QueryPlanner
+
   #INPUT user_id => 123
   #sort_order => 1 (lexicographical) or  2 (based on updated)
   #returns hash of : {:name => "eating" ,:id => 123 }
@@ -366,9 +368,10 @@ class User < ActiveRecord::Base
     h = {}
     h = process_filter(params[:filter])
 
+    h[:user_id] = friend_objs.keys
     if !h[:entity_id].blank?
 
-      h[:user_id] = friend_objs.keys
+      h = pq_hub_filter(h)
       h = Hub.where(h).group(:user_id).order("MAX(updated_at) DESC").count
 
     else
@@ -376,11 +379,7 @@ class User < ActiveRecord::Base
       h[:status] = AppConstants.status_public
       h[:meta_activity] = false
 
-      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
-      h.delete(:location_id)
-
-      h[:author_id] = friend_objs.keys
-
+      h = pq_activity_filter(h)
       h = Activity.where(h).group(:author_id).order("MAX(updated_at) DESC").count
     end
 
@@ -412,7 +411,9 @@ class User < ActiveRecord::Base
       return {}
     end
 
-    h = Hub.where(h).group(:entity_id).limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(updated_at) DESC").count
+    h = pq_hub_filter(h)
+
+    h = Hub.where(h).group(:entity_id).limit(AppConstants.max_number_of_activities).order("MAX(updated_at) DESC").count
 
     e = Entity.where(:id => h.keys).order("updated_at DESC").all
 
@@ -453,17 +454,14 @@ class User < ActiveRecord::Base
     lh = []
 
     if !h[:entity_id].blank?
-      h = Hub.where(h).group(:location_id).limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(updated_at) DESC").count
+      h = pq_hub_filter(h)
+      h = Hub.where(h).group(:location_id).limit(AppConstants.max_number_of_activities).order("MAX(updated_at) DESC").count
     else
       h[:status] = AppConstants.status_public
       h[:meta_activity] = false
 
-      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
-      h.delete(:location_id)
-
-      h[:author_id] = h[:user_id] if !h[:user_id].blank?
-      h.delete(:user_id)
-      h = Activity.where(h).group(:base_location_id).limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(updated_at) DESC").count
+      h = pq_activity_filter(h)
+      h = Activity.where(h).group(:base_location_id).limit(AppConstants.max_number_of_activities).order("MAX(updated_at) DESC").count
     end
 
     Location.where(:id => h.keys).order("updated_at DESC").all.each do |attr|
@@ -506,18 +504,15 @@ class User < ActiveRecord::Base
 
     h = process_filter(params[:filter])
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
 
     h[:status] =  AppConstants.status_saved
 
     h[:meta_activity] = false
 
-    h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
-    h.delete(:location_id)
+    h[:user_id] = self.id
 
-    h.delete(:entity_id) if !h[:entity_id].blank?   #remove entity_id as drafts can have
-
-    h[:author_id] = self.id
+    h = pq_activity_filter(h)
 
     activity = Activity.where(h).group(:id).order("MAX(updated_at) DESC").count
 
@@ -749,10 +744,11 @@ class User < ActiveRecord::Base
     #TODO Social counters update when summary changes
     if a[:post][:summary_id] != prev_summary_id
       Summary.destroy_all(:id => prev_summary_id)
-      s = Summary.where(:id => prev_summary_id).first
-      if !s.blank?
-        s.rebuild_a_summary
-      end
+    end
+
+    s = Summary.where(:id => prev_summary_id).first
+    if !s.blank?
+      s.rebuild_a_summary
     end
 
     Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
@@ -900,7 +896,7 @@ class User < ActiveRecord::Base
 
       # need to check this anyway  - For time being
       # we have to delete hub
-      h.delete(:status)
+      h = pq_hub_filter(h)
       Rails.logger.debug("[MODEL] [USER] [get_stream] => Hub/Entity based filtering => #{h.inspect}")
       activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
 
@@ -910,11 +906,7 @@ class User < ActiveRecord::Base
 
       h[:meta_activity] = false
 
-      h[:base_location_id] = h[:location_id] if !h[:location_id].blank?
-      h.delete(:location_id)
-
-      h[:author_id] = h[:user_id] if !h[:user_id].blank?
-      h.delete(:user_id)
+      h = pq_activity_filter(h)
 
       Rails.logger.debug("[MODEL] [USER] [get_stream] => Activity based filtering => #{h.inspect}")
 
@@ -983,6 +975,7 @@ class User < ActiveRecord::Base
     h.delete(:summary_id)
     user = h[:user_id]
 
+    h = pq_summary_filter(h)
     summary = Summary.includes(:user).where(h).limit(AppConstants.max_number_of_summmary).order("updated_at DESC").
         all.each do |attr|
 
@@ -1074,8 +1067,12 @@ class User < ActiveRecord::Base
       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
     end
 
-    Summary.includes(:user).where(:activity_word_id => friends.keys, :user_id => user).
-          group(:user_id, :activity_word_id ).count.each do |k,v|
+    h  = {}
+    h[:user_id] = user
+    h[:activity_word_id] = friends.keys
+    h = pq_summary_filter(h)
+
+    Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
       activities[k[0]] = k[1]
     end
 
@@ -1123,9 +1120,11 @@ class User < ActiveRecord::Base
 
     h[:activity_word_id] =  params[:word_id]
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
 
     h[:status]   = AppConstants.status_public
+
+    h = pq_activity_filter(h)
 
     activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
 
@@ -1133,6 +1132,9 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [get_activity_stream] leaving")
     hash
   end
+
+
+
   #INPUT => {:entity_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT => { :id => 12435, :image => "http://freebase.com",:description => "http://freebase.com"
   #:stream => [{:post => .... }]# same as stream
@@ -1155,7 +1157,9 @@ class User < ActiveRecord::Base
 
     h[:entity_id] =  params[:entity_id]
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
+
+    h = pq_hub_filter(h)
 
     activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
 
@@ -1164,6 +1168,8 @@ class User < ActiveRecord::Base
     hash
 
   end
+
+
 
   #INPUT => {:location_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT => { :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
@@ -1190,12 +1196,15 @@ class User < ActiveRecord::Base
     hash = format_location(l)
     #hash[:id] = l.id
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
+
     h[:status]   = AppConstants.status_public
 
     h[:meta_activity] = false
 
-    h[:base_location_id] =  params[:location_id]
+    h[:location_id] = l.id
+
+    h = pq_activity_filter(h)
 
     activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
 
@@ -1262,7 +1271,8 @@ class User < ActiveRecord::Base
     params[:author_id] = params[:user_id]
     params.delete(:user_id)
 
-    campaign = Campaign.where(params).first
+    h = pq_campaign_filter(params)
+    campaign = Campaign.where(h).first
 
     if campaign.nil?
       Rails.logger.debug("[MODEL] [USER] [remove_campaign] leaving => returning blank json")
@@ -1272,6 +1282,7 @@ class User < ActiveRecord::Base
     hash = campaign.attributes.except("value", "author_id", "father_id", "id", "created_at", "updated_at")
 
     campaign.father.destroy
+
     #group by campaign name for remaining count
     h= Campaign.where(hash).group(:name).count
 
@@ -1314,7 +1325,9 @@ class User < ActiveRecord::Base
     all_campaigns = Campaign.where(params).group(:name).count
 
     params[:author_id] = self.id
-    user_campaigns = Campaign.where(params).group(:name).count
+
+    h = pq_campaign_filter(params)
+    user_campaigns = Campaign.where(h).group(:name).count
 
     all_campaigns.each do |k,v|
       user_campaigns.has_key?(k) ? user = true : user = false
@@ -1328,6 +1341,8 @@ class User < ActiveRecord::Base
 
     campaign
   end
+
+
 
   #COMMENT => Get users in a campaign
   #INPUT =>
@@ -1354,6 +1369,8 @@ class User < ActiveRecord::Base
   end
 
 
+
+
   #COMMENT => to get a single activity of a user.
   #INPUT => activity_id = 123, :author_id => 234, :text => "helllo"
   #OUTPUT =>  {:comment=>{:id=>173, :user=>{:id=>747, :full_name=>"lemony2 lime2", :photo=>"images/id_2"},
@@ -1375,13 +1392,15 @@ class User < ActiveRecord::Base
 
   end
 
+
+
   #COMMENT => to remove comment of current user
   #INPUT => comment_id =. 1234
   #OUTPUT =>  {:activity_id => 2345, :comment_count => 23}
   def remove_comment(comment_id)
 
     Rails.logger.debug("[MODEL] [USER] [remove_comment] entering")
-    comment = Comment.where(:id => comment_id, :author_id => self.id).first
+    comment = Comment.where(:author_id => self.id, :id => comment_id).first
 
     activity_id = comment.activity_id
 
@@ -1402,6 +1421,10 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [remove_comment] leaving")
     ch
   end
+
+
+
+
   #INPUT => activity_id => 123
   #OUTPUT =>  [{:comment=>{:id=>173, :user=>{:id=>747, :full_name=>"lemony2 lime2", :photo=>"images/id_2"},
   #                       :text=>"hello ", :time=>Thu, 14 Jul 2011 14:13:29 UTC +00:00}}]
@@ -1419,6 +1442,8 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [load_all_comment] leaving")
     array
   end
+
+
 
 
   #INPUT => document_id
@@ -1470,6 +1495,7 @@ class User < ActiveRecord::Base
 
     h[:id] = h[:summary_id] if !h[:summary_id].blank?
     h.delete(:summary_id)
+    h = pq_summary_filter(h)
 
     Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
       if attr.document_array.size > 0
@@ -1546,6 +1572,8 @@ class User < ActiveRecord::Base
 
       h[:user_id] = user if !user.blank?   #this will be true for page_state_user or page_state_all
 
+      h = pq_hub_filter(h)
+
       activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
 
       h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
@@ -1558,6 +1586,8 @@ class User < ActiveRecord::Base
       h[:status] =  AppConstants.status_public
 
     end
+
+    h = pq_document_filter(h)
 
     Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
         limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
@@ -1696,6 +1726,13 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [USER] [subscribe_summary] leaving")
     a
   end
+
+  #INPUT => None
+  #OUTPUT => Same as get_summary (all public summary)
+  def get_recent_public_summary
+    array = get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc})
+    array
+  end
   # private methods
   private
 
@@ -1792,7 +1829,7 @@ class User < ActiveRecord::Base
 
     #DEFAULT IS PUBLIC => IN this page user and summary variables will be nil. So only on filters
 
-    params[:updated_at].blank? ? h[:updated_at.lt] = Time.now.utc : h[:updated_at.lt] = params[:updated_at]
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
     h
   end
 

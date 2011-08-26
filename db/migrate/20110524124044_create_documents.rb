@@ -40,56 +40,51 @@ class CreateDocuments < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :documents, [:owner_id, :mime]
+    add_index :documents, [:owner_id, :category, :status]
+    add_index :documents, [:summary_id, :category, :status]
+    add_index :documents, [:activity_id, :category, :status]
 
-    add_index :documents, [:activity_word_id, :mime]
+    add_index :documents, [:owner_id,:activity_word_id, :location_id], :name => "index_documents_on_owner_word_location"
+    add_index :documents, [:owner_id, :location_id]
 
-    add_index :documents, :activity_id
+    add_index :documents, [:summary_id,:activity_word_id, :location_id],  :name => "index_documents_on_summary_word_location"
+    add_index :documents, [:summary_id, :location_id]
 
-    add_index :documents, :summary_id
+    add_index :documents, [:owner_id,:source_name]
+    add_index :documents, [:summary_id, :source_name]
+
+    add_index :documents, [:category, :status]
+    add_index :documents, :status
+
+    add_index :documents, [:id, :category]
+    add_index :documents, [:owner_id, :id]
 
     add_index :documents, :updated_at
 
-#    add_index :documents, [:status, :owner_id]
-
-    add_index :documents, [:source_name, :owner_id,  :activity_word_id],:name => "index_documents_on_source_owner_word"
-
-    add_index :documents, [:source_name, :activity_word_id]
-
-    add_index :documents, [:uploaded, :owner_id]
-
-    add_index :documents, [:provider, :owner_id]
-
-    add_index :documents, [:category, :owner_id]
-
-    add_index :documents, :created_at
   end
 
   def self.down
 
-    remove_index :documents, [:owner_id ,:mime ]
+    remove_index :documents, [:owner_id, :category, :status]
+    remove_index :documents, [:summary_id, :category, :status]
+    remove_index :documents, [:activity_id, :category, :status]
 
-    remove_index :documents, [:activity_word_id, :mime]
+    remove_index :documents, :name => "index_documents_on_owner_word_location"
+    remove_index :documents, [:owner_id, :location_id]
 
-    remove_index :documents, :activity_id
+    remove_index :documents, :name => "index_documents_on_summary_word_location"
+    remove_index :documents, [:summary_id, :location_id]
 
-    remove_index :documents, :summary_id
+    remove_index :documents, [:owner_id,:source_name]
+    remove_index :documents, [:summary_id, :source_name]
+
+    remove_index :documents, [:category, :status]
+    remove_index :documents, :status
+
+    remove_index :documents, [:id, :category]
+    remove_index :documents, [:owner_id, :id]
 
     remove_index :documents, :updated_at
-
-#    remove_index :documents, [:status, :owner_id]
-
-    remove_index :documents, :name => "index_documents_on_source_owner_word"
-
-    remove_index :documents, [:source_name, :activity_word_id]
-
-    remove_index :documents, [:uploaded, :owner_id]
-
-    remove_index :documents, [:provider, :owner_id]
-
-    remove_index :documents, [:category, :owner_id]
-
-    remove_index :documents, :created_at
 
     drop_table :documents
   end

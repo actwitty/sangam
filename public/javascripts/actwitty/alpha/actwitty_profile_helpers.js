@@ -27,7 +27,7 @@ $(document).ready(function(){
     if($(this).scrollTop() > totalHeight )
     {
       $(".p-st-filter").css("position","fixed");
-      $(".p-st-filter").css("top",100);
+      $(".p-st-filter").css("top",98);
       
       $(".p-l-fltr-1").css("position","fixed");
       $(".p-l-fltr-1").css("top",100);
@@ -39,7 +39,7 @@ $(document).ready(function(){
       $(".p-r-fltr-st").css("top",100);
   
       $(".p-r-search-fltr").css("position","fixed");
-      $(".p-r-search-fltr").css("top",100);
+      $(".p-r-search-fltr").css("top",260);
       
       /*
       $("ul.p-cstab").css("position","fixed");

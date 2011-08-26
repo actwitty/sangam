@@ -408,8 +408,9 @@ $(document).ready(function() {
    });
 
   /***************************/
-   fetch_user_channels();
+
    $("#activity_field").live('keyup.autocomplete', function() {
+    fetch_user_channels();
     var json_data = get_user_channels();
     //TODO: check why JSON is not working here
     

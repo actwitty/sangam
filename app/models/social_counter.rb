@@ -20,6 +20,7 @@ class SocialCounter < ActiveRecord::Base
   validates_length_of :action,      :in => 1..AppConstants.action_name_length
 
   class << self
+    include QueryPlanner
     #INPUT
     #           :activity_id => 123 or nil
     #                 OR
@@ -61,7 +62,8 @@ class SocialCounter < ActiveRecord::Base
         params = params.except(:source_name, :action)
         params.delete(:author_id) if !params[:author_id].blank?
 
-        result = SocialCounter.where(params).group(:source_name, :action).count
+        h = pq_social_counter_filter(params)
+        result = SocialCounter.where(h).group(:source_name, :action).count
 
         if !params[:activity_id].nil?
 
@@ -111,7 +113,7 @@ class SocialCounter < ActiveRecord::Base
       end
       return obj
     rescue => e
-      Rails.logger.error("[MODEL] [SOCIAL_COUNTER] [create_social_counter] rescue => #{params.inspect}")
+      Rails.logger.error("[MODEL] [SOCIAL_COUNTER] [create_social_counter] rescue => #{e.message} #{params.inspect}")
       nil
     end
   end

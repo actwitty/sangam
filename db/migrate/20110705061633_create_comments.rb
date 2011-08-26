@@ -22,21 +22,13 @@ class CreateComments < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :comments, [:author_id,  :activity_id]
+    add_index :comments, [:author_id, :id]
 
     add_index :comments, :activity_id
-
-    add_index :comments, [:author_id,  :document_id]
-
-    add_index :comments, :document_id
 
     add_index :comments, :father_id, :unique => true
 
     add_index :comments, :updated_at
-
-    add_index :comments, [:status, :author_id ]
-
-    add_index :comments, [:source_name, :author_id]
 
   end
 
@@ -44,21 +36,13 @@ class CreateComments < ActiveRecord::Migration
 
   def self.down
 
-    remove_index :comments, [ :author_id,  :activity_id]
+    remove_index :comments, [:author_id, :id]
 
     remove_index :comments, :activity_id
-
-    remove_index :comments, [ :author_id,  :document_id]
-
-    remove_index :comments, :document_id
 
     remove_index :comments, :father_id
 
     remove_index :comments, :updated_at
-
-    remove_index :comments, [:status, :author_id ]
-
-    remove_index :comments, [:source_name, :author_id]
 
     drop_table :comments
 

@@ -140,11 +140,11 @@ $(document).ready(function(){
 
     $("#attachment").click(function(){
         $("#input-attachments-section").show();
-         $("#attachment-list").append(" <div class='input-attachment'> " +
+         /*$("#attachment-list").append(" <div class='input-attachment'> " +
                     "<input type='file' class='choose-attach'> " +
                     "<input type='text' placeholder='Caption' class='attach-caption'/>" +
                     "<input type='button' value='Delete' class='delete-attach'/>" +
-                "</div>");
+                "</div>");*/
         $(this).hide();
     });
 
