@@ -12,7 +12,6 @@ function get_socialize_html(stream){
   var buzz_count = 0;
 
   var cummulative_count = 0;
-
   if( stream.post.social_counters && stream.post.social_counters.length) {
 
     $.each(stream.post.social_counters, function(i, counter) { 
