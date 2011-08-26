@@ -131,45 +131,57 @@ function get_location_image_for_type(type){
   return location_type_image;
 }
 
-function aw_render_locations_internal(location, div_id){
-     //alert(JSON.stringify(location));
-     var link_id = "stream_related_modal_" + location.id;
-     var loc_id = "stream_related_modal_" + location.id + "_loc";
-     var str;
-     //alert(location.name.length);
-     //var nt = getmapinfo(location.lat,location.lang,link_id);
-     /**********************************************************/
-     /*
-    var latlng = new google.maps.LatLng(location.lat, location.lang);
+function getmapinfo1(lat,lang,loc_id){
+  var latlng = new google.maps.LatLng(lat, lang);
     var myOptions = {
       zoom: 8,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById(loc_id),
+    $(".locations_box_images").hide();
+    var map = new google.maps.Map(document.getElementById(location_id),
         myOptions);
-    */
+}
+
+function aw_render_locations_internal(location, div_id){
+     //alert(JSON.stringify(location));
+     var link_id = "stream_related_modal_" + location.id;
+     var loc_id = "stream_related_modal_" + location.id + "_loc";
+     var url;
+     if (location.type == 2){
+        url = "http://maps.googleapis.com/maps/api/staticmap?center="+location.lat+","+location.long+"&zoom=8&size=400x400&sensor=false";
+     }
+     else if(location.type == 3){
+        url = get_location_image_for_type(location.type);
+     }
+     else{
+        url = "/images/rails.png";
+     }
+
+       
+     var str;
      /**********************************************************/
 
-     if( location.name.length > 35 )
+     if( location.name.length > 15 )
      {  
-       var limit = 35;                // The number of characters to show
-       str = location.name;        // Getting the text
-       var strtemp = str.substr(0,limit);   // Get the visible part of the string
-       str = strtemp+ '....' + '<span class="hide">' + str.substr(limit,str.length) + '</span>';  // Recompose the string with the span tag wrapped around the hidden part of it
+       var limit = 15;                
+       str = location.name;        
+       var strtemp = str.substr(0,limit); 
+       str = strtemp+ '....' + '<span class="hide">' + str.substr(limit,str.length) + '</span>'; 
      }
      else
      {
        str = location.name;
      }
-
-     
-     var html='<div id="toolTipLayer" style="position: absolute; right: 0px; visibility: visible;left: 100px; top: -30px; "></div>' +
+     //alert(location.lat +"--"+location.long);
+     var html='<div id="'+loc_id+'" class="hover_txt" style="position: absolute; right: 0px;display:none;left: 100px; top: -30px; "></div>' +
               '<div class="locations_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_locations" id="' + link_id + '">' +
-                  '<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
-                  //'<div id="' + loc_id + 'style="width:120px; height:90px"></div>' +
-                  '<span onmouseover="toolTip(&#39;'+location.name+ '&#39;)" onmouseout="toolTip()">'+ str +'</span>'+
+                  //'<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
+                  '<img class="locations_box_images" src="' +url+  '" onmouseover="toolTip( &#39;'+location.name+'&#39;, &#39;' + loc_id + '&#39;)" onmouseout="toolTip()"/>' +
+                  //'<img class="locations_box_images" src="http://maps.googleapis.com/maps/api/staticmap?center='+location.lat+','+location.long+'&zoom=12&size=400x400&sensor=false" style="height: 80px; width: 210px;"/>' +
+                 
+                  '<span id="span_hover" onmouseover="toolTip( &#39;'+location.name+'&#39;, &#39;' + loc_id + '&#39;)" onmouseout="toolTip()">'+ str +'</span>'+
                   '</a>'+
               '</div>';
 

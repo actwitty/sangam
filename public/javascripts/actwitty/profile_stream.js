@@ -300,15 +300,13 @@ function handle_stream_text( box_id, post_text){
 function handle_stream_location(box_id, location){
      var div = $("#" + box_id);
      if ( location && location.name && location.name.length){
-      var html='<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
-                '<div class="p-awp-location-name">' +
-                  '<a href="/location_page?location_id=' + location.id + '">' +
-                    '<span >' +
-                      location.name +
-                    '</span>' +
-                  '</a>' +
-                '</div>';
-      div.html(html);
+           var html = '<a href="/location_page?location_id=' + location.id + '">' +
+                     '<span class="p-awp-location-name" > @ ' + 
+                        location.name +
+                     '</span>' +
+                 '</a>' ;
+      div.append(html);
+      
      }else{
        div.hide();
      }
@@ -639,6 +637,9 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var external_shares="";
   var external_icon_shares="";
   var subtitle = "";
+  var location_id = "";
+  var location_name = " ";
+
   if ( post.status == 2){
     var external_shares = get_socialize_html(stream); 
     var external_icon_shares = get_socialize_icon_html(stream); 
@@ -647,6 +648,15 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   {
     subtitle=post.sub_title;
   }
+  if( stream.location && stream.location.id )
+  {
+    location_id = stream.location.id;
+  }
+  if( stream.location && stream.location.name )
+  {
+    location_name = "@" + stream.location.name;
+  }
+
 
   /* Main stream div definition */
   var stream_ele_id = get_stream_ele_id(post.id);
@@ -660,11 +670,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                           '<span class="p-awp-channel-name">' + post.word.name + '</span>'+
                           '</a>' +
                         '</div>'+
-                        '<a href="/location_page?location_id=' + stream.location.id + '">' +
-                          '<span class="p-awp-location-name" >' + 
-                            '@' + stream.location.name +
-                          '</span>' +
-                        '</a>' +
+                        '<div id="'+ location_box_id +'">' +
+                        '</div>'+
                       '</div>'+
                       '<div class="p-awp-stream-post-author-section">'+
                         '<a href="/home/show?id=' +  post.user.id + '" >' +
@@ -702,7 +709,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                           '<span>&#8220;</span>'+
                         '</div>'+
                         '<div class="p-awp-text" id="' + text_box_id + '" >' +
-                          '<p class="abcdef" align="justify">' + +
+                          '<p align="justify">' + +
                           '</p>' +
                         '</div>'+
                       '</div>'+

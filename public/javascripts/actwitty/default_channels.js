@@ -45,9 +45,13 @@ function get_user_channels(){
   return g_user_channels;
 }
 
-
+var g_user_channels_populated=false;
 function fetch_user_channels(){
+    if(g_user_channels_populated == true){
+      return;
+    }
     var session_owner_id=$('#session_owner_id').attr("value");
+
     $.ajax({
         url: '/home/get_channels.json',
         type: 'GET',
@@ -61,9 +65,11 @@ function fetch_user_channels(){
             }
 
           });
+          g_user_channels_populated=true;
         },
         error: function (error) {
 
         }
+
     }); 
 }

@@ -85,7 +85,6 @@ Sangam::Application.routes.draw do
   match '/home/update_summary_theme' => 'home#update_summary_theme'
 
 
-
   #match '/contacts/add' => 'contacts#add'
   #match '/contacts/accept' => 'contacts#accept'
   #match '/contacts/remove' => 'contacts#remove'

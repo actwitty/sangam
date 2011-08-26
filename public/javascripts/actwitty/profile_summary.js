@@ -451,9 +451,88 @@ function create_and_add_summary_author(author_box, owner_id)
 }
 
 
+/*
+ * Create and add summary icon box.. as we have decided to have 2 icons per line
+ * clicking on any of the icon will open full summary view of that channel
+ */
+function create_and_add_summary_icon_box(summary_box,id)
+{
+    var html = '<div class="p-channelp-otr-box" id="'+ id +'">' +
+               '</div>';
+    summary_box.append(html);
+}
+
+
 /* handle complete summary box */
-function create_and_add_summary(summary_box, summary){
+function create_and_add_summary_icon(summary_box, summary){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
+ var unique_id =  'SUMMARY_' + summary.word.id + '_' + summary.user.id;
+ if ($("#" + unique_id ).length > 0){
+   return;
+ }
+ aw_lib_console_log("profile_summary.js:create_and_add_summary called");
+ var docs_box_id = unique_id + '_attachments';
+ var friends_box_id = unique_id + '_friends';
+ var subscribe_box_id = unique_id + '_subscribe';
+ var entities_box_id = unique_id + '_entities';
+ var locations_box_id = unique_id + '_locations';
+ var latest_text_box_id = unique_id + '_text';
+ 
+ var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id;
+ 
+ 
+ /* create a JSON of filter */
+ var filter_value = {
+                      user:summary.user.id ,
+                      channel_id:summary.word.id, 
+                      channel_name:summary.word.name  
+                    };
+ the_big_filter_JSON[filter_id] = filter_value;
+ 
+ var html =  '<div class="p-channelp-otr-channel-icon" >'+
+               '<div class="p-channelp-post-cu js_word_name_box" >' +
+                  '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
+                  '</div>'+
+                  
+                  '<hr class="p-channelp-post-cu-bar"/>'+
+                  '<div class="p-channelp-post-title">'+
+                     '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
+                  '</div>'+
+                  '<div class="p_channelp_view_summary" value="'+unique_id+'"> View'+
+                  '</div>'+
+                '</div>' +
+                '<div class="p-channelp-post-analytic">' +
+                  '<div class="p-channelp-post-like">' +
+                    '<p><center>' + summary.count + '</center></p> <p> <center>Likes</center></p>' +
+                  '</div>' +
+                  '<div class="p-channelp-post-post">' +
+                    '<p><center>' + summary.count + '</center></p> <p> <center>posts</center></p>' +
+                  '</div>' +
+                '</div>' +
+             '</div>';
+ 
+
+ 
+  
+        /* overall summary div is added */        
+        summary_box.append(html);
+        
+
+}
+
+
+
+
+
+
+
+
+
+/* handle complete summary box */
+function create_and_add_summary(summary_box, summary , hide_class){
+ /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
+
+
  var unique_id =  'SUMMARY_' + summary.word.id + '_' + summary.user.id;
  if ($("#" + unique_id ).length > 0){
    return;
@@ -476,7 +555,7 @@ function create_and_add_summary(summary_box, summary){
  the_big_filter_JSON[filter_id] = filter_value;
 
 
- var html = '<div class="p-channelp-post js_summary_base_div" id="' + unique_id + '">' +
+ var html = '<div class="p-channelp-post js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
 
               '<div class="p-channelp-post-header">' +
@@ -511,27 +590,17 @@ function create_and_add_summary(summary_box, summary){
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
                   '</div>'+
                   
-                  /*'<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
-                  '</div>' +
-                  */
                   '<hr class="p-channelp-post-cu-bar"/>'+
                   '<div class="p-channelp-post-title">'+
                      '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
                   '</div>'+
-                  /*
-                  '<span>'  +
-                     summary.word.name + 
-                  '</span>' +
-                  '<div class="p-channelp-post-subscribe" id="' + subscribe_box_id + '">' +
-                  '</div>' +
-                  */
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
-                    '<p><center>' + summary.count + '</center></p> <p> <center>Likes</center></p>' +
+                    '<p><center>' + 'unknown' + '</center></p> <p> <center>Likes</center></p>' +
                   '</div>' +
                   '<div class="p-channelp-post-post">' +
-                    '<p><center>' + summary.count + '</center></p> <p> <center>posts</center></p>' +
+                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>posts</center></p>' +
                   '</div>' +
                 '</div>' +
 
@@ -618,15 +687,36 @@ function append_personal_summary(owner_id){
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
-          // if rails demands a redirect because of log in missing
-           $.each(data, function(i,summary){
-            if( summary ){
-                //alert(JSON.stringify(summary));
-                //create_and_add_summary($('#channels_display_list'),summary);
-                create_and_add_summary($('#p-channelp-posts'),summary);
-                $("#more_channels_cookie").val(summary.time);
-            } 
-          });
+           // if rails demands a redirect because of log in missing
+           if( aw_get_channel_scope() == 3 ){
+             for (i=0;i < data.length;i=i+2) {
+                if(!data[i+1]) {
+                   var summary_r_id = 0;
+                }
+                var id = 'SUMMARY_ICON_BOX_' + data[i].id + '_' + summary_r_id;
+                create_and_add_summary_icon_box($('#p-channelp-posts'),id); 
+                for(j=0;j<2;j++) {
+                   if(data[i+j]){
+                      summary = data[i+j];
+                     create_and_add_summary_icon($("#"+id),summary);
+                   }
+                }
+                for(j=0;j<2;j++) {
+                   if(data[i+j]){
+                      summary = data[i+j];
+                      create_and_add_summary($('#p-channelp-posts'),summary, "hide_it"); 
+                   };
+                }
+             }
+             $("#more_channels_cookie").val(summary.time);
+           } else {
+            $.each(data, function(i,summary){
+                if( summary ){
+                    create_and_add_summary($('#p-channelp-posts'),summary, "no_hide");
+                    $("#more_channels_cookie").val(summary.time);
+                } 
+            });
+          }
           $(window).scrollTop(scroll);
 
           /* convert time stamp to time ago */
@@ -827,7 +917,10 @@ $(document).ready(function(){
       $(this).closest(".p-channelp-post").find(".p-channelp-post-rel-img").slideToggle();
     });
 
-
+    $(".p_channelp_view_summary").live('click',function(){
+      var summary_id = $("#"+$(this).attr("value"));
+      summary_id.slideToggle();
+    });
 
 });
 

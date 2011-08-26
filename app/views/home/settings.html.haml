@@ -30,6 +30,12 @@
         #settings-input
           %ul#settings-input-list
             %li.settings-fields
+              %label.settings-labels Photo
+              %img#user_settings_image{:alt => "", :src => "#{@profile.profile_photo_l}", :width => "300"}/
+              = f.input :profile_photo_l,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
+              = f.input :profile_photo_s,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
+              =render :partial => "home/profile_pic_attachments.html.haml"
+            %li.settings-fields
               %label.settings-labels First Name
               = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"settings-input input-deco" }
               /%span.settings-suggest Change your First Name
@@ -84,12 +90,8 @@
             /  %label.settings-labels Longitude
             /  = f.input :current_geo_long, :label =>false, :placeholder => "Current Longitude", :input_html => { :size => 30, :class=>"settings-input input-deco" }
 
-            %li.settings-fields
-              %label.settings-labels Photo
-              = f.file_field :profile_photo_l, :label =>false, :class => "settings-input-photo input-deco-photo", :input_html => { :size => 10, :class=>"input-deco" }
 
-              %p= f.submit "Submit"
-
+            %p= f.submit "Submit"
 
 
 
