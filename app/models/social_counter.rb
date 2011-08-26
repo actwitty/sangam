@@ -20,6 +20,7 @@ class SocialCounter < ActiveRecord::Base
   validates_length_of :action,      :in => 1..AppConstants.action_name_length
 
   class << self
+    include QueryPlanner
     #INPUT
     #           :activity_id => 123 or nil
     #                 OR
@@ -112,7 +113,7 @@ class SocialCounter < ActiveRecord::Base
       end
       return obj
     rescue => e
-      Rails.logger.error("[MODEL] [SOCIAL_COUNTER] [create_social_counter] rescue => #{params.inspect}")
+      Rails.logger.error("[MODEL] [SOCIAL_COUNTER] [create_social_counter] rescue => #{e.message} #{params.inspect}")
       nil
     end
   end

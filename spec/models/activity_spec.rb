@@ -909,7 +909,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
                                             AppConstants.status_public)
       s1 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
       s2 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "twitter", :action => "share"})
-      s3 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
+      s3 = @u.create_social_counter({:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       #s4 = @u.create_social_counter({:author_id => @u.id ,:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       puts s1.inspect
       a = Activity.where(:id => a[:post][:id]).first
@@ -919,7 +919,7 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       puts s.inspect
       a = @u.get_social_counter({:activity_id => a.id})
       puts a
-      a= @u.get_stream({:user_id => @u.id})
+      a= @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts a
 #      a = Theme.create_theme({:fg_color => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
 #      puts a.inspect
@@ -933,8 +933,10 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
 #      a = Activity.where(:id => a1[:post][:id]).first
 #      a.destroy
 #      Activity.destroy_all
-      a = @u.get_stream({:user_id => @u.id, :page_state => AppConstants.page_state_all})
-
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
+      puts a
+      a = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
+      puts a
     end
     it "should create and use the summary subscription properly" do
       a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
