@@ -109,7 +109,7 @@ function aw_reload_streams_on_viewed_user(){
   list_related_locations(aw_lib_get_page_owner_id());
 
   clear_related_friends();
-  if( session_owner_id){ 
+  if( aw_lib_get_session_owner_id()){ 
     list_related_friends();
   }
   

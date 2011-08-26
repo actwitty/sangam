@@ -772,33 +772,39 @@ describe Activity do
                                              {:url => "http://b.com/xyz.jpg" },
                                              {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
                               :tags => [{:name => "jump"}, {:name => "Anna hazare"}], :status =>
-                                            AppConstants.status_saved)
+                                            AppConstants.status_public)
       h = { :word => "marry" , :text => "i uploaded three pictures http://www.flickr.com/photos/cubagallery/4678462424/
-http://www.flickr.com/photos/itzafineday/131415487/
-http://www.flickr.com/photos/cubagallery/4233446476/",
+            http://www.flickr.com/photos/itzafineday/131415487/
+            http://www.flickr.com/photos/cubagallery/4233446476/",
                               :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/2.jpg" },
                                                     {:url => "http://a.com/2_1.jpg" },
                                                {:url => "http://b.com/2_2.jpg" },{:url => "https://s3.amazonaws.com/xyz.jpg" }], :status =>
                                             AppConstants.status_public,:tags => [{:name => "sleeping"}, {:name => "maradona"}]}
       work_off
-      b = @u.get_summary({:user_id => @u.id})
+      s1 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "facebook", :action => "share"})
+      s2 = @u.create_social_counter({:summary_id => a[:post][:summary_id],:activity_id => a[:post][:id], :source_name => "twitter", :action => "share"})
+      s3 = @u.create_social_counter({:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
+
+      b = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts b
       puts "============================="
+
       h[:activity_id] = a[:post][:id]
       c = nil
+
       ActiveRecord::Observer.with_observers(:document_observer) do
         c = @u.update_activity( h)
       end
       work_off
-      puts c
 
+      puts c
       c.should_not be_blank
 
       a = Activity.where(:id => c[:post][:id]).first
       puts a.inspect
       puts "============================="
-      b = @u.get_summary({:user_id => @u.id})
+      b = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts b
 #      h[:status] = 2
 #      h.delete(:update)
@@ -807,9 +813,11 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
       puts Summary.count
       puts c.inspect
       a = @u.get_draft_activity({:filter => {:word_id => a.activity_word_id}})
-      b = @u.get_stream({:user_id => @u.id})
+      b = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts b
     end
+
+
     it "should delete activity properly " do
       a = @u.create_activity(:word => "eating" , :text => "pizza at tomato ketchup with PIZZA at
                                    <script>alert(alok)</script>
@@ -933,6 +941,13 @@ http://www.flickr.com/photos/cubagallery/4233446476/",
 #      a = Activity.where(:id => a1[:post][:id]).first
 #      a.destroy
 #      Activity.destroy_all
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
+      puts a
+      a = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
+      puts a
+      a = Activity.where(:id => a1[:post][:id]).first
+      a.destroy
+      puts "after destroy"
       a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts a
       a = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
