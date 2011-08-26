@@ -22,6 +22,12 @@ GIT
       activerecord (~> 3.0)
       delayed_job (= 3.0.0.pre)
 
+GIT
+  remote: git://github.com/nesquena/query_reviewer.git
+  revision: 9de60e75d18068d40cd3f8439a3de28eb4df5f3b
+  specs:
+    query_reviewer (0.1.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -313,6 +319,7 @@ DEPENDENCIES
   no_peeping_toms!
   omniauth (>= 0.2.0)
   pg
+  query_reviewer!
   rails (= 3.0.7)
   rails3-generators
   rake (= 0.8.7)

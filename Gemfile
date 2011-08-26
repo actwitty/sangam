@@ -82,6 +82,9 @@ gem "squeel" # Last officially released gem
 #aws
 gem "right_aws"
 
+#query reviewer
+gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
+
 group :development do
 
 end
