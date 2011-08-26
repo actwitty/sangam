@@ -3,12 +3,54 @@ function get_socialize_html(stream){
   if( stream.post.sub_title == undefined) {
     title = stream.post.sub_title;
   }
+  
+  var twitter_count = 0;
+  var fb_count = 0;
+  var digg_count = 0;
+  var stumbleupon_count = 0;
+  var delicious_count = 0;
+  var buzz_count = 0;
+
+  var cummulative_count = 0;
+
+  if( stream.post.social_counters && stream.post.social_counters.length) {
+
+    $.each(stream.post.social_counters, function(i, counter) { 
+    
+      if( counter.source_name == "twitter"){
+        twitter_count = counter.count;
+      }
+
+      if( counter.source_name == "facebook"){
+        fb_count = counter.count;
+      }
+
+      if( counter.source_name == "digg"){
+        digg_count = counter.count;
+      }
+
+      if( counter.source_name == "stumbleupon"){
+        stumbleupon_count = counter.count;
+      }
+
+      if( counter.source_name == "delicious"){
+        delicious_count = counter.count;
+      }
+
+      if( counter.source_name == "buzz"){
+        buzz_count = counter.count;
+      }
+
+      cummulative_count += counter.count;
+    });
+  }
   var socialize_html = '<div class="js_socialize_post">' +
                           '<input type="hidden" value="' + stream.post.id + '" class="socialize_post_id" />' +
                           '<input type="hidden" value="' + stream.post.summary_id + '" class="socialize_summary_id" />' +
                           '<input type="hidden" value="' + stream.post.sub_title + '" class="socialize_post_title" />' +
+                          '<input type="hidden" value="' + cummulative_count + '" class="socialize_count" />' +
                           '<span>' + 
-                            '<a  class="js_socialize_minimize" > Share  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+                            '<a  class="js_socialize_minimize" >' + cummulative_count + ' Shares  ' +'<img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
                             '</a>' +
                           '</span>' +
                           '<div class="js_socialize_icons">' +
@@ -16,46 +58,45 @@ function get_socialize_html(stream){
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/twitter.png"  alt="Share on Twitter" width="25" height="25" class="js_share_post_externally JS_SHARE_TWITTER" id="twitter_share_' + stream.post.id + '" />' +
                               '<span class="twitter_text">' +
-                                '0' +
+                                twitter_count +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/facebook.png"  alt="Share on facebook" width="25" height="25" class="js_share_post_externally JS_SHARE_FACEBOOK" id="facebook_share_' + stream.post.id + '"/>' +
                               '<span class="facebook_text">' +
-                                '0' +
+                                fb_count +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="25" height="25" class="js_share_post_externally JS_SHARE_DIGG" id="digg_share_' + stream.post.id + '" />' +
                               '<span class="digg_text">' +
-                                '0' +
+                                digg_count +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/stumbleupon.png"  alt="Share on Stumbleupon" width="25" height="25" class="js_share_post_externally JS_SHARE_STUMBLEUPON" id="stumbleupon_share_' + stream.post.id + '" />' +
                               '<span class="stumbleupon_text">' +
-                                '0' +
+                                stumbleupon_count +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/delicious.png"  alt="Share on Delicious" width="25" height="25" class="js_share_post_externally JS_SHARE_DELICIOUS" id="delicious_share_' + stream.post.id + '" />' +
                               '<span class="delicious_text">' +
-                                '0' +
+                                delicious_count +
                               '</span>' +
                             '</div>' +
                            
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/buzz.png"  alt="Share on Buzz" width="25" height="25" class="js_share_post_externally JS_SHARE_BUZZ" id="buzz_share_' + stream.post.id + '" />' +
                               '<span class="buzz_text">' +
-                                '0' +
+                                buzz_count +
                               '</span>' +
                             '</div>' +
                         '</div>' +
-                  
                     '</div>';
   return socialize_html;
 }
@@ -126,6 +167,21 @@ function get_post_url(post_id){
    return url;
 }
 /***********************/
+function get_cummulative_count(clicked_ele){
+ return clicked_ele.closest(".js_socialize_post").find(".socialize_count").val();
+}
+/***********************/
+function set_cummulative_count(clicked_ele, value){
+ var curr_value =  get_cummulative_count(clicked_ele);
+ curr_value =  value +  parseInt(get_cummulative_count(clicked_ele));
+ clicked_ele.closest(".js_socialize_post").find(".socialize_count").val(curr_value);
+ var html = ' ' + 
+            curr_value + 
+            ' Shares  ' + 
+            '<img src="/images/alpha/shares/plus.png" width="10" height="10"/>';
+ clicked_ele.closest(".js_socialize_post").find(".js_socialize_minimize").html(html);
+}
+/***********************/
 /*
  * Get post title for sharing
  */
@@ -149,8 +205,8 @@ function get_post_id_on_click(clicked_ele){
 /***********************/
 function get_social_counter(post_id, element){
     var social_data = {
-                      activity_id:post_id,
-                    };
+                        activity_id:post_id,
+                      };
     var base = element.closest(".js_socialize_post");
 
     $.ajax({
@@ -242,6 +298,8 @@ function aw_render_share_externally( trigger_id){
   var existing_count = base.find('.' + source_name + '_text').html();
   existing_count = parseInt(existing_count) + 1;
   base.find('.' + source_name + '_text').html(existing_count);
+
+  set_cummulative_count($("#" + trigger_id), 1);
   //var div = $("#" + win_id);
   var winl = ($(window).width() - 600)/2; 
   var wint = ($(window).height() - 400)/2; 
@@ -265,7 +323,7 @@ $(document).ready(function(){
     
     var post_id = get_post_id_on_click($(this));
     if(socialize_block.css('display') == 'none'){ 
-      get_social_counter(post_id, $(this));
+      //get_social_counter(post_id, $(this));
       socialize_block.show('slow'); 
       $(this).find('img').attr("src", "/images/alpha/shares/minus.png");
     } else { 

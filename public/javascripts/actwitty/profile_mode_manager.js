@@ -113,8 +113,6 @@ function aw_reload_streams_on_viewed_user(){
     list_related_friends();
   }
   
-  //clear_related_channels();
-  //list_related_channels(page_owner_id);
   
 
 }

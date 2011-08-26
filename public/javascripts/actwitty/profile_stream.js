@@ -807,7 +807,6 @@ function append_stream(owner_id, current_user_id){
   var scroll = $(window).scrollTop();
   var more_cookie = $("#more_streams_cookie").val();
 
-
   $.ajax({
         url: '/home/get_streams.json',
         type: 'GET',

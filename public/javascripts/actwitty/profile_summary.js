@@ -60,14 +60,14 @@ function create_and_add_text_box(box_id, summary){
   var text_box= $("#" + box_id);
   if ( summary.recent_text && summary.recent_text.length  ){
 
-    $.each(summary.recent_text, function(i, text){
+    $.each(summary.recent_text, function(i, text_json){
      if(i>1){
        return;
      }
-     shortText = text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
+     shortText = text_json.text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
      var html = '<div class="p-channelp-post-lup">' +
                     '<div class="p-channelp-post-lup-time">' +
-                      '<span> 2 mins ago </span>' +
+                       '<abbr class="timeago" title="' + text_json.time + '"></abbr>' +
                     '</div>' +
                     '<div class="p-channelp-post-lup-text">' +
                       '<p>' + shortText + '</p>' +
@@ -554,6 +554,10 @@ function create_and_add_summary(summary_box, summary , hide_class){
                     };
  the_big_filter_JSON[filter_id] = filter_value;
 
+ var show_counter = 0;
+ $.each(summary.social_counters, function(i, counter) { 
+  show_counter += counter.count; 
+ });
 
  var html = '<div class="p-channelp-post js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
@@ -597,10 +601,10 @@ function create_and_add_summary(summary_box, summary , hide_class){
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
-                    '<p><center>' + 'unknown' + '</center></p> <p> <center>Likes</center></p>' +
+                    '<p><center>' + show_counter + '</center></p> <p> <center>Shares</center></p>' +
                   '</div>' +
                   '<div class="p-channelp-post-post">' +
-                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>posts</center></p>' +
+                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>Posts</center></p>' +
                   '</div>' +
                 '</div>' +
 
