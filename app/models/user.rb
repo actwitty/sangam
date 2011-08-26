@@ -1053,7 +1053,7 @@ class User < ActiveRecord::Base
 
     Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
       activities[attr.id].each do |idx|
-        summaries[idx][:recent_text] << attr.activity_text
+        summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at}
       end
     end
     activities = {}
