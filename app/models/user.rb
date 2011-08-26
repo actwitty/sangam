@@ -741,11 +741,27 @@ class User < ActiveRecord::Base
     a = create_activity(params)
 
     #store summary_id to see if summary id is not changed in update
-    #TODO Social counters update when summary changes
     if a[:post][:summary_id] != prev_summary_id
       Summary.destroy_all(:id => prev_summary_id)
+
+      #update Social counter with new summary_id
+      if !a[:post][:social_counters].blank?
+        SocialCounter.update_all({:summary_id => a[:post][:summary_id]},{:summary_id => prev_summary_id,
+                                                                        :activity_id => a[:post][:id]})
+
+        #Recreate Social Counter Array for given summary
+        s = Summary.where(:id => a[:post][:summary_id]).first
+        s.social_counters_array = []
+        SocialCounter.where(:summary_id =>a[:post][:summary_id]).group(:source_name, :action).count.each do |k,v|
+          s.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
+        end
+        s.update_attributes(s.attributes)
+      end
+
     end
 
+    #Now rebuild the older summary. New summary will be build during create activity.
+    #Only we have social counters of old summary need to migrate to new one.. tis is done in upper block
     s = Summary.where(:id => prev_summary_id).first
     if !s.blank?
       s.rebuild_a_summary
@@ -1037,7 +1053,7 @@ class User < ActiveRecord::Base
 
     Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
       activities[attr.id].each do |idx|
-        summaries[idx][:recent_text] << attr.activity_text
+        summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at}
       end
     end
     activities = {}
