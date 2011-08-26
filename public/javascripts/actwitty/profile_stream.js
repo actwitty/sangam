@@ -317,31 +317,39 @@ function handle_stream_location(box_id, location){
 /*
  * Render stream close button
  */
-function handle_stream_actions(box_id, stream, current_user_id){
+function handle_stream_actions(box_id, stream, current_user_id,post_operations_id){
   var div=$("#" + box_id);
+  var post_op = $("#" + post_operations_id);
   /* set context on parent div  */
   var action_btn_json = {
                           stream_id : stream.post.id 
                        };
  
   the_big_stream_actions_json[box_id] = action_btn_json;
-
   if( stream.post.status == 1){
     if(current_user_id == stream.post.user.id){
-      var html = '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
+      post_op.next().find(".p-awp-post-edit").show();
+      post_op.next().find(".p-awp-post-publish").show();
+      post_op.next().find(".p-awp-post-mentions").hide();
+      /*var html = '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
                 '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' ;
       div.append(html);
+      */
     }
   }else{
-    var html = '<input type="button" value="Mentions" class="js_stream_enrich_btn p-awp-mention"/>' ;
+    post_op.next().find(".p-awp-post-edit").hide();
+    post_op.next().find(".p-awp-post-publish").hide();
+    post_op.next().find(".p-awp-post-mentions").show();
+    /*var html = 'input type="button" value="Mentions" class="js_stream_enrich_btn p-awp-mention"/>' ;
     div.append(html);
+    */
   }
-  
-  if(current_user_id == stream.post.user.id){
+  /* 
+  if(current_user_id == stream.post.user.id) {
+    alert("adding close");
     var html = '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>';
     div.append(html);
-  }
-  
+  }*/
 }
 
 /*
@@ -602,6 +610,9 @@ function get_stream_ele_id(post_id, prefix){
 
 /*
  * Create div
+ *
+ * Post Status : 1 -> 
+ *
  */
 function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var post = stream.post;
@@ -625,6 +636,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var location_box_id =  stream_render_id + '_location';
   var action_box_id   = stream_render_id + '_action';
   var view_all_image_id = doc_box_id + '_all';
+  var post_operations_id = stream_render_id + '_operations';
+
 
   var comment_box_id  = stream_render_id + '_comments';
   var comment_box_show_all_div_id  = stream_render_id + '_show_all';
@@ -662,6 +675,9 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var stream_ele_id = get_stream_ele_id(post.id);
   aw_lib_console_log("debug", "rendering the stream");
   var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
+                   '<div class="p-awp-close-section">'+
+                      '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>' +
+                   '</div>'+
                    '<div class="p-awp-stream-post-info">' +
                       '<div class="p-awp-channel">'+
                         '<div class="p-awp-channel-desc">'+
@@ -736,15 +752,27 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     
                     /* general operation on a post - mention/likes/comments */
                     '<div class="p-awp-post-opt" >' +
-                     '<input type=hidden value="'+ action_box_id + '">'+
-                     '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point"> Mentions </div> '+ 
-                     '<div class="p-awp-post-like hover_point" id="' + campaign_box_id + '">'+'</div>' +
-                     //'<div class="js_socialize_minimize p-awp-post-mentions hover_point"> Share </div> '+ 
+                     '<input id="'+post_operations_id+'" type="hidden" value="'+ action_box_id + '">'+
+                     '<div class="p-awp-post-const-opt">' +
+                        '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point"> Mentions </div> '+
+                        '<div class="js_stream_edit_btn p-awp-post-edit hover_point"> Edit </div> '+
+                        '<div class="js_stream_publish_btn p-awp-post-publish hover_point"> Publish </div> '+
+                        '<div class="p-awp-post-like hover_point" id="' + campaign_box_id + '">'+'</div>' +
+                        //'<div class="js_socialize_minimize p-awp-post-mentions hover_point"> Share </div> '+ 
 
-                     '<div class="p-awp-post-comments hover_point js_show_all_comment_btn" id="' + comment_show_all_id + '">' 
-                     + get_comment_head_label(stream.comments.count)+ '</div> ' +
+                        '<div class="p-awp-post-comments hover_point js_show_all_comment_btn" id="' + comment_show_all_id + '">' 
+                        + get_comment_head_label(stream.comments.count)+ '</div> ' +
+                     '</div>'+
+                     /*
+                     '<div class="p-awp-post-vol-opt">' +
+                        '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
+                        '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' +
+                     '</div>' +
+                     */
                     '</div>' +
+                   
                     
+
                     //external_icon_shares +
 
                     /* Post campaigns */
@@ -764,13 +792,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     streams_box.append(html);
   }
   aw_lib_console_log("debug", "stream html added");
-  handle_stream_actions(action_box_id, stream, current_user_id);
+  handle_stream_actions(action_box_id, stream, current_user_id,post_operations_id);
   handle_stream_text(text_box_id, stream.post.text);
 
   handle_stream_location(location_box_id, stream.location);
   handle_stream_docs("image", doc_box_id, stream,view_all_image_id);
   handle_stream_docs("video", video_doc_box_id, stream,"");
-
+  
   if( post.status == 2){
     setup_comment_handling(comment_box_show_all_div_id,
                            comment_box_id,  
@@ -947,6 +975,7 @@ function show_all_comments(post_id, all_id){
 * Delete stream
 */
 function delete_stream(post_id){
+  alert("in delete... post_id" +post_id);
   var stream_render_id = get_stream_ele_id(post_id);
   $.ajax({
     url: '/home/delete_stream.json',
@@ -1181,10 +1210,12 @@ $(document).ready(function(){
    * Stream delete button clicked
    */
   $('.js_stream_delete_btn').live('click', function(){
-    var del_json = the_big_stream_actions_json[$(this).parent().attr("id")];
-    if(del_json){
-      delete_stream(del_json.stream_id);
-    }
+    alert("closing " + $(this).parent().parent().attr("id"));
+    var del_json = the_big_stream_actions_json[$(this).parent().parent().attr("id")];
+    //if(del_json){
+      //delete_stream(del_json.stream_id);
+      delete_stream($(this).parent().parent().attr("id"));
+    //}
     return false;
   });
   /********************************/
@@ -1192,7 +1223,8 @@ $(document).ready(function(){
    * Stream edit button clicked
    */
   $('.js_stream_edit_btn').live('click', function(){
-    var edit_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    //var edit_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    var edit_json = the_big_stream_actions_json[$(this).parent().prev().val()];
     if(edit_json){
       //aw_lib_alert("edit:" + edit_json.stream_id);
       var stream_render_id = get_stream_ele_id(edit_json.stream_id);
@@ -1207,7 +1239,8 @@ $(document).ready(function(){
    * Stream publish button clicked
    */
   $('.js_stream_publish_btn').live('click', function(){
-    var publish_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    //var publish_json = the_big_stream_actions_json[$(this).parent().attr("id")];
+    var publish_json = the_big_stream_actions_json[$(this).parent().prev().val()];
     if(publish_json){
       var stream_render_id = get_stream_ele_id(publish_json.stream_id);
       $("#" + stream_render_id).html('');
@@ -1221,7 +1254,7 @@ $(document).ready(function(){
    * Stream enrich button clicked
    */
   $('.js_stream_enrich_btn').live('click', function(){
-    var enrich_json = the_big_stream_actions_json[$(this).prev().val()];
+    var enrich_json = the_big_stream_actions_json[$(this).parent().prev().val()];
     var post_id = enrich_json.stream_id;
 
      

@@ -1741,6 +1741,8 @@ ul.p-fltr-tag-list li
 .p-awp-channel-desc
 {
   float:left;
+  width:100%;
+  display:block;
 }
 
 .p-awp-channel-label
@@ -1937,10 +1939,27 @@ div.p-awp-text p
 .p-awp-post-opt
 {
   width:85%;
-  height:30px;
+  height:60px;
   border:0px solid red;
   color:#fff;
   padding:5px;
+}
+
+
+.p-awp-post-const-opt
+{
+  width:100%;
+  height:30px;
+  border:0px solid red;
+  display:block;
+}
+
+.p-awp-post-vol-opt
+{
+  width:100%;
+  height:30px;
+  border:1px solid blue;
+  display:block;
 }
 
 
@@ -1956,13 +1975,38 @@ div.p-awp-text p
   margin-left:5px;
 }
 
+.p-awp-post-edit
+{
+  width:auto;
+  height:20px;
+  border:0px solid green;
+  float:left;
+  background:#bbb9ba;
+  padding:1px;
+  font-size:16px;
+  margin-left:5px;
+}
+.p-awp-post-publish
+{
+  width:auto;
+  height:20px;
+  border:0px solid green;
+  float:left;
+  background:#bbb9ba;
+  padding:1px;
+  font-size:16px;
+  margin-left:5px;
+}
+
+
 
 .p-awp-post-like
 {
   width:auto;
   height:20px;
   border:0px solid green;
-  float:left;
+  /*float:left;*/
+  float:right;
   margin-left:10px;
   background:#bbb9ba;
   padding:1px;
@@ -2016,7 +2060,22 @@ div.p-awp-actions
 
 }
 
+.p-awp-close-section
+{
+  width:100%;
+  height:10px;
+}
 
+.p-awp-close-section input:hover
+{
+  cursor:pointer;
+}
+
+
+.p-awp-close
+{
+  float:right;
+}
 
 div.p-awp-actions .p-awp-close
 {

@@ -884,7 +884,9 @@ $(document).ready(function(){
                       word : new_channel,
                       enrich : true,
                       source_name:"actwitty",
-                      text : "created a new channel"
+                      text : "created a new channel",
+                      status:2
+
                     };
        post_activity_to_server(post_json, false, true);
        $("#js_new_channel_field").val('');
