@@ -118,7 +118,6 @@ module ProfilepicHelper
                                 uploader.bind('UploadFile',function(up,file){
                                   //alert('UPLOAD FILE');
                                    if(count==0){
-                                     alert('upload file count');
                                      prefix =  get_file_prefix();
                                      main_url = base_url + '/profile_pics/' + prefix + file.name;
                                      thumb_url = base_url + '/profile_pics/' + prefix + 'thumb_' + file.name;
@@ -138,7 +137,6 @@ module ProfilepicHelper
                                     up.stop();
                                     up.trigger('Refresh');
                                     up.settings.multipart_params['key']= key;
-                                    alert(up.settings.multipart_params['key']);
                                     up.settings.multipart_params['Filename']=file_name; 
         	                          up.settings.resize= { 
                                                           width : 50, 
