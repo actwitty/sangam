@@ -130,7 +130,7 @@ function aw_render_channels_internal(channel, div_id){
      var link_id = "stream_related_modal_" + channel.id;
      var html='<div class="channels_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_channels" id="' + link_id + '">' +
-                    channel.name +
+                   '<span>'+ channel.name +'</span>' +
                 '</a>'+
                
               '</div>';

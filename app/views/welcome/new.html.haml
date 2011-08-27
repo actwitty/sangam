@@ -61,5 +61,6 @@
       #download-list
         %img.download-src.android{:height => "65", :src => "/images/actwitty/android.jpg", :width => "65"}
           %img.download-src.apple{:height => "65", :src => "/images/actwitty/iphone.png", :width => "65"}
-            
+#latest_summary_box.main_box_user_list
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }            
 =render :partial => "welcome/footer"
