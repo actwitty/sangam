@@ -209,9 +209,11 @@ module TextFormatter
     h = {
          :fg_color => theme.fg_color,
          :bg_color => theme.bg_color,
+         :document_id => theme.document_id,
          :url => theme.url,
          :user_id => theme.author_id,
          :summary_id => theme.summary_id,
+         :theme_type => theme.theme_type,
          :time => theme.updated_at
         }
     h

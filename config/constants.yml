@@ -162,8 +162,19 @@ development: &default
   #number of documents to deleted from garbage_document table at once
   max_document_destroy_from_cloud:    2
 
+  #Theme Color
   theme_default_fg_color:             "0xffffff00"
   theme_default_bg_color:             "0xffffff00"
+
+  #Theme type
+  theme_default:                      1
+  theme_color:                        2
+  theme_document:                     3
+
+  #Theme Style
+  theme_style_centerd:                 1
+  theme_style_tiled:                   2
+  theme_style_stretched:               3
 
   #PAGE STATES
   page_state_user:                    1

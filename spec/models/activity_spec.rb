@@ -569,22 +569,14 @@ describe Activity do
       @com_d = @u2.create_comment( :document_id => @doc.first.id, :text => "Wow nice photo ")
 
        @e1 = Factory(:entity)
-       @c1 = Campaign.create_campaign( :author_id => @u1.id, :name => "like", :value => 1,
-                                 :activity_id => @a1[:id] )
-       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
-                                   :activity_id => @a1[:id] )
-       @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
-                                   :activity_id => @a1[:id] )
-       @c4 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
-                                   :activity_id => @a1[:id] )
-       @c5 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-                               :entity_id => @e1.id )
-       @c6 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-                               :location_id => @l1.id )
-       @c7 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-                               :comment_id => @com1[:comment][:id] )
-       @c8 = Campaign.create_campaign( :author_id => @u1.id,:name => "join", :value => 2,
-                               :document_id => @doc.first.id )
+       @c1 = @u1.create_campaign( :name => "like", :value => 1,:activity_id => @a1[:id] )
+       @c2 = @u3.create_campaign( :name => "like", :value => 2, :activity_id => @a1[:id] )
+       @c3 = @u1.create_campaign( :name => "support", :value => 3, :activity_id => @a1[:id] )
+       @c4 = @u1.create_campaign( :name => "like", :value => 1,:activity_id => @a1[:id] )
+       @c5 = @u1.create_campaign(:name => "join", :value => 2, :entity_id => @e1.id )
+       @c6 = @u1.create_campaign( :name => "join", :value => 2, :location_id => @l1.id )
+       @c7 = @u1.create_campaign( :name => "join", :value => 2,:comment_id => @com1[:comment][:id] )
+       @c8 = @u1.create_campaign( :name => "join", :value => 2, :document_id => @doc.first.id )
        work_off
        e = Entity.where(:entity_name => "pizza").first
        a =@u1.get_stream({:user_id => @u1.id, :filter => {:entity_id => e.id}, :updated_at => Time.now.utc})
@@ -920,8 +912,10 @@ describe Activity do
       s3 = @u.create_social_counter({:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       #s4 = @u.create_social_counter({:author_id => @u.id ,:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
       puts s1.inspect
+      activity_id = a1[:post][:id]
       a = Activity.where(:id => a[:post][:id]).first
       puts a.social_counters
+
       puts "====================="
       s = Summary.where(:id => a.summary_id).first
       puts s.inspect
@@ -929,15 +923,21 @@ describe Activity do
       puts a
       a= @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts a
-#      a = Theme.create_theme({:fg_color => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
-#      puts a.inspect
-#      a = Theme.create_theme({:url => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
-#      puts a.inspect
+      puts "============Theme Creation========================"
+      a = Theme.create_theme({:fg_color => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
+      a = Theme.where(:author_id => @u.id, :summary_id => s.id).first
+      puts a.inspect
+      Theme.create_theme({:url => "2345", :bg_color => "2356", :author_id => @u.id, :summary_id => s.id})
+      a =Theme.where(:author_id => @u.id, :summary_id => s.id).first
+      puts a.inspect
+      d = Document.where(:activity_id => activity_id).first
+      @u.create_theme({:document_id => d.id, :author_id => s.user_id, :summary_id => s.id,:theme_type =>AppConstants.theme_document })
+      a = Theme.where(:author_id => @u.id, :summary_id => s.id).first
+      puts a.inspect
+      puts "============Theme Creation Dne========================"
       s = Summary.where(:id => s.id).first
       puts s.inspect
-      @u.update_theme({:url => "http://a.com", :author_id => s.user_id, :summary_id => s.id,:default => false})
-      s = Summary.where(:id => s.id).first
-      puts s.inspect
+
 #      a = Activity.where(:id => a1[:post][:id]).first
 #      a.destroy
 #      Activity.destroy_all
