@@ -147,10 +147,6 @@ function get_pluralize_form(count){
 }
 
 
-
-
-
-
 function handle_like_campaign(div_id, stream){
   var div = $("#" + div_id);
   var link = div_id + "_link";
