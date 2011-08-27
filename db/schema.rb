@@ -465,12 +465,19 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   create_table "themes", :force => true do |t|
     t.text     "bg_color"
     t.text     "fg_color"
-    t.integer  "author_id",  :null => false
-    t.integer  "summary_id", :null => false
+    t.integer  "author_id",   :null => false
+    t.integer  "summary_id",  :null => false
+    t.integer  "document_id"
     t.text     "url"
+    t.integer  "theme_type",  :null => false
+    t.integer  "style"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "themes", ["author_id", "summary_id"], :name => "index_themes_on_author_id_and_summary_id", :unique => true
+  add_index "themes", ["document_id"], :name => "index_themes_on_document_id"
+  add_index "themes", ["summary_id"], :name => "index_themes_on_summary_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

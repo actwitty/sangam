@@ -308,7 +308,7 @@ function document_upload_complete(){
     else
     {
       /* if location field is set as url */
-      if($('#location_field').val().match(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
+      if($('#location_field').val().match(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
       {
         $('#location_type').val('2');
         //alert("seems to be an url");
@@ -424,5 +424,5 @@ $(document).ready(function() {
       });
     });
    /******************************/
-
+   
 });

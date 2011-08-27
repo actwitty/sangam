@@ -1053,7 +1053,7 @@ class User < ActiveRecord::Base
 
     Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
       activities[attr.id].each do |idx|
-        summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at}
+        summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at.utc}
       end
     end
     activities = {}
@@ -1672,16 +1672,17 @@ class User < ActiveRecord::Base
   #     :fg_color =>"0xffffff23"  #RGBA
   #     :bg_color =>"0xffffff23"  #RGBA
   #              OR
-  #     :url => "http://s3.amazonaws.com/a.jpg"
+  #     :document_id => 123
   #     :style => 1 or 2 or 3 # 1=> centered , 2=> tiled, 3 => stretched
   #
   #     :author_id => 123 #MANDATORY
   #     :summary_id => 234 #OPTIONAL
-  #     :default => true/false #resets to default
-  def update_theme(params)
-    Rails.logger.debug("[MODEL] [USER] [update_theme] entering")
-    a = Theme.update_theme(params)
-    Rails.logger.debug("[MODEL] [USER] [update_theme] leaving")
+  #     :theme_type => 1 (AppConstants.theme_default) OR 2 (AppConstants.theme_color) OR 3 (AppConstants.theme_document)
+  def create_theme(params)
+    Rails.logger.debug("[MODEL] [USER] [create_theme] entering")
+    params[:theme_type] =  AppConstants.theme_default if params[:theme_type].blank?
+    a = Theme.create_theme(params)
+    Rails.logger.debug("[MODEL] [USER] [create_theme] leaving")
     a
   end
 

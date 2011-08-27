@@ -5,6 +5,7 @@ function aw_notify_profile_image(main, thumb){
                       enrich : true,
                       source_name:"actwitty",
                       text : "changed the profile picture.",
+                      status:2,
                       documents:[{url:main, thumb_url:thumb, caption:"Profile Picture"}]
                     };
   post_activity_to_server(post_json, false, true);

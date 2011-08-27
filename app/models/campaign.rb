@@ -40,16 +40,6 @@ class Campaign < ActiveRecord::Base
   validates_numericality_of :value
 
   after_destroy :ensure_destroy_cleanup
-  after_save    :update_summary
-
-  def update_summary
-    if !self.activity_id.blank?
-      s = Summary.where(:activity_id => self.activity_id).first
-      if !s.blank?
-#        s.update_attributes()
-      end
-    end
-  end
 
   def ensure_destroy_cleanup
     #Delete to stop circular effect

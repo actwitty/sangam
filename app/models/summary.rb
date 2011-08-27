@@ -163,8 +163,8 @@ class Summary < ActiveRecord::Base
          summary = Summary.create!(:activity_word_id => params[:activity_word_id], :user_id => params[:user_id],
                              :activity_name => params[:activity_name],:document_array => [],
                              :activity_array => [], :location_array => [], :entity_array => [], :tag_array => [])
-         a = Theme.create_theme(:fg_color => AppConstants.theme_default_fg_color,
-                                :bg_color => AppConstants.theme_default_bg_color,
+
+         a = Theme.create_theme(:theme_type => AppConstants.theme_default,
                                 :summary_id => summary.id,
                                 :author_id => summary.user_id
                                 )

@@ -10,8 +10,8 @@
     = include_javascripts :jquery
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
     = include_javascripts :actwittyall
-    -if @profile_page 
-      = include_javascripts :profile
+    /-if @profile_page 
+    = include_javascripts :profile
     %script{:src => "http://use.typekit.com/wbu2rlm.js", :type => "text/javascript"}
     :javascript
       try{Typekit.load();}catch(e){}
