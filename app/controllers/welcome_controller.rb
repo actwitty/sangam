@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-  caches_page :new
   def new
     if user_signed_in?
       redirect_to :controller => "home", :action => "show"
