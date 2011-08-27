@@ -73,6 +73,10 @@
   width:40px;
   z-index:300;
   position: absolute;
+  margin-top:35px;
+  margin-left:35px;
+  font-size:16px;
+  text-align:center;
 }
 
 .entities_box_images{
@@ -103,8 +107,12 @@
 .locations_box_internal a span{
   height:5px;
   width:40px;
-  z-index:300;
+  z-index:600;
   position: absolute;
+  margin-top:35px;
+  margin-left:35px;
+  font-size:16px;
+  text-align:center;
 }
 .locations_box_images{
   /*margin-left:1px;
@@ -137,6 +145,14 @@
 
 
 .channels_box_internal a span{
+  height:5px;
+  width:40px;
+  z-index:600;
+  position: absolute;
+  margin-top:35px;
+  margin-left:35px;
+  font-size:16px;
+  text-align:center;
 }
 
 

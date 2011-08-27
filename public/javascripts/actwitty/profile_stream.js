@@ -1048,7 +1048,7 @@ function process_user_campaign_action(campaign_manager_json){
       });
     }
 }
-  /**********Like************/
+  /**********Like*********Pramod***/
 function aw_channels_render_like(win_id, trigger_id){
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
@@ -1294,10 +1294,10 @@ $(document).ready(function(){
   /********************************/
 
   /*
-   * User action show all
+   * User action show all  Pramod
    */
   $('.js_campaign_show_all').live('click', function(){
-    alert("likes");
+    //alert("likes");
     var cls = $(this).attr("class");
     var nxt = $(this).next().children().attr("src");
     //alert(nxt);
