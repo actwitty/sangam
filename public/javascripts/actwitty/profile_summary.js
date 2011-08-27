@@ -75,7 +75,23 @@ function create_and_add_text_box(box_id, summary){
                   '</div>';
 
      text_box.append(html);
+   
+    var more_cookie =  $("#more_channels_cookie").val();
+    
+    if( i == 0 
+          && aw_get_channel_scope() == 1 
+            && (more_cookie == undefined || more_cookie == "")  ){
+      var html = '<div class="p-channelp-auth-last-upd-post-time">'+
+                  '<abbr class="timeago" title="' + text_json.time + '"></abbr>' +
+                 '</div>' +
+                  '<div class="p-channelp-auth-last-upd-post-text">' +
+                    '<p>' + shortText + '</p>' +
+                  '</div>';
+      $("#p-latest-post").html(html);
+
+    }
      
+
     });
       
   }else{
@@ -379,13 +395,8 @@ function create_and_add_subscribers_in_auth_sect()
 function create_and_add_last_updates_in_auth_sect(box_id)
 {
   var latest_update_box = $("#" + box_id);
-  var html = '<div class="p-channelp-auth-last-upd-post">'+
-                '<div class="p-channelp-auth-last-upd-post-time">'+
-                    '<span>2 mins ago</span>'+
-                '</div>' +
-                '<div class="p-channelp-auth-last-upd-post-text">' +
-                    '<p>alok purchased and repaired by some the of the most known persons...</p>' +
-                '</div>' +
+  var html = '<div class="p-channelp-auth-last-upd-post" id="p-latest-post">'+
+               
              '</div>' +
 
              '<div class="p-channelp-auth-subscriptions" id="owners_subscription_list">' +
@@ -487,7 +498,13 @@ function create_and_add_summary_icon(summary_box, summary){
                       channel_name:summary.word.name  
                     };
  the_big_filter_JSON[filter_id] = filter_value;
- aw_lib_console_log("debug","profile_summary.js:reached here"); 
+var show_counter = 0;
+ if( summary.social_counters && summary.social_counters.length){
+  $.each(summary.social_counters, function(i, counter) { 
+    show_counter += counter.count; 
+  });
+ }
+ aw_lib_console_log("debug","profile_summary.js:create_and_add_summary_icon"); 
  var html =  '<div class="p-channelp-otr-channel-icon" >'+
                '<div class="p-channelp-post-cu js_word_name_box" >' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
@@ -502,10 +519,10 @@ function create_and_add_summary_icon(summary_box, summary){
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
-                    '<p><center>' + summary.count + '</center></p> <p> <center>Likes</center></p>' +
+                    '<p><center>' + show_counter + '</center></p> <p> <center>Shares</center></p>' +
                   '</div>' +
                   '<div class="p-channelp-post-post">' +
-                    '<p><center>' + summary.count + '</center></p> <p> <center>posts</center></p>' +
+                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>Posts</center></p>' +
                   '</div>' +
                 '</div>' +
              '</div>';
@@ -683,6 +700,7 @@ function append_personal_summary(owner_id){
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
+
            // if rails demands a redirect because of log in missing
            if( aw_get_channel_scope() == 3 ){
              for (i=0;i < data.length;i=i+2) {

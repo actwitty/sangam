@@ -1,6 +1,6 @@
 /*
 Syntax error: Invalid CSS after ".co": expected pseudoclass or pseudoelement, was "#00BFFF;"
-        on line 29 of /home/sudhanshu/lemonbag/source/sangam_check/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss
+        on line 29 of /home/sudhanshu/lemonbag/source/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss
 
 24: .comments-label span
 25: {
@@ -15,7 +15,7 @@ Syntax error: Invalid CSS after ".co": expected pseudoclass or pseudoelement, wa
 34: {
 
 Backtrace:
-/home/sudhanshu/lemonbag/source/sangam_check/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss:29
+/home/sudhanshu/lemonbag/source/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss:29
 /home/sudhanshu/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:898:in `expected'
 /home/sudhanshu/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:841:in `expected'
 /home/sudhanshu/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:823:in `expr!'
@@ -85,4 +85,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \".co\": expected pseudoclass or pseudoelement, was \"#00BFFF;\"\A         on line 29 of /home/sudhanshu/lemonbag/source/sangam_check/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss\A \A 24: .comments-label span\A 25: {\A 26:   margin-top:15px;\A 27:   font-size:16px;\A 28: 	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif; */\A 29:   color:#00BFFF;\A 30:   text-align:center;\A 31: }\A 32: \A 33: .comments\A 34: {"; }
+  content: "Syntax error: Invalid CSS after \".co\": expected pseudoclass or pseudoelement, was \"#00BFFF;\"\A         on line 29 of /home/sudhanshu/lemonbag/source/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss\A \A 24: .comments-label span\A 25: {\A 26:   margin-top:15px;\A 27:   font-size:16px;\A 28: 	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif; */\A 29:   color:#00BFFF;\A 30:   text-align:center;\A 31: }\A 32: \A 33: .comments\A 34: {"; }

@@ -1,6 +1,6 @@
 /*
 Syntax error: Invalid CSS after ".p-st-": expected pseudoclass or pseudoelement, was "}"
-        on line 231 of /home/sudhanshu/lemonbag/source/sangam_check/sangam/app/stylesheets/actwitty/alpha/home_page.scss
+        on line 231 of /home/sudhanshu/lemonbag/source/sangam/app/stylesheets/actwitty/alpha/home_page.scss
 
 226: {
 227:   list-style:none;
@@ -15,7 +15,7 @@ Syntax error: Invalid CSS after ".p-st-": expected pseudoclass or pseudoelement,
 236:   text-align:center;
 
 Backtrace:
-/home/sudhanshu/lemonbag/source/sangam_check/sangam/app/stylesheets/actwitty/alpha/home_page.scss:231
+/home/sudhanshu/lemonbag/source/sangam/app/stylesheets/actwitty/alpha/home_page.scss:231
 /home/sudhanshu/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:898:in `expected'
 /home/sudhanshu/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:841:in `expected'
 /home/sudhanshu/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:823:in `expr!'
@@ -93,4 +93,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \".p-st-\": expected pseudoclass or pseudoelement, was \"}\"\A         on line 231 of /home/sudhanshu/lemonbag/source/sangam_check/sangam/app/stylesheets/actwitty/alpha/home_page.scss\A \A 226: {\A 227:   list-style:none;\A 228: }\A 229: .p-st-filter li\A 230: {\A 231:   display:inline:\A 232: }\A 233: .p-st-flt-label\A 234: {\A 235:   width:100px;\A 236:   text-align:center;"; }
+  content: "Syntax error: Invalid CSS after \".p-st-\": expected pseudoclass or pseudoelement, was \"}\"\A         on line 231 of /home/sudhanshu/lemonbag/source/sangam/app/stylesheets/actwitty/alpha/home_page.scss\A \A 226: {\A 227:   list-style:none;\A 228: }\A 229: .p-st-filter li\A 230: {\A 231:   display:inline:\A 232: }\A 233: .p-st-flt-label\A 234: {\A 235:   width:100px;\A 236:   text-align:center;"; }
