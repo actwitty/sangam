@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
       redirect_to :controller => "home", :action => "show"
       #redirect_to :controller => "home", :action => "alpha"
     else
+      @page_mode="sign-in-page"
       response.headers['Cache-Control'] = 'public, max-age=300'
     end
   end

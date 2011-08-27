@@ -1,0 +1,24 @@
+/* line 1, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_box_user_list {
+  width: 100%;
+}
+
+/* line 5, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_users_single_user {
+  display: inline;
+  float: left;
+  border: 1px solid #ccc;
+  padding: 2px;
+  margin: 2px;
+}
+
+/* line 15, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_summary_box {
+  display: none;
+}
+
+/* line 19, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_users_single_user:hover .main_summary_box {
+  display: block;
+  position: absolute;
+}

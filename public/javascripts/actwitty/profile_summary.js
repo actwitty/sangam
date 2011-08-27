@@ -520,14 +520,6 @@ function create_and_add_summary_icon(summary_box, summary){
 
 }
 
-
-
-
-
-
-
-
-
 /* handle complete summary box */
 function create_and_add_summary(summary_box, summary , hide_class){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
