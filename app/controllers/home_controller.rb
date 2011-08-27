@@ -1045,6 +1045,35 @@ class HomeController < ApplicationController
   end
   ####################################
 
-  ####################
+  def get_latest_summary
+    Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] request params #{params}")
+
+    @user = nil
+    if user_signed_in?
+      @user = current_user
+    else
+      @user = User.find_by_id(1)
+    end
+
+    unless params[:summary_id].blank? && params[:url].blank?
+      args={}
+      args[:summary_id] = Integer(params[:summary_id])
+      args[:author_id] = current_user.id
+      #args[:style] = 2
+      args[:default]=false
+      args[:url]=params[:url]
+      Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] calling model api #{args}")
+      response_json = current_user.update_theme(args)
+      Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] response from model #{response_json}")
+        if request.xhr?
+          render :json => response_json, :status => 200
+        end
+    else
+        render :json => {}, :status => 400
+    end
+
+  end
+
+  ####################################
 end
 
