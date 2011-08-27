@@ -470,7 +470,6 @@ function create_and_add_summary_icon(summary_box, summary){
  if ($("#" + unique_id ).length > 0){
    return;
  }
- aw_lib_console_log("profile_summary.js:create_and_add_summary called");
  var docs_box_id = unique_id + '_attachments';
  var friends_box_id = unique_id + '_friends';
  var subscribe_box_id = unique_id + '_subscribe';
@@ -488,7 +487,7 @@ function create_and_add_summary_icon(summary_box, summary){
                       channel_name:summary.word.name  
                     };
  the_big_filter_JSON[filter_id] = filter_value;
- 
+ aw_lib_console_log("debug","profile_summary.js:reached here"); 
  var html =  '<div class="p-channelp-otr-channel-icon" >'+
                '<div class="p-channelp-post-cu js_word_name_box" >' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
@@ -498,7 +497,7 @@ function create_and_add_summary_icon(summary_box, summary){
                   '<div class="p-channelp-post-title">'+
                      '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
                   '</div>'+
-                  '<div class="p_channelp_view_summary" value="'+unique_id+'"> View'+
+                  '<div class="p_channelp_view_summary" value="' + unique_id + '"> View'+
                   '</div>'+
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
@@ -516,7 +515,6 @@ function create_and_add_summary_icon(summary_box, summary){
   
         /* overall summary div is added */        
         summary_box.append(html);
-        
 
 }
 
@@ -529,7 +527,7 @@ function create_and_add_summary(summary_box, summary , hide_class){
  if ($("#" + unique_id ).length > 0){
    return;
  }
- aw_lib_console_log("profile_summary.js:create_and_add_summary called");
+ aw_lib_console_log("debug", "profile_summary.js:create_and_add_summary called ");
  var docs_box_id = unique_id + '_attachments';
  var friends_box_id = unique_id + '_friends';
  var subscribe_box_id = unique_id + '_subscribe';
@@ -547,9 +545,11 @@ function create_and_add_summary(summary_box, summary , hide_class){
  the_big_filter_JSON[filter_id] = filter_value;
 
  var show_counter = 0;
- $.each(summary.social_counters, function(i, counter) { 
-  show_counter += counter.count; 
- });
+ if( summary.social_counters && summary.social_counters.length){
+  $.each(summary.social_counters, function(i, counter) { 
+    show_counter += counter.count; 
+  });
+ }
 
  var html = '<div class="p-channelp-post js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
@@ -653,7 +653,7 @@ function create_and_add_summary(summary_box, summary , hide_class){
         var word_name_box = $('#' + unique_id).find('.js_word_name_box');
         word_name_box.css('background-image', 'url('+ background_theme + ')');  
           
-        aw_lib_console_log("profile_summary.js:create_and_add_summary html appended");
+         aw_lib_console_log("debug","profile_summary.js:create_and_add_summary html appended");
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary); 
@@ -670,7 +670,7 @@ function create_and_add_summary(summary_box, summary , hide_class){
 function append_personal_summary(owner_id){
   var scroll = $(window).scrollTop();
   var more_cookie =  $("#more_channels_cookie").val();
-  aw_lib_console_log("profile_summary.js:append_personal_summary");
+   aw_lib_console_log("debug","profile_summary.js:append_personal_summary");
   $.ajax({
         url: '/home/get_summary.json',
         type: 'GET',
@@ -752,7 +752,7 @@ function aw_summary_reload_tab(owner_id){
 /**********************/
 function subscribe_summary(trigger_ele, sub_summary_id, action ){
     var post_url="";
-    aw_lib_console_log("profile_summary.js:called subscribe/unsubscribe summary");
+     aw_lib_console_log("debug","profile_summary.js:called subscribe/unsubscribe summary");
     if( action == true ){
       post_url = '/home/subscribe_summary.json';
     }else{
@@ -834,7 +834,7 @@ $(document).ready(function(){
     });
     /**********************/
     $(".js_subscribe_summary").live('click', function(){
-      aw_lib_console_log("profile_summary.js:clicked subscribe/unsubscribe summary");
+       aw_lib_console_log("debug","profile_summary.js:clicked subscribe/unsubscribe summary");
       var summary_id =$(this).closest('.js_summary_base_div').find('.js_summary_id_hidden').val();
       /* old code is commented for a while to have quick ref */
       //var action = $(this).html();

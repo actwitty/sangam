@@ -310,8 +310,6 @@ function document_upload_complete(){
       /* if location field is set as url */
       if($('#location_field').val().match(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
       {
-        alert('url url');
-        $('#fake_load_frame').attr( 'src', $('#location_field').val() );
         $('#location_type').val('2');
         //alert("seems to be an url");
       }
@@ -426,9 +424,5 @@ $(document).ready(function() {
       });
     });
    /******************************/
-   $('#fake_load_frame').load(function(){
-     alert('hello');
-     alert($(this).contents().find("title").text());
-   });
-
+   
 });
