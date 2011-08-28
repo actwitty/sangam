@@ -12,7 +12,8 @@ function append_summary(box_id, summary){
 
   users_div.append(html);
 
-  create_and_add_summary($('#summary_box_' + summary.id),summary, "no_hide"); 
+  //create_and_add_summary($('#summary_box_' + summary.id),summary, "no_hide"); 
+  create_and_add_mainpage_summary($('#summary_box_' + summary.id),summary);
 }
 
 function get_latest_summary(){

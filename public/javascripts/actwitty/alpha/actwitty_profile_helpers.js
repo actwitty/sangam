@@ -79,10 +79,17 @@ $(document).ready(function(){
   
 
     $("#attachment").live("click",function(){
-         $("#input-attachments-section").slideToggle("medium");
-        $("#input-attachments-section").show();
-        $(this).hide();
+        $("#input-attachments-section").slideToggle("medium");
+        /*$("#input-attachments-section").show();*/
+        /*$(this).hide();*/
     });
+
+    $("#add_subtitle").live("click",function(){
+        $("#subtitle-div").slideToggle("medium");
+        /*$("#input-attachments-section").show();*/
+        /*$(this).hide();*/
+    });
+
 
     /* to display the comment input system for inputting comments.  like google+ */ 
     $(".add-comment").live("click",function(){
@@ -210,5 +217,9 @@ $(document).ready(function(){
 
     /* to make sure that only alphanumeric characters are allowed in activity field*/
     $("#activity_field").alphanumeric();
+
+    $("#aw_login_open").click(function(){
+      $("#aw_home_header_signin_box").slideToggle();
+    }); 
 
 });

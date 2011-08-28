@@ -1042,8 +1042,7 @@ class HomeController < ApplicationController
     end
 
   end
-  ####################################
-
+  #######################################
   def get_latest_summary
     Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] request params #{params}")
 
@@ -1062,7 +1061,24 @@ class HomeController < ApplicationController
     end
 
   end
-
   ####################################
+  def facebook_friends
+    provider="facebook"
+    @user=User.find_by_id(params[:id])
+    if @user.nil?
+        if user_signed_in?
+          @user=current_user
+          puts "-----------1ffHC------------"
+        else
+          redirect_to :controller => "home", :action => "show"
+      	  puts "------------2ffHC------------------"	
+        end
+      else
+        if user_signed_in?
+          @follow = current_user.check_follower(@user.id)
+        end
+      end
+   end
+  ####################
 end
 
