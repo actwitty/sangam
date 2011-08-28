@@ -39,8 +39,10 @@ class Users::SessionsController < Devise::SessionsController
           end
         end
       end
+
       respond_to do |format|
-          format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
+        puts "WelcomeController new ..... I AM HERE SINGED IN..........."
+        format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
       end
     else
       #go on regular path for html requests

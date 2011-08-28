@@ -1,7 +1,8 @@
 
 /**************************/
 var document_pre_uploaded_handling_json={};
-function add_preuploaded_doc(id, url_val, thumb_url_val, caption_val){ 
+function add_preuploaded_doc(id, url_val, thumb_url_val, caption_val){
+
   document_pre_uploaded_handling_json[id] = {
                                               url:url_val,
                                               thumb_url:thumb_url_val,
@@ -24,10 +25,13 @@ function get_preuploaded_doc(){
 function append_pre_uploaded_docs(docs){
   $.each(docs.array, function(i, attachment){
     var caption="";
+
+    if(attachment.uploaded == false){
+      return;
+    }
     if(attachment.caption){
       caption = attachment.caption;
     }
-
     add_preuploaded_doc(attachment.id, attachment.url, attachment.thumb_url, caption);
     var id = 'preuploaded_' + attachment.id;
     var caption_id = id + '_caption';

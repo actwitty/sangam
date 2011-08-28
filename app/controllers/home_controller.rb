@@ -712,12 +712,11 @@ class HomeController < ApplicationController
    def process_edit_activity
     Rails.logger.info("[CNTRL][HOME][PROCESS EDITED ACTIVITY] request params #{params}")
 
-    if !params[:status].blank?
+    unless params[:status].blank?
       params[:status]= Integer(params[:status])
-
     else
       render :json => {}, :status => 400
-      reutrn
+      return
     end
 
     if !params[:activity_id].blank?

@@ -46,6 +46,7 @@ function aw_get_reedit_mode(){
 function aw_edit_drafted_stream(post_id){
   /* Go into edit mode */
   var stream_render_id = get_stream_ele_id(post_id);
+  $("#hidden_draft_post_id").val(post_id); 
   $("#" + stream_render_id).empty().remove();
   g_aw_reedit_mode = 1;
   init_edit_box(post_id);
