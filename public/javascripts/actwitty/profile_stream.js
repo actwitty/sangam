@@ -182,11 +182,17 @@ function handle_like_campaign(div_id, stream){
    like_text = "Unlike";
  }
 
-  var html = '<a id="' + link + '" value="' + div_id + '" class="js_like_user_action">' +
+  var html = '<div class="p-awp-view-campaign_all ">' +
+              
+             '<a id="' + link + '" value="' + div_id + '" class="js_like_user_action">' +
                   like_text +
-             '</a>';
+             '</a>' +
+             '</div>' +
+            '<div class="p-awp-campaigns-section">' +
+            '</div>';
+
   var like_count_html = get_campaign_likes_label(total_count);
-  /*
+  /* Pramod
   var like_count_html = '<center>'+total_count+'</center><center>Like'+get_pluralize_form(total_count)+'</center>';
   var html2 = '<div class="p-awp-view-campaign_all ">' +
                 
@@ -1049,10 +1055,12 @@ function process_user_campaign_action(campaign_manager_json){
     }
 }
   /**********Like*********Pramod***/
+  
 function aw_channels_render_like(win_id, trigger_id){
+  //alert("aw_channels_render_like");
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
-  var div_id = $("#" + trigger_id).parent().parent().attr("id");
+  //var div_id = $("#" + trigger_id).parent().parent().attr("id");
   campaign_manager = the_big_stream_campaign_manager_json[div_id];
   //alert(JSON.stringify(campaign_manager));
   $.ajax({
@@ -1065,7 +1073,6 @@ function aw_channels_render_like(win_id, trigger_id){
           dataType: 'json',
           success: function (data) {
             show_all_stream_campaigns(data, div);
-            /*****************************************Error On Slidetoggle****************************/
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
             alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
@@ -1297,23 +1304,27 @@ $(document).ready(function(){
    * User action show all  Pramod
    */
   $('.js_campaign_show_all').live('click', function(){
-    //alert("likes");
-    var cls = $(this).attr("class");
-    var nxt = $(this).next().children().attr("src");
-    //alert(nxt);
-    /****************************Changed For the Like SlideToggle***div_id*********************************/
-    var div_id = $(this).parent().parent().attr("id");
-    //if(nxt == "/images/alpha/unlike.png")
-    {
-     //alert("1"); 
-    $("."+ cls ).addClass("js_modal_dialog_link");  
-    $("."+ cls ).addClass("JS_AW_MODAL_like"); 
-    }
-    //campaign_manager = the_big_stream_campaign_manager_json[div_id];
-    //show_all_campaigns(campaign_manager); 
+    //var cls = $(this).attr("class");
+    //alert("on click like");
+
+    $(this).addClass("js_modal_dialog_link");  
+    $(this).addClass("JS_AW_MODAL_like"); 
     return false;
   });
   /********************************/
+  /*
+    //alert("likes");
+    //var cls = $(this).attr("class");
+    //var nxt = $(this).next().children().attr("src");
+    //alert(nxt);
+    /****************************Changed For the Like SlideToggle***div_id*********************************/
+    //var div_id = $(this).parent().parent().attr("id");
+    //if(nxt == "/images/alpha/unlike.png")
+    //{
+    //alert("1"); 
+    //}
+    //campaign_manager = the_big_stream_campaign_manager_json[div_id];
+    //show_all_campaigns(campaign_manager); 
 
   /*
    * Delete entity mentioned in text
