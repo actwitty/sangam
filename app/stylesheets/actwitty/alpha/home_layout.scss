@@ -1147,7 +1147,52 @@ html ul.p-cstab li.p-st-tab.active  {
   background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;
 }
+ul.p-cstab1 {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 48px;
+  border-top:0px solid #ddd;
+  border-bottom: 0px solid #ddd;
+	width: 620px;
+  display:block;
+  background:#eaa440;
+  border:0px solid blue;
+  margin-left:195px;
+  /*position:absolute;
+  z-index:2000;*/
+}
 
+ul.p-cstab1 li {
+  display:block;
+	float: left;
+	margin:0px 0 0 0px;
+	padding: 0px 0px;
+	height: 38px;
+	line-height: 38px;
+	border: 0px solid #ddd;
+  margin-top:1px;
+  margin-left:0px;
+	margin-bottom: 3px;
+	position: relative;
+  background:#eaa440;
+  /*background:#fff;*/
+  width:202px;
+  text-align:center;
+  border-bottom:5px solid #fff;
+  border-top:5px solid #eaa440;
+}
+ul.p-cstab1 li a {
+	text-decoration: none;
+  text-align:center;
+	color: #333;
+	font-size: 1.2em;
+	padding: 0 20px;
+	outline: none;
+  font-size:28px;
+  font-weight:bold;
+}
 
 /*****************************************  Stream Filters ***************************************/
 .p-st-fltr-box

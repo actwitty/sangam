@@ -178,9 +178,7 @@ function aw_render_locations_internal(location, div_id){
               '<div class="locations_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_locations" id="' + link_id + '">' +
                   //'<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
-                  '<img class="locations_box_images" src="' +url+  '" onmouseover="toolTip( &#39;'+location.name+'&#39;, &#39;' + loc_id + '&#39;)" onmouseout="toolTip()"/>' +
-                  //'<img class="locations_box_images" src="http://maps.googleapis.com/maps/api/staticmap?center='+location.lat+','+location.long+'&zoom=12&size=400x400&sensor=false" style="height: 80px; width: 210px;"/>' +
-                 
+                  '<img class="locations_box_images" src="' +url+  '"/>' +
                   '<span id="span_hover" onmouseover="toolTip( &#39;'+location.name+'&#39;, &#39;' + loc_id + '&#39;)" onmouseout="toolTip()">'+ str +'</span>'+
                   '</a>'+
               '</div>';
