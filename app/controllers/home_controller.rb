@@ -1043,6 +1043,25 @@ class HomeController < ApplicationController
     end
 
   end
+  #######################################
+  def get_latest_summary
+    Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] request params #{params}")
+
+    @user = nil
+    if user_signed_in?
+      @user = current_user
+    else
+      @user = User.find_by_id(1)
+    end
+
+    response_json = @user.get_recent_public_summary()
+    Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] response from model #{response_json}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json, :status => 200
+    end
+
+  end
   ####################################
   def facebook_friends
     provider="facebook"
