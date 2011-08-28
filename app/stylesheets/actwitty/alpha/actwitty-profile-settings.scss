@@ -117,7 +117,8 @@ Button Menu
 { 
   display:block; 
   padding:5px 0 5px 0;
-  margin-left:-40px;
+  margin-left:0px;
+  z-index:3000;
 }
 
 .options-menu ul li a { 
@@ -131,6 +132,7 @@ Button Menu
     text-decoration:none;
     text-align:center;
     zoom:1;
+    z-index:3000;
 }
 
 .options-menu ul li a span {
@@ -140,7 +142,7 @@ Button Menu
     height:1px;
     display:block;
     background:#000;
-    z-index:20;
+    z-index:2000;
     display:none;
     zoom:1;
 }
@@ -160,8 +162,10 @@ Button Menu li hover
     background: -o-linear-gradient(top, #EBEDF4 0%,#e5e7ef 100%);
     box-shadow:inset 0 1px 0 #fff;
     */
+    z-index:2000;
 }
 
 .options-menu ul li:hover a span {
     display:block;
+    z-index:2000;
 }

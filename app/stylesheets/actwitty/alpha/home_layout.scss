@@ -453,6 +453,8 @@ opacity:40%;
 #activity_field, #location_field, #title_field, #entity_field
 {
   border:2px solid #333;
+  font-family: nimbus-sans-condensed,sans-serif;
+  color:#333;
 }
 .activity_input
 {
@@ -642,14 +644,7 @@ opacity:40%;
 {
   padding:0px;
   margin-left:20px;
-  /*margin-left:3.15%;*/
-  /*
-  margin-top:5px;
-  margin-bottom:5px;
-  */
   display:block;
-  border:0px solid red;
-  color:gray;
   width:92.5%;
   height:25px;
   opacity:0.8;
@@ -1054,7 +1049,7 @@ a.info:hover span {
   border-bottom:4px solid #eaa440;
   background:#fff;
   position:absolute;
-  z-index:1200;
+  z-index:200;
   background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;
 }
@@ -1526,7 +1521,7 @@ ul.p-fltr-tag-list li
   width:180px;
   height:auto;
   height:80px;
-  border:1px solid red;
+  border:0px solid red;
   position:fixed;
 }
 
@@ -1825,7 +1820,8 @@ ul.p-fltr-tag-list li
   height:auto;
   border:0px solid green;
   display:inline-block;
-  background:#cecece;
+  /*background:#cecece;*/
+  background:#DEDEDE;
   margin-left:10px;
 }
 .p-awp-post-like-info
@@ -2074,7 +2070,8 @@ div.p-awp-actions
 .p-awp-close-section
 {
   width:100%;
-  height:10px;
+  height:15px;
+  border:0px solid red;
 }
 
 .p-awp-close-section input:hover
@@ -2091,7 +2088,7 @@ div.p-awp-actions
 div.p-awp-actions .p-awp-close
 {
   float:right;
-  margin-left:5px;
+  margin-right:200px;
   /*float:top;*/
 }
 
@@ -2439,3 +2436,10 @@ a.js_handle_stream_entity_mention:hover span
   display:none;
 }
 
+
+/* ### ### */
+.suppress_def_a, .js_activity_entity
+{
+  text-decoration:none;
+  color:#333;
+}
