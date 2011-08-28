@@ -13,6 +13,8 @@ class Document < ActiveRecord::Base
 
    belongs_to     :activity, :counter_cache => true
 
+   has_many       :documents
+
   #TODO commenting it for time being.. we can enable it but as this feature is not in scope
   #so commented. Though this feature is complete in implementation
 #   has_many       :comments,  :dependent => :destroy, :order => "updated_at DESC"
@@ -46,10 +48,14 @@ class Document < ActiveRecord::Base
 
    before_save           :sanitize_data
 
-   after_destroy         :store_for_cloud_delete
+   after_destroy         :remove_theme
 
-   def store_for_cloud_delete
-
+   def remove_theme
+     Rails.logger.debug("[MODEL] [DOCUMENT] [remove_theme] ")
+     Theme.where(:document_id => self.id).all.each do |attr|
+       puts "theme reset"
+       Theme.create_theme(:theme_type => AppConstants.theme_default,:summary_id => attr.summary_id,:author_id =>attr.author_id)
+     end
    end
 
    def sanitize_data
