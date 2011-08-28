@@ -568,3 +568,12 @@ input#aw_intro_register:hover {
 .connect-buttons:hover {
   cursor: pointer;
 }
+
+/************************************ Resend Confirmation ********************************/
+/* line 489, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#resend_confirmation {
+  text-decoration: none;
+  background: none;
+  color: #333;
+  margin-left: 50px;
+}

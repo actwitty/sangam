@@ -53,7 +53,9 @@ body{
 	font-size:12px;
   font-family:'actwitty-font';
 	color:#CCCCCC;
-	background-color:#fff;
+	/*background-color:#fff;*/
+  background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;
 	}
 
 
@@ -90,8 +92,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   background-repeat:repeat;}
 .col2{color:#FFFFFF; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;}
-.col3{color:#000000; background-color:#FFFFFD;}
-.col4{color:#666666; background-color:#FFFFFD;}
+.col3{color:#000000; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;}
+.col4{color:#666666; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;}
 
 /* ----------------------------------------------Generalise-------------------------------------*/
 
@@ -1051,6 +1055,8 @@ a.info:hover span {
   background:#fff;
   position:absolute;
   z-index:1200;
+  background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;
 }
 
 ul.p-cstab {
@@ -1141,6 +1147,8 @@ html ul.p-cstab li.p-st-tab.active  {
 	float: left; width:610px;
   height:auto;
   color:#000000;
+  background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;
 }
 
 
@@ -1162,7 +1170,8 @@ html ul.p-cstab li.p-st-tab.active  {
 {
   margin:0;
   padding:5px;
-  width:620px;
+  /*width:620px;*/
+  width:605px;
   list-style:none;
   position:absolute;
   z-index:1000;
@@ -1676,7 +1685,7 @@ ul.p-fltr-tag-list li
 
 .p-content
 {
-  width:600px;
+  width:610px;
   height:auto;
   border:0px solid gray;
   background:#fff;
@@ -1827,7 +1836,9 @@ ul.p-fltr-tag-list li
   display:inline;
   position:absolute;
   margin-top:10px;
-  background:#b847cf;
+  /*background:#b847cf;*/
+  background:#388e8e;
+  
   font-size:16px;
   color:#fff;
 }
@@ -2374,6 +2385,25 @@ a.js_handle_stream_entity_mention:hover span
   width:100%;
   height:auto;
   border:0px solid red;
+  margin-top:5px;
+  margin-bottom:5px;
+  
+}
+
+.js_socialize_post span
+{
+  background: none repeat scroll 0 0 #BBB9BA;
+  border: 0 solid green;
+  font-size: 16px;
+  height: 20px;
+  margin-left: 10px;
+  padding: 1px;
+  width: auto;
+  color:#fff;
+}
+.js_socialize_post span a:hover
+{
+  cursor:pointer;
 }
 
 .js_socialize_icons{
@@ -2388,6 +2418,7 @@ a.js_handle_stream_entity_mention:hover span
   border:1px solid #ccc;
   margin:2px;
   display:inline-block;
+  margin-left:10px;
 }
 
 .socialize_box img{

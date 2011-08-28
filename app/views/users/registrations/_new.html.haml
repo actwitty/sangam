@@ -11,4 +11,5 @@
     %input#user_key{:name => "user[key]", :type => "hidden", :value => ""}/
     %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
     %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
+    = link_to "Resend confirmation ?", new_confirmation_path(:user), :id=>"resend_confirmation"
     %input#signupbutton.actwittysignup{:type => "button", :value => "Register !"}/
