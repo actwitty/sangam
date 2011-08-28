@@ -1,3 +1,14 @@
-#logo
-  %a{:href => "http://www.actwitty.com"}
-    %img#logo-img{:src => "/images/actwitty/Picture1.png"}/
+.wrapper_hompage.homep_col1
+  #homep_header
+    #aw_home_header_div
+      #aw_home_header_signin
+        %span
+          Already a registered user?
+          %a#aw_login_open{:href => "#"} Login
+      %a{:href => "http://www.actwitty.com" }
+        #aw_home_header_logo
+    #aw_home_header_signin_box
+      =render :partial => "users/sessions/new", :locals => { :user => User.new } 
+
+
+

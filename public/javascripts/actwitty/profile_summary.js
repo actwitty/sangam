@@ -56,8 +56,15 @@ function get_summary_theme_html(summary){
 
 
 /* handle text box */
-function create_and_add_text_box(box_id, summary){
+function create_and_add_text_box(box_id, summary,channel_class){
   var text_box= $("#" + box_id);
+
+  if(channel_class == 'mainpage'){
+    var lup_class = "p-channelp-post-lup-mainpage";
+  }else{
+    var lup_class = "p-channelp-post-lup";
+  }
+
   if ( summary.recent_text && summary.recent_text.length  ){
 
     $.each(summary.recent_text, function(i, text_json){
@@ -65,7 +72,7 @@ function create_and_add_text_box(box_id, summary){
        return;
      }
      shortText = text_json.text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
-     var html = '<div class="p-channelp-post-lup">' +
+     var html = '<div class="' +lup_class +'">' +
                     '<div class="p-channelp-post-lup-time">' +
                        '<abbr class="timeago" title="' + text_json.time + '"></abbr>' +
                     '</div>' +
@@ -462,6 +469,8 @@ function create_and_add_summary_author(author_box, owner_id)
 }
 
 
+
+
 /*
  * Create and add summary icon box.. as we have decided to have 2 icons per line
  * clicking on any of the icon will open full summary view of that channel
@@ -472,6 +481,108 @@ function create_and_add_summary_icon_box(summary_box,id)
                '</div>';
     summary_box.append(html);
 }
+
+
+
+
+
+/* 
+ * create and add summary for main page. Latest updates seen on main page is a bit different
+ *
+ */
+function create_and_add_mainpage_summary(summary_box, summary){
+ /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
+ var unique_id =  'SUMMARY_MAINPAGE' + summary.word.id + '_' + summary.user.id;
+ if ($("#" + unique_id ).length > 0){
+   return;
+ }
+ var docs_box_id = unique_id + '_attachments';
+ var friends_box_id = unique_id + '_friends';
+ var subscribe_box_id = unique_id + '_subscribe';
+ var entities_box_id = unique_id + '_entities';
+ var locations_box_id = unique_id + '_locations';
+ var latest_text_box_id = unique_id + '_text';
+ 
+ var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id;
+ 
+ 
+ /* create a JSON of filter */
+ var filter_value = {
+                      user:summary.user.id ,
+                      channel_id:summary.word.id, 
+                      channel_name:summary.word.name  
+                    };
+ the_big_filter_JSON[filter_id] = filter_value;
+var show_counter = 0;
+ if( summary.social_counters && summary.social_counters.length){
+  $.each(summary.social_counters, function(i, counter) { 
+    show_counter += counter.count; 
+  });
+ }
+ aw_lib_console_log("debug","profile_summary.js:create_and_add_summary_icon"); 
+ 
+ 
+ var html = '<div class="p-channlep-post-mainpage">'+
+                '<div class="p-channelp-post-info-mainpage">'+
+                  '<div class="p-channelp-post-lu-mainpage" id="' + latest_text_box_id  + '">' + 
+                      '<div class="p-channelp-post-lu-header-mainpage">'+
+                        '<span>Last Updates</span>'+
+                      '</div>'+
+                  '</div>'+
+                  '<div class="p-channelp-post-cu-mainpage">'+
+                    '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
+                    '</div>'+
+                  
+                    '<hr class="p-channelp-post-cu-bar-mainpage"/>'+
+                    '<div class="p-channelp-post-title-mainpage">'+
+                       '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
+                    '</div>'+
+                  '</div>'+
+                  '<div class="p-channelp-post-analytic-mainpage">'+
+                    '<div class="p-channelp-post-like-mainpage">'+
+                      '<p><center>' + show_counter + '</center></p> <p> <center>Shares</center></p>'+
+                    '</div>'+
+                    '<div class="p-channelp-post-post-mainpage">'+
+                      '<p><center>' + summary.activity_count + '</center></p> <p> <center>Posts</center></p>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'+
+             '</div>';
+
+ var html2 =  '<div class="p-channelp-otr-channel-icon" >'+
+               '<div class="p-channelp-post-cu js_word_name_box" >' +
+                  '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
+                  '</div>'+
+                  
+                  '<hr class="p-channelp-post-cu-bar"/>'+
+                  '<div class="p-channelp-post-title">'+
+                     '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
+                  '</div>'+
+                  '<div class="p_channelp_view_summary" value="' + unique_id + '"> View'+
+                  '</div>'+
+                '</div>' +
+                '<div class="p-channelp-post-analytic">' +
+                  '<div class="p-channelp-post-like">' +
+                    '<p><center>' + show_counter + '</center></p> <p> <center>Shares</center></p>' +
+                  '</div>' +
+                  '<div class="p-channelp-post-post">' +
+                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>Posts</center></p>' +
+                  '</div>' +
+                '</div>' +
+             '</div>';
+
+        /* overall summary div is added */        
+        summary_box.append(html);
+        create_and_add_text_box(latest_text_box_id, summary,"mainpage");
+}
+
+
+
+
+
+
+
+
 
 
 /* handle complete summary box */
@@ -675,7 +786,7 @@ function create_and_add_summary(summary_box, summary , hide_class){
         //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary); 
         create_add_add_subscribe_box(subscribe_box_id, summary);
-        create_and_add_text_box(latest_text_box_id, summary);
+        create_and_add_text_box(latest_text_box_id, summary,"channelpage");
         create_and_add_friends_box(friends_box_id, summary);
         create_and_add_entities_box(entities_box_id, summary);
         create_and_add_locations_box(locations_box_id, summary);

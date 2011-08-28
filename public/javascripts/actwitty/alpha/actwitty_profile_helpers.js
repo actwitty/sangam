@@ -211,4 +211,8 @@ $(document).ready(function(){
     /* to make sure that only alphanumeric characters are allowed in activity field*/
     $("#activity_field").alphanumeric();
 
+    $("#aw_login_open").click(function(){
+      $("#aw_home_header_signin_box").slideToggle();
+    }); 
+
 });

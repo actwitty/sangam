@@ -3,8 +3,15 @@
 = javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 
 
+.wrapper_hompage.homep_col1
+  #homep_header
+    #aw_home_header_div
+      #aw_home_header_signin
+        %span
+          Already a registered user?
+          %a#aw_login_open{:href => "#"} Login
+      =render :partial => "welcome/logo" 
 
-=render :partial => "welcome/logo"       
 
 .wrapper_hompage.homep_col10
   #aw_forgot_password
