@@ -36,10 +36,19 @@ function append_pre_uploaded_docs(docs){
     var id = 'preuploaded_' + attachment.id;
     var caption_id = id + '_caption';
     var remove_id = id + '_remove';
-    var html = '<div id="' + id + '" class="pre_uploaded_image" >'  +
-                  '<img src="' + attachment.thumb_url + '"  />' +
-                  '<input type="text" value="' + attachment.caption + '" id="' + caption_id + '" class="js_perupload_caption preupload_caption_class"/>' +
-                  '<a  id="' + remove_id + '" class="js_perupload_remove preupload_remove_class">Remove</a>' +
+    var html = '<div class="p-preuploaded-images-on-input" >' +
+                  '<div class="p-preuploaded-delete-cntrl js_preupload_remove" id="' + attachment.id + '" >' +
+                  '</div>' +
+                  '<div class="p-preload-image-data" >' + 
+                    '<div class="preupload-image"> ' +
+                      '<img src="' + attachment.thumb_url + '" width=60 />' +
+                    '</div>' +
+                  
+                    '<div class="p-preupload-caption">' +
+                      '<input type="text" value="' + attachment.caption + '" id="' + caption_id + '" class="js_perupload_caption " />' +
+               
+                    '</div>' +
+                  '</div>' +
                '</div>';
 
     $("#pre_uploaded_docs").append(html);
@@ -90,12 +99,12 @@ function populate_to_input(post_json){
 }
 
 function init_edit_box(post_id){
+  
+  reset_to_default();
+  clear_all_input_jsons();
+  $("#pre_uploaded_docs").empty();
   $(".add-page-input").hide();
   $(".home_page_inputs").show();
-
-  $("#attachment").show();
-  $("#input-attachments-section").slideToggle("medium");
-
   $.ajax({
         url: '/home/get_single_activity.json',
         type: 'GET',
@@ -124,7 +133,7 @@ function init_edit_box(post_id){
 }
 
 $(document).ready(function() {
- $(".js_perupload_remove").live("click",function(){
+ $(".js_preupload_remove").live("click",function(){
       delete document_pre_uploaded_handling_json[$(this).parent().attr("id")];
       $(this).parent().empty().remove();
 

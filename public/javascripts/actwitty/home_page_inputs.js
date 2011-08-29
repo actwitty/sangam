@@ -165,8 +165,6 @@ function post_activity_to_server(post_data, clear, force_edit_mode){
       });
    }else{
      post_data.activity_id = $("#hidden_draft_post_id").val();
-     alert("------------------------------------\n" + post_data.activity_id); 
-     alert(JSON.stringify(post_data)); 
      $.ajax({
         url: '/home/process_edit_activity.json',
         type: 'POST',

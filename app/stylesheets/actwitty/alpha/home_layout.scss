@@ -2490,3 +2490,63 @@ a.js_handle_stream_entity_mention:hover span
   text-decoration:none;
   color:#333;
 }
+
+.p-input-pre-added-images-list{
+  width:100%;
+  display:block;
+  overflow: auto;
+}
+
+.p-preuploaded-images-on-input{
+  width:535px;
+  margin-left:20px;
+  margin-top:5px;
+  margin-bottom:2px;
+  padding:2px;
+  display:block;
+  border:2px solid #333;
+  font-family: nimbus-sans-condensed,sans-serif;
+  color:#333;
+  overflow: auto;
+}
+.p-preuploaded-delete-cntrl{
+  color:green;
+  width:9px;
+  height:9px;
+  display:block;
+  border:0px solid red;
+  font-size:8px;
+  margin-top:0px;
+  margin-left:0px;
+  float:top;
+  float:right;
+  background:url("/images/alpha/close_mini.png");
+}
+
+.p-preuploaded-delete-cntrl:hover
+{
+  cursor:pointer;
+}
+.p-preload-image-data{
+  margin-top:10px;
+  width:100%;
+  height:auto;
+}
+.p-preload-image-data .preupload-image{
+  margin-left:10px;
+  width:70px;
+  overflow: auto;
+  display:inline;
+  float:left;
+}
+.p-preload-image-data .p-preupload-caption{
+}
+
+.p-preupload-caption input{
+  padding-top:20px;
+  padding-left:10px;
+  width:350px;
+  border:2px solid #333;
+  font-family: nimbus-sans-condensed,sans-serif;
+  color:#333;
+}

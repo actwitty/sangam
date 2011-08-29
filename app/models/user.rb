@@ -699,6 +699,7 @@ class User < ActiveRecord::Base
 
     a = Activity.where(:id => params[:activity_id]).first
 
+
     #false activity
     if a.blank?
       Rails.logger.debug("[MODEL] [User] [update_activity] [ERROR] returning empty json ")
