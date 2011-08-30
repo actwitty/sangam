@@ -45,3 +45,85 @@
   margin-left: 50px;
   /*background-color:#445D73;*/
 }
+
+/*Facebook frineds*/
+/* line 51, ../../../app/stylesheets/actwitty/home_page.scss */
+div.sc_menu1 {
+  /* Set it so we could calculate the offsetLeft */
+  background: #cccccc none repeat scroll 0 0;
+  position: relative;
+  height: 240px;
+  width: 610px;
+  /*650*/
+  overflow: auto;
+  border: 2px solid black;
+  left: 340px;
+}
+
+/* line 62, ../../../app/stylesheets/actwitty/home_page.scss */
+p#fb_friends {
+  margin-left: 340px;
+  font-size: 18px;
+}
+
+/* line 68, ../../../app/stylesheets/actwitty/home_page.scss */
+ul.sc_menu1 {
+  display: block;
+  height: 210px;
+  /* max width here, for users without javascript */
+  width: 900px;
+  /*1500*/
+  padding: 5px 0 0 5px;
+  /*15px 0 0 15px; */
+  /* removing default styling */
+  margin: 0;
+  background: url("navigation.png");
+  list-style: none;
+  /*border:2px solid yellow;*/
+}
+
+/* line 81, ../../../app/stylesheets/actwitty/home_page.scss */
+li.lk {
+  width: 130px;
+  margin: 5px;
+}
+
+/* line 86, ../../../app/stylesheets/actwitty/home_page.scss */
+.sc_menu1 li {
+  display: block;
+  float: left;
+  padding: 0 4px;
+  /*4*/
+}
+
+/* line 91, ../../../app/stylesheets/actwitty/home_page.scss */
+.sc_menu1 a {
+  display: block;
+  text-decoration: none;
+}
+
+/* line 95, ../../../app/stylesheets/actwitty/home_page.scss */
+.sc_menu1 span {
+  display: none;
+  margin-top: 3px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+
+/* line 103, ../../../app/stylesheets/actwitty/home_page.scss */
+.sc_menu1 a:hover span {
+  display: block;
+}
+
+/* line 106, ../../../app/stylesheets/actwitty/home_page.scss */
+.sc_menu1 div {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+/* line 110, ../../../app/stylesheets/actwitty/home_page.scss */
+.sc_menu1 li:hover div#inner {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}

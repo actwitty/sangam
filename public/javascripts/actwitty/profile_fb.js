@@ -1,17 +1,17 @@
 
  function create_and_add_box(id){
-   alert("Entry to create_add_box");
+   //alert("Entry to create_add_box");
 
    var html = "<h3>Into the Create And Add Box</h3>";
 
    id.append(html);
 
-   alert("Into the Create and add box");
+   //alert("Into the Create and add box");
  }
 
 
  function custom_box_effects(fb_box){
-    alert("In Custom Box Effects");
+    //alert("In Custom Box Effects");
     create_and_add_box($('#fb_box')); 
  }
 
@@ -19,11 +19,10 @@
 $(document).ready(function(){
   //$("#y").append("Hello");
   get_all_facebookers(); 
-  
+ /* 
   $("ul.p-cstab1 li").click(function() {
 
   $(".tab_content").hide(); //Hide all tab content
-      /* Remove active from all tabs */
   $("ul.p-cstab1 li").removeClass("active");
   $(this).addClass("active"); //Add "active" class to selected tab
       
@@ -47,5 +46,6 @@ $(document).ready(function(){
       $(activeTab).fadeIn(); //Fade in the active ID content
       return false;
   });
+  */
  
 });

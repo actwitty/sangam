@@ -1,16 +1,39 @@
 /******************facebook friends*******************/
-/* line 2, ../../../app/stylesheets/actwitty/profile.scss */
+/*
+div#ex1{
+ float:left;
+ display:block;
+ border: 1px solid #585858;
+ width:20%;
+ height:20%;
+ margin-left:10px;
+
+}
+div#txt{
+ margin-left:60px;
+ margin-bottom:-20px;
+ font-size: 13px;
+ padding: 8px 4px 4px 4px;
+ word-wrap: break-word;
+}
+*/
+/* line 20, ../../../app/stylesheets/actwitty/profile.scss */
+div#inner {
+  margin-top: 15px;
+}
+
+/* line 24, ../../../app/stylesheets/actwitty/profile.scss */
 div#ex1 {
   float: left;
   display: block;
   border: 1px solid #585858;
-  width: 20%;
-  /*13%*/
-  height: 20%;
+  /*width:20%;pramod 13%
+  height:20%;*/
+  width: 120px;
   margin-left: 10px;
 }
 
-/* line 11, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 34, ../../../app/stylesheets/actwitty/profile.scss */
 div#txt {
   /*float:right;*/
   margin-left: 60px;
@@ -18,14 +41,15 @@ div#txt {
   font-size: 13px;
   padding: 8px 4px 4px 4px;
   word-wrap: break-word;
+  font-color: #000000;
 }
 
-/* line 19, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 43, ../../../app/stylesheets/actwitty/profile.scss */
 .img {
   margin: 5px;
 }
 
-/* line 22, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 46, ../../../app/stylesheets/actwitty/profile.scss */
 #im {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -33,7 +57,7 @@ div#txt {
   padding: 2px 4px 4px 4px;
 }
 
-/* line 28, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 52, ../../../app/stylesheets/actwitty/profile.scss */
 .im1 {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -41,7 +65,7 @@ div#txt {
   padding: 2px 4px 4px 4px;
 }
 
-/* line 36, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 60, ../../../app/stylesheets/actwitty/profile.scss */
 div#ex {
   background-color: #00FFFF;
   width: 500px;
@@ -50,7 +74,7 @@ div#ex {
   margin-left: 10px;
 }
 
-/* line 43, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 67, ../../../app/stylesheets/actwitty/profile.scss */
 div#outer:hover img.img {
   border: solid 1px #CCC;
   -moz-box-shadow: 1px 1px 5px #999;
@@ -58,7 +82,7 @@ div#outer:hover img.img {
   box-shadow: 1px 1px 5px #999;
 }
 
-/* line 50, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 74, ../../../app/stylesheets/actwitty/profile.scss */
 div#inner:hover img.im1 {
   border: solid 1px #CCC;
   -moz-box-shadow: 1px 1px 5px #999;
@@ -66,7 +90,7 @@ div#inner:hover img.im1 {
   box-shadow: 1px 1px 5px #999;
 }
 
-/* line 56, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 80, ../../../app/stylesheets/actwitty/profile.scss */
 div#inner:hover input.follow_button {
   border: solid 1px #CCC;
   -moz-box-shadow: 1px 1px 5px #999;
@@ -75,13 +99,13 @@ div#inner:hover input.follow_button {
 }
 
 /****************************** Side Bar Filters on Activities/entities/friends***************************/
-/* line 69, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 93, ../../../app/stylesheets/actwitty/profile.scss */
 .channels_list {
   display: block;
   width: 95%;
 }
 
-/* line 75, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 99, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_box {
   width: 90%;
   margin-top: 10px;
@@ -93,7 +117,7 @@ div#inner:hover input.follow_button {
   border: 2px solid #ccc;
 }
 
-/* line 90, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 114, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_user_box {
   margin: 10px;
   font-size: 12px;
@@ -105,7 +129,7 @@ div#inner:hover input.follow_button {
   display: block;
 }
 
-/* line 103, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 127, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_user_box a img {
   float: left;
   display: block;
@@ -113,7 +137,7 @@ div#inner:hover input.follow_button {
   height: 40px;
 }
 
-/* line 111, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 135, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_channel_box {
   margin: 10px;
   width: 150px;
@@ -124,12 +148,12 @@ div#inner:hover input.follow_button {
   background: #903737;
 }
 
-/* line 122, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 146, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_channel_box:hover {
   cursor: pointer;
 }
 
-/* line 127, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 151, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_channel_box span {
   padding: 0px 0 0 0;
   margin-top: 5px;
@@ -138,7 +162,7 @@ div#inner:hover input.follow_button {
   color: #a4a88d;
 }
 
-/* line 136, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 160, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_update_time_box {
   float: left;
   margin-top: 65px;
@@ -147,7 +171,7 @@ div#inner:hover input.follow_button {
   font-style: italic;
 }
 
-/* line 145, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 169, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_total_posts_box {
   float: left;
   margin-top: 80px;
@@ -156,7 +180,7 @@ div#inner:hover input.follow_button {
   font-style: italic;
 }
 
-/* line 154, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 178, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box {
   padding-left: 10px;
   margin-top: 10px;
@@ -167,7 +191,7 @@ div#inner:hover input.follow_button {
   display: block;
 }
 
-/* line 166, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 190, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_attachments {
   float: left;
   font-size: 12px;
@@ -179,12 +203,12 @@ div#inner:hover input.follow_button {
   margin-bottom: 2px;
 }
 
-/* line 178, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 202, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_attachments span {
   font-size: 16px;
 }
 
-/* line 182, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 206, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_friends {
   float: left;
   border: 1px solid #ccc;
@@ -195,13 +219,13 @@ div#inner:hover input.follow_button {
   margin-top: 2px;
 }
 
-/* line 194, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 218, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_friends span {
   width: 100%;
   font-size: 16px;
 }
 
-/* line 200, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 224, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_friends li {
   overflow: hidden;
   margin-top: 10px;
@@ -209,12 +233,12 @@ div#inner:hover input.follow_button {
   width: 80px;
 }
 
-/* line 208, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 232, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_friends li a span {
   font-size: 12px;
 }
 
-/* line 213, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 237, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_entities {
   float: left;
   border: 1px solid #ccc;
@@ -225,13 +249,13 @@ div#inner:hover input.follow_button {
   margin-top: 2px;
 }
 
-/* line 224, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 248, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_entities span {
   width: 100%;
   font-size: 16px;
 }
 
-/* line 229, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 253, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_entities li {
   overflow: hidden;
   margin-top: 10px;
@@ -239,12 +263,12 @@ div#inner:hover input.follow_button {
   width: 80px;
 }
 
-/* line 237, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 261, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_entities li a span {
   font-size: 12px;
 }
 
-/* line 242, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 266, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_locations {
   float: left;
   border: 1px solid #ccc;
@@ -255,25 +279,25 @@ div#inner:hover input.follow_button {
   margin-top: 2px;
 }
 
-/* line 253, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 277, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_locations span {
   width: 100%;
   font-size: 16px;
 }
 
-/* line 259, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 283, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_locations li {
   display: block;
   overflow: hidden;
   width: 100%;
 }
 
-/* line 266, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 290, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_locations li span {
   font-size: 12px;
 }
 
-/* line 271, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 295, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_latest {
   float: left;
   border: 1px solid #ccc;
@@ -284,13 +308,13 @@ div#inner:hover input.follow_button {
   margin-top: 2px;
 }
 
-/* line 281, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 305, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_latest span {
   width: 100%;
   font-size: 16px;
 }
 
-/* line 286, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 310, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_latest li {
   display: block;
   overflow: hidden;
@@ -299,12 +323,12 @@ div#inner:hover input.follow_button {
   border: 1px solid #ccc;
 }
 
-/* line 295, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 319, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_latest li span {
   font-size: 13px;
 }
 
-/* line 300, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 324, ../../../app/stylesheets/actwitty/profile.scss */
 .summary_main_box_latest li span .js_activity_entity {
   font-sixe: 12px;
   margin-left: 2px;
@@ -324,7 +348,7 @@ div#inner:hover input.follow_button {
   -webkit-border-bottom-right-radius: 10px;
 }
 
-/* line 320, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 344, ../../../app/stylesheets/actwitty/profile.scss */
 .more_loader {
   font-size: 20px;
   color: #000000;
@@ -340,36 +364,36 @@ div#inner:hover input.follow_button {
   float: right;
 }
 
-/* line 338, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 362, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_channels_ul {
   list-style: none;
   width: 80%;
 }
 
-/* line 344, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 368, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_channels_ul li {
   display: block;
 }
 
-/* line 349, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 373, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_things_ul {
   list-style: none;
   width: 80%;
 }
 
-/* line 355, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 379, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_things_ul li {
   display: block;
 }
 
-/* line 360, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 384, ../../../app/stylesheets/actwitty/profile.scss */
 .modal_followers_ul {
   list-style: none;
   width: 80%;
 }
 
 /********************* channel side bar ****************************/
-/* line 367, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 391, ../../../app/stylesheets/actwitty/profile.scss */
 .p-l-followers {
   width: 100%;
   width: 190px;
@@ -379,7 +403,7 @@ div#inner:hover input.follow_button {
   position: absolute;
 }
 
-/* line 377, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 401, ../../../app/stylesheets/actwitty/profile.scss */
 .p-l-followings {
   width: 100%;
   width: 190px;
@@ -389,7 +413,7 @@ div#inner:hover input.follow_button {
   position: absolute;
 }
 
-/* line 387, ../../../app/stylesheets/actwitty/profile.scss */
+/* line 411, ../../../app/stylesheets/actwitty/profile.scss */
 .p-l-followers a, .p-l-followings a {
   float: right;
   text-decoration: underline;

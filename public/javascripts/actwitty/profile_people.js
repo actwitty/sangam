@@ -33,7 +33,7 @@ $(document).ready(function(){
                                         width: 800,
 			                                  modal: true
 		                                  });              
-          get_all_facebookers();
+          //get_all_facebookers();
      });
 
 

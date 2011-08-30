@@ -8,31 +8,10 @@
 
 
 =render :partial => "home/top_bar"
--if user_signed_in?
-  -if current_user.id == @user.id
-    #js_input_box
-      =render :partial => "home/input_box" 
 
 
-
-
-.wrapper.col3
-  #p-ch-st-tab-sect
-    #p-ch-st-tab
-      #p-ch-st-tab-proxy1
-        %ul.p-cstab1
-          %li#invite_tab_head
-            %a{:href => "#invite_tab"} Invite
-          %li#follow_tab_head
-            %a{:href => "#follow_tab"} Follow
-          %li#unfollow_tab_head
-            %a{:href => "#unfollow_tab"} UnFollow 
-          #invite_tab
-            #invite_friends
-          #follow_tab
-            #follow_friends
-          #unfollow_tab
-            #unfollow_friends
+%p#fb_friends Invite Facebook Friends
+#invite_friends  
      
       
  
@@ -60,6 +39,7 @@
 
 
    
+
 
 
 

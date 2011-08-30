@@ -1,6 +1,6 @@
-= javascript_include_tag 'actwitty/placeholder.js'
-= javascript_include_tag 'actwitty/jquery.placeholder.js'
-= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
+/= javascript_include_tag 'actwitty/placeholder.js'
+/= javascript_include_tag 'actwitty/jquery.placeholder.js'
+/= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 #confirmation-page-wrapper
   #confirmation-header
     =render :partial => "welcome/logo"
@@ -14,11 +14,11 @@
           #confirmation-input
             %ul#confirmation-input-list
               %li.confirmation-fields
-                %label.confirmation-labels First Name
+                %label.confirmation-labels First Name1
                 = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
 
               %li.confirmation-fields
-                %label.confirmation-labels Last Name
+                %label.confirmation-labels Last Name1
                 = f.input :last_name,:label=>false, :placeholder => "Last Name",:input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
 
               %li.confirmation-fields
@@ -39,7 +39,7 @@
             %input#confirm-button.connect-buttons{:role => "button", :type => "submit", :value => "Get In"}/
           #tos_pos
             %p
-              By Getting-In you agree to our
+              By Getting-In you agree to our1
               %a{:href => "/terms_of_service.html"} Terms of service  
   
 =render :partial => "welcome/footer"
