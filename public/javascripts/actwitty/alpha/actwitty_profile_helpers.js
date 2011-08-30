@@ -1,4 +1,4 @@
-function reset_to_default(){
+function aw_input_box_reset_to_default(){
   $('#location_field').val("");
   $('#lat_value').val("");
   $('#geo_location').val("");
@@ -6,12 +6,14 @@ function reset_to_default(){
   $('#activity_field').val("");
   $('#entity_field').val("");
   $('#title_field').val("");
+  
+  if ($('.home_page_inputs').is(':visible')) {
+    $(".p-i-c").trigger('click');
+    if($("#input-attachments-section").is(':visible')){
+      $("#input-attachments-section").slideToggle("medium");
+    }
+  }
 
-  $("#attachment").show();
-  $("#input-attachments-section").slideToggle("medium");
-  $("#input-attachments-section").hide();
-  $(".home_page_inputs").slideToggle("medium");
-  $(".add-page-input").show();
           
 
 }
@@ -79,10 +81,17 @@ $(document).ready(function(){
   
 
     $("#attachment").live("click",function(){
-         $("#input-attachments-section").slideToggle("medium");
-        $("#input-attachments-section").show();
-        $(this).hide();
+        $("#input-attachments-section").slideToggle("medium");
+        /*$("#input-attachments-section").show();*/
+        /*$(this).hide();*/
     });
+
+    $("#add_subtitle").live("click",function(){
+        $("#subtitle-div").slideToggle("medium");
+        /*$("#input-attachments-section").show();*/
+        /*$(this).hide();*/
+    });
+
 
     /* to display the comment input system for inputting comments.  like google+ */ 
     $(".add-comment").live("click",function(){
@@ -210,5 +219,9 @@ $(document).ready(function(){
 
     /* to make sure that only alphanumeric characters are allowed in activity field*/
     $("#activity_field").alphanumeric();
+
+    $("#aw_login_open").click(function(){
+      $("#aw_home_header_signin_box").slideToggle();
+    }); 
 
 });

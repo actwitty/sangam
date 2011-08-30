@@ -699,6 +699,7 @@ class User < ActiveRecord::Base
 
     a = Activity.where(:id => params[:activity_id]).first
 
+
     #false activity
     if a.blank?
       Rails.logger.debug("[MODEL] [User] [update_activity] [ERROR] returning empty json ")
@@ -712,8 +713,10 @@ class User < ActiveRecord::Base
     url = []
 
     #collect params docs in array
-    params[:documents].each do |attr|
-      url << attr[:url]
+    unless params[:documents].blank?
+      params[:documents].each do |attr|
+        url << attr[:url]
+      end
     end
 
     #remove the existing activity docs if input params docs is blank

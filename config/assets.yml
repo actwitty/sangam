@@ -72,7 +72,7 @@ javascripts:
     - public/javascripts/actwitty/profile_images.js
     - public/javascripts/actwitty/profile_videos.js
     - public/javascripts/actwitty/tooltip.js   
-    - public/javascripts/actwitty/map.js   
+    - public/javascripts/actwitty/profile_fb.js   
 
 
   main:
@@ -115,6 +115,7 @@ stylesheets:
     - public/stylesheets/actwitty/simple_form.css
     - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/alpha/main_page_user.css
+    - public/stylesheets/actwitty/alpha/actwitty_home_page.css
     - public/stylesheets/actwitty/home_page.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/plugins/jquery-autocomplete/lib/thickbox.css

@@ -70,6 +70,7 @@
 %input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
 %input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+%input#hidden_draft_post_id{:type=>"hidden"}
 - if user_signed_in?
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 - else

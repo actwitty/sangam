@@ -1,0 +1,507 @@
+
+body{
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:verdana, Arial, Helvetica, sans-serif;
+	color:#CCCCCC;
+	background-color:#fff;
+	}
+
+img{border:0; padding:0; margin:0;}
+.justify{text-align:justify;}
+.bold{font-weight:bold;}
+.center{text-align:center;}
+.right{text-align:right;}
+.nostart {list-style-type:none; margin:0; padding:0;}
+.clear{clear: both;}
+br.clear{clear:both; margin-top:-15px;}
+a{outline:none; text-decoration:none;}
+
+.fl_left{float:left;}
+.fl_right{float:right;}
+
+.imgl, .imgr{border:0px solid #DFDFDF; padding:5px; color:#666666; background-color:#FFFFFF;}
+.imgl{float:left; margin:0 8px 8px 0; clear:left;}
+.imgr{float:right; margin:0 0 8px 8px; clear:right;}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+
+div.wrapper_hompage{
+	display:block;
+	width:100%;
+	margin:0;
+	text-align:left;
+	}
+
+
+.homep_col1{color:#D2D2D2; background-color:#eee7dd;}
+.homep_col2{color:#FFFFFF; background-color:#eee7dd;}
+.homep_col2 a{color:#A6DFD9; background-color:#424242;}
+.homep_col3{color:#000000; background-color:#424242;}
+.homep_col3 a{color:#FFFFFF; background-color:#424242;}
+.homep_col4{color:#666666; background-color:#424242;}
+.homep_col4 a{color:#FF9900; background-color:#424242;}
+.homep_col5{color:#666666; background-color:#424242; }
+.homep_col6, .homep_col6 a{color:#CCCCCC; background-color:#424242;}
+
+
+.homep_col10{color:#666666; background-color:#424242;}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+
+#homep_header, #aw_home_intro, #aw_home_latest, #aw_home_container, #aw_home_footer, #aw_home_copyright, #aw_forgot_password
+{
+	position:relative;
+	margin:0 auto 0;
+	display:block;
+	width:960px;
+	}
+
+/* ----------------------------------------------Header-------------------------------------*/
+
+#homep_header{
+	padding:0px 0;
+	z-index:1000;
+  height:60px;
+  border:0px solid black;
+  height:150px;
+}
+
+#aw_home_header_div
+{
+  margin:0 auto;
+  width:305px;
+  height:130px;
+  border:0px solid blue;
+  background:#484848;
+  
+  -moz-box-shadow: 5px 5px 5px #ccc;
+  -webkit-box-shadow: 5px 5px 5px #ccc;
+  box-shadow: 5px 5px 5px #ccc;
+
+  
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
+
+
+
+
+
+#aw_home_header_signin_box
+{
+  width:185px;
+  /*height:100px;*/
+  padding:0px 0px 5px 0px;
+  height:auto;
+  
+  border:0px solid red;
+  float:right;
+  margin-top:-130px;
+  margin-right:143px;
+  background:#868686;
+  display:none;
+}
+
+
+#aw_home_header_signin_inputs
+{ 
+  width:190px;
+  border:0px solid red;
+}
+
+#aw_home_header_signin_inputs a
+{
+  margin-left:5px;
+  color:#ddd;
+}
+
+#aw_home_header_signin_inputs input
+{
+  width:170px;
+  height:20px;
+  margin-top:8px;
+  margin-left:6px;
+  border:0px solid #ddd;
+  background:#ebebeb;
+  border:1px solid #ddd;
+  font-family: nimbus-sans-condensed,sans-serif;
+}
+
+input#signinbutton
+{
+  width:60px;
+  background:#ff9600;
+  padding:2px;
+  border:none;
+  height:22px;
+}
+
+input#aw_header_signin:hover
+{
+  cursor:pointer;
+}
+
+
+#aw_home_header_signin
+{
+  width:300px;
+  height:20px;
+  border:0px solid blue;
+}
+
+#aw_home_header_signin span
+{
+  
+  float:right;
+  font-size:12px;
+  padding:4px 10px 0 0px;
+}
+
+
+#aw_home_header_signin span a
+{
+  color:#ff9700;
+}
+
+#aw_home_header_logo
+{
+  width:300px;
+  height:53px;
+  margin-top:40px;
+  margin-bottom:40px;
+  background-image: url("/images/alpha/logo_topbar.png");
+  border:0px solid red;
+}
+
+
+
+
+/* ----------------------------------------------Homepage Intro-------------------------------------*/
+#aw_home_intro
+{
+  padding:0px 0;
+	z-index:1000;
+  height:250px;
+  border:0px solid red;
+  
+}
+
+
+#aw_home_intro_image
+{
+  height:250px;
+  width:593px;
+  background-image: url("/images/alpha/logo_n_text_page.png");
+  background-repeat:no-repeat;
+  border:0px solid green;
+  float:left;
+  border-right:1px solid #ddd;
+}
+
+#aw_home_intro_signup_sect
+{
+  width:363px;
+  height:250px;
+  border:0px solid blue;
+  float:right;
+}
+
+
+
+#aw_home_intro_signup_new_here
+{
+  width:230px;
+  height:59px;
+  border:0px solid red;
+  margin:0px auto;
+  background-image: url("/images/alpha/new_here.png");
+  background-repeat:no-repeat;
+}
+#aw_home_intro_signup_new_here_info
+{
+  width:230px;
+  height:59px;
+  border:0px solid red;
+  margin:0px auto;
+  background-image: url("/images/alpha/register_help.png");
+  background-repeat:no-repeat;
+  margin-left:20px;
+}
+
+
+#aw_home_intro_register_box
+{
+  width:300px;
+  height:130px;
+  margin:0px auto;
+  border:0px solid blue;
+}
+
+#aw_home_intro_register_inputs
+{
+  height:100px;
+  margin:0px auto;
+  border:0px solid green;
+  margin-top:15px;
+}
+#aw_home_intro_register_inputs input
+{
+  margin-left:50px;
+  border:0px solid #ddd;
+  margin-top:5px;
+  background:#ebebeb;
+  border:1px solid #ddd;
+  font-family: nimbus-sans-condensed,sans-serif;
+}
+input#signupbutton
+{
+  background:#ff9600;
+  float:right;
+  margin-right:50px;
+  padding:2px;
+  height:23px;
+}
+input#aw_intro_register:hover
+{
+  cursor:pointer;
+}
+#aw_register_email , #aw_register_password
+{
+  width:200px;
+  height:25px;
+
+}
+#sns_twitter_id{
+  float:right;
+  margin-right:30px;
+  padding:2px;
+  /*height:23px;*/
+}
+
+#sns_facebook_id{
+  float:right;
+  padding:2px;
+  /*margin-right:10px;
+  padding:2px;
+  height:23px;*/
+}
+
+/* ----------------------------------------------Homepage Container -------------------------------------*/
+#aw_home_container
+{
+  padding:0px 0;
+  height:220px;
+  border:0px solid red;
+}
+
+.aw_home_container_intro
+{
+  width:180px;
+  height:190px;
+  border:0px solid red;
+  float:left;
+  margin-left:110px;
+  margin-top:20px;
+}
+
+#aw_container_intro_filters
+{
+  background-image: url("/images/alpha/filters_box.png");
+  background-repeat:no-repeat;
+}
+
+#aw_container_intro_channels
+{
+  background-image: url("/images/alpha/channels_box.png");
+  background-repeat:no-repeat;
+}
+
+#aw_container_intro_summary
+{
+  background-image: url("/images/alpha/summaries_box.png");
+  background-repeat:no-repeat;
+}
+
+.aw_home_divider
+{
+  width:790px;
+  height:5px;
+  margin:0px auto;
+  background-image: url("/images/alpha/greybar_divider_horizontal.png");
+  background-repeat:no-repeat;
+  margin-top:0px;
+}
+
+
+
+
+
+/* ----------------------------------------------Homepage Latest-------------------------------------*/
+#dummy_block
+{
+  height:20px;
+}
+#aw_home_latest
+{
+  padding:0px 0;
+	z-index:1000;
+  height:160px;
+  border:0px solid blue;
+}
+
+#aw_home_latest_section
+{
+  height:150px;
+  margin-top:0px;
+  border:0px solid red;
+}
+
+#aw_home_latest_updates
+{
+  height:70px;
+  border:0px solid blue;
+  margin-top:10px;
+}
+
+#aw_home_latest_updates a img
+{
+  width:60px;
+  height:60px;
+  margin-left:5px;
+}
+
+
+
+/* ----------------------------------------------Footer-------------------------------------*/
+
+#aw_home_footer{
+  height:40px;
+  border:0px solid red;
+}
+
+#aw_home_footer a
+{
+  color:#ddd;
+  font-size:18px;
+  font-weight:bold;
+  margin:0px auto;
+  padding:5px 15px;
+}
+
+/* ----------------------------------------------Copyright-------------------------------------*/
+
+#copyright{
+	padding:20px 0;
+	}
+
+#copyright p{
+	margin:0;
+	padding:0;
+	}
+
+
+/******************************************  Forgot Password *********************************/
+#aw_forgot_password
+{
+  height:300px;
+  border:0px solid red;
+}
+
+#forgot-site-connect {
+  /*background:#373735;*/
+  width: 100%;
+  height: 300px;
+
+
+  /*
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+
+  box-shadow: 0 0 6px  #fff;
+  -moz-box-shadow: 0 0 6px  #fff;
+  -webkit-box-shadow: 0 0 6px  #fff;
+  -o-box-shadow: 0 0 6px #fff;
+  */
+}
+
+#forgot-sign_in_up {
+  display: block;
+  float: right;
+  background: #fff;
+  height: 75%;
+  width: 470px;
+  padding: 10px 0 0 20px;
+  margin:0px auto;
+  margin-top: 25px;
+  margin-right: 230px;
+  font-size:28px;
+
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0 0 6px  #3a3a3a;
+  -moz-box-shadow: 0 0 6px  #3a3a3a;
+  -webkit-box-shadow: 0 0 6px  #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+}
+#forgot-password-input
+{
+  width:250px;
+  height:30px;
+  border:1px solid #ddd;
+  margin-left:10px;
+  font-size:20px;
+}
+
+#forgot-sign-connect-desc {
+  /*padding:10px;*/
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+
+#forgot-sign-connect-desc h3
+{
+  font-size:44px;
+  
+}
+
+
+
+#forgot-site-connect-buttons {
+  display: block;
+}
+
+
+.connect-buttons
+{
+  border:none;
+  width:auto;
+  height:26px;
+  background:#ff9600;
+  margin-left:10px;
+  font-size:18px;
+  color:#fff;
+}
+.connect-buttons:hover
+{
+  cursor:pointer;
+}
+
+
+
+/************************************ Resend Confirmation ********************************/
+#resend_confirmation
+{
+  text-decoration:none;
+  background:none;
+  color:#333;
+  margin-left:50px;
+}
