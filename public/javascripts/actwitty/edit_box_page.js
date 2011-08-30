@@ -99,12 +99,15 @@ function populate_to_input(post_json){
 }
 
 function init_edit_box(post_id){
-  
-  reset_to_default();
+
+  if ($('.home_page_inputs').is(':visible')) {
+    aw_input_box_reset_to_default();
+  }
   clear_all_input_jsons();
   $("#pre_uploaded_docs").empty();
-  $(".add-page-input").hide();
-  $(".home_page_inputs").show();
+  $('.add-page-input').trigger('click');
+
+
   $.ajax({
         url: '/home/get_single_activity.json',
         type: 'GET',

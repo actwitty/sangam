@@ -2504,7 +2504,7 @@ a.js_handle_stream_entity_mention:hover span
   margin-bottom:2px;
   padding:2px;
   display:block;
-  border:2px solid #333;
+  border:1px solid #333;
   font-family: nimbus-sans-condensed,sans-serif;
   color:#333;
   overflow: auto;
@@ -2527,6 +2527,7 @@ a.js_handle_stream_entity_mention:hover span
 {
   cursor:pointer;
 }
+
 .p-preload-image-data{
   margin-top:10px;
   width:100%;
@@ -2546,7 +2547,7 @@ a.js_handle_stream_entity_mention:hover span
   padding-top:20px;
   padding-left:10px;
   width:350px;
-  border:2px solid #333;
+  border:1px solid #333;
   font-family: nimbus-sans-condensed,sans-serif;
   color:#333;
 }

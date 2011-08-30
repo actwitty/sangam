@@ -1,4 +1,4 @@
-function reset_to_default(){
+function aw_input_box_reset_to_default(){
   $('#location_field').val("");
   $('#lat_value').val("");
   $('#geo_location').val("");
@@ -6,12 +6,14 @@ function reset_to_default(){
   $('#activity_field').val("");
   $('#entity_field').val("");
   $('#title_field').val("");
+  
+  if ($('.home_page_inputs').is(':visible')) {
+    $(".p-i-c").trigger('click');
+    if($("#input-attachments-section").is(':visible')){
+      $("#input-attachments-section").slideToggle("medium");
+    }
+  }
 
-  $("#attachment").show();
-  $("#input-attachments-section").slideToggle("medium");
-  $("#input-attachments-section").hide();
-  $(".home_page_inputs").slideToggle("medium");
-  $(".add-page-input").show();
           
 
 }

@@ -713,8 +713,10 @@ class User < ActiveRecord::Base
     url = []
 
     #collect params docs in array
-    params[:documents].each do |attr|
-      url << attr[:url]
+    unless params[:documents].blank?
+      params[:documents].each do |attr|
+        url << attr[:url]
+      end
     end
 
     #remove the existing activity docs if input params docs is blank

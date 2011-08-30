@@ -63,7 +63,13 @@ module UploadsHelper
 		runtimes : 'flash',
 		url : 'https://s3.amazonaws.com/#{bucket}',
 		max_file_size : '5mb',
-		max_file_count: get_max_file_that_can_be_uploaded(), // user can add no more then 5 files at a time
+		max_file_count: function(){
+                      if($.isFunction(get_max_file_that_can_be_uploaded)){
+                        return get_max_file_that_can_be_uploaded();
+                      }else{
+                        return 5;
+                      }
+                    }, // user can add no more then 5 files at a time
 		unique_names : true,
 		multiple_queues : true,
 
@@ -105,7 +111,6 @@ module UploadsHelper
     var file_name = user_id + '_' + now.getTime() + '_';
     return file_name;
   }
-
   /* Single file upload handler */
   var uploader=$('#uploader').plupload('getUploader');
   var queuefile=new Array();

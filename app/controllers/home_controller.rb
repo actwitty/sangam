@@ -763,7 +763,6 @@ class HomeController < ApplicationController
     end
 
     @success=true
-
     respond_to do |format|
       format.json
     end

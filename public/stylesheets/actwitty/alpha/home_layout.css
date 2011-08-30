@@ -2561,7 +2561,7 @@ a.js_handle_stream_entity_mention:hover span {
   margin-bottom: 2px;
   padding: 2px;
   display: block;
-  border: 2px solid #333;
+  border: 1px solid #333;
   font-family: nimbus-sans-condensed,sans-serif;
   color: #333;
   overflow: auto;
@@ -2587,14 +2587,14 @@ a.js_handle_stream_entity_mention:hover span {
   cursor: pointer;
 }
 
-/* line 2530, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2531, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-preload-image-data {
   margin-top: 10px;
   width: 100%;
   height: auto;
 }
 
-/* line 2535, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2536, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-preload-image-data .preupload-image {
   margin-left: 10px;
   width: 70px;
@@ -2603,12 +2603,12 @@ a.js_handle_stream_entity_mention:hover span {
   float: left;
 }
 
-/* line 2545, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2546, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-preupload-caption input {
   padding-top: 20px;
   padding-left: 10px;
   width: 350px;
-  border: 2px solid #333;
+  border: 1px solid #333;
   font-family: nimbus-sans-condensed,sans-serif;
   color: #333;
 }

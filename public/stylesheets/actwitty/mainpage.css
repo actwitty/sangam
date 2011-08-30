@@ -366,7 +366,7 @@ padding:5px;
 
 /* line 358, ../../../app/stylesheets/actwitty/mainpage.scss */
 .icon.medium.twitter {
-  background-position: 0px -30px;
+  /*background-position: 0px -30px;*/
   float: right;
   margin-right: 30px;
 }

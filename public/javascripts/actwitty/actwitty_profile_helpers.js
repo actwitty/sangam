@@ -67,6 +67,7 @@ $(document).ready(function(){
 
     /* to display the input system for creating posts.....  like google+ */ 
     $(".add-page-input").click(function(event){
+      alert("clicked here");
       $(this).hide();
       $(".home_page_inputs").slideToggle("medium");
     });

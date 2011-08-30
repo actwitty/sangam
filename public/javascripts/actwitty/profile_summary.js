@@ -425,7 +425,7 @@ function get_add_channel_html(){
              '<span>' + 
                   '<a  class="js_add_channel_minimize" > Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
                   '</a>' +
-                  //'<a  class="js_add_facebook_friends" href="#"> Add Facebook Friends' +'</a>' +
+                  '<a  class="js_add_facebook_friends" href="#"> Add Facebook Friends' +'</a>' +
              '</span>' +
              '<div class="js_summary_add_channel_box p-channelp-auth-add-channel-box">' +
                 '<span>' +
@@ -776,7 +776,7 @@ function create_and_add_summary(summary_box, summary , hide_class){
         /* overall summary div is added */        
         summary_box.append(html);
         var background_theme =  get_base_theme_image_url() + "pink.jpg";
-        if( summary.theme_data.url && summary.theme_data.url){
+        if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
         var word_name_box = $('#' + unique_id).find('.js_word_name_box');
