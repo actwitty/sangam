@@ -372,6 +372,13 @@ $(document).ready(function(){
     });
     $(this).closest('li').remove();
   });
+  $('#fb_friends').click(function(){
+     get_all_facebookers();
+  });
+  $('.js_add_facebook_friends').click(function(){
+     get_all_facebookers();
+  });
+  //get_all_facebookers();
  
 
 });
