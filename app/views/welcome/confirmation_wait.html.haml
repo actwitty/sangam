@@ -1,15 +1,24 @@
-#page-wrapper
-  #header
-    =render :partial => "welcome/logo"
+= javascript_include_tag 'actwitty/placeholder.js'
+= javascript_include_tag 'actwitty/jquery.placeholder.js'
+= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 
-  #forgot-site-connect
-    #forgot-sign_in_up
-      #forgot-sign-connect-desc
-        %h3#forgot-desc.desc Email confirmation pending.
-        %p
-          An email has been sent to your id: #{params[:email]}.
-          %br/
-          Please click email id by clicking the link mentioned in email.
-          %br/
 
-  =render :partial => "welcome/footer"
+
+=render :partial => "welcome/logo"       
+
+.wrapper_hompage.homep_col10
+  #aw_forgot_password
+    #forgot-site-connect
+      #forgot-sign_in_up
+        #forgot-sign-connect-desc
+          %h3#forgot-desc.desc Email confirmation pending.
+          %p
+            An email has been sent to your id: 
+            %strong #{params[:email]}
+            %br/
+            Please click the link mentioned in the email to activate your account.
+            %br/
+
+       
+=render :partial => "welcome/footer"
+
