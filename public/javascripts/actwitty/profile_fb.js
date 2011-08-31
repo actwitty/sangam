@@ -18,7 +18,7 @@
 
 $(document).ready(function(){
   //$("#y").append("Hello");
-  get_all_facebookers(); 
+  //get_all_facebookers(); 
  /* 
   $("ul.p-cstab1 li").click(function() {
 

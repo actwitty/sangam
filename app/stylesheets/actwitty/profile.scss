@@ -15,6 +15,8 @@ div#txt{
  font-size: 13px;
  padding: 8px 4px 4px 4px;
  word-wrap: break-word;
+ font-color:red; 
+ background:#000000;
 }
 */
 div#inner{
@@ -31,15 +33,7 @@ div#ex1{
  margin-left:10px;
 
 }
-div#txt{
- /*float:right;*/
- margin-left:60px;
- margin-bottom:-20px;
- font-size: 13px;
- padding: 8px 4px 4px 4px;
- word-wrap: break-word;
- font-color:#000000; 
-}
+
 .img{
  margin:5px;
 }
