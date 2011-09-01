@@ -3119,3 +3119,7 @@ a.js_handle_stream_entity_mention:hover span {
 	transition: color 0.25s ease-in-out;
 }
 */
+/* line 2991, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+#query_review_parent {
+  display: none;
+}
