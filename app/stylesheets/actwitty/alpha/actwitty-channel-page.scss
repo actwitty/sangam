@@ -269,12 +269,14 @@
   width:100%;
   height:40px;
   background:#b847cf;
+  background:#388e8e;
   margin-top:10px;
   color:#fff;
+  font-size:16px;
 }
 .p-channelp-post-like p center
 {
-  font-size:15px;
+  font-size:18px;
   text-align:center;
   color:#fff;
 }
@@ -287,6 +289,7 @@
   background:#afa3ad;
   margin-top:10px;
   color:#fff;
+  font-size:16px;
 }
 
 
@@ -294,7 +297,7 @@
 
 .p-channelp-post-post p center
 {
-  font-size:15px;
+  font-size:18px;
   text-align:center;
   color:#fff;
 }
@@ -683,6 +686,7 @@ span.name a
   height:150px;
   border:0px solid blue;
   display:none;
+  color:#333;
 }
 
 .p-channelp-rel-frnd
@@ -703,6 +707,7 @@ span.name a
 {
   text-align:left;
   color:#000;
+  font-size:16px;
 }
 
 
@@ -722,7 +727,7 @@ span.name a
 {
   width:21%;
   height:150px;
-  background:#fff;
+  /*background:#fff;*/
   float:left;
   margin-left:4px;
 }
@@ -736,6 +741,7 @@ span.name a
 {
   text-align:left;
   color:#000;
+  font-size:16px;
 }
 
 ul .p-channelp-post-relelem
@@ -789,6 +795,7 @@ ul .p-channelp-post-relelem
 {
   text-align:left;
   color:#000;
+  font-size:16px;
 }
 
 .p-channelp-post-relloc-sect
@@ -812,7 +819,8 @@ ul .p-channelp-post-relelem
 .p-channelp-post-rel-img-header span
 {
   text-align:left;
-  color:#000;
+  color:#333;
+  font-size:16px;
 }
 
 
@@ -857,6 +865,7 @@ ul .p-channelp-post-relelem
   width:100%;
   height:30px;
   border:0px solid blue;
+  font-size:20px;
 }
 
 .p-channelp-author-name span
@@ -870,6 +879,7 @@ ul .p-channelp-post-relelem
   width:100%;
   height:auto;
   border:0px solid red;
+  font-size:16px;
 }
 
 .p-channelp-auth-last-upd-hd
@@ -895,11 +905,13 @@ ul .p-channelp-post-relelem
 {
   width:100%;
   height:12px;
+  font-size:10px;
 }
 .p-channelp-auth-last-upd-post-time span
 {
   float:right;
   color:#fff;
+  font-size:8px;
 }
 
 
@@ -912,7 +924,7 @@ ul .p-channelp-post-relelem
 .p-channelp-auth-last-upd-post-text p
 {
   color:#fff;
-  font-size:14px;
+  font-size:16px;
 }
 
 
@@ -988,6 +1000,8 @@ ul .p-channelp-post-relelem
 }
 .p-channelp-summary-theme-show{
   float:left;
+  font-size:16px;
+
 }
 .p-channelp-summary-theme-show{
    cursor:pointer;
@@ -1006,4 +1020,11 @@ ul .p-channelp-post-relelem
 
 .p-channelp-summary-theme-img:hover{
    cursor:pointer;
+}
+
+
+
+.summary_links_styling
+{
+font-size:14px;
 }

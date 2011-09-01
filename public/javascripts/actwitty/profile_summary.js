@@ -18,12 +18,12 @@ function get_summary_theme_images(){
                  'green.jpg',
                  'pebbles.jpg',
                  'wood.jpg',
-                'kaliedoscope.jpg',
-                'pink.jpg',
-                'yellow.jpg',
-                'forest.jpg',
-                'marine.jpg',
-                'red.jpg'
+                 'kaliedoscope.jpg',
+                 'pink.jpg',
+                 'yellow.jpg',
+                 'forest.jpg',
+                 'marine.jpg',
+                 'red.jpg'
                ];
   return images;
 }
@@ -425,7 +425,7 @@ function get_add_channel_html(){
              '<span>' + 
                   '<a  class="js_add_channel_minimize" > Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
                   '</a>' +
-                  '<a  class="js_add_facebook_friends" href="#"> Add Facebook Friends' +'</a>' +
+                  '<a  class="js_add_facebook_friends" href="/home/facebook_friends"> Add Facebook Friends' +'</a>' +
              '</span>' +
              '<div class="js_summary_add_channel_box p-channelp-auth-add-channel-box">' +
                 '<span>' +
