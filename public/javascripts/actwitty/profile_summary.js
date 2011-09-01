@@ -18,12 +18,12 @@ function get_summary_theme_images(){
                  'green.jpg',
                  'pebbles.jpg',
                  'wood.jpg',
-                'kaliedoscope.jpg',
-                'pink.jpg',
-                'yellow.jpg',
-                'forest.jpg',
-                'marine.jpg',
-                'red.jpg'
+                 'kaliedoscope.jpg',
+                 'pink.jpg',
+                 'yellow.jpg',
+                 'forest.jpg',
+                 'marine.jpg',
+                 'red.jpg'
                ];
   return images;
 }
