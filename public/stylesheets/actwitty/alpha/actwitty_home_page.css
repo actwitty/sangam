@@ -527,12 +527,15 @@ input#aw_intro_register:hover {
   display: block;
   float: right;
   background: #fff;
-  height: 75%;
+  height: 65%;
+  /*75%*/
   width: 470px;
   padding: 10px 0 0 20px;
   margin: 0px auto;
-  margin-top: 25px;
-  margin-right: 230px;
+  margin-top: 85px;
+  /*25*/
+  margin-right: 400px;
+  /*230*/
   font-size: 28px;
   border-radius: 2px;
   -moz-border-radius: 2px;
