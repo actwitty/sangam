@@ -374,11 +374,25 @@ $(document).ready(function(){
   });
   $('#fb_friends').click(function(){
      get_all_facebookers();
+     $('#empty_check').hide();
   });
   $('.js_add_facebook_friends').click(function(){
      get_all_facebookers();
+     $('#empty_check').hide();
   });
   //get_all_facebookers();
+  //if ($('#invite_friends').is(':empty'))
+  //alert($('#invite_friends').children().size());
+  if ($('#invite_friends').children().size() > 1)
+  {
+      //$('#invite_friends').append('<h3 id="empty_check">No Facebook friends In your Profile.Invite them.</h3>');
+      $('#empty_check').hide();
+  }
+  else
+  {
+      $('#empty_check').show();
+      //$('#empty_check').remove();
+  }
  
 
 });
