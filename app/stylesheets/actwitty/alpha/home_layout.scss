@@ -148,7 +148,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   width:990px;
   height:auto;
   border:0px solid red;
-  z-index:2000;
+  z-index:1250;
   background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;
 }
@@ -1657,6 +1657,7 @@ ul.p-fltr-tag-list li
   height:auto;
   /*margin-top:160px;*/
   position:fixed;
+  font-size:16px;
 }
 
 
@@ -1677,12 +1678,12 @@ ul.p-fltr-tag-list li
 .p-r-fltr-by
 {
   width:100%;
-  height:15px;
+  height:20px;
   margin:2px 0 2px 0;
 }
 .p-r-fltr-by span
 {
-  font-size:11px;
+  font-size:16px;
   text-decoration:underline;
 }
 
