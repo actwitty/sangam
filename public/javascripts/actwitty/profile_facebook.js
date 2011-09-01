@@ -231,13 +231,27 @@ function renderFacebookers(json){
   $.each(json, function(i,data){
       if( data ){
         var li_id = "fb_li_" + data.uid;
-	var html="";
+	      var html="";
+        var str;
+     
+         //alert(data.name.length); 
+         if( data.name.length > 12 )
+         {  
+           var limit = 12;                
+           str = data.name;        
+           var strtemp = str.substr(0,limit); 
+           str = strtemp+ '..' + '<span class="hide">' + str.substr(limit,str.length) + '</span>'; 
+         }
+         else
+         {
+           str = data.name;
+         }
 
         if (!data.user_id){
         var html= '<li class="lk"><div id="' + li_id  +  '" class="user_stamp">' +
 	'<div id="ex1">' +
 	'<img class="img" src="' + data.image + '" height="55" width="50" align="left">'+
-       	'<div id="txt1">' +  data.name + '</div>'+
+       	'<div id="txt1">' +  str  + '</div>'+
 	'<div id="inner">'+
 		'<input type="button"  height="25" width="25" value="Invite" class="fb_invite" id="' + data.uid + '"/>' +
 	'</div>'+
@@ -251,7 +265,7 @@ function renderFacebookers(json){
 		'<div id="ex1">' +
 			'<a href="#" id="user_nav_' +  data.user_id + '" class="link_user_stamp user_nav">' +
 			       	'<img class="img" src="' + data.image + '" height="55" width="50" align="left">'+
-				'<div id="txt1">' +  data.name + '</div>'+
+				'<div id="txt1">' +  str + '</div>'+
 			'</a>'+ 
 			'<input type="hidden" id="user_nav_' +  data.user_id + '_hidden" value="' +  data.user_id + '"/>'+
      		'</div>'+
