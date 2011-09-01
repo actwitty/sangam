@@ -1310,13 +1310,13 @@ ul.p-cstab1 li a {
   color:#ffffff;
 }
 
-
+/*
 .p-st-flt-location
 {
   background:#274521;
   color:#a4a88d;
 }
-
+*/
 .p-st-fltr-search-img{
   height:30px;
   width:30px;
@@ -1457,7 +1457,7 @@ ul.p-cstab1 li a {
   padding:2px;
 }
 
-
+/*
 .p-fltr-tag-list-location
 {
   display:block;
@@ -1474,25 +1474,23 @@ ul.p-cstab1 li a {
   text-decoration:none;
   text-align:center;
 }
+*/
 .p-fltr-tag-list-location span
 {
 
-  color:#a4a88d;
-  background:#274521;
+ background:#7aa367;
+  color:#ffffff;
+  width:auto;
   padding:2px;
   font-weight:normal;
   text-decoration:none;
-  font-size:10px;
-  padding:2px;
-  width:100%;
-  
+  font-size:16px; 
 }
 
-.p-fltr-tag-list-entity
+.p-fltr-tag-list-entity, p-fltr-tag-list-location
 {
   display:block;
   float:right;
-  /*width:80px;*/
   width:auto;
   overflow:hidden;
   height:18px;
@@ -1505,19 +1503,18 @@ ul.p-cstab1 li a {
   text-align:center;
   padding:2px;
 
- 
 }
-.p-fltr-tag-list-entity span
+.p-fltr-tag-list-entity span 
 {
   background:#7aa367;
   color:#ffffff;
-  /*width:100%;*/
   width:auto;
   padding:2px;
   font-weight:normal;
   text-decoration:none;
   font-size:16px;
 }
+
 
 ul.p-fltr-tag-list
 {
@@ -2254,7 +2251,7 @@ div.p-awp-actions .p-awp-edit
   text-decoration:none;
   text-align:center;
 }
-*/
+
 .p-fltr-tag-list-location span
 {
 
@@ -2268,7 +2265,7 @@ div.p-awp-actions .p-awp-edit
   width:100%;
   
 }
-
+*/
 
 
 
