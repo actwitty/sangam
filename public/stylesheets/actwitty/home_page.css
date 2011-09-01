@@ -90,13 +90,19 @@ ul.sc_menu1 {
   /*border:2px solid yellow;*/
 }
 
-/* line 85, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 84, ../../../app/stylesheets/actwitty/home_page.scss */
+div#txt1 {
+  font-color: #ccc;
+  color: #ffffff;
+}
+
+/* line 88, ../../../app/stylesheets/actwitty/home_page.scss */
 li.lk {
   width: 130px;
   margin: 5px;
 }
 
-/* line 90, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 93, ../../../app/stylesheets/actwitty/home_page.scss */
 .sc_menu1 li {
   display: block;
   float: left;
@@ -104,13 +110,13 @@ li.lk {
   /*4*/
 }
 
-/* line 95, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 98, ../../../app/stylesheets/actwitty/home_page.scss */
 .sc_menu1 a {
   display: block;
   text-decoration: none;
 }
 
-/* line 99, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 102, ../../../app/stylesheets/actwitty/home_page.scss */
 .sc_menu1 span {
   display: none;
   margin-top: 3px;
@@ -119,18 +125,18 @@ li.lk {
   color: #fff;
 }
 
-/* line 107, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 110, ../../../app/stylesheets/actwitty/home_page.scss */
 .sc_menu1 a:hover span {
   display: block;
 }
 
-/* line 110, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 113, ../../../app/stylesheets/actwitty/home_page.scss */
 .sc_menu1 div {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
 }
 
-/* line 114, ../../../app/stylesheets/actwitty/home_page.scss */
+/* line 117, ../../../app/stylesheets/actwitty/home_page.scss */
 .sc_menu1 li:hover div#inner {
   filter: alpha(opacity=50);
   opacity: 0.5;

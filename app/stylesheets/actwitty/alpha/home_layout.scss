@@ -2823,4 +2823,166 @@ margin-left:205px;
   margin-left:175px;
   margin-top:10px;
 }
+/**************Provider Page****************/
 
+#site-connect-buttons {
+  margin-top: 10px;
+  margin-left:115px;
+  display: block;
+  float: left;
+}
+#signinbutton
+{
+  margin-top:-10px;
+}
+
+#site-connect-nav
+{
+  width:100%;
+  height:30px;
+
+}
+#resend-confirm-nav
+{
+  width:80px;
+  float:left;
+  text-align:center;
+  color:#fff;
+   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size: 12px;
+  margin-left:5px;
+}
+#forgot-password-nav
+{
+  width:80px;
+  float:left;
+  text-align:center;
+  color:#fff;
+  margin-left:30px;
+  font-size:8px;
+   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size: 12px;
+}
+.inputform {
+  margin-left: 30px;
+  height: auto;
+  width: 100%;
+}
+
+#sign_in_up {
+  display: block;
+  float: right;
+  /*background:#121212;*/
+  background: #fdfdfe;
+  /*background: #111211;*/
+  opacity:0.7;
+  background:#445D73;
+  height: auto;
+  width: 470px;
+  padding: 10px 0 0 20px;
+  margin-top: 30px;
+  margin-right: 500px;
+
+
+  /*margin-bottom:10px;
+  
+  margin-left:40px;*/
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  /*
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+
+  box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+  */
+
+}
+
+.main-input-list {
+  list-style-type: none;
+  margin-left: 40px;
+}
+.main-input-list .email-input {
+  float: left;
+  padding: 3px;
+  width:260px;
+}
+
+.password-input {
+  float: left;
+  padding: 3px;
+  margin-top: 5px;
+ 
+  width:260px;
+}
+
+.remember-main {
+  float: none;
+  margin-left: 0px;
+  margin-top: 5px;
+}
+
+#data-input-actions {
+  float: left;
+  margin-top: 10px;
+  margin-right: 40px;
+}
+
+.icon {
+  padding: 0;
+  margin: 0;
+}
+
+.icon.medium {
+  width: 32px;
+  height: 30px;
+  margin: 8px 0 8px 12px;
+  background: transparent url(/images/actwitty/icons-medium.png) no-repeat;
+}
+/*
+.connect-buttons {
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: #ffffff;
+  background: #00BFFF url(/images/actwitty/7.jpg) 7px no-repeat;
+
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+
+  text-decoration: none;
+  
+  font-size: 16px;
+  letter-spacing: 0px;
+  width: 100px;
+  height:40px;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottm: 10px;
+  text-align: center;
+
+  
+
+  background: #398525; 
+	background: -moz-linear-gradient(top, #8DD297 0%, #398525 100%); 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#8DD297), color-stop(100%,#398525));
+
+	box-shadow: inset 0px 0px 6px #fff;
+	-webkit-box-shadow: inset 0px 0px 6px #fff;
+	border: 1px solid #5ea617;
+	border-radius: 4px;
+
+	font: bold 18px/25px Helvetica, Sans-Serif; text-align: center;
+  text-decoration: none;
+	color: #282828;
+	text-shadow: 0px 1px 2px #b4d1ad;
+
+	-moz-transition: color 0.25s ease-in-out;
+	-webkit-transition: color 0.25s ease-in-out;
+	transition: color 0.25s ease-in-out;
+}
+*/

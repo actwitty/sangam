@@ -451,6 +451,30 @@ input#aw_intro_register:hover
   -webkit-box-shadow: 0 0 6px  #3a3a3a;
   -o-box-shadow: 0 0 6px #3a3a3a;
 }
+#forgot-sign_in_up1 {
+  display: block;
+  float: right;
+  background: #fff;
+  height: 85%;/*75%*/
+  width: 470px;
+  padding: 10px 0 0 20px;
+  margin:0px auto;
+  margin-top: 30px;/*25*/
+  margin-right: 400px;/*230*/
+  font-size:28px;
+
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0 0 6px  #3a3a3a;
+  -moz-box-shadow: 0 0 6px  #3a3a3a;
+  -webkit-box-shadow: 0 0 6px  #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+}
+#remember_provider{
+  font-size:8px;
+}
 #forgot-password-input
 {
   width:250px;
