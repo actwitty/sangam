@@ -139,7 +139,7 @@ function post_activity_to_server(post_data, clear, force_edit_mode){
   if(force_edit_mode == undefined){
     force_edit_mode = false;
   }
-
+  alert(JSON.stringify(post_data));
    var reedit_mode = aw_get_reedit_mode();
    if(reedit_mode != 1 || force_edit_mode == true){
       $.ajax({
@@ -147,16 +147,15 @@ function post_activity_to_server(post_data, clear, force_edit_mode){
         type: 'POST',
         data: post_data,
         dataType:"script",
-        cache: true,
         success: function (data) {
           if( clear ) {
-            reset_to_default();
+            aw_input_box_reset_to_default();
             clear_all_input_jsons();
             $("#pre_uploaded_docs").empty();
             aw_lib_alert("New post added");
           }
         },
-          error: function(jqXHR, textStatus, errorThrown){
+        error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
@@ -164,22 +163,22 @@ function post_activity_to_server(post_data, clear, force_edit_mode){
         },
       });
    }else{
-     post_data.activity_id = $("#post_id").val(); 
+     post_data.activity_id = $("#hidden_draft_post_id").val();
+
      $.ajax({
         url: '/home/process_edit_activity.json',
         type: 'POST',
         data: post_data,
-        dataType:"json",
-        cache: true,
+        dataType:"script",
         success: function (data) {
           if( clear ) {
-            reset_to_default();
+            aw_input_box_reset_to_default();
             clear_all_input_jsons();
             $("#pre_uploaded_docs").empty();
             aw_lib_alert("Post processed");
           }
         },
-          error: function(jqXHR, textStatus, errorThrown){
+        error: function(jqXHR, textStatus, errorThrown){
           console.log(jqXHR);
           console.log(textStatus);
           console.log(errorThrown);
@@ -288,6 +287,7 @@ function get_campaigns(){
                   [MANDATORY]
  */
 function document_upload_complete(){
+  aw_lib_console_log("debug","document_upload_complete called"); 
   var latlang = document.getElementById('user_latlng').value;
   /* check if the location field is empty then set type as user input */
   if($('#location_field').val() == "")
@@ -389,17 +389,22 @@ $(document).ready(function() {
 
 
    $("#save_submit_button").live('click', function(){
+      aw_lib_console_log("debug","save button pressed"); 
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
         alert("Nothing set to save a post");
+        aw_lib_console_log("debug","nothing to post"); 
         return false;
       }
       set_generate_status(1);
       /* trigger upload */
+      aw_lib_console_log("debug","start upload"); 
       if(documents_to_upload_count > 0){
+        aw_lib_console_log("debug","triggered uploader start"); 
         $('#uploader_start').trigger('click');  
       }else{
           /* nothing to wait for */
+          aw_lib_console_log("debug","no document to upload, go ahead to post"); 
          document_upload_complete();
       }
       

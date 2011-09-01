@@ -52,18 +52,22 @@ function aw_get_current_stream_mode(){
 }
 /***********************************************/
 function clear_all_stream_modes(){
-  $("#streams_list").empty();
+  $("#streams_list_parent").html('');
+  $("#streams_list_parent").html('<div class="p-awp-post-stream" id="streams_list"> </div>');
   $("#more_streams_cookie").val("");
 
-  $("#streams_drafts_list").empty();
+  $("#streams_drafts_list_parent").html('');
+  $("#streams_drafts_list_parent").html('<div class="p-awp-post-stream" id="streams_drafts_list"> </div>');
   $("#more_streams_drafts_cookie").val("");
 
 
-  $("#streams_images_list").empty();
+  $("#streams_images_list_parent").html('');
+  $("#streams_images_list_parent").html('<div class="p-awp-post-stream" id="streams_images_list"> </div>');
   $("#more_streams_images_cookie").val("");
 
 
-  $("#streams_videos_list").empty();
+  $("#streams_videos_list_parent").html('');
+  $("#streams_images_list_parent").html('<div class="p-awp-post-stream" id="streams_images_list"> </div>');
   $("#more_streams_videos_cookie").val("");
 }
 

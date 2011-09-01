@@ -8,11 +8,11 @@ var the_big_related_channels_json = {};
 /*
  * Populate filtered related friends
  */
-function populate_filtered_friends(box_id, friends){
+function populate_filtered_friends(ele, friends){
   if( !friends && friends.length <= 0 ){
     return;
   }
-  var div = $("#" + box_id);
+  var div = ele;
 
   //alert(JSON.stringify(friends));
 
@@ -39,11 +39,11 @@ function populate_filtered_friends(box_id, friends){
 /*
  * Populate filtered related entities
  */
-function populate_filtered_entities(box_id, entities){
+function populate_filtered_entities(ele, entities){
   if( !entities && entities.length <= 0 ){
     return;
   }
-  var div = $("#" + box_id);
+  var div = ele;
   $.each(entities, function(i, entity){
      var link_id = "stream_related_entity_fltr_" + entity.id;
      var html='<div class="p-fltr-tag-list-entity">' +
@@ -65,11 +65,11 @@ function populate_filtered_entities(box_id, entities){
 /*
  * Populate filtered related locations
  */
-function populate_filtered_locations(box_id, locations){
+function populate_filtered_locations(ele, locations){
   if( !locations && locations.length <= 0 ){
     return;
   }
-  var div = $("#" + box_id);
+  var div = ele;
   
   $.each(locations, function(i, location){
      var link_id = "stream_location_id_" + location.id;
@@ -135,6 +135,7 @@ function populate_filtered_channels(box_id, channels){
 
 /************************************/
 function list_related_friends(){
+    var ele = $("#stream_related_friends");
     $.ajax({
         url: '/home/get_related_friends.json',
         type: 'GET',
@@ -146,7 +147,7 @@ function list_related_friends(){
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-           populate_filtered_friends("stream_related_friends", data);
+           populate_filtered_friends(ele, data);
 
            /* set context for the modal dialog */
            aw_friends_set_related_modal_data(data);
@@ -160,6 +161,7 @@ function list_related_friends(){
 
 /************************************/
 function list_related_entities(owner_id){
+    var ele = $("#stream_related_entities");
     $.ajax({
         url: '/home/get_related_entities.json',
         type: 'GET',
@@ -172,7 +174,7 @@ function list_related_entities(owner_id){
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-           populate_filtered_entities("stream_related_entities", data);
+           populate_filtered_entities(ele, data);
 
            /* set context for the modal dialog */
            aw_entities_set_related_modal_data(data);
@@ -187,6 +189,7 @@ function list_related_entities(owner_id){
 /************************************/
 
 function list_related_locations(owner_id){
+    var ele = $("#stream_related_locations");
     $.ajax({
         url: '/home/get_related_locations.json',
         type: 'GET',
@@ -199,7 +202,7 @@ function list_related_locations(owner_id){
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-           populate_filtered_locations("stream_related_locations", data);
+           populate_filtered_locations( ele, data);
            
            /* set context for location */
            aw_locations_set_related_modal_data(data);
@@ -235,10 +238,9 @@ function list_related_channels(owner_id){
 
 /************************************/
 function clear_related_friends() {
-  var related_friends_div=$("#stream_related_friends");
-  if( related_friends_div.length > 0 ){
-    related_friends_div.html('');
-  }
+  $("#stream_related_friends_parent").html('');
+  $("#stream_related_friends_parent").html('<div class="p-rel-fltr-tags" id="stream_related_friends">' +
+                                           '</div>');
   the_big_related_friend_json={};
 
 }
@@ -246,15 +248,17 @@ function clear_related_friends() {
 
 /************************************/
 function clear_related_entities() {
-  var related_entities_div=$("#stream_related_entities");
-  related_entities_div.html('');
-  the_big_related_entities_json={};
+ $("#stream_related_entities_parent").html('');
+ $("#stream_related_entities_parent").html('<div class="p-rel-fltr-tags" id="stream_related_entities">' +
+                                           '</div>');
+  the_big_related_friend_json={};
 }
 
 /************************************/
 function clear_related_locations() {
-  var related_locations_div=$("#stream_related_locations");
-  related_locations_div.html('');
+  $("#stream_related_locations_parent").html('');
+  $("#stream_related_locations_parent").html('<div class="p-rel-fltr-tags" id="stream_related_locations">' +
+                                           '</div>');
   the_big_related_locations_json={};
 
 }

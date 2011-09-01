@@ -1,0 +1,45 @@
+= javascript_include_tag 'actwitty/profile_facebook.js'
+= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
+%script{:src => "/javascripts/actwitty/profile_fb.js", :type => "text/javascript"}
+= include_javascripts :profile 
+= javascript_include_tag 'actwitty/home_page_inputs'
+
+
+
+
+=render :partial => "home/top_bar"
+
+
+%p#fb_friends Invite Facebook Friends
+#invite_friends  
+  %h3#empty_check No Facebook friends In your Profile.Invite them by Clicking Above.     
+      
+ 
+/Secret cookies
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+  -if user_signed_in?
+    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+  - else
+    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+  %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@defaul_page_mode}" }
+
+  /Filter
+  %input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }
+  %input#filter_location_name{:name => "filter_location_name", :type => "hidden", :value => "#{@filter_location_name}" }
+  %input#filter_thing_id{:name => "filter_thing_id", :type => "hidden", :value => "#{@filter_thing_id}" }
+  %input#filter_thing_name{:name => "filter_thing_name", :type => "hidden", :value => "#{@filter_thing_name}" }
+  %input#filter_channel_id{:name => "filter_channel_id", :type => "hidden", :value => "#{@filter_channel_id}" }
+  %input#filter_channel_name{:name => "filter_channel_name", :type => "hidden", :value => "#{@filter_channel_name}" }
+
+
+
+/=render :partial => "welcome/footer"
+
+
+
+
+   
+
+
+
+

@@ -15,6 +15,7 @@ gem 'compass'
 gem 'sass'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
+
 #Security
 gem 'devise', '~> 1.2.0'
 gem 'devise_invitable', '~> 0.4.0'

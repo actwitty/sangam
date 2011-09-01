@@ -100,7 +100,7 @@ function show_all_images(){
         type: 'GET',
         dataType:"json",
         contentType: 'application/json',
-        cache: false,
+        cache: true,
         data: {
                  user_id:aw_lib_get_page_owner_id(),
                  filter:get_filter(),

@@ -54,7 +54,8 @@ class FacebookController < ApplicationController
 
 
       if request.xhr?
-            render :json=> display_hash.values, :status => 200
+        expires_in 5.minutes
+        render :json=> display_hash.values, :status => 200
       end
       rescue Koala::Facebook::APIError
 

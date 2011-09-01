@@ -1,6 +1,6 @@
-= javascript_include_tag 'actwitty/placeholder.js'
-= javascript_include_tag 'actwitty/jquery.placeholder.js'
-= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
+/= javascript_include_tag 'actwitty/placeholder.js'
+/= javascript_include_tag 'actwitty/jquery.placeholder.js'
+/= javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
 #confirmation-page-wrapper
   #confirmation-header
     =render :partial => "welcome/logo"
@@ -15,23 +15,23 @@
             %ul#confirmation-input-list
               %li.confirmation-fields
                 %label.confirmation-labels First Name
-                = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input input-deco" }
+                = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input" }
 
               %li.confirmation-fields
                 %label.confirmation-labels Last Name
-                = f.input :last_name,:label=>false, :placeholder => "Last Name",:input_html => { :size=> 30, :class=>"confirmation-input input-deco"  }
+                = f.input :last_name,:label=>false, :placeholder => "Last Name",:input_html => { :size=> 30, :class=>"confirmation-input"  }
 
               %li.confirmation-fields
                 %label.confirmation-labels Gender
-                = f.input :sex, :label=> false,:collection => ['male','female','other'], :as => :radio,:input_html=>{:class=>"confirmation-input input-deco",:id=>"confirm-gender-male"}
+                = f.input :sex, :label=> false, :collection => ['male','female','other'], :as => :select, :input_html => { :class=>"confirmation-input input-deco",:id=>"confirm-gender"}
 
               %li.confirmation-fields
                 %label.confirmation-labels Date of Birth
-                = f.input :dob, :label=> false, :placeholder => "Date of Birth", :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input input-deco dob"}
+                = f.input :dob, :label=> false, :placeholder => "Date of Birth", :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input dob"}
 
               %li.confirmation-fields
                 %label.confirmation-labels City
-                = f.input :home_location, :label =>false, :placeholder => "City", :input_html => { :size => 30, :class=>"confirmation-input input-deco" }
+                = f.input :home_location, :label =>false, :placeholder => "City", :input_html => { :size => 30, :class=>"confirmation-input city" }
               
                  
           %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/
