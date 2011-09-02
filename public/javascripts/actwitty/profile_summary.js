@@ -130,7 +130,7 @@ function create_and_docs_box(box_id, summary){
                   '<img alt="" src="'+ thumb_url + '"  width="50"  alt="" />' +
                 '</a>';
         ul_box.append(html);
-        activate_fancybox_group(box_id, attachment.id, summary.user.id );
+        activate_fancybox_group(box_id);
       }
     });
     

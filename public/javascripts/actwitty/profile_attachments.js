@@ -48,23 +48,45 @@ function get_channels_for_theme(userid){
     
 }
 
+function setup_on_start(element_id){
+  alert(element_id);
+  alert($("#" + element_id).val());
+}
 
-function activate_fancybox_group(post_group, doc_id, owner_id){
-  var image_theme_selector = '';
-  if( owner_id == aw_lib_get_session_owner_id()){
-    image_theme_selector = '<input type="text" class="js_theme_on_channels " placeholder="Select Channel" />' +
-                           '<input type="hidden" class="js_theme_doc_id" value="' + doc_id + '" />';
-  }
+
+var g_show_theme_selector = false;
+var g_theme_channel_id = 0;
+var g_theme_doc_id = 0;
+function activate_fancybox_group(post_group){
+
     $('a[rel=fnc_group_'+post_group+']').fancybox({
 				'transitionIn'		: 'none',
 				'transitionOut'		: 'none',
 				'titlePosition' 	: 'over',
-				'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
-					return '<span id="fancybox-title-over">' +
-                    'Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') +
-                    image_theme_selector +
-                 '</span>';
-				}
+				'titleFormat'		: function( title, currentArray, currentIndex, currentOpts) {
+          var image_theme_selector =  "";
+          if (g_show_theme_selector == true){
+            image_theme_selector = '<input type="text" placeholder="Set as channel theme" class="js_theme_on_channels" />';
+           
+          }
+					var fb_html = '<span id="fancybox-title-over">' +
+                          'Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') +
+                          image_theme_selector +
+                        '</span>';
+          return fb_html;
+				},
+        'onStart' : function(selectedArray, selectedIndex, selectedOpts){
+          var obj = selectedArray[ selectedIndex ];
+          if($(obj).parent().find(".js_theme_doc_id").length){
+            g_show_theme_selector = true;
+            g_theme_channel_id = $(obj).parent().find(".js_theme_user_id").val();
+            g_theme_doc_id =  $(obj).parent().find(".js_theme_doc_id").val();
+          }else{
+            g_show_theme_selector = false;
+            g_theme_channel_id = 0;
+            g_theme_doc_id = 0;
+          }
+        }
 	});
 }
 
@@ -93,6 +115,7 @@ function create_theme_from_attachment(doc_id, channel_id){
         dataType: 'json',
         success: function (data) {
           g_channel_ignore_auto_complete = true; 
+          alert("done");
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
         }
@@ -116,8 +139,7 @@ $(document).ready(function(){
     }).result(function(e, channel) {
       if (g_channel_ignore_auto_complete == false){
           g_channel_ignore_auto_complete=true;
-          var doc_id = $(this).parent().find(".js_theme_doc_id").val();
-          create_theme_from_attachment(doc_id, channel.id);
+          create_theme_from_attachment(g_theme_doc_id, channel.id);
         }
     });
   });
