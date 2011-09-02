@@ -83,6 +83,9 @@ gem "squeel" # Last officially released gem
 #aws
 gem "right_aws"
 
+#jammit-s3
+gem 'jammit-s3'
+
 group :development do
   #query reviewer
   gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"

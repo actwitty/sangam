@@ -1,0 +1,20 @@
+STAGING PUSH
+============================================================
+For staging push fresh => git push staging master
+For staging push => git push staging
+
+LOGGING
+============================================================
+For Setting a Log Level => heroku config:add LOG_LEVEL=DEBUG --app strong-dawn-195
+For all logs => heroku logs -t --app strong-dawn-195
+For Logs for App only => heroku logs -t --source app --app strong-dawn-195
+For Logs on Heroku Infrastructure =>  heroku logs -t --source heroku --app strong-dawn-195
+For logs on Administrative stuff like developers interaction and scaling =>  heroku logs -t --source heroku --ps api --app strong-dawn-195
+
+Logs can also be put on ec2 --- to free our terminals -- see heoku logging 
+
+
+DELAYED JOB
+============================================================
+start a worker => heroku worker 1
+adding/removing more workers => heroku workers +2 OR heroku workers -1
