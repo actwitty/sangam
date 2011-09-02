@@ -19,4 +19,3 @@ solr/data
 sangam/.*/*.*
 public/test/*
 public/uploads/**/*.*
-public/assets/**/*.*
