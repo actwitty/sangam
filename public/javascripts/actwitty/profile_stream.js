@@ -89,6 +89,8 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
           attachment_box.append(close_html);
         }
         attachment_box.append(html);
+         /* activate fancy box  */
+        activate_fancybox_group(box_id, attachment.id, stream.post.user.id );   
       }
      
     });
@@ -114,11 +116,10 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
           attachment_box.append(close_html);
         }
         attachment_box.append(html);
+       
       }
      
     });
-    /* activate fancy box  */
-    activate_fancybox_group(box_id);
   }else{
     /* hide if there is nothing to show */
     docs_box.hide();

@@ -70,6 +70,12 @@ function activate_fancybox_group(post_group, doc_id, owner_id){
 
 
 
+
+
+
+
+
+
 /*
  * API for read more expander plugin
  */
@@ -92,7 +98,8 @@ function create_theme_from_attachment(doc_id, channel_id){
               },
         dataType: 'json',
         success: function (data) {
-          g_channel_ignore_auto_complete = true; 
+          
+         
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
         }
@@ -114,9 +121,13 @@ $(document).ready(function(){
       }
 
     }).result(function(e, channel) {
+      alert("result 1");
       if (g_channel_ignore_auto_complete == false){
+          alert("result 2");
+          alert($(this).attr("id"));
           g_channel_ignore_auto_complete=true;
-          var doc_id = $(this).parent().find(".js_theme_doc_id").val();
+          var doc_id = $(this).parent().find(".js_theme_doc_id");
+          alert(doc_id);
           create_theme_from_attachment(doc_id, channel.id);
         }
     });
