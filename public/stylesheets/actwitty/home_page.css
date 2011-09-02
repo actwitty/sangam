@@ -1,78 +1,47 @@
-/*
-Syntax error: Invalid CSS after "*/": expected "}", was ""
-        on line 204 of /home/pramod/Desktop/Rails/lemonbag/1_sep/Actwitty/code/sangam/app/stylesheets/actwitty/home_page.scss
+/* line 2, ../../../app/stylesheets/actwitty/home_page.scss */
+#follow_list .follow_button {
+  background-color: #445D73;
+  float: right;
+}
 
-199: .sc_menu1 li:hover div#inner {
-200: 	filter:alpha(opacity=50);	
-201: 	opacity: 0.5;
-202: }
-203: */
+/* line 8, ../../../app/stylesheets/actwitty/home_page.scss */
+#unfollow_list .follow_button {
+  background-color: #445D73;
+  float: right;
+}
 
-Backtrace:
-/home/pramod/Desktop/Rails/lemonbag/1_sep/Actwitty/code/sangam/app/stylesheets/actwitty/home_page.scss:204
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:898:in `expected'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:841:in `expected'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:836:in `tok!'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:362:in `block'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:355:in `ruleset'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:379:in `block_child'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:372:in `block_contents'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:57:in `stylesheet'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/scss/parser.rb:26:in `parse'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/engine.rb:319:in `_to_tree'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/engine.rb:291:in `_render'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/engine.rb:239:in `block in render'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/util.rb:297:in `silence_sass_warnings'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/engine.rb:239:in `render'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/compiler.rb:319:in `update_stylesheet'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/compiler.rb:181:in `block (2 levels) in update_stylesheets'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/compiler.rb:175:in `each'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/compiler.rb:175:in `block in update_stylesheets'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/compiler.rb:173:in `each'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/compiler.rb:173:in `update_stylesheets'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin.rb:81:in `update_stylesheets'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin.rb:54:in `check_for_updates'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.4/lib/sass/plugin/rack.rb:51:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/client_side_validations-3.1.0/lib/client_side_validations/middleware.rb:18:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.4/lib/warden/manager.rb:35:in `block in call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.4/lib/warden/manager.rb:34:in `catch'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.4/lib/warden/manager.rb:34:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `block in call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/lock.rb:11:in `block in call'
-<internal:prelude>:10:in `synchronize'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/static.rb:33:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
-/home/pramod/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
-/home/pramod/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
-/home/pramod/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
-/home/pramod/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"*/\": expected \"}\", was \"\"\A         on line 204 of /home/pramod/Desktop/Rails/lemonbag/1_sep/Actwitty/code/sangam/app/stylesheets/actwitty/home_page.scss\A \A 199: .sc_menu1 li:hover div#inner {\A 200: 	filter:alpha(opacity=50);	\A 201: 	opacity: 0.5;\A 202: }\A 203: */"; }
+/* line 15, ../../../app/stylesheets/actwitty/home_page.scss */
+#invite_list .fb_invite {
+  background-color: #ccc;
+  float: right;
+}
+
+/* line 21, ../../../app/stylesheets/actwitty/home_page.scss */
+#invite_list .fb_delete {
+  background-color: #445D73;
+  float: right;
+}
+
+/* line 27, ../../../app/stylesheets/actwitty/home_page.scss */
+#followings_list .follow_button {
+  background-color: #445D73;
+  float: right;
+}
+
+/* line 34, ../../../app/stylesheets/actwitty/home_page.scss */
+#followers_list .follow_button {
+  background-color: #445D73;
+  /*float:right;*/
+}
+
+/* line 39, ../../../app/stylesheets/actwitty/home_page.scss */
+#search_followings {
+  margin-left: 50px;
+  /*background-color:#445D73;*/
+}
+
+/* line 44, ../../../app/stylesheets/actwitty/home_page.scss */
+#search_followers {
+  margin-left: 50px;
+  /*background-color:#445D73;*/
+}
