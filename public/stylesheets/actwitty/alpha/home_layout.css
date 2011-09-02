@@ -3076,7 +3076,7 @@ a.js_handle_stream_entity_mention:hover span {
   background: transparent url(/images/actwitty/icons-medium.png) no-repeat;
 }
 
-/*
+  /*
 .connect-buttons {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: #ffffff;
@@ -3122,4 +3122,11 @@ a.js_handle_stream_entity_mention:hover span {
 /* line 2991, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #query_review_parent {
   display: none;
+}
+
+/* line 2994, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+a#add_facebook_friends {
+  /*float:left;
+  margin-left:20px;*/
+  float: left;
 }

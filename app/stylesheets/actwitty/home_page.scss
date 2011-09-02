@@ -46,11 +46,22 @@
  /*background-color:#445D73;*/
 }
 
-/*Facebook frineds*/
+
 
 div.sc_menu1 {
 	/* Set it so we could calculate the offsetLeft */
-  background:#cccccc none repeat scroll 0 0;
+  /*background:#cccccc none repeat scroll 0 0;*/
+	position: relative;
+	/*height: 240px;*/
+	width: 750px;/*650*/
+	overflow: hidden;
+  /*border:2px solid black;*/
+  left:0px;/*340*/
+
+
+div#invite_friends
+{
+  background:#cccccc repeat scroll;
 	position: relative;
 	height: 240px;
 	width: 610px;/*650*/
@@ -65,9 +76,10 @@ p#fb_friends{
   font-color: #000000;
 }
 h3#empty_check{
-  margin-left:340px;
-  font-size: 12px;
-  font-color: #000000;
+  /*margin-left:340px;*/
+  font-size: 20px;
+  font-color:#ccc;
+  color:#ffffff;
 }
 ul.sc_menu1 {
 	display: block;
@@ -119,3 +131,73 @@ li.lk{
 	opacity: 0.5;
 }
 
+
+
+/*
+div.sc_menu1 {
+  background:#cccccc none repeat scroll 0 0;
+	position: relative;
+	height: 240px;
+	width: 610px;
+	overflow: auto;
+  border:2px solid black;
+  left:340px;
+}
+
+p#fb_friends{
+  margin-left:340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+h3#empty_check{
+  margin-left:340px;
+  font-size: 12px;
+  font-color: #000000;
+}
+ul.sc_menu1 {
+	display: block;
+	height: 210px;
+	width: 900px;	
+	padding: 5px 0 0 5px;
+	margin: 0;
+	background: url('navigation.png');		
+	list-style: none;
+}
+div#txt1{
+  font-color:#ccc;
+  color:#ffffff;
+}
+li.lk{
+  width:130px;
+  margin:5px;
+}
+
+.sc_menu1 li {
+	display: block;
+	float: left;	
+	padding: 0 4px;
+}
+.sc_menu1 a {
+	display: block;
+	text-decoration: none;
+}
+.sc_menu1 span {
+	display: none;
+	margin-top: 3px;
+	
+	text-align: center;
+	font-size: 12px;	
+	color: #fff;
+}
+.sc_menu1 a:hover span {
+	display: block;
+}
+.sc_menu1 div {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.sc_menu1 li:hover div#inner {
+	filter:alpha(opacity=50);	
+	opacity: 0.5;
+}
+*/
