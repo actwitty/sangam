@@ -1,5 +1,7 @@
 class Theme < ActiveRecord::Base
 
+  include TextFormatter
+
   belongs_to  :author, :class_name => "User"
   belongs_to  :summary
   belongs_to  :document
@@ -14,6 +16,18 @@ class Theme < ActiveRecord::Base
 
   validates_uniqueness_of  :author_id, :scope => :summary_id
   validates_presence_of    :theme_type
+
+  after_save               :update_summary
+
+  def update_summary
+    Rails.logger.info("[MODEL] [THEME] [update_summary] entering")
+    if !self.summary_id.nil?
+      s = Summary.where(:id => self.summary_id).first
+      s.theme_data = format_theme(self)
+      s.update_attributes(:theme_data => s.theme_data)
+    end
+    Rails.logger.info("[MODEL] [THEME] [update_summary] leaving")
+  end
 
   class << self
 
@@ -88,13 +102,6 @@ class Theme < ActiveRecord::Base
         return nil
       end
 
-      if !params[:summary_id].nil?
-
-        s = Summary.where(:id => params[:summary_id]).first
-        s.theme_data = format_theme(obj)
-        s.update_attributes(:theme_data => s.theme_data)
-
-      end
 
       puts obj.inspect
       Rails.logger.info("[MODEL] [THEME] [create_theme] leaving")
