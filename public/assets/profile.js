@@ -5937,7 +5937,7 @@ $(document).ready(function() {
              modal_window.css({'top':config_json.top,'left':config_json.left});
              //alert("if"); 
              //modal_close.css({'width':config_json.width,'height':config_json.height});
-             modal_close.css({'margin-top':config_json.top-15,'margin-left':config_json.width+config_json.left+60});
+             modal_close.css({'margin-top':config_json.top-10,'margin-left':config_json.width+config_json.left+45});
 
            }
          }else{
@@ -6371,8 +6371,20 @@ $(document).ready(function(){
 		  width: 310,
 		  matchContains: true,
 		  highlightItem: false,
-      formatItem: function(location) {
-        return '<img alt="" class="p-st-fltr-search-img" src="'+ get_location_image_for_type(location.type) + '">   ' 
+      formatItem: function(location) { //pramod
+      var url;
+     if (location.type == 2){
+        url = "http://maps.googleapis.com/maps/api/staticmap?center="+location.lat+","+location.long+"&zoom=8&size=400x400&sensor=false";
+     }
+     else if(location.type == 3){
+        url = get_location_image_for_type(location.type);
+     }
+     else{
+        url = "/images/rails.png";
+     }
+
+        //return '<img alt="" class="p-st-fltr-search-img" src="'+ get_location_image_for_type(location.type) + '">   ' 
+        return '<img alt="" class="p-st-fltr-search-img" src="'+ url + '">   ' 
                   + location.name + 
                 '</img>';
       }
@@ -10233,13 +10245,13 @@ function process_user_campaign_action(campaign_manager_json){
   /**********Like*********Pramod***/
   
 function aw_channels_render_like(win_id, trigger_id){
-  alert("aw_channels_render_like");
+  //alert("aw_channels_render_like");
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var div_id = $("#" + trigger_id).attr("id");
-  alert(div_id);
+  //alert(div_id);
   campaign_manager = the_big_stream_campaign_manager_json[div_id];
-  alert(JSON.stringify(campaign_manager));
+  //alert(JSON.stringify(campaign_manager));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
@@ -10485,7 +10497,7 @@ $(document).ready(function(){
     //var cls = $(this).attr("class");
     //alert("on click like");
     var div_id = $(this).attr("id");
-    alert(div_id);
+    //alert(div_id);
     campaign_manager = the_big_stream_campaign_manager_json[div_id];
     $(this).addClass("js_modal_dialog_link");  
     $(this).addClass("JS_AW_MODAL_like"); 
