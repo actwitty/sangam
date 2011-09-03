@@ -6,6 +6,7 @@ development: &default
   pusher_app_id: 8166
   pusher_service_key: 1c9a6ce5543a3dc6cd5b
   pusher_service_secret: e3442602c6f83308f025
+
 production:
   <<: *default
 test:
