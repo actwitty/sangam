@@ -1,7 +1,9 @@
-package_assets: on
-embed_assets: on
-compress_assets: on
-gzip_assets: off
+s3_bucket: actwitty_assets 
+s3_access_key_id: <%= ENV['S3_KEY'] %>
+s3_secret_access_key: <%= ENV['S3_SECRET'] %>
+package_assets: always
+compress_assets: off
+
 javascripts:
   flash_socket:
     - public/javascripts/vendor/FABridge.js
@@ -119,4 +121,5 @@ stylesheets:
     - public/stylesheets/actwitty/home_page.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/plugins/jquery-autocomplete/lib/thickbox.css
+    - public/stylesheets/actwitty/alpha/settings.css
 

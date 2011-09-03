@@ -1974,6 +1974,8 @@ div.p-awp-text p
   word-wrap:break-word;
 }
 
+
+
 .quote
 {
   height:15px;
@@ -2723,8 +2725,8 @@ a.js_handle_stream_entity_mention:hover span
 #settings-page-block {
   display: block;
   float: right;
-  background: #fff;
-  height: auto;
+  /*background: #fff;*/
+  height: 800px;
   width: 850px;
   padding: 0px 0 20px 20px;
   margin-top: 10px;
@@ -2816,11 +2818,7 @@ margin-left:205px;
 #settings_interest{
   margin-left:80px;
 }
-#settings-button {
-  width: 100px;
-  margin-left:175px;
-  margin-top:10px;
-}
+
 /**************Provider Page****************/
 
 #site-connect-buttons {
@@ -2991,3 +2989,9 @@ margin-left:205px;
 {
   display:none;
 }
+a#add_facebook_friends{
+  /*float:left;
+  margin-left:20px;*/
+  float:left;
+}
+

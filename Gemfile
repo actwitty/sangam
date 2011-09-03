@@ -40,7 +40,7 @@ gem 'annotate'
 #gem "rmagick"
 
 
-gem 'mini_magick', '3.2'
+#gem 'mini_magick', '3.2'
 
 gem 'jammit'
 
@@ -83,6 +83,9 @@ gem "squeel" # Last officially released gem
 #aws
 gem "right_aws"
 
+#jammit-s3
+gem 'jammit-s3'
+
 group :development do
   #query reviewer
   gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
@@ -96,7 +99,6 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'fixture_builder', '~> 0.2.0'
   gem 'selenium-webdriver', '~> 0.2.0'
   gem 'cucumber-rails'
   gem 'rspec', '>= 2.0.1'
@@ -104,5 +106,5 @@ group :test do
   gem 'rcov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
-  gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
+  #gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
 end

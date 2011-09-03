@@ -77,10 +77,16 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
         }
         ul_box.append(box_html);
         var attachment_box = $("#" + inner_box_id);
-       
+      
+        var image_theme_selector = "";
+        if( stream.post.user.id == aw_lib_get_session_owner_id()){
+          image_theme_selector = '<input type="hidden" class="js_theme_doc_id" value="' + attachment.id + '" />' +
+                                 '<input type="hidden" class="js_theme_user_id" value="' + stream.post.user.id + '" />';
+        }
 
-        var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '">' + 
+        var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '" >' + 
                   '<img alt="" src="'+ thumb_nail + '"   width="60" alt="" />' +
+                  image_theme_selector +
                 '</a>'; 
         if(aw_lib_get_session_owner_id() == stream.post.user.id){
           var close_html = '<div class="delete-image-box">' +
@@ -92,6 +98,8 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
       }
      
     });
+    /* activate fancy box  */
+    activate_fancybox_group(box_id);   
 
     $.each(stream.documents.array, function(i, attachment){
       var thumb_nail = attachment.url; 
@@ -114,11 +122,10 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
           attachment_box.append(close_html);
         }
         attachment_box.append(html);
+       
       }
      
     });
-    /* activate fancy box  */
-    activate_fancybox_group(box_id);
   }else{
     /* hide if there is nothing to show */
     docs_box.hide();
@@ -214,6 +221,7 @@ function handle_like_campaign(div_id, stream){
  */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
+  //alert(JSON.stringify(likes));
   //alert("show_all_stream_campaigns" + div);
   $.each(likes, function(i,like){
     var like_html = '<div class="author">' +
@@ -1056,12 +1064,13 @@ function process_user_campaign_action(campaign_manager_json){
   /**********Like*********Pramod***/
   
 function aw_channels_render_like(win_id, trigger_id){
-  //alert("aw_channels_render_like");
+  alert("aw_channels_render_like");
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
-  //var div_id = $("#" + trigger_id).parent().parent().attr("id");
+  var div_id = $("#" + trigger_id).attr("id");
+  alert(div_id);
   campaign_manager = the_big_stream_campaign_manager_json[div_id];
-  //alert(JSON.stringify(campaign_manager));
+  alert(JSON.stringify(campaign_manager));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
@@ -1306,7 +1315,9 @@ $(document).ready(function(){
   $('.js_campaign_show_all').live('click', function(){
     //var cls = $(this).attr("class");
     //alert("on click like");
-
+    var div_id = $(this).attr("id");
+    alert(div_id);
+    campaign_manager = the_big_stream_campaign_manager_json[div_id];
     $(this).addClass("js_modal_dialog_link");  
     $(this).addClass("JS_AW_MODAL_like"); 
     return false;
