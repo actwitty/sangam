@@ -42,7 +42,7 @@ gem 'annotate'
 
 #gem 'mini_magick', '3.2'
 
-gem 'jammit'
+#gem 'jammit'
 
 gem 'date_validator'
 
@@ -84,7 +84,14 @@ gem "squeel" # Last officially released gem
 gem "right_aws"
 
 #jammit-s3
-gem 'jammit-s3'
+#gem 'jammit-s3'
+
+#Newrelic for performance analysis
+#gem 'newrelic_rpm'
+
+#pusher for push notifications
+gem 'pusher'
+gem 'em-http-request'
 
 group :development do
   #query reviewer
@@ -106,5 +113,7 @@ group :test do
   gem 'rcov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
-  #gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
+
+  #For observer in rspec
+  gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
 end

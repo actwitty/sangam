@@ -18,3 +18,16 @@ DELAYED JOB
 ============================================================
 start a worker => heroku worker 1
 adding/removing more workers => heroku workers +2 OR heroku workers -1
+
+
+NEW_RELIC
+===========================================================
+heroku addons:add newrelic:standard --app strong-dawn-195
+
+
+PUSHER
+===========================================================
+app_id = '8166'
+key = '1c9a6ce5543a3dc6cd5b'
+secret = 'e3442602c6f83308f025'
+

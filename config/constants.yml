@@ -182,6 +182,9 @@ development: &default
   page_state_all:                     3
   page_state_public:                  4
 
+  #CLOUD KEYS
+  cloud_keys:                         "config/cloud_keys.yml"
+
 production:
   <<: *default
   #constant1:  "overriden value1"

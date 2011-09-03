@@ -1,8 +1,0 @@
-development: &default
-  bucket_name: TestCloudActwitty 
-  access_key_id: AKIAJMH2GTITVBHDSZ6Q
-  secret_access_key: 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
-production:
-  <<: *default
-test:
-  <<: *default
