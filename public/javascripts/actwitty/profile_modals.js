@@ -174,7 +174,11 @@ function aw_modal_get_data( registered_modal_id){
 function aw_modal_dialog_maker(registered_modal_id, container_window_id, trigger_id){
   if(the_big_modal_manager_json[registered_modal_id]){
     if(the_big_modal_manager_json[registered_modal_id].renderer_fn){
-      return the_big_modal_manager_json[registered_modal_id].renderer_fn(container_window_id,trigger_id);
+      var ret_val =  the_big_modal_manager_json[registered_modal_id].renderer_fn(container_window_id,trigger_id);
+      if ( ret_val == true){
+        $("html,body").css("overflow","hidden");
+      }
+      return ret_val;
     }else{
       return false;
     }
@@ -192,6 +196,7 @@ function aw_modal_close(registered_modal_id){
   $(".modal_close").hide();
   $('#modal_box_window_id').hide();
   $('#modal_box_mask_id').hide();
+  $("html,body").css("overflow","auto");
 
 }
 /*
@@ -275,12 +280,14 @@ $(document).ready(function() {
             $(".modal_close").hide();
             $('#modal_box_window_id').hide();
             $('#modal_box_mask_id').hide();
+            $("html,body").css("overflow","auto");
           }
         }else{
             $("#modal_box_id").hide();
             $(".modal_close").hide();
             $('#modal_box_window_id').hide();
             $('#modal_box_mask_id').hide();
+            $("html,body").css("overflow","auto");
         }
      
     });
@@ -296,6 +303,7 @@ $(document).ready(function() {
         $('#modal_box_mask_id').hide();
         $("#modal_box_id").hide();
         $(".modal_close").hide();
+        $("html,body").css("overflow","auto");
     });     
      
     /*
@@ -307,6 +315,7 @@ $(document).ready(function() {
         $(".modal_close").hide();
         $('#modal_box_window_id').hide();
         $('#modal_box_mask_id').hide();
+        $("html,body").css("overflow","auto");
     });         
      
 });

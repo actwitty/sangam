@@ -77,10 +77,16 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
         }
         ul_box.append(box_html);
         var attachment_box = $("#" + inner_box_id);
-       
+      
+        var image_theme_selector = "";
+        if( stream.post.user.id == aw_lib_get_session_owner_id()){
+          image_theme_selector = '<input type="hidden" class="js_theme_doc_id" value="' + attachment.id + '" />' +
+                                 '<input type="hidden" class="js_theme_user_id" value="' + stream.post.user.id + '" />';
+        }
 
-        var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '">' + 
+        var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '" >' + 
                   '<img alt="" src="'+ thumb_nail + '"   width="60" alt="" />' +
+                  image_theme_selector +
                 '</a>'; 
         if(aw_lib_get_session_owner_id() == stream.post.user.id){
           var close_html = '<div class="delete-image-box">' +
@@ -89,11 +95,11 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
           attachment_box.append(close_html);
         }
         attachment_box.append(html);
-         /* activate fancy box  */
-        activate_fancybox_group(box_id, attachment.id, stream.post.user.id );   
       }
      
     });
+    /* activate fancy box  */
+    activate_fancybox_group(box_id);   
 
     $.each(stream.documents.array, function(i, attachment){
       var thumb_nail = attachment.url; 
