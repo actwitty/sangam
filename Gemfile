@@ -83,8 +83,10 @@ gem "squeel" # Last officially released gem
 #aws
 gem "right_aws"
 
-#jammit-s3
-gem 'jammit-s3'
+#pusher we-socket based notifications
+gem 'pusher'
+#for asynchronous web-socket
+gem 'em-http-request'
 
 group :development do
   #query reviewer
@@ -106,5 +108,6 @@ group :test do
   gem 'rcov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
+  #for observer's' test
   gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
 end

@@ -20,11 +20,11 @@ module ProfilepicHelper
   #  max_filesize              2.megabytes
 
   def s3_profile_pic_uploader(options = {})
-    options[:s3_config_filename] ||= "#{Rails.root}/config/amazon_s3.yml"
+    options[:s3_config_filename] ||= "#{Rails.root}/#{AppConstants.cloud_keys}"
     config = YAML.load_file(options[:s3_config_filename])[Rails.env].symbolize_keys
-    bucket            = config[:bucket_name]
-    access_key_id     = config[:access_key_id]
-    secret_access_key = config[:secret_access_key]
+    bucket            = config[:aws_bucket_name]
+    access_key_id     = config[:aws_access_key_id]
+    secret_access_key = config[:aws_secret_access_key]
 
     options[:key] ||= 'test'  # folder on AWS to store file in
     options[:acl] ||= 'public-read'
