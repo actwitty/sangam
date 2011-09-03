@@ -41,8 +41,20 @@ $(document).ready(function(){
 		  width: 310,
 		  matchContains: true,
 		  highlightItem: false,
-      formatItem: function(location) {
-        return '<img alt="" class="p-st-fltr-search-img" src="'+ get_location_image_for_type(location.type) + '">   ' 
+      formatItem: function(location) { //pramod
+      var url;
+     if (location.type == 2){
+        url = "http://maps.googleapis.com/maps/api/staticmap?center="+location.lat+","+location.long+"&zoom=8&size=400x400&sensor=false";
+     }
+     else if(location.type == 3){
+        url = get_location_image_for_type(location.type);
+     }
+     else{
+        url = "/images/rails.png";
+     }
+
+        //return '<img alt="" class="p-st-fltr-search-img" src="'+ get_location_image_for_type(location.type) + '">   ' 
+        return '<img alt="" class="p-st-fltr-search-img" src="'+ url + '">   ' 
                   + location.name + 
                 '</img>';
       }

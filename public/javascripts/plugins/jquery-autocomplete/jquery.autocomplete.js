@@ -73,7 +73,7 @@ $.Autocompleter = function(input, options) {
 	var hasFocus = 0;
 	var lastKeyPressCode;
 	var config = {
-		mouseDownOnSelect: true //pramod
+		mouseDownOnSelect: false 
 	};
 	var select = $.Autocompleter.Select(options, input, selectCurrent, config);
 	
@@ -428,7 +428,7 @@ $.Autocompleter.defaults = {
 	highlight: function(value, term) {
 		return value.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
 	},
-    scroll: true,//pramod
+    scroll: true,
     scrollHeight: 180
 };
 
@@ -606,9 +606,9 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			input.focus();
 			return false;
 		}).mousedown(function() {
-			config.mouseDownOnSelect = true;//pramod
+			config.mouseDownOnSelect = true;
 		}).mouseup(function() {
-			config.mouseDownOnSelect = true;//pramod
+			config.mouseDownOnSelect = false;
 		});
 		
 		if( options.width > 0 )
@@ -634,7 +634,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
         if(options.scroll) {
             var offset = 0;
             listItems.slice(0, active).each(function() {
-				offset += this.offsetHeight;//pramod
+				offset += this.offsetHeight;
 			});
             if((offset + activeItem[0].offsetHeight - list.scrollTop()) > list[0].clientHeight) {
                 list.scrollTop(offset + activeItem[0].offsetHeight - list.innerHeight());
@@ -730,7 +730,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
             if(options.scroll) {
                 list.scrollTop(0);
                 list.css({
-					maxHeight: options.scrollHeight,//pramod
+					maxHeight: options.scrollHeight,
 					overflow: 'auto'
 				});
 				
@@ -740,7 +740,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 						listHeight += this.offsetHeight;
 					});
 					var scrollbarsVisible = listHeight > options.scrollHeight;
-                    list.css('height', scrollbarsVisible ? options.scrollHeight : listHeight );//pramod
+                    list.css('height', scrollbarsVisible ? options.scrollHeight : listHeight );
 					if (!scrollbarsVisible) {
 						// IE doesn't recalculate width when scrollbar disappears
 						listItems.width( list.width() - parseInt(listItems.css("padding-left")) - parseInt(listItems.css("padding-right")) );
