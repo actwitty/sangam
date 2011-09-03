@@ -42,7 +42,7 @@ gem 'annotate'
 
 gem 'mini_magick', '3.2'
 
-gem 'jammit', '0.5.4'
+gem 'jammit'
 
 gem 'date_validator'
 
