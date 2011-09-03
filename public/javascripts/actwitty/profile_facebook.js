@@ -204,8 +204,9 @@ function get_all_facebookers(){
      * Get data on ready
      */
     //alert("get_all_facebooker"); 
-    if(temp == 0){
-    temp = 1;
+    //if(temp == 0)
+    {
+    //temp = 1;
     $.ajax({
         url: '/facebook/facebook_friends_list',
         type: 'GET',
@@ -217,7 +218,10 @@ function get_all_facebookers(){
           if (data && data.location) {
             window.location.href = data.location;
           }else{
+            //if(temp == 0){
+            //temp = 1;  
             renderFacebookers(data);
+            //}
             //renderFacebookers1(data);
       	    //append_invite_friends(data);
           }

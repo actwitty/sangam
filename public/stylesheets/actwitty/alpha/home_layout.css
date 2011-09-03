@@ -2823,8 +2823,8 @@ a.js_handle_stream_entity_mention:hover span {
 #settings-page-block {
   display: block;
   float: right;
-  background: #fff;
-  height: auto;
+  /*background: #fff;*/
+  height: 800px;
   width: 850px;
   padding: 0px 0 20px 20px;
   margin-top: 10px;
@@ -2939,15 +2939,8 @@ a.js_handle_stream_entity_mention:hover span {
   margin-left: 80px;
 }
 
-/* line 2819, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
-#settings-button {
-  width: 100px;
-  margin-left: 175px;
-  margin-top: 10px;
-}
-
 /**************Provider Page****************/
-/* line 2826, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2822, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #site-connect-buttons {
   margin-top: 10px;
   margin-left: 115px;
@@ -2955,18 +2948,18 @@ a.js_handle_stream_entity_mention:hover span {
   float: left;
 }
 
-/* line 2833, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2829, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #signinbutton {
   margin-top: -10px;
 }
 
-/* line 2838, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2834, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #site-connect-nav {
   width: 100%;
   height: 30px;
 }
 
-/* line 2844, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2840, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #resend-confirm-nav {
   width: 80px;
   float: left;
@@ -2977,7 +2970,7 @@ a.js_handle_stream_entity_mention:hover span {
   margin-left: 5px;
 }
 
-/* line 2854, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2850, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #forgot-password-nav {
   width: 80px;
   float: left;
@@ -2989,14 +2982,14 @@ a.js_handle_stream_entity_mention:hover span {
   font-size: 12px;
 }
 
-/* line 2864, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2860, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .inputform {
   margin-left: 30px;
   height: auto;
   width: 100%;
 }
 
-/* line 2870, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2866, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #sign_in_up {
   display: block;
   float: right;
@@ -3027,20 +3020,20 @@ a.js_handle_stream_entity_mention:hover span {
   */
 }
 
-/* line 2903, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2899, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .main-input-list {
   list-style-type: none;
   margin-left: 40px;
 }
 
-/* line 2907, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2903, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .main-input-list .email-input {
   float: left;
   padding: 3px;
   width: 260px;
 }
 
-/* line 2913, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2909, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .password-input {
   float: left;
   padding: 3px;
@@ -3048,27 +3041,27 @@ a.js_handle_stream_entity_mention:hover span {
   width: 260px;
 }
 
-/* line 2921, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2917, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .remember-main {
   float: none;
   margin-left: 0px;
   margin-top: 5px;
 }
 
-/* line 2927, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2923, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #data-input-actions {
   float: left;
   margin-top: 10px;
   margin-right: 40px;
 }
 
-/* line 2933, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2929, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .icon {
   padding: 0;
   margin: 0;
 }
 
-/* line 2938, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2934, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .icon.medium {
   width: 32px;
   height: 30px;
@@ -3119,12 +3112,12 @@ a.js_handle_stream_entity_mention:hover span {
 	transition: color 0.25s ease-in-out;
 }
 */
-/* line 2991, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2987, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #query_review_parent {
   display: none;
 }
 
-/* line 2994, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2990, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 a#add_facebook_friends {
   /*float:left;
   margin-left:20px;*/
