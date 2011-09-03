@@ -40,9 +40,9 @@ gem 'annotate'
 #gem "rmagick"
 
 
-gem 'mini_magick', '3.2'
+#gem 'mini_magick', '3.2'
 
-gem 'jammit', '0.5.4'
+gem 'jammit'
 
 gem 'date_validator'
 
@@ -99,7 +99,6 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'fixture_builder', '~> 0.2.0'
   gem 'selenium-webdriver', '~> 0.2.0'
   gem 'cucumber-rails'
   gem 'rspec', '>= 2.0.1'
@@ -107,5 +106,5 @@ group :test do
   gem 'rcov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
-  gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
+  #gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
 end

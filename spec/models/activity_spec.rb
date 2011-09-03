@@ -599,7 +599,7 @@ describe Activity do
                                              {:url => "http://b.com/xyz.jpg" },
                                              {:caption => "alokalokalok", :url => "http://c.com/xyz.jpg" }],
                               :tags => [{:name => "jump"}, {:name => "Anna hazare"}])
-      a1 =  @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at
+      a1 =  @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with PIZZA at http://www.youtube.com/watch?v=oIWxnfO7eJM&feature=feedrec
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
                               :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
                               :enrich => true, :documents => [{:caption => "hello man",
@@ -711,7 +711,7 @@ describe Activity do
       puts a
 
       puts "get document stream"
-      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty", :entity_id => e.id}, :category => "image"})
+      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "video"})
       puts a
 
     end

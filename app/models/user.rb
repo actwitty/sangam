@@ -265,13 +265,13 @@ class User < ActiveRecord::Base
      Rails.logger.debug("[MODEL] [User] [get_user_activities] entering ")
 
      h = Activity.where(:author_id => user_id, :status => AppConstants.status_public, :meta_activity => false).
-         group(:activity_word_id, :activity_name).order("MAX(updated_at)  DESC").count
+         group(:summary_id, :activity_word_id, :activity_name).order("MAX(updated_at)  DESC").count
 
      word_array = []
 
      h.each do |k,v|
 #        word_hash << {:name => k[1], :id => k[0]}
-       word_array << {:name => k[1], :id => k[0]}
+       word_array << {:name => k[2], :id => k[1], :summary_id => k[0]}
      end
 
      if !sort_order.blank? && sort_order == 1

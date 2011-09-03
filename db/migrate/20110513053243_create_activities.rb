@@ -47,6 +47,9 @@ class CreateActivities < ActiveRecord::Migration
 
        add_index :activities, [:author_id, :status, :meta_activity]
 
+       add_index :activities, [:summary_id, :activity_word_id, :activity_name],
+                 :name => "index_activities_on_summary_word_activity_name"
+
        add_index :activities, [:author_id, :activity_word_id, :status]
 
        add_index :activities, [:author_id, :base_location_id, :status]
@@ -77,6 +80,8 @@ class CreateActivities < ActiveRecord::Migration
       remove_index :activities, [:summary_id, :base_location_id]
 
       remove_index :activities, [:author_id, :status, :meta_activity]
+
+      remove_index :activities, :name => "index_activities_on_summary_word_activity_name"
 
       remove_index :activities, [:author_id, :activity_word_id, :status]
 
