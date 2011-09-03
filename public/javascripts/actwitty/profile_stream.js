@@ -1064,13 +1064,13 @@ function process_user_campaign_action(campaign_manager_json){
   /**********Like*********Pramod***/
   
 function aw_channels_render_like(win_id, trigger_id){
-  alert("aw_channels_render_like");
+  //alert("aw_channels_render_like");
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var div_id = $("#" + trigger_id).attr("id");
-  alert(div_id);
+  //alert(div_id);
   campaign_manager = the_big_stream_campaign_manager_json[div_id];
-  alert(JSON.stringify(campaign_manager));
+  //alert(JSON.stringify(campaign_manager));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
@@ -1316,7 +1316,7 @@ $(document).ready(function(){
     //var cls = $(this).attr("class");
     //alert("on click like");
     var div_id = $(this).attr("id");
-    alert(div_id);
+    //alert(div_id);
     campaign_manager = the_big_stream_campaign_manager_json[div_id];
     $(this).addClass("js_modal_dialog_link");  
     $(this).addClass("JS_AW_MODAL_like"); 
