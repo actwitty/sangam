@@ -115,7 +115,6 @@ function create_theme_from_attachment(doc_id, channel_id){
         dataType: 'json',
         success: function (data) {
           g_channel_ignore_auto_complete = true; 
-          alert("done");
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
         }
