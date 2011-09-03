@@ -59,7 +59,7 @@ function modify_filter(filter_json, reload){
   }else{
     if ($("#fltr_entity_id").parent().is('.p-st-flt-entity')) {
       $("#fltr_entity_id").parent().removeClass('p-st-flt-entity');
-      $("#fltr_entity_id").html("all objects");
+      $("#fltr_entity_id").html("all mentions");
     $('#thing_filter_drop').hide();
     }
   }

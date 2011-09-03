@@ -130,10 +130,10 @@ function create_and_docs_box(box_id, summary){
                   '<img alt="" src="'+ thumb_url + '"  width="50"  alt="" />' +
                 '</a>';
         ul_box.append(html);
+        activate_fancybox_group(box_id);
       }
     });
-    /* activate fancy box  */
-    activate_fancybox_group(box_id);
+    
   }else{
     /* hide if there is nothing to show */
     var html = '<span> No attachments found </span>';
@@ -928,7 +928,7 @@ function update_summary_theme(trigger_ele){
                   };
 
   $.ajax({
-        url: '/home/update_summary_theme.json',
+        url: '/home/create_theme.json',
         type: 'POST',
         data: json_data,
         dataType: 'json',
