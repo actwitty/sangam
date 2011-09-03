@@ -106,5 +106,5 @@ group :test do
   gem 'rcov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
-  #gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
+  gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
 end
