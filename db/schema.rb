@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110818033521) do
   add_index "activities", ["id", "author_id"], :name => "index_activities_on_id_and_author_id"
   add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
   add_index "activities", ["source_name", "status"], :name => "index_activities_on_source_name_and_status"
+  add_index "activities", ["summary_id", "activity_word_id", "activity_name"], :name => "index_activities_on_summary_word_activity_name"
   add_index "activities", ["summary_id", "base_location_id"], :name => "index_activities_on_summary_id_and_base_location_id"
   add_index "activities", ["summary_id", "blank_text"], :name => "index_activities_on_summary_id_and_blank_text"
   add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"

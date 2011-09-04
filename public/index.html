@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>ActWitty - Channelize, Enrich, Connect</title>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<link href="/assets/defaults.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+var AUTH_TOKEN = "gtQYWcHX0Qe9YEVp8afsxey4y/hJ9Bj1lXwOnQ6697c=";
+//]]>
+</script>
+<script src="/assets/actwittyall.js" type="text/javascript"></script>
+<!-- -if @profile_page -->
+<script src="/assets/profile.js" type="text/javascript"></script>
+<script src='http://use.typekit.com/wbu2rlm.js' type='text/javascript'></script>
+<script>
+  //<![CDATA[
+    try{Typekit.load();}catch(e){}
+  //]]>
+</script>
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="gtQYWcHX0Qe9YEVp8afsxey4y/hJ9Bj1lXwOnQ6697c="/>
+<link href='/images/actwitty/favicon.ico' rel='icon' type='image/ico'>
+</head>
+<!-- %body -->
+<body>
+<div class='modal_box' id='modal_box_id'>
+<div class='modal_window' id='modal_box_window_id'></div>
+<a class='js_modal_close modal_close' href='#' id='modal_c'>
+<img src='/images/fancy_close.png'>
+</a>
+<div class='modal_mask' id='modal_box_mask_id'></div>
+</div>
+
+<div class='wrapper_hompage homep_col1'>
+<div id='homep_header'>
+<div id='aw_home_header_div'>
+<div id='aw_home_header_signin'>
+<span>
+Already a registered user?
+<a href='#' id='aw_login_open'>Login</a>
+</span>
+</div>
+<a href='http://www.actwitty.com'>
+<div id='aw_home_header_logo'></div>
+</a>
+</div>
+<div id='aw_home_header_signin_box'>
+<div id='aw_home_header_signin_inputs'>
+<form accept-charset="UTF-8" action="/users/sign_in" class="simple_form user inputform" data-remote="true" id="signin" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="gtQYWcHX0Qe9YEVp8afsxey4y/hJ9Bj1lXwOnQ6697c=" /></div>
+<div class="input string email required"><input class="string email required" id="aw_sign_email" name="user[email]" placeholder="Email" required="required" size="50" type="email" /></div>
+<div class="input string password required"><input class="string password required" id="aw_sign_password" name="user[password]" placeholder="Password" required="required" size="50" type="password" /></div>
+<a href="/users/password/new" class="main-page-navlinks" id="forgot-password">Forgot password</a>
+<input id='user_key' name='user[key]' type='hidden' value=''>
+<input id='user_provider' name='user[provider]' type='hidden' value=''>
+<input id='user_uid' name='user[uid]' type='hidden' value=''>
+<input class='actwittysignin' id='signinbutton' type='button' value='Sign In'>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class='wrapper_hompage homep_col2'>
+<div id='aw_home_intro'>
+<div id='aw_home_intro_image'></div>
+<div id='aw_home_intro_signup_sect'>
+<div id='aw_home_intro_signup_new_here'></div>
+<div id='aw_home_intro_signup_new_here_info'></div>
+<div id='aw_home_intro_register_box'>
+<div id='aw_home_intro_register_inputs'>
+<form accept-charset="UTF-8" action="/users" class="simple_form user inputform" data-remote="true" id="signin" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="gtQYWcHX0Qe9YEVp8afsxey4y/hJ9Bj1lXwOnQ6697c=" /></div>
+<div class="input string email required"><input class="string email required" id="aw_register_email" name="user[email]" placeholder="Email" required="required" size="50" type="email" /></div>
+<div class="input string password required"><input class="string password required" id="aw_register_password" name="user[password]" placeholder="Password" required="required" size="50" type="password" /></div>
+<input id='user_key' name='user[key]' type='hidden' value=''>
+<input id='user_provider' name='user[provider]' type='hidden' value=''>
+<input id='user_uid' name='user[uid]' type='hidden' value=''>
+<a href="/users/confirmation/new" id="resend_confirmation">Resend confirmation ?</a>
+<input class='actwittysignup' id='signupbutton' type='button' value='Register !'>
+<div id='sns-login'>
+<a href='/users/auth/twitter' id='sns_twitter_id'>
+<div class='twitter icon medium'></div>
+</a>
+<a href='/users/auth/facebook' id='sns_facebook_id'>
+<div class='facebook icon medium'></div>
+</a>
+</div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class='wrapper_hompage homep_col4'>
+<div id='aw_home_latest'>
+<div id='aw_home_latest_section'>
+<div id='dummy_block'></div>
+<div class='aw_home_divider'></div>
+<div id='aw_home_latest_updates'>
+<div class='main_box_user_list' id='latest_summary_box'>
+<input id='page_mode' name='page_mode' type='hidden' value='sign-in-page'>
+</div>
+</div>
+<div class='aw_home_divider'></div>
+</div>
+</div>
+</div>
+<div class='wrapper_hompage homep_col3'>
+<div id='aw_home_container'>
+<div class='aw_home_container_intro' id='aw_container_intro_filters'></div>
+<div class='aw_home_container_intro' id='aw_container_intro_channels'></div>
+<div class='aw_home_container_intro' id='aw_container_intro_summary'></div>
+</div>
+</div>
+<div class='wrapper_hompage homep_col5'>
+<div id='aw_home_footer'>
+<center>
+<a href='#'>About</a>
+<a href='#'>Blog</a>
+<a href='#'>FAQ</a>
+<a href='#'>Content Policy</a>
+<a href='#'>Terms of Service</a>
+</center>
+</div>
+</div>
+
+<div class='wrapper_hompage homep_col6'></div>
+
+<script src='/javascripts/cal.js' type='text/javascript'></script>
+<script src='/javascripts/slider.js' type='text/javascript'></script>
+<script>
+  //<![CDATA[
+    var mygallery=new simpleGallery({
+      wrapperid: "simplegallery1", 
+      dimensions: [450, 300],
+      imagearray: [
+                    ["/images/actwitty/info1.JPG", "", "", "Harry active on social networks."],
+                    ["/images/actwitty/info2.JPG", "", "", "Harry's updates becomes cluttered."],
+                    ["/images/actwitty/info3.JPG", "", "", "ActWitty is here to unclutter."],
+                    ["/images/actwitty/info4.JPG", "", "", "Channelize the information."],
+                    ["/images/actwitty/info5.JPG", "", "", "Enrich the channels."],
+                    ["/images/actwitty/info6.JPG", "", "", "Make connections on relevance."]
+                    
+                  ],
+      autoplay: [true, 2500, 2], 
+      persist: false,
+      fadeduration: 500, 
+      oninit:function(){ 
+      },
+      onslide:function(curslide, i){ 
+      }
+    });
+  //]]>
+</script>
+<script>
+  //<![CDATA[
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24404937-1']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  //]]>
+</script>
+</body>
+</html>
