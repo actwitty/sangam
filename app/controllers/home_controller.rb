@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   #before_filter :only_when_user_is_logged_in, :only => :show
 
+  #Alok Adding pusher support
+  protect_from_forgery :except => :pusher_auth # stop rails CSRF protection for this action
+
+  include PusherSvc
   ############################################
    def show
 
@@ -386,6 +390,9 @@ class HomeController < ApplicationController
       Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] calling model api Filter:#{args}")
       response_json=current_user.create_campaign(args)
       Rails.logger.info("[CNTRL][HOME][CREATE CAMPAIGN] model returned #{response_json}")
+
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
       if request.xhr?
         render :json => response_json, :status => 200
       end
@@ -409,6 +416,9 @@ class HomeController < ApplicationController
       Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] calling model api Filter:#{args}")
       response_json=current_user.remove_campaign(args)
       Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] model returned #{response_json}")
+
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
       if request.xhr?
         render :json => response_json, :status => 200
       end
@@ -431,6 +441,9 @@ class HomeController < ApplicationController
           render :json => {}, :status => 400
         end
       else
+
+        #ALOK Adding pusher support
+        pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
         if request.xhr?
           Rails.logger.info("[CNTRL][HOME][DELETE STREAM] deleted successfully #{params[:post_id]}")
           render :json => {}, :status => 200
@@ -460,6 +473,9 @@ class HomeController < ApplicationController
           render :json => {}, :status => 400
         end
       else
+
+        #ALOK Adding pusher support
+        pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
         if request.xhr?
           Rails.logger.info("[CNTRL][HOME][CREATE COMMENT] created successfully #{response_json}")
           render :json => response_json, :status => 200
@@ -485,6 +501,9 @@ class HomeController < ApplicationController
           render :json => {}, :status => 400
         end
       else
+
+        #ALOK Adding pusher support
+        pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
         if request.xhr?
           Rails.logger.info("[CNTRL][HOME][DELETE COMMENT] created successfully #{response_json}")
           render :json => response_json, :status => 200
@@ -531,7 +550,8 @@ class HomeController < ApplicationController
       Rails.logger.debug("[CNTRL][HOME][CREATE ACTIVITY] Returned from model api #{response_json}")
       @success=true
 
-
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
       respond_to do |format|
         format.json
       end
@@ -614,6 +634,9 @@ class HomeController < ApplicationController
     if user_signed_in?
       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
       response_json = current_user.remove_entity_from_activity(activity_id, entity_id)
+
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][DELETE ENTITIES] sending response JSON #{response_json}")
         render :json => response_json, :status => 200
@@ -629,6 +652,9 @@ class HomeController < ApplicationController
     if user_signed_in?
       Rails.logger.debug("[CNTRL][HOME][REMOVE DOCUMENT] returned from model api")
       response_json = current_user.remove_document(doc_id)
+
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][REMOVE DOCUMENT] sending response JSON #{response_json}")
         render :json => response_json, :status => 200
@@ -696,6 +722,8 @@ class HomeController < ApplicationController
       Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
       response_json = current_user.publish_activity(args)
 
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
         expires_in 10.minutes
@@ -757,12 +785,16 @@ class HomeController < ApplicationController
         Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] calling  model api with #{params}")
         response_json = current_user.update_activity(params)
         Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] returned response JSON #{response_json}")
+
     else
         render :json => {}, :status => 400
         return
     end
 
     @success=true
+
+    #ALOK Adding pusher support
+    pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
     respond_to do |format|
       format.json
     end
@@ -960,6 +992,9 @@ class HomeController < ApplicationController
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
     response_json = current_user.create_social_counter(args)
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
+
+    #ALOK Adding pusher support
+    pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
     if request.xhr?
       render :json => {}, :status => 200
     end
@@ -991,6 +1026,9 @@ class HomeController < ApplicationController
      Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] calling model api #{summary_id}")
      response_json = current_user.subscribe_summary(summary_id)
      Rails.logger.info("[CNTRL][HOME][SUBSCRIBE SUMMARY] response from model #{response_json}")
+
+     #ALOK Adding pusher support
+     pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
      if request.xhr?
       render :json => {}, :status => 200
     end
@@ -1008,6 +1046,9 @@ class HomeController < ApplicationController
      Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] calling model api #{summary_id}")
      response_json = current_user.unsubscribe_summary(summary_id)
      Rails.logger.info("[CNTRL][HOME][UNSUBSCRIBE SUMMARY] response from model #{response_json}")
+
+     #ALOK Adding pusher support
+     pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
      if request.xhr?
       render :json => {}, :status => 200
     end
@@ -1034,6 +1075,9 @@ class HomeController < ApplicationController
       Rails.logger.info("[CNTRL][HOME][CREATE SUMMARY THEME] calling model api #{args}")
       response_json = current_user.create_theme(args)
       Rails.logger.info("[CNTRL][HOME][CREATE SUMMARY THEME] response from model #{response_json}")
+
+      #ALOK Adding pusher support
+      pusher_event({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
         if request.xhr?
           render :json => response_json, :status => 200
         end
@@ -1079,6 +1123,17 @@ class HomeController < ApplicationController
         end
       end
    end
-  ####################
+  ########################################
+
+  #Alok Adding pusher support
+  #TODO Proper user check needs to be done
+  def pusher_auth
+    if current_user
+      response_json = Pusher[params[:channel_name]].authenticate(params[:socket_id])
+      render :json => response_json
+    else
+      render :text => "Not authorized", :status => '403'
+    end
+  end
 end
 

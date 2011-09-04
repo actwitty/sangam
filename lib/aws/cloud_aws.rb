@@ -26,18 +26,11 @@ module CloudAws
   
   mattr_accessor  :aws_access_key_id
   mattr_accessor  :aws_secret_access_key
-  
-  
-  if !defined? RAILS_ENV
-    #These settings are only for testing in standalone ruby environments
-    @@aws_access_key_id = 'AKIAJMH2GTITVBHDSZ6Q'
-    @@aws_secret_access_key =  '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'
-  else
 
-    def self.configure
-      yield self
-    end
+  def self.configure
+    yield self
   end
+
 
   def self.included(base)
   end
