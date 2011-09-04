@@ -5068,6 +5068,11 @@ function aw_lib_get_cache_cookie_id(){
  return cache_cookie_id;
 }
 
+function aw_lib_get_base_url(){
+ var url = "http://localhost:3000";
+ return url;
+}
+
 jQuery.fn.log = function (msg) {
                                   console.log("%s: %o", msg, this);
                                   return this;
@@ -6959,7 +6964,7 @@ function get_socialize_icon_html(stream){
  * Get post url for sharing
  */
 function get_post_url(post_id){
-   var url = 'http://localhost:3000/view?id=' + post_id;
+   var url = aw_lib_get_base_url() + '/view?id=' + post_id;
    return url;
 }
 /***********************/
