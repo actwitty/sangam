@@ -108,36 +108,40 @@ module UploadsHelper
   function get_file_prefix(){
     var user_id = '#{current_user.id}';
     var now = new Date();
-    var file_name = user_id + '_' + now.getTime() + '_';
-    return file_name;
+    var file_prefix = user_id + '_' + now.getTime() + '_';
+    return file_prefix;
   }
   /* Single file upload handler */
   var uploader=$('#uploader').plupload('getUploader');
   var queuefile=new Array();
+
+
+  /******************************/
   uploader.bind('UploadFile',function(up,file){
 
     var caption_id = 'file_caption_' + file.id;
     var caption = $('#' + caption_id).val(); 
-    var file_name = file.name;
     var prefix = get_file_prefix();
-    var url = up.settings.url + '/' + 'test/' + prefix + file.name;
-    var thumb_url = up.settings.url + '/' + 'test/thumb_' + prefix + file.name;
-		
-    
 
-	if(jQuery.inArray(file.name, queuefile)>=0){
-    up.settings.multipart_params['key']='test/thumb_' + prefix + '${filename}';
-    up.settings.multipart_params['Filename']='thumb_' + prefix + '${filename}'; 
-    up.settings.resize={width : 100, height : 100};
-		add_document_thumb_to_json(file.id, thumb_url );
-  }
-  else
-  {
-		up.settings.multipart_params['key']='test/' + prefix + '${filename}';
-    up.settings.multipart_params['Filename']= prefix + '${filename}';      
-		up.settings.resize= {width : 640, height : 480, quality :80};
-		add_document_to_json(file.id, url, caption );
-   } 
+    var parts = file.name.split('.');
+    var ext = '';
+    ext = parts.length > 1 ? parts.pop():'';
+    var url = up.settings.url + '/' + 'test/' + prefix + '.' + ext;
+    var thumb_url = up.settings.url + '/' + 'test/thumb_' + prefix + '.' + ext;
+
+	  if(jQuery.inArray(file.name, queuefile)>=0){
+      up.settings.multipart_params['key']='test/thumb_' + prefix + '.' + ext;
+      up.settings.multipart_params['Filename']='thumb_' + prefix  + '.' + ext; 
+      up.settings.resize={width : 100, height : 100};
+		  add_document_thumb_to_json(file.id, thumb_url );
+    }
+    else
+    {
+		  up.settings.multipart_params['key']='test/' + prefix + '.' + ext;
+      up.settings.multipart_params['Filename']= prefix  + '.' + ext; 
+		  up.settings.resize= {width : 640, height : 480, quality :80};
+		  add_document_to_json(file.id, url, caption );
+    } 
 
     
   });

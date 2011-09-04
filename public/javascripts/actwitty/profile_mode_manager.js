@@ -67,7 +67,7 @@ function clear_all_stream_modes(){
 
 
   $("#streams_videos_list_parent").html('');
-  $("#streams_images_list_parent").html('<div class="p-awp-post-stream" id="streams_images_list"> </div>');
+  $("#streams_videos_list_parent").html('<div class="p-awp-post-stream" id="streams_videos_list"> </div>');
   $("#more_streams_videos_cookie").val("");
 }
 

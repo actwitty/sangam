@@ -2323,9 +2323,28 @@ div.p-awp-view-all-images-div span:hover
 
 }
 
+.p-awp-video-view-attachment-inner-box
+{
+  width:255px;
+  
+  margin:2px;
+  padding:2px;
+  border:1px solid #ccc;
+  display:inline-block;
+
+
+}
 .delete-image-box
 {
   width:60px;
+  height:9px;
+  display:block;
+}
+
+
+.delete-video-box
+{
+  width:255px;
   height:9px;
   display:block;
 }
@@ -2989,9 +3008,25 @@ margin-left:205px;
 {
   display:none;
 }
-a#add_facebook_friends{
-  /*float:left;
-  margin-left:20px;*/
-  float:left;
-}
+a#add_facebook_friends{
+  /*float:left;
+  margin-left:20px;*/
+  float:left;
+}
+
+
+
+.p-awp-st-theme-input{
+
+  height:25px;
+  width:100px;
+  margin-left:auto;
+  margin-right:auto;
+  border: 1px solid #ccc;
+  display:none;
+}
+
+.p-awp-st-set-theme{
+  cursor:pointer;
+}
 

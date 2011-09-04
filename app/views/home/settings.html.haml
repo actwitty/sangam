@@ -11,6 +11,12 @@
     /%h3#settings-header Settings Page
     #stylized.myform
       = simple_form_for @profile,:html => {:multipart => true}, :file_field => {:multiple => true}, :validate => true, :url => home_settings_save_path do |f|
+        
+        %label Photo
+        %img#user_settings_image{:alt => "", :src => "#{@profile.profile_photo_l}", :width => "100"}/
+        = f.input :profile_photo_l,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
+        = f.input :profile_photo_s,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
+        =render :partial => "home/profile_pic_attachments.html.haml"
 
         %label First Name
         = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30  }
@@ -46,12 +52,6 @@
 
         %label Interest
         = f.input :interest, :label =>false, :placeholder => "Interest", :input_html => { :size => 30, :class=>"settings-input ",:id=>"settings_interest" }
-
-        %label Photo
-        /%img#user_settings_image{:alt => "", :src => "#{@profile.profile_photo_l}", :width => "100"}/
-        = f.input :profile_photo_l,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
-        = f.input :profile_photo_s,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
-        =render :partial => "home/profile_pic_attachments.html.haml"
 
         %p= f.submit "Save", :type => "submit", :id=>"settings-button" 
         /,:id=>"settings-button"

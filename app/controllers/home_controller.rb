@@ -94,12 +94,17 @@ class HomeController < ApplicationController
   ############################################
   def settings_save
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
-	  @user = User.find_by_confirmation_token(params[:confirmation_token])
-	  puts @user.id
-	  @profile = Profile.find_by_user_id(@user.id)
+	  @user = current_user
+
+	  @profile = current_user.profile
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:profile]}")
 	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
 	  if @profile.update_attributes(params[:profile])
+      current_user.photo_small_url = params[:profile][:profile_photo_s]
+      puts "-------------------------------------------------"
+      puts current_user.photo_small_url
+      puts "-------------------------------------------------"
+      current_user.save!
 	    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
 	    redirect_to(home_show_url)
 	  end
@@ -113,6 +118,7 @@ class HomeController < ApplicationController
     response_json = response.to_json
     Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search response : #{response_json}")
     if request.xhr?
+        expires_in 5.minutes
         render :json => response_json, :status => 200
     end
   end

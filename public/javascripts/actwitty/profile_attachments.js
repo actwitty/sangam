@@ -32,7 +32,11 @@ function get_channels_for_theme(userid){
     $.ajax({
         url: '/home/get_channels.json',
         type: 'GET',
-        data: {user_id:userid, sort_order:1},
+        data: {
+               user_id:userid, 
+               sort_order:1,
+               aw_cache_time:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -66,13 +70,19 @@ function activate_fancybox_group(post_group){
 				'titleFormat'		: function( title, currentArray, currentIndex, currentOpts) {
           var image_theme_selector =  "";
           if (g_show_theme_selector == true){
-            image_theme_selector = '<input type="text" placeholder="Set as channel theme" class="js_theme_on_channels" />';
+            image_theme_selector =  '<div class="js_theme_base" >' +
+                                       '<a  class="js_set_as_theme p-awp-st-set-theme" > Set As Theme <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+                                      '</a>' +
+                                      '<div>' +
+                                        '<input type="text" placeholder="Select Channel" class="js_theme_on_channels p-awp-st-theme-input" />' +
+                                      '</div>' +
+                                    '</div>';
            
           }
 					var fb_html = '<span id="fancybox-title-over">' +
                           'Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') +
-                          image_theme_selector +
-                        '</span>';
+                            image_theme_selector +
+                        '</span>' ;
           return fb_html;
 				},
         'onStart' : function(selectedArray, selectedIndex, selectedOpts){
@@ -138,14 +148,31 @@ $(document).ready(function(){
     }).result(function(e, channel) {
       if (g_channel_ignore_auto_complete == false){
           g_channel_ignore_auto_complete=true;
-          create_theme_from_attachment(g_theme_doc_id, channel.id);
+          create_theme_from_attachment(g_theme_doc_id, channel.summary_id);
+          $(this).hide('slow'); 
+          $(this).closest(".js_theme_base").find('img').attr("src", "/images/alpha/shares/plus.png");
+          $(this).val("");
+
         }
     });
   });
 
+
+  $(".js_set_as_theme").live('click', function(){
+
+    var channels_setter = $(this).parent().find(".js_theme_on_channels");
+    if(channels_setter.css('display') == 'none'){ 
+      //get_social_counter(post_id, $(this));
+      channels_setter.show('slow'); 
+      $(this).find('img').attr("src", "/images/alpha/shares/minus.png");
+    } else { 
+      channels_setter.hide('slow'); 
+      $(this).find('img').attr("src", "/images/alpha/shares/plus.png");
+    }
+
+  });
+
 });
-
-
 
 
 

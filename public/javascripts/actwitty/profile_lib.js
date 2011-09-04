@@ -24,6 +24,11 @@ function aw_lib_get_cache_cookie_id(){
  return cache_cookie_id;
 }
 
+function aw_lib_get_base_url(){
+ var url = "http://localhost:3000";
+ return url;
+}
+
 jQuery.fn.log = function (msg) {
                                   console.log("%s: %o", msg, this);
                                   return this;

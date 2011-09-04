@@ -135,9 +135,15 @@
 /* line 144, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-title-mainpage {
   font-size: 38px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 2px #000;
+  /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
 }
 
-/* line 149, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 154, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-analytic-mainpage {
   width: 40px;
   height: 140px;
@@ -145,7 +151,7 @@
   float: left;
 }
 
-/* line 157, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 162, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-like-mainpage {
   width: 100%;
   height: 40px;
@@ -154,14 +160,14 @@
   color: #fff;
 }
 
-/* line 165, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 170, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-like-mainpage p center {
   font-size: 12px;
   text-align: center;
   color: #fff;
 }
 
-/* line 173, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 178, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-post-mainpage {
   width: 100%;
   height: 40px;
@@ -170,26 +176,26 @@
   color: #fff;
 }
 
-/* line 185, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 190, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-post-mainpage p center {
   font-size: 15px;
   text-align: center;
   color: #fff;
 }
 
-/* line 196, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 201, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lu-header-mainpage {
   width: 100%;
   height: 20px;
   font-size: 16px;
 }
 
-/* line 202, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 207, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lu-header-mainpage span {
   float: left;
 }
 
-/* line 207, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 212, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lup-mainpage {
   width: 100%;
   height: 60px;
@@ -197,25 +203,25 @@
   margin-top: 1px;
 }
 
-/* line 214, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 219, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lup-time-mainpage {
   height: 15px;
   width: 100%;
 }
 
-/* line 219, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 224, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lup-time-mainpage span {
   float: right;
   font-size: 10px;
   color: #f9f9f9;
 }
 
-/* line 226, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 231, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lup-text-mainpage {
   margin-left: 10px;
 }
 
-/* line 231, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+/* line 236, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
 .p-channelp-post-lup-text-mainpage p {
   font-size: 13px;
   color: #838383;

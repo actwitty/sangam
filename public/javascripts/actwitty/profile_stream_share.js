@@ -162,7 +162,7 @@ function get_socialize_icon_html(stream){
  * Get post url for sharing
  */
 function get_post_url(post_id){
-   var url = 'http://localhost:3000/view?id=' + post_id;
+   var url = aw_lib_get_base_url() + '/view?id=' + post_id;
    return url;
 }
 /***********************/
