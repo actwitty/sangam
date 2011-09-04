@@ -292,7 +292,7 @@ function document_upload_complete(){
   /* check if the location field is empty then set type as user input */
   if($('#location_field').val() == "")
   {
-      $('#location_type').val('3');
+      $('#location_type').val('4');
   }
   /* 
    * check if the geolocation field set from google map is same as in the location field then 

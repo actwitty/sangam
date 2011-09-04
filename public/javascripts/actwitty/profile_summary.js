@@ -348,7 +348,7 @@ function create_and_add_subscriptions_in_auth_sect()
              /* set context for the modal dialog */
              aw_subscription_modal_data(data.user);
            }else{
-             $("#" + "owners_subscription_list").html('<span>No subscribers to the channels.</span>');
+             $("#" + "owners_subscription_list").html('<span>No subscriptions so far.</span>');
            }
 
         },
@@ -494,7 +494,7 @@ function create_and_add_summary_icon_box(summary_box,id)
  */
 function create_and_add_mainpage_summary(summary_box, summary){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
- var unique_id =  'SUMMARY_MAINPAGE' + summary.word.id + '_' + summary.user.id;
+ var unique_id =  'SUMMARY_MAINPAGE_' + summary.word.id + '_' + summary.user.id;
  if ($("#" + unique_id ).length > 0){
    return;
  }
@@ -521,17 +521,17 @@ var show_counter = 0;
     show_counter += counter.count; 
   });
  }
- aw_lib_console_log("debug","profile_summary.js:create_and_add_summary_icon"); 
+ aw_lib_console_log("debug","profile_summary.js:create_and_add_mainpage_summary"); 
  
  
- var html = '<div class="p-channlep-post-mainpage">'+
+ var html = '<div class="p-channlep-post-mainpage" id="' +  unique_id + '">'+
                 '<div class="p-channelp-post-info-mainpage">'+
                   '<div class="p-channelp-post-lu-mainpage" id="' + latest_text_box_id  + '">' + 
                       '<div class="p-channelp-post-lu-header-mainpage">'+
                         '<span>Last Updates</span>'+
                       '</div>'+
                   '</div>'+
-                  '<div class="p-channelp-post-cu-mainpage">'+
+                  '<div class="p-channelp-post-cu-mainpage js_word_name_box">'+
                     '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
                     '</div>'+
                   
@@ -551,30 +551,22 @@ var show_counter = 0;
                 '</div>'+
              '</div>';
 
- var html2 =  '<div class="p-channelp-otr-channel-icon" >'+
-               '<div class="p-channelp-post-cu js_word_name_box" >' +
-                  '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
-                  '</div>'+
-                  
-                  '<hr class="p-channelp-post-cu-bar"/>'+
-                  '<div class="p-channelp-post-title">'+
-                     '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
-                  '</div>'+
-                  '<div class="p_channelp_view_summary" value="' + unique_id + '"> View'+
-                  '</div>'+
-                '</div>' +
-                '<div class="p-channelp-post-analytic">' +
-                  '<div class="p-channelp-post-like">' +
-                    '<p><center>' + show_counter + '</center></p> <p> <center>Shares</center></p>' +
-                  '</div>' +
-                  '<div class="p-channelp-post-post">' +
-                    '<p><center>' + summary.activity_count + '</center></p> <p> <center>Posts</center></p>' +
-                  '</div>' +
-                '</div>' +
-             '</div>';
 
         /* overall summary div is added */        
         summary_box.append(html);
+
+        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        if( summary.theme_data.url && summary.theme_data.url.length){
+          background_theme = summary.theme_data.url;
+        }
+
+        var word_name_box = $('#' + unique_id).find('.js_word_name_box');
+        word_name_box.css({
+                            'backgroundImage' :'url('+ background_theme + ')',
+                            //'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'center center'
+                          });  
+
         create_and_add_text_box(latest_text_box_id, summary,"mainpage");
 }
 
@@ -588,9 +580,10 @@ var show_counter = 0;
 
 
 /* handle complete summary box */
-function create_and_add_summary_icon(summary_box, summary){
+function create_and_add_summary_icon(summary_box, summary, icon_id, main_id){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
- var unique_id =  'SUMMARY_' + summary.word.id + '_' + summary.user.id;
+ var unique_id =  icon_id;
+ var unique_id_main_box = main_id;
  if ($("#" + unique_id ).length > 0){
    return;
  }
@@ -618,7 +611,7 @@ var show_counter = 0;
   });
  }
  aw_lib_console_log("debug","profile_summary.js:create_and_add_summary_icon"); 
- var html =  '<div class="p-channelp-otr-channel-icon" >'+
+ var html =  '<div class="p-channelp-otr-channel-icon" id="' + unique_id + '">'+
                '<div class="p-channelp-post-cu js_word_name_box" >' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
                   '</div>'+
@@ -627,7 +620,7 @@ var show_counter = 0;
                   '<div class="p-channelp-post-title">'+
                      '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
                   '</div>'+
-                  '<div class="p_channelp_view_summary" value="' + unique_id + '"> View'+
+                  '<div class="p_channelp_view_summary" value="' + unique_id_main_box + '"> View'+
                   '</div>'+
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
@@ -645,15 +638,25 @@ var show_counter = 0;
   
         /* overall summary div is added */        
         summary_box.append(html);
-
+        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        if( summary.theme_data.url && summary.theme_data.url.length){
+          background_theme = summary.theme_data.url;
+        }
+        var word_name_box = $('#' + unique_id).find('.js_word_name_box');
+        word_name_box.css({
+                            'backgroundImage' : 'url('+ background_theme + ')',
+//                            'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'center center'
+                          }); 
+        return unique_id_main_box;
 }
 
 /* handle complete summary box */
-function create_and_add_summary(summary_box, summary , hide_class){
+function create_and_add_summary(summary_box, summary , box_id, hide_class){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
 
 
- var unique_id =  'SUMMARY_' + summary.word.id + '_' + summary.user.id;
+ var unique_id = box_id;
  if ($("#" + unique_id ).length > 0){
    return;
  }
@@ -781,7 +784,11 @@ function create_and_add_summary(summary_box, summary , hide_class){
           background_theme = summary.theme_data.url;
         }
         var word_name_box = $('#' + unique_id).find('.js_word_name_box');
-        word_name_box.css('background-image', 'url('+ background_theme + ')');  
+        word_name_box.css({
+                            'backgroundImage' : 'url('+ background_theme + ')',
+//                            'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'center center'
+                          });  
           
          aw_lib_console_log("debug","profile_summary.js:create_and_add_summary html appended");
         /* handle individual divs */
@@ -815,7 +822,9 @@ function append_personal_summary(owner_id){
         success: function (data) {
 
            // if rails demands a redirect because of log in missing
-           if( aw_get_channel_scope() == 3 ){
+           if( aw_get_channel_scope() == 3  ||
+               (aw_get_channel_scope() == 1 && 
+                  aw_lib_get_page_owner_id() != aw_lib_get_session_owner_id()) ){
              for (i=0;i < data.length;i=i+2) {
                 if(!data[i+1]) {
                    var summary_r_id = 0;
@@ -824,14 +833,17 @@ function append_personal_summary(owner_id){
                 create_and_add_summary_icon_box($('#p-channelp-posts'),id); 
                 for(j=0;j<2;j++) {
                    if(data[i+j]){
-                      summary = data[i+j];
-                     create_and_add_summary_icon($("#"+id),summary);
+                     summary = data[i+j];
+                     var icon_id = 'SUMMARY_ICON_' + summary.word.id + '_' + summary.user.id;
+                     var main_id = 'SUMMARY_ICON_MAIN_' + summary.word.id + '_' + summary.user.id;
+                     create_and_add_summary_icon($("#"+id),summary,icon_id, main_id);
                    }
                 }
                 for(j=0;j<2;j++) {
                    if(data[i+j]){
                       summary = data[i+j];
-                      create_and_add_summary($('#p-channelp-posts'),summary, "hide_it"); 
+                      var main_id = 'SUMMARY_ICON_MAIN_' + summary.word.id + '_' + summary.user.id;
+                      create_and_add_summary($('#p-channelp-posts'),summary, main_id, "hide_it"); 
                    };
                 }
              }
@@ -839,7 +851,8 @@ function append_personal_summary(owner_id){
            } else {
             $.each(data, function(i,summary){
                 if( summary ){
-                    create_and_add_summary($('#p-channelp-posts'),summary, "no_hide");
+                    var box_id = 'SUMMARY_BOX_' + summary.word.id + '_' + summary.user.id;
+                    create_and_add_summary($('#p-channelp-posts'),summary, box_id, "no_hide");
                     $("#more_channels_cookie").val(summary.time);
                 } 
             });
@@ -934,7 +947,11 @@ function update_summary_theme(trigger_ele){
         dataType: 'json',
         success: function (data) {
           var word_name_box = trigger_ele.closest('.js_summary_base_div').find('.js_word_name_box');
-          word_name_box.css('background-image', 'url('+ url_val + ')');  
+          word_name_box.css({
+                            'backgroundImage': 'url('+  url_val + ')',
+//                            'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'center center'
+                          }); 
           return false;
          
          

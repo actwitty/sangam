@@ -5,42 +5,39 @@ function get_or_create_a_video_box(box_id, stream){
   var small_div = $("#" + small_box_id);
   if( small_div.length == 0 ){
     var html = '<div class="p-st-docs-per-activity" id="' + small_box_id + '">' +
+                   '<div class="p-awp-stream-post-info">' +
+                      '<div class="p-awp-channel">'+
+                        '<div class="p-awp-channel-desc">'+
+                          '<label class="p-awp-channel-label">CHANNEL : </label>'+
+                          '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
+                          '<span class="p-awp-channel-name">' + stream.word.name + '</span>'+
+                          '</a>' +
+                        '</div>'+
+                      '</div>'+
+                      '<div class="p-awp-stream-post-author-section">'+
+                        '<a href="/home/show?id=' +  stream.user.id + '" >' +
+                        '<div class="p-awp-post-author">'+
+                          '<div class="p-awp-post-author-img">'+
+                            '<img src="' + stream.user.photo + '" alt="" />' +
+                          '</div>'+
+                          '<div class="p-awp-post-author-name">'+
+                            '<span>' + stream.user.full_name + '</span>'+
+                          '</div>'+
+                        '</div>'+
+                        '</a>'+
+                      '</div>'+
+                   '</div>'+  
+                   
+                   '<div class="p-st-docs-list-view-post">' +
+                    '<a href="/view?id=' + stream.document.activity_id + '">Goto Post</a>' +
+                   '</div>' +
 
-                '<div class="p-st-docs-user">' +
-
-                  '<div class="p-st-user-pic">' +
-                    '<img src="' + stream.user.photo + '"/>' +
-                  '</div>' +
-
-                  '<div class="p-st-user-name">' +
-                    '<span>' +
-                      stream.user.full_name +
-                    '</span>' +
-                  '</div>' +
-
-                '</div>' +
-                
-                '<div class="p-awp-view-video-attachment">' +
-
-                  '<div class="p-st-docs-list-channel-box">' +
-
-                    '<div class="p-st-docs-list-channel">' +
-                      '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
-                        '<span>' +
-                          'Channel: ' + stream.word.name +
-                        '</span>' +
-                      '</a>' +
-                    '</div>' +
-
-                    '<div class="p-st-docs-list-view-post">' +
-                      '<a href="/view?id=' + stream.document.activity_id + '">Goto Post</a>' +
-                    '</div>' +
-
-                  '</div>' +
-
-                '</div>' +
-
-               '</div>';
+                   '<div style="z-index:1;" class="p-awp-view-video-attachment">' +
+                   '</div>' +
+            '</div>';
+    
+    
+              
     div.append(html);
     small_div = $("#" + small_box_id);
   }
@@ -59,8 +56,6 @@ function append_video_docs(box_id, stream){
     var div_video = div_internal.find(".p-awp-view-video-attachment"); 
     var html=getEmbeddedPlayer( stream.document.url, 180, 240);
     div_video.append(html);
-    
-     
 
 }
 

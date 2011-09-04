@@ -32,7 +32,7 @@ module ProfilepicHelper
     options[:max_filesize] ||= 500.megabytes
     options[:content_type] ||= 'image/' # Videos would be binary/octet-stream
     options[:filter_title] ||= 'Images'
-    options[:filter_extentions] ||= 'jpg,jpeg,gif,png,bmp'
+    options[:filter_extentions] ||= 'jpg,jpeg,gif,png,bmp,JPG,JPEG,GIF,PNG,BMP,Jpg,Jpeg,Gif,Png,Bmp'
 
     id = options[:id] ? "_#{options[:id]}" : ''
 
@@ -119,10 +119,13 @@ module ProfilepicHelper
                                   //alert('UPLOAD FILE');
                                    if(count==0){
                                      prefix =  get_file_prefix();
-                                     main_url = base_url + '/profile_pics/' + prefix + file.name;
-                                     thumb_url = base_url + '/profile_pics/' + prefix + 'thumb_' + file.name;
-                                     up.settings.multipart_params['key']='profile_pics/' + prefix + '${filename}';
-                                     up.settings.multipart_params['Filename']='profile_pics/' + prefix +  '${filename}'; 
+                                     var parts = file.name.split('.');
+                                     var ext = '';
+                                     ext = parts.length > 1 ? parts.pop():''; 
+                                     main_url = base_url + '/profile_pics/' + prefix + '.' + ext ;
+                                     thumb_url = base_url + '/profile_pics/' + prefix + 'thumb_'  + '.' + ext;
+                                     up.settings.multipart_params['key']='profile_pics/' + prefix + '.' + ext;
+                                     up.settings.multipart_params['Filename']='profile_pics/' + prefix + '.' + ext; 
 
                                    }
                                 });
@@ -131,9 +134,12 @@ module ProfilepicHelper
                                   //alert('file uploaded');	
                                   if(count==0 && file.status == plupload.DONE){
                                     count++;
+                                    var parts = file.name.split('.');
+                                    var ext = '';
+                                    ext = parts.length > 1 ? parts.pop():'';
                                     file.status = plupload.QUEUED;
-                                    var key = 'profile_pics/' + prefix + 'thumb_' + '${filename}';
-                                    var file_name ='profile_pics/' + prefix + 'thumb_' + '${filename}';
+                                    var key = 'profile_pics/' + prefix + 'thumb_'  + '.' + ext;
+                                    var file_name ='profile_pics/' + prefix + 'thumb_' + '.' + ext;
                                     up.stop();
                                     up.trigger('Refresh');
                                     up.settings.multipart_params['key']= key;

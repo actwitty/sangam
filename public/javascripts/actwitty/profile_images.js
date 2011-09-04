@@ -43,7 +43,11 @@ function get_or_create_a_box(box_id, stream){
                         '</div>'+
                         '</a>'+
                       '</div>'+
-                   '</div>'+  
+                     
+                   '</div>'+ 
+                    '<div class="p-st-docs-list-view-post">' +
+                        '<a href="/view?id=' + stream.document.activity_id + '">Goto Post</a>' +
+                      '</div>' +
                    '<div style="z-index:1;" class="p-awp-view-attachment p-awp-view-images">' +
                    '</div>' +
             '</div>';

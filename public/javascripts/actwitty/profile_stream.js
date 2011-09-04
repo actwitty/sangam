@@ -111,12 +111,12 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
         var html=getEmbeddedPlayer( attachment.url, 180, 240);
         
         var inner_box_id = box_id + "_" + attachment.id;
-        var box_html = '<div class="p-awp-view-attachment-inner-box" id="' + inner_box_id + '">' +
+        var box_html = '<div class="p-awp-video-view-attachment-inner-box" id="' + inner_box_id + '">' +
                    '</div>';
         ul_box.append(box_html);
         var attachment_box = $("#" + inner_box_id);
         if(aw_lib_get_session_owner_id() == stream.post.user.id){
-          var close_html = '<div class="delete-image-box">' +
+          var close_html = '<div class="delete-video-box">' +
                             '<div class="delete-image-cntrl js_remove_attached_doc" id="' + attachment.id + '" />' +
                            '</div>';
           attachment_box.append(close_html);
