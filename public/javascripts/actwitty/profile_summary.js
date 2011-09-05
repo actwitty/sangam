@@ -224,7 +224,7 @@ function create_and_add_friends_box(box_id, summary){
     });
 
   }else{
-    var html='<span> No records Found </span>';
+    var html='<span> could not found any related friends !! </span>';
     friends_box.append(html);              
     //friends_box.hide();
   }
@@ -239,6 +239,9 @@ function create_and_add_entities_box(box_id, summary){
   var entities_box = $("#" + box_id);
   if( summary.entities && summary.entities.length ){
     $.each(summary.entities, function(i, entity){
+       // cap on max number of elements shown in related entity fields
+      if(i>6)
+        return;
       /* This filter id uniquely identifies filter */
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + entity.id;
       /* create a JSON of filter */
@@ -251,11 +254,17 @@ function create_and_add_entities_box(box_id, summary){
                           };
       the_big_filter_JSON[filter_id] = filter_value;
 
+      var thing_text = entity.name;
+      // 20 is max char limit set to be display on one like
+      if(thing_text.length > 20){
+        thing_text =   entity.name.substring(0,20) + ' >' ;
+      } 
+
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
                   /*'<img src="'+ entity.image  + '?maxwidth=40&maxheight=40"  width="40" height="40" alt="" />' +*/
                   '<span>' +
-                      entity.name +
+                      thing_text +
                   '</span>' +
                 '</a>' +
               '</li>';
@@ -265,7 +274,7 @@ function create_and_add_entities_box(box_id, summary){
 
   }else{
     var html='<li>' +
-                  '<span> No records found</span>' +
+                  '<span> No elements found!!</span>' +
               '</li>';
     entities_box.append(html);
     //entities_box.hide();
@@ -278,9 +287,13 @@ function create_and_add_entities_box(box_id, summary){
 /* handle locations box */
 function create_and_add_locations_box(box_id, summary){
   var locations_box = $("#" + box_id);
+  
   if( summary.locations && summary.locations.length ){
   
     $.each(summary.locations, function(i, place){
+      // cap on max number of elements shown in related location fields
+      if(i>6)
+        return;
       var filter_id =  'FS_' + summary.word.id + '_' + summary.user.id + '_' + place.id;
       /* create a JSON of filter */
       var filter_value = {
@@ -292,11 +305,16 @@ function create_and_add_locations_box(box_id, summary){
                           };
       the_big_filter_JSON[filter_id] = filter_value;
 
-
+      var location_text = place.name;
+      // 20 is max char limit set to be display on one like
+      if(location_text.length > 20){
+        location_text =   place.name.substring(0,20) + ' >' ;
+      } 
+      
       var html='<li>' +
                   '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id + '"  >' +
                     '<span>' +
-                         place.name +
+                         location_text +
                     '</span>' +
                   '</a>' +
                 '</li>';
@@ -305,7 +323,11 @@ function create_and_add_locations_box(box_id, summary){
     });
 
   }else{
-    locations_box.hide();
+    var html='<li>' +
+                  '<span> No locations found!!</span>' +
+              '</li>';
+    locations_box.append(html);
+    //locations_box.hide();
   }
 }
 
