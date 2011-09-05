@@ -1457,34 +1457,18 @@ ul.p-cstab1 li a {
   padding:2px;
 }
 
-/*
-.p-fltr-tag-list-location
-{
-  display:block;
-  float:right;
-  width:80px;
-  overflow:hidden;
-  height:14px;
-  margin:2px 2px;
-  background:#274521;
-  -moz-border-radius: 10px ; 
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px ;
-  -webkit-border-radius: 10px ;
-  text-decoration:none;
-  text-align:center;
-}
-*/
+
 .p-fltr-tag-list-location span
 {
 
- background:#7aa367;
+  background:#7aa367;
   color:#ffffff;
   width:auto;
   padding:2px;
   font-weight:normal;
   text-decoration:none;
-  font-size:16px; 
+  font-size:16px;
+  margin:2px;
 }
 
 .p-fltr-tag-list-entity, p-fltr-tag-list-location
@@ -1513,6 +1497,7 @@ ul.p-cstab1 li a {
   font-weight:normal;
   text-decoration:none;
   font-size:16px;
+  margin:2px;
 }
 
 
