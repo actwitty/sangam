@@ -103,7 +103,16 @@ function create_and_add_text_box(box_id, summary,channel_class){
       
   }else{
     /* hide if there is nothing to show */
-    text_box.hide();
+    var html = '<div class="' +lup_class +'">' +
+                    '<div class="p-channelp-post-lup-time">' +
+                       '<abbr class="timeago" title=""></abbr>' +
+                    '</div>' +
+                    '<div class="p-channelp-post-lup-text">' +
+                      '<p>  Could not found any text update !!!!</p>' +
+                    '</div>'+
+                  '</div>';
+    text_box.append(html);
+    /*text_box.hide();*/
   }
 }
 
