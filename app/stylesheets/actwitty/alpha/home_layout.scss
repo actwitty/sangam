@@ -1203,9 +1203,9 @@ ul.p-cstab1 li a {
 }
 .p-st-filter-sect
 {
-  height:50px;
+  height:45px;
   width:100%;
-  margin:3px 0 3px 0;
+  margin:3px 0 0 0;
 
 }
 .p-st-filter
@@ -1219,9 +1219,10 @@ ul.p-cstab1 li a {
   z-index:1000;
   background:#fff;
   border:0px solid red;
-  border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;
+  border-top:0px solid #ddd;
+  border-bottom:0px solid #ddd;
   opacity:1;
+  margin-left:5px;
 }
 .p-st-filter li
 {
