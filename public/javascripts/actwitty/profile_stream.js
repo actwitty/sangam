@@ -329,8 +329,9 @@ function handle_stream_location(box_id, location){
 /*
  * Render stream close button
  */
-function handle_stream_actions(box_id, stream, current_user_id,post_operations_id){
+function handle_stream_actions(box_id, stream, current_user_id,post_operations_id,like_text_id){
   var div=$("#" + box_id);
+  var like_count_div = $("#" + like_text_id);
   var post_op = $("#" + post_operations_id);
   /* set context on parent div  */
   var action_btn_json = {
@@ -339,10 +340,14 @@ function handle_stream_actions(box_id, stream, current_user_id,post_operations_i
  
   the_big_stream_actions_json[box_id] = action_btn_json;
   if( stream.post.status == 1){
+    /* basically now handling all operational buttons (mentions/comments/like etc) for drafts vs posts here itself . */
     if(current_user_id == stream.post.user.id){
       post_op.next().find(".p-awp-post-edit").show();
       post_op.next().find(".p-awp-post-publish").show();
       post_op.next().find(".p-awp-post-mentions").hide();
+      post_op.next().find(".p-awp-post-like").hide();
+      post_op.next().find(".p-awp-post-comments").hide();
+      like_count_div.hide();
       /*var html = '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
                 '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' ;
       div.append(html);
@@ -352,6 +357,9 @@ function handle_stream_actions(box_id, stream, current_user_id,post_operations_i
     post_op.next().find(".p-awp-post-edit").hide();
     post_op.next().find(".p-awp-post-publish").hide();
     post_op.next().find(".p-awp-post-mentions").show();
+    post_op.next().find(".p-awp-post-like").show();
+    post_op.next().find(".p-awp-post-comments").show();
+    like_count_div.show();
     /*var html = 'input type="button" value="Mentions" class="js_stream_enrich_btn p-awp-mention"/>' ;
     div.append(html);
     */
@@ -804,7 +812,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     streams_box.append(html);
   }
   aw_lib_console_log("debug", "stream html added");
-  handle_stream_actions(action_box_id, stream, current_user_id,post_operations_id);
+  handle_stream_actions(action_box_id, stream, current_user_id,post_operations_id,like_text_id);
   handle_stream_text(text_box_id, stream.post.text);
 
   handle_stream_location(location_box_id, stream.location);
