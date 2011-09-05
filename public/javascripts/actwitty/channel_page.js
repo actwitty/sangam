@@ -13,12 +13,13 @@ function append_channel_streams(){
           // if rails demands a redirect because of log in missing
            var header_html = '<div class="p-awp-channel">' +
                               '<div class="p-awp-channel-desc">' +
-                                '<label class="p-awp-channel-label">'  +
+                                /*'<label class="p-awp-channel-label">'  +
                                   'Channel:' +
                                 '</label>' +
                                 '<span class="p-awp-channel-name">' +
                                   data.name +
                                 '</span>' +
+                                */
                               '</div>' +
                             '</div>';
            $('#channel_stream_header').html(header_html);
