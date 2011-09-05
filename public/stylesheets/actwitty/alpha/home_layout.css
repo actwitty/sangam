@@ -3141,6 +3141,7 @@ a#add_facebook_friends {
   cursor: pointer;
 }
 
+/* for single channel page */
 /* line 3026, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #streams_list {
   width: 620px;

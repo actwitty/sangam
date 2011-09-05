@@ -698,7 +698,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
 
               '<div class="p-channelp-post-header">' +
 
-                '<div class="p-channelp-post-tab"> More/Less' +
+                '<div class="p-channelp-post-tab">More >' +
                 '</div>' +
 
                 '<div class="p-channelp-post-author">' +
@@ -1070,6 +1070,11 @@ $(document).ready(function(){
     $(".p-channelp-post-tab").live('click',function(){
       $(this).closest(".p-channelp-post").find(".p-channelp-related-info").slideToggle();
       $(this).closest(".p-channelp-post").find(".p-channelp-post-rel-img").slideToggle();
+      if($(this).text() == "More >") {
+        $(this).text("Less <");
+      } else {
+        $(this).text("More >");
+      }
     });
 
     $(".p_channelp_view_summary").live('click',function(){
