@@ -247,12 +247,14 @@ function show_all_stream_campaigns(likes, div){
 /*
  * Render stream campaign
  */
-function handle_stream_campaign(box_id, stream){
+function handle_stream_campaign(box_id, like_count_box_id,stream){
   var div=$("#" + box_id);
+  var like_count_div=$("#" + like_count_box_id);
   if(stream.post.campaign_types == 1){
     handle_like_campaign(box_id, stream);
   }else{
     div.hide();
+    like_count_div.hide();
   }
 }
 
@@ -814,7 +816,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                            comment_box_id,  
                            post.id,
                            stream.comments.count);
-    handle_stream_campaign(campaign_box_id, stream);
+    handle_stream_campaign(campaign_box_id, like_text_id,stream);
   }
   setup_readmore("div#"+ text_box_id + " p",250); /* read more for content with character slice at 100 */
 
