@@ -53,9 +53,10 @@ body{
 	font-size:12px;
   font-family:'actwitty-font';
 	color:#CCCCCC;
-	/*background-color:#fff;*/
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+	background-color:#fff;
+  /*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
+
 	}
 
 
@@ -88,14 +89,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	border-bottom:1px dashed #DDDDDD;
 	}
 
-.col1{color:#D2D2D2; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;}
-.col2{color:#FFFFFF; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;}
-.col3{color:#000000; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;}
-.col4{color:#666666; background-color:#FFFFFD;background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;}
+.col1{color:#D2D2D2; background-color:#FFFFFD;}
+.col2{color:#FFFFFF; background-color:#FFFFFD;}
+.col3{color:#000000; background-color:#FFFFFD;}
+.col4{color:#666666; background-color:#FFFFFD;}
 
 /* ----------------------------------------------Generalise-------------------------------------*/
 
@@ -149,8 +146,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   height:auto;
   border:0px solid red;
   z-index:1250;
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+  /*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 }
 #top-bar
 {
@@ -341,8 +338,8 @@ opacity:40%;
   width:624px;
   height:auto;
   border:0px solid #ddd;
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+  /*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 
 }
 
@@ -388,8 +385,8 @@ opacity:40%;
 {
   display:block;
   /*border:1px solid #ddd;*/
-  border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;
+  /*border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;*/
   padding:15px 10px 10px 10px;
   width:585px;
   margin-top:20px; 
@@ -1073,8 +1070,8 @@ a.info:hover span {
   background:#fff;
   position:absolute;
   z-index:200;
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+  /*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 }
 
 ul.p-cstab {
@@ -1165,8 +1162,8 @@ html ul.p-cstab li.p-st-tab.active  {
 	float: left; width:610px;
   height:auto;
   color:#000000;
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+  /*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 }
 ul.p-cstab1 {
 	margin: 0;
@@ -1269,7 +1266,7 @@ ul.p-cstab1 li a {
 }
 .p-flt-actor
 {
-  width:140px;
+  width:160px;
   height:34px;
   display:inline-block;
   float:left;
@@ -1765,7 +1762,7 @@ ul.p-fltr-tag-list li
   width:590px;
   border:0px solid blue;
   margin-top:8px;
-  margin-left:20px;
+  margin-left:40px;
   /*padding:10px;*/
   border-bottom:1px solid #ddd;
 
