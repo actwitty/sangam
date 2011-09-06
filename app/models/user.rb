@@ -254,6 +254,8 @@ class User < ActiveRecord::Base
 
   include TextFormatter
   include QueryPlanner
+  #Alok Adding pusher support
+  include PusherSvc
 
   #INPUT user_id => 123
   #sort_order => 1 (lexicographical) or  2 (based on updated)
@@ -656,7 +658,7 @@ class User < ActiveRecord::Base
     end
     a.destroy
     Rails.logger.debug("[MODEL] [User] [remove_activity] leaving ")
-    a
+    a.attributes
   end
 
   #INPUT { :activity_id => 123,
@@ -667,7 +669,7 @@ class User < ActiveRecord::Base
   ##           private to public or vice versa .. its only from saved to public state as it destroys
   ##           the previous activity and re-creates the new one.
   ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
-
+  #TODO fix it
   def publish_activity(params)
     puts params[:update]
     Rails.logger.debug("[MODEL] [USER] [publish_activity] entering")
@@ -684,6 +686,7 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [USER] [publish_activity] leaving")
     activity
+
   end
 
   #INPUT { :activity_id => 123,
@@ -1753,6 +1756,19 @@ class User < ActiveRecord::Base
     array = get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc})
     array
   end
+
+  #Checks if user_id is in followers list of self.user
+  def check_if_subscribed(user_id)
+    s = SummarySubscribe.where(:subscriber_id => user_id, :owner_id => self.id).first
+    return false if s.blank?
+    true
+  end
+
+  #Alok Adding pusher support
+  def push_event_to_pusher(params)
+     pusher_event(params)
+  end
+  handle_asynchronously :push_event_to_pusher
   # private methods
   private
 

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
 
   before_filter :set_locale
@@ -16,5 +17,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #Alok Adding pusher support
+  def pusher_event_push
+    if !response.body.blank?
+       current_user.push_event_to_pusher({:channel => "#{current_user.id}", :event => params[:action], :data => response.body})
+    end
+  end
 
 end

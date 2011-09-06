@@ -15,3 +15,7 @@ production:
   pusher_secret_key: 02e84edceda36cc1bce6
 test:
   <<: *default
+
+  pusher_app_id: 8165
+  pusher_key_id: e56f227bc500d2fb8364
+  pusher_secret_key: e0948ca7a8b1c398dba3

@@ -1,6 +1,7 @@
 require 'em-http'
 require 'eventmachine'
 require 'pusher'
+require 'delayed_job'
 
 module PusherSvc
 
@@ -18,14 +19,14 @@ module PusherSvc
 
 
     #just for development and test
-    if Rails.env != 'production'
-      if EM.reactor_running?
-        EM.stop
-      end
-      Thread.new { EM.run }
-      puts("\n[LIB] [PUSHER_SVC] [self.configure] Thread count => #{Thread.list.size} ENV => #{Rails.env}")
-
-    end
+#    if Rails.env != 'production'
+#      if EM.reactor_running?
+#        EM.stop
+#      end
+#      Thread.new { EM.run }
+#      puts("\n[LIB] [PUSHER_SVC] [self.configure] Thread count => #{Thread.list.size} ENV => #{Rails.env}")
+#
+#    end
 
     Pusher.logger = Rails.logger
 
@@ -45,20 +46,25 @@ module PusherSvc
     Rails.logger.debug("\n[LIB] [PUSHER_SVC] [create_pusher_private_channel] RunTimeError rescue => #{e.message}")
   end
 
-
   def pusher_event(params)
 
     Rails.logger.info("\n[LIB] [PUSHER_SVC] [pusher_event] entering => #{params} ")
 
-    deferrable = Pusher[params[:channel]].trigger_async(params[:channel], {:some => params[:data]})
+    #for production on heroku Thin server is running.. That is EM based.
+    # On development/test we can use EM as done in
+    #self.configure but as of now no need
+    if Rails.env != 'production'
+      Pusher["private-#{params[:channel]}"].trigger(params[:event], {:some => params[:data]})
+    else
+      deferrable = Pusher["private-#{params[:channel]}"].trigger_async(params[:event], {:some => params[:data]})
+      deferrable.callback {
+         Rails.logger.info("\n[LIB] [PUSHER_SVC] [pusher_event] Deferred callback success")
+      }
 
-    deferrable.callback {
-       Rails.logger.info("\n[LIB] [PUSHER_SVC] [pusher_event] Deferred callback success")
-    }
-
-    deferrable.errback {  |e|
-       Rails.logger.info("\n[LIB] [PUSHER_SVC] [pusher_event] Deferred Error back failed #{e.message:w}")
-    }
+      deferrable.errback {  |e|
+         Rails.logger.info("\n[LIB] [PUSHER_SVC] [pusher_event] Deferred Error back failed #{e.message:w}")
+      }
+    end
 
     Rails.logger.info("\n[LIB] [PUSHER_SVC] [pusher_event] leaving => #{params} ")
 
@@ -69,4 +75,5 @@ module PusherSvc
   rescue  => e
     Rails.logger.debug("\n[LIB] [PUSHER_SVC] [pusher_event] PusherError rescue => #{e.message}")
   end
+
 end

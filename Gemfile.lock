@@ -127,7 +127,7 @@ GEM
     ffi (1.0.9)
     fssm (0.2.7)
     geocoder (1.0.2)
-    gherkin (2.4.16)
+    gherkin (2.4.18)
       json (>= 1.4.6)
     haml (3.1.2)
     haml-rails (0.3.4)
@@ -206,6 +206,8 @@ GEM
     open4 (1.1.0)
     orm_adapter (0.0.5)
     pg (0.11.0)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.2)
     pusher (0.8.2)
       crack (~> 0.1.0)
@@ -236,7 +238,7 @@ GEM
       activesupport (= 3.0.7)
       rake (>= 0.8.7)
       thor (~> 0.14.4)
-    rake (0.8.7)
+    rake (0.9.2)
     rcov (0.9.10)
     render_component (3.0.4)
       railties (~> 3.0.0)
@@ -275,9 +277,10 @@ GEM
     simple_form (1.4.1)
     spork (0.8.4)
     spruz (0.2.13)
-    squeel (0.8.9)
+    squeel (0.8.10)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
+      polyamorous (~> 0.5.0)
     term-ansicolor (1.0.6)
     thor (0.14.6)
     treetop (1.4.10)
@@ -337,7 +340,7 @@ DEPENDENCIES
   query_reviewer!
   rails (= 3.0.7)
   rails3-generators
-  rake (= 0.8.7)
+  rake
   rcov
   render_component
   right_aws
