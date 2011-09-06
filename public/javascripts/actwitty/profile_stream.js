@@ -691,12 +691,14 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   }
 
 
-  /* Main stream div definition */
+  /* Main stream div definition 
+   * */
   var stream_ele_id = get_stream_ele_id(post.id);
   aw_lib_console_log("debug", "rendering the stream");
   var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
                    '<div class="p-awp-close-section">'+
-                      '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>' +
+                      '<div class="p-awp-close js_stream_delete_btn">' +
+                      '</div>' +
                    '</div>'+
                    '<div class="p-awp-stream-post-info">' +
                       '<div class="p-awp-channel">'+
@@ -994,8 +996,10 @@ function show_all_comments(post_id, all_id){
 * Delete stream
 */
 function delete_stream(post_id){
-  alert("in delete... post_id" +post_id);
+ 
   var stream_render_id = get_stream_ele_id(post_id);
+  //alert("in delete... post_id  " +post_id);
+  //alert("after success we will close " + stream_render_id);
   $.ajax({
     url: '/home/delete_stream.json',
     type: 'POST',
@@ -1234,11 +1238,11 @@ $(document).ready(function(){
    * Stream delete button clicked
    */
   $('.js_stream_delete_btn').live('click', function(){
-    alert("closing " + $(this).parent().parent().attr("id"));
-    var del_json = the_big_stream_actions_json[$(this).parent().parent().attr("id")];
+    alert("closing " + $(this).parent().parent().attr("value"));
+    var del_json = the_big_stream_actions_json[$(this).parent().parent().attr("value")];
     //if(del_json){
       //delete_stream(del_json.stream_id);
-      delete_stream($(this).parent().parent().attr("id"));
+      delete_stream($(this).parent().parent().attr("value"));
     //}
     return false;
   });

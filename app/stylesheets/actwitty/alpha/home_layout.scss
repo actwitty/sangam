@@ -2104,12 +2104,12 @@ div.p-awp-actions
 
 .p-awp-close-section
 {
-  width:100%;
-  height:15px;
+  width:580px;
+  height:24px;
   border:0px solid red;
 }
 
-.p-awp-close-section input:hover
+.p-awp-close-section div.p-awp-close:hover
 {
   cursor:pointer;
 }
@@ -2118,6 +2118,11 @@ div.p-awp-actions
 .p-awp-close
 {
   float:right;
+  margin-right:50px;
+  width:16px;
+  height:16px;
+  border:0px solid blue;
+  background: url(/images/alpha/aw_close.png) no-repeat;
 }
 
 div.p-awp-actions .p-awp-close
