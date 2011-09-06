@@ -9,11 +9,12 @@
           %form{:action => ""}
             %input#username_search.searchbox{:name => "s", :placedholder => "Search", :type => "text"}
         #home_page_nav
-          #settings
+          #home_page_settings
             %a#p-topbar-home{:href => "/home/show?id=#{@current_user.id}"}
             -if user_signed_in?
-              %a.button{:href => "/home/show?id=#{@current_user.id}"}
-                %img#profile_header_user_img{:src => "#{@current_user.photo_small_url}"}/
+              #top_bar_user_image
+                %a.button{:href => "/home/show?id=#{@current_user.id}"}
+                  %img#profile_header_user_img{:src => "#{@current_user.photo_small_url}"}/
               .options-menu
                 %ul
                   %li
