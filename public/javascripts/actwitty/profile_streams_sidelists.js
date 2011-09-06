@@ -46,6 +46,7 @@ function populate_filtered_entities(ele, entities){
   var div = ele;
   $.each(entities, function(i, entity){
      var link_id = "stream_related_entity_fltr_" + entity.id;
+     var entity_name = get_trim_text(entity.name,18,"..."); // a helper to trim the text
      var html='<div class="p-fltr-tag-list-entity">' +
                 '<span id="'+ link_id + '" class="js_related_entities">' +
                       entity.name +
@@ -71,11 +72,14 @@ function populate_filtered_locations(ele, locations){
   }
   var div = ele;
   
+  
+ 
   $.each(locations, function(i, location){
      var link_id = "stream_location_id_" + location.id;
+     var location_name = get_trim_text(location.name,18,"..."); // a helper to trim the text
      var html='<div class="p-fltr-tag-list-location">' +
                   '<span class="js_related_locations" id="' + link_id + '">' +
-                    location.name +
+                    location_name +
                   '</span>' +
               '</div>';
       

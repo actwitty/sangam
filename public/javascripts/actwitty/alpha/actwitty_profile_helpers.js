@@ -225,3 +225,14 @@ $(document).ready(function(){
     }); 
 
 });
+
+
+
+function get_trim_text (str_value,len,end_with) {
+  var str = str_value;
+  if(str.length > len){
+        str = str.substring(0,len) + end_with ;
+  }
+  return str;
+
+}
