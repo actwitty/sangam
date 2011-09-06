@@ -1203,9 +1203,9 @@ ul.p-cstab1 li a {
 }
 .p-st-filter-sect
 {
-  height:50px;
+  height:45px;
   width:100%;
-  margin:3px 0 3px 0;
+  margin:3px 0 0 0;
 
 }
 .p-st-filter
@@ -1219,9 +1219,10 @@ ul.p-cstab1 li a {
   z-index:1000;
   background:#fff;
   border:0px solid red;
-  border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;
+  border-top:0px solid #ddd;
+  border-bottom:0px solid #ddd;
   opacity:1;
+  margin-left:5px;
 }
 .p-st-filter li
 {
@@ -1457,34 +1458,18 @@ ul.p-cstab1 li a {
   padding:2px;
 }
 
-/*
-.p-fltr-tag-list-location
-{
-  display:block;
-  float:right;
-  width:80px;
-  overflow:hidden;
-  height:14px;
-  margin:2px 2px;
-  background:#274521;
-  -moz-border-radius: 10px ; 
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px ;
-  -webkit-border-radius: 10px ;
-  text-decoration:none;
-  text-align:center;
-}
-*/
+
 .p-fltr-tag-list-location span
 {
 
- background:#7aa367;
+  background:#7aa367;
   color:#ffffff;
   width:auto;
   padding:2px;
   font-weight:normal;
   text-decoration:none;
-  font-size:16px; 
+  font-size:16px;
+  margin:2px;
 }
 
 .p-fltr-tag-list-entity, p-fltr-tag-list-location
@@ -1513,6 +1498,7 @@ ul.p-cstab1 li a {
   font-weight:normal;
   text-decoration:none;
   font-size:16px;
+  margin:2px;
 }
 
 
@@ -1945,6 +1931,8 @@ ul.p-fltr-tag-list li
   width:95%;
   height:auto;
   border:0px solid red;
+  margin-bottom:10px;
+
 }
 
 .p-awp-content p
@@ -3030,3 +3018,26 @@ a#add_facebook_friends{
   cursor:pointer;
 }
 
+
+
+
+/* for single channel page */
+#streams_list
+{
+  width:620px;
+  height:auto;
+  border:0px solid red;
+  margin:0px auto;
+}
+
+
+/*****************************************************************
+ Helper CSS Classes to adjust the page layout. As we are trying 
+ to utilize the same html structure as much as possible to avoid
+ repetition.
+ ******************************************************************/
+
+ .p-awp-align-center-margin
+ {
+   margin-left:140px;
+ }
