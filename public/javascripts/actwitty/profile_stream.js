@@ -868,7 +868,6 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
 function rerender_attachements_after_delete(view_attach_box) {
   var count = view_attach_box.children().size() - 1;
-  alert("now remaining = " + count);
   var image_count_div = view_attach_box.find(".p-awp-view-all-images-div span");
   if(count > 7 ){
     image_count_div.text("View all " + count + " images");
