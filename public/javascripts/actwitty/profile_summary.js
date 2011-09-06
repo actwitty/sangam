@@ -651,7 +651,7 @@ var show_counter = 0;
                   '<div class="p-channelp-post-title">'+
                      '<center><span id="'+ filter_id +'" class="js_summary_filter_setter">' + summary.word.name + '</span></center>'+
                   '</div>'+
-                  '<div class="p_channelp_view_summary" value="' + unique_id_main_box + '"> View'+
+                  '<div class="p_channelp_view_summary" value="' + unique_id_main_box + '"> <span>view more ></span>'+
                   '</div>'+
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +
@@ -1100,6 +1100,11 @@ $(document).ready(function(){
     });
 
     $(".p_channelp_view_summary").live('click',function(){
+      if($(this).find('span').text() == "view more >"){
+        $(this).find('span').text("view less <");
+      } else {
+        $(this).find('span').text("view more >");
+      }
       var summary_id = $("#"+$(this).attr("value"));
       summary_id.slideToggle();
     });
