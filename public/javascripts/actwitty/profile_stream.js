@@ -252,6 +252,7 @@ function handle_stream_campaign(box_id, like_count_box_id,stream){
   var like_count_div=$("#" + like_count_box_id);
   if(stream.post.campaign_types == 1){
     handle_like_campaign(box_id, stream);
+    div.hide();
   }else{
     div.hide();
     like_count_div.hide();
@@ -397,8 +398,10 @@ function handle_comment_close_box(box_id, comment, comment_post_id, current_user
   /******************************/
 
 
-  var html = '<input type="button" value="Remove" id="' + comment_close_id + '"' + 
+  var html2 = '<input type="button" value="Remove" id="' + comment_close_id + '"' + 
                     'class="js_comment_delete_btn p-st-comment-close-btn"/>';
+  var html = '<div class="p-st-comment-close js_comment_delete_btn" id="' + comment_close_id + '">' +
+             '</div>' ;
   div.append(html);
 }
 
@@ -413,13 +416,19 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
 
   var html = '<div class="p-awp-comment" id="' + comment_id + '">' +
                     /* close box */
-                  '<div class="p-st-comment-close" id="'+ close_box_id +'">' +
+                  '<div class="p-st-comment-close-section" id="'+ close_box_id +'">' +
                   '</div>' +
-                  
+
+                  /*'<div class="p-awp-close-section" id="'+ close_box_id +'">' +
+                      '<div class="p-awp-close js_stream_delete_btn">' +
+                      '</div>' +
+                   '</div>'+
+                  */
                   '<div class="author">'+
                     '<div class="p-st-comment-actor-desc">'+
                         '<div class="p-st-comment-submitdate">'+
-                            '<center>' + comment.time + '</center>'+
+                        //'<center>' +  comment.time + '</center>'+
+                            '<center>' +  '<abbr class="timeago" title="' + comment.time + '"></abbr>' + '</center>'+
                         '</div>'+
                         '<div class="p-st-comment-actor">'+
                             '<center><a href="/home/show?id=' +  comment.user.id + '">' +
@@ -428,9 +437,9 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                         '</div>'+
                     '</div>'+
                     '<div class="p-st-comment-actor-image">'+
-                      '<a href="/home/show?id=' +  comment.user.id + '">' +
-                        '<img class="avatar" src="' + comment.user.photo + '" width="32" height="32" alt="" />' +
-                      '</a>' +
+                      //'<a href="/home/show?id=' +  comment.user.id + '">' +
+                        '<img class="avatar" src="' + comment.user.photo + '" alt="" />' +
+                      //'</a>' +
                     '</div>'+
                   '</div>'+
                   '<div class="p-st-comment-content">'+
@@ -446,6 +455,8 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                                current_user_id, 
                                comment_id, 
                                show_all_id);
+      /* convert time stamp to time ago */
+      $("abbr.timeago").timeago();
 
 }
 
@@ -496,8 +507,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   
     var html = '<div class="post-comment">'+
-                  '<input type="text" name="comment" id="post-123456" class="add-comment" placeholder="Add Comment...">'+
-                    '<div class="submit-comment post-123456" id="1234567">'+
+                  '<input type="text" name="comment" class="add-comment" placeholder="Add Comment...">'+
+                    '<div class="submit-comment" >'+
                       '<input type="text" name="comment" class="add-comment-text p-st-comment-text-box" id="' + add_new_textarea_id + '" >'+
                       '<input type="submit" value="Post Comment" class="js_add_new_comment post-comment-btn btn-comments" id="' + add_new_btn_id + '"/>' +
                       '<input type="submit" value="Cancel" class="cancel-comment-btn btn-comments">'+
@@ -984,7 +995,7 @@ function show_all_comments(post_id, all_id){
         success: function (data) {
           show_all_stream_comments(data, post_id, current_user_id, all_id);
           /*****************************************Error On Slidetoggle****************************/
-          $(this).parent().next().slidToggle(200);
+          $(this).parent().next().slideToggle();
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
             aw_lib_alert('There has been a problem in adding new comment. \n ActWitty is trying to solve.');
