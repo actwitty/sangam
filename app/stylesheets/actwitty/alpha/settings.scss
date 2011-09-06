@@ -7,32 +7,36 @@ height:900px;
 padding:5px;/*14*/
 }
 
-/* ----------- stylized ----------- */
-#stylized{
+/* ----------- settings-main ----------- */
+#settings-main{
 /*border:solid 2px #b7ddf2;
 background:#ebf4fb;*/
+/*margin:0 auto;*/
 }
-#stylized h1 {
+#settings-main h1 {
 font-size:14px;
 font-weight:bold;
 margin-bottom:8px;
 }
-#stylized p{
+#settings-main p{
 font-size:11px;
 color:#666666;
 margin-bottom:20px;
 /*border-bottom:solid 1px #b7ddf2;*/
 padding-bottom:10px;
 }
-#stylized label{
+#settings-main label{
 display:block;
 /*font-weight:bold;*/
-font-size:14px;
+font-family:nimbus-sans-condensed,sans-serif;
+color: #666;
+font-size:16px;
 text-align:right;
 width:140px;
 float:left;
+/*background: #E0E0E0;*/
 }
-#stylized .small{
+#settings-main .small{
 color:#666666;
 display:block;
 font-size:11px;
@@ -40,34 +44,57 @@ font-weight:normal;
 text-align:right;
 width:140px;
 }
-#stylized input{
+#settings-main input{
 float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:12px 0 20px 50px;
+background-color: #DDD;
+font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-#stylized textarea{
+#settings-main textarea{
 float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:12px 0 20px 50px;
+background-color: #DDD;
+font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-#stylized select{
+#settings-main #user_settings_image{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:50px; 
+margin:-5px 0 20px 50px;/*10 0 20 500*/
+}
+#settings-main #profile_img_selector{
+/*float:left;*/
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:100px; 
+/*border:2px solid red;*/
+margin:-60px 0 20px 295px;/*10 0 20 500*/
+background-color: #DDD;
+}
+#settings-main select{
 float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:12px 0 20px 50px;
+background-color: #DDD;
 }
 
-#stylized button{
+#settings-main button{
 clear:both;
-margin-left:250px;/*200*/
+margin-left:300px;/*200*/
 width:50px;/*75*/
 height:31px;
 /*background:#666666 url(img/button.png) no-repeat;*/
@@ -78,13 +105,11 @@ font-size:11px;
 font-weight:bold;
 }
 /* pramod */
-/*
-#settings-button {
-  width: 100px;
-  margin-left:175px;
+#settings-main #settings-button {
+  width: 75px;
+  margin-left:150px;
   margin-top:10px;
 }
-*/
 /* --------------------------------------Facebook friends ----------------- */
 
 .sc_menu1 li {
