@@ -282,11 +282,11 @@ span.name a
 .author
 {
   border:0px solid green;
-  width:160px;
-  height:50px;
+  /*width:160px;
+  height:50px;*/
   margin-top:5px;
   float:left;
-  background:#92cfd4;
+  /*background:#92cfd4;*/
 }
 .p-st-comment-actor
 {
@@ -301,14 +301,15 @@ div.p-st-comment-actor center a
 {
   border:0px solid red;
   color:#c19135;
-  width:35px;
-  height:40px;
+  width:50px;
+  height:50px;
   float:right;
 }
 .p-st-comment-actor-image img
 {
-  width:35px;
+  width:50px;
   height:50px;
+  margin-left:200px;
 }
 
 .p-st-comment-actor-desc
