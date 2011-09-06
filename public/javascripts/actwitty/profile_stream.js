@@ -46,7 +46,7 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
     var ul_box = $("#" + box_id);
     
 
-    if(stream.documents.array.length < 5){
+    if(stream.documents.array.length < 7){
       docs_view_all.hide();
     }else{
       if(view_all_id != ""){
@@ -862,6 +862,26 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
 
 
 /*
+ * Re Render the attachment box after some attachment is deleted.
+ */
+
+
+function rerender_attachements_after_delete(view_attach_box) {
+  var count = view_attach_box.children().size() - 1;
+  alert("now remaining = " + count);
+  var image_count_div = view_attach_box.find(".p-awp-view-all-images-div span");
+  if(count > 7 ){
+    image_count_div.text("View all " + count + " images");
+  } else {
+    image_count_div.hide();
+  }
+}
+
+
+
+
+
+/*
  * Add streams to the page
  */
 function append_stream(owner_id, current_user_id){
@@ -1153,9 +1173,11 @@ function remove_document_from_post(document_id, close_box){
           dataType: 'json',
           success: function (data) {
             /*remove that document*/
+           var main_parent = close_box.closest(".p-awp-view-attachment");
            var parent_box = close_box.closest(".p-awp-view-attachment-inner-box");
            parent_box.html('');
            parent_box.remove();
+           rerender_attachements_after_delete(main_parent);
 
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
