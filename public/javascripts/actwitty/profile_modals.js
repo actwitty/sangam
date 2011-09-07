@@ -248,7 +248,7 @@ $(document).ready(function() {
              modal_window.css({'top':config_json.top,'left':config_json.left});
              //alert("if"); 
              //modal_close.css({'width':config_json.width,'height':config_json.height});
-             modal_close.css({'margin-top':config_json.top-10,'margin-left':config_json.width+config_json.left+45});
+             modal_close.css({'margin-top':config_json.top-15,'margin-left':config_json.width+config_json.left+40});
 
            }
          }else{
