@@ -58,7 +58,7 @@ function get_all_followings(){
     /*
      * Get data on ready
      */
-    alert("get_all_followings");
+    //alert("get_all_followings");
     $.ajax({
         url: '/contacts/followings',
         type: 'GET',
@@ -100,7 +100,7 @@ $(document).ready(function(){
 
 
   $('#flwg_friends').click(function(){
-     alert("flwg_friends");
+     //alert("flwg_friends");
      get_all_followings();
      $('#empty_check').hide();
   });

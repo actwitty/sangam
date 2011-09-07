@@ -221,7 +221,7 @@ function handle_like_campaign(div_id, stream){
  */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
-  //alert(JSON.stringify(likes));
+  alert(JSON.stringify(likes));
   //alert("show_all_stream_campaigns" + div);
   $.each(likes, function(i,like){
     var like_html = '<div class="author">' +
@@ -1347,6 +1347,7 @@ $(document).ready(function(){
    * User action on campaign
    */
   $('.js_like_user_action').live('click', function(){
+    //alert("js_like_user_action");
     var div_id = $(this).attr("value");
     campaign_manager = the_big_stream_campaign_manager_json[div_id];
     process_user_campaign_action(campaign_manager);
