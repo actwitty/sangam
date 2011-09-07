@@ -390,7 +390,7 @@ opacity:40%;
   /*border-top:1px solid #ddd;
   border-bottom:1px solid #ddd;*/
   padding:15px 10px 10px 10px;
-  width:585px;
+  width:605px;
   margin-top:20px; 
   /*
    margin-left:300px;
@@ -407,7 +407,8 @@ opacity:40%;
    -webkit-box-shadow:inset 0 0 0px #000000;
    box-shadow:inset 0 0 0px #000000;
 
-  
+  background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat; 
 
   display:none;
 }
@@ -433,9 +434,12 @@ opacity:40%;
   width:15px;
   height:15px;
   float:right;
-  background: url("/images/alpha/close.png") ;
+  background: url("/images/alpha/aw_close.png") ;
 }
-
+.page_input_close span:hover
+{
+  cursor:pointer;
+}
 
 
 
@@ -1486,7 +1490,7 @@ ul.p-cstab1 li a {
   background:#7aa367;
   color:#ffffff;
   width:auto;
-  padding:2px;
+  padding:1px;
   font-weight:normal;
   text-decoration:none;
   font-size:16px;
