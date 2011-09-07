@@ -307,30 +307,55 @@ li.lk {
 /* line 237, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #tw {
   float: right;
-  margin-right: -50px;
-  margin-top: -10px;
-  padding: 2px;
-  width: 24px;
+  margin-right: 45px;
+  margin-top: -3px;
+  padding: 1px;
+  width: 100px;
   height: 22px;
 }
 
-/* line 245, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 246, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #fb {
   float: right;
-  margin-right: -25px;
-  margin-top: -10px;
-  padding: 2px;
-  width: 24px;
+  margin-top: -3px;
+  padding: 1px;
+  width: 100px;
   height: 22px;
 }
 
-/* line 254, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 253, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#sns-login {
+  display: block;
+  float: right;
+  /*margin-top: -20px;*/
+}
+
+/* line 259, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns_facebook_id {
   /*float:right;
-  margin-right:5px;
-  margin-top:-10px;
-  padding:1px;
-  margin-right:10px;
-  padding:2px;
-  height:23px;*/
+    margin-right:5px;
+    margin-top:-10px;
+    padding:1px;
+    margin-right:10px;
+    padding:2px;
+    height:23px;*/
 }
+
+/*
+#tw{
+  float:right;
+  margin-right:-50px;
+  margin-top:-10px;
+  padding:2px;
+  width:24px;
+  height:22px;
+}
+#fb{
+  float:right;
+  margin-right:-25px;
+  margin-top:-10px;
+  padding:2px;
+  width:24px;
+  height:22px;
+}
+*/
