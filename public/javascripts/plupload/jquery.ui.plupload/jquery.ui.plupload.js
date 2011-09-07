@@ -39,8 +39,8 @@ function renderUI(obj) {
 						'<tr class="plupload_filelist_header">' +
 							'<td class="plupload_header_cell plupload_file_name" valign="middle">' + _('Filename') + '</td>' +
 							'<td class="plupload_header_cell plupload_file_caption" valign="middle">' + _('Caption') + '</td>' +
-							'<td class="plupload_header_cell plupload_file_status" valign="middle">' + _('Status') + '</td>' +
-							'<td class="plupload_header_cell plupload_file_size" valign="middle">' + _('Size') + '</td>' +
+							'<td class="plupload_header_cell plupload_file_status" valign="middle" style="display:none">' + _('Status') + '</td>' +
+							'<td class="plupload_header_cell plupload_file_size" valign="middle" style="display:none">' + _('Size') + '</td>' +
 							'<td class="plupload_header_cell plupload_file_action" valign="middle">' + _('Action') + '</td>' +
 						'</tr>' +
 						'</table>' +
@@ -69,8 +69,8 @@ function renderUI(obj) {
 									'<div class="plupload_clearer">&nbsp;</div>' +
 
 							'</td>' +
-							'<td class="plupload_file_status"><span class="plupload_total_status">0%</span></td>' +
-							'<td class="plupload_file_size"><span class="plupload_total_file_size">0 kb</span></td>' +
+							'<td class="plupload_file_status" style="display:none"><span class="plupload_total_status">0%</span></td>' +
+							'<td class="plupload_file_size" style="display:none"><span class="plupload_total_file_size">0 kb</span></td>' +
 							'<td class="plupload_file_action"></td>' +
 						'</tr>' +
 						'</table>' +
@@ -511,11 +511,11 @@ $.widget("ui.plupload", {
               '<div class="caption_div" >' +
                 '<input type="text" class="attachment_caption js_plupload_caption"' +
                     'placeholder="caption" id="file_caption_' + file.id + '"' + 
-                    'value="' +  caption_val +  '" maxlength="100" />' +  
+                    'value="' +  caption_val +  '"/>' +  
               '</div>' +
           '</td>' +
-					'<td class="plupload_internal_cell plupload_file_status">' + file.percent + '%</td>' +
-					'<td class="plupload_internal_cell plupload_file_size">' + plupload.formatSize(file.size) + '</td>' +
+					'<td class="plupload_internal_cell plupload_file_status" style="display:none">' + file.percent + '%</td>' +
+					'<td class="plupload_internal_cell plupload_file_size" style="display:none">' + plupload.formatSize(file.size) + '</td>' +
 					'<td class="plupload_internal_cell plupload_file_action"><div class="ui-icon"></div>' + fields + '</td>' +
 				'</tr>'
 			);
