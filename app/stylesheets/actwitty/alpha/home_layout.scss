@@ -137,6 +137,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   height:50px;
   border:0px solid red;
   z-index:1200;
+  background:#fffffd;
 }
 
 #header-proxy
@@ -146,6 +147,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   height:auto;
   border:0px solid red;
   z-index:1250;
+  background:#fffffd;
   /*background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;*/
 }
@@ -1266,7 +1268,7 @@ ul.p-cstab1 li a {
 }
 .p-flt-actor
 {
-  width:160px;
+  width:145px;
   height:34px;
   display:inline-block;
   float:left;
