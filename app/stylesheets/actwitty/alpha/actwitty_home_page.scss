@@ -139,7 +139,10 @@ input#signinbutton
   border:none;
   height:22px;
 }
-
+input#signinbutton:hover
+{
+  cursor:pointer;
+}
 input#aw_header_signin:hover
 {
   cursor:pointer;
@@ -264,6 +267,10 @@ input#signupbutton
   margin-right:50px;
   padding:2px;
   height:23px;
+}
+input#signupbutton:hover
+{
+  cursor:pointer;
 }
 input#aw_intro_register:hover
 {
