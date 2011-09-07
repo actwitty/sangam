@@ -204,9 +204,7 @@ function get_all_facebookers(){
      * Get data on ready
      */
     //alert("get_all_facebooker"); 
-    //if(temp == 0)
-    {
-    //temp = 1;
+    
     $.ajax({
         url: '/facebook/facebook_friends_list',
         type: 'GET',
@@ -218,12 +216,7 @@ function get_all_facebookers(){
           if (data && data.location) {
             window.location.href = data.location;
           }else{
-            //if(temp == 0){
-            //temp = 1;  
             renderFacebookers(data);
-            //}
-            //renderFacebookers1(data);
-      	    //append_invite_friends(data);
           }
           //TODO: try to use this in search, why should search hit server, again and again
           
@@ -232,7 +225,7 @@ function get_all_facebookers(){
 
         }
     });
-   }
+   
 }
 
   
@@ -259,11 +252,44 @@ $(document).ready(function(){
     });
     $(this).closest('li').remove();
   });
-  $('#fb_friends').click(function(){
-     get_all_facebookers();
-     $('#empty_check').hide();
+
+ 
+
+
+  $('.js_add_facebook_friends').live('click',function(){
+
+   alert("js_add_facebook_friends"); 
+   
+   $.ajax({
+        url: '/facebook/facebook_friends_list',
+        type: 'GET',
+        data: {},
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+     
+          if (data && data.location) {
+           alert("if");
+           window.location.href = data.location;
+          }else{
+            //renderFacebookers(data);
+            //get_all_facebookers();
+            window.location.href = "/home/facebook_friends";
+            //alert("else");
+          }
+          
+        },
+        error: function (error) {
+
+        }
+    });
+   
+    $('#empty_check').hide();
+
   });
-  $('.js_add_facebook_friends').click(function(){
+  
+  $('#fb_friends').click(function(){
+     //alert("fb_friends");
      get_all_facebookers();
      $('#empty_check').hide();
   });
@@ -286,6 +312,7 @@ $(document).ready(function(){
 
 
 /********************************* READY ENDS HERE ******************************************/
+
 
 
 

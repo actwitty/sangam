@@ -208,13 +208,56 @@ div#invite_friends {
 }
 
 /* line 165, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+div#follower_friends {
+  background: #cccccc repeat scroll;
+  position: relative;
+  height: 240px;
+  width: 610px;
+  /*650*/
+  overflow: auto;
+  border: 2px solid black;
+  left: 340px;
+}
+
+/* line 175, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+div#following_friends {
+  background: #cccccc repeat scroll;
+  position: relative;
+  height: 240px;
+  width: 610px;
+  /*650*/
+  overflow: auto;
+  border: 2px solid black;
+  left: 340px;
+}
+
+/* line 184, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 p#fb_friends {
   margin-left: 340px;
   font-size: 18px;
   font-color: #000000;
 }
 
-/* line 170, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 189, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+p#flwr_friends {
+  margin-left: 340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+
+/* line 194, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+p#flwg_friends {
+  margin-left: 340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+
+/* line 199, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+p#fb_friends:hover {
+  cursor: pointer;
+}
+
+/* line 202, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 h3#empty_check {
   /*margin-left:340px;*/
   font-size: 20px;
@@ -222,7 +265,7 @@ h3#empty_check {
   color: #ffffff;
 }
 
-/* line 176, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 208, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 ul.sc_menu1 {
   display: block;
   height: 210px;
@@ -238,14 +281,56 @@ ul.sc_menu1 {
   /*border:2px solid yellow;*/
 }
 
-/* line 188, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 220, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div#txt1 {
   font-color: #ccc;
   color: #ffffff;
 }
 
-/* line 192, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 224, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 li.lk {
   width: 130px;
   margin: 5px;
+}
+
+/***************************** Welcome Page Facebook/Twitter ******************/
+/* line 229, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#sns_twitter_id {
+  /*float:right;
+  margin-right:-25px;
+  margin-left:40px;
+  margin-top:-10px;
+  padding:1px;
+  height:23px;*/
+}
+
+/* line 237, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#tw {
+  float: right;
+  margin-right: -50px;
+  margin-top: -10px;
+  padding: 2px;
+  width: 24px;
+  height: 22px;
+}
+
+/* line 245, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#fb {
+  float: right;
+  margin-right: -25px;
+  margin-top: -10px;
+  padding: 2px;
+  width: 24px;
+  height: 22px;
+}
+
+/* line 254, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#sns_facebook_id {
+  /*float:right;
+  margin-right:5px;
+  margin-top:-10px;
+  padding:1px;
+  margin-right:10px;
+  padding:2px;
+  height:23px;*/
 }
