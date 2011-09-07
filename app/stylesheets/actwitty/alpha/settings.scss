@@ -161,11 +161,43 @@ div#invite_friends
   border:2px solid black;
   left:340px;
 }
-
+div#follower_friends
+{
+  background:#cccccc repeat scroll;
+	position: relative;
+	height: 240px;
+	width: 610px;/*650*/
+	overflow: auto;
+  border:2px solid black;
+  left:340px;
+}
+div#following_friends
+{
+  background:#cccccc repeat scroll;
+	position: relative;
+	height: 240px;
+	width: 610px;/*650*/
+	overflow: auto;
+  border:2px solid black;
+  left:340px;
+}
 p#fb_friends{
   margin-left:340px;
   font-size: 18px;
   font-color: #000000;
+}
+p#flwr_friends{
+  margin-left:340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+p#flwg_friends{
+  margin-left:340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+p#fb_friends:hover{
+  cursor: pointer;
 }
 h3#empty_check{
   /*margin-left:340px;*/
@@ -193,4 +225,40 @@ li.lk{
   width:130px;
   margin:5px;
 }
+/***************************** Welcome Page Facebook/Twitter ******************/
+#sns_twitter_id{
+  /*float:right;
+  margin-right:-25px;
+  margin-left:40px;
+  margin-top:-10px;
+  padding:1px;
+  height:23px;*/
+}
+#tw{
+  float:right;
+  margin-right:-50px;
+  margin-top:-10px;
+  padding:2px;
+  width:24px;
+  height:22px;
+}
+#fb{
+  float:right;
+  margin-right:-25px;
+  margin-top:-10px;
+  padding:2px;
+  width:24px;
+  height:22px;
+}
+
+#sns_facebook_id{
+  /*float:right;
+  margin-right:5px;
+  margin-top:-10px;
+  padding:1px;
+  margin-right:10px;
+  padding:2px;
+  height:23px;*/
+}
+
 

@@ -74,7 +74,9 @@ javascripts:
     - public/javascripts/actwitty/profile_images.js
     - public/javascripts/actwitty/profile_videos.js
     - public/javascripts/actwitty/tooltip.js   
-    - public/javascripts/actwitty/profile_fb.js   
+    - public/javascripts/actwitty/profile_fb.js
+    - public/javascripts/actwitty/profile_followers.js
+    - public/javascripts/actwitty/profile_followings.js
 
 
   main:

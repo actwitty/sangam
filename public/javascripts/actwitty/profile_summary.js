@@ -454,7 +454,7 @@ function get_add_channel_html(){
   if ( aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id() ){
      html = '<div class="js_summary_add_channel_base p-channelp-auth-add-channel">' +
              '<span>' +
-                  '<a  class="js_add_facebook_friends" id="add_facebook_friends" href="/home/facebook_friends"> Add Facebook Friends' +'</a></br>' +
+                  '<a  class="js_add_facebook_friends" id="add_facebook_friends" href="#"> Add Facebook Friends' +'</a></br>' +
                   '<a  class="js_add_channel_minimize" > Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
                   '</a>' +
                   
