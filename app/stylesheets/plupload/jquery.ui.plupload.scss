@@ -58,7 +58,9 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 .plupload_header_cell {
   overflow:hidden;
   height:20px;
-  font-size:14px;
+  font-size:16px;
+  font-weight:bold;
+  color:#eaa540;
   vertical-align:middle;
 }
 
@@ -79,8 +81,9 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 .plupload_file {
 	border-left: none;
 	border-right: none;
-  height:20px;
+  height:25px;
   width:100%;
+  margin-top:8px;
 }
 
 .plupload_scroll {

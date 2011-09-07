@@ -47,69 +47,70 @@
 
 /* line 43, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_wrapper {
-  width: 100%;
+  width: 560px;
+  border: 2px solid #333;
 }
 
-/* line 47, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 48, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_container {
   padding: 8px;
   /*-moz-border-radius: 5px;*/
 }
 
-/* line 53, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 54, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_container input {
   font-size: 11px;
   width: 600px;
 }
 
-/* line 62, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 63, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_header_content {
   min-height: 56px;
   padding-left: 60px;
   color: #FFF;
 }
 
-/* line 68, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 69, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_header_title {
   font-size: 18px;
 }
 
-/* line 72, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 73, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_header_text {
   font: 12px;
 }
 
-/* line 76, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 77, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_filelist {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* line 82, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 83, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_scroll .plupload_filelist {
   height: 150px;
   overflow-y: scroll;
 }
 
-/* line 88, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 89, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_filelist li {
   padding: 10px 8px;
 }
 
-/* line 94, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 95, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_filelist_header, .plupload_filelist_footer {
   padding: 8px 8px;
   color: #42454A;
 }
 
-/* line 98, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 99, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_filelist_header {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
 
-/* line 103, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 104, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_filelist_footer {
   border-top: 1px solid #FFF;
   height: 22px;
@@ -117,29 +118,29 @@
   vertical-align: middle;
 }
 
-/* line 104, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 105, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_name {
   float: left;
   overflow: hidden;
 }
 
-/* line 105, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 106, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_status {
   color: #777;
 }
 
-/* line 106, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 107, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_status span {
   color: #42454A;
 }
 
-/* line 107, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 108, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_size, .plupload_file_status, .plupload_progress {
   float: right;
   width: 80px;
 }
 
-/* line 112, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 113, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_name {
   width: 110px;
   overflow: hidden;
@@ -147,70 +148,79 @@
   padding: 2px;
 }
 
-/* line 119, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 120, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .attachment_file_name {
-  font-size: 13px;
+  font-size: 16px;
+  color: #333;
 }
 
-/* line 122, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 124, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_caption {
-  width: 170px;
+  width: 250px;
   margin-left: 10px;
   padding: 2px;
   float: left;
-  font-size: 13px;
+  font-size: 14px;
 }
 
-/* line 129, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 132, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .caption_div {
-  width: 160px;
+  width: 250px;
   overflow: hidden;
 }
 
-/* line 134, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 137, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .attachment_caption {
   display: block;
-  width: auto;
+  width: 155px;
 }
 
-/* line 140, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 141, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+div.caption_div input {
+  width: 240px;
+  height: 20px;
+  border: 1px solid #eaa540;
+  font-size: 14px;
+}
+
+/* line 149, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_action * {
   display: none;
 }
 
-/* line 144, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 153, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 li.plupload_uploading {
   background: #ecf3dc url("/images/plupload/backgrounds.gif") repeat-x 0 -238px;
 }
 
-/* line 145, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 154, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 li.plupload_done {
   color: #AAA;
 }
 
-/* line 147, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 156, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 li.plupload_delete a {
   background: url("/images/plupload/delete.gif");
 }
 
-/* line 151, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 160, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 li.plupload_failed a {
   background: url("/images/plupload/error.gif");
   cursor: default;
 }
 
-/* line 156, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 165, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 li.plupload_done a {
   background: url("/images/plupload/done.gif");
   cursor: default;
 }
 
-/* line 161, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 170, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_progress, .plupload_upload_status {
   display: none;
 }
 
-/* line 165, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 174, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_progress_container {
   margin-top: 3px;
   border: 1px solid #CCC;
@@ -218,37 +228,37 @@ li.plupload_done a {
   padding: 1px;
 }
 
-/* line 171, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 180, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_progress_bar {
   width: 0px;
   height: 7px;
   background: #CDEB8B;
 }
 
-/* line 177, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 186, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_scroll .plupload_filelist_header .plupload_file_action, .plupload_scroll .plupload_filelist_footer .plupload_file_action {
   margin-right: 5px;
 }
 
-/* line 181, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 190, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_file_action, .plupload_file_size, .plupload_file_status {
   padding: 3px;
 }
 
 /* Floats */
-/* line 186, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 195, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_clear, .plupload_clearer {
   clear: both;
 }
 
-/* line 187, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 196, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 .plupload_clearer, .plupload_progress_bar {
   display: block;
   font-size: 0;
   line-height: 0;
 }
 
-/* line 193, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
+/* line 202, ../../../app/stylesheets/plupload/jquery.plupload.queue.scss */
 li.plupload_droptext {
   background: transparent;
   text-align: center;

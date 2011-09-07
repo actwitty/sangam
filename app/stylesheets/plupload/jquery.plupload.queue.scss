@@ -41,7 +41,8 @@
 }
 
 .plupload_wrapper {
-	width:100%;
+	width:560px;
+  border:2px solid #333;
 }
 
 .plupload_container {
@@ -117,25 +118,33 @@
 }
 
 .attachment_file_name{
-  font-size:13px;
+  font-size:16px;
+  color:#333;
 }
 .plupload_file_caption {
-    width: 170px;
+    width: 250px;
     margin-left:10px;
     padding:2px;
     float: left; 
-    font-size:13px;
+    font-size:14px;
   }
+
 .caption_div{
-  width:160px;
+  width:250px;
   overflow: hidden;
  
 }
 .attachment_caption{
   display:block;
-  width:auto
+  width:155px;
 }
-
+div.caption_div input{
+  width:240px;
+  height:20px;
+  border:1px solid #eaa540;
+  font-size:14px;
+  
+}
 
 .plupload_file_action * {
 	display: none;
