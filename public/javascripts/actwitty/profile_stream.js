@@ -252,7 +252,7 @@ function handle_stream_campaign(box_id, like_count_box_id,stream){
   var like_count_div=$("#" + like_count_box_id);
   if(stream.post.campaign_types == 1){
     handle_like_campaign(box_id, stream);
-    div.hide();
+    //div.hide();
   }else{
     div.hide();
     like_count_div.hide();
@@ -1050,7 +1050,6 @@ function delete_stream(post_id){
  * process user campaign action
  */
 function process_user_campaign_action(campaign_manager_json){
- 
     if( campaign_manager_json.user == false){
       $.ajax({
           url: '/home/create_campaign.json',
@@ -1063,8 +1062,8 @@ function process_user_campaign_action(campaign_manager_json){
           dataType: 'json',
           success: function (data) {
             if( data.name == "like" && data.user==true ){
-              alert("i have already liked it");
-              alert(data.count);
+              //alert("i have already liked it");
+              //alert(data.count);
               campaign_manager_json.user= true;
               var link_id = campaign_manager_json.campaign_div_id + '_link'; 
               var span_id = campaign_manager_json.campaign_div_id + '_span';
@@ -1348,7 +1347,6 @@ $(document).ready(function(){
    * User action on campaign
    */
   $('.js_like_user_action').live('click', function(){
-    alert("samarth");
     var div_id = $(this).attr("value");
     campaign_manager = the_big_stream_campaign_manager_json[div_id];
     process_user_campaign_action(campaign_manager);

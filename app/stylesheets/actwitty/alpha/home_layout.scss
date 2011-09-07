@@ -1374,7 +1374,7 @@ ul.p-cstab1 li a {
 
 .p-content-type-fltr-sect
 {
-  height:160px;
+  height:60px;
   width:160px;
   border:0px solid blue;
   float:right;
@@ -1383,9 +1383,9 @@ ul.p-cstab1 li a {
 
 .p-cont-typ-fltr
 {
-  height:43px;
+  height:20px;
   margin-top:7px;
-  width:70px;
+  width:41px;
   border:0px solid green;
   /*background-image: url("../images/all.png");*/
   background-repeat:no-repeat;
@@ -1396,24 +1396,24 @@ ul.p-cstab1 li a {
   cursor:pointer;
 }
 
-#cont-typ-fltr-all { background-image: url("/images/alpha/all_unselected.png");}
-#cont-typ-fltr-all:hover { background-image: url("/images/alpha/all_hover.png");}
+#cont-typ-fltr-all { background-image: url("/images/alpha/all1.jpg");}
+#cont-typ-fltr-all:hover { background-image: url("/images/alpha/all2.jpg");}
 
 
-#cont-typ-fltr-drafts  { background-image: url("/images/alpha/drafts_unselected.png"); }
-#cont-typ-fltr-drafts:hover  { background-image: url("/images/alpha/drafts_hover.png"); }
+#cont-typ-fltr-drafts  { background-image: url("/images/alpha/draft1.jpg"); }
+#cont-typ-fltr-drafts:hover  { background-image: url("/images/alpha/draft2.jpg"); }
 
 
-#cont-typ-fltr-videos  { background-image: url("/images/alpha/videos_unselected.png"); }
-#cont-typ-fltr-videos:hover  { background-image: url("/images/alpha/videos_hover.png"); }
+#cont-typ-fltr-videos  { background-image: url("/images/alpha/Video1.jpg"); }
+#cont-typ-fltr-videos:hover  { background-image: url("/images/alpha/Video2.jpg"); }
 
 
-#cont-typ-fltr-images  { background-image: url("/images/alpha/images_unselected.png"); }
-#cont-typ-fltr-images:hover  { background-image: url("/images/alpha/images_hover.png"); }
+#cont-typ-fltr-images  { background-image: url("/images/alpha/Images1.jpg"); }
+#cont-typ-fltr-images:hover  { background-image: url("/images/alpha/Images2.jpg"); }
 
 
-#cont-typ-fltr-twitter { background-image: url("/images/alpha/twitter_unselected.png");}
-#cont-typ-fltr-twitter:hover { background-image: url("/images/alpha/twitter_hover.png");}
+#cont-typ-fltr-twitter { background-image: url("/images/alpha/Twitter1.jpg");}
+#cont-typ-fltr-twitter:hover { background-image: url("/images/alpha/Twitter2.jpg");}
 
 
 .p-l-fltr-2
@@ -1422,7 +1422,8 @@ ul.p-cstab1 li a {
   width:190px;
   height:auto;
   border:0px solid gray;
-  margin-top:180px;
+  /*margin-top:180px;*/
+  margin-top:70px;
   position:absolute;
 }
 .p-related-fltrs-sect
