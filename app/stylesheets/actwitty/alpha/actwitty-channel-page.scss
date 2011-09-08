@@ -96,11 +96,21 @@
   border:0px solid green;
 }
 
-#p-channelp-posts
+#p-channelp-posts-content-section
 {
   width:70%;
-  height:400px;
+  height:auto;
   float:left;
+  border:0px solid red;
+}
+
+#p-channelp-posts
+{
+  /*width:70%;
+  float:left;*/
+  width:100%;
+  display:block;
+  height:auto;
   border:0px solid blue;
 }
 
@@ -1040,8 +1050,7 @@ ul .p-channelp-post-relelem
 
 
 
-#more_channel_streams
+#more_personal
 {
-  color:red;
   width:500px;
 }
