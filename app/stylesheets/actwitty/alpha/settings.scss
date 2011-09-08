@@ -294,4 +294,86 @@ li.lk{
   height:22px;
 }
 */
+/************ confirmation **********/
+/* ----------- My Form ----------- */
+.conf_form{
+margin:0 auto;
+width:400px;
+padding:14px;
+}
 
+/* ----------- conf ----------- */
+#conf{
+/*border:solid 2px #b7ddf2;
+background:#ebf4fb;*/
+}
+#conf h1 {
+/*
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+*/
+}
+#conf p{
+/*
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+*/
+}
+#conf label{
+display:block;
+font-family:nimbus-sans-condensed,sans-serif;
+color: #666;
+margin-top:5px;
+font-size:16px;
+/*font-weight:bold;*/
+text-align:right;
+width:140px;
+float:left;
+}
+#conf .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+#conf input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 30px;
+}
+#conf textarea{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 30px;
+}
+#conf select{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 30px;
+}
+#conf button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+/*background:#666666 url(img/button.png) no-repeat;*/
+text-align:center;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}

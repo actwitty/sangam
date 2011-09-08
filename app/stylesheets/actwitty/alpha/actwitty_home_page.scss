@@ -135,13 +135,34 @@ input#signinbutton
 {
   width:60px;
   background:#ff9600;
+  margin-bottom:-5px;
   padding:2px;
   border:none;
-  height:22px;
+  height:23px;
+  display:inline;
 }
 input#signinbutton:hover
 {
   cursor:pointer;
+}
+
+#input_email{
+ float:left;
+ diplay:inline;
+ font-family: nimbus-sans-condensed,sans-serif;
+ font-size:20px;
+ padding:2px;
+}
+#input_passwd{
+ float:left;
+ diplay:inline;
+ font-family: nimbus-sans-condensed,sans-serif;
+ font-size:20px;
+ padding:2px;
+}
+#provider_up{
+ /*height:500px;
+ color:#D2D2D2; background-color:#eee7dd;*/
 }
 input#aw_header_signin:hover
 {
@@ -264,9 +285,12 @@ input#signupbutton
 {
   background:#ff9600;
   float:right;
+  /*margin-left:10px;*/
   margin-right:50px;
+  margin-top:7px;/* 9_sep_11 */
   padding:2px;
   height:23px;
+  display:inline;/* 9_sep_11 */
 }
 input#signupbutton:hover
 {
@@ -516,7 +540,11 @@ input#aw_intro_register:hover
   margin-left:10px;
   padding-bottom: 50px; 
 }
-
+#forgot-site-connect-buttons_resend{
+  display: block;
+  margin-left:10px;
+  padding-bottom: 50px;
+}
 .connect-buttons
 {
   border:none;

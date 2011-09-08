@@ -9,15 +9,17 @@
         = simple_form_for(:user,@user, :url => user_session_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
             %ul#data-input
                 %li.main-input-list
+                    /%p#input_email Enter Valid Email-id
                     = f.input :email ,
                 :placeholder => "Enter Valid Email-id",
                 :label => false,
-                :input_html => { :class=>'input-deco email-input ',:size=>'30'}
+                :input_html => { :class=>'input-deco email-input ',:size=>'20'}
                 %li.main-input-list
+                    /%p#input_passwd Enter Your Password
                     = f.input :password ,
                 :placeholder => "Enter Your Password",
                 :label => false,
-                :input_html => { :class=>'input-deco password-input ',:size=>'30'}
+                :input_html => { :class=>'input-deco password-input ',:size=>'20'}
                 #data-input-actions
                     %ul#remember-box
                     = f.input :remember_me,  :as => :boolean, :id => "remember_provider"

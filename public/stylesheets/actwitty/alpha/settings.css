@@ -373,3 +373,104 @@ li.lk {
   height:22px;
 }
 */
+/************ confirmation **********/
+/* ----------- My Form ----------- */
+/* line 299, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+.conf_form {
+  margin: 0 auto;
+  width: 400px;
+  padding: 14px;
+}
+
+/* ----------- conf ----------- */
+/* line 306, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf {
+  /*border:solid 2px #b7ddf2;
+  background:#ebf4fb;*/
+}
+
+/* line 310, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf h1 {
+  /*
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:8px;
+  */
+}
+
+/* line 317, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf p {
+  /*
+  font-size:11px;
+  color:#666666;
+  margin-bottom:20px;
+  border-bottom:solid 1px #b7ddf2;
+  padding-bottom:10px;
+  */
+}
+
+/* line 326, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf label {
+  display: block;
+  font-family: nimbus-sans-condensed,sans-serif;
+  color: #666;
+  margin-top: 5px;
+  font-size: 16px;
+  /*font-weight:bold;*/
+  text-align: right;
+  width: 140px;
+  float: left;
+}
+
+/* line 337, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf .small {
+  color: #666666;
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  text-align: right;
+  width: 140px;
+}
+
+/* line 345, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf input {
+  float: left;
+  font-size: 12px;
+  padding: 4px 2px;
+  border: solid 1px #aacfe4;
+  width: 200px;
+  margin: 2px 0 20px 30px;
+}
+
+/* line 353, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf textarea {
+  float: left;
+  font-size: 12px;
+  padding: 4px 2px;
+  border: solid 1px #aacfe4;
+  width: 200px;
+  margin: 2px 0 20px 30px;
+}
+
+/* line 361, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf select {
+  float: left;
+  font-size: 12px;
+  padding: 4px 2px;
+  border: solid 1px #aacfe4;
+  width: 200px;
+  margin: 2px 0 20px 30px;
+}
+
+/* line 369, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf button {
+  clear: both;
+  margin-left: 150px;
+  width: 125px;
+  height: 31px;
+  /*background:#666666 url(img/button.png) no-repeat;*/
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: bold;
+}
