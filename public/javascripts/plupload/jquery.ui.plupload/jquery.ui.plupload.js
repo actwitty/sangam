@@ -435,7 +435,7 @@ $.widget("ui.plupload", {
 
 			case plupload.QUEUED:
 				actionClass = 'plupload_delete';
-				iconClass = 'ui-icon ui-icon-circle-minus';
+				iconClass = 'ui-icon ui-icon-circle-minus ';
 				break;
 
 			case plupload.UPLOADING:
@@ -517,6 +517,7 @@ $.widget("ui.plupload", {
 					'<td class="plupload_internal_cell plupload_file_status" style="display:none">' + file.percent + '%</td>' +
 					'<td class="plupload_internal_cell plupload_file_size" style="display:none">' + plupload.formatSize(file.size) + '</td>' +
 					'<td class="plupload_internal_cell plupload_file_action"><div class="ui-icon"></div>' + fields + '</td>' +
+          '<td class="plupload_internal_cell_simple "><div class="ui-icon"></div>' + fields + '</td>' +
 				'</tr>'
 			);
 
