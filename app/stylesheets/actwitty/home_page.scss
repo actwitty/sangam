@@ -1,12 +1,12 @@
 #follow_list .follow_button
 {
- background-color:#445D73;
+ background-color:white;
  float:right;
 }
 
 #unfollow_list .follow_button
 {
- background-color:#445D73;
+ background-color:white;
  float:right;
 }
 
@@ -19,20 +19,21 @@
 
 #invite_list .fb_delete
 {
- background-color:#445D73;
+ background-color:white;
  float:right;
 }
 
 #followings_list .follow_button
 {
- background-color:#445D73;
+ /*background-color:#445D73;*/
+ background-color:white;
  float:right;
 }
 
 
 #followers_list .follow_button
 {
- background-color:#445D73;
+ background-color:#ccc;
  /*float:right;*/
 }
 #search_followings
@@ -45,6 +46,7 @@
  margin-left:50px;
  /*background-color:#445D73;*/
 }
+
 
 
 

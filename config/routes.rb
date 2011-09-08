@@ -98,6 +98,11 @@ Sangam::Application.routes.draw do
   match '/contacts/facebook_friends' => 'contacts#facebook_friends'
   match '/contacts/provider_follow' => 'contacts#provider_follow'
 
+  match '/contacts/followers' => 'contacts#followers'
+  match '/contacts/followings' => 'contacts#followings'
+  match '/contacts/follow' => 'contacts#follow'
+  match '/contacts/unfollow' => 'contacts#unfollow'
+
   #match '/contacts/follow' => 'contacts#follow'
   #match '/contacts/unfollow' => 'contacts#unfollow'
 

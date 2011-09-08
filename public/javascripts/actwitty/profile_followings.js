@@ -9,6 +9,8 @@
 function renderFollowings(json){
   //var search_html = '<input type="text" id="search_followings" placeholder="Followings"/>';
   //$("#following-dialog-modal").append(search_html);
+  //alert("renderFollowings");
+ 
   var html = '<div id="followings_list" class="modal_friends_ul sc_menu1">' +
              '</div>';
   
@@ -21,10 +23,26 @@ function renderFollowings(json){
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
         var li_id = "followings_li_" + user_data.user.id;
+         var str;
+     
+         //alert(data.name.length); 
+         if( user_data.user.full_name.length > 12 )
+         {  
+           var limit = 12;                
+           str = user_data.user.full_name;        
+           var strtemp = str.substr(0,limit); 
+           str = strtemp+ '..' + '<span class="hide">' + str.substr(limit,str.length) + '</span>'; 
+         }
+         else
+         {
+           str = user_data.user.full_name;
+         }
+
+
 	var html= '<li class="lk"><div id="ex1" >' +
 	'<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
 		'<img class="img" src="' + user_data.user.photo_small_url + '" height="55" width="50" align="left">'+
-		'<div id="txt1">' + user_data.user.full_name + '</div>'+
+		'<div id="txt1">' + str + '</div>'+
 	'</a>' +
  
         '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>' + 
@@ -69,7 +87,10 @@ function get_all_followings(){
           /* if rails demands a redirect because of log in missing */
           if (data && data.location) {
             window.location.href = data.location;
+            //alert("if renderFollowings");
           }else{
+            //alert("else renderFollowings");
+            $('#empty_check_flwg').hide();
             renderFollowings(data);
             json_followings_data=data;
           }
@@ -80,6 +101,8 @@ function get_all_followings(){
 
         }
     });
+
+    $('#empty_check_flwg').hide();
 }
 
   
@@ -100,19 +123,20 @@ $(document).ready(function(){
 
 
   $('#flwg_friends').click(function(){
-     //alert("flwg_friends");
+    //alert($('#following_friends').children().size());
+       
+     $('#empty_check_flwg').hide();
      get_all_followings();
-     $('#empty_check').hide();
+     
   });
-
-  if ($('#following_friends').children().size() > 1)
-  {
-      $('#empty_check').hide();
-  }
-  else
-  {
-      $('#empty_check').show();
-  }
+    if ($('#following_friends').children().size() > 1)
+    {
+        $('#empty_check_flwg').hide();
+    }
+    else
+    {
+        $('#empty_check_flwg').show();
+    }
  
  
 
@@ -120,6 +144,7 @@ $(document).ready(function(){
 
 
 /********************************* READY ENDS HERE ******************************************/
+
 
 
 

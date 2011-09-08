@@ -100,6 +100,7 @@ function renderFacebookers(json){
 function renderFollowers(json){
   //var search_html = '<input type="text" id="search_followers" placeholder="Followers"/>';
   //$("#follower-dialog-modal").append(search_html);
+   //alert("renderFollowers");
    var html = '<div id="followers_list" class="modal_friends_ul sc_menu1">' +
              '</div>';
 
@@ -117,11 +118,28 @@ function renderFollowers(json){
   $.each(json, function(i,user_data){
       if( user_data && user_data.user){
         var li_id = "followers_li_" + user_data.user.id;
+        var str;
+     
+         //alert(data.name.length); 
+         if( user_data.user.full_name.length > 12 )
+         {  
+           var limit = 12;                
+           str = user_data.user.full_name;        
+           var strtemp = str.substr(0,limit); 
+           str = strtemp+ '..' + '<span class="hide">' + str.substr(limit,str.length) + '</span>'; 
+         }
+         else
+         {
+           str = user_data.user.full_name;
+         }
+
+
+
     	var html= '<li class="lk"><div id="' + li_id  +  '">' +
 	'<div id="ex1" >' +
             '<a href="#" id="user_nav_' +  user_data.user.id + '" class="link_user_stamp user_stamp user_nav">' +
 		'<img class="img" src="'+  user_data.user.photo_small_url  +'" height="55" width="50" align="left">'+
-		'<div id="txt1">' + user_data.user.full_name + '</div>'+
+		'<div id="txt1">' + str + '</div>'+
             '</a>'+ 
             '<input type="hidden" id="user_nav_' +  user_data.user.id + '_hidden" value="' +  user_data.user.id + '"/>'+
 	'</div>'+
@@ -180,6 +198,7 @@ function get_all_followers(){
             window.location.href = data.location;
           }else{
             //alert("followers-else");
+            $('#empty_check_flwr').hide();
             renderFollowers(data);
             json_followers_data=data;
           }
@@ -220,16 +239,18 @@ $(document).ready(function(){
   $('#flwr_friends').click(function(){
      //alert("flwr_friends");
      get_all_followers();
-     $('#empty_check').hide();
+     $('#empty_check_flwr').hide();
   });
 
   if ($('#follower_friends').children().size() > 1)
   {
-      $('#empty_check').hide();
+      //alert("flwr_friends -check -if");
+      $('#empty_check_flwr').hide();
   }
   else
   {
-      $('#empty_check').show();
+      //alert("flwr_friends -check -else");
+      $('#empty_check_flwr').show();
   }
  
 
@@ -237,6 +258,7 @@ $(document).ready(function(){
 
 
 /********************************* READY ENDS HERE ******************************************/
+
 
 
 

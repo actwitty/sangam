@@ -266,6 +266,20 @@ h3#empty_check {
 }
 
 /* line 208, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+h3#empty_check_flwg {
+  font-size: 20px;
+  font-color: #ccc;
+  color: #ffffff;
+}
+
+/* line 213, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+h3#empty_check_flwr {
+  font-size: 20px;
+  font-color: #ccc;
+  color: #ffffff;
+}
+
+/* line 218, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 ul.sc_menu1 {
   display: block;
   height: 210px;
@@ -281,20 +295,20 @@ ul.sc_menu1 {
   /*border:2px solid yellow;*/
 }
 
-/* line 220, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 230, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div#txt1 {
   font-color: #ccc;
   color: #ffffff;
 }
 
-/* line 224, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 234, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 li.lk {
   width: 130px;
   margin: 5px;
 }
 
 /***************************** Welcome Page Facebook/Twitter ******************/
-/* line 229, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 239, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns_twitter_id {
   /*float:right;
   margin-right:-25px;
@@ -304,7 +318,7 @@ li.lk {
   height:23px;*/
 }
 
-/* line 237, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 247, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #tw {
   float: right;
   margin-right: 45px;
@@ -314,7 +328,7 @@ li.lk {
   height: 22px;
 }
 
-/* line 246, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 256, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #fb {
   float: right;
   margin-top: -3px;
@@ -323,14 +337,14 @@ li.lk {
   height: 22px;
 }
 
-/* line 253, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 263, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns-login {
   display: block;
   float: right;
   /*margin-top: -20px;*/
 }
 
-/* line 259, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 269, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns_facebook_id {
   /*float:right;
     margin-right:5px;
