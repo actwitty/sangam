@@ -41,8 +41,8 @@ class Users::SessionsController < Devise::SessionsController
       end
 
       respond_to do |format|
-        puts "WelcomeController new ..... I AM HERE SINGED IN..........."
-        format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
+        Rails.logger.info("[CNTRL] [SESSION] after sign in path: /home/show" )
+        format.js   { render :js => "window.location = '/home/show'" }
       end
     else
       #go on regular path for html requests
@@ -57,7 +57,7 @@ class Users::SessionsController < Devise::SessionsController
 
   end
   def new
-        puts "*******************session new***************"
+
         Rails.logger.info("*******************session new***************")
     if user_signed_in?
         redirect_to :controller => "home", :action => "alpha"

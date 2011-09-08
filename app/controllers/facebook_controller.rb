@@ -94,7 +94,7 @@ class FacebookController < ApplicationController
         begin
           @graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
           @graph.put_wall_post("Come on, join in to actwitty at www.actwitty.com",
-          {:name => "Actwitty", :link => "http://localhost:3000"},uid)
+          {:name => "Actwitty", :link => "http://www.actwitty.com"},uid)
 
           if request.xhr?
             render :json => {}

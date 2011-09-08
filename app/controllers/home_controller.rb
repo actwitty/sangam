@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   after_filter  :pusher_event_push, :only => [:create_campaign, :delete_campaign, :delete_stream, :create_comment,
                                               :delete_comment,  :delete_entities_from_post, :remove_document,
                                              :publish_activity,  :update_social_media_share,
-                                             :subscribe_summary, :unsubscribe_summary, :create_theme,
+                                             :subscribe_summary, :unsubscribe_summary, :create_theme
                                               #:process_edit_activity,:create_activity
                                               ]
   ############################################
@@ -107,9 +107,6 @@ class HomeController < ApplicationController
 	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
 	  if @profile.update_attributes(params[:profile])
       current_user.photo_small_url = params[:profile][:profile_photo_s]
-      puts "-------------------------------------------------"
-      puts current_user.photo_small_url
-      puts "-------------------------------------------------"
       current_user.save!
 	    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
 	    redirect_to(home_show_url)
@@ -1103,10 +1100,8 @@ class HomeController < ApplicationController
     if @user.nil?
         if user_signed_in?
           @user=current_user
-          puts "-----------1ffHC------------"
         else
           redirect_to :controller => "home", :action => "show"
-      	  puts "------------2ffHC------------------"	
         end
       else
         if user_signed_in?

@@ -140,7 +140,9 @@ class User < ActiveRecord::Base
          uid_based_list[user_id_list[friend]][:following] = 1
     end
 
+    puts "-----------------------------------------------------"
     puts  uid_based_list
+    puts "-----------------------------------------------------"
     return uid_based_list
 
   end
