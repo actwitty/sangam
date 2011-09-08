@@ -46,8 +46,8 @@ div.wrapper_hompage{
 .homep_col6, .homep_col6 a{color:#CCCCCC; background-color:#424242;}
 
 
-.homep_col10{color:#666666; background-color:#424242;}
-
+/*.homep_col10{color:#666666; background-color:#424242;}*/ /* 9_sep_11 */
+.homep_col10{color:#D2D2D2; background-color:#eee7dd;}
 /* ----------------------------------------------Generalise-------------------------------------*/
 
 #homep_header, #aw_home_intro, #aw_home_latest, #aw_home_container, #aw_home_footer, #aw_home_copyright, #aw_forgot_password
@@ -416,6 +416,7 @@ input#aw_intro_register:hover
 {
   height:300px;
   border:0px solid red;
+  margin-left:350px;/* 9_sep_11 */
 }
 
 #forgot-site-connect {
@@ -509,7 +510,12 @@ input#aw_intro_register:hover
 #forgot-site-connect-buttons {
   display: block;
 }
-
+/* 9_sep_11 */
+#forgot-site-connect-buttons_pwd {
+  display: block;
+  margin-left:10px;
+  padding-bottom: 50px; 
+}
 
 .connect-buttons
 {
