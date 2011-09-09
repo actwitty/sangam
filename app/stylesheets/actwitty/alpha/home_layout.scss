@@ -1332,8 +1332,9 @@ ul.p-cstab1 li a {
 
 .p-st-flt-default
 {
-  background:#cccccc;
-  color:#ffffff;
+  background:#fff;
+  color:#69c1cf;
+  border:1px solid #6abdc4;
 }
 .p-st-flt-channel
 {
@@ -1803,7 +1804,7 @@ ul.p-fltr-tag-list li
 
 .p-awp-stream-post-info
 {
-  width:85%;
+  width:90%;
   height:53px;
   border:0px solid red;
   position:relative;
@@ -3104,3 +3105,39 @@ a#add_facebook_friends{
  {
    margin-left:140px;
  }
+
+
+
+
+ /****************************************************************
+  Location Page specific css
+ *****************************************************************/
+#location_stream_header
+{
+  border:0px solid red;
+}
+
+.locationp_map
+{
+  width:300px;
+  height:auto;
+  margin:0px auto;
+  border:0px solid blue;
+  display:block;
+  margin-left:150px;
+}
+.locationp_name
+{
+  width:auto;
+  height:auto;
+  margin:0px auto;
+  font-size:20px;
+  font-weight:bold;
+  color:#6abdc4;
+  margin-left:210px;
+}
+#more_location_streams
+{
+  width:600px;
+  margin-right:200px;
+}
