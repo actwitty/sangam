@@ -159,9 +159,15 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   width:624px;
   height:50px;
   margin-left:190px;
+
+  box-shadow: 0 0 10px #3a3a3a;
+  -moz-box-shadow: 0 0 10px #3a3a3a;
+  -webkit-box-shadow: 0 0 10px #3a3a3a;
+  -o-box-shadow: 0 0 10px #3a3a3a;
+/*
   -moz-box-shadow: 4px 4px 4px #b0b0b0;
   -webkit-box-shadow: 4px 4px 4px #b0b0b0;
-  box-shadow: 4px 4px 4px #b0b0b0;
+  box-shadow: 4px 4px 4px #b0b0b0;*/
 }
 
 
@@ -395,16 +401,9 @@ opacity:40%;
 .home_page_inputs
 {
   display:block;
-  /*border:1px solid #ddd;*/
-  /*border-top:1px solid #ddd;
-  border-bottom:1px solid #ddd;*/
   padding:15px 10px 10px 10px;
   width:605px;
-  margin-top:20px; 
-  /*
-   margin-left:300px;
-   margin-top:-110px;
-   */
+  margin-top:30px; 
 
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px;
@@ -412,9 +411,9 @@ opacity:40%;
   -webkit-border-radius: 0px;
 
 
-  -moz-box-shadow:inset 0 0 0px #000000;
-   -webkit-box-shadow:inset 0 0 0px #000000;
-   box-shadow:inset 0 0 0px #000000;
+  -moz-box-shadow:inset 0 0 2px #eaa540;
+   -webkit-box-shadow:inset 0 0 2px #eaa540;
+   box-shadow:inset 0 0 2px #eaa540;
 
   background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat; 
@@ -669,7 +668,7 @@ opacity:40%;
   height:auto;
   border:0px solid green;
   margin-bottom:10px;
-  opacity:0.8;
+  /*opacity:0.8;*/
 }
 #entity_field
 {
