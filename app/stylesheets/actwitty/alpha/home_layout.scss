@@ -1603,52 +1603,54 @@ ul.p-fltr-tag-list li
 .p-r-fltr-mine
 {
     margin-top:7px;
-    width:80px;
-    height:60px;
+    width:78px;
+    height:25px;
     border:0px solid green;
-    background-image:url("/images/alpha/stream_mine_unselected.png");
+    background-image:url("/images/alpha/mine_button_normal.png");
     background-repeat:no-repeat;
-    float:left;
+    display:block;
 }
 
 .p-r-fltr-mine-active
 {
-    background-image:url("/images/alpha/stream_mine_selected.png");
+    background-image:url("/images/alpha/mine_button_pressed.png");
 }
 
-.p-r-fltr-mine:hover { background-image:url("/images/alpha/stream_mine_hover.png"); cursor:pointer ;}
+.p-r-fltr-mine:hover { background-image:url("/images/alpha/mine_button_hover.png"); cursor:pointer ;}
 .p-r-fltr-subscribed
 {
     margin-top:7px;
-    width:80px;
-    height:60px;
+    width:78px;
+    height:25px;
     border:0px solid blue;
-    background-image:url("/images/alpha/stream_subscribed_unselected.png");
+    background-image:url("/images/alpha/subscribed_button_normal.png");
     background-repeat:no-repeat;
-    float:left;
+    display:block;
+
 }
-.p-r-fltr-subscribed:hover { background-image:url("/images/alpha/stream_subscribed_hover.png"); cursor:pointer ;}
+.p-r-fltr-subscribed:hover { background-image:url("/images/alpha/subscribed_button_hover.png"); cursor:pointer ;}
 
 .p-r-fltr-subscribed-active
 {
-    background-image:url("/images/alpha/stream_subscribed_selected.png");
+    background-image:url("/images/alpha/subscribed_button_pressed.png");
 }
 
 .p-r-fltr-all
 {
     margin-top:7px;
-    width:80px;
-    height:60px;
+    width:78px;
+    height:25px;
     border:0px solid blue;
-    background-image:url("/images/alpha/stream_all_unselected.png");
+    background-image:url("/images/alpha/all_button_normal.png");
     background-repeat:no-repeat;
-    float:left;
+    display:block;
+
 }
-.p-r-fltr-all:hover { background-image:url("/images/alpha/stream_all_hover.png"); cursor:pointer ;}
+.p-r-fltr-all:hover { background-image:url("/images/alpha/all_button_hover.png"); cursor:pointer ;}
 
 .p-r-fltr-all-active
 {
-    background-image:url("/images/alpha/stream_all_selected.png");
+    background-image:url("/images/alpha/all_button_pressed.png");
 }
 
 .p-r-userinfo{

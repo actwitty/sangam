@@ -157,12 +157,12 @@ function aw_get_stream_scope(){
 function profile_filter_init(){
     if(aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
       $("#p-channelp-tab-mine").addClass("p-channelp-selected");
-      $("#stream_mine").addClass("p-r-fltr-subscribed-active");
+      $("#stream_mine").addClass("p-r-fltr-mine-active");
       g_channel_scope = 1;
       g_stream_scope = 1;
     }else{
       $("#p-channelp-tab-mine").addClass("p-channelp-selected");
-      $("#stream_mine").addClass("p-r-fltr-subscribed-active");
+      $("#stream_mine").addClass("p-r-fltr-mine-active");
       g_channel_scope = 1;
       g_stream_scope = 1;
     }
