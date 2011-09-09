@@ -9,7 +9,7 @@ function get_base_theme_image_url(){
   return "https://s3.amazonaws.com/TestCloudActwitty/channel_themes/";
 }
 function get_summary_theme_images(){
-  var images = [
+  /*var images = [
                  'bubbles.jpg',
                  'gray.jpg',
                  'orange.jpg',
@@ -24,6 +24,19 @@ function get_summary_theme_images(){
                  'forest.jpg',
                  'marine.jpg',
                  'red.jpg'
+               ];
+  */
+  var images = [
+                 'box1.png',
+                 'box2.png', 
+                 'box3.png',
+                 'box4.png',
+                 'box5.png',
+                 'box6.png',
+                 'box7.png',
+                 'box8.png',
+                 'box9.png',
+
                ];
   return images;
 }
@@ -810,7 +823,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
 
         /* overall summary div is added */        
         summary_box.append(html);
-        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        var background_theme =  get_base_theme_image_url() + "box1.png";
         if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
