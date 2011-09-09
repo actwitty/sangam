@@ -1339,7 +1339,7 @@ ul.p-cstab1 li a {
 .p-st-flt-channel
 {
   background:#903737;
-  color:#a4a88d;
+  color:#fff;
 }
 
 
@@ -3138,8 +3138,18 @@ a#add_facebook_friends{
   color:#6abdc4;
   margin-left:210px;
 }
+
 #more_location_streams
 {
   width:600px;
   margin-right:200px;
+}
+
+.more_loader:hover
+{
+  background: #F8F8FF;
+  box-shadow: 0 0 6px #F8F8FF;
+  -moz-box-shadow: 0 0 6px #F8F8FF;
+  -webkit-box-shadow: 0 0 6px #F8F8FF;
+  -o-box-shadow: 0 0 6px #F8F8FF;
 }

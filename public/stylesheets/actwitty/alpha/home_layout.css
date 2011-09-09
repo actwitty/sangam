@@ -1391,7 +1391,7 @@ ul.p-cstab1 li a {
 /* line 1340, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-st-flt-channel {
   background: #903737;
-  color: #a4a88d;
+  color: #fff;
 }
 
 /* line 1347, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
@@ -3255,8 +3255,17 @@ repetition.
   margin-left: 210px;
 }
 
-/* line 3142, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3143, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #more_location_streams {
   width: 600px;
   margin-right: 200px;
+}
+
+/* line 3149, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.more_loader:hover {
+  background: #F8F8FF;
+  box-shadow: 0 0 6px #F8F8FF;
+  -moz-box-shadow: 0 0 6px #F8F8FF;
+  -webkit-box-shadow: 0 0 6px #F8F8FF;
+  -o-box-shadow: 0 0 6px #F8F8FF;
 }

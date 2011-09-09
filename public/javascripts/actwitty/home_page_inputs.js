@@ -66,13 +66,14 @@ function get_location_json(){
                     web_location_title : "hello"} 
            };
   }
-  else if (location_type == '3')
+  else if ((location_type == '3') ||  (location_type == '4'))
   {
     return {
             unresolved_location : {
                     unresolved_location_name : $('#location_field').val()}
            };
   }
+  
   else
   {
     return nil;
@@ -287,6 +288,7 @@ function get_campaigns(){
                   [MANDATORY]
  */
 function document_upload_complete(){
+  alert("sammy");
   aw_lib_console_log("debug","document_upload_complete called"); 
   var latlang = document.getElementById('user_latlng').value;
   /* check if the location field is empty then set type as user input */
@@ -298,51 +300,46 @@ function document_upload_complete(){
    * check if the geolocation field set from google map is same as in the location field then 
    * set type as geolocation 
    */
-   else if($('#geo_location').val() == $('#location_field').val())
-   {
-      //$('#input_latlang').val($('#user_latlng').val());	
-      $('#location_type').val('1');
-      // alert($('#geo_location').val());
-      // alert("seems to be a location with positions as:" + $('#lat_value').val() + "  " + $('#lng_value').val());	
-    }
-    else
+  else if($('#geo_location').val() == $('#location_field').val())
+  {
+     $('#location_type').val('1');
+  }
+  else
+  {
+    /* if location field is set as url */
+    if($('#location_field').val().match(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
     {
-      /* if location field is set as url */
-      if($('#location_field').val().match(/(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/))
-      {
-        $('#location_type').val('2');
-        //alert("seems to be an url");
-      }
-      /* else set it as other type*/
-      else
-      { 
-        $('#location_type').val('3');
-        //alert("Seems to be something of user's interest");
-      }
+      $('#location_type').val('2');
     }
+    /* else set it as other type*/
+    else
+    { 
+      $('#location_type').val('3');
+    }
+  }
       
-    var post_activity="";
-    if(!$('#activity_field').val()){
+  var post_activity="";
+  if(!$('#activity_field').val()){
       post_activity = "shared";
-    }else{
+  }else{
       post_activity = $('#activity_field').val();
-    }
+  }
    
-    var post_json = { 
-                      word : post_activity,
-                      text : $('#entity_field').val(),
-                      enrich : true,
-                      location:get_location_json(),
-                      documents:get_documents_json(),
-                      campaign_types:get_campaigns(),
-                      source_name:"actwitty",
-                      sub_title:$('#title_field').val(),
-                      status:get_generate_status()
-                    };
+  var post_json = { 
+                    word : post_activity,
+                    text : $('#entity_field').val(),
+                    enrich : true,
+                    location:get_location_json(),
+                    documents:get_documents_json(),
+                    campaign_types:get_campaigns(),
+                    source_name:"actwitty",
+                    sub_title:$('#title_field').val(),
+                    status:get_generate_status()
+                  };
 
    
-    //alert(JSON.stringify(post_json));
-    post_activity_to_server(post_json);
+  //alert(JSON.stringify(post_json));
+  post_activity_to_server(post_json);
 
 }
 /***************************************/
@@ -369,6 +366,7 @@ $(document).ready(function() {
    /* get user channels from rails */
   
    $("#actwitty_generator").live('click', function(){
+      alert($('#location_field').val());
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
         alert("Nothing set to generate a post");
