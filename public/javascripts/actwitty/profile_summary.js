@@ -728,7 +728,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
   });
  }
 
- var html = '<div class="p-channelp-post js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
+ var html = '<div class="p-channelp-post  js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
 
               '<div class="p-channelp-post-header">' +
@@ -1107,8 +1107,10 @@ $(document).ready(function(){
       $(this).closest(".p-channelp-post").find(".p-channelp-post-rel-img").slideToggle();
       if($(this).text() == "More >") {
         $(this).text("Less <");
+        $(this).closest(".p-channelp-post").addClass("p-channelp-post-border");
       } else {
         $(this).text("More >");
+        $(this).closest(".p-channelp-post").removeClass("p-channelp-post-border");
       }
     });
 

@@ -653,7 +653,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 /* line 628, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .subtitle_input {
   border: 0px solid #ddd;
-  margin-left: 4px;
+  margin-left: 3px;
   opacity: 0.8;
 }
 
@@ -983,7 +983,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   margin-top: 10px;
   margin-left: 20px;
   height: auto;
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   display: none;
 }
 
