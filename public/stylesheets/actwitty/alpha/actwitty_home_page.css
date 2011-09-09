@@ -547,13 +547,20 @@ input#aw_intro_register:hover {
   border: 0px solid red;
   margin-left: 350px;
   /* 9_sep_11 */
+  margin-bottom: 200px;
+  /* 9_sep_11_ev */
+  color: #D2D2D2;
+  background-color: #eee7dd;
 }
 
-/* line 446, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 449, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-site-connect {
   /*background:#373735;*/
   width: 100%;
-  height: 300px;
+  height: 500px;
+  /* margin-bottom:300px; 9_sep_11_ev */
+  /*color:#D2D2D2;*/
+  background-color: #eee7dd;
   /*
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -567,13 +574,14 @@ input#aw_intro_register:hover {
   */
 }
 
-/* line 465, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 471, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-sign_in_up {
   display: block;
   float: right;
   background: #fff;
-  height: 65%;
-  /*75%*/
+  /*height: 65%; 75%*/
+  /*9_sep_11_ev */
+  height: 55%;
   width: 470px;
   padding: 10px 0 0 20px;
   margin: 0px auto;
@@ -592,7 +600,7 @@ input#aw_intro_register:hover {
   -o-box-shadow: 0 0 6px #3a3a3a;
 }
 
-/* line 486, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 493, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-sign_in_up1 {
   display: block;
   float: right;
@@ -617,53 +625,57 @@ input#aw_intro_register:hover {
   -o-box-shadow: 0 0 6px #3a3a3a;
 }
 
-/* line 507, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 514, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #remember_provider {
   font-size: 8px;
 }
 
-/* line 511, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 518, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-password-input {
   width: 250px;
   height: 30px;
   border: 1px solid #ddd;
   margin-left: 10px;
+  margin-top: -60px;
+  /*9_sep_11*/
   font-size: 20px;
 }
 
-/* line 519, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 527, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-sign-connect-desc {
   /*padding:10px;*/
   font-size: 22px;
   margin-left: 10px;
+  height: 120px;
+  /*200 9_sep_11_ev */
 }
 
-/* line 527, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 536, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-sign-connect-desc h3 {
   font-size: 44px;
 }
 
-/* line 534, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 543, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-site-connect-buttons {
   display: block;
 }
 
 /* 9_sep_11 */
-/* line 538, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 547, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-site-connect-buttons_pwd {
   display: block;
   margin-left: 10px;
   padding-bottom: 50px;
 }
 
-/* line 543, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 552, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #forgot-site-connect-buttons_resend {
   display: block;
   margin-left: 10px;
   padding-bottom: 50px;
 }
 
-/* line 549, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 558, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 .connect-buttons {
   border: none;
   width: auto;
@@ -674,13 +686,13 @@ input#aw_intro_register:hover {
   color: #fff;
 }
 
-/* line 559, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 568, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 .connect-buttons:hover {
   cursor: pointer;
 }
 
 /************************************ Resend Confirmation ********************************/
-/* line 567, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/* line 576, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #resend_confirmation {
   text-decoration: none;
   background: none;
