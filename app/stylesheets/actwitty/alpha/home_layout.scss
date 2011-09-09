@@ -226,6 +226,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
    position: relative;
    top: 0px;;
    width: 100px;
+   border:0px solid red;
 }
 
 #profile_header_user_img
@@ -237,7 +238,15 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   */
 
 }
-
+#settings_icon
+{
+  width:20px;
+  height:20px;
+  float:right;
+  border:0px solid blue;
+  margin-top:11px;
+  margin-right:4px;
+}
 #top_bar_user_image
 {
   height:50px;
