@@ -182,7 +182,8 @@
   float:right;
   width:auto;
   height:100%;
-  background:#e0e0e0;
+  /*background:#e0e0e0;*/
+  background:#f7f7f7;
   margin-right:65px;
 
 }
@@ -353,7 +354,8 @@
 {
   width:100%;
   height:60px;
-  background:#e0e0e0;
+  /*background:#e0e0e0;*/
+  background:#f7f7f7;
   margin-top:1px;
   word-wrap:break-word;
   overflow:hidden;
@@ -629,35 +631,7 @@ span.name a
   overflow:hidden;
 }
 
-/*
-.author
-{
-  border:1px solid green;
-  width:160px;
-  height:50px;
-  margin-top:5px;
-  float:left;
-  background:#92cfd4;
-}
-.p-st-comment-actor
-{
-  color:#fff;
-  font-size:16px;
-}
-.p-st-comment-actor-image
-{
-  border:0px solid red;
-  color:#c19135;
-  width:35px;
-  height:40px;
-  float:right;
-}
-.p-st-comment-actor-image img
-{
-  width:35px;
-  height:50px;
-}
-*/
+
 .p-st-comment-actor-desc
 {
   width:120px;
@@ -687,6 +661,7 @@ span.name a
   margin-left:4px;
   display:inline-block;
   background:#e0e0e0;
+  /*background:#f7f7f7;*/
 }
 
 
@@ -898,6 +873,7 @@ ul .p-channelp-post-relelem
   height:auto;
   border:0px solid red;
   font-size:16px;
+  color:#333;
 }
 
 .p-channelp-auth-last-upd-hd
@@ -916,7 +892,8 @@ ul .p-channelp-post-relelem
   margin-top:5px;
   width:100%;
   height:auto;
-  background:#e0e0e0;;
+  /*background:#e0e0e0;;*/
+  background:#f7f7f7;
 }
 
 .p-channelp-auth-last-upd-post-time
@@ -941,7 +918,7 @@ ul .p-channelp-post-relelem
 }
 .p-channelp-auth-last-upd-post-text p
 {
-  color:#fff;
+  color:#333;
   font-size:16px;
 }
 
@@ -950,7 +927,8 @@ ul .p-channelp-post-relelem
   padding:2px;
   margin:2px;
   border:1px solid #ccc;
-  background-color:#e0e0e0;
+  /*background-color:#e0e0e0;*/
+  background:#f7f7f7;
 }
 
 .p-channel-subscribe-btn:hover{
