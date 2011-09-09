@@ -1280,12 +1280,17 @@ ul.p-cstab1 li a {
 }
 .p-flt-actor
 {
-  width:145px;
+  width:150px;
   height:34px;
   display:inline-block;
   float:left;
   margin:4px 1px 0 0px;
   border:0px solid #afaf93;
+}
+
+#fltr_channel_id
+{
+  margin-left:10px;
 }
 
 .p-flt-holder
@@ -1777,7 +1782,7 @@ ul.p-fltr-tag-list li
   width:560px;
   border:0px solid blue;
   margin-top:8px;
-  margin-left:40px;
+  margin-left:30px;
   /*padding:10px;*/
   border:1px solid #ddd;
   -moz-border-radius: 5px;
