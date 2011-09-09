@@ -599,7 +599,7 @@ var show_counter = 0;
         /* overall summary div is added */        
         summary_box.append(html);
 
-        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        var background_theme =  get_base_theme_image_url() + "box1.png";
         if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
@@ -682,7 +682,7 @@ var show_counter = 0;
   
         /* overall summary div is added */        
         summary_box.append(html);
-        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        var background_theme =  get_base_theme_image_url() + "box1.png";
         if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
