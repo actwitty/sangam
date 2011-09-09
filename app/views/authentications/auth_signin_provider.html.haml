@@ -1,25 +1,41 @@
-#page-wrapper
-  #header
-    =render :partial => "welcome/logo"
+.wrapper_hompage.homep_col1
+  #homep_header
+    #aw_home_header_div
+      #aw_home_header_signin
+      %a{:href => "http://www.actwitty.com" }
+        #aw_home_header_logo
+
+.wrapper_hompage.homep_col2
   %img{:src => @welcome_user_picture}
   Hello
   %b= @welcome_username
   welcome to actwitty.com
+  #aw_home_intro
+    #aw_home_intro_signup_sect
+      #aw_home_intro_signup_new_here
+      #aw_home_intro_signup_new_here_info
+      #aw_home_intro_register_box
+        =render :partial => "users/registrations/new", :locals => { :user => User.new } 
+    #aw_home_intro_signup_sect
+      #aw_home_intro_signup_new_here
+      #aw_home_intro_signup_new_here_info
+      #aw_home_intro_register_box
+        =render :partial => "users/sessions/new", :locals => { :user => User.new } 
+
+  
 
 
-  #foreign_auths
-  #provider_up
-    =render :partial => "/users/sessions/provider"
+  
 
-    %input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
-    %input#user_provider{:name => "auth_provider", :type => "hidden", :value =>  params[:provider]}/
-    %input#user_uid{:name => "auth_uid", :type => "hidden", :value => params[:uid]}/ 
 
-  /#info-section
-  /  #actwitty-text
-  /    #simplegallery1
-  /      #actwitty-t3.actwitty-info
-  /        %img{:alt => "", :src => "/images/actwitty/main_page_info.jpg"}/
+=render :partial => "welcome/footer"
+
+.wrapper_hompage.homep_col6
+%input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
+%input#user_provider{:name => "auth_provider", :type => "hidden", :value =>  params[:provider]}/
+%input#user_uid{:name => "auth_uid", :type => "hidden", :value => params[:uid]}/ 
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }
+
 
 
 

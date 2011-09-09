@@ -25,6 +25,8 @@ $(document).ready(function(){
     show_all_on_location(); /* in location_page.js */
   }else if( page_context == "channel"){
     show_all_on_channel(); /* in channel_page.js */
+  }else if(page_context == "facebook"){
+    aw_facebook_initialize_page();
   }
 
   /** General functions to support auto complete based search **/

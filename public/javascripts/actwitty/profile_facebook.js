@@ -125,12 +125,10 @@ function append_unfollow_friends(){
 /*
  * Invoke on page load
  */
-var temp = 0;
-function get_all_facebookers(){
+function aw_facebook_initialize_page(){
     /*
      * Get data on ready
      */
-    //alert("get_all_facebooker"); 
     
     $.ajax({
         url: '/facebook/facebook_friends_list',
@@ -139,14 +137,10 @@ function get_all_facebookers(){
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-          /* if rails demands a redirect because of log in missing */
-          if (data && data.location) {
-            window.location.href = data.location;
-          }else{
+          if(data.length){
             renderFacebookers(data);
+            $('#empty_check').hide();
           }
-          //TODO: try to use this in search, why should search hit server, again and again
-          
         },
         error: function (error) {
 
@@ -179,59 +173,14 @@ $(document).ready(function(){
     });
     $(this).closest('li').remove();
   });
-
- 
-
-
-  $('.js_add_facebook_friends').live('click',function(){
-
-   //alert("js_add_facebook_friends"); 
-   
-   $.ajax({
-        url: '/facebook/facebook_friends_list',
-        type: 'GET',
-        data: {},
-        dataType: 'json',
-        contentType: 'application/json',
-        success: function (data) {
-     
-          if (data && data.location) {
-           //alert("if");
-           window.location.href = data.location;
-          }else{
-            //renderFacebookers(data);
-            //get_all_facebookers();
-            window.location.href = "/home/facebook_friends";
-            //alert("else");
-          }
-          
-        },
-        error: function (error) {
-
-        }
-    });
-   
-    $('#empty_check').hide();
-
-  });
   
-  $('#fb_friends').click(function(){
-     //alert("fb_friends");
-     get_all_facebookers();
-     $('#empty_check').hide();
-  });
-  //get_all_facebookers();
-  //if ($('#invite_friends').is(':empty'))
-  //alert($('#invite_friends').children().size());
   if ($('#invite_friends').children().size() > 1)
   {
-      //$('#invite_friends').append('<h3 id="empty_check">No Facebook friends In your Profile.Invite them.</h3>');
       $('#empty_check').hide();
   }
   else
   {
       $('#empty_check').show();
-      //$('#empty_check').remove();
   }
  
 

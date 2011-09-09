@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   #caches_page :new
   def new
+    BOOM
     puts "************************************************ HERE I AM **************************************"
     Rails.logger.info("[CNTRL] [WELCOME] [NEW] New page requested")
 

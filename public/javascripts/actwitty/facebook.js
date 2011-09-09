@@ -39,20 +39,20 @@ function renderFriends(json){
 }
 
 /*
- * Invoke on page load
+ ****************************************
  */
-$(document).ready(function(){
+function aw_facebook_initialize_page(){
     /*
      * Get data on ready
      */
-    $.ajax({
+    alert("into init");
+    /*$.ajax({
         url: '/facebook/facebook_friends_list',
         type: 'GET',
         data: {},
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-          /* if rails demands a redirect because of log in missing */
           if (data && data.location) {
             window.location.href = data.location;
           }else{
@@ -62,51 +62,61 @@ $(document).ready(function(){
         error: function (error) {
 
         }
-    });
-});
-
+    });*/
+}
 
 /*
- * Request a friend from facebook to join in to actwitty
+ * Invoke on page load
  */
-$('.fb_request').live('click', function () { 
+$(document).ready(function(){
+
+  /****************************************/
+  /*
+  * Request a friend from facebook to join in to actwitty
+  */
+  $('.fb_request').live('click', function () { 
+      var dataString = 'provider=facebook&uid=' + $(this).attr('id');
+      $.ajax({
+        url:  '/contacts/provider_add',
+        type: 'POST',
+        data: dataString,
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+          /* if rails demands a redirect because of log in missing */
+          if (data && data.location) {
+            window.location.href = data.location;
+          }else{
+          }
+        },
+        error: function (error) {
+
+        }
+      });
+      $(this).closest('li').remove();
+  });
+
+  
+  /****************************************/
+  /*
+  * Invoke on FB invitation to a friend from facebook
+  */
+  $('.fb_invite').live('click', function () {
     var dataString = 'provider=facebook&uid=' + $(this).attr('id');
     $.ajax({
-      url:  '/contacts/provider_add',
-      type: 'POST',
-      data: dataString,
-      dataType: 'json',
-      contentType: 'application/json',
-      success: function (data) {
-        /* if rails demands a redirect because of log in missing */
-        if (data && data.location) {
-          window.location.href = data.location;
-        }else{
-        }
-      },
-      error: function (error) {
-
-      }
-    });
+        url:  '/facebook/invite',
+        type: 'POST',
+        data: dataString
+      });
     $(this).closest('li').remove();
-});
-
-/*
- * Invoke on FB invitation to a friend from facebook
- */
-$('.fb_invite').live('click', function () {
-  var dataString = 'provider=facebook&uid=' + $(this).attr('id');
-  $.ajax({
-      url:  '/facebook/invite',
-      type: 'POST',
-      data: dataString
-    });
-  $(this).closest('li').remove();
-});
-
-$('.fb_visit').live('click', function () { 
+  });
+  
+  /****************************************/
+  $('.fb_visit').live('click', function () { 
     alert($(this).attr('id')+ "VISIT"); 
     $(this).closest('li').remove();
+  });
+
 });
 
 
