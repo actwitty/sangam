@@ -1,8 +1,8 @@
 #latest_summary_box
 {
   border:0px solid white;
-  height:60px;
-  width:800px;
+  height:120px;
+  width:470px;
   margin:0px auto;
 }
 .main_box_user_list{
@@ -49,7 +49,7 @@
 {
   width:550px;
   height:180px;
-  border:0px solid blue;
+  border:1px solid blue;
   margin-top:10px;
   margin-left:10px;
 }
@@ -205,35 +205,42 @@
 .p-channelp-post-lu-header-mainpage span
 {
   float:left;
+  color:#fffaf0;
 }
 
 .p-channelp-post-lup-mainpage
 {
   width:100%;
-  height:60px;
+  height:55px;
   background:#4a4a4a;
-  margin-top:1px;
+  margin-top:3px;
+  overflow:hidden;
+
+  box-shadow: 0 0 1px #fff;
+  -moz-box-shadow: 0 0 1px #fff;
+  -webkit-box-shadow: 0 0 1px #fff;
+  -o-box-shadow: 0 0 1px #fff;
 }
-.p-channelp-post-lup-time-mainpage
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-time
 {
-  height:15px;
+  height:10px;
   width:100%;
 }
-.p-channelp-post-lup-time-mainpage span
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-time span
 {
   float:right;
   font-size:10px;
-  color:#f9f9f9;
+  color:#f7f7f7;
 }
 
-.p-channelp-post-lup-text-mainpage
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-text
 {
   margin-left:10px;
 }
 
-.p-channelp-post-lup-text-mainpage p
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-text p
 {
-  font-size:13px;
-  color:#838383;
+  font-size:16px;
+  color:#fffaf0;
 }
 

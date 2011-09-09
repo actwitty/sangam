@@ -72,7 +72,7 @@ function get_summary_theme_html(summary){
 function create_and_add_text_box(box_id, summary,channel_class){
   var text_box= $("#" + box_id);
 
-  if(channel_class == 'mainpage'){
+  if(channel_class == "mainpage"){
     var lup_class = "p-channelp-post-lup-mainpage";
   }else{
     var lup_class = "p-channelp-post-lup";
