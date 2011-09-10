@@ -2471,11 +2471,34 @@ a.js_handle_stream_entity_mention span
 
 a.js_handle_stream_entity_mention:hover span
 {
-    display: block;
+    /*display: block;
     position: absolute;
     background-color: #6699ff;
     color: #fff;
-     border:2px solid #ccc;
+    border:2px solid #ccc;
+      */
+    display:block;
+    position:absolute;
+    top:15px;
+    left:10px;
+    width:80px;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
+
 }
 
 

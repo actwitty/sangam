@@ -277,7 +277,7 @@ function append_entity_delete(post_id){
           var remove_id = post_id + '_' + entity_id + "_rem";
           the_big_stream_entity_deletes[remove_id] = remove_val;
           var hover_html = '<span>' +
-                              '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> Remove </a>' +
+                              '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> unmark </a>' +
                            '</span>';
           $(this).append(hover_html);
         });
