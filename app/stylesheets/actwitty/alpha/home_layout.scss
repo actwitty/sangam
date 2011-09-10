@@ -2821,14 +2821,16 @@ a.js_handle_stream_entity_mention:hover span
 */
 #settings-page-block {
   display: block;
-  float: right;
+  /*float: right;*/
   /*background: #fff;*/
   height: 800px;
   width: 850px;
-  padding: 0px 0 20px 20px;
-  margin-top: 10px;
+  padding: 0px 0 20px 20px;/* 10_sep_11 */
+  /*margin-top: 10px;
   margin-right: 15%;
-  margin-left: 100px;
+  margin-left: 100px;*/
+  margin: 0px auto;
+  margin-bottom: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 
   border-radius: 2px;
@@ -2880,9 +2882,10 @@ a.js_handle_stream_entity_mention:hover span
 
 #settings-page {
   background: white;
-  width: 100%;
-  height: 80%;
+  /*width: 100%;
+  height: 80%;*/
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  margin-top:30px;/* 10_sep_11 */
 }
 #settings-form {
   margin-left:100px;
