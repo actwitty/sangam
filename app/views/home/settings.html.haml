@@ -9,9 +9,9 @@
 
   #settings-page-block
     /%h3#settings-header Settings Page
-    /#stylized.myform
+    /#stylized.myform  :validate => true,
     #settings-main.myform
-      = simple_form_for @profile,:html => {:multipart => true}, :file_field => {:multiple => true}, :validate => true, :url => home_settings_save_path do |f|
+      = simple_form_for @profile,:html => {:multipart => true}, :file_field => {:multiple => true},  :url => home_settings_save_path do |f|
 
         %label First Name
         = f.input :first_name,:label=>false,  :input_html => { :size=> 30  }
@@ -23,13 +23,14 @@
         = f.input :sex, :label=> false, :collection => ['male','female','other'], :as => :select, :input_html => { }
 
         %label Date of Birth
-        = f.input :dob, :label=> false,  :as => :string, :input_html=>{ :size => "20", :type => "text", :class=>"settings-input",:id=>"settings_dob"}
+        = f.input :dob, :label=> false, :as => :string, :input_html=>{ :size => "20", :type => "text", :class=>"settings-input dob",:id=>"profile_dob"}
+        /= f.input :dob, :label=> false,  :as => :string, :input_html=>{ :size => "20", :type => "text", :class=>"settings-input",:id=>"settings_dob"}
 
         %label City
         = f.input :home_location, :label =>false, :input_html => { :size => 20, :class=>"settings-input" ,:id=>"settings_city" }
 
         %label Mobile Number
-        = f.input :mobile_number, :label =>false,:placeholder => " Required ", :input_html => { :size => 20, :class=>"settings-input" ,:id=>"settings_number" }
+        = f.input :mobile_number, :label =>false, :input_html => { :size => 20, :class=>"settings-input" ,:id=>"settings_number" }
         
 
         %label Email

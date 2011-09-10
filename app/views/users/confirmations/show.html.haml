@@ -10,7 +10,7 @@
       #orgot-sign-connect-desc
         %h3#confirm-desc.desc Few more steps for confirmation
       #conf.conf_form
-        = simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
+        = simple_form_for @profile,   :url => "/confirm_user" do |f|
           %label First Name
           = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input" }
 
