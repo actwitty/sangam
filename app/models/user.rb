@@ -1089,31 +1089,34 @@ class User < ActiveRecord::Base
       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
     end
 
-    h  = {}
-    h[:user_id] = user
-    h[:activity_word_id] = friends.keys
-    h = pq_summary_filter(h)
+    if !user.blank?
+      h  = {}
+      h[:user_id] = user
+      h[:activity_word_id] = friends.keys
+      h = pq_summary_filter(h)
 
-    Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
-      activities[k[0]] = k[1]
-    end
-    Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - #{activities.keys.inspect} \n #{friends.keys.inspect}" ) 
-    if !activities.keys.blank?
-      User.where(:id => activities.keys).all.each do |attr|
-        # activities[attr.id] => activity_word_id
-        friends[activities[attr.id]].each do |idx|
+      Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
+        activities[k[0]] = k[1]
+      end
 
-          #dont show a friend in his own summary as related friend
-          if summaries[idx][:user][:id] != attr.id
+      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - #{activities.keys.inspect} \n #{friends.keys.inspect}" )
+      if !activities.keys.blank?
+        User.where(:id => activities.keys).all.each do |attr|
+          # activities[attr.id] => activity_word_id
+          friends[activities[attr.id]].each do |idx|
 
-            if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
-              summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
+            #dont show a friend in his own summary as related friend
+            if summaries[idx][:user][:id] != attr.id
+
+              if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
+                summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
+              end
+
             end
 
           end
 
         end
-
       end
     end
 
