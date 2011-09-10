@@ -2891,7 +2891,7 @@ a.js_handle_stream_entity_mention:hover span {
   height: 30px;
 }
 
-/*
+  /*
 #setting-gender-male{
   padding:10px 10px 10px 10px;
 }
@@ -2899,14 +2899,17 @@ a.js_handle_stream_entity_mention:hover span {
 /* line 2799, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings-page-block {
   display: block;
-  float: right;
+  /*float: right;*/
   /*background: #fff;*/
   height: 800px;
   width: 850px;
   padding: 0px 0 20px 20px;
-  margin-top: 10px;
+  /* 10_sep_11 */
+  /*margin-top: 10px;
   margin-right: 15%;
-  margin-left: 100px;
+  margin-left: 100px;*/
+  margin: 0px auto;
+  margin-bottom: 10px;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -2918,7 +2921,7 @@ a.js_handle_stream_entity_mention:hover span {
   -o-box-shadow: 0 0 4px #3a3a3a;
 }
 
-/* line 2822, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2824, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings-page-wrapper {
   /*background: white;*/
   height: 750px;
@@ -2927,12 +2930,12 @@ a.js_handle_stream_entity_mention:hover span {
   padding: 0;
 }
 
-/* line 2830, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2832, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .settings-input-list {
   list-style-type: none;
 }
 
-/* line 2835, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2837, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .settings-labels {
   /*
   display: block;
@@ -2946,7 +2949,7 @@ a.js_handle_stream_entity_mention:hover span {
   */
 }
 
-/* line 2848, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2850, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings-header {
   margin-top: 1px;
   margin-left: 0px;
@@ -2957,67 +2960,69 @@ a.js_handle_stream_entity_mention:hover span {
   background: #445D73;
 }
 
-/* line 2858, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2860, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings-page {
   background: white;
-  width: 100%;
-  height: 80%;
+  /*width: 100%;
+  height: 80%;*/
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  margin-top: 30px;
+  /* 10_sep_11 */
 }
 
-/* line 2864, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2867, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings-form {
   margin-left: 100px;
   margin-top: 100px;
 }
 
-/* line 2868, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2871, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_gender {
   margin-left: 197px;
 }
 
-/* line 2871, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2874, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_dob {
   margin-left: 167px;
 }
 
-/* line 2874, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2877, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_city {
   margin-left: 215px;
 }
 
-/* line 2877, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2880, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_number {
   margin-left: 147px;
 }
 
-/* line 2880, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2883, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_email {
   margin-left: 205px;
 }
 
-/* line 2883, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2886, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_company {
   margin-left: 143px;
 }
 
-/* line 2886, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2889, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_address {
   margin-left: 80px;
 }
 
-/* line 2889, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2892, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_website {
   margin-left: 80px;
 }
 
-/* line 2892, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2895, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #settings_interest {
   margin-left: 80px;
 }
 
 /**************Provider Page****************/
-/* line 2898, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2901, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #site-connect-buttons {
   margin-top: -10px;
   /*10 9_sep_11 */
@@ -3026,18 +3031,18 @@ a.js_handle_stream_entity_mention:hover span {
   float: left;
 }
 
-/* line 2905, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2908, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #signinbutton {
   margin-top: -10px;
 }
 
-/* line 2910, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2913, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #site-connect-nav {
   width: 100%;
   height: 30px;
 }
 
-/* line 2916, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2919, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #resend-confirm-nav {
   width: 80px;
   float: left;
@@ -3048,7 +3053,7 @@ a.js_handle_stream_entity_mention:hover span {
   margin-left: 5px;
 }
 
-/* line 2926, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2929, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #forgot-password-nav {
   width: 80px;
   float: left;
@@ -3059,14 +3064,14 @@ a.js_handle_stream_entity_mention:hover span {
   font-size: 12px;
 }
 
-/* line 2937, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2940, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .inputform {
   margin-left: 0px;
   height: auto;
   width: 100%;
 }
 
-/* line 2943, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2946, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #sign_in_up {
   display: block;
   float: right;
@@ -3097,20 +3102,20 @@ a.js_handle_stream_entity_mention:hover span {
   */
 }
 
-/* line 2976, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2979, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .main-input-list {
   list-style-type: none;
   margin-left: 40px;
 }
 
-/* line 2980, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2983, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .main-input-list .email-input {
   float: left;
   padding: 3px;
   width: 260px;
 }
 
-/* line 2986, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2989, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .password-input {
   float: left;
   padding: 3px;
@@ -3118,27 +3123,27 @@ a.js_handle_stream_entity_mention:hover span {
   width: 260px;
 }
 
-/* line 2994, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 2997, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .remember-main {
   float: none;
   margin-left: 0px;
   margin-top: 5px;
 }
 
-/* line 3000, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3003, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #data-input-actions {
   float: left;
   margin-top: 10px;
   margin-right: 40px;
 }
 
-/* line 3006, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3009, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .icon {
   padding: 0;
   margin: 0;
 }
 
-/* line 3011, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3014, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .icon.medium {
   width: 32px;
   height: 30px;
@@ -3189,19 +3194,19 @@ a.js_handle_stream_entity_mention:hover span {
 	transition: color 0.25s ease-in-out;
 }
 */
-/* line 3064, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3067, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #query_review_parent {
   display: none;
 }
 
-/* line 3067, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3070, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 a#add_facebook_friends {
   /*float:left;
   margin-left:20px;*/
   float: left;
 }
 
-/* line 3075, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3078, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-st-theme-input {
   height: 25px;
   width: 100px;
@@ -3211,13 +3216,13 @@ a#add_facebook_friends {
   display: none;
 }
 
-/* line 3085, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3088, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-st-set-theme {
   cursor: pointer;
 }
 
 /* for single channel page */
-/* line 3094, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3097, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #streams_list {
   width: 620px;
   height: auto;
@@ -3230,7 +3235,7 @@ Helper CSS Classes to adjust the page layout. As we are trying
 to utilize the same html structure as much as possible to avoid
 repetition.
 ******************************************************************/
-/* line 3109, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3112, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-awp-align-center-margin {
   margin-left: 140px;
 }
@@ -3238,12 +3243,12 @@ repetition.
 /****************************************************************
  Location Page specific css
 *****************************************************************/
-/* line 3120, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3123, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #location_stream_header {
   border: 0px solid red;
 }
 
-/* line 3125, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3128, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .locationp_map {
   width: 300px;
   height: auto;
@@ -3253,7 +3258,7 @@ repetition.
   margin-left: 150px;
 }
 
-/* line 3134, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3137, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .locationp_name {
   width: auto;
   height: auto;
@@ -3264,13 +3269,13 @@ repetition.
   margin-left: 210px;
 }
 
-/* line 3145, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3148, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #more_location_streams {
   width: 600px;
   margin-right: 200px;
 }
 
-/* line 3151, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+/* line 3154, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .more_loader:hover {
   background: #F8F8FF;
   box-shadow: 0 0 6px #F8F8FF;
