@@ -105,7 +105,7 @@ $('.fb_invite').live('click', function () {
 });
 
 $('.fb_visit').live('click', function () { 
-    alert($(this).attr('id')+ "VISIT"); 
+    //alert($(this).attr('id')+ "VISIT"); 
     $(this).closest('li').remove();
 });
 

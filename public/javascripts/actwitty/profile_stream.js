@@ -221,7 +221,7 @@ function handle_like_campaign(div_id, stream){
  */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
-  alert(JSON.stringify(likes));
+  //alert(JSON.stringify(likes));
   //alert("show_all_stream_campaigns" + div);
   $.each(likes, function(i,like){
     var like_html = '<div class="author">' +

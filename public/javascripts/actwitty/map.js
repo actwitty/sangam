@@ -9,7 +9,6 @@ function getmapinfo(lang,lat,id){
       }
       return html;
  */
- alert(id);
   var latlng = new google.maps.LatLng(lang,lat);
     var myOptions = {
       zoom: 8,

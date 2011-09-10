@@ -87,7 +87,7 @@ $(document).ready(function(){
       }
     }).result(function(e, item) {
         //$("#content").append("<p>selected " + format(item) + "</p>");
-        alert('Clicked ' + getID(item));
+        //alert('Clicked ' + getID(item));
     });
 
     /********************************************************************************************/
@@ -100,7 +100,7 @@ $(document).ready(function(){
  * Click on entity
  */
 $('.entity_list').live('click', function () { 
-    alert($(this).attr('id'));
+    //alert($(this).attr('id'));
 });
 
 
