@@ -127,7 +127,7 @@ function show_all_images(){
             if( more_cookie.length == 0){
               $("#streams_images_list").html("<br/> <br/> No images to show for this filter");
             }
-            aw_lib_alert('No images to display');
+            //aw_lib_alert('No images to display');
           }
             
 

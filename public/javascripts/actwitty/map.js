@@ -1,5 +1,5 @@
 function getmapinfo(lang,lat,id){
- alert("INSIDE getmapinfo");
+ //alert("INSIDE getmapinfo");
  /*
  var html;
  if (GBrowserIsCompatible()) {
@@ -9,6 +9,7 @@ function getmapinfo(lang,lat,id){
       }
       return html;
  */
+ //alert(id);
   var latlng = new google.maps.LatLng(lang,lat);
     var myOptions = {
       zoom: 8,

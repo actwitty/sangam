@@ -9,7 +9,7 @@ $('.ntabs').hover(
      var ID = $(this).children().attr("id");
      //var ID = $(this).attr("id");
      //alert($(this).children().attr("id"));
-     alert(ID);
+     //alert(ID);
      var	xwidth = ($('#'+ID).width());
 	   var	xheight = ($('#'+ID).height());
      //alert(xwidth);  
