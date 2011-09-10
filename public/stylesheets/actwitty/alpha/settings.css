@@ -15,8 +15,8 @@
 #settings-main {
   /*border:solid 2px #b7ddf2;
   background:#ebf4fb;*/
-  margin: 0px auto;
   /*margin:0 auto;*/
+  width: 60%;
 }
 
 /* line 17, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
@@ -41,14 +41,15 @@
   /*font-weight:bold;*/
   font-family: nimbus-sans-condensed,sans-serif;
   color: #666;
-  font-size: 16px;
+  font-size: 20px;
   text-align: right;
   width: 140px;
   float: left;
+  margin-top: 8px;
   /*background: #E0E0E0;*/
 }
 
-/* line 40, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 41, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main .small {
   color: #666666;
   display: block;
@@ -58,19 +59,20 @@
   width: 140px;
 }
 
-/* line 48, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 49, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main input {
   float: left;
   font-size: 12px;
   padding: 4px 2px;
   border: solid 1px #aacfe4;
   width: 200px;
-  margin: 12px 0 20px 50px;
+  margin: 10px 0 20px 50px;
+  /*top right bottom left*/
   background-color: #DDD;
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-/* line 58, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 59, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main textarea {
   float: left;
   font-size: 12px;
@@ -82,7 +84,7 @@
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-/* line 68, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 69, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main #user_settings_image {
   float: left;
   font-size: 12px;
@@ -93,7 +95,7 @@
   /*10 0 20 500*/
 }
 
-/* line 76, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 77, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main #profile_img_selector {
   /*float:left;*/
   font-size: 12px;
@@ -106,7 +108,7 @@
   background-color: #DDD;
 }
 
-/* line 86, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 87, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main select {
   float: left;
   font-size: 12px;
@@ -117,7 +119,7 @@
   background-color: #DDD;
 }
 
-/* line 96, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 97, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main button {
   clear: both;
   margin-left: 300px;
@@ -134,7 +136,7 @@
 }
 
 /* pramod */
-/* line 109, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 110, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #settings-main #settings-button {
   width: 75px;
   margin-left: 150px;
@@ -142,7 +144,7 @@
 }
 
 /* --------------------------------------Facebook friends ----------------- */
-/* line 116, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 117, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .sc_menu1 li {
   display: block;
   float: left;
@@ -150,13 +152,13 @@
   /*4*/
 }
 
-/* line 121, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 122, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .sc_menu1 a {
   display: block;
   text-decoration: none;
 }
 
-/* line 125, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 126, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .sc_menu1 span {
   display: none;
   margin-top: 3px;
@@ -165,24 +167,24 @@
   color: #fff;
 }
 
-/* line 133, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 134, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .sc_menu1 a:hover span {
   display: block;
 }
 
-/* line 136, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 137, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .sc_menu1 div {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
 }
 
-/* line 140, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 141, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .sc_menu1 li:hover div#inner {
   filter: alpha(opacity=50);
   opacity: 0.5;
 }
 
-/* line 144, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 145, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div.sc_menu1 {
   /* Set it so we could calculate the offsetLeft */
   /*background:#cccccc none repeat scroll 0 0;*/
@@ -196,7 +198,7 @@ div.sc_menu1 {
   /*340*/
 }
 
-/* line 156, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 157, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div#invite_friends {
   background: #cccccc repeat scroll;
   position: relative;
@@ -208,7 +210,7 @@ div#invite_friends {
   left: 340px;
 }
 
-/* line 166, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 167, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div#follower_friends {
   background: #cccccc repeat scroll;
   position: relative;
@@ -220,7 +222,7 @@ div#follower_friends {
   left: 340px;
 }
 
-/* line 176, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 177, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div#following_friends {
   background: #cccccc repeat scroll;
   position: relative;
@@ -232,33 +234,33 @@ div#following_friends {
   left: 340px;
 }
 
-/* line 185, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 186, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 p#fb_friends {
   margin-left: 340px;
   font-size: 18px;
   font-color: #000000;
 }
 
-/* line 190, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 191, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 p#flwr_friends {
   margin-left: 340px;
   font-size: 18px;
   font-color: #000000;
 }
 
-/* line 195, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 196, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 p#flwg_friends {
   margin-left: 340px;
   font-size: 18px;
   font-color: #000000;
 }
 
-/* line 200, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 201, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 p#fb_friends:hover {
   cursor: pointer;
 }
 
-/* line 203, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 204, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 h3#empty_check {
   /*margin-left:340px;*/
   font-size: 20px;
@@ -266,21 +268,21 @@ h3#empty_check {
   color: #ffffff;
 }
 
-/* line 209, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 210, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 h3#empty_check_flwg {
   font-size: 20px;
   font-color: #ccc;
   color: #ffffff;
 }
 
-/* line 214, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 215, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 h3#empty_check_flwr {
   font-size: 20px;
   font-color: #ccc;
   color: #ffffff;
 }
 
-/* line 219, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 220, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 ul.sc_menu1 {
   display: block;
   height: 210px;
@@ -296,20 +298,20 @@ ul.sc_menu1 {
   /*border:2px solid yellow;*/
 }
 
-/* line 231, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 232, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 div#txt1 {
   font-color: #ccc;
   color: #ffffff;
 }
 
-/* line 235, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 236, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 li.lk {
   width: 130px;
   margin: 5px;
 }
 
 /***************************** Welcome Page Facebook/Twitter ******************/
-/* line 240, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 241, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns_twitter_id {
   /*float:right;
   margin-right:-25px;
@@ -319,7 +321,7 @@ li.lk {
   height:23px;*/
 }
 
-/* line 248, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 249, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #tw {
   float: right;
   margin-right: 45px;
@@ -329,7 +331,7 @@ li.lk {
   height: 22px;
 }
 
-/* line 257, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 258, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #fb {
   float: right;
   margin-top: -3px;
@@ -338,14 +340,14 @@ li.lk {
   height: 22px;
 }
 
-/* line 264, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 265, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns-login {
   display: block;
   float: right;
   /*margin-top: -20px;*/
 }
 
-/* line 270, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 271, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #sns_facebook_id {
   /*float:right;
     margin-right:5px;
@@ -376,7 +378,7 @@ li.lk {
 */
 /************ confirmation **********/
 /* ----------- My Form ----------- */
-/* line 300, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 301, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .conf_form {
   margin: 0 auto;
   width: 400px;
@@ -384,13 +386,13 @@ li.lk {
 }
 
 /* ----------- conf ----------- */
-/* line 307, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 308, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf {
   /*border:solid 2px #b7ddf2;
   background:#ebf4fb;*/
 }
 
-/* line 311, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 312, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf h1 {
   /*
   font-size:14px;
@@ -399,7 +401,7 @@ li.lk {
   */
 }
 
-/* line 318, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 319, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf p {
   /*
   font-size:11px;
@@ -410,7 +412,7 @@ li.lk {
   */
 }
 
-/* line 327, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 328, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf label {
   display: block;
   font-family: nimbus-sans-condensed,sans-serif;
@@ -423,7 +425,7 @@ li.lk {
   float: left;
 }
 
-/* line 338, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 339, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf .small {
   color: #666666;
   display: block;
@@ -433,7 +435,7 @@ li.lk {
   width: 140px;
 }
 
-/* line 346, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 347, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf input {
   float: left;
   font-size: 12px;
@@ -443,7 +445,7 @@ li.lk {
   margin: 2px 0 20px 45px;
 }
 
-/* line 354, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 355, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf textarea {
   float: left;
   font-size: 12px;
@@ -453,7 +455,7 @@ li.lk {
   margin: 2px 0 20px 45px;
 }
 
-/* line 362, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 363, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf select {
   float: left;
   font-size: 12px;
@@ -463,7 +465,7 @@ li.lk {
   margin: 2px 0 20px 45px;
 }
 
-/* line 370, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 371, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf button {
   clear: both;
   margin-left: 150px;
