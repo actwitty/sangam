@@ -246,6 +246,10 @@ $(document).ready(function(){
       $("#aw_home_header_signin_box").slideToggle();
     }); 
 
+    if ($.browser.msie && $.browser.version.substr(0,1)<9){
+      alert("oops!! You seems to be using older version of browser, ActWitty is not supported yet on your browser version. We suggest you to upgrade to higher version.");
+    }
+
 });
 
 
