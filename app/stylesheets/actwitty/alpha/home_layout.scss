@@ -201,7 +201,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 #home_page_nav
 {
-    width:120px;
+    width:140px;
     float:right;
     border:0px solid red;
     position:relative;
@@ -231,7 +231,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
    margin: 0 0 0 6px;
    position: relative;
    top: 0px;;
-   width: 100px;
+   width: 140px;
    border:0px solid red;
 }
 
@@ -246,18 +246,21 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 }
 #settings_icon
 {
-  width:20px;
-  height:20px;
-  float:right;
+  width:25px;
+  height:25px;
+  /*float:right;*/
+  float:left;
   border:0px solid blue;
-  margin-top:11px;
-  margin-right:4px;
+  margin-top:14px;
+  margin-left:15px;
+  margin-right:15px;
 }
 #top_bar_user_image
 {
   height:50px;
   width:50px;
-  float:right;
+  /*float:right;*/
+  float:left;
   padding:0px;
   overflow:hidden;
   background:none;
