@@ -1,11 +1,13 @@
 #aw_home_intro_register_inputs
   = simple_form_for(:user,@user, :url => user_registration_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
-    %span Email
+    #reg_email_label
+      %span Email
     = f.input :email ,
               :placeholder => "Email",
               :label => false,
               :input_html => { :id=>'aw_register_email'}
-    %span Password
+    #reg_password_label
+      %span Password
     = f.input :password , 
               :placeholder => "Password", 
               :label => false,
