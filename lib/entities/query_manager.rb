@@ -33,7 +33,13 @@ require 'freebase_wrapper'
 				end
 =end
  			end
-		end
+    end
+    #ALOK ADDING IT FOR IMAGE
+    unless entity["guid"].blank?
+      #entity["image"]=Freebase.get_thumb_image_url("/guid/" + entity["guid"][1..-1])
+      #lets truncate the url we will add it will send over network
+      entity["image"]=entity["guid"][1..-1]
+    end
 		return entity
 	end
 
@@ -50,12 +56,28 @@ require 'freebase_wrapper'
 				type="imdb"
 		end
 		link=item["target"].select {|l| l["type"]==type}
+
+
 		unless link.empty?
 			result=freebase_search(link[0]["title"])
-		end
+    end
+
     filter_count+=1
    end
+
 		result["name"]=item["anchor"]
+   #ALOK COMMENTING & ADDING IT FOR IMAGE
+#    unless result["/common/topic/image"].empty?
+#       result["/common/topic/image"]=result["/common/topic/image"].take(1)
+#       result["/common/topic/image"][0]["id"]=Freebase.get_thumb_image_url(result["/common/topic/image"][0]["id"])
+#       result["/common/topic/image"][0]["id"]=Freebase.get_thumb_image_url("/guid/" + result["guid"][1..-1])
+#    end
+
+    unless result["guid"].blank?
+      #result["image"]=Freebase.get_thumb_image_url("/guid/" + result["guid"][1..-1])
+      #lets truncate the url we will add it will send over network
+      result["image"]=result["guid"][1..-1]
+    end
 		return result
 	end
 
@@ -88,7 +110,7 @@ require 'freebase_wrapper'
 		end
 
 		data["keywords"].each do |item|
-			if query=~/#{item["name"]}/i
+			if query=~/\b#{item["name"]}\b/i
         alt=markupName.select {|l| item["name"].casecmp(l)==0}
 				if alt.empty?
 					result=freebase_search item["name"]
@@ -138,7 +160,8 @@ def entity_sanity_check(query,entities)
     markupName=[]
     entities=[]
 
-    formatted_query=titlecase(query)+"\n"+query
+    #formatted_query=titlecase(query)+'. '+query
+    formatted_query=query
     zemanta_get_markup_entity(formatted_query,entities,markupName)
     zemanta_get_suggestion_entity(formatted_query,entities,markupName)
     entity_sanity_check(query,entities)

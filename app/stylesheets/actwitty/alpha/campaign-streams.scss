@@ -1,0 +1,79 @@
+/* ################################### CSS for Comment Streams ################################*/
+
+
+
+.p-awp-view-campaign
+{
+  height:17px;
+  width:100%;
+  display:none;
+}
+
+
+.p-awp-view-campaign_all
+{
+  width:100%;
+  float:right;
+}
+.p-awp-view-campaign_all span
+{
+  float:right;
+  font-size:13px;
+  color:#353535;
+  text-decoration:underline;
+}
+
+.p-awp-view-campaign span:hover
+{
+  cursor:pointer;
+}
+.p-awp-view-campaign_all a img
+{
+  float:right;
+  height:25px;
+  width:50px;
+}
+
+
+.p-awp-campaigns-section
+{
+  width:100%;
+  height:auto;
+  float:right;
+  border:0px solid red;
+  display:none;
+}
+
+.p-awp-campaign
+{
+  height:auto;
+  border:0px solid green;
+  margin-top:20px;
+  margin-bottom:5px;
+}
+
+/*
+.author
+{
+  border:0px solid green;
+  width:100%;
+  height:auto;
+}
+*/
+.p-st-campaign-actor-image
+{
+  width:30px;
+  height:30px;
+  float:left;
+  margin:2px 5px 2px 5px;
+}
+
+.p-st-campaign-actor-desc
+{
+  width:500px;
+  height:35px;
+  border:0px solid red;
+  float:left;
+  display:block;
+}
+

@@ -7,7 +7,7 @@
 }
 
 .simple_form div.input {
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .simple_form div.boolean, .simple_form input[type='submit'] {
@@ -62,4 +62,8 @@
   color: black;
   display: block;
   font-style: italic;
+}
+
+.input-hidden{
+  display:none;
 }

@@ -4,13 +4,15 @@ class FacebookController < ApplicationController
     provider="facebook"
     facebook_auth=Authentication.find_by_user_id_and_provider(current_user.id, provider)
     if facebook_auth.nil?
+      puts "------------------------------facebook_auth nil----------------------------"
       session[:return_to] ||= request.referer
       if request.xhr?
+         puts "------------------------------if----------------------------"
          resp = {:location => '/users/auth/facebook',
                   :message => 'Log in to facebook'}
          render :json => resp
        else
-
+         puts "------------------------------else----------------------------"
          redirect_to "users/auth/facebook"
        end
     else
@@ -54,7 +56,8 @@ class FacebookController < ApplicationController
 
 
       if request.xhr?
-            render :json=> display_hash.values, :status => 200
+        expires_in 5.minutes
+        render :json=> display_hash.values, :status => 200
       end
       rescue Koala::Facebook::APIError
 

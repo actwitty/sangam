@@ -1,21 +1,8 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: entities
-#
-#  id           :integer         not null, primary key
-#  entity_name  :string(255)     not null
-#  entity_guid  :string(255)     not null
-#  entity_image :string(255)     not null
-#  entity_doc   :text            not null
-#  created_at   :datetime
-#  updated_at   :datetime
-#
-
 ################# CAUTION!!  Should Not call delete of entity as we are going to hold them fore ever as of now :) #################
 class Entity < ActiveRecord::Base
 
   serialize :entity_doc, Hash
+  serialize       :social_counters_array, Array
 
   # this nullify is in case some body deletes an entity for a reason . this SHOULD NOT happen though
   has_many      :hubs, :dependent => :nullify
@@ -31,14 +18,14 @@ class Entity < ActiveRecord::Base
 
   has_many       :campaigns, :dependent => :destroy
 
-  validates_presence_of   :entity_name, :entity_guid, :entity_doc, :entity_image
+  validates_presence_of   :entity_name, :entity_guid
   validates_uniqueness_of :entity_guid, :unique => true
 
   validates_length_of     :entity_name, :in => 1..255
   validates_length_of     :entity_guid, :in => 1..255
-  validates_length_of     :entity_image, :in => 1..255
+  validates_length_of     :entity_image, :maximum => AppConstants.url_length
 
- # validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
+  #validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
 
   class << self
 
@@ -48,18 +35,30 @@ class Entity < ActiveRecord::Base
   #  '/common/topic/alias'=>[],      //alias name  optional array form
   #  '/common/topic/image'=>[{'id'=>nil}],  //image optional array of hashes. hash con
   #  'key'=>{'namespace'=>'/wikipedia/en_id','value'=>nil}   // wikipedia link in hash form value will contain wikipedia content id  optional
-  #   'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
+  #  'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
   #
     def create_entities(owner_id = nil, entity_hash ={})
 
+      entity_type = nil
       if !entity_hash.has_key?('mid') or entity_hash['mid'].nil?
         return nil
       end
 
       begin
 
-      entity_hash['/common/topic/image'].blank? ? entity_image = AppConstants.entitiy_no_image :
-                                                  entity_image = entity_hash['/common/topic/image'][0]['id']
+      entity_hash['image'].blank? ? entity_image = AppConstants.entitiy_no_image : entity_image = entity_hash['image']
+
+      #delete unnecessary information
+      entity_hash.delete('image') if !entity_hash['image'].nil?
+      entity_hash.delete('relevance:score') if !entity_hash['relevance:score'].nil?
+      entity_hash.delete('/common/topic/image') if !entity_hash['/common/topic/image'].nil?
+      entity_hash.delete('guid') if !entity_hash['guid'].nil?
+
+
+      if !entity_hash['type'].blank?
+        entity_type =  entity_hash['type']
+        entity_hash.delete('type')
+      end
 
       entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
                               :entity_doc => entity_hash, :entity_image => entity_image)
@@ -74,14 +73,18 @@ class Entity < ActiveRecord::Base
           return entity
         end
       end
-
+      entity_hash.delete('mid') if !entity_hash['mid'].blank?
+      entity_hash.delete('name') if !entity_hash['name'].blank?
       begin
 
-         entity_hash['type'].each do |entry|
+         entity_type.each do |entry|
          id = EntityType.create!(:entity_id => entity.id , :entity_type_uri => entry['id'],
                              :entity_type_name => entry['name'].downcase)
          end
-         puts "==== #{entity}"
+
+         entity_hash.delete('type') if !entity_hash['type'].blank?
+
+         puts "==== #{entity.inspect}"
          EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
 
       rescue => e
@@ -113,3 +116,17 @@ class Entity < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: entities
+#
+#  id           :integer         not null, primary key
+#  entity_name  :string(255)     not null
+#  entity_guid  :string(255)     not null
+#  entity_image :text            not null
+#  entity_doc   :text            not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

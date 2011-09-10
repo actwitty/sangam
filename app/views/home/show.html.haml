@@ -1,179 +1,84 @@
-/ Java scripts includes
-= javascript_include_tag 'redmond/js/jquery-ui-1.8.13.custom.min.js'
-= javascript_include_tag 'actwitty/aw_slider.js'
-= javascript_include_tag 'plugins/jquery-list-splitter/jquery.easyListSplitter.js'
-= javascript_include_tag 'actwitty/profile_filter.js'
-= javascript_include_tag 'actwitty/profile_channels.js'
-= javascript_include_tag 'actwitty/profile_locations.js'
-= javascript_include_tag 'actwitty/profile_things.js'
-= javascript_include_tag 'actwitty/profile_followers.js'
-= javascript_include_tag 'actwitty/profile_facebook.js'
-= javascript_include_tag 'actwitty/profile_followings.js'
-= javascript_include_tag 'actwitty/profile_follow.js'
-= javascript_include_tag 'actwitty/profile_summary.js'
-= javascript_include_tag 'actwitty/profile_stream.js'
-= javascript_include_tag 'actwitty/profile.js'
-= javascript_include_tag 'actwitty/profile_modals.js'
-= javascript_include_tag 'actwitty/profile_people.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/lib/thickbox-compressed.js'
-= javascript_include_tag 'plugins/jquery-autocomplete/jquery.autocomplete.js'
-= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
+=render :partial => "home/top_bar"
+-if user_signed_in?
+  -if current_user.id == @user.id
+    #js_input_box
+      =render :partial => "home/input_box" 
 
 
-%script{:src => "http://maps.google.com/maps/api/js?sensor=true&libraries=places", :type => "text/javascript"}
-= javascript_include_tag 'actwitty/home_page_inputs'
-    
-/ *******************************************************
-/  	$( "#sub_filter_tabs" ).tabs({ collapsible: true, cache: true });
 
-/ Here we go with main page
 
-#home_page_wrapper
-  .home_page_header
-    %img.aw_header_logo{:src => "/images/rails.png"}/
-    /%textarea#searchall.home_page_people_search{:placeholder => "Search People"}
-    %input#searchall.home_page_people_search{:type => "text",:placeholder => "Search"}/
-    %ul.aw_header_nav
+.wrapper.col3
+  #p-ch-st-tab-sect
+    #p-ch-st-tab
+      #p-ch-st-tab-proxy
+        %ul.p-cstab
+          %li#channels_tab_head.p-ch-tab
+            %a{:href => "#timeline-streams"} CHANNELS
+          %li#streams_tab_head.p-st-tab
+            %a{:href => "#timeline-streams"} STREAMS
+/
+  .wrapper.col3
+    #p-ch-st-tab-sect
+      #p-ch-st-tab
+        %ul.p-cstab
+          %li#channels_tab_head.p-ch-tab
+            %a.actwitty-fontify{:href => "#channels_tab"} CHANNELS
+          %li#streams_tab_head.p-st-tab
+            %a{:href => "#streams_tab"} STREAMS
+          
+          
+
+.wrapper.col4
+  #p-content-sect
+    %ul
+      / #### Start of Left Side Filters ####
+      %li.p-con-l-fltr
+        #streams_left_side_bar
+          =render :partial => "home/stream_left_side"
+      / #### Start of Main Content Bar  ####
+      %li.p-content
+        /#channels_main_bar
+        /  =render :partial => "home/channel_main_content"
+        #streams_main_bar
+          =render :partial => "home/stream_main_content"
+      / #### Start of Right filter Bar  ####
+      %li.p-con-r-fltr.right-filters
+        #streams_right_side_bar
+          =render :partial => "home/stream_right_side"
+  #p-channelp-sect
+    #p-content-sect
+      / #### channel page tabs section ####
       -if user_signed_in?
-        -if current_user.id != @user.id
-          %li.aw_header_navl 
-            -if !@follow
-              %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}  
-            -else
-              %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
-            %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}/
-        %li.aw_header_navl
-          %a{:href => "#"} Home
-        %li.aw_header_navl
-          %a{:href => "#"} Settings
-        %li.aw_header_navl
-          %a{:href => "/users/sign_out"} Logout
-      -else
-        %li.aw_header_navl
-          %a{:href => "/"} SignIn
+        -if current_user.id == @user.id
+          #p-channelp-tabs-section
+            #p-channelp-tab-all.p-channelp-tab.p-channelp-unselected.js_channel_scope
+              %center
+                %span All Channels
+            #p-channelp-tab-subscribed.p-channelp-tab.p-channelp-unselected.js_channel_scope
+              %center
+                %span Subscribed Channels
+            #p-channelp-tab-mine.p-channelp-tab.p-channelp-unselected.js_channel_scope
+              %center
+                %span My Channels
+      / #### channel page content section ####
+      #p-channelp-content
+        =render :partial => "home/channelp_posts"
+        =render :partial => "home/channelp_author_section"
+         
 
-  %hr
-  / Everything coming on the top bar, this is a TODO
-  /
-    .home_page_signout
-    %a.auth_provider{:href => "/users/auth/twitter"}
-      %img.img_provider{ :src=>"/images/authentications/twitter_64.png", :alt => "Twitter"}
-    %a.auth_provider{:href => "/users/auth/facebook"}
-      %img.img_provider{ :src=>"/images/authentications/facebook_64.png", :alt => "Twitter"}
-    
-  / *********************************************************
-
-  / Top side info for snap and name under it
-
-  .home_page_row2
-    .home_page_photo
-      %p
-        %img{:alt => "", :src=>"#{@user.photo_small_url}"}
-      %p
-        %label.main_title #{@user.full_name}
-    / Home page main activity generator input boxes
-    #home_page_input.input_box
-      %label #
-      %input.channel_input_box{:name => "home_page_activity", 
-                               :type => "text",
-                               :placeholder => "Channel", 
-                               :size=>"40"}
-      %label @
-      %input#searchTextField.place_input_box{:name => "home_page_location", 
-                                             :type => "text",
-                                             :placeholder => "Place",
-                                             :size=>"40"}
-      %textarea{:name => "home_page_entity", 
-                :type => "text",
-                :placeholder => "Whats the story?", 
-                :style=>"resize: none;", 
-                :cols=>"80", 
-                :rows=>"5",
-                :maxlength=>"500"}
-      %input#searchTextField1{:size => "50", :type => "hidden"}
-      %input#actwitty_generator{:type => "button", :value => "Go!"}
-      %input#user_latlng{:name => "latlang", :type => "hidden"}
-      #map
-  / *************************************************
-  %hr
-  
-  .home_page_filter_row
-    %ul.aw_sub_header_nav
-      -if user_signed_in?  && current_user.id == @user.id
-        %li.aw_sub_header_nav_l
-          %a#all_followers{:href => "#"} Followers #{current_user.followers_count()}
-        %li.aw_sub_header_nav_l
-          %a#all_followings{:href => "#"} Followings #{current_user.followings_count()}
-        %li.aw_sub_header_nav_l
-          %a#all_facebookers{:href => "#"} Facebook People
-      %li.aw_sub_header_nav_r
-        %a#all_channels{:href => "#"} Channels
-      %li.aw_sub_header_nav_r
-        %a#all_things{:href => "#"} Things
-      %li.aw_sub_header_nav_r
-        %a#all_locations{:href => "#"} Locations
-
-
-  #sub_filter_tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
-    %ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-corner-all
-      %li#personal_tab_head.ui-state-default.ui-corner-top.ui-tabs-selected.ui-state-active
-        %a{:href => "#Personal"} Personal
-      -if user_signed_in?  && current_user.id == @user.id
-        %li#friend_tab_head.ui-state-default.ui-corner-top
-          %a{:href => "#Friends"} Followings
-      %li#recent_tab_head.ui-state-default.ui-corner-top
-        %a{:href => "#Stream"} Stream
-    #Personal.ui-tabs-panel.ui-widget-content.ui-corner-bottom
-      %ul#personal_summary.summary_list
-      %a#more_personal.more_personal{:href => "#"} More
-      %input{:type => "hidden", :id => "personal_count", :value => "0"}/
-    -if user_signed_in?  && current_user.id == @user.id
-      #Friends.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
-        %ul#friends_summary.summary_list
-        %a#more_friends.more_friends{:href => "#"} More
-        %input{:type => "hidden", :id => "friend_count", :value => "0"}/
-    #Stream.ui-tabs-panel.ui-widget-content.ui-corner-bottom.ui-tabs-hide
-      #stream_filters
-      #stream_related_entities
-      #stream_related_activities
-      #stream_related_friends
-      #stream_list_div 
-        %ul#streams.stream_list
-        %a#more_stream.more_streams{:href => "#"} More
-        %input{:type => "hidden", :id => "stream_count", :value => "0"}/
-
-  #channel-dialog-modal
-  #location-dialog-modal
-  #thing-dialog-modal
-  #follower-dialog-modal
-  #following-dialog-modal
-  #facebook-dialog-modal
-  
-  /Secret cookies
-  %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
-  -if user_signed_in?
-    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
-  - else
-    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
-  %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@defaul_page_mode}" }
-
-  /Filter
-  %input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }
-  %input#filter_location_name{:name => "filter_location_name", :type => "hidden", :value => "#{@filter_location_name}" }
-  %input#filter_thing_id{:name => "filter_thing_id", :type => "hidden", :value => "#{@filter_thing_id}" }
-  %input#filter_thing_name{:name => "filter_thing_name", :type => "hidden", :value => "#{@filter_thing_name}" }
-  %input#filter_channel_id{:name => "filter_channel_id", :type => "hidden", :value => "#{@filter_channel_id}" }
-  %input#filter_channel_name{:name => "filter_channel_name", :type => "hidden", :value => "#{@filter_channel_name}" }
-
-
-
-
-
-
-
-   
+/Secret cookies
+%input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
+%input#stream_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@stream_mode}" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
+%input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+%input#hidden_draft_post_id{:type=>"hidden"}
+- if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
 
 
 

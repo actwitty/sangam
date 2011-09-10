@@ -1,7 +1,7 @@
 = form_for @document, :html => {:multipart => true}, :file_field => {:multiple => true} do |f|
   = f.hidden_field :activity_id
   = f.hidden_field :owner_id
-  = f.hidden_field :document_type
+  = f.hidden_field :mime
   %p
     = f.file_field :document_data
   %p= f.submit

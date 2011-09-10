@@ -1,90 +1,110 @@
 /*
- * Home page activities related jqueries
+ * home/show or profile page activities related jqueries
  *
  */
 
 
+/*
+ * Globals
+ *
+ */
 
 
-
-
-$(document).ready(function(){
-    var page_owner_id=$('#page_owner_id').attr("value");
-    var session_owner_id=$('#session_owner_id').attr("value");
+function main_profile_initializer(){
+    var page_owner_id=aw_lib_get_page_owner_id();
+    var session_owner_id=aw_lib_get_session_owner_id();
+    
     var default_tab = $('#default_page_mode').attr("value");
-    var populated_personal=false;
-    var populated_friends=false;
-    var populated_stream=false;
+    /* initialize filters for carry forward to another page*/
+    profile_filter_init();
 
-    
-    
-    $("#sub_filter_tabs").tabs({cache: true,
-        select: function(event, ui) {
-          if(ui.panel.id == "Personal"){
-              if(populated_personal == false){
-                var personal_summaries_count =  parseInt($('#personal_count').val());
-                append_personal_summary(page_owner_id, personal_summaries_count);
-                populated_personal=true;
-              }
-          }else{
-            
-            if(ui.panel.id == "Friends"){
-              if(populated_friends == false){
-                var friend_summaries_count = parseInt($('#friend_count').val());
-                append_friends_summary(page_owner_id, friend_summaries_count);
-                populated_friends=true;
-              }
-            }else if(ui.panel.id == "Stream"){
-              if(populated_stream == false){
-                append_stream(page_owner_id);
-                populated_stream=true;
-              }
-            }
-            
-          }
-        }
-    });   
+    /* initialize stream page mode for carry forward to another page*/
+    aw_stream_select_mode_on_load();
+    aw_toggle_scope_on_stream_page(aw_get_current_stream_mode());
 
-
-    if(default_tab && default_tab =='filtered'){
-      var last_tab =  $('#sub_filter_tabs ul').tabs().size();
-      $('#sub_filter_tabs').tabs('select', (last_tab - 1));
-      if(populated_stream == false){
-        var streams_count = parseInt($('#stream_count').val());
-        append_friends_summary(owner_id, streams_count);
-        populated_stream=true;
-      }
+    /* At very start Hide all contents on page load */
+    //Decide to bring one tab on focus
+    if(default_tab =='filtered'){
+  	  $("ul.p-cstab li:last").addClass("active").show();
+      $("#streams_left_side_bar").show();
+      $("#streams_main_bar").show();
+      $("#streams_right_side_bar").show();
+      /* Bring in stream filtered view on focus*/
+      aw_reload_streams_on_viewed_user();
     }else{
-      $('#sub_filter_tabs').tabs('select', 0);
-        var personal_summaries_count = parseInt($('#personal_count').val());
-        append_personal_summary(page_owner_id, personal_summaries_count);
-        populated_personal=true;
+      /* Bring in personal summary on focus*/
+      //$("#channels_main_bar").show();
+      $("#p-channelp-sect").show();
+  	  $("ul.p-cstab li:first").addClass("active").show(); 
+      //$('#channels_display_list').html("");
+      $('#p-channelp-posts').html("");
+      $("#more_channels_cookie").val("");
+      append_personal_summary(page_owner_id);
+      attach_channel_author_section(page_owner_id);
     }
+}
+
+/*
+ * Execute on load
+ */
+$(document).ready(function(){
+
+     aw_lib_console_log("debug", "profile.js:ready called"); 
+     var page_owner_id=aw_lib_get_page_owner_id();
+     var session_owner_id=aw_lib_get_session_owner_id();  
+	 
+    
+    /*
+     * Bind Click on the tab
+     */
+	  $("ul.p-cstab li").click(function() {
+     
+      aw_lib_console_log("debug", "profile.js: tab clicked"); 
+      /* Remove active from all tabs */
+		  $("ul.p-cstab li").removeClass("active");
 
 
-    $('#more_personal').click(function() {
-      if(populated_personal == true){
-        var personal_summaries_count =  parseInt($('#personal_count').val());
-        append_personal_summary(owner_id, personal_summaries_count);
+		  $(this).addClass("active"); //Add "active" class to selected tab
+      
+      var tab_id = $(this).attr("id");
+      
+      if(tab_id == "channels_tab_head"){
+        aw_lib_console_log("debug", "profile.js: channels tab selected"); 
+        $("#streams_left_side_bar").hide();
+        $("#streams_main_bar").hide();
+        $("#streams_right_side_bar").hide();
+        //$("#channels_main_bar").fadeIn();
+        //$('#channels_display_list').html("");
+        $("#p-channelp-sect").fadeIn();
+        $('#p-channelp-posts').html("");
+        $("#more_channels_cookie").val("");
+        append_personal_summary(page_owner_id);
+        attach_channel_author_section(page_owner_id);
+
+      }else if(tab_id == "streams_tab_head"){
+        aw_lib_console_log("debug", "profile.js: streams tab selected"); 
+        /*$("#channels_main_bar").hide();*/
+        $("#p-channelp-sect").hide(); 
+        $("#streams_left_side_bar").fadeIn();
+        $("#streams_main_bar").fadeIn();
+        $("#streams_right_side_bar").fadeIn();
+        aw_lib_console_log("debug", "profile.js: reload streams"); 
+        aw_reload_streams_on_viewed_user();
+          
       }
-    });
-
-    $('#more_friends').click(function() {
-      if(populated_friends == true){
-        var friends_summaries_count = parseInt($('#friend_count').val());
-        append_friends_summary(owner_id, friends_summaries_count);
-      }
-    });
-
-     $('#more_streams').click(function() {
-      if(populated_stream == true){
-        var streams_count = parseInt($('#stream_count').val());
-        append_friends_summary(owner_id, streams_count);
-      }
-    });
 
 
-  
+		  var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		  $(activeTab).fadeIn(); //Fade in the active ID content
+		  return false;
+	  });
+    /********************** click on tab ends here ****************************/
+   
+   
+
+
+    
+    
 
   }); /* ready ends here */
 

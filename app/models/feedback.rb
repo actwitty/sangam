@@ -34,3 +34,15 @@ class Feedback < ActiveRecord::Base
 
 
 end
+# == Schema Information
+#
+# Table name: feedbacks
+#
+#  id            :integer         not null, primary key
+#  name          :string(255)
+#  email         :string(255)
+#  feedback_text :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

@@ -1,0 +1,41 @@
+/* line 1, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+.p-st-docs-per-activity {
+  /*
+  width:90%;
+  display:block;
+  padding:5px;
+  margin:20px;
+  height:auto;
+  */
+  height: auto;
+  width: 590px;
+  border: 0px solid blue;
+  margin-top: 8px;
+  margin-left: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* line 21, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+.p-st-docs-user {
+  width: 80px;
+  float: left;
+  display: inline;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* line 29, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+.p-st-user-pic {
+  width: 50px;
+  float: left;
+}
+
+/* line 34, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+.p-st-user-name {
+  padding: 2px;
+}
+
+/* line 41, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+.p-st-docs-image {
+  margin: 2px;
+}

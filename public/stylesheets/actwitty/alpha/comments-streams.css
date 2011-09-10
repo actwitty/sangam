@@ -1,0 +1,368 @@
+/* ################################### CSS for Comment Streams ################################*/
+/* line 4, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.tl-post-comments {
+  display: block;
+  width: 480px;
+  /*max-height:180px;*/
+  height: auto;
+  /*overflow-y:scroll;*/
+  overflow-x: hidden;
+  /*border:1px solid green;*/
+}
+
+/*
+.comments-label
+{
+  width:87%;
+  height:30px;
+  border:1px solid #ddd;
+  background-color:#F2F2F2;
+  margin-left:50px;
+  display:none;
+}
+.comments-label span
+{
+  margin-top:15px;
+  font-size:16px;
+  color:#00BFFF;
+  text-align:center;
+}
+
+.comments
+{
+  margin-bottom:40px;
+  margin-left:50px;
+  margin-top:0px;
+  margin-right:30px;
+  border:0px solid red;
+}
+
+.comments .commentlist 
+{ 
+  margin:0; 
+  padding:0;
+}
+
+.comments .commentlist ul
+{ 
+  margin:0; 
+  padding:0; 
+  list-style:none;
+}
+
+
+.comments .commentlist li.comment_odd, #comments .commentlist li.comment_even
+{ 
+  margin:0 0 2px 0;
+  padding:2px;
+  list-style:none;
+  border:1px solid #ddd;
+}
+.comments .commentlist li.comment_odd:hover, #comments .commentlist li.comment_even:hover
+{
+  background-color:#cfecec;
+}
+
+
+li.comment_last 
+{
+  border-bottom:0;
+}
+
+
+.comments .commentlist li.comment_odd
+{
+  color:#87CEEB; 
+  background-color:#fff7;
+}
+
+.comments .commentlist li.comment_odd a
+{
+  color:#1874CD; 
+  background-color:#fff;
+}
+
+.comments .commentlist li.comment_even
+{
+  color:#87CEEB; 
+  background-color:#fff;
+}
+
+.comments .commentlist li.comment_even a
+{
+  color:#1874CD; 
+  background-color:#fff;
+}
+
+.comments .commentlist .author .name
+{ 
+  font-weight:normal;
+  color:#1874CD;
+}
+.comments .commentlist .submitdate
+{
+  font-size:10px;
+  color:#a6a6a6;
+}
+
+.comments .commentlist p 
+{ 
+  margin:5px 5px 5px 50px;
+  padding:0; 
+  font-weight: normal;
+  text-transform: none;
+  color:#000;
+  font-size:13px;
+}
+
+.comments .commentlist li .avatar
+{
+  float:left;
+  border:1px solid #EEEEEE;
+  margin:0 0 0 10px;
+}
+.wrote
+{
+  font-size:10px;
+
+  color:#ddd;
+}
+
+span.name a
+{
+  text-decoration:none;
+  color:#1874CD;
+}
+
+
+
+*/
+/* ################################ To submit comments ############################*/
+/* line 145, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.post-comment {
+  height: auto;
+  width: 430px;
+  /*margin-left:110px;*/
+  display: block;
+  margin: 0px auto;
+  padding-bottom: 15px;
+}
+
+/* line 156, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.add-comment {
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 100%;
+  margin: 0;
+}
+
+/* line 165, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.add-comment-text {
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 100%;
+  margin: 0;
+}
+
+/* line 173, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.submit-comment {
+  height: 60px;
+  width: 100%;
+  margin-bottom: 10px;
+  display: none;
+}
+
+/* line 183, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.btn-comments {
+  background-color: #eaa540;
+  border: none;
+  height: 18px;
+  font-size: 12px;
+  margin-top: 10px;
+  color: #fff;
+  margin-left: 10px;
+  padding: 1px;
+}
+
+/* line 196, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.btn-comments:hover {
+  cursor: pointer;
+}
+
+/* line 203, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-view-comment {
+  height: 17px;
+  width: 100%;
+}
+
+/* line 209, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-view-comment span {
+  float: right;
+  font-size: 13px;
+  color: #353535;
+  text-decoration: underline;
+}
+
+/* line 216, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-view-comment span:hover {
+  cursor: pointer;
+}
+
+/* line 221, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-comments-section {
+  width: 550px;
+  height: auto;
+  margin-right: 30px;
+  border: 0px solid red;
+  display: none;
+}
+
+/* line 230, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-view-campaign-comments {
+  display: none;
+}
+
+/*## Actual comment list ##*/
+/* line 239, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-comment-list {
+  width: 100%;
+  height: auto;
+  border: 0px solid red;
+  display: inline-block;
+}
+
+/* line 247, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-awp-comment {
+  height: auto;
+  border: 0px solid green;
+  width: 100%;
+  display: inline-block;
+}
+
+/* line 255, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.clearing {
+  clear: both;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* line 264, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-close {
+  float: right;
+  width: 100%;
+  height: 12px;
+}
+
+/* line 271, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-close-btn {
+  float: right;
+  font-size: 8px;
+}
+
+/* line 279, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-close-section {
+  width: 580px;
+  height: 12px;
+  border: 0px solid red;
+  margin-bottom: -5px;
+}
+
+/* line 287, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-close-section div.p-st-comment-close:hover {
+  cursor: pointer;
+}
+
+/* line 293, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-close {
+  float: right;
+  margin-right: 80px;
+  width: 16px;
+  height: 12px;
+  border: 0px solid blue;
+  background: url(/images/alpha/aw_close.png) no-repeat;
+}
+
+/* line 305, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.author {
+  border: 0px solid green;
+  margin-top: 5px;
+  float: left;
+}
+
+/* line 311, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-actor {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* line 319, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+div.p-st-comment-actor center a {
+  color: #6abdc4;
+}
+
+/* line 323, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-actor-image {
+  border: 0px solid red;
+  color: #c19135;
+  width: 50px;
+  height: 50px;
+  float: right;
+  overflow: hidden;
+}
+
+/* line 336, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-actor-desc {
+  width: 90px;
+  height: 40px;
+  border: 0px solid red;
+  float: left;
+}
+
+/* line 345, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-submitdate {
+  font-size: 9px;
+  color: #454545;
+  width: 100%;
+  height: 15px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+/* line 357, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-content {
+  width: 350px;
+  height: auto;
+  color: #6e6e6e;
+  margin-top: 5px;
+  margin-left: 4px;
+  display: inline-block;
+  background: #eeeeee;
+  font-family: "Georgia";
+  font-size: 16px;
+  min-height: 50px;
+}
+
+/* line 370, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+div.p-st-comment-content p {
+  font-size: 16px;
+}
+
+/* line 380, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-new {
+  width: 100%;
+  display: block;
+}
+
+/* line 386, ../../../../app/stylesheets/actwitty/alpha/comments-streams.scss */
+.p-st-comment-text-box {
+  width: 100%;
+  padding: 1px;
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 30px;
+  border: 1px solid #000;
+}

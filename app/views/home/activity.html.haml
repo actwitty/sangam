@@ -1,0 +1,29 @@
+=render :partial => "home/top_bar" 
+
+.wrapper.col3
+  #p-ch-st-tab-sect
+    #p-ch-st-tab
+      .p-cstab
+        #streams_list.p-awp-post-stream
+          
+          
+
+.wrapper.col4
+  #p-content-sect
+    %ul
+      %li.p-con-l-fltr
+        #channels_left_side_bar
+          =render :partial => "home/channel_left_side"
+      
+
+/Secret cookies
+%input#page_owner_id{:type => "hidden", :value => "" }
+%input#page_mode{ :type => "hidden", :value => "#{@page_mode}" }
+%input#post_id{ :type => "hidden", :value => "#{@post_id}" }
+-if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+
+
+

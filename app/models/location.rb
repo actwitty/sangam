@@ -1,19 +1,8 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: locations
-#
-#  id            :integer         not null, primary key
-#  location_type :integer         not null
-#  location_name :text            not null
-#  location_url  :string(255)
-#  location_lat  :decimal(10, 7)
-#  location_long :decimal(10, 7)
-#  created_at    :datetime
-#  updated_at    :datetime
-#
-
 class Location < ActiveRecord::Base
+
+  include  ActionView::Helpers
+  serialize       :social_counters_array, Array
+
   geocoded_by :address, :latitude  => :location_lat, :longitude => :location_long # ActiveRecord
 
   has_many :hubs, :dependent => :nullify
@@ -34,21 +23,28 @@ class Location < ActiveRecord::Base
   has_many :base_activities, :foreign_key => :base_location_id, :class_name => "Activity", :dependent => :nullify
 
   validates_presence_of :location_type, :location_name
-  validates_numericality_of :location_type, :greater_than_or_equal_to => 1 , :less_than_or_equal_to => 3
+  validates_numericality_of :location_type, :greater_than_or_equal_to => AppConstants.location_type_web,
+                            :less_than_or_equal_to => AppConstants.location_type_unresolved
 
-  validates_length_of :location_name , :in => 1..1024
+  validates_length_of       :location_name , :in => 1..AppConstants.location_name_length
 
-  validates_uniqueness_of :location_url, :unless => Proc.new{|a|a.location_url.nil?}
-  validates_length_of     :location_url, :in => 1..255 , :unless => Proc.new{|a|a.location_url.nil?}
-  validates_format_of     :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
+  validates_uniqueness_of   :location_url, :unless => Proc.new{|a|a.location_url.nil?}
+  validates_length_of       :location_url, :in => 1..AppConstants.url_length , :unless => Proc.new{|a|a.location_url.nil?}
+  validates_format_of       :location_url, :with =>  eval(AppConstants.url_validator),:unless => Proc.new{|a|a.location_url.nil?}
 
   validates_numericality_of :location_lat,
                             :greater_than_or_equal_to => -90 ,:less_than_or_equal_to => 90, :unless => Proc.new{|a|a.location_lat.nil?}
   validates_numericality_of :location_long,
                             :greater_than_or_equal_to => -180 ,:less_than_or_equal_to => 180, :unless => Proc.new{|a|a.location_long.nil?}
 
-  validates_uniqueness_of  :location_lat, :scope => :location_long, :unless => Proc.new{|a|a.location_lat.nil?}
+  validates_uniqueness_of   :location_lat, :scope => :location_long, :unless => Proc.new{|a|a.location_lat.nil?}
 
+  before_save               :sanitize_data
+
+  def sanitize_data
+    self.location_name = sanitize(self.location_name) if !self.location_name.blank?
+    Rails.logger.debug("[MODEL] [LOCATION] [sanitize_data] ")
+  end
 
   def self.create_location(location_hash ={})
 
@@ -58,17 +54,18 @@ class Location < ActiveRecord::Base
       if ! (/^(http|https):\/\// =~ new_hash[:web_location_url])
          new_hash[:web_location_url] = "http://"  + new_hash[:web_location_url]
       end
-      h = {:location_type => 1, :location_url => new_hash[:web_location_url], :location_name => new_hash[:web_location_title]}
+      h = {:location_type => AppConstants.location_type_web, :location_url => new_hash[:web_location_url],
+           :location_name => new_hash[:web_location_title]}
 
     elsif !location_hash[:geo_location].nil?
 
       new_hash = location_hash[:geo_location]
-      h = {:location_type => 2, :location_lat => new_hash[:geo_latitude],:location_long => new_hash[:geo_longitude],
-          :location_name => new_hash[:geo_name]}
+      h = {:location_type => AppConstants.location_type_geo, :location_lat => new_hash[:geo_latitude],
+           :location_long => new_hash[:geo_longitude], :location_name => new_hash[:geo_name]}
 
     elsif !location_hash[:unresolved_location].nil?
       new_hash = location_hash[:unresolved_location]
-      h = {:location_type => 3, :location_name => new_hash[:unresolved_location_name]}
+      h = {:location_type => AppConstants.location_type_unresolved, :location_name => new_hash[:unresolved_location_name]}
     end
     l = Location.create!(h)
 
@@ -92,7 +89,7 @@ class Location < ActiveRecord::Base
       location_ids= Location.where("location_url LIKE :loc_url_http or
                                                     location_url LIKE :loc_url_https",
                                 {:loc_url_http => "http://#{web_hash[:web_location_url]}%",
-                                :loc_url_https => "https://#{web_hash[:web_location_url]}%"})
+                                :loc_url_https => "https://#{web_hash[:web_location_url]}%"}).all
 
     elsif !search_hash[:geo_location].nil? and !search_hash[:geo_location][:geo_latitude].blank? and
                                           !search_hash[:geo_location][:geo_longitude].blank?
@@ -100,9 +97,9 @@ class Location < ActiveRecord::Base
 
       if geo_hash[:range].nil?
         location_ids= Location.where("location_lat = :geo_lat AND location_long = :geo_long",
-               {:geo_lat => geo_hash[:geo_latitude],:geo_long => geo_hash[:geo_longitude]})
+               {:geo_lat => geo_hash[:geo_latitude],:geo_long => geo_hash[:geo_longitude]}).all
       else
-        location_ids = Location.near([geo_hash[:geo_latitude], geo_hash[:geo_longitude]],geo_hash[:range])
+        location_ids = Location.near([geo_hash[:geo_latitude], geo_hash[:geo_longitude]],geo_hash[:range]).all
         #location_ids= Location.where(:id => wls)
       end
 
@@ -170,3 +167,19 @@ class Location < ActiveRecord::Base
      end
    end
 end
+
+
+# == Schema Information
+#
+# Table name: locations
+#
+#  id            :integer         not null, primary key
+#  location_type :integer         not null
+#  location_name :text            not null
+#  location_url  :text
+#  location_lat  :decimal(18, 15)
+#  location_long :decimal(18, 15)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

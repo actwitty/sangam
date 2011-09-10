@@ -1,0 +1,28 @@
+#page-wrapper
+  #header
+    =render :partial => "welcome/logo"
+  %img{:src => @welcome_user_picture}
+  Hello
+  %b= @welcome_username
+  welcome to actwitty.com
+
+
+  #foreign_auths
+  #provider_up
+    =render :partial => "/users/sessions/provider"
+
+    %input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
+    %input#user_provider{:name => "auth_provider", :type => "hidden", :value =>  params[:provider]}/
+    %input#user_uid{:name => "auth_uid", :type => "hidden", :value => params[:uid]}/ 
+
+  /#info-section
+  /  #actwitty-text
+  /    #simplegallery1
+  /      #actwitty-t3.actwitty-info
+  /        %img{:alt => "", :src => "/images/actwitty/main_page_info.jpg"}/
+
+
+
+
+
+

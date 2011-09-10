@@ -1,6 +1,12 @@
+#team_main {
+/*margin-bottom:20px;*/
+}
+
 #team {
-  width:650px;
-  margin-left:350px;
+  width:100%;/*650*/
+  margin:0px auto 0;
+  background-color:#eee7dd;
+  display:block;
   /*
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -14,22 +20,23 @@
   */
 }
 
-#team_img
+.team_img
 {
   width:600px;
-  margin-left:5px;
-  border:1px solid red;
+  margin-left:350px;
+  /*margin:0px auto 0;*/
+  /*border:1px solid red;*/
 }
 
 p.team
 {
   text-align:center;
+  color:#2F2F2F;
 }
 
 p.title {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size:30px;
   align:left;
   text-align:center;
@@ -40,7 +47,6 @@ p.title {
 p.heading {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode Bold’, ‘Lucida Grande’, sans-serif;
   font-size:22px;
   color:#2F2F2F;
   text-align:center;
@@ -49,7 +55,6 @@ p.heading {
 p.description {
   width: 60%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size:16px;
   color:#2F2F2F;
 }
@@ -66,20 +71,31 @@ p.multi-column {
   color:#2F2F2F;
   width: 50%;
   margin: auto;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 
   font-size:16px;
 }
 
 .multi-column span.heading
 {
-  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
   font-size:18px;
   color:#009ACD;
 }
-
+/*
 .team_img
 {
   margin: auto;
   align: center;
 }
+*/
+
+#about{
+  width: 100%;
+  height: 500px;
+  margin:0px auto 0;
+  background-color:#eee7dd;
+  display:block;
+}
+#about_main{
+  /*margin-top:20px;*/
+}
+

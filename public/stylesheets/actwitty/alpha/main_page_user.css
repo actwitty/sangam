@@ -1,0 +1,233 @@
+/* line 2, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+#latest_summary_box {
+  border: 0px solid white;
+  height: 120px;
+  width: 470px;
+  margin: 0px auto;
+}
+
+/* line 8, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_box_user_list {
+  width: 100%;
+}
+
+/* line 12, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_users_single_user {
+  display: inline;
+  float: left;
+  border: 0px solid #ccc;
+  padding: 1px 1px;
+  margin: 8px 1px 0px;
+  position: relative;
+}
+
+/* line 24, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_summary_box {
+  display: none;
+  width: 575px;
+  height: 200px;
+  border: 0px solid red;
+  background-image: url("/images/alpha/channel_popup_back.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  margin-top: -230px;
+  margin-left: -100px;
+  overflow: hidden;
+}
+
+/* line 37, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.main_users_single_user:hover .main_summary_box {
+  display: block;
+}
+
+/************************************* Channel Main Page Snapshot ********************************/
+/* line 45, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+#aw_home_latest_updates {
+  font-family: nimbus-sans-condensed,sans-serif;
+}
+
+/* line 49, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channlep-post-mainpage {
+  width: 550px;
+  height: 180px;
+  border: 0px solid blue;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* line 59, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-header-mainpage {
+  width: 100%;
+  height: 60px;
+  border: 0px solid green;
+}
+
+/* line 66, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-tab-mainpage {
+  float: left;
+  width: 60px;
+  height: 30px;
+  background: #eaa440;
+  margin-top: 30px;
+  border: 0px solid red;
+}
+
+/* line 76, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-author-mainpage {
+  float: right;
+  width: auto;
+  height: 100%;
+  background: #e0e0e0;
+  margin-right: 50px;
+}
+
+/* line 85, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-author-name-mainpage {
+  float: left;
+  width: 140px;
+  height: 40px;
+  border: 0px solid red;
+  margin-top: 20px;
+}
+
+/* line 99, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-author-img-mainpage {
+  float: right;
+  width: 60px;
+  height: 100%;
+  border: 0px solid blue;
+}
+
+/* line 108, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-info-mainpage {
+  width: 100%;
+  height: 150px;
+  border: 0px solid #8B3E2F;
+  margin-top: 0px;
+  margin-left: 3px;
+}
+
+/* line 117, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lu-mainpage {
+  width: 250px;
+  height: 120px;
+  background: none;
+  float: left;
+  font-size: 10px;
+}
+
+/* line 127, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-cu-mainpage {
+  width: 250px;
+  height: 140px;
+  background: #CDC8B1;
+  float: left;
+  margin-left: 5px;
+}
+
+/* line 136, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-cu-bar-mainpage {
+  margin: 0px auto;
+  width: 80%;
+}
+
+/* line 143, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-title-mainpage {
+  font-size: 38px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 0 2px #000;
+  /* horizontal-offset vertical-offset 'blur' colour */
+  -moz-text-shadow: 0 0 2px #000;
+  -webkit-text-shadow: 0 0 2px #000;
+}
+
+/* line 153, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-analytic-mainpage {
+  width: 40px;
+  height: 140px;
+  background: none;
+  float: left;
+}
+
+/* line 161, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-like-mainpage {
+  width: 100%;
+  height: 40px;
+  background: #b847cf;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/* line 169, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-like-mainpage p center {
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+}
+
+/* line 177, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-post-mainpage {
+  width: 100%;
+  height: 40px;
+  background: #afa3ad;
+  margin-top: 10px;
+  color: #fff;
+}
+
+/* line 189, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-post-mainpage p center {
+  font-size: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+/* line 200, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lu-header-mainpage {
+  width: 100%;
+  height: 20px;
+  font-size: 16px;
+}
+
+/* line 206, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lu-header-mainpage span {
+  float: left;
+  color: #fffaf0;
+}
+
+/* line 212, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lup-mainpage {
+  width: 100%;
+  height: 55px;
+  background: #4a4a4a;
+  margin-top: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 1px #fff;
+  -moz-box-shadow: 0 0 1px #fff;
+  -webkit-box-shadow: 0 0 1px #fff;
+  -o-box-shadow: 0 0 1px #fff;
+}
+
+/* line 225, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-time {
+  height: 10px;
+  width: 100%;
+}
+
+/* line 230, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-time span {
+  float: right;
+  font-size: 10px;
+  color: #f7f7f7;
+}
+
+/* line 237, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-text {
+  margin-left: 10px;
+}
+
+/* line 242, ../../../../app/stylesheets/actwitty/alpha/main_page_user.scss */
+.p-channelp-post-lup-mainpage .p-channelp-post-lup-text p {
+  font-size: 16px;
+  color: #fffaf0;
+}

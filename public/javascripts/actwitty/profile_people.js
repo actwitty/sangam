@@ -1,6 +1,7 @@
 
 
 $(document).ready(function(){
+      //alert("Inside profile_people.js ready");
       $('#all_followers').click(function() { 
           $( "#follower-dialog-modal" ).attr("title", "Manage followers");
           $( "#follower-dialog-modal" ).empty();                                       
@@ -32,7 +33,7 @@ $(document).ready(function(){
                                         width: 800,
 			                                  modal: true
 		                                  });              
-          get_all_facebookers();
+          //get_all_facebookers();
      });
 
 

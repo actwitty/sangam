@@ -638,6 +638,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			});
             if((offset + activeItem[0].offsetHeight - list.scrollTop()) > list[0].clientHeight) {
                 list.scrollTop(offset + activeItem[0].offsetHeight - list.innerHeight());
+                list.scrollTop(offset);
             } else if(offset < list.scrollTop()) {
                 list.scrollTop(offset);
             }
@@ -668,7 +669,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			var formatted = options.formatItem(data[i].data, i+1, max, data[i].value, term);
 			if ( formatted === false )
 				continue;
-			var li = $("<li/>").html( options.highlight(formatted, term) ).addClass(i%2 == 0 ? "ac_even" : "ac_odd").appendTo(list)[0];
+			var li = $("<li/>").html( options.highlight(formatted, term) ).addClass(i%2 == 0 ? "ac_even" : "ac_even").appendTo(list)[0];
 			$.data(li, "ac_data", data[i]);
 		}
 		listItems = list.find("li");
@@ -739,7 +740,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 						listHeight += this.offsetHeight;
 					});
 					var scrollbarsVisible = listHeight > options.scrollHeight;
-                    list.css('height', scrollbarsVisible ? options.scrollHeight : listHeight );
+                    list.css('height', scrollbarsVisible ? options.scrollHeight : listHeight );//pramod
 					if (!scrollbarsVisible) {
 						// IE doesn't recalculate width when scrollbar disappears
 						listItems.width( list.width() - parseInt(listItems.css("padding-left")) - parseInt(listItems.css("padding-right")) );

@@ -1,62 +1,5 @@
 .placeholder {color: #aaa;}
-a.trigger-feedback{
 
-  /*position: absolute;*/
-  position:fixed;
-  text-decoration: none;
-  /*top: 80px; right: 0;*/
-  bottom:0;right:0;
-  font-size: 12px;
-  letter-spacing:-1px;
-  font-family: verdana, helvetica, arial, sans-serif;
-  color:#fff;
-  padding:5px 5px 5px 5px;
-  font-weight: normal;
-  background:#333333 url(images/plus.png) 15% 55% no-repeat;
-  border:1px solid #444444;
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  display: block;
-
-  box-shadow: 0 0 6px #3a3a3a;
-  -moz-box-shadow: 0 0 6px #3a3a3a;
-  -webkit-box-shadow: 0 0 6px #3a3a3a;
-  -o-box-shadow: 0 0 6px #3a3a3a;
-
-}
-
-a.trigger-feedback:hover{
-
-  /*position: absolute;*/
-  position:fixed;
-  text-decoration: none;
-  /*top: 80px; right: 0;*/
-  bottom:0;right:0;
-  font-size: 12px;
-  letter-spacing:-1px;
-  font-family: verdana, helvetica, arial, sans-serif;
-  color:#fff;
-  padding:5px 5px 5px 5px;
-  font-weight: normal;
-  background:#333333 url(images/plus.png) 15% 55% no-repeat;
-  border:1px solid #444444;
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomright: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  display: block;
-
-  box-shadow: 0 0 6px #3a3a3a;
-  -moz-box-shadow: 0 0 6px #3a3a3a;
-  -webkit-box-shadow: 0 0 6px #3a3a3a;
-  -o-box-shadow: 0 0 6px #3a3a3a;
-}
 
 body {
   margin: 0 auto;
@@ -67,6 +10,88 @@ body {
   /*border:1px solid green;*/
   /*background:#445D73 ;*/
 }
+/*
+.hover{
+    position:relative;
+    }
+
+#hove {}
+#hove span {display: none; text-decoration:none;}
+#hove:hover{}
+#hove:hover span {
+display:block;
+position:absolute;
+top:10px;
+left:220px;
+width:80px;
+background:#87ceeb;
+color:#fff;
+font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+font-size:14px;
+text-align:center;
+padding:5px;
+}
+
+#hovp {}
+#hovp span {display: none; text-decoration:none;}
+#hovp:hover{}
+#hovp:hover span {
+display:block;
+position:absolute;
+top:50px;
+left:220px;
+width:80px;
+background:#87ceeb;
+color:#fff;
+font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+font-size:14px;
+text-align:center;
+padding:5px;
+}
+
+.hovconfrepass {position:relative;color:#000;text-decoration:none;}
+.hovconfrepass span {display: none; text-decoration:none;}
+.hovconfrepass:hover{z-index:1;background:#fff;}
+.hovconfrepass:hover span {
+display:block;
+position:absolute;
+top:50px;
+left:220px;
+width:80px;
+background:#87ceeb;
+color:#fff;
+font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+font-size:14px;
+text-align:center;
+padding:5px;
+}
+
+.hovconfpass {position:relative;color:#000;text-decoration:none;}
+.hovconfpass span {display: none; text-decoration:none;}
+.hovconfpass:hover{z-index:1;background:#fff;}
+.hovconfpass:hover span {
+display:block;
+position:absolute;
+top:50px;
+left:220px;
+width:80px;
+background:#87ceeb;
+color:#fff;
+font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+font-size:14px;
+text-align:center;
+padding:5px;
+}
+*/
+
+
+
+
+
+
+
+
+
 
 #LoadingDiv {
   margin: 0;
@@ -194,10 +219,6 @@ body {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
-#sns-login {
-  display: block;
-  margin-top: -20px;
-}
 
 #desc {
   float: left;
@@ -245,14 +266,6 @@ body {
 }
 
 
-#data-input span
-{
-  font-size:12px;
-  color:#ccc;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-
-
 .inputform {
   margin-left: 30px;
   height: auto;
@@ -268,7 +281,7 @@ body {
   opacity:0.7;
   background:#445D73;
   height: auto;
-  width: 490px;
+  width: 470px;
   padding: 10px 0 0 20px;
   margin-top: 30px;
   margin-right: 500px;
@@ -295,12 +308,6 @@ body {
 .main-input-list {
   list-style-type: none;
   margin-left: 40px;
-  width:100px;
-}
-.main-input-list span
-{
-  font-size:12px;
-  color:#ddd;
 }
 .main-input-list .email-input {
   float: left;
@@ -345,7 +352,7 @@ body {
 }
 
 .icon.medium.twitter {
-  background-position: 0px -30px;
+  /*background-position: 0px -30px;*/
   float: right;
   margin-right: 30px;
 }
@@ -394,12 +401,6 @@ a {
 
 div.footers {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-
-.input-deco {
-  border: 1px solid gray;
-  height: 30px;
-  margin-top: 3px;
 }
 
 
@@ -461,6 +462,10 @@ div.footers {
   margin-left: 20px;
 }
 */
+.main-page-provider-navlinks{
+ color:#00BFFF;
+}
+
 .button {
   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: #ffffff;
@@ -909,41 +914,7 @@ div.footers {
 }
 
 /*------------------------- confirmation page ------------------------------*/
-#confirmation-page-wrapper {
-  background: white;
-  height: 750px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  margin: 0;
-  padding: 0;
-}
 
-.confirmation-input-list {
-  list-style-type: none;
-}
-
-.confirmation-fields {
-  list-style-type: none;
-  padding:0px 10px 0px 10px;
-  border:1px solid #fff;
-}
-
-.confirmation-input {
-  margin-left: 60px;
-  margin-top: 10px;
-}
-
-.confirmation-labels {
-  display: block;
-  float: left;
-  width: 150px;
-  /*text-align: center;*/
-  text-align:left;
-  vertical-align: top;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color: #87CEEB;
-}
 
 #confirmation-header {
   /*background:#484848;*/
@@ -962,38 +933,6 @@ div.footers {
   -webkit-box-shadow: 0 0 4px #3a3a3a;
   -o-box-shadow: 0 0 4px #3a3a3a;
   */
-}
-
-#confirmation-page {
-  /*background:#373735;*/
-  background: white;
-  width: 100%;
-  height: 80%;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-
-#confirmation-page-block {
-  display: block;
-  float: right;
-  /*background:#121212;*/
-  background: #fff;
-  height: auto;
-  width: 700px;
-  padding: 10px 0 20px 20px;
-  margin-top: 30px;
-  margin-right: 25%;
-  /*margin-bottom:10px;
-  margin-left:40px;*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  box-shadow: 0 0 4px  #3a3a3a;
-  -moz-box-shadow: 0 0 4px  #3a3a3a;
-  -webkit-box-shadow: 0 0 4px  #3a3a3a;
-  -o-box-shadow: 0 0 4px #3a3a3a;
 }
 
 /* line 659, ../../../app/stylesheets/actwitty/mainpage.scss */
@@ -1023,7 +962,13 @@ div.footers {
   margin-left:160px;
 
 }
+/*-----------------------------conf--------------------------------------*/
+/*
+#confirmation-form{
+ margin-left:150px;
+}
 
+*/
 /* line 683, ../../../app/stylesheets/actwitty/mainpage.scss */
 #profile_submit {
   margin-left: 260px;
@@ -1056,74 +1001,63 @@ div.footers {
   text-decoration: none;
 }
 
+
+
 /* ########################## Footer Content ########################*/
+/* line 717, ../../../app/stylesheets/actwitty/mainpage.scss */
 #page-footer {
   margin-top:80px;
   /*margin-bottom: 10px;*/
   margin-bottom: 0px;
   padding:5px 0 5px 0;
   width: 100%;
-  height: 55px;
+  height: 40px;
 
   box-shadow: 0 0 6px #fff;
   -moz-box-shadow: 0 0 6px #fff;
   -webkit-box-shadow: 0 0 6px #fff;
   -o-box-shadow: 0 0 6px #fff;
   background:#445D73 ;
-
 }
 
 /* line 728, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-content {
   display: block;
-  height:20px;
-  margin:0;
-  padding:0;
-  height:30px;
+  padding: 10px;
+  margin-left: 38%;
 }
 
 /* line 734, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-header {
-  margin:0;
-  display:block;
   float: left;
   padding-left: 10px;
   font-size: 12px;
   font-weight: normal;
   height: 14px;
+  margin-top: -10px;
   color: gray;
 }
 
-
-
-.terms_of_service
-{
-  
-  display:block;
-  font-size:12px;
-  color:#ddd;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  margin-left:300px;
-}
-#best-viewed
-{
-  float:right;
-  margin-right:60px;
-  color:#ddd;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+/* line 745, ../../../app/stylesheets/actwitty/mainpage.scss */
+.footer-header {
+  float: left;
+  padding-left: 10px;
+  color: black;
+  font-size: 12px;
+  font-weight: normal;
+  height: 14px;
+  margin-top: -20px;
 }
 
 /* line 759, ../../../app/stylesheets/actwitty/mainpage.scss */
 .footer-header a {
   text-decoration: none;
   color: #F4F4F4;
-  font-size:14px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
 /* line 764, ../../../app/stylesheets/actwitty/mainpage.scss */
 div.footers {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-family: ‘Arial Rounded MT Bold’, Helvetica, Arial, sans-serif;
 }
 
 /*#############################Sign-Up Welcome Message ##############################*/
@@ -1705,116 +1639,3 @@ Author URI: http://dev7studios.com
   z-index: 300;
 }
 
-/****** Feedback page *******/
-/*-------------------------- Forgot Password Page ---------------------*/
-#feedback-page {
-  /*background:#373735;*/
-  background: white;
-  width: 100%;
-  height: 600px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -o-border-radius: 10px;
-
-  box-shadow: 0 0 6px  #fff;
-  -moz-box-shadow: 0 0 6px  #fff;
-  -webkit-box-shadow: 0 0 6px  #fff;
-  -o-box-shadow: 0 0 6px #fff;
-}
-
-#feedback-box  {
-  display: block;
-  float: right;
-  /*background:#121212;*/
-  background: #fff;
-  /*background:#445D73 ;*/
-  height: 75%;
-  width: 600px;
-  padding: 10px 0 0 20px;
-  margin-top: 60px;
-  margin-right: 35%;
-  /*margin-bottom:10px;
-  
-  margin-left:10px;*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  box-shadow: 0 0 6px  #3a3a3a;
-  -moz-box-shadow: 0 0 6px  #3a3a3a;
-  -webkit-box-shadow: 0 0 6px  #3a3a3a;
-  -o-box-shadow: 0 0 6px #3a3a3a;
-}
-
-#feedback-box-resp  {
-  display: block;
-  float: right;
-  /*background:#121212;*/
-  background: #fff;
-  /*background:#445D73 ;*/
-  height: 25%;
-  width: 600px;
-  padding: 10px 0 0 20px;
-  margin-top: 60px;
-  margin-right: 35%;
-  /*margin-bottom:10px;
-  
-  margin-left:10px;*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
-  box-shadow: 0 0 6px  #3a3a3a;
-  -moz-box-shadow: 0 0 6px  #3a3a3a;
-  -webkit-box-shadow: 0 0 6px  #3a3a3a;
-  -o-box-shadow: 0 0 6px #3a3a3a;
-}
-
-#feedback-box-desc {
-  /*padding:10px;*/
-  font-size: 14px;
-  margin-left: 10px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color: #87CEEB;
-}
-
-#feedback-page-buttons {
-  display: block;
-}
-
-#feedback-data-input {
- 
-}
-
-#feedback-data span
-{
-  font-size:12px;
-  color:#ccc;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-}
-
-.feedback-input-list {
-  list-style-type: none;
-  margin-left: 0px;
-  width:500px;
-}
-.feedback-input-list span 
-{
-  font-size:12px;
-  color:#ddd;
-}
-
-.input-deco_area {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  border: 1px solid gray;
-  height: 125px;
-  width: 450px;
-  margin-top: 3px;
-  resize:none;
-  
-}

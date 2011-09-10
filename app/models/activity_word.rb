@@ -14,9 +14,11 @@ class ActivityWord < ActiveRecord::Base
   has_many :related_words, :foreign_key => :related_word_id, :class_name => "WordForm", :dependent => :destroy
 
   #should not get deleted
-  has_many :activities, :dependent => :destroy
+  has_many :activities  #:dependent => :nullify # some how if words get deleted activities should still be there
 
-  has_many :documents, :dependent => :nullify
+  has_many :documents  #:dependent => :nullify  # some how if words get deleted documents should still be there
+
+  has_many :summaries  #:dependent => :nullify  # some how if words get deleted summaries should still be there
 
   has_many :hubs
   has_many :entities, :through => :hubs
@@ -43,17 +45,18 @@ class ActivityWord < ActiveRecord::Base
 
     def create_activity_word(word, relation = "")
 
+      word.downcase!
       #finding first instead of creating as more chances of find than create for words
       word_rel = ActivityWord.where(:word_name => word)
 
       begin
         if word_rel.blank?
-          puts "hello !"
           word_obj = ActivityWord.create!(:word_name => word.downcase)
         else
           word_obj = word_rel.first
         end
       rescue => e
+        Rails.logger.info("ActivityWord => Create_Activity_word => Failed => #{e.message} => for word #{word}")
         return nil
       end
 
@@ -69,8 +72,7 @@ class ActivityWord < ActiveRecord::Base
       end
 
       ActivityWord.CreateRelatedWords(word_obj, relation)
-      puts
-      return word_obj
+      word_obj
     end
 
     #return the objects of related activity words. Defaults to verb-form
@@ -84,11 +86,12 @@ class ActivityWord < ActiveRecord::Base
 
     #return a JSON
     def GetRelatedWords(word, relation)
+      related_words = {}
       word =~ /^[A-Z]?[a-z]*/
       if $& == word
         word.downcase!
         related_words =  Wordnik.word.get_related_words(word, :limit => 50, :type => relation)
-        puts related_words.to_s
+        puts related_words
       end
       return related_words
     end

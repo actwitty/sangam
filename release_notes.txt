@@ -1,0 +1,4363 @@
+commit c88e4a6a1a0c05ab3001ac47e0baff0ddae613d9 (HEAD, refs/heads/master)
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Sep 5 00:18:58 2011 +0530
+
+    New files Added are
+    config/cloud_keys.yml
+    config/initializers/pusher_svc.rb
+    lib/pusher/pusher_svc.rb
+    
+    Modifcation is done in Home Controller and Routes.rb for pusher
+    Tag string to search changes is => #Alok Adding pusher support
+    Still Support needs to be given from client side
+
+commit 0419f356a732c6c8b0c427f708682b47b8655d70
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 20:08:42 2011 +0530
+
+    delete assets at Saturday 03, 2011
+
+commit ae96843d963120e3b153ce691773b59882f18acc
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 20:08:12 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit 42372b027a2a133a352f6552797f685e396cc3e5
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 20:07:59 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit c8d6e4f2a2a2a076d2572e916485c5aa7351b230 (refs/remotes/heroku/master)
+Merge: bd8eba9 9719308
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 20:04:46 2011 +0530
+
+    resolving conflicts from heroku server
+
+commit bd8eba9a95c7f45a68e577182345ab176439f577
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 19:57:45 2011 +0530
+
+    migrating all cloud keys in cloud_keys.yml also updated pluploader
+    accordingly
+
+commit 97193087c486e3fdd9618821cfaa00bc8828af85
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 18:33:42 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit 93b57840567317652ef4b221345076fc57bf1c3e
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 18:33:30 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit 5c781fd0914a830f9efb8185862e11e91c836ae4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 18:30:24 2011 +0530
+
+    moving all cloud related keys in one file..modified pluploader releted
+    script accordingly
+
+commit 5a7d51b83373d4f8f87c91a0a45fc0d7a516fd17
+Merge: 2de59cc 74afdcd
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Sep 3 15:39:36 2011 +0530
+
+     Merge branch 'pramod_d'
+    
+    Conflicts:
+    	public/javascripts/plugins/jquery-autocomplete/jquery.autocomplete.js
+
+commit 74afdcd0df266b59eebda53314e5082f9cfdba29
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Sep 3 15:24:32 2011 +0530
+
+    Modal Box Close Button/Show map in Location search
+
+commit 8111c6d1ab93618e68cf8d97570ec22f789619f7
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 14:33:06 2011 +0530
+
+    delete assets at Saturday 03, 2011
+
+commit 3f623d600791c47c94dc03b2f9b78c236a7aee0d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 14:32:12 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit baec5e76c0fea11331b43e9ca941bc135b40dee7
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 14:31:52 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit 2de59ccd37dae07cc3682cbadc81899beaa7c9b5
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 14:29:09 2011 +0530
+
+    updating Gemfile in test mode
+
+commit b20036724cbfedbd136f8d9ac243bc3150596854
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 14:08:18 2011 +0530
+
+    This commit has summary id included in get_user_activities
+    ALERT
+    Do rake db:drop , create and migrate
+
+commit 25bb56c0c31ea303c4f8b95608ea9b34208d58e8
+Merge: a0310b5 b158069
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 13:35:21 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit b158069c36ebb0b02046fa79abc7f9e6cd2807a9
+Merge: 76b0fd5 dc8a970
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 13:32:11 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+    
+    Conflicts:
+    	Gemfile.lock
+
+commit 76b0fd5f268cfcbe92396076630298dafdd0bd16
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:36:29 2011 +0530
+
+    adding support for summary_id in get user channel.
+    do db drop
+
+commit a0310b55b8306584dcd218a05613b10437df7dce
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:25:45 2011 +0530
+
+    delete assets at Saturday 03, 2011
+
+commit 698eb39705e30eefada116cda2fd6662fae300eb
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:24:51 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit 07524da71092cd19d8ee987449d18a989972cc2e
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:24:26 2011 +0530
+
+    delete assets at Saturday 03, 2011
+
+commit 69620fc4b1e8d382386eff004661e204f9aab44f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:24:17 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit afdc35753cda2c51acf5bfaa63ab4aa2524e9e3b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:23:56 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit dc8a970dbbc348597e1cf68124c3cf6fa9337323 (refs/remotes/origin/master, refs/remotes/origin/HEAD)
+Merge: 9c4ded1 6036652
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 12:09:43 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 60366527947bf0ae859e3636d613b6dc9d1cc142
+Merge: 52e4fa3 5a66454
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Sep 3 11:09:25 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+    
+    Conflicts:
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_layout.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+    	public/stylesheets/actwitty/home_page.css
+
+commit 52e4fa397503b012c158f55b1813b695bd88936b
+Merge: 3b848e0 8d98e7d
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Sep 3 11:07:31 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 5a664549a146b2f4ccd9c52fc6a9d62f052a6b0d
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Sep 3 11:06:51 2011 +0530
+
+    added fix for scroll on modal
+
+commit f2da37f85a285726cc07b8d4954097ebcce9b46f
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Sep 3 07:13:27 2011 +0530
+
+    Fixed modal scroll issue
+
+commit 8d98e7de3f1e18f38664ba57113c0bfb313a8a07
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Sep 3 02:26:40 2011 +0530
+
+    Settings Page/Facebook Friends
+
+commit 9c4ded15860a2e1a04f3e9509e11924ffc68dc1c
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 00:06:20 2011 +0530
+
+    delete assets at Saturday 03, 2011
+
+commit 3304c425570bf74bb4ad831a855ee2e88c26d958
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 00:04:48 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit 7d6b83f83b33728beca8e0fcb42c9f996db7a419
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 00:04:33 2011 +0530
+
+    assets at Saturday 03, 2011
+
+commit aaa561e38ffd034448c39be11b82a4127f1501a4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 00:03:35 2011 +0530
+
+    revert gitignore
+
+commit 8eddceb233629ec4977b77838fc4edd2f8604f43
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Sep 3 00:02:49 2011 +0530
+
+    testing failed
+
+commit 20ad9fee185906a6e3edc7edfa27a63b69056fe6
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Sep 2 23:10:19 2011 +0530
+
+    test stat
+
+commit 9cb84445f6393d5b11cac3009c64e391ff43cce3
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Sep 2 23:01:41 2011 +0530
+
+    testing remote assets
+
+commit 69bc057cdd85a0716c2e5ef68584e27d892c898d
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Sep 2 11:02:05 2011 +0530
+
+    Added theme set and fixed the jquery auto complete issue
+
+commit f6ba1065bb076493baa893c392d82ca066883574
+Merge: 6c7d068 3984aa4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Sep 2 08:09:57 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 3b848e026832ff2d9305845778da41c77d9fb84e
+Merge: f7ec753 3984aa4
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Sep 2 05:42:53 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+    
+    Conflicts:
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+
+commit f7ec7534fbb3e03ea187d5c475d39d166fb1c65e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Sep 2 05:40:57 2011 +0530
+
+    removed incorrect file
+
+commit a0baaee58a9fb20129634d48d3efe2065610d674
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Sep 2 05:40:22 2011 +0530
+
+    removed incorrect file
+
+commit 3984aa49d1c77ec50b44b47d2a4d07043f528ec0
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Sep 2 00:45:03 2011 +0530
+
+    Add facebook friends place
+
+commit 6c7d068e19066e3f670b3dc7449818a6a82fb72d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 23:46:26 2011 +0530
+
+    delete assets at Thursday 01, 2011
+
+commit f0958ac1db1a0eb0553065a79efe6da9119834ed
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 23:45:41 2011 +0530
+
+    assets at Thursday 01, 2011
+
+commit 3f6a24e1ba94070085feda3ee9963e9b9bc14547
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 23:44:42 2011 +0530
+
+    updating the log level in production
+
+commit f2d44362dec30df1a417827839019f067094462f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 23:34:54 2011 +0530
+
+    delete assets at Thursday 01, 2011
+
+commit 33bad9b46afc528fb9b1225584d7d0cee92ca346
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 23:34:00 2011 +0530
+
+    assets at Thursday 01, 2011
+
+commit ff26e9d4359ae90342fd52709ad69508674ff9a7
+Merge: 4da2dde f7c2598
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 23:10:46 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit f7c259800209485c11515a7fe3aaa1005d3b8d34
+Merge: 9be662e dad04e3
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 19:08:54 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 9be662ec70c8bfead70f7ae33a03d5ba7e4ea96a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Sep 1 19:05:43 2011 +0530
+
+    updated documents in theme properly
+
+commit dad04e30023bb01040999db1266368d77c32b4e2
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Sep 1 12:36:34 2011 +0530
+
+    have made sql disabled hide through css as was creating prob for ie - was taking full screen width
+
+commit 6dba6dec7d262eab72595c95892722ec2f07a6d1
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Sep 1 11:54:15 2011 +0530
+
+    some css changes
+
+commit 073aaf7e7a04eea9f321face98bd7c391bbc8de6
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Sep 1 10:50:50 2011 +0530
+
+    some css changes for related locations
+
+commit 9b6044524b23102e3be5383ac2f04b4033bec66f
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Sep 1 10:39:18 2011 +0530
+
+    z index for fancybox, original zindex has been commented, plz dont remove it they are in sequence
+
+commit 9f4b6761ab53b382eacee43477db2d27b8449502
+Merge: 78aed20 0ec1861
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Sep 1 09:06:51 2011 +0530
+
+    Merge branch 'pramod_d'
+
+commit 0ec1861132ffafe2e1ff82e7b39183243cac8fb0
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Sep 1 09:04:44 2011 +0530
+
+    Facebook Friends Font/Text length
+
+commit 78aed20c0b4ed75fb63032c8a697f27857f1f292
+Merge: 8dd2bf8 c37f385
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Sep 1 08:06:30 2011 +0530
+
+    Merge branch 'pramod_d'
+
+commit c37f385264954d8d31010f272de8fd8660b0ee1d
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Sep 1 08:05:15 2011 +0530
+
+    Facebook Friends display
+
+commit 8dd2bf8cc5a96ae084526b2a4ec82296192a3583
+Merge: 79be33c 24a029e
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Sep 1 07:13:19 2011 +0530
+
+    Merge branch 'pramod_d'
+    
+    Conflicts:
+    	app/views/welcome/confirmation_wait.html.haml
+
+commit 24a029e53b48788c4e4c7656d7e3a4b6df3fc963
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Sep 1 06:55:50 2011 +0530
+
+    Settings/Confirmation Page
+
+commit 79be33c2b46e2589f1ea19c700822a6a2e0c4ae2
+Merge: 69fca12 f597edd
+Author: nandyorama <pramod@actwitty.com>
+Date:   Wed Aug 31 14:24:24 2011 +0530
+
+    Merge branch 'pramod_d'
+
+commit f597edd21203b501a53f4fccd65ade9dc10ef050
+Author: nandyorama <pramod@actwitty.com>
+Date:   Wed Aug 31 14:22:47 2011 +0530
+
+    Facebook friends
+
+commit 69fca12cda3172b083473de59db8271efea1198f
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 31 10:28:51 2011 +0530
+
+    some small changes-no pending confirmation
+
+commit 7d37c935090f9cc585663a9603a5691eb10f86aa
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 31 09:36:55 2011 +0530
+
+    Email confirmation page for activation
+
+commit d768013e4e7ee5a5b56f005100220e1a5267c273
+Author: nandyorama <pramod@actwitty.com>
+Date:   Wed Aug 31 02:39:37 2011 +0530
+
+    Facebook Friends is enabled
+
+commit fbb537b4db24389e6a65dcb071766cc6d88be107
+Merge: 029f046 f859f96
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Aug 31 00:17:52 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 029f046b41dc921a5c546c99b90a30eb5ebf723e
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Aug 31 00:16:48 2011 +0530
+
+    k
+
+commit f859f96903e3ac1c4c6c50df1022fedaf86bfbae
+Merge: a9619fe 1bc5dd9
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 30 12:44:14 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+    
+    Conflicts:
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+
+commit 1bc5dd9ea0e87341f815ca6242a469233c7ba2a0
+Merge: 13c18ce fb48e42
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 29 13:55:51 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit a9619fe66b805d72fd837e02ac02ed5961cb21ca
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 29 13:53:15 2011 +0530
+
+    Added  code
+
+commit fb48e42acc6ef4a08662ef3ef69d51723950f7bb
+Author: nandyorama <pramod@actwitty.com>
+Date:   Mon Aug 29 01:26:18 2011 +0530
+
+    Facebook/Twitter signup/login added
+
+commit 13c18ce36d2a96cd5fef61baff9292ab68526d96
+Merge: 8644ada 263225a
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 28 22:35:25 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 8644ada874d0466b59ccdb1f5ba58043b3fd3e4f
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 28 22:34:35 2011 +0530
+
+    fi draft issue
+
+commit 263225a662b1cd6c7e38bdb611b802348332f6eb
+Merge: 8383e76 c86e188
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 28 22:21:54 2011 +0530
+
+    Merge branch 'pramod_d'
+
+commit c86e18826434cc4aca5ec31d423bd77187f1c248
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 28 22:20:18 2011 +0530
+
+     after Merge
+
+commit 8383e76ee9d4c3af6ca4a9cd610176734669bc90
+Merge: a753eb0 124ccd6
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 28 22:08:33 2011 +0530
+
+    Merge branch 'pramod_d'
+    
+    Conflicts:
+    	app/controllers/home_controller.rb
+    	public/stylesheets/actwitty/alpha/home_layout.css
+
+commit 124ccd6e28a2c8adaa0b5043d4170800ca306936
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 28 21:56:48 2011 +0530
+
+    Location in Location_page and Like Modal Box is done.
+
+commit a753eb0ce887ea0e22595b088b7e0ccb9a16c770
+Author: samarth <samarth@actwitty.com>
+Date:   Sun Aug 28 20:18:06 2011 +0530
+
+    changes related to input box
+
+commit 7209d70b55efc4434d4e5b2f19269c9a72803c2f
+Author: samarth <samarth@actwitty.com>
+Date:   Sun Aug 28 19:55:08 2011 +0530
+
+    Some css changes relared to zindex
+
+commit aa5629c6b5879e533d28d0caa137b06dc9131b75
+Author: samarth <samarth@actwitty.com>
+Date:   Sun Aug 28 18:14:37 2011 +0530
+
+    some changes :css
+
+commit a578c89e6b3a1bbf0412b4556515f1b56313563b
+Author: samarth <samarth@actwitty.com>
+Date:   Sun Aug 28 15:25:05 2011 +0530
+
+    Front Page inclusion
+
+commit 7bc9e76d4fdcb86bb7ac05910ac1753b6bdb923c
+Merge: 8782356 1a99792
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 28 08:05:26 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 4da2dde55a7fb5a69750a3482e9e4d8c04659ba9
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:54:55 2011 +0530
+
+    delete assets at Saturday 27, 2011
+
+commit 03aca495bff549f69e4f1b01ca3ee64bb0d3a61a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:54:14 2011 +0530
+
+    assets at Saturday 27, 2011
+
+commit 8a5e84219c39702b2300a07d92ed55e9f3cde0dd
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:54:08 2011 +0530
+
+    delete assets at Saturday 27, 2011
+
+commit 03b105afb5de3e49000e5b07425b327f70fdac8f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:53:42 2011 +0530
+
+    assets at Saturday 27, 2011
+
+commit cbdb1c82c07c404a56b2879703a3a6ce92180d7b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:52:18 2011 +0530
+
+    testing
+
+commit 628cc194cc837874d0a2cce29c1580c864822ff1
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:50:16 2011 +0530
+
+    delete assets at Saturday 27, 2011
+
+commit 4b3bea5556f7bc82d2dcc8c32c50f2242221da04
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:49:27 2011 +0530
+
+    assets at Saturday 27, 2011
+
+commit 276cb2d4b437b7843137dc9bd094b9fb467c94b0
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:48:23 2011 +0530
+
+    asset compression off
+
+commit f3b0ab75775d8ff162eaf40ac75c11abeba7d33c
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 23:47:02 2011 +0530
+
+    testing
+
+commit 75064a3bad58f4f811db5b5926ee3fe6d548a6b1
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 22:46:45 2011 +0530
+
+    testing
+
+commit b3e368d752f8e2f24e1f840fdc0e9f30cea0c5c0
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:58:12 2011 +0530
+
+    delete assets at Saturday 27, 2011
+
+commit 0f2932c1207411ac05eedd165a316e4f41ac57e9
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:57:49 2011 +0530
+
+    assets at Saturday 27, 2011
+
+commit c8f06a2c32a4bf0b6d5016f738c60da0a5c81a4f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:57:22 2011 +0530
+
+    delete assets at Saturday 27, 2011
+
+commit eaa9c859553e440f3d832eedc8c9c3ce20e4fc05
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:56:26 2011 +0530
+
+    assets at Saturday 27, 2011
+
+commit 2a2b9d5802b64194e96bf8f2c167d2cb9049c0c5
+Merge: aa07342 1a99792
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:55:07 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 1a99792c5016dbfb8dc3d59d65dbdecadb77f247
+Merge: 5f6e54a 7cc276a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:46:19 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 5f6e54aca8d41d00589566aee17a04adb2207d7b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 27 19:45:40 2011 +0530
+
+     document support in themes
+
+commit 87823564a2307d4bd130dcc460e0ad2947d2b19b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 27 16:54:27 2011 +0530
+
+    Added protection for quick refreshes
+
+commit 7cc276a264254ffc90d3d5dd18663841f0882f7a
+Merge: cb48ae6 973ff41
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 27 15:56:54 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+    
+    Conflicts:
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+
+commit cb48ae6b04937ecc1194e8a4fa0c3fea06392b0e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 27 15:54:49 2011 +0530
+
+    Added latest update on channel
+
+commit 973ff4158880824e23f5a8adaf755a194ccbfc6b
+Merge: 6cf33d6 c228168
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Aug 27 15:04:17 2011 +0530
+
+    Add after merge Conflict Merge branch 'pramod_d'
+    
+    Conflicts:
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+
+commit c22816822fbed26a8388cd446ae284c9c2701501
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Aug 27 14:56:24 2011 +0530
+
+    Location/Entity/Channel Span Style Changed
+
+commit 6cf33d620a7ca265ee6562bf8a3b78b10271943c
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 27 14:36:59 2011 +0530
+
+    Fixed issue on channel page
+
+commit a55de9e26a3028535ca5caeb8bf6ad90ed89fb98
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 27 14:03:20 2011 +0530
+
+    Added main page users list
+
+commit d8931b86964ddc066fc85adf4c2d72118f0486c8
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 27 12:44:32 2011 +0530
+
+    added new api
+
+commit 52f99298898a8610fdcb4f78d9fc9b8e011c0915
+Merge: 9eadcda cc5b802
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 21:23:29 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit cc5b802cec55de3eaf4feb058892cea1cfdc32af
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 21:22:47 2011 +0530
+
+    Added counters
+
+commit ec0a5bd3bef1e9ea6a55bfe11027ef326e8dc721
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 21:22:25 2011 +0530
+
+    Added share counters
+
+commit 9eadcda9af0fe001052ec8bdf08f8750f666af79
+Merge: 4bd51d5 41da436
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 20:32:29 2011 +0530
+
+    Merge branch 'sammy_dev'
+
+commit 41da436b96111bd002d6c1471c7d61150dbd5736
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 20:29:11 2011 +0530
+
+    Edit/Publish changes
+
+commit 4bd51d59c5e997cd5b19a15ddfe0f0db6ed70215
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 20:16:44 2011 +0530
+
+    updated time
+
+commit aa07342cb54530932b4b751bf34e9de97bd80405
+Merge: a339171 419ee50
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 19:20:32 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 419ee50527631dfdf7482beb69f3a0dad776eda2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 19:19:07 2011 +0530
+
+    moving query reviewer in development:wq
+
+commit 2851bfd541f585a02500ff7ef67e72f689b04cd4
+Merge: 171fc09 23aa44e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 19:13:39 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+
+commit a33917140f6785ea887c4309454accddaaf76f10
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 18:10:08 2011 +0530
+
+    delete assets at Friday 26, 2011
+
+commit e358122144d669bef662f3a4cc101a796a54e106
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 18:09:46 2011 +0530
+
+    assets at Friday 26, 2011
+
+commit 23aa44eafc9c0835ac96c890be5a3b76a9af659e
+Merge: 1b57f48 9d21b42
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:58:27 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 1b57f483152acff3d28f59749df7ff72de2cd814
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:57:48 2011 +0530
+
+    testing
+
+commit 9d21b42b3d63bfd93d34a49017fcdb65b479c86f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:56:45 2011 +0530
+
+    generated css
+
+commit 965fcaee66c73b94e6ca544b3f3f1319dd182500
+Merge: 9c82835 a4e4766
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:55:07 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit a4e4766df9c6b82575c8db776bf8538f5e1fce04
+Merge: 8a783d9 bc1c1c4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:54:10 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+    
+    Conflicts:
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+
+commit 8a783d9103799ef12e91fa210fbec1bb9fee48ed
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:49:39 2011 +0530
+
+    time in summary
+
+commit 9c828357a95f6e850b86fa85aa6e77a5312fa035
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:29:02 2011 +0530
+
+    delete assets at Friday 26, 2011
+
+commit b83f4779314bc288612e3dcaf7487e2017dfda29
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:28:40 2011 +0530
+
+    assets at Friday 26, 2011
+
+commit e46ea8cd5ea825b0743e7f96dfc64a9a776cfbd2
+Merge: 8d2a457 bc1c1c4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:26:52 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 6523cb2e739449a50726ccf59d139b3f4880fb9c
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:24:41 2011 +0530
+
+    static page cache
+
+commit bc1c1c4a2ae70c22eccbdfd88ae798a464624593
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 17:19:29 2011 +0530
+
+    some changes related to location check
+
+commit 8d2a4574af149a02a2115a9fe4c78bf40c4be639
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:19:14 2011 +0530
+
+    delete assets at Friday 26, 2011
+
+commit 518f9e7f978acb1ab67639cc73c3b16ebaf4f777
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:17:45 2011 +0530
+
+    assets at Friday 26, 2011
+
+commit d9602ef74266eeceff8047d8584e92cc047775f7
+Merge: 7fae700 3cda2f2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 17:15:35 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 3cda2f2ce0cd037659c5315456e1ad39414b7362
+Merge: 6a488dc 4bfaa18
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 15:43:06 2011 +0530
+
+    channel page iconification
+
+commit 4bfaa18ab42f92d3c484180f1a1c0f4815906db8
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 15:36:36 2011 +0530
+
+    channel page iconify layout as per new need
+
+commit 07254ea8ecd5431aed145be7c75c47e74c40eedf
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 14:57:10 2011 +0530
+
+    update_Activity updated for social counters
+
+commit 171fc09d35d5226ee07cd96e2ddb738f2538d7b7
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 14:54:20 2011 +0530
+
+    Removed files not needed
+
+commit 6a488dcb0d81210d53b2bc7f6a8dedcd66338a74
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 11:17:17 2011 +0530
+
+    removed needless files
+
+commit f4e462d9e6509efdb3ac60a955b6e31d2f244fff
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 11:15:36 2011 +0530
+
+    Fixed profile photo change
+
+commit f4953feb656332cb589e02ad48758837937c9656
+Merge: 39d82bf 9c7549b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 26 11:15:00 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+    
+    Conflicts:
+    	public/javascripts/actwitty/profile_summary.js
+    	public/stylesheets/actwitty/alpha/actwitty-comments-streams.css
+    	public/stylesheets/actwitty/alpha/home_page.css
+    	public/stylesheets/actwitty/alpha/layout.css
+
+commit 9c7549b58d410cb44dba73fe958c754f5d89312b
+Merge: b5e1dbe 22c885a
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Aug 26 01:08:58 2011 +0530
+
+    Merge branch 'pramod_devl'
+
+commit b5e1dbe430696a894a4d6a64cb5cb29a2558d956
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 01:07:11 2011 +0530
+
+    Changes as per new input box layout
+
+commit 22c885a8e6e8e943723b5fd5b67528aca331ef66
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Aug 26 01:06:33 2011 +0530
+
+    For Location/Entities --map and hovering is done
+
+commit 7049aa8ac7e0456d61878b09dce37d9be3b4d04b
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 26 00:47:39 2011 +0530
+
+    some changes
+
+commit 0ce1f2f377deb47e28dabc8dfb100c912806dad1
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 26 00:03:14 2011 +0530
+
+    some fixes
+
+commit 392ba35441a57be5986e4273bf7b48b1d660a799
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 23:28:59 2011 +0530
+
+    social counter array
+
+commit 7fae7006c09344d00d0b6886c9ca57d7519afb80 (refs/remotes/staging/master)
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 18:36:01 2011 +0530
+
+    delete assets at Thursday 25, 2011
+
+commit 4670a3794351b8543d2052c18ab17b492fb0a053
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 18:35:40 2011 +0530
+
+    assets at Thursday 25, 2011
+
+commit a4732ff9877361869d5b45614253556f816f5380
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 18:04:58 2011 +0530
+
+    delete assets at Thursday 25, 2011
+
+commit 5117c627076b8d42b7808611af4641db7c466a45
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 18:04:37 2011 +0530
+
+    assets at Thursday 25, 2011
+
+commit 47de4118975dfb7bea499a30a8cb06d86b0f3acc
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 18:00:13 2011 +0530
+
+    checking
+
+commit e358a202143ef9968ca4af2d585fc92d4b2a86cc
+Merge: e2d633b 042da2a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 16:23:18 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit e2d633b395b2bd3c30f827d7c9ac680fc1494ab4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 25 16:22:09 2011 +0530
+
+    index updated and get_recent_public_summary
+
+commit 042da2a9d664d4f9ba4fed5b8e3929494f4d56fc
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 25 02:52:56 2011 +0530
+
+    some changes in location placement
+
+commit 288a1d2eb3f58b9bd019a90e91a4921f21db191d
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 25 02:15:31 2011 +0530
+
+    bit of html updates on subscribe section
+
+commit aed16afd4ce9e562b3b9e0b2a4ffa64da4e2e818
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 25 01:56:42 2011 +0530
+
+    More/Less in channel summary
+
+commit e4c11a710ad49c7ce06b5ba98e0ef0b02aa3563c
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 25 00:52:36 2011 +0530
+
+    image page from stream as per new layout
+
+commit 3bc47e933d5e5ced94411b964c1047d014fc8073
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 24 22:40:33 2011 +0530
+
+    some changes to subscribe/unsubscribe
+
+commit f64f7a1aa67fc8b3ac8bb645e9072d5c32c41b68
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 24 19:50:23 2011 +0530
+
+    image attachment section modification-limit to 7 icons
+
+commit 39d82bf863cea2c2a0b75349dd824ac0c742ba3c
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 24 10:33:17 2011 +0530
+
+    fixed iimage path
+
+commit 8c0698a9b7cb143a1df6db8a45f64e297c89c2d7
+Merge: 386504c ff6b72b
+Author: nandyorama <pramod@actwitty.com>
+Date:   Wed Aug 24 01:56:27 2011 +0530
+
+    Merge branch 'pramod_devl'
+
+commit ff6b72b96b47c4d3667be9c4d25488dd443774f3
+Author: nandyorama <pramod@actwitty.com>
+Date:   Wed Aug 24 01:52:52 2011 +0530
+
+    OnHover Full text Display is done
+
+commit 386504cc53dbb5d4dff4debd7acf381c463f68c9
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 24 01:06:12 2011 +0530
+
+    channel page - channel icon as per ux
+
+commit 7edff05e5d8cda72536fb87da90b21f373de6bfb
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Aug 23 23:47:19 2011 +0530
+
+    like section in stream page
+
+commit b43bb2685702243be6dd90c29c4fa01b99789a7f
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Aug 23 22:37:24 2011 +0530
+
+    Channel/stream tab latching in channel page
+
+commit 463d3510642ab92ef7b340095282054325de0f21
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Aug 23 22:19:36 2011 +0530
+
+    channel/stream tab new layout - latching for streams section
+
+commit 5691585bb7b210fd8e4377762c40aa13dcaa6008
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Aug 23 18:52:35 2011 +0530
+
+    Stream Page based on new layout
+
+commit f9f4a61b3d1e7cb2cc9f096a59cb714d8056d0fa
+Merge: 0540a0c 2d4f3ac
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 23 12:13:36 2011 +0530
+
+    Added support for themeing channel
+    
+    Conflicts:
+    	public/javascripts/actwitty/profile_stream_share.js
+
+commit 2d4f3ac1f3dc7b9dbe6cc019aaa8adf4c9996aa5
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 23 11:59:50 2011 +0530
+
+    added theme support on channel for predefined files
+
+commit 0540a0c54084ef718178d67442f16476a1fdeb9c
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 23 07:37:25 2011 +0530
+
+    Added share
+
+commit 1ada9947ccd58bced8d4b8b1a200a7862d203668
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 23 01:43:38 2011 +0530
+
+    Added add channel feature partially
+
+commit 6ecb3d3bc994aafdc747ba3dd04f1b6b3a285f0e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 23 00:25:18 2011 +0530
+
+    Added subscribers/subscriptions support
+
+commit c366cbb63c90d618b11f14a9a92928c04ea260a7
+Merge: b86f633 88717e9
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 22 09:17:33 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+
+commit 88717e92fe2fd130ab6284d6c813755337235fb2
+Merge: 1f52ffd 5cc0d87
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 22 09:17:20 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit b86f633b7d0499aea5b73209afa6acbfdfc79125
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 22 09:16:33 2011 +0530
+
+    fixed video delete issue
+
+commit 469419aacd5d8b0b4e3c6677408a8912c6fb5848
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 22 07:20:48 2011 +0530
+
+    Added subscribe and unsubscribe
+
+commit 5cc0d8774db89acf8c76afcb35bd5fd89a2aa527
+Merge: fd519ce cc85b72
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 21 21:02:12 2011 +0530
+
+    Merge branch 'pramod_devl'
+
+commit cc85b7270e5b8beb019ac91f5125d6ff64841644
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 21 20:51:05 2011 +0530
+
+    Location Box/Modal Box Styling/Auto Complete Color
+
+commit 0c447b5da3f5944bbe6f4c95e7abc54c7a8fe761
+Merge: 50a4a41 1f52ffd
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 21 18:43:41 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+
+commit 1f52ffda066d6bbf675c52a0668fcce59e779a55
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 21 18:43:24 2011 +0530
+
+    Added controller code
+
+commit fd519cefc54868492fb7c4697c6b77dbdef9fc47
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Aug 21 18:05:57 2011 +0530
+
+    summary subscribe status update
+
+commit 50a4a4184d70fa1f0d2791cfaaeb035090aaf805
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 21 13:38:17 2011 +0530
+
+    updated code
+
+commit a79c19b3e027d3e96043dcd6f9297e50807d5b13
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Aug 21 03:28:19 2011 +0530
+
+    updated_at in get_related_entity and get_related_location
+
+commit d27df6125f48543d87d48c813ca22d376dea8222
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Aug 21 02:24:43 2011 +0530
+
+    subbscribed in page_state_all mode in get_summary
+    also time stamp in all format_* functions
+    also limit on get_related_entities and get_related_locations api
+
+commit 9cb853fc78c5c6691a36817d62f0787f3ab7f3ad
+Merge: fee91ab 97baac1
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 20 18:05:28 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+
+commit fee91ab9137b071b23c91d9dbb891ee0b0d26726
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 20 18:04:21 2011 +0530
+
+    Added stream side list to have page type
+
+commit 7c299f1a99ac78235728b6aa8a47784b99b9dafb
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 20 17:38:32 2011 +0530
+
+    Added support for name suggest and changed html("") to clear elements
+
+commit 3bc50f8e49ff589ba09e47cdca66640349aa4cf2
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 20 16:05:18 2011 +0530
+
+    Added user name completion
+
+commit 97baac19b1487dc5735197b1ba53b60e10086499
+Merge: f6a6f44 d8e0ce1
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 20 14:24:07 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit f6a6f44e204b04106bf116705c3be111939f5efd
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 20 14:23:05 2011 +0530
+
+    social counter fixes and page_type in related locations and entities
+
+commit d8e0ce10fa1fa19dc80deb69bfc7609cf794aea7
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 20 13:13:39 2011 +0530
+
+    added images
+
+commit 4e6112efaa3f3c1f0cf50b5971ffb7c332836de8
+Merge: 2782173 355b9f1
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 20 03:00:50 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 2782173acb0b9d70b07d3fe9021295d99917bc71
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Aug 20 02:59:38 2011 +0530
+
+    summary subscribe. Please do rake db:drop, create and migrate
+
+commit 355b9f135b01f5d3be923bb336e18a00822ec35e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 20 00:25:58 2011 +0530
+
+    Added all dynamism of social counters
+
+commit e304747129e21f77d6c19afc3ab18afe4dc158a7
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 19 17:26:55 2011 +0530
+
+    Added external share on posts
+
+commit 6c626efaf4823f07c0356446d6047d6682556a81
+Merge: b1928fd 810000d
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 19 12:21:51 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+
+commit b1928fd59174b7d5bfb43ae38a56fadd373b11b5
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 19 12:06:59 2011 +0530
+
+    adding share
+
+commit 810000dbdfe9eea0ea5b24d7a70326f60858b912
+Author: samarth <samarth@actwitty.com>
+Date:   Fri Aug 19 00:02:58 2011 +0530
+
+    related to channel hide in filter mode to stream
+
+commit 8c8edb77025c8553e32e82a16c1e3e9be5233d3d
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 18 23:38:32 2011 +0530
+
+    Some changes to refresh channel page
+
+commit f47f77c352eac62de4841f6c313b97828a465e98
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 18 22:45:48 2011 +0530
+
+    Some css changes
+
+commit 14c172ee03bfe84b05efdc863e7cdab2ed330fe7
+Author: samarth <samarth@actwitty.com>
+Date:   Thu Aug 18 22:29:35 2011 +0530
+
+    Channel page based on new layout...
+
+commit 4861b5da5470df9b12f4c0524608ac012c614242
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 18 16:09:06 2011 +0530
+
+    Added support for image and video
+
+commit 461fab6a436932cd23614069c59fa12ae90afa4b
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Aug 18 01:12:24 2011 +0530
+
+    Like/Time/Comments are done.
+
+commit 2b550d065564d93ccd5b913f2d7e9219bd14452a
+Merge: b1117e9 92d6069
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Aug 18 01:01:00 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 92d606906d4a3249196c55d22a0e7a4182183e09
+Merge: dccf56c 612a0f6
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Aug 17 20:38:40 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit dccf56c8af68edc31420f8b0dd1e5a7cd7ce3954
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Aug 17 20:37:49 2011 +0530
+
+    theme support
+
+commit 612a0f6dbd190cc153262c7e61209a575872c5b5
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 17 20:20:39 2011 +0530
+
+    Added images and videos page
+
+commit 1b0af2887a80ff20fd65662e16a6bba91819f8dc
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 17 10:19:48 2011 +0530
+
+    Adding side bars on streams page
+
+commit b1117e95f39b6235517056856ac8fe0b0be595a6
+Author: nandyorama <pramod@actwitty.com>
+Date:   Tue Aug 16 23:46:00 2011 +0530
+
+    Stream Page Like/Comment/Time
+
+commit cba77d340019730f0594fa4d6fa429d7b216231e
+Merge: 7c36680 8d8dd32
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 16 21:40:16 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 7c36680b65922536ce95925d060e9cd325151238
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 16 21:36:41 2011 +0530
+
+    Added video as attachment
+
+commit 8d8dd32689047a4fff246f85f9321c66735f3cf5
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Aug 16 20:08:41 2011 +0530
+
+    drafts filter
+
+commit cbb136412384096a98eb33d626e7892e468d6887
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Aug 16 19:16:06 2011 +0530
+
+    allowing subdomains
+
+commit 9d284cf6ac830be748742ee631289cf8717c46bf
+Merge: a0feee8 ec734e3
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Aug 16 18:25:58 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit a0feee8f68a38bae73b1bda3fdd972fcd1c026fd
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Aug 16 18:23:56 2011 +0530
+
+    checking social_counters in
+
+commit ec734e3dce1732118b3ae66c9c59beab875a583a
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 16 14:49:52 2011 +0530
+
+    Added caching
+
+commit 49440d5a9c958deca9a5a34c090af2be9add47bb
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Aug 15 15:12:50 2011 +0530
+
+    adding entity in document
+
+commit 07923d1ad067f3af4bcec5ce1af36a16e38671c8
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 15 13:41:53 2011 +0530
+
+    Added logging for jquery
+
+commit d8fba5ab1a467bbe55e48c57e1ce4eb0b3dd0a4e
+Merge: 43088b6 6c9c982
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 15 11:57:39 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 43088b6aa21229adf44204f20c69e274f2caee88
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 15 11:56:34 2011 +0530
+
+    Removed side bars from channels page
+
+commit 6c9c982f38d345d58212e0b563cf309506e0bb8c
+Author: Anand Prakash Yadav <anand@actwitty.com>
+Date:   Sun Aug 14 18:37:17 2011 +0530
+
+    entity sanity check
+
+commit ab2619c3c4e1d8ef001689f9f9d3f57bb34b4952
+Merge: e52ccef 6493ecb
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Aug 14 14:43:57 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit e52ccef1b2fc47c3aa46f6fa6e2aa5854efbcc9d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Aug 14 14:42:37 2011 +0530
+
+    some updates and document delete
+
+commit 6493ecb7b0f465509c8ac45afc2fc8caf5869c73
+Merge: 31842fa f4f3fbb
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 13 17:17:54 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 31842fa4f3fc5ce2b8aa0676fcd1f9c6411c1793
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 13 17:17:22 2011 +0530
+
+    Added changes for images tab
+
+commit f4f3fbb7cbc0096b2a77d3a440aac8b08c49b3a1
+Author: samarth <samarth@actwitty.com>
+Date:   Sat Aug 13 13:01:00 2011 +0530
+
+    read more.. sliced at 250 char limit
+
+commit af083e435b28e35d33dea9e328aa74821e87b2bd
+Author: samarth <samarth@actwitty.com>
+Date:   Sat Aug 13 11:18:37 2011 +0530
+
+    Actwitty font Gnuolane enabled
+
+commit d36d6b102de41afd9835d16eefb69ef77e039283
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 20:26:52 2011 +0530
+
+    Added base screens for video and image
+
+commit 8303abb69ba0f347f0e8bc9b3ca1459973ae0333
+Merge: 0e3bc4c 76d59ef
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Aug 12 18:38:32 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 0e3bc4cf24106487153c44811785b2483e8d4ee0
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Aug 12 18:35:29 2011 +0530
+
+    Image Removal on double click
+
+commit 46fccc1d321824d6f77f00b4af88efa268bf1d64
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Aug 12 18:06:45 2011 +0530
+
+    Jquery Library For Playing Video
+
+commit 4b9918efaa322ee106eec40879aef06a919bd0cf
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Aug 12 18:02:05 2011 +0530
+
+    Image and Video box with Style
+
+commit 76d59ef967dfbd9206f6d3e0a764afe7dcbcb066
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 17:13:18 2011 +0530
+
+    Added modal for related friends
+
+commit dbd6909ded021409d76dec5fdedc17a0d4bf5351
+Merge: 46a3790 84d9435
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 15:28:41 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 84d9435c280c8bc85bf64ec134d8a67a8434ca38
+Merge: c357419 d918b8f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 12 14:39:33 2011 +0530
+
+    Merge branch 'aws'
+
+commit c3574198dceb5a799b5d28016de7c4cc39828784
+Merge: 39b1b2b 87c04c8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 12 14:37:16 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit d918b8f4cef5904f64a0e9965ad77601b9785186
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 12 14:36:42 2011 +0530
+
+    modified
+
+commit 53692ea524ca890dfba7e1a50a90dea7643302ca
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 12 14:29:32 2011 +0530
+
+    adding support for sanity
+
+commit 46a37902d8f0d48ac07c88e1f89118700505dcd3
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 14:11:35 2011 +0530
+
+    Added new css
+
+commit 87c04c893d02bc27022d6f5f061d10a60286c3bf
+Merge: f67a252 62b6332
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 14:08:30 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit f67a252e5a8dba04465037c4ea199279dcb8a43f
+Merge: e0736d7 de89884
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 14:08:22 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 62b63329c0dc7b434af9d5cfb3ef5095f1108f8e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 12 14:05:57 2011 +0530
+
+    Added channel,entity and location page
+
+commit 39b1b2b60c3ca010dfccac629ce9940cc56e54f6
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 12 11:15:30 2011 +0530
+
+    adding aws suuport - s3
+
+commit de898849d20863c74c51721b5e246bde14e03bf0
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Aug 12 00:43:50 2011 +0530
+
+    fixing some issues in document streams
+
+commit e0736d73fc554492ae35559a848a5900328c146d
+Merge: d1b3aee 3cbf68e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 19:20:54 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 3cbf68e62c62bd4616b578a9ba0433b7df6de8b5
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 19:19:23 2011 +0530
+
+    removed img tags from comments, location, document, activity_name,
+    sub_title
+
+commit d1b3aee6191c01796cd33be5a0e41103dbaa7e18
+Merge: 382171a a4ea7c1
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 19:10:35 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit a4ea7c1f02e46995696dbf179cdd09cfd0bcf890
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 19:09:49 2011 +0530
+
+    santize
+
+commit 382171a63e9aa08bcc43aeca795ae85b545000b4
+Merge: 0555c6d d2dc274
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 19:06:51 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit d2dc274b8ef009b174afcf9b013246e9572fa087
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 19:05:44 2011 +0530
+
+    Bringing up entity/channel/location page
+
+commit 0555c6deb8b6d8a5587c1b95d4695f9efee2b8e8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 19:02:26 2011 +0530
+
+    Sanitization support
+
+commit 6a938dc050442d3b137c0ebe4e66937a682b6df2
+Merge: 24fd31a b9ee7e0
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 17:01:03 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 24fd31ad25152890e3e393a74221e3dd0e8010c8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 17:00:24 2011 +0530
+
+    adding ... no changes
+
+commit b9ee7e031bba7b41c75516aa2362c488f2bff02b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 16:53:54 2011 +0530
+
+    Added edit publish, edit save
+
+commit ce9b069885abc4cee7371d8ac5ee13637ad3c5e9
+Merge: 899b5d4 55b6f34
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 15:17:07 2011 +0530
+
+    Merge branch 'master' into sudhanshu_devel
+
+commit 899b5d40d05ab2d6b947c68b687df7b0bdfb9dcc
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 15:16:22 2011 +0530
+
+    Added change for auto suggest channel on input
+
+commit 55b6f34319a38e58032ddb59dc1c652382634736
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 13:35:07 2011 +0530
+
+    increased geolocation granulity
+
+commit f6e4e3375d647072cde85a20239d795abd40a31c
+Merge: a73758d 6bd16a9
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 12:32:02 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit a73758d78054d3092e4369f847dd53da489d37e2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Aug 11 12:31:15 2011 +0530
+
+    adding multple streams support
+
+commit 6bd16a934a5941d9e1c3dd622304a7447d1c629b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 11 11:09:36 2011 +0530
+
+    added save on edit
+
+commit 3b7a67a92b78758f48731193002c5612ab113f66
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 10 10:47:20 2011 +0530
+
+    Integrated publish saved and campaign delete
+
+commit d1b247576a0724ce057e9ec8f2488c3cda3ec434
+Merge: c9809c7 6997465
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 10 09:13:47 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+    
+    Conflicts:
+    	app/views/home/_input_box.html.haml
+    	public/stylesheets/actwitty/alpha/home_layout.css
+
+commit 6997465a0a1b1d9db31f38589154c69d8b43eec0
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 10 07:57:13 2011 +0530
+
+    Added thumbnail upload
+
+commit c9809c7c15317d827e5aa1d67e68bb65409488a8
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 10 02:37:48 2011 +0530
+
+    plugin for restricting character types in activity field
+
+commit 63bdab5cf55f2d07b65a196ffd030f9209eb90a4
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Aug 10 02:12:16 2011 +0530
+
+    Input box styling for new ver with own dimensions
+
+commit 433a449fba8d621d405598debe0da5437633e87e
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Aug 9 19:57:11 2011 +0530
+
+    added like removal and entity removal
+
+commit d74508b1356f345c944e45eba3c73a15e677b2e7
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 9 10:58:09 2011 +0530
+
+    Added FB share button
+
+commit 38732025b52c0e6e9ebf3e9a67af9406893ec145
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 9 10:37:01 2011 +0530
+
+    Added support for single post view, this will become  external URL
+
+commit 0e8b337ae76cb3a48acf038b40c28abb3c007fd8
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 9 05:11:00 2011 +0530
+
+    Added api support for document remove. Need to integrate with fancy box
+
+commit 9751b15ad504b2fa0dab2884c95eb8a397e55728
+Merge: 53788ad 9469e55
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 9 04:56:41 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit 9469e55c6067ad35a1ed6c12f609feb68e137872
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 9 04:54:11 2011 +0530
+
+    Completed like campaigns
+
+commit 53788adf907cdb950488845031b448efe849726c
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Aug 9 00:21:01 2011 +0530
+
+    Broken CSS fix and readmore
+
+commit 8592c8849d47215f86dfc572886f15635908e6ee
+Author: nandyorama <pramod@actwitty.com>
+Date:   Mon Aug 8 21:11:11 2011 +0530
+
+    Rendering Image/video in Box and open the modal box for Image on Click
+
+commit e0dd464a04599506ab9d2e7d0c6a60994b777f2d
+Merge: 762a96a dfc0a76
+Author: nandyorama <pramod@actwitty.com>
+Date:   Mon Aug 8 20:30:44 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit dfc0a762c62f2e38416c7833eb5be34f483e81f1
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 8 19:43:34 2011 +0530
+
+    Adding campaign feature
+
+commit e359f37235c849f088293f7bced4631f2ad7c368
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 8 19:16:46 2011 +0530
+
+    Modified code for new DB
+
+commit 43a54d915e1dec48dfcc96ddab2d3b9109b580e3
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Aug 8 14:34:48 2011 +0530
+
+    adding supports for tags
+
+commit 88b5343b30ad9ff101ebc26881dfb4373f1193c0
+Merge: 1f30621 646475b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Aug 8 04:00:51 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 1f30621a48fe9d74800f9e2ebd225abea747d440
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Aug 8 03:55:11 2011 +0530
+
+    adding documents and tags support
+
+commit 646475b1e1930b4d3721f9657a118b04054e3a0f
+Author: samarth <samarth@actwitty.com>
+Date:   Sun Aug 7 23:58:16 2011 +0530
+
+    Read more for streams
+
+commit 81dc456443d5924c308c7b63ed33913cb7cf23a3
+Author: Anand Prakash Yadav <anand@actwitty.com>
+Date:   Sun Aug 7 19:59:16 2011 +0530
+
+    Freebase thumb URL
+
+commit b5846c247d1fff2dcb13f7e5d6b3e3965452e2ee
+Author: samarth <samarth@actwitty.com>
+Date:   Sun Aug 7 18:47:00 2011 +0530
+
+    Fancy box
+
+commit 10bda03064e4ef3b47b849dd493ed204949ab293
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Aug 7 17:53:47 2011 +0530
+
+    Added latest code
+
+commit 762a96a0fa403aaa4416e14629ff26228e465f86
+Merge: f1f14ac 9984339
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sun Aug 7 12:20:21 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 9984339b7d1d381008e4def4efaa74afc97ac753
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 6 20:56:37 2011 +0530
+
+    added functionality on close
+
+commit cc697b77ef257f7687391b4649df3ee0fb227683
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 6 20:54:46 2011 +0530
+
+    fixed modal bug
+
+commit ee4b87826fb377653dcd4fde5c5ef8603f5b1245
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 6 20:17:54 2011 +0530
+
+    cleaned up modal code
+
+commit 13fa6c822554d9aa2ca88124c6a4953622b38405
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Aug 6 18:44:53 2011 +0530
+
+    Checked in working code
+
+commit f1f14ac3186d2493d5a534b1f5103cc75c6cb826
+Merge: faeecb0 1163d6e
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Aug 6 11:10:45 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit f15aab91c3d669a8d560d306e565b64760b09872
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 5 17:08:33 2011 +0530
+
+    Added user fix
+
+commit 1163d6e35124aaae512964848b49c31b234e1dba
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 5 16:14:35 2011 +0530
+
+    Almost all modals done
+
+commit 65e0b7a236f0afc8239fc594f3e41d6523ae83ca
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Aug 5 11:26:23 2011 +0530
+
+    checked in boxing and autocompletion working on entity modal
+
+commit faeecb0b00d92ad6d00bc8d1aa81e84098311e3b
+Merge: 5cc8a07 1636d14
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Aug 4 19:21:46 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 1636d14bbc783118c758c8b325aed9ccae4be972
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 4 16:21:04 2011 +0530
+
+    Broken code fixed for stream pages
+
+commit 52044f0a1839ff5d73f332b1118da34be09dc63b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Aug 4 16:04:57 2011 +0530
+
+    Added jqueries to support modal
+
+commit e75ae01435105334329eb078863e6eb65d8ae74b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 3 19:22:13 2011 +0530
+
+    Added latest code
+
+commit a7a31e1d36a79584903ab3a7e4b1d44943aa6c6f
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Wed Aug 3 11:55:11 2011 +0530
+
+    Added comment support
+
+commit 06c28cc7229efedef4521658c9f9d7dee42e3b1a
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 2 23:53:21 2011 +0530
+
+    Added filter feature completely
+
+commit 2048f3a7249d1d7c6d7982ab05ecdef9872cc7b2
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 2 23:22:39 2011 +0530
+
+    Added changes to filter logic
+
+commit fbcf905ae5ad70837554d99cba0a16d5af4e10dd
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 2 18:30:27 2011 +0530
+
+    Added channels view support
+
+commit d9f1baa09231907d36e867c4f2c0f5b0f76165a0
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Aug 2 05:48:57 2011 +0530
+
+    Fixed input box
+
+commit f0aead2f780fd491240634151b396a9a4bd5fe16
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Aug 1 22:38:45 2011 +0530
+
+    Added new input box fully functional
+
+commit 04617f678b93b2537c7b116f063d0cb04d5fd08a
+Author: Anand Prakash Yadav <anand@actwitty.com>
+Date:   Sun Jul 31 18:33:47 2011 +0530
+
+    zemanta query formatting
+
+commit 081bbcb81694032ef59d6cc56609f43191e708ca
+Author: Anand Prakash Yadav <anand@actwitty.com>
+Date:   Sun Jul 31 18:03:42 2011 +0530
+
+    freebase image url and weak entity validation
+
+commit 41c37a7d120785ff88f6a49dda1abb0b1864d6ad
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Jul 31 04:41:07 2011 +0530
+
+    Factory modifications
+
+commit e2178917193b99f138c5b4ca60d250637e79e0ae
+Merge: d49cfdc 43cf46b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Jul 31 04:23:42 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit d49cfdc5d577d14b2cb3d05cebd807737d518068
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Jul 31 04:22:50 2011 +0530
+
+    Adding sub_title, campaigns support, caption, sources support
+
+commit 43cf46b6d87010653bd77bdc8411070ee3c4deb2
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Jul 30 12:41:39 2011 +0530
+
+    Working on IE
+
+commit 8708533db73aadd66983d395d395707ffeff1456
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 29 12:54:55 2011 +0530
+
+    Hidden seperate add button
+
+commit 8c250418d4f94de24af5b69ee4d5cb63854abceb
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 29 12:26:25 2011 +0530
+
+    Integrated plupload to give url and work on single click of post
+
+commit 4b1070a5b0a6bf7de820e61204f50faec79f9597
+Merge: 39887a3 9e573cc
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Jul 29 00:33:44 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 39887a3e952b0c94a3e82898e4e1aab633bfdbc6
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Jul 29 00:32:58 2011 +0530
+
+    caption support in docs, capaign_type in activity, comment blocked in
+    stream
+
+commit 9e573ccbc00c3628dd2c93223ba633f2b24070b9
+Merge: fddda90 bed9dc3
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 28 15:52:20 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit bed9dc3b6f84af2896eab12b96725e78f471906b
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 28 15:49:45 2011 +0530
+
+    removed redmond
+
+commit fddda906ff578643eaf604de4c695af597d219be
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 27 14:29:09 2011 +0530
+
+    updated summary and stream for me&others
+
+commit 5df8cfea9eee3e5566c458e88a828f0dbc667fc3
+Merge: 4b55a40 e388d1d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 27 12:39:54 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam into twitter
+
+commit 4b55a408824c6e5a4e9ba2ab98995a82e758acd1
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 27 12:05:40 2011 +0530
+
+    modified streams and summary for me&others
+
+commit e6b33fd20d5450309f79f5b11248727951c58b6f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 27 12:01:59 2011 +0530
+
+    langauge support with entity class modification
+
+commit e388d1d1630b12921524a6610512177028ef4cc9
+Merge: f9d050c dad2ea5
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 26 12:38:32 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit dad2ea5b9acc352dd80c705b3644e09f4f01bee5
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 26 12:38:11 2011 +0530
+
+    removed needless files
+
+commit f9d050cbb3e32a595c37be609d19715cfa550b89
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 26 12:22:13 2011 +0530
+
+    Removed incorrect files
+
+commit a76f8e17f10d420776362d40f4855e60302b5c0f
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Mon Jul 25 21:44:36 2011 +0530
+
+    Changes made with add comment/remove comment
+
+commit b9e5da461335fa19718f9f19bd521852c2af598c
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Jul 24 11:17:49 2011 +0530
+
+    Working stream filters
+
+commit 088fb313273eac0264fff29fdb37883eebc48880
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Jul 24 09:57:30 2011 +0530
+
+    modifying for documents campaign and comment, campaign information in
+    browser
+
+commit 49ac4b035e58ddd291910a921051ed73722abf62
+Merge: 07a0f89 93e0772
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Jul 24 09:53:31 2011 +0530
+
+    Merge branch 'twitter'
+
+commit 93e077252fa138e53b5df6b0913fce383ea751c2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sun Jul 24 09:50:13 2011 +0530
+
+    modified get_related_friends with get_followers and entity_image url
+
+commit 07a0f89b4c1d5636005236c7cb55ebcd450c8c08
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Jul 23 15:11:57 2011 +0530
+
+    modified user.rb
+
+commit 5729f71e3c83884ae80d845c6c442ef2d0d4459f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Jul 23 10:59:16 2011 +0530
+
+    get_related_friends modified -> get_contacts to follow
+
+commit f27673b143be3d3d7b946f43aa3750aba1685f90
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Sat Jul 23 10:56:36 2011 +0530
+
+    removed the conflict
+
+commit 708d888a54a155ae5e7bf01e66ee0e76d96266c8
+Merge: 0643e5b f0b118d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Jul 22 19:14:15 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 0643e5b5857a271b5d9b098dd528a901024f35a2
+Merge: 85bd2ea 62635bc
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Jul 22 19:12:54 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit f0b118da9a491ddb668313b8687a765827a2f4e2
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 22 19:09:39 2011 +0530
+
+    Brought up streams page inntegration
+
+commit 85bd2eadb3be28d7446f2956478960740771c90a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Fri Jul 22 18:50:18 2011 +0530
+
+    modified summary creation before delayed proc
+
+commit 62635bc860f553bc0bf435797411dea4fa9db366
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 22 18:13:50 2011 +0530
+
+    Summary pages integrated
+
+commit e80e91ab2377bddf694f94c4006b522996dc4553
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 22 09:24:14 2011 +0530
+
+    Added merge for summary, stream, create post
+
+commit c18cd0e5084f013c6cd297d91e0ba7ec8cd323df
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Jul 21 20:18:26 2011 +0530
+
+    modified summary with firend only
+
+commit a314bde56ff70b25b7edda6c9fd686a0e3c7e7db
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Jul 21 18:48:14 2011 +0530
+
+    fixed a bug on nil destory of activity with no summar ( enrich = false)
+
+commit 826b7360340fc165fdb04588e7f40dd13d469229
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Thu Jul 21 17:48:05 2011 +0530
+
+    correcting the user.rb => word to activity in create_activity
+
+commit 5cc8a072f024cda65371dd4935d9879abca8b0ac
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Jul 21 01:39:40 2011 +0530
+
+    F & T Settings for the New User
+
+commit e7dcd78c754c7b845c9c0743520ff8aadd12b728
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Jul 19 22:31:54 2011 +0530
+
+    Initial input box queries
+
+commit f8a57296496627eda2a64bf7ea50213026137abc
+Merge: c2cb676 b1f7c17
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 19 11:36:15 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+    
+    Conflicts:
+    	app/stylesheets/actwitty/profile.scss
+    	public/stylesheets/actwitty/profile.css
+
+commit b1f7c1782d83f2f0f33d17861462d9858f7b1d6e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 19 11:15:20 2011 +0530
+
+    Added new code
+
+commit c2cb6766f65ea05e59969b8a09f2e91c4e15506b
+Author: nandyorama <pramod@actwitty.com>
+Date:   Tue Jul 19 09:01:07 2011 +0530
+
+    Removing F & T From the New Users F&T Click Connection
+
+commit bbf12111d3a3d232efe01d2297d622fd60b807e1
+Author: nandyorama <pramod@actwitty.com>
+Date:   Tue Jul 19 04:44:22 2011 +0530
+
+    Changes For Followers/followings/Facebook Friends are added.
+
+commit a650a4d5e70381d88b8f6115ef9a757ba44fa5b6
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 18 03:04:30 2011 +0530
+
+    adding ring buffer for summary serializations
+
+commit 2a5682b59e0c7ba811587057a1120b1d17ba4e21
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 18 03:02:13 2011 +0530
+
+    added streams and summary support
+
+commit 264ca5683174794a971b68f27c07b7cc6c5b972b
+Merge: f8aaf8f 20ea4f4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 18 02:49:53 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 20ea4f4350d0025aa18cac0a0df6a4b19a1fb7e9
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sun Jul 17 21:27:26 2011 +0530
+
+    Improved stream functionality
+
+commit 46587a8a71e9c79b6392c2317fb6b336b593f86a
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Jul 16 17:27:09 2011 +0530
+
+    Improved support of streams
+
+commit 401263bee70306d7dabd53a144798dc5c223fcc0
+Merge: 779f8ee 5b6d2b4
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Jul 16 16:12:17 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit 5b6d2b4d49ec0926be06974c905ccc0290e6c263
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Sat Jul 16 16:11:38 2011 +0530
+
+    Added support for stream
+
+commit 779f8ee1d4c82fd5a5aa801bc547edb813eed3c3
+Author: nandyorama <pramod@actwitty.com>
+Date:   Sat Jul 16 01:22:38 2011 +0530
+
+    Settings Page With Header and Styling..
+
+commit e44736092aa36dd0f84842399e93a43cd938eaf7
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 15 19:24:32 2011 +0530
+
+    Stream page partially brought up
+
+commit 1840c9774b573e9fee654a3e1e15f91113e98ccd
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 15 13:43:26 2011 +0530
+
+    saved the working redirection code and redmond tabs removed
+
+commit c5a6b63824ca71c5e6e739ebd86ecb45e51801ef
+Merge: 11db8c3 117a71e
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 15 11:39:09 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit 117a71e654cb75add46d0eff796b9247b22bae0f
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Fri Jul 15 11:37:46 2011 +0530
+
+    Filter application working properly
+
+commit 11db8c306539b2742915b60568c4b4b19072904d
+Author: nandyorama <pramod@actwitty.com>
+Date:   Fri Jul 15 05:36:48 2011 +0530
+
+    Settings Page is added with style
+
+commit 6958874fa0c61804042c30206caf2abf71dafc9f
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 14 23:49:07 2011 +0530
+
+    Summary page completed with filter JSON delivery
+
+commit 26b946ee418c253828d3290987f204d8eda77fd9
+Author: nandyorama <pramod@actwitty.com>
+Date:   Thu Jul 14 20:16:30 2011 +0530
+
+    Facebook and Twitter sign up/sign in
+
+commit 0bc527007a9d5bd1ae554f37f4ec693fbdab2b9d
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 14 15:49:14 2011 +0530
+
+    Added filter clicks to summary page
+
+commit 43e51e64988ecaead903a8778bd3da27b9ffc62c
+Merge: 034e8bf a3a9bee
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 14 12:43:36 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+
+commit a3a9beedb1763cb584f489713e22bd589c86c907
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 14 12:42:50 2011 +0530
+
+    Improved logging in the controllers code
+
+commit 034e8bf032759ba47ddd40b890bea868df8e6854
+Merge: 1d242ef 420ff83
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 14 11:11:06 2011 +0530
+
+    Merge branch 'sudhanshu_devel'
+    
+    Conflicts:
+    	config/routes.rb
+
+commit 420ff83bb4d0ab73ba66443a338cba5b443a69b9
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Thu Jul 14 11:07:49 2011 +0530
+
+    Made changes for profile page
+
+commit f8aaf8f257bac84f0cb6cfcb5b628848d1fd72a5
+Merge: 1f85338 1d242ef
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 18:04:35 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 1d242efc6b92641ccc32b344431794a631e5848f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 18:01:34 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit a7f7b6d33b4233a5401000421fb394ba4265c445
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 18:01:08 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit f1316d16a63926db81a02245e256e1cfe87ec706
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 17:59:09 2011 +0530
+
+    removed unwanted location migrations
+
+commit 1f8533804b99dc80bce48636ed7e92ae8b4670b8
+Merge: fc6ae64 bc1e27a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 17:38:40 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit fc6ae6493f04c431ec9fbc26830abe68f07f50e4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 17:32:51 2011 +0530
+
+    not needed this file
+
+commit 572a3df2dbbe6561c3748412b7ea178494540f8a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 17:32:04 2011 +0530
+
+    updating for comments, summary
+
+commit bc1e27a01dc738ddce2f3075fed431213e2bac05
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:42:12 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit 31bed15d17b3dcc53fc3c3141c608fc8cc44884b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:41:49 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit b6286b6841808ecdad3a465af4e958ede98bf355
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:40:44 2011 +0530
+
+    removed location detailed data
+
+commit 5d142da15f144b14b860902cc3674feb4258e26a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:39:02 2011 +0530
+
+    removed author detailed info from activities
+
+commit 5ef45a36155279b92306068daf0503c6134d7012
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:31:26 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit 093db1cb91244d09fa941e9180cb65237813de29
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:30:59 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit 8fd2c9c875866c4ae67e6ae3788fc6f8e5666e4b
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:12:13 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit e12a0fe4c32dccc23694fc12eefccd11b49e1250
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:11:49 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit 6939e8bb29690aea604812ffc828db78f42d13d2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:10:37 2011 +0530
+
+    corrected the error in rollback
+
+commit 0fe55c24937d0e8d5f76a94a989597ede094ce15
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:01:47 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit f8ede9bc75d6f58216289d6563c5fcbe818d0886
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 16:01:22 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit 35d9da05b84fde29384ba242725b520c6569253f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 15:59:05 2011 +0530
+
+    removed extra migrations
+
+commit 866301e0f406e1f525b9067f428c8d1e7bf25a9f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:56:39 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit 05b359ed534ef129045b9d3509cc2de88ddd87d2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:56:05 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit 9759587094d9c8ae7b4834733d3f6153ced6c1f4
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:48:13 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit da8a43d547bbfa4676ed1a6ded3d7ba3c08640df
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:47:41 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit ab59ce891ac525d34d4b818d84d95ba8893a55da
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:46:39 2011 +0530
+
+    added routes
+
+commit 5ff64773da97ad8821306972a0d0f4700f66cbad
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:39:46 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit 9adf0151e5b0308ea72a3339c86e27da6accdea9
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:39:14 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit 464be6f5835a85a39d6d6dce693629a7948dffd3
+Merge: 7fdc164 981e7b6
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:37:08 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 7fdc164e2664161f9b5b4fc6e736a08a14e195b3
+Merge: b36bf13 0d5dbec
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:36:12 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 981e7b67e1ffcdf0b76723f522b5cb3e38b1f49c
+Merge: 11487e6 0d5dbec
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 12:34:36 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 11487e6019831d9fd5863281da35ee74d84fa787
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 11:54:16 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit 10537cea1334b7cf3ba398a707204cebbfe0c09c
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 11:53:56 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit 1d66c24b45da3f8bc01bfb4c1ca579dc47c01908
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 11:52:09 2011 +0530
+
+    delete assets at Wednesday 13, 2011
+
+commit 7eb937c197dcadcd43efe43f2acc622cc4d4a4b8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 11:51:32 2011 +0530
+
+    assets at Wednesday 13, 2011
+
+commit a5d0676fa0894519b747cadf226e4ee0fd0b5aa0
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 11:48:31 2011 +0530
+
+    removed samarth
+
+commit 2f3636ce86be054199ebe94b3c23081b63adec87
+Merge: 54a462d 0d5dbec
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Wed Jul 13 10:56:42 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam into comments
+
+commit 0d5dbece26e724039d5621ea485dea509d4307d3
+Author: samarth <samarth@actwitty.com>
+Date:   Wed Jul 13 00:18:43 2011 +0530
+
+    Date Pick for on tap events also
+
+commit 54a462d0802ebe0e1b7b5ac1be48e0275f950e22
+Merge: 829dad3 f3da915
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 20:13:20 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 829dad3fb5605544ed5d97239cee8441c9718585
+Merge: a092f51 c926d35
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 20:03:01 2011 +0530
+
+    Merge branch 'comments'
+
+commit c926d3554e084eb18a1a0f453eb24dca9f957d35
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 19:56:23 2011 +0530
+
+    modifying comment campaign user
+
+commit a092f5158015d4226448bc73c90bd68ca49804a8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 18:31:48 2011 +0530
+
+    modifying for comments
+
+commit b36bf13a40b2c3e4e5ae73c2f9e3069632c38a25
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 18:28:24 2011 +0530
+
+    delete assets at Tuesday 12, 2011
+
+commit ada3e12a4f05f2b72367244b4df6ff8cd2d6b43d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 18:28:02 2011 +0530
+
+    assets at Tuesday 12, 2011
+
+commit 1f0d16be34c0c9b22e024eedb990f71213f447c7
+Merge: f3da915 c5a10c9
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 18:25:42 2011 +0530
+
+    Merge branch 'master' of heroku.com:strong-dawn-195
+
+commit f3da91585efdbe50810e9b4c74cf0367cef5e608
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 18:21:06 2011 +0530
+
+    removed \'
+
+commit 0fc233b3d7236c0faab68bd50dc4af82ab3febea (tag: refs/tags/v1.000.002)
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 17:27:55 2011 +0530
+
+    delete assets at Tuesday 12, 2011
+
+commit b25c1d5155c73e7c76a8b8afeea69a34cc8865ea
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 17:27:30 2011 +0530
+
+    assets at Tuesday 12, 2011
+
+commit 32497cca93f2dbdac59c5c027f80adfcd9d75a9e
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 17:15:49 2011 +0530
+
+    delete assets at Tuesday 12, 2011
+
+commit c5a10c9feb65f671892d56136d7d00f5456103f8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 17:15:23 2011 +0530
+
+    assets at Tuesday 12, 2011
+
+commit 0dbf72ed07975416b3fe3ca7bbd691e9c0409601
+Merge: 88695a4 2613e98
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 17:12:13 2011 +0530
+
+    merged changes for label and feedback
+
+commit 2613e9874ff96222450a2ea69830e929c459e0d1
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 12 16:37:51 2011 +0530
+
+    This file is not needed
+
+commit b6f0e371808c705fa31d36b065bdad4a53876d00
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 12 16:30:52 2011 +0530
+
+    Added feedback to posts
+
+commit 88695a4d158d8a3963db8c9c233809f35f857601
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 13:58:41 2011 +0530
+
+    delete assets at Tuesday 12, 2011
+
+commit b6214e67326b15991185989bf316123bf66a8db2
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 13:58:09 2011 +0530
+
+    assets at Tuesday 12, 2011
+
+commit 81284f002acacb7de4824215b4a730b6e383dc77
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Tue Jul 12 13:54:37 2011 +0530
+
+    added labels in login, also inclomplete changes of comment,campns,docs
+
+commit ded7e07cc7c572edc0045e0a1a0db5750926193a
+Author: Sudhanshu Saxena <sudhanshu@actwitty.com>
+Date:   Tue Jul 12 13:01:24 2011 +0530
+
+    Added changes to css
+
+commit 3116b68f581b16319f60ced4d7f896272b95ca74
+Author: samarth <samarth@actwitty.com>
+Date:   Tue Jul 12 12:44:11 2011 +0530
+
+    Placeholder replacement
+
+commit 52afba7f675fcad33da8da646313bf53e4231762
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:42:10 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit 6d0e5be829e185adb1fa8ef124579faa59b8b835
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:41:37 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit c6c9ac7640b7c27c1f5ca402f156b8ac469937c8
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:39:44 2011 +0530
+
+    corrected footer of about page
+
+commit 744c7eba7fc34a144a965d8e8b4614d993277a83
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:35:22 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit 73230557af8a8ad24fddcd4ff5779e9195c99eae
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:34:48 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit 945b80d5a61b78266e125a6340ea91adbd46b595
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:32:48 2011 +0530
+
+    updated link of terms of service
+
+commit e76f3fa87e0993e265ef0cac0ff1f9aff9648231
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:29:01 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit b539a3581a432286355a2b51b7527f03ee32895f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:28:25 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit 007895705aa63d7fbb909f4d186b7ad786e5ace0
+Merge: 1116714 7aa350f
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 23:23:35 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit 7aa350f6e446dbf3fea7a4586e1e637105601c09
+Author: samarth <samarth@actwitty.com>
+Date:   Mon Jul 11 21:20:16 2011 +0530
+
+    Rails Validations
+
+commit 02aded881027ad6593fe27c86841a6d343617d05
+Author: samarth <samarth@actwitty.com>
+Date:   Mon Jul 11 21:11:51 2011 +0530
+
+    Copyright and best Viewed
+
+commit 7c35ba705190872bc58683d53bb970d918ef9287
+Author: nandyorama <pramod@actwitty.com>
+Date:   Mon Jul 11 20:46:03 2011 +0530
+
+    Added One Comment Line For Test
+
+commit 1116714e6a270e6f8fe750004c6323e8ff9935fa (tag: refs/tags/v1.000.001)
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 18:52:11 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit 7feead3a4f763a9dbaea835d125d85b942a4fc4a
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 18:51:49 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit ed6a9386828d7df92f0673d44e252c058fe67549
+Merge: c03d270 b4b3b00
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 18:49:50 2011 +0530
+
+    Merge branch 'master' of github.com:actwitty/sangam
+
+commit b4b3b00581e794f2ffdf4bfb4f22f404f8bf8f2d
+Author: Alok Srivastava <alok@actwitty.com>
+Date:   Mon Jul 11 18:31:05 2011 +0530
+
+    testing new config
+
+commit c03d2700c5191c917e3c5234b2809bb6c6a4d79d
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 18:07:03 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit a01f7b1dd90c30c353e2d7d0fc2c90c07d1fa13a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 18:06:39 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit 25563e5e2de04cd0bf67886b3414d05929a4949b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 18:04:01 2011 +0530
+
+    modified date
+
+commit 07383fc4ecccd2d22afcce8fa16792752a405982
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 16:04:41 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit d33af6b158a4f9f9c9330146773085a2112a6b2f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 16:04:15 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit 60fba07fda0b50611f176a9789ec1aad6926887b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 16:02:51 2011 +0530
+
+    modified email password
+
+commit 23cf8afae3047e166403075a9fd3948d555ba53b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 01:29:02 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit 94afe2f7a951ee8c5ea1a5d0c62c250d7a4facb6
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 01:28:30 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit ac31a6d7c30d666ea954d9bf09638a66b7a11bd6
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:30:35 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit db18d504904798bf6bd24e9779d9c4daf39fbaf5
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:30:03 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit 85798a6a0a3a0abd9f568223699dd161c8967ad2
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:27:56 2011 +0530
+
+    commented overflow-x: hidden
+
+commit c2ffcd3ccb33f22d5bc22ea98d7bb4180412c3c2
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:18:30 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit fc61f5f0d4bb2e1edb3010056bf62c85c0c8651b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:17:58 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit 86e20a7dbb0bbf6e4c8ee7497dc7e18b4d0c2b8c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:16:42 2011 +0530
+
+    modified the footer
+
+commit fcc27a8943e9a4da9df8d1bef2256008f17c186c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:11:49 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit 43c101446f7ce1b10cf9c26b4704c6962bcb4ee3
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:11:15 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit ad91ce2c7f6eed8179c01da38601bae36d8f85a1
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:09:57 2011 +0530
+
+    modified the domain of defualt host in production.rb to www.actwitty.com
+
+commit a62670e62e96bd1966a62ab128c77f6043d4cce3
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:05:16 2011 +0530
+
+    modified the mainpage.scss & edit.html.haml
+
+commit b5a853971bdb2e3d260692607206c9e0f9fca521
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:04:49 2011 +0530
+
+    delete assets at Monday 11, 2011
+
+commit 0cc366546933c1733319b6366cf433f3ffdb87ae
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jul 11 00:04:17 2011 +0530
+
+    assets at Monday 11, 2011
+
+commit ec4e54529fdd86003f4f2714f0671e169e3dc310
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:51:03 2011 +0530
+
+    added the defualt host in enviroments/production.rb to actwitty.com
+
+commit e5456f5260c0c8bfb2eff5b1c5d96007441d5d6f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:42:07 2011 +0530
+
+    delete assets at Sunday 10, 2011
+
+commit 994c1eaa400dea7e89a3088d489b8c558056b5b2
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:41:33 2011 +0530
+
+    assets at Sunday 10, 2011
+
+commit 5a82f61a221c567fc1daae404d9a5afa2e3510c0
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:39:13 2011 +0530
+
+    corrected semicolon error in mainpage.scss
+
+commit f1de465b2f5b19b230f5f98e6246f21c5d8f218a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:31:19 2011 +0530
+
+    delete assets at Sunday 10, 2011
+
+commit fbb3581ecbe74fcef377fe2e56b1e959223826de
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:30:46 2011 +0530
+
+    assets at Sunday 10, 2011
+
+commit ceec18fcc3aff7b7e0e5cf19e0c8790ffe4c00b6
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:28:35 2011 +0530
+
+    restored slugignore and made the blue border full width
+
+commit 78ac0016f071919a8360ec85d0ed3a6b09b7cd39
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:21:40 2011 +0530
+
+    delete assets at Sunday 10, 2011
+
+commit 3c667e5c11c4fd61f56f7dfc363bb084e1a122c8
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:21:09 2011 +0530
+
+    assets at Sunday 10, 2011
+
+commit 2102b43b04aae7cc9e78723f5863f73396a5b455
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:19:38 2011 +0530
+
+    modified slugignore
+
+commit bf10f217bb3370b84c489015bb84292514381e8f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:14:50 2011 +0530
+
+    removed model and controller diagrams
+
+commit 84ff284ae3efd2200ff0da3f25b4e180387a2962
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:05:59 2011 +0530
+
+    delete assets at Sunday 10, 2011
+
+commit ade55fc8b63d3585985613c371a7ddf1c6ea8417
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:05:27 2011 +0530
+
+    assets at Sunday 10, 2011
+
+commit b68017a8e698982ae5778d6c16958cfd4c789024
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:03:32 2011 +0530
+
+    changed team border and background
+
+commit d7e406f1f78f0b5c101d1fab1d20f322756cdb46
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:00:51 2011 +0530
+
+    delete assets at Sunday 10, 2011
+
+commit 59e9c84a718924df396399fda1bac8ff682ea0c5
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 23:00:17 2011 +0530
+
+    assets at Sunday 10, 2011
+
+commit fb740c7ff8261f451518832acd1e7b1fa5af7b26
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 22:58:32 2011 +0530
+
+    removing border in team page and overall blue bac ground
+
+commit cfeb88ef643750e4608eea34b59c65fb6b7bbbae
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 22:41:50 2011 +0530
+
+    delete assets at Sunday 10, 2011
+
+commit b3efc42d3a3617cc01a0f43fe343b037971ed6dc
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jul 10 22:41:18 2011 +0530
+
+    assets at Sunday 10, 2011
+
+commit a23317df3fea37ae17779b2e628dd06f4bbdcb23
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sun Jul 10 20:43:21 2011 +0530
+
+    Fixed the issue of multiple application.js adds
+
+commit bb633b3b97b175f481af3c99b50ef6d733e2a2c5
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sun Jul 10 20:17:12 2011 +0530
+
+    Fixed all issues for alpha release
+
+commit 87a59038c9a615c159fddce305a3c662bc352374
+Author: samarth <83.samarth@gmail.com>
+Date:   Sun Jul 10 01:08:23 2011 +0530
+
+    Modified Styling
+
+commit 90fd62695d95b0fc0919d1b40354afb3961b54c7
+Author: pramod <pramod@pramod-HP-Pavilion-dv4-Notebook-PC.(none)>
+Date:   Sat Jul 9 22:07:08 2011 +0530
+
+    Jquery Placeholder for the input fields in sign in form, forgot password form, resend instructions form, confirmation fields form.
+
+commit eddcc8556c5c0aa8f39c62add436801adcd45bfb
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sat Jul 9 21:35:03 2011 +0530
+
+    Changes made to fix the issue with password change`
+
+commit b91e0456a04d2c66d1d6be4cb97b57fd7c1ab85e
+Author: Anand <anand@Anand-PC.(none)>
+Date:   Sat Jul 9 15:36:11 2011 +0530
+
+    entity sanity check
+
+commit bad83dea605ff8a1b01e8a0f4c4b00960f63dbb4
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 21:02:53 2011 +0530
+
+    Changed text
+
+commit 6d2ef170f2f7ce0a6d7e9bc14e14e97e374aa716
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 20:53:05 2011 +0530
+
+    removed header
+
+commit 661806a41e697a578bbbdb94061d45edf7652276
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 20:36:48 2011 +0530
+
+    Made confirmation page a seperate page
+
+commit 28754aa3c4a2516b74f575f363ee9a1490e913fc
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 20:26:19 2011 +0530
+
+    added jammit
+
+commit e554c8fa37f6973fb990718f6fc6d5c2db89231d
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 20:20:57 2011 +0530
+
+    added
+
+commit eb10e87ff29b877172d62c6063a0822f0accdbc7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 20:18:18 2011 +0530
+
+    added
+
+commit 382985d370a927f5c3758b6a4eee4625745107ac
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 19:00:46 2011 +0530
+
+    Changed footer and header to partials
+
+commit 3b1f9e5408b14670f8a796d2031aeadbb6320012
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 14:21:48 2011 +0530
+
+    modified Gemfile
+
+commit 19a6195b1ab1d0a8ab9ed2512adbbc1db32aedcf
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 14:07:35 2011 +0530
+
+    modified config.ru
+
+commit 32e178f8562527da1dea6328ba2d972bd57010ed
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 13:57:46 2011 +0530
+
+    added
+
+commit 39fcf54e2eb22d40b71ff7309e96507e504c69ca
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 11:48:06 2011 +0530
+
+    Compress on and delete assets
+
+commit 52e2bab113060b2861f63adb4bf5f5ec3232fef7
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 11:21:59 2011 +0530
+
+    Added post gres setup document change, just to make sure version moves
+
+commit 95d9fa27ad796c0795119d755965a4f6f8a28aab
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 10:52:24 2011 +0530
+
+    delete assets at Friday 08, 2011
+
+commit 0f1336df3ed48b8bd79d83d63eab3e1c48f1eb17
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 8 10:52:08 2011 +0530
+
+    assets at Friday 08, 2011
+
+commit 60e7169b411205bcac841558166f4ea717c38997
+Author: samarth <83.samarth@gmail.com>
+Date:   Fri Jul 8 09:29:01 2011 +0530
+
+    Simple form version to 1.4.0 and removed comment for before_send in signin
+
+commit 3b3bbb2c3d6731e4cbf58ffa2aca18b11937c18f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 01:12:09 2011 +0530
+
+    updated gemfile - restored
+
+commit c04c20036779aa73748af417d517072a288a8d3f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:49:24 2011 +0530
+
+    delete assets at Friday 08, 2011
+
+commit 283b47c306698437247fc3ba255d625499abc70c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:47:25 2011 +0530
+
+    assets at Friday 08, 2011
+
+commit 4efdd8ce570aceb1e2b3e9e424f6ebab315887cf
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:43:14 2011 +0530
+
+    delete assets at Friday 08, 2011
+
+commit a3e5b6b6537726b9a7264a8b42ecccb9bfb8a8cd
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:41:10 2011 +0530
+
+    assets at Friday 08, 2011
+
+commit c016b50781a6977cdb50d9e634378582386ce376
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:16:54 2011 +0530
+
+    updated
+
+commit 58c4b5255fb33d4f71b655366724f99398b55a2f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:08:46 2011 +0530
+
+    updated gemfile
+
+commit 4f759d6837f2ca73d5c1e6f917690ee5e83381b6
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jul 8 00:00:09 2011 +0530
+
+    updated
+
+commit 95438f5d4cf3460739c2e8f7304cd16d974ed0cd
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 23:57:41 2011 +0530
+
+    updated
+
+commit fada08ee36cc1736b2a93bc308f79341280201a8
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 23:50:57 2011 +0530
+
+    modified Gemfile and lock
+
+commit 0a95a20a3e7b83348aeb1151c8db6d779d20ab65
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 23:45:40 2011 +0530
+
+    bundle modified
+
+commit 7edf9c15191be83868bca8d9d66f66c6395561f0
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 20:57:06 2011 +0530
+
+    Added lock
+
+commit a67d9840364dad4563407c411e5f35ca66d246bf
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 20:45:08 2011 +0530
+
+    Alpha Release, Bravo!!! Lucky on 7th
+
+commit e53ea2235c57f180a4598fd61d83aa938a887caa
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 20:27:34 2011 +0530
+
+    Added workign release alpha
+
+commit 6b2672a8cf62296c59863fa75eb181808ccdd315
+Merge: 187174b fbf6a37
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 20:26:48 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit fbf6a3768b1bd623f480fa4673986567bbaeb206
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 19:28:07 2011 +0530
+
+    removed asset
+
+commit 2ee69945f3e8a9053ce078a2ad6d4fd1c43339ec
+Merge: 6b6923d 5c2ed4a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 19:27:34 2011 +0530
+
+    Merge branch 'master' of heroku.com:simple-mountain-557
+
+commit 6b6923d15d89f48fbbb71565ea477a1b909cfdd5
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 19:25:57 2011 +0530
+
+    comment removed and slider code as told by sammy and sudha :()
+
+commit 5c2ed4a37a777c74c1456b3bcb71432670145f24
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:42:24 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 187174bd3a0738d13e79e3e5a537c7a327265f8f
+Merge: be2b585 f365a4c
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 16:41:32 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit f365a4c544d6a2c88455af9b59af0a480f37f4a0
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:40:59 2011 +0530
+
+    ok
+
+commit 683cbb2ba9d2a4c43b91a3c7e0ab06f7cfb62520
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:25:50 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit af958ba913b35a3af9855d1f8e879063b5f47ebc
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:25:24 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit a7018056722016258555fa635270e566fc2e63b8
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:24:05 2011 +0530
+
+    enables static assets
+
+commit 55730508d62dd892fa1c1bed929df6b4cfaab95b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:22:33 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 449880b9baabfa314b40b1d46f7c4627907e3a8c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:22:06 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 0df4d11d136685baa245af0e3a795b4173f34429
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:19:49 2011 +0530
+
+    added comment in application.html.haml
+
+commit be2b585df101a3b3b96455c0b5693f216408ec37
+Merge: 74f6102 9e438ab
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 16:09:52 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit 74f6102b824b8f59a855d8842f41bee99b1fe18e
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 16:09:33 2011 +0530
+
+    new changes
+
+commit ad893c62ebd9580b0695de6e39299131e7b3eae2
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:07:15 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 9da4d38c9f15c744bdf4c4cabf2edfb247171e00
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 16:06:53 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 969f76dca2cceecfd215626a1ec1f900bbd73ce0
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:59:22 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 089a90dd9dce1b9a370fdfe6101ece6d55bfe355
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:58:56 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 9e438abe950680f76644adf64e46a21734ffcb74
+Merge: 2b36dde 2a11b65
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:57:39 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit 2b36dde56d0df032957ff9b0a8f2e681e737931f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:56:51 2011 +0530
+
+    removed compression in assets
+
+commit 4e7dad3b00db1bf1b13b987445e2019eca13bd9d
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:50:14 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 4fa8321f94e003199076d9410987ec465d12dd16
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:49:50 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 942dc622a6c022d3b3f2211316ab23d3abe1f852
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:36:34 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 3cdc6f8f73cbeac444862acb4edf36408c70715c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:36:06 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 2a11b65e332b9a789afa2c8904b9153a6dfb5e47
+Merge: fdfa9f5 5f55798
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 15:34:00 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit fdfa9f526fc313fbb3ec2b664db83a2f96fb97a5
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 15:33:38 2011 +0530
+
+    Style for texts
+
+commit 225bbd928c928fe3b161697bdf48b324292780ab
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:31:47 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 5f55798ded5ce9409f203584235096d316247fba
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:29:00 2011 +0530
+
+    modified production
+
+commit edabd0c753eaf641fa436cc7c0e07b89f03b27ad
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:26:07 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 34f9476aa1efab9e5440c99ad59611599f2fa350
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:19:50 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit a7951e8b9fc530af89e83218dd5573745ced44d1
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:19:25 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit dd1078f9cb7aa61f769e3bc580b19b43c1ba0486
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:19:06 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit ac35677f5230a0af57a509581f7aca7f6411eaf0
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:17:38 2011 +0530
+
+    modified
+
+commit 96214410f689d6d841080fb8fe45e099546d6115
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:12:52 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit e05fa8b937cdd60451e1fdb0277a701f1d3822ac
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:11:11 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 50224fa1e47b90619f8cb3f99a2a36cafc1338de
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:08:33 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 13807ffb28cd687cec8f8ebdd4f7518e4f0f675c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:01:19 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 3afe8549cdcd42654db6335d6f8da0c446bd8a90
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 15:00:49 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit e684bb57387e3f234fda11b57743af65b911b2fb
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 14:51:25 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 72e59b0215b0a5b67dca2e5dc031fd42687ef3a7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 14:50:59 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit 2f4941d598b1cdf577034615caca8c924c32af53
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 14:48:18 2011 +0530
+
+    comments
+
+commit 1ef6f8b6cf94b5f5530066ffd507a2823c675992
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 14:42:11 2011 +0530
+
+    delete assets at Thursday 07, 2011
+
+commit 6f3e3255f2d00d26e695235115c9759a581ad12b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 14:41:45 2011 +0530
+
+    assets at Thursday 07, 2011
+
+commit bab58d9674f7ce3220357dd7d2c0af905747994c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 14:39:31 2011 +0530
+
+    revert production.rb
+
+commit b3d47de4f82f26921df15944720bc182ad0540a3
+Merge: 387543d 3eda345
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 13:55:14 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	app/stylesheets/actwitty/mainpage.scss
+    	public/stylesheets/actwitty/mainpage.css
+
+commit 387543d1fe49d195c73a0019a60f9b6ee6deb73b
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 13:53:42 2011 +0530
+
+    Local changes
+
+commit 3eda345f9bd1a1a92a27821b24a59c836603407a
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 13:52:39 2011 +0530
+
+    More Styling
+
+commit 20bb5d1529ce2a1d2858e0828ffcdaff861b7a45
+Merge: f29b72b 2dca266
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 13:17:06 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	app/controllers/users/registrations_controller.rb
+
+commit f29b72b29594a6489985a33885f76ea126704be3
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 13:14:26 2011 +0530
+
+    changes
+
+commit 2dca266b395279751423eaad36b2655f656c0442
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 13:14:00 2011 +0530
+
+    Google Analytics
+
+commit 4628b7410d95432390bc1c94261a40ea90a33251
+Merge: 9cb37e6 5282d1c
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 12:56:44 2011 +0530
+
+    Styling for pre alpha rel
+
+commit 9cb37e65126b159d6a658899575d477f3abd8eac
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 12:47:41 2011 +0530
+
+    Styling changes for alpha rel
+
+commit 5282d1caed04de94d20fe436bae8a1973866010f
+Merge: e3270af e6d78c0
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 12:25:19 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit e3270af6cf234977fc0e3e829aebaa62cbd61879
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jul 7 12:19:21 2011 +0530
+
+    About page added
+
+commit e6d78c08d085993e2f6635ce0607cc3f33080a7f
+Merge: bc3ccd3 d8dff4a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 11:17:14 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit bc3ccd38fc7df0640193e33e343f7f2a93de0f0a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jul 7 11:01:37 2011 +0530
+
+    set serve_static_assests false in production
+
+commit 91787e1a7e0c00513ef2bbf1ccb70fdc5d0aec8c
+Author: samarth <83.samarth@gmail.com>
+Date:   Thu Jul 7 10:46:51 2011 +0530
+
+    Checking in registration controller
+
+commit d8dff4aecaef931b0a3e715bdd30f2c351e56ca9
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 23:11:12 2011 +0530
+
+    Fixed merge
+
+commit af7b0a39a5fe13fd9b98e493362c8acf6bb02236
+Merge: 0a045c3 8c74b66
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 22:59:56 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	config/environments/development.rb
+
+commit 0a045c3e72e8548d44e1d122b6a63ac629e7dd23
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 22:54:03 2011 +0530
+
+    changed email formats
+
+commit dc3a61b07db7b269aa0c644ec13bee86833cfbd5
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 20:56:40 2011 +0530
+
+    Fixed problem with script
+
+commit 68bcab0ee42fec294d4a16fe4d1734a599217ae9
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 20:47:26 2011 +0530
+
+    moved code to handle sign in/sign out to seperate file
+
+commit bf1bdc1a1231f3e3dc1954e92bb69169766b68dd
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 20:43:38 2011 +0530
+
+    getting in added
+
+commit 8d6321421477782499a516ec53a4c0262224920e
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed Jul 6 20:07:27 2011 +0530
+
+    delete assets at Wednesday 06, 2011
+
+commit 7479033f5157dd5e58df2c4e7262fd675d9c25c7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed Jul 6 20:05:10 2011 +0530
+
+    assets at Wednesday 06, 2011
+
+commit 8c74b66379b53c559451d18c100199e1a87290b4
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed Jul 6 19:59:26 2011 +0530
+
+    production modification
+
+commit 2ea16d3bfc9d3b1937a5dcdce2e63285d434dcab
+Merge: 7054215 5aa058a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed Jul 6 19:52:28 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit 7054215a431907d8afb1495c9bb6efc6badb72ef
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed Jul 6 19:49:04 2011 +0530
+
+    add changes for production and also modified activity
+
+commit 5aa058a32ecc3960a1e3282fd3b33dbceb91bf69
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 16:46:08 2011 +0530
+
+    changed logo
+
+commit a8d0eb85398dc189ab212b014843977e3e44ae8f
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Wed Jul 6 16:30:11 2011 +0530
+
+    Added new files
+
+commit 76abeb9bcdaf1590a923815e45355d67d1ce8c35
+Author: samarth <83.samarth@gmail.com>
+Date:   Wed Jul 6 12:37:18 2011 +0530
+
+    Styling of homepages
+
+commit c5b248bd648a715ae23c1831675a8dcfdb131422
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Tue Jul 5 19:31:34 2011 +0530
+
+    Changed the activities hash
+
+commit 6ea04db95cc282583af732ed752491ed15b7c46e
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 11:56:38 2011 +0530
+
+    removed unnecessary files and addded summary and comments
+
+commit f43052bf674557cd133e2b141b7beeb5914979ce
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:47:01 2011 +0530
+
+    removed solr
+
+commit bfe1562b16cb82720effb616616f725224dd5df3
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:46:01 2011 +0530
+
+    a backup folder
+
+commit 1c4865ad3745c44fbb6e0b6b5342c871fa2f2ea5
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:41:36 2011 +0530
+
+    modified slugignore
+
+commit ad220d6462a3c904514f6a23dab23fee4e89e7cd
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:33:31 2011 +0530
+
+    modified git client_side_validation to git source bundle install for
+    client_side_validation-3.0.7 is failing
+
+commit d8f1f74e9a3c75ffd82c0873e4bfbe75e1e181e4
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:21:06 2011 +0530
+
+    added
+
+commit 0a1461ee7ca128bef4c051d583b5ae1531979410
+Merge: f2b6c45 94d9bc7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:04:32 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit f2b6c45390a53e910e3fb25a389c100198c1025f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jul 5 02:02:55 2011 +0530
+
+    added user functions in user.rb and cleanups, modified document apis
+
+commit 94d9bc777a4bba878bdfca54f37a3a0a996af04f
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Mon Jul 4 14:03:58 2011 +0530
+
+    Added user model with enhancements
+
+commit 983699e20996e287f13ebe67ecbd238b5116ce25
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Mon Jul 4 14:03:34 2011 +0530
+
+    Fixed new features
+
+commit 0c8a582e851c135a6683a6f7de2cbec33292f51c
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Mon Jul 4 14:03:03 2011 +0530
+
+    Enhanced base view
+
+commit 7bad4575a90e9232c13b7beb40ba3c3fcd2bb8f9
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Mon Jul 4 14:02:27 2011 +0530
+
+    Added new style
+
+commit 5be21a27e0f031a4266359d587999c6cade127ce
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Mon Jul 4 14:01:37 2011 +0530
+
+    Added new java script for all modals of profile page
+
+commit 43b7ad4572d9207e6c35cacc2d9f649c43f50311
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sat Jul 2 14:56:56 2011 +0530
+
+    Fixed the issue with sign in sign up pages
+
+commit e7ecf553a262327f01d9290de7cea41328fedc6c
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sat Jul 2 14:34:32 2011 +0530
+
+    Adding modified code
+    A#	deleted:    public/javascripts/actwitty/.contacts.js.swo
+
+commit a48d836f1cab69c0c3fcee019d32a4ba46ed4fda
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sat Jul 2 14:29:24 2011 +0530
+
+    Added latest
+
+commit 2b5217ecf08729a7cf053856029aa57d99c5c38e
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sat Jul 2 14:28:30 2011 +0530
+
+    added latest styling
+
+commit 163da7e23e828a9bfb1864528e11b8c724ebfb77
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sat Jul 2 14:05:34 2011 +0530
+
+    upgraded profile page
+
+commit 176d99000f6584ece05fe803504801f6fc728fc9
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jul 1 20:48:10 2011 +0530
+
+    Refactored javascript
+
+commit 7997ded8ae6905a3d1759310b9d09893a12a9e81
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jun 30 13:00:01 2011 +0530
+
+    Added new features to the javascript
+
+commit 17943b9ef30543972de7c30b29e358102ef6956a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jun 27 02:15:21 2011 +0530
+
+    adding activity controllers with test data
+
+commit 0035a0f44a25f8fc0fadf5551d4904cbc56d28dd
+Merge: 7aa8a8d 36abc79
+Author: samarth <83.samarth@gmail.com>
+Date:   Sat Jun 25 20:36:24 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit 7aa8a8d31d9cba7f7a4fc6ea56c9c87a6163d6c2
+Author: samarth <83.samarth@gmail.com>
+Date:   Sat Jun 25 20:31:04 2011 +0530
+
+    Profile Page css-draft
+
+commit 36abc79f4cd73df17dba898fc183a2d9e655ac07
+Merge: 2356b2e 7d7eaec
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat Jun 25 17:44:26 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit 2356b2e4a9f324a427f652825a9f2c23423a5960
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat Jun 25 17:43:39 2011 +0530
+
+    activity formatted
+
+commit 7d7eaec5fb79ea331d8a50d0f43f8b788739598e
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jun 24 20:28:59 2011 +0530
+
+    Added basic test for entities and activities on home page
+
+commit 7df9083685af20e2a18988368488dfe268d730e7
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jun 24 16:23:07 2011 +0530
+
+    Working main page
+
+commit f6f4b980a457f534994b60145fa81a8d3dcfa626
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jun 24 15:58:32 2011 +0530
+
+    Modified default home page
+
+commit 2c687d6e0516de5ee6a736a27eaa152f5b1a0d52
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jun 24 15:55:50 2011 +0530
+
+    Improved home page support
+
+commit cc986b085e3e3bce41e02ec3b9f762379b070e6e
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Fri Jun 24 00:34:47 2011 +0530
+
+    Added jquery for home page for user list
+
+commit 90481cd949e3631ef765d109a2dfd364f240d23c
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu Jun 23 17:28:45 2011 +0530
+
+    Added Jquery support for friends
+
+commit 5bbc63bec81031f2f9b8da867130faf628acc6ff
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Tue Jun 21 23:31:03 2011 +0530
+
+    changed user to have full name
+
+commit 21f4e67a1a8945ac7b28fe6e6e7c10b2fac396f7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 21 01:36:13 2011 +0530
+
+    some more modification in campaign_spec
+
+commit 9dbcb782f424d5c806e6eaf930d1b4de96ba508d
+Merge: c35d6f8 d46bcf3
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 21 01:21:53 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit c35d6f8db49d9b8c30d561eea21117331530fa2f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 21 01:21:07 2011 +0530
+
+    campaign
+
+commit d46bcf36506f552b190a46baaa20c3aeba0bf443
+Author: Anand <anand@Anand-PC.(none)>
+Date:   Sun Jun 19 20:38:53 2011 +0530
+
+    entity enriching related changes
+
+commit a0b3c539931a312a356a72172db96b980eb59bf9
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 19 17:22:41 2011 +0530
+
+    user reverted few changes
+
+commit 1a29c6da18f3da44e686cbeab5c98beff7ad0019
+Merge: cd355f8 d87dbf2
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 19 17:08:29 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+
+commit cd355f8b928387c9551b4dd9493f6af3f0cc55df
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 19 17:07:45 2011 +0530
+
+    campaign
+
+commit d87dbf29ee3ddef69da3e4bfc70feb5cdba9d293
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sun Jun 19 16:58:24 2011 +0530
+
+    Added js from merge
+
+commit 5982d1907059ab99b10ce6b6f0cd9ddff3d09bc1
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sun Jun 19 16:55:12 2011 +0530
+
+    Fixed merge issue
+
+commit 3f72d690632552484bdbcfe02f0fc2ee5dfc441b
+Merge: 0eec9f3 a375bbd
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sun Jun 19 16:43:50 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	app/controllers/users_controller.rb
+    	config/routes.rb
+
+commit 0eec9f3b199d47b50df4bf3fc2d36305001850f9
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Sun Jun 19 16:41:38 2011 +0530
+
+    Added changes for user management
+
+commit a375bbdaa69f9b80e51e881d2062e93add58982f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 19 15:15:32 2011 +0530
+
+    activity processor
+
+commit 24b624879f0842db1c2708456892b0edd1eb5c12
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat Jun 18 18:27:48 2011 +0530
+
+    some modifications in location
+
+commit 3045de9d8dc69ae42c1bd8c26aa562b0aed2782b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat Jun 18 14:38:31 2011 +0530
+
+    added campaigns
+
+commit 6cd877b65a9aa5906183ed3bc1390270a46da19f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri Jun 17 01:52:05 2011 +0530
+
+    delayed_job carierwave fog
+
+commit 9e8ff067810e710f869098cd5bd7ee5eb2bc13a4
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 14 09:38:43 2011 +0530
+
+    modified slug
+
+commit 37aa23a0016872cca3dfebd84557f2671b5af2aa
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Mon Jun 13 18:13:05 2011 +0530
+
+    updated data_uploader
+
+commit 92b2c0401b856f897e33cc5c086a16aebc14f7aa
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 12 21:05:27 2011 +0530
+
+    u
+
+commit fcbee907a0d9213b1d4064fdcbfb7da77f8520b7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 12 21:03:12 2011 +0530
+
+    u
+
+commit 3e7f85599c6f39ac4282ff1e8948e9d8b9dc6381
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 12 01:24:09 2011 +0530
+
+    u
+
+commit 09ca8de7af48cf185be4f50cd3d800ad28e84cc7
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun Jun 12 01:02:37 2011 +0530
+
+    updated
+
+commit eda1eb7fedc2826aca6d7b9d9ed16a07d4e23e8b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat Jun 11 15:37:32 2011 +0530
+
+    updated file
+
+commit 62d1cb952feee3b894907215897ae0030402cc61
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat Jun 11 15:27:04 2011 +0530
+
+    Updated with Activity Words
+
+commit b71bc3736728f0a549dd7652aa648125c88687a0
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu Jun 9 15:22:50 2011 +0530
+
+    Postgres SQL
+
+commit 4b27fdab8b47761e04862d539d4007c082af8053
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 15:46:18 2011 +0530
+
+    slug file
+
+commit 2dce5c2d40a79cb6458b5bc379b4df6f4bc19ab5
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 15:44:58 2011 +0530
+
+    modified
+
+commit 3b19fcb9aabad1051a2f6b5c91ef696a4503606d
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 15:42:55 2011 +0530
+
+    modified
+
+commit 40d0a53501a20d275f6fb0dacbf1fe45a7a3f0d8
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 15:38:47 2011 +0530
+
+    modified Gems
+
+commit fa5d36706315328a7b7323014a450061ed187d88
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:52:02 2011 +0530
+
+    slug compiler file for heorku
+
+commit 4ed5e54cf4cc980d6c944991d6912604794eebeb
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:39:30 2011 +0530
+
+    modified
+
+commit aceeb298e587aaeeb3badcb9e7544743ad21704b
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:32:54 2011 +0530
+
+    modifed gem file
+
+commit 42772e94ae8748eb171a5800e3f2745635cee5ac
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:30:45 2011 +0530
+
+    added
+
+commit df1682ca476c38c55de04e5a207aaf8d973419f6
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:26:23 2011 +0530
+
+    modified gem file
+
+commit b098ea4df3ac8f8c13e79b581548bc92b631249f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:04:17 2011 +0530
+
+    added
+
+commit c51b8151f82a86836b4cc669b6c077656fd0f205
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 13:01:49 2011 +0530
+
+    Gemfile update
+
+commit 80e15f509f58effa3b77edb1171f161516cb289a
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue Jun 7 03:47:23 2011 +0530
+
+    location added
+
+commit b549c5c5c79b0779296ccc137a6f011957732907
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue May 31 03:54:59 2011 +0530
+
+    testing started for models
+
+commit acd71feb259e42fa04283630263b0e17f90ac9eb
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sun May 29 10:13:15 2011 +0530
+
+    models changed
+
+commit bd148545737ecc89ed022503fee465605bbb1135
+Merge: 21175ec d614b6f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat May 28 16:57:09 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	db/schema.rb
+
+commit 21175ecb6e1fc00403e45e730adb43c14d1fbca1
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Sat May 28 16:42:16 2011 +0530
+
+    models for backend
+
+commit d614b6f4588f33f1b4d628e8df7d6fd1b6939e58
+Merge: ce458a6 510b98f
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 26 15:32:25 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	app/models/contact.rb
+    	app/models/loop.rb
+    	app/models/user.rb
+    	db/schema.rb
+    	spec/models/contact_spec.rb
+    	spec/models/post_spec.rb
+
+commit ce458a68b7babc8b3224f268878ae12c0b08ebac
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 26 15:29:50 2011 +0530
+
+    merged changes
+
+commit 8f893947103130008ed59afa04230ba23dc62a9d
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 26 15:22:37 2011 +0530
+
+    pushed code to branch
+
+commit 510b98f9daecf8001db117ed7e3cda855530373f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu May 12 19:46:34 2011 +0530
+
+    updated rails_generator
+
+commit 9d3160a677902f38328830e5f68292aa822f0f92
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu May 12 15:48:12 2011 +0530
+
+    revert
+
+commit 03798a35aa97bb9de9694592a54cbf3151d9c178
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu May 12 15:33:11 2011 +0530
+
+    test change
+
+commit 880d1af2fff5570ecf186d75e045a1418b95969c
+Author: Lemonbag <alok@lemonbag.com>
+Date:   Thu May 12 15:31:31 2011 +0530
+
+    revert
+
+commit eae48b973777945ea5f35290fab5171448466762
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu May 12 15:25:55 2011 +0530
+
+    check
+
+commit 90c168850240b132ce08cba3cf5015ac1cc5bde9
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu May 12 15:15:32 2011 +0530
+
+    deletd specs of unnecessary files
+
+commit 8e2efddac1e29dafec82e4e7d362641a1017f7c1
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Thu May 12 15:14:17 2011 +0530
+
+    removed unnecessary files
+
+commit 6deb65332129295dc387cd4b6b59f031fd646cbc
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 12 14:54:48 2011 +0530
+
+    Reference docs to configure git, ruby mine and vimrc
+
+commit 9bc669802e59774fe20c0de60588bdd74b37bf4d
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 12 14:46:07 2011 +0530
+
+    Changed DB for migration
+
+commit 8b1e965f7e0e5877abfc1989ad81caa77a36052b
+Merge: 767a418 ffefd48
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 12 13:13:19 2011 +0530
+
+    Merge branch 'sudhanshu_local_dev_branch'
+
+commit ffefd486028e1edfca5038ff6c149c79c4d3b5d9
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 12 13:12:54 2011 +0530
+
+    Modified user name
+
+commit 767a418e530e21717045c013e7a0e5e7f98cffb7
+Merge: 5a8c830 e969f7f
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 12 13:09:05 2011 +0530
+
+    Merge branch 'sudhanshu_local_dev_branch'
+    
+    Conflicts:
+    	.gitignore
+    	Gemfile.lock
+    	app/models/user.rb
+
+commit e969f7f883bc3c06435801c1d3df45619e712a09
+Author: Sudhanshu Saxena <sudhanshu@lemonbag.com>
+Date:   Thu May 12 13:02:48 2011 +0530
+
+    Added files with initial spec
+
+commit 5a8c8308cc87ee6871129abecc8149a343c7b19c
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue May 10 02:08:19 2011 +0530
+
+    Modified user.rb to remove sunspot test
+
+commit 487c520c432059c8cb2b9edf19691a9abdffa189
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue May 10 02:02:30 2011 +0530
+
+    sunpot changes still need to change the user model
+
+commit bc8d9d1fd304d1151625e143e5b11b2a5b13593f
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue May 10 01:51:36 2011 +0530
+
+    sunspot
+
+commit 8aa373821d18dc633abe030086a634fdfbf1378e
+Merge: baa9e21 cb548ce
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Fri May 6 11:21:56 2011 +0530
+
+    Merge branch 'master' of github.com:lemonbag/sangam
+    
+    Conflicts:
+    	Gemfile.lock
+    	app/models/hub.rb
+    	db/schema.rb
+    	spec/factories.rb
+    	spec/models/user_spec.rb
+
+commit cb548ce11c63bec421e77c95b683a7395c8ffd16
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Fri May 6 01:13:35 2011 +0530
+
+    spork added
+
+commit baa9e219b002a5b6d09a2198b32433aee9145363
+Merge: 308095f 7f199f7
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Thu May 5 14:08:13 2011 +0530
+
+    Merge remote branch 'origin/sudhanshu_validations_branch'
+
+commit 7f199f7f4a41aae25e47beb642e4c8e3d4e89334 (refs/remotes/origin/sudhanshu_validations_branch)
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Thu May 5 14:05:07 2011 +0530
+
+    Fixed DoB validation issue
+
+commit 308095f82a0490d8bfd6871c8005e603f0a632c9
+Merge: 5208997 666ace7
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Thu May 5 13:09:28 2011 +0530
+
+    Merge branch 'sudhanshu_validations_branch'
+
+commit 666ace7e11c7db994e7edcd03ee12c537869e87e
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Thu May 5 13:09:08 2011 +0530
+
+    Added change
+
+commit 520899770d5b561450343f008e6ffbe5e6903477
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Thu May 5 12:54:23 2011 +0530
+
+    Removed entry from gem file
+
+commit 731cab754a4b89aa3153275920c5df8afce9e9ae
+Author: Sudhanshu Saxena <sudhanshu@chipmonk.in>
+Date:   Thu May 5 12:31:10 2011 +0530
+
+    Added validatoin support and  rspec for user model
+
+commit 20d1d836f2bcbedeebf89b90f5e4f7d428288620
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed May 4 22:49:14 2011 +0530
+
+    Mailer is up. cucumber setup is done
+
+commit 7a2966aeafdc596d1a9e7531d8fe905f4a977cad
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed May 4 15:39:30 2011 +0530
+
+    added entity_id in hub
+
+commit 5fc0d02c2d9ba373c3a90581b64c7b4845b4b18d
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Wed May 4 15:28:04 2011 +0530
+
+    cucumber and other boot up configs
+
+commit 2b2181840de9174d55d848b00456caf8fab763b9
+Author: Alok Srivastava <alok@lemonbag.com>
+Date:   Tue May 3 16:26:01 2011 +0530
+
+    initial setup with devise haml jquery jammit and many others.. need to add and cofig a lot still. this is bare bone. mailer is not there

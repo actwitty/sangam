@@ -1,0 +1,29 @@
+.p-r-content
+  .p-r-fltr-st
+    -if user_signed_in?
+      -if current_user.id == @user.id
+        .p-r-fltr-st-by
+          #stream_mine.p-r-fltr-mine.js_stream_scope
+          #stream_subscribed.p-r-fltr-subscribed.js_stream_scope
+          #stream_all.p-r-fltr-all.js_stream_scope
+      -else
+        .p-r-userinfo
+          %a{:href => "/home/show?id=#{@user.id}"}
+            %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}
+              %span #{@user.full_name}
+    -else
+      .p-r-userinfo
+        %a{:href => "/home/show?id=#{@user.id}"}
+          %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}
+            %span #{@user.full_name}
+    .p-r-search-fltr
+      /.p-r-search-fltr-bar
+      /  %span Search Filters
+      .p-r-fltr-by
+        %span.JS_AW_MODAL_all_channels.js_modal_dialog_link Filter by Channels >
+      .p-r-fltr-by
+        %span.JS_AW_MODAL_all_locations.js_modal_dialog_link Filter by Locations >
+      .p-r-fltr-by
+        %span.JS_AW_MODAL_all_entities.js_modal_dialog_link Filter by Entities >
+
+        

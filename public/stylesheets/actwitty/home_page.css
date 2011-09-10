@@ -1,0 +1,48 @@
+/* line 2, ../../../app/stylesheets/actwitty/home_page.scss */
+#follow_list .follow_button {
+  background-color: white;
+  float: right;
+}
+
+/* line 8, ../../../app/stylesheets/actwitty/home_page.scss */
+#unfollow_list .follow_button {
+  background-color: white;
+  float: right;
+}
+
+/* line 15, ../../../app/stylesheets/actwitty/home_page.scss */
+#invite_list .fb_invite {
+  background-color: #ccc;
+  float: right;
+}
+
+/* line 21, ../../../app/stylesheets/actwitty/home_page.scss */
+#invite_list .fb_delete {
+  background-color: white;
+  float: right;
+}
+
+/* line 27, ../../../app/stylesheets/actwitty/home_page.scss */
+#followings_list .follow_button {
+  /*background-color:#445D73;*/
+  background-color: white;
+  float: right;
+}
+
+/* line 35, ../../../app/stylesheets/actwitty/home_page.scss */
+#followers_list .follow_button {
+  background-color: #ccc;
+  /*float:right;*/
+}
+
+/* line 40, ../../../app/stylesheets/actwitty/home_page.scss */
+#search_followings {
+  margin-left: 50px;
+  /*background-color:#445D73;*/
+}
+
+/* line 45, ../../../app/stylesheets/actwitty/home_page.scss */
+#search_followers {
+  margin-left: 50px;
+  /*background-color:#445D73;*/
+}

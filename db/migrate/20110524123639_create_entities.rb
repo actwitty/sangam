@@ -6,14 +6,17 @@
 
         #uniqe global uid
         t.string    :entity_guid, :null => false
-        t.string   :entity_image, :null => false
+        t.text   :entity_image
 
-        t.text     :entity_doc, :null => false
+        t.text     :entity_doc
+
+        t.text  :social_counters_array
 				t.timestamps
       end
 
 			  add_index :entities, :entity_guid, :unique => true
         add_index :entities, :entity_name
+        add_index :entities, :updated_at
 
 		end
 
@@ -21,6 +24,7 @@
 
       remove_index :entities, :entity_guid
 			remove_index :entities, :entity_name
+      remove_index :entities, :updated_at
 
 			drop_table :entities
 		end

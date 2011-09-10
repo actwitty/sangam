@@ -1,0 +1,23 @@
+.p-r-content
+  .p-r-fltr-st
+    -if user_signed_in?
+      -if current_user.id == @user.id
+        .p-r-fltr-st-by
+          #channel_me.p-r-fltr-me.js_me
+          #channel_others.p-r-fltr-others.js_others
+      -else
+        .p-r-userinfo
+          %a{:href => "/home/show?id=#{@user.id}"}
+            %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}
+              %span #{@user.full_name}
+          #follow
+            -if !@follow
+              %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Follow"}  
+            - else
+              %input#follow_unfollow_btn.follow_button{:type => "button", :value => "Un-Follow"}
+            %input#follow_unfollow_btn_user_id{:type => "hidden",  :value => "#{@user.id}"}
+    -else
+      .p-r-userinfo
+        %a{:href => "/home/show?id=#{@user.id}"}
+          %img#profile_header_user_img{:src => "#{@user.photo_small_url}"}
+            %span #{@user.full_name}

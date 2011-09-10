@@ -1,7 +1,17 @@
 
 
+
 $(document).ready(function(){
 
+    $(document).ajaxSend(function(event, request, settings) {
+      if (typeof(AUTH_TOKEN) == "undefined") return;
+        // settings.data is a serialized string like "foo=bar&baz=boink" (or null)
+        settings.data = settings.data || "";
+        settings.data += (settings.data ? "&" : "") + "authenticity_token=" + encodeURIComponent(AUTH_TOKEN); 
+    });
+
+
+   //alert("Inside profile_follow.js ready");
    $('.follow_button').live("click",function(){
       btn = $(this);
       friend_id = $("#" + btn.attr("id") + "_user_id").attr("value");
@@ -27,7 +37,7 @@ $(document).ready(function(){
         }
       });
     });
-
+    return false;
 
   }); /* ready ends here */
 
