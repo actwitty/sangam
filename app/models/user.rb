@@ -1089,7 +1089,7 @@ class User < ActiveRecord::Base
       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
     end
 
-    if !user.blank?
+    if (!user.blank?) && (!friends.blank?)
       h  = {}
       h[:user_id] = user
       h[:activity_word_id] = friends.keys
