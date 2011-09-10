@@ -54,7 +54,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user = resource
       puts @user.errors
       respond_to do |format|
-        format.html { render_with_scope :new }
+        #format.html { render_with_scope :new }
         format.js   {  }
       end
     end
@@ -63,7 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = resource
     puts @user.errors
     respond_to do |format|
-      format.html { render_with_scope :new }
+      #format.html { render_with_scope :new }
       format.js   {  }
     end
 

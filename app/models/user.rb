@@ -1097,23 +1097,26 @@ class User < ActiveRecord::Base
     Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
       activities[k[0]] = k[1]
     end
+    
+    if !activities.keys.blank?
+      User.where(:id => activities.keys).all.each do |attr|
+        # activities[attr.id] => activity_word_id
+        friends[activities[attr.id]].each do |idx|
 
-    User.where(:id => activities.keys).all.each do |attr|
-      # activities[attr.id] => activity_word_id
-      friends[activities[attr.id]].each do |idx|
+          #dont show a friend in his own summary as related friend
+          if summaries[idx][:user][:id] != attr.id
 
-        #dont show a friend in his own summary as related friend
-        if summaries[idx][:user][:id] != attr.id
+            if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
+              summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
+            end
 
-          if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
-            summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
           end
 
         end
 
       end
-
     end
+
 
     Rails.logger.debug("[MODEL] [USER] [get_summary] leaving")
     #FETCHING RELATED FRIEND -- DONE
