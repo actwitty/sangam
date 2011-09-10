@@ -987,8 +987,6 @@ function delete_comment(post_id, comment_id, del_id, all_id){
 
 
 function delete_entity_from_post(post_id, entity_id){
-    alert("post id : " + post_id);
-    alert("entity_id : " + entity_id);
     $.ajax({
         url: '/home/delete_entities_from_post.json',
         type: 'POST',
@@ -999,9 +997,7 @@ function delete_entity_from_post(post_id, entity_id){
            handle_stream_text( box_id, data.post.text);
            append_entity_delete(data.post.id); 
         },
-        error:function(XMLHttpRequest,textStatus, errorThrown,data) {
-            alert("data.post.text");
-
+        error:function(XMLHttpRequest,textStatus, errorThrown) {
             aw_lib_alert('There has been a problem in deleting entity from post. \n ActWitty is trying to solve.');
         }
     });
@@ -1391,7 +1387,7 @@ $(document).ready(function(){
    * Delete entity mentioned in text
    */
   $('.js_entity_delete').live('click' , function(){
-    alert("del 1");
+
     delete_entity_from_post(the_big_stream_entity_deletes[$(this).attr("id")]["post_id"], 
                             the_big_stream_entity_deletes[$(this).attr("id")]["entity"]);
   });
