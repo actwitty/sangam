@@ -1115,12 +1115,17 @@ $(document).ready(function(){
     });
 
     $(".p_channelp_view_summary").live('click',function(){
+      var summary_id = $("#"+$(this).attr("value"));
       if($(this).find('span').text() == "view more >"){
         $(this).find('span').text("view less <");
+        $(this).parent().addClass("p-channelp-otr-icon-active");
+        summary_id.addClass("p-channelp-icon-summary-active");
       } else {
         $(this).find('span').text("view more >");
+        $(this).parent().removeClass("p-channelp-otr-icon-active");
+        summary_id.removeClass("p-channelp-icon-summary-active");
       }
-      var summary_id = $("#"+$(this).attr("value"));
+      
       summary_id.slideToggle();
     });
 

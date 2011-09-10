@@ -165,10 +165,25 @@
   border:0px solid black;
 }
 
-.p-channelp-otr-channel-icon
+.p-channelp-otr-channel-icon .p-channelp-post-cu
 {
+  border:0px solid red;
+  
 }
 
+.p-channelp-otr-icon-active
+{
+  box-shadow: 0 0 10px #eaa540;
+  -moz-box-shadow: 0 0 10px #eaa540;
+  -webkit-box-shadow: 0 0 10px #eaa540;
+  -o-box-shadow: 0 0 10px #eaa540;  
+}
+
+.p-channelp-icon-summary-active
+{
+  border:1px solid #ddd;
+  margin-bottom:10px;
+}
 .p-channelp-otr-channel-icon:hover
 {
   cursor:pointer;
