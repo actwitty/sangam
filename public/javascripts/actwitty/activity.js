@@ -56,7 +56,7 @@ function limit_text(id,limit,info)
 
  //$(function() {
 $(document).ready(function() {
-    alert("My activity box is connected to autocomplete");
+    //alert("My activity box is connected to autocomplete");
     // Below is the name of the textfield that will be autocomplete
     /*
     var data = "Core Selectors Attributes Traversing Manipulation CSS Events Effects Ajax Utilities".split(" ");

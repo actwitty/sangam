@@ -67,7 +67,7 @@ $(document).ready(function(){
 
     /* to display the input system for creating posts.....  like google+ */ 
     $(".add-page-input").click(function(event){
-      alert("clicked here");
+      //alert("clicked here");
       $(this).hide();
       $(".home_page_inputs").slideToggle("medium");
     });
@@ -112,7 +112,7 @@ $(document).ready(function(){
    
 
     $(".post-like-link").click(function() {
-        alert("fdgdfgd");
+        //alert("fdgdfgd");
         $(".liking-it").css('display','block');
     });
    
@@ -165,7 +165,7 @@ $(document).ready(function(){
     /* not used probably...keep it */ 
     $(".delete-attachment").click(function(){
         $(this).parent().remove();
-        alert($('.attachment-list').children.length);
+        //alert($('.attachment-list').children.length);
     });
     
     /* to get functionality of add more images*/ 

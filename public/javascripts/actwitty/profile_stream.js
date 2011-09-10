@@ -221,7 +221,7 @@ function handle_like_campaign(div_id, stream){
  */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
-  alert(JSON.stringify(likes));
+  /alert(JSON.stringify(likes));
   //alert("show_all_stream_campaigns" + div);
   $.each(likes, function(i,like){
     var like_html = '<div class="author">' +
@@ -916,7 +916,7 @@ function append_stream(owner_id, current_user_id){
             if( more_cookie.length == 0){
               $("#streams_list").html("<br/> <br/> No streams to show");
             }
-            aw_lib_alert('No streams to show');
+            //aw_lib_alert('No streams to show');
           }
 
         },

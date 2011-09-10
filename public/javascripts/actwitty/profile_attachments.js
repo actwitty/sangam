@@ -53,8 +53,8 @@ function get_channels_for_theme(userid){
 }
 
 function setup_on_start(element_id){
-  alert(element_id);
-  alert($("#" + element_id).val());
+  //alert(element_id);
+  //alert($("#" + element_id).val());
 }
 
 

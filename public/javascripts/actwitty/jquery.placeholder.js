@@ -15,7 +15,7 @@
 				console.log(msg) :
 				$.placeholder.hasConsoleLog ?
 					window.console.log(msg) :
-					alert(msg);
+					//alert(msg);
 			},
 			hasFirebug : "console" in window && "firebug" in window.console,
 			hasConsoleLog: "console" in window && "log" in window.console

@@ -321,7 +321,7 @@ $(document).ready(function(){
     //the_big_comment_count_json
     var channel = the_big_related_channels_json[$(this).attr("id")];
     if(channel){
-      alert("Channel id:" + channel.id);
+      //alert("Channel id:" + channel.id);
     }
     return false;
   });
