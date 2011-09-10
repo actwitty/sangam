@@ -14,7 +14,7 @@ function renderFriends(json){
                       '<img src="' + user_data.user.photo_small_url + '" alt="" class="img_stamp user_stamp" >' +
                            user_data.user.full_name + 
                       '</img>'+
-                    '</a>'+ 
+                    '</a>'+nn
                   '</li>';
         $('#friends_list').append(html);
           
