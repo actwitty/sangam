@@ -1,9 +1,11 @@
 #aw_home_intro_register_inputs
   = simple_form_for(:user,@user, :url => user_registration_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
+    %span Email
     = f.input :email ,
               :placeholder => "Email",
               :label => false,
               :input_html => { :id=>'aw_register_email'}
+    %span Password
     = f.input :password , 
               :placeholder => "Password", 
               :label => false,
@@ -12,9 +14,9 @@
     %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
     %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
     = link_to "Resend confirmation ?", new_confirmation_path(:user), :id=>"resend_confirmation"
-    %input#signupbutton.actwittysignup{:type => "button", :value => "Register !"}/
+    %input#signupbutton.actwittysignup.hover_point{:type => "button", :value => "Register !"}/
     #sns-login
       %a#sns_twitter_id{:href => "/users/auth/twitter"}
-        .twitter.icon.medium
+        %img#tw{:src => "/images/t1.png"}
       %a#sns_facebook_id{:href => "/users/auth/facebook"}
-        .facebook.icon.medium
+        %img#fb{:src => "/images/f1.png"}

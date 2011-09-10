@@ -6,7 +6,7 @@
 	background:#000;
 	position: fixed; left: 0; top: 0;
 	width: 100%; height: 100%;
-	z-index:100;
+	z-index:9999;
 }
 
 .modal_close {
@@ -36,12 +36,12 @@
   display: none; /*--hidden by default--*/
 	background: #fff;
 	padding: 20px;
-	border: 10px solid #ddd;
+	border: 7px solid #ddd;
 	float: left;
 	font-size: 12px;
 	position: fixed;
 	z-index: 99999;/*99999*/
-  /*overflow-y: scroll;*/
+  overflow-y: scroll;
 	/*--CSS3 Box Shadows--*/
 	-webkit-box-shadow: 0px 0px 20px #000;
 	-moz-box-shadow: 0px 0px 20px #000;

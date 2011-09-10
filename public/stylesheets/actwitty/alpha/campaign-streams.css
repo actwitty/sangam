@@ -3,15 +3,16 @@
 .p-awp-view-campaign {
   height: 17px;
   width: 100%;
+  display: none;
 }
 
-/* line 13, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 14, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign_all {
   width: 100%;
   float: right;
 }
 
-/* line 18, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 19, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign_all span {
   float: right;
   font-size: 13px;
@@ -19,19 +20,19 @@
   text-decoration: underline;
 }
 
-/* line 26, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 27, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign span:hover {
   cursor: pointer;
 }
 
-/* line 30, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 31, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign_all a img {
   float: right;
   height: 25px;
   width: 50px;
 }
 
-/* line 38, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 39, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-campaigns-section {
   width: 100%;
   height: auto;
@@ -40,7 +41,7 @@
   display: none;
 }
 
-/* line 47, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 48, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-campaign {
   height: auto;
   border: 0px solid green;
@@ -56,7 +57,7 @@
   height:auto;
 }
 */
-/* line 63, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 64, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-st-campaign-actor-image {
   width: 30px;
   height: 30px;
@@ -64,7 +65,7 @@
   margin: 2px 5px 2px 5px;
 }
 
-/* line 71, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 72, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-st-campaign-actor-desc {
   width: 500px;
   height: 35px;

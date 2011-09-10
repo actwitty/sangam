@@ -6,7 +6,7 @@
   #p-ip-sect
     #input-box
       .input-whats-up
-        %input.add-page-input.trans{:name => "add-page-input", :placeholder => "Whats Up....", :type => "text", :value => "Whats Up"}/
+        %input.add-page-input.trans{:name => "add-page-input", :placeholder => "Whats Up....", :type => "text", :value => "Whats Up......"}/
       .home_page_inputs
         .close.page_input_close
           %span.p-i-c
@@ -27,10 +27,10 @@
               %textarea#entity_field.entity_input.count-enable.no-ol{:placeholder=>"Post..",:maxlength => "600", :type => "text"}
               #input_addons
                 %a#attachment.info.input_addons_links{:href => "#"}
-                  %img.link_addon_icons{:src => "/images/alpha/camera_pressed_button.png"}/
-                  %span Add Image
+                  %img.link_addon_icons{:src => "/images/alpha/camera_icon.png"}/
+                  %span Add Images
                 %a#add_subtitle.info.input_addons_links{:href => "#"}
-                  %img.link_addon_icons{:src => "/images/alpha/title_pressed_button.png"}/
+                  %img.link_addon_icons{:src => "/images/alpha/title_normal_button.png"}/
                   %span Add Title
           #map
         #pre_uploaded_docs
@@ -40,13 +40,14 @@
           #actwitty_generator
           #save-or-pub
           #save_submit_button
-          .post-fb-twt
-            %img{:src => "/images/alpha/fb_pub.jpeg"}/
-            .fbtwt-pub
-              %input{:name => "fb_publish", :type => "checkbox", :value => "fb_publish"}/
-            %img{:src => "/images/alpha/twt_pub.jpeg"}/
-            .fbtwt-pub
-              %input{:name => "twt_publish", :type => "checkbox", :value => "twt_publish"}/
+          /
+            .post-fb-twt
+              %img{:src => "/images/alpha/fb_pub.jpeg"}/
+              .fbtwt-pub
+                %input{:name => "fb_publish", :type => "checkbox", :value => "fb_publish"}/
+              %img{:src => "/images/alpha/twt_pub.jpeg"}/
+              .fbtwt-pub
+                %input{:name => "twt_publish", :type => "checkbox", :value => "twt_publish"}/
 
         #input-char-count
           %span#char-count : 120

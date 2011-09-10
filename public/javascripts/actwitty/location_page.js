@@ -26,13 +26,16 @@ function append_location_streams(){
         }
         
         /******************************************************/
-          var header_html=   '<div class="p-awp-location-name">' +
-                                '<span >' +
-                                  data.name +
-                                '</span>' +
-                             '</div>' +
+          var header_html=  '<div class="locationp_map">'+
+                              '<img class="locations_box_images" id="loc_page_img" src="' +url+  '" style="width:250px;height:200px;"/>' + 
+                            '</div>' +
+                            '<div class="locationp_name">' +
+                                  '<span > ' +
+                                    data.name +
+                                  '</span>' +
+                            '</div>' ;
                             //'<img class="locations_box_images" src="' + get_location_image_for_type(data.type) +  '" height="40" width="40" />'
-                            '<img class="locations_box_images" id="loc_page_img" src="' +url+  '" style="width:250px;height:200px;"/>'
+                            
                             ;
            $('#location_stream_header').html(header_html);
            $.each(data.stream, function(i,stream){

@@ -52,15 +52,19 @@
         -if current_user.id == @user.id
           #p-channelp-tabs-section
             #p-channelp-tab-all.p-channelp-tab.p-channelp-unselected.js_channel_scope
-              %span All Channels
+              %center
+                %span All Channels
             #p-channelp-tab-subscribed.p-channelp-tab.p-channelp-unselected.js_channel_scope
-              %span Subscribed Channels
+              %center
+                %span Subscribed Channels
             #p-channelp-tab-mine.p-channelp-tab.p-channelp-unselected.js_channel_scope
-              %span My Channels
+              %center
+                %span My Channels
       / #### channel page content section ####
       #p-channelp-content
         =render :partial => "home/channelp_posts"
         =render :partial => "home/channelp_author_section"
+         
 
 /Secret cookies
 %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }

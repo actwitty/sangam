@@ -13,7 +13,6 @@ Button Default
 /* line 6, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button {
   padding: 0px;
-  margin-top: -15px;
   /*
   border:1px solid #caced9;
   border-top-color:#d3d8e2;
@@ -27,7 +26,7 @@ Button Default
   color:#82889b;
   box-shadow:0 1px 2px rgba(0,0,0,0.15);
   */
-  background: #FFFFFF;
+  background: none;
   /*
   background: -moz-linear-gradient(top, #FFFFFF 0%, #EFF0F3 100%); 
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%,#EFF0F3));
@@ -38,7 +37,7 @@ Button Default
   cursor: pointer;
 }
 
-/* line 34, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 33, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button span.txt {
   height: 15px;
   padding: 0 0 0 22px;
@@ -49,7 +48,7 @@ Button Default
   /* Dirty IE Hack */
 }
 
-/* line 43, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 42, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button span.ar {
   font-size: 10px;
   position: absolute;
@@ -60,7 +59,7 @@ Button Default
 /*---------------------------
 Button Effects (hover/active)
 ---------------------------*/
-/* line 53, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 52, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button:hover {
   color: #595e6e;
   background: #FFFFFF;
@@ -70,7 +69,7 @@ Button Effects (hover/active)
   background: -o-linear-gradient(top, white 0%, #e7e8ef 100%);
 }
 
-/* line 62, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 61, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button:active, .button.active {
   color: #595e6e;
   border-color: #c7cbd3;
@@ -84,14 +83,14 @@ Button Effects (hover/active)
   background: -o-linear-gradient(top, #eff0f3 0%, white 100%);
 }
 
-/* line 75, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 74, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button.active {
   border-radius: 3px 3px 0 0;
   -moz-border-radius: 3px 3px 0 0;
   border-bottom: 0;
 }
 
-/* line 77, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 76, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .button:hover span.txt, .button:active span.txt, .button.active span.txt {
   background-position: 0 -15px;
 }
@@ -99,7 +98,7 @@ Button Effects (hover/active)
 /*---------------------------
 Button Menu
 ---------------------------*/
-/* line 83, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 82, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu {
   position: absolute;
   top: 35px;
@@ -124,7 +123,7 @@ Button Menu
   */
 }
 
-/* line 109, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 108, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul {
   list-style: none;
   padding-top: 3px;
@@ -132,7 +131,7 @@ Button Menu
   margin-top: 0px;
 }
 
-/* line 117, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 116, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li {
   display: block;
   padding: 5px 0 5px 0;
@@ -140,7 +139,7 @@ Button Menu
   z-index: 3000;
 }
 
-/* line 124, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 123, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li a {
   padding: 3px 0px;
   font-size: 14px;
@@ -155,7 +154,7 @@ Button Menu
   z-index: 3000;
 }
 
-/* line 138, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 137, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li a span {
   position: absolute;
   bottom: -1px;
@@ -172,7 +171,7 @@ Button Menu
 /*---------------------------
 Button Menu li hover
 ---------------------------*/
-/* line 154, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 153, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li:hover a {
   border-color: #d7dbea;
   color: #fff;
@@ -187,7 +186,7 @@ Button Menu li hover
   z-index: 2000;
 }
 
-/* line 168, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
+/* line 167, ../../../../app/stylesheets/actwitty/alpha/actwitty-profile-settings.scss */
 .options-menu ul li:hover a span {
   display: block;
   z-index: 2000;

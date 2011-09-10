@@ -144,10 +144,10 @@ span.name a
 .post-comment
 {
   height:auto;
-  width:380px;
-  margin-left:160px;
+  width:430px;
+  /*margin-left:110px;*/
   display:block;
-  margin-top:0px;
+  margin:0px auto;
   padding-bottom:15px;
 }
 
@@ -181,20 +181,15 @@ span.name a
 
 .btn-comments
 {
-  background-color:#454545;
+  background-color:#eaa540;
   border:none;
   height:18px;
-   -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-   font-size:12px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
-  font-weight:bold;
+  
+  font-size:12px;
   margin-top:10px;
-  color:#ddd;
+  color:#fff;
   margin-left:10px;
-  padding:3px;
+  padding:1px;
 }
 
 .btn-comments:hover
@@ -224,9 +219,9 @@ span.name a
 
 .p-awp-comments-section
 {
-  width:100%;
+  width:550px;
   height:auto;
-  /*float:right;*/
+  margin-right:30px;
   border:0px solid red;
   display:none;
 }
@@ -279,41 +274,67 @@ span.name a
 }
 
 
+
+.p-st-comment-close-section
+{
+  width:580px;
+  height:12px;
+  border:0px solid red;
+  margin-bottom:-5px;
+}
+
+.p-st-comment-close-section div.p-st-comment-close:hover
+{
+  cursor:pointer;
+}
+
+
+.p-st-comment-close
+{
+  float:right;
+  margin-right:80px;
+  width:16px;
+  height:12px;
+  border:0px solid blue;
+  background: url(/images/alpha/aw_close.png) no-repeat;
+}
+
+
+
 .author
 {
   border:0px solid green;
-  width:160px;
-  height:50px;
   margin-top:5px;
   float:left;
-  background:#92cfd4;
 }
 .p-st-comment-actor
 {
   color:#fff;
-  font-size:16px;
+  font-size:18px;
+  font-weight:bold;
+  color:#fff;
+  overflow:hidden;
 }
 div.p-st-comment-actor center a
 {
-  color:#fff;
+  color:#6abdc4;
 }
 .p-st-comment-actor-image
 {
   border:0px solid red;
   color:#c19135;
-  width:35px;
-  height:40px;
+  width:50px;
+  height:50px;
   float:right;
+  overflow:hidden;
 }
 .p-st-comment-actor-image img
 {
-  width:35px;
-  height:50px;
 }
 
 .p-st-comment-actor-desc
 {
-  width:120px;
+  width:90px;
   height:40px;
   border:0px solid red;
   float:left;
@@ -327,13 +348,14 @@ div.p-st-comment-actor center a
   width:100%;
   height:15px;
   margin-top:10px;
+  overflow:hidden;
 }
 
 
 
 .p-st-comment-content
 {
-  width:380px;
+  width:350px;
   height:auto;
   color:#6e6e6e;
   margin-top:5px;
@@ -347,81 +369,8 @@ div.p-st-comment-actor center a
 div.p-st-comment-content p
 {
   font-size:16px;
+
 }
-
-
-
-
-
-/* commented for a while for ref...... plz dont remove it for timebeing
-.p-awp-comment
-{
-  height:auto;
-  border:0px solid green;
-  margin-top:20px;
-  margin-bottom:5px;
-}
-
-
-
-
-
-.author
-{
-  border:0px solid green;
-  width:100%;
-  height:auto;
-}
-.p-st-comment-actor-image
-{
-  width:30px;
-  height:30px;
-  float:left;
-  margin:2px 5px 2px 5px;
-}
-
-.p-st-comment-actor-desc
-{
-  width:500px;
-  height:35px;
-  border:0px solid red;
-  float:left;
-  display:block;
-}
-.wrote
-{
-  font-size:8px;
-  color:#454545;
-}
-.p-st-comment-submitdate
-{
-  float:right;
-  font-size:9px;
-  color:#454545;
-}
-
-span.p-st-comment-actor a
-{
-  border:0px solid red;
-  margin-top:-10px;
-  color:#c19135;
-  font-weight:bold;
-}
-
-.p-st-comment-content
-{
-  width:480px;
-  height:auto;
-  border:0px solid red;
-  margin-left:50px;
-  text-align:left;
-  color:#333;
-}
-
-.p-comment-text
-{
-}
-*/
 
 
 
@@ -442,13 +391,11 @@ span.p-st-comment-actor a
   margin-bottom:5px;
   height:30px;
   border:1px solid #000;
-  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
 .p-st-comment-add-btn
 {
  
-  /* font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif; */
 }
 
 

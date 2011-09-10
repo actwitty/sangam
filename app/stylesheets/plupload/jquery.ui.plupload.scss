@@ -11,12 +11,37 @@
 .plupload .plupload_container input {}
 .plupload .plupload_filelist_footer {}
 .plupload .plupload_filelist_header {}
-div.plupload .plupload_file {border-width: 0 0 1px 0}
+div.plupload .plupload_file {border-width: 0 0 0px 0}
 div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 
 .plupload_file .ui-icon {
 	cursor:pointer;	
 }
+
+.ui-icon-circle-minus {
+  border:0px solid red;
+  width:15px;
+  height:15px;
+  background-image: url('/images/alpha/delete.gif');
+  background-repeat:no-repeat;
+}
+
+.ui-icon-circle-check {
+  border:0px solid red;
+  width:15px;
+  height:15px;
+  background-image: url('/images/alpha/done.gif');
+  background-repeat:no-repeat;
+}
+
+.ui-icon-circle-arrow-w {
+  border:0px solid red;
+  width:15px;
+  height:15px;
+  background-image: url('/images/alpha/throbber.gif');
+  background-repeat:no-repeat;
+}
+
 
 .plupload_header_content {
   //background-image: url('/images/plupload/plupload.png');
@@ -58,7 +83,9 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 .plupload_header_cell {
   overflow:hidden;
   height:20px;
-  font-size:14px;
+  font-size:16px;
+  font-weight:bold;
+  color:#eaa540;
   vertical-align:middle;
 }
 
@@ -75,12 +102,22 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
   font-size:12px;
   vertical-align:middle;
 }
+.plupload_internal_cell_simple{
+  white-space:nowrap;
+  overflow:hidden;
+  height:20px;
+  width:20px;
+  font-size:12px;
+  vertical-align:middle;
+}
+
 
 .plupload_file {
 	border-left: none;
 	border-right: none;
-  height:20px;
+  height:25px;
   width:100%;
+  margin-top:8px;
 }
 
 .plupload_scroll {
@@ -90,11 +127,20 @@ div.plupload div.plupload_header {border-width: 0 0 1px 0; position: relative;}
 	overflow-y: auto;
 }
 
-.plupload_file_action, .plupload_file_size, .plupload_file_status {width: 20px;}
+.plupload_delete, .plupload_file_action, .plupload_file_size, .plupload_file_status {width: 20px;}
 .plupload_file_name {
 	overflow: hidden;
 	padding-left: 10px;
 }
+
+.plupload_delete
+{
+  width:20px;
+  height:20px;
+  border:0px solid blue;
+  
+}
+
 
 .plupload_progress {width: 60px;}
 .plupload_progress_container {padding: 1px;}

@@ -21,6 +21,7 @@ div#txt{
 */
 div#inner{
   margin-top:15px;
+  margin-right:5px;
 }
 
 div#ex1{
@@ -66,16 +67,26 @@ div#outer:hover img.img {
 }
 
 div#inner:hover img.im1 {
+  filter:alpha(opacity=50);	
+	opacity: 0.5;
+
+ /*
  border: solid 1px #CCC;
  -moz-box-shadow: 1px 1px 5px #999;
  -webkit-box-shadow: 1px 1px 5px #999;
  box-shadow: 1px 1px 5px #999;
+ */
 }
 div#inner:hover input.follow_button{
+  filter:alpha(opacity=50);	
+	opacity: 0.5;
+
+ /* 
  border: solid 1px #CCC;
  -moz-box-shadow: 1px 1px 5px #999;
  -webkit-box-shadow: 1px 1px 5px #999;
  box-shadow: 1px 1px 5px #999;
+ */
 }
 
 

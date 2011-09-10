@@ -41,7 +41,8 @@
 }
 
 .plupload_wrapper {
-	width:100%;
+	width:560px;
+  border:2px solid #595755;
 }
 
 .plupload_container {
@@ -96,8 +97,8 @@
 	color: #42454A;
 }
 .plupload_filelist_header {	
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border-top: 0px solid #ddd;
+	border-bottom: 2px solid #ddd;
 }
 
 .plupload_filelist_footer {border-top: 1px solid #FFF; height: 22px; line-height: 20px; vertical-align: middle;}
@@ -114,32 +115,42 @@
     overflow: hidden;
     float: left; 
     padding:2px;
+    font-size:16px;
 }
 
 .attachment_file_name{
-  font-size:13px;
+  font-size:16px;
+  color:#333;
 }
 .plupload_file_caption {
-    width: 170px;
+    width: 250px;
     margin-left:10px;
     padding:2px;
     float: left; 
-    font-size:13px;
+    font-size:16px;
   }
+
 .caption_div{
-  width:160px;
+  width:250px;
   overflow: hidden;
  
 }
 .attachment_caption{
   display:block;
-  width:auto
+  width:155px;
 }
-
+div.caption_div input{
+  width:240px;
+  height:20px;
+  border:1px solid #eaa540;
+  font-size:14px;
+  
+}
 
 .plupload_file_action * {
 	display: none;
 }
+
 
 li.plupload_uploading {background: #ECF3DC url('/images/plupload/backgrounds.gif') repeat-x 0 -238px;}
 li.plupload_done {color:#AAA}
@@ -180,6 +191,7 @@ li.plupload_done a {
 
 .plupload_file_action,.plupload_file_size, .plupload_file_status{
     padding:3px;
+    font-size:16px;
 }
 /* Floats */
 

@@ -7,32 +7,36 @@ height:900px;
 padding:5px;/*14*/
 }
 
-/* ----------- stylized ----------- */
-#stylized{
+/* ----------- settings-main ----------- */
+#settings-main{
 /*border:solid 2px #b7ddf2;
 background:#ebf4fb;*/
+/*margin:0 auto;*/
 }
-#stylized h1 {
+#settings-main h1 {
 font-size:14px;
 font-weight:bold;
 margin-bottom:8px;
 }
-#stylized p{
+#settings-main p{
 font-size:11px;
 color:#666666;
 margin-bottom:20px;
 /*border-bottom:solid 1px #b7ddf2;*/
 padding-bottom:10px;
 }
-#stylized label{
+#settings-main label{
 display:block;
 /*font-weight:bold;*/
-font-size:14px;
+font-family:nimbus-sans-condensed,sans-serif;
+color: #666;
+font-size:16px;
 text-align:right;
 width:140px;
 float:left;
+/*background: #E0E0E0;*/
 }
-#stylized .small{
+#settings-main .small{
 color:#666666;
 display:block;
 font-size:11px;
@@ -40,34 +44,57 @@ font-weight:normal;
 text-align:right;
 width:140px;
 }
-#stylized input{
+#settings-main input{
 float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:12px 0 20px 50px;
+background-color: #DDD;
+font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-#stylized textarea{
+#settings-main textarea{
 float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:12px 0 20px 50px;
+background-color: #DDD;
+font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-#stylized select{
+#settings-main #user_settings_image{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:50px; 
+margin:-5px 0 20px 50px;/*10 0 20 500*/
+}
+#settings-main #profile_img_selector{
+/*float:left;*/
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:100px; 
+/*border:2px solid red;*/
+margin:-60px 0 20px 295px;/*10 0 20 500*/
+background-color: #DDD;
+}
+#settings-main select{
 float:left;
 font-size:12px;
 padding:4px 2px;
 border:solid 1px #aacfe4;
 width:200px;
 margin:12px 0 20px 50px;
+background-color: #DDD;
 }
 
-#stylized button{
+#settings-main button{
 clear:both;
-margin-left:250px;/*200*/
+margin-left:300px;/*200*/
 width:50px;/*75*/
 height:31px;
 /*background:#666666 url(img/button.png) no-repeat;*/
@@ -78,13 +105,11 @@ font-size:11px;
 font-weight:bold;
 }
 /* pramod */
-/*
-#settings-button {
-  width: 100px;
-  margin-left:175px;
+#settings-main #settings-button {
+  width: 75px;
+  margin-left:150px;
   margin-top:10px;
 }
-*/
 /* --------------------------------------Facebook friends ----------------- */
 
 .sc_menu1 li {
@@ -136,14 +161,56 @@ div#invite_friends
   border:2px solid black;
   left:340px;
 }
-
+div#follower_friends
+{
+  background:#cccccc repeat scroll;
+	position: relative;
+	height: 240px;
+	width: 610px;/*650*/
+	overflow: auto;
+  border:2px solid black;
+  left:340px;
+}
+div#following_friends
+{
+  background:#cccccc repeat scroll;
+	position: relative;
+	height: 240px;
+	width: 610px;/*650*/
+	overflow: auto;
+  border:2px solid black;
+  left:340px;
+}
 p#fb_friends{
   margin-left:340px;
   font-size: 18px;
   font-color: #000000;
 }
+p#flwr_friends{
+  margin-left:340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+p#flwg_friends{
+  margin-left:340px;
+  font-size: 18px;
+  font-color: #000000;
+}
+p#fb_friends:hover{
+  cursor: pointer;
+}
 h3#empty_check{
   /*margin-left:340px;*/
+  font-size: 20px;
+  font-color:#ccc;
+  color:#ffffff;
+}
+h3#empty_check_flwg{
+  font-size: 20px;
+  font-color:#ccc;
+  color:#ffffff;
+}
+h3#empty_check_flwr{
   font-size: 20px;
   font-color:#ccc;
   color:#ffffff;
@@ -168,4 +235,145 @@ li.lk{
   width:130px;
   margin:5px;
 }
+/***************************** Welcome Page Facebook/Twitter ******************/
+#sns_twitter_id{
+  /*float:right;
+  margin-right:-25px;
+  margin-left:40px;
+  margin-top:-10px;
+  padding:1px;
+  height:23px;*/
+}
+#tw{
+  float:right;
+  margin-right:45px;
+  margin-top:-3px;
 
+  padding:1px;
+  width:100px;
+  height:22px;
+}
+#fb{
+  float:right;
+  margin-top:-3px;
+  padding:1px;
+  width:100px;
+  height:22px;
+}
+#sns-login {
+  display: block;
+  float:right;
+  /*margin-top: -20px;*/
+}
+
+#sns_facebook_id{
+  /*float:right;
+  margin-right:5px;
+  margin-top:-10px;
+  padding:1px;
+  margin-right:10px;
+  padding:2px;
+  height:23px;*/
+}
+
+/*
+#tw{
+  float:right;
+  margin-right:-50px;
+  margin-top:-10px;
+  padding:2px;
+  width:24px;
+  height:22px;
+}
+#fb{
+  float:right;
+  margin-right:-25px;
+  margin-top:-10px;
+  padding:2px;
+  width:24px;
+  height:22px;
+}
+*/
+/************ confirmation **********/
+/* ----------- My Form ----------- */
+.conf_form{
+margin:0 auto;
+width:400px;
+padding:14px;
+}
+
+/* ----------- conf ----------- */
+#conf{
+/*border:solid 2px #b7ddf2;
+background:#ebf4fb;*/
+}
+#conf h1 {
+/*
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
+*/
+}
+#conf p{
+/*
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+*/
+}
+#conf label{
+display:block;
+font-family:nimbus-sans-condensed,sans-serif;
+color: #666;
+margin-top:5px;
+font-size:16px;
+/*font-weight:bold;*/
+text-align:right;
+width:140px;
+float:left;
+}
+#conf .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+#conf input{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 30px;
+}
+#conf textarea{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 30px;
+}
+#conf select{
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 30px;
+}
+#conf button{
+clear:both;
+margin-left:150px;
+width:125px;
+height:31px;
+/*background:#666666 url(img/button.png) no-repeat;*/
+text-align:center;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}

@@ -134,11 +134,12 @@ $(document).ready(function(){
     aw_stream_clear_stream_jsons();
     append_stream(aw_lib_get_page_owner_id(), 
                   aw_lib_get_session_owner_id());
-    $("#cont-typ-fltr-all").css({backgroundImage: "/images/alpha/all_selected.png"});
-    $("#cont-typ-fltr-drafts").css({backgroundImage: "/images/alpha/drafts_unselected.png"});
-    $("#cont-typ-fltr-videos").css({backgroundImage: "/images/alpha/videos_unselected.png"});
-    $("#cont-typ-fltr-images").css({backgroundImage: "/images/alpha/images_unselected.png"});
-    $("#cont-typ-fltr-twitter").css({backgroundImage: "/images/alpha/twitter_unselected.png"});
+    $("#cont-typ-fltr-all").css('background-image', 'url(/images/alpha/all2.jpg)');
+    $("#cont-typ-fltr-drafts").css('background-image', 'url(/images/alpha/draft1.jpg)');
+    $("#cont-typ-fltr-videos").css('background-image', 'url(/images/alpha/Video1.jpg)');
+    $("#cont-typ-fltr-images").css('background-image', 'url(/images/alpha/Images1.jpg)');
+    $("#cont-typ-fltr-twitter").css('background-image', 'url(/images/alpha/Twitter1.jpg)');
+   
   });
   
   /*
@@ -150,11 +151,13 @@ $(document).ready(function(){
     clear_all_stream_modes();
     aw_stream_clear_stream_jsons();
     show_all_drafts();
-    $("#cont-typ-fltr-all").css({backgroundImage: "/images/alpha/all_unselected.png"});
-    $("#cont-typ-fltr-drafts").css({backgroundImage: "/images/alpha/drafts_unselected.png"});
-    $("#cont-typ-fltr-videos").css({backgroundImage: "/images/alpha/videos_selected.png"});
-    $("#cont-typ-fltr-images").css({backgroundImage: "/images/alpha/images_unselected.png"});
-    $("#cont-typ-fltr-twitter").css({backgroundImage: "/images/alpha/twitter_unselected.png"});
+
+    $("#cont-typ-fltr-all").css('background-image', 'url(/images/alpha/all1.jpg)');
+    $("#cont-typ-fltr-drafts").css('background-image', 'url(/images/alpha/draft2.jpg)');
+    $("#cont-typ-fltr-videos").css('background-image', 'url(/images/alpha/Video1.jpg)');
+    $("#cont-typ-fltr-images").css('background-image', 'url(/images/alpha/Images1.jpg)');
+    $("#cont-typ-fltr-twitter").css('background-image', 'url(/images/alpha/Twitter1.jpg)');
+
   });
 
   /*
@@ -166,11 +169,12 @@ $(document).ready(function(){
     aw_stream_clear_stream_jsons();
     show_all_videos(); 
 
-    $("#cont-typ-fltr-all").css({backgroundImage: "/images/alpha/all_unselected.png"});
-    $("#cont-typ-fltr-drafts").css({backgroundImage: "/images/alpha/drafts_unselected.png"});
-    $("#cont-typ-fltr-videos").css({backgroundImage: "/images/alpha/videos_selected.png"});
-    $("#cont-typ-fltr-images").css({backgroundImage: "/images/alpha/images_unselected.png"});
-    $("#cont-typ-fltr-twitter").css({backgroundImage: "/images/alpha/twitter_unselected.png"});
+    $("#cont-typ-fltr-all").css('background-image', 'url(/images/alpha/all1.jpg)');
+    $("#cont-typ-fltr-drafts").css('background-image', 'url(/images/alpha/draft1.jpg)');
+    $("#cont-typ-fltr-videos").css('background-image', 'url(/images/alpha/Video2.jpg)');
+    $("#cont-typ-fltr-images").css('background-image', 'url(/images/alpha/Images1.jpg)');
+    $("#cont-typ-fltr-twitter").css('background-image', 'url(/images/alpha/Twitter1.jpg)');
+
   });
 
   /*
@@ -182,11 +186,12 @@ $(document).ready(function(){
     aw_stream_clear_stream_jsons();
     show_all_images(); 
 
-    $("#cont-typ-fltr-all").css("background-image", "/images/alpha/all_unselected.png");
-    $("#cont-typ-fltr-drafts").css("background-image", "/images/alpha/drafts_unselected.png");
-    $("#cont-typ-fltr-videos").css("background-image", "/images/alpha/videos_unselected.png");
-    $("#cont-typ-fltr-images").css("background-image", "/images/alpha/images_selected.png");
-    $("#cont-typ-fltr-twitter").css("background-image", "/images/alpha/twitter_unselected.png");
+    $("#cont-typ-fltr-all").css('background-image', 'url(/images/alpha/all1.jpg)');
+    $("#cont-typ-fltr-drafts").css('background-image', 'url(/images/alpha/draft1.jpg)');
+    $("#cont-typ-fltr-videos").css('background-image', 'url(/images/alpha/Video1.jpg)');
+    $("#cont-typ-fltr-images").css('background-image', 'url(/images/alpha/Images2.jpg)');
+    $("#cont-typ-fltr-twitter").css('background-image', 'url(/images/alpha/Twitter1.jpg)');
+
   });
 
   /*
@@ -196,11 +201,13 @@ $(document).ready(function(){
     aw_toggle_scope_on_stream_page('js_images_list');
     clear_all_stream_modes();
     aw_stream_clear_stream_jsons();
-    $("#cont-typ-fltr-all").css("background-image", "/images/alpha/all_unselected.png");
-    $("#cont-typ-fltr-drafts").css("background-image", "/images/alpha/drafts_unselected.png");
-    $("#cont-typ-fltr-videos").css("background-image", "/images/alpha/videos_unselected.png");
-    $("#cont-typ-fltr-images").css("background-image", "/images/alpha/images_unselected.png");
-    $("#cont-typ-fltr-twitter").css("background-image", "/images/alpha/twitter_selected.png");
+
+    $("#cont-typ-fltr-all").css('background-image', 'url(/images/alpha/all1.jpg)');
+    $("#cont-typ-fltr-drafts").css('background-image', 'url(/images/alpha/draft1.jpg)');
+    $("#cont-typ-fltr-videos").css('background-image', 'url(/images/alpha/Video1.jpg)');
+    $("#cont-typ-fltr-images").css('background-image', 'url(/images/alpha/Images1.jpg)');
+    $("#cont-typ-fltr-twitter").css('background-image', 'url(/images/alpha/Twitter2.jpg)'); 
+
   });
    
 });

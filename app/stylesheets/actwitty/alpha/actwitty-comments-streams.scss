@@ -177,19 +177,7 @@ span.name a
 }
 
 
-.btn-comments
-{
-  background-color:#00ced1;
-  border:none;
-  height:18px;
-   -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-   font-size:12px;
-	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif; */
-  font-weight:normal;
-}
+
 
 
 
@@ -256,10 +244,11 @@ span.name a
   margin-top:5px;
   float:left;
   background:#92cfd4;
+  background:red;
 }
 .p-st-comment-actor
 {
-  color:#fff;
+  color:#6abdc4;
   font-size:16px;
 }
 .p-st-comment-actor-image

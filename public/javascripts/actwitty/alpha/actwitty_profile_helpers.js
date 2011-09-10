@@ -79,17 +79,39 @@ $(document).ready(function(){
     }
   });
   
-
+    /* Note: There are some hardcoded strings used in following 2 functions
+     * If in case you are changing any of them, plz make sure to change it in input_box partial
+     * as well
+     * */
     $("#attachment").live("click",function(){
         $("#input-attachments-section").slideToggle("medium");
-        /*$("#input-attachments-section").show();*/
-        /*$(this).hide();*/
+        var $image = $(this).children("img");
+        if ($image.attr("src") == "/images/alpha/camera_icon.png")
+            $image.attr("src", "/images/alpha/camera_pressed_button.png");
+        else
+            $image.attr("src", "/images/alpha/camera_icon.png");
+
+        var $span = $(this).children("span");
+        if ($span.text() == "Add Images")
+            $span.text("Close Images");
+        else
+            $span.text("Add Images");  
     });
 
     $("#add_subtitle").live("click",function(){
         $("#subtitle-div").slideToggle("medium");
-        /*$("#input-attachments-section").show();*/
-        /*$(this).hide();*/
+        var $image = $(this).children("img");
+        if ($image.attr("src") == "/images/alpha/title_normal_button.png")
+            $image.attr("src", "/images/alpha/title_pressed_button.png");
+        else
+            $image.attr("src", "/images/alpha/title_normal_button.png");
+       
+        var $span = $(this).children("span");
+        if ($span.text() == "Add Title")
+            $span.text("Close Title");
+        else
+            $span.text("Add Title");  
+
     });
 
 
@@ -225,3 +247,14 @@ $(document).ready(function(){
     }); 
 
 });
+
+
+
+function get_trim_text (str_value,len,end_with) {
+  var str = str_value;
+  if(str.length > len){
+        str = str.substring(0,len) + end_with ;
+  }
+  return str;
+
+}
