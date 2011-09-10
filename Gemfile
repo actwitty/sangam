@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.7'
 
 #ALOK need to use 0.8.7 as 0.9 > has DSL errors
-gem "rake"
+gem "rake", '0.8.7'
 
 #gem 'mysql2', '0.2.6'
 gem 'pg'
