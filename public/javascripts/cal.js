@@ -312,4 +312,9 @@
 $(document).ready(function(){
 
   $('.dob').simpleDatepicker({ chosendate: '29/08/1983', startdate:'01/01/1930', enddate: '01/01/2010' });
+
+  $('.dob').blur(function (){
+    closeIt($this, datepicker);
+  });
+
 });
