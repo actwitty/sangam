@@ -35,7 +35,6 @@ function get_summary_theme_images(){
                  'box6.png',
                  'box7.png',
                  'box8.png',
-                 'box9.png',
 
                ];
   return images;
