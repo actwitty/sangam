@@ -11,7 +11,7 @@
     /%h3#settings-header Settings Page
     /#stylized.myform  :validate => true,
     #settings-main.myform
-      = simple_form_for @profile,:html => {:multipart => true}, :file_field => {:multiple => true},  :url => home_settings_save_path do |f|
+      = simple_form_for @profile,:html => {:multipart => true}, :file_field => {:multiple => true},:validate => true,  :url => home_settings_save_path do |f|
 
         %label First Name
         = f.input :first_name,:label=>false,  :input_html => { :size=> 30  }
