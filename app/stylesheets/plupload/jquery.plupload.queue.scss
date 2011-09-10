@@ -115,6 +115,7 @@
     overflow: hidden;
     float: left; 
     padding:2px;
+    font-size:16px;
 }
 
 .attachment_file_name{
@@ -126,7 +127,7 @@
     margin-left:10px;
     padding:2px;
     float: left; 
-    font-size:14px;
+    font-size:16px;
   }
 
 .caption_div{
@@ -190,6 +191,7 @@ li.plupload_done a {
 
 .plupload_file_action,.plupload_file_size, .plupload_file_status{
     padding:3px;
+    font-size:16px;
 }
 /* Floats */
 
