@@ -1097,7 +1097,7 @@ class User < ActiveRecord::Base
     Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
       activities[k[0]] = k[1]
     end
-    
+    Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - #{activities.keys.inspect} \n #{friends.keys.inspect}" ) 
     if !activities.keys.blank?
       User.where(:id => activities.keys).all.each do |attr|
         # activities[attr.id] => activity_word_id
