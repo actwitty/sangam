@@ -53,7 +53,7 @@ var g_stream_modes=[
 /
 /*****************************************************************/
 $(document).ready(function(){
-  alert("hi");
+  //alert("hi");
   //aw_toggle_scope_on_stream_page('js_streams_list');
 });
 

@@ -90,7 +90,6 @@ function aw_render_friends_related_internal(friend, div_id){
 
 function aw_friends_render_related_modal(win_id, trigger_id){
   the_big_modal_related_friends_json={};
-  alert("i m in");
   var id = win_id + '_modal_div';
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +

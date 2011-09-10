@@ -140,7 +140,7 @@ function post_activity_to_server(post_data, clear, force_edit_mode){
   if(force_edit_mode == undefined){
     force_edit_mode = false;
   }
-  alert(JSON.stringify(post_data));
+  //alert(JSON.stringify(post_data));
    var reedit_mode = aw_get_reedit_mode();
    if(reedit_mode != 1 || force_edit_mode == true){
       $.ajax({
@@ -176,7 +176,6 @@ function post_activity_to_server(post_data, clear, force_edit_mode){
             aw_input_box_reset_to_default();
             clear_all_input_jsons();
             $("#pre_uploaded_docs").empty();
-            aw_lib_alert("Post processed");
           }
         },
         error: function(jqXHR, textStatus, errorThrown){
@@ -288,7 +287,6 @@ function get_campaigns(){
                   [MANDATORY]
  */
 function document_upload_complete(){
-  alert("sammy");
   aw_lib_console_log("debug","document_upload_complete called"); 
   var latlang = document.getElementById('user_latlng').value;
   /* check if the location field is empty then set type as user input */
@@ -366,7 +364,6 @@ $(document).ready(function() {
    /* get user channels from rails */
   
    $("#actwitty_generator").live('click', function(){
-      alert($('#location_field').val());
       if(!$('#activity_field').val() && !$('#location_field').val() &&
         !$('#entity_field').val()){
         alert("Nothing set to generate a post");
