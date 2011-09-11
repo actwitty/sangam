@@ -9,127 +9,117 @@ padding:5px;/*14*/
 
 /* ----------- settings-main ----------- */
 #settings-main{
-  width:60%;
+/*border:solid 2px #b7ddf2;
+background:#ebf4fb;*/
+/*margin:0 auto;
+*/
+width:60%;
 }
-
-
-
 #settings-main h1 {
-  font-size:14px;
-  font-weight:bold;
-  margin-bottom:8px;
+font-size:14px;
+font-weight:bold;
+margin-bottom:8px;
 }
-
-
 #settings-main p{
-  font-size:11px;
-  color:#666666;
-  margin-bottom:20px;
-  padding-bottom:10px;
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+/*border-bottom:solid 1px #b7ddf2;*/
+padding-bottom:10px;
 }
-
-
 #settings-main label{
-  display:block;
-  color: #666;
-  font-size:24px;
-  text-align:right;
-  width:140px;
-  float:left;
-  margin-top: 8px;
+display:block;
+/*font-weight:bold;*/
+font-family:nimbus-sans-condensed,sans-serif;
+color: #666;
+font-size:20px;
+text-align:right;
+width:140px;
+float:left;
+margin-top: 8px;
+/*background: #E0E0E0;*/
 }
-
-
-
 #settings-main .small{
-  color:#666666;
-  display:block;
-  font-size:11px;
-  font-weight:normal;
-  text-align:right;
-  width:140px;
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
 }
-
-
 #settings-main input{
-  float:left;
-  font-size:16px;
-  padding:4px 2px;
-  border:solid 1px #aacfe4;
-  width:200px;
-  height:18px;
-  margin:5px 0 20px 50px;
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:10px 0 20px 50px;
+/*top right bottom left*/
+background-color: #DDD;
+font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-
-#settings-main input:focus{
-  border:1px solid #ddd;
-  -moz-box-shadow: 0px 0px 4px #b0b0b0;
-  -webkit-box-shadow: 0px 0px 4px #b0b0b0;
-  box-shadow:0px 0px 4px #b0b0b0;
-}
-
 #settings-main textarea{
-  float:left;
-  font-size:16px;
-  padding:4px 2px;
-  border:solid 1px #aacfe4;
-  width:200px;
-  margin:7px 0 20px 50px;
-  background-color: #DDD;
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:12px 0 20px 50px;
+background-color: #DDD;
+font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
-
 #settings-main #user_settings_image{
-  float:left;
-  font-size:14px;
-  padding:4px 2px;
-  border:solid 1px #aacfe4;
-  width:50px;
-  margin:-5px 0 20px 50px;
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:50px;
+ 
+margin:-5px 0 20px 50px;
+/*10 0 20 500*/
 }
-
-
 #settings-main #profile_img_selector{
-
-  font-size:14px;
-  padding:4px 2px;
-  border:solid 1px #aacfe4;
-  width:100px;
-  height:30px;
-  margin:-60px 0 20px 295px;
-  background-color: #DDD;
+/*float:left;
+*/
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:100px;
+ 
+/*border:2px solid red;*/
+margin:-60px 0 20px 295px;
+/*10 0 20 500*/
+background-color: #DDD;
 }
-
-
 #settings-main select{
-  float:left;
-  font-size:16px;
-  padding:4px 2px;
-  border:solid 1px #aacfe4;
-  width:200px;
-  margin:12px 0 20px 50px;
-  background-color: #DDD;
-  height:30px;
+float:left;
+font-size:12px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:12px 0 20px 50px;
+background-color: #DDD;
 }
 
 #settings-main button{
-  clear:both;
-  margin-left:300px;
-  width:50px;
-  height:31px;
-  /*background:#666666 url(img/button.png) no-repeat;*/
-  text-align:center;
-  /*line-height:31px;*/
-  color:#FFFFFF;
-  font-size:11px;
-  font-weight:bold;
+clear:both;
+margin-left:300px;
+/*200*/
+width:50px;
+/*75*/
+height:31px;
+/*background:#666666 url(img/button.png) no-repeat;*/
+text-align:center;
+/*line-height:31px;*/
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
 }
-
-
+/* pramod */
 #settings-main #settings-button {
-  width: 150px;
-  height:30px;
-  margin-left:190px;
-  margin-top:5px;
+  width: 75px;
+  margin-left:150px;
+  margin-top:10px;
 }
 /* --------------------------------------Facebook friends ----------------- */
 

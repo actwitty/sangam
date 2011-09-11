@@ -147,7 +147,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   height:auto;
   border:0px solid red;
   z-index:1250;
-  background:#fffffd;
+  /*background:#fffffd;*/
+  background-color: #EEE7DD;
   /*background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;*/
 }
@@ -2817,10 +2818,11 @@ a.js_handle_stream_entity_mention:hover span
   padding:10px 10px 10px 10px;
 }
 */
-#settings-page-block {
+#settings-page-block { /* 11_09_11 */
   display: block;
   /*float: right;*/
-  /*background: #fff;*/
+  /*background-color: #EEE7DD;*/
+  background: #fffaf0;
   height: 800px;
   width: 850px;
   padding: 0px 0 20px 20px;/* 10_sep_11 */
@@ -2828,7 +2830,7 @@ a.js_handle_stream_entity_mention:hover span
   margin-right: 15%;
   margin-left: 100px;*/
   margin: 0px auto;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -2846,6 +2848,12 @@ a.js_handle_stream_entity_mention:hover span
   height: 750px;
   margin: 0;
   padding: 0;
+  background-color: #EEE7DD;
+}
+
+#page-wrapper{
+  height: 100%;
+  background-color: #EEE7DD;
 }
 
 .settings-input-list {
@@ -2879,7 +2887,7 @@ a.js_handle_stream_entity_mention:hover span
   background: white;
   /*width: 100%;
   height: 80%;*/
-  margin-top:30px;/* 10_sep_11 */
+  margin-top:20px;/* 10_sep_11 */
 }
 #settings-form {
   margin-left:100px;
