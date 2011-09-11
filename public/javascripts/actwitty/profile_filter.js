@@ -70,6 +70,7 @@ function modify_filter(filter_json, reload){
   if ($("#filter_location_id").attr("value").length > 0 && $("#filter_location_name").attr("value").length>0){
     //var html = '<input type="button" id="location_filter_drop" value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
    $("#fltr_location_id").html($("#filter_location_name").attr("value"));
+
    $("#fltr_location_id").parent().addClass('p-st-flt-location');
     $('#location_filter_drop').show();
   }else{

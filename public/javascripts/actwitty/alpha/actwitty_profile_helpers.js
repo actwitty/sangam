@@ -200,11 +200,11 @@ $(document).ready(function(){
     
 
     $(".count-enable").blur(function() {
-        $("#input-char-count").hide();
+        $("#input-char-count span").hide();
     });
     
     $(".count-enable").bind('focus keyup', function() {
-        $("#input-char-count").show();
+        $("#input-char-count span").show();
         var maxlength = $(this).attr("maxlength");
         $(this).val($(this).val().slice(0,maxlength));
         var remaining_length = maxlength - $(this).val().length;

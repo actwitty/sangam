@@ -1113,7 +1113,7 @@ function aw_channels_render_like(win_id, trigger_id){
   var div_id = $("#" + trigger_id).parent().next().next().next().next().children("div.p-awp-post-const-opt").children("div.p-awp-post-like").attr("id");
   //alert(div_id);
   campaign_manager = the_big_stream_campaign_manager_json[div_id];
-  alert(JSON.stringify(campaign_manager));
+  //alert(JSON.stringify(campaign_manager));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
