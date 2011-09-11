@@ -1,7 +1,7 @@
 class SummarySubscribe < ActiveRecord::Base
 
-  belongs_to :summary
-  belongs_to :subscriber, :class_name => "User"
+  belongs_to :summary , :touch => true
+  belongs_to :subscriber, :class_name => "User", :touch => true
   belongs_to :owner, :class_name => "User"         #channel owner
 
   validates_existence_of   :summary_id, :owner_id, :subscriber_id
