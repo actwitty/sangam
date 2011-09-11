@@ -20,7 +20,8 @@ function populate_filtered_friends(ele, friends){
      var link_id = "stream_friend_id_" + friend.id;
      var html='<div class="p-fltr-tag-list">' +
                 '<a href="#" class="js_related_friends" id="' + link_id + '">' +
-                  '<img src="'+ friend.image + '"  width="30" height="30" alt="" />' +
+                  '<img src="'+ friend.image + '"  width="40" height="40" alt="" />' +
+                  '<span>'+friend.name +'</sapn>'+
                 '</a>' +
               '</div>';
       
@@ -47,9 +48,10 @@ function populate_filtered_entities(ele, entities){
   $.each(entities, function(i, entity){
      var link_id = "stream_related_entity_fltr_" + entity.id;
      var entity_name = get_trim_text(entity.name,18,"..."); // a helper to trim the text
-     var html='<div class="p-fltr-tag-list-entity">' +
-                '<span id="'+ link_id + '" class="js_related_entities">' +
+     var html='<div class="p-fltr-tag-list-entity disp-full-name-parent">' +
+                '<span id="'+ link_id + '" class="js_related_entities disp-full-name">' +
                       entity.name +
+                      '<span class="disp-full-name-span">'+entity.name+'</span>'+
                 '</span>' +
               '</div>';
      div.append(html);
@@ -77,9 +79,10 @@ function populate_filtered_locations(ele, locations){
   $.each(locations, function(i, location){
      var link_id = "stream_location_id_" + location.id;
      var location_name = get_trim_text(location.name,18,"..."); // a helper to trim the text
-     var html='<div class="p-fltr-tag-list-location">' +
-                  '<span class="js_related_locations" id="' + link_id + '">' +
+     var html='<div class="p-fltr-tag-list-location disp-full-name-parent">' +
+                  '<span class="js_related_locations disp-full-name" id="' + link_id + '">' +
                     location_name +
+                     '<span class="disp-full-name-span">'+location.name+'</span>'+
                   '</span>' +
               '</div>';
       
