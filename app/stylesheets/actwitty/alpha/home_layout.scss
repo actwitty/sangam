@@ -1606,6 +1606,52 @@ ul.p-fltr-tag-list li
 
 
 
+/* 
+  NOTE::all hovering effects should now be based on these spec classes to avoid further repition.
+ */
+
+div.disp-full-name-parent .disp-full-name 
+{
+  position:relative;
+  color:#000;
+  text-decoration:none;
+}
+div.disp-full-name-parent .disp-full-name-span 
+{
+  display: none; 
+  text-decoration:none;
+}
+div.disp-full-name-parent .disp-full-name:hover
+{
+  z-index:1;
+}
+div.disp-full-name-parent .disp-full-name:hover .disp-full-name-span  
+{
+  display:block;
+  position:absolute;
+  top:16px;
+  left:10px;
+  width:auto;
+  background:#fffafa;
+  color:#000;
+  font-size:16px;
+  text-align:center;
+  padding:5px;
+  border:1px solid #6abdc4;
+  box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+  white-space:nowrap;
+}
+
+
+
+
+
+
+
+
 /* ------------------------------- Right Bar Filter ---------------------------------*/
 #channels_right_side_bar{
   display:none;
