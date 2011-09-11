@@ -1607,9 +1607,9 @@ class User < ActiveRecord::Base
       h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
 
     else
-
-      h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
-      h.delete(:user_id)
+     #pq_document_filter will fill owner_id. so commenting these two lines
+     # h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
+     # h.delete(:user_id)
       h[:category] = params[:category]
       h[:status] =  AppConstants.status_public
 
