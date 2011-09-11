@@ -168,9 +168,9 @@ function create_and_docs_box(box_id, summary){
 function get_subscription_box_element(type)
 {
   if(type == 'UNSUBSCRIBE') {
-    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
+    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/unsubscribe.png" ></a>';
   }else if(type == 'SUBSCRIBE'){
-      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
+      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/subscribe.png" ></a>';
   }else{
     return '';
   }
