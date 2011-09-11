@@ -78,8 +78,8 @@
   border: solid 1px #aacfe4;
   width: 200px;
   margin: 7px 0 20px 50px;
-  disabled: "yes";
   background-color: #DDD;
+  resize: none;
 }
 
 /* line 82, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
