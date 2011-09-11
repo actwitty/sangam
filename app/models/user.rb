@@ -1023,46 +1023,55 @@ class User < ActiveRecord::Base
         index = index + 1
       end
 
-
-    Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
-      h = format_document(attr)
-      documents[attr.id].each do |idx|
-        summaries[idx][:documents] << h[:document]
+    if !documents.keys.blank?
+      Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
+        h = format_document(attr)
+        documents[attr.id].each do |idx|
+          summaries[idx][:documents] << h[:document]
+        end
       end
+      documents = {}
     end
-    documents = {}
 
-    Tag.where(:id => tags.keys).order("updated_at DESC").all.each do|attr|
-      h = format_tag(attr)
-      tags[attr.id].each do |idx|
-        summaries[idx][:tags] << h[:tag]
+    if !tags.keys.blank?
+      Tag.where(:id => tags.keys).order("updated_at DESC").all.each do|attr|
+        h = format_tag(attr)
+        tags[attr.id].each do |idx|
+          summaries[idx][:tags] << h[:tag]
+        end
       end
+      tags = {}
     end
-    tags = {}
 
-    Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
-      h = format_location(attr)
-      #h[:id] = attr.id
-      locations[attr.id].each do |idx|
-        summaries[idx][:locations] << h
+    if !locations.keys.blank?
+      Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
+        h = format_location(attr)
+        #h[:id] = attr.id
+        locations[attr.id].each do |idx|
+          summaries[idx][:locations] << h
+        end
       end
+      locations={}
     end
-    locations={}
 
-    Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
-      entities[attr.id].each do |idx|
-        #summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
-        summaries[idx][:entities] << format_entity(attr)
+    if !entities.keys.blank?
+      Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
+        entities[attr.id].each do |idx|
+          #summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
+          summaries[idx][:entities] << format_entity(attr)
+        end
       end
+      entities ={}
     end
-    entities ={}
 
-    Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
-      activities[attr.id].each do |idx|
-        summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at.utc}
+    if !activities.keys.blank?
+      Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
+        activities[attr.id].each do |idx|
+          summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at.utc}
+        end
       end
+      activities = {}
     end
-    activities = {}
 
     # Mark Summaries which user has not subscribed. This will be only applicable if page_state == all or public
     #TODO => Public summary marking is blocked as of now
@@ -1089,7 +1098,7 @@ class User < ActiveRecord::Base
       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
     end
 
-    if (!user.blank?) && (!friends.blank?)
+    if (!user.blank?) && (!friends.keys.blank?)
       h  = {}
       h[:user_id] = user
       h[:activity_word_id] = friends.keys
