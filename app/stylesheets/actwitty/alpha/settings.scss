@@ -238,13 +238,17 @@ li.lk{
   margin:5px;
 }
 /***************************** Welcome Page Facebook/Twitter ******************/
+
 #sns_twitter_id{
-  /*float:right;
-  margin-right:-25px;
-  margin-left:40px;
-  margin-top:-10px;
-  padding:1px;
-  height:23px;*/
+  float:right;
+  margin-right:30px;
+  padding:2px;
+  background-color: #EEE7DD;
+}
+#sns_facebook_id{
+ background-color: #EEE7DD;
+ float:right;
+ padding:2px;
 }
 #tw{
   float:right;
@@ -257,7 +261,7 @@ li.lk{
 }
 #fb{
   float:right;
-  margin-top:-3px;
+  margin-top:-2px;
   padding:1px;
   width:100px;
   height:22px;
@@ -265,37 +269,17 @@ li.lk{
 #sns-login {
   display: block;
   float:right;
-  /*margin-top: -20px;*/
+  margin-top: 40px;
+  width:350px;
+  height:20px;
+  margin-right:0px;
+  /*background-color: #EEE7DD;
+  color: #EEE7DD;*/
 }
 
-#sns_facebook_id{
-  /*float:right;
-  margin-right:5px;
-  margin-top:-10px;
-  padding:1px;
-  margin-right:10px;
-  padding:2px;
-  height:23px;*/
-}
 
-/*
-#tw{
-  float:right;
-  margin-right:-50px;
-  margin-top:-10px;
-  padding:2px;
-  width:24px;
-  height:22px;
-}
-#fb{
-  float:right;
-  margin-right:-25px;
-  margin-top:-10px;
-  padding:2px;
-  width:24px;
-  height:22px;
-}
-*/
+
+
 /************ confirmation **********/
 /* ----------- My Form ----------- */
 
@@ -401,6 +385,7 @@ border:solid 1px #aacfe4;
 width:200px;
 margin:2px 0 20px 45px;
 }
+
 #conf select{
 float:left;
 font-size:12px;
@@ -420,6 +405,7 @@ color:#FFFFFF;
 font-size:11px;
 font-weight:bold;
 }
+
 #conf #confirm-button {
   width: 140px;
   height:30px;
@@ -427,7 +413,6 @@ font-weight:bold;
   margin-top:15px;
   font-size:18px;
   font-weight:bold;
-
 }
 
 #conf #confirm-button:hover {

@@ -17,8 +17,3 @@
     %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
     = link_to "Resend confirmation ?", new_confirmation_path(:user), :id=>"resend_confirmation"
     %input#signupbutton.actwittysignup.hover_point{:type => "button", :value => "Register !"}/
-    #sns-login
-      %a#sns_twitter_id{:href => "/users/auth/twitter"}
-        %img#tw{:src => "/images/t1.png"}
-      %a#sns_facebook_id{:href => "/users/auth/facebook"}
-        %img#fb{:src => "/images/f1.png"}
