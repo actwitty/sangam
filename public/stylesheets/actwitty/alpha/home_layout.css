@@ -1404,13 +1404,12 @@ ul.p-cstab1 li a {
   color: #ffffff;
 }
 
-/*
-.p-st-flt-location
-{
-  background:#274521;
-  color:#a4a88d;
+/* line 1359, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
+.p-st-flt-location {
+  background: #7aa367;
+  color: #fff;
 }
-*/
+
 /* line 1364, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .p-st-fltr-search-img {
   height: 30px;
