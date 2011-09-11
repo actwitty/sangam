@@ -7,24 +7,24 @@
   
   #confirmation-page
     #confirmation-page-block
-      #orgot-sign-connect-desc
+      #forgot-sign-connect-desc
         %h3#confirm-desc.desc Few more steps for confirmation
       #conf.conf_form
         = simple_form_for @profile, :validate => true,  :url => "/confirm_user" do |f|
           %label First Name
-          = f.input :first_name,:label=>false, :placeholder => "First Name", :input_html => { :size=> 30 ,:class=>"confirmation-input" }
+          = f.input :first_name,:label=>false,  :input_html => { :size=> 30 ,:class=>"confirmation-input" }
 
           %label Last Name
-          = f.input :last_name,:label=>false, :placeholder => "Last Name",:input_html => { :size=> 30, :class=>"confirmation-input"  }
+          = f.input :last_name,:label=>false, :input_html => { :size=> 30, :class=>"confirmation-input"  }
 
           %label Gender
           = f.input :sex, :label=> false, :collection => ['male','female','other'], :as => :select, :input_html => { :class=>"confirmation-input input-deco",:id=>"confirm-gender"}
 
           %label Date of Birth
-          = f.input :dob, :label=> false, :placeholder => "Date of Birth", :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input dob"}
+          = f.input :dob, :label=> false,  :as => :string, :input_html=>{:name => "dob_confirmation", :size => "20", :type => "text", :class=>"confirmation-input dob"}
 
           %label City
-          = f.input :home_location, :label =>false, :placeholder => "City", :input_html => { :size => 30, :class=>"confirmation-input city" }
+          = f.input :home_location, :label =>false,  :input_html => { :size => 30, :class=>"confirmation-input city" }
               
                  
           %input#user_key{:name => "confirmation_token", :type => "hidden", :value => "#{params[:confirmation_token]}"}/

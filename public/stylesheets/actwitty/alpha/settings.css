@@ -378,21 +378,26 @@ li.lk {
 */
 /************ confirmation **********/
 /* ----------- My Form ----------- */
-/* line 301, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 303, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#confirmation-page-block #forgot-sign-connect-desc {
+  height: 70px;
+}
+
+/* line 309, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 .conf_form {
   margin: 0 auto;
   width: 400px;
-  padding: 14px;
+  padding: 5px;
 }
 
 /* ----------- conf ----------- */
-/* line 308, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 318, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf {
   /*border:solid 2px #b7ddf2;
   background:#ebf4fb;*/
 }
 
-/* line 312, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 324, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf h1 {
   /*
   font-size:14px;
@@ -401,7 +406,7 @@ li.lk {
   */
 }
 
-/* line 319, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 334, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf p {
   /*
   font-size:11px;
@@ -412,20 +417,20 @@ li.lk {
   */
 }
 
-/* line 328, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 346, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf label {
   display: block;
   font-family: nimbus-sans-condensed,sans-serif;
   color: #666;
-  margin-top: 5px;
-  font-size: 16px;
+  margin-top: 0px;
+  font-size: 24px;
   /*font-weight:bold;*/
   text-align: right;
   width: 140px;
   float: left;
 }
 
-/* line 339, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 360, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf .small {
   color: #666666;
   display: block;
@@ -435,17 +440,26 @@ li.lk {
   width: 140px;
 }
 
-/* line 347, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 372, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf input {
   float: left;
-  font-size: 12px;
+  font-size: 16px;
   padding: 4px 2px;
   border: solid 1px #aacfe4;
   width: 200px;
+  height: 18px;
   margin: 2px 0 20px 45px;
 }
 
-/* line 355, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 384, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf input:focus {
+  border: 1px solid #ddd;
+  -moz-box-shadow: 0px 0px 4px #b0b0b0;
+  -webkit-box-shadow: 0px 0px 4px #b0b0b0;
+  box-shadow: 0px 0px 4px #b0b0b0;
+}
+
+/* line 396, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf textarea {
   float: left;
   font-size: 12px;
@@ -455,7 +469,7 @@ li.lk {
   margin: 2px 0 20px 45px;
 }
 
-/* line 363, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 404, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf select {
   float: left;
   font-size: 12px;
@@ -465,7 +479,7 @@ li.lk {
   margin: 2px 0 20px 45px;
 }
 
-/* line 371, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+/* line 412, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
 #conf button {
   clear: both;
   margin-left: 150px;
@@ -476,4 +490,22 @@ li.lk {
   color: #FFFFFF;
   font-size: 11px;
   font-weight: bold;
+}
+
+/* line 423, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf #confirm-button {
+  width: 140px;
+  height: 30px;
+  margin-left: 70px;
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* line 433, ../../../../app/stylesheets/actwitty/alpha/settings.scss */
+#conf #confirm-button:hover {
+  border: 1px solid #ddd;
+  -moz-box-shadow: 0px 0px 4px #b0b0b0;
+  -webkit-box-shadow: 0px 0px 4px #b0b0b0;
+  box-shadow: 0px 0px 4px #b0b0b0;
 }
