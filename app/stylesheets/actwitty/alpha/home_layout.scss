@@ -1467,6 +1467,7 @@ ul.p-cstab1 li a {
   font-size:16px;
 }
 
+
 .p-rel-fltrs span:hover
 {
   cursor:pointer;
@@ -1492,10 +1493,10 @@ ul.p-cstab1 li a {
   background:#585858;
   padding:2px;
   font-weight:normal;
-  -moz-border-radius: 10px ; 
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px ;
-  -webkit-border-radius: 10px ;
+  -moz-border-radius: 0px ; 
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px ;
+  -webkit-border-radius: 0px ;
   color:#fff;
   text-decoration:none;
   font-size:10px;
@@ -1564,6 +1565,46 @@ ul.p-fltr-tag-list li
   background:#2D7010;
   color:#fff;
 }
+
+
+
+.js_related_friends 
+{
+  position:relative;
+  color:#000;
+  text-decoration:none;
+}
+.js_related_friends span 
+{
+  display: none; 
+  text-decoration:none;
+}
+.js_related_friends:hover
+{
+  z-index:1;
+  background:#fff;
+}
+.js_related_friends:hover span 
+{
+  display:block;
+  position:absolute;
+  top:10px;
+  left:10px;
+  width:auto;
+  background:#fffafa;
+  color:#000;
+  font-size:16px;
+  text-align:center;
+  padding:5px;
+  border:1px solid #6abdc4;
+  box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+  white-space:nowrap;
+}
+
+
 
 /* ------------------------------- Right Bar Filter ---------------------------------*/
 #channels_right_side_bar{
