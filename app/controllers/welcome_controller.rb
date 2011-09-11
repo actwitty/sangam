@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-  caches_page :new
   def new
 
 

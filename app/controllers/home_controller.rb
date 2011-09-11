@@ -1057,7 +1057,7 @@ class HomeController < ApplicationController
       render :json => {}, :status => 400
       return
     end
-    unless params[:summary_id].blank? && params[:document_id].blank?
+    if (!params[:summary_id].blank?) && (!params[:document_id].blank?)
       args={}
       args[:summary_id] = Integer(params[:summary_id])
       args[:document_id] = Integer(params[:document_id])

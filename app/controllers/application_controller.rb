@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   #Alok Adding pusher support
   def pusher_event_push
-    if !response.body.blank?
+    if (!response.body.blank?) &&  (response.status == 200)
        current_user.push_event_to_pusher({:channel => "#{current_user.id}", :event => params[:action], :data => response.body})
     end
   end

@@ -25,8 +25,7 @@ function aw_lib_get_cache_cookie_id(){
 }
 
 function aw_lib_get_base_url(){
- var url = "http://localhost:3000";
- //var url = "http://www.actwitty.com";
+ var url = "http://www.actwitty.com";
  return url;
 }
 
