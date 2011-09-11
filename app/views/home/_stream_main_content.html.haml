@@ -6,15 +6,25 @@
       %li.p-st-filter-box
         #channel_filter_drop.del-fltr
         .p-flt-actor.p-st-flt-default
-          .p-flt-holder#fltr_channel_id all channels
+          .p-flt-holder#fltr_channel_id
+            %span
+              all channels
+            %span.full_name
       %li.p-st-filter-box
         #thing_filter_drop.del-fltr
         .p-flt-actor.p-st-flt-default
-          .p-flt-holder#fltr_entity_id all objects
+          .p-flt-holder#fltr_entity_id
+            %span
+              all mentions
+            %span.full_name
+              all mentions
       %li.p-st-filter-box
         #location_filter_drop.del-fltr
         .p-flt-actor.p-st-flt-default
-          .p-flt-holder#fltr_location_id all locations
+          .p-flt-holder#fltr_location_id
+            %span
+              all locations
+            %span.full_name
 #streams_tab.p-cstab_content
   #js_streams_list
     #streams_list_parent

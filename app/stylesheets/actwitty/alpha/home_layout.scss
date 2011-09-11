@@ -1304,11 +1304,38 @@ ul.p-cstab1 li a {
   margin-top:5px;
   border:0px solid blue;
   font-size:22px;
-  overflow:hidden;
+  /*overflow:hidden;*/
   width:140px;
   height:30px;
   
 }
+
+
+div.p-flt-holder {position:relative;z-index:0;} 
+div.p-flt-holder span.full_name {display: none; text-decoration:none; font-size:12px;} 
+div.p-flt-holder:hover{z-index:1;}
+div.p-flt-holder:hover span.full_name { 
+  display:block;
+  position:absolute;
+  top:30px;
+  left:10px;
+  width:auto;
+  background:#fffafa;
+  color:#000;
+  font-size:16px;
+  text-align:center;
+  padding:5px;
+  border:1px solid #6abdc4;
+  box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
+  white-space:nowrap;
+
+}
+
+
+
 
 .del-fltr
 {
@@ -1613,7 +1640,7 @@ ul.p-fltr-tag-list li
 div.disp-full-name-parent .disp-full-name 
 {
   position:relative;
-  color:#000;
+  color:#fff;
   text-decoration:none;
 }
 div.disp-full-name-parent .disp-full-name-span 
@@ -1758,6 +1785,7 @@ div.disp-full-name-parent .disp-full-name:hover .disp-full-name-span
 }
 
 .p-r-userinfo a span{
+  color:#6abdc4;
 }
 
 .p-r-userinfo .follow_button{
