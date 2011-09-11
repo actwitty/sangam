@@ -1660,12 +1660,13 @@ ul.p-fltr-tag-list li
 .p-r-userinfo{
   height:180px;
   font-size:22px;
-  border:2px solid #ccc;
+  border:0px solid #ccc;
 }
 
 .p-r-userinfo a img{
   height:100px;
   width:100px;
+  display:block;
 }
 
 .p-r-userinfo a span{
@@ -3214,6 +3215,7 @@ date picker related stuff
 .datepicker th, .datepicker tfoot td {
   background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;
+  color:#6abdc4;
 }
 
 .datepicker th span, .datepicker tfoot td span {
