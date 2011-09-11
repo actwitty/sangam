@@ -441,8 +441,10 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                       //'</a>' +
                     '</div>'+
                   '</div>'+
-                  '<div class="p-st-comment-content">'+
-                      '<p>' + comment.text +'</p>'+
+                  '<div class="p-st-comment-content-sect">' +
+                    '<div class="p-st-comment-content">'+
+                        '<p>' + comment.text +'</p>'+
+                    '</div>'+
                   '</div>'+
                   '<div class="clearing"></div>'+
                 '</div>';
@@ -511,7 +513,7 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                       '<input type="text" name="comment" class="add-comment-text p-st-comment-text-box" id="' + add_new_textarea_id + '" >'+
                       '<input type="submit" value="Post Comment" class="js_add_new_comment post-comment-btn btn-comments" id="' + add_new_btn_id + '"/>' +
                       '<input type="submit" value="Cancel" class="cancel-comment-btn btn-comments">'+
-                      '<span class="comment-limit">12</span>'+
+                      '<span class="comment-limit"></span>'+
                     '</div>'+
                 '</div> ';
 
@@ -539,8 +541,9 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   });
 
-    //div.show();
-    div.slideToggle();
+  //div.show();
+  div.slideToggle();
+  $("#" +add_new_textarea_id).elastic();
 }
 
 

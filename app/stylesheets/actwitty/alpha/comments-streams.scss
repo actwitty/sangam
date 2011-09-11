@@ -181,20 +181,24 @@ span.name a
 
 .btn-comments
 {
-  background-color:#eaa540;
+  background-color:#6abdc4;
   border:none;
   height:18px;
   
-  font-size:12px;
+  font-size:13px;
   margin-top:10px;
   color:#fff;
   margin-left:10px;
-  padding:1px;
+  padding:2px 5px;
 }
 
 .btn-comments:hover
 {
   cursor:pointer;
+  box-shadow: 0 0 2px #3a3a3a;
+  -moz-box-shadow: 0 0 2px #3a3a3a;
+  -webkit-box-shadow: 0 0 2px #3a3a3a;
+  -o-box-shadow: 0 0 2px #3a3a3a;
 }
 
 
@@ -219,9 +223,10 @@ span.name a
 
 .p-awp-comments-section
 {
-  width:550px;
+  width:470px;
   height:auto;
-  margin-right:30px;
+  margin-left:50px;
+  margin-bottom:10px;
   border:0px solid red;
   display:none;
 }
@@ -277,10 +282,10 @@ span.name a
 
 .p-st-comment-close-section
 {
-  width:580px;
-  height:12px;
+  width:470px;
+  height:16px;
   border:0px solid red;
-  margin-bottom:-5px;
+  margin-bottom:-2px;
 }
 
 .p-st-comment-close-section div.p-st-comment-close:hover
@@ -292,14 +297,18 @@ span.name a
 .p-st-comment-close
 {
   float:right;
-  margin-right:80px;
+  margin-right:20px;
   width:16px;
   height:12px;
   border:0px solid blue;
   background: url(/images/alpha/aw_close.png) no-repeat;
+  display:none;
 }
 
-
+.p-awp-comment:hover .p-st-comment-close
+{
+  display:block;
+}
 
 .author
 {
@@ -317,7 +326,8 @@ span.name a
 }
 div.p-st-comment-actor center a
 {
-  color:#6abdc4;
+  /*color:#6abdc4;*/
+  color:#fff;
 }
 .p-st-comment-actor-image
 {
@@ -334,17 +344,19 @@ div.p-st-comment-actor center a
 
 .p-st-comment-actor-desc
 {
-  width:90px;
-  height:40px;
+  /*width:90px;*/
+  width:auto;
+  height:50px;
   border:0px solid red;
   float:left;
+  background:#91ced3;
   
 }
 
 .p-st-comment-submitdate
 {
   font-size:9px;
-  color:#454545;
+  color:#3da7b5;
   width:100%;
   height:15px;
   margin-top:10px;
@@ -352,23 +364,30 @@ div.p-st-comment-actor center a
 }
 
 
-
-.p-st-comment-content
+.p-st-comment-content-sect
 {
-  width:350px;
+  width:300px;
   height:auto;
-  color:#6e6e6e;
   margin-top:5px;
   margin-left:4px;
   display:inline-block;
-  background:#eeeeee;
+  background:#f7f7f7;
   font-family:"Georgia";
+}
+.p-st-comment-content
+{
+  width:290px;
+  height:auto;
+  color:#333;
+  margin:5px;
+  border:0px solid red;
   font-size:16px;
   min-height:50px;
 }
 div.p-st-comment-content p
 {
-  font-size:16px;
+  font-size:14px;
+  padding-left:20px;
 
 }
 
@@ -390,7 +409,17 @@ div.p-st-comment-content p
   margin-top:5px;
   margin-bottom:5px;
   height:30px;
-  border:1px solid #000;
+  border:1px solid #ddd;
+  font-size:16px;
+  
+}
+
+.p-st-comment-text-box:focus
+{
+   box-shadow: 0 0 6px #3a3a3a;
+  -moz-box-shadow: 0 0 6px #3a3a3a;
+  -webkit-box-shadow: 0 0 6px #3a3a3a;
+  -o-box-shadow: 0 0 6px #3a3a3a;
 }
 
 .p-st-comment-add-btn

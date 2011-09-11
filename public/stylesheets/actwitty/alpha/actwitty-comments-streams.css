@@ -6,7 +6,7 @@ Syntax error: Invalid CSS after ".co": expected pseudoclass or pseudoelement, wa
 25: {
 26:   margin-top:15px;
 27:   font-size:16px;
-28: 	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif; */
+28: 	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-erif; */
 29:   color:#00BFFF;
 30:   text-align:center;
 31: }
@@ -85,4 +85,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \".co\": expected pseudoclass or pseudoelement, was \"#00BFFF;\"\A         on line 29 of /home/sammy/actwitty/sept/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss\A \A 24: .comments-label span\A 25: {\A 26:   margin-top:15px;\A 27:   font-size:16px;\A 28: 	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif; */\A 29:   color:#00BFFF;\A 30:   text-align:center;\A 31: }\A 32: \A 33: .comments\A 34: {"; }
+  content: "Syntax error: Invalid CSS after \".co\": expected pseudoclass or pseudoelement, was \"#00BFFF;\"\A         on line 29 of /home/sammy/actwitty/sept/sangam/app/stylesheets/actwitty/alpha/actwitty-comments-streams.scss\A \A 24: .comments-label span\A 25: {\A 26:   margin-top:15px;\A 27:   font-size:16px;\A 28: 	/* font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-erif; */\A 29:   color:#00BFFF;\A 30:   text-align:center;\A 31: }\A 32: \A 33: .comments\A 34: {"; }

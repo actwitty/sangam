@@ -250,6 +250,8 @@ $(document).ready(function(){
       alert("oops!! You seems to be using older version of browser, ActWitty is not supported yet on your browser version. We suggest you to upgrade to higher version.");
     }
     //alert(navigator.appName);
+    
+    $(".p-st-comment-text-box").elastic();
 
 });
 
