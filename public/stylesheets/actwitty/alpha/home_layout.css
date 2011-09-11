@@ -176,7 +176,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   border: 0px solid red;
   z-index: 1250;
   /*background:#fffffd;*/
-  background-color: #EEE7DD;
+  /*background-color: #EEE7DD;*/
   /*background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;*/
 }
@@ -2946,13 +2946,13 @@ a.js_handle_stream_entity_mention:hover span {
   height: 750px;
   margin: 0;
   padding: 0;
-  background-color: #EEE7DD;
+  /*background-color: #EEE7DD;*/
 }
 
 /* line 2854, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 #page-wrapper {
   height: 100%;
-  background-color: #EEE7DD;
+  /*background-color: #EEE7DD;*/
 }
 
 /* line 2859, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
