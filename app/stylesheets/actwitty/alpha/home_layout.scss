@@ -2654,7 +2654,6 @@ a.js_handle_stream_entity_mention:hover span
 #confirmation-page-wrapper {
   /*background: white;*/
   height: 600px;/*550*//* 9_sep_11_ev */
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   margin: 0;
   padding: 0;/* 10_sep_11 */
   background-color:#eee7dd;/* 9_sep_11_ev */
@@ -2704,7 +2703,6 @@ a.js_handle_stream_entity_mention:hover span
   vertical-align: top;
   font-size: 16px;
   font-weight: bold;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: #87CEEB;
 */
 }
@@ -2724,13 +2722,12 @@ a.js_handle_stream_entity_mention:hover span
   /*margin-left:30px;*/
   width: 100%;
   height: 7%;/*15%*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   float:center;
 }
 
 #confirmation-page-block {
   display: block;
-  background: #fff;
+  background: #fffaf0;
   height: 400px;
   width: 700px;
   padding: 10px 0 20px 20px;
@@ -2738,7 +2735,6 @@ a.js_handle_stream_entity_mention:hover span
 
   margin-right: 25%;*/
   margin:0px auto;/* 10_sep_11 */
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -2759,13 +2755,11 @@ a.js_handle_stream_entity_mention:hover span
   -o-border-radius: 4px;
   font-size: 10px;
   border-radius: 10px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
 
 #confirm-desc {
   font-size: 30px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
-  color: #87CEEB;
+  color: #ccc;
   text-align:center;
 }
 
@@ -2834,7 +2828,6 @@ a.js_handle_stream_entity_mention:hover span
   margin-left: 100px;*/
   margin: 0px auto;
   margin-bottom: 10px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -2850,7 +2843,6 @@ a.js_handle_stream_entity_mention:hover span
 #settings-page-wrapper {
   /*background: white;*/
   height: 750px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -2868,7 +2860,6 @@ a.js_handle_stream_entity_mention:hover span
   text-align:left;
   vertical-align: top;
   font-size: 16px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: black;
   */
 }
@@ -2887,7 +2878,6 @@ a.js_handle_stream_entity_mention:hover span
   background: white;
   /*width: 100%;
   height: 80%;*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   margin-top:30px;/* 10_sep_11 */
 }
 #settings-form {
@@ -2947,7 +2937,6 @@ margin-left:205px;
   float:left;
   text-align:center;
   color:#fff;
-   font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 12px;
   margin-left:5px;
 }
@@ -2958,7 +2947,6 @@ margin-left:205px;
   text-align:center;
   color:#fff;
   margin-left:-5px;
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   font-size: 12px;
 }
 
@@ -2987,7 +2975,6 @@ margin-left:205px;
   /*margin-bottom:10px;
   
   margin-left:40px;*/
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   /*
   border-radius: 2px;
   -moz-border-radius: 2px;
@@ -3045,7 +3032,6 @@ margin-left:205px;
 }
 /*
 .connect-buttons {
-  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
   color: #ffffff;
   background: #00BFFF url(/images/actwitty/7.jpg) 7px no-repeat;
 
@@ -3200,64 +3186,58 @@ date picker related stuff
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
+  margin-left:100px;
+  margin-top:-10px;
+  color:#333;
+
 }
 
-/* line 818, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tr.controls th {
   height: 22px;
   font-size: 11px;
 }
 
-/* line 823, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker select {
   font-size: 11px;
 }
 
-/* line 827, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tr.days th {
   height: 18px;
 }
 
-/* line 831, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tfoot td {
   height: 18px;
   text-align: center;
   text-transform: capitalize;
 }
 
-/* line 837, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker th, .datepicker tfoot td {
-  background: #87cbee;
-  /*font: 10px/18px Verdana, Arial, Helvetica, sans-serif;*/
+  background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;
 }
 
-/* line 842, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker th span, .datepicker tfoot td span {
   font-weight: normal;
 }
 
-/* line 847, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td {
   width: 24px;
   border: 1px solid blue;
   height: 24px;
   border: 1px solid #ccc;
-  /*font: 11px/22px Arial, Helvetica, sans-seif;*/
   text-align: center;
   background: #fff;
+  color:#333;
 }
 
-/* line 857, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td.date {
   cursor: pointer;
 }
 
-/* line 861, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td.date.over {
   background-color: #00cfff;
 }
 
-/* line 865, ../../../app/stylesheets/actwitty/mainpage.scss */
 .datepicker tbody td.date.chosen {
   font-weight: bold;
   background-color: #0386a5;
