@@ -125,22 +125,24 @@ class User < ActiveRecord::Base
     #TODO : Fix this properly
     uid_based_list = Hash.new
     user_id_list = Hash.new
-    auths.each do |auth|
-         uid_based_list[auth.uid] = {:user_id => auth.user.id, :following => 0}
-         user_id_list[auth.user_id] = auth.uid
-    end
 
-    friends_list = Contact.all(:select => "friend_id", :conditions=> ['user_id = ? and friend_id in (?)',
+    unless auths.nil?
+
+      auths.each do |auth|
+          uid_based_list[auth.uid] = {:user_id => auth.user_id, :following => 0}
+          user_id_list[auth.user_id] = auth.uid
+      end
+
+      friends_list = Contact.all(:select => "friend_id", :conditions=> ['user_id = ? and friend_id in (?)',
                                                                             id,
                                                                             user_id_list.keys]).map(&:friend_id)
 
 
-
-    friends_list.each do |friend|
+      friends_list.each do |friend|
          uid_based_list[user_id_list[friend]][:following] = 1
+      end
     end
 
-    puts  uid_based_list
     return uid_based_list
 
   end

@@ -120,6 +120,7 @@ Sangam::Application.routes.draw do
   match '/feedback/create' => 'feedback#create'
 
   match '/sign_out' => 'welcome#new'
+  match '/welcome/new' => 'welcome#new'
   match '/home/update_social_media_share' => 'home#update_social_media_share'
   match '/home/get_social_counter' => 'home#get_social_counter'
 
@@ -177,7 +178,7 @@ Sangam::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
     
-    root :to => "welcome#new"
+  root :to => "welcome#new"
 
 
 

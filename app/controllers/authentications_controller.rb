@@ -1,9 +1,8 @@
 class AuthenticationsController < ApplicationController
+
   def auth_signin
     # @authentications = current_user.authentications if current_user
     # Added For Test Only One comment line is added
-    puts "*********Auth Sign In**********"
-
     provider = params['provider']
     uid = params['uid']
     @welcome_username="user"
@@ -14,15 +13,13 @@ class AuthenticationsController < ApplicationController
       @welcome_user_picture = authentication.foreign_profile.image
        redirect_to :controller => "home", :action => "alpha"
     end
-
-
   end
-  
 
-  
   def auth_signin_provider
       provider = params['provider']
-      puts "********************Auth Sign In Provider**********************"
+      @profile_page = 1
+      @page_mode="authentications_signin"
+
       Rails.logger.info("[CNTRL][Authentications] Auth Signin Provider")
 
       uid = params['uid']
@@ -66,8 +63,8 @@ class AuthenticationsController < ApplicationController
  def process_authentication
 
     omniauth = request.env["omniauth.auth"]
-    Rails.logger.info("[CNTRL][Authentications] Auth process callback")
-    puts "*********Process Authentication**********"
+    Rails.logger.info("[CNTRL][Authentications] Auth process callback #{params} omniauth #{omniauth}")
+
     if omniauth.nil?
       #TODO: Send back to sign in
       Rails.logger.info("[CNTRL][Authentications] Omni auth is nil, back to home")
@@ -165,14 +162,12 @@ class AuthenticationsController < ApplicationController
             already_existing_auth.foreign_profile.send("import_#{provider}",data)
           end
 
-
           Rails.logger.info("[CNTRL][Authentications] Redirecting to auth sign in")
           redirect_to :controller => 'authentications',
                         :action => 'auth_signin_provider',
                           :provider => provider,
                           :uid => uid,
                           :key => already_existing_auth.salt
-          puts "******************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
 
         else
            # I know the user, allow him to get in

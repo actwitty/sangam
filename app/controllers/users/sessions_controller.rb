@@ -35,13 +35,14 @@ class Users::SessionsController < Devise::SessionsController
         unless authentication.nil?
           if authentication.salt = key && authentication.user_id.nil?
             authentication.user_id = current_user.id
+            Rails.logger.info("[CNTRL] [SESSION] saving the user id: on foreign authentication" )
             authentication.save!
           end
         end
       end
 
       respond_to do |format|
-        puts "WelcomeController new ..... I AM HERE SINGED IN..........."
+        Rails.logger.info("[CNTRL] [SESSION] after sign in path: /home/show" )
         format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
       end
     else
@@ -57,7 +58,7 @@ class Users::SessionsController < Devise::SessionsController
 
   end
   def new
-        puts "*******************session new***************"
+
         Rails.logger.info("*******************session new***************")
     if user_signed_in?
         redirect_to :controller => "home", :action => "alpha"

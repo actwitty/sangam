@@ -13,7 +13,7 @@
               :label => false,
               :input_html => { :id => 'aw_sign_password'}
     = link_to "Forgot password", new_password_path(:user), :id=>"forgot-password", :class=>"main-page-navlinks"
-    %input#user_key{:name => "user[key]", :type => "hidden", :value => ""}/
-    %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
-    %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
+    %input{:name => "user[key]", :type => "hidden", :value => ""}/
+    %input{:name => "user[provider]", :type => "hidden", :value => ""}/
+    %input{:name => "user[uid]", :type => "hidden", :value => ""}/
     %input#signinbutton.actwittysignin.hover_point{ :type => "button", :value => "Sign In"}/

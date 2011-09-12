@@ -11,22 +11,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
       key=params[:user][:key]
       provider=params[:user][:provider]
       uid=params[:user][:uid]
+      Rails.logger.info("[CNTRL] [REGISTRATION] Into create #{provider} UID #{uid} Key #{key}")
       if !key.nil? && !provider.nil? && !uid.nil? && !key.empty? &&  !provider.empty? && !uid.empty?
         Rails.logger.info("[CNTRL] [REGISTRATION] Provider #{provider} UID #{uid} Key #{key}")
         process_authentication=true
       end
     end
-
-
     resource.password_confirmation = resource.password
-
-    if resource.save! 
-
+    if resource.save!
       if process_authentication
         Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
         authentication=Authentication.find_by_provider_and_uid(provider, uid)
         unless authentication.nil?
-          if authentication.salt = key && authentication.user_id.nil?
+          Rails.logger.info("[CNTRL] [REGISTRATION] Authentication is not nil")
+          if authentication.salt == key && authentication.user_id.nil?
             user = resource
             authentication.user_id = user.id
             Rails.logger.info("[CNTRL] [REGISTRATION] Updating userid for authentication")
@@ -54,8 +52,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user = resource
       puts @user.errors
       respond_to do |format|
-        #format.html { render_with_scope :new }
-        format.js   {  }
+        format.html { render_with_scope :new }
+        format.js
       end
     end
   rescue => e

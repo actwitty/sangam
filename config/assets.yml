@@ -124,4 +124,5 @@ stylesheets:
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/plugins/jquery-autocomplete/lib/thickbox.css
     - public/stylesheets/actwitty/alpha/settings.css
+    - public/stylesheets/actwitty/alpha/fb_friends.css
 

@@ -724,7 +724,109 @@ input#aw_intro_register:hover {
   margin-left: 50px;
 }
 
-/* line 623, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+/******************************** Auth Sign In Page **************************************/
+/* line 619, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_enter_box {
+  padding: 0px 0;
+  z-index: 1000;
+  height: 480px;
+  border: 0px solid red;
+}
+
+/* line 628, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_foreign_info_welcome_box {
+  width: 650px;
+  height: 120px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+/* line 636, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_foreign_info_welcome_image {
+  border: 1px solid #ccc;
+  padding: 2px;
+  margin: 2px;
+  width: 78px;
+}
+
+/* line 644, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_foreign_info_welcome_text {
+  font-family: nimbus-sans-condensed,sans-serif;
+  color: #333;
+  font-size: 24px;
+  margin: 2px;
+  padding: 2px;
+}
+
+/* line 653, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_foreign_info_welcome_image img {
+  width: 75px;
+}
+
+/* line 657, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_intro_signup_sect {
+  width: 650px;
+  height: 450px;
+  border: 0px solid blue;
+  float: right;
+  margin-right: 300px;
+  border: 2px solid #333;
+}
+
+/* line 667, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_intro_signup_new_here {
+  width: 230px;
+  height: 59px;
+  display: block;
+  border: 0px solid red;
+  margin: 0px auto;
+  background-image: url("/images/alpha/new_here.png");
+  background-repeat: no-repeat;
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+/* line 681, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_intro_signup_new_here_info {
+  width: 230px;
+  height: 59px;
+  border: 0px solid red;
+  margin: 0px auto;
+  margin-top: 62px;
+  margin-left: -230px;
+  background-image: url("/images/alpha/register_help.png");
+  background-repeat: no-repeat;
+  margin-left: 20px;
+}
+
+/* line 695, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_signin_signup_bar {
+  height: 135px;
+  border: 0px solid #000000;
+  display: block-inline;
+}
+
+/* line 702, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_intro_session_box {
+  width: 300px;
+  height: 130px;
+  border: 0px solid green;
+  margin-left: 50px;
+  margin-top: 10px;
+  float: left;
+}
+
+/* line 712, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_auth_intro_register_box {
+  width: 300px;
+  height: 130px;
+  margin-left: -40px;
+  border: 0px solid blue;
+  float: left;
+}
+
+/* line 724, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
 #home_page_filter_text, #home_page_channel_text, #home_page_summary_text {
   width: 130px;
   height: 80px;
