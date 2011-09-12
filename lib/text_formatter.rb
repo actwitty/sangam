@@ -16,6 +16,11 @@ module TextFormatter
     "<a href=\# value=#{id} class=#{klass}>#{name}</a>".html_safe
   end
 
+  #convert to html urls
+  def sanitized_link_to_type(controller, klass, name, id)
+    /<a href="#" value="#{id}" class="#{klass}">#{name}<\/a>/
+  end
+
   #add entity references in text
   def flatten_entities(text, entity_hash, seed_index)
 
@@ -55,12 +60,14 @@ module TextFormatter
   #convert an entity link into normal name without a link
   #this is used when entity id mentioned in entity url does not exist
   def unlink_an_entity(text,  entity_id)
-    regex = /<a href=\# value=(#{entity_id}) class=#{AppConstants.activity_entity_class}>([\w\s]+)<\/a>/i
+    regex = /<a href=\"#\" value=\"(#{entity_id})\" class=\"#{AppConstants.activity_entity_class}\">([\w\s]+)<\/a>/i
     m = text.scan(regex)
+    puts m
     m.each do |m_array|
-      text.gsub!( /#{link_to_type(AppConstants.entity_controller,AppConstants.activity_entity_class, m_array[1], m_array[0])}/ ,m_array[1])
+      text.gsub!( sanitized_link_to_type(AppConstants.entity_controller,AppConstants.activity_entity_class, m_array[1], m_array[0]) ,m_array[1])
     end
     text
+
   end
 
   #convert a mention in received text ( not converted into links, only tags are there) into normal name without tags
@@ -79,7 +86,7 @@ module TextFormatter
   #this is used when user id mentioned in mention gets deleted
   #TODO - NOT UTF8 Compliance
   def unlink_a_mention(text, user_name, user_id)
-    text.gsub!(  /#{link_to_type(AppConstants.user_controller,AppConstants.activity_mention_class, user_name, user_id)}/ ,user_name)
+    text.gsub!(  sanitzed_link_to_type(AppConstants.user_controller,AppConstants.activity_mention_class, user_name, user_id) ,user_name)
     text
   end
 

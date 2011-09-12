@@ -1025,46 +1025,55 @@ class User < ActiveRecord::Base
         index = index + 1
       end
 
-
-    Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
-      h = format_document(attr)
-      documents[attr.id].each do |idx|
-        summaries[idx][:documents] << h[:document]
+    if !documents.keys.blank?
+      Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
+        h = format_document(attr)
+        documents[attr.id].each do |idx|
+          summaries[idx][:documents] << h[:document]
+        end
       end
+      documents = {}
     end
-    documents = {}
 
-    Tag.where(:id => tags.keys).order("updated_at DESC").all.each do|attr|
-      h = format_tag(attr)
-      tags[attr.id].each do |idx|
-        summaries[idx][:tags] << h[:tag]
+    if !tags.keys.blank?
+      Tag.where(:id => tags.keys).order("updated_at DESC").all.each do|attr|
+        h = format_tag(attr)
+        tags[attr.id].each do |idx|
+          summaries[idx][:tags] << h[:tag]
+        end
       end
+      tags = {}
     end
-    tags = {}
 
-    Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
-      h = format_location(attr)
-      #h[:id] = attr.id
-      locations[attr.id].each do |idx|
-        summaries[idx][:locations] << h
+    if !locations.keys.blank?
+      Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
+        h = format_location(attr)
+        #h[:id] = attr.id
+        locations[attr.id].each do |idx|
+          summaries[idx][:locations] << h
+        end
       end
+      locations={}
     end
-    locations={}
 
-    Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
-      entities[attr.id].each do |idx|
-        #summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
-        summaries[idx][:entities] << format_entity(attr)
+    if !entities.keys.blank?
+      Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
+        entities[attr.id].each do |idx|
+          #summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
+          summaries[idx][:entities] << format_entity(attr)
+        end
       end
+      entities ={}
     end
-    entities ={}
 
-    Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
-      activities[attr.id].each do |idx|
-        summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at.utc}
+    if !activities.keys.blank?
+      Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
+        activities[attr.id].each do |idx|
+          summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at.utc}
+        end
       end
+      activities = {}
     end
-    activities = {}
 
     # Mark Summaries which user has not subscribed. This will be only applicable if page_state == all or public
     #TODO => Public summary marking is blocked as of now
@@ -1091,31 +1100,37 @@ class User < ActiveRecord::Base
       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
     end
 
-    h  = {}
-    h[:user_id] = user
-    h[:activity_word_id] = friends.keys
-    h = pq_summary_filter(h)
+    if (!user.blank?) && (!friends.keys.blank?)
+      h  = {}
+      h[:user_id] = user
+      h[:activity_word_id] = friends.keys
+      h = pq_summary_filter(h)
 
-    Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
-      activities[k[0]] = k[1]
-    end
+      Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
+        activities[k[0]] = k[1]
+      end
 
-    User.where(:id => activities.keys).all.each do |attr|
-      # activities[attr.id] => activity_word_id
-      friends[activities[attr.id]].each do |idx|
+      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - #{activities.keys.inspect} \n #{friends.keys.inspect}" )
+      if !activities.keys.blank?
+        User.where(:id => activities.keys).all.each do |attr|
+          # activities[attr.id] => activity_word_id
+          friends[activities[attr.id]].each do |idx|
 
-        #dont show a friend in his own summary as related friend
-        if summaries[idx][:user][:id] != attr.id
+            #dont show a friend in his own summary as related friend
+            if summaries[idx][:user][:id] != attr.id
 
-          if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
-            summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
+              if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
+                summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
+              end
+
+            end
+
           end
 
         end
-
       end
-
     end
+
 
     Rails.logger.debug("[MODEL] [USER] [get_summary] leaving")
     #FETCHING RELATED FRIEND -- DONE
@@ -1603,9 +1618,9 @@ class User < ActiveRecord::Base
       h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
 
     else
-
-      h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
-      h.delete(:user_id)
+     #pq_document_filter will fill owner_id. so commenting these two lines
+     # h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
+     # h.delete(:user_id)
       h[:category] = params[:category]
       h[:status] =  AppConstants.status_public
 

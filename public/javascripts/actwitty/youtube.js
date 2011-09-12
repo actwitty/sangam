@@ -72,7 +72,7 @@
         //# the User entered only the eleven chars long id, Case 1
         if((youtubeId.length) === 11) {
             youtube_id = youtubeId;
-            alert("1");
+            //alert("1");
             return youtubeId;
         }
         //# the User entered a Url
@@ -80,14 +80,14 @@
             match_string = youtubeId.split("watch?v=")
             if ( (match_string[1].length) == 11   ) {
                 youtube_id = match_string[1];
-                alert("2");
+                //alert("2");
                 return youtube_id;
             }
             else {
                 var test = match_string[1];
                 test = test.split("&feature=");
-                alert(test[0]);
-                alert("3");
+                //alert(test[0]);
+                //alert("3");
                 youtube_id = test[0];
                 return youtube_id;
             }

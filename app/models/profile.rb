@@ -101,10 +101,10 @@ class Profile < ActiveRecord::Base
 
   def update_user_full_name
     user.full_name = first_name.strip + ' ' + last_name.strip
-    if !profile_photo_s.nil?
+    if !profile_photo_s.blank?
         user.photo_small_url =  profile_photo_s
     end
-    if user.photo_small_url.nil?
+    if user.photo_small_url.blank?
       user.photo_small_url = AppConstants.user_no_image
     end
     user.save!

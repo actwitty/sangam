@@ -221,7 +221,6 @@ function handle_like_campaign(div_id, stream){
  */
 function show_all_stream_campaigns(likes, div){
   var likes_html="";
-  alert(JSON.stringify(likes));
   //alert("show_all_stream_campaigns" + div);
   $.each(likes, function(i,like){
     var like_html = '<div class="author">' +
@@ -277,7 +276,7 @@ function append_entity_delete(post_id){
           var remove_id = post_id + '_' + entity_id + "_rem";
           the_big_stream_entity_deletes[remove_id] = remove_val;
           var hover_html = '<span>' +
-                              '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> Remove </a>' +
+                              '<a id="' + remove_id + '" value="' + remove_val + '" class="js_entity_delete"> unmark </a>' +
                            '</span>';
           $(this).append(hover_html);
         });
@@ -442,8 +441,10 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                       //'</a>' +
                     '</div>'+
                   '</div>'+
-                  '<div class="p-st-comment-content">'+
-                      '<p>' + comment.text +'</p>'+
+                  '<div class="p-st-comment-content-sect">' +
+                    '<div class="p-st-comment-content">'+
+                        '<p>' + comment.text +'</p>'+
+                    '</div>'+
                   '</div>'+
                   '<div class="clearing"></div>'+
                 '</div>';
@@ -512,7 +513,7 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                       '<input type="text" name="comment" class="add-comment-text p-st-comment-text-box" id="' + add_new_textarea_id + '" >'+
                       '<input type="submit" value="Post Comment" class="js_add_new_comment post-comment-btn btn-comments" id="' + add_new_btn_id + '"/>' +
                       '<input type="submit" value="Cancel" class="cancel-comment-btn btn-comments">'+
-                      '<span class="comment-limit">12</span>'+
+                      '<span class="comment-limit"></span>'+
                     '</div>'+
                 '</div> ';
 
@@ -540,8 +541,9 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   });
 
-    //div.show();
-    div.slideToggle();
+  //div.show();
+  div.slideToggle();
+  $("#" +add_new_textarea_id).elastic();
 }
 
 
@@ -916,7 +918,7 @@ function append_stream(owner_id, current_user_id){
             if( more_cookie.length == 0){
               $("#streams_list").html("<br/> <br/> No streams to show");
             }
-            aw_lib_alert('No streams to show');
+            //aw_lib_alert('No streams to show');
           }
 
         },
@@ -1114,7 +1116,7 @@ function aw_channels_render_like(win_id, trigger_id){
   var div_id = $("#" + trigger_id).parent().next().next().next().next().children("div.p-awp-post-const-opt").children("div.p-awp-post-like").attr("id");
   //alert(div_id);
   campaign_manager = the_big_stream_campaign_manager_json[div_id];
-  alert(JSON.stringify(campaign_manager));
+  //alert(JSON.stringify(campaign_manager));
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',

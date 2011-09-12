@@ -1,9 +1,13 @@
 #aw_home_header_signin_inputs
   = simple_form_for(:user,@user, :url => user_session_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
+    #login_email_label
+      %span Email
     = f.input :email ,
               :placeholder => "Email",
               :label => false,
               :input_html => { :id => 'aw_sign_email'}
+    #login_email_label
+      %span Password
     = f.input :password ,
               :placeholder => "Password",
               :label => false,

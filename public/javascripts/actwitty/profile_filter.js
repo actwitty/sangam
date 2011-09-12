@@ -36,30 +36,43 @@ function modify_filter(filter_json, reload){
 
   /* remove display of all filter disengage buttons */
 
+
+
   /* Channel */
   if ($("#filter_channel_id").attr("value").length > 0 && $("#filter_channel_name").attr("value").length>0){
-    //var html = '<input type="button" id="channel_filter_drop" value="'+ $("#filter_channel_name").attr("value") +' X"/>'; 
-    $("#fltr_channel_id").html($("#filter_channel_name").attr("value"));
+    
+    filter_name = get_trim_text($("#filter_channel_name").attr("value"),10,"..");
+    $("#fltr_channel_id span:first-child").html(filter_name);
+    $("#fltr_channel_id span:nth-child(2)").html($("#filter_channel_name").attr("value"));
+
     $("#fltr_channel_id").parent().addClass('p-st-flt-channel');
     $('#channel_filter_drop').show();
   }else{
     if ($("#fltr_channel_id").parent().is('.p-st-flt-channel')) {
       $("#fltr_channel_id").parent().removeClass('p-st-flt-channel');
     }
-    $("#fltr_channel_id").html("all channels");
+    $("#fltr_channel_id span:first-child").html("all channels");
+    $("#fltr_channel_id span:nth-child(2)").html("all channels");
     $('#channel_filter_drop').hide();
   }
 
-  /* Thing */
-  if ($("#filter_thing_id").attr("value").length > 0 && $("#filter_thing_name").attr("value").length>0){
-   //var html = '<input type="button" id="thing_filter_drop" value="'+ $("#filter_thing_name").attr("value") +' X"/>'; 
-   $("#fltr_entity_id").html($("#filter_thing_name").attr("value"));
+
+
+ 
+ /* Thing */
+ if ($("#filter_thing_id").attr("value").length > 0 && $("#filter_thing_name").attr("value").length>0){
+   
+   filter_name = get_trim_text($("#filter_thing_name").attr("value"),10,".."); 
+   $("#fltr_entity_id  span:first-child").html(filter_name);
+   $("#fltr_entity_id  span:nth-child(2)").html($("#filter_thing_name").attr("value"));
+
    $("#fltr_entity_id").parent().addClass('p-st-flt-entity');
     $('#thing_filter_drop').show();
   }else{
     if ($("#fltr_entity_id").parent().is('.p-st-flt-entity')) {
       $("#fltr_entity_id").parent().removeClass('p-st-flt-entity');
-      $("#fltr_entity_id").html("all mentions");
+      $("#fltr_entity_id span:first-child").html("all mentions");
+      $("#fltr_entity_id  span:nth-child(2)").html("all mentions");
     $('#thing_filter_drop').hide();
     }
   }
@@ -68,17 +81,23 @@ function modify_filter(filter_json, reload){
 
   /* Location */
   if ($("#filter_location_id").attr("value").length > 0 && $("#filter_location_name").attr("value").length>0){
-    //var html = '<input type="button" id="location_filter_drop" value="'+ $("#filter_location_name").attr("value") +' X"/>'; 
-   $("#fltr_location_id").html($("#filter_location_name").attr("value"));
+   
+   filter_name = get_trim_text($("#filter_location_name").attr("value"),10,".."); 
+   $("#fltr_location_id span:first-child").html(filter_name);
+   $("#fltr_location_id span:nth-child(2)").html($("#filter_location_name").attr("value"));
+
    $("#fltr_location_id").parent().addClass('p-st-flt-location');
     $('#location_filter_drop').show();
   }else{
     if ($("#fltr_location_id").parent().is('.p-st-flt-location')) {
       $("#fltr_location_id").parent().removeClass('p-st-flt-location');
     }
-      $("#fltr_location_id").html("all locations");
+      $("#fltr_location_id span:first-child").html("all locations");
+      $("#fltr_location_id span:nth-child(2)").html("all locations");
     $('#location_filter_drop').hide();
   }
+  
+  
   if(reload==true){
       if ( need_redirect == true){
         /* simple case redirect to stream tab of new user */
@@ -157,12 +176,12 @@ function aw_get_stream_scope(){
 function profile_filter_init(){
     if(aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
       $("#p-channelp-tab-mine").addClass("p-channelp-selected");
-      $("#stream_mine").addClass("p-r-fltr-subscribed-active");
+      $("#stream_mine").addClass("p-r-fltr-mine-active");
       g_channel_scope = 1;
       g_stream_scope = 1;
     }else{
       $("#p-channelp-tab-mine").addClass("p-channelp-selected");
-      $("#stream_mine").addClass("p-r-fltr-subscribed-active");
+      $("#stream_mine").addClass("p-r-fltr-mine-active");
       g_channel_scope = 1;
       g_stream_scope = 1;
     }

@@ -9,7 +9,7 @@
  * 2. p in -channlep indication page.
  * 3. p-channelp : means profile-channle page
  * 4. lu: latest updates
- * 5. cu: channel updates
+ * 5. cu: channel updaten
  *
  */
 
@@ -96,19 +96,30 @@
   border:0px solid green;
 }
 
-#p-channelp-posts
+#p-channelp-posts-content-section
 {
   width:70%;
-  height:400px;
+  height:auto;
   float:left;
+  border:0px solid red;
+}
+
+#p-channelp-posts
+{
+  /*width:70%;
+  float:left;*/
+  width:100%;
+  display:block;
+  height:auto;
   border:0px solid blue;
 }
 
 #p-channelp-author-section
 {
-  width:28%;
+  width:27%;
   height:200px;
   float:left;
+  margin-left:20px;
   border:0px solid green;
 }
 
@@ -121,8 +132,23 @@
   height:auto;
   border:0px solid red;
   margin-top:10px;
+  padding-left:8px;
+  padding-top:5px;
 }
 
+.p-channelp-post-border
+{
+  border:1px solid #ddd;
+   box-shadow: 0 0 2px #eaa540;
+  -moz-box-shadow: 0 0 2px #eaa540;
+  -webkit-box-shadow: 0 0 2px #eaa540;
+  -o-box-shadow: 0 0 2px #eaa540;
+
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
 
 .p-channelp-post-header
 {
@@ -139,10 +165,25 @@
   border:0px solid black;
 }
 
-.p-channelp-otr-channel-icon
+.p-channelp-otr-channel-icon .p-channelp-post-cu
 {
+  border:0px solid red;
+  
 }
 
+.p-channelp-otr-icon-active
+{
+  box-shadow: 0 0 10px #eaa540;
+  -moz-box-shadow: 0 0 10px #eaa540;
+  -webkit-box-shadow: 0 0 10px #eaa540;
+  -o-box-shadow: 0 0 10px #eaa540;  
+}
+
+.p-channelp-icon-summary-active
+{
+  border:1px solid #ddd;
+  margin-bottom:10px;
+}
 .p-channelp-otr-channel-icon:hover
 {
   cursor:pointer;
@@ -172,7 +213,8 @@
   float:right;
   width:auto;
   height:100%;
-  background:#e0e0e0;
+  /*background:#e0e0e0;*/
+  background:#f7f7f7;
   margin-right:65px;
 
 }
@@ -343,7 +385,8 @@
 {
   width:100%;
   height:60px;
-  background:#e0e0e0;
+  /*background:#e0e0e0;*/
+  background:#f7f7f7;
   margin-top:1px;
   word-wrap:break-word;
   overflow:hidden;
@@ -529,6 +572,9 @@ span.name a
 */
 
 /* ################################ To submit comments ############################*/
+
+
+/*
 .add-comment
 {
   border:1px solid #ddd;
@@ -619,35 +665,7 @@ span.name a
   overflow:hidden;
 }
 
-/*
-.author
-{
-  border:1px solid green;
-  width:160px;
-  height:50px;
-  margin-top:5px;
-  float:left;
-  background:#92cfd4;
-}
-.p-st-comment-actor
-{
-  color:#fff;
-  font-size:16px;
-}
-.p-st-comment-actor-image
-{
-  border:0px solid red;
-  color:#c19135;
-  width:35px;
-  height:40px;
-  float:right;
-}
-.p-st-comment-actor-image img
-{
-  width:35px;
-  height:50px;
-}
-*/
+
 .p-st-comment-actor-desc
 {
   width:120px;
@@ -678,6 +696,8 @@ span.name a
   display:inline-block;
   background:#e0e0e0;
 }
+
+*/
 
 
 
@@ -888,6 +908,7 @@ ul .p-channelp-post-relelem
   height:auto;
   border:0px solid red;
   font-size:16px;
+  color:#333;
 }
 
 .p-channelp-auth-last-upd-hd
@@ -906,7 +927,8 @@ ul .p-channelp-post-relelem
   margin-top:5px;
   width:100%;
   height:auto;
-  background:#e0e0e0;;
+  /*background:#e0e0e0;;*/
+  background:#f7f7f7;
 }
 
 .p-channelp-auth-last-upd-post-time
@@ -931,7 +953,7 @@ ul .p-channelp-post-relelem
 }
 .p-channelp-auth-last-upd-post-text p
 {
-  color:#fff;
+  color:#333;
   font-size:16px;
 }
 
@@ -940,7 +962,8 @@ ul .p-channelp-post-relelem
   padding:2px;
   margin:2px;
   border:1px solid #ccc;
-  background-color:#e0e0e0;
+  /*background-color:#e0e0e0;*/
+  background:#f7f7f7;
 }
 
 .p-channel-subscribe-btn:hover{
@@ -1040,8 +1063,7 @@ ul .p-channelp-post-relelem
 
 
 
-#more_channel_streams
+#more_personal
 {
-  color:red;
   width:500px;
 }

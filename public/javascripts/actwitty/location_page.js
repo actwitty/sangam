@@ -16,7 +16,7 @@ function append_location_streams(){
           
         var url;
         if (data.type == 2){
-            url = "http://maps.googleapis.com/maps/api/staticmap?center="+data.lat+","+data.long+"&zoom=12&size=400x400&sensor=false";
+            url = "http://maps.googleapis.com/maps/api/staticmap?center="+data.lat+","+data.long+"&zoom=13&size=800x400&sensor=false";
         }
         else if(data.type == 3){
             url = get_location_image_for_type(data.type);
@@ -26,13 +26,16 @@ function append_location_streams(){
         }
         
         /******************************************************/
-          var header_html=   '<div class="p-awp-location-name">' +
-                                '<span >' +
-                                  data.name +
-                                '</span>' +
-                             '</div>' +
+          var header_html=  '<div class="locationp_map">'+
+                              '<img class="locations_box_images" id="loc_page_img" src="' +url+  '" style="width:570px;height:200px;"/>' + 
+                            '</div>' +
+                            '<div class="locationp_name">' +
+                                  '<span > ' +
+                                    data.name +
+                                  '</span>' +
+                            '</div>' ;
                             //'<img class="locations_box_images" src="' + get_location_image_for_type(data.type) +  '" height="40" width="40" />'
-                            '<img class="locations_box_images" id="loc_page_img" src="' +url+  '" style="width:250px;height:200px;"/>'
+                            
                             ;
            $('#location_stream_header').html(header_html);
            $.each(data.stream, function(i,stream){

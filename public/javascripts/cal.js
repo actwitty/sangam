@@ -209,7 +209,8 @@
 		// sets the currently matched input element's value to the date, if one is available
 		// remove the table element from the DOM
 		// indicate that there is no datepicker for the currently matched input element
-		function closeIt (el, datepicker, dateObj) { 
+		function closeIt (el, datepicker, dateObj) {
+      //alert("closing it now");
 			if (dateObj && dateObj.constructor == Date)
 				el.val(jQuery.fn.simpleDatepicker.formatOutput(dateObj));
 			datepicker.remove();
@@ -270,7 +271,10 @@
 						jQuery("span.nextMonth", datepicker).click(function (e) { loadMonth (e, $this, datepicker, chosendate); });
 						jQuery("span.today", datepicker).click(function () { closeIt($this, datepicker, new Date()); });
 						jQuery("span.close", datepicker).click(function () { closeIt($this, datepicker); });
-						
+					  
+            /*jQuery(this).blur(function () {
+                closeIt($this, datepicker); 
+            });*/
 						// set the initial values for the month and year select fields
 						// and load the first month
 						jQuery("select[name=month]", datepicker).get(0).selectedIndex = chosendate.getMonth();
@@ -279,6 +283,7 @@
 					}
 					
 				});
+        
 			}
 
         });
@@ -312,4 +317,8 @@
 $(document).ready(function(){
 
   $('.dob').simpleDatepicker({ chosendate: '29/08/1983', startdate:'01/01/1930', enddate: '01/01/2010' });
+
+  
+  
+
 });

@@ -1,40 +1,33 @@
 = javascript_include_tag 'actwitty/placeholder.js'
 = javascript_include_tag 'actwitty/jquery.placeholder.js'
 = javascript_include_tag 'actwitty/jquery-placeholder-0.1.js'
+/#page-wrapper
+/  #header
+=render :partial => "welcome/logo"
 
+#forgot-site-connect
+  #forgot-sign_in_up.forgot-reset
+    #forgot-sign-connect-desc
+      %h3#forgot-desc.desc Reset Your Password?
+      %p
+        Change your account settings by entering new password.
+    = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :put }) do |f|
+      =f.input :reset_password_token, :as => :hidden
+      #data-input
+        = f.input :password ,
+                  :placeholder => "Password", 
+                  :label => false, 
+                  :class => 'inputbox', 
+                  :input_html => { :size=> 30,:id=>"forgot-password-input",:class=>"input-deco"  }
 
-=render :partial => "welcome/logo" 
-
-.wrapper_hompage.homep_col10
-  #aw_forgot_password
-    #forgot-site-connect
-      #forgot-sign_in_up
-        #forgot-sign-connect-desc
-          %h3#forgot-desc.desc Reset Your Password?
-          %p
-            Change your account settings by entering new password.
-
-        = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :post }) do |f|
-          #data-input
-            = f.input :password ,
-                    :placeholder => "Password", 
-                    :label => false, 
-                    :class => 'inputbox', 
-                    :input_html => { :size=> 30,:id=>"forgot-password-input",:class=>"input-deco"  }
-            = f.input :password_confirmation ,
-                    :placeholder => "Re-enter Password", 
-                    :label => false, 
-                    :class => 'inputbox', 
-                    :input_html => { :size=> 30,:id=>"forgot-password-input",:class=>"input-deco"  }
-          #forgot-site-connect-buttons
-            %input#reset-password-btn.connect-buttons{:role => "button", :type => "submit", :value => "Change Password"}/
-            /%input.connect-buttons{:role => "button", :type => "submit", :value => "Email Me"}/
-          /
-            = f.button :submit,
-                       :value=>"Email Me",
-                     :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
+        = f.input :password_confirmation ,
+                  :placeholder => "Re-enter Password", 
+                  :label => false, 
+                  :class => 'inputbox', 
+                  :input_html => { :size=> 30,:id=>"forgot-password-input",:class=>"input-deco"  }
+      #forgot-site-connect-buttons
+        %input#reset-password-btn.connect-buttons{:role => "button", :type => "submit", :value => "Change Password"}/
+      
 =render :partial => "welcome/footer"
-
-
 
 

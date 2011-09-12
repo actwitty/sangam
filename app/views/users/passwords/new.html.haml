@@ -6,27 +6,29 @@
 
 =render :partial => "welcome/logo"       
 
-.wrapper_hompage.homep_col10
-  #aw_forgot_password
-    #forgot-site-connect
-      #forgot-sign_in_up
-        #forgot-sign-connect-desc
-          %h3#forgot-desc.desc Forgot Your Password?
-          %p
-            Please enter any email address that we may have.
-            We'll send you an email that will allow you to reset your password.
+/.wrapper_hompage.homep_col10
+/  #aw_forgot_password
+#forgot-site-connect
+  #forgot-sign_in_up
+    #forgot-sign-connect-desc
+      %h3#forgot-desc.desc Forgot Your Password?
+      %p
+        Please enter any email address that we may have.
+        We'll send you an email that will allow you to reset your password.
 
-        = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :post }) do |f|
-          #data-input
-            = f.input :email ,
-                      :placeholder => "Type Your Email-id",
-                      :label => false, 
-                      :class => 'inputbox', 
-                      :input_html => { :size=> 30,:id=>"forgot-password-input",:class=>"input-deco"  }
-          #forgot-site-connect-buttons
-            %input.connect-buttons{:role => "button", :type => "submit", :value => "Email Me"}/
-          /
-            = f.button :submit,
-                       :value=>"Email Me",
-                     :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
+    = simple_form_for(@user, :as => :user, :url => password_path(:user), :html => { :method => :post }) do |f|
+      #data-input
+        = f.input :email ,
+                  :placeholder => "Type Your Email-id",
+                  :label => false, 
+                  :class => 'inputbox', 
+                  :input_html => { :size=> 30,:id=>"forgot-password-input",:class=>"input-deco"  }
+      #forgot-site-connect-buttons_pwd
+        %input.connect-buttons{:role => "button", :type => "submit", :value => "Email Me"}/
+      /
+        = f.button :submit,
+                   :value=>"Email Me",
+                 :input_html => {:name=>"sign-in",:id=>"forgot-button",:class=>"connect-buttons"}
 =render :partial => "welcome/footer"
+
+

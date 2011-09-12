@@ -82,7 +82,7 @@ $(document).ready(function(){
         return format(item);
       }
     }).result(function(e, item) {
-        alert( 'Activity ID seen is ' +  getID(item));
+        //alert( 'Activity ID seen is ' +  getID(item));
     });
 
   
@@ -91,5 +91,5 @@ $(document).ready(function(){
 /********************************* READY ENDS HERE ******************************************/
 
 $('.activities_sidebar').live('click', function () { 
-    alert('clicked ' + $(this).attr('id'));   
+    //alert('clicked ' + $(this).attr('id'));   
 });

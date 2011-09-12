@@ -9,7 +9,7 @@ function get_base_theme_image_url(){
   return "https://s3.amazonaws.com/TestCloudActwitty/channel_themes/";
 }
 function get_summary_theme_images(){
-  var images = [
+  /*var images = [
                  'bubbles.jpg',
                  'gray.jpg',
                  'orange.jpg',
@@ -24,6 +24,18 @@ function get_summary_theme_images(){
                  'forest.jpg',
                  'marine.jpg',
                  'red.jpg'
+               ];
+  */
+  var images = [
+                 'box1.png',
+                 'box2.png', 
+                 'box3.png',
+                 'box4.png',
+                 'box5.png',
+                 'box6.png',
+                 'box7.png',
+                 'box8.png',
+
                ];
   return images;
 }
@@ -59,7 +71,7 @@ function get_summary_theme_html(summary){
 function create_and_add_text_box(box_id, summary,channel_class){
   var text_box= $("#" + box_id);
 
-  if(channel_class == 'mainpage'){
+  if(channel_class == "mainpage"){
     var lup_class = "p-channelp-post-lup-mainpage";
   }else{
     var lup_class = "p-channelp-post-lup";
@@ -156,9 +168,9 @@ function create_and_docs_box(box_id, summary){
 function get_subscription_box_element(type)
 {
   if(type == 'UNSUBSCRIBE') {
-    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/subscribed.png" ></a>';
+    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/unsubscribe.png" ></a>';
   }else if(type == 'SUBSCRIBE'){
-      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/unsubscribed.png" ></a>';
+      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/subscribe.png" ></a>';
   }else{
     return '';
   }
@@ -586,7 +598,7 @@ var show_counter = 0;
         /* overall summary div is added */        
         summary_box.append(html);
 
-        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        var background_theme =  get_base_theme_image_url() + "box1.png";
         if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
@@ -669,7 +681,7 @@ var show_counter = 0;
   
         /* overall summary div is added */        
         summary_box.append(html);
-        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        var background_theme =  get_base_theme_image_url() + "box1.png";
         if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
@@ -715,7 +727,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
   });
  }
 
- var html = '<div class="p-channelp-post js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
+ var html = '<div class="p-channelp-post  js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
 
               '<div class="p-channelp-post-header">' +
@@ -810,7 +822,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
 
         /* overall summary div is added */        
         summary_box.append(html);
-        var background_theme =  get_base_theme_image_url() + "pink.jpg";
+        var background_theme =  get_base_theme_image_url() + "box1.png";
         if( summary.theme_data.url && summary.theme_data.url.length){
           background_theme = summary.theme_data.url;
         }
@@ -1094,18 +1106,25 @@ $(document).ready(function(){
       $(this).closest(".p-channelp-post").find(".p-channelp-post-rel-img").slideToggle();
       if($(this).text() == "More >") {
         $(this).text("Less <");
+        $(this).closest(".p-channelp-post").addClass("p-channelp-post-border");
       } else {
         $(this).text("More >");
+        $(this).closest(".p-channelp-post").removeClass("p-channelp-post-border");
       }
     });
 
     $(".p_channelp_view_summary").live('click',function(){
+      var summary_id = $("#"+$(this).attr("value"));
       if($(this).find('span').text() == "view more >"){
         $(this).find('span').text("view less <");
+        $(this).parent().addClass("p-channelp-otr-icon-active");
+        summary_id.addClass("p-channelp-icon-summary-active");
       } else {
         $(this).find('span').text("view more >");
+        $(this).parent().removeClass("p-channelp-otr-icon-active");
+        summary_id.removeClass("p-channelp-icon-summary-active");
       }
-      var summary_id = $("#"+$(this).attr("value"));
+      
       summary_id.slideToggle();
     });
 

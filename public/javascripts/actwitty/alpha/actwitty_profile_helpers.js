@@ -79,17 +79,39 @@ $(document).ready(function(){
     }
   });
   
-
+    /* Note: There are some hardcoded strings used in following 2 functions
+     * If in case you are changing any of them, plz make sure to change it in input_box partial
+     * as well
+     * */
     $("#attachment").live("click",function(){
         $("#input-attachments-section").slideToggle("medium");
-        /*$("#input-attachments-section").show();*/
-        /*$(this).hide();*/
+        var $image = $(this).children("img");
+        if ($image.attr("src") == "/images/alpha/camera_icon.png")
+            $image.attr("src", "/images/alpha/camera_pressed_button.png");
+        else
+            $image.attr("src", "/images/alpha/camera_icon.png");
+
+        var $span = $(this).children("span");
+        if ($span.text() == "Add Images")
+            $span.text("Close Images");
+        else
+            $span.text("Add Images");  
     });
 
     $("#add_subtitle").live("click",function(){
         $("#subtitle-div").slideToggle("medium");
-        /*$("#input-attachments-section").show();*/
-        /*$(this).hide();*/
+        var $image = $(this).children("img");
+        if ($image.attr("src") == "/images/alpha/title_normal_button.png")
+            $image.attr("src", "/images/alpha/title_pressed_button.png");
+        else
+            $image.attr("src", "/images/alpha/title_normal_button.png");
+       
+        var $span = $(this).children("span");
+        if ($span.text() == "Add Title")
+            $span.text("Close Title");
+        else
+            $span.text("Add Title");  
+
     });
 
 
@@ -178,11 +200,11 @@ $(document).ready(function(){
     
 
     $(".count-enable").blur(function() {
-        $("#input-char-count").hide();
+        $("#input-char-count span").hide();
     });
     
     $(".count-enable").bind('focus keyup', function() {
-        $("#input-char-count").show();
+        $("#input-char-count span").show();
         var maxlength = $(this).attr("maxlength");
         $(this).val($(this).val().slice(0,maxlength));
         var remaining_length = maxlength - $(this).val().length;
@@ -223,6 +245,13 @@ $(document).ready(function(){
     $("#aw_login_open").click(function(){
       $("#aw_home_header_signin_box").slideToggle();
     }); 
+
+    if ($.browser.msie && $.browser.version.substr(0,1)<9){
+      alert("oops!! You seems to be using older version of browser, ActWitty is not supported yet on your browser version. We suggest you to upgrade to higher version.");
+    }
+    //alert(navigator.appName);
+    
+    $(".p-st-comment-text-box").elastic();
 
 });
 
