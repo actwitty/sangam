@@ -5,15 +5,19 @@
         %span
           Already a registered user?
           %a#aw_login_open{:href => "#"} Login
+        
       %a{:href => "http://www.actwitty.com" }
         #aw_home_header_logo
+       
     #aw_home_header_signin_box.js_signin_partial
       =render :partial => "users/sessions/new", :locals => { :user => User.new } 
-      #aw_home_header_direct_signin_box
-        %a#aw_direct_twitter{:href => "/users/auth/twitter"}
-          %img#tw{:src => "/images/alpha/t-connect.png"}
-        %a#aw_direct_facebook{:href => "/users/auth/facebook"}
-          %img#fb{:src => "/images/alpha/f-connect.png"}
+
+    #aw_home_direct_foreign_login
+      %a#twitter_connect{:href => "/users/auth/twitter"}
+        %img{:src => "/images/alpha/t-connect.png"}
+      %a#sns_facebook_id{:href => "/users/auth/facebook"}
+        %img{:src => "/images/alpha/f-connect.png"}    
+      
 
 
 

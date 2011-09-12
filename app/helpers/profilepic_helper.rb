@@ -87,7 +87,7 @@ module ProfilepicHelper
 	                                              resize : {
                                                             width : 640,
                                                             height: 480,
-                                                            quality : 60
+                                                            quality : 90
                                                          },
                                                 multipart: true,
                                                 multi_selection:false,
@@ -145,8 +145,9 @@ module ProfilepicHelper
                                     up.settings.multipart_params['key']= key;
                                     up.settings.multipart_params['Filename']=file_name; 
         	                          up.settings.resize= { 
-                                                          width : 50, 
-                                                          height : 50
+                                                          width : 100, 
+                                                          height : 100,
+                                                          quality : 100
                                                         };
                                     uploader.start();
                                     /* main image completion handler */
