@@ -1098,18 +1098,12 @@ class HomeController < ApplicationController
     @profile_page = 1
     @page_mode = "facebook"
     provider="facebook"
-    @user=User.find_by_id(params[:id])
-    if @user.nil?
-        if user_signed_in?
-          @user=current_user
-        else
-          redirect_to :controller => "home", :action => "show"
-        end
-      else
-        if user_signed_in?
-          @follow = current_user.check_follower(@user.id)
-        end
-      end
+    @page_mode="facebook"
+    if user_signed_in?
+      @user=current_user
+    else
+      redirect_to :controller => "welcome", :action => "new"
+    end
    end
   ########################################
 

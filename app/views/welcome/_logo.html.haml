@@ -7,7 +7,7 @@
           %a#aw_login_open{:href => "#"} Login
       %a{:href => "http://www.actwitty.com" }
         #aw_home_header_logo
-    #aw_home_header_signin_box
+    #aw_home_header_signin_box.js_signin_partial
       =render :partial => "users/sessions/new", :locals => { :user => User.new } 
       #aw_home_header_direct_signin_box
         %a#aw_direct_twitter{:href => "/users/auth/twitter"}

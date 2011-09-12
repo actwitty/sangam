@@ -60,12 +60,12 @@ $(document).ready(function(){
       $.ajax({
         url: "/users",
         type: 'POST',
+        dataType:"script",
         data: $(this).closest('form').serialize() ,
         beforeSend: function(){
           $('#LoadingDiv').css('display','block'); 
         },
         success: function(data){
-          
           $('#LoadingDiv').css('display','none');
         },
       });
@@ -84,6 +84,7 @@ $(document).ready(function(){
       $.ajax({
         url: "/users/sign_in",
         type: 'POST',
+        dataType:"script",
         data: $(this).closest('form').serialize() ,
         beforeSend: function(){
           $('#LoadingDiv').css('display','block'); 
