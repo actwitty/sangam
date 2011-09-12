@@ -8,13 +8,9 @@
               :placeholder => "Password", 
               :label => false,
               :input_html => { :id=>'aw_register_password'}
-    %input#user_key{:name => "user[key]", :type => "hidden", :value => ""}/
-    %input#user_provider{:name => "user[provider]", :type => "hidden", :value => ""}/
-    %input#user_uid{:name => "user[uid]", :type => "hidden", :value => ""}/
     = link_to "Resend confirmation ?", new_confirmation_path(:user), :id=>"resend_confirmation"
+    %input{:name => "user[key]", :type => "hidden", :value => ""}/
+    %input{:name => "user[provider]", :type => "hidden", :value => ""}/
+    %input{:name => "user[uid]", :type => "hidden", :value => ""}/
     %input#signupbutton.actwittysignup.hover_point{:type => "button", :value => "Register !"}/
-         #sns-login
-      %a#sns_twitter_id{:href => "/users/auth/twitter"}
-        %img#tw{:src => "/images/t1.png"}
-      %a#sns_facebook_id{:href => "/users/auth/facebook"}
-        %img#fb{:src => "/images/f1.png"}
+ 

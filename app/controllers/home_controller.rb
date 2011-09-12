@@ -1095,6 +1095,8 @@ class HomeController < ApplicationController
   end
   ####################################
   def facebook_friends
+    @profile_page = 1
+    @page_mode = "facebook"
     provider="facebook"
     @page_mode="facebook"
     if user_signed_in?

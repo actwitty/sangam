@@ -9,8 +9,13 @@ function set_current_page_context(context){
 }
 /*************************************/
 
+var g_initialized = 0;
 $(document).ready(function(){
   /* main pump to decide page flow */
+  if (g_initialized == 1){
+    return;
+  }
+  g_initialized = 1;
   var page_context=$('#page_mode').attr("value");
   set_current_page_context(page_context);
   if( page_context == "profile_main"){
@@ -25,8 +30,8 @@ $(document).ready(function(){
     show_all_on_location(); /* in location_page.js */
   }else if( page_context == "channel"){
     show_all_on_channel(); /* in channel_page.js */
-  }else if(page_context == "facebook"){
-    aw_facebook_initialize_page();
+  }else if( page_context == "facebook"){
+    aw_fetch_facebook_friends(); /* in profile_facebook.js */
   }
 
   /** General functions to support auto complete based search **/
@@ -61,5 +66,5 @@ $(document).ready(function(){
       window.location.href = "/home/show?id=" + getID(item);
       
     });
-
+    return false;
 });

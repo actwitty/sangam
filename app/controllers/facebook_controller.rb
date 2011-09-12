@@ -4,15 +4,12 @@ class FacebookController < ApplicationController
     provider="facebook"
     facebook_auth=Authentication.find_by_user_id_and_provider(current_user.id, provider)
     if facebook_auth.nil?
-      puts "------------------------------facebook_auth nil----------------------------"
       session[:return_to] ||= request.referer
       if request.xhr?
-         puts "------------------------------if----------------------------"
          resp = {:location => '/users/auth/facebook',
                   :message => 'Log in to facebook'}
          render :json => resp
        else
-         puts "------------------------------else----------------------------"
          redirect_to "users/auth/facebook"
        end
     else
@@ -34,9 +31,6 @@ class FacebookController < ApplicationController
                                       "status"=>"invite" }
 
         }
-        puts "--FB Friends --------------"
-        puts friends
-        puts "---------------------------"
 
         uid_based_list = current_user.get_uid_follow_status(provider, uid_list)
 

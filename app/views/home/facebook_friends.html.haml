@@ -12,31 +12,32 @@
 =render :partial => "home/top_bar"
 
 
-%p#fb_friends Invite Facebook Friends
+%p#facebook_friends.fb_friends_header Invite Facebook Friends
 #invite_friends  
-  %h3#empty_check No Facebook friends In your Profile.Invite them by Clicking Above.     
-%p#flwr_friends Subscribed Friends
-#follower_friends  
-  %h3#empty_check No Subscribed friends In your Profile.Invite them by Clicking Above.      
-%p#flwg_friends Subscribe Friends
-#following_friends  
-  %h3#empty_check No Subscribe friends In your Profile.Invite them by Clicking Above.      
+  %h3#empty_check_invites.fb_empty_check No Facebook friends In your Profile.Invite them by Clicking Above.     
+%p#unsunscribed_friends_header.fb_friends_header Subscribe To Friends
+#unsubscribed_friends  
+  %h3#empty_check_subscribes.fb_empty_check No new friends from facebook to subscribe.      
+%p#subscribed_friends_header.fb_friends_header Subscribed Friends
+#subscribed_friends  
+  %h3#empty_check_subscribeds.fb_empty_check No one from facebook has yet been subscribed.      
 
 /Secret cookies
 %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
-  -if user_signed_in?
-    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
-  - else
-    %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
-  %input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@defaul_page_mode}" }
+-if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+%input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@defaul_page_mode}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
 
-  /Filter
-  %input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }
-  %input#filter_location_name{:name => "filter_location_name", :type => "hidden", :value => "#{@filter_location_name}" }
-  %input#filter_thing_id{:name => "filter_thing_id", :type => "hidden", :value => "#{@filter_thing_id}" }
-  %input#filter_thing_name{:name => "filter_thing_name", :type => "hidden", :value => "#{@filter_thing_name}" }
-  %input#filter_channel_id{:name => "filter_channel_id", :type => "hidden", :value => "#{@filter_channel_id}" }
-  %input#filter_channel_name{:name => "filter_channel_name", :type => "hidden", :value => "#{@filter_channel_name}" }
+/Filter
+%input#filter_location_id{:name => "filter_location_id", :type => "hidden", :value => "#{@filter_location_id}" }
+%input#filter_location_name{:name => "filter_location_name", :type => "hidden", :value => "#{@filter_location_name}" }
+%input#filter_thing_id{:name => "filter_thing_id", :type => "hidden", :value => "#{@filter_thing_id}" }
+%input#filter_thing_name{:name => "filter_thing_name", :type => "hidden", :value => "#{@filter_thing_name}" }
+%input#filter_channel_id{:name => "filter_channel_id", :type => "hidden", :value => "#{@filter_channel_id}" }
+%input#filter_channel_name{:name => "filter_channel_name", :type => "hidden", :value => "#{@filter_channel_name}" }
 
   %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
 

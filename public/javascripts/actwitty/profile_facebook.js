@@ -9,20 +9,15 @@
 
 
 function renderFacebookers(json){
- 
-  var invite_html = '<div id="invite"  class="modal_fb_ul sc_menu1">' +  '</div><br/>';
-  
-  var follow_html = '<div id="follow" class="modal_fb_ul">' + '</div><br/>';
 
-  var unfollow_html = '<div id="unfollow" class="modal_fb_ul">'+ '</div><br/>';
+  //alert(JSON.stringify(json));
+  var invite_html = '<div id="invite"  class="fb_friends_lists">' +  '</div><br/>';
+  var follow_html = '<div id="subscribe_new" class="fb_friends_lists">' + '</div><br/>';
+  var unfollow_html = '<div id="existing_subscription" class="fb_friends_lists">'+ '</div><br/>';
 
   $("#invite_friends").append(invite_html);  
-  var inv_html = '<ul class="sc_menu1" id="test">' + '</ul>';
-  $('#invite').append(inv_html);
-  
-  
-  $("#follow_friends").append(follow_html);  
-  $("#unfollow_friends").append(unfollow_html); 
+  $("#unsubscribed_friends").append(follow_html);  
+  $("#subscribed_friends").append(unfollow_html); 
 
   $.each(json, function(i,data){
       if( data ){
@@ -30,7 +25,6 @@ function renderFacebookers(json){
 	      var html="";
         var str;
      
-         //alert(data.name.length); 
          if( data.name.length > 12 )
          {  
            var limit = 12;                
@@ -44,53 +38,53 @@ function renderFacebookers(json){
          }
 
         if (!data.user_id){
-        var html= '<li class="lk"><div id="' + li_id  +  '" class="user_stamp">' +
-	'<div id="ex1">' +
-	'<img class="img" src="' + data.image + '" height="55" width="50" align="left">'+
-       	'<div id="txt1">' +  str  + '</div>'+
-	'<div id="inner">'+
-		'<input type="button"  height="25" width="25" value="Invite" class="fb_invite" id="' + data.uid + '"/>' +
-	'</div>'+
-	'</div>'+
-	'</div></li>';
+          var html= '<div class="friends_box">' +
+                      '<div id="' + li_id  +  '" class="user_stamp">' +
+                          '<div class="fb_friend_image">' + 
+	                          '<img class="img" src="' + data.image + '"  title="' + data.name + '" />'+
+	                        '</div>'+
+       	                  '<div class="fb_friend_text">' + 
+                            '<p>' +  str  + '</p>'+
+		                        '<a href="#" class="js_fb_invite fb_friend_action" id="' + data.uid + '"> Invite </a>' +
+	                        '</div>'+
+	                      '</div>' +
+                      '</div>';
 
-
-        $('#test').append(html);
+          $('#empty_check_invites').hide();
+          $('#invite').append(html);
         }else{
-         html='<div id="' + li_id  +  '" class="user_stamp">' +
-		'<div id="ex1">' +
-			'<a href="#" id="user_nav_' +  data.user_id + '" class="link_user_stamp user_nav">' +
-			       	'<img class="img" src="' + data.image + '" height="55" width="50" align="left">'+
-				'<div id="txt1">' +  str + '</div>'+
-			'</a>'+ 
-			'<input type="hidden" id="user_nav_' +  data.user_id + '_hidden" value="' +  data.user_id + '"/>'+
-     		'</div>'+
-		'</div>';
-
 
           if (data.status == "Follow"){
-            $('#follow').append(html);
-      	    var html = '<div id="inner">'+
-		 	'<input type="button" height="25" width="25" value="Unfollow" class="follow_button"   id="follow_btn_' + data.user_id + '" />' +
-			'</div>';
-	      $('#' + li_id + " " +  "#ex1").append(html);
-
-
+             var html= '<div class="friends_box">' +
+                        '<div id="' + li_id  +  '" class="user_stamp">' +
+                          '<div class="fb_friend_image">' + 
+	                          '<img class="img" src="' + data.image + '"  title="' + data.name + '" />'+
+	                        '</div>'+
+       	                  '<div class="fb_friend_text">' + 
+                            '<p>' +  str  + '</p>'+
+		                        '<a href="#" class="js_fb_subscribe fb_friend_action" id="' + data.user_id + '"> Subscribe </a>' +
+	                        '</div>'+
+	                       '</div>'+
+                       '</div>';
+            $('#empty_check_subscribes').hide();
+            $('#subscribe_new').append(html);
           }else{
-            $('#unfollow').append(html);
-	    var html = '<div id="inner">'+
-		 	'<input type="button" height="25" width="25" value="Follow" class="follow_button"  id="follow_btn_' + data.user_id + '" />' +
-			'</div>';
-
-            $('#' + li_id + " " + "#ex1").append(html);
+            var html= '<div class="friends_box">' +
+                        '<div id="' + li_id  +  '" class="user_stamp">' +
+                          '<div class="fb_friend_image">' + 
+	                          '<img class="img" src="' + data.image + '"  title="' + data.name + '" />'+
+	                        '</div>'+
+       	                  '<div class="fb_friend_text">' + 
+                            '<p>' +  str  + '</p>'+
+		                        '<a href="#" class="js_fb_manage fb_friend_action" id="' + data.user_id + '"> Manage </a>' +
+	                        '</div>'+
+	                      '</div>' +
+                      '</div>';
+            $('#empty_check_subscribeds').hide();
+            $('#existing_subscription').append(html);
 	   
           }
         }
-
-
-      
-        var html = '<input type="hidden" value="' + data.user_id + '" id="follow_btn_' + data.user_id + '_user_id" />';
-        $("#" + li_id).append(html);
 	
     }
   });
@@ -99,21 +93,18 @@ function renderFacebookers(json){
 
 
 function append_invite_friends(){
- //alert("invite");
   if ($('#invite').is(':empty'))
   {
       $('#invite').append('<h3>No friends To invite.</h3>');
   }
 }
 function append_follow_friends(){
- //alert("follow");
   if ($('#follow').is(':empty'))
   {
       $('#follow').append('<h3>No friends To follow.</h3>');
   }
 }
 function append_unfollow_friends(){
- //alert("unfollow");
   if ($('#unfollow').is(':empty'))
   {
      $('#unfollow').append('<h3>No friends To unfollow.</h3>');
@@ -125,64 +116,64 @@ function append_unfollow_friends(){
 /*
  * Invoke on page load
  */
-function aw_facebook_initialize_page(){
+var temp = 0;
+function aw_fetch_facebook_friends(){
     /*
      * Get data on ready
      */
-    
     $.ajax({
         url: '/facebook/facebook_friends_list',
         type: 'GET',
-        data: {},
+        data: { 'user_id' : aw_lib_get_page_owner_id()},
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
-          if(data.length){
+          /* if rails demands a redirect because of log in missing */
+          if( data && data.length){
             renderFacebookers(data);
-            $('#empty_check').hide();
           }
+          //TODO: try to use this in search, why should search hit server, again and again
+          
         },
         error: function (error) {
 
         }
     });
+    return false;
    
 }
 
   
 /********************************************************************************************/
 $(document).ready(function(){
-  //alert("Inside profile_facebook.js ready"); 
-  $(".user_nav").live('click', function(){
-    var click_id = $(this).attr("id");
-    var user_id = $("#" + click_id + "_hidden").attr("value");
-    modify_filter({});
-
-    $("#facebook-dialog-modal").dialog('close');
-    /*$("#test").dialog('close');*/
-    window.location.href = "/home/show?id=" + user_id;
+  
+  $(".js_fb_subscribe").live('click', function(){
+     var user_id = $(this).attr('id'); 
+     window.location.href = "/home/show?id=" + user_id;
   });
 
 
-  $('.fb_invite').live('click', function () {
+  $(".js_fb_manage").live('click', function(){
+     var user_id = $(this).attr('id'); 
+     window.location.href = "/home/show?id=" + user_id;
+  });
+
+  $('.js_fb_invite').live('click', function () {
     var dataString = 'provider=facebook&uid=' + $(this).attr('id');
     $.ajax({
       url:  '/facebook/invite',
       type: 'POST',
       data: dataString
     });
-    $(this).closest('li').remove();
+    $(this).closest('.friends_box').remove();
+  });
+
+
+  $('.js_add_facebook_friends').live('click',function(){
+    window.location.href = "/home/facebook_friends";
   });
   
-  if ($('#invite_friends').children().size() > 1)
-  {
-      $('#empty_check').hide();
-  }
-  else
-  {
-      $('#empty_check').show();
-  }
- 
+  return false;
 
 });
 

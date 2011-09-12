@@ -93,7 +93,7 @@ div.wrapper_hompage{
 
 #aw_home_header_signin_box
 {
-  width:185px;
+  width:210px;
   /*height:100px;*/
   padding:0px 0px 5px 0px;
   height:auto;
@@ -101,7 +101,7 @@ div.wrapper_hompage{
   border:0px solid red;
   float:right;
   margin-top:-130px;
-  margin-right:143px;
+  margin-right:118px;
   background:#868686;
   display:none;
 }
@@ -121,7 +121,7 @@ div.wrapper_hompage{
 
 #aw_home_header_signin_inputs input
 {
-  width:170px;
+  width:160px;
   height:20px;
   margin-top:8px;
   margin-left:6px;
@@ -180,6 +180,38 @@ input#aw_header_signin:hover
   border:0px solid red;
 }
 
+#aw_home_header_direct_signin_box{
+  margin-top:2px;
+  background:#868686;
+  height:auto;
+  display:inline;
+}
+
+
+#aw_direct_twitter{
+  padding-top:5px;
+  display:inline;
+  float:right;
+  margin-right:-35px;
+}
+
+
+#aw_direct_twitter img{
+  width:75px;
+  height:15px;
+}
+
+#aw_direct_facebook{
+  padding-top:5px;
+  display:inline;
+  margin-right:10px;
+  float:right;
+}
+
+#aw_direct_facebook img{
+  width:75px;
+  height:15px;
+}
 
 
 
@@ -535,4 +567,106 @@ input#aw_intro_register:hover
   background:none;
   color:#333;
   margin-left:50px;
+}
+/******************************** Auth Sign In Page **************************************/
+#aw_auth_enter_box
+{
+  padding:0px 0;
+	z-index:1000;
+  height:480px;
+  border:0px solid red;
+  
+}
+
+#aw_auth_foreign_info_welcome_box
+{
+  width:650px;
+  height:120px;
+  margin-top:5px;
+  margin-left:5px;
+}
+
+#aw_auth_foreign_info_welcome_image
+{
+  border:1px solid #ccc;
+  padding:2px;
+  margin:2px;
+  width:78px;
+}
+
+#aw_auth_foreign_info_welcome_text
+{
+  font-family: nimbus-sans-condensed,sans-serif;
+  color:#333;
+  font-size:24px;
+  margin:2px;
+  padding:2px;
+}
+
+#aw_auth_foreign_info_welcome_image img
+{
+  width:75px;
+}
+#aw_auth_intro_signup_sect
+{
+  width:650px;
+  height:450px;
+  border:0px solid blue;
+  float:right;
+  margin-right:300px;
+  border:2px solid #333;
+}
+
+#aw_auth_intro_signup_new_here
+{
+  width:230px;
+  height:59px;
+  display:block;
+  border:0px solid red;
+  margin:0px auto;
+  background-image: url("/images/alpha/new_here.png");
+  background-repeat:no-repeat;
+  float:left;
+  margin-left:5px;
+  margin-top:5px;
+}
+
+#aw_auth_intro_signup_new_here_info
+{
+  width:230px;
+  height:59px;
+  border:0px solid red;
+  margin:0px auto;
+  margin-top:62px;
+  margin-left:-230px;
+  background-image: url("/images/alpha/register_help.png");
+  background-repeat:no-repeat;
+  margin-left:20px;
+}
+
+
+#aw_auth_signin_signup_bar
+{
+  height:135px;
+  border:0px solid #000000;
+  display:block-inline;
+}
+
+#aw_auth_intro_session_box
+{
+  width:300px;
+  height:130px;
+  border:0px solid green;
+  margin-left:50px;
+  margin-top:10px;
+  float:left;
+}
+
+#aw_auth_intro_register_box
+{
+  width:300px;
+  height:130px;
+  margin-left:-40px;
+  border:0px solid blue;
+  float:left;
 }

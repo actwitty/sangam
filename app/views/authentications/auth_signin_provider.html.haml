@@ -5,38 +5,34 @@
       %a{:href => "http://www.actwitty.com" }
         #aw_home_header_logo
 
+
 .wrapper_hompage.homep_col2
-  %img{:src => @welcome_user_picture}
-  Hello
-  %b= @welcome_username
-  welcome to actwitty.com
-  #aw_home_intro
-    #aw_home_intro_signup_sect
-      #aw_home_intro_signup_new_here
-      #aw_home_intro_signup_new_here_info
-      #aw_home_intro_register_box
-        =render :partial => "users/registrations/new", :locals => { :user => User.new } 
-    #aw_home_intro_signup_sect
-      #aw_home_intro_signup_new_here
-      #aw_home_intro_signup_new_here_info
-      #aw_home_intro_register_box
-        =render :partial => "users/sessions/new", :locals => { :user => User.new } 
+  #aw_auth_enter_box
+    
+    #aw_auth_intro_signup_sect
+      #aw_auth_foreign_info_welcome_box
+        #aw_auth_foreign_info_welcome_image
+          %img{:src => @welcome_user_picture}
+        #aw_auth_foreign_info_welcome_text
+          Hello
+          %b= @welcome_username
+          welcome to actwitty.com
+      #aw_auth_intro_signup_new_here
+      #aw_auth_intro_signup_new_here_info
+      #aw_auth_signin_signup_bar
+        #aw_auth_intro_register_box
+          =render :partial => "users/registrations/new", :locals => { :user => User.new } 
+        #aw_auth_intro_session_box
+          =render :partial => "users/sessions/new", :locals => { :user => User.new } 
 
-  
-
-
-  
-
+%input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
+%input#user_provider{:name => "auth_provider", :type => "hidden", :value =>  params[:provider]}/
+%input#user_uid{:name => "auth_uid", :type => "hidden", :value => params[:uid]}/ 
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
 
 =render :partial => "welcome/footer"
 
 .wrapper_hompage.homep_col6
-%input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
-%input#user_provider{:name => "auth_provider", :type => "hidden", :value =>  params[:provider]}/
-%input#user_uid{:name => "auth_uid", :type => "hidden", :value => params[:uid]}/ 
-%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }
-
-
 
 
 

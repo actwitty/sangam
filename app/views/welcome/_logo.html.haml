@@ -9,6 +9,11 @@
         #aw_home_header_logo
     #aw_home_header_signin_box
       =render :partial => "users/sessions/new", :locals => { :user => User.new } 
+      #aw_home_header_direct_signin_box
+        %a#aw_direct_twitter{:href => "/users/auth/twitter"}
+          %img#tw{:src => "/images/alpha/t-connect.png"}
+        %a#aw_direct_facebook{:href => "/users/auth/facebook"}
+          %img#fb{:src => "/images/alpha/f-connect.png"}
 
 
 
