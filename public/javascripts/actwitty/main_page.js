@@ -49,13 +49,13 @@ function main_page_sign_in_initializer(){
 
 
 $(document).ready(function(){
-    $(".actwittysignup").live('click', function() {
-      var auth_key = $('#foreign_auths').find('input[name="auth_key"]').val();
-      var auth_uid =  $('#foreign_auths').find('input[name="auth_uid"]').val();
-      var auth_provider =$('#foreign_auths').find('input[name="auth_provider"]').val();
-      $(this).closest('form').find('input[name="user[provider]"]').val(auth_provider);
-      $(this).closest('form').find('input[name="user[key]"]').val(auth_key);
-      $(this).closest('form').find('input[name="user[uid]"]').val(auth_uid);
+    $("#signupbutton").live('click', function() {
+      var auth_key = $('#user_key').val();
+      var auth_uid =  $('#user_uid').val();
+      var auth_provider = $('#user_provider').val();
+      $('input[name="user[provider]"]').val(auth_provider);
+      $('input[name="user[key]"]').val(auth_key);
+      $('input[name="user[uid]"]').val(auth_uid);
 
       $.ajax({
         url: "/users",
@@ -73,13 +73,13 @@ $(document).ready(function(){
   });
 
 
-  $(".actwittysignin").live('click', function() {
-      var auth_key = $('#foreign_auths').find('input[name="auth_key"]').val();
-      var auth_uid =  $('#foreign_auths').find('input[name="auth_uid"]').val();
-      var auth_provider =$('#foreign_auths').find('input[name="auth_provider"]').val();
-      $(this).closest('form').find('input[name="user[provider]"]').val(auth_provider);
-      $(this).closest('form').find('input[name="user[key]"]').val(auth_key);
-      $(this).closest('form').find('input[name="user[uid]"]').val(auth_uid);
+  $("#signinbutton").live('click', function() {
+      var auth_key = $('#user_key').val();
+      var auth_uid =  $('#user_provider').val();
+      var auth_provider =$('#user_uid').val();
+      $('input[name="user[provider]"]').val(auth_provider);
+      $('input[name="user[key]"]').val(auth_key);
+      $('input[name="user[uid]"]').val(auth_uid);
 
       $.ajax({
         url: "/users/sign_in",
