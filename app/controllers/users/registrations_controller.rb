@@ -53,7 +53,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       puts @user.errors
       respond_to do |format|
         format.html { render_with_scope :new }
-        format.js   {  }
+        format.js
       end
     end
   rescue => e

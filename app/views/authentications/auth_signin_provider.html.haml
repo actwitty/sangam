@@ -20,9 +20,9 @@
       #aw_auth_intro_signup_new_here
       #aw_auth_intro_signup_new_here_info
       #aw_auth_signin_signup_bar
-        #aw_auth_intro_register_box
+        #aw_auth_intro_register_box.js_signup_partial
           =render :partial => "users/registrations/new", :locals => { :user => User.new } 
-        #aw_auth_intro_session_box
+        #aw_auth_intro_session_box.js_signin_partial
           =render :partial => "users/sessions/new", :locals => { :user => User.new } 
 
 %input#user_key{:name => "auth_key", :type => "hidden", :value => params[:key]}/
