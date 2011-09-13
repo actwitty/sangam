@@ -708,6 +708,15 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
    * */
   var stream_ele_id = get_stream_ele_id(post.id);
   aw_lib_console_log("debug", "rendering the stream");
+  var str = "";
+  if( post.word.name.length > 45 ){  
+    var limit = 45;                
+    str = post.word.name;        
+    var strtemp = str.substr(0,limit); 
+    str = strtemp + '..' + '<span class="hide">' + post.word.name + '</span>'; 
+  } else {
+    str = post.word.name;
+  }
   var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
                    '<div class="p-awp-close-section">'+
                       '<div class="p-awp-close js_stream_delete_btn">' +
@@ -718,7 +727,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                         '<div class="p-awp-channel-desc">'+
                           '<label class="p-awp-channel-label">CHANNEL : </label>'+
                           '<a href="/channel_page?channel_id=' +  post.word.id + '">' +
-                          '<span class="p-awp-channel-name">' + post.word.name + '</span>'+
+                          '<p class="p-awp-channel-name">' + str + '</p>'+
                           '</a>' +
                         '</div>'+
                         '<div id="'+ location_box_id +'">' +

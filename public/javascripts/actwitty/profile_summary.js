@@ -938,10 +938,8 @@ function append_personal_summary(owner_id){
           /* convert time stamp to time ago */
           $("abbr.timeago").timeago();
 
-
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
-          alert("error");
           aw_lib_alert('There has been a problem generating summary. \n ActWitty is trying to solve.');
         }
     });

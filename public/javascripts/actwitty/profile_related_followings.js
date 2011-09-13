@@ -23,7 +23,7 @@ $(document).ready(function(){
 		  matchContains: true,
 		  highlightItem: false,
       formatItem: function(friend) {
-        return '<img alt="" class="p-st-fltr-search-img" src="'+ friend.image + '?maxwidth=40&maxheight=40">   ' + friend.name + '</img>';
+        return '<img alt="" class="p-st-fltr-search-img" src="'+ friend.image + '" >   ' + friend.name + '</img>';
       }
 
     }).result(function(e, friend) {
@@ -76,13 +76,21 @@ function aw_friends_set_related_modal_data(json_data){
 
 
 function aw_render_friends_related_internal(friend, div_id){
-     var link_id = "stream_related_modal_" + friend.id;
-     var html='<div class="related_friends_box_internal" id="' + div_id + '">' +
+  var link_id = "stream_related_modal_" + friend.id;
+  var str = "";
+  if(  friend.name.length > 10 ){  
+    var limit = 10;                
+    str =  friend.name;        
+    var strtemp = str.substr(0,limit); 
+    str = strtemp + '..' + '<span class="hide">' +  friend.name + '</span>'; 
+  } else {
+    str = friend.name;
+  }
+  var html='<div class="related_friends_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_related_friends" id="' + link_id + '">' +
-                  '<img class="friends_box_images" src="' + friend.image +  '?maxwidth=40&maxheight=40"/>' +
-                    friend.name +
+                  '<img src="' + friend.image +  '" title="' + friend.name  + '""/>' +
+                  '<p>' + str + '</p>' +  
                 '</a>'+
-               
               '</div>';
      the_big_modal_related_friends_json[link_id] = {user_id: friend.id};
      return html;
@@ -94,8 +102,8 @@ function aw_friends_render_related_modal(win_id, trigger_id){
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
                       '<ul class="modal_ul">' +
-                        '<li><label class="lab_search_box">Search by Friends</label></li>' +
-                        '<li><input type="text" id="js_friends_modal_related" class="js_search_related_friends" placeholder="People"/></li>' +
+                        '<li><label class="lab_search_box">Find subscription for this filter</label></li>' +
+                        '<li><input type="text" id="js_friends_modal_related" class="js_search_related_friends" placeholder="Search subscription"/></li>' +
                        '</ul>' +  
                     '</div>';
 

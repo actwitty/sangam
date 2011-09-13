@@ -1957,12 +1957,34 @@ div.disp-full-name-parent .disp-full-name:hover .disp-full-name-span
   font-size:16px;
   color:#949494;
 }
-.p-awp-channel-name
+p.p-awp-channel-name
 {
   font-size:18px;
   /*background:#903737;*/
   text-transform:uppercase;
   color:#da9025;
+}
+
+p.p-awp-channel-name:hover span {
+  display:block;
+  position:absolute;
+  background:#FCFCFC;
+  border:1px solid #ddd;
+  color:#333;
+  z-index:9999;
+
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0 0 4px  #3a3a3a;
+  -moz-box-shadow: 0 0 4px  #3a3a3a;
+  -webkit-box-shadow: 0 0 4px  #3a3a3a;
+  -o-box-shadow: 0 0 4px #3a3a3a;
+
+  font-size:14px;
+  text-align:center;
+  padding:2px;
 }
 .p-awp-stream-post-author-section
 {

@@ -40,7 +40,7 @@
 .entities_box {
                 height:90px;
                 width:120px;
-             }
+}
 
 .entities_box_internal{
         width:80%;
@@ -49,21 +49,17 @@
 }
 
 .entities_box_internal a img{
-  height:90px;
   width:120px;
-  z-index:-200;
-  position: fixed;
 }
 
-.entities_box_internal a span{
-  height:5px;
-  width:40px;
-  z-index:300;
-  position: absolute;
-  margin-top:35px;
-  margin-left:35px;
-  font-size:16px;
-  text-align:center;
+.entities_box_internal a p{
+  margin-left:5px;
+  margin-top:15px;
+  width:50px;
+  overflow:hidden;
+  float:left;
+  font-size:20px; 
+  color:#30a3ad;
 }
 
 .entities_box_images{
@@ -168,26 +164,59 @@
 
 /****************** channel box end *************/
 /*************** related friends box *****************/
+
 .related_friends_box {
-                height:90px;
-                width:120px;
+                height:68px;
+                width:140px;
              }
 
 .related_friends_box_internal{
-        width:80%;
+        width:90%;
         overflow:hidden;
         float:left;
 }
 
+.related_friends_box_internal a{
+}
+
 .related_friends_box_internal a img{
+  margin-top:5px;
+  margin-left:5px;
+  width:50px;
+  padding:2px;
+  border:1px solid #ccc;
+  float:left;
 }
 
-.related_friends_box_internal a span{
+.related_friends_box_internal a p{
+  margin-left:5px;
+  margin-top:15px;
+  width:50px;
+  overflow:hidden;
+  float:left;
+  font-size:20px; 
+  color:#30a3ad;
 }
 
-.friends_box_images{
-  height:40;
-  width:40;
+.related_friends_box_internal a p:hover span{
+    display:block;
+    position:absolute;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
 }
 /*************** related friends box end *****************/
 

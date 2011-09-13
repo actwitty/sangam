@@ -20,8 +20,8 @@ function populate_filtered_friends(ele, friends){
      var link_id = "stream_friend_id_" + friend.id;
      var html='<div class="p-fltr-tag-list">' +
                 '<a href="#" class="js_related_friends" id="' + link_id + '">' +
-                  '<img src="'+ friend.image + '"  width="40" height="40" alt="" />' +
-                  '<span>'+friend.name +'</sapn>'+
+                  '<img src="'+ friend.image + '"  width="40"  title="'+ friend.name + '" />' +
+                  
                 '</a>' +
               '</div>';
       
