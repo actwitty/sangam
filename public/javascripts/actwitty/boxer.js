@@ -124,8 +124,7 @@ $(document).ready(function(){
     delete  the_big_json_tab_close[json_id];
     var box_id = the_big_json_tab_close[json_id].box;
     var internal_id = the_big_json_tab_manager[box_id][new_tab_id].internal_html_id;
-
-
+    alert("reached here");
     return false;
   });
   

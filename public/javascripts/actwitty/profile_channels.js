@@ -16,7 +16,11 @@ function get_all_channels(userid, render_div_id){
     $.ajax({
         url: '/home/get_channels.json',
         type: 'GET',
-        data: {user_id:userid, sort_order:1},
+        data: {
+               user_id:userid, 
+               sort_order:1,
+               cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {

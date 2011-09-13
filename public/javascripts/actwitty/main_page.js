@@ -28,7 +28,7 @@ function get_latest_summary(){
               // if rails demands a redirect because of log in missing 
             $.each(data, function(i,summary){
               // restricting number of users on main page summary section to 20
-              if(i<20){
+              if(i<16){
                 append_summary("latest_summary_box", summary);
               } else {
                 return;
