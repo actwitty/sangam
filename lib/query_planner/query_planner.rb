@@ -16,7 +16,7 @@ module QueryPlanner
 
     h[:status] =  params[:status] if !params[:status].blank?
     h[:source_name] =  params[:source_name] if !params[:source_name].blank?
-    h[:updated_at] =  params[:updated_at] if !params[:updated_at].blank?
+    h[:updated_at.lt] =  params[:updated_at] if !params[:updated_at].blank?
     h
   end
 
@@ -32,7 +32,7 @@ module QueryPlanner
 
     h[:author_id] =  params[:author_id] if !params[:author_id].blank?
 
-    h[:updated_at] = params[:updated_at] if !params[:updated_id].blank?
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
     h
   end
 
@@ -51,7 +51,7 @@ module QueryPlanner
     h[:category] = params[:category] if !params[:category].blank?
     h[:status] = params[:status] if !params[:status].blank?
 
-    h[:updated_at] = params[:updated_at] if !params[:updated_id].blank?
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
     h
   end
 
@@ -62,7 +62,7 @@ module QueryPlanner
     h[:id] =  params[:id] if !params[:id].blank?
     h[:user_id] = params[:user_id] if !params[:user_id].blank?
     h[:activity_word_id] = params[:activity_word_id] if !params[:activity_word_id].blank?
-    h[:updated_at] = params[:updated_at] if !params[:updated_id].blank?
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
 
     h
 
@@ -79,7 +79,7 @@ module QueryPlanner
     h[:user_id] = params[:user_id] if !params[:user_id].blank?
     h[:summary_id] = params[:summary_id] if !params[:summary_id].blank?
 
-    h[:updated_at] = params[:updated_at] if !params[:updated_at].blank?
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
 
     h
   end
@@ -95,7 +95,7 @@ module QueryPlanner
     h[:source_name] = params[:source_name] if !params[:source_name].blank?
 
     h[:status] = params[:status] if !params[:status].blank?
-    h[:updated_at] = params[:updated_at] if !params[:updated_at].blank?
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
 
     if !params[:meta_activity].nil?
       if h[:activity_word_id].blank? && h[:base_location_id].blank? && h[:source_name].blank?

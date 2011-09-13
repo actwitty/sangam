@@ -359,18 +359,19 @@ class Activity < ActiveRecord::Base
          create_hub_entries(params)
 
          #ALOK Adding pusher support
-         s = Summary.where(:id => params[:summary_id]).first
-
-#         (class << s; self; end).class_eval { attr_accessor :activity_id, :activity_text }
-#         s.activity_id = params[:activity_hash]
-#         s.activity_text = params[:text]
-         h = {}
-         h[:summary] = s.attributes
-         h[:post] = {}
-         h[:post][:activity_id] = params[:activity_hash]
-         h[:post][:activity_text] = params[:text]
-
-         pusher_event({:channel => "#{params[:author_id]}", :event => "enriched_activity", :data => h.to_json})
+         #Commenting for time being
+#         s = Summary.where(:id => params[:summary_id]).first
+#
+##         (class << s; self; end).class_eval { attr_accessor :activity_id, :activity_text }
+##         s.activity_id = params[:activity_hash]
+##         s.activity_text = params[:text]
+#         h = {}
+#         h[:summary] = s.attributes
+#         h[:post] = {}
+#         h[:post][:activity_id] = params[:activity_hash]
+#         h[:post][:activity_text] = params[:text]
+#
+#         pusher_event({:channel => "#{params[:author_id]}", :event => "enriched_activity", :data => h.to_json})
 
          Rails.logger.info("[MODEL] [ACTIVITY] [post_proc_activity] leaving ")
       end

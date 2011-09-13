@@ -5,12 +5,13 @@ class HomeController < ApplicationController
   protect_from_forgery :except => :pusher_auth # stop rails CSRF protection for this action
 
    #Alok Adding pusher support
-  after_filter  :pusher_event_push, :only => [:create_campaign, :delete_campaign, :delete_stream, :create_comment,
-                                              :delete_comment,  :delete_entities_from_post, :remove_document,
-                                             :publish_activity,  :update_social_media_share,
-                                             :subscribe_summary, :unsubscribe_summary, :create_theme
-                                              #:process_edit_activity,:create_activity
-                                              ]
+   #Commenting for time being
+#  after_filter  :pusher_event_push, :only => [:create_campaign, :delete_campaign, :delete_stream, :create_comment,
+#                                              :delete_comment,  :delete_entities_from_post, :remove_document,
+#                                             :publish_activity,  :update_social_media_share,
+#                                             :subscribe_summary, :unsubscribe_summary, :create_theme
+#                                              #:process_edit_activity,:create_activity
+#                                              ]
   ############################################
   def show
 
