@@ -1162,6 +1162,15 @@ $(document).ready(function(){
       summary_id.slideToggle();
     });
 
+    $('#js_new_channel_field').live('keyup blur',function(){
+      limit_text('activity_field', 20, 'activity_field_remlen');
+	  });
+    
+    $("#js_new_channel_field").live('keypress', function(e) {
+      if(e.which < 97 /* a */ || e.which > 122 /* z */) {
+        e.preventDefault();
+      }
+    });
 });
 
 

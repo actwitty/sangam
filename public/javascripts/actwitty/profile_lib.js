@@ -40,5 +40,6 @@ function aw_lib_console_log(level, msg){
 }
 
 function aw_lib_alert(msg){
-  alert(msg);
+  //alert(msg);
+  console.log(msg);
 }

@@ -321,7 +321,6 @@ $(document).ready(function(){
     var socialize_block = $(this).closest(".js_socialize_post").find(".js_socialize_icons");
     
     var post_id = get_post_id_on_click($(this));
-    alert(post_id);
     if(socialize_block.css('display') == 'none'){ 
       //get_social_counter(post_id, $(this));
       socialize_block.show('slow'); 
