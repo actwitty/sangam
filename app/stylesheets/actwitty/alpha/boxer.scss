@@ -1,53 +1,40 @@
 .ntabs {
-          margin-right: 5px;
-		      float:left;
- 		      margin:5px 5px 5px 5px;
-          border: 1px solid #BDC7D5;
-          padding: 5px 8px 5px 8px;
-		      position: relative;
-          /*border:1px solid red;*/
+          margin-right: 9px;
+ 		      margin-top:9px;
+          
+          width:135px;
+          height:71px;
+          display:block-inline;
+          float:left;
+          background-color: white; 
           border:1px solid #ccc;
-       }
+          border-radius: 2px;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          -o-border-radius: 3px;
+          box-shadow: 0 0 6px #3a3a3a;
+          -moz-box-shadow: 0 0 6px #3a3a3a;
+          -webkit-box-shadow: 0 0 6px #3a3a3a;
+          -o-box-shadow: 0 0 6px #3a3a3a;
+    }
 
- .ctab {
-          /*background: #E7EDF6;*/
-          position: relative;
-          top: 2px;
-          border-bottom-width: 2;
-       }
+
 .boxer_close{
-        float:right;
-        width:16px;
-        height:16px;
-        border:1px solid #ccc;
-        align:center;
- }
-.close{
-         text-decoration: none;
-         color: #ccc;
-         font-weight: bold;
-          width:100%;
-         font-size: 14px;
-		     top: -3px;
-		     left: 157px;
-         /*padding: 0 4px;
-		     margin-top:10px;
-		     margin-bottom:30px;
-		     margin-right:15px;*/
-         -webkit-border-radius: .2em;
-         -moz-border-radius: .2em;
-         border-radius: .2em;
-         
-      }
-	
-.close:hover {
-                background: #999;
-                color: #333;
-             }
- #span_hover{
-    //position: absolute;
-    //z-index: 100;
- }
+  z-index: 99999;/*9999*/
+  float:top;
+  float:right;
+  margin-top:-8px;
+  margin-right:-8px;
+  height:18px;
+  width:18px;
+}
+
+.boxer_close img{
+   height:18px;
+   width:18px;
+}
+
+
 
 /*************** entity box *****************/
 .entities_box {
@@ -136,8 +123,8 @@
 
 /****************** channel box *************/
 .channels_box {
-                height:90px;
-                width:120px;
+                height:40px;
+                width:130px;
              }
 
 .channels_box_internal{
@@ -147,19 +134,39 @@
 }
 
 
-.channels_box_internal a span{
-  height:5px;
-  width:40px;
-  z-index:600;
-  position: absolute;
-  margin-top:35px;
-  margin-left:35px;
-  font-size:16px;
-  text-align:center;
+.channels_box_internal a p{
+  font-size:18px;
+  margin-top:10px;
+  margin-left:10px;
+  /*background:#903737;*/
+  text-transform:uppercase;
+  color:#da9025;
 }
 
 
-/****************** channel box *************/
+.channels_box_internal a p:hover span{
+
+    display:block;
+    position:absolute;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
+}
+
+/****************** channel box end *************/
 /*************** related friends box *****************/
 .related_friends_box {
                 height:90px;
@@ -182,51 +189,118 @@
   height:40;
   width:40;
 }
-/*************** related friends box *****************/
-/*************** subscribers box *****************/
-.subscriber_box {
-                height:90px;
-                width:120px;
-             }
+/*************** related friends box end *****************/
 
-.subscriber_box_internal{
-        width:80%;
-        overflow:hidden;
-        float:left;
-}
-
-.subscriber_box_internal a img{
-}
-
-.subscriber_box_internal a span{
-}
-
-.subscriber_box_images{
-  height:40;
-  width:40;
-}
-/*************** subscribers box *****************/
 /*************** subscription box *****************/
 .subscription_box {
-                height:90px;
-                width:120px;
+                height:68px;
+                width:140px;
              }
 
 .subscription_box_internal{
-        width:80%;
+        width:90%;
         overflow:hidden;
         float:left;
 }
 
+.subscription_box_internal a{
+  border:1px solid red;
+}
+
 .subscription_box_internal a img{
+  margin-top:5px;
+  margin-left:5px;
+  width:50px;
+  padding:2px;
+  border:1px solid #ccc;
+  float:left;
 }
 
-.subscription_box_internal a span{
+.subscription_box_internal a p{
+  margin-left:5px;
+  margin-top:15px;
+  width:50px;
+  overflow:hidden;
+  float:left;
+  font-size:20px; 
+  color:#30a3ad;
 }
 
-.subscription_box_images{
-  height:40;
-  width:40;
+.subscription_box_internal a p:hover span{
+    display:block;
+    position:absolute;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
 }
-/*************** subscription box *****************/
+/*************** subscription box ends *****************/
+/*************** subscribers box *****************/
+.subscriber_box {
+                height:68px;
+                width:140px;
+             }
+
+.subscriber_box_internal{
+        width:90%;
+        overflow:hidden;
+        float:left;
+}
+
+.subscriber_box_internal a{
+  border:1px solid red;
+}
+
+.subscriber_box_internal a img{
+  margin-top:5px;
+  margin-left:5px;
+  width:50px;
+  padding:2px;
+  border:1px solid #ccc;
+  float:left;
+}
+
+.subscriber_box_internal a p{
+  margin-left:5px;
+  margin-top:15px;
+  width:50px;
+  overflow:hidden;
+  float:left;
+  font-size:20px; 
+  color:#30a3ad;
+}
+
+.subscriber_box_internal a p:hover span{
+    display:block;
+    position:absolute;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
+}
+/*************** subscribers box ends *****************/
 

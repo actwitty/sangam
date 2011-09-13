@@ -31,6 +31,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
             authentication.save!
           end
         end
+
+        user_for_pic=resource
+        if provider == "facebook"
+          user_for_pic.photo_small_url = "http://graph.facebook.com/#{uid}/picture/"
+          user_for_pic.save!
+        end
+
       end
 
       @user = resource

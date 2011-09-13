@@ -75,11 +75,9 @@ function addtab(box_id, position, data, type, boxer_class)
   tab.append(content_html);
 
   the_big_json_tab_close[close_btn_id]={tab:new_tab_id, box:box_id};
-  var close_html = '<div class="boxer_close">'+
-                     '<a href="" id="' + close_btn_id + '" class="close js_aw_ntabs_close">' +
-                        '<img src="/images/alpha/close.png">' +
-                      '</a>'
-                   '</div>';
+  var close_html = '<a href="" id="' + close_btn_id + '" class="boxer_close js_aw_ntabs_close">' +
+                        '<img src="/images/fancy_close.png">' +
+                      '</a>';
 
  
   tab.append(close_html);		

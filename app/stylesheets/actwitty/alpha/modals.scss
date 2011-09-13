@@ -34,9 +34,10 @@
    
 .modal_window {
   display: none; /*--hidden by default--*/
-	background: #fff;
+	background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;
 	padding: 20px;
-	border: 7px solid #ddd;
+	border: 7px solid #fff;
 	float: left;
 	font-size: 12px;
 	position: fixed;
@@ -62,7 +63,7 @@
 
 .search_box input{
   height:30px;
-  width:450px;
+  width:311px;
   margin:10px 10px 10px 10px;
   margin-left:auto;
   margin-right:auto;
@@ -73,8 +74,12 @@
   height:30px;
   width:580px;
 }
+
 .lab_search_box{
   font-size:16px;
+  font-weight:bold;
+  color:#eaa540;
+  border:0px solid red;
 }
 
 .modal_ul{

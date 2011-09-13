@@ -351,7 +351,7 @@ function populate_people_list_on_summary(box_id, data){
   $.each(data.user, function(i, user){
      var html='<div class="p-channel-people-box">' +
                 '<a href="/home/show?id=' + user.id + '">' +
-                  '<img src="'+ user.photo + '"  width="30" height="30" alt="" />' +
+                  '<img src="'+ user.photo + '" title="' +  user.name + '" width="40" />' +
                 '</a>' +
               '</div>';
       
@@ -391,7 +391,7 @@ function create_and_add_subscriptions_in_auth_sect()
              /* set context for the modal dialog */
              aw_subscription_modal_data(data.user);
            }else{
-             $("#" + "owners_subscription_list").html('<span>No subscriptions so far.</span>');
+             $("#" + "owners_subscription_list").html('<span> 0 subscribed channels ></span>');
            }
 
         },
@@ -430,7 +430,7 @@ function create_and_add_subscribers_in_auth_sect()
              /* set context for the modal dialog */
              aw_subscriber_modal_data(data.user);
            }else{
-             $("#" + "owners_subscribers_list").html('<span>No subscribers to the channels.</span>');
+             $("#" + "owners_subscribers_list").html('<span> 0 subscribers of channels ></span>');
            }
 
         },
@@ -465,12 +465,17 @@ function get_add_channel_html(){
   var html="";
   if ( aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id() ){
      html = '<div class="js_summary_add_channel_base p-channelp-auth-add-channel">' +
-             '<span>' +
-                  '<div><a  class="js_add_facebook_friends" id="add_facebook_friends" href="#"> Manage Facebook Friends' +'</a></div></br>' +
-                  '<a  class="js_add_channel_minimize" > Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
+              '<div class="p-channelp-facebook-contacts">' + 
+                '<a  class="js_add_facebook_friends" >' +
+                  'Manage Facebook Friends' +
+                '</a>' + 
+                '</div>' +
+                '<div class="p-channelp-add-channel-link">' +
+                  '<a  class="js_add_channel_minimize" >' + 
+                    'Add Channel  <img src="/images/alpha/shares/plus.png" width="10" height="10"/>' +
                   '</a>' +
+                '</div>' +
                   
-             '</span>' +
              '<div class="js_summary_add_channel_box p-channelp-auth-add-channel-box">' +
                 '<span>' +
                   '<input id="js_new_channel_field" class="activity_input input_text_box" type="text" />' +
@@ -789,7 +794,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
                 '</div>' +
                 '<div class="p-channelp-post-rel-elem" >' +
                   '<div class="p-channelp-post-rel-elem-header">' +
-                    '<span>Related Elements :</span>'+
+                    '<span>Related Mentions :</span>'+
                   '</div>' +
                   '<div class="p-channelp-post-relelem-sect">' +
                     '<ul class="p-channelp-post-relelem" id="' + entities_box_id  + '">' +

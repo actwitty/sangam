@@ -11,12 +11,12 @@
        
     #aw_home_header_signin_box.js_signin_partial
       =render :partial => "users/sessions/new", :locals => { :user => User.new } 
-
-    #aw_home_direct_foreign_login
-      %a#twitter_connect{:href => "/users/auth/twitter"}
-        %img{:src => "/images/alpha/t-connect.png"}
-      %a#sns_facebook_id{:href => "/users/auth/facebook"}
-        %img{:src => "/images/alpha/f-connect.png"}    
+    -if @page_mode == "sign-in-page"
+      #aw_home_direct_foreign_login
+        %a#twitter_connect{:href => "/users/auth/twitter"}
+          %img{:src => "/images/alpha/t-connect.png"}
+        %a#sns_facebook_id{:href => "/users/auth/facebook"}
+          %img{:src => "/images/alpha/f-connect.png"}    
       
 
 

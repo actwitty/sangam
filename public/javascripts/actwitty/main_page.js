@@ -5,7 +5,7 @@ function append_summary(box_id, summary){
   var users_div = $("#" + box_id);
   //alert(summary.user.full_name);
   var html = '<div class="main_users_single_user" >' +
-                '<img src="' + summary.user.photo + '" width=50 />' +
+                '<img src="' + summary.user.photo + '" width=50 title="' + summary.user.full_name + '"/>' +
                 '<div id="summary_box_' + summary.id + '" class="main_summary_box" >' +
                 '</div>' +
              '</div>';

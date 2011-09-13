@@ -23,14 +23,14 @@ function renderFacebookers(json){
       if( data ){
         var li_id = "fb_li_" + data.uid;
 	      var html="";
-        var str;
+        var str="";
      
          if( data.name.length > 12 )
          {  
            var limit = 12;                
            str = data.name;        
            var strtemp = str.substr(0,limit); 
-           str = strtemp+ '..' + '<span class="hide">' + str.substr(limit,str.length) + '</span>'; 
+           str = strtemp+ '..' + '<span class="hide">' +  data.name + '</span>'; 
          }
          else
          {

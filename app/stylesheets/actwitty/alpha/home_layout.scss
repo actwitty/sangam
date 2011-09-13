@@ -894,6 +894,7 @@ opacity:40%;
   height:30px;
   border:0px solid blue;
   float:right;
+  margin-left:1px;
   margin-right:10px;
 }
 .post-fb-twt img
@@ -902,7 +903,7 @@ opacity:40%;
 .fbtwt-pub
 {
   border:0px solid red;
-  margin-left:-5px;
+  margin-left:1px;
   display:inline-block;
   
 }
@@ -3203,11 +3204,9 @@ margin-left:205px;
 {
   display:none;
 }
-a#add_facebook_friends{
-  /*float:left;
-  margin-left:20px;*/
-  float:left;
-}
+
+
+
 
 
 
