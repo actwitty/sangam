@@ -1783,9 +1783,11 @@ class User < ActiveRecord::Base
 
   #Alok Adding pusher support
   def push_event_to_pusher(params)
-     pusher_event(params)
+    #Commenting for time being
+     #pusher_event(params)
   end
-  handle_asynchronously :push_event_to_pusher
+  #Commenting for time being
+  #handle_asynchronously :push_event_to_pusher
   # private methods
   private
 
