@@ -77,10 +77,19 @@ function aw_subscriber_modal_data(json_data){
 
 function aw_render_subscriber_internal(subscriber, div_id){
      var link_id = "subscriber_modal_" + subscriber.id;
+     var str = "";
+     if( subscriber.name.length > 10 ){  
+        var limit = 10;                
+        str = subscriber.name;        
+        var strtemp = str.substr(0,limit); 
+        str = strtemp+ '..' + '<span class="hide">' + subscriber.name + '</span>'; 
+      }else{
+        str = subscriber.name;
+      }
      var html='<div class="subscriber_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_subscriber" id="' + link_id + '">' +
-                  '<img class="subscriber_box_images" src="' + subscriber.photo +  '?maxwidth=40&maxheight=40"/>' +
-                    subscriber.name +
+                  '<img class="subscriber_box_images" title="' + subscriber.name + '" src="' + subscriber.photo +  '"/>' +
+                   '<p>' + str + '</p>' + 
                 '</a>'+
               '</div>';
      the_big_modal_subscriber_json[link_id] = {user_id: subscriber.id};
@@ -93,8 +102,8 @@ function aw_subscriber_modal(win_id, trigger_id){
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
                       '<ul class="modal_ul">' +
-                        '<li><label class="lab_search_box">Search by subscriber</label></li>' +
-                        '<li><input type="text" id="js_input_subscriber" class="js_search_subscriber" placeholder="Subscribers"/></li>' +
+                        '<li><label class="lab_search_box">Subscribers</label></li>' +
+                        '<li><input type="text" id="js_input_subscriber" class="js_search_subscriber" placeholder="Subscribers to your channels"/></li>' +
                        '</ul>' +  
                     '</div>';
 

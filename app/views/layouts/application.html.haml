@@ -28,29 +28,7 @@
   %body
     =render :partial => "home/modal"
     = yield
-    %script{:src => "/javascripts/cal.js", :type => "text/javascript"}
-    %script{:src => "/javascripts/slider.js", :type => "text/javascript"}
-    :javascript
-      var mygallery=new simpleGallery({
-        wrapperid: "simplegallery1", 
-        dimensions: [450, 300],
-        imagearray: [
-                      ["/images/actwitty/info1.JPG", "", "", "Harry active on social networks."],
-                      ["/images/actwitty/info2.JPG", "", "", "Harry's updates becomes cluttered."],
-                      ["/images/actwitty/info3.JPG", "", "", "ActWitty is here to unclutter."],
-                      ["/images/actwitty/info4.JPG", "", "", "Channelize the information."],
-                      ["/images/actwitty/info5.JPG", "", "", "Enrich the channels."],
-                      ["/images/actwitty/info6.JPG", "", "", "Make connections on relevance."]
-                      
-                    ],
-        autoplay: [true, 2500, 2], 
-        persist: false,
-        fadeduration: 500, 
-        oninit:function(){ 
-        },
-        onslide:function(curslide, i){ 
-        }
-      });
+   
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-24404937-1']);

@@ -102,13 +102,14 @@ class HomeController < ApplicationController
   def settings_save
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
 	  @user = current_user
-
 	  @profile = current_user.profile
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:profile]}")
 	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
 	  if @profile.update_attributes(params[:profile])
-      current_user.photo_small_url = params[:profile][:profile_photo_s]
-      current_user.save!
+      unless photo_small_url.blank?
+        current_user.photo_small_url = params[:profile][:profile_photo_s]
+        current_user.save!
+      end
 	    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
 	    redirect_to(home_show_url)
 	  end

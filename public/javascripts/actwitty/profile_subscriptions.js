@@ -77,16 +77,25 @@ function aw_subscription_modal_data(json_data){
 
 
 function aw_render_subscription_internal(subscription, div_id){
-     var link_id = "subscription_modal_" + subscription.id;
-     var html='<div class="subscription_box_internal" id="' + div_id + '">' +
+  var link_id = "subscription_modal_" + subscription.id;
+  var str = "";
+  if( subscription.name.length > 10 ){  
+    var limit = 10;                
+    str = subscription.name;        
+    var strtemp = str.substr(0,limit); 
+    str = strtemp + '..' + '<span class="hide">' + subscription.name + '</span>'; 
+  } else {
+    str = subscription.name;
+  }
+  var html='<div class="subscription_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_subscription" id="' + link_id + '">' +
-                  '<img class="subscription_box_images" src="' + subscription.photo +  '?maxwidth=40&maxheight=40"/>' +
-                    subscription.name +
+                  '<img class="subscription_box_images" title="' + subscription.name + '" src="' + subscription.photo +  '"/>' +
+                  '<p>' + str + '</p>' + 
                 '</a>'+
                
               '</div>';
-     the_big_modal_subscription_json[link_id] = {user_id: subscription.id};
-     return html;
+  the_big_modal_subscription_json[link_id] = {user_id: subscription.id};
+  return html;
 }
 
 function aw_subscription_modal(win_id, trigger_id){
@@ -95,8 +104,8 @@ function aw_subscription_modal(win_id, trigger_id){
   var div = $("#" + win_id);
   var search_html = '<div class="search_box">' +
                       '<ul class="modal_ul">' +
-                        '<li><label class="lab_search_box">Search by subscription</label></li>' +
-                        '<li><input type="text" id="js_input_subscription" class="js_search_subscription" placeholder="Subscribers"/></li>' +
+                        '<li><label class="lab_search_box">Subscriptions</label></li>' +
+                        '<li><input type="text" id="js_input_subscription" class="js_search_subscription" placeholder="Subscriptions from people"/></li>' +
                        '</ul>' +  
                     '</div>';
 

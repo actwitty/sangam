@@ -5,7 +5,7 @@ function append_summary(box_id, summary){
   var users_div = $("#" + box_id);
   //alert(summary.user.full_name);
   var html = '<div class="main_users_single_user" >' +
-                '<img src="' + summary.user.photo + '" width=40 height=40 />' +
+                '<img src="' + summary.user.photo + '" width=50 title="' + summary.user.full_name + '"/>' +
                 '<div id="summary_box_' + summary.id + '" class="main_summary_box" >' +
                 '</div>' +
              '</div>';
@@ -28,7 +28,7 @@ function get_latest_summary(){
               // if rails demands a redirect because of log in missing 
             $.each(data, function(i,summary){
               // restricting number of users on main page summary section to 20
-              if(i<20){
+              if(i<16){
                 append_summary("latest_summary_box", summary);
               } else {
                 return;
