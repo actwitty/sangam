@@ -198,7 +198,7 @@ function get_post_id_on_click(clicked_ele){
 /*
  * Get summary id from hidden on click of share
  */
-function get_post_id_on_click(clicked_ele){
+function get_summary_id_on_click(clicked_ele){
   return clicked_ele.closest(".js_socialize_post").find(".socialize_summary_id").val();
 }
 /***********************/
@@ -321,6 +321,7 @@ $(document).ready(function(){
     var socialize_block = $(this).closest(".js_socialize_post").find(".js_socialize_icons");
     
     var post_id = get_post_id_on_click($(this));
+    alert(post_id);
     if(socialize_block.css('display') == 'none'){ 
       //get_social_counter(post_id, $(this));
       socialize_block.show('slow'); 

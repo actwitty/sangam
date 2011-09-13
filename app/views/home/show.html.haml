@@ -48,6 +48,7 @@
   #p-channelp-sect
     #p-content-sect
       / #### channel page tabs section ####
+      %input#more_channels_cookie{:type => "hidden", :value => ""}
       -if user_signed_in?
         -if current_user.id == @user.id
           #p-channelp-tabs-section

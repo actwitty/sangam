@@ -772,7 +772,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
 
                   '<div class="p-channelp-post-author-img">' +
                     '<a href="/home/show?id=' +  summary.user.id + '" >' +  
-                      '<img src="' + summary.user.photo + '" width=60 alt="" />' +
+                      '<img src="' + summary.user.photo + '" width=60 alt="" align=bottom>' +
                     '</a>'+ 
                    '</div>' +
 
@@ -884,19 +884,19 @@ function append_personal_summary(owner_id){
   var scroll = $(window).scrollTop();
   var more_cookie =  $("#more_channels_cookie").val();
    aw_lib_console_log("debug","profile_summary.js:append_personal_summary");
-   var data_json = {
-                      user_id : owner_id, 
-                      updated_at:more_cookie, 
-                      page_type:aw_get_channel_scope(),
-                      cache_cookie:aw_lib_get_cache_cookie_id()
-                   };
   $.ajax({
         url: '/home/get_summary.json',
         type: 'GET',
-        data: data_json,
+        data: {
+                user_id : owner_id, 
+                updated_at:more_cookie, 
+                page_type:aw_get_channel_scope(),
+                cache_cookie:aw_lib_get_cache_cookie_id()
+              },
         dataType: 'json',
         contentType: 'application/json',  
         success: function (data) {
+
            // if rails demands a redirect because of log in missing
            if( aw_get_channel_scope() == 3  ||
                (aw_get_channel_scope() == 1 && 
@@ -920,10 +920,10 @@ function append_personal_summary(owner_id){
                       summary = data[i+j];
                       var main_id = 'SUMMARY_ICON_MAIN_' + summary.word.id + '_' + summary.user.id;
                       create_and_add_summary($('#p-channelp-posts'),summary, main_id, "hide_it"); 
-                      $("#more_channels_cookie").val(summary.time);
                    };
                 }
              }
+             $("#more_channels_cookie").val(summary.time);
            } else {
             $.each(data, function(i,summary){
                 if( summary ){
@@ -934,14 +934,13 @@ function append_personal_summary(owner_id){
             });
           }
           $(window).scrollTop(scroll);
-          
+
           /* convert time stamp to time ago */
           $("abbr.timeago").timeago();
 
 
         },
-        error:function(XMLHttpRequest,textStatus, errorThrown) {
-          alert("error");
+        error:function(XMLHttpRequest,textStatus, errorThrown) {  
           aw_lib_alert('There has been a problem generating summary. \n ActWitty is trying to solve.');
         }
     });
@@ -1077,7 +1076,7 @@ $(document).ready(function(){
      */
     $('#more_personal').click(function() {
       aw_lib_console_log("debug", "profile.js:more personal summary clicked");
-      append_personal_summary(aw_lib_get_page_owner_id());
+      append_personal_summary(page_owner_id);
       return false;
     });
     /***********************/

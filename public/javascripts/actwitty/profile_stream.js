@@ -1272,11 +1272,11 @@ $(document).ready(function(){
    * Stream delete button clicked
    */
   $('.js_stream_delete_btn').live('click', function(){
-    alert("closing " + $(this).parent().parent().attr("value"));
+    //alert("closing " + $(this).parent().parent().attr("value"));
     var del_json = the_big_stream_actions_json[$(this).parent().parent().attr("value")];
     //if(del_json){
       //delete_stream(del_json.stream_id);
-      delete_stream($(this).parent().parent().attr("value"));
+    delete_stream($(this).parent().parent().attr("value"));
     //}
     return false;
   });

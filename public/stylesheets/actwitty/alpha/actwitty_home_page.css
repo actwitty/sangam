@@ -837,3 +837,37 @@ input#aw_intro_register:hover {
   font-weight: bold;
   color: #248188;
 }
+
+/***************************** Welcome Page Facebook/Twitter ******************/
+/* line 737, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#aw_home_direct_foreign_login {
+  width: 175px;
+  height: 21px;
+  /*height:100px;*/
+  border: 0px solid red;
+  float: right;
+  margin-top: -105px;
+  margin-right: 330px;
+  background: #484848;
+}
+
+/* line 750, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#fb_connect {
+  /*float:right;
+  margin-right:5px;
+  margin-top:-10px;
+  padding:1px;
+  margin-right:10px;
+  padding:2px;
+  height:23px;*/
+}
+
+/* line 764, ../../../../app/stylesheets/actwitty/alpha/actwitty_home_page.scss */
+#twitter_connect {
+  /*float:right;
+  margin-right:-25px;
+  margin-left:40px;
+  margin-top:-10px;
+  padding:1px;
+  height:23px;*/
+}

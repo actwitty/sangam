@@ -279,13 +279,34 @@
   margin:0 auto;
 }
 
-.p-channelp-post-cu span{
+.p-channelp-post-cu p{
   font-size:35px;
   color:#fff;
   text-align:center;
   text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
   -moz-text-shadow: 0 0 2px #000;
   -webkit-text-shadow: 0 0 2px #000;
+}
+
+.p-channelp-post-cu p:hover span{
+  display:block;
+  position:absolute;
+  background:#FCFCFC;
+  border:1px solid #ddd;
+  color:#333;
+
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  box-shadow: 0 0 4px  #3a3a3a;
+  -moz-box-shadow: 0 0 4px  #3a3a3a;
+  -webkit-box-shadow: 0 0 4px  #3a3a3a;
+  -o-box-shadow: 0 0 4px #3a3a3a;
+
+  font-size:14px;
+  text-align:center;
+  padding:2px;
 }
 
 .p-channelp-post-subs-info
@@ -974,12 +995,13 @@ ul .p-channelp-post-relelem
 {
   width:100%;
   height:15px;
-  margin:2px 0 2px 0;
+  margin-top:5px;
+  margin-bottom:2px;
   float:left;
 }
 .p-channel-people-head
 {
-  font-size:11px;
+  font-size:16px;
   text-decoration:underline;
 }
 
@@ -1006,14 +1028,40 @@ ul .p-channelp-post-relelem
 {
   cursor:pointer;
 }
+.p-channelp-add-channel-link{
+  width:100%;
+  margin-top:10px;
+}
+
+.p-channelp-add-channel-link a:hover{
+ cursor:pointer;
+}
+
 .p-channelp-auth-add-channel
 {
   width:100%;
+  margin-top:5px;
+}
+
+.p-channelp-auth-add-channel span{
+  font-size:16px;
+  text-decoration:underline;
 }
 
 .p-channelp-auth-add-channel span:hover
 {
-  margin-top:10px;
+  cursor:pointer;
+}
+
+.p-channelp-facebook-contacts
+{
+  margin-top:5px;
+  width:100%;
+}
+.p-channelp-facebook-contacts a{
+  text-decoration:underline;
+}
+.p-channelp-facebook-contacts a:hover{
   cursor:pointer;
 }
 
