@@ -1000,6 +1000,7 @@ class User < ActiveRecord::Base
     user = h[:user_id]
 
     h = pq_summary_filter(h)
+
     summary = Summary.includes(:user).where(h).limit(AppConstants.max_number_of_summmary).order("updated_at DESC").
         all.each do |attr|
 
@@ -1883,8 +1884,8 @@ class User < ActiveRecord::Base
     end
 
     #DEFAULT IS PUBLIC => IN this page user and summary variables will be nil. So only on filters
+    h[:updated_at] = params[:updated_at].to_time.utc  if !params[:updated_at].blank?
 
-    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
     h
   end
 
