@@ -31,6 +31,7 @@ function main_profile_initializer(){
       $("#streams_right_side_bar").show();
       /* Bring in stream filtered view on focus*/
       aw_reload_streams_on_viewed_user();
+      $("#more_personal").hide();
     }else{
       /* Bring in personal summary on focus*/
       //$("#channels_main_bar").show();
@@ -41,6 +42,7 @@ function main_profile_initializer(){
       $("#more_channels_cookie").val("");
       append_personal_summary(page_owner_id);
       attach_channel_author_section(page_owner_id);
+      $("#more_personal").show();
     }
 }
 

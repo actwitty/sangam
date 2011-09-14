@@ -21,7 +21,10 @@ function modify_filter(filter_json, reload){
 
   if( filter_json.channel_id && filter_json.channel_name ){
     $("#filter_channel_id").attr("value", filter_json.channel_id); 
-    $("#filter_channel_name").attr("value", filter_json.channel_name);  
+    $("#filter_channel_name").attr("value", filter_json.channel_name); 
+    $("#activity_field").val(filter_json.channel_name);
+  }else{
+     $("#activity_field").val("");
   }
 
   if( filter_json.location_id && filter_json.location_name){

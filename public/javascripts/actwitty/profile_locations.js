@@ -171,27 +171,15 @@ function aw_render_locations_internal(location, div_id){
      }
 
        
-     var str;
      /**********************************************************/
-
-     if( location.name.length > 15 )
-     {  
-       var limit = 15;                
-       str = location.name;        
-       var strtemp = str.substr(0,limit); 
-       str = strtemp+ '....' + '<span class="hide">' + str.substr(limit,str.length) + '</span>'; 
-     }
-     else
-     {
-       str = location.name;
-     }
+     var str = aw_lib_get_trim_name(location.name, 15);
      //alert(location.lat +"--"+location.long);
      var html='<div id="'+loc_id+'" class="hover_txt" style="position: absolute; right: 0px;display:none;left: 100px; top: -30px; "></div>' +
               '<div class="locations_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_locations" id="' + link_id + '">' +
                   //'<img class="locations_box_images" src="' + get_location_image_for_type(location.type) +  '"/>' +
                   '<img class="locations_box_images" src="' +url+  '"/>' +
-                  '<span id="span_hover" onmouseover="toolTip( &#39;'+location.name+'&#39;, &#39;' + loc_id + '&#39;)" onmouseout="toolTip()">'+ str +'</span>'+
+                    '<p class="master_trimmed_text">' + str +'</p>'+
                   '</a>'+
               '</div>';
 

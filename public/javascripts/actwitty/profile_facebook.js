@@ -23,20 +23,9 @@ function renderFacebookers(json){
       if( data ){
         var li_id = "fb_li_" + data.uid;
 	      var html="";
-        var str="";
-     
-         if( data.name.length > 12 )
-         {  
-           var limit = 12;                
-           str = data.name;        
-           var strtemp = str.substr(0,limit); 
-           str = strtemp+ '..' + '<span class="hide">' +  data.name + '</span>'; 
-         }
-         else
-         {
-           str = data.name;
-         }
 
+        var str = aw_lib_get_trim_name(data.name, 12);
+ 
         if (!data.user_id){
           var html= '<div class="friends_box">' +
                       '<div id="' + li_id  +  '" class="user_stamp">' +
@@ -44,7 +33,7 @@ function renderFacebookers(json){
 	                          '<img class="img" src="' + data.image + '"  title="' + data.name + '" />'+
 	                        '</div>'+
        	                  '<div class="fb_friend_text">' + 
-                            '<p>' +  str  + '</p>'+
+                            '<p class="master_trimmed_text">' +  str  + '</p>'+
 		                        '<a href="#" class="js_fb_invite fb_friend_action" id="' + data.uid + '"> Invite </a>' +
 	                        '</div>'+
 	                      '</div>' +

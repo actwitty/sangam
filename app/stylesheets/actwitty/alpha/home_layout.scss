@@ -1262,16 +1262,43 @@ ul.p-cstab1 li a {
   opacity:1;
   margin-left:5px;
 }
+
 .p-st-filter li
 {
   display:inline;
 }
+
 .p-st-flt-label
 {
   width:100px;
   text-align:center;
   font-size:16px;
 }
+.p-st-flt-label span{
+    display:none;
+}
+.p-st-flt-label:hover span{
+    display:block;
+    z-index:9999;
+    position:absolute;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
+}
+
 .p-st-filter-box
 {
   width:auto;
@@ -1986,6 +2013,7 @@ p.p-awp-channel-name:hover span {
   text-align:center;
   padding:2px;
 }
+
 .p-awp-stream-post-author-section
 {
   width:40%;
@@ -2064,6 +2092,20 @@ p.p-awp-channel-name:hover span {
   color:#fff;
 }
 
+.p-awp-post-like-info:hover{
+  cursor:pointer;
+}
+
+.p-awp-likes-header{
+  margin-top:100px;
+  margin-left:5px;
+  margin-bottom:5px;
+  width:100%;
+  font-size:25px;
+  font-weight:bold;
+  color:#eaa540;
+  border:0px solid red;
+}
 
 .p-awp-subtitle
 {
@@ -2103,12 +2145,14 @@ p.p-awp-channel-name:hover span {
   float:right;
   font-size:10px;
 }
+
 .p-awp-date
 {
   width:100%;
   height:10px;
   border:0px solid blue;
 }
+
 .p-awp-date-content
 {
   float:right;
@@ -3387,4 +3431,26 @@ date picker related stuff
 .datepicker tbody td.date.chosen {
   font-weight: bold;
   background-color: #0386a5;
+}
+
+
+.master_trimmed_text:hover span{
+    display:block;
+    position:absolute;
+    background:#FCFCFC;
+    border:1px solid #ddd;
+    color:#333;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    box-shadow: 0 0 4px  #3a3a3a;
+    -moz-box-shadow: 0 0 4px  #3a3a3a;
+    -webkit-box-shadow: 0 0 4px  #3a3a3a;
+    -o-box-shadow: 0 0 4px #3a3a3a;
+
+    font-size:14px;
+    text-align:center;
+    padding:2px;
 }

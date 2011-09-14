@@ -39,7 +39,7 @@
 /*************** entity box *****************/
 .entities_box {
                 height:90px;
-                width:120px;
+                width:140px;
 }
 
 .entities_box_internal{
@@ -140,27 +140,6 @@
 }
 
 
-.channels_box_internal a p:hover span{
-
-    display:block;
-    position:absolute;
-    background:#FCFCFC;
-    border:1px solid #ddd;
-    color:#333;
-
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    box-shadow: 0 0 4px  #3a3a3a;
-    -moz-box-shadow: 0 0 4px  #3a3a3a;
-    -webkit-box-shadow: 0 0 4px  #3a3a3a;
-    -o-box-shadow: 0 0 4px #3a3a3a;
-
-    font-size:14px;
-    text-align:center;
-    padding:2px;
-}
 
 /****************** channel box end *************/
 /*************** related friends box *****************/
@@ -198,26 +177,7 @@
   color:#30a3ad;
 }
 
-.related_friends_box_internal a p:hover span{
-    display:block;
-    position:absolute;
-    background:#FCFCFC;
-    border:1px solid #ddd;
-    color:#333;
 
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    box-shadow: 0 0 4px  #3a3a3a;
-    -moz-box-shadow: 0 0 4px  #3a3a3a;
-    -webkit-box-shadow: 0 0 4px  #3a3a3a;
-    -o-box-shadow: 0 0 4px #3a3a3a;
-
-    font-size:14px;
-    text-align:center;
-    padding:2px;
-}
 /*************** related friends box end *****************/
 
 /*************** subscription box *****************/
@@ -255,26 +215,7 @@
   color:#30a3ad;
 }
 
-.subscription_box_internal a p:hover span{
-    display:block;
-    position:absolute;
-    background:#FCFCFC;
-    border:1px solid #ddd;
-    color:#333;
 
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    box-shadow: 0 0 4px  #3a3a3a;
-    -moz-box-shadow: 0 0 4px  #3a3a3a;
-    -webkit-box-shadow: 0 0 4px  #3a3a3a;
-    -o-box-shadow: 0 0 4px #3a3a3a;
-
-    font-size:14px;
-    text-align:center;
-    padding:2px;
-}
 /*************** subscription box ends *****************/
 /*************** subscribers box *****************/
 .subscriber_box {
@@ -311,25 +252,40 @@
   color:#30a3ad;
 }
 
-.subscriber_box_internal a p:hover span{
-    display:block;
-    position:absolute;
-    background:#FCFCFC;
-    border:1px solid #ddd;
-    color:#333;
 
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    box-shadow: 0 0 4px  #3a3a3a;
-    -moz-box-shadow: 0 0 4px  #3a3a3a;
-    -webkit-box-shadow: 0 0 4px  #3a3a3a;
-    -o-box-shadow: 0 0 4px #3a3a3a;
-
-    font-size:14px;
-    text-align:center;
-    padding:2px;
-}
 /*************** subscribers box ends *****************/
+/**************** likes box ***************************/
+.like_box {
+                height:68px;
+                width:140px;
+             }
 
+.like_box_internal{
+        width:90%;
+        overflow:hidden;
+        float:left;
+}
+
+.likes_box_internal a{
+  border:1px solid red;
+}
+
+.likes_box_internal a img{
+  margin-top:5px;
+  margin-left:5px;
+  width:50px;
+  padding:2px;
+  border:1px solid #ccc;
+  float:left;
+}
+
+.likes_box_internal a p{
+  margin-left:5px;
+  margin-top:15px;
+  width:50px;
+  overflow:hidden;
+  float:left;
+  font-size:20px; 
+  color:#30a3ad;
+}
+/**************** likes box ends **********************/

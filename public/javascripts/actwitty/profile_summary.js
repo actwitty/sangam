@@ -268,16 +268,17 @@ function create_and_add_entities_box(box_id, summary){
 
       var thing_text = entity.name;
       // 20 is max char limit set to be display on one like
-      if(thing_text.length > 20){
-        thing_text =   entity.name.substring(0,20) + ' >' ;
+      var str = thing_text;
+      if(thing_text.length > 19){
+        str = aw_lib_get_trim_name(thing_text, 19);
       } 
 
       var html='<li>' +
                 '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id +'" >' +
                   /*'<img src="'+ entity.image  + '?maxwidth=40&maxheight=40"  width="40" height="40" alt="" />' +*/
-                  '<span>' +
-                      thing_text +
-                  '</span>' +
+                  '<p class="master_trimmed_text">' +
+                      str +
+                  '</p>' +
                 '</a>' +
               '</li>';
 
@@ -319,15 +320,16 @@ function create_and_add_locations_box(box_id, summary){
 
       var location_text = place.name;
       // 20 is max char limit set to be display on one like
-      if(location_text.length > 20){
-        location_text =   place.name.substring(0,20) + ' >' ;
+      var str = location_text;
+      if(location_text.length > 19){
+        str = aw_lib_get_trim_name(location_text, 19);
       } 
       
       var html='<li>' +
                   '<a href="#" class="js_summary_filter_setter summary_links_styling" id="' + filter_id + '"  >' +
-                    '<span>' +
-                         location_text +
-                    '</span>' +
+                    '<p class="master_trimmed_text">' +
+                      str +
+                  '</p>' +
                   '</a>' +
                 '</li>';
 
@@ -571,15 +573,8 @@ function create_and_add_mainpage_summary(summary_box, summary){
  }
  aw_lib_console_log("debug","profile_summary.js:create_and_add_mainpage_summary"); 
  
- var str = "";
- if( summary.word.name.length > 11 ){  
-  var limit = 11;                
-  str = summary.word.name;        
-  var strtemp = str.substr(0,limit); 
-  str = strtemp+ '..' + '<span class="hide">' + summary.word.name + '</span>'; 
- }else{
-  str = summary.word.name;
- }
+ var str = aw_lib_get_trim_name(summary.word.name, 11);
+ 
  
  var html = '<div class="p-channlep-post-mainpage" id="' +  unique_id + '">'+
                 '<div class="p-channelp-post-info-mainpage">'+
@@ -594,7 +589,7 @@ function create_and_add_mainpage_summary(summary_box, summary){
                   
                     '<hr class="p-channelp-post-cu-bar-mainpage"/>'+
                     '<div class="p-channelp-post-title-mainpage">'+
-                       '<center><p id="'+ filter_id +'" class="js_summary_filter_setter">' + str + '</p></center>'+
+                       '<center><p id="'+ filter_id +'" class="js_summary_filter_setter master_trimmed_text">' + str + '</p></center>'+
                     '</div>'+
                   '</div>'+
                   '<div class="p-channelp-post-analytic-mainpage">'+
@@ -668,15 +663,8 @@ var show_counter = 0;
   });
  }
  aw_lib_console_log("debug","profile_summary.js:create_and_add_summary_icon"); 
- var str = "";
- if( summary.word.name.length > 11 ){  
-  var limit = 11;                
-  str = summary.word.name;        
-  var strtemp = str.substr(0,limit); 
-  str = strtemp+ '..' + '<span class="hide">' + summary.word.name + '</span>'; 
- }else{
-  str = summary.word.name;
- }
+ var str = aw_lib_get_trim_name(summary.word.name, 11);
+
  var html =  '<div class="p-channelp-otr-channel-icon" id="' + unique_id + '">'+
                '<div class="p-channelp-post-cu js_word_name_box" >' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
@@ -684,7 +672,7 @@ var show_counter = 0;
                   
                   '<hr class="p-channelp-post-cu-bar"/>'+
                   '<div class="p-channelp-post-title">'+
-                     '<center><p id="'+ filter_id +'" class="js_summary_filter_setter">' + str + '</p></center>'+
+                     '<center><p id="'+ filter_id +'" class="js_summary_filter_setter master_trimmed_text">' + str + '</p></center>'+
                   '</div>'+
                   '<div class="p_channelp_view_summary" value="' + unique_id_main_box + '"> <span>view more ></span>'+
                   '</div>'+
@@ -750,15 +738,8 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
   });
  }
 
- var str = "";
- if( summary.word.name.length > 11 ){  
-  var limit = 11;                
-  str = summary.word.name;        
-  var strtemp = str.substr(0,limit); 
-  str = strtemp+ '..' + '<span class="hide">' + summary.word.name + '</span>'; 
- }else{
-  str = summary.word.name;
- }
+ var str = aw_lib_get_trim_name(summary.word.name, 11);
+ 
 
  var html = '<div class="p-channelp-post  js_summary_base_div '+ hide_class +' " id="' + unique_id + '">' +
               '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
@@ -797,7 +778,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
                   
                   '<hr class="p-channelp-post-cu-bar"/>'+
                   '<div class="p-channelp-post-title">'+
-                     '<center><p id="'+ filter_id +'" class="js_summary_filter_setter">' + str + '</p></center>'+
+                     '<center><p id="'+ filter_id +'" class="js_summary_filter_setter master_trimmed_text">' + str + '</p></center>'+
                   '</div>'+
                 '</div>' +
                 '<div class="p-channelp-post-analytic">' +

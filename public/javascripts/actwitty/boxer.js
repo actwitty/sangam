@@ -13,7 +13,7 @@ var the_big_json_renderers={
                                                 return render_video_internal( data, internal_id, new_tab_id);
                                                 },
                                "related_friends" : function aw_boxer_render_friends( data, internal_id, new_tab_id){
-                                                return aw_render_friends_related_internal(data, internal_id, new_tab_id);
+                                                return aw_render_friends_related_internal(data, internal_id );
                                                },
                               "entities" : function aw_boxer_render_entities(data, internal_id, new_tab_id){
                                                 return aw_render_entities_internal(data, internal_id, new_tab_id);
@@ -22,14 +22,17 @@ var the_big_json_renderers={
                                                 return aw_render_locations_internal(data, internal_id, new_tab_id);
                                                },
                                "channels" : function aw_boxer_render_channels(data, internal_id, new_tab_id){
-                                                return aw_render_channels_internal(data, internal_id, new_tab_id);
+                                                return aw_render_channels_internal(data, internal_id);
                                                },
                                "subscriber" : function aw_boxer_render_subscribers(data, internal_id, new_tab_id){
-                                                return aw_render_subscriber_internal(data, internal_id, new_tab_id);
+                                                return aw_render_subscriber_internal(data, internal_id);
                                                },
                                "subscription" : function aw_boxer_render_subscriptions(data, internal_id, new_tab_id){
-                                                return aw_render_subscription_internal(data, internal_id, new_tab_id);
+                                                return aw_render_subscription_internal(data, internal_id);
                                                },
+                               "like" : function aw_boxer_render_likes(data, internal_id, new_tab_id){
+                                                return aw_render_like_internal(data, internal_id);
+                                                },
 
 
                               

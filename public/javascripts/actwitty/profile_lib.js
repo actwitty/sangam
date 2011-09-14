@@ -29,6 +29,21 @@ function aw_lib_get_base_url(){
  return url;
 }
 
+function aw_lib_get_trim_name(actual_string, length){
+  var str = "";
+  if( actual_string.length > length ){  
+    var limit = length;                
+    str = actual_string;        
+    var strtemp = str.substr(0,limit); 
+    str = strtemp + '..' + '<span class="hide">' + actual_string + '</span>'; 
+  } else {
+    str = actual_string;
+  }
+
+  return str;
+}
+
+
 jQuery.fn.log = function (msg) {
                                   console.log("%s: %o", msg, this);
                                   return this;

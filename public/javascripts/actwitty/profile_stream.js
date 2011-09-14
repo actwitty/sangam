@@ -195,23 +195,6 @@ function handle_like_campaign(div_id, stream){
             '</div>';
 
   var like_count_html = get_campaign_likes_label(total_count);
-  /* Pramod
-  var like_count_html = '<center>'+total_count+'</center><center>Like'+get_pluralize_form(total_count)+'</center>';
-  var html2 = '<div class="p-awp-view-campaign_all ">' +
-                
-                '<span class="js_campaign_show_all" id="' + text_id + '" value="' + div_id + '" >' +
-                    get_campaign_likes_label(total_count) + 
-                '</span>' +
-
-                '<a id="' + link + '" value="' + div_id + '" class="js_like_user_action">' +
-                  '<img src="' + img_src + '" />' +
-                '</a>' + 
-            '</div>' +
-            '<div class="p-awp-campaigns-section">' +
-            '</div>';
-    
-  */
-               
   
   div.append(html);
   like_count_div.append(get_campaign_likes_label(total_count));
@@ -219,30 +202,36 @@ function handle_like_campaign(div_id, stream){
 /*
  * Show all users in a campaign
  */
-function show_all_stream_campaigns(likes, div){
-  var likes_html="";
+/* boxer api */
+function aw_render_like_internal( like, div_id ){
+  
   //alert("show_all_stream_campaigns" + div);
-  $.each(likes, function(i,like){
-    var like_html = '<div class="author">' +
-                        '<div class="p-st-comment-actor-image">' +
-                          '<a href="/home/show?id=' +  like.id + '">' +
-                            '<img class="avatar" src="' + like.photo + '" width="32" height="32" alt="" />' +
-                          '</a>' +
-                        '</div>' +
-                        '<div class="p-st-comment-actor-desc">' +
-                          '<span class="p-st-comment-actor">' +
-                            '<a href="/home/show?id=' +  like.id + '">' +
-                              like.full_name +
-                            '</a>' +
-                          '</span>' +
-                        '</div>' +
-                      '</div>';
-    likes_html = likes_html + like_html;
-  }); 
-  div.html(likes_html);
-  //div.append(likes_html);
+  var str = aw_lib_get_trim_name(like.full_name, 10);
+  var html='<div class="likes_box_internal" id="' + div_id + '">' +
+                '<a href="/home/show?id=' +  like.id + '">' +
+                  '<img title="' + like.full_name + '" src="' + like.photo+  '"/>' +
+                   '<p class="master_trimmed_text" >' + str + '</p>' + 
+                '</a>'+
+              '</div>';
+  return html;
 }
-
+function show_all_stream_campaigns(likes, modal_win_id){
+  
+  var id = modal_win_id + '_modal_div';
+  var div = $("#" + modal_win_id);
+  var html = '<span class="p-awp-likes-header"> People liking the post : </span>' +
+             '<div  id="' + id + '">' +
+             '</div>';
+  div.append(html);
+  var like_boxes_data = {
+                      type:"like",
+                      class:"like_box",
+                      data:likes
+                   };
+  aw_boxer_render_tabs(id, like_boxes_data);
+  return true;
+}
+/******************************************/
 /*
  * Render stream campaign
  */
@@ -364,12 +353,7 @@ function handle_stream_actions(box_id, stream, current_user_id,post_operations_i
     div.append(html);
     */
   }
-  /* 
-  if(current_user_id == stream.post.user.id) {
-    alert("adding close");
-    var html = '<input type="button" value="x" class="js_stream_delete_btn p-awp-close"/>';
-    div.append(html);
-  }*/
+  
 }
 
 /*
@@ -708,15 +692,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
    * */
   var stream_ele_id = get_stream_ele_id(post.id);
   aw_lib_console_log("debug", "rendering the stream");
-  var str = "";
-  if( post.word.name.length > 45 ){  
-    var limit = 45;                
-    str = post.word.name;        
-    var strtemp = str.substr(0,limit); 
-    str = strtemp + '..' + '<span class="hide">' + post.word.name + '</span>'; 
-  } else {
-    str = post.word.name;
-  }
+  var str = aw_lib_get_trim_name( post.word.name, 45);
   var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
                    '<div class="p-awp-close-section">'+
                       '<div class="p-awp-close js_stream_delete_btn">' +
@@ -774,7 +750,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                         '</div>'+
                       '</div>'+
                       '</div>'+
-                      '<div class="p-awp-post-like-info js_campaign_show_all" id="'+ like_text_id + '">'+
+                      '<div class="p-awp-post-like-info js_modal_dialog_link JS_AW_MODAL_like" id="'+ like_text_id + '">'+
+                        '<input type="hidden" value="' + campaign_box_id + '" class="js_campaign_modal_json_cookie" />' +  
                       '</div>'+
                    '</div>'+
  
@@ -1118,56 +1095,32 @@ function process_user_campaign_action(campaign_manager_json){
   /**********Like*********Pramod***/
   
 function aw_channels_render_like(win_id, trigger_id){
-  //alert("aw_channels_render_like");
   var id = win_id + '_modal_div';
-  var div = $("#" + win_id);
-  //var div_id = $("#" + trigger_id).attr("id");
-  var div_id = $("#" + trigger_id).parent().next().next().next().next().children("div.p-awp-post-const-opt").children("div.p-awp-post-like").attr("id");
-  //alert(div_id);
-  campaign_manager = the_big_stream_campaign_manager_json[div_id];
-  //alert(JSON.stringify(campaign_manager));
+  var json_id = $("#" + trigger_id).find(".js_campaign_modal_json_cookie").val();
+  campaign_manager = the_big_stream_campaign_manager_json[json_id];
   $.ajax({
           url: '/home/get_users_of_campaign.json',
           type: 'GET',
          data: { 
                   name:campaign_manager.name, 
-                  activity_id:campaign_manager.post_id
+                  activity_id:campaign_manager.post_id,
+                  cache:aw_lib_get_cache_cookie_id()
                 },
           dataType: 'json',
           success: function (data) {
-            show_all_stream_campaigns(data, div);
-          },
-          error:function(XMLHttpRequest,textStatus, errorThrown) {
-            alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
-          }
-      });
-  return true;
-}
-/**************************/
-/*
- *  Show all campaigns Like
- */
-function show_all_campaigns(campaign_manager_json){
-  //alert(JSON.stringify(campaign_manager_json));
-  $.ajax({
-          url: '/home/get_users_of_campaign.json',
-          type: 'GET',
-         data: { 
-                  name:campaign_manager_json.name, 
-                  activity_id:campaign_manager_json.post_id
-                },
-          dataType: 'json',
-          success: function (data) {
-            show_all_stream_campaigns(data, $("#" + campaign_manager_json.campaign_div_id).next());
-            /*****************************************Error On Slidetoggle****************************/
-            $("#" + campaign_manager_json.campaign_div_id).next().slideToggle();
-            //alert("show_all_campaigns");
+            if( data.length ){
+              show_all_stream_campaigns(data, win_id);
+            }else{
+              $("#" + win_id).html( '<span class="p-awp-likes-header"> No likes so far, be the first to like this post.</span>');
+            }
           },
           error:function(XMLHttpRequest,textStatus, errorThrown) {
             aw_lib_alert('There has been a problem in deleting comment. \n ActWitty is trying to solve.');
           }
       });
+  return true;
 }
+
 /**************************/
 /*
  *  Remove document from post
@@ -1366,33 +1319,6 @@ $(document).ready(function(){
   });
   /********************************/
 
-  /*
-   * User action show all  Pramod
-   */
-  $('.js_campaign_show_all').live('click', function(){
-    //var cls = $(this).attr("class");
-    //alert("on click like");
-    //var div_id = $(this).attr("id");
-    //alert(div_id);
-    //campaign_manager = the_big_stream_campaign_manager_json[div_id];
-    $(this).addClass("js_modal_dialog_link");  
-    $(this).addClass("JS_AW_MODAL_like"); 
-    return false;
-  });
-  /********************************/
-  /*
-    //alert("likes");
-    //var cls = $(this).attr("class");
-    //var nxt = $(this).next().children().attr("src");
-    //alert(nxt);
-    /****************************Changed For the Like SlideToggle***div_id*********************************/
-    //var div_id = $(this).parent().parent().attr("id");
-    //if(nxt == "/images/alpha/unlike.png")
-    //{
-    //alert("1"); 
-    //}
-    //campaign_manager = the_big_stream_campaign_manager_json[div_id];
-    //show_all_campaigns(campaign_manager); 
 
   /*
    * Delete entity mentioned in text

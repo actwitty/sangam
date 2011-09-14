@@ -77,19 +77,11 @@ function aw_subscriber_modal_data(json_data){
 
 function aw_render_subscriber_internal(subscriber, div_id){
      var link_id = "subscriber_modal_" + subscriber.id;
-     var str = "";
-     if( subscriber.name.length > 10 ){  
-        var limit = 10;                
-        str = subscriber.name;        
-        var strtemp = str.substr(0,limit); 
-        str = strtemp+ '..' + '<span class="hide">' + subscriber.name + '</span>'; 
-      }else{
-        str = subscriber.name;
-      }
+     var str = aw_lib_get_trim_name(subscriber.name, 10);
      var html='<div class="subscriber_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_subscriber" id="' + link_id + '">' +
                   '<img class="subscriber_box_images" title="' + subscriber.name + '" src="' + subscriber.photo +  '"/>' +
-                   '<p>' + str + '</p>' + 
+                   '<p class="master_trimmed_text" >' + str + '</p>' + 
                 '</a>'+
               '</div>';
      the_big_modal_subscriber_json[link_id] = {user_id: subscriber.id};

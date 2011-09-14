@@ -120,7 +120,6 @@ stylesheets:
     - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/alpha/main_page_user.css
     - public/stylesheets/actwitty/alpha/actwitty_home_page.css
-    - public/stylesheets/actwitty/home_page.css
     - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/plugins/jquery-autocomplete/lib/thickbox.css
     - public/stylesheets/actwitty/alpha/settings.css

@@ -4,13 +4,14 @@ function get_or_create_a_video_box(box_id, stream){
   var div =  $("#" + box_id);
   var small_div = $("#" + small_box_id);
   if( small_div.length == 0 ){
+    var str = aw_lib_get_trim_name( stream.word.name, 45);
     var html = '<div class="p-st-docs-per-activity" id="' + small_box_id + '">' +
                    '<div class="p-awp-stream-post-info">' +
                       '<div class="p-awp-channel">'+
                         '<div class="p-awp-channel-desc">'+
                           '<label class="p-awp-channel-label">CHANNEL : </label>'+
                           '<a href="/channel_page?channel_id=' +  stream.word.id + '">' +
-                          '<span class="p-awp-channel-name">' + stream.word.name + '</span>'+
+                          '<p class="p-awp-channel-name">' + str + '</p>'+
                           '</a>' +
                         '</div>'+
                       '</div>'+

@@ -107,15 +107,14 @@ var the_big_modal_manager_json = {
                                             //alert("calling related locations renderer");
                                             return aw_channels_render_like(win_id, trigger_id);
                                           },
-                                          title:"All Channels",
+                                          title:"Likes",
                                           top:50,
-                                          left:390,
-                                          width:450,
-                                          height:200,
+                                          left:300,
+                                          width:650,
+                                          height:400,
                                           data_json:{}
-
                                      
-                                   },
+                        },
     "JS_AW_MODAL_subscriber" : {
                                           renderer_fn:function aw_modal_subscribers(win_id, trigger_id){
                                             return aw_subscriber_modal(win_id, trigger_id);
@@ -304,6 +303,7 @@ $(document).ready(function() {
         $("#modal_box_id").hide();
         $(".modal_close").hide();
         $("html,body").css("overflow","auto");
+        return false;
     });     
      
     /*
@@ -316,6 +316,7 @@ $(document).ready(function() {
         $('#modal_box_window_id').hide();
         $('#modal_box_mask_id').hide();
         $("html,body").css("overflow","auto");
+        return false;
     });         
      
 });

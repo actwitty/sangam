@@ -132,18 +132,10 @@ function aw_channels_set_all_channels_modal_data(json_data){
 
 function aw_render_channels_internal(channel, div_id){
     var link_id = "stream_related_modal_" + channel.id;
-    var str = "";
-    if( channel.name.length > 11 ){  
-      var limit = 11;                
-      str = channel.name;        
-      var strtemp = str.substr(0,limit); 
-      str = strtemp + '..' + '<span class="hide">' + channel.name + '</span>'; 
-    } else {
-      str = channel.name;
-    }
+    var str = aw_lib_get_trim_name(channel.name, 11);
      var html='<div class="channels_box_internal" id="' + div_id + '">' +
                 '<a href="#" class="js_modal_channels" id="' + link_id + '">' +
-                   '<p>' + str + '</p>' +
+                   '<p class="master_trimmed_text">' + str + '</p>' +
                 '</a>'+
                
               '</div>';
