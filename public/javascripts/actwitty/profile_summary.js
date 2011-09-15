@@ -168,9 +168,19 @@ function create_and_docs_box(box_id, summary){
 function get_subscription_box_element(type)
 {
   if(type == 'UNSUBSCRIBE') {
-    return '<a class="js_subscribe_summary" id="unsubscribed_channel"><img src="/images/alpha/unsubscribe.png" ></a>';
+    return '<div class="js_subscribe_class">' +
+              '<a class="js_subscribe_summary" >' +
+                '<img src="/images/alpha/unsubscribe.png" >' + 
+              '</a>' +
+              '<input type="hidden" class="js_subscribe_action" value="unsubscribed_channel" />' +
+            '</div>'
   }else if(type == 'SUBSCRIBE'){
-      return '<a class="js_subscribe_summary" id="subscribed_channel"><img src="/images/alpha/subscribe.png" ></a>';
+      return '<div class="js_subscribe_class">' +
+              '<a class="js_subscribe_summary" >' + 
+                '<img src="/images/alpha/subscribe.png" >' + 
+              '</a>' +
+              '<input type="hidden" class="js_subscribe_action" value="subscribed_channel" />' +
+             '</div>';
   }else{
     return '';
   }
@@ -534,10 +544,6 @@ function create_and_add_summary_icon_box(summary_box,id)
     summary_box.append(html);
 }
 
-
-
-
-
 /* 
  * create and add summary for main page. Latest updates seen on main page is a bit different
  *
@@ -622,15 +628,6 @@ function create_and_add_mainpage_summary(summary_box, summary){
         create_and_add_text_box(latest_text_box_id, summary,"mainpage");
 }
 
-
-
-
-
-
-
-
-
-
 /* handle complete summary box */
 function create_and_add_summary_icon(summary_box, summary, icon_id, main_id){
  /* Fail safe, due to any reason this happens, reject the summary from being displayed again */
@@ -664,8 +661,30 @@ var show_counter = 0;
  }
  aw_lib_console_log("debug","profile_summary.js:create_and_add_summary_icon"); 
  var str = aw_lib_get_trim_name(summary.word.name, 11);
+ var user_head_html = "";
+// if ( aw_get_channel_scope() != 1 ){ 
+ 
+  var user_head_html = '<div class="p-channelp-post-author-icon">' +
 
- var html =  '<div class="p-channelp-otr-channel-icon" id="' + unique_id + '">'+
+                    '<div class="p-channelp-post-author-icon-img">' +
+                      '<a href="/home/show?id=' +  summary.user.id + '" >' +  
+                        '<img src="' + summary.user.photo + '" width=60 alt="" />' +
+                      '</a>'+ 
+                    '</div>' +
+
+                    '<div class="p-channelp-post-author-icon-name">' +
+                      '<span>' + summary.user.full_name+ '</span>' +
+                    '</div>' +
+
+                  '</div>';
+ // }
+
+ var html =  '<div class="p-channelp-otr-channel-icon js_summary_base_div" id="' + unique_id + '">'+
+                '<input type="hidden" class="js_summary_id_hidden" value="' + summary.id + '"/>' +
+
+               user_head_html +
+               
+               
                '<div class="p-channelp-post-cu js_word_name_box" >' +
                   '<div class="p-channelp-post-subs-info" id="' + subscribe_box_id + '">' +
                   '</div>'+
@@ -677,6 +696,8 @@ var show_counter = 0;
                   '<div class="p_channelp_view_summary" value="' + unique_id_main_box + '"> <span>view more ></span>'+
                   '</div>'+
                 '</div>' +
+
+
                 '<div class="p-channelp-post-analytic">' +
                   '<div class="p-channelp-post-like">' +
                     '<p><center>' + show_counter + '</center></p> <p> <center>Shares</center></p>' +
@@ -701,7 +722,8 @@ var show_counter = 0;
                             'backgroundImage' : 'url('+ background_theme + ')',
 //                            'backgroundRepeat': 'no-repeat',
                             'backgroundPosition': 'center center'
-                          }); 
+                          });
+        create_add_add_subscribe_box(subscribe_box_id, summary);
         return unique_id_main_box;
 }
 
@@ -851,7 +873,9 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary); 
-        create_add_add_subscribe_box(subscribe_box_id, summary);
+        if( aw_get_channel_scope() == 2 ){ 
+          create_add_add_subscribe_box(subscribe_box_id, summary);
+        }
         create_and_add_text_box(latest_text_box_id, summary,"channelpage");
         create_and_add_friends_box(friends_box_id, summary);
         create_and_add_entities_box(entities_box_id, summary);
@@ -1038,11 +1062,11 @@ $(document).ready(function(){
     });
     /**********************/
     $(".js_subscribe_summary").live('click', function(){
-       aw_lib_console_log("debug","profile_summary.js:clicked subscribe/unsubscribe summary");
+      aw_lib_console_log("debug","profile_summary.js:clicked subscribe/unsubscribe summary");
       var summary_id =$(this).closest('.js_summary_base_div').find('.js_summary_id_hidden').val();
       /* old code is commented for a while to have quick ref */
       //var action = $(this).html();
-      var action = $(this).attr('id');
+      var action = $(this).parent().find(".js_subscribe_action").val();
       //if (action == 'SUBSCRIBE'){
       if (action == 'subscribed_channel'){
         subscribe_summary($(this), summary_id, true);

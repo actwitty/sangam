@@ -245,17 +245,7 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   */
 
 }
-#settings_icon
-{
-  width:25px;
-  height:25px;
-  /*float:right;*/
-  float:left;
-  border:0px solid blue;
-  margin-top:14px;
-  margin-left:15px;
-  margin-right:15px;
-}
+
 #top_bar_user_image
 {
   height:50px;
@@ -265,6 +255,12 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   padding:0px;
   overflow:hidden;
   background:none;
+}
+
+#top_bar_user_image a img{
+  padding-top:10px;
+  width:40px;
+  float:right;
 }
 
 #p-topbar-home
@@ -283,7 +279,21 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
   cursor:pointer;
 }
 
+#p-topbar-settings
+{
+  float:left;
+  padding:0px;
+  margin-left:10px;
+  margin-top:11px;
+  width:28px;
+  height:28px;
+  background-image: url("/images/alpha/settings_icon.png");
+}
 
+#p-topbar-settings:hover{
+ background-image: url("/images/alpha/settings_icon_hover.png");
+ cursor:pointer;
+}
 /* --------------- Search Bar -----------------*/
 #searchwrapper 
 {
@@ -1807,8 +1817,6 @@ div.disp-full-name-parent .disp-full-name:hover .disp-full-name-span
 }
 
 .p-r-userinfo a img{
-  height:100px;
-  width:100px;
   display:block;
 }
 

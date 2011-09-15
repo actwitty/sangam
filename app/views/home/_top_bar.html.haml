@@ -11,8 +11,7 @@
         #home_page_nav
           #home_page_settings
             %a#p-topbar-home{:href => "/home/show?id=#{@current_user.id}"}
-            
-            %img#settings_icon.button{:src => "/images/alpha/settings_icon.png"}/
+            %a#p-topbar-settings{:href => "/home/settings"}
             .options-menu
               %ul
                 %li

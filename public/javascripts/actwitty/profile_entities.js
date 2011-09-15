@@ -16,7 +16,11 @@ function get_all_entities(userid, render_div_id){
     $.ajax({
         url: '/home/get_entities.json',
         type: 'GET',
-        data: {user_id:userid, sort_order:1},
+        data: { 
+                user_id:userid, 
+                sort_order:1,
+                cache_cookie:aw_lib_get_cache_cookie_id()
+                },
         dataType: 'json',
         contentType: 'application/json',
         success: function (data) {
@@ -127,22 +131,17 @@ function aw_entities_set_all_entities_modal_data(json_data){
 }
 
 function aw_render_entities_internal(entity, div_id, new_tab_id){
-     var link_id = "stream_related_modal_" + entity.id;
-     //var main_div = $('.entities_box_internal').parent().attr("id");
-     //var main_id = $('#main_div');
-     //alert(main_id + entity.image);
-     //alert("cool");
-     //alert($('.entities_box_internal').parent().attr("id"));
-     //main_div.css({'background-image': url( entity.image )});
-
+    var str = aw_lib_get_trim_name(entity.name, 12); 
+    $("#" + new_tab_id).css({
+                            'backgroundImage' :'url(' + entity.image +  '?maxwidth=140' + ')',
+                            'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'center center'
+                          });
+     $("#" + new_tab_id).addClass("js_modal_entities");
      var html='<div class="entities_box_internal" id="' + div_id + '">' +
-                '<a href="#" class="js_modal_entities" id="' + link_id + '">' +
-                  '<img  src="' + entity.image +  '?maxwidth=120"/>' +
-                  '<p> '+  entity.name + '</p>'+
-                '</a>'+
-               
+                '<p class="master_trimmed_text"> '+  str + '</p>'+
               '</div>';
-     the_big_modal_entities_json[link_id] = {id:entity.id, name:entity.name};
+     the_big_modal_entities_json[new_tab_id] = {id:entity.id, name:entity.name};
      return html;
 }
 

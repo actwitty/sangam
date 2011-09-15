@@ -42,30 +42,28 @@
                 width:140px;
 }
 
+.entities_box:hover{
+  filter:alpha(opacity=50);	
+	opacity: 0.5;
+  cursor: pointer;
+}
+
 .entities_box_internal{
-        width:80%;
+        width:130px;
         overflow:hidden;
         float:left;
 }
 
-.entities_box_internal a img{
-  width:120px;
-}
 
-.entities_box_internal a p{
-  margin-left:5px;
-  margin-top:15px;
-  width:50px;
-  overflow:hidden;
-  float:left;
-  font-size:20px; 
+.entities_box_internal p{
+  float:right;
+  margin-top:65px;
   color:#30a3ad;
+  font-size:20px; 
+  text-shadow:#fff 0px 1px 0, #000 0 -1px 0;
 }
 
-.entities_box_images{
-  /*height:40;
-  width:40;*/
-}
+
 /*************** entity box *****************/
 
 /****************** location box *************/
