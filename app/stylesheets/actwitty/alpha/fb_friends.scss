@@ -15,52 +15,54 @@ div.fb_friends_lists {
 p.fb_friends_header{
   margin-top:10px;
   margin-bottom:3px;
-  margin-left:380px;
+  margin-left:300px;
   font-size: 18px;
   font-color: #000000;
+  
 }
 
 
 div#invite_friends
 {
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+/*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 	position: relative;
 	height: 240px;
-	width: 610px;/*650*/
-  overflow-x: hidden;
-  overflow-y: scroll;
-  border:2px solid black;
-  left:380px;
+	width: 800px;
+	overflow: auto;
+  border:1px solid #ddd;
+  margin:0px auto;
+  color:#6abdc4;
 }
 div#subscribed_friends
 {
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+/*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 	position: relative;
 	height: 240px;
-	width: 610px;/*650*/
+	width: 800px;
 	overflow: auto;
-  border:2px solid black;
-  margin-left:380px;
+  border:1px solid #ddd;
+  margin:0px auto;
+  color:#6abdc4;
 }
 div#unsubscribed_friends
 {
-  background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+/*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
 	position: relative;
 	height: 240px;
-	width: 610px;/*650*/
+	width: 800px;
 	overflow: auto;
-  border:2px solid black;
-  left:380px;
+  border:1px solid #ddd;
+  margin:0px auto;
+  color:#6abdc4;
 }
 
 
 h3.fb_empty_check{
   font-size: 20px;
-  font-color:#ccc;
-  color:#ffffff;
+  color:#6abdc4;;
 }
 
 

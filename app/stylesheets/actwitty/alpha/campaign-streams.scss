@@ -7,13 +7,18 @@
   height:17px;
   width:100%;
   display:none;
+
 }
 
 
 .p-awp-view-campaign_all
 {
-  width:100%;
-  float:right;
+  width:auto;
+  /*float:right;*/
+  border:0px solid red;
+  margin-left:50px;
+  width:50px;
+  margin-top:-1px;
 }
 .p-awp-view-campaign_all span
 {

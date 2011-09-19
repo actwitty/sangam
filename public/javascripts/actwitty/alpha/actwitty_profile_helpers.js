@@ -20,17 +20,19 @@ function aw_input_box_reset_to_default(){
 
 
 $(document).ready(function(){
+  /*
   $(window).scroll(function(){
 
-   //$(".p-st-filter").css("top",Math.max(0,230-$(this).scrollTop()));
-    //var totalHeight = $("#p-ch-st-tab").height() + $("#input-box").height();
     var totalHeight = $("#input-box").height();
-    //if($(this).scrollTop() > ( $("#top-bar").height() + $("#input-box").height() )
     if($(this).scrollTop() > totalHeight )
     {
-      $(".p-st-filter").css("position","fixed");
-      $(".p-st-filter").css("top",98);
       
+      $(".p-st-filter-sect").css("position","fixed");
+      $(".p-st-filter-sect").css("top",100);
+
+      $(".p-st-filter").css("position","fixed");
+      $(".p-st-filter").css("top",100);
+
       $(".p-l-fltr-1").css("position","fixed");
       $(".p-l-fltr-1").css("top",100);
       
@@ -41,20 +43,19 @@ $(document).ready(function(){
       $(".p-r-fltr-st").css("top",100);
   
       $(".p-r-search-fltr").css("position","fixed");
-      $(".p-r-search-fltr").css("top",260);
+      $(".p-r-search-fltr").css("top",330);
       
-      /*
-      $("ul.p-cstab").css("position","fixed");
-      $("ul.p-cstab").css("top",50);
-      */
       $("#p-ch-st-tab-proxy").css("position","fixed");
-      $("#p-ch-st-tab-proxy").css("top",50);
+      $("#p-ch-st-tab-proxy").css("top",55);
 
-      //alert(totalHeight);
 
     }
     else
     {
+
+      $(".p-st-filter-sect").css("position","absolute");
+      $(".p-st-filter-sect").css("top","");
+
       $(".p-st-filter").css("position","absolute");
       $(".p-st-filter").css("top","");
       
@@ -69,16 +70,12 @@ $(document).ready(function(){
   
       $(".p-r-search-fltr").css("position","absolute");
       $(".p-r-search-fltr").css("top","");
-      /*
-      $("ul.p-cstab").css("position","absolute");
-      $("ul.p-cstab").css("top","");
-      */
       $("#p-ch-st-tab-proxy").css("position","absolute");
       $("#p-ch-st-tab-proxy").css("top","");
 
     }
   });
-  
+  */
     /* Note: There are some hardcoded strings used in following 2 functions
      * If in case you are changing any of them, plz make sure to change it in input_box partial
      * as well

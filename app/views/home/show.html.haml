@@ -51,16 +51,16 @@
       %input#more_channels_cookie{:type => "hidden", :value => ""}
       -if user_signed_in?
         -if current_user.id == @user.id
-          #p-channelp-tabs-section
-            #p-channelp-tab-all.p-channelp-tab.p-channelp-unselected.js_channel_scope
-              %center
-                %span All Channels
-            #p-channelp-tab-subscribed.p-channelp-tab.p-channelp-unselected.js_channel_scope
-              %center
-                %span Subscribed Channels
-            #p-channelp-tab-mine.p-channelp-tab.p-channelp-unselected.js_channel_scope
-              %center
-                %span My Channels
+          /#p-channelp-tabs-section
+          /  #p-channelp-tab-all.p-channelp-tab.p-channelp-unselected.js_channel_scope
+          /    %center
+          /      %span All Channels
+          /  #p-channelp-tab-subscribed.p-channelp-tab.p-channelp-unselected.js_channel_scope
+          /    %center
+          /      %span Subscribed Channels
+          /  #p-channelp-tab-mine.p-channelp-tab.p-channelp-unselected.js_channel_scope
+          /    %center
+          /      %span My Channels
       / #### channel page content section ####
       #p-channelp-content
         =render :partial => "home/channelp_posts"

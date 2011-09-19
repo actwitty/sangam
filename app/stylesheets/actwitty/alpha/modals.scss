@@ -34,8 +34,9 @@
    
 .modal_window {
   display: none; /*--hidden by default--*/
-	background-image:url("/images/alpha/back_tile.jpg");
-  background-repeat:repeat;
+	/*background-image:url("/images/alpha/back_tile.jpg");
+  background-repeat:repeat;*/
+  background:#ffffff;
 	padding: 20px;
 	border: 7px solid #fff;
 	float: left;
@@ -48,9 +49,10 @@
 	-moz-box-shadow: 0px 0px 20px #000;
 	box-shadow: 0px 0px 20px #000;
 	/*--CSS3 Rounded Corners--*/
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
+	
+  -webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
   
 }
 

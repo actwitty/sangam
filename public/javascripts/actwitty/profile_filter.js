@@ -179,11 +179,15 @@ function aw_get_stream_scope(){
 function profile_filter_init(){
     if(aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
       $("#p-channelp-tab-mine").addClass("p-channelp-selected");
+      $("#channel_stream_mine").addClass("p-channelp-selected");
+
       $("#stream_mine").addClass("p-r-fltr-mine-active");
       g_channel_scope = 1;
       g_stream_scope = 1;
     }else{
       $("#p-channelp-tab-mine").addClass("p-channelp-selected");
+      $("#channel_stream_mine").addClass("p-channelp-selected");
+
       $("#stream_mine").addClass("p-r-fltr-mine-active");
       g_channel_scope = 1;
       g_stream_scope = 1;
@@ -214,14 +218,20 @@ $(document).ready(function(){
     });
     /***********************************************************/
     
-    $('.js_channel_scope').click(function () {
+    $('.js_channel_scope').live("click",function(){
       $(".p-channelp-tab").removeClass("p-channelp-selected"); 
+      //alert($(this).attr("id"));
       $(this).addClass("p-channelp-selected");
-      if( $(this).attr("id") == "p-channelp-tab-all" ){
+      /*  p-channelp-tab-all p-channelp-tab-subscribed p-channelp-tab-mine   */
+
+      if( $(this).attr("id") == "channel_stream_all" ){
+        //alert("all");
         g_channel_scope = 3;
-      }else if ( $(this).attr("id") == "p-channelp-tab-subscribed" ){
+      }else if ( $(this).attr("id") == "channel_stream_subscribed" ){
+        //alert("subsscribed");
         g_channel_scope = 2;
-      }else if ( $(this).attr("id") == "p-channelp-tab-mine" ){
+      }else if ( $(this).attr("id") == "channel_stream_mine" ){
+        //alert("mine");
         g_channel_scope = 1;
       }
       

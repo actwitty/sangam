@@ -1,21 +1,27 @@
 /* line 1, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
 .p-st-docs-per-activity {
-  /*
-  width:90%;
-  display:block;
-  padding:5px;
-  margin:20px;
-  height:auto;
-  */
   height: auto;
-  width: 590px;
-  border: 0px solid blue;
+  width: 570px;
   margin-top: 8px;
   margin-left: 20px;
-  border-bottom: 1px solid #ddd;
+  padding-top: 5px;
+  padding-left: 5px;
+  border: 1px solid #ddd;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
-/* line 21, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+/* line 18, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+.p-st-docs-per-activity:hover {
+  box-shadow: 0 0 2px  #3a3a3a;
+  -moz-box-shadow: 0 0 2px  #3a3a3a;
+  -webkit-box-shadow: 0 0 2px  #3a3a3a;
+  -o-box-shadow: 0 0 2px #3a3a3a;
+}
+
+/* line 26, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
 .p-st-docs-user {
   width: 80px;
   float: left;
@@ -24,18 +30,18 @@
   height: 100%;
 }
 
-/* line 29, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+/* line 34, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
 .p-st-user-pic {
   width: 50px;
   float: left;
 }
 
-/* line 34, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+/* line 39, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
 .p-st-user-name {
   padding: 2px;
 }
 
-/* line 41, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
+/* line 46, ../../../../app/stylesheets/actwitty/alpha/images_layout.scss */
 .p-st-docs-image {
   margin: 2px;
 }
