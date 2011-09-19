@@ -50,7 +50,7 @@ body {
   font-size: 12px;
   font-family: 'actwitty-font';
   color: #CCCCCC;
-  background-color: #fff;
+  background-color: red;
   /*background-image:url("/images/alpha/back_tile.jpg");
   background-repeat:repeat;*/
 }
@@ -105,25 +105,25 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 /* line 92, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .col1 {
   color: #D2D2D2;
-  background-color: #FFFFFD;
+  background-color: #FFFFFF;
 }
 
 /* line 93, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .col2 {
   color: #FFFFFF;
-  background-color: #FFFFFD;
+  background-color: #FFFFFF;
 }
 
 /* line 94, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .col3 {
   color: #000000;
-  background-color: #FFFFFD;
+  background-color: #FFFFFF;
 }
 
 /* line 95, ../../../../app/stylesheets/actwitty/alpha/home_layout.scss */
 .col4 {
   color: #666666;
-  background-color: #FFFFFD;
+  background-color: #FFFFFF;
 }
 
 /* ----------------------------------------------Generalise-------------------------------------*/

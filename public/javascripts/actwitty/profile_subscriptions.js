@@ -68,7 +68,7 @@ function get_subscription_json_data(){
 function aw_subscription_modal_data(json_data){
   var modal_data = {
                       type:"subscription",
-                      class:"subscription_box",
+                      css_class:"subscription_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_subscription", modal_data);

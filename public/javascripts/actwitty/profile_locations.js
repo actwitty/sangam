@@ -114,7 +114,7 @@ function get_locations_modal_id(id){
 function aw_locations_set_related_modal_data(json_data){
   var modal_data = {
                       type:"locations",
-                      class:"locations_box",
+                      css_class:"locations_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_related_locations", modal_data);
@@ -124,7 +124,7 @@ function aw_locations_set_all_locations_modal_data(json_data){
   
   var modal_data = {
                       type:"locations",
-                      class:"locations_box",
+                      css_class:"locations_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_all_locations", modal_data);

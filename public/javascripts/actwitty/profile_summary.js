@@ -83,7 +83,7 @@ function create_and_add_text_box(box_id, summary,channel_class){
      if(i>1){
        return;
      }
-     shortText = text_json.text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
+     var shortText = text_json.text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
      var html = '<div class="' +lup_class +'">' +
                     '<div class="p-channelp-post-lup-time">' +
                        '<abbr class="timeago" title="' + text_json.time + '"></abbr>' +

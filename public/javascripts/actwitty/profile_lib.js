@@ -50,11 +50,12 @@ jQuery.fn.log = function (msg) {
                               };
 
 function aw_lib_console_log(level, msg){
-  console.log(msg);
+ // console.log(msg);
+
 
 }
 
 function aw_lib_alert(msg){
   //alert(msg);
-  console.log(msg);
+  //console.log(msg);
 }
