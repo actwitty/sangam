@@ -873,9 +873,7 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary); 
-        if( aw_get_channel_scope() == 2 ){ 
-          create_add_add_subscribe_box(subscribe_box_id, summary);
-        }
+        create_add_add_subscribe_box(subscribe_box_id, summary);
         create_and_add_text_box(latest_text_box_id, summary,"channelpage");
         create_and_add_friends_box(friends_box_id, summary);
         create_and_add_entities_box(entities_box_id, summary);
@@ -903,7 +901,7 @@ function append_personal_summary(owner_id){
         contentType: 'application/json',  
         success: function (data) {
            // if rails demands a redirect because of log in missing
-           if( aw_get_channel_scope() == 3  ||
+          /* if( aw_get_channel_scope() == 3  ||
                (aw_get_channel_scope() == 1 && 
                   aw_lib_get_page_owner_id() != aw_lib_get_session_owner_id()) ){
              for (i=0;i < data.length;i=i+2) {
@@ -929,7 +927,7 @@ function append_personal_summary(owner_id){
                    };
                 }
              }
-           } else {
+           } else {*/
             $.each(data, function(i,summary){
                 if( summary ){
                     var box_id = 'SUMMARY_BOX_' + summary.word.id + '_' + summary.user.id;
@@ -937,7 +935,7 @@ function append_personal_summary(owner_id){
                     $("#more_channels_cookie").val(summary.time);
                 } 
             });
-          }
+         // }
           $(window).scrollTop(scroll);
           
           /* convert time stamp to time ago */
@@ -1029,8 +1027,8 @@ function update_summary_theme(trigger_ele){
           var word_name_box = trigger_ele.closest('.js_summary_base_div').find('.js_word_name_box');
           word_name_box.css({
                             'backgroundImage': 'url('+  url_val + ')',
-//                            'backgroundRepeat': 'no-repeat',
-                            'backgroundPosition': 'center center'
+                            'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'top center'
                           }); 
           return false;
          

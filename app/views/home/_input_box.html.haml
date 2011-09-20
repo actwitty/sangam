@@ -13,18 +13,18 @@
         .activity_location
           .activities
             %img.symbol_icon{:src => "/images/alpha/hash_icon.png"}
-              %input#activity_field.activity_input.input_text_box.count-enable.no-ol{:placeholder=>"Channel",:maxlength => "32", :type => "text"}/
+              %input#activity_field.activity_input.input_text_box.count-enable.no-ol{:placeholder=>"Channel",:maxlength => "250", :type => "text"}/
           .locations
             %img.symbol_icon{:src => "/images/alpha/at_icon.png"}
-              %input#location_field.searchTextField.input_text_box.location_input.count-enable.no-ol{:maxlength => "140", :type => "text"}/
+              %input#location_field.searchTextField.input_text_box.location_input.count-enable.no-ol{:maxlength => "1000", :type => "text"}/
         .entity_maps
           #subtitle-div
             #subtitle-box
               .subtitle
-                %input#title_field.subtitle_input.input_text_box.count-enable.no-ol{:placeholder=>"Title",:maxlength => "32", :type => "text"}/
+                %input#title_field.subtitle_input.input_text_box.count-enable.no-ol{:placeholder=>"Title",:maxlength => "250", :type => "text"}/
           #entity_div
             #entity-box
-              %textarea#entity_field.entity_input.count-enable.no-ol{:placeholder=>"Post..",:maxlength => "600", :type => "text"}
+              %textarea#entity_field.entity_input.count-enable.no-ol{:placeholder=>"Post..",:maxlength => "4096", :type => "text"}
               #input_addons
                 %a#attachment.info.input_addons_links{:href => "#"}
                   %img.link_addon_icons{:src => "/images/alpha/camera_icon.png"}/
