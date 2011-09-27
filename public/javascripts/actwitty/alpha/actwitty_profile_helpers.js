@@ -79,6 +79,7 @@ $(document).ready(function(){
     /* Note: There are some hardcoded strings used in following 2 functions
      * If in case you are changing any of them, plz make sure to change it in input_box partial
      * as well
+     * TODO : Need to change the image paths or images.
      * */
     $("#attachment").live("click",function(){
         $("#input-attachments-section").slideToggle("medium");
@@ -110,6 +111,24 @@ $(document).ready(function(){
             $span.text("Add Title");  
 
     });
+
+
+    $("#add_location").live("click",function(){
+        $("#locations").slideToggle("medium");
+        var $image = $(this).children("img");
+        if ($image.attr("src") == "/images/alpha/title_normal_button.png")
+            $image.attr("src", "/images/alpha/title_pressed_button.png");
+        else
+            $image.attr("src", "/images/alpha/title_normal_button.png");
+       
+        var $span = $(this).children("span");
+        if ($span.text() == "Add Location")
+            $span.text("Remove Location");
+        else
+            $span.text("Add Location");  
+
+    });
+
 
 
     /* to display the comment input system for inputting comments.  like google+ */ 

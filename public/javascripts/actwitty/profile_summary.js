@@ -522,9 +522,9 @@ function create_and_add_summary_author(author_box, owner_id)
                 '</div>' ;
    if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id()) {
      html = html + '<div id="channel_author_selections">' +
-                  '<div id="channel_stream_all" class="button_actwitty orange button_right p-channelp-tab js_channel_scope">All Channels</div>' +
-                  '<div id="channel_stream_mine" class="button_actwitty orange button_right  p-channelp-tab js_channel_scope">My Channels </div>' +
-                  '<div id="channel_stream_subscribed" class="button_actwitty orange button_right  p-channelp-tab js_channel_scope">Subscribed Channels</div>' +
+                  '<div id="channel_stream_all" class="button_actwitty orange button_right p-channelp-tab js_channel_scope actwitty_button_font">All Channels</div>' +
+                  '<div id="channel_stream_mine" class="button_actwitty orange button_right  p-channelp-tab js_channel_scope actwitty_button_font">My Channels </div>' +
+                  '<div id="channel_stream_subscribed" class="button_actwitty orange button_right  p-channelp-tab js_channel_scope actwitty_button_font">Subscribed Channels</div>' +
                   
                 '</div>';
    }

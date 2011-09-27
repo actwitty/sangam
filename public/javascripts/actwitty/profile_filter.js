@@ -85,12 +85,12 @@ function modify_filter(filter_json, reload){
   /* Location */
   if ($("#filter_location_id").attr("value").length > 0 && $("#filter_location_name").attr("value").length>0){
    
-   filter_name = get_trim_text($("#filter_location_name").attr("value"),10,".."); 
+   filter_name = get_trim_text($("#filter_location_name").attr("value"),40,".."); 
    $("#fltr_location_id span:first-child").html(filter_name);
    $("#fltr_location_id span:nth-child(2)").html($("#filter_location_name").attr("value"));
 
-   $("#fltr_location_id").parent().addClass('p-st-flt-location');
-    $('#location_filter_drop').show();
+   //$("#fltr_location_id").parent().addClass('p-st-flt-location');
+   $('#location_filter_drop').show();
   }else{
     if ($("#fltr_location_id").parent().is('.p-st-flt-location')) {
       $("#fltr_location_id").parent().removeClass('p-st-flt-location');

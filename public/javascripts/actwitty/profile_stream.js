@@ -187,7 +187,7 @@ function handle_like_campaign(div_id, stream){
 
   var html = '<div class="p-awp-view-campaign_all ">' +
               
-             '<a id="' + link + '" value="' + div_id + '" class=" button_actwitty green  js_like_user_action">' +
+             '<a id="' + link + '" value="' + div_id + '" class=" button_actwitty green  js_like_user_action actwitty_button_font">' +
                   like_text +
              '</a>' +
              '</div>' +
@@ -453,7 +453,7 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
  */
 function setup_comment_handling(all_box_id, box_id, postid, comment_count){
   var comment_show_all_id = box_id + '_show_all';
-  var html = '<span class="view-comments js_show_all_comment_btn" id=' + comment_show_all_id + '>' +
+  var html = '<span class="view-comments js_show_all_comment_btn actwitty_button_font" id=' + comment_show_all_id + '>' +
                 get_comment_head_label(comment_count) +
              '</span>';
   $("#" + all_box_id).html(html);  
@@ -495,12 +495,9 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   
     var html = '<div class="post-comment">'+
-                  //'<input type="text" name="comment" class="add-comment" placeholder="Add Comment...">'+
-                  //'<input type="submit" value="Add Comment......" name="comment" class="button_actwitty white  add-comment" placeholder="Add Comment...">'+      
                     '<div class="submit-comment" >'+
                       '<input type="text" name="comment" class="add-comment-text p-st-comment-text-box" id="' + add_new_textarea_id + '" >'+
-                      //'<input type="submit" value="Cancel" class="button_actwitty red cancel-comment-btn ">'+
-                      '<input type="submit" value="Post Comment" class="button_actwitty blue js_add_new_comment post-comment-btn " id="' + add_new_btn_id + '"/>' +
+                      '<input type="submit" value="Post Comment" class="button_actwitty blue js_add_new_comment post-comment-btn actwitty_button_font " id="' + add_new_btn_id + '"/>' +
                       '<span class="comment-limit"></span>'+
                     '</div>'+
                 '</div> ';
@@ -513,7 +510,7 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                     '</textarea>' +
                   '</div>' +
                   '<div class="stream_comment_text_area_box_btn_box">' +
-                    '<input type="button"  value="Post" class="js_add_new_comment p-st-comment-add-btn" id="' + add_new_btn_id + '"/>' +
+                    '<input type="button"  value="Post" class="js_add_new_comment p-st-comment-add-btn actwitty_button_font" id="' + add_new_btn_id + '"/>' +
                   '</div>' +
                '</div>'; 
     //div.append(html);
@@ -656,6 +653,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var text_box_id     =  stream_render_id + '_text';
   var location_box_id =  stream_render_id + '_location';
   var action_box_id   = stream_render_id + '_action';
+
+  var subtitle_box_id = stream_render_id + '_subtitle';
   var view_all_image_id = doc_box_id + '_all';
   var post_operations_id = stream_render_id + '_operations';
 
@@ -729,7 +728,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     
                    '<div class="p-awp-post-info">' +
                       '<div class="p-awp-post-contents">'+
-                      '<div class="p-awp-subtitle">'+
+                      '<div class="p-awp-subtitle" id="'+subtitle_box_id+'">'+
                         /*
                         '<a href="/location_page?location_id=' + stream.location.id + '">' +
                           '<span class="p-awp-location-name" >' + 
@@ -748,10 +747,12 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                         '<div class="quote">'+
                           '<span>&#8220;</span>'+
                         '</div>'+
-                        '<div class="p-awp-text" id="' + text_box_id + '" >' +
-                          '<p align="justify">' + +
-                          '</p>' +
-                        '</div>'+
+                        '<a href="/view?id=' + post.id + '">' +
+                          '<div class="p-awp-text" id="' + text_box_id + '" >' +
+                            '<p align="justify">' + +
+                            '</p>' +
+                          '</div>'+
+                        '</a>'+
                       '</div>'+
                       '</div>'+
                       '<div class="p-awp-post-like-info js_modal_dialog_link JS_AW_MODAL_like" id="'+ like_text_id + '">'+
@@ -779,21 +780,15 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '<div class="p-awp-post-opt" >' +
                      '<input id="'+post_operations_id+'" type="hidden" value="'+ action_box_id + '">'+
                      '<div class="p-awp-post-const-opt">' +
-                        '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point button_actwitty rosy"> Mentions </div> '+
-                        '<div class="js_stream_edit_btn p-awp-post-edit hover_point button_actwitty red"> Edit </div> '+
-                        '<div class="js_stream_publish_btn p-awp-post-publish hover_point button_actwitty green"> Publish </div> '+
-                        '<div class="p-awp-post-like hover_point" id="' + campaign_box_id + '">'+'</div>' +
+                        '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point button_actwitty actwitty_button_font rosy"> Mentions </div> '+
+                        '<div class="js_stream_edit_btn p-awp-post-edit hover_point button_actwitty actwitty_button_font red"> Edit </div> '+
+                        '<div class="js_stream_publish_btn p-awp-post-publish hover_point button_actwitty actwitty_button_font green"> Publish </div> '+
+                        '<div class="p-awp-post-like" id="' + campaign_box_id + '">'+'</div>' +
                         //'<div class="js_socialize_minimize p-awp-post-mentions hover_point"> Share </div> '+ 
 
-                        '<div class="p-awp-post-comments hover_point js_show_all_comment_btn button_actwitty blue" id="' + comment_show_all_id + '">' 
+                        '<div class="p-awp-post-comments hover_point js_show_all_comment_btn button_actwitty blue actwitty_button_font" id="' + comment_show_all_id + '">' 
                         + get_comment_head_label(stream.comments.count)+ '</div> ' +
                      '</div>'+
-                     /*
-                     '<div class="p-awp-post-vol-opt">' +
-                        '<input type="button" value="Edit" class="js_stream_edit_btn p-awp-edit"/>' +
-                        '<input type="button" value="Publish" class="js_stream_publish_btn p-awp-publish"/>' +
-                     '</div>' +
-                     */
                     '</div>' +
                    
                     
@@ -816,6 +811,10 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   }else{
     streams_box.append(html);
   }
+  if(!subtitle) {
+    $("#"+subtitle_box_id).hide();
+  }
+
   aw_lib_console_log("debug", "stream html added");
   handle_stream_actions(action_box_id, stream, current_user_id,post_operations_id,like_text_id);
   handle_stream_text(text_box_id, stream.post.text);
@@ -833,7 +832,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     // this like will have to be handled gracefully from html/css perspective
     handle_stream_campaign(campaign_box_id, like_text_id,stream,comment_show_all_id); 
   }
-  setup_readmore("div#"+ text_box_id + " p",250); /* read more for content with character slice at 100 */
+  //setup_readmore("div#"+ text_box_id + " p",250); /* read more for content with character slice at 100 */
 
   
 
