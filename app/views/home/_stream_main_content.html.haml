@@ -1,31 +1,36 @@
 #p-st-fltr-box
   .p-st-filter-sect
-    %ul.p-st-filter
-      %li.p-st-flt-label
-        %p show containing:
-        %span set filters to view specific stream for channels, mentions and/or locations
-      %li.p-st-filter-box
-        #channel_filter_drop.del-fltr
-        .p-flt-actor.p-st-flt-default
-          .p-flt-holder#fltr_channel_id
-            %span
-              all channels
-            %span.full_name
-      %li.p-st-filter-box
-        #thing_filter_drop.del-fltr
-        .p-flt-actor.p-st-flt-default
-          .p-flt-holder#fltr_entity_id
-            %span
-              all mentions
-            %span.full_name
-              all mentions
-      %li.p-st-filter-box
-        #location_filter_drop.del-fltr
-        .p-flt-actor.p-st-flt-default
-          .p-flt-holder#fltr_location_id
-            %span
-              all locations
-            %span.full_name
+    #p-st-filter-div
+      %ul.p-st-filter
+        %li.p-st-flt-label
+          #p-st-fltr-label-div
+            %p Filtered By:
+          %span set filters to view specific stream for channels, mentions and/or locations
+        %li.p-st-filter-box
+          #channel_filter_drop.del-fltr
+          .p-flt-actor.p-st-flt-default
+            .p-flt-holder#fltr_channel_id
+              %span
+                all channels
+              %span.full_name
+        %li.p-st-filter-box
+          #thing_filter_drop.del-fltr
+          .p-flt-actor.p-st-flt-default
+            .p-flt-holder#fltr_entity_id
+              %span
+                all mentions
+              %span.full_name
+                all mentions
+        %li.p-st-filter-box
+          #location_filter_drop.del-fltr
+          .p-flt-actor.p-st-flt-default
+            .p-flt-holder#fltr_location_id
+              %span
+                all locations
+              %span.full_name
+
+
+
 #streams_tab.p-cstab_content
   #js_streams_list
     #streams_list_parent

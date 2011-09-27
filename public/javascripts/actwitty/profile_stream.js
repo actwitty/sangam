@@ -187,7 +187,7 @@ function handle_like_campaign(div_id, stream){
 
   var html = '<div class="p-awp-view-campaign_all ">' +
               
-             '<a id="' + link + '" value="' + div_id + '" class="js_like_user_action">' +
+             '<a id="' + link + '" value="' + div_id + '" class=" button_actwitty green  js_like_user_action">' +
                   like_text +
              '</a>' +
              '</div>' +
@@ -235,8 +235,9 @@ function show_all_stream_campaigns(likes, modal_win_id){
 /*
  * Render stream campaign
  */
-function handle_stream_campaign(box_id, like_count_box_id,stream){
+function handle_stream_campaign(box_id, like_count_box_id,stream,comment_show_all_id){
   var div=$("#" + box_id);
+  var comment_div = $("#" + comment_show_all_id);
   var like_count_div=$("#" + like_count_box_id);
   if(stream.post.campaign_types == 1){
     handle_like_campaign(box_id, stream);
@@ -244,6 +245,8 @@ function handle_stream_campaign(box_id, like_count_box_id,stream){
   }else{
     div.hide();
     like_count_div.hide();
+    // bad bad css hack....will change it soon.
+    comment_div.css("margin-top","0px");
   }
 }
 
@@ -421,7 +424,7 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                     '</div>'+
                     '<div class="p-st-comment-actor-image">'+
                       //'<a href="/home/show?id=' +  comment.user.id + '">' +
-                        '<img class="avatar" src="' + comment.user.photo + '" alt="" />' +
+                        '<img width="45" class="avatar" src="' + comment.user.photo + '" alt="" />' +
                       //'</a>' +
                     '</div>'+
                   '</div>'+
@@ -492,11 +495,12 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
 
   
     var html = '<div class="post-comment">'+
-                  '<input type="text" name="comment" class="add-comment" placeholder="Add Comment...">'+
+                  //'<input type="text" name="comment" class="add-comment" placeholder="Add Comment...">'+
+                  //'<input type="submit" value="Add Comment......" name="comment" class="button_actwitty white  add-comment" placeholder="Add Comment...">'+      
                     '<div class="submit-comment" >'+
                       '<input type="text" name="comment" class="add-comment-text p-st-comment-text-box" id="' + add_new_textarea_id + '" >'+
-                      '<input type="submit" value="Post Comment" class="js_add_new_comment post-comment-btn btn-comments" id="' + add_new_btn_id + '"/>' +
-                      '<input type="submit" value="Cancel" class="cancel-comment-btn btn-comments">'+
+                      //'<input type="submit" value="Cancel" class="button_actwitty red cancel-comment-btn ">'+
+                      '<input type="submit" value="Post Comment" class="button_actwitty blue js_add_new_comment post-comment-btn " id="' + add_new_btn_id + '"/>' +
                       '<span class="comment-limit"></span>'+
                     '</div>'+
                 '</div> ';
@@ -711,7 +715,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                         '<a href="/home/show?id=' +  post.user.id + '" >' +
                         '<div class="p-awp-post-author">'+
                           '<div class="p-awp-post-author-img">'+
-                            '<img src="' + post.user.photo + '" alt="" />' +
+                            '<img width="60" src="' + post.user.photo + '" alt="" />' +
                           '</div>'+
                           '<div class="p-awp-post-author-name">'+
                             '<span>' + post.user.full_name + '</span>'+
@@ -775,13 +779,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '<div class="p-awp-post-opt" >' +
                      '<input id="'+post_operations_id+'" type="hidden" value="'+ action_box_id + '">'+
                      '<div class="p-awp-post-const-opt">' +
-                        '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point"> Mentions </div> '+
-                        '<div class="js_stream_edit_btn p-awp-post-edit hover_point"> Edit </div> '+
-                        '<div class="js_stream_publish_btn p-awp-post-publish hover_point"> Publish </div> '+
+                        '<div class="js_stream_enrich_btn p-awp-post-mentions hover_point button_actwitty rosy"> Mentions </div> '+
+                        '<div class="js_stream_edit_btn p-awp-post-edit hover_point button_actwitty red"> Edit </div> '+
+                        '<div class="js_stream_publish_btn p-awp-post-publish hover_point button_actwitty green"> Publish </div> '+
                         '<div class="p-awp-post-like hover_point" id="' + campaign_box_id + '">'+'</div>' +
                         //'<div class="js_socialize_minimize p-awp-post-mentions hover_point"> Share </div> '+ 
 
-                        '<div class="p-awp-post-comments hover_point js_show_all_comment_btn" id="' + comment_show_all_id + '">' 
+                        '<div class="p-awp-post-comments hover_point js_show_all_comment_btn button_actwitty blue" id="' + comment_show_all_id + '">' 
                         + get_comment_head_label(stream.comments.count)+ '</div> ' +
                      '</div>'+
                      /*
@@ -825,7 +829,9 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                            comment_box_id,  
                            post.id,
                            stream.comments.count);
-    handle_stream_campaign(campaign_box_id, like_text_id,stream);
+    // need to add new param for comment to place css cheat.
+    // this like will have to be handled gracefully from html/css perspective
+    handle_stream_campaign(campaign_box_id, like_text_id,stream,comment_show_all_id); 
   }
   setup_readmore("div#"+ text_box_id + " p",250); /* read more for content with character slice at 100 */
 

@@ -28,7 +28,7 @@
   border:0px solid blue;
   padding:5px;
 }
-
+/*
 .p-channelp-tab
 {
   float:left;
@@ -40,6 +40,7 @@
 {
   cursor:pointer;
 }
+
 #p-channelp-tab-all
 {
   margin-left:30px;
@@ -50,9 +51,6 @@
   font-size:20px;
   padding:5px;
 }
-
-
-
 #p-channelp-tab-subscribed
 {
   margin-left:10px;
@@ -75,17 +73,26 @@
   font-size:20px;
   padding:5px;
 }
+*/
 
 
 .p-channelp-unselected{
-  background:#66bbc2;
-  color:#fff;
+  /*background:#66bbc2;
+  color:#fff;*/
   
 }
 .p-channelp-selected{
-  background:#fff;
-  border:1px solid #66bbc2;
+  /*border:3px solid #66bbc2;
   color:#66bbc2;
+  */
+  
+  color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+
+
+
 }
 
 /*############### Channel page content section ################ */
@@ -121,6 +128,12 @@
   float:left;
   margin-left:20px;
   border:0px solid green;
+}
+
+
+#channel_stream_mine, #channel_stream_subscribed , #channel_stream_all
+{
+  /*margin-left:190px;*/
 }
 
 
@@ -951,7 +964,7 @@ ul .p-channelp-post-relelem
 .p-channelp-author-img-sect
 {
   width:100%;
-  height:60px;
+  min-height:100px;
   border:0px solid red;
 }
 
@@ -973,6 +986,28 @@ ul .p-channelp-post-relelem
   float:right;
   color:#30a3ad;
 }
+
+
+
+#channel_author_selections
+{
+  width:100%;
+  width:180px;
+  height:80px;
+  border:0px solid blue;
+  margin-bottom:10px;
+  margin-left:90px;
+}
+
+#channel_stream_mine, #channel_stream_all, #channel_stream_subscribed
+{
+  /*float:right;
+  border:1px solid green;
+  height:30px;
+  width:30px;
+  margin-left:5px;*/
+}
+
 
 .p-channelp-auth-last-upd-sect
 {

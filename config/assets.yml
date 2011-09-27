@@ -99,6 +99,7 @@ javascripts:
 
 stylesheets:
   defaults:
+    - public/stylesheets/actwitty/alpha/actwitty_buttons.css
     - public/stylesheets/actwitty/alpha/home_layout.css
     - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css

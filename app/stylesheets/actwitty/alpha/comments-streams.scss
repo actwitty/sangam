@@ -154,11 +154,13 @@ span.name a
 
 .add-comment
 {
-  border:1px solid #ddd;
+  /*border:1px solid #ddd;
   height:30px;
   width:100%;
   margin:0;
-  
+  */
+  float:left;
+  margin-left:-20px;
 }
 
 .add-comment-text
@@ -174,7 +176,7 @@ span.name a
   height:60px;
   width:100%;
   margin-bottom:10px;
-  display:none;
+  /*display:none;*/
 
 }
 
@@ -301,7 +303,8 @@ span.name a
   width:16px;
   height:12px;
   border:0px solid blue;
-  background: url(/images/alpha/aw_close.png) no-repeat;
+  /*background: url(/images/alpha/aw_close.png) no-repeat;*/
+  background: url(/images/alpha/delete_8x8.png) no-repeat;
   display:none;
 }
 
@@ -323,6 +326,8 @@ span.name a
   font-weight:bold;
   color:#fff;
   overflow:hidden;
+  padding-left:4px;
+  padding-right:4px;
 }
 div.p-st-comment-actor center a
 {

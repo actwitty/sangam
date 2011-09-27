@@ -6,13 +6,17 @@
   display: none;
 }
 
-/* line 14, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 15, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign_all {
-  width: 100%;
-  float: right;
+  width: auto;
+  /*float:right;*/
+  border: 0px solid red;
+  margin-left: 50px;
+  width: 50px;
+  margin-top: -1px;
 }
 
-/* line 19, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 24, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign_all span {
   float: right;
   font-size: 13px;
@@ -20,19 +24,19 @@
   text-decoration: underline;
 }
 
-/* line 27, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 32, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign span:hover {
   cursor: pointer;
 }
 
-/* line 31, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 36, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-view-campaign_all a img {
   float: right;
   height: 25px;
   width: 50px;
 }
 
-/* line 39, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 44, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-campaigns-section {
   width: 100%;
   height: auto;
@@ -41,7 +45,7 @@
   display: none;
 }
 
-/* line 48, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 53, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-awp-campaign {
   height: auto;
   border: 0px solid green;
@@ -57,7 +61,7 @@
   height:auto;
 }
 */
-/* line 64, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 69, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-st-campaign-actor-image {
   width: 30px;
   height: 30px;
@@ -65,7 +69,7 @@
   margin: 2px 5px 2px 5px;
 }
 
-/* line 72, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
+/* line 77, ../../../../app/stylesheets/actwitty/alpha/campaign-streams.scss */
 .p-st-campaign-actor-desc {
   width: 500px;
   height: 35px;

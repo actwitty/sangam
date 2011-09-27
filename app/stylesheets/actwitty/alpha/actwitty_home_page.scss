@@ -34,7 +34,7 @@ div.wrapper_hompage{
 	text-align:left;
 	}
 
-
+/*
 .homep_col1{color:#D2D2D2; background-color:#eee7dd;}
 .homep_col2{color:#FFFFFF; background-color:#eee7dd;}
 .homep_col2 a{color:#A6DFD9; background-color:#424242;}
@@ -44,6 +44,19 @@ div.wrapper_hompage{
 .homep_col4 a{color:#FF9900; background-color:#424242;}
 .homep_col5{color:#666666; background-color:#424242; }
 .homep_col6, .homep_col6 a{color:#CCCCCC; background-color:#424242;}
+*/
+
+.homep_col1{color:#D2D2D2; background-color:#ffffff;}
+.homep_col2{color:#FFFFFF; background-color:#ffffff;}
+.homep_col2 a{color:#A6DFD9; background-color:#ffffff;}
+.homep_col3{color:#000000; background-color:#424242;}
+.homep_col3 a{color:#FFFFFF; background-color:#424242;}
+.homep_col4{color:#666666; background-color:#ffffff;}
+.homep_col4 a{color:#FF9900; background-color:#ffffff;}
+.homep_col5{color:#666666; background-color:#424242; }
+.homep_col6, .homep_col6 a{color:#CCCCCC; background-color:#424242;}
+
+
 
 
 /*.homep_col10{color:#666666; background-color:#424242;}*/ /* 9_sep_11 */
@@ -166,10 +179,28 @@ input#signinbutton
   border:none;
   height:23px;
   display:inline;
+
+
+  color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  display:inline; 
+  font: 14px/100% Arial, Helvetica, sans-serif;
+
+
+
+
 }
 input#signinbutton:hover
 {
   cursor:pointer;
+  color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
 }
 
 #input_email{
@@ -288,20 +319,20 @@ input#aw_header_signin:hover
 #aw_home_intro_register_box
 {
   width:300px;
-  height:130px;
+  height:200px;
   margin:0px auto;
   border:0px solid blue;
 }
 
 
-#reg_email_label , #reg_password_label
+#reg_username_label , #reg_email_label , #reg_password_label
 {
   font-size:16px;
   font-weight:bold;
   color:#eaa540;
   border:0px solid red;
 }
-#reg_email_label span, #reg_password_label span
+#reg_username_label span, #reg_email_label span, #reg_password_label span
 {
   margin-left:50px;
 }
@@ -334,24 +365,43 @@ input#aw_header_signin:hover
 
 input#signupbutton
 {
+  /*
   background:#ff9600;
+  
+  */
+
+
+  color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
   float:right;
-  /*margin-left:10px;*/
   margin-right:50px;
-  margin-top:7px;/* 9_sep_11 */
+  margin-top:7px;
   padding:2px;
   height:23px;
-  display:inline;/* 9_sep_11 */
+  display:inline; 
+  width:100px;
+  height:30px;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+
+
 }
 input#signupbutton:hover
 {
   cursor:pointer;
+  color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
 }
 input#aw_intro_register:hover
 {
   cursor:pointer;
 }
-#aw_register_email , #aw_register_password
+#aw_register_username ,#aw_register_email , #aw_register_password
 {
   width:200px;
   height:25px;
@@ -420,6 +470,7 @@ input#aw_intro_register:hover
 	z-index:1000;
   height:200px;
   border:0px solid blue;
+  width:100%;
 }
 
 #aw_home_latest_section
@@ -427,11 +478,13 @@ input#aw_intro_register:hover
   height:150px;
   margin-top:0px;
   border:0px solid red;
+  width:100%;
 }
 
 #aw_home_latest_updates
 {
   height:130px;
+  height:60px;
   border:0px solid red;
   margin-top:10px;
 }
@@ -487,11 +540,11 @@ input#aw_intro_register:hover
 #forgot-site-connect {
   /*background:#373735;*/
   width: 100%;
-  height: 450px;
-  margin:0px auto 0;
-  background-color:#eee7dd;
+  height: 400px;
+  margin:0px auto;
+  /*background-color:#eee7dd;*/
+  background-color:#fff;
   display:block;
-
 
   /*
   border-radius: 10px;
@@ -513,9 +566,10 @@ input#aw_intro_register:hover
   height: 55%;
   width: 470px;/* 10_sep_11 */
   padding: 10px 0 0 20px;
-  margin:0px auto 0;
-  font-size:28px;
+  margin:0px auto;
 
+  margin-top:30px;
+  font-size:28px;
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;

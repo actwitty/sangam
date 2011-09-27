@@ -8,7 +8,8 @@
   width: 100%;
   /*650*/
   margin: 0px auto 0;
-  background-color: #eee7dd;
+  /*background-color:#eee7dd;*/
+  background-color: #fff;
   display: block;
   /*
   border-radius: 2px;
@@ -23,7 +24,7 @@
   */
 }
 
-/* line 24, ../../../app/stylesheets/actwitty/about.scss */
+/* line 25, ../../../app/stylesheets/actwitty/about.scss */
 #team_img {
   /*width:600px;*/
   margin-left: 350px;
@@ -31,13 +32,13 @@
   /*border:1px solid red;*/
 }
 
-/* line 32, ../../../app/stylesheets/actwitty/about.scss */
+/* line 33, ../../../app/stylesheets/actwitty/about.scss */
 p.team {
   text-align: center;
   color: #2F2F2F;
 }
 
-/* line 37, ../../../app/stylesheets/actwitty/about.scss */
+/* line 38, ../../../app/stylesheets/actwitty/about.scss */
 p.title {
   width: 60%;
   margin: auto;
@@ -47,7 +48,7 @@ p.title {
   color: #009ACD;
 }
 
-/* line 47, ../../../app/stylesheets/actwitty/about.scss */
+/* line 48, ../../../app/stylesheets/actwitty/about.scss */
 p.heading {
   width: 60%;
   margin: auto;
@@ -56,7 +57,7 @@ p.heading {
   text-align: center;
 }
 
-/* line 55, ../../../app/stylesheets/actwitty/about.scss */
+/* line 56, ../../../app/stylesheets/actwitty/about.scss */
 p.description {
   width: 60%;
   margin: auto;
@@ -64,7 +65,7 @@ p.description {
   color: #2F2F2F;
 }
 
-/* line 62, ../../../app/stylesheets/actwitty/about.scss */
+/* line 63, ../../../app/stylesheets/actwitty/about.scss */
 p.multi-column {
   -moz-column-count: 2;
   -moz-column-gap: 20px;
@@ -80,7 +81,7 @@ p.multi-column {
   font-size: 16px;
 }
 
-/* line 79, ../../../app/stylesheets/actwitty/about.scss */
+/* line 80, ../../../app/stylesheets/actwitty/about.scss */
 .multi-column span.heading {
   font-size: 18px;
   color: #009ACD;
@@ -93,7 +94,7 @@ p.multi-column {
   align: center;
 }
 */
-/* line 91, ../../../app/stylesheets/actwitty/about.scss */
+/* line 92, ../../../app/stylesheets/actwitty/about.scss */
 #about {
   width: 100%;
   height: 500px;
@@ -102,7 +103,7 @@ p.multi-column {
   display: block;
 }
 
-/* line 98, ../../../app/stylesheets/actwitty/about.scss */
+/* line 99, ../../../app/stylesheets/actwitty/about.scss */
 #about_main {
   /*margin-top:20px;*/
 }

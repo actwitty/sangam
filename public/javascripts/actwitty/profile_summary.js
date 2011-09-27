@@ -519,12 +519,22 @@ function create_and_add_summary_author(author_box, owner_id)
                 '</div>' +
                 '<div class="p-channelp-author-name">' +
                    '<span>' + aw_lib_get_page_owner_name() + '</span>' +
-                '</div>' +
-                '<div class="p-channelp-auth-last-upd-sect" id="' + latest_update_id + '">' +
+                '</div>' ;
+   if(aw_lib_get_session_owner_id() == aw_lib_get_page_owner_id()) {
+     html = html + '<div id="channel_author_selections">' +
+                  '<div id="channel_stream_all" class="button_actwitty orange button_right p-channelp-tab js_channel_scope">All Channels</div>' +
+                  '<div id="channel_stream_mine" class="button_actwitty orange button_right  p-channelp-tab js_channel_scope">My Channels </div>' +
+                  '<div id="channel_stream_subscribed" class="button_actwitty orange button_right  p-channelp-tab js_channel_scope">Subscribed Channels</div>' +
+                  
+                '</div>';
+   }
+    
+    html = html + '<div class="p-channelp-auth-last-upd-sect" id="' + latest_update_id + '">' +
                    '<div class="p-channelp-auth-last-upd-hd">' +
                       '<span>Last Updates :</span>' +
                    '</div>' +
                 '</div>';
+    
     $("#p-channelp-author-section").html(html);
     create_and_add_last_updates_in_auth_sect(latest_update_id);
     
@@ -873,6 +883,10 @@ function create_and_add_summary(summary_box, summary , box_id, hide_class){
         /* handle individual divs */
         //create_and_add_post_author_box(post_author_box_id, summary);
         create_and_docs_box(docs_box_id, summary); 
+        /*
+        if( aw_get_channel_scope() == 2 ){
+          create_add_add_subscribe_box(subscribe_box_id, summary);
+        }*/
         create_add_add_subscribe_box(subscribe_box_id, summary);
         create_and_add_text_box(latest_text_box_id, summary,"channelpage");
         create_and_add_friends_box(friends_box_id, summary);
@@ -904,6 +918,7 @@ function append_personal_summary(owner_id){
           /* if( aw_get_channel_scope() == 3  ||
                (aw_get_channel_scope() == 1 && 
                   aw_lib_get_page_owner_id() != aw_lib_get_session_owner_id()) ){
+             /* let this code be commented till the time we are pretty sure we dont need summary icons
              for (i=0;i < data.length;i=i+2) {
                 if(!data[i+1]) {
                    var summary_r_id = 0;
@@ -926,8 +941,15 @@ function append_personal_summary(owner_id){
                       $("#more_channels_cookie").val(summary.time);
                    };
                 }
-             }
-           } else {*/
+             }*/
+             $.each(data, function(i,summary){
+                if( summary ){
+                    var box_id = 'SUMMARY_BOX_' + summary.word.id + '_' + summary.user.id;
+                    create_and_add_summary($('#p-channelp-posts'),summary, box_id, "no_hide");
+                    $("#more_channels_cookie").val(summary.time);
+                } 
+            });
+           /*} else {
             $.each(data, function(i,summary){
                 if( summary ){
                     var box_id = 'SUMMARY_BOX_' + summary.word.id + '_' + summary.user.id;
@@ -935,7 +957,7 @@ function append_personal_summary(owner_id){
                     $("#more_channels_cookie").val(summary.time);
                 } 
             });
-         // }
+          }*/
           $(window).scrollTop(scroll);
           
           /* convert time stamp to time ago */

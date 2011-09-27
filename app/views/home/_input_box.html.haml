@@ -37,9 +37,9 @@
         #input-attachments-section.p-input-pre-added-images-list
           =render :partial => "home/upload_attachments.html.haml"
         #post_submit
-          #actwitty_generator
+          #actwitty_generator.button_actwitty.green.medium Publish
           #save-or-pub
-          #save_submit_button
+          #save_submit_button.button_actwitty.blue.medium Save
           /
             .post-fb-twt
               %img{:src => "/images/alpha/fb_pub.jpeg"}/
@@ -49,9 +49,9 @@
               .fbtwt-pub
                 %input{:name => "twt_publish", :type => "checkbox", :value => "twt_publish" }/
 
-        #input-char-count
-          %span#char-count : 120
-          %span Characters Remaining :
+        /#input-char-count
+        /  %span#char-count : 120
+        /  %span Characters Remaining :
 
         %input#user_latlng{:name => "latlang", :type => "hidden"}
         %input#geo_location{:size => "50", :type => "hidden", :value => ""}
