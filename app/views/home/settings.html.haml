@@ -50,10 +50,11 @@
         = f.input :interest, :label =>false, :input_html => { :size => 30, :class=>"settings-input ",:id=>"settings_interest" }
 
         %label Photo
-        %img#user_settings_image{:alt => "", :src =>"#{@profile.profile_photo_l}", :width => "50", :height => "50"}/
+        %img#user_settings_image{:alt => "", :src =>"#{@profile.profile_photo_l}", :width => "200" }/
+        %img#user_settings_image_snap{:alt => "", :src =>"#{@profile.profile_photo_s}", :width => "50", :height => "50" }/
         /%img#user_settings_image{:alt => "", :src =>"#{@user.documents.url}", :width => "50", :height => "50"}/
-        = f.input :profile_photo_l,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
-        = f.input :profile_photo_s,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
+        = f.input :profile_photo_l,:label=>false, :input_html => {  :class=>"input-hidden"}
+        = f.input :profile_photo_s,:label=>false, :input_html => {  :class=>"input-hidden"}
         =render :partial => "home/profile_pic_attachments.html.haml"
 
         = f.submit "Save", :type => "submit", :id=>"settings-button" 
