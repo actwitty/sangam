@@ -32,8 +32,6 @@ $(document).ready(function(){
     show_all_on_channel(); /* in channel_page.js */
   }else if( page_context == "facebook"){
     aw_fetch_facebook_friends(); /* in profile_facebook.js */
-  }else if( page_context == "settings"){
-    aw_user_image_selector_init(); /* in profile_facebook.js */
   }
 
   /** General functions to support auto complete based search **/

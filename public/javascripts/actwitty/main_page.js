@@ -4,7 +4,7 @@
 function append_summary(box_id, summary,index){
   var users_div = $("#" + box_id);
 
-  if(index > 16 ) {
+  if(index > 12 ) {
     summary_class = "main_summary_box_rightsiders"; 
   }
   else {
@@ -54,7 +54,7 @@ function get_latest_summary(){
               // if rails demands a redirect because of log in missing 
             $.each(data, function(i,summary){
               // restricting number of users on main page summary section to 20
-              if(i<25){
+              if(i<18){
                 append_summary("latest_summary_box", summary,i);
               } else {
                 return;
