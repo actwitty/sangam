@@ -113,7 +113,7 @@ function get_channels_modal_id(id){
 function aw_channels_set_related_modal_data(json_data){
   var modal_data = {
                       type:"channels",
-                      class:"channels_box",
+                      css_class:"channels_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_related_channels", modal_data);
@@ -123,7 +123,7 @@ function aw_channels_set_all_channels_modal_data(json_data){
   
   var modal_data = {
                       type:"channels",
-                      class:"channels_box",
+                      css_class:"channels_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_all_channels", modal_data);

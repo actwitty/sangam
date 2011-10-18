@@ -127,6 +127,7 @@ Sangam::Application.routes.draw do
   match '/home/subscribe_summary' => 'home#subscribe_summary'
   match '/home/unsubscribe_summary' => 'home#unsubscribe_summary'
 
+  match '/facebook/wall' => 'facebook#get_last_few_from_wall'
   #Alok Adding pusher support
   match '/pusher/auth' => 'home#pusher_auth'
 

@@ -106,7 +106,7 @@ class HomeController < ApplicationController
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:profile]}")
 	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
 	  if @profile.update_attributes(params[:profile])
-      unless photo_small_url.blank?
+      unless params[:profile][:profile_photo_s].blank?
         current_user.photo_small_url = params[:profile][:profile_photo_s]
         current_user.save!
       end

@@ -83,7 +83,7 @@ function create_and_add_text_box(box_id, summary,channel_class){
      if(i>1){
        return;
      }
-     shortText = text_json.text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
+     var shortText = text_json.text.trim().substring(0, 160).split(" ").slice(0, -1).join(" ") + "..."; 
      var html = '<div class="' +lup_class +'">' +
                     '<div class="p-channelp-post-lup-time">' +
                        '<abbr class="timeago" title="' + text_json.time + '"></abbr>' +
@@ -915,7 +915,7 @@ function append_personal_summary(owner_id){
         contentType: 'application/json',  
         success: function (data) {
            // if rails demands a redirect because of log in missing
-           if( aw_get_channel_scope() == 3  ||
+          /* if( aw_get_channel_scope() == 3  ||
                (aw_get_channel_scope() == 1 && 
                   aw_lib_get_page_owner_id() != aw_lib_get_session_owner_id()) ){
              /* let this code be commented till the time we are pretty sure we dont need summary icons
@@ -949,7 +949,7 @@ function append_personal_summary(owner_id){
                     $("#more_channels_cookie").val(summary.time);
                 } 
             });
-           } else {
+           /*} else {
             $.each(data, function(i,summary){
                 if( summary ){
                     var box_id = 'SUMMARY_BOX_' + summary.word.id + '_' + summary.user.id;
@@ -957,7 +957,7 @@ function append_personal_summary(owner_id){
                     $("#more_channels_cookie").val(summary.time);
                 } 
             });
-          }
+          }*/
           $(window).scrollTop(scroll);
           
           /* convert time stamp to time ago */
@@ -1049,8 +1049,8 @@ function update_summary_theme(trigger_ele){
           var word_name_box = trigger_ele.closest('.js_summary_base_div').find('.js_word_name_box');
           word_name_box.css({
                             'backgroundImage': 'url('+  url_val + ')',
-//                            'backgroundRepeat': 'no-repeat',
-                            'backgroundPosition': 'center center'
+                            'backgroundRepeat': 'no-repeat',
+                            'backgroundPosition': 'top center'
                           }); 
           return false;
          

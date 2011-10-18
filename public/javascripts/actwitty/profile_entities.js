@@ -113,7 +113,7 @@ function get_entities_modal_id(id){
 function aw_entities_set_related_modal_data(json_data){
   var modal_data = {
                       type:"entities",
-                      class:"entities_box",
+                      css_class:"entities_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_related_entities", modal_data);
@@ -123,7 +123,7 @@ function aw_entities_set_all_entities_modal_data(json_data){
   
   var modal_data = {
                       type:"entities",
-                      class:"entities_box",
+                      css_class:"entities_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_all_entities", modal_data);

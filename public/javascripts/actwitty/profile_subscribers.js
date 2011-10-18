@@ -67,7 +67,7 @@ function get_subscriber_json_data(){
 function aw_subscriber_modal_data(json_data){
   var modal_data = {
                       type:"subscriber",
-                      class:"subscriber_box",
+                      css_class:"subscriber_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_subscriber", modal_data);

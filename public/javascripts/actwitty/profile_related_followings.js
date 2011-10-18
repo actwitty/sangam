@@ -67,7 +67,7 @@ function get_friends_json_data(){
 function aw_friends_set_related_modal_data(json_data){
   var modal_data = {
                       type:"related_friends",
-                      class:"related_friends_box",
+                      css_class:"related_friends_box",
                       data:json_data
                    };
   aw_modal_set_data("JS_AW_MODAL_related_friends", modal_data);

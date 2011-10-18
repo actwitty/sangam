@@ -98,10 +98,11 @@ function addtab(box_id, position, data, type, boxer_class)
 * Main api to render boxes
 */
 function aw_boxer_render_tabs(box_id, data_json){
+  //alert(JSON.stringify(data_json));
   the_big_json_tab_manager[box_id]={};
   $("#" + box_id).removeClass("ctab");
   $.each(data_json.data, function(i,data){
-    addtab(box_id,i,data, data_json.type, data_json.class);					
+    addtab(box_id,i,data, data_json.type, data_json.css_class);					
 	});
 	
 }

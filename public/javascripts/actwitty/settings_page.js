@@ -14,3 +14,7 @@ function aw_notify_profile_image(main, thumb){
   $("#profile_profile_photo_s").val(thumb);
   $("#user_settings_image").attr("src", main);
 }
+
+
+
+
