@@ -132,12 +132,21 @@ class SocialCounter < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: social_counters
 #
-#  id         :integer         not null, primary key
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer         not null, primary key
+#  source_name :text            not null
+#  action      :text            not null
+#  activity_id :integer
+#  document_id :integer
+#  summary_id  :integer
+#  location_id :integer
+#  entity_id   :integer
+#  author_id   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 

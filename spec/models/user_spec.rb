@@ -174,6 +174,7 @@ describe User do
   
 end
 1
+
 # == Schema Information
 #
 # Table name: users
@@ -207,5 +208,6 @@ end
 #  invitation_limit     :integer
 #  invited_by_id        :integer
 #  invited_by_type      :string(255)
+#  admin                :boolean
 #
 

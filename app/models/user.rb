@@ -245,10 +245,13 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     unless search.blank?
-      select("id,full_name,photo_small_url").order("full_name").
+      select("id,full_name,photo_small_url admin").order("full_name").
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
-                                                   "%#{search}%"])
+                                                   "%#{search}%"]).all.each do |attr|
+
+      end
+
     else
       select("id,full_name,photo_small_url").order("full_name")
     end
@@ -1893,6 +1896,7 @@ class User < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: users
@@ -1926,5 +1930,6 @@ end
 #  invitation_limit     :integer
 #  invited_by_id        :integer
 #  invited_by_type      :string(255)
+#  admin                :boolean
 #
 

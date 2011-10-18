@@ -1045,28 +1045,30 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
 #
-#  id               :integer         not null, primary key
-#  activity_word_id :integer         not null
-#  activity_text    :text
-#  activity_name    :text            not null
-#  author_id        :integer         not null
-#  base_location_id :integer
-#  comments_count   :integer
-#  documents_count  :integer
-#  tags_count       :integer
-#  campaign_types   :integer         not null
-#  status           :integer         not null
-#  source_name      :text            not null
-#  sub_title        :text
-#  summary_id       :integer
-#  enriched         :boolean
-#  meta_activity    :boolean
-#  blank_text       :boolean
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id                    :integer         not null, primary key
+#  activity_word_id      :integer         not null
+#  activity_text         :text
+#  activity_name         :text            not null
+#  author_id             :integer         not null
+#  base_location_id      :integer
+#  comments_count        :integer         default(0)
+#  documents_count       :integer         default(0)
+#  tags_count            :integer         default(0)
+#  campaign_types        :integer         not null
+#  status                :integer         not null
+#  source_name           :text            not null
+#  sub_title             :text
+#  summary_id            :integer
+#  enriched              :boolean
+#  meta_activity         :boolean
+#  blank_text            :boolean
+#  social_counters_array :text
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 

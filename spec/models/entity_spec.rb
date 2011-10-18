@@ -115,16 +115,18 @@ describe Entity do
 end
 
 
+
 # == Schema Information
 #
 # Table name: entities
 #
-#  id           :integer         not null, primary key
-#  entity_name  :string(255)     not null
-#  entity_guid  :string(255)     not null
-#  entity_image :text            not null
-#  entity_doc   :text            not null
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id                    :integer         not null, primary key
+#  entity_name           :string(255)     not null
+#  entity_guid           :string(255)     not null
+#  entity_image          :text
+#  entity_doc            :text
+#  social_counters_array :text
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 
