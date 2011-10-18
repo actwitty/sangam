@@ -111,4 +111,18 @@ class FacebookController < ApplicationController
     end
   end
 
+def get_last_few_from_wall
+    puts "REACHED HERE"
+    facebook_auth=Authentication.find_by_user_id_and_provider(current_user.id, "facebook")
+    if facebook_auth.nil?
+      return nil
+    else
+      graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
+      home = graph.get_connections("me", "home")
+      puts "----------------------------------------"
+        puts "#{home}"
+      puts "----------------------------------------"
+
+    end
+  end
 end
