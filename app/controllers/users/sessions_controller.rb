@@ -38,6 +38,8 @@ class Users::SessionsController < Devise::SessionsController
             Rails.logger.info("[CNTRL] [SESSION] saving the user id: on foreign authentication" )
             authentication.save!
           end
+        else
+          Rails.logger.info("[CNTRL] [SESSION] Authentication is nil" )
         end
       end
 

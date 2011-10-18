@@ -46,13 +46,13 @@ function modify_filter(filter_json, reload){
     
     filter_name = get_trim_text($("#filter_channel_name").attr("value"),10,"..");
     $("#fltr_channel_id span:first-child").html(filter_name);
-    $("#fltr_channel_id span:nth-child(2)").html($("#filter_channel_name").attr("value"));
+  //  $("#fltr_channel_id span:nth-child(2)").html($("#filter_channel_name").attr("value"));
 
-    $("#fltr_channel_id").parent().addClass('p-st-flt-channel');
+    $("#fltr_channel_id").addClass('p-st-flt-channel');
     $('#channel_filter_drop').show();
   }else{
-    if ($("#fltr_channel_id").parent().is('.p-st-flt-channel')) {
-      $("#fltr_channel_id").parent().removeClass('p-st-flt-channel');
+    if ($("#fltr_channel_id").is('.p-st-flt-channel')) {
+      $("#fltr_channel_id").removeClass('p-st-flt-channel');
     }
     $("#fltr_channel_id span:first-child").html("all channels");
     $("#fltr_channel_id span:nth-child(2)").html("all channels");
