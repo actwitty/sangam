@@ -481,14 +481,18 @@ opacity:40%;
 }
 
 
-.activities
+.activities, .locations
 {
   float:left;
-  width:47%;
+  width:46.75%;
   height:40px;
   border:0px solid blue;
   margin-left:20px;
   margin-bottom:3px;
+}
+.locations
+{
+  margin-left:5px;
 }
 #activity_field, #location_field, #title_field, #entity_field
 {
