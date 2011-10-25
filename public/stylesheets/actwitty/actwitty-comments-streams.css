@@ -12,25 +12,25 @@
   font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
 }
 
-/*
-.comments-label
-{
-  width:87%;
-  height:30px;
-  border:1px solid #ddd;
-  background-color:#F2F2F2;
-  margin-left:50px;
-  display:none;
+/* line 17, ../../../app/stylesheets/actwitty/actwitty-comments-streams.scss */
+.comments-label {
+  width: 87%;
+  height: 30px;
+  border: 1px solid #ddd;
+  background-color: #F2F2F2;
+  margin-left: 50px;
+  display: none;
 }
-.comments-label span
-{
-  margin-top:15px;
-  font-size:16px;
-	font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
-  color:#00BFFF;
-  text-align:center;
+
+/* line 26, ../../../app/stylesheets/actwitty/actwitty-comments-streams.scss */
+.comments-label span {
+  margin-top: 15px;
+  font-size: 16px;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  color: #00BFFF;
+  text-align: center;
 }
-*/
+
 /* line 35, ../../../app/stylesheets/actwitty/actwitty-comments-streams.scss */
 .comments {
   margin-bottom: 40px;
