@@ -1778,15 +1778,13 @@ class User < ActiveRecord::Base
   #OUTPUT => Same as get_summary (all public summary)
   def get_recent_public_summary
     array = []
-    User.update_all({:user_type=> 2 },{:id => 74})
-    User.update_all({:user_type=> 0 },{:user_type => nil})
     get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc}).each do |attr|
       #ADMIN USER blocking in global display of channels
       array << attr if attr[:user][:user_type].nil? ||  (attr[:user][:user_type] == AppConstants.user_type_regular)
     end
-
     array
   end
+
   #Checks if user_id is in followers list of self.user
   def check_if_subscribed(user_id)
     s = SummarySubscribe.where(:subscriber_id => user_id, :owner_id => self.id).first
