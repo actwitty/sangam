@@ -1785,6 +1785,7 @@ class User < ActiveRecord::Base
     array = []
     get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc}).each do |attr|
       #ADMIN USER blocking in global display of channels
+       Rails.logger.debug("[MODEL] [get_recent_public_summary] #{attr[:user][:user_type]}")
       array << attr if attr[:user][:user_type] == AppConstants.user_type_regular
     end
 
