@@ -195,8 +195,10 @@ development: &default
 
 
   #User Types
-  user_type_regular:                  1
-  user_type_admin:                    2
+   #User Types
+  user_type_regular:                  0
+  user_type_admin:                    1
+  user_type_web_admin:                2                    
 
 production:
   <<: *default

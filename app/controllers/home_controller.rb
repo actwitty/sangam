@@ -1088,7 +1088,7 @@ class HomeController < ApplicationController
     end
     #ADMIN USER
      #User.create(:username => "actwittywebadmin", :full_name => "Actwitty Administrator", :email => "administrator@actwitty.com",
-      #          :password => "abc123", :password_confirmation => "abc123", :user_type => AppConstants.user_type_admin)
+      #          :password => "abc123", :password_confirmation => "abc123", :user_type => AppConstants.user_type_web_admin)
     response_json = @user.get_recent_public_summary()
     Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] response from model #{response_json}")
     if request.xhr?
