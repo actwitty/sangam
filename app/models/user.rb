@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
           #,:devise_create_users
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username, :user_type
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username #, :user_type  #user_type is only needed for ADMIN USER creation
 
   # relations #
   has_one :profile
@@ -246,11 +246,13 @@ class User < ActiveRecord::Base
   def self.search(search)
     array = []
     unless search.blank?
+      #user_type is added for ADMIN USER
       select("id,full_name,photo_small_url user_type").order("full_name").
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
                                                    "%#{search}%"]).all.each do |attr|
            Rails.logger.info("================== #{attr.inspect}=======================")
+           #ADMIN USER
            if attr.user_type == AppConstants.user_type_regular
              array << attr
            end
@@ -1016,7 +1018,7 @@ class User < ActiveRecord::Base
                              :word => {:id => attr.activity_word_id, :name => attr.activity_name},
                              :time => attr.updated_at,
                              :user => {:id => attr.user_id, :full_name => attr.user.full_name,
-                                       :photo => attr.user.photo_small_url, :user_type => attr.user.user_type},
+                                       :photo => attr.user.photo_small_url, :user_type => attr.user.user_type}, #user type is added for ADMIN USER
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
                              :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
@@ -1782,6 +1784,7 @@ class User < ActiveRecord::Base
   def get_recent_public_summary
     array = []
     get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc}).each do |attr|
+      #ADMIN USER blocking in global display of channels
       array << attr if attr[:user][:user_type] == AppConstants.user_type_regular
     end
 
