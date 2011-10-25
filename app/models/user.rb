@@ -247,7 +247,7 @@ class User < ActiveRecord::Base
     array = []
     unless search.blank?
       #user_type is added for ADMIN USER
-      select("id,full_name,photo_small_url user_type").order("full_name").
+      select("id,full_name,photo_small_url, user_type").order("full_name").
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
                                                    "%#{search}%"]).all.each do |attr|
