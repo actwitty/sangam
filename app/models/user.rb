@@ -251,9 +251,8 @@ class User < ActiveRecord::Base
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
                                                    "%#{search}%"]).all.each do |attr|
-        Rails.logger.info("================== #{attr.inspect}=======================")
         #ADMIN USER
-        array << attr if attr.user_type == AppConstants.user_type_regular
+        array << attr if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
       end
     end
     array
@@ -1780,7 +1779,7 @@ class User < ActiveRecord::Base
     array = []
     get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc}).each do |attr|
       #ADMIN USER blocking in global display of channels
-      array << attr if attr[:user][:user_type] == AppConstants.user_type_regular
+      array << attr if attr[:user][:user_type].nil? ||  (attr[:user][:user_type] == AppConstants.user_type_regular)
     end
 
     array
