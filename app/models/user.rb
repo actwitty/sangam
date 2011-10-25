@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
           #,:devise_create_users
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username , :user_type  #user_type is only needed for ADMIN USER creation
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username #, :user_type  #user_type is only needed for ADMIN USER creation
 
   # relations #
   has_one :profile
