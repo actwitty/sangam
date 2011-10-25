@@ -251,6 +251,7 @@ class User < ActiveRecord::Base
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
                                                    "%#{search}%"]).all.each do |attr|
+        Rails.logger.info("[MODEL] [USER] [SEARCH] ============= #{attr}")
         #ADMIN USER
         array << attr if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
       end
@@ -1786,7 +1787,6 @@ class User < ActiveRecord::Base
 
     array
   end
-
   #Checks if user_id is in followers list of self.user
   def check_if_subscribed(user_id)
     s = SummarySubscribe.where(:subscriber_id => user_id, :owner_id => self.id).first
