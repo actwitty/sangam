@@ -202,16 +202,16 @@ production:
   <<: *default
   #constant1:  "overriden value1"
   # Keys and ID for heroku test deployment
-  facebook_app_id:                    '292732787407668'
-  facebook_secret_key:                '82e82066e5e569ef88d052d5eba51b0e'
-  twitter_consumer_key:               'aIJxWpkI3N3Zm3JZPqWVA'
-  twitter_consumer_secret:            'YhreSUMsZoLjdvUM9X4fFbsDlvGPM5uOWmUP9Nxvnbk'
+  #facebook_app_id:                    '292732787407668'
+  #facebook_secret_key:                '82e82066e5e569ef88d052d5eba51b0e'
+  #twitter_consumer_key:               'aIJxWpkI3N3Zm3JZPqWVA'
+  #twitter_consumer_secret:            'YhreSUMsZoLjdvUM9X4fFbsDlvGPM5uOWmUP9Nxvnbk'
 
   #######################################################################
-  #facebook_app_id:                    '180483002026787'
-  #facebook_secret_key:                '5f9e34ae0030a63796bf8d75b71cbdb7'
-  #twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
-  #twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
+  facebook_app_id:                    '180483002026787'
+  facebook_secret_key:                '5f9e34ae0030a63796bf8d75b71cbdb7'
+  twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
+  twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
   #########################################################################
 
 test:

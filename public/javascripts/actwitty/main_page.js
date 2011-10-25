@@ -101,8 +101,8 @@ $(document).ready(function(){
 
   $("#signinbutton").live('click', function() {
       var auth_key = $('#user_key').val();
-      var auth_uid =  $('#user_provider').val();
-      var auth_provider =$('#user_uid').val();
+      var auth_uid =  $('#user_uid').val();
+      var auth_provider =$('#user_provider').val();
       $('input[name="user[provider]"]').val(auth_provider);
       $('input[name="user[key]"]').val(auth_key);
       $('input[name="user[uid]"]').val(auth_uid);

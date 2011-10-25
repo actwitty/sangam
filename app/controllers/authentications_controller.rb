@@ -23,7 +23,6 @@ class AuthenticationsController < ApplicationController
       Rails.logger.info("[CNTRL][Authentications] Auth Signin Provider")
 
       uid = params['uid']
-      puts uid
       @welcome_username="user"
       @welcome_user_picture="TODO some default image"
       if !provider.nil? && !uid.nil? && !provider.empty? && !uid.empty?
@@ -171,7 +170,7 @@ class AuthenticationsController < ApplicationController
 
         else
            # I know the user, allow him to get in
-          Rails.logger.info("[CNTRL][Authentications] Known auth, user sign in")
+          Rails.logger.info("[CNTRL][Authentications] Known auth, user sign in [user id : #{already_existing_auth.user_id}]")
           already_existing_auth.save!
           sign_in_and_redirect(:user, already_existing_auth.user)
         end
