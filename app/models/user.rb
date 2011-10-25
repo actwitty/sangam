@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
           #,:devise_create_users
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username, :user_type
 
   # relations #
   has_one :profile
@@ -244,12 +244,17 @@ class User < ActiveRecord::Base
   end
 
   def self.search(search)
+    array = []
     unless search.blank?
-      select("id,full_name,photo_small_url admin").order("full_name").
+      select("id,full_name,photo_small_url user_type").order("full_name").
                   where( ['users.email = ?
                             or full_name ILIKE ?', search,
                                                    "%#{search}%"]).all.each do |attr|
-
+           Rails.logger.info("================== #{attr.inspect}=======================")
+           if attr.user_type == AppConstants.user_type_regular
+             array << attr
+           end
+        return array
       end
 
     else
@@ -1010,7 +1015,8 @@ class User < ActiveRecord::Base
         summaries[index] ={:id => attr.id,
                              :word => {:id => attr.activity_word_id, :name => attr.activity_name},
                              :time => attr.updated_at,
-                             :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
+                             :user => {:id => attr.user_id, :full_name => attr.user.full_name,
+                                       :photo => attr.user.photo_small_url, :user_type => attr.user.user_type},
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
                              :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
@@ -1774,9 +1780,11 @@ class User < ActiveRecord::Base
   #INPUT => None
   #OUTPUT => Same as get_summary (all public summary)
   def get_recent_public_summary
-    array = get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc})
-    User.create(:username => "admin_actwitty", :fullname => "Actwitty Administrator", :email => "actwitty_admin@actwitty.com",
-                :password => "abc123", :password_confirmation => "abc123")
+    array = []
+    get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc}).each do |attr|
+      array << attr if attr[:user][:user_type] == AppConstants.user_type_regular
+    end
+
     array
   end
 

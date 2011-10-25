@@ -193,6 +193,11 @@ development: &default
   twitter_consumer_key:               'WWeEDiFxubwhlr45cEXDqw'
   twitter_consumer_secret:            'J3EIt2m2drozoyHEOHu3MR8nO78RwNPjD7kYTRzJ8'
 
+
+  #User Types
+  user_type_regular:                  1
+  user_type_admin:                    2
+
 production:
   <<: *default
   #constant1:  "overriden value1"
