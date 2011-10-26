@@ -664,6 +664,8 @@ class HomeController < ApplicationController
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
     @user=current_user
+    a = Activity.where(:id => params[:id]).first
+    @user = User.where(:id => a.author_id).first
     @profile_page = 1
     @page_mode="single_post"
     @post_id = params[:id]
