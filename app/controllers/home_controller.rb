@@ -664,8 +664,10 @@ class HomeController < ApplicationController
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
     @user=current_user
+    #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the #FOR PUBLIC SHOW
     a = Activity.where(:id => params[:id]).first
     @user = User.where(:id => a.author_id).first
+
     @profile_page = 1
     @page_mode="single_post"
     @post_id = params[:id]
@@ -686,7 +688,7 @@ class HomeController < ApplicationController
         render :json => response_json, :status => 200
       end
     else
-      #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the
+      #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the  #FOR PUBLIC SHOW
       a = Activity.where(:id => params[:id]).first
       @user = User.where(:id => a.author_id).first
       response_json = @user.get_all_activity(activity_ids)
