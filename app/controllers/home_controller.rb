@@ -11,8 +11,72 @@ class HomeController < ApplicationController
 #                                             :publish_activity,  :update_social_media_share,
 #                                             :subscribe_summary, :unsubscribe_summary, :create_theme
 #                                              #:process_edit_activity,:create_activity
-#                                              ]
+#
+
+  
+#  #FOR  PUBLIC SHOW OF POST/ACCOUNT
+  include ApplicationHelper
+  GET_FUNCTIONS_ARRAY= [:show, :get_single_activity, :activity, :update_social_media_share, :get_summary,
+                                              :get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
+                                              :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,
+                                              :get_related_locations, :get_social_counter, :get_related_friends,
+                                              :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions]
+
+  #TODO NEED FIX.. TEMPORARY                                
+  #before_filter :redirect_back_to
+  before_filter  :authenticate_user , :except => GET_FUNCTIONS_ARRAY
+  before_filter  :create_ghost_user, :only =>  GET_FUNCTIONS_ARRAY
+  after_filter  :remove_ghost_user
   ############################################
+  
+  #TODO NEED FIX.. TEMPORARY
+  def store_and_redirect_location
+    #session[:return_to] = "/"
+    redirect_to "/welcome/new",:status => 401
+  end
+ 
+  #TODO NEED FIX.. TEMPORARY 
+  def redirect_back_to
+     if !session[:return_to].blank?
+       redirect_to session[:return_to]
+       session[:return_to] = nil
+     end
+  end
+
+  def  authenticate_user
+    if user_signed_in?
+      #This block should not hit ideally
+      if if_ghost_user?
+        Rails.logger.info("[MODEL] [CNTRL] [AUTHENTICATE_USER] ***** ghost user active .. CHECK HOW?????? ****** REQUEST URI = #{request.request_uri}")
+        sign_out(current_user)
+        store_and_redirect_location
+        return false
+      end  
+    else
+      Rails.logger.info("[MODEL] [CNTRL] [AUTHENTICATE_USER] REQUEST URI = #{request.request_uri}")
+      store_and_redirect_location
+      return false
+    end
+  end
+
+  def create_ghost_user
+    if !user_signed_in?
+      ghost_user  = User.where(:email => AppConstants.ghost_user_email).first
+      sign_in(ghost_user)
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_GHOST_USER] signed in ")
+    end
+  end
+
+  def remove_ghost_user
+    if if_ghost_user?
+      sign_out(current_user)
+      Rails.logger.info("[CNTRL] [HOME] [REMOVE_GHOST_USER] signed in ")
+    end
+  end
+
+  #PUBLIC SHOW END
+  
+
   def show
 
     @user=nil
@@ -77,7 +141,7 @@ class HomeController < ApplicationController
           redirect_to :controller => "welcome", :action => "new"
         end
       else
-        if user_signed_in?  && @user.id != current_user.id
+        if user_signed_in?  && @user.id != current_user.id && !if_ghost_user?   #FOR  PUBLIC SHOW OF POST/ACCOUNT
           Rails.logger.info("[CNTRL] [HOME] [SHOW] Checking the follow/unfollow status")
           @follow = current_user.check_follower(@user.id)
         end
@@ -663,14 +727,7 @@ class HomeController < ApplicationController
   ##############################################
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
-    if user_signed_in?
-      @user=current_user
-    else
-      #Alok Need to  optimize this --- no need of these 2 queries .. we can just put an API in user free context #FOR PUBLIC SHOW
-      a = Activity.where(:id => params[:id]).first
-      @user = User.where(:id => a.author_id).first
-    end
-
+    @user=current_user
     @profile_page = 1
     @page_mode="single_post"
     @post_id = params[:id]
@@ -691,13 +748,9 @@ class HomeController < ApplicationController
         render :json => response_json, :status => 200
       end
     else
-      #Alok Need to  optimize this --- no need of these 2 queries .. we can just put an API in user free context #FOR PUBLIC SHOW
-      a = Activity.where(:id => params[:activity_id]).first
-      @user = User.where(:id => a.author_id).first
-      response_json = @user.get_all_activity(activity_ids)
       if request.xhr?
          Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON for open user#{response_json}")
-        render :json => response_json, :status => 200
+        render :json => response_json, :status => 400
       end
     end
   end
@@ -996,20 +1049,11 @@ class HomeController < ApplicationController
     args[:summary_id] = Integer(params[:summary_id])
     args[:source_name] = params[:source_name]
     args[:action] = params[:action_type]
-    #ALOK # FOR PUBIC SHOW if check
-    if user_signed_in?
-      args[:author_id] = current_user.id
-      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
-      response_json = current_user.create_social_counter(args)
-      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
-    else
-      #Alok Need to  optimize this --- no need of these 2 queries .. we can just put an API in user free context #FOR PUBLIC SHOW
-      a = Activity.where(:id => args[:activity_id]).first
-      @user = User.where(:id => a.author_id).first
-      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api == PUBLIC SHOW #{args}")
-      response_json = @user.create_social_counter(args)
-      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model == PUBLIC SHOW #{response_json}")
-    end
+
+    args[:author_id] = current_user.id
+    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
+    response_json = current_user.create_social_counter(args)
+    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
 
     if request.xhr?
       render :json => {}, :status => 200
@@ -1108,8 +1152,8 @@ class HomeController < ApplicationController
       @user = User.find_by_id(1)
     end
     #ADMIN USER
-     #User.create(:username => "actwittywebadmin", :full_name => "Actwitty Administrator", :email => "administrator@actwitty.com",
-      #          :password => "abc123", :password_confirmation => "abc123", :user_type => AppConstants.user_type_web_admin)
+#     User.create(:username => "actwittywebadmin", :full_name => "Actwitty Administrator", :email => "administrator@actwitty.com",
+#                :password => "abc123", :password_confirmation => "abc123", :user_type => AppConstants.user_type_web_admin)
     response_json = @user.get_recent_public_summary()
     Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] response from model #{response_json}")
     if request.xhr?

@@ -200,6 +200,9 @@ development: &default
   user_type_admin:                    1
   user_type_web_admin:                2                    
 
+  #FOR PUBLIC SHOW
+  ghost_user_email:                   "administrator@actwitty.com"
+
 production:
   <<: *default
   #constant1:  "overriden value1"
