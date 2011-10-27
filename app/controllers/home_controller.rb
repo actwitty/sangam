@@ -993,7 +993,10 @@ class HomeController < ApplicationController
     args[:summary_id] = Integer(params[:summary_id])
     args[:source_name] = params[:source_name]
     args[:action] = params[:action_type]
-    args[:author_id] = current_user.id
+    #ALOK # FOR PUBIC SHOW if check
+    if user_signed_in?
+      args[:author_id] = current_user.id
+    end
 
     Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
     response_json = current_user.create_social_counter(args)
