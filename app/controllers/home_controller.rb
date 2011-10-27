@@ -20,7 +20,7 @@ class HomeController < ApplicationController
                                               :get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
                                               :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,
                                               :get_related_locations, :get_social_counter, :get_related_friends,
-                                              :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions]
+                                              :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -61,6 +61,7 @@ class HomeController < ApplicationController
 
   def create_ghost_user
     if !user_signed_in?
+      #ghost user can be added in session to avoid query
       ghost_user  = User.where(:email => AppConstants.ghost_user_email).first
       sign_in(ghost_user)
       Rails.logger.info("[CNTRL] [HOME] [CREATE_GHOST_USER] signed in ")
