@@ -689,7 +689,7 @@ class HomeController < ApplicationController
       end
     else
       #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the  #FOR PUBLIC SHOW
-      a = Activity.where(:id => params[:id]).first
+      a = Activity.where(:id => params[:activity_id]).first
       @user = User.where(:id => a.author_id).first
       response_json = @user.get_all_activity(activity_ids)
       if request.xhr?
