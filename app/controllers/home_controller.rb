@@ -663,10 +663,13 @@ class HomeController < ApplicationController
   ##############################################
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
-    @user=current_user
-    #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the #FOR PUBLIC SHOW
-    a = Activity.where(:id => params[:id]).first
-    @user = User.where(:id => a.author_id).first
+    if user_signed_in?
+      @user=current_user
+    else
+      #Alok Need to  optimize this --- no need of these 2 queries .. we can just put an API in user free context #FOR PUBLIC SHOW
+      a = Activity.where(:id => params[:id]).first
+      @user = User.where(:id => a.author_id).first
+    end
 
     @profile_page = 1
     @page_mode="single_post"
@@ -688,7 +691,7 @@ class HomeController < ApplicationController
         render :json => response_json, :status => 200
       end
     else
-      #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the  #FOR PUBLIC SHOW
+      #Alok Need to  optimize this --- no need of these 2 queries .. we can just put an API in user free context #FOR PUBLIC SHOW
       a = Activity.where(:id => params[:activity_id]).first
       @user = User.where(:id => a.author_id).first
       response_json = @user.get_all_activity(activity_ids)
@@ -996,11 +999,17 @@ class HomeController < ApplicationController
     #ALOK # FOR PUBIC SHOW if check
     if user_signed_in?
       args[:author_id] = current_user.id
+      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
+      response_json = current_user.create_social_counter(args)
+      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
+    else
+      #Alok Need to  optimize this --- no need of these 2 queries .. we can just put an API in user free context #FOR PUBLIC SHOW
+      a = Activity.where(:id => args[:activity_id]).first
+      @user = User.where(:id => a.author_id).first
+      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api == PUBLIC SHOW #{args}")
+      response_json = @user.create_social_counter(args)
+      Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model == PUBLIC SHOW #{response_json}")
     end
-
-    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] calling model api #{args}")
-    response_json = current_user.create_social_counter(args)
-    Rails.logger.info("[CNTRL][HOME][UPDATE SOCIAL MEDIA SHARE] response from model #{response_json}")
 
     if request.xhr?
       render :json => {}, :status => 200
