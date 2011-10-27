@@ -1020,7 +1020,20 @@ describe Activity do
       a = @u1.get_document_summary({:user_id => @u1.id, :category => "image", :page_type => AppConstants.page_state_all})
       puts a
     end
+    it "should fetch single activity properly" do
+       a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222 http://form6.flickr.com/ wow
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],
 
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_public)
+
+    end
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY
 #    CLEAN GET STREAM

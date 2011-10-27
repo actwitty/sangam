@@ -671,7 +671,7 @@ class HomeController < ApplicationController
     @post_id = params[:id]
   end
   ##############################################
-  include ActivityApi
+
   def get_single_activity
    Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
    activity_id = Integer(params[:activity_id])
@@ -686,7 +686,10 @@ class HomeController < ApplicationController
         render :json => response_json, :status => 200
       end
     else
-      response_json = get_all_activity(activity_ids)
+      #Alok Need to  optimize this --- no need of these 2 queries .. we can just make the
+      a = Activity.where(:id => params[:id]).first
+      @user = User.where(:id => a.author_id).first
+      response_json = @user.get_all_activity(activity_ids)
       if request.xhr?
          Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON for open user#{response_json}")
         render :json => response_json, :status => 200
