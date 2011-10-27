@@ -16,11 +16,10 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [:show, :get_single_activity, :activity, :update_social_media_share, :get_summary,
-                                              :get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
-                                              :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,
-                                              :get_related_locations, :get_social_counter, :get_related_friends,
-                                              :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
+  GET_FUNCTIONS_ARRAY= [:show, :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
+                        :get_summary,:get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
+                        :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,:get_related_locations,
+                        :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
