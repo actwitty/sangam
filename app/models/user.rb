@@ -1904,6 +1904,7 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -1937,6 +1938,6 @@ end
 #  invitation_limit     :integer
 #  invited_by_id        :integer
 #  invited_by_type      :string(255)
-#  admin                :boolean
+#  user_type            :integer         default(0)
 #
 
