@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
           #,:devise_create_users
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username , :user_type  #user_type is only needed for ADMIN USER creation
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name, :username #, :user_type  #user_type is only needed for ADMIN USER creation
 
   # relations #
   has_one :profile
@@ -755,7 +755,6 @@ class User < ActiveRecord::Base
 
     #store summary_id to see if summary id is not changed in update
     if a[:post][:summary_id] != prev_summary_id
-      Summary.destroy_all(:id => prev_summary_id)
 
       #update Social counter with new summary_id
       if !a[:post][:social_counters].blank?
@@ -774,11 +773,15 @@ class User < ActiveRecord::Base
     end
 
     #Now rebuild the older summary. New summary will be build during create activity.
-    #Only we have social counters of old summary need to migrate to new one.. tis is done in upper block
+    #Only we have social counters of old summary need to migrate to new one.. this is done in upper block
+    Summary.reset_counters( prev_summary_id, :activities)
     s = Summary.where(:id => prev_summary_id).first
-    if !s.blank?
+    if s.activities.size == 0
+      s.destroy
+    else
       s.rebuild_a_summary
     end
+
 
     Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
     a
@@ -1799,6 +1802,50 @@ class User < ActiveRecord::Base
   end
   #Commenting for time being
   #handle_asynchronously :push_event_to_pusher
+
+  #INPUT =>  summary_id => 123, :new_name => "foodie"
+  #OUTPUT => SUMMARY ATTRIBUTES
+  #{"activities_count"=>3, "activity_array"=>[342, 341, 340], "activity_name"=>"marry", "activity_word_id"=>424,
+  #  "created_at"=>Sat, 29 Oct 2011 18:23:56 UTC +00:00, "document_array"=>[776, 775, 774, 773, 772, 771],
+  # "documents_count"=>8, "entity_array"=>[], "id"=>158, "location_array"=>[162, 161],
+  #"social_counters_array"=>[{:source_name=>"twitter", :action=>"share", :count=>1},
+  #{:source_name=>"facebook", :action=>"share", :count=>2}], "tag_array"=>[365, 364, 363, 362, 361, 360],
+  #"tags_count"=>6, "theme_data"=>{:fg_color=>"0xffffff00", :bg_color=>"0xffffff00", :document_id=>nil, :url=>nil,
+  #:user_id=>407, :summary_id=>158, :theme_type=>1, :time=>2011-10-29 18:23:56 UTC}, "updated_at"=>Sat, 29 Oct 2011 18:23:57 UTC +00:00, "user_id"=>407}
+  def update_summary(params)
+    Rails.logger.debug("[MODEL] [USER] [update_summary] entering")
+    params[:user_id] = self.id
+    s = Summary.update_summary(params)
+    Rails.logger.debug("[MODEL] [USER] [subscribe_summary] leaving")
+    s
+  end
+
+
+  #INPUT => summary_id => 123
+  #OUTPUT => {}
+  def delete_summary(params)
+    Rails.logger.info("[MODEL] [USER] [delete_summary] entering  " + params.to_s)
+    params[:user_id] = self.id
+    s = Summary.delete_summary(params)
+    Rails.logger.info("[MODEL] [SUMMARY] [delete_summary] leaving  " + params.to_s)
+    s
+  end
+
+  #INPUT => :activity_id => 123, :new_name => "foodie"
+  #OUTPUT => updated activity
+  #{"activity_name"=>"beating", "activity_text"=>"sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+  # "activity_word_id"=>75, "author_id"=>57, "base_location_id"=>nil, "blank_text"=>false, "campaign_types"=>2,
+  # "comments_count"=>0, "created_at"=>Sat, 29 Oct 2011 20:24:59 UTC +00:00, "documents_count"=>2,
+  # "enriched"=>false, "id"=>67, "meta_activity"=>false, "social_counters_array"=>[{:source_name=>"facebook", :action=>"share", :count=>1}],
+  #"source_name"=>"actwitty", "status"=>2, "sub_title"=>nil, "summary_id"=>36, "tags_count"=>2, "updated_at"=>Sat, 29 Oct 2011 20:25:00 UTC +00:00}
+  def rename_activity_name(params)
+    Rails.logger.info("[MODEL] [USER] [rename_activity_name] entering  " + params.to_s)
+    params[:user_id] = self.id
+    s = Summary.rename_activity_name(params)
+    Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name] leaving  " + params.to_s)
+    s
+  end
+
   # private methods
   private
 

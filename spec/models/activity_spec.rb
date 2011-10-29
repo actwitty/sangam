@@ -1032,9 +1032,75 @@ describe Activity do
 
                               :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
                                             AppConstants.status_public)
+       a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
+                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
+                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
 
+                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
+                                            AppConstants.status_public)
+       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+       a4 = @u.create_activity(:word => "beating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+       @u1.subscribe_summary(a1[:post][:summary_id])
+       @u2.subscribe_summary(a1[:post][:summary_id])
+       @u1.subscribe_summary(a3[:post][:summary_id])
+       @u1.subscribe_summary(a3[:post][:summary_id])
+
+       s1 = @u.create_social_counter({:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id],
+                                      :source_name => "facebook", :action => "share"})
+       s2 = @u.create_social_counter({:summary_id => a2[:post][:summary_id],:activity_id => a2[:post][:id],
+                                      :source_name => "twitter", :action => "share"})
+       s3 = @u.create_social_counter({:summary_id => a3[:post][:summary_id],:activity_id => a3[:post][:id],
+                                      :source_name => "facebook", :action => "share"})
+       puts "get summary 1"
+       a = @u1.get_subscriber_summary
+       puts a
+
+       puts "get social counter 1"
+       a = @u.get_social_counter({:activity_id => a3[:post][:id]})
+       puts a
+
+       s = @u.update_summary({:summary_id => a1[:post][:summary_id], :new_name => "marry"})
+       s.should_not be_nil
+       puts s.inspect
+
+       puts "get summary 2"
+       a = @u1.get_subscriber_summary
+       puts a
+
+       puts "get social counter 2"
+       a = @u.get_social_counter({:activity_id => a3[:post][:id]})
+       puts a
+
+       a = Activity.where(:activity_name => "eating").all
+       puts "============eating============"
+       a.each do |attr|
+         puts attr.inspect
+       end
+
+       a.should be_blank
+       a = Activity.where(:activity_name => "marry").all
+       a.should_not be_blank
+       puts "============beating============"
+       a.each do |attr|
+         puts attr.inspect
+       end
+       s = @u.rename_activity_name({:activity_id => a1[:post][:id], :new_name => "beating"})
+       puts s.inspect
+       s = @u.rename_activity_name({:activity_id=> a2[:post][:id], :new_name => "beating"})
+       puts s.inspect
+       s = @u.rename_activity_name({:activity_id => a3[:post][:id], :new_name => "beating"})
+       puts s.inspect
+       #@u.delete_summary({:summary_id => a3[:post][:summary_id]})
     end
-#    TEST REMOVE ENTITY
+#    TEST REMOVE ENTITY                                                             ng
 #    TEST UPDATE ACTIVITY
 #    CLEAN GET STREAM
 #    TEST CREATE AND DELETE TAGS - Both hash tags and blog tags
