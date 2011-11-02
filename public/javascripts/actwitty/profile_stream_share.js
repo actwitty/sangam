@@ -23,7 +23,7 @@ function get_socialize_html(stream){
       if( counter.source_name == "facebook"){
         fb_count = counter.count;
       }
-
+      /*
       if( counter.source_name == "digg"){
         digg_count = counter.count;
       }
@@ -39,7 +39,7 @@ function get_socialize_html(stream){
       if( counter.source_name == "buzz"){
         buzz_count = counter.count;
       }
-
+      */
       cummulative_count += counter.count;
     });
   }
@@ -67,7 +67,7 @@ function get_socialize_html(stream){
                                 fb_count +
                               '</span>' +
                             '</div>' +
-                           
+                            /* 
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="25" height="25" class="js_share_post_externally JS_SHARE_DIGG" id="digg_share_' + stream.post.id + '" />' +
                               '<span class="digg_text">' +
@@ -95,6 +95,7 @@ function get_socialize_html(stream){
                                 buzz_count +
                               '</span>' +
                             '</div>' +
+                            */
                         '</div>' +
                     '</div>';
   return socialize_html;
@@ -125,7 +126,7 @@ function get_socialize_icon_html(stream){
                                 '0' +
                               '</span>' +
                             '</div>' +
-                           
+                            /* 
                             '<div class="socialize_box" >' +
                               '<img src="/images/alpha/shares/digg.png"  alt="Share on Digg" width="25" height="25" class="js_share_post_externally JS_SHARE_DIGG" id="digg_share_' + stream.post.id + '" />' +
                               '<span class="digg_text">' +
@@ -153,6 +154,7 @@ function get_socialize_icon_html(stream){
                                 '0' +
                               '</span>' +
                             '</div>' +
+                            */
                         '</div>';
                   
   return socialize_html;
@@ -277,7 +279,7 @@ function aw_render_share_externally( trigger_id){
     modal_href = 'http://www.facebook.com/sharer.php?u='+url
     source_name="facebook";
 
-  }else if(share_class == "JS_SHARE_DELICIOUS"){
+  }/*else if(share_class == "JS_SHARE_DELICIOUS"){
     modal_href  = 'http://del.icio.us/post?url='+url+'&amp;title='+ post_title;
     source_name="delicious";
 
@@ -292,7 +294,7 @@ function aw_render_share_externally( trigger_id){
   }else if(share_class == "JS_SHARE_BUZZ"){
      modal_href = 'http://www.google.com/reader/link?url='+url+'&amp;title='+ post_title +'&amp;srcURL='+host;
     source_name="buzz";
-  }
+  }*/
   var base = $("#" + trigger_id).closest(".js_socialize_post");
   var existing_count = base.find('.' + source_name + '_text').html();
   existing_count = parseInt(existing_count) + 1;

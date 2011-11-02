@@ -537,7 +537,7 @@ opacity:40%;
   cursor:pointer;
 }
 
-.del-camp-inactive:
+.del-camp-inactive
 {
   display:none;
 }
@@ -846,11 +846,11 @@ li.p-st-tab
   z-index:2000;
   background:#CCCCCC;
   border:0px solid red;
-  height:
+  /*height:*/
 }
 .p-st-filter li
 {
-  display:inline:
+  display:inline;
 }
 .p-st-flt-label
 {
@@ -1028,7 +1028,7 @@ li.p-st-tab
 
 ul.p-fltr-tag-list
 {
-  list-style:none
+  list-style:none;
 }
 
 ul.p-fltr-tag-list li

@@ -56,28 +56,30 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: documents
 #
-#  id               :integer         not null, primary key
-#  owner_id         :integer         not null
-#  activity_id      :integer
-#  activity_word_id :integer
-#  name             :text            not null
-#  mime             :text
-#  caption          :text
-#  comments_count   :integer
-#  summary_id       :integer
-#  url              :text            not null
-#  thumb_url        :text
-#  status           :integer         not null
-#  source_name      :text            not null
-#  uploaded         :boolean         not null
-#  provider         :text            not null
-#  category         :text            not null
-#  location_id      :integer
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id                    :integer         not null, primary key
+#  owner_id              :integer         not null
+#  activity_id           :integer
+#  activity_word_id      :integer
+#  name                  :text            not null
+#  mime                  :text
+#  caption               :text
+#  comments_count        :integer
+#  summary_id            :integer
+#  url                   :text            not null
+#  thumb_url             :text
+#  status                :integer         not null
+#  source_name           :text            not null
+#  uploaded              :boolean         not null
+#  provider              :text            not null
+#  category              :text            not null
+#  location_id           :integer
+#  social_counters_array :text
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 

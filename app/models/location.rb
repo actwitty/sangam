@@ -169,17 +169,19 @@ class Location < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: locations
 #
-#  id            :integer         not null, primary key
-#  location_type :integer         not null
-#  location_name :text            not null
-#  location_url  :text
-#  location_lat  :decimal(18, 15)
-#  location_long :decimal(18, 15)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                    :integer         not null, primary key
+#  location_type         :integer         not null
+#  location_name         :text            not null
+#  location_url          :text
+#  location_lat          :decimal(18, 15)
+#  location_long         :decimal(18, 15)
+#  social_counters_array :text
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 

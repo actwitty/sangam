@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  before_filter :set_locale
+  before_filter :set_locale, :ensure_domain
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
@@ -24,4 +24,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  APP_DOMAIN = 'actwitty.com'
+  def ensure_domain
+#    if user_signed_in?
+#      full_name = current_user.full_name.split
+#      if request.env['HTTP_HOST'] != "#{full_name[0]}.#{APP_DOMAIN}"
+#        # HTTP 301 is a "permanent" redirect
+#        redirect_to "http://#{full_name[0]}.#{APP_DOMAIN}", :status => 301
+#      end
+#    end
+  end
 end
