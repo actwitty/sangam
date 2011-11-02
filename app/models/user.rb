@@ -6,11 +6,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable,:token_authenticatable,
-         :lockable,:confirmable , :omniauthable
+         :lockable , :omniauthable
           #,:devise_create_users
-
+  attr_accessor :dob_str
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :full_name
+  attr_accessible  :email, :username, :password,
+                   :dob, :dob_str, :full_name, :gender,:photo_small_url,
+                   :current_location, :current_geo_lat, :current_geo_long,
+                   :password_confirmation, :remember_me
 
   # relations #
   has_one :profile
@@ -44,13 +47,116 @@ class User < ActiveRecord::Base
 
   ##### ALOK changes ends here #####################
 
-
-
   # Validations #
-  before_validation :strip_fields, :on => :create
+  after_validation :validate_fields
+  before_validation  :parse_dob
 
-  validates :email, :email_format => true
-  validates_presence_of :profile, :unless => proc {|user| user.confirmed_at.nil?}
+  def parse_dob
+
+    unless  self.dob_str.nil?
+      begin
+        self.dob = Date.strptime(self.dob_str, '%m/%d/%Y')
+      rescue ArgumentError
+        Rails.logger.info("[MODEL] [USER] parse_dob received invalid DOB #{self.dob_str}")
+        self.dob = nil
+      end
+    end
+
+  end
+
+
+  def validate_fields
+    Rails.logger.info("[MODEL] [USER] VALIDATION image -----------------------> #{self.photo_small_url}")
+    if self.username.present?
+      self.username.strip!
+      self.username.downcase!
+    end
+
+    if self.full_name.present?
+      self.full_name.strip!
+    end
+
+    Rails.logger.info("[MODEL][User][validate_fields] username: [#{self.username}] [#{self.username.size}]")
+    username_validation = true
+    gender_validation = true
+    name_validation = true
+    geo_validation = true
+    dob_validation = true
+
+    if self.username.blank?
+      self.errors.add :username, "user name cannot be blank "
+      Rails.logger.info("[MODEL][User][validate_fields] username cannot be blank")
+      username_validation = false
+    end
+
+
+    unless self.username =~ /^[\w]{5,32}$/      #regex means /^[0-9a-z_]+$/
+      self.errors.add :username, "user name can be alphanumeric, underscore with atleast 5 characters."
+      Rails.logger.info("[MODEL][User][validate_fields] username can only be alphanumeric or _")
+      username_validation = false
+    end
+
+    if username_validation
+      test_user = User.find_by_username(self.username)
+      unless test_user.nil?
+        unless self.id == test_user.id
+          self.errors.add :username, "user name has already been taken"
+          Rails.logger.info("[MODEL][User][validate_fields] username has already been taken")
+          username_validation = false
+        end
+      end
+    end
+
+    if !username_validation
+      Rails.logger.info("[MODEL][User][validate_fields] username is bad")
+    end
+
+    if self.gender.blank?
+      Rails.logger.info("[MODEL][User][validate_fields] Gender is nil")
+      self.errors.add :gender, "gender cannot be blank"
+      gender_validation = false
+    else
+      unless self.gender == "male" or self.gender == "female" or self.gender == "other"
+        Rails.logger.info("[MODEL][User][validate_fields] Gender is invalid [#{self.gender}]")
+        self.errors.add :gender, "gender can only be male/female/other"
+        gender_validation = false
+      end
+    end
+
+
+    if self.dob.blank?
+      Rails.logger.info("[MODEL][User][validate_fields] DOB is nil")
+      self.errors.add :dob, "date of birth cannot be blank"
+      dob_validation = false
+    end
+
+    if self.full_name.blank?
+      Rails.logger.info("[MODEL][User][validate_fields] Full Name is nil")
+      self.errors.add :full_name, "name cannot be blank"
+      name_validation = false
+    else
+      unless self.full_name =~ /^[a-zA-Z \.]{1,100}$/      #regex means /^[0-9a-z_]+$/
+        self.errors.add :full_name, "name can only be english characters, space or dots "
+        Rails.logger.info("[MODEL][User][validate_fields] name is not valid #{self.full_name} ")
+        name_validation = false
+      end
+    end
+
+    if self.current_location.blank? or self.current_geo_lat.blank? or self.current_geo_long.blank?
+      Rails.logger.info("[MODEL][User][validate_fields] Geo location lat/long is invalid ")
+      self.errors.add :current_location, "select a valid geo location"
+      geo_validation = false
+    end
+
+    if !username_validation or !gender_validation or !name_validation or !geo_validation or !dob_validation
+      Rails.logger.info("[MODEL][User][validate_fields] atleast one validation failed ")
+      return false
+    end
+
+    Rails.logger.info("[MODEL][User][validate_fields] Validations all good ")
+    return true
+  end
+
 
   # profile related api
 
@@ -252,6 +358,88 @@ class User < ActiveRecord::Base
     else
       select("id,full_name,photo_small_url").order("full_name")
     end
+  end
+
+  def import_foreign_profile_to_user(foreign_profile)
+    Rails.logger.info("[MODEL] [USER] [import_foreign_profile_to_user] called #{foreign_profile}")
+
+    unless  foreign_profile.name.blank?
+      self.full_name = foreign_profile.name
+    end
+    unless  foreign_profile.email.nil?
+      self.email = foreign_profile.email
+    end
+    unless  foreign_profile.dob.blank?
+      begin
+        self.dob = Date.strptime(foreign_profile.dob, '%m/%d/%Y')
+      rescue ArgumentError
+        Rails.logger.info("[MODEL] [USER] Create profile received invalid DOB #{foreign_profile.dob}")
+        self.dob = nil
+      end
+    end
+
+    unless  foreign_profile.image.blank?
+      Rails.logger.info("[MODEL] [USER] from foreign profile copying image url #{foreign_profile.image}")
+      self.photo_small_url = foreign_profile.image
+    end
+
+    unless  foreign_profile.gender.blank?
+      self.gender = foreign_profile.gender
+    end
+
+    unless  foreign_profile.location.blank?
+      self.current_location = foreign_profile.location
+    end
+
+  end
+
+  def create_profile_from_foreign_profile(foreign_profile)
+     Rails.logger.info("[MODEL] [USER] Create profile from foreign profile called")
+     profile = Profile.new
+
+     unless  foreign_profile.first_name.nil?
+      profile.first_name = foreign_profile.first_name
+     end
+
+     unless  foreign_profile.name.nil?
+      profile.last_name = foreign_profile.last_name
+     end
+
+     unless  foreign_profile.name.nil?
+      self.full_name = foreign_profile.name
+     end
+
+     unless  foreign_profile.image.nil?
+      profile.profile_photo_l = foreign_profile.image
+      profile.profile_photo_s = foreign_profile.image
+      profile.profile_photo_m = foreign_profile.image
+     end
+
+     unless  foreign_profile.gender.nil?
+      profile.gender = foreign_profile.gender
+      self.gender = foreign_profile.gender
+     end
+
+     unless  foreign_profile.location.nil?
+      profile.current_location = foreign_profile.location
+      profile.home_location = foreign_profile.location
+     end
+
+     unless  foreign_profile.dob.nil?
+      begin
+        profile.dob = Date.strptime(foreign_profile.dob, '%m/%d/%Y')
+      rescue ArgumentError
+        Rails.logger.info("[MODEL] [USER] Create profile received invalid DOB #{foreign_profile.dob}")
+        profile.dob = nil
+      end
+     end
+
+
+     Rails.logger.info("[MODEL] [USER] Created a profile object for user ")
+     profile.user_id =  self.id
+     profile.save!
+     Rails.logger.info("[MODEL] [USER] Save profile from foreign profile")
+
   end
 
   include TextFormatter
@@ -1793,18 +1981,7 @@ class User < ActiveRecord::Base
   private
 
 
-  def strip_fields
-    if self.email.present?
-       self.email.strip!
-       self.email.downcase!
-    end
-    if self.username.present?
-      self.username.strip!
-      self.username.downcase!
-    else
-       self.username = self.email
-    end
-  end
+
 
   def process_filter(filter)
 

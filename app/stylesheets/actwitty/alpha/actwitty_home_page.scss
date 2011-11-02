@@ -172,25 +172,20 @@ div.wrapper_hompage{
 
 input#signinbutton
 {
-  width:60px;
-  background:#ff9600;
-  margin-bottom:-5px;
-  padding:2px;
-  border:none;
-  height:23px;
-  display:inline;
 
-
-  color: #fef4e9;
+  color: #ffffff;
 	border: solid 1px #da7c0c;
 	background: #f78d1d;
 	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
 	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
-  display:inline; 
-  font: 14px/100% Arial, Helvetica, sans-serif;
-
-
+  margin-left:270px;
+  margin-top:20px;
+  display:block; 
+  width:100px;
+  height:30px;
+  font: 18px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold
 
 
 }
@@ -365,27 +360,18 @@ input#aw_header_signin:hover
 
 input#signupbutton
 {
-  /*
-  background:#ff9600;
-  
-  */
 
-
-  color: #fef4e9;
+  color: #ffffff;
 	border: solid 1px #da7c0c;
 	background: #f78d1d;
 	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
 	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
-  float:right;
-  margin-right:50px;
-  margin-top:7px;
-  padding:2px;
-  height:23px;
-  display:inline; 
-  width:100px;
-  height:30px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
+  display:block; 
+  width:140px;
+  height:80px;
+  font: 24px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold
 
 
 }

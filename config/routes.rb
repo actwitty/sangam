@@ -63,6 +63,7 @@ Sangam::Application.routes.draw do
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
   match '/welcome/confirmation_wait' => 'welcome#confirmation_wait'
+  match '/authentications/auth_signup_provider' => 'authentications#auth_signup_provider'
   match '/authentications/auth_signin_provider' => 'authentications#auth_signin_provider'
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 

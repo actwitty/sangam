@@ -1,0 +1,10 @@
+%link{:href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css", :rel => "stylesheet", :type => "text/css"}/
+#aw_lpm_signup_main_box
+  #aw_lpm_signup_main_div
+    #awlpm_signup_aw_logo
+      %img.awlpm_signup_aw_logo_img{:src => "/images/actwitty/refactor/aw_lpm/aw_lpm_small_logo.png"}
+    #awlpm_signup_aw_header_label
+      Just a last step to registration.
+    #aw_lpm_signup_box.js_signup_partial
+      =render :partial => "users/registrations/new", :locals => { :user => @user } 
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 

@@ -15,7 +15,7 @@ class CreateForeignProfiles < ActiveRecord::Migration
       t.string :locale
       t.string :foreign_updated_time
       t.integer :authentication_id
-
+      t.string :dob
       t.timestamps
     end
   end

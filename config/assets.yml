@@ -13,8 +13,9 @@ javascripts:
     - public/javascripts/application.js
   actwittyall:
     - public/javascripts/jquery/jquery-ui-1.8.14/ui/minified/jquery-ui.min.js
-    - public/javascripts/actwitty/main_page.js
-    - public/javascripts/plugins/ui-watermark/ui.watermark.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_user_updates.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
+    - public/javascripts/actwitty/refactor/server_requests/aw_get_requests.js
     - public/javascripts/plugins/jquery_ujs.js
     - public/javascripts/plugins/rails.validations.js
     - public/javascripts/plugins/rails.validations.custom.js
@@ -25,10 +26,6 @@ javascripts:
     - public/javascripts/plugins/jquery.elastic.source.js
     - public/javascripts/plugins/jquery.timeago.js
     - public/javascripts/plugins/date.js
-    - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
-    - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
-    - public/javascripts/plugins/jquery-autocomplete/lib/thickbox-compressed.js
-    - public/javascripts/plugins/jquery-autocomplete/jquery.autocomplete.js
     - public/javascripts/plupload/plupload.js
     - public/javascripts/plupload/plupload.full.js
     - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
@@ -75,7 +72,11 @@ javascripts:
     - public/javascripts/actwitty/profile_fb.js
     - public/javascripts/actwitty/profile_followers.js
     - public/javascripts/actwitty/profile_followings.js
-
+  autocomplete:
+    - public/javascripts/plugins/jquery-autocomplete/lib/jquery.bgiframe.min.js
+    - public/javascripts/plugins/jquery-autocomplete/lib/jquery.ajaxQueue.js
+    - public/javascripts/plugins/jquery-autocomplete/lib/thickbox-compressed.js
+    - public/javascripts/plugins/jquery-autocomplete/jquery.autocomplete.js
 
   main:
     - public/javascripts/rails.js
@@ -99,6 +100,10 @@ stylesheets:
   defaults:
     - public/stylesheets/actwitty/alpha/actwitty_buttons.css
     - public/stylesheets/actwitty/alpha/home_layout.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_forgot_password.css
     - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css

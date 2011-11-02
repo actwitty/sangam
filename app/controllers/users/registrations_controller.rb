@@ -29,28 +29,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
             authentication.user_id = user.id
             Rails.logger.info("[CNTRL] [REGISTRATION] Updating userid for authentication")
             authentication.save!
+
+
+
           end
         end
-
-        user_for_pic=resource
-        if provider == "facebook"
-          user_for_pic.photo_small_url = "http://graph.facebook.com/#{uid}/picture/"
-          user_for_pic.save!
-        end
-
       end
-
-      @user = resource
-
+      sign_in(resource_name, resource)
       if request.xhr?
         respond_to do |format|
-
-          Rails.logger.info("[CNTRL] [REGISTRATION] XHR Request render confirmation wait")
-          #  format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
-          format.js   { render :js => "window.location = '/welcome/confirmation_wait?email=#{@user.email}'" }
-
+         Rails.logger.info("[CNTRL] [REGISTRATION] after sign in path: /home/show" )
+        format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
         end
-
       end
      
     else
@@ -66,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   rescue => e
     Rails.logger.error("[CNTRL] [REGISTRATION] Error in User => Registration => create => #{e}")
     @user = resource
-    puts @user.errors
+
     respond_to do |format|
       #format.html { render_with_scope :new }
       format.js   {  }
@@ -75,16 +65,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
 
-  def new
-    super
-    if !params.nil? && !params[:user].nil?
-      key=params[:user][:key]
-      provider=params[:user][:provider]
-      uid=params[:user][:uid]
-      if !key.nil? && !provider.nil? && !uid.nil?
-        resource.set_provider_pending_context(provider, uid, key)
-      end
-    end
-  end
+
 
 end

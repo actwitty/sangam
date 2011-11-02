@@ -14,9 +14,9 @@ class CreateProfiles < ActiveRecord::Migration
       t.decimal :current_geo_lat
       t.decimal :current_geo_long
       t.integer :age
-      t.string :sex
-      t.string :theme
       t.date :dob
+      t.string :gender
+      t.string :theme
       t.string :address
       t.string :company_name
       t.string :phone_number

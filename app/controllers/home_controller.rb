@@ -98,6 +98,7 @@ class HomeController < ApplicationController
 	      puts @profile.id
 	  end
   end
+
   ############################################
   def settings_save
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")

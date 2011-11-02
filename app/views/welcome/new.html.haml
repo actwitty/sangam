@@ -1,41 +1,65 @@
+.awlpm_tiny_login_header_horizontal_section
+  #awlpm_local_sign_in_button
+    %a{:href => "/authentications/auth_signin_provider"} Login
+.awlpm_header_horizontal_section
+  #awlpm_header_section
+    #awlpm_header_content_holder
+      #awlpm_header_aw_logo
+        %img.awlpm_aw_logo_img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_small_logo.png"}
+      #awlpm_header_label
+        Check-in Your Interests
+.awlpm_master_image_horizontal_section
+  #awlpm_foreign_auth_section
+    #awlpm_foreign_auth_highlighter
+      %a.awlpm_fb_auth_logo{:href => "/users/auth/facebook"}
+      %a.awlpm_t_auth_logo{:href => "/users/auth/twitter"}
 
-=render :partial => "welcome/logo"       
-
-.wrapper_hompage.homep_col2
-  #aw_home_intro
-    #aw_home_intro_image
-    #aw_home_intro_signup_sect
-      #aw_home_intro_signup_new_here
-      #aw_home_intro_signup_new_here_info
-      #aw_home_intro_register_box.js_signup_partial
-        =render :partial => "users/registrations/new", :locals => { :user => User.new } 
-     
-
-.wrapper_hompage.homep_col4
-  #aw_home_latest
-    #aw_home_latest_section
-      #dummy_block
-      .aw_home_divider
-      #aw_home_latest_updates
-        #latest_summary_box.main_box_user_list
-          %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }  
-      .aw_home_divider
-
-.wrapper_hompage.homep_col3
-  #aw_home_container
-    #aw_container_intro_channels.aw_home_container_intro
-      #home_page_channel_text 
-        %span show your interests and aspects of life through channels
-    #aw_container_intro_filters.aw_home_container_intro
-      #home_page_filter_text 
-        %span smart way to explore channels
-    #aw_container_intro_summary.aw_home_container_intro
-      #home_page_summary_text 
-        %span collection of your interests
-
-
+.awlpm_info_slides_horizontal_section
+  #awlpm_info_grid_container_parent
+    #awlpm_info_grid_container_header
+    #awlpm_info_grid_container
+      #awlpm_info_row_1.awlpm_info_grid_row
+        .awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_checkin.jpg" }
+            %h3 Check-in Your Interests
+            %p  Check-in with interest channel, details, location and images.
+        .awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_one_word_channels.jpg" }
+            %h3 One Word Channels
+            %p  Check-in to channels with interest expressed in one word.
+        .awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_auto_categorization.jpg" }
+            %h3 Auto-Categorization
+            %p  Get your data from Facebook, Twitter and Dropbox auto categorized to channels.
+      #awlpm_info_row_2.awlpm_info_grid_row
+        .awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_search_and_recommendations.jpg" }
+            %h3 Search On Interests 
+            %p  Search people based on their interest channels and connect more efficiently.
+        .awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_ranking_and_analytics.jpg" }
+            %h3 Rank And Analytics
+            %p  You are ranked on every interest channel making it an engaging experience.
+        .awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_subscribe_selective.jpg" }
+            %h3 Selective Subscription
+            %p Pickup selected interests of other to subscribe and reject others. 
+      #awlpm_info_row_3.awlpm_updates_grid_row
+        %h3 Recent Interest Check-ins:
+        #awlpm_info_channel_updates_box
+          #awlpm_js_user_update_box_1.awlpm_container_channel_updates_container
+          #awlpm_js_user_update_box_2.awlpm_container_channel_updates_container
+          #awlpm_js_user_update_box_3.awlpm_container_channel_updates_container
+          #awlpm_js_user_update_box_4.awlpm_container_channel_updates_container
+      
+    #awlpm_info_grid_container_footer
 
 =render :partial => "welcome/footer"
 
-.wrapper_hompage.homep_col6
-
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }  

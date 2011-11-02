@@ -17,7 +17,6 @@
 #  current_geo_lat     :decimal(, )
 #  current_geo_long    :decimal(, )
 #  age                 :integer
-#  sex                 :string(255)
 #  theme               :string(255)
 #  dob                 :date
 #  address             :string(255)
@@ -70,7 +69,7 @@ class Profile < ActiveRecord::Base
 
 
   #validate gender can only be one of three
-  validates_inclusion_of :sex, :in => ['male','female','other'],:allow_nil => true
+  validates_inclusion_of :gender, :in => ['male','female','other'],:allow_nil => true
   validates_acceptance_of :is_terms_accepted,
                           :on => :create,
                           :accept => true,
@@ -110,7 +109,6 @@ class Profile < ActiveRecord::Base
     user.save!
 
   end
-
 
 
 end

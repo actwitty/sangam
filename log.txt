@@ -1,0 +1,395 @@
+(in /home/sudhanshu/lemonbag/source/sangam)
+==  CreateProfiles: migrating =================================================
+-- create_table(:profiles)
+   -> 0.1099s
+-- add_index(:profiles, [:first_name, :last_name])
+   -> 0.0665s
+-- add_index(:profiles, :last_name)
+   -> 0.0448s
+==  CreateProfiles: migrated (0.2216s) ========================================
+
+==  CreateContacts: migrating =================================================
+-- create_table(:contacts)
+   -> 0.1004s
+-- add_index(:contacts, [:user_id, :friend_id, :status])
+   -> 0.0667s
+-- add_index(:contacts, [:friend_id, :status])
+   -> 0.0528s
+-- add_index(:contacts, :status)
+   -> 0.0477s
+==  CreateContacts: migrated (0.2679s) ========================================
+
+==  CreateLoops: migrating ====================================================
+-- create_table(:loops)
+   -> 0.0459s
+==  CreateLoops: migrated (0.0460s) ===========================================
+
+==  DeviseCreateUsers: migrating ==============================================
+-- create_table(:users)
+   -> 0.1498s
+-- add_index(:users, :email, {:unique=>true})
+   -> 0.0444s
+-- add_index(:users, :username, {:unique=>true})
+   -> 0.0604s
+-- add_index(:users, :reset_password_token, {:unique=>true})
+   -> 0.0400s
+-- add_index(:users, :unlock_token, {:unique=>true})
+   -> 0.0449s
+-- add_index(:users, :authentication_token, {:unique=>true})
+   -> 0.0445s
+-- add_index(:users, :full_name)
+   -> 0.0449s
+==  DeviseCreateUsers: migrated (0.4296s) =====================================
+
+==  DeviseInvitableAddToUsers: migrating ======================================
+-- change_table(:users)
+   -> 0.0980s
+-- change_column_null(:users, :encrypted_password, true)
+   -> 0.0012s
+==  DeviseInvitableAddToUsers: migrated (0.0994s) =============================
+
+==  CreateActivities: migrating ===============================================
+-- create_table(:activities)
+   -> 0.1189s
+-- add_index(:activities, [:summary_id, :blank_text])
+   -> 0.0775s
+-- add_index(:activities, [:summary_id, :base_location_id])
+   -> 0.0448s
+-- add_index(:activities, [:author_id, :status, :meta_activity])
+   -> 0.0447s
+-- add_index(:activities, [:summary_id, :activity_word_id, :activity_name], {:name=>"index_activities_on_summary_word_activity_name"})
+   -> 0.0677s
+-- add_index(:activities, [:author_id, :activity_word_id, :status])
+   -> 0.0550s
+-- add_index(:activities, [:author_id, :base_location_id, :status])
+   -> 0.0447s
+-- add_index(:activities, [:author_id, :source_name, :status])
+   -> 0.0448s
+-- add_index(:activities, [:activity_word_id, :base_location_id, :source_name, :status], {:name=>"index_activities_on_word_loc_source_status"})
+   -> 0.0446s
+-- add_index(:activities, [:source_name, :status])
+   -> 0.0558s
+-- add_index(:activities, [:base_location_id, :status])
+   -> 0.0447s
+-- add_index(:activities, [:activity_word_id, :status])
+   -> 0.0447s
+-- add_index(:activities, :updated_at)
+   -> 0.0446s
+-- add_index(:activities, [:id, :author_id])
+   -> 0.0448s
+-- add_index(:activities, [:id, :enriched])
+   -> 0.0557s
+==  CreateActivities: migrated (0.8345s) ======================================
+
+==  SetDefaultValues: migrating ===============================================
+-- change_column(:contacts, :strength, :decimal, {:precision=>5, :scale=>2, :default=>100.0})
+   -> 0.1541s
+-- change_column(:contacts, :relation, :string, {:default=>"Friend"})
+   -> 0.1518s
+==  SetDefaultValues: migrated (0.3062s) ======================================
+
+==  CreateEntities: migrating =================================================
+-- create_table(:entities)
+   -> 0.1142s
+-- add_index(:entities, :entity_guid, {:unique=>true})
+   -> 0.0669s
+-- add_index(:entities, :entity_name)
+   -> 0.0588s
+-- add_index(:entities, :updated_at)
+   -> 0.0417s
+==  CreateEntities: migrated (0.2820s) ========================================
+
+==  CreateHubs: migrating =====================================================
+-- create_table(:hubs)
+   -> 0.1067s
+-- add_index(:hubs, :activity_id)
+   -> 0.0777s
+-- add_index(:hubs, :user_id)
+   -> 0.0447s
+-- add_index(:hubs, :summary_id)
+   -> 0.0447s
+-- add_index(:hubs, [:entity_id, :summary_id])
+   -> 0.0448s
+-- add_index(:hubs, [:location_id, :summary_id])
+   -> 0.0558s
+-- add_index(:hubs, [:activity_word_id, :summary_id])
+   -> 0.0557s
+-- add_index(:hubs, [:entity_id, :user_id])
+   -> 0.0557s
+-- add_index(:hubs, [:location_id, :user_id])
+   -> 0.0448s
+-- add_index(:hubs, [:activity_word_id, :user_id])
+   -> 0.0446s
+-- add_index(:hubs, :source_name)
+   -> 0.0447s
+-- add_index(:hubs, :updated_at)
+   -> 0.0445s
+==  CreateHubs: migrated (0.6657s) ============================================
+
+==  CreateLocations: migrating ================================================
+-- create_table(:locations)
+   -> 0.1106s
+-- add_index(:locations, [:location_type, :location_name])
+   -> 0.0558s
+-- add_index(:locations, :location_name)
+   -> 0.0446s
+-- add_index(:locations, [:location_lat, :location_long], {:unique=>true})
+   -> 0.0447s
+-- add_index(:locations, :location_long)
+   -> 0.0449s
+-- add_index(:locations, :location_url, {:unique=>true})
+   -> 0.0446s
+-- add_index(:locations, :updated_at)
+   -> 0.0447s
+==  CreateLocations: migrated (0.3905s) =======================================
+
+==  CreateCampaigns: migrating ================================================
+-- create_table(:campaigns)
+   -> 0.1032s
+-- add_index(:campaigns, [:activity_id, :author_id, :name], {:unique=>true, :name=>"index_campaign_on_activity_author_name"})
+   -> 0.0682s
+-- add_index(:campaigns, [:entity_id, :author_id, :name], {:unique=>true, :name=>"index_campaign_on_entity_author_name"})
+   -> 0.0446s
+-- add_index(:campaigns, [:location_id, :author_id, :name], {:unique=>true, :name=>"index_campaign_on_location_author_name"})
+   -> 0.0447s
+-- add_index(:campaigns, [:comment_id, :author_id, :name], {:unique=>true, :name=>"index_campaign_on_comment_author_name"})
+   -> 0.0557s
+-- add_index(:campaigns, [:document_id, :author_id, :name], {:unique=>true, :name=>"index_campaign_on_document_author_name"})
+   -> 0.0447s
+-- add_index(:campaigns, [:activity_id, :name])
+   -> 0.0447s
+-- add_index(:campaigns, :name)
+   -> 0.0553s
+-- add_index(:campaigns, :source_name)
+   -> 0.0585s
+-- add_index(:campaigns, :updated_at)
+   -> 0.0535s
+==  CreateCampaigns: migrated (0.5744s) =======================================
+
+==  CreateDocuments: migrating ================================================
+-- create_table(:documents)
+   -> 0.1066s
+-- add_index(:documents, [:owner_id, :category, :status])
+   -> 0.0674s
+-- add_index(:documents, [:summary_id, :category, :status])
+   -> 0.0446s
+-- add_index(:documents, [:activity_id, :category, :status])
+   -> 0.0448s
+-- add_index(:documents, [:owner_id, :activity_word_id, :location_id], {:name=>"index_documents_on_owner_word_location"})
+   -> 0.0558s
+-- add_index(:documents, [:owner_id, :location_id])
+   -> 0.1001s
+-- add_index(:documents, [:summary_id, :activity_word_id, :location_id], {:name=>"index_documents_on_summary_word_location"})
+   -> 0.0559s
+-- add_index(:documents, [:summary_id, :location_id])
+   -> 0.0557s
+-- add_index(:documents, [:owner_id, :source_name])
+   -> 0.0558s
+-- add_index(:documents, [:summary_id, :source_name])
+   -> 0.0444s
+-- add_index(:documents, [:category, :status])
+   -> 0.0448s
+-- add_index(:documents, :status)
+   -> 0.0448s
+-- add_index(:documents, [:id, :category])
+   -> 0.0533s
+-- add_index(:documents, [:owner_id, :id])
+   -> 0.0469s
+-- add_index(:documents, :updated_at)
+   -> 0.0560s
+==  CreateDocuments: migrated (0.8786s) =======================================
+
+==  CreateEntityOwnerships: migrating =========================================
+-- create_table(:entity_ownerships)
+   -> 0.0475s
+-- add_index(:entity_ownerships, [:entity_id, :owner_id], {:unique=>true})
+   -> 0.0887s
+-- add_index(:entity_ownerships, :owner_id)
+   -> 0.0337s
+==  CreateEntityOwnerships: migrated (0.1702s) ================================
+
+==  CreateMentions: migrating =================================================
+-- create_table(:mentions)
+   -> 0.0361s
+-- add_index(:mentions, [:user_id, :activity_id], {:unique=>true})
+   -> 0.0775s
+-- add_index(:mentions, :activity_id)
+   -> 0.0620s
+==  CreateMentions: migrated (0.1761s) ========================================
+
+==  CreateEntityTypes: migrating ==============================================
+-- create_table(:entity_types)
+   -> 0.1064s
+-- add_index(:entity_types, [:entity_id, :entity_type_uri, :entity_type_name], {:name=>"index_on_entity_type_entity_uri_name"})
+   -> 0.0669s
+-- add_index(:entity_types, [:entity_type_uri, :entity_type_name], {:name=>"index_on_entity_type_uri_name"})
+   -> 0.0560s
+-- add_index(:entity_types, :entity_type_name)
+   -> 0.0446s
+==  CreateEntityTypes: migrated (0.2742s) =====================================
+
+==  CreateEntityDocuments: migrating ==========================================
+-- create_table(:entity_documents)
+   -> 0.1225s
+-- add_index(:entity_documents, :entity_id, {:unique=>true})
+   -> 0.0644s
+-- add_index(:entity_documents, :entity_doc_mid, {:unique=>true})
+   -> 0.0446s
+-- add_index(:entity_documents, :entity_doc_name)
+   -> 0.0449s
+==  CreateEntityDocuments: migrated (0.2769s) =================================
+
+==  CreateAuthentications: migrating ==========================================
+-- create_table(:authentications)
+   -> 0.1106s
+-- add_index(:authentications, [:user_id, :provider, :uid])
+   -> 0.0555s
+-- add_index(:authentications, [:provider, :uid])
+   -> 0.0556s
+==  CreateAuthentications: migrated (0.2220s) =================================
+
+==  CreateWordForms: migrating ================================================
+-- create_table(:word_forms)
+   -> 0.0995s
+-- add_index(:word_forms, [:related_word_id, :relation_type, :word_form_name], {:name=>"index_on_word_forms_relation_type_name", :unique=>true})
+   -> 0.0548s
+-- add_index(:word_forms, [:relation_type, :word_form_name], {:name=>"index_on_word_forms_type_name"})
+   -> 0.0544s
+-- add_index(:word_forms, :word_form_name)
+   -> 0.0464s
+-- add_index(:word_forms, :activity_word_id)
+   -> 0.0448s
+==  CreateWordForms: migrated (0.3006s) =======================================
+
+==  CreateForeignProfiles: migrating ==========================================
+-- create_table(:foreign_profiles)
+   -> 0.1026s
+==  CreateForeignProfiles: migrated (0.1028s) =================================
+
+==  CreateLocationHubs: migrating =============================================
+-- create_table(:location_hubs)
+   -> 0.0579s
+-- add_index(:location_hubs, [:web_join_id, :geo_join_id, :unresolved_join_id], {:unique=>true, :name=>"index_location_hub_on_web_geo_unresolved"})
+   -> 0.0557s
+-- add_index(:location_hubs, [:geo_join_id, :unresolved_join_id], {:name=>"index_location_hub_on_geo_unresolved"})
+   -> 0.0557s
+-- add_index(:location_hubs, :unresolved_join_id)
+   -> 0.0336s
+-- add_index(:location_hubs, [:web_join_id, :unresolved_join_id], {:name=>"index_location_hub_on_web_unresolved"})
+   -> 0.0445s
+==  CreateLocationHubs: migrated (0.2480s) ====================================
+
+==  CreateActivityWords: migrating ============================================
+-- create_table(:activity_words)
+   -> 0.0394s
+-- add_index(:activity_words, :word_name, {:unique=>true})
+   -> 0.0554s
+-- add_index(:activity_words, :updated_at)
+   -> 0.0447s
+==  CreateActivityWords: migrated (0.1398s) ===================================
+
+==  CreateDelayedJobs: migrating ==============================================
+-- create_table(:delayed_jobs, {:force=>true})
+   -> 0.1098s
+-- add_index(:delayed_jobs, [:priority, :run_at], {:name=>"delayed_jobs_priority"})
+   -> 0.0510s
+==  CreateDelayedJobs: migrated (0.1611s) =====================================
+
+==  CreateSummaries: migrating ================================================
+-- create_table(:summaries)
+   -> 0.1052s
+-- add_index(:summaries, [:user_id, :activity_word_id], {:unique=>true})
+   -> 0.0669s
+-- add_index(:summaries, :activity_word_id)
+   -> 0.0447s
+-- add_index(:summaries, :activity_name)
+   -> 0.0445s
+-- add_index(:summaries, [:user_id, :updated_at])
+   -> 0.0450s
+-- add_index(:summaries, [:id, :updated_at])
+   -> 0.0578s
+-- add_index(:summaries, :updated_at)
+   -> 0.0425s
+==  CreateSummaries: migrated (0.4073s) =======================================
+
+==  CreateComments: migrating =================================================
+-- create_table(:comments)
+   -> 0.1074s
+-- add_index(:comments, [:author_id, :id])
+   -> 0.0675s
+-- add_index(:comments, :activity_id)
+   -> 0.0439s
+-- add_index(:comments, :father_id, {:unique=>true})
+   -> 0.0446s
+-- add_index(:comments, :updated_at)
+   -> 0.0448s
+==  CreateComments: migrated (0.3087s) ========================================
+
+==  CreateFeedbacks: migrating ================================================
+-- create_table(:feedbacks)
+   -> 0.1099s
+==  CreateFeedbacks: migrated (0.1100s) =======================================
+
+==  CreateTags: migrating =====================================================
+-- create_table(:tags)
+   -> 0.1317s
+-- add_index(:tags, [:author_id, :activity_word_id])
+   -> 0.0346s
+-- add_index(:tags, :activity_word_id)
+   -> 0.0337s
+-- add_index(:tags, :summary_id)
+   -> 0.0447s
+-- add_index(:tags, :activity_id)
+   -> 0.0446s
+-- add_index(:tags, :updated_at)
+   -> 0.0446s
+==  CreateTags: migrated (0.3345s) ============================================
+
+==  CreateGarbageDocuments: migrating =========================================
+-- create_table(:garbage_documents)
+   -> 0.0944s
+==  CreateGarbageDocuments: migrated (0.0946s) ================================
+
+==  CreateSocialCounters: migrating ===========================================
+-- create_table(:social_counters)
+   -> 0.1178s
+-- add_index(:social_counters, [:source_name, :action])
+   -> 0.0555s
+-- add_index(:social_counters, [:summary_id, :activity_id])
+   -> 0.0447s
+-- add_index(:social_counters, :activity_id)
+   -> 0.0447s
+-- add_index(:social_counters, :author_id)
+   -> 0.1647s
+-- add_index(:social_counters, :updated_at)
+   -> 0.1027s
+-- add_index(:social_counters, :location_id)
+   -> 0.0447s
+-- add_index(:social_counters, :entity_id)
+   -> 0.0450s
+-- add_index(:social_counters, :document_id)
+   -> 0.0556s
+==  CreateSocialCounters: migrated (0.6762s) ==================================
+
+==  CreateThemes: migrating ===================================================
+-- create_table(:themes)
+   -> 0.1179s
+-- add_index(:themes, [:author_id, :summary_id], {:unique=>true})
+   -> 0.0669s
+-- add_index(:themes, :summary_id)
+   -> 0.0335s
+-- add_index(:themes, :document_id)
+   -> 0.0557s
+==  CreateThemes: migrated (0.2743s) ==========================================
+
+==  CreateSummarySubscribes: migrating ========================================
+-- create_table(:summary_subscribes)
+   -> 0.1123s
+-- add_index(:summary_subscribes, [:summary_id, :subscriber_id], {:unique=>true})
+   -> 0.0782s
+-- add_index(:summary_subscribes, [:subscriber_id, :owner_id])
+   -> 0.0447s
+-- add_index(:summary_subscribes, :subscriber_id)
+   -> 0.0446s
+==  CreateSummarySubscribes: migrated (0.2802s) ===============================
+

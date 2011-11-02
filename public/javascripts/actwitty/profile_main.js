@@ -20,8 +20,8 @@ $(document).ready(function(){
   set_current_page_context(page_context);
   if( page_context == "profile_main"){
     main_profile_initializer();  /* in profile.js */
-  }else if( page_context == "sign-in-page"){
-    main_page_sign_in_initializer();  /* in main_page.js */
+  }else if( page_context == "landing_page"){
+    aw_api_lpm_initialize_landing_page(); 
   }else if( page_context == "single_post") {
     single_post_initializer();  /* in single_post.js */
   }else if( page_context == "entity"){

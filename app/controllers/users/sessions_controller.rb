@@ -59,19 +59,7 @@ class Users::SessionsController < Devise::SessionsController
       end
 
   end
-  def new
 
-        Rails.logger.info("*******************session new***************")
-    if user_signed_in?
-        redirect_to :controller => "home", :action => "alpha"
-    else
-        
-        Rails.logger.info("-----------------session new start------------------")
-        redirect_to "/"
-        
-        Rails.logger.info("-----------------session new end------------------")
-    end
-  end
 
 
 

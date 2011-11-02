@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
       #redirect_to :controller => "home", :action => "alpha"
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] Redirect to home show")
     else
-      @page_mode="sign-in-page"
+      @page_mode="landing_page"
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] Main Page requested")
       #response.headers['Cache-Control'] = 'public, max-age=300'
     end

@@ -1,0 +1,452 @@
+/*
+ *ActWitty Stylesheet file
+ *File: AW Landing Page
+ *code: AWLPM (awlpm) Actwitty Landing Page Main
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com
+
+
+
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_color: #CCCCCC
+$aw_var_default_font_size: 12px
+$aw_var_default_bkg_color: #ffffff
+$aw_var_default_border_width: 0px
+$aw_lpm_var_width_of_details:960px
+
+$aw_lpm_var_font_color:#D2D2D2
+
+$margin: 16px
+
+
+body
+  margin: 0
+  padding: 0
+  font-size: 12px
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_bkg_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -15px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: $aw_var_default_border_width solid #DFDFDF
+  padding: 5px
+  color: #666666
+  background-color: $aw_var_default_bkg_color
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+
+/* -------------------- Full Horizontal Sections Definition Begin -------------------------------------
+/* * Mixin for full width
+   *
+   *
+@mixin awlpm_mixin_fullwidth_wrappers
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+  h1, h2, h3, h4, h5, h6
+
+/* Landing page major horizontals of full width
+.awlpm_tiny_login_header_horizontal_section
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+  position: fixed
+  z-index: 9999999
+  height: 10px
+  font-family: "Lucida Grande",Tahoma,Verdana
+
+
+.awlpm_header_horizontal_section
+
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+
+  color: $aw_lpm_var_font_color
+  background-color: $aw_var_default_bkg_color
+  border: $aw_var_default_border_width solid red
+
+.awlpm_master_image_horizontal_section
+
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+
+  background-color: $aw_var_default_bkg_color
+  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_master_intro_image.png")
+  border: $aw_var_default_border_width solid green
+
+.awlpm_info_slides_horizontal_section
+
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+  color: #000000
+  background-color: $aw_var_default_bkg_color
+  border: $aw_var_default_border_width solid blue
+  a
+    color: #FFFFFF
+    background-color: #424242
+
+.awlpm_footer_horizontal_section
+  
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+/* -------------------- Full Horizontal Sections Definition End -------------------------------------
+
+/* ----------------------------------------------Generalise-------------------------------------
+
+
+
+@mixin awlpm_mixin_wide_subsections
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: $aw_lpm_var_width_of_details
+
+@mixin awlpm_mixin_shadowed_border($border_rounding, $border_color)
+  -moz-box-shadow: $border_rounding $border_rounding $border_rounding $border_color
+  -webkit-box-shadow: $border_rounding $border_rounding $border_rounding $border_color
+  box-shadow: $border_rounding $border_rounding $border_rounding $border_color
+  -moz-border-radius-bottomleft: $border_rounding
+  -webkit-border-bottom-left-radius: $border_rounding
+  -moz-border-radius-bottomright: $border_rounding
+  -webkit-border-bottom-right-radius: $border_rounding
+
+/* --------------------------------------------Tiny Header----------------------------------
+
+#awlpm_local_sign_in_button 
+  float: right
+  margin: 0 0 0 1px
+  padding: 5px
+  background: #292D31
+  font-size: 9px
+  letter-spacing: 1px
+  text-transform: uppercase
+
+#awlpm_local_sign_in_button a
+  color: #ccc
+/* ----------------------------------------------Header-------------------------------------
+
+#awlpm_header_section
+  /* Make sure it includes the mixin for wide
+  @include awlpm_mixin_wide_subsections
+  padding: 0px 0
+  border: $aw_var_default_border_width solid black
+  padding-top: 40px
+  height: 90px 
+
+#awlpm_header_content_holder
+  width: 100%
+  height: 65px
+  border: $aw_var_default_border_width solid red
+
+#awlpm_header_aw_logo
+  margin-top: 5px
+  margin-left: 250px
+  border: $aw_var_default_border_width solid green
+  height: 50px
+  width: 75px
+  display: inline
+  position: relative
+
+img.awlpm_aw_logo_img
+  height: 50px
+  width: 75px
+
+#awlpm_header_label
+  margin: 0 auto
+  margin-left: 10px
+  font-size: 50px
+  width: 400px
+  height: 50px
+  font-weight: bold
+  color: #444444
+  border: $aw_var_default_border_width solid red
+  display: inline
+
+
+/* ---------------------------------------------- Intro/ForeignAuth section -----------------------------------------
+#awlpm_foreign_auth_section
+  padding: 0px
+  padding-top: 125px
+  height: 275px
+  border: $aw_var_default_border_width solid red
+  position: relative
+
+#awlpm_foreign_auth_highlighter
+  background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_foreign_auth_highlighter.png") no-repeat scroll left top
+  display: block
+  margin: 0 auto
+  padding-top: 22px
+  width: 350px
+  height: 150px
+  position: relative
+  a.awlpm_fb_auth_logo
+    background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_fb_connect.jpg") no-repeat scroll left top
+    display: block
+    margin: 0 auto
+    width: 300px
+    height: 49px
+  a.awlpm_t_auth_logo
+    background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_t_connect.jpg") no-repeat scroll left top
+    display: block
+    margin: 0 auto
+    margin-top: 10px
+    width: 300px
+    height: 49px
+  a.awlpm_fb_auth_logo:hover
+    border: 1px solid #ccc
+    cursor: pointer
+  a.awlpm_t_auth_logo:hover
+    border: 1px solid #ccc
+    cursor: pointer
+  a span
+    display:none
+
+
+/* ----------------------------------------------Homepage Container -------------------------------------
+
+#awlpm_info_grid_container_parent
+  /* Make sure it includes the mixin for wide
+  @include awlpm_mixin_wide_subsections
+  height: 1125px
+  border: $aw_var_default_border_width solid red
+
+#awlpm_info_grid_container_header, #awlpm_info_grid_container_footer
+  height: 20px
+  border: $aw_var_default_border_width solid red
+
+#awlpm_info_grid_container
+  padding: 24px
+  height: 1050px
+  width: 100%
+  border: $aw_var_default_border_width solid red
+  margin-top: 0px
+  border-radius: 10px
+  background: #fff
+  background-image: url("../images/noisepattern.png")
+  border: $aw_var_default_border_width solid #FFFFFF
+  border-radius: 15px 15px 15px 15px
+
+
+.awlpm_info_grid_row
+  width: 100%
+  height: 335px
+  padding-top: 5px
+  padding-bottom: 5px
+  border: $aw_var_default_border_width solid red
+  border-bottom: 1px dotted gray
+
+  h3  
+    font-size: 28px
+    font-weight: bold
+    margin-bottom: 5px
+
+
+.awlpm_updates_grid_row
+  width: 100%
+  height: 335px
+  padding-top: 5px
+  padding-bottom: 5px
+  border: $aw_var_default_border_width solid red
+  border-bottom: 1px dotted gray
+
+  h3  
+    font-size: 28px
+    font-weight: bold
+    margin-bottom: 5px
+
+.awlpm_info_grid_subcontainer_box
+  width: 310px
+  height: 330px
+  margin-right: 5px
+  float: left
+
+  .awlpm_info_display_box
+    width: 215px
+    height: 185px
+    margin: 10px auto
+  img 
+    width: 204px
+    height: 175px
+    border: 1px solid #ccc
+    padding: 5px
+    
+  h3  
+    font-size: 28px
+    font-weight: bold
+    text-align:center
+  p
+    font-size: 20px
+    color: #666
+    text-align:center
+
+
+#awlpm_info_channel_updates_box
+  width:  100%
+  height: 330px
+  
+.awlpm_container_channel_updates_container
+  width: 200px
+  height: 240px
+  float: left
+  margin: 5px
+  border: $aw_var_default_border_width solid #ccc
+
+.awlpm_channel_name
+  margin-left: 15px
+  width:  150px
+  height: 45px
+  border: $aw_var_default_border_width solid red
+  overflow: hidden
+  font-size: 40px
+  color: black
+
+.awlpm_channel_theme_img
+  width:  150px
+  height: 105px
+  margin-left: 15px
+  margin-top: 2px
+  img
+    width: 120px
+    height: 110px
+    border: 1px solid #ccc
+.awlpm_channel_originator
+  width: 150px
+  height: 60px
+  margin: 5px auto
+  display: inline-block
+  border: $aw_var_default_border_width solid green
+  float: left
+.awlpm_channel_originator_img
+  display:inline
+  width: 40px
+  height: 40px
+  margin-left: 10px
+  margin-top: 5px
+  padding-left: 5px
+  float: left
+  img
+    width: 40px
+    height: 40px
+    border: 1px solid #ccc
+    padding: 2px
+.awlpm_channel_originator_name  
+  margin-top: 8px
+  margin-left: 10px
+  padding-left: 8px
+  width: 60px
+  height: 40px
+  display:inline
+  border: $aw_var_default_border_width solid red
+  overflow: hidden
+  float: left
+
+  p
+    font-size: 16px
+    font-weight: bold
+    color: black
+    border: $aw_var_default_border_width solid red
+    overflow: hidden
+
+  
+
+
+
+/* ----------------------------------------------Footer-------------------------------------
+
+#awlpm_footer_section
+  /* Make sure it includes the mixin for wide
+  @include awlpm_mixin_wide_subsections
+  height: 240px
+  border: 0px solid red
+  text-align: left
+  margin: 0px auto
+
+#awlpm_footer_section_div
+  width: 890px
+  height: 240px
+  border: 0px solid red
+  margin-left: 70px
+
+#awlpm_footer_section_div ul
+  float: left
+  padding: 0 20px 0 0
+  width: 190px
+  list-style: none outside none
+  margin-top: 50px
+  &:first
+    margin-left: 30px
+
+.first_ul
+  margin-left: 30px
+
+#awlpm_footer_section_div li
+  color: #ddd
+  font-size: 14px
+  margin: 10px 0
+  &.awlpm_footer_label
+    color: #ffffff
+    font-size: 18px
+    padding: 0 0 10px
+    text-align: left
+  a
+    text-decoration: none
+    color: #ddd
+
+#awlpm_footer_copyright
+  text-align: center
+  font-size: 14px
+  color: #ddd
+
+

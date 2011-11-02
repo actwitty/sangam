@@ -16,32 +16,60 @@ class AuthenticationsController < ApplicationController
   end
 
   def auth_signin_provider
-      provider = params['provider']
-      @profile_page = 1
-      @page_mode="authentications_signin"
+    @key=''
+    @provider=''
+    @uid=''
+    @profile_page = 1
+    @page_mode="authentications_signin"
+    if !params.nil?
+      if !params[:key].nil?
+        @key=params[:key]
+      end
+      if !params[:provider].nil?
+        @provider=params[:provider]
+      end
 
-      Rails.logger.info("[CNTRL][Authentications] Auth Signin Provider")
+      if !params[:uid].nil?
+        @uid=params[:uid]
+      end
+    end
+
+
+  end
+
+  def auth_signup_provider
+      provider = params['provider']
+
+
+      @profile_page = 1
+      @page_mode="authentications_signup"
+
+      Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Called")
 
       uid = params['uid']
-      @welcome_username="user"
-      @welcome_user_picture="TODO some default image"
+
       if !provider.nil? && !uid.nil? && !provider.empty? && !uid.empty?
         authentication = Authentication.find_by_provider_and_uid(provider, uid)
         unless authentication.nil?
           @welcome_username = authentication.foreign_profile.name
           @welcome_user_picture = authentication.foreign_profile.image
+          @user= User.new
+          @key  = params['key']
+          @provider = provider
+          @uid = uid
+          @user.import_foreign_profile_to_user(authentication.foreign_profile)
+
           if @welcome_user_picture.nil?
-            Rails.logger.info("[CNTRL][Authentications][AUTH SIGNIN PVDR] No User Picture From Provider")
+            Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] No User Picture From Provider")
             @welcome_user_picture = "/images/user.png"
           end
-          puts @welcome_user_picture
-          @user_picture = "http://graph.facebook.com/#{uid}/picture/"
+
           Rails.logger.info("[CNTRL][Authentications] Provider picture #{@user_picture}")
         else
-          Rails.logger.info("[CNTRL][Authentications][AUTH SIGNIN PVDR] Authentication fails")
+          Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Authentication fails")
           redirect_to "/"
         end
-        Rails.logger.info("[CNTRL][Authentications][AUTH SIGNIN PVDR] Exiting")
+        Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Exiting")
       end
   end	
 
@@ -77,59 +105,59 @@ class AuthenticationsController < ApplicationController
 
     if already_existing_auth.nil?
       Rails.logger.info("[CNTRL][Authentications] A new foreign auth")
-      if user_signed_in?
-        Rails.logger.info("[CNTRL][Authentications] User is already signed in #{current_user.full_name}")
-        any_existing_auth_for_same_provider = current_user.authentications.find_by_provider(provider)
-        if any_existing_auth_for_same_provider.nil?
-          Rails.logger.info("[CNTRL][Authentications] No existing auth for #{provider} for user")
-          authentication=Authentication.create(:provider=>provider,
-                                               :uid=>uid,
-                                               :token=> omniauth['credentials']['token'],
-                                               :secret=> omniauth['credentials']['secret'],
-                                               :user_id=>current_user.id)
-          data = omniauth['extra']['user_hash']
+        if user_signed_in?
+          Rails.logger.info("[CNTRL][Authentications] User is already signed in #{current_user.full_name}")
+          any_existing_auth_for_same_provider = current_user.authentications.find_by_provider(provider)
+          if any_existing_auth_for_same_provider.nil?
+            Rails.logger.info("[CNTRL][Authentications] No existing auth for #{provider} for user")
+            authentication=Authentication.create(:provider=>provider,
+                                                 :uid=>uid,
+                                                 :token=> omniauth['credentials']['token'],
+                                                 :secret=> omniauth['credentials']['secret'],
+                                                 :user_id=>current_user.id)
+            data = omniauth['extra']['user_hash']
+            unless data.nil?
+              Rails.logger.info("[CNTRL][Authentications] Cache the new foreign profile")
+              authentication.foreign_profile = ForeignProfile.new
+              authentication.foreign_profile.send("import_#{provider}",data)
+            end
+            #redirect back to where you came from
 
+            redirect_to session[:return_to] || '/'
+          else
+            Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")
+            redirect_to session[:return_to] || '/'
+          end
+        else
+          # An existing authentication for no signed in user
+          Rails.logger.info("[CNTRL][Authentications] User is not signed in but auth is new.")
+
+          authentication = Authentication.create( :provider => provider,
+                                                  :uid => uid,
+                                                  :token=> omniauth['credentials']['token'],
+                                                  :secret=> omniauth['credentials']['secret'])
+          data = omniauth['extra']['user_hash']
           unless data.nil?
-            Rails.logger.info("[CNTRL][Authentications] Cache the new foreign profile")
+            Rails.logger.info("[CNTRL][Authentications] New foreign profile to cache for new auth no signin.")
             authentication.foreign_profile = ForeignProfile.new
             authentication.foreign_profile.send("import_#{provider}",data)
           end
-          #redirect back to where you came from
 
-          redirect_to session[:return_to] || '/'
-        else
-          Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")
-          redirect_to session[:return_to] || '/'
-        end
-      else
-        # An existing authentication for no signed in user
-        Rails.logger.info("[CNTRL][Authentications] User is not signed in but auth already exists.")
+          Rails.logger.info("[CNTRL][Authentications] Redirecting to auth signup page.")
+          #if validation does not exist and user is not signed in do not allow access
 
-        authentication = Authentication.create(:provider => provider,
-                                               :uid => uid,
-                                               :token=> omniauth['credentials']['token'],
-                                               :secret=> omniauth['credentials']['secret'])
-        data = omniauth['extra']['user_hash']
-
-        unless data.nil?
-          Rails.logger.info("[CNTRL][Authentications] New foreign profile to cache.")
-          authentication.foreign_profile = ForeignProfile.new
-          authentication.foreign_profile.send("import_#{provider}",data)
-        end
-
-        Rails.logger.info("[CNTRL][Authentications] Redirecting to auth sign in page.")
-        #if validation does not exist and user is not signed in do not allow access
-        redirect_to :controller => 'authentications',
-                    :action => 'auth_signin_provider',
+          redirect_to :controller => 'authentications',
+                      :action => 'auth_signup_provider',
                       :provider => provider,
                       :uid => uid,
                       :key => authentication.salt
-      end
+
+        end
     else
       #save latest auth token
       Rails.logger.info("[CNTRL][Authentications] Renew credentials for an existing auth")
       already_existing_auth.token = omniauth['credentials']['token']
-      already_existing_auth.secret =omniauth['credentials']['secret']
+      already_existing_auth.secret = omniauth['credentials']['secret']
 
       if user_signed_in?
         Rails.logger.info("[CNTRL][Authentications] User already signed in for a new auth.")
@@ -154,7 +182,7 @@ class AuthenticationsController < ApplicationController
           already_existing_auth.save!
 
 
-          data = omniauth['extra']['user_hash']
+         data = omniauth['extra']['user_hash']
           unless data.nil?
             Rails.logger.info("[CNTRL][Authentications] Foreign profile being saved for auth.")
             already_existing_auth.foreign_profile = ForeignProfile.new
@@ -163,7 +191,7 @@ class AuthenticationsController < ApplicationController
 
           Rails.logger.info("[CNTRL][Authentications] Redirecting to auth sign in")
           redirect_to :controller => 'authentications',
-                        :action => 'auth_signin_provider',
+                        :action => 'auth_signup_provider',
                           :provider => provider,
                           :uid => uid,
                           :key => already_existing_auth.salt
