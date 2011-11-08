@@ -144,12 +144,14 @@ class Activity < ActiveRecord::Base
 
         if params[:meta_activity] == false && params[:status] != AppConstants.status_saved
           #create summary
-          summary = Summary.create_summary(:user_id => params[:author_id],:activity_word_id => word_obj.id, :activity_name => params[:activity])
+          summary = Summary.create_summary(:user_id => params[:author_id],:activity_word_id => word_obj.id,
+                                           :activity_name => params[:activity],:summary_category => params[:summary_category])
           if summary.nil?
             Rails.logger.error("Activity => CreateActivity => Summary Creation Failed for #{params.to_s}")
             return nil
           end
           params[:summary_id] = summary.id
+
         end
 
         ###################################### CREATE OR UPDATE ACTIVITY #################################################

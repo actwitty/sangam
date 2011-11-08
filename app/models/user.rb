@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :validatable,:token_authenticatable,
          :lockable , :omniauthable
           #,:devise_create_users
-  attr_accessor :dob_str
+  attr_accessor :dob_str, :gender, :dob, :current_location, :current_geo_lat, :current_geo_long
   # Setup accessible (or protected) attributes for your model
   attr_accessible  :email, :username, :password,
                    :dob, :dob_str, :full_name, :gender,:photo_small_url,
@@ -807,6 +807,8 @@ class User < ActiveRecord::Base
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
   #                     [MANDATORY]
   #    :tags => [{:tag => "jump"}, {:tag => "india"}]
+  #    :summary_category => "pets and animals"  #as defined categories.yml   [OPTIONAL  - But always first time]
+  #
   # OUTPUT => {:post=>{
   #              :text=>"pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
   #              :word=>{:id=>836, :name=>"eating"},
@@ -1209,6 +1211,7 @@ class User < ActiveRecord::Base
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
                              :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
+                             :category => attr.category_data,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
@@ -1817,7 +1820,7 @@ class User < ActiveRecord::Base
       h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
 
     else
-     #pq_document_filter will fill owner_id. so commenting these two lines
+     # pq_document_filter will fill owner_id. so commenting these two lines
      # h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
      # h.delete(:user_id)
       h[:category] = params[:category]
@@ -2035,6 +2038,15 @@ class User < ActiveRecord::Base
     s
   end
 
+  #INPUT => {:summary_id => 123, name => "sports"}
+  def update_summary_category(params)
+    Rails.logger.info("[MODEL] [USER] [update_summary_category] entering  " + params.to_s)
+    params[:user_id] = self.id
+    s = SummaryCategory.update_summary_category(params)
+    Rails.logger.info("[MODEL] [SUMMARY] [update_summary_category] leaving  " + params.to_s)
+    s
+  end
+
   # private methods
   private
 
@@ -2103,11 +2115,21 @@ class User < ActiveRecord::Base
     #All Page => Always with self
     if params[:page_type] == AppConstants.page_state_all
 
+##       Commenting as we did not want contact based all data now
        Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_all => #{params.inspect}")
        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
        user.blank? ? user = [self.id] : user << self.id
        h[:user_id] = user
+ #     Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_all => #{params.inspect}")
 
+       #get all categories of user
+       #find users having similar categories - Ideally based on my high ranked channels
+       #then If number of user is not enough fall back to more generic categories and then to latest updates
+#        category = SummaryCategory.select(:category_type).where(:user_id=> self.id).map(&:category_type)
+#        user = SummaryCategory.select(:user_id).where(:user_id.not_eq => self.id,:category_type=> category).map(&:user_id)
+#        if user.blank? or user.size < AppConstants.max_number_of_users
+#           cat = category_type.split()
+#        end
     end
 
     #USER/ME Page

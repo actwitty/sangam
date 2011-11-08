@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016055216) do
+ActiveRecord::Schema.define(:version => 20111107181630) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -257,7 +257,6 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
     t.string   "locale"
     t.string   "foreign_updated_time"
     t.integer  "authentication_id"
-    t.string   "dob"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -358,9 +357,9 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
     t.decimal  "current_geo_lat"
     t.decimal  "current_geo_long"
     t.integer  "age"
-    t.date     "dob"
-    t.string   "gender"
+    t.string   "sex"
     t.string   "theme"
+    t.date     "dob"
     t.string   "address"
     t.string   "company_name"
     t.string   "phone_number"
@@ -422,6 +421,7 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
     t.text     "theme_data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "category_data"
   end
 
   add_index "summaries", ["activity_name"], :name => "index_summaries_on_activity_name"
@@ -430,6 +430,20 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
   add_index "summaries", ["updated_at"], :name => "index_summaries_on_updated_at"
   add_index "summaries", ["user_id", "activity_word_id"], :name => "index_summaries_on_user_id_and_activity_word_id", :unique => true
   add_index "summaries", ["user_id", "updated_at"], :name => "index_summaries_on_user_id_and_updated_at"
+
+  create_table "summary_categories", :force => true do |t|
+    t.string   "name",          :null => false
+    t.string   "category_type", :null => false
+    t.integer  "summary_id",    :null => false
+    t.integer  "user_id",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "summary_categories", ["category_type"], :name => "index_summary_categories_on_category_type"
+  add_index "summary_categories", ["name"], :name => "index_summary_categories_on_name"
+  add_index "summary_categories", ["summary_id"], :name => "index_summary_categories_on_summary_id", :unique => true
+  add_index "summary_categories", ["user_id"], :name => "index_summary_categories_on_user_id"
 
   create_table "summary_subscribes", :force => true do |t|
     t.integer  "summary_id",    :null => false
@@ -491,6 +505,9 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
@@ -500,11 +517,6 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
     t.boolean  "disable_email"
     t.string   "full_name"
     t.string   "photo_small_url"
-    t.date     "dob"
-    t.string   "gender"
-    t.string   "current_location"
-    t.decimal  "current_geo_lat"
-    t.decimal  "current_geo_long"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token",     :limit => 60
@@ -516,13 +528,13 @@ ActiveRecord::Schema.define(:version => 20111016055216) do
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["full_name"], :name => "index_users_on_full_name"
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
-  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "word_forms", :force => true do |t|
     t.integer  "activity_word_id", :null => false

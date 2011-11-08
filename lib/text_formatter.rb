@@ -214,6 +214,7 @@ module TextFormatter
   def format_theme(theme)
     h = {}
     h = {
+         :id => theme.id,
          :fg_color => theme.fg_color,
          :bg_color => theme.bg_color,
          :document_id => theme.document_id,
@@ -225,6 +226,19 @@ module TextFormatter
         }
     h
   end
+
+  def format_summary_category(category)
+    h = {}
+    h = {
+          :id => category.id,
+          :name => category.name,
+          :type => category.category_type,
+          :user_id => category.user_id,
+          :summary_id => category.summary_id,
+          :time => category.updated_at
+        }
+  end
+
   def format_activity_word(word)
     h = {}
     h = {:id => word.id,

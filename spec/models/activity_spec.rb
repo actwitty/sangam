@@ -1100,7 +1100,44 @@ describe Activity do
        puts s.inspect
        #@u.delete_summary({:summary_id => a3[:post][:summary_id]})
     end
-#    TEST REMOVE ENTITY                                                             ng
+
+    it "should fetch summary category properly" do
+       a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   http://www.youtube.com/watch?222 http://form6.flickr.com/ wow
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },:summary_category => "pets and animals"],
+
+                              :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
+                                            AppConstants.status_public)
+       a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
+                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
+                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
+
+                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
+                                            AppConstants.status_public)
+       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+       a4 = @u.create_activity(:word => "beating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+       s = @u.update_summary_category(:summary_id => a1[:post][:summary_id],:name => "pets and animals")
+
+       puts s.inspect
+       s.should_not be_blank
+
+       s = Summary.where(:id => a1[:post][:summary_id]).first
+       puts s.inspect
+    end
+#    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY
 #    CLEAN GET STREAM
 #    TEST CREATE AND DELETE TAGS - Both hash tags and blog tags
