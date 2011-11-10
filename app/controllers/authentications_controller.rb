@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
     @provider=''
     @uid=''
     @profile_page = 1
-    @page_mode="authentications_signin"
+    @page_mode="authentications_page"
     if !params.nil?
       if !params[:key].nil?
         @key=params[:key]
@@ -42,7 +42,7 @@ class AuthenticationsController < ApplicationController
 
 
       @profile_page = 1
-      @page_mode="authentications_signup"
+      @page_mode="authentications_page"
 
       Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Called")
 

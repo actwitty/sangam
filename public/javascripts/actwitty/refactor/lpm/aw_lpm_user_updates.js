@@ -9,22 +9,15 @@ function aw_get_update_block_html(channel_info){
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
   }
-  var channel_info_html =   '<div class="awlpm_channel_name">' +
-                                '<p>' +
-                                  channel_info.word.name +
-                                '</p>' +
+  var channel_info_html =   '<div class="aw_profile_data_info_header aw_profile_dih_all_subs" id="aw_profile_channel_sports">' +
+                              '<div class="aw_profile_channel_labels">' +
+                                '<span>' + channel_info.word.name + '</span>' +
                               '</div>' +
-                              '<div class="awlpm_channel_theme_img">' +
-                                '<img src="'+ channel_theme + '" />' +
+                              '<div class="aw_profile_channel_user_info">' +
+                                '<img src=" ' + channel_info.user.photo + '">' +
+                                '<span>' + channel_info.user.full_name + '</span>' +
                               '</div>' +
-                              '<div class="awlpm_channel_originator">' +
-                                '<div class="awlpm_channel_originator_img">' +
-                                  '<img src="'+ channel_info.user.photo + '"/>' +
-                                '</div>' +
-                                '<div class="awlpm_channel_originator_name">' +
-                                  '<p>' + channel_info.user.full_name + '</p>' +
-                                '</div>' +
-                              '</div>';
+                            '</div>';
   return channel_info_html;
 }
 

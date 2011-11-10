@@ -1,59 +1,29 @@
-.wrapper.col1
-  #header
-    #header-proxy
-      #top-bar
-        #logo
-          %a{:href => "http://www.actwitty.com"}
-            %img{:height => "40", :src => "/images/alpha/logo_topbar.png"}
-        #searchwrapper
-          %form{:action => ""}
-            %input#username_search.searchbox{:placeholder => "Search People.....", :name=>"s",:type => "text"}
-        #home_page_nav
-          #home_page_settings
-            /for PUBLIC SHOW put the if statement
-            -if user_signed_in? && !if_ghost_user?
-              %a#p-topbar-home{:href => "/home/show?id=#{@current_user.id}"}
-              %a#p-topbar-settings.button
-              .options-menu
-                %ul
-                  %li
-                    %a{:href => "/home/settings"} settings
-                  %li
-                    %a{:href => "/help/show"} help center
-                  %li
-                    %a{:href => "/users/sign_out"} logout
-            /for PUBLIC SHOW put the ghost_user
-            -if user_signed_in? && !if_ghost_user?
-              #top_bar_user_image
-                %a{:href => "/home/show?id=#{@current_user.id}"}
-                  %img#profile_header_user_img{:src => "#{@current_user.photo_small_url}"}/
+#awppm_header_box
+  %img.aw_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_ppm_logo_topbar.png"}
+    /for PUBLIC SHOW put the ghost_user
+    -if user_signed_in? && !if_ghost_user?
+      #awppm_header_user_image
+        %img#aw_js_ppm_header_user_image_click{:src => "#{@current_user.photo_small_url}"}/
+        .awppm_header_options_menu
+          %ul
+            %li
+              %a{:href => "/home/show"} home
+            %li
+              %a{:href => "/home/settings"} settings
+            %li
+              %a{:href => "/help/show"} help center
+            %li
+              %a{:href => "/users/sign_out"} logout
+    %input#awppm_header_search.button_actwitty.red{:type => "button", :value => "Search"}
+      #awppm_header_search_options
+        %input{:name => "search_type", :type => "radio", :value => "channels"}/
+        Channels
+        %input{:name => "search_type", :type => "radio", :value => "people"}/
+        People
+        %input{:placeholder => "Search", :type => "text"}
+              
+            
             
               
             
-/
-  .wrapper.col1
-    #header
-      #top-bar
-        #logo
-          %a{:href => "http://www.actwitty.com"}
-            %img{:height => "50", :src => "/images/alpha/actwitty.png", :width => "120"}
-        #searchwrapper
-          %form{:action => ""}
-            %input#username_search.searchbox{:name => "s", :placedholder => "Search", :type => "text"}
-        #home_page_nav
-          #settings
-            -if user_signed_in?
-              %a#p-topbar-home{:href => "/home/show?id=#{@current_user.id}"}
-              %a.button{:href => "/home/show?id=#{@current_user.id}"}
-                %img#profile_header_user_img{:src => "#{@current_user.photo_small_url}"}/
-              .options-menu
-                %ul
-                  %li
-                    %a{:href => "/home/settings"} settings
-                  %li
-                    %a{:href => "/help/show"} help center
-                  %li
-                    %a{:href => "/users/sign_out"} logout
-      %br.clear/
-    
   

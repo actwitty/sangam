@@ -1,0 +1,108 @@
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+
+
+#awppm_header_box
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+  height: 140px
+  border: $aw_var_default_border_width solid red
+  position: relative
+
+.awppm_chn_logo
+  position: absolute
+  top: 40px
+  left: 10px
+
+#awppm_header_search
+  position: absolute
+  top: 20px
+  right: 60px
+
+#awppm_header_search_options
+  width: 220px
+  height: 70px
+  border: 1px solid #ddd
+  border-radius: 9px
+  position: absolute
+  top: 48px
+  right: 60px
+  padding: 5px 0px 5px 10px
+  display: none
+  input
+    border: 1px solid #ddd
+    height: 25px
+    width: 200px
+    font-size: 14px
+    border-radius: 5px
+    margin-top: 5px
+    -moz-box-shadow: 0 0 8px #ddd
+    -webkit-box-shadow: 0 0 8px #ddd
+    box-shadow: 0 0 8px #ddd
+#awppm_header_user_image
+  height: 50px
+  width: 50px
+  position: absolute
+  top: 20px
+  right: 10px
+  overflow: hidden
+  background: none
+  a img
+    padding-top: 10px
+    width: 40px
+    float: right
+.awppm_header_options_menu
+  position: absolute
+  top: 35px
+  left: 0
+  right: 0
+  display: none
+  z-index: 40000
+  width: 100px
+  margin-left: 0px
+  margin-top: 15px
+  background: #454545
+  border-radius: 0 0 5px 5px
+  -moz-border-radius: 0 0 5px 5px
+  ul
+    list-style: none
+    padding-top: 3px
+    background: #454545
+    margin-top: 0px
+    li
+      display: block
+      padding: 5px 0 5px 0
+      margin-left: -40px
+      a
+        padding: 3px 0px
+        font-size: 14px
+        display: block
+        margin: -6px 0 0 0
+        position: relative
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF',GradientType=0 )
+        color: #ddd
+        text-decoration: none
+        text-align: center
+        zoom: 1
+        span
+          position: absolute
+          bottom: -1px
+          left: 0
+          right: 0
+          height: 1px
+          display: block
+          background: #000
+          z-index: 20
+          display: none
+          zoom: 1
+      &:hover a
+        border-color: #d7dbea
+        color: #fff
+        background: #000
+        span
+          display: block

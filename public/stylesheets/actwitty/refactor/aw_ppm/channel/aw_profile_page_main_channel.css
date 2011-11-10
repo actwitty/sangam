@@ -1,0 +1,436 @@
+/*ActWitty Stylesheet file
+ *File: AW Landing Page Sign In Module
+ *code: AWLPM (awlpm) Actwitty Landing Page Sign In Main
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com */
+/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white;
+}
+
+/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+img {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.justify {
+  text-align: justify;
+}
+
+/* line 30, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.bold {
+  font-weight: bold;
+}
+
+/* line 33, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.center {
+  text-align: center;
+}
+
+/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.right {
+  text-align: right;
+}
+
+/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.nostart {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.clear {
+  clear: both;
+}
+
+/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+br.clear {
+  clear: both;
+  margin-top: -15px;
+}
+
+/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.fl_left {
+  float: left;
+}
+
+/* line 58, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.fl_right {
+  float: right;
+}
+
+/* line 61, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.imgl, .imgr {
+  border: 0px solid #dfdfdf;
+  padding: 5px;
+  color: #666666;
+  background-color: white;
+}
+
+/* line 67, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.imgl {
+  float: left;
+  margin: 0 8px 8px 0;
+  clear: left;
+}
+
+/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.imgr {
+  float: right;
+  margin: 0 0 8px 8px;
+  clear: right;
+}
+
+/******************************************* Common for all Columns main Div's ************************************ */
+/* ----------------------------------------------Wrapper------------------------------------- */
+/* line 85, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+div.awppm_chn_channel_wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+/* line 91, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_column1 {
+  color: #d2d2d2;
+  /*background-color:#33ccff; */
+  background: #363436;
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81; */
+  border: 0px solid red;
+}
+
+/* line 98, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_column2 {
+  color: white;
+  background-color: white;
+  border: 0px solid green;
+}
+
+/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_column3 {
+  color: black;
+  background-color: white;
+  border: 0px solid blue;
+}
+
+/* line 108, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_column4 {
+  color: #ff9900;
+  background-color: #424242;
+  border-top: 1px solid #363631;
+}
+
+/* line 113, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_column5 {
+  color: #ff9900;
+  background-color: #424242;
+  border-top: 1px solid #363631;
+}
+
+/****************************************************************************************************************** */
+/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_input_box_activate {
+  position: absolute;
+  top: 60px;
+  left: 300px;
+}
+
+/* line 131, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.button_classic {
+  font-family: "Yanone Kaffeesatz", arial, serif;
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: 478px;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  text-align: center;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: white;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#eeeeee));
+  background: -moz-linear-gradient(0% 90% 90deg, #eeeeee, white);
+  border-color: #3278be;
+  background: #4195dd;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82));
+  background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd);
+  /*-webkit-transition: all .4s ease-in-out;
+   *-moz-transition: all .4s ease-in-out;
+   *-o-transition: all .4s ease-in-out;
+   *transition: all .4s ease-in-out; */
+}
+/* line 157, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.button_classic:hover {
+  color: #eeeeee;
+  border-color: #3278be;
+  background: #4195dd;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82));
+  background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd);
+}
+/* line 163, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.button_classic:active {
+  background: #4195dd;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#003c82), to(#4195dd));
+  background: -moz-linear-gradient(0% 90% 90deg, #4195dd, #003c82);
+}
+/* line 167, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.button_classic.notransitions {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+/****************************************** User box section for user photo and input box ************************* */
+/* line 175, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_user_box {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  height: auto;
+  margin-bottom: 30px;
+  border: 0px solid blue;
+}
+
+/* line 181, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_user_section {
+  width: 960px;
+  height: auto;
+  margin: auto;
+  border: 0px solid red;
+  position: relative;
+}
+
+/* line 188, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_user_info {
+  height: 150px;
+  width: 200px;
+  border: 1px solid #dddddd;
+  /*margin-left:20px;
+   *margin-top:20px;
+   *margin-bottom:30px; */
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+  /*display:inline-block; */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* line 203, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_user_img {
+  margin-top: 40px;
+}
+
+/* line 206, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_user_info span {
+  color: #555555;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* line 211, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_input_box_wrapper {
+  width: 630px;
+  min-height: 200px;
+  margin-left: 100px;
+  /*margin-top:-100px; */
+  border: 0px solid red;
+  display: inline-block;
+}
+
+/******************************************** ActWitty Data Section ********************************* */
+/* line 221, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_data_wrapper {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  height: auto;
+  min-height: 900px;
+  margin-top: 20px;
+  border: 0px solid red;
+}
+
+/* line 228, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_data_box {
+  height: auto;
+  margin-top: 20px;
+  width: 750px;
+  border: 0px solid blue;
+  float: left;
+}
+
+/* line 235, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_dyn_info {
+  height: 300px;
+  width: 200px;
+  margin-left: 20px;
+  margin-top: 60px;
+  border: 1px solid #dddddd;
+  float: left;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 3px #dddddd;
+  -webkit-box-shadow: 0 0 3px #dddddd;
+  box-shadow: 0 0 3px #dddddd;
+  padding: 0 auto;
+}
+/* line 247, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_dyn_info h5 {
+  background: #2f4f4f;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 256, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+#awppm_chn_sponsored_section {
+  background-image: url("../images/deal3.png");
+  width: 100%;
+  height: 280px;
+  border: 0px solid red;
+  margin-top: 0px;
+}
+
+/* line 263, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section {
+  min-height: 160px;
+  height: auto;
+  border: 1px solid #dddddd;
+  margin-top: 40px;
+  position: relative;
+  -moz-box-shadow: 0 0 5px #dddddd;
+  -webkit-box-shadow: 0 0 5px #dddddd;
+  box-shadow: 0 0 5px #dddddd;
+}
+
+/* line 274, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_label {
+  height: 30px;
+  width: 100%;
+  background: #e5e5e5;
+  color: #333333;
+  font-size: 16px;
+}
+/* line 280, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_label span {
+  color: #333333;
+  font-size: 20px;
+  padding: 8px;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.6);
+}
+
+/* line 286, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_info_header {
+  width: 170px;
+  height: 100px;
+  border: 1px solid black;
+  /*float:left; */
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 15px;
+  position: relative;
+}
+
+/* for all and subscribed channels, we will have a slightly bigger size */
+/* line 298, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_dih_all_subs {
+  height: 140px;
+}
+
+/* line 301, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_labels {
+  width: 100%;
+  height: 18px;
+  position: absolute;
+  top: 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* line 312, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_info_more {
+  width: 50px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* line 322, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_channels_box {
+  width: 100%;
+  height: auto;
+}
+
+/* line 326, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_user_info {
+  width: 100%;
+  height: 40px;
+  border: 0px solid red;
+  position: absolute;
+  bottom: 0px;
+  background: black;
+  background: rgba(0, 0, 0, 0.6);
+}
+/* line 334, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_user_info img {
+  height: 40px;
+  vertical-align: middle;
+}
+/* line 337, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_channel_user_info span {
+  color: white;
+  font-size: 14px;
+}
+
+/* line 341, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_info {
+  width: 230px;
+  height: 130px;
+  border: 1px solid #dddddd;
+  position: absolute;
+  left: 130px;
+  top: 100px;
+  -moz-box-shadow: 0 0 5px #dddddd;
+  -webkit-box-shadow: 0 0 5px #dddddd;
+  box-shadow: 0 0 5px #dddddd;
+  z-index: 10;
+  background-image: url("../images/grey_texture.png");
+  display: none;
+}
+
+/* line 355, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+div.awppm_chn_data_info_header:hover div {
+  display: block;
+}

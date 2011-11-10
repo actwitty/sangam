@@ -42,6 +42,7 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
   aw_lib_console_log("debug", "stream html handle docs called");
   docs_box= $("#" + box_id);
   docs_view_all = $("#" + box_id + " div.p-awp-view-all-images-div");
+  //docs_view_all = $("#" + box_id + " div.post_attachments_view_all");
   if ( stream.documents &&  stream.documents.count ){
     var ul_box = $("#" + box_id);
     
@@ -51,6 +52,7 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
     }else{
       if(view_all_id != ""){
         $("#"+view_all_id).html('View All ' + stream.documents.array.length + ' Images');
+        //$("#"+view_all_id).html('<span>View All'+ stream.documents.array.length + 'Images</span>');  
       }
     }
 
@@ -71,23 +73,31 @@ function handle_stream_docs(type, box_id, stream,view_all_id){
         if(i>6){
           var box_html = '<div class="p-awp-view-attachment-inner-box hide_it" id="' + inner_box_id + '">' +
                    '</div>';
+          /*var box_html = '<a rel="fnc_group_'+ box_id +'" class="hide_it" href="' + attachment.url + '" title="' + caption  + '" >' + 
+                  '<img alt="" src="'+ thumb_nail + '"   width="60" alt="" />' +
+                  image_theme_selector +
+                '</a>';*/
         }else{
           var box_html = '<div class="p-awp-view-attachment-inner-box" id="' + inner_box_id + '">' +
                    '</div>';
+          /*var box_html = '<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '" >' + 
+                  '<img alt="" src="'+ thumb_nail + '"   width="60" alt="" />' +
+                  image_theme_selector +
+                '</a>';   */       
         }
         ul_box.append(box_html);
         var attachment_box = $("#" + inner_box_id);
-      
+     
         var image_theme_selector = "";
         if( stream.post.user.id == aw_lib_get_session_owner_id()){
           image_theme_selector = '<input type="hidden" class="js_theme_doc_id" value="' + attachment.id + '" />' +
                                  '<input type="hidden" class="js_theme_user_id" value="' + stream.post.user.id + '" />';
         }
-
         var html='<a rel="fnc_group_'+ box_id +'" href="' + attachment.url + '" title="' + caption  + '" >' + 
                   '<img alt="" src="'+ thumb_nail + '"   width="60" alt="" />' +
                   image_theme_selector +
                 '</a>'; 
+        
         if(aw_lib_get_session_owner_id() == stream.post.user.id){
           var close_html = '<div class="delete-image-box">' +
                             '<div class="delete-image-cntrl js_remove_attached_doc" id="' + attachment.id + '" />' +
@@ -199,6 +209,7 @@ function handle_like_campaign(div_id, stream){
   div.append(html);
   like_count_div.append(get_campaign_likes_label(total_count));
 }
+
 /*
  * Show all users in a campaign
  */
@@ -215,6 +226,8 @@ function aw_render_like_internal( like, div_id ){
               '</div>';
   return html;
 }
+
+
 function show_all_stream_campaigns(likes, modal_win_id){
   
   var id = modal_win_id + '_modal_div';
@@ -304,7 +317,13 @@ function handle_stream_text( box_id, post_text){
 function handle_stream_location(box_id, location){
      var div = $("#" + box_id);
      if ( location && location.name && location.name.length){
-           var html = '<a href="/location_page?location_id=' + location.id + '">' +
+
+           var html = '<img src="/images/alpha/at.png" width="10"/>'+
+                      '<a href="/location_page?location_id=' + location.id + '">' +
+                        '<span class="tl_post_location">'+location.name+'</span>'+
+                      '</a>';
+
+           var html2 = '<a href="/location_page?location_id=' + location.id + '">' +
                      '<span class="p-awp-location-name" > @ ' + 
                         location.name +
                      '</span>' +
@@ -398,18 +417,33 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
   var comment_box_id =  div_id + "_" + comment.id;
   var close_box_id =  comment_box_id + '_close'; 
   var comment_id = 'comment_list_' + comment.id;
+  //var comments_list = comments_div_id+ "_comment_list";
+  var comments_list_div = $("#"+div_id+"_comment_list");
 
 
-  var html = '<div class="p-awp-comment" id="' + comment_id + '">' +
+  /* NEW_LAYOUT_V1 */
+  var html = '<li class="comment_odd" id="' + comment_id + '">'+
+               /* close box */
+               '<div class="p-st-comment-close-section" id="'+ close_box_id +'">' +
+               '</div>' +
+               '<div class="author">'+
+                 '<img class="avatar" src="'+comment.user.photo+'" width="32" height="32" alt="" />'+
+               '</div>'+
+               '<p class="comment-text">'+
+                 '<a class="comment_user_name" href="/home/show?id='+comment.user.id+'">'+
+                    comment.user.full_name +
+                  '</a> '+
+                   comment.text+
+                '</p>'+
+               '<div class="submitdate">'+ comment.time +'</div>'+
+              '</li>';
+                               
+
+  var html2 = '<div class="p-awp-comment" id="' + comment_id + '">' +
                     /* close box */
                   '<div class="p-st-comment-close-section" id="'+ close_box_id +'">' +
                   '</div>' +
-
-                  /*'<div class="p-awp-close-section" id="'+ close_box_id +'">' +
-                      '<div class="p-awp-close js_stream_delete_btn">' +
-                      '</div>' +
-                   '</div>'+
-                  */
+                  
                   '<div class="author">'+
                     '<div class="p-st-comment-actor-desc">'+
                         '<div class="p-st-comment-submitdate">'+
@@ -436,7 +470,7 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
                   '<div class="clearing"></div>'+
                 '</div>';
                 
-      div.append(html);
+      comments_list_div.append(html);
       handle_comment_close_box(close_box_id, 
                                comment, 
                                comment_post_id, 
@@ -453,11 +487,11 @@ function handle_stream_single_comment(comment, div_id, comment_post_id, current_
  */
 function setup_comment_handling(all_box_id, box_id, postid, comment_count){
   var comment_show_all_id = box_id + '_show_all';
-  var html = '<span class="view-comments js_show_all_comment_btn actwitty_button_font" id=' + comment_show_all_id + '>' +
+  /*var html = '<span class="view-comments js_show_all_comment_btn actwitty_button_font" id=' + comment_show_all_id + '>' +
                 get_comment_head_label(comment_count) +
              '</span>';
   $("#" + all_box_id).html(html);  
-
+  */
   var show_all_json = {post_id:postid,
                       div_id:box_id,
                       all_id:comment_show_all_id,
@@ -473,6 +507,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
   var comments_count=0;
   var comments_div_id = the_big_comment_show_all_json[comment_show_all_id].div_id;
   var div = $("#" + comments_div_id);
+  // make shift: this needs to be used in handle_comment function also
+  var comments_list = comments_div_id+ "_comment_list";
   div.html("");
   var add_new_btn_id = 'COMMENT_ADD_NEW_BTN_' + post_id;
   var add_new_textarea_id = 'COMMENT_ADD_NEW_TEXT_' + post_id;
@@ -483,7 +519,8 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                                 post_id:post_id,
                                 text_id:add_new_textarea_id,
                                 div_id:comments_div_id,
-                                all_id:comment_show_all_id
+                                all_id:comment_show_all_id,
+                                list_id:comments_list
                              };
   the_big_comment_add_json[add_new_btn_id] = add_new_comment_json;
 
@@ -492,9 +529,17 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
     comments_count = comments.length;
   }
 
-
-  
-    var html = '<div class="post-comment">'+
+  /* NEW_LAYOUT_V1 */
+  var html = '<div class="post-comment" >'+
+                 '<div class="submit-comment">'+
+                   '<input type="text" name="comment" id="'+add_new_textarea_id+'" class="add-comment-text" >'+
+                   '<input type="submit" value="Post Comment" class="button_actwitty gray actwitty_button_font post-comment-btn btn-comments" id="' + add_new_btn_id + '"/>'+
+                 '</div>'+
+                '</div>'+
+                '<ul class="commentlist" id="'+comments_list+'">'+
+                '</ul>';
+   
+    var html1 = '<div class="post-comment">'+
                     '<div class="submit-comment" >'+
                       '<input type="text" name="comment" class="add-comment-text p-st-comment-text-box" id="' + add_new_textarea_id + '" >'+
                       '<input type="submit" value="Post Comment" class="button_actwitty blue js_add_new_comment post-comment-btn actwitty_button_font " id="' + add_new_btn_id + '"/>' +
@@ -502,18 +547,6 @@ function show_all_stream_comments(comments, post_id, current_user_id, comment_sh
                     '</div>'+
                 '</div> ';
 
-   /* add new comments */
-    var html2 = 
-               '<div class="p-st-comment-new">' +
-                  '<div class="stream_comment_text_area_box">' +
-                    '<textarea class="p-st-comment-text-box" rows="2" cols="20" maxlength="200" placeholder="New Comment" id="' + add_new_textarea_id + '" >' +
-                    '</textarea>' +
-                  '</div>' +
-                  '<div class="stream_comment_text_area_box_btn_box">' +
-                    '<input type="button"  value="Post" class="js_add_new_comment p-st-comment-add-btn actwitty_button_font" id="' + add_new_btn_id + '"/>' +
-                  '</div>' +
-               '</div>'; 
-    //div.append(html);
     div.html(html);
 
 
@@ -665,6 +698,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
  
   var like_text_id = campaign_box_id + "_span";
 
+  var date_js = Date.parse('t');
+  var time_js = new Date().toString('HH:mm tt');
   var external_shares="";
   var external_icon_shares="";
   var subtitle = "";
@@ -694,7 +729,115 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
   var stream_ele_id = get_stream_ele_id(post.id);
   aw_lib_console_log("debug", "rendering the stream");
   var str = aw_lib_get_trim_name( post.word.name, 45);
-  var html = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
+
+  /********************************************************************************************************/
+   var html= '<li class="tl-post" id="' + stream_ele_id + '" value="' + post.id + '">'+
+                '<div class="tl-entity">'+
+                    '<div class="tl-entity-right">'+
+                        '<img class="tl-post-img" src="'+post.user.photo +'">'+
+                        '<div class="tl-entity-post-info">'+
+                          '<a href="#">'+post.user.full_name+'</a>'+
+                          '<span>20th march 2011</span>'+
+                          '<a href="#"><span class="tl_stream_channel_name">'+ str + '</span></a>'+
+                          '<span class="delete-post">X</span>'+
+                        '</div>'+
+
+                        /* Post Subtitle Content */
+                        '<div class="tl-post-header" id="'+subtitle_box_id+'">'+
+                          '<span class="tl-post-title">'+subtitle+'</span>'+
+                        '</div>'+
+
+                        /* Post Location Content */
+                        '<div class="tl_post_location_sect" id="'+ location_box_id +'">'+
+                        '</div>'+
+
+                        /* Post Text Content*/
+                        '<div class="tl-post-content" id="' + text_box_id + '">'+
+                        '</div>'+
+                        
+                        /* Post Attachments */
+                        /*'<div class="post_attachments" id="' + doc_box_id + '">'+
+                          '<img src="/images/alpha/sample_images/1.png" width="100"/>'+
+                          '<div class="post_attachments_view_all">'+
+                            '<span>View All 8 Images</span>'+
+                          '</div>'+
+                        '</div>'+*/
+                        '<div style="z-index:1;" class="p-awp-view-attachment" id="' + doc_box_id + '" >' +
+                          '<div class="p-awp-view-all-images-div">' +
+                            '<span id="'+ view_all_image_id +'">View All Images</span>'+
+                          '</div>' +
+                        '</div>' +
+
+                        
+                        /* Post Attachments in form of videos (CSS for both attachment/vidoes shud remain same)*/
+                        /*'<div class="post_attachments" id="' + video_doc_box_id + '">'+
+                          '<img src="/images/alpha/sample_images/1.png" width="100"/>'+
+                          '<div class="post_attachments_view_all">'+
+                            '<span>View All 8 Images</span>'+
+                          '</div>'+
+                        '</div>'+*/
+                        '<div style="z-index:1;" class="p-awp-view-video-attachment" id="' + video_doc_box_id + '" >' +
+                        '</div>' +
+
+
+                        /* Post actions section */
+                        '<div class="post-actions">'+
+                          '<input id="'+post_operations_id+'" type="hidden" value="'+ action_box_id + '">'+
+                          
+                          '<div class="js_stream_enrich_btn post_mentions">'+
+                            '<div class="post_mentions_img">'+
+                            '</div>'+
+                            '<div class="post_mentions_count">' + get_total_share_count(stream) +
+                            '</div>'+
+                          '</div>'+
+
+                          '<div class="post_like">'+
+                            '<div class="post_like_img">'+
+                            '</div>'+
+                            '<div class="post_like_count">1'+
+                            '</div>'+
+                          '</div>'+
+                          '<div class="post_share js_socialize_minimize">'+
+                            '<div class="post_share_img">'+
+                            '</div>'+
+                            '<div class="post_share_count">'+ get_total_share_count(stream) +
+                            '</div>'+
+                          '</div>'+
+                          '<div class="post_comment js_show_all_comment_btn" id="' + comment_show_all_id + '">'+
+                            '<div class="post_comment_img">'+
+                            '</div>'+
+                            '<div class="post_comment_count">1'+
+                            '</div>'+
+                          '</div> '+
+                          
+                        '</div>'+
+                        
+                        external_shares + 
+
+                        '<div class="comments-label">'+
+                          '<span>Comments</span>'+
+                        '</div>'+
+                        
+
+                        /* Post comments */
+                        '<div class="p-awp-comments-section" id="' + comment_box_id + '" >' +
+                        '</div>' +
+                               
+                    '</div>'+
+                '</div>'+
+              '</li>';
+         
+
+
+
+
+
+
+  /********************************************************************************************************/
+
+
+  /********************************************************************************************************/
+  var html2 = '<div id="' + stream_ele_id + '" class="p-aw-post" value="' + post.id + '">' +
                    '<div class="p-awp-close-section">'+
                       '<div class="p-awp-close js_stream_delete_btn">' +
                       '</div>' +
@@ -727,21 +870,13 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                    '<div class="p-awp-post-info">' +
                       '<div class="p-awp-post-contents">'+
                       '<div class="p-awp-subtitle" id="'+subtitle_box_id+'">'+
-                        /*
-                        '<a href="/location_page?location_id=' + stream.location.id + '">' +
-                          '<span class="p-awp-location-name" >' + 
-                            '@' + stream.location.name +
-                          '</span>' +
-                        '</a>' +
-                        */
+                        
                         '<a href="/view?id=' + post.id + '">' +
                           '<span class="p-awp-subtitle-name">' + subtitle +'</span>' +
                         '</a>' +
                       '</div>'+
                       '<div class="p-awp-date">'+
-                        '<span class="p-awp-date-content">' + 
-                          '<abbr class="timeago" title="' + stream.post.time + '"></abbr>' +
-                        '</span>' +
+                        '<span class="p-awp-date-content">' + time_js + ' '+date_js.toString("dddd, dd MMMM yyyy") + '</span>' +
                       '</div>'+
                       '<div class="p-awp-content">'+
                         '<div class="quote">'+
@@ -784,7 +919,6 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                         '<div class="js_stream_edit_btn p-awp-post-edit hover_point button_actwitty actwitty_button_font red"> Edit </div> '+
                         '<div class="js_stream_publish_btn p-awp-post-publish hover_point button_actwitty actwitty_button_font green"> Publish </div> '+
                         '<div class="p-awp-post-like" id="' + campaign_box_id + '">'+'</div>' +
-                        //'<div class="js_socialize_minimize p-awp-post-mentions hover_point"> Share </div> '+ 
 
                         '<div class="p-awp-post-comments hover_point js_show_all_comment_btn button_actwitty blue actwitty_button_font" id="' + comment_show_all_id + '">' 
                         + get_comment_head_label(stream.comments.count)+ '</div> ' +
@@ -793,7 +927,6 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                    
                     
 
-                    //external_icon_shares +
 
                     /* Post campaigns */
                     '<div class="p-awp-view-campaign" id="' + campaign_box_id + '" >' +
@@ -806,23 +939,32 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                     '</div>' +
 
               '</div>'; /* div class: p-aw-post*/
+
+  /********************************************************************************************************/
+
+  
   if(prepend == true){
     streams_box.prepend(html);
   }else{
     streams_box.append(html);
   }
+  
   if(!subtitle) {
     $("#"+subtitle_box_id).hide();
   }
-
+  
   aw_lib_console_log("debug", "stream html added");
-  handle_stream_actions(action_box_id, stream, current_user_id,post_operations_id,like_text_id);
+  
+  /* NEW_LAYOUT_V1:  there will be no draft messages, so no need of Edit And Publish */
+  //handle_stream_actions(action_box_id, stream, current_user_id,post_operations_id,like_text_id);
   handle_stream_text(text_box_id, stream.post.text);
 
   handle_stream_location(location_box_id, stream.location);
   handle_stream_docs("image", doc_box_id, stream,view_all_image_id);
   handle_stream_docs("video", video_doc_box_id, stream,"");
-  
+ 
+
+  /* NEW_LAYOUT_V1: there will be no draft messages, so comments/likes will be shown in every stream post */
   if( post.status == 2){
     setup_comment_handling(comment_box_show_all_div_id,
                            comment_box_id,  
@@ -832,8 +974,8 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
     // this like will have to be handled gracefully from html/css perspective
     handle_stream_campaign(campaign_box_id, like_text_id,stream,comment_show_all_id); 
   }
-  //setup_readmore("div#"+ text_box_id + " p",250); /* read more for content with character slice at 100 */
-
+  //setup_readmore("div#"+ text_box_id + " p",250); 
+  /*
   
 
 
@@ -847,6 +989,7 @@ function create_and_add_stream(streams_box, stream, current_user_id, prepend){
                                           mentions_state:false
                                         };
   append_entity_delete(post.id);
+  */
 
 }
 
@@ -897,7 +1040,8 @@ function append_stream(owner_id, current_user_id){
           if(data.length){
             $.each(data, function(i,stream){
               if( stream ){
-                create_and_add_stream($("#streams_list"),stream , current_user_id);
+                //create_and_add_stream($("#streams_list"),stream , current_user_id);
+                create_and_add_stream($(".list"),stream , current_user_id);
                 $("#more_streams_cookie").val(stream.post.time);
               } 
 
@@ -911,7 +1055,6 @@ function append_stream(owner_id, current_user_id){
             }
             //aw_lib_alert('No streams to show');
           }
-          $("abbr.timeago").timeago();
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown) {
@@ -999,6 +1142,8 @@ function delete_entity_from_post(post_id, entity_id){
 
 //#INPUT => activity_id => 123
 function show_all_comments(post_id, all_id){
+    alert(post_id);
+    alert(all_id);
     var current_user_id=$('#session_owner_id').attr("value");
     $.ajax({
         url: '/home/get_all_comments.json',
@@ -1208,6 +1353,7 @@ $(document).ready(function(){
    */
   $('.js_add_new_comment').live('click', function(){
     //the_big_comment_count_json
+    alert("adding new comment");
     var add_json = the_big_comment_add_json[$(this).attr("id")];
     if(add_json){
       if( !$("#" + add_json.text_id).val() || jQuery.trim($("#" + add_json.text_id).val()) == "" ){
@@ -1306,6 +1452,7 @@ $(document).ready(function(){
    * Stream show all button clicked
    */
   $('.js_show_all_comment_btn').live('click', function(){
+    alert("showing comment");
     var all_json = the_big_comment_show_all_json[$(this).attr("id")];
     if(all_json){
        show_all_comments(all_json.post_id, $(this).attr("id"));

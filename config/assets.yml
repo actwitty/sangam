@@ -20,15 +20,21 @@ javascripts:
     - public/javascripts/plugins/rails.validations.js
     - public/javascripts/plugins/rails.validations.custom.js
     - public/javascripts/cal.js
-  profile:
+    - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
+  profile_main:
+    - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
+    - public/javascripts/actwitty/refactor/ppm/header/aw_ppm_header_main.js
+    - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_location.js
+    - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_main.js
+    - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.js
+    - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.full.js
+    - public/javascripts/actwitty/refactor/ppm/externals/plupload/jquery.ui.plupload/jquery.ui.plupload.js
+  profile_main_extra:
     - public/fancybox/jquery.mousewheel-3.0.4.pack.js
     - public/fancybox/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/plugins/jquery.elastic.source.js
     - public/javascripts/plugins/jquery.timeago.js
     - public/javascripts/plugins/date.js
-    - public/javascripts/plupload/plupload.js
-    - public/javascripts/plupload/plupload.full.js
-    - public/javascripts/plupload/jquery.ui.plupload/jquery.ui.plupload.js
     - public/javascripts/plugins/actwitty-custom.js
     - public/javascripts/plugins/jquery.alphanumeric.pack.js
     - public/javascripts/plugins/expander_readmore.js
@@ -64,7 +70,6 @@ javascripts:
     - public/javascripts/actwitty/entity_page.js
     - public/javascripts/actwitty/channel_page.js
     - public/javascripts/actwitty/location_page.js
-    - public/javascripts/actwitty/profile_main.js
     - public/javascripts/actwitty/profile_people.js
     - public/javascripts/actwitty/profile_images.js
     - public/javascripts/actwitty/profile_videos.js
@@ -98,12 +103,24 @@ javascripts:
 
 stylesheets:
   defaults:
-    - public/stylesheets/actwitty/alpha/actwitty_buttons.css
-    - public/stylesheets/actwitty/alpha/home_layout.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_modal_boxes.css
+  landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_forgot_password.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/external/simpleform/simple_form.css
+  profile_pages:
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.css
+  profile_pages_externals:
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery.autocomplete.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/thickbox.css
+  extras:
     - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css
     - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
@@ -111,21 +128,14 @@ stylesheets:
     - public/stylesheets/actwitty/alpha/comments-streams.css
     - public/stylesheets/actwitty/alpha/campaign-streams.css
     - public/stylesheets/actwitty/alpha/share-streams.css
-    - public/stylesheets/actwitty/alpha/modals.css
     - public/stylesheets/actwitty/alpha/boxer.css
     - public/stylesheets/actwitty/alpha/jquery.fancybox-1.3.4.css
-    - public/stylesheets/plupload/jquery.ui.plupload.css
-    - public/stylesheets/plupload/jquery.plupload.queue.css
-    - public/stylesheets/actwitty/signin.css
     - public/stylesheets/actwitty/about.css
-    - public/stylesheets/actwitty/profile.css
     - public/stylesheets/actwitty/validations.css
     - public/stylesheets/actwitty/simple_form.css
     - public/stylesheets/actwitty/image_scroll.css
     - public/stylesheets/actwitty/alpha/main_page_user.css
     - public/stylesheets/actwitty/alpha/actwitty_home_page.css
-    - public/stylesheets/plugins/jquery-autocomplete/jquery.autocomplete.css
-    - public/stylesheets/plugins/jquery-autocomplete/lib/thickbox.css
     - public/stylesheets/actwitty/alpha/settings.css
     - public/stylesheets/actwitty/alpha/fb_friends.css
 
