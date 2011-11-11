@@ -9,6 +9,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: summaries
@@ -29,5 +30,6 @@ end
 #  theme_data            :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  category_data         :text
 #
 

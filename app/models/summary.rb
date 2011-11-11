@@ -7,6 +7,7 @@ class Summary < ActiveRecord::Base
   serialize :tag_array,       Array
   serialize :social_counters_array, Array
   serialize :theme_data,      Hash
+  serialize :category_data,      Hash
 
   has_many    :activities, :order => "updated_at DESC"
 
@@ -22,6 +23,8 @@ class Summary < ActiveRecord::Base
 
   has_many    :summary_subscribes
 
+  has_one     :summary_category
+
   belongs_to  :user, :touch => true
   belongs_to  :activity_word, :touch => true
   belongs_to  :theme
@@ -35,18 +38,20 @@ class Summary < ActiveRecord::Base
 
   before_destroy :ensure_safe_destroy
 
-  after_destroy  :ensure_destroy_of_theme_and_summary_subscribe
+  after_destroy  :ensure_destroy_of_associations
 
 
   public
 
     #need to destroy the associations this way as summary deletion is reference counter based. So  if summary
-    #does not get deleted, associations will be deleted with dependent => destroy/delete. So using after_destroy
-    def ensure_destroy_of_theme_and_summary_subscribe
-      Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_theme_and_summary_subscribe] entering #{self.inspect}")
-      SummarySubscribe.destroy_all(:summary_id => self.id)
-      Theme.delete_all(:summary_id => self.id)
-      Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_theme_and_summary_subscribe] Leaving")
+    #does not get deleted, associations will be deleted with dependent => destroy/delete.
+    #So using after_destroy rather than making the associations dependent =>destroy/delete
+    def ensure_destroy_of_associations
+      Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_associations] entering #{self.inspect}")
+      SummarySubscribe.destroy_all(:summary_id => self.id)  #destroy_all as need to update contacts
+      Theme.delete_all(:summary_id => self.id)  #deleta_all as no associations
+      SummaryCategory.delete_all(:summary_id => self.id)  #deleta_all as no associations
+      Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_associations] Leaving")
     end
 
 
@@ -161,7 +166,7 @@ class Summary < ActiveRecord::Base
       include TextFormatter
       include QueryPlanner
 
-      #INPUT => :activity_word_id => 123, :user_id => 123, :activity_name => "eating""
+      #INPUT => :activity_word_id => 123, :user_id => 123, :activity_name => "eating"", :summary_category => "sports"
       def create_summary(params)
 
          summary = Summary.create!(:activity_word_id => params[:activity_word_id], :user_id => params[:user_id],
@@ -172,7 +177,31 @@ class Summary < ActiveRecord::Base
                                 :summary_id => summary.id,
                                 :author_id => summary.user_id
                                 )
-         summary.theme_data = format_theme(a) if !a.nil?
+         #this gets updated in create_activity..
+         summary.theme_data = format_theme(a) if !a.blank?
+
+         #create category of summary
+         if summary.category_data.blank?
+
+           params[:summary_category] = AppConstants.default_category if params[:summary_category].blank?
+
+           category = SummaryCategory.create_summary_category(:summary_id => summary.id, :name => params[:summary_category])
+
+           if category.blank?
+             Rails.logger.error("[MODEL] [SUMMARY] [CREATE_SUMMARY] summary category creation failed #{params.inspect}")
+             #delete summary if it is created first time
+             if summary.activities.size == 0
+               destroy_all(:id => summary.id)
+               Rails.logger.error("[MODEL] [SUMMARY] [CREATE_SUMMARY] summary delete as category invalid")
+             end
+             return nil
+           end
+           summary.category_data = format_summary_category(category) if !category.blank?
+         end
+
+         #update data here itself..dont wait to get it finished in create_activity
+         summary.update_attributes!(summary.attributes)
+
          return summary
       rescue => e
 
@@ -208,6 +237,7 @@ class Summary < ActiveRecord::Base
           return {}
         end
 
+        #delete all activities.. summary will be deleted at last
         Activity.destroy_all(:summary_id => params[:summary_id])
 
         Rails.logger.info("[MODEL] [SUMMARY] [delete_summary] leaving  " + params.to_s)
@@ -375,6 +405,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: summaries
@@ -395,5 +426,6 @@ end
 #  theme_data            :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  category_data         :text
 #
 

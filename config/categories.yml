@@ -1,0 +1,40 @@
+sports:
+  type: /sports
+cars:
+  type: /cars
+entertainment:
+  type: /entertainment
+toys and games:
+  type: /games
+fashion and style:
+  type: /fashion
+nonprofits:
+  type: /nonprofit
+stories:
+  type: /stories
+technology:
+  type: /technology
+culture and society:
+  type: /culture
+pets and animals:
+  type: /animals
+business:
+  type: /business
+health:
+  type: /health
+food and drink:
+  type: /food
+books and articles:
+  type: /book
+arts and design:
+  type: /art
+travel and places:
+  type: /travel
+celebrations:
+  type: /celebration
+home:
+  type: /home
+education:
+  type: /eductaion
+hobbies and interest:
+  type: /interest

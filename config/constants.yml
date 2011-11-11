@@ -30,6 +30,7 @@ development: &default
   max_number_of_a_type_in_summmary:     6
 
   max_number_of_summmary:               50
+  max_number_of_users:                  50
 
 
   default_comment_string:               "Comment"
@@ -202,6 +203,21 @@ development: &default
 
   #FOR PUBLIC SHOW
   ghost_user_email:                   "administrator@actwitty.com"
+
+  #FOR SUMMARY CATEGORY
+  category_min_id:                    1
+  category_max_id:                    99999
+
+  sub_category_min_id:                1000000
+  sub_category_max_id:                9999999
+
+  category_min_id:                    100000000
+  category_max_id:                    999999999
+
+  category_name_length:               255
+  category_type_length:               255
+
+  default_category:                   "stories"
 
 production:
   <<: *default

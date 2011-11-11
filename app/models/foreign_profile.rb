@@ -1,28 +1,3 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: foreign_profiles
-#
-#  id                   :integer         not null, primary key
-#  name                 :string(255)
-#  screen_name          :string(255)
-#  first_name           :string(255)
-#  last_name            :string(255)
-#  dob                  :string(255)
-#  image                :string(255)
-#  url                  :string(255)
-#  gender               :string(255)
-#  email                :string(255)
-#  hometown             :string(255)
-#  location             :string(255)
-#  timezone             :float
-#  locale               :string(255)
-#  foreign_updated_time :string(255)
-#  authentication_id    :integer
-#  created_at           :datetime
-#  updated_at           :datetime
-#
-
 class ForeignProfile < ActiveRecord::Base
   belongs_to :authentication
 
@@ -67,3 +42,27 @@ class ForeignProfile < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: foreign_profiles
+#
+#  id                   :integer         not null, primary key
+#  name                 :string(255)
+#  screen_name          :string(255)
+#  first_name           :string(255)
+#  last_name            :string(255)
+#  image                :string(255)
+#  url                  :string(255)
+#  gender               :string(255)
+#  email                :string(255)
+#  hometown             :string(255)
+#  location             :string(255)
+#  timezone             :float
+#  locale               :string(255)
+#  foreign_updated_time :string(255)
+#  authentication_id    :integer
+#  created_at           :datetime
+#  updated_at           :datetime
+#
+

@@ -85,6 +85,8 @@ class SocialCounter < ActiveRecord::Base
 
     end
     Rails.logger.info("[MODEL] [SOCIAL_COUNTERS] [rebuild_social_counters] leaving")
+
+    rescue => e
   end
   class << self
 
