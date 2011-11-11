@@ -13,13 +13,13 @@ javascripts:
     - public/javascripts/application.js
   actwittyall:
     - public/javascripts/jquery/jquery-ui-1.8.14/ui/minified/jquery-ui.min.js
-    - public/javascripts/actwitty/refactor/lpm/aw_lpm_user_updates.js
-    - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
-    - public/javascripts/actwitty/refactor/server_requests/aw_get_requests.js
     - public/javascripts/plugins/jquery_ujs.js
     - public/javascripts/plugins/rails.validations.js
     - public/javascripts/plugins/rails.validations.custom.js
     - public/javascripts/cal.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_user_updates.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
+    - public/javascripts/actwitty/refactor/server_requests/aw_get_requests.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
   profile_main:
     - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js

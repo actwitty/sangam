@@ -21,37 +21,37 @@
       #aw_js_ppm_user_channel_data.awppm_chn_data_section.awppm_chn_userchannel_data
         .awppm_chn_data_section_label
           %span #{@user.full_name}'s Channels
-        %input.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+        %input#aw_js_ppm_user_chn_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
 
       -if user_signed_in?
         -if current_user.id == @user.id
           #aw_js_ppm_user_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
               %span #{@user.full_name}'s Subscribed Channels
-            %input.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+            %input#aw_js_ppm_subscribed_chn_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
 
 
       #aw_js_ppm_user_subscribed_channel_data.awppm_chn_data_section
         .awppm_chn_data_section_label
           %span #{@user.full_name}'s Subscriptions
-        %input.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+        %input#aw_js_ppm_subscriptions_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
 
       #aw_js_ppm_user_mentions_channel_data.awppm_chn_data_section
         .awppm_chn_data_section_label
           %span #{@user.full_name}'s Mentions
-        %input.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+        %input#aw_js_ppm_mentions_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
 
       #aw_js_ppm_user_location_channel_data.awppm_chn_data_section
         .awppm_chn_data_section_label
           %span #{@user.full_name}'s Locations
-        %input.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}        
+        %input#aw_js_ppm_locations_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}        
 
       -if user_signed_in?
         -if current_user.id == @user.id
           #aw_js_ppm_all_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
               %span World over Channels
-            %input.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+            %input#aw_js_ppm_all_chn_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
     #awppm_chn_dyn_info
       %h5 Sponsored Section
       #awppm_chn_sponsored_section

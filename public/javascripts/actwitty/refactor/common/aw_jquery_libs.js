@@ -50,7 +50,13 @@ jQuery.fn.log = function (msg) {
                               };
 
 function aw_lib_console_log(level, msg){
- // console.log(msg);
+ if (level.length == 0 ) {
+   level = "debug";
+ }
+ if(msg.length == 0){
+   msg = '';
+ }
+ console.log(level + ":" + msg);
 
 
 }

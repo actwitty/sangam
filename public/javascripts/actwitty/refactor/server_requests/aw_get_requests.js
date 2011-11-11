@@ -1,30 +1,241 @@
-var aw_local_json_callback_mapper = {
-                                      'AW_LPM_GET_LATEST_CHANNELS' : function aw_temp_latest_summary(params){
-                                                                        aw_api_lpm_render_latest_channels(params);
-                                                                     }
+var aw_srv_local_json_data_cache_manager = {
+                                      /* Landing Page Get Latest Channels */
+                                      'AW_SRV_LPM_GET_LATEST_CHANNELS'    : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_1(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_lpm_render_latest_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                            },
+                                      'AW_SRV_PPM_CHN_GET_USER_CHANNELS'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_1(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_chn_render_user_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_summary.json"
+                                                                            },
+                                                                                                          
+                                      'AW_SRV_PPM_CHN_GET_SUBSCRIBED_CHANNELS' : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_2(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_chn_render_subscribed_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_summary.json"
+                                                                            },
+                                      'AW_SRV_PPM_CHN_GET_ALL_CHANNELS'      : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_3(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_chn_render_all_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_summary.json"
+                                                                            },
+                                      'AW_SRV_PPM_CHN_GET_ALL_MENTIONS'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_4(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_chn_render_all_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_entitiesi.json"
+                                                                            },
+                                      'AW_SRV_PPM_CHN_GET_ALL_LOCATIONS'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_5(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_chn_render_all_locations(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_locations.json"
+                                                                            },     
+                                      'AW_SRV_PPM_STM_GET_USER_STREAMS'      : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_6(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_user_stream(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_streams.json"
+                                                                            },     
+                                      'AW_SRV_PPM_STM_GET_SUBSCRIBED_STREAMS'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_7(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_subscribed_stream(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_streams.json"
+                                                                            },
+                                       'AW_SRV_PPM_STM_GET_ALL_STREAMS'      : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_8(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_all_stream(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_streams.json"
+                                                                            },    
+                                      'AW_SRV_PPM_STM_GET_STREAM_LIKES'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_9(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_stream_likes(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_users_of_campaign"
+                                                                            },        
+                                      'AW_SRV_PPM_STM_GET_STREAM_COMMENTS'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_10(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_stream_likes(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_all_comments"
+                                                                            },         
+                                      'AW_SRV_PPM_STM_GET_STREAM_SHARES'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_11(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_stream_shares(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_social_counter.json"
+                                                                            },     
+                                       'AW_SRV_PPM_STM_GET_RECOMMENDED_CHANNELS'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_12(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_recommended_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_recommended_channels.json"
+                                                                            },           
+                                       'AW_SRV_PPM_STM_GET_ALL_MENTIONS'      : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_13(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_all_mentions(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_related_entities"
+                                                                            },       
+                                      'AW_SRV_PPM_STM_GET_ALL_LOCATIONS'      : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_14(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_all_locations(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_related_locations.json"                                                                            },     
+                                      'AW_SRV_PPM_STM_GET_SIMILAR_PEOPLE'      : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_15(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_similar_ppl(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_related_friends.json"
+                                                                            },
+                                       'AW_SRV_PPM_CMN_GET_USER_AUTOCOMPELTE_CHANNELS'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_16(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_cmn_render_user_suggest_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_channels.json"
+                                                                            }                                                                             
+                                                                            
                                     };
 
-function aw_api_rails_get_latest_channel_info(){
-   $.ajax({
 
-            url: '/home/get_latest_summary.json',
+
+/*
+ *  This function is agnostic of params and just passes it to the relevant call
+ */
+function aw_api_srv_make_a_get_request(request_tag, params){
+     if( request_tag.length == 0 ){
+        aw_lib_console_log("error","aw_api_srv: Request " + request_tag ); 
+        return -1;
+     }
+     if( params == null ){
+        aw_lib_console_log("error","aw_api_srv: Request Params is null "); 
+        return -1;
+     }else{
+        aw_lib_console_log("error","aw_api_srv: Request: " + request_tag +  " Params: " + JSON.stringify(params)); 
+      }
+     alert("abc");
+
+     aw_lib_console_log("debug","aw_api_srv: Request " + request_tag );  
+     // Called functions don't know about the tag so just let them know secretively 
+     params['__aw_srv_secret_internal_req_tag__'] =  request_tag;
+     if(aw_srv_local_json_data_cache_manager[request_tag]['URL'].length == 0){
+          aw_lib_console_log("debug","aw_api_srv: Return " + request_tag );   
+          return -1;
+     }else{
+        var ret_code = aw_srv_internal_srv_get_requestor(params);
+        if( ret_code == 0){
+          aw_lib_console_log("debug","aw_api_srv: for request " + request_tag + " RETURN: SUCCESS");   
+        }else{
+          aw_lib_console_log("error","aw_api_srv: for request " + request_tag + " RETURN: FAILED");   
+          return -1;
+        }
+     }
+     aw_lib_console_log("debug","aw_api_srv: Return " + request_tag );  
+     return 0;
+}
+/*
+ *
+ */
+function aw_api_srv_get_data_for_request(request_tag){
+    if( request_tag.length == 0 ){
+        aw_lib_console_log("error","aw_api_srv: Get Data " + request_tag ); 
+        return {};
+     }
+    return aw_srv_local_json_data_cache_manager[request_tag]['DATA'];
+}
+
+/*
+ *
+ */                                    
+function aw_srv_internal_srv_get_requestor(params){
+  var request_tag =  params['__aw_srv_secret_internal_req_tag__'];
+  var srv_params = params['aw_srv_protocol_params'];
+  $.ajax({
+
+            url: aw_srv_local_json_data_cache_manager[request_tag]['URL'],
             type: 'GET',
-            data: {},
+            data: srv_params,
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-              // if rails demands a redirect because of log in missing
-              params={
-                      resp_data : data
-                     };
-              if(aw_local_json_callback_mapper['AW_LPM_GET_LATEST_CHANNELS']){
-                  aw_local_json_callback_mapper['AW_LPM_GET_LATEST_CHANNELS'](params);
+              aw_srv_local_json_data_cache_manager[request_tag]['DATA'] = data;
+              if(aw_srv_local_json_data_cache_manager[request_tag]['CB']){
+                  aw_srv_local_json_data_cache_manager[request_tag]['CB'](params);
+              }else{
+                  aw_lib_console_log("error","aw_api_srv_internal:  No call back for the tag " + request_tag );   
+                  return -1;
               }
             
 
         },
         error:function(XMLHttpRequest,textStatus, errorThrown){ 
-            aw_lib_alert('There has been a problem getting summaries. \n ActWitty is trying to solve.');
+            aw_lib_console_log("error",
+                              "aw_api_srv_internal:  Server request failed for " + request_tag 
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            aw_lib_alert('A request to server has failed.');
+            return -1;
         }
     });
+    return 0;
 }
+
+

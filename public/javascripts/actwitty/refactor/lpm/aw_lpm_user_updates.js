@@ -5,7 +5,7 @@ var g_aw_lpm_local_stored_latest_updates
 
 
 function aw_get_update_block_html(channel_info){
-  var channel_theme =  "images/actwitty/refactor/aw_lpm/aw_lpm_no_theme.png";
+  var channel_theme =  "/images/actwitty/refactor/aw_lpm/aw_lpm_no_theme.png";
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
   }
@@ -27,8 +27,8 @@ function aw_generate_random_number(max, min){
   return min + Math.floor(range * (Math.random() % 1));
 }
 
-function aw_api_lpm_render_latest_channels(params){
-  g_aw_lpm_local_stored_latest_updates = params.resp_data;
+function aw_api_srv_resp_lpm_render_latest_channels(params){
+  g_aw_lpm_local_stored_latest_updates = aw_api_srv_get_data_for_request('AW_SRV_LPM_GET_LATEST_CHANNELS');
   var i=1;
   var max_show = 4;
   $.each(params.resp_data, function(i, channel_info){
@@ -49,7 +49,12 @@ function aw_api_lpm_render_latest_channels(params){
 }
 
 function aw_api_lpm_initialize_landing_page(){
-  aw_api_rails_get_latest_channel_info();
+  var params = {
+                  'aw_srv_protocol_params' : {},
+                  'aw_srv_protocol_cookie' : {}
+               };
+  alert("123");
+  aw_api_srv_make_a_get_request('AW_SRV_LPM_GET_LATEST_CHANNELS',  params);
 }
 
 
