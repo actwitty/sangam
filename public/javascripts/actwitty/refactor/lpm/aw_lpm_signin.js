@@ -160,12 +160,17 @@ $(document).ready(function(){
  */
 var map;
 var geocoder;
-function aw_api_init_sign_up(){
-  map = new google.maps.Map(document.getElementById("aw_lpm_map_selector"),mapOptions);
-  geocoder = new google.maps.Geocoder(); 
-  aw_signup_geo_initialize();
-  aw_signup_geo_initialize_default_location($("#aw_lpm_signup_location_input").val()); 
-  $("#aw_lpm_signup_dob_input").datepicker();
-  $("#aw_lpm_signup_dob_input").datepicker({ dateFormat: 'mm/dd/yyyy' });
+function aw_api_lpm_initialize_sign_up_page(){
+  if( $("#aw_lpm_signup_location_input").length){
+    map = new google.maps.Map(document.getElementById("aw_lpm_map_selector"),mapOptions);
+    geocoder = new google.maps.Geocoder(); 
+    aw_signup_geo_initialize();
+    aw_signup_geo_initialize_default_location($("#aw_lpm_signup_location_input").val()); 
+  }
+
+  if(  $("#aw_lpm_signup_dob_input").length){
+    $("#aw_lpm_signup_dob_input").datepicker();
+    $("#aw_lpm_signup_dob_input").datepicker({ dateFormat: 'mm/dd/yyyy' });
+  }
 }
 

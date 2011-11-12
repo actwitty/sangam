@@ -113,7 +113,7 @@ class Activity < ActiveRecord::Base
 
       def create_activity(params={})
 
-        Rails.logger.info("[MODEL] [ACTIVITY] [create_activity] entering")
+        Rails.logger.info("[MODEL] [ACTIVITY] [create_activity] entering #{params}")
 
         summary = nil
         summary_hash = {}

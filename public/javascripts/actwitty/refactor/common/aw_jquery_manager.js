@@ -18,10 +18,13 @@ $(document).ready(function(){
   g_initialized = 1;
   var page_context=$('#page_mode').attr("value");
   set_current_page_context(page_context);
-  if( page_context == "profile_main"){
-   // main_profile_initializer();  /* in profile.js */
-  }else if( page_context == "landing_page"){
+  
+  if( page_context == "landing_page"){
     aw_api_lpm_initialize_landing_page(); 
+  }else if( page_context == "authentications_page"){
+    aw_api_lpm_initialize_sign_up_page();
+  }else if( page_context == "profile_chn_page"){
+   aw_api_lpm_initialize_ppm_chn_page(); 
   }else if( page_context == "single_post") {
     single_post_initializer();  /* in single_post.js */
   }else if( page_context == "entity"){
@@ -43,28 +46,5 @@ $(document).ready(function(){
     return user.id;
   }
 
-   $("#username_search").autocomplete("/home/search_people" , {
-     	minChars: 3,
-      delay:400,
-		  width: 215,
-		  matchContains: true,
-		  highlightItem: false,
-      parse: function(data) {
-        return $.map(data, function(row) {
-          return {
-            data: row.user,
-            value: row.user.full_name,
-            result: row.user.full_name
-          }
-        });
-      },
-      formatItem: function(item) {
-        return format(item);
-      },
-
-  }).result(function(e, item) {
-      window.location.href = "/home/show?id=" + getID(item);
-      return false;
-  });
-  return false;
+   
 });

@@ -381,94 +381,13 @@ img.awlpm_aw_logo_img {
 }
 
 /* line 335, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-#awlpm_info_channel_updates_box {
+.awlpm_info_channel_updates_box {
   width: 100%;
   height: 330px;
 }
 
-/* line 339, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_container_channel_updates_container {
-  width: 200px;
-  height: 240px;
-  float: left;
-  margin: 5px;
-  border: 0px solid #cccccc;
-}
-
-/* line 346, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_name {
-  margin-left: 15px;
-  width: 150px;
-  height: 45px;
-  border: 0px solid red;
-  overflow: hidden;
-  font-size: 40px;
-  color: black;
-}
-
-/* line 355, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_theme_img {
-  width: 150px;
-  height: 105px;
-  margin-left: 15px;
-  margin-top: 2px;
-}
-/* line 360, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_theme_img img {
-  width: 120px;
-  height: 110px;
-  border: 1px solid #cccccc;
-}
-
-/* line 364, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_originator {
-  width: 150px;
-  height: 60px;
-  margin: 5px auto;
-  display: inline-block;
-  border: 0px solid green;
-  float: left;
-}
-
-/* line 371, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_originator_img {
-  width: 40px;
-  height: 40px;
-  margin-left: 10px;
-  margin-top: 5px;
-  padding-left: 5px;
-  float: left;
-}
-/* line 379, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_originator_img img {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #cccccc;
-  padding: 2px;
-}
-
-/* line 384, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_originator_name {
-  margin-top: 8px;
-  margin-left: 10px;
-  padding-left: 8px;
-  width: 60px;
-  height: 40px;
-  border: 0px solid red;
-  overflow: hidden;
-  float: left;
-}
-/* line 395, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
-.awlpm_channel_originator_name p {
-  font-size: 16px;
-  font-weight: bold;
-  color: black;
-  border: 0px solid red;
-  overflow: hidden;
-}
-
 /* ----------------------------------------------Footer------------------------------------- */
-/* line 408, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 344, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section {
   /* Make sure it includes the mixin for wide */
   position: relative;
@@ -481,7 +400,7 @@ img.awlpm_aw_logo_img {
   margin: 0px auto;
 }
 
-/* line 416, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 352, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div {
   width: 890px;
   height: 240px;
@@ -489,7 +408,7 @@ img.awlpm_aw_logo_img {
   margin-left: 70px;
 }
 
-/* line 422, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 358, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div ul {
   float: left;
   padding: 0 20px 0 0;
@@ -497,36 +416,36 @@ img.awlpm_aw_logo_img {
   list-style: none outside none;
   margin-top: 50px;
 }
-/* line 428, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 364, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div ul:first {
   margin-left: 30px;
 }
 
-/* line 431, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 367, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .first_ul {
   margin-left: 30px;
 }
 
-/* line 434, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 370, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li {
   color: #dddddd;
   font-size: 14px;
   margin: 10px 0;
 }
-/* line 438, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 374, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li.awlpm_footer_label {
   color: white;
   font-size: 18px;
   padding: 0 0 10px;
   text-align: left;
 }
-/* line 443, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 379, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li a {
   text-decoration: none;
   color: #dddddd;
 }
 
-/* line 447, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 383, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_copyright {
   text-align: center;
   font-size: 14px;

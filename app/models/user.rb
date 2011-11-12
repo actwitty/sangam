@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   attr_accessible  :email, :username, :password,
                    :dob, :dob_str, :full_name, :gender,:photo_small_url,
                    :current_location, :current_geo_lat, :current_geo_long,
-                   :password_confirmation, :remember_me
+                   :password_confirmation, :remember_me, :user_type
 				   #, :user_type  #user_type is only needed for ADMIN USER creation
 
   # relations #
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
 
 
   def validate_fields
-    Rails.logger.info("[MODEL] [USER] VALIDATION image -----------------------> #{self.photo_small_url}")
+    Rails.logger.info("[MODEL] [USER] VALIDATION image [ #{self.photo_small_url} ]")
     if self.username.present?
       self.username.strip!
       self.username.downcase!
@@ -378,6 +378,7 @@ class User < ActiveRecord::Base
     unless  foreign_profile.dob.blank?
       begin
         self.dob = Date.strptime(foreign_profile.dob, '%m/%d/%Y')
+        Rails.logger.info("[MODEL] [USER] Create profile DOB #{foreign_profile.dob}")
       rescue ArgumentError
         Rails.logger.info("[MODEL] [USER] Create profile received invalid DOB #{foreign_profile.dob}")
         self.dob = nil
@@ -394,6 +395,7 @@ class User < ActiveRecord::Base
     end
 
     unless  foreign_profile.location.blank?
+      Rails.logger.info("[MODEL] [USER] Create profile location #{foreign_profile.location}")
       self.current_location = foreign_profile.location
     end
 
@@ -825,12 +827,13 @@ class User < ActiveRecord::Base
 
   def create_activity(params={})
 
-    Rails.logger.debug("[MODEL] [User] [create_activity] entering ")
+    Rails.logger.debug("[MODEL] [User] [create_activity] entering #{params}")
+    Rails.logger.debug("[MODEL] [User] [create_activity] entering #{params[:word]}")
 
     params[:activity]= params[:word]
     params[:author_id] = self.id
     params[:meta_activity] = false
-
+    Rails.logger.debug("[MODEL] [User] [create_activity] Actvity Name #{ params[:activity]}")
     obj = Activity.create_activity(params)
     if obj.blank?
       Rails.logger.error("[MODEL] [User] [create_activity] [ERROR] returning empty json ")

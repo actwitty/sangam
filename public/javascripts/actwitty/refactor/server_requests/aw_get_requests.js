@@ -172,7 +172,6 @@ function aw_api_srv_make_a_get_request(request_tag, params){
      }else{
         aw_lib_console_log("error","aw_api_srv: Request: " + request_tag +  " Params: " + JSON.stringify(params)); 
       }
-     alert("abc");
 
      aw_lib_console_log("debug","aw_api_srv: Request " + request_tag );  
      // Called functions don't know about the tag so just let them know secretively 
@@ -218,6 +217,7 @@ function aw_srv_internal_srv_get_requestor(params){
             contentType: 'application/json',
             success: function (data) {
               aw_srv_local_json_data_cache_manager[request_tag]['DATA'] = data;
+              aw_lib_console_log("debug","aw_api_srv_internal: response for  " + request_tag + "[" + JSON.stringify(data) +  "]" );   
               if(aw_srv_local_json_data_cache_manager[request_tag]['CB']){
                   aw_srv_local_json_data_cache_manager[request_tag]['CB'](params);
               }else{

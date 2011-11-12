@@ -162,25 +162,22 @@ function aw_input_box_reset_after_post(){
  *
  *
  */
+function aw_api_srv_resp_ppm_input_create_post(params){
+    aw_input_box_reset_after_post();
+    clear_all_input_jsons();
+    aw_lib_alert("New post added");
+}
+ 
+/*
+ *
+ *
+ */
 function post_activity_to_server(post_data){
-
-  $.ajax({
-        url: '/home/create_activity.json',
-        type: 'POST',
-        data: post_data,
-        dataType:"script",
-        success: function (data) {
-          aw_input_box_reset_after_post();
-          clear_all_input_jsons();
-          aw_lib_alert("New post added");
-        },
-        error: function(jqXHR, textStatus, errorThrown){
-          console.log(jqXHR);
-          console.log(textStatus);
-          console.log(errorThrown);
-          aw_lib_alert('There has been a problem in creating activity. \n ActWitty is trying to solve.');
-        },
-      });
+  var params = {
+                  'aw_srv_protocol_params' : post_data,
+                  'aw_srv_protocol_cookie' : {}
+               };
+ aw_api_srv_make_a_post_request('AW_SRV_PPM_CMN_CREATE_POST', params); 
 }
 
 $(".js_plupload_caption").live('change', function(){	
@@ -320,6 +317,7 @@ function document_upload_complete(){
    
   var post_json = { 
                     word : post_activity,
+                    summary_category: $("#aw_js_ppm_input_channel_category").val(),
                     text : $('#aw_js_ppm_input_post_text').val(),
                     enrich : true,
                     location:get_location_json(),
@@ -327,7 +325,7 @@ function document_upload_complete(){
                     campaign_types:get_campaigns(),
                     source_name:"actwitty",
                     sub_title:$('#aw_js_ppm_input_hidden_title').val(),
-                    status:get_generate_status()
+                    status:get_generate_status(),
                   };
 
    
@@ -353,6 +351,7 @@ function get_max_file_that_can_be_uploaded(){
 function change_max_file_that_can_be_uploaded(change_count){
   get_max_file_that_can_be_uploaded += change_count;
 }
+/***************************************/
 
 /*******************************************************************************/
 $(document).ready(function() {
@@ -377,22 +376,7 @@ $(document).ready(function() {
 
    });
 
-   /*******************************************************************************/
-   $("#aw_js_ppm_input_channel_name").live('keyup.autocomplete', function() {
-    fetch_user_channels();
-    var json_data = get_user_channels();
-    //TODO: check why JSON is not working here
-    
-      $(this).autocomplete(json_data, {
-     	  minChars: 0,
-		    matchContains: true,
-		    highlightItem: false,
-        formatItem: function(activity) {
-          return activity.name;
-        }
-      });
-    });
-   /*******************************************************************************/
+   
    /* to make sure that only alphanumeric characters are allowed in activity field*/
   $("#aw_js_ppm_input_channel_name").alphanumeric();
 

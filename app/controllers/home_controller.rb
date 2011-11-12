@@ -61,7 +61,26 @@ class HomeController < ApplicationController
   def create_ghost_user
     if !user_signed_in?
       #ghost user can be added in session to avoid query
-      ghost_user  = User.where(:email => AppConstants.ghost_user_email).first
+      ghost_user  = User.find_by_email(AppConstants.ghost_user_email)
+      if ghost_user.nil?
+         ghost_user = User.new(:username => "actwittywebadmin", 
+                               :full_name => "Actwitty Administrator", 
+                               :email => "administrator@actwitty.com", 
+                               :password => "XJksaU72134kLS", 
+                               :password_confirmation => "XJksaU72134kLS",
+                               :gender => "male",
+                               :current_location => "Banglore,India",
+                               :current_geo_lat => "12.9716",
+                               :current_geo_long => "77.5942",
+                               :dob => "11/11/2011",
+                               :user_type => "2")
+         begin
+          ghost_user.save!
+         rescue => e
+            Rails.logger.info(e.message)
+            Rails.logger.info(e.backtrace.join("\n"))
+         end
+      end
       sign_in(ghost_user)
       Rails.logger.info("[CNTRL] [HOME] [CREATE_GHOST_USER] signed in ")
     end
@@ -82,7 +101,7 @@ class HomeController < ApplicationController
     @user=nil
     @profile_page = 1
     @filtered_mode = ""
-    @page_mode="profile_main"
+    @page_mode="profile_chn_page"
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
     if user_signed_in?
@@ -1145,17 +1164,7 @@ class HomeController < ApplicationController
   #######################################
   def get_latest_summary
     Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] request params #{params}")
-
-    @user = nil
-    if user_signed_in?
-      @user = current_user
-    else
-      @user = User.find_by_id(1)
-    end
-    #ADMIN USER
-#     User.create(:username => "actwittywebadmin", :full_name => "Actwitty Administrator", :email => "administrator@actwitty.com",
-#                :password => "abc123", :password_confirmation => "abc123", :user_type => AppConstants.user_type_web_admin)
-    response_json = @user.get_recent_public_summary()
+    response_json = current_user.get_recent_public_summary()
     Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] response from model #{response_json}")
     if request.xhr?
       expires_in 10.minutes

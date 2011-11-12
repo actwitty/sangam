@@ -1,0 +1,48 @@
+/* line 1, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
+.aw_lpm_dyn_latest_update_chn_box {
+  width: 170px;
+  height: 114px;
+  border: 1px solid black;
+  /*float:left; */
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 15px;
+  position: relative;
+}
+
+/* line 11, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
+.aw_lpm_dyn_latest_update_chn_label {
+  width: 100%;
+  height: 18px;
+  position: absolute;
+  top: 0;
+  background: black;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/* line 24, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
+.aw_lpm_dyn_latest_update_chn_user_info_box {
+  width: 100%;
+  height: 40px;
+  border: 0px solid red;
+  position: absolute;
+  bottom: 0px;
+  background: black;
+  background: rgba(0, 0, 0, 0.6);
+}
+/* line 32, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
+.aw_lpm_dyn_latest_update_chn_user_info_box img {
+  height: 40px;
+  vertical-align: middle;
+}
+/* line 35, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
+.aw_lpm_dyn_latest_update_chn_user_info_box span {
+  color: white;
+  font-size: 14px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+}

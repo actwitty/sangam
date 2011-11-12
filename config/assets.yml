@@ -19,13 +19,18 @@ javascripts:
     - public/javascripts/cal.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_user_updates.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
+    - public/javascripts/actwitty/refactor/server_requests/aw_post_requests.js
     - public/javascripts/actwitty/refactor/server_requests/aw_get_requests.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
+    - public/javascripts/actwitty/refactor/common/aw_cmn_default_channel_themes.js
   profile_main:
     - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
     - public/javascripts/actwitty/refactor/ppm/header/aw_ppm_header_main.js
     - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_location.js
     - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_main.js
+    - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_channel_names.js
+    - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_renderer.js
+    - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_events.js
     - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.js
     - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.full.js
     - public/javascripts/actwitty/refactor/ppm/externals/plupload/jquery.ui.plupload/jquery.ui.plupload.js
@@ -41,12 +46,9 @@ javascripts:
     - public/javascripts/plugins/jquery-list-splitter/jquery.easyListSplitter.js
     - public/javascripts/actwitty/alpha/custom.js
     - public/javascripts/actwitty/default_channels.js
-    - public/javascripts/actwitty/home_page_inputs.js
     - public/javascripts/actwitty/alpha/actwitty_profile_helpers.js
-    - public/javascripts/actwitty/aw_slider.js
     - public/javascripts/actwitty/boxer.js
     - public/javascripts/actwitty/settings_page.js
-    - public/javascripts/actwitty/profile_lib.js
     - public/javascripts/actwitty/profile_mode_manager.js
     - public/javascripts/actwitty/profile_attachments.js
     - public/javascripts/actwitty/profile_filter.js
@@ -56,11 +58,8 @@ javascripts:
     - public/javascripts/actwitty/profile_locations.js
     - public/javascripts/actwitty/profile_channels.js
     - public/javascripts/actwitty/profile_stream_share.js
-    - public/javascripts/actwitty/profile_subscribers.js
     - public/javascripts/actwitty/profile_facebook.js
-    - public/javascripts/actwitty/profile_subscriptions.js
     - public/javascripts/actwitty/profile_follow.js
-    - public/javascripts/actwitty/profile_summary.js
     - public/javascripts/actwitty/profile_streams_sidelists.js
     - public/javascripts/actwitty/drafts.js
     - public/javascripts/actwitty/profile_stream.js
@@ -107,6 +106,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_common/aw_modal_boxes.css
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_forgot_password.css
@@ -118,8 +118,8 @@ stylesheets:
   profile_pages_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery.autocomplete.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/external/thickbox.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/lib/thickbox.css
   extras:
     - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css
