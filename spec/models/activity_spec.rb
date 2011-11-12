@@ -934,7 +934,7 @@ describe Activity do
       @u.create_theme({:document_id => d.id, :author_id => s.user_id, :summary_id => s.id,:theme_type =>AppConstants.theme_document })
       a = Theme.where(:author_id => @u.id, :summary_id => s.id).first
       puts a.inspect
-      puts "============Theme Creation Dne========================"
+      puts "============Theme Creation Done========================"
       s = Summary.where(:id => s.id).first
       puts s.inspect
 
@@ -1129,6 +1129,10 @@ describe Activity do
                               :enrich => true,
                               :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
                                             AppConstants.status_public)
+       a5 = @u.create_activity(:word => "eating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
        s = @u.update_summary_category(:summary_id => a1[:post][:summary_id],:name => "pets and animals")
 
        puts s.inspect
@@ -1136,6 +1140,19 @@ describe Activity do
 
        s = Summary.where(:id => a1[:post][:summary_id]).first
        puts s.inspect
+
+       puts "Get Stream 1"
+       a =@u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_user, :filter => {:word_id => a1[:post][:word][:id] },
+                         :updated_at => Time.now.utc})
+       puts a.inspect
+       a = SummaryRank.add_analytics({:fields => ["posts"], :summary_id => a1[:post][:summary_id] })
+       puts a.inspect
+
+       a5 = @u.create_activity(:word => "Cars" , :text => "",:location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+                              :enrich => true,:summary_category=>"cars" ,
+                               :status => AppConstants.status_public)
+       a = SummaryRank.add_analytics({:fields => ["likes"], :summary_id => a2[:post][:summary_id] })
+       puts a.inspect
     end
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY

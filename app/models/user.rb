@@ -1107,6 +1107,7 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [USER] [get_stream] entering")
 
+    stream = {}
     h = process_filter_modified(params)
 
     if h.blank?
@@ -1138,8 +1139,18 @@ class User < ActiveRecord::Base
     end
 
     array = get_all_activity(activity.keys)
+
+    stream[:stream] = array
+
+    if !h[:activity_word_id].blank?
+        if params[:page_type] == AppConstants.page_state_user
+           s = Summary.where(:user_id => params[:user_id],:activity_word_id => h[:activity_word_id]).first
+           stream[:theme_data] = s.theme_data
+        end
+    end
+
     Rails.logger.debug("[MODEL] [USER] [get_stream] leaving")
-    array
+    stream
   end
 
   #INPUT
@@ -1627,7 +1638,7 @@ class User < ActiveRecord::Base
       return {}
     end
     a = format_comment(obj)
-    puts a
+
     Rails.logger.debug("[MODEL] [USER] [create_comment] leaving")
     a
 
@@ -1860,6 +1871,8 @@ class User < ActiveRecord::Base
   #           :entity_id => 234 or nil
   #                 OR
   #           :document_id => 456 or nil
+  #
+  #           :desc => "hello" [OPTIONAL]
   def create_social_counter(params)
     Rails.logger.debug("[MODEL] [USER] [create_social_counter] entering")
     a = SocialCounter.create_social_counter(params)
@@ -2002,8 +2015,10 @@ class User < ActiveRecord::Base
   # "documents_count"=>8, "entity_array"=>[], "id"=>158, "location_array"=>[162, 161],
   #"social_counters_array"=>[{:source_name=>"twitter", :action=>"share", :count=>1},
   #{:source_name=>"facebook", :action=>"share", :count=>2}], "tag_array"=>[365, 364, 363, 362, 361, 360],
-  #"tags_count"=>6, "theme_data"=>{:fg_color=>"0xffffff00", :bg_color=>"0xffffff00", :document_id=>nil, :url=>nil,
-  #:user_id=>407, :summary_id=>158, :theme_type=>1, :time=>2011-10-29 18:23:56 UTC}, "updated_at"=>Sat, 29 Oct 2011 18:23:57 UTC +00:00, "user_id"=>407}
+  #"tags_count"=>6,
+  #"theme_data"=>{:fg_color=>"0xffffff00", :bg_color=>"0xffffff00, :document_id=>nil, :url=>nil,:user_id=>407, :summary_id=>158, :theme_type=>1, :time=>2011-10-29 18:23:56 UTC}
+  #"category_data" =>  {:id=>43, :name=>"pets and animals", :type=>"/animals", :user_id=>157, :summary_id=>120, :time=>2011-11-08 22:14:24 UTC}
+  # "updated_at"=>Sat, 29 Oct 2011 18:23:57 UTC +00:00, "user_id"=>407}
   def update_summary(params)
     Rails.logger.debug("[MODEL] [USER] [update_summary] entering")
     params[:user_id] = self.id
@@ -2115,7 +2130,7 @@ class User < ActiveRecord::Base
     #All Page => Always with self
     if params[:page_type] == AppConstants.page_state_all
 
-##       Commenting as we did not want contact based all data now
+##     Commenting as we did not want contact based all data now
        Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_all => #{params.inspect}")
        user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
        user.blank? ? user = [self.id] : user << self.id
@@ -2152,6 +2167,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -2166,9 +2182,6 @@ end
 #  last_sign_in_at      :datetime
 #  current_sign_in_ip   :string(255)
 #  last_sign_in_ip      :string(255)
-#  confirmation_token   :string(255)
-#  confirmed_at         :datetime
-#  confirmation_sent_at :datetime
 #  failed_attempts      :integer         default(0)
 #  unlock_token         :string(255)
 #  locked_at            :datetime
@@ -2178,6 +2191,11 @@ end
 #  disable_email        :boolean
 #  full_name            :string(255)
 #  photo_small_url      :string(255)
+#  dob                  :date
+#  gender               :string(255)
+#  current_location     :string(255)
+#  current_geo_lat      :decimal(, )
+#  current_geo_long     :decimal(, )
 #  created_at           :datetime
 #  updated_at           :datetime
 #  invitation_token     :string(60)

@@ -72,6 +72,7 @@ class Profile < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: profiles
@@ -90,9 +91,9 @@ end
 #  current_geo_lat     :decimal(, )
 #  current_geo_long    :decimal(, )
 #  age                 :integer
-#  sex                 :string(255)
-#  theme               :string(255)
 #  dob                 :date
+#  gender              :string(255)
+#  theme               :string(255)
 #  address             :string(255)
 #  company_name        :string(255)
 #  phone_number        :string(255)

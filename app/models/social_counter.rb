@@ -124,6 +124,8 @@ class SocialCounter < ActiveRecord::Base
     #           :entity_id => 234 or nil
     #                 OR
     #           :document_id => 456 or nil
+    #
+    #           :desc => "hello" [OPTIONAL]
     def create_social_counter(params)
       obj = create!(params)
       return obj
@@ -133,6 +135,7 @@ class SocialCounter < ActiveRecord::Base
     end
   end
 end
+
 
 
 # == Schema Information
@@ -150,5 +153,6 @@ end
 #  author_id   :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  desc        :text
 #
 

@@ -10,7 +10,6 @@ class Theme < ActiveRecord::Base
   validates_existence_of  :summary_id
   validates_existence_of  :author_id
 
-  validates_length_of     :url, :maximum => AppConstants.url_length
   validates_length_of     :fg_color, :is => 10 , :unless => Proc.new {|a| a.fg_color.nil?}
   validates_length_of     :bg_color, :is => 10 , :unless => Proc.new {|a| a.bg_color.nil?}
 
@@ -18,11 +17,18 @@ class Theme < ActiveRecord::Base
   validates_presence_of    :theme_type
 
   after_save               :update_summary
+  attr_accessor            :url, :thumb_url
 
   def update_summary
     Rails.logger.info("[MODEL] [THEME] [update_summary] entering")
     if !self.summary_id.nil?
       s = Summary.where(:id => self.summary_id).first
+      if !self.document_id.blank?
+         d= Document.where(:id => self.document_id).first
+         @url = d.url
+         @thumb_url = d.thumb_url
+      end
+
       s.theme_data = format_theme(self)
       s.update_attributes(:theme_data => s.theme_data)
     end
@@ -49,20 +55,22 @@ class Theme < ActiveRecord::Base
     def create_theme(params)
 
       Rails.logger.info("[MODEL] [THEME] [create_theme] entering")
+      doc = nil
 
       if params[:theme_type].blank?
         Rails.logger.info("[MODEL] [THEME] [create_theme] theme_type blank => #{params.inspect}")
-        return nil
+        params[:theme_type] = AppConstants.theme_default
       end
 
       if params[:theme_type] == AppConstants.theme_document
         if !params[:document_id].blank?
-          params = validate_documents(params)
+          doc = validate_documents(params[:document_id])
 
-          if params.nil?
+          if doc.nil?
             Rails.logger.info("[MODEL] [THEME] [create_theme] invalid document id #{params.inspect}")
             return nil
           end
+
 
           Rails.logger.info("[MODEL] [THEME] [create_theme] document id set #{params.inspect}")
           params[:fg_color] = nil
@@ -81,7 +89,6 @@ class Theme < ActiveRecord::Base
         params[:fg_color] = AppConstants.theme_default_fg_color
         params[:bg_color] = AppConstants.theme_default_bg_color
         params[:document_id] = nil
-        params[:url] = nil
 
       elsif params[:theme_type] == AppConstants.theme_color
 
@@ -92,7 +99,6 @@ class Theme < ActiveRecord::Base
         Rails.logger.info("[MODEL] [THEME] [create_theme] color set #{params.inspect}")
 
         params[:document_id] = nil
-        params[:url] = nil
       end
 
       obj = create!(params)
@@ -102,8 +108,6 @@ class Theme < ActiveRecord::Base
         return nil
       end
 
-
-      puts obj.inspect
       Rails.logger.info("[MODEL] [THEME] [create_theme] leaving")
 
       return obj
@@ -126,22 +130,27 @@ class Theme < ActiveRecord::Base
 
     private
 
-    def validate_documents(params)
+    def validate_documents(document_id)
       Rails.logger.info("[MODEL] [THEME] [validate_documents] entering")
-      d= Document.where(:id => params[:document_id]).first
+      d= Document.where(:id => document_id).first
 
       if d.blank?
         Rails.logger.info("[MODEL] [THEME] [validate_documents] invalid document id")
         return nil
       end
 
-      params[:url] = d.url
+#      if d.url.blank? or d.thumb_url.blank?
+#        Rails.logger.info("[MODEL] [THEME] [validate_documents]  url or thumb_url is missing #{d.inspect}")
+#        return nil
+#      end
+
       Rails.logger.info("[MODEL] [THEME] [validate_documents] leaving")
-      params
+      d
     end
   end
 
 end
+
 
 # == Schema Information
 #
@@ -153,7 +162,6 @@ end
 #  author_id   :integer         not null
 #  summary_id  :integer         not null
 #  document_id :integer
-#  url         :text
 #  theme_type  :integer         not null
 #  style       :integer
 #  created_at  :datetime

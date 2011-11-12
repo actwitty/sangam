@@ -218,12 +218,15 @@ module TextFormatter
          :fg_color => theme.fg_color,
          :bg_color => theme.bg_color,
          :document_id => theme.document_id,
-         :url => theme.url,
          :user_id => theme.author_id,
          :summary_id => theme.summary_id,
          :theme_type => theme.theme_type,
          :time => theme.updated_at
         }
+    if !theme.url.blank?
+      h[:url] = theme.url
+      h[:thumb_url] = theme.thumb_url
+    end
     h
   end
 
@@ -266,7 +269,8 @@ module TextFormatter
       return {}
     end
     hash = {}
-    hash = {:source_name => attr.source_name, :action => attr.action, :time => attr.updated_at}
+    hash = {:id => attr.id, :source_name => attr.source_name, :action => attr.action, :time => attr.updated_at}
+    hash[:desc] =  attr.desc if !attr.desc.blank?
   end
 
   #format a location object to generic form

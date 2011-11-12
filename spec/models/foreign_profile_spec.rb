@@ -4,6 +4,7 @@ describe ForeignProfile do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 
+
 # == Schema Information
 #
 # Table name: foreign_profiles
@@ -23,6 +24,7 @@ end
 #  locale               :string(255)
 #  foreign_updated_time :string(255)
 #  authentication_id    :integer
+#  dob                  :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
 #

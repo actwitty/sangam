@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111107181630) do
+ActiveRecord::Schema.define(:version => 20111111192951) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
     t.string   "locale"
     t.string   "foreign_updated_time"
     t.integer  "authentication_id"
+    t.string   "dob"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -357,9 +358,9 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
     t.decimal  "current_geo_lat"
     t.decimal  "current_geo_long"
     t.integer  "age"
-    t.string   "sex"
-    t.string   "theme"
     t.date     "dob"
+    t.string   "gender"
+    t.string   "theme"
     t.string   "address"
     t.string   "company_name"
     t.string   "phone_number"
@@ -394,6 +395,7 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "desc"
   end
 
   add_index "social_counters", ["activity_id"], :name => "index_social_counters_on_activity_id"
@@ -445,6 +447,29 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
   add_index "summary_categories", ["summary_id"], :name => "index_summary_categories_on_summary_id", :unique => true
   add_index "summary_categories", ["user_id"], :name => "index_summary_categories_on_user_id"
 
+  create_table "summary_ranks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "summary_id"
+    t.integer  "location_id"
+    t.integer  "entity_id"
+    t.text     "posts"
+    t.text     "likes"
+    t.text     "shares"
+    t.text     "subscribers"
+    t.text     "comments"
+    t.text     "demography"
+    t.text     "documents"
+    t.text     "channel_ranks"
+    t.text     "views"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "summary_ranks", ["entity_id"], :name => "index_summary_ranks_on_entity_id", :unique => true
+  add_index "summary_ranks", ["location_id"], :name => "index_summary_ranks_on_location_id", :unique => true
+  add_index "summary_ranks", ["summary_id"], :name => "index_summary_ranks_on_summary_id", :unique => true
+  add_index "summary_ranks", ["user_id", "summary_id"], :name => "index_summary_ranks_on_user_id_and_summary_id", :unique => true
+
   create_table "summary_subscribes", :force => true do |t|
     t.integer  "summary_id",    :null => false
     t.integer  "subscriber_id", :null => false
@@ -484,7 +509,6 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
     t.integer  "author_id",   :null => false
     t.integer  "summary_id",  :null => false
     t.integer  "document_id"
-    t.text     "url"
     t.integer  "theme_type",  :null => false
     t.integer  "style"
     t.datetime "created_at"
@@ -505,9 +529,6 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
@@ -517,6 +538,11 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
     t.boolean  "disable_email"
     t.string   "full_name"
     t.string   "photo_small_url"
+    t.date     "dob"
+    t.string   "gender"
+    t.string   "current_location"
+    t.decimal  "current_geo_lat"
+    t.decimal  "current_geo_long"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "invitation_token",     :limit => 60
@@ -528,13 +554,13 @@ ActiveRecord::Schema.define(:version => 20111107181630) do
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["full_name"], :name => "index_users_on_full_name"
   add_index "users", ["invitation_token"], :name => "index_users_on_invitation_token"
   add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "word_forms", :force => true do |t|
     t.integer  "activity_word_id", :null => false

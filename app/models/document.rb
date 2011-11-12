@@ -13,8 +13,6 @@ class Document < ActiveRecord::Base
 
    belongs_to     :activity, :counter_cache => true
 
-   has_many       :documents
-
   #TODO commenting it for time being.. we can enable it but as this feature is not in scope
   #so commented. Though this feature is complete in implementation
 #   has_many       :comments,  :dependent => :destroy, :order => "updated_at DESC"

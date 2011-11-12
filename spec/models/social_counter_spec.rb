@@ -5,6 +5,7 @@ describe SocialCounter do
 end
 
 
+
 # == Schema Information
 #
 # Table name: social_counters
@@ -20,5 +21,6 @@ end
 #  author_id   :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  desc        :text
 #
 

@@ -219,6 +219,9 @@ development: &default
 
   default_category:                   "stories"
 
+  #Rank and Analytics
+  number_of_data_points:              90
+
 production:
   <<: *default
   #constant1:  "overriden value1"
