@@ -1,19 +1,13 @@
 
 var g_aw_lpm_local_stored_latest_updates = {};
 
-
-function aw_get_latest_update_channel_box_id( channel_info ){
-  var id = "aw_lpm_chn_update_box_" + channel_info.user.id + "_" + channel_info.word.id;
-  return id; 
-}
-
 function aw_get_update_block_html(channel_info){
   var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category.name); 
   var channel_theme = default_theme.thumb;
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
   }
-  var box_id = aw_get_latest_update_channel_box_id(channel_info);
+  var box_id = aw_lib_get_channel_box_id(channel_info);
   var channel_info_html = '<div class="aw_lpm_dyn_latest_update_chn_box" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_lpm_dyn_latest_update_chn_label">' +
                                 '<span>' + channel_info.word.name + '</span>' +
@@ -44,7 +38,7 @@ function aw_api_srv_resp_lpm_render_latest_channels(params){
 
 function aw_api_lpm_initialize_landing_page(){
   var params = {
-                  'aw_srv_protocol_params' : {'test' : 'abcde'},
+                  'aw_srv_protocol_params' : {'test' : 'abcdef'},
                   'aw_srv_protocol_cookie' : {}
                };
   aw_api_srv_make_a_get_request('AW_SRV_LPM_GET_LATEST_CHANNELS',  params);

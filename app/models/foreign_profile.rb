@@ -4,7 +4,10 @@ class ForeignProfile < ActiveRecord::Base
 
 
   def import_facebook(foreign_data)
+    Rails.logger.info("[CNTRL][import_facebook] Called.")
     Rails.logger.info("[CNTRL][import_facebook] #{foreign_data}")
+
+
     self.name = foreign_data["name"]
     self.first_name = foreign_data["first_name"]
     self.last_name = foreign_data["last_name"]
@@ -12,11 +15,26 @@ class ForeignProfile < ActiveRecord::Base
     self.url = foreign_data["link"]
     self.gender = foreign_data["gender"]
     self.email = foreign_data["email"]
-    self.location = foreign_data["location"]["name"]
-    self.dob = foreign_data["birthday"]
-    self.hometown = foreign_data["hometown"]["name"]
-    self.timezone = foreign_data["timezone"]
-    self.locale = foreign_data["locale"]
+
+    if !foreign_data["location"].nil? and !foreign_data["location"]["name"].nil?
+      self.location = foreign_data["location"]["name"]
+    end
+
+    if !foreign_data["birthday"].nil?
+      self.dob = foreign_data["birthday"]
+    end
+
+    if !foreign_data["hometown"].nil? and !foreign_data["hometown"]["name"].nil?
+      self.hometown = foreign_data["hometown"]["name"]
+    end
+    
+    if !foreign_data["timezone"].nil?
+      self.timezone = foreign_data["timezone"]
+    end
+    
+    if !self.locale = foreign_data["locale"].nil?
+      self.locale = foreign_data["locale"]
+    end
 
 
 

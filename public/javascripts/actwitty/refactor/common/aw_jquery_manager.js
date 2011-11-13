@@ -24,7 +24,7 @@ $(document).ready(function(){
   }else if( page_context == "authentications_page"){
     aw_api_lpm_initialize_sign_up_page();
   }else if( page_context == "profile_chn_page"){
-   aw_api_lpm_initialize_ppm_chn_page(); 
+   aw_api_ppm_initialize_chn_page(); 
   }else if( page_context == "single_post") {
     single_post_initializer();  /* in single_post.js */
   }else if( page_context == "entity"){

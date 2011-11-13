@@ -43,6 +43,10 @@ function aw_lib_get_trim_name(actual_string, length){
   return str;
 }
 
+function aw_lib_get_channel_box_id( channel_info ){
+  var id = "aw_chn_box_universal_id_" + channel_info.user.id + "_" + channel_info.word.id;
+  return id; 
+}
 
 jQuery.fn.log = function (msg) {
                                   console.log("%s: %o", msg, this);

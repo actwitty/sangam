@@ -13,21 +13,21 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                               
                                                                               'CB': function aw_temp_resp_fn_2(params){
                                                                                       /* params -> summary JSON */
-                                                                                   //   aw_api_srv_resp_ppm_input_create_post(params);
+                                                                                   aw_api_srv_resp_ppm_resp_subscribe(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/subscribe_summary.json"
                                                                             },
                                                   'AW_SRV_PPM_CHN_UNSUBSCRIBE_CHANNEL'    : {
                                                                               
                                                                               'CB': function aw_temp_resp_fn_3(params){
                                                                                       /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                                      aw_api_srv_resp_ppm_resp_unsubscribe(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/unsubscribe_summary.json"
                                                                             },
                                                   'AW_SRV_PPM_STM_DELETE_POST'    : {
                                                                               

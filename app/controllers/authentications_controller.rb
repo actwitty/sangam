@@ -186,6 +186,7 @@ class AuthenticationsController < ApplicationController
           unless data.nil?
             Rails.logger.info("[CNTRL][Authentications] Foreign profile being saved for auth.")
             already_existing_auth.foreign_profile = ForeignProfile.new
+            Rails.logger.info("[CNTRL][Authentications] Foreign profile import method call.")
             already_existing_auth.foreign_profile.send("import_#{provider}",data)
           end
 
