@@ -11,6 +11,15 @@ class SummarySubscribe < ActiveRecord::Base
 
   validates_uniqueness_of  :summary_id, :scope => :subscriber_id
   after_destroy            :clear_follow
+  after_save               :update_analytics
+
+  def update_analytics
+    Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [update_analytics] entering #{self.inspect}")
+    if !self.summary_id.blank?
+      SummaryRank.add_analytics({:fields => ["subscribers", "demographics"], :summary_id => self.summary_id})
+    end
+    Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [update_analytics] leaving #{self.inspect}")
+  end
 
   def clear_follow
     Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [clear_follow] entering")
@@ -18,6 +27,10 @@ class SummarySubscribe < ActiveRecord::Base
     if cnt == 0
       Contact.unfollow(self.subscriber_id, self.owner_id)
     end
+
+    #also update the analytics
+    update_analytics
+
     Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [clear_follow] leaving")
   end
 

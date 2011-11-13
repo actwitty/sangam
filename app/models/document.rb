@@ -46,19 +46,37 @@ class Document < ActiveRecord::Base
 
    before_save           :sanitize_data
 
-   after_destroy         :remove_theme
+   after_destroy         :remove_theme_and_update_analytics
 
-   def remove_theme
-     Rails.logger.debug("[MODEL] [DOCUMENT] [remove_theme] ")
+   after_save            :update_analytics
+
+   def remove_theme_and_update_analytics
+     Rails.logger.debug("[MODEL] [DOCUMENT] [remove_theme_and_update_analytics] entering #{self.inspect} ")
+
      Theme.where(:document_id => self.id).all.each do |attr|
-       puts "theme reset"
        Theme.create_theme(:theme_type => AppConstants.theme_default,:summary_id => attr.summary_id,:author_id =>attr.author_id)
      end
+
+     #update analytics
+     update_analytics
+
+     Rails.logger.debug("[MODEL] [DOCUMENT] [remove_theme_and_update_analytics] leaving #{self.inspect} ")
    end
 
    def sanitize_data
-     Rails.logger.debug("[MODEL] [DOCUMENT] [sanitize_data] ")
+     Rails.logger.debug("[MODEL] [DOCUMENT] [sanitize_data] entering #{self.inspect}")
+
      self.caption = sanitize(self.caption) if !self.caption.blank?
+
+     Rails.logger.debug("[MODEL] [DOCUMENT] [sanitize_data] leaving  #{self.inspect}")
+   end
+
+   def update_analytics
+     Rails.logger.info("[MODEL] [DOCUMENT] [update_analytics] entering #{self.inspect}")
+
+     SummaryRank.add_analytics({:fields => ["documents"], :summary_id => self.summary_id}) if !self.summary_id.blank?
+
+     Rails.logger.info("[MODEL] [DOCUMENT] [update_analytics] leaving #{self.inspect}")
    end
 
    public

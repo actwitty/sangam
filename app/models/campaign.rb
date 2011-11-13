@@ -7,6 +7,7 @@ class Campaign < ActiveRecord::Base
   belongs_to :location
   belongs_to :comment
   belongs_to :document
+  belongs_to :summary
 
   belongs_to :father, :class_name => "Activity"
 
@@ -21,6 +22,7 @@ class Campaign < ActiveRecord::Base
 #  validates_existence_of :location_id, :allow_nil => true
 #  validates_existence_of :comment_id, :allow_nil => true
 #  validates_existence_of :document_id, :allow_nil => true
+#  validates_existence_of :summary_id, :allow_nil => true
 
   validates_uniqueness_of :activity_id, :scope => [:author_id, :name],  :unless => Proc.new {|a| a.activity_id.nil?}
   validates_uniqueness_of :entity_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.entity_id.nil?}
@@ -41,12 +43,27 @@ class Campaign < ActiveRecord::Base
 
   after_destroy :ensure_destroy_cleanup
 
-  def ensure_destroy_cleanup
+  after_save :update_analytics
+
+
+  def update_analytics
+    Rails.logger.info("[MODEL] [CAMPAIGN] [update_analytics] entering #{self.inspect}")
+    if !self.summary_id.blank?
+      SummaryRank.add_analytics({:fields => ["likes"], :summary_id => self.summary_id})
+    end
+    Rails.logger.info("[MODEL] [CAMPAIGN] [update_analytics] leaving #{self.inspect}")
+  end
+
+def ensure_destroy_cleanup
     #Delete to stop circular effect
     puts "campaign delete"
     puts "#{self.id}"
     self.father.delete
+
+    #also update the analytics
+    update_analytics
   end
+
 
   class << self
     include TextFormatter
@@ -74,6 +91,7 @@ class Campaign < ActiveRecord::Base
         object = Activity.includes(:author).where(:id => params[:activity_id]).first
         user = object.author
         resource_name = object.activity_name[0..AppConstants.max_string_len_for_display]
+        params[:summary_id] = object.summary_id
 
       elsif params.has_key?(:entity_id)
 
@@ -96,6 +114,7 @@ class Campaign < ActiveRecord::Base
         else
           resource_type = "document"
         end
+        params[:summary_id] = object.summary_id
 
       elsif params.has_key?(:location_id)
 
@@ -178,6 +197,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -196,5 +216,6 @@ end
 #  source_name :text            not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  summary_id  :integer
 #
 

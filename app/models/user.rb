@@ -1872,7 +1872,8 @@ class User < ActiveRecord::Base
   #                 OR
   #           :document_id => 456 or nil
   #
-  #           :desc => "hello" [OPTIONAL]
+  #           :desc => "hello" [OPTIONAL]  => for view action, desc should be  "IP=>123.123.123.123, ISP=>abc, location =>bangalore, lat>23.45, long=>45.23"
+  #                                           IP is MANDATORY FOR VIEW ACTION
   def create_social_counter(params)
     Rails.logger.debug("[MODEL] [USER] [create_social_counter] entering")
     a = SocialCounter.create_social_counter(params)
@@ -2062,6 +2063,48 @@ class User < ActiveRecord::Base
     s
   end
 
+  #COMMENT - Return the most recent analytics SNAPSHOT of summary OR location or entity
+  #INPUT => {:summary_id => 123 OR :location_id => 234 OR :entity_id => 234}
+  #OUTPUT => {"posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
+  #           "comments" => {:total => 34, :actwitty => 20, :facebook => 14 }
+  #           "likes" =>{:total => 123, :actwitty => 33, :facebook => 90 }
+  #           "actions" =>  {:share => 24, :views => 90}
+  #           "demographics" => {:total => 40,:male => 20, :female => 18, :others => 2,
+  #                             :age_group => {"18-24" => {:total => 20,:male => 10, :female => 11, :others => 0},
+  #                            "35-44" => {:total => 20,:male => 10, :female => 7, :others => 2}}}
+  #                            See constants.yml for age_band
+  #           "subscribers" => 345
+  #           "documents" =>  {"total" => 160, "image" => 24, "video" => 90, "audio" => 46}
+  #           "channel_ranks" => 234
+
+  def get_analytics_summary(params)
+    Rails.logger.info("[MODEL] [USER] [get_analytics_summary] entering  " + params.inspect)
+    object = SummaryRank.get_analytics_summary(params)
+    Rails.logger.info("[MODEL] [USER] [get_analytics_summary] leaving  " + params.inspect)
+    object
+  end
+
+  #COMMENT - Return the 90 days analytics..
+  #INPUT => {:summary_id => 123 OR :location_id => 234 OR :entity_id => 234,
+  #         :fields => ["posts","likes", "comments"..]}
+  #OUTPUT => {"posts" =>[{"11/11/2011"=>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45}},..] #many new services can come this is Exemplary
+  #           "comments" => [{"11/11/2011"=>{:total => 34, :actwitty => 20, :facebook => 14 }},...]
+  #           "likes" => [{"11/11/2011"=>{:total => 123, :actwitty => 33, :facebook => 90 }}..]
+  #           "actions" => [{"11/11/2011"=>{:share => 24, :views => 90}},..]
+  #           "demographics" =>[{"11/11/2011"=> {:total => 40,:male => 20, :female => 18, :others => 2,
+  #                             :age_group => {"18-24" => {:total => 20,:male => 10, :female => 11, :others => 0},
+  #                            "35-44" => {:total => 20,:male => 10, :female => 7, :others => 2}}}},..]
+  #                            See constants.yml for age_band
+  #           "subscribers" => [{"11/11/2011"=>345},..]
+  #           "documents" =>  [{"11/11/2011"=>{"total" => 160, "image" => 24, "video" => 90, "audio" => 46}},..]
+  #           "channel_ranks" => [{"11/11/2011"=>234},..]
+
+  def get_analytics(params)
+    Rails.logger.info("[MODEL] [USER] [get_analytics] entering  " + params.inspect)
+    object = SummaryRank.get_analytics(params)
+    Rails.logger.info("[MODEL] [USER] [get_analytics] leaving  " + params.inspect)
+    object
+  end
   # private methods
   private
 

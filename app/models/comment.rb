@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :author, :class_name => "User"
   belongs_to :activity,  :touch => true, :counter_cache => true
   belongs_to :document,  :touch => true, :counter_cache => true
+  belongs_to :summary
 
   belongs_to :father, :class_name => "Activity"
 
@@ -12,6 +13,7 @@ class Comment < ActiveRecord::Base
 # is done in create_comment explicitly
 #  validates_existence_of :activity_id, :allow_nil => true
 #  validates_existence_of :document_id, :allow_nil => true
+#  validates_existence_of :summary_id, :allow_nil => true
 
   validates_existence_of :author_id, :father_id
 
@@ -29,6 +31,8 @@ class Comment < ActiveRecord::Base
 
   before_save           :sanitize_data
 
+  after_save            :update_analytics
+
   def sanitize_data
     Rails.logger.debug("[MODEL] [COMMENT] [sanitize_data] ")
     self.text = sanitize(self.text) if !self.text.blank?
@@ -40,11 +44,23 @@ class Comment < ActiveRecord::Base
     end
   end
 
+  def update_analytics
+    Rails.logger.info("[MODEL] [COMMENT] [update_analytics] entering #{self.inspect}")
+    if !self.summary_id.blank?
+      SummaryRank.add_analytics({:fields => ["comments"], :summary_id => self.summary_id})
+    end
+    Rails.logger.info("[MODEL] [COMMENT] [update_analytics] leaving #{self.inspect}")
+  end
+
   def ensure_destroy_cleanup
     #Delete to stop circular effect
     puts "comment destroyed"
     self.father.delete
+
+    #also update the analytics
+    update_analytics
   end
+
   class << self
 
 
@@ -65,6 +81,7 @@ class Comment < ActiveRecord::Base
         object = Activity.includes(:author).where(:id => params[:activity_id]).first
         user = object.author
         resource_name = object.activity_name[0..AppConstants.max_string_len_for_display]
+        params[:summary_id] = object.summary_id
 
       elsif params.has_key?(:document_id)
 
@@ -75,6 +92,9 @@ class Comment < ActiveRecord::Base
         else
           resource_type = "document"
         end
+
+        params[:summary_id] = object.summary_id
+
       end
 
       if user.nil? || object.nil?
@@ -113,6 +133,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: comments
@@ -127,5 +148,6 @@ end
 #  source_name :text            not null
 #  created_at  :datetime
 #  updated_at  :datetime
+#  summary_id  :integer
 #
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111192951) do
+ActiveRecord::Schema.define(:version => 20111112101840) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
     t.text     "source_name", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "summary_id"
   end
 
   add_index "campaigns", ["activity_id", "author_id", "name"], :name => "index_campaign_on_activity_author_name", :unique => true
@@ -96,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
   add_index "campaigns", ["location_id", "author_id", "name"], :name => "index_campaign_on_location_author_name", :unique => true
   add_index "campaigns", ["name"], :name => "index_campaigns_on_name"
   add_index "campaigns", ["source_name"], :name => "index_campaigns_on_source_name"
+  add_index "campaigns", ["summary_id", "name"], :name => "index_campaigns_on_summary_id_and_name"
   add_index "campaigns", ["updated_at"], :name => "index_campaigns_on_updated_at"
 
   create_table "comments", :force => true do |t|
@@ -108,11 +110,13 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
     t.text     "source_name", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "summary_id"
   end
 
   add_index "comments", ["activity_id"], :name => "index_comments_on_activity_id"
   add_index "comments", ["author_id", "id"], :name => "index_comments_on_author_id_and_id"
   add_index "comments", ["father_id"], :name => "index_comments_on_father_id", :unique => true
+  add_index "comments", ["summary_id"], :name => "index_comments_on_summary_id"
   add_index "comments", ["updated_at"], :name => "index_comments_on_updated_at"
 
   create_table "contacts", :force => true do |t|
@@ -404,6 +408,7 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
   add_index "social_counters", ["entity_id"], :name => "index_social_counters_on_entity_id"
   add_index "social_counters", ["location_id"], :name => "index_social_counters_on_location_id"
   add_index "social_counters", ["source_name", "action"], :name => "index_social_counters_on_source_name_and_action"
+  add_index "social_counters", ["summary_id", "action"], :name => "index_social_counters_on_summary_id_and_action"
   add_index "social_counters", ["summary_id", "activity_id"], :name => "index_social_counters_on_summary_id_and_activity_id"
   add_index "social_counters", ["updated_at"], :name => "index_social_counters_on_updated_at"
 
@@ -448,19 +453,19 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
   add_index "summary_categories", ["user_id"], :name => "index_summary_categories_on_user_id"
 
   create_table "summary_ranks", :force => true do |t|
-    t.integer  "user_id"
     t.integer  "summary_id"
     t.integer  "location_id"
     t.integer  "entity_id"
     t.text     "posts"
     t.text     "likes"
-    t.text     "shares"
+    t.text     "actions"
     t.text     "subscribers"
     t.text     "comments"
-    t.text     "demography"
+    t.text     "demographics"
     t.text     "documents"
     t.text     "channel_ranks"
     t.text     "views"
+    t.text     "analytics_summary"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -468,7 +473,6 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
   add_index "summary_ranks", ["entity_id"], :name => "index_summary_ranks_on_entity_id", :unique => true
   add_index "summary_ranks", ["location_id"], :name => "index_summary_ranks_on_location_id", :unique => true
   add_index "summary_ranks", ["summary_id"], :name => "index_summary_ranks_on_summary_id", :unique => true
-  add_index "summary_ranks", ["user_id", "summary_id"], :name => "index_summary_ranks_on_user_id_and_summary_id", :unique => true
 
   create_table "summary_subscribes", :force => true do |t|
     t.integer  "summary_id",    :null => false
@@ -560,6 +564,7 @@ ActiveRecord::Schema.define(:version => 20111111192951) do
   add_index "users", ["invited_by_id"], :name => "index_users_on_invited_by_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
+  add_index "users", ["user_type"], :name => "index_users_on_user_type"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "word_forms", :force => true do |t|

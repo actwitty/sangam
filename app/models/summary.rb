@@ -48,9 +48,15 @@ class Summary < ActiveRecord::Base
     #So using after_destroy rather than making the associations dependent =>destroy/delete
     def ensure_destroy_of_associations
       Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_associations] entering #{self.inspect}")
+
       SummarySubscribe.destroy_all(:summary_id => self.id)  #destroy_all as need to update contacts
+
       Theme.delete_all(:summary_id => self.id)  #deleta_all as no associations
+
       SummaryCategory.delete_all(:summary_id => self.id)  #deleta_all as no associations
+
+      SummaryRank.delete_all(:summary_id => self.id)  #deleta_all as no associations
+
       Rails.logger.info("[MODEL] [SUMMARY] [ensure_destroy_of_associations] Leaving")
     end
 
@@ -124,7 +130,7 @@ class Summary < ActiveRecord::Base
         #cant call rebuild_a_summary from here as this is making the transaction itself false
         false
       end
-    end
+  end
 
   public
     include RingBuffer

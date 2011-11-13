@@ -428,9 +428,11 @@ describe Activity do
       com5 = @u3.create_comment(:activity_id => act[:post][:id], :text => "555555555555555")
       puts com5
 
-       @c1 = Campaign.create_campaign( :author_id => @u.id, :name => "like", :value => 1,
+      @c1 = Campaign.create_campaign( :author_id => @u.id, :name => "like", :value => 1,
                              :activity_id => act[:post][:id] )
-       @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
+      puts @c1.inspect
+
+      @c2 = Campaign.create_campaign( :author_id => @u3.id,:name => "like", :value => 2,
                                :activity_id => act[:post][:id] )
       @c3 = Campaign.create_campaign( :author_id => @u1.id,:name => "support", :value => 3,
                                :activity_id => act[:post][:id])
@@ -475,10 +477,10 @@ describe Activity do
 
       e = Entity.where(:entity_name => "pizza").first
 
-     a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id],:entity_id => e.id, :location_id => a.base_location_id},
+      a =@u.get_stream({:user_id => @u.id, :filter => {:word_id => act[:post][:word][:id],:entity_id => e.id, :location_id => a.base_location_id},
                        :updated_at => Time.now.utc})
-     puts "================"
-     puts a
+      puts "================"
+      puts a
       puts "================"
       a.should_not be_blank
       a = @u.remove_activity(act1[:post][:id])
@@ -487,6 +489,7 @@ describe Activity do
       a = @u.get_summary({:user_id => @u.id, :updated_at => act2[:post][:time], :friend => true})
       puts a
     end
+
     it "should be able to remove summary at last" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
@@ -1148,10 +1151,51 @@ describe Activity do
        a = SummaryRank.add_analytics({:fields => ["posts"], :summary_id => a1[:post][:summary_id] })
        puts a.inspect
 
-       a5 = @u.create_activity(:word => "Cars" , :text => "",:location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+       a5 = @u.create_activity(:word => "eating" , :text => "http://www.youtube.com/watch?222 http://www.flickr.com/ wow",:location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true,:summary_category=>"cars" ,
                                :status => AppConstants.status_public)
-       a = SummaryRank.add_analytics({:fields => ["likes"], :summary_id => a2[:post][:summary_id] })
+
+       @u1.subscribe_summary(a5[:post][:summary_id])
+       @u2.subscribe_summary(a5[:post][:summary_id])
+
+       s1 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "facebook", :action => "share"})
+       s2 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "twitter", :action => "share", :desc => "wow"})
+
+       com1 = @u1.create_comment(:activity_id => a5[:post][:id], :text => "11111111111 1")
+       puts com1
+       com2 = @u.create_comment(:activity_id => a5[:post][:id], :text => " 2222222222222 ")
+       puts com2
+
+       @c1 = @u1.create_campaign( :name => "like", :value => 1,:activity_id => a5[:post][:id] )
+       @c2 = @u3.create_campaign( :name => "like", :value => 2, :activity_id => a5[:post][:id] )
+
+       work_off
+
+       a = SummaryRank.add_analytics({:fields => ["likes"], :summary_id => a5[:post][:summary_id] })
+       puts a.inspect
+
+       @u2.unsubscribe_summary(a5[:post][:summary_id])
+#
+       work_off
+
+       a = @u.get_analytics({:fields => ["all"], :summary_id => a5[:post][:summary_id] })
+       puts a.inspect
+
+
+       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
+       puts a.inspect
+
+
+       @u1.remove_comment(com1[:comment][:id])
+       @u1.remove_campaign({:activity_id => a5[:post][:id], :user_id => @u1.id, :name => "like"})
+
+       work_off
+       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
+       puts a.inspect
+
+       @u.remove_activity(a5[:post][:id])
+       work_off
+       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
        puts a.inspect
     end
 #    TEST REMOVE ENTITY

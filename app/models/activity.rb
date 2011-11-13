@@ -58,7 +58,9 @@ class Activity < ActiveRecord::Base
 
   before_save             :sanitize_data
 
-  after_destroy           :rebuild_summary
+  after_destroy           :rebuild_summary_and_analytics
+
+  after_save              :update_analytics
 
   protected
 
@@ -74,15 +76,26 @@ class Activity < ActiveRecord::Base
 
     end
 
-    def rebuild_summary
-      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary] - After Destroy entering")
+    def rebuild_summary_and_analytics
+      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary_and_analytics] - After Destroy entering")
 
       if !self.summary_id.blank?
         s = Summary.where(:id => self.summary_id).first
         s.rebuild_a_summary if !s.nil?
+
+        #update_analytics
+        update_analytics
       end
 
-      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary] - After Destroy leaving")
+      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary_and_analytics] - After Destroy leaving")
+    end
+
+    def update_analytics
+       Rails.logger.info("[MODEL] [ACTIVITY] [update_analytics] entering #{self.inspect}")
+
+       SummaryRank.add_analytics({:fields => ["posts"], :summary_id => self.summary_id}) if !self.summary_id.blank?
+
+       Rails.logger.info("[MODEL] [ACTIVITY] [update_analytics] leaving #{self.inspect}")
     end
 
   public
@@ -379,6 +392,7 @@ class Activity < ActiveRecord::Base
       end
 
       handle_asynchronously :post_proc_activity
+
     end
 
 end

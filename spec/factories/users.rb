@@ -9,11 +9,12 @@ Factory.define :user do |u|
   u.sequence(:full_name){|n| "lemony lime" }
   u.sequence(:photo_small_url ){|n| "images/id_#{n}" }
   u.sequence(:username ){|n| "lemony_#{n}" }
-  u.dob "15/12/978"
-  u.current_location "bangalore"
-  u.current_geo_lat "45.4567"
-  u.current_geo_long "23.3456"
-  u.gender "male"
+  u.sequence(:dob) {|n| "15/12/978"}
+  u.sequence(:current_location) {|n| "bangalore"}
+  u.sequence(:current_geo_lat) {|n| "45.4567"}
+  u.sequence(:current_geo_long) {|n| "23.4567"}
+  u.sequence(:gender) {|n| "male"}
+
   u.after_build do |user|
 
     #user.profile = Factory.build(:profile,

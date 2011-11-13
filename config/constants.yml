@@ -222,6 +222,16 @@ development: &default
   #Rank and Analytics
   number_of_data_points:              90
 
+  age_band_kids:                      "1-12"
+  age_band_teens:                      "13-17"
+  age_band_geny:                      "18-24"
+  age_band_genx:                      "25-34"
+  age_band_forties:                      "35-44"
+  age_band_fifties:                      "45-54"
+  age_band_sixties:                      "55-64"
+  age_band_seniors:                      "65+"
+
+
 production:
   <<: *default
   #constant1:  "overriden value1"

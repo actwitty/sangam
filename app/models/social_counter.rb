@@ -22,6 +22,7 @@ class SocialCounter < ActiveRecord::Base
   validates_length_of :action,      :in => 1..AppConstants.action_name_length
 
   after_save  :rebuild_social_counters
+  after_destroy :update_analytics
 
   def rebuild_social_counters
     h = {}
@@ -58,10 +59,11 @@ class SocialCounter < ActiveRecord::Base
         end
         d.update_attributes(:social_counters_array => d.social_counters_array)
 
+
       elsif !obj.location_id.nil?
         result = SocialCounter.where(:location_id => obj.location_id ).group(:source_name, :action).count
 
-        l = Location.where(:id => obj.document_id).first
+        l = Location.where(:id => obj.location_id).first
 
         l.social_counters_array = []
         result.each do |k,v|
@@ -83,11 +85,29 @@ class SocialCounter < ActiveRecord::Base
 
       end
 
+      #also update the analytics
+       update_analytics
     end
     Rails.logger.info("[MODEL] [SOCIAL_COUNTERS] [rebuild_social_counters] leaving")
 
     rescue => e
   end
+
+  def update_analytics
+    Rails.logger.info("[MODEL] [SOCIAL_COUNTERS] [update_analytics] entering #{self.inspect}")
+    params = {}
+    if !self.summary_id.blank?
+      params[:summary_id] = self.summary_id
+    elsif  !self.location_id.blank?
+      params[:location_id] = self.location_id
+    elsif  !self.entity_id.blank?
+      params[:entity_id] = self.entity_id
+    end
+    params[:fields] = ["actions"]
+    SummaryRank.add_analytics(params)
+    Rails.logger.info("[MODEL] [SOCIAL_COUNTERS] [update_analytics] leaving  #{self.inspect}")
+  end
+
   class << self
 
     #INPUT
