@@ -21,6 +21,7 @@ function aw_get_all_channel_html(channel_info){
 
   var channel_info_html = '<div class="aw_ppm_dyn_all_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_ppm_dyn_all_chn_info_hover_box">' +
+                              //TODO: Add the hover here
                             '</div>' +
                             '<div class="aw_ppm_dyn_all_chn_label">' +
                                 '<span>' + channel_info.word.name + '</span>' +
@@ -51,12 +52,18 @@ function aw_api_srv_resp_ppm_chn_render_all_channels(params){
   }
   $.each(data, function(i, channel_info){
     if( aw_lib_get_page_owner_id() != channel_info.user.id ) {
-      var html = aw_get_all_channel_html(channel_info);
-      $('#aw_js_ppm_all_chn_container').append(html);
+      if ( channel_info.subscribed && channel_info.subscribed == true ){
+        /* skip */
+      }else{
+        var html = aw_get_all_channel_html(channel_info);
+        $('#aw_js_ppm_all_chn_container').append(html);
+      }
+
     }
   });
   /* enable the more button */
   $("#aw_js_ppm_all_chn_data_more").attr("disabled", false);
+    $('#aw_js_ppm_all_channel_data').find(".aw_js_ppm_loading_animation").hide();
 }
 /*************************************************************/
 /*
@@ -67,6 +74,7 @@ function aw_api_srv_resp_ppm_chn_render_all_channels(params){
 function aw_api_ppm_chn_request_all_channels(on_init){
   /* disable the more button */
   $("#aw_js_ppm_all_chn_data_more").attr("disabled", true);
+  $('#aw_js_ppm_all_channel_data').find(".aw_js_ppm_loading_animation").show();
   var params = {};
   var req_cookie = {};
   if( typeof on_init != 'undefined' ){

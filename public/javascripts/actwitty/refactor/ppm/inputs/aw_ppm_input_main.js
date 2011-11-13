@@ -55,7 +55,7 @@ function get_location_json(){
              geo_location : {
                     geo_latitude : $('#aw_js_ppm_input_hidden_lat_value').val(), 
                     geo_longitude : $('#aw_js_ppm_input_hidden_lng_value').val(), 
-                    geo_name : $('#geo_location').val()} 
+                    geo_name : $('#aw_js_ppm_input_hidden_geo_location').val()} 
            };
   }
   else if (aw_js_ppm_input_hidden_location_type == '2')
@@ -165,7 +165,7 @@ function aw_input_box_reset_after_post(){
 function aw_api_srv_resp_ppm_input_create_post(params){
     aw_input_box_reset_after_post();
     clear_all_input_jsons();
-    aw_lib_alert("New post added");
+     $(".aw_js_ppm_ip_input_box").find(".aw_js_ppm_loading_animation").hide();
 }
  
 /*
@@ -173,7 +173,9 @@ function aw_api_srv_resp_ppm_input_create_post(params){
  *
  */
 function post_activity_to_server(post_data){
-  var params = {
+
+ $(".aw_js_ppm_ip_input_box").find(".aw_js_ppm_loading_animation").show();
+ var params = {
                   'aw_srv_protocol_params' : post_data,
                   'aw_srv_protocol_cookie' : {}
                };

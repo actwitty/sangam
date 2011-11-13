@@ -41,16 +41,16 @@ var aw_srv_local_json_data_cache_manager = {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_4(params){
                                                                                       /* params -> summary JSON */
-                                                                                      aw_api_srv_resp_ppm_chn_render_all_channels(params);
+                                                                                      aw_api_srv_resp_ppm_chn_render_user_mentions(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'URL' : "/home/get_entitiesi.json"
+                                                                              'URL' : "/home/get_entities.json"
                                                                             },
                                       'AW_SRV_PPM_CHN_GET_ALL_LOCATIONS'      : {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_5(params){
                                                                                       /* params -> summary JSON */
-                                                                                      aw_api_srv_resp_ppm_chn_render_all_locations(params);
+                                                                                      aw_api_srv_resp_ppm_chn_render_user_locations(params);
                                                                                     },
                                                                               'DATA' : {},
                                                                               'URL' : "/home/get_locations.json"

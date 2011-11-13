@@ -17,6 +17,7 @@ function aw_get_user_channel_html(channel_info){
   if (aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
      channel_info_html = '<div class="aw_ppm_dyn_users_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_ppm_dyn_users_chn_info_hover_box">' +
+                                //TODO: Add the hover here
                             '</div>' +
                             '<div class="aw_ppm_dyn_users_chn_label_own_page">' +
                                 '<span>' + channel_info.word.name + '</span>' +
@@ -31,6 +32,7 @@ function aw_get_user_channel_html(channel_info){
      }
      channel_info_html =  '<div class="aw_ppm_dyn_users_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_ppm_dyn_users_chn_info_hover_box">' +
+                                //TODO: Add the hover here
                             '</div>' +
                             '<div class="aw_ppm_dyn_users_own_chn_label_others_page">' +
                                 '<span>' + channel_info.word.name + '</span>' +
@@ -68,6 +70,7 @@ function aw_api_srv_resp_ppm_chn_render_user_channels(params){
   });
   /* enable the more button */
   $("#aw_js_ppm_user_chn_data_more").attr("disabled", false);
+  $('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").hide();
 }
 /*************************************************************/
 /*
@@ -78,6 +81,7 @@ function aw_api_srv_resp_ppm_chn_render_user_channels(params){
 function aw_api_ppm_chn_request_user_channels(on_init){
   /* disable the more button */
   $("#aw_js_ppm_user_chn_data_more").attr("disabled", true);
+  $('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").show();
   var params = {};
   var req_cookie = {};
   if( typeof on_init != 'undefined' ){

@@ -3,7 +3,7 @@
  *
  *
  */
-function aw_get_all_channel_html(channel_info){
+function aw_get_subscribed_channel_html(channel_info){
   var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category.name); 
   var channel_theme = default_theme.thumb;
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
@@ -11,7 +11,6 @@ function aw_get_all_channel_html(channel_info){
   }
   var box_id = aw_lib_get_channel_box_id(channel_info);
   aw_api_ppm_add_channel_context(box_id, channel_info);
-  
   var subscription_action_image = '/images/actwitty/refactor/aw_ppm/channel/subscribe.png';
   var subscription_tooltip = 'Click to subscribe to this channel.';
   if ( channel_info.subscribed && channel_info.subscribed == true ){
@@ -21,6 +20,7 @@ function aw_get_all_channel_html(channel_info){
 
   var channel_info_html = '<div class="aw_ppm_dyn_subscribed_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_ppm_dyn_subscribed_chn_info_hover_box">' +
+                                //TODO: Add the hover here
                             '</div>' +
                             '<div class="aw_ppm_dyn_subscribed_chn_label">' +
                                 '<span>' + channel_info.word.name + '</span>' +
@@ -40,9 +40,10 @@ function aw_get_all_channel_html(channel_info){
  *
  *
  */
-function aw_api_srv_resp_ppm_chn_render_all_channels(params){
+function aw_api_srv_resp_ppm_chn_render_subscribed_channels(params){
   var data = aw_api_srv_get_data_for_request('AW_SRV_PPM_CHN_GET_SUBSCRIBED_CHANNELS');
   var cookie = params['aw_srv_protocol_cookie'];
+  var init_mode = 1;
   if ( cookie && cookie['init'] && cookie['init'] == 1 ){
     $('#aw_js_ppm_subscribed_chn_container').html('');
   }
@@ -50,13 +51,17 @@ function aw_api_srv_resp_ppm_chn_render_all_channels(params){
     data.pop();
   }
   $.each(data, function(i, channel_info){
+    if( init_mode == 1){
+      channel_info['subscribed'] = true;
+    }
     if( aw_lib_get_page_owner_id() != channel_info.user.id ) {
-      var html = aw_get_all_channel_html(channel_info);
+      var html = aw_get_subscribed_channel_html(channel_info);
       $('#aw_js_ppm_subscribed_chn_container').append(html);
     }
   });
   /* enable the more button */
   $("#aw_js_ppm_subscribed_chn_data_more").attr("disabled", false);
+  $('#aw_js_ppm_subscribed_channel_data').find(".aw_js_ppm_loading_animation").hide();
 }
 /*************************************************************/
 /*
@@ -64,9 +69,10 @@ function aw_api_srv_resp_ppm_chn_render_all_channels(params){
  *
  *
  */
-function aw_api_ppm_chn_request_all_channels(on_init){
+function aw_api_ppm_chn_request_subscribed_channels(on_init){
   /* disable the more button */
   $("#aw_js_ppm_subscribed_chn_data_more").attr("disabled", true);
+  $('#aw_js_ppm_subscribed_channel_data').find(".aw_js_ppm_loading_animation").show();
   var params = {};
   var req_cookie = {};
   if( typeof on_init != 'undefined' ){
@@ -83,7 +89,7 @@ function aw_api_ppm_chn_request_all_channels(on_init){
   var srv_params =   {
                         user_id : aw_lib_get_page_owner_id(), 
                         updated_at: time_cookie, 
-                        page_type: 3,
+                        page_type: 2,
                         cache_cookie:aw_lib_get_cache_cookie_id()
                      };
   params['aw_srv_protocol_params'] = srv_params;

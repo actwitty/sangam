@@ -63,9 +63,11 @@ $(document).ready(function(){
   });
 
   $("#aw_js_ppm_mentions_data_more").live('click', function(){
+    aw_api_ppm_chn_request_users_mentions(0);
   });
 
   $("#aw_js_ppm_locations_data_more").live('click', function(){
+    aw_api_ppm_chn_request_users_locations(0);
   });
 
   $("#aw_js_ppm_all_chn_data_more").live('click', function(){
