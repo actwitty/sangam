@@ -61,7 +61,8 @@ class Location < ActiveRecord::Base
 
       new_hash = location_hash[:geo_location]
       h = {:location_type => AppConstants.location_type_geo, :location_lat => new_hash[:geo_latitude],
-           :location_long => new_hash[:geo_longitude], :location_name => new_hash[:geo_name]}
+           :location_long => new_hash[:geo_longitude], :location_name => new_hash[:geo_name], :location_city => new_hash[:geo_city],
+            :location_country => new_hash[:geo_country]}
 
     elsif !location_hash[:unresolved_location].nil?
       new_hash = location_hash[:unresolved_location]
@@ -74,7 +75,7 @@ class Location < ActiveRecord::Base
       l = nil
       #Validation Uniqueness fails
       if /has already been taken/ =~ e.message
-        h.delete(:location_name)
+        h = h.except(:location_name, :location_city,:location_country)
         l = Location.where(h).first
         Rails.logger.info("Location => create_location => Rescue => Uniq index found " + l.location_type.to_s)
       end
@@ -170,6 +171,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: locations
@@ -183,5 +185,7 @@ end
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  location_city         :text
+#  location_country      :text
 #
 

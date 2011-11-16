@@ -231,6 +231,15 @@ development: &default
   age_band_sixties:                      "55-64"
   age_band_seniors:                      "65+"
 
+  #text categorization
+  maximum_import_first_time:            10000
+  maximum_import_every_time:              500 #imports after first import is done
+
+  data_type_weburl:                     "weburl"
+  data_type_youtube:                    youtube    #as it will be used in regex
+  data_type_facebook:                   facebook   #as it will be used in regex
+  data_type_text:                       "text"
+
 
 production:
   <<: *default

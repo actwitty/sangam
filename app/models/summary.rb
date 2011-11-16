@@ -183,7 +183,7 @@ class Summary < ActiveRecord::Base
                                 :summary_id => summary.id,
                                 :author_id => summary.user_id
                                 )
-         #this gets updated in create_activity..
+
          summary.theme_data = format_theme(a) if !a.blank?
 
          #create category of summary

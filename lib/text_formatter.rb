@@ -281,7 +281,7 @@ module TextFormatter
         h = {:type => AppConstants.location_type_web, :url => loc.location_url, :name => loc.location_name}
       when AppConstants.location_type_geo
         h = {:type => AppConstants.location_type_geo, :lat => loc.location_lat, :long => loc.location_long,
-            :name => loc.location_name}
+            :name => loc.location_name, :city => loc.location_city, :country => loc.location_country}
       when AppConstants.location_type_unresolved
         h = {:type => AppConstants.location_type_unresolved, :name => loc.location_name}
       else
@@ -314,7 +314,8 @@ module TextFormatter
         :source_name => activity.source_name,
         :status => activity.status,
         :campaign_types => activity.campaign_types,
-        :social_counters => activity.social_counters_array
+        :social_counters => activity.social_counters_array,
+        :source_msg_id => activity.source_msg_id
       }
 
     if !activity.base_location_id.blank?

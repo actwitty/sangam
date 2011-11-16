@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111112101840) do
+ActiveRecord::Schema.define(:version => 20111115152100) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20111112101840) do
     t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source_msg_id"
   end
 
   add_index "activities", ["activity_word_id", "base_location_id", "source_name", "status"], :name => "index_activities_on_word_loc_source_status"
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20111112101840) do
   add_index "activities", ["base_location_id", "status"], :name => "index_activities_on_base_location_id_and_status"
   add_index "activities", ["id", "author_id"], :name => "index_activities_on_id_and_author_id"
   add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
+  add_index "activities", ["source_msg_id"], :name => "index_activities_on_source_msg_id"
   add_index "activities", ["source_name", "status"], :name => "index_activities_on_source_name_and_status"
   add_index "activities", ["summary_id", "activity_word_id", "activity_name"], :name => "index_activities_on_summary_word_activity_name"
   add_index "activities", ["summary_id", "base_location_id"], :name => "index_activities_on_summary_id_and_base_location_id"
@@ -322,8 +324,12 @@ ActiveRecord::Schema.define(:version => 20111112101840) do
     t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "location_city"
+    t.text     "location_country"
   end
 
+  add_index "locations", ["location_city"], :name => "index_locations_on_location_city"
+  add_index "locations", ["location_country"], :name => "index_locations_on_location_country"
   add_index "locations", ["location_lat", "location_long"], :name => "index_locations_on_location_lat_and_location_long", :unique => true
   add_index "locations", ["location_long"], :name => "index_locations_on_location_long"
   add_index "locations", ["location_name"], :name => "index_locations_on_location_name"
@@ -387,6 +393,24 @@ ActiveRecord::Schema.define(:version => 20111112101840) do
 
   add_index "profiles", ["first_name", "last_name"], :name => "index_profiles_on_first_name_and_last_name"
   add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
+
+  create_table "social_aggregators", :force => true do |t|
+    t.integer  "user_id",             :null => false
+    t.integer  "activity_id",         :null => false
+    t.integer  "summary_id",          :null => false
+    t.datetime "provider_created_at", :null => false
+    t.string   "source_name",         :null => false
+    t.string   "source_msg_id",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "social_aggregators", ["activity_id"], :name => "index_social_aggregators_on_activity_id"
+  add_index "social_aggregators", ["provider_created_at"], :name => "index_social_aggregators_on_provider_created_at"
+  add_index "social_aggregators", ["source_msg_id"], :name => "index_social_aggregators_on_source_msg_id"
+  add_index "social_aggregators", ["source_name", "source_msg_id"], :name => "index_social_aggregators_on_source_name_and_source_msg_id"
+  add_index "social_aggregators", ["summary_id"], :name => "index_social_aggregators_on_summary_id"
+  add_index "social_aggregators", ["user_id", "source_name", "source_msg_id"], :name => "index_social_aggregator_on_user_source_msg_id", :unique => true
 
   create_table "social_counters", :force => true do |t|
     t.text     "source_name", :null => false
@@ -566,6 +590,21 @@ ActiveRecord::Schema.define(:version => 20111112101840) do
   add_index "users", ["unlock_token"], :name => "index_users_on_unlock_token", :unique => true
   add_index "users", ["user_type"], :name => "index_users_on_user_type"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "web_links", :force => true do |t|
+    t.text     "url",         :null => false
+    t.text     "url_sha1",    :null => false
+    t.string   "category",    :null => false
+    t.text     "title"
+    t.text     "description"
+    t.text     "image_url"
+    t.text     "keywords"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "web_links", ["category"], :name => "index_web_links_on_category"
+  add_index "web_links", ["url_sha1"], :name => "index_web_links_on_url_sha1", :unique => true
 
   create_table "word_forms", :force => true do |t|
     t.integer  "activity_word_id", :null => false

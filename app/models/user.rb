@@ -635,6 +635,7 @@ class User < ActiveRecord::Base
   #OUTPUT array of :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR
   #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
+  #                 ,:city => "new york", :country => "usa"
   #                                                      OR
   #                 :id => 1234, :type => 2, :name => "John's home"
   def get_related_locations(params)
@@ -773,7 +774,8 @@ class User < ActiveRecord::Base
   #    :word => activity word or phrase in activity box  [MANDATORY]
   #    :text =>   ""entity box + @@ + location box" or nil [OPTIONAL]
   #    :location => {
-  #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
+  #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"
+  #                  :geo_city => "bangalore", :geo_country => "india"}
   #                                      OR
   #                  :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
   #                                      OR
@@ -819,8 +821,10 @@ class User < ActiveRecord::Base
   #              :campaign_types => 1 to 7 or nil #( as set by client) at present each bit represent on campaign type. bit 0 => like, bit 1=>support,bit 2=> :join
   #              :sub_title => "hello sudha baby" or nil
   #              :source_name => "actwitty"
+  #              :source_msg_id => "232323232"
   #              :status => 0 or 1 or 2 ( as set by client)
-  #              :location=>{:type=>2, :lat=>#<BigDecimal:62b1fc8,'0.2345E2',18(18)>, :long=>#<BigDecimal:62b1de8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>315}
+  #              :location=>{:type=>2, :lat=>#<BigDecimal:62b1fc8,'0.2345E2',18(18)>, :long=>#<BigDecimal:62b1de8,'0.4545E2',18(18)>,
+  #                       :name=>"marathalli", :id=>315, :city => "bangalore", :country => "India"}
   #             }
 
   def create_activity(params={})
@@ -1063,11 +1067,12 @@ class User < ActiveRecord::Base
   #   :id=>11, :user=>{:id=>5, :full_name=>"lemony1 lime1", :photo=>"images/id_1"},
   #   :word=>{:id=>10, :name=>"eating"}, :time=>Sat, 30 Jul 2011 21:41:56 UTC +00:00,
   #   :text=>"<a href=# value=11 class=js_activity_entity>pizza</a>  with <a href=# value=5 class=js_activity_mention>Alok Srivastava</a>",
-  #   :enriched=>true, :summary_id=>9, :sub_title=>nil, :source_name=>"actwitty", :status=>1, :campaign_types=>1
+  #   :enriched=>true, :summary_id=>9, :sub_title=>nil, :source_name=>"actwitty", :status=>1, :campaign_types=>1,:source_msg_id => "12233",
   #  },
   # :location=>
   #  {
   #   :type=>2, :lat=>#<BigDecimal:9de78e0,'0.2345E2',18(18)>, :long=>#<BigDecimal:9de77c8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>8
+  #   ,:city => "bangalore", :country => "india"
   #  },
   #  :comments=>
   #  {
@@ -1153,6 +1158,7 @@ class User < ActiveRecord::Base
     stream
   end
 
+
   #INPUT
   #user_id => 123 #If same as current use then mix streams with friends other wise only user
   #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
@@ -1183,9 +1189,15 @@ class User < ActiveRecord::Base
   # :friends=>[{:id=>38, :full_name=>"lemony2 lime2", :photo=>"images/id_2"}]
   # }
   #]
+  require "social_fetch/social_fetch"
+
   def get_summary(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_summary] entering")
+
+    #Below two lines are for testing
+    #Activity.destroy_all(:author_id => self.id)
+    #SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
 
     h = process_filter_modified(params)
 
@@ -1344,12 +1356,12 @@ class User < ActiveRecord::Base
       end
     end
 
-
     Rails.logger.debug("[MODEL] [USER] [get_summary] leaving")
     #FETCHING RELATED FRIEND -- DONE
     summaries
 
   end
+
 
   #INPUT => {:word_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT => { :id => 12435, :name => "eating" ,
@@ -1426,7 +1438,8 @@ class User < ActiveRecord::Base
   #INPUT => {:location_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT => { :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
   #                                                      OR
-  #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york"
+  #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york", :city => "New York",
+  #                 :country => "bangalore"
   #                                                      OR
   #                :id => 1234, :type => 2, :name => "John's home" ,
   #:stream => [{:post => .... }]# same as stream

@@ -75,7 +75,6 @@ class HomeController < ApplicationController
   end
 
   #PUBLIC SHOW END
-  
 
   def show
 
@@ -83,6 +82,7 @@ class HomeController < ApplicationController
     @profile_page = 1
     @filtered_mode = ""
     @page_mode="profile_main"
+
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
     if user_signed_in?
@@ -1145,7 +1145,6 @@ class HomeController < ApplicationController
   #######################################
   def get_latest_summary
     Rails.logger.info("[CNTRL][HOME][GET LATEST SUMMARY] request params #{params}")
-
     @user = nil
     if user_signed_in?
       @user = current_user

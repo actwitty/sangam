@@ -40,6 +40,8 @@ class Activity < ActiveRecord::Base
 
   has_many        :social_counters, :dependent => :destroy
 
+  has_one         :social_aggregator, :dependent => :destroy
+
   validates_existence_of  :author_id
   validates_existence_of  :activity_word_id
 
@@ -93,6 +95,9 @@ class Activity < ActiveRecord::Base
     def update_analytics
        Rails.logger.info("[MODEL] [ACTIVITY] [update_analytics] entering #{self.inspect}")
 
+       #enable created_at and updated_at auto update immediately at after_save = just after Activity.create!
+       #ActiveRecord::Base.record_timestamps = true if ActiveRecord::Base.record_timestamps == false
+
        SummaryRank.add_analytics({:fields => ["posts"], :summary_id => self.summary_id}) if !self.summary_id.blank?
 
        Rails.logger.info("[MODEL] [ACTIVITY] [update_analytics] leaving #{self.inspect}")
@@ -106,7 +111,8 @@ class Activity < ActiveRecord::Base
   #    :activity => activity word or phrase in activity box
   #    :text =>   ""entity box + @@ + location box" or nil
   #    :location => {
-  #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
+  #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj",
+  #                  :geo_city => ""bangalore", :geo_country => "india""}
   #                                      OR
   #                  :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
   #                                      OR
@@ -123,6 +129,7 @@ class Activity < ActiveRecord::Base
   #    :sub_title => "hello sudha baby" or nil #optional
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
   #    :meta_activity => true/false #true for comment, campaign father activity creation otherwise false
+  #    :source_msg_id => 123
 
       def create_activity(params={})
 
@@ -169,10 +176,20 @@ class Activity < ActiveRecord::Base
 
         ###################################### CREATE OR UPDATE ACTIVITY #################################################
         h = {:activity_word_id => word_obj.id,:activity_text => params[:text] , :activity_name => params[:activity],
-             :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false,
-             :status => params[:status], :campaign_types => params[:campaign_types],:source_name => params[:source_name],
-             :sub_title => params[:sub_title],:meta_activity => params[:meta_activity], :blank_text => params[:blank_text] }
+             :author_id => params[:author_id], :summary_id => params[:summary_id],:enriched => false, :status => params[:status],
+             :campaign_types => params[:campaign_types],:source_name => params[:source_name],:sub_title => params[:sub_title],
+             :meta_activity => params[:meta_activity], :blank_text => params[:blank_text],:source_msg_id => params[:source_msg_id] }
 
+        #this is used to insert social data from Fb, twitter etc at their actual time stamp.
+        #Auto update of time stamp is switched off. It is enabled immediately after
+        #Activity,create! or update in after_save callback
+        #Commented - as we are not setting creatd_at and updated_at manually..But works very neatly..
+        #To enable un-comment 4 lines and also in after_save callback
+#        if !params[:created_at].blank? and !params[:updated_at].blank?
+#          h[:created_at] = params[:created_at]
+#          h[:updated_at] = params[:updated_at]
+#          ActiveRecord::Base.record_timestamps = false
+#        end
 
         if params[:update] == false
           #create activity => either root or child
@@ -211,11 +228,12 @@ class Activity < ActiveRecord::Base
           end
 
           ###################################Generate Mentions#################################################
-          params[:text] = Mention.create_mentions(params[:text], obj)
+          if !params[:text].blank?
+              params[:text] = Mention.create_mentions(params[:text], obj)
 
-          #Save location and Mentions too
-          obj.update_attributes(:activity_text => params[:text],:base_location_id => params[:location_hash] )
-
+              #Save location and Mentions too
+              obj.update_attributes(:activity_text => params[:text],:base_location_id => params[:location_hash] )
+          end
 
           ##################################CREATE DOCUMENTS #####################################################
           #first get the mentioned document links
@@ -410,6 +428,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
@@ -434,5 +453,6 @@ end
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  source_msg_id         :string(255)
 #
 

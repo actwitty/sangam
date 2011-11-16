@@ -223,10 +223,10 @@ describe Activity do
 
 
       act3 = @u.create_activity( :word => "singing" , :text => "AR rehman's jai ho",
-                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli"}},
+                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli", :geo_city => "bangalore"}},
                               :enrich => true)
       act4 = @u.create_activity( :word => "painting" , :text => "Sachin tendulkar  rahul dravid",
-                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh"}},
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh", :geo_city => "bangalore", :geo_country => "india"}},
                               :enrich => true)
       act4 = @u.create_activity( :word => "eating" , :text => "pizza Britney spears  rahul dravid pizza pizza hut",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "tundi"}},
@@ -1223,6 +1223,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
@@ -1247,5 +1248,6 @@ end
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  source_msg_id         :string(255)
 #
 
