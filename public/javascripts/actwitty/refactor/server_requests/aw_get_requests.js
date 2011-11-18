@@ -55,33 +55,15 @@ var aw_srv_local_json_data_cache_manager = {
                                                                               'DATA' : {},
                                                                               'URL' : "/home/get_locations.json"
                                                                             },     
-                                      'AW_SRV_PPM_STM_GET_USER_STREAMS'      : {
+                                      'AW_SRV_PPM_STM_GET_STREAMS'      : {
                                                                               
                                                                               'CB': function aw_temp_resp_fn_6(params){
                                                                                       /* params -> summary JSON */
-                                                                                      aw_api_srv_resp_ppm_stm_render_user_stream(params);
+                                                                                      aw_api_srv_resp_ppm_stm_render_streams(params);
                                                                                     },
                                                                               'DATA' : {},
                                                                               'URL' : "/home/get_streams.json"
                                                                             },     
-                                      'AW_SRV_PPM_STM_GET_SUBSCRIBED_STREAMS'      : {
-                                                                             
-                                                                              'CB': function aw_temp_resp_fn_7(params){
-                                                                                      /* params -> summary JSON */
-                                                                                      aw_api_srv_resp_ppm_stm_render_subscribed_stream(params);
-                                                                                    },
-                                                                              'DATA' : {},
-                                                                              'URL' : "/home/get_streams.json"
-                                                                            },
-                                       'AW_SRV_PPM_STM_GET_ALL_STREAMS'      : {
-                                                                              
-                                                                              'CB': function aw_temp_resp_fn_8(params){
-                                                                                      /* params -> summary JSON */
-                                                                                      aw_api_srv_resp_ppm_stm_render_all_stream(params);
-                                                                                    },
-                                                                              'DATA' : {},
-                                                                              'URL' : "/home/get_streams.json"
-                                                                            },    
                                       'AW_SRV_PPM_STM_GET_STREAM_LIKES'      : {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_9(params){
@@ -89,16 +71,18 @@ var aw_srv_local_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_stm_render_stream_likes(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'URL' : "/home/get_users_of_campaign"
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_users_of_campaign.json"
                                                                             },        
                                       'AW_SRV_PPM_STM_GET_STREAM_COMMENTS'      : {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_10(params){
                                                                                       /* params -> summary JSON */
-                                                                                      aw_api_srv_resp_ppm_stm_render_stream_likes(params);
+                                                                                      aw_api_srv_resp_ppm_stm_render_stream_comments(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'URL' : "/home/get_all_comments"
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_all_comments.json"
                                                                             },         
                                       'AW_SRV_PPM_STM_GET_STREAM_SHARES'      : {
                                                                              
@@ -107,6 +91,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_stm_render_stream_shares(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : true,
                                                                               'URL' : "/home/get_social_counter.json"
                                                                             },     
                                        'AW_SRV_PPM_STM_GET_RECOMMENDED_CHANNELS'      : {
@@ -158,8 +143,10 @@ var aw_srv_local_json_data_cache_manager = {
 
 
 
+/*******************************************************/
 /*
  *  This function is agnostic of params and just passes it to the relevant call
+ *
  */
 function aw_api_srv_make_a_get_request(request_tag, params){
      if( request_tag.length == 0 ){
@@ -191,7 +178,11 @@ function aw_api_srv_make_a_get_request(request_tag, params){
      aw_lib_console_log("debug","aw_api_srv: Return " + request_tag );  
      return 0;
 }
+
+
+/*******************************************************/
 /*
+ *
  *
  */
 function aw_api_srv_get_data_for_request(request_tag){
@@ -202,9 +193,20 @@ function aw_api_srv_get_data_for_request(request_tag){
     return aw_srv_local_json_data_cache_manager[request_tag]['DATA'];
 }
 
+/*******************************************************/
 /*
  *
- */                                    
+ *
+ */
+function aw_awpi_serv_resp_data_for_get_request_in_params(params){
+  return params['aw_srv_protocol_params']['__AW_SRV_RESP__'];
+}
+
+/*******************************************************/
+/*
+ *
+ *
+ */
 function aw_srv_internal_srv_get_requestor(params){
   var request_tag =  params['__aw_srv_secret_internal_req_tag__'];
   var srv_params = params['aw_srv_protocol_params'];
@@ -217,6 +219,11 @@ function aw_srv_internal_srv_get_requestor(params){
             contentType: 'application/json',
             success: function (data) {
               aw_srv_local_json_data_cache_manager[request_tag]['DATA'] = data;
+
+              if( aw_srv_local_json_data_cache_manager[request_tag]['MULTI'] == true ){
+                 params['aw_srv_protocol_params']['__AW_SRV_RESP__'] = data;
+              }
+
               aw_lib_console_log("debug","aw_api_srv_internal: response for  " + request_tag + "[" + JSON.stringify(data) +  "]" );   
               if(aw_srv_local_json_data_cache_manager[request_tag]['CB']){
                   aw_srv_local_json_data_cache_manager[request_tag]['CB'](params);

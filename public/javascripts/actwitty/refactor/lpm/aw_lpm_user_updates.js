@@ -38,7 +38,7 @@ function aw_api_srv_resp_lpm_render_latest_channels(params){
 
 function aw_api_lpm_initialize_landing_page(){
   var params = {
-                  'aw_srv_protocol_params' : {'test' : 'abcdef'},
+                  'aw_srv_protocol_params' : {},
                   'aw_srv_protocol_cookie' : {}
                };
   aw_api_srv_make_a_get_request('AW_SRV_LPM_GET_LATEST_CHANNELS',  params);

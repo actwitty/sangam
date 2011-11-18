@@ -1142,8 +1142,6 @@ function delete_entity_from_post(post_id, entity_id){
 
 //#INPUT => activity_id => 123
 function show_all_comments(post_id, all_id){
-    alert(post_id);
-    alert(all_id);
     var current_user_id=$('#session_owner_id').attr("value");
     $.ajax({
         url: '/home/get_all_comments.json',

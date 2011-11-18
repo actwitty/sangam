@@ -6,6 +6,7 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_input_create_post(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : false,
                                                                               'DATA_TYPE': "script",
                                                                               'URL' : "/home/create_activity.json"
                                                                             },
@@ -17,6 +18,7 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                                     },
                                                                               'DATA' : {},
                                                                               'DATA_TYPE': "json",
+                                                                              'MULTI' : true,
                                                                               'URL' : "/home/subscribe_summary.json"
                                                                             },
                                                   'AW_SRV_PPM_CHN_UNSUBSCRIBE_CHANNEL'    : {
@@ -26,6 +28,7 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_resp_unsubscribe(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : true,
                                                                               'DATA_TYPE': "json",
                                                                               'URL' : "/home/unsubscribe_summary.json"
                                                                             },
@@ -37,86 +40,117 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                                     },
                                                                               'DATA' : {},
                                                                               'DATA_TYPE': "script",
+                                                                              'MULTI' : true,
                                                                               'URL' : "/home/get_latest_summary.json"
                                                                             },
                                                   'AW_SRV_PPM_STM_CREATE_LIKE'    : {
                                                                               
                                                                               'CB': function aw_temp_resp_fn_5(params){
                                                                                       /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                                      aw_api_srv_resp_ppm_stm_like(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'DATA_TYPE': "json",
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/create_campaign.json"
                                                                             },
                                                   'AW_SRV_PPM_STM_DELETE_LIKE'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_1(params){
-                                                                                      /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                              'CB': function aw_temp_resp_fn_6(params){
+                                                                                      aw_api_srv_resp_ppm_stm_unlike(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/delete_campaign.json"
                                                                             },
                                                   'AW_SRV_PPM_STM_CREATE_COMMENT'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_1(params){
-                                                                                      /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                              'CB': function aw_temp_resp_fn_7(params){
+                                                                                      aw_api_srv_resp_ppm_stm_comment_add(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/create_comment.json"
                                                                             },
                                                   'AW_SRV_PPM_STM_DELETE_COMMENT'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_1(params){
-                                                                                      /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                              'CB': function aw_temp_resp_fn_8(params){
+                                                                                      aw_api_srv_resp_ppm_stm_comment_delete(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/delete_comment.json"
                                                                             },
-                                                   'AW_SRV_PPM_STM_DELETE_ATTACHMENT'    : {
+                                                   'AW_SRV_PPM_STM_DELETE_IMAGE_ATTACHMENT'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_1(params){
+                                                                              'CB': function aw_temp_resp_fn_9(params){
                                                                                       /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                                      aw_api_srv_resp_ppm_stm_delete_image(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/remove_document.json"
                                                                             },      
-                                                    'AW_SRV_PPM_STM_EXTERNAL_SHARE'    : {
+                                                   'AW_SRV_PPM_STM_DELETE_VIDEO_ATTACHMENT'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_1(params){
+                                                                              'CB': function aw_temp_resp_fn_10(params){
                                                                                       /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                                      aw_api_srv_resp_ppm_stm_delete_video(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/remove_document.json"
+                                                                            },      
+                                                                            
+                                                    'AW_SRV_PPM_STM_UPDATE_SOCIAL_SHARE_COUNTER'    : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_11(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_shares_update_counters(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/update_social_media_share.json"
                                                                             },             
                                                     'AW_SRV_PPM_STM_RENAME_CHANNEL'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_1(params){
+                                                                              'CB': function aw_temp_resp_fn_12(params){
                                                                                       /* params -> summary JSON */
                                                                                       //aw_api_srv_resp_ppm_input_create_post(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : true,
                                                                               'DATA_TYPE': "script",
                                                                               'URL' : "/home/get_latest_summary.json"
-                                                                            },             
+                                                                            },
+                                                     'AW_SRV_PPM_STM_DELETE_MENTION'    : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_7(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_delete_mention_from_a_stream(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/delete_entities_from_post.json"
+                                                                            }
 
                                                 };
 
 
 
+/*******************************************************/
 /*
  *  This function is agnostic of params and just passes it to the relevant call
+ *
  */
+
 function aw_api_srv_make_a_post_request(request_tag, params){
      if( request_tag.length == 0 ){
         aw_lib_console_log("error","aw_api_srv: POST Request " + request_tag ); 
@@ -147,7 +181,9 @@ function aw_api_srv_make_a_post_request(request_tag, params){
      aw_lib_console_log("debug","aw_api_srv: Return " + request_tag );  
      return 0;
 }
+/*******************************************************/
 /*
+ *
  *
  */
 function aw_api_srv_resp_data_for_post_request(request_tag){
@@ -157,10 +193,19 @@ function aw_api_srv_resp_data_for_post_request(request_tag){
      }
     return aw_srv_local_post_json_data_cache_manager[request_tag]['DATA'];
 }
-
+/*******************************************************/
 /*
  *
- */                                    
+ *
+ */
+function aw_awpi_serv_resp_data_for_post_request_in_params(params){
+  return params['aw_srv_protocol_params']['__AW_SRV_RESP__'];
+}
+/*******************************************************/
+/*
+ *
+ *
+ */
 function aw_srv_internal_srv_post_requestor(params){
   var request_tag =  params['__aw_srv_secret_internal_req_tag__'];
   var srv_params = params['aw_srv_protocol_params'];
@@ -172,6 +217,9 @@ function aw_srv_internal_srv_post_requestor(params){
             dataType: aw_srv_local_post_json_data_cache_manager[request_tag]['DATA_TYPE'],
             success: function (data) {
               aw_srv_local_post_json_data_cache_manager[request_tag]['DATA'] = data;
+              if( aw_srv_local_post_json_data_cache_manager[request_tag]['MULTI'] == true ){
+                 params['aw_srv_protocol_params']['__AW_SRV_RESP__'] = data;
+              }
               if(aw_srv_local_post_json_data_cache_manager[request_tag]['CB']){
                   aw_srv_local_post_json_data_cache_manager[request_tag]['CB'](params);
               }else{

@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [:show, :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
+  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
                         :get_summary,:get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
                         :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,:get_related_locations,
                         :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
@@ -95,12 +95,79 @@ class HomeController < ApplicationController
 
   #PUBLIC SHOW END
   
+  ###################################################################################
+  def streams
 
+    @user=nil
+    @profile_page = 1
+    @page_mode="profile_stm_page"
+    @aw_stm_scope="p" #p/s/a
+
+    Rails.logger.info("[CNTRL] [HOME] [STREAMS] Home STREAMS request with #{params}")
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [STREAMS] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [STREAMS] User not signed in")
+    end
+
+      
+      @aw_chn_filter_text_val = "All Channels"
+      @aw_mention_filter_text_val = "All Mentions"
+      @aw_location_filter_text_val = "All Locations"
+
+      Rails.logger.info("[CNTRL] [HOME] [STREAMS] Stream page requested with filtered mode")
+      if !params[:s].blank?
+        if params[:s] == 'p' or params[:s] == 's' or params[:s] == 'a'
+            @aw_stm_scope = params[:s]
+        end
+      end
+
+      if !params[:c_id].blank? &&  !params[:c_name].blank?
+        @aw_chn_filter_text_val=params[:c_name]
+        @aw_chn_filter_id_val=params[:c_id]
+      end
+
+      if !params[:m_id].blank? &&  !params[:m_name].blank?
+        @aw_mention_filter_text_val=params[:m_name]
+        @aw_mention_filter_id_val=params[:m_id]
+      end
+
+      if !params[:l_id].blank? &&  !params[:l_name].blank?
+        @aw_location_filter_text_val=params[:l_id]
+        @aw_location_filter_text_val=params[:l_name]
+      end
+
+   
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
+      if @user.nil?
+        if user_signed_in?
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [STREAMS] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [STREAMS] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      end
+    end
+
+  end
+  ###################################################################################
   def show
 
     @user=nil
     @profile_page = 1
-    @filtered_mode = ""
     @page_mode="profile_chn_page"
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
@@ -110,36 +177,8 @@ class HomeController < ApplicationController
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User not signed in")
     end
 
-
-    if params[:mode] == 'filtered'
-      Rails.logger.info("[CNTRL] [HOME] [SHOW] Stream page requested with filtered mode")
-      @filtered_mode = 'filtered'
-      Rails.logger.info("[CNTRL] [HOME] [SHOW] Stream page requested with filtered mode set #{@filtered_mode}")
-      if !params[:c_id].blank? &&  !params[:c_name].blank?
-        @filter_channel_name=params[:c_name]
-        @filter_channel_id=params[:c_id]
-      end
-
-      if !params[:e_id].blank? &&  !params[:e_name].blank?
-        @filter_entity_id=params[:e_id]
-        @filter_entity_name=params[:e_name]
-      end
-
-      if !params[:l_id].blank? &&  !params[:l_name].blank?
-        @filter_location_id=params[:l_id]
-        @filter_location_name=params[:l_name]
-      end
-      params.except(:mode)
-    end
-
-    #default show streams list
-    @stream_mode = 'js_streams_list'
-    if !params[:stream_mode].blank?
-      @stream_mode = params[:stream_mode]
-    end
     #if no id mentioned or user not found try to fall back to current user
     #if user not logged in then go to sign in page
-    @follow = true
     if params[:id].nil?
       if user_signed_in?
         @user=current_user
@@ -158,11 +197,6 @@ class HomeController < ApplicationController
         else
           Rails.logger.info("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
-        end
-      else
-        if user_signed_in?  && @user.id != current_user.id && !if_ghost_user?   #FOR  PUBLIC SHOW OF POST/ACCOUNT
-          Rails.logger.info("[CNTRL] [HOME] [SHOW] Checking the follow/unfollow status")
-          @follow = current_user.check_follower(@user.id)
         end
       end
     end
@@ -505,7 +539,7 @@ class HomeController < ApplicationController
       args={}
       args[:activity_id] = Integer(params[:activity_id])
       args[:user_id] = current_user.id
-       args[:name] = params[:name]
+      args[:name] = params[:name]
       Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] calling model api Filter:#{args}")
       response_json=current_user.remove_campaign(args)
       Rails.logger.info("[CNTRL][HOME][DELETE CAMPAIGN] model returned #{response_json}")
