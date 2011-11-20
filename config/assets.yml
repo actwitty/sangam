@@ -123,6 +123,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/images/aw_ppm_dyn_stm_main_images.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_locations.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css

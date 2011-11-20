@@ -98,6 +98,7 @@ function aw_internal_ppm_stm_srv_requests_on_init(){
   aw_api_ppm_stm_request_streams(1);
   aw_api_ppm_stm_request_mentions(1);
   aw_api_ppm_stm_request_locations(1);
+  aw_api_ppm_stm_request_similar_ppl(1);
 }
 /******************************************/
 /* Main initializer function

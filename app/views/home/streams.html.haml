@@ -7,9 +7,11 @@
       #awppm_stm_user_info
         #awppm_stm_user_img
           %center
-            %img{:src => @user.photo_small_url}/
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %img{:src => @user.photo_small_url}/
           %center
-            %span #{@user.full_name}
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %span #{@user.full_name}
       #awppm_stm_input_box_wrapper
         -if user_signed_in?
           -if current_user.id == @user.id

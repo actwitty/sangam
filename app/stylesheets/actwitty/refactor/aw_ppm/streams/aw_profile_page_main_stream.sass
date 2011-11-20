@@ -133,14 +133,22 @@ div.awppm_stm_wrapper
   position: absolute
   top: 20px
   left: 20px
+  overflow:hidden
 
 #awppm_stm_user_img
   margin-top: 40px
+  img
+    width: 60px
+    &:hover
+      border: 1px solid #ccc
 
 #awppm_stm_user_info span
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif
   color: #555
   font-size: 16px
   text-align: center
+  &:hover
+    font-weight: bold
 
 #awppm_stm_input_box_wrapper
   width: 630px
@@ -307,6 +315,8 @@ div.awppm_stm_wrapper
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
   float: right
   cursor: pointer
+  &:hover
+    font-weight: bold
 
 
 /* Stream page righr

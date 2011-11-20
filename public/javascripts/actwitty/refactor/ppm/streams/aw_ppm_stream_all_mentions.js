@@ -67,7 +67,6 @@ function aw_api_ppm_stm_mentions_modal_renderer(win_id, trigger_id){
 
   var html = header_html;
   $.each(mentions_data, function(i,mention_info){
-    alert(JSON.stringify(mention_info));
     var mention_image = mention_info.image + "?maxWidth=80";
     var mention_html = '<div class="aw_ppm_stm_dyn_mentions_modal_box" style="background:url(' + mention_image + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  >' +
                             '<input type="hidden" value="' + mention_info.id + '" />' +
@@ -78,7 +77,6 @@ function aw_api_ppm_stm_mentions_modal_renderer(win_id, trigger_id){
     html = html + mention_html;
   });
 
-  alert(html);
   $("#" + win_id).append(html);
   return true;
 

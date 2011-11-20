@@ -1,0 +1,110 @@
+@charset "UTF-8";
+/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_peoples_box {
+  display: block;
+  margin-left: 20px;
+  margin-top: 2px;
+  overflow: hidden;
+}
+/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_img_link img {
+  padding: 1px;
+  border: 1px solid #444444;
+  width: 25px;
+  height: 25px;
+}
+/* line 12, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_img_link:hover {
+  border: 1px solid #222222;
+}
+/* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_name_link span {
+  padding-left: 5px;
+  padding-bottom: 3px;
+  color: #444444;
+  font-size: 13px;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+}
+/* line 21, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_name_link:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/********************************************************************** */
+/* line 26, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.awppm_stm_dyn_peoples_header_box {
+  width: 100%;
+  height: 30px;
+  background: #e5e5e5;
+  display: block;
+  margin-bottom: 2px;
+  padding-top: 5px;
+}
+/* line 33, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.awppm_stm_dyn_peoples_header_box .awppm_stm_dyn_peoples_modal_label {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  color: #333333;
+}
+
+/********************************************************************* */
+/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_locations_modal_box {
+  width: 170px;
+  height: 114px;
+  border: 1px solid black;
+  /*float:left; */
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 15px;
+  position: relative;
+}
+/* line 48, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_locations_modal_box .aw_ppm_stm_dyn_locations_map_box {
+  width: 100%;
+  height: 100%;
+}
+/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_locations_modal_box div.aw_ppm_stm_dyn_locations_info_hover_box {
+  font-family: Calibri, Tahoma, Geneva, sans-serif;
+  position: absolute;
+  left: 1em;
+  top: 2em;
+  z-index: 99;
+  margin-left: 100px;
+  margin-top: 50px;
+  width: 250px;
+  height: 150px;
+  background-color: #ffffcc;
+  border: 1px solid #cccccc;
+  display: none;
+}
+/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_locations_modal_box:hover {
+  cursor: pointer;
+}
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_locations_modal_box:hover div.aw_ppm_stm_dyn_locations_info_hover_box {
+  display: block;
+}
+
+/* line 69, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_location_label_box {
+  width: 100%;
+  height: 20px;
+  border: 0px solid red;
+  position: absolute;
+  bottom: 0px;
+  background: black;
+  background: rgba(0, 0, 0, 0.6);
+}
+/* line 77, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
+.aw_ppm_stm_dyn_location_label_box span {
+  color: white;
+  font-size: 14px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+}
+
+/********************************************************************** */
