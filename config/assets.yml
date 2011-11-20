@@ -97,6 +97,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_ppm_dyn_stm_modal.css
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
@@ -118,7 +119,6 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_attachments.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_actions.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_modal.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_likes.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_shares.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.css

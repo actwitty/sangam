@@ -19,22 +19,24 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_rank">'+
                       '<img class="aw_ppm_chn_dyn_anlytc_rank_icon" src="/images/actwitty/refactor/aw_ppm/channel/analytics/analytic_rank_icon.jpg">'+
                       '<span>100</span>'+
+                      '<span class="aw_ppm_chn_dyn_analytc_rank_label"> Rank </span>'+
                   '</div>'+
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_lut">'+
                       '<span>Last update : 12 hours ago</span>'+
                   '</div>'+
                 '</div>'+
                 '<div class="aw_ppm_chn_dyn_analytc_summary_posts">'+
+                    '<h5>Posts</h5>'+
                     '<div class="aw_ppm_chn_dyn_analytic_fb_post aw_ppm_chn_dyn_analytc_posts_box">'+
-                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/facebook.png">'+
+                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/facebook_active.png" width="50">'+
                        '<span>543</span>'+
                     '</div>'+
                     '<div class="aw_ppm_chn_dyn_analytic_twt_post aw_ppm_chn_dyn_analytc_posts_box">'+
-                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/twitter.png">'+
+                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/twitter_active.png" width="50">'+
                        '<span>200</span>'+
                     '</div>'+
                     '<div class="aw_ppm_chn_dyn_analytic_aw_post aw_ppm_chn_dyn_analytc_posts_box">'+
-                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/flickr.png">'+
+                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/flickr.png" width="50">'+
                        '<span>2000</span>'+
                     '</div>'+
                 '</div>'+
