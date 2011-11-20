@@ -12,13 +12,15 @@ function aw_get_user_channel_html(channel_info){
   var box_id = aw_lib_get_channel_box_id(channel_info);
 
   aw_api_ppm_add_channel_context(box_id, channel_info);
-
+  alert(JSON.stringify(channel_info) );
   var channel_info_html = "";
+  // build the channel analytic summary info, which will be displayed when hovered over channel icon
+  var channel_dyn_analytic_info_html = aw_ppm_channel_dyn_analytic_info_build(channel_info);
+
   if (aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
      channel_info_html = '<div class="aw_ppm_dyn_users_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
-                            '<div class="aw_ppm_dyn_users_chn_info_hover_box">' +
-                                //TODO: Add the hover here
-                            '</div>' +
+                            // channel dynamic summary info append 
+                            channel_dyn_analytic_info_html +     
                             '<div class="aw_ppm_dyn_users_chn_label_own_page">' +
                                 '<span>' + channel_info.word.name + '</span>' +
                             '</div>' +

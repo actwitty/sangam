@@ -35,11 +35,13 @@ javascripts:
   profile_channels:
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_renderer.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_events.js
+    - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_dyn_analytc.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_user_channels.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_subscribed_channels.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_channels.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_mentions.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_locations.js
+   
   profile_streams:
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_renderer.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_events.js
@@ -110,6 +112,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page.css
     - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.css
     - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_locations.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.css
   profile_page_streams:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_profile_page_main_stream.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.css

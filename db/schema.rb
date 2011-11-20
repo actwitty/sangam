@@ -605,7 +605,7 @@ ActiveRecord::Schema.define(:version => 20111115152100) do
 
   add_index "web_links", ["category"], :name => "index_web_links_on_category"
   add_index "web_links", ["url_sha1"], :name => "index_web_links_on_url_sha1", :unique => true
-  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
   create_table "word_forms", :force => true do |t|
     t.integer  "activity_word_id", :null => false
     t.integer  "related_word_id",  :null => false

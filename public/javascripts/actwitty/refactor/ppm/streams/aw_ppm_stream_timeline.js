@@ -250,7 +250,7 @@ function aw_api_srv_resp_ppm_stm_render_streams(params){
   var data = aw_api_srv_get_data_for_request('AW_SRV_PPM_STM_GET_STREAMS');
   var cookie = params['aw_srv_protocol_cookie'];
   
-  $.each(data, function(i, stream_info){
+  $.each(data.stream, function(i, stream_info){
     var html = aw_api_get_stream_main_html(stream_info);
     $('#aw_js_ppm_stm_post_timeline_list').append(html);
     aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
