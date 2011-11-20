@@ -24,6 +24,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/aw_cmn_default_channel_themes.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
   profile_commons:
+    - public/javascripts/actwitty/refactor/ppm/common/aw_cmn_more_cookie_manager.js
     - public/javascripts/actwitty/refactor/ppm/header/aw_ppm_header_main.js
     - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_location.js
     - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_main.js
@@ -56,6 +57,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_all_mentions.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_all_locations.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_modal_manager.js
+    - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_enricher.js
   profile_main_extra:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
@@ -117,6 +119,10 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_likes.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_shares.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/images/aw_ppm_dyn_stm_main_images.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_locations.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css

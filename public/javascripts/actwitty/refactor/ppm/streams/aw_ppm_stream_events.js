@@ -5,13 +5,24 @@
  */
 $(document).ready(function(){
 
-  $("#aw_js_ppm_stm_data_more").live('click', function(){
+   $("#aw_js_ppm_stm_data_more").click(function(){
+    aw_api_ppm_stm_evt_hndl_more_click($(this)); 
+    return false;
+  });
+
+  $("#aw_js_ppm_stm_timeline_state_selector").live('change', function(){
+    aw_api_ppm_stm_evt_hndl_stm_timeline_state_change($(this)); 
+    return false;
   });
 
   $(".aw_js_ppm_stm_delete_post").live('click', function(){
+      aw_api_ppm_stm_evt_hndl_post_delete($(this));
+      return false;
   });
 
   $(".aw_js_ppm_stm_change_channel_of_post").live('click', function(){
+
+    return false;
   });
 
   $(".aw_js_ppm_stm_submit_change_channel_of_post").live('click', function(){

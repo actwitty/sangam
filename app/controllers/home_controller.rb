@@ -671,7 +671,7 @@ class HomeController < ApplicationController
 
       #Alok Adding pusher support
       current_user.push_event_to_pusher({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
-
+      @activity_json = response_json;
       respond_to do |format|
         format.json
       end

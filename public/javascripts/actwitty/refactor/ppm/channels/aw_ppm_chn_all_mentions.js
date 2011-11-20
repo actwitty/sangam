@@ -59,17 +59,13 @@ function aw_api_ppm_chn_request_users_mentions(on_init){
   $('#aw_js_ppm_user_mentions_channel_data').find(".aw_js_ppm_loading_animation").show();
   var params = {};
   var req_cookie = {};
-  if( typeof on_init != 'undefined' ){
+  if( typeof on_init == 'undefined' ){
       on_init = 0;
   }
   if( on_init == 1){
     req_cookie = { 'init' : 1 };
   }
-  var time_cookie = '';
-  var existing_data = aw_api_srv_get_data_for_request('AW_SRV_PPM_CHN_GET_ALL_MENTIONS');
-  if( existing_data.length){
-    time_cookie = existing_data[existing_data.length - 1].time;
-  }
+  
 
   var srv_params =   { 
                         user_id:   aw_lib_get_page_owner_id(), 

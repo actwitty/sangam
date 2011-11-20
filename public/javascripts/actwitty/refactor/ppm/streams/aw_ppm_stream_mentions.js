@@ -19,6 +19,17 @@ function aw_api_ppm_stm_mentions_revise_counters(stream_info){
  *
  *
  */
+function aw_api_ppm_stm_mentions_invalidate_text(stream_info){
+    var stream_main_box_id = aw_api_get_stream_id(stream_info);
+  /* Change text to response text from server */
+    $("#" + stream_main_box_id).find(".aw_js_ppm_stm_stream_text").html('<p>' + stream_info.post.text + '</p>' );
+}
+
+/***************************************************/
+/*
+ *
+ *
+ */
 function aw_api_ppm_stm_evt_hndl_mentions_action(element){
 
   var stream_main_box_id = aw_api_ppm_get_stm_context_id_for_ele(element);
@@ -53,7 +64,7 @@ function aw_api_srv_resp_ppm_stm_delete_mention_from_a_stream(params){
     var stream_main_box_id = aw_api_get_stream_id(stream_info);
 
     /* Change text to response text from server */
-    $("#" + stream_main_box_id).find(".aw_js_ppm_stm_stream_text").html('<p>' + stream_info.post.text + '</p>' );
+    aw_api_ppm_stm_mentions_invalidate_text(stream_info);
 
     /* Re-enable highligher */
     $('#' + stream_main_box_id).find('.js_activity_entity').addClass("js_activity_entity_highlighter");

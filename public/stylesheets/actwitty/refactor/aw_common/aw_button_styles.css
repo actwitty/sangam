@@ -37,38 +37,33 @@
 .button_actwitty:hover {
   text-decoration: none;
 }
-/* line 38, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
-.button_actwitty:active {
-  position: relative;
-  top: 1px;
-}
 
-/* line 43, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 40, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .bigrounded {
   -webkit-border-radius: 2em;
   -moz-border-radius: 2em;
   border-radius: 2em;
 }
 
-/* line 49, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 46, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .medium {
   font-size: 15px;
   /*padding: .4em 1.5em .42em; */
   padding: 0.1em 0.5em 0.1em;
 }
 
-/* line 55, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 52, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .small {
   font-size: 11px;
   padding: 0.2em 1em 0.275em;
 }
 
-/* line 60, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 57, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .button_right {
   float: right;
 }
 
-/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 61, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .button_left {
   float: left;
 }
@@ -76,7 +71,7 @@
 /* color styles
  *---------------------------------------------- */
 /* black */
-/* line 71, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 68, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .black {
   color: #d7d7d7;
   border: solid 1px #333333;
@@ -85,14 +80,14 @@
   background: -moz-linear-gradient(top, #666666, black);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
 }
-/* line 78, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 75, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .black:hover {
   background: black;
   background: -webkit-gradient(linear, left top, left bottom, from(#444444), to(black));
   background: -moz-linear-gradient(top, #444444, black);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#444444', endColorstr='#000000');
 }
-/* line 83, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 80, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .black:active {
   color: #666666;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(#444444));
@@ -100,7 +95,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#666666');
 }
 
-/* line 92, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 89, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .black_active {
   color: #666666;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(#444444));
@@ -109,7 +104,7 @@
 }
 
 /* gray */
-/* line 100, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 97, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .gray {
   color: #e9e9e9;
   border: solid 1px #8c8c8c;
@@ -118,14 +113,14 @@
    * 	background: -moz-linear-gradient(top,  #888,  #575757);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#888888', endColorstr='#575757'); */
 }
-/* line 107, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 104, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .gray:hover {
   background: #616161;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#757575), to(#4b4b4b));
    * 	background: -moz-linear-gradient(top,  #757575,  #4b4b4b);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#757575', endColorstr='#4b4b4b'); */
 }
-/* line 112, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 109, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .gray:active {
   color: #afafaf;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#575757), to(#888));
@@ -133,7 +128,7 @@
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#575757', endColorstr='#888888'); */
 }
 
-/* line 121, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 118, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .gray_active {
   color: #afafaf;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#575757), to(#888));
@@ -142,7 +137,7 @@
 }
 
 /* white */
-/* line 129, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 126, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .white {
   color: #606060;
   border: solid 1px #b7b7b7;
@@ -151,14 +146,14 @@
   background: -moz-linear-gradient(top, white, #ededed);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
 }
-/* line 136, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 133, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .white:hover {
   background: #ededed;
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(#dcdcdc));
   background: -moz-linear-gradient(top, white, #dcdcdc);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
 }
-/* line 141, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 138, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .white:active {
   color: #999999;
   background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(white));
@@ -166,7 +161,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 }
 
-/* line 150, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 147, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .white_active {
   color: #999999;
   background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(white));
@@ -175,7 +170,7 @@
 }
 
 /* orange */
-/* line 158, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 155, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .orange {
   color: #fef4e9;
   border: solid 1px #da7c0c;
@@ -184,14 +179,14 @@
    * 	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20'); */
 }
-/* line 165, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 162, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .orange:hover {
   background: #f47c20;
   /*     background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
    * 	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015'); */
 }
-/* line 170, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 167, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .orange:active {
   color: #fcd3a5;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
@@ -199,7 +194,7 @@
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a'); */
 }
 
-/* line 179, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 176, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .orange_active {
   color: #fcd3a5;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
@@ -208,7 +203,7 @@
 }
 
 /* red */
-/* line 187, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 184, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .red {
   color: #faddde;
   border: solid 1px #980c10;
@@ -217,14 +212,14 @@
   background: -moz-linear-gradient(top, #ed1c24, #aa1317);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ed1c24', endColorstr='#aa1317');
 }
-/* line 194, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 191, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .red:hover {
   background: #b61318;
   background: -webkit-gradient(linear, left top, left bottom, from(#c9151b), to(#a11115));
   background: -moz-linear-gradient(top, #c9151b, #a11115);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c9151b', endColorstr='#a11115');
 }
-/* line 199, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 196, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .red:active {
   color: #de898c;
   background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24));
@@ -232,7 +227,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
 }
 
-/* line 208, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 205, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .red_active {
   color: #de898c;
   background: -webkit-gradient(linear, left top, left bottom, from(#aa1317), to(#ed1c24));
@@ -241,7 +236,7 @@
 }
 
 /* blue */
-/* line 216, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 213, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .blue {
   color: #d9eef7;
   border: solid 1px #0076a3;
@@ -250,14 +245,14 @@
    * 	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5'); */
 }
-/* line 223, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 220, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .blue:hover {
   background: #007ead;
   /*     background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
    * 	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e'); */
 }
-/* line 228, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 225, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .blue:active {
   color: #80bed6;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
@@ -265,7 +260,7 @@
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee'); */
 }
 
-/* line 237, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 234, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .blue_active {
   color: #80bed6;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));
@@ -274,7 +269,7 @@
 }
 
 /* rosy */
-/* line 245, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 242, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .rosy {
   color: #fae7e9;
   border: solid 1px #b73948;
@@ -283,14 +278,14 @@
   background: -moz-linear-gradient(top, #f16c7c, #bf404f);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f16c7c', endColorstr='#bf404f');
 }
-/* line 252, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 249, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .rosy:hover {
   background: #ba4b58;
   background: -webkit-gradient(linear, left top, left bottom, from(#cf5d6a), to(#a53845));
   background: -moz-linear-gradient(top, #cf5d6a, #a53845);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cf5d6a', endColorstr='#a53845');
 }
-/* line 257, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 254, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .rosy:active {
   color: #dca4ab;
   background: -webkit-gradient(linear, left top, left bottom, from(#bf404f), to(#f16c7c));
@@ -298,7 +293,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bf404f', endColorstr='#f16c7c');
 }
 
-/* line 266, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 263, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .rosy_active {
   color: #dca4ab;
   background: -webkit-gradient(linear, left top, left bottom, from(#bf404f), to(#f16c7c));
@@ -307,7 +302,7 @@
 }
 
 /* green */
-/* line 274, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 271, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .green {
   color: #e8f0de;
   border: solid 1px #19949f;
@@ -316,7 +311,7 @@
    * 	background: -moz-linear-gradient(top,  #7db72f,  #4e7d0e);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e'); */
 }
-/* line 281, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 278, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .green:hover {
   background: #538018;
   background: #abd8dc;
@@ -324,7 +319,7 @@
    * 	background: -moz-linear-gradient(top,  #6b9d28,  #436b0c);
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c'); */
 }
-/* line 287, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 284, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .green:active {
   color: #a9c08c;
   /*     background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
@@ -332,7 +327,7 @@
    * 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e7d0e', endColorstr='#7db72f'); */
 }
 
-/* line 296, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 293, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .green_active {
   color: #a9c08c;
   /*   	background: -webkit-gradient(linear, left top, left bottom, from(#4e7d0e), to(#7db72f));
@@ -341,7 +336,7 @@
 }
 
 /* pink */
-/* line 304, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 301, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .pink {
   color: #feeef5;
   border: solid 1px #d2729e;
@@ -350,14 +345,14 @@
   background: -moz-linear-gradient(top, #feb1d3, #f171ab);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#feb1d3', endColorstr='#f171ab');
 }
-/* line 311, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 308, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .pink:hover {
   background: #d57ea5;
   background: -webkit-gradient(linear, left top, left bottom, from(#f4aacb), to(#e86ca4));
   background: -moz-linear-gradient(top, #f4aacb, #e86ca4);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4aacb', endColorstr='#e86ca4');
 }
-/* line 316, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 313, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .pink:active {
   color: #f3c3d9;
   background: -webkit-gradient(linear, left top, left bottom, from(#f171ab), to(#feb1d3));
@@ -365,7 +360,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f171ab', endColorstr='#feb1d3');
 }
 
-/* line 325, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 322, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 .pink_active {
   color: #f3c3d9;
   background: -webkit-gradient(linear, left top, left bottom, from(#f171ab), to(#feb1d3));
@@ -373,7 +368,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f171ab', endColorstr='#feb1d3');
 }
 
-/* line 331, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 328, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 input#signupbutton {
   color: white;
   border: solid 1px #da7c0c;
@@ -387,7 +382,7 @@ input#signupbutton {
   font: 24px/100% Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
-/* line 343, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
+/* line 340, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_button_styles.sass */
 input#signupbutton:hover {
   cursor: pointer;
   color: #fcd3a5;

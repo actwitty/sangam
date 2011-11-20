@@ -110,6 +110,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_stm_render_all_mentions(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : true,
                                                                               'URL' : "/home/get_related_entities"
                                                                             },       
                                       'AW_SRV_PPM_STM_GET_ALL_LOCATIONS'      : {
@@ -119,6 +120,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_stm_render_all_locations(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : true,
                                                                               'URL' : "/home/get_related_locations.json"                                                                            },     
                                       'AW_SRV_PPM_STM_GET_SIMILAR_PEOPLE'      : {
                                                                               
@@ -127,6 +129,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                                       aw_api_srv_resp_ppm_stm_render_similar_ppl(params);
                                                                                     },
                                                                               'DATA' : {},
+                                                                              'MULTI' : true,
                                                                               'URL' : "/home/get_related_friends.json"
                                                                             },
                                        'AW_SRV_PPM_CMN_GET_USER_AUTOCOMPELTE_CHANNELS'  : {
@@ -137,10 +140,61 @@ var aw_srv_local_json_data_cache_manager = {
                                                                                     },
                                                                               'DATA' : {},
                                                                               'URL' : "/home/get_channels.json"
-                                                                            }                                                                             
+                                                                            },
+                                        'AW_SRV_PPM_CMN_GET_MENTION_ENRICHED_STREAMS'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_17(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_mention_enriched_streams(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_enriched_activities.json"
+                                                                            },
+                                        'AW_SRV_PPM_INPUT_RESP_GET_NEW_POST' : {
+                                                                                  'CB': function aw_temp_resp_fn_18(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_input_get_new_stream(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_single_activity.json"
+                                                                                
+                                                                               },
+                                        'AW_SRV_PPM_INPUT_RESP_GET_NEW_CHN' : {
+                                                                                  'CB': function aw_temp_resp_fn_19(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_input_get_new_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_single_channel.json"
+                                                                                
+                                                                               },
+
+                                        'AW_SRV_PPM_STM_GET_ALL_VIDEOS' : {
+                                                                                  'CB': function aw_temp_resp_fn_20(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_videos(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_document_stream.json"
+                                                                                
+                                                                               },
+                                        'AW_SRV_PPM_STM_GET_ALL_IMAGES' : {
+                                                                                  'CB': function aw_temp_resp_fn_20(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_render_images(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_document_stream.json"
+                                                                                
+                                                                               }
+
                                                                             
                                     };
-
 
 
 /*******************************************************/
@@ -218,11 +272,13 @@ function aw_srv_internal_srv_get_requestor(params){
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-              aw_srv_local_json_data_cache_manager[request_tag]['DATA'] = data;
+
 
               if( aw_srv_local_json_data_cache_manager[request_tag]['MULTI'] == true ){
                  params['aw_srv_protocol_params']['__AW_SRV_RESP__'] = data;
               }
+
+              aw_srv_local_json_data_cache_manager[request_tag]['DATA'] = data;
 
               aw_lib_console_log("debug","aw_api_srv_internal: response for  " + request_tag + "[" + JSON.stringify(data) +  "]" );   
               if(aw_srv_local_json_data_cache_manager[request_tag]['CB']){

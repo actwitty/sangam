@@ -4,6 +4,9 @@
  *
  */
 var aw_local_ppm_stream_context_manager={};
+
+
+
 /******************************************/
 /*
  *
@@ -89,7 +92,6 @@ function aw_api_ppm_stm_modify_shares(key, social_media_counters_arr){
     delete aw_local_ppm_stream_context_manager[key]['post']['social_counters'];
   }
   aw_local_ppm_stream_context_manager[key]['post']['social_counters'] = social_media_counters_arr;
-
 }
 
 /******************************************/
@@ -151,7 +153,6 @@ function aw_initialize_actions_box_counters(stream_info){
   aw_api_ppm_stm_likes_revise_counters(stream_info);
   aw_api_ppm_stm_comments_revise_counters(stream_info);
   aw_api_ppm_stm_mentions_revise_counters(stream_info);
-
 }
 /************************************************************/
 /*
@@ -189,10 +190,15 @@ function aw_get_actions_box_html(stream_info){
  *
  */
 function aw_api_get_stream_main_html(stream_info){
-  var stream_li_id = aw_api_get_stream_id(stream_info); 
+  var stream_li_id = aw_api_get_stream_id(stream_info);
+  var delete_html = '';
+  var session_owner_id = aw_lib_get_session_owner_id();
+  if( session_owner_id == stream_info.post.user.id ){
+    delete_html =  '<span class="aw_ppm_dyn_stm_stream_delete aw_js_ppm_stm_delete_post">X</span>';
+  }
   var html = '<li class="aw_ppm_dyn_stm_stream_li_box aw_js_ppm_stream_box_backtracker" id="' + aw_api_get_stream_id(stream_info) + '" >' +
                 '<div class="aw_ppm_dyn_stm_stream_div_box" >' +
-                  '<span class="aw_ppm_dyn_stm_stream_delete">X</span>' +
+                    delete_html +
                     '<div class="aw_ppm_dyn_stm_stream_post_info">' +
                       '<a class="aw_ppm_dyn_stm_stream_post_user_img" href="/home/show?id=' + stream_info.post.user.id + '" >' +
                         '<img src="' + stream_info.post.user.photo + '"/>' +
@@ -222,7 +228,18 @@ function aw_api_get_stream_main_html(stream_info){
   return html;
   
 }
+/************************************************************/
+function aw_api_srv_add_new_stream(stream_info){
+  var html = aw_api_get_stream_main_html(stream_info);
+  $('#aw_js_ppm_stm_post_timeline_list').prepend(html);
+  aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
+  aw_api_ppm_add_stream_context(aw_api_get_stream_id(stream_info), stream_info);
+  aw_initialize_actions_box_counters(stream_info);
 
+  /* send to enricher looker */
+  aw_api_ppm_stm_mention_enricher_register(stream_info);
+  $("abbr.aw_js_timeago").timeago();
+}
 
 /*************************************************************/
 /*
@@ -240,8 +257,15 @@ function aw_api_srv_resp_ppm_stm_render_streams(params){
     aw_api_ppm_add_stream_context(aw_api_get_stream_id(stream_info), stream_info);
 
     aw_initialize_actions_box_counters(stream_info);
+    
+    aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_STREAMS', stream_info.post.time);
+    /* send to enricher looker */
+    aw_api_ppm_stm_mention_enricher_register(stream_info);
   });
   $("abbr.aw_js_timeago").timeago();
+  /* tell enricher to keep working from now */
+  aw_api_ppm_stm_mention_enricher_init();
+  //TODO: fix this dirty hack
   /* enable the more button */
   $("#aw_js_ppm_stm_data_more").attr("disabled", false);
   $('#aw_js_ppm_stm_stream_timelines_div').find(".aw_js_ppm_loading_animation").hide();
@@ -255,25 +279,22 @@ function aw_api_ppm_stm_request_streams(on_init){
   /* disable the more button */
   var params = {};
   var req_cookie = {};
-  if( typeof on_init != 'undefined' ){
+  if( typeof on_init == 'undefined' ){
       on_init = 0;
   }
 
-  var time_cookie = '';
   if( on_init ){
-    aw_api_ppm_stm_flip_page_mode("streams");
-    aw_api_ppm_stm_context_reinit();
-  }else{
-    var existing_data = aw_api_srv_get_data_for_request('AW_SRV_PPM_STM_GET_STREAMS');
-    if( existing_data.length){
-      time_cookie = existing_data[existing_data.length - 1].time;
-    }
+    aw_api_ppm_stream_context_reinit();
+    aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_STREAMS', '');
+    /* erase the timeline */
+    $("#awppm_stm_post_timeline_list").html();
   }
+
   $("#aw_js_ppm_stm_data_more").attr("disabled", true);
   $('#aw_js_ppm_stm_stream_timelines_div').find(".aw_js_ppm_loading_animation").show();
   var srv_params = {
                         user_id : aw_lib_get_page_owner_id(),
-                        updated_at : time_cookie,
+                        updated_at : aw_api_ppm_cmn_more_cookie_get('AW_SRV_PPM_STM_GET_STREAMS'),
                         filter : aw_api_ppm_stm_get_filter(),
                         page_type:aw_api_ppm_stm_get_page_scope(),
                         cache_cookie:aw_lib_get_cache_cookie_id()
@@ -283,3 +304,36 @@ function aw_api_ppm_stm_request_streams(on_init){
   params['aw_srv_protocol_cookie'] = req_cookie;
   aw_api_srv_make_a_get_request('AW_SRV_PPM_STM_GET_STREAMS', params);
 }
+
+/**************************************************/
+/*
+ *
+ *
+ */
+function aw_api_ppm_stm_evt_hndl_post_delete(element){
+  var stream_main_box_id = aw_api_ppm_get_stm_context_id_for_ele(element);
+  var stream_info = aw_api_ppm_get_stm_contex_for_key(stream_main_box_id);
+
+  var params = {
+                  'aw_srv_protocol_params' :{
+                                                post_id: stream_info.post.id,
+                                            },
+                  'aw_srv_protocol_cookie' : {
+                                                stream_box_id: stream_main_box_id
+                                             }
+               };
+  aw_api_srv_make_a_post_request('AW_SRV_PPM_STM_DELETE_POST',  params);
+
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_srv_resp_ppm_stm_post_delete(params){
+  var stream_main_box_id = params['aw_srv_protocol_cookie']['stream_box_id'];
+  $("#" + stream_main_box_id).remove();
+}
+
+
+

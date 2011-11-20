@@ -22,8 +22,7 @@ var aw_local_modal_manager_registry = {
     /* Related entities modal configuration */
     "aw_js_ppm_stm_aw_modal_manager_related_mentions"  :  {
                                           renderer_fn:function aw_internal_modal_related_mentions_caller(win_id, trigger_id){
-                                            return true;
-                                            //return aw_entities_render_related_modal(win_id, trigger_id);
+                                            return aw_api_ppm_stm_mentions_modal_renderer(win_id, trigger_id);
                                           },
                                           title:"Related Entities",
                                           top:50,
@@ -36,8 +35,7 @@ var aw_local_modal_manager_registry = {
     /* Related locations modal configuration */
      "aw_js_ppm_stm_aw_modal_manager_related_locations"  :  {
                                           renderer_fn:function aw_internal_modal_related_locations_caller(win_id, trigger_id){
-                                            return true;
-                                            //return aw_locations_render_related_modal(win_id, trigger_id);
+                                            return aw_api_ppm_stm_locations_modal_renderer(win_id, trigger_id);
                                           },
                                           title:"Related Locations",
                                           top:50,

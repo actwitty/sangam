@@ -36,12 +36,12 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                               
                                                                               'CB': function aw_temp_resp_fn_4(params){
                                                                                       /* params -> summary JSON */
-                                                                                      //aw_api_srv_resp_ppm_input_create_post(params);
+                                                                                      aw_api_srv_resp_ppm_stm_post_delete(params);
                                                                                     },
                                                                               'DATA' : {},
-                                                                              'DATA_TYPE': "script",
+                                                                              'DATA_TYPE': "json",
                                                                               'MULTI' : true,
-                                                                              'URL' : "/home/get_latest_summary.json"
+                                                                              'URL' : "/home/delete_stream.json"
                                                                             },
                                                   'AW_SRV_PPM_STM_CREATE_LIKE'    : {
                                                                               

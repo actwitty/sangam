@@ -190,6 +190,7 @@ div.awppm_stm_wrapper
   width: 100%
   min-height: 1800px
   height: auto
+  display: inline-block
   border: 0px solid blue
 
 #awppm_stm_timeline_container_box
@@ -200,11 +201,13 @@ div.awppm_stm_wrapper
   border: 0px solid blue
   border: 1px solid #f4f4f4
   float: left
+  display: inline-block
   /* Stream Page Main Label
   .awppm_stm_page_main_label
     font-size: 32px
     font-weight: bold
     color: #333
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
   /* Stream Page Main Label Ends
   /* Stream Page Mode Select Starts
   select
@@ -257,11 +260,21 @@ div.awppm_stm_wrapper
     /* Stream Page Filter Block Ends
   /* Streams Filters boxing End
   /* Time Line Streams Start
+  .awppm_stm_data_info_more
+    width: 50px
+    height: 20px
+    position: absolute
+    bottom: 0
+    right: 0
+    color: #000
+    text-align: center
+    font-weight: bold
   .awppm_stm_stream_timelines
     margin: 0
     width: 100%
     border: 0px solid red
     margin-top: 80px
+    display: inline-block
     .awppm_stm_data_info_more
       width: 50px
       height: 20px
@@ -276,17 +289,29 @@ div.awppm_stm_wrapper
   /* Time Line Streams End
 @mixin awppm_stm_right_side_info_headers
   height: 20px
-  width: 200px
+  width: 250px
   font-size: 12px
   font-weight: bold
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
   color: #7D9EC0
   text-align: left
   background: #f5f5f5
+@mixin awppm_stm_right_side_info_view_more
+  width: 100%
+  height: 20px
+  border: 0px solid blue
+  color: #c24e42
+
+@mixin awppm_stm_right_side_info_view_span
+  font-size: 10px
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+  float: right
+  cursor: pointer
 
 
 /* Stream page righr
 #awppm_stm_right_side_info_container_box
-  width: 200px
+  width: 250px
   height: 100px
   height: auto
   border: 1px solid #f5f5f5
@@ -299,26 +324,47 @@ div.awppm_stm_wrapper
     #awppm_stm_right_side_info_related_people_container
       width: 100%
       border: 0px solid blue
-      height: 100px
+      height: 150px
       .awppm_stm_right_side_info_related_people_header
         @include awppm_stm_right_side_info_headers
       .awppm_stm_right_side_info_related_people
+        padding-top: 10px
+        padding-bottom: 10px
+      .awppm_stm_view_more
+        @include awppm_stm_right_side_info_view_more
+        span
+          @include awppm_stm_right_side_info_view_span
+            
 
     #awppm_stm_right_side_info_related_mentions_container
       width: 100%
       border: 0px solid blue
-      height: 100px
+      height: 150px
+      margin-top: 10px
       .awppm_stm_right_side_info_related_mentions_header
         @include awppm_stm_right_side_info_headers
       .awppm_stm_right_side_info_related_mentions
+        padding-top: 10px
+        padding-bottom: 10px
+      .awppm_stm_view_more
+        @include awppm_stm_right_side_info_view_more
+        span
+          @include awppm_stm_right_side_info_view_span
 
     #awppm_stm_right_side_info_related_locations_container
       width: 100%
       border: 0px solid blue
-      height: 100px
+      height: 150px
+      margin-top: 10px
       .awppm_stm_right_side_info_related_locations_header
         @include awppm_stm_right_side_info_headers
       .awppm_stm_right_side_info_related_locations
+        padding-top: 10px
+        padding-bottom: 10px
+      .awppm_stm_view_more
+        @include awppm_stm_right_side_info_view_more
+        span
+          @include awppm_stm_right_side_info_view_span
 /**********************************************
 .awppm_stm_busy_channels_box
   position: absolute

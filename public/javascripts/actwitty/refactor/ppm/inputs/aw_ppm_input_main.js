@@ -163,6 +163,7 @@ function aw_input_box_reset_after_post(){
  *
  */
 function aw_api_srv_resp_ppm_input_create_post(params){
+    var post_resp_json = aw_api_srv_resp_data_for_post_request('AW_SRV_PPM_CMN_CREATE_POST');
     aw_input_box_reset_after_post();
     clear_all_input_jsons();
      $(".aw_js_ppm_ip_input_box").find(".aw_js_ppm_loading_animation").hide();
@@ -218,11 +219,6 @@ function get_documents_json(){
   for (var key in document_upload_handling_json) {
     document_upload_handling_json[key].thumb_url = thumb_upload_handling_json[key].url;
     doc_arr.push(document_upload_handling_json[key]);
-  }
-  /* handle the case for the preuploaded images */
-  var preuploaded_docs=get_preuploaded_doc(); 
-  for (var key in preuploaded_docs) {
-    doc_arr.push(preuploaded_docs[key]);
   }
   /*************************************************/
   return doc_arr;
@@ -420,3 +416,63 @@ $(document).ready(function() {
   /*******************************************************************************/
    
 });
+/*************************************************/
+/*
+ *
+ *
+ */
+function aw_ppm_input_fetch_new_stream(new_post_id){
+ if(get_current_page_context() == 'profile_stm_page'){
+   var params = {
+                    'aw_srv_protocol_params' : {  
+                                                  activity_id: new_post_id
+                                              },
+                    'aw_srv_protocol_cookie' : {
+                                               }
+                 };
+   aw_api_srv_make_a_get_request('AW_SRV_PPM_INPUT_RESP_GET_NEW_POST',  params);
+  
+  }
+}
+/************************************************/
+/*
+ *
+ *
+ */
+function aw_api_srv_resp_ppm_input_get_new_stream(params){
+  var data = aw_awpi_serv_resp_data_for_get_request_in_params(params); 
+  $.each(data, function(i,stream_info){
+    if( stream_info ){
+      var aw_chn_filter_id = aw_api_ppm_stm_get_chn_filter_id();
+      if(aw_chn_filter_id.length == 0 || aw_chn_filter_id == stream_info.word.id){
+        aw_api_srv_add_new_stream(stream_info);
+      }
+    } 
+  });
+
+}
+/*************************************************/
+/*
+ * TODO: Add code to handle this once rails support is added
+ *
+ */
+function aw_ppm_input_fetch_new_summary(summary_id){
+  /*do nothing*/
+    if(get_current_page_context() == 'profile_chn_page'){
+    /*  var params = {
+                    'aw_srv_protocol_params' : {  
+                                                  post_id: new_post_id, 
+                                              },
+                    'aw_srv_protocol_cookie' : {
+                                               }
+                 };
+      aw_api_srv_make_a_post_request('AW_SRV_PPM_INPUT_RESP_GET_NEW_CHN',  params);*/
+    }
+}
+/*************************************************/
+/*
+ *
+ *
+ */
+function aw_api_srv_resp_ppm_input_get_new_channels(params){
+}
