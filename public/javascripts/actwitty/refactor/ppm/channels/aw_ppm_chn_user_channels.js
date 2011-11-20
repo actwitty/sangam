@@ -19,8 +19,10 @@ function aw_get_user_channel_html(channel_info){
 
   if (aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
      channel_info_html = '<div class="aw_ppm_dyn_users_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
-                            // channel dynamic summary info append 
-                            channel_dyn_analytic_info_html +     
+                            // channel dynamic summary info append
+                            '<div class="aw_ppm_dyn_users_chn_info_hover_box">'+
+                                channel_dyn_analytic_info_html +     
+                            '</div>'+
                             '<div class="aw_ppm_dyn_users_chn_label_own_page">' +
                                 '<span>' + channel_info.word.name + '</span>' +
                             '</div>' +

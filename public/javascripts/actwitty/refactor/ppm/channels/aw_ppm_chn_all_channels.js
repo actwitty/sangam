@@ -18,11 +18,15 @@ function aw_get_all_channel_html(channel_info){
     subscription_action_image = '/images/actwitty/refactor/aw_ppm/channel/unsubscribe.png';
     subscription_tooltip = 'You are already subscribed to this channel. Click to unsubscribe.';
   }
+  
+  // build the channel analytic summary info, which will be displayed when hovered over channel icon
+  var channel_dyn_analytic_info_html = aw_ppm_channel_dyn_analytic_info_build(channel_info);
 
   var channel_info_html = '<div class="aw_ppm_dyn_all_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
-                            '<div class="aw_ppm_dyn_all_chn_info_hover_box">' +
-                              //TODO: Add the hover here
-                            '</div>' +
+                            // channel dynamic summary info append 
+                            '<div class="aw_ppm_dyn_all_chn_info_hover_box">'+
+                              channel_dyn_analytic_info_html +
+                            '</div>'+
                             '<div class="aw_ppm_dyn_all_chn_label">' +
                                 '<span>' + channel_info.word.name + '</span>' +
                             '</div>' +
