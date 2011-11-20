@@ -1,0 +1,55 @@
+/* line 1, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
+.ac_results {
+  padding: 0px;
+  border: 1px solid black;
+  background-color: white;
+  overflow: hidden;
+  z-index: 99999;
+}
+
+/* line 9, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
+.ac_results ul {
+  width: 100%;
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 17, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
+.ac_results li {
+  margin: 0px;
+  padding: 2px 5px;
+  cursor: default;
+  display: block;
+  /* if width will be 100% horizontal scrollbar will apear 
+    when scroll mode will be used
+  */
+  /*width: 100%;*/
+  /*font: menu;*/
+  font-family: 'actwitty-font';
+  font-size: 12px;
+  /* 
+    it is very important, if line-height not setted or setted 
+    in relative units scroll will be broken in firefox
+  */
+  line-height: 16px;
+  overflow: hidden;
+}
+
+/* line 37, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
+.ac_loading {
+  background: white url("indicator.gif") right center no-repeat;
+}
+
+/* line 41, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
+.ac_odd {
+  background-color: #eee;
+}
+
+/* line 45, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
+.ac_over {
+  /*background-color: #0A246A;*/
+  background-color: #ccc;
+  color: white;
+}

@@ -1,0 +1,130 @@
+.awppm_stm_wrapper.awppm_stm_column1
+  =render :partial => "home/top_bar"
+
+.awppm_stm_wrapper.awppm_stm_column2
+  #awppm_stm_user_box
+    #awppm_stm_user_section
+      #awppm_stm_user_info
+        #awppm_stm_user_img
+          %center
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %img{:src => @user.photo_small_url}/
+          %center
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %span #{@user.full_name}
+      #awppm_stm_input_box_wrapper
+        -if user_signed_in?
+          -if current_user.id == @user.id
+            =render :partial => "home/input_box"
+
+.awppm_stm_wrapper.awppm_stm_column3            
+
+  
+  #awppm_stm_complete_width_big_container_box.aw_js_ppm_stream_list_external_container
+    / This container has all streams details and analytics
+
+    #awppm_stm_analytics_container_box
+      #aw_js_ppm_stm_analytics_box_1.awppm_stm_analytics_box
+      #aw_js_ppm_stm_analytics_box_2.awppm_stm_analytics_box
+      #aw_js_ppm_stm_analytics_box_3.awppm_stm_analytics_box
+      #aw_js_ppm_stm_analytics_box_4.awppm_stm_analytics_box
+
+  
+    #awppm_stm_all_information_container_box.aw_js_ppm_stream_list_internal_container
+      
+      / This container has main stream section: 
+      /  1. Mode Selector
+      /  2. Filters
+      /  3. Stream Time Lines
+
+      #awppm_stm_timeline_container_box
+        / --------------------------------  Stream View Mode Select Start --------------------------
+        %span#aw_js_ppm_stm_page_label.awppm_stm_page_main_label Streams
+        %select#aw_js_ppm_stm_timeline_state_selector
+          %option{:value => "aw_js_ppm_stm_posts_mode"} Show All Posts
+          %option{:value => "aw_js_ppm_stm_videos_mode"} Show Videos
+          %option{:value => "aw_js_ppm_stm_images_mode"} Show Images
+        / --------------------------------  Stream View Mode Select End --------------------------
+
+        / --------------------------------  Filters section Start ----------------------------------
+        #awppm_stm_filters_box
+          %h5 Filtered With
+          %hr
+          #aw_js_ppm_stm_filter_chn.awppm_stm_filter_block
+            %a{:href => "#"}
+              %img{:src => "/images/actwitty/refactor/aw_ppm/stream/delete.png", :width => "15px", :height => "15px" }/
+            %h3 #{@aw_chn_filter_text_val}
+            %input#aw_js_ppm_stm_filter_chn_text{:type => "hidden", :value => @aw_chn_filter_text_val}
+            %input#aw_js_ppm_stm_filter_chn_id{:type => "hidden", :value => @aw_chn_filter_id_val}
+            %p as channel
+          #aw_js_ppm_stm_filter_mention.awppm_stm_filter_block
+            %a{:href => "#"}
+              %img{:src => "/images/actwitty/refactor/aw_ppm/stream/delete.png", :width => "15px", :height => "15px" }/
+            %h3 #{@aw_mention_filter_text_val}
+            %input#aw_js_ppm_stm_filter_mention_text{:type => "hidden", :value => @aw_mention_filter_text_val}
+            %input#aw_js_ppm_stm_filter_mention_id{:type => "hidden", :value => @aw_mention_filter_id_val}
+            %p as mentions
+          #aw_js_ppm_stm_filter_location.awppm_stm_filter_block
+            %a{:href => "#"}
+              %img{:src => "/images/actwitty/refactor/aw_ppm/stream/delete.png", :width => "15px", :height => "15px" }/
+            %h3 #{@aw_location_filter_text_val}
+            %input#aw_js_ppm_stm_filter_location_text{:type => "hidden", :value => @aw_location_filter_text_val}
+            %input#aw_js_ppm_stm_filter_location_id{:type => "hidden", :value => @aw_location_filter_id_val}
+            %p as location
+        / --------------------------------  Filters section End ----------------------------------
+        
+        / -------------------  Timeline list for posts videos and images Start -------------------
+        #aw_js_ppm_stm_stream_timelines_div.awppm_stm_stream_timelines
+          .awppm_stm_busy_channels_box.aw_js_ppm_loading_animation
+            .awppm_stm_busy_mini_box
+              %img.awppm_stm_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
+          %input#aw_js_ppm_stm_data_more.button_actwitty.gray.awppm_stm_data_info_more{:type => "button", :value => "More"}
+          %ul#aw_js_ppm_stm_post_timeline_list.awppm_stm_post_timeline_list
+          %ul#aw_js_ppm_stm_videos_timeline_list.awppm_stm_videos_timeline_list
+          %ul#aw_js_ppm_stm_images_timeline_list.awppm_stm_images_timeline_list
+        / -------------------  Timeline list for posts videos and images End ---------------------
+
+      
+      
+      / -------------------  Right side list for streams section Start ---------------------------
+      #awppm_stm_right_side_info_container_box
+        #awppm_stm_right_side_info_subcontainer_box
+
+          #awppm_stm_right_side_info_related_people_container
+            .awppm_stm_right_side_info_related_people_header
+              People with similar interest
+            #aw_js_ppm_stm_right_side_related_people.awppm_stm_right_side_info_related_people
+            .awppm_stm_view_more.aw_js_ppm_stm_modal_invoker.aw_js_ppm_stm_aw_modal_manager_related_people
+              %span view more
+
+
+          #awppm_stm_right_side_info_related_mentions_container.aw_js_ppm_related_mentions_container
+            .awppm_stm_right_side_info_related_mentions_header
+              Related mentions
+            #aw_js_ppm_stm_right_side_related_mentions.awppm_stm_right_side_info_related_mentions
+            .awppm_stm_view_more.aw_js_ppm_stm_modal_invoker.aw_js_ppm_stm_aw_modal_manager_related_mentions
+              %span view more
+
+
+          #awppm_stm_right_side_info_related_locations_container.aw_js_ppm_related_locations_container
+            .awppm_stm_right_side_info_related_locations_header
+              Related Locations
+            #aw_js_ppm_stm_right_side_related_locations.awppm_stm_right_side_info_related_locations
+            .awppm_stm_view_more.aw_js_ppm_stm_modal_invoker.aw_js_ppm_stm_aw_modal_manager_related_locations
+              %span view more
+      / -------------------  Right side list for streams section End ---------------------------
+
+
+/Secret cookies
+%input#aw_js_ppm_stm_scope{:type => "hidden", :value => "#{@aw_stm_scope}" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
+%input#cache_cookie_id{:type => "hidden", :value => "#{@user.updated_at}" }
+%input#page_mode{ :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
+
+

@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
     @provider=''
     @uid=''
     @profile_page = 1
-    @page_mode="authentications_signin"
+    @page_mode="authentications_page"
     if !params.nil?
       if !params[:key].nil?
         @key=params[:key]
@@ -42,7 +42,7 @@ class AuthenticationsController < ApplicationController
 
 
       @profile_page = 1
-      @page_mode="authentications_signup"
+      @page_mode="authentications_page"
 
       Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Called")
 
@@ -186,6 +186,7 @@ class AuthenticationsController < ApplicationController
           unless data.nil?
             Rails.logger.info("[CNTRL][Authentications] Foreign profile being saved for auth.")
             already_existing_auth.foreign_profile = ForeignProfile.new
+            Rails.logger.info("[CNTRL][Authentications] Foreign profile import method call.")
             already_existing_auth.foreign_profile.send("import_#{provider}",data)
           end
 

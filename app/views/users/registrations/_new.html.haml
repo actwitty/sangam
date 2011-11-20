@@ -37,7 +37,7 @@
                   :placeholder => "Date of Birth", 
                   :label => false,
                   :as => :string,
-                  :input_html => { :id=>'aw_lpm_signup_dob_input'  }
+                  :input_html => { :id=>'aw_lpm_signup_dob_input' , :value => @user.dob }
         = f.input :dob_str , 
                   :label => false,
                   :input_html => {:type => 'hidden', :id=>'dob_str' }
@@ -56,7 +56,7 @@
           = f.input :current_location , 
                     :placeholder => "Location", 
                     :label => false,
-                    :input_html => { :id=>'aw_lpm_signup_location_input' }
+                    :input_html => { :id=>'aw_lpm_signup_location_input' , :value => @user.current_location  }
           = f.input :current_geo_lat , 
                     :label => false,
                     :input_html => { :id=>'aw_lpm_signup_location_lat_input', :type => 'hidden' }
@@ -80,6 +80,6 @@
           
         %a#aw_lpm_signup_already_a_user{:href => "/authentications/auth_signin_provider?key=#{@key}&provider=#{@provider}&uid=#{@uid}"} Click here if you are already registered.
 :javascript
-  aw_api_init_sign_up()
+  aw_api_lpm_initialize_sign_up_page()
 
  

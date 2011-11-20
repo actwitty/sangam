@@ -22,9 +22,9 @@ function modify_filter(filter_json, reload){
   if( filter_json.channel_id && filter_json.channel_name ){
     $("#filter_channel_id").attr("value", filter_json.channel_id); 
     $("#filter_channel_name").attr("value", filter_json.channel_name); 
-    $("#activity_field").val(filter_json.channel_name);
+    $("#aw_js_ppm_input_channel_name").val(filter_json.channel_name);
   }else{
-     $("#activity_field").val("");
+     $("#aw_js_ppm_input_channel_name").val("");
   }
 
   if( filter_json.location_id && filter_json.location_name){
@@ -102,14 +102,7 @@ function modify_filter(filter_json, reload){
   
   
   if(reload==true){
-      if ( need_redirect == true){
-        /* simple case redirect to stream tab of new user */
-        aw_redirect_to_streams_filtered_of_other_user(filter_json.user);
-      }else{
-        /* stay on current user and apply the new filter */
-        set_stream_to_focus_on_filter_change();
-        aw_reload_streams_on_viewed_user();
-      }
+    aw_redirect_to_streams_filtered_of_other_user(filter_json.user);
   }
   
 

@@ -100,7 +100,7 @@ module UploadsHelper
             ],
 		file_data_name: 'file',
 		// Flash settings
-		flash_swf_url: '/javascripts/plupload/plupload.flash.swf',
+		flash_swf_url: '/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.flash.swf',
 
 	});
 

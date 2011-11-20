@@ -1,0 +1,402 @@
+/*ActWitty Stylesheet file
+  *File: AW Profile Page Stream Module
+  *code: AWPPM (awlpm) Actwitty Profile Page Stream
+  *Author: ActWitty Developers
+  *Author URI: http://www.actwitty.com
+
+
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+body
+  margin: 0
+  padding: 0
+  font-size: $aw_var_default_font_size
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_backgorund_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -15px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: 0px solid #DFDFDF
+  padding: 5px
+  color: #666666
+  background-color: #FFFFFF
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+/******************************************** Common for all Columns main Div's ************************************
+
+@mixin awppm_stm_default_full_width
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+/* ----------------------------------------------Wrapper-------------------------------------
+
+div.awppm_stm_wrapper
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+
+.awppm_stm_column1
+  color: #D2D2D2
+  /*background-color:#33ccff
+  background: #363436
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81
+  border: 0px solid red
+
+.awppm_stm_column2
+  color: #FFFFFF
+  background-color: #ffffff
+  border: 0px solid green
+
+.awppm_stm_column3
+  color: #000000
+  background-color: #ffffff
+  border: 0px solid blue
+
+/******************************************* User box section for user photo and input box *************************
+
+#awppm_stm_user_box
+  @include awppm_stm_default_full_width
+  height: auto
+  margin-bottom: 30px
+  border: 0px solid blue
+
+#awppm_stm_user_section
+  width: 960px
+  height: auto
+  margin: auto
+  border: 0px solid red
+  position: relative
+
+#awppm_stm_user_info
+  height: 150px
+  width: 200px
+  border: 1px solid #ddd
+  /*margin-left:20px
+   *margin-top:20px
+   *margin-bottom:30px
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+  /*display:inline-block
+  position: absolute
+  top: 20px
+  left: 20px
+  overflow:hidden
+
+#awppm_stm_user_img
+  margin-top: 40px
+  img
+    width: 60px
+    &:hover
+      border: 1px solid #ccc
+
+#awppm_stm_user_info span
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif
+  color: #555
+  font-size: 16px
+  text-align: center
+  &:hover
+    font-weight: bold
+
+#awppm_stm_input_box_wrapper
+  width: 630px
+  min-height: 200px
+  margin-left: 100px
+  /*margin-top:-100px
+  border: 0px solid red
+  display: inline-block
+
+/********************************************* ActWitty Stream Data Section *********************************
+#awppm_stm_complete_width_big_container_box
+  margin: 0 auto 0
+  margin-top: 20px
+  padding: 5px
+  display: block
+  position: relative
+  width: 990px
+  height: auto
+  border-radius: 4px
+  border: 1px solid #ddd
+
+#awppm_stm_analytics_container_box
+  width: 100%
+  height: 140px
+  border-radius: 5px
+  margin: 10px 0 10px 0px
+  margin: 0px auto
+  border: 0px solid red
+  background: -moz-linear-gradient(center top , #c4c4c4 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
+  -moz-box-shadow: inset 0 0 2px #000000
+  -webkit-box-shadow: inset 0 0 2px #000000
+  box-shadow: inset 0 0 2px #000000
+  /* Analytics Styling Start
+  .awppm_stm_analytics_box
+    width: 200px
+    height: 120px
+    margin: 10px 0 10px 35px
+    border-radius: 5px
+    border: 1px solid #ddd
+    background: -moz-linear-gradient(center top , #F2F2F2 0pt, #F8F8F8 100%) repeat scroll 0 0 transparent
+    display-inline: block
+    float: left
+  /* Analytics Styling End
+
+
+#awppm_stm_all_information_container_box
+  width: 100%
+  min-height: 1800px
+  height: auto
+  display: inline-block
+  border: 0px solid blue
+
+#awppm_stm_timeline_container_box
+  height: auto
+  width: 580px
+  margin-top: 20px
+  padding: 15px 10px 10px 10px
+  border: 0px solid blue
+  border: 1px solid #f4f4f4
+  float: left
+  display: inline-block
+  /* Stream Page Main Label
+  .awppm_stm_page_main_label
+    font-size: 32px
+    font-weight: bold
+    color: #333
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+  /* Stream Page Main Label Ends
+  /* Stream Page Mode Select Starts
+  select
+    float: right
+    margin-top: 10px
+  /* Stream Page Mode Select Ends
+  /* Streams Filters boxing Start (we can tab this back)
+  #awppm_stm_filters_box
+    width: 100%
+    height: 45px
+    border: 0px solid red
+    margin-top: 80px
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+    h5
+      color: #444444
+      font-size: 12px
+      vertical-align: baseline 
+      margin: 0
+      padding: 0
+    /* Stream Page Filter Block Starts
+    .awppm_stm_filter_block
+      width: 180px
+      height: 40px
+      margin-right: 5px
+      margin-left: 5px
+      border: 0px solid blue
+      background: #fafafa
+      float: left
+      h3
+        text-align: center
+        font-size: 15px
+        color: #c24e42
+        margin: 0
+        padding: 0
+        vertical-align: baseline
+      a
+        display: block
+        text-decoration: none
+        img
+          float: right
+          display: none
+          cursor: pointer
+      p
+        text-align: center
+        color: #666666
+        font-size: 10px
+        margin: 0
+        padding: 0
+        vertical-align: top
+    /* Stream Page Filter Block Ends
+  /* Streams Filters boxing End
+  /* Time Line Streams Start
+  .awppm_stm_data_info_more
+    width: 50px
+    height: 20px
+    position: absolute
+    bottom: 0
+    right: 0
+    color: #000
+    text-align: center
+    font-weight: bold
+  .awppm_stm_stream_timelines
+    margin: 0
+    width: 100%
+    border: 0px solid red
+    margin-top: 80px
+    display: inline-block
+    .awppm_stm_data_info_more
+      width: 50px
+      height: 20px
+      position: absolute
+      bottom: 0
+      right: 0
+      color: #000
+      text-align: center
+      font-weight: bold
+    ul.awppm_stm_post_timeline_list
+      width: 100%
+  /* Time Line Streams End
+@mixin awppm_stm_right_side_info_headers
+  height: 20px
+  width: 250px
+  font-size: 12px
+  font-weight: bold
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+  color: #7D9EC0
+  text-align: left
+  background: #f5f5f5
+@mixin awppm_stm_right_side_info_view_more
+  width: 100%
+  height: 20px
+  border: 0px solid blue
+  color: #c24e42
+
+@mixin awppm_stm_right_side_info_view_span
+  font-size: 10px
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+  float: right
+  cursor: pointer
+  &:hover
+    font-weight: bold
+
+
+/* Stream page righr
+#awppm_stm_right_side_info_container_box
+  width: 250px
+  height: 100px
+  height: auto
+  border: 1px solid #f5f5f5
+  margin-top: 20px
+  -o-box-shadow: 0 0 2px #3a3a3a
+  margin-left: 100px
+  float: left
+  #awppm_stm_right_side_info_subcontainer_box
+    width: 100%
+    #awppm_stm_right_side_info_related_people_container
+      width: 100%
+      border: 0px solid blue
+      height: 150px
+      .awppm_stm_right_side_info_related_people_header
+        @include awppm_stm_right_side_info_headers
+      .awppm_stm_right_side_info_related_people
+        padding-top: 10px
+        padding-bottom: 10px
+      .awppm_stm_view_more
+        @include awppm_stm_right_side_info_view_more
+        span
+          @include awppm_stm_right_side_info_view_span
+            
+
+    #awppm_stm_right_side_info_related_mentions_container
+      width: 100%
+      border: 0px solid blue
+      height: 150px
+      margin-top: 10px
+      .awppm_stm_right_side_info_related_mentions_header
+        @include awppm_stm_right_side_info_headers
+      .awppm_stm_right_side_info_related_mentions
+        padding-top: 10px
+        padding-bottom: 10px
+      .awppm_stm_view_more
+        @include awppm_stm_right_side_info_view_more
+        span
+          @include awppm_stm_right_side_info_view_span
+
+    #awppm_stm_right_side_info_related_locations_container
+      width: 100%
+      border: 0px solid blue
+      height: 150px
+      margin-top: 10px
+      .awppm_stm_right_side_info_related_locations_header
+        @include awppm_stm_right_side_info_headers
+      .awppm_stm_right_side_info_related_locations
+        padding-top: 10px
+        padding-bottom: 10px
+      .awppm_stm_view_more
+        @include awppm_stm_right_side_info_view_more
+        span
+          @include awppm_stm_right_side_info_view_span
+/**********************************************
+.awppm_stm_busy_channels_box
+  position: absolute
+  top: 0
+  left: 0
+  margin-left: 0
+  margin-top: 0
+  z-index: 2
+  width: 100%
+  height: 100%
+  background: rgb(0, 0, 0)
+  background: rgba(0, 0, 0, 0.1)
+  .awppm_stm_busy_mini_box
+    width: 50px
+    height: 50px
+    margin-left: -25px
+    margin-top: -25px
+    top: 50%
+    left: 50%
+    position: absolute
+    img.awppm_stm_busy_image
+      width: 50px
+      height: 50px
+      margin: auto
+

@@ -1,4 +1,6 @@
 -if @success
-  $("#input-attachments-section").html("#{escape_javascript(render(:partial => "home/upload_attachments.html.haml"))}");
+  setTimeout(aw_ppm_input_fetch_new_stream("#{@activity_json[:post][:id]}"), 2000);
+  setTimeout(aw_ppm_input_fetch_new_summary("#{@activity_json[:post][:summary_id]}"),2000);
+  $("#aw_js_ppm_input_add_attachment_partial").html("#{escape_javascript(render(:partial => "home/upload_attachments.html.haml"))}");
 -else
   alert("Failed to create post.\n Actwitty is trying to solve the problem.");

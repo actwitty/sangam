@@ -1,0 +1,131 @@
+/* line 8, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+#awppm_header_box {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  height: 140px;
+  border: 0px solid red;
+  position: relative;
+}
+
+/* line 17, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_chn_logo {
+  position: absolute;
+  top: 40px;
+  left: 10px;
+}
+
+/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+#awppm_header_search {
+  position: absolute;
+  top: 20px;
+  right: 60px;
+}
+
+/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+#awppm_header_search_options {
+  width: 220px;
+  height: 70px;
+  border: 1px solid #dddddd;
+  border-radius: 9px;
+  position: absolute;
+  top: 48px;
+  right: 60px;
+  padding: 5px 0px 5px 10px;
+  display: none;
+}
+/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+#awppm_header_search_options input {
+  border: 1px solid #dddddd;
+  height: 25px;
+  width: 200px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-top: 5px;
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+}
+
+/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+#awppm_header_user_image {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  overflow: hidden;
+  background: none;
+}
+/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+#awppm_header_user_image a img {
+  padding-top: 10px;
+  width: 40px;
+  float: right;
+}
+
+/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  display: none;
+  z-index: 40000;
+  width: 100px;
+  margin-left: 0px;
+  margin-top: 15px;
+  background: #454545;
+  border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+}
+/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu ul {
+  list-style: none;
+  padding-top: 3px;
+  background: #454545;
+  margin-top: 0px;
+}
+/* line 77, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu ul li {
+  display: block;
+  padding: 5px 0 5px 0;
+  margin-left: -40px;
+}
+/* line 81, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu ul li a {
+  padding: 3px 0px;
+  font-size: 14px;
+  display: block;
+  margin: -6px 0 0 0;
+  position: relative;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF',GradientType=0 );
+  color: #dddddd;
+  text-decoration: none;
+  text-align: center;
+  zoom: 1;
+}
+/* line 92, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu ul li a span {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  display: block;
+  background: black;
+  z-index: 20;
+  display: none;
+  zoom: 1;
+}
+/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu ul li:hover a {
+  border-color: #d7dbea;
+  color: white;
+  background: black;
+}
+/* line 107, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_header_options_menu ul li:hover a span {
+  display: block;
+}

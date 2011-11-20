@@ -1,0 +1,277 @@
+/*
+ *ActWitty Stylesheet file
+ *File: AW Profile Page Channel Module
+ *code: AWPPM (awppm) Actwitty Profile Page Channel Module
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com
+
+
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+body
+  margin: 0
+  padding: 0
+  font-size: $aw_var_default_font_size
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_backgorund_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -15px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: 0px solid #DFDFDF
+  padding: 5px
+  color: #666666
+  background-color: #FFFFFF
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+/******************************************** Common for all Columns main Div's ************************************
+
+@mixin awppm_chn_default_full_width
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+/* ----------------------------------------------Wrapper-------------------------------------
+
+div.awppm_chn_channel_wrapper
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+
+.awppm_chn_channel_column1
+  color: #D2D2D2
+  /*background-color:#33ccff;
+  background: #363436
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81;
+  border: 0px solid red
+
+.awppm_chn_channel_column2
+  color: #FFFFFF
+  background-color: #ffffff
+  border: 0px solid green
+
+.awppm_chn_channel_column3
+  color: #000000
+  background-color: #ffffff
+  border: 0px solid blue
+
+.awppm_chn_channel_column4
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+.awppm_chn_channel_column5
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+
+
+/******************************************* User box section for user photo and input box *************************
+
+#awppm_chn_user_box
+  @include awppm_chn_default_full_width
+  height: auto
+  margin-bottom: 30px
+  border: 0px solid blue
+
+#awppm_chn_user_section
+  width: 960px
+  height: auto
+  margin: auto
+  border: 0px solid red
+  position: relative
+
+#awppm_chn_user_info
+  height: 150px
+  width: 200px
+  border: 1px solid #ddd
+  /*margin-left:20px;
+   *margin-top:20px;
+   *margin-bottom:30px;
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+  /*display:inline-block;
+  position: absolute
+  top: 20px
+  left: 20px
+
+#awppm_chn_user_img
+  margin-top: 40px
+
+#awppm_chn_user_info span
+  color: #555
+  font-size: 16px
+  text-align: center
+
+#awppm_chn_input_box_wrapper
+  width: 630px
+  min-height: 200px
+  margin-left: 100px
+  /*margin-top:-100px;
+  border: 0px solid red
+  display: inline-block
+
+/********************************************* ActWitty Data Section *********************************
+
+#awppm_chn_data_wrapper
+  @include awppm_chn_default_full_width
+  height: auto
+  min-height: 900px
+  margin-top: 20px
+  border: 0px solid red
+
+#awppm_chn_data_box
+  height: auto
+  margin-top: 20px
+  width: 750px
+  border: 0px solid blue
+  float: left
+
+#awppm_chn_dyn_info
+  height: 300px
+  width: 200px
+  margin-left: 20px
+  margin-top: 60px
+  border: 1px solid #ddd
+  float: left
+  border-radius: 5px
+  -moz-box-shadow: 0 0 3px #ddd
+  -webkit-box-shadow: 0 0 3px #ddd
+  box-shadow: 0 0 3px #ddd
+  padding: 0 auto
+  h5
+    background: #2f4f4f
+    color: #fff
+    text-align: center
+    font-size: 14px
+    font-weight: normal
+    margin: 0
+    padding: 0
+
+#awppm_chn_sponsored_section
+  background-image: url("../images/deal3.png")
+  width: 100%
+  height: 280px
+  border: 0px solid red
+  margin-top: 0px
+
+.awppm_chn_data_section
+  min-height: 160px
+  height: auto
+  border: 1px solid #ddd
+  margin-top: 40px
+  position: relative
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+
+
+.awppm_chn_data_section_label
+  height: 30px
+  width: 100%
+  background: #e5e5e5
+  color: #333
+  font-size: 16px
+  span
+    color: #333
+    font-size: 20px
+    padding: 8px
+    text-shadow: 0 1px rgba(255, 255, 255, 0.6)
+
+/* for all and subscribed channels, we will have a slightly bigger size
+
+
+.awppm_chn_data_info_more
+  width: 50px
+  height: 20px
+  position: absolute
+  bottom: 0
+  right: 0
+  color: #000
+  text-align: center
+  font-weight: bold
+
+.awppm_chn_data_channels_box
+  width: 100%
+  height: auto
+  margin-top: 20px
+  margin-bottom: 30px
+  
+.awppm_chn_busy_channels_box
+  position: absolute
+  top: 0
+  left: 0
+  margin-left: 0
+  margin-top: 0
+  z-index: 2
+  width: 100%
+  height: 100%
+  background: rgb(0, 0, 0)
+  background: rgba(0, 0, 0, 0.1)
+  .awppm_chn_busy_mini_box
+    width: 50px
+    height: 50px
+    margin-left: -25px
+    margin-top: -25px
+    top: 50%
+    left: 50%
+    position: absolute
+    img.awppm_chn_busy_image
+      width: 50px
+      height: 50px
+      margin: auto
+
+
+

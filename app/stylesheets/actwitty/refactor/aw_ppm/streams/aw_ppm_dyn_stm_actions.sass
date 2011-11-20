@@ -1,0 +1,116 @@
+@mixin aw_ppm_stm_dyn_actions_base
+  background: none repeat scroll 0 0 #F0F0F0
+  border: 1px solid #C8C8C8
+  border-radius: 3px 3px 3px 3px
+  margin-left: 5px
+  display: block
+  height: 19px
+  width: 50px
+  padding: 5px 11px
+  display: inline-block
+  color: #666666
+  cursor: pointer
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+
+@mixin aw_ppm_stm_dyn_actions_hover
+  border: 1px solid #ddd
+  cursor: pointer
+  color: #333333
+
+@mixin aw_ppm_stm_dyn_actions_image
+  width: 20px
+  height: 20px
+  border: 0px solid red
+  float: left
+  margin-left: 5px
+  background-repeat: no-repeat
+
+
+@mixin aw_ppm_stm_dyn_actions_counter_text
+  display: inline-block
+  font-size: 13px
+  font-weight: bold
+  margin-left: 4px
+
+.aw_ppm_stm_dyn_actions_box
+  width: 100%
+  height: 45px
+  border: 0px solid red
+  margin-left: 0px
+  margin-top: 10px
+  position: relative
+
+  .aw_ppm_stm_dyn_action_mentions
+    @include aw_ppm_stm_dyn_actions_base
+    &:hover
+      @include aw_ppm_stm_dyn_actions_hover
+    .aw_ppm_stm_dyn_action_mentions_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/mentions.png")
+    .aw_ppm_stm_dyn_action_mentions_on_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/mentions_on.png")
+    .aw_ppm_stm_dyn_action_mentions_count
+      @include aw_ppm_stm_dyn_actions_counter_text
+    
+
+  .aw_ppm_stm_dyn_action_shares
+    @include aw_ppm_stm_dyn_actions_base
+    &:hover
+      @include aw_ppm_stm_dyn_actions_hover
+    .aw_ppm_stm_dyn_action_shares_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/shares.png")
+    .aw_ppm_stm_dyn_action_shares_on_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/shares_on.png")
+    .aw_ppm_stm_dyn_action_shares_count
+      @include aw_ppm_stm_dyn_actions_counter_text
+
+  .aw_ppm_stm_dyn_action_likes
+    @include aw_ppm_stm_dyn_actions_base
+    &:hover
+      @include aw_ppm_stm_dyn_actions_hover
+    .aw_ppm_stm_dyn_action_likes_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/likes.png")
+    .aw_ppm_stm_dyn_action_likes_on_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/me_likes.png")
+    .aw_ppm_stm_dyn_action_likes_count
+      @include aw_ppm_stm_dyn_actions_counter_text
+    span
+      font-size: 12px
+      font-weight: bold
+      position: absolute
+      left: 83px
+      top: 25px
+      z-index: 99
+      margin-left: 0
+      color: #666666
+      padding: 5px 11px
+      width: 52px
+      height: 19px
+      background: none repeat scroll 0 0 #F0F0F0
+      border: 1px solid #C8C8C8
+      border-radius: 3px 3px 3px 3px
+      display: none
+      &:hover
+        cursor: pointer
+        border: 1px solid #ddd
+        color: #333333
+    &:hover span
+      display: block 
+
+  .aw_ppm_stm_dyn_action_comments
+    @include aw_ppm_stm_dyn_actions_base
+    &:hover
+      @include aw_ppm_stm_dyn_actions_hover
+    .aw_ppm_stm_dyn_action_comments_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/comments.png")
+    .aw_ppm_stm_dyn_action_comments_on_img
+      @include aw_ppm_stm_dyn_actions_image
+      background-image: url("/images/actwitty/refactor/aw_ppm/stream/comments_on.png")
+    .aw_ppm_stm_dyn_action_comments_count
+      @include aw_ppm_stm_dyn_actions_counter_text
