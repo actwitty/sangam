@@ -16,11 +16,14 @@ function aw_get_mention_box_id(mention_info){
 function aw_get_user_mentions_html(mention_info){
   var box_id = aw_get_mention_box_id(mention_info);
   var mention_image = mention_info.image + "?maxWidth=80";
-  var mention_info_html = '<div class="aw_ppm_dyn_chn_mentions_box" style="background:url(' + mention_image + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
-                            '<input type="hidden" value="' + mention_info.id + '" />' +
+  var mention_info_html = '<div class="aw_ppm_dyn_chn_mentions_box aw_js_ppm_chn_mentions" style="background:url(' + mention_image + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
+                            '<input type="hidden" class="aw_js_ppm_chn_mention_id" value="' + mention_info.id + '" />' +
                             '<div class="aw_ppm_dyn_chn_mention_label">' +
-                                '<span>' + mention_info.name + '</span>' +
+                                '<span  class="aw_js_ppm_chn_mention_name">' + mention_info.name + '</span>' +
                             '</div>' +
+                            '<div class="aw_ppm_dyn_mention_info_hover_box" >' +
+                              'Click to see stream with ' + mention_info.name +
+                            '</div>'+
                           '</div>';
   return mention_info_html;
 }

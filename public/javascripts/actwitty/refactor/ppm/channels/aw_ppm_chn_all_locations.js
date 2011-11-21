@@ -17,12 +17,16 @@ function aw_get_user_locations_html(location_info){
   var box_id = aw_get_location_box_id(location_info);
   var location_info_html = "";
   if( location_info.type == 2){
-    location_info_html = '<div class="aw_ppm_dyn_chn_locations_box"  id="' + box_id + '" >' +
+    location_info_html = '<div class="aw_ppm_dyn_chn_locations_box aw_js_ppm_chn_locations"  id="' + box_id + '" >' +
+                            '<input type="hidden" class="aw_js_ppm_chn_location_id" value="' + location_info.id + '" />' +
                             '<div class="aw_ppm_dyn_chn_locations_map_box aw_js_ppm_geo_map" id="' + box_id + '_map" >' +
                             '</div>' +
                             '<div class="aw_ppm_dyn_chn_location_label_box">' +
-                                '<span>' + location_info.name + '</span>' +
+                                '<span class="aw_js_ppm_chn_location_name">' + location_info.name + '</span>' +
                             '</div>' +
+                            '<div class="aw_ppm_dyn_location_info_hover_box">' +
+                              'Click to see the streams with geo location : ' +  location_info.name +
+                            '</div>'+
                           '</div>';
   }else{
     var location_image = '/images/actwitty/refactor/aw_ppm/channel/aw_unknown_geo_location.jpg';
@@ -30,6 +34,10 @@ function aw_get_user_locations_html(location_info){
                           '<div class="aw_ppm_dyn_chn_location_label_box">' +
                               '<span>' + location_info.name + '</span>' +
                           '</div>' +
+                          '<div class="aw_ppm_dyn_location_info_hover_box">' +
+                              'Click to see the streams with location : ' +  location_info.name +
+                          '</div>'+
+
                         '</div>';
                           
   }

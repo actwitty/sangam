@@ -249,18 +249,20 @@ function aw_api_srv_add_new_stream(stream_info){
 function aw_api_srv_resp_ppm_stm_render_streams(params){
   var data = aw_api_srv_get_data_for_request('AW_SRV_PPM_STM_GET_STREAMS');
   var cookie = params['aw_srv_protocol_cookie'];
-  
-  $.each(data.stream, function(i, stream_info){
-    var html = aw_api_get_stream_main_html(stream_info);
-    $('#aw_js_ppm_stm_post_timeline_list').append(html);
-    aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
-    aw_api_ppm_add_stream_context(aw_api_get_stream_id(stream_info), stream_info);
 
-    aw_initialize_actions_box_counters(stream_info);
+  $.each(data.stream, function(i, stream_info){
+    if(stream_info.post){
+      var html = aw_api_get_stream_main_html(stream_info);
+      $('#aw_js_ppm_stm_post_timeline_list').append(html);
+      aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
+      aw_api_ppm_add_stream_context(aw_api_get_stream_id(stream_info), stream_info);
+
+      aw_initialize_actions_box_counters(stream_info);
     
-    aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_STREAMS', stream_info.post.time);
-    /* send to enricher looker */
-    aw_api_ppm_stm_mention_enricher_register(stream_info);
+      aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_STREAMS', stream_info.post.time);
+      /* send to enricher looker */
+      aw_api_ppm_stm_mention_enricher_register(stream_info);
+    }
   });
   $("abbr.aw_js_timeago").timeago();
   /* tell enricher to keep working from now */
@@ -287,7 +289,7 @@ function aw_api_ppm_stm_request_streams(on_init){
     aw_api_ppm_stream_context_reinit();
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_STREAMS', '');
     /* erase the timeline */
-    $("#awppm_stm_post_timeline_list").html();
+    $("#aw_js_ppm_stm_post_timeline_list").html('');
   }
 
   $("#aw_js_ppm_stm_data_more").attr("disabled", true);
@@ -334,6 +336,14 @@ function aw_api_srv_resp_ppm_stm_post_delete(params){
   var stream_main_box_id = params['aw_srv_protocol_cookie']['stream_box_id'];
   $("#" + stream_main_box_id).remove();
 }
-
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_ppm_stm_main_jump_to_post_on_text_click(element){
+  var stream_info = aw_api_ppm_get_stm_context(element);
+  window.location.href = '/view?id=' + stream_info.post.id; 
+}
 
 

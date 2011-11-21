@@ -97,7 +97,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
-    - public/stylesheets/actwitty/refactor/aw_common/aw_ppm_dyn_stm_modal.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_modal_boxes.css
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css

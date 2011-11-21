@@ -117,7 +117,7 @@ function aw_api_ppm_stm_videos_request(on_init){
   var time_cookie = '';
   if( on_init ){
     /* erase the timeline */
-    $("#aw_js_ppm_stm_videos_timeline_list").html();
+    $("#aw_js_ppm_stm_videos_timeline_list").html('');
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_ALL_VIDEOS', '');
   }
   $("#aw_js_ppm_stm_data_more").attr("disabled", true);

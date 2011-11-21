@@ -51,9 +51,10 @@
 /* line 38, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
 .aw_ppm_stm_dyn_mentions_modal_box:hover {
   cursor: pointer;
+  border: 1px solid #cccccc;
 }
 
-/* line 41, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
+/* line 42, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
 .aw_ppm_stm_dyn_mentions_modal_label {
   width: 100%;
   height: 30px;
@@ -63,13 +64,13 @@
   background: black;
   background: rgba(0, 0, 0, 0.6);
 }
-/* line 49, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
+/* line 50, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
 .aw_ppm_stm_dyn_mentions_modal_label img {
   height: 60px;
   margin: auto;
   vertical-align: middle;
 }
-/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
+/* line 54, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.sass */
 .aw_ppm_stm_dyn_mentions_modal_label span {
   color: white;
   font-size: 12px;

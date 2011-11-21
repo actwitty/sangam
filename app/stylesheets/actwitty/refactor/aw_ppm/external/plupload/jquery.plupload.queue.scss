@@ -6,7 +6,7 @@
   color: #d9eef7;
   border: solid 1px #0076a3;
   background: #0095cd;
-  font: 16px / 100% Arial, Helvetica, sans-serif;
+  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
   zoom: 1;
   vertical-align: baseline;
@@ -15,8 +15,6 @@
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  font-size: 12px;
-  font-weight: bold;
   padding: .2em .2em .2em;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   -webkit-border-radius: .2em;
@@ -85,7 +83,7 @@
 	color: #FFF;
 }
 .plupload_header_title {
-	font-size: 18px;
+	font-size: 13px;
 	//padding: 6px 0 3px;
 }
 .plupload_header_text {
@@ -132,11 +130,11 @@
     overflow: hidden;
     float: left; 
     padding:2px;
-    font-size:16px;
+    font-size:13px;
 }
 
 .attachment_file_name{
-  font-size:16px;
+  font-size:13px;
   color:#333;
 }
 .plupload_file_caption {
@@ -144,7 +142,7 @@
     margin-left:10px;
     padding:2px;
     float: left; 
-    font-size:16px;
+    font-size:13px;
   }
 
 .caption_div{
@@ -160,7 +158,7 @@ div.caption_div input{
   width:190px;
   height:18px;
   border:1px solid #ccc;
-  font-size:14px;
+  font-size:13px;
   
 }
 
@@ -208,7 +206,7 @@ li.plupload_done a {
 
 .plupload_file_action,.plupload_file_size, .plupload_file_status{
     padding:3px;
-    font-size:16px;
+    font-size:13px;
 }
 /* Floats */
 
