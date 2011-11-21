@@ -1,40 +1,100 @@
 sports:
   type: /sports
+  channel: sports
+  hierarchy: /
+  name: sports
 cars:
   type: /cars
+  channel: cars
+  hierarchy: /
+  name: cars
 entertainment:
   type: /entertainment
-toys and games:
+  channel: entertainment
+  hierarchy: /
+  name: entertainment
+games:
   type: /games
-fashion and style:
+  channel: games
+  hierarchy: /
+  name: toys and games
+fashion:
   type: /fashion
+  channel: fashion
+  hierarchy: /
+  name: fashion and style
 nonprofits:
   type: /nonprofit
+  channel: nonprofit
+  hierarchy: /
+  name: nonprofits
 stories:
   type: /stories
+  channel: stories
+  hierarchy: /
+  name: stories
 technology:
   type: /technology
-culture and society:
-  type: /culture
-pets and animals:
+  channel: technology
+  hierarchy: /
+  name: technology
+politics:
+  type: /politics
+  channel: politics
+  hierarchy: /
+  name: society and politics
+animals:
   type: /animals
+  channel: animals
+  hierarchy: /
+  name: pets and animals
 business:
   type: /business
+  channel: business
+  hierarchy: /
+  name: business
 health:
   type: /health
-food and drink:
+  channel: health
+  hierarchy: /
+  name: health
+food:
   type: /food
-books and articles:
-  type: /book
-arts and design:
-  type: /art
-travel and places:
+  channel: food
+  hierarchy: /
+  name: food and drink
+books:
+  type: /books
+  channel: books
+  hierarchy: /
+  name: books and articles
+arts:
+  type: /arts
+  channel: arts
+  hierarchy: /
+  name: arts and design
+places:
   type: /travel
-holidays and events:
-  type: /celebration
+  channel: travel
+  hierarchy: /
+  name: travel and places
+events:
+  type: /events
+  channel: events
+  hierarchy: /
+  name: holidays and events
 home:
   type: /home
+  channel: home
+  hierarchy: /
+  name: home
 education:
   type: /eductaion
-hobbies and interest:
-  type: /interest
+  channel: education
+  hierarchy: /
+  name: education
+hobbies:
+  type: /hobbies
+  channel: hobbies
+  hierarchy: /
+  name: hobbies and interests

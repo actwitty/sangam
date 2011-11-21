@@ -1112,31 +1112,31 @@ describe Activity do
                                  ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
                               :enrich => true,
                               :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
-                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },:summary_category => "pets and animals"],
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],:summary_category => "animals",
 
                               :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
                                             AppConstants.status_public)
-       a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
-                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true,
-                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
-                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
-
-                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
-                                            AppConstants.status_public)
-       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
-                              :enrich => true,
-                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
-                                            AppConstants.status_public)
-       a4 = @u.create_activity(:word => "beating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
-                              :enrich => true,
-                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
-                                            AppConstants.status_public)
-       a5 = @u.create_activity(:word => "eating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
-                              :enrich => true,
-                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
-                                            AppConstants.status_public)
-       s = @u.update_summary_category(:summary_id => a1[:post][:summary_id],:name => "pets and animals")
+#       a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
+#                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+#                              :enrich => true,
+#                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
+#                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
+#
+#                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
+#                                            AppConstants.status_public)
+#       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+#                              :enrich => true,
+#                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+#                                            AppConstants.status_public)
+#       a4 = @u.create_activity(:word => "beating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+#                              :enrich => true,
+#                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+#                                            AppConstants.status_public)
+#       a5 = @u.create_activity(:word => "eating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+#                              :enrich => true,
+#                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+#                                            AppConstants.status_public)
+       s = @u.update_summary_category(:summary_id => a1[:post][:summary_id],:category_id => "animals")
 
        puts s.inspect
        s.should_not be_blank

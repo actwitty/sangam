@@ -80,7 +80,7 @@ class SocialAggregator < ActiveRecord::Base
 
           if !data[:category].blank?
             category = SocialFetch.categorize_data(data[:category])
-            activity[index][:post][:word] = category
+            activity[index][:post][:word] = SUMMARY_CATEGORIES[category]['channel']
             activity[index][:post][:summary_category] = category
           end
 

@@ -214,7 +214,7 @@ development: &default
   category_min_id:                    100000000
   category_max_id:                    999999999
 
-  category_name_length:               255
+  category_id_length:               255
   category_type_length:               255
 
   default_category:                   "stories"

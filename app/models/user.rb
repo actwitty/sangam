@@ -809,7 +809,7 @@ class User < ActiveRecord::Base
   #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
   #                     [MANDATORY]
   #    :tags => [{:tag => "jump"}, {:tag => "india"}]
-  #    :summary_category => "pets and animals"  #as defined categories.yml   [OPTIONAL  - But always first time]
+  #    :summary_category => "animals"  #as defined categories.yml   [OPTIONAL  - But always first time]
   #
   # OUTPUT => {:post=>{
   #              :text=>"pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
@@ -1197,7 +1197,7 @@ class User < ActiveRecord::Base
 
     #Below two lines are for testing
     #Activity.destroy_all(:author_id => self.id)
-    #SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
+    SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
 
     h = process_filter_modified(params)
 
@@ -2067,7 +2067,7 @@ class User < ActiveRecord::Base
     s
   end
 
-  #INPUT => {:summary_id => 123, name => "sports"}
+  #INPUT => {:summary_id => 123, :category_id => "sports"}
   def update_summary_category(params)
     Rails.logger.info("[MODEL] [USER] [update_summary_category] entering  " + params.to_s)
     params[:user_id] = self.id

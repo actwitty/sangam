@@ -7,15 +7,15 @@ class SummaryCategory < ActiveRecord::Base
   validates_existence_of :user_id
   validates_existence_of :summary_id
 
-  validates_presence_of :name, :category_type
+  validates_presence_of :category_id, :category_type
 
-  validates_length_of :name, :in => 1..AppConstants.category_name_length
+  validates_length_of :category_id, :in => 1..AppConstants.category_id_length
   validates_length_of :category_type, :in => 1..AppConstants.category_type_length
 
   validates_uniqueness_of :summary_id
 
   after_save :update_summary
-  attr_accessible :name, :user_id, :category_type, :summary_id
+  attr_accessible :category_id, :user_id, :category_type, :summary_id
 
   def update_summary
     Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [THEME] [update_summary] entering")
@@ -28,8 +28,11 @@ class SummaryCategory < ActiveRecord::Base
   end
 
   class << self
-    #INPUT => {:summary_id => 123, name => "sports"}
+
+    #INPUT => {:summary_id => 123, category_id => "sports"}
+
     def create_summary_category(params)
+
       Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [CREATE_SUMMARY_CATEGORY] entering #{params.inspect}" )
 
       s = Summary.where(:id => params[:summary_id]).first
@@ -40,7 +43,7 @@ class SummaryCategory < ActiveRecord::Base
 
       params[:user_id] = s.user_id
 
-      params[:category_type] = SUMMARY_CATEGORIES[params[:name]]['type']
+      params[:category_type] = SUMMARY_CATEGORIES[params[:category_id]]['type']
       if params[:category_type].blank?
         Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [CREATE_SUMMARY_CATEGORY] invalid category #{params.inspect}" )
         return {}
@@ -51,17 +54,20 @@ class SummaryCategory < ActiveRecord::Base
     rescue => e
       Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [CREATE_SUMMARY_CATEGORY] rescue #{params.inspect} #{e.message}" )
 
-       #Validation Uniqueness fails
+      #Validation Uniqueness fails
       if /has already been taken/ =~ e.message
+
         Rails.logger.info("[MODEL] [THEME] [SUMMARY_CATEGORY] rescue => unique validation field => #{params.inspect}")
-        input = params.except(:name, :category_type,:user_id)
+
+        input = params.except(:category_id, :category_type,:user_id)
         obj = SummaryCategory.where(:summary_id => params[:summary_id]).first
+
         return obj
       end
       {}
     end
 
-    #INPUT => {:summary_id => 123, name => "sports", :user_id}
+    #INPUT => {:summary_id => 123, category_id => "sports", :user_id}
     def update_summary_category(params)
       Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [UPDATE_SUMMARY_CATEGORY] entering #{params.inspect}" )
 
@@ -78,17 +84,20 @@ class SummaryCategory < ActiveRecord::Base
         return false
       end
 
-      category_type = SUMMARY_CATEGORIES[params[:name]]['type']
+      category_type = SUMMARY_CATEGORIES[params[:category_id]]['type']
+
       puts category_type.inspect
+
       if category_type.blank?
         Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [UPDATE_SUMMARY_CATEGORY] invalid category #{params.inspect}" )
         return false
       end
 
-      obj.update_attributes(:name => params[:name], :category_type => category_type)
-      rescue => e
-        Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [UPDATE_SUMMARY_CATEGORY] rescue #{params.inspect} #{e.message}" )
-        false
+      obj.update_attributes(:category_id => params[:category_id], :category_type => category_type)
+
+    rescue => e
+      Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [UPDATE_SUMMARY_CATEGORY] rescue #{params.inspect} #{e.message}" )
+      false
     end
   end
 
