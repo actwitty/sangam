@@ -698,7 +698,7 @@ class User < ActiveRecord::Base
   #            :location_id => 789, :entity_id => 234 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
-  # See get_stream output
+  # See get_stream output in HASH :stream => {}
   def get_draft_activity(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_draft_activity] entering")
@@ -986,7 +986,7 @@ class User < ActiveRecord::Base
   end
 
   #INPUT = Array of activity ids
-  #OUTPUT =   See get_stream output
+  #OUTPUT =   See get_stream output in HASH :stream => {}
   def get_all_activity(activity_ids)
 
     Rails.logger.debug("[MODEL] [User] [get_all_activity] entering ")
@@ -1063,7 +1063,9 @@ class User < ActiveRecord::Base
   #:filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
   #OUTPUT
-  #[
+  #{
+  # :stream =>
+  # [
   # {
   # :post=>
   #  {
@@ -1109,8 +1111,35 @@ class User < ActiveRecord::Base
   #  },
   # :campaigns=>
   #     [{:name=>"support", :count=>1, :user=>true, :user_id=>5}, {:name=>"like", :count=>2, :user=>false}]
+  # }
+  # ]
+  # :theme_data => {
+  #                 :id => 123, :theme_type => theme.theme_type,# [ 1 (AppConstants.theme_default) OR 2 (AppConstants.theme_color) OR 3 (AppConstants.theme_document)],
+  #                 :user_id => 123,:summary_id => 134,:time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  #
+  #                 :document_id => _id, #if :theme_type => AppConstants.theme_document
+  #                                                      OR
+  #                 :fg_color => AppConstants.theme_default_fg_color, :bg_color => AppConstants.theme_default_bg_color
+  #                         #if :theme_type => AppConstants.theme_default
+  #                                                     OR
+  #                 :fg_color => "0x6767623", :bg_color => "0x78787834" # :theme_type => AppConstants.theme_color
+  #                 }
+  # :category_data => {
+  #                     :id => category.id, :category_id => "food",:name => "food and drink",:type => "/food",
+  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00
+  #                   }
+  # :analytics_summary => {
+  #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
+  #                         "comments" => {:total => 34, :actwitty => 20, :facebook => 14 }, "likes" =>{:total => 123, :actwitty => 33, :facebook => 90 }
+  #                         "actions" =>  {:share => 24, :views => 90},
+  #                          "demographics" => {:total => 40,:male => 20, :female => 18, :others => 2,
+  #                             :age_group => {"18-24" => {:total => 20,:male => 10, :female => 11, :others => 0},
+  #                            "35-44" => {:total => 20,:male => 10, :female => 7, :others => 2}}}
+  #                            See constants.yml for age_band
+  #                         "subscribers" => 345, "documents" =>  {"total" => 160, "image" => 24, "video" => 90, "audio" => 46}
+  #                         "channel_ranks" => 234
+  #                       }
   #}
-  #]
   def get_stream(params ={})
 
     Rails.logger.debug("[MODEL] [USER] [get_stream] entering")
@@ -1154,6 +1183,8 @@ class User < ActiveRecord::Base
         if params[:page_type] == AppConstants.page_state_user
            s = Summary.where(:user_id => params[:user_id],:activity_word_id => h[:activity_word_id]).first
            stream[:theme_data] = s.theme_data
+           stream[:analytics_summary] = s.analytics_summary
+           stream[:category_data] = s.category_data
         end
     end
 
@@ -1178,6 +1209,33 @@ class User < ActiveRecord::Base
   # :user=>{:id=>39, :full_name=>"lemony3 lime3", :photo=>"images/id_3"}, :count=>1, :locations=>[],
   #
   # :activity_count => 23, :document_count =>12, :tag_count => 34,
+  # :theme_data => {
+  #                 :id => 123, :theme_type => theme.theme_type,# [ 1 (AppConstants.theme_default) OR 2 (AppConstants.theme_color) OR 3 (AppConstants.theme_document)],
+  #                 :user_id => 123,:summary_id => 134,:time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  #
+  #                 :document_id => _id, #if :theme_type => AppConstants.theme_document
+  #                                                      OR
+  #                 :fg_color => AppConstants.theme_default_fg_color, :bg_color => AppConstants.theme_default_bg_color
+  #                         #if :theme_type => AppConstants.theme_default
+  #                                                     OR
+  #                 :fg_color => "0x6767623", :bg_color => "0x78787834" # :theme_type => AppConstants.theme_color
+  #                 }
+  # :category_data => {
+  #                     :id => category.id, :category_id => "food",:name => "food and drink",:type => "/food",
+  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00
+  #                   }
+  # :analytics_summary => {
+  #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
+  #                         "comments" => {:total => 34, :actwitty => 20, :facebook => 14 }, "likes" =>{:total => 123, :actwitty => 33, :facebook => 90 }
+  #                         "actions" =>  {:share => 24, :views => 90},
+  #                          "demographics" => {:total => 40,:male => 20, :female => 18, :others => 2,
+  #                             :age_group => {"18-24" => {:total => 20,:male => 10, :female => 11, :others => 0},
+  #                            "35-44" => {:total => 20,:male => 10, :female => 7, :others => 2}}}
+  #                            See constants.yml for age_band
+  #                         "subscribers" => 345, "documents" =>  {"total" => 160, "image" => 24, "video" => 90, "audio" => 46}
+  #                         "channel_ranks" => 234
+  #                       }
+  #  :social_counters => [{:source_name=>"twitter", :action=>"share", :count=>1}, {:source_name=>"facebook", :action=>"share", :count=>2}]
   #
   # :documents=>[{:id=>30, :name=>"ddd.jpg", :url=>"https://s3.amazonaws.com/ddd.jpg",
   #           :thumb_url=>"https://s3.amazonaws.com/ddd_thumb.jpg", :caption=>nil, :source_name=>"actwitty",
@@ -1200,7 +1258,7 @@ class User < ActiveRecord::Base
 
     #Below two lines are for testing
     #Activity.destroy_all(:author_id => self.id)
-    SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
+    #SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
 
     h = process_filter_modified(params)
 
@@ -1237,7 +1295,7 @@ class User < ActiveRecord::Base
                              :activity_count => attr.activities.size,
                              :document_count => attr.documents.size, :tag_count => attr.tags.size,
                              :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
-                             :category => attr.category_data,
+                             :category_data => attr.category_data, :analytics_summary => attr.analytics_summary,
                              :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                               }
         attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }

@@ -5,7 +5,7 @@ class SummaryRank < ActiveRecord::Base
   belongs_to :location
   belongs_to :entity
 
-  validates_uniqueness_of :summary_id    ,  :unless => Proc.new {|a| a.summary_id.nil?}
+  validates_uniqueness_of :summary_id    ,:unless => Proc.new {|a| a.summary_id.nil?}
   validates_uniqueness_of :location_id   ,:unless => Proc.new {|a| a.location_id.nil?}
   validates_uniqueness_of :entity_id    ,:unless => Proc.new {|a| a.entity_id.nil?}
 
@@ -19,6 +19,37 @@ class SummaryRank < ActiveRecord::Base
   serialize :channel_ranks, Hash
   serialize :analytics_summary, Hash
   serialize :views, Hash
+
+  after_save  :update_analytics_in_models
+
+  def  update_analytics_in_models
+    Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] entering ")
+
+    if !self.summary_id.blank?
+
+      Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.summary_id} with #{self.analytics_summary}")
+      s = Summary.where(:id => self.summary_id).first
+      s.analytics_summary = {}
+      s.update_attributes(:analytics_summary => self.analytics_summary)
+
+    elsif !self.location_id.blank?
+
+      Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.location_id} with #{self.analytics_summary}")
+      l = Location.where(:id => self.location_id).first
+      l.analytics_summary = {}
+      l.update_attributes(:analytics_summary => self.analytics_summary)
+
+    elsif !self.entity_id.blank
+
+      Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.entity_id} with #{self.analytics_summary}")
+      e = Entity.where(:id => self.entity_id).first
+      e.analytics_summary = {}
+      e.update_attributes(:analytics_summary => self.analytics_summary)
+
+    end
+    Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] leaving ")
+
+  end
 
   class << self
     #COMMENT - Return the most recent analytics SNAPSHOT of summary OR location or entity

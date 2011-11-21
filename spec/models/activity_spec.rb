@@ -1116,14 +1116,13 @@ describe Activity do
 
                               :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
                                             AppConstants.status_public)
-#       a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
-#                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
-#                              :enrich => true,
-#                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
-#                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
-#
-#                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>
-#                                            AppConstants.status_public)
+       a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
+                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
+                                             {:caption => "3_2", :url => "http://a.com/3.jpg" },],
+
+                              :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>  AppConstants.status_public)
 #       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
 #                              :enrich => true,
 #                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
@@ -1136,8 +1135,12 @@ describe Activity do
 #                              :enrich => true,
 #                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
 #                                            AppConstants.status_public)
+       a6 = @u.create_activity(:word => "eating" , :text => "", :enrich => true,
+                               :source_name => "facebook", :status => AppConstants.status_public, :source_msg_id => "909090909")
+       a7 = @u.create_activity(:word => "eating" , :text => "",:enrich => true,:location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :source_name => "facebook", :status => AppConstants.status_public, :source_msg_id => "1254324")
        s = @u.update_summary_category(:summary_id => a1[:post][:summary_id],:category_id => "animals")
-
+       work_off
        puts s.inspect
        s.should_not be_blank
 

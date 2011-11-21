@@ -8,6 +8,7 @@ class Summary < ActiveRecord::Base
   serialize :social_counters_array, Array
   serialize :theme_data,      Hash
   serialize :category_data,      Hash
+  serialize :analytics_summary, Hash
 
   has_many    :activities, :order => "updated_at DESC"
 
@@ -24,6 +25,8 @@ class Summary < ActiveRecord::Base
   has_many    :summary_subscribes
 
   has_one     :summary_category
+
+  has_one     :summary_rank
 
   belongs_to  :user, :touch => true
   belongs_to  :activity_word, :touch => true
@@ -382,6 +385,23 @@ class Summary < ActiveRecord::Base
         a.attributes
       end
 
+#      #INPUT => {:name => "foo"}
+#      #OUPUT => [{:names =>"food",  :category_id => "food", :category_name => "food and drink"}, ...]
+#      def search_name(params)
+#        array = []
+#        unless params[:name].blank?
+#          #user_type is added for ADMIN USER
+#          select("activity_name,category_data").order("full_name").
+#                      where( ['users.email = ?
+#                                or full_name ILIKE ?', search,
+#                                                       "%#{search}%"]).all.each do |attr|
+#            Rails.logger.info("[MODEL] [USER] [SEARCH] ============= #{attr}")
+#            #ADMIN USER
+#            array << attr if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
+#          end
+#        end
+#        array
+#      end
       private
         def update_word_in_models(word, word_id, summary)
           Summary.update_all({:activity_name => word, :activity_word_id => word_id},

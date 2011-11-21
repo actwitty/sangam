@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115152100) do
+ActiveRecord::Schema.define(:version => 20111121132911) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20111115152100) do
     t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "analytics_summary"
   end
 
   add_index "entities", ["entity_guid"], :name => "index_entities_on_entity_guid", :unique => true
@@ -326,6 +327,7 @@ ActiveRecord::Schema.define(:version => 20111115152100) do
     t.datetime "updated_at"
     t.text     "location_city"
     t.text     "location_country"
+    t.text     "analytics_summary"
   end
 
   add_index "locations", ["location_city"], :name => "index_locations_on_location_city"
@@ -453,6 +455,7 @@ ActiveRecord::Schema.define(:version => 20111115152100) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "category_data"
+    t.text     "analytics_summary"
   end
 
   add_index "summaries", ["activity_name"], :name => "index_summaries_on_activity_name"
