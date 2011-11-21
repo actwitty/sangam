@@ -17,7 +17,7 @@
           -if current_user.id == @user.id
             =render :partial => "home/input_box"
 
-.awppm_stm_wrapper.awppm_stm_column3            
+.awppm_stm_wrapper.awppm_stm_column3.aw_js_ppm_stm_theme_bkg
 
   
   #awppm_stm_complete_width_big_container_box.aw_js_ppm_stream_list_external_container
@@ -51,23 +51,20 @@
           %h5 Filtered With
           %hr
           #aw_js_ppm_stm_filter_chn.awppm_stm_filter_block
-            %a{:href => "#"}
-              %img{:src => "/images/actwitty/refactor/aw_ppm/stream/delete.png", :width => "15px", :height => "15px" }/
-            %h3 #{@aw_chn_filter_text_val}
+            %img#aw_js_ppm_stm_chn_filter_delete{:src => "/images/actwitty/refactor/aw_common/aw_close.png" }/
+            %h3.aw_js_ppm_stm_chn_filter_text_on_view #{@aw_chn_filter_text_val}
             %input#aw_js_ppm_stm_filter_chn_text{:type => "hidden", :value => @aw_chn_filter_text_val}
             %input#aw_js_ppm_stm_filter_chn_id{:type => "hidden", :value => @aw_chn_filter_id_val}
             %p as channel
           #aw_js_ppm_stm_filter_mention.awppm_stm_filter_block
-            %a{:href => "#"}
-              %img{:src => "/images/actwitty/refactor/aw_ppm/stream/delete.png", :width => "15px", :height => "15px" }/
-            %h3 #{@aw_mention_filter_text_val}
+            %img#aw_js_ppm_stm_mention_filter_delete{:src => "/images/actwitty/refactor/aw_common/aw_close.png" }/
+            %h3.aw_js_ppm_stm_mention_filter_text_on_view #{@aw_mention_filter_text_val}
             %input#aw_js_ppm_stm_filter_mention_text{:type => "hidden", :value => @aw_mention_filter_text_val}
             %input#aw_js_ppm_stm_filter_mention_id{:type => "hidden", :value => @aw_mention_filter_id_val}
             %p as mentions
           #aw_js_ppm_stm_filter_location.awppm_stm_filter_block
-            %a{:href => "#"}
-              %img{:src => "/images/actwitty/refactor/aw_ppm/stream/delete.png", :width => "15px", :height => "15px" }/
-            %h3 #{@aw_location_filter_text_val}
+            %img#aw_js_ppm_stm_location_filter_delete{:src => "/images/actwitty/refactor/aw_common/aw_close.png" }/
+            %h3.aw_js_ppm_stm_location_filter_text_on_view #{@aw_location_filter_text_val}
             %input#aw_js_ppm_stm_filter_location_text{:type => "hidden", :value => @aw_location_filter_text_val}
             %input#aw_js_ppm_stm_filter_location_id{:type => "hidden", :value => @aw_location_filter_id_val}
             %p as location

@@ -7,9 +7,11 @@
       #awppm_chn_user_info
         #awppm_chn_user_img
           %center
-            %img{:src => @user.photo_small_url}/
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %img{:src => @user.photo_small_url}/
           %center
-            %span #{@user.full_name}
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %span #{@user.full_name}
       #awppm_chn_input_box_wrapper
         -if user_signed_in?
           -if current_user.id == @user.id
@@ -21,6 +23,11 @@
       #aw_js_ppm_user_channel_data.awppm_chn_data_section.awppm_chn_userchannel_data
         .awppm_chn_data_section_label
           %span #{@user.full_name}'s Channels
+          .awppm_chn_data_section_stream_link_box
+            .aw_ppm_stream_link_info_hover_box Stream view for posts by #{@user.full_name}
+            %a{:href => "/home/streams?id=#{@user.id}&s=p"}
+              .awppm_chn_data_section_stream_link_img_box
+                
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
             %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
@@ -32,6 +39,10 @@
           #aw_js_ppm_subscribed_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
               %span #{@user.full_name}'s Subscribed Channels
+              .awppm_chn_data_section_stream_link_box
+                .aw_ppm_stream_link_info_hover_box Stream view for subscriptions of #{@user.full_name}
+                %a{:href => "/home/streams?id=#{@user.id}&s=s"}
+                  .awppm_chn_data_section_stream_link_img_box
             .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
               .awppm_chn_busy_mini_box
                 %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
@@ -64,6 +75,10 @@
           #aw_js_ppm_all_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
               %span World over Channels
+              .awppm_chn_data_section_stream_link_box
+                .aw_ppm_stream_link_info_hover_box Stream view for all channels
+                %a{:href => "/home/streams?id=#{@user.id}&s=a"}
+                  .awppm_chn_data_section_stream_link_img_box
             .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
               .awppm_chn_busy_mini_box
                 %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }

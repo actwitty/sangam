@@ -18,7 +18,7 @@ function aw_get_subscribed_channel_html(channel_info){
     subscription_tooltip = 'You are already subscribed to this channel. Click to unsubscribe.';
   }
 
-  var channel_info_html = '<div class="aw_ppm_dyn_subscribed_chn_box aw_js_ppm_channel_box_backtracker" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
+  var channel_info_html = '<div class="aw_ppm_dyn_subscribed_chn_box aw_js_ppm_channel_box_backtracker aw_js_ppm_channel_box_filter_setter" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_ppm_dyn_subscribed_chn_info_hover_box">' +
                                 //TODO: Add the hover here
                             '</div>' +

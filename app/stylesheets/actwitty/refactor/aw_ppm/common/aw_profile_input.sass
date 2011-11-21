@@ -4,7 +4,7 @@
   left: 300px
 
 .button_classic
-  font-family: 'Yanone Kaffeesatz', arial, serif
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
   font-size: 30px
   color: #fff
   text-decoration: none
@@ -92,12 +92,13 @@
 
 #awppm_input_label
   color: #333
-  font-size: 30px
+  font-size: 22px
   font-weight: bold
   width: 400px
   margin-left: 50px
+  margin-bottom: 2px
   border: 0px solid red
-  text-shadow: 0 0 0.2em #ddd, 0 0 0.2em #ddd
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 
 @mixin awppm_ip_placement_width
   width: 550px
@@ -107,10 +108,11 @@
   @include awppm_ip_placement_width
 
 #awppm_ip_channel input
-  width: 395px
   width: 500px
   height: 30px
   border: 1px solid #ddd
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 13px
   -moz-box-shadow: 0 0 8px #ddd
   -webkit-box-shadow: 0 0 8px #ddd
   box-shadow: 0 0 8px #ddd
@@ -123,13 +125,18 @@
   display: none
 
 .awppm_ip_cat, .awppm_ip_subcat
-  width: 48%
   width: 240px
   height: 30px
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
   border: 1px solid #ddd
   -moz-box-shadow: 0 0 2px #ddd
   -webkit-box-shadow: 0 0 2px #ddd
   box-shadow: 0 0 2px #ddd
+  background: #ffffff
+  option
+    color: black
+    background: #ffffff
+
 
 .awppm_ip_cat
   vertical-align: middle
@@ -142,6 +149,7 @@
   margin-left: 6px
   &:focus
     color: #333
+  display: none
 
 #awppm_ip_post
   @include awppm_ip_placement_width
@@ -151,6 +159,8 @@
     width: 500px
     height: 80px
     border: 1px solid #ddd
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 13px
     -moz-box-shadow: 0 0 8px #ddd
     -webkit-box-shadow: 0 0 8px #ddd
     box-shadow: 0 0 8px #ddd
@@ -163,6 +173,8 @@
 
 .awppm_ip_add_attachment 
   @include awppm_ip_placement_width
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 13px
   width: 505px
   margin-top: 5px
   border: 1px solid #ddd
@@ -204,6 +216,8 @@
   margin-top: 10px
   border: 0px solid red
   span
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 11px
     color: black
     vertical-align: baseline
   img

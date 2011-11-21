@@ -96,6 +96,26 @@ $(document).ready(function(){
     return false;
   });
 
-  /* more click event handler end */
+  $(".aw_js_ppm_stm_mention_filter_changer").live('click', function(){
+    aw_api_ppm_stm_change_mention_filter($(this)); 
+  });
+
+  $(".aw_js_ppm_stm_location_filter_changer").live('click', function(){
+    aw_api_ppm_stm_change_location_filter($(this)); 
+  });
+
+  $("#aw_js_ppm_stm_chn_filter_delete").click(function(){
+    aw_api_ppm_stm_drop_channel_filter();
+  });
+
+  $("#aw_js_ppm_stm_mention_filter_delete").click(function(){
+    aw_api_ppm_stm_drop_mention_filter();
+  });
+
+  $("#aw_js_ppm_stm_location_filter_delete").click(function(){
+    aw_api_ppm_stm_drop_location_filter();
+  });
+
+
   
 });
