@@ -61,8 +61,21 @@ module SocialFetch
   #OUTPUT => "stories" or "entertainment" or "pets and animals" #check categories.yml
   def self.categorize_data(params)
     Rails.logger.error("[LIB] [SOCIAL_FETCH] [data_adaptor] entering #{params.inspect}")
+
+    case params[:type]
+
+      when AppConstants.data_type_weburl, AppConstants.data_type_facebook, AppConstants.data_type_youtube then
+        category = ::SocialFetch::Categorizer::AlchemyApi.categorize(params[:data])
+
+      when AppConstants.data_type_text then
+        category = AppConstants.default_category
+
+      else
+        category = AppConstants.default_category
+    end
+
     Rails.logger.error("[LIB] [SOCIAL_FETCH] [data_adaptor] leaving #{params.inspect}")
-    return "stories"
+    return category
   end
 end
 

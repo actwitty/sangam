@@ -11,7 +11,7 @@ module SocialFetch
 
 
         url = "#{FEED}/#{params[:uid]}/feed?access_token=#{params[:access_token]}&limit=#{params[:limit]}"
-        response = SocialFetch::Helper::Http.get(url)
+        response = ::SocialFetch::Helper::Http.get(url)
 
         if response.blank? || response.code != '200'
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] Invalid response #{response.inspect} #{params}")
@@ -52,8 +52,9 @@ module SocialFetch
         if (attr["from"]["id"] == params[:uid]) and params[:time] < attr["created_time"].to_time.utc #existing_data[attr["id"]].blank?
           activity = {
                      :source_msg_id => attr["id"],:source_name => "facebook",:status => AppConstants.status_public,
-                     :enrich => true, :word => "stories", :summary_category => "stories",
-                      :created_at => attr["created_time"].to_time.utc, :updated_at => attr["updated_time"].to_time.utc
+                     :enrich => true, :word => SUMMARY_CATEGORIES[AppConstants.default_category]['channel'],
+                     :summary_category => AppConstants.default_category,:created_at => attr["created_time"].to_time.utc,
+                     :updated_at => attr["updated_time"].to_time.utc
                      }
 
           if !attr["place"].blank?

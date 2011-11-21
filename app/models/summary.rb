@@ -191,7 +191,7 @@ class Summary < ActiveRecord::Base
 
            params[:summary_category] = AppConstants.default_category if params[:summary_category].blank?
 
-           category = SummaryCategory.create_summary_category(:summary_id => summary.id, :name => params[:summary_category])
+           category = SummaryCategory.create_summary_category(:summary_id => summary.id, :category_id => params[:summary_category])
 
            if category.blank?
              Rails.logger.error("[MODEL] [SUMMARY] [CREATE_SUMMARY] summary category creation failed #{params.inspect}")

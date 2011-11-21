@@ -463,7 +463,7 @@ ActiveRecord::Schema.define(:version => 20111115152100) do
   add_index "summaries", ["user_id", "updated_at"], :name => "index_summaries_on_user_id_and_updated_at"
 
   create_table "summary_categories", :force => true do |t|
-    t.string   "name",          :null => false
+    t.string   "category_id",   :null => false
     t.string   "category_type", :null => false
     t.integer  "summary_id",    :null => false
     t.integer  "user_id",       :null => false
@@ -471,8 +471,8 @@ ActiveRecord::Schema.define(:version => 20111115152100) do
     t.datetime "updated_at"
   end
 
+  add_index "summary_categories", ["category_id"], :name => "index_summary_categories_on_category_id"
   add_index "summary_categories", ["category_type"], :name => "index_summary_categories_on_category_type"
-  add_index "summary_categories", ["name"], :name => "index_summary_categories_on_name"
   add_index "summary_categories", ["summary_id"], :name => "index_summary_categories_on_summary_id", :unique => true
   add_index "summary_categories", ["user_id"], :name => "index_summary_categories_on_user_id"
 

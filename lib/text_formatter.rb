@@ -234,8 +234,10 @@ module TextFormatter
     h = {}
     h = {
           :id => category.id,
-          :name => category.name,
+          :category_id => category.category_id,
+          :name => SUMMARY_CATEGORIES[category.category_id]['name'],
           :type => category.category_type,
+          :hierarchy => SUMMARY_CATEGORIES[category.category_id]['hierarchy'],
           :user_id => category.user_id,
           :summary_id => category.summary_id,
           :time => category.updated_at

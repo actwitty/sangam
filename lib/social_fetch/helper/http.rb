@@ -16,6 +16,18 @@ module SocialFetch
           response
 
         end
+
+        def post(url,params)
+          uri = URI.parse(url)
+          req = Net::HTTP::Post.new(uri.path)
+          req.set_form_data(params)
+
+          res = Net::HTTP.start(uri.host, uri.port) do |http|
+            http.request(req)
+          end
+          res
+        end
+
       end
     end
   end
