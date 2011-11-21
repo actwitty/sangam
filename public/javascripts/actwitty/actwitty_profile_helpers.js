@@ -124,18 +124,8 @@ $(document).ready(function(){
      
     
 
-    $(".count-enable").blur(function() {
-        $("#input-char-count").hide();
-    });
-    
-    $(".count-enable").bind('focus keyup', function() {
-        $("#input-char-count").show();
-        var maxlength = $(this).attr("maxlength");
-        $(this).val($(this).val().slice(0,maxlength));
-        var remaining_length = maxlength - $(this).val().length;
-        $("#char-count").text(": "+ remaining_length);
 
-    });
+   
 
     $("#attachment").click(function(){
         $("#input-attachments-section").show();
@@ -148,46 +138,6 @@ $(document).ready(function(){
     });
 
 
-
-    /* delete all the attachments... thus deleting all the elements with class as 
-     * input attachment
-     */
-    $("#delete-all-attachment").click(function(){
-        $("#input-attachments-section").hide();
-        $(".input-attachment").remove();
-        $("#attachment").show();
-    });
-    
-    
-    
-    /* not used probably...keep it */ 
-    $(".delete-attachment").click(function(){
-        $(this).parent().remove();
-    });
-    
-    /* to get functionality of add more images*/ 
-    $("#add-more-attachment").click(function(){
-        $("#attachment-list").append(" <div class='input-attachment'> " +
-                    "<input type='file' class='choose-attach'> " +
-                    "<input type='text' placeholder='Caption' class='attach-caption'/>" +
-                    "<input type='button' value='Delete' class='delete-attach'/>" +
-                "</div>");
-        $(this).disabled = true;
-    });
-
-
-    /* to get functionality of delete a particular attachment
-     * in case all the attachments are deleted, we will close the attachment box and
-     * move to add-image box as we do in delete all
-     * 
-     */
-    $(".delete-attach").live('click', function() {
-       $(this).parent().remove(); 
-       if ($("#attachment-list").children().length == 0) {
-          $("#input-attachments-section").hide();
-          $("#attachment").show();
-       }
-    });
 
     $(".dropdown").click(function () {
         /*$("ul.the_menu").slideToggle("medium");*/
@@ -213,8 +163,6 @@ $(document).ready(function(){
         $(this).hide();
     });
 
-    /* to make sure that only alphanumeric characters are allowed in activity field*/
-    $("#activity_field").alphanumeric();
 
    
 

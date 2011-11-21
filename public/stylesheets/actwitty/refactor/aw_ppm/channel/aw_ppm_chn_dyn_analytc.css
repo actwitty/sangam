@@ -1,0 +1,226 @@
+/* .aw_ppm_dyn_subscribed_chn_box div.aw_ppm_dyn_users_chn_info_hover_box
+ *   font-family: Calibri, Tahoma, Geneva, sans-serif
+ *   position: absolute
+ *   left: 1em
+ *   top: 2em
+ *   z-index: 99
+ *   margin-left: 100px
+ *   margin-top: 50px
+ *   width: 350px
+ *   height: 280px
+ *   background-color: #ddd
+ *   border: 1px solid #CCC
+ *   border-radius: 8px
+ *   -moz-box-shadow: 0 0 10px #ccc
+ *   -webkit-box-shadow: 0 0 10px #ccc
+ *   box-shadow: 0 0 10px #ccc
+ *   display:none */
+/* line 20, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_anlytc_summary_header {
+  width: 100%;
+  height: 50px;
+  border: 0px solid red;
+}
+
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_anlytc_summary_rank {
+  float: left;
+  width: 130px;
+  height: 100%;
+  border: 0px solid blue;
+  position: relative;
+}
+
+/* line 32, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_anlytc_rank_icon {
+  position: absolute;
+  left: 0px;
+  vertical-align: middle;
+}
+
+/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+div.aw_ppm_chn_dyn_anlytc_summary_rank span {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333333;
+  position: absolute;
+  left: 50px;
+  top: 10px;
+}
+
+/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+div.aw_ppm_chn_dyn_anlytc_summary_rank span.aw_ppm_chn_dyn_analytc_rank_label {
+  font-size: 12px;
+  position: absolute;
+  left: 9px;
+  top: 42px;
+}
+
+/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_anlytc_summary_lut {
+  float: right;
+  width: 180px;
+  height: 100%;
+  border: 0px solid blue;
+  position: relative;
+}
+/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_anlytc_summary_lut span {
+  position: absolute;
+  right: 8px;
+  top: 15px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #c67171;
+  float: right;
+}
+
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_posts {
+  width: 100%;
+  height: 95px;
+  border: 0px solid green;
+}
+
+/* line 71, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_posts h5 {
+  text-align: right;
+  font-size: 12px;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_posts_box {
+  width: 100px;
+  height: 100%;
+  border: 0px solid blue;
+  float: left;
+  display-inline: block;
+  margin-left: 10px;
+  position: relative;
+}
+/* line 86, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_posts_box img {
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+/* line 90, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_posts_box span {
+  position: absolute;
+  right: 0;
+  top: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #36648b;
+}
+
+/* line 98, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_counters {
+  width: 100%;
+  height: 65px;
+  border: 0px solid red;
+}
+
+/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_subscribers {
+  width: 170px;
+  height: 100%;
+  border: 0px solid blue;
+  text-align: center;
+  float: left;
+}
+/* line 109, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_subscribers span {
+  font-size: 24px;
+  color: #282828;
+}
+/* line 110, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_subscribers span.aw_ppm_chn_dyn_analytc_subcrb_count {
+  font-size: 30px;
+  font-weight: bold;
+  color: #71c671;
+  color: #008b45;
+}
+
+/* line 118, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_demograph {
+  position: relative;
+  float: right;
+  width: 170px;
+  height: 100%;
+  border: 0px solid blue;
+}
+
+/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_demograph_box {
+  width: 60px;
+  height: 100%;
+  border: 0px solid blue;
+  float: left;
+  margin-left: 15px;
+  position: relative;
+}
+
+/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+div.aw_ppm_chn_dyn_analytc_demograph_box img {
+  position: absolute;
+  left: 0;
+}
+/* line 137, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+div.aw_ppm_chn_dyn_analytc_demograph_box span {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* line 145, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_actions {
+  width: 100%;
+  height: 70px;
+  border: 0px solid red;
+}
+
+/* line 150, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_actions {
+  width: 110px;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+/* line 155, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_actions img {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+/* line 159, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+.aw_ppm_chn_dyn_analytc_summary_actions span {
+  position: absolute;
+  left: 55px;
+  top: 13px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #4f94cd;
+}
+
+/* line 168, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+span.aw_ppm_chn_dyn_analytc_action_label {
+  font-size: 11px;
+  color: #333333;
+  position: absolute;
+  top: 40px;
+}
+/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.sass */
+span.aw_ppm_chn_dyn_analytc_action_label_comments {
+  font-size: 11px;
+  color: #333333;
+  position: absolute;
+  top: 40px;
+  left: 45px;
+}

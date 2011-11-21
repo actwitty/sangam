@@ -1,6 +1,7 @@
 Sangam::Application.routes.draw do
 
   get "home/show"
+  get "home/streams"
   #get "home/alpha"
   get '/users/sign_in', :to => 'welcome#new'
   get '/users/sign_up', :to => 'welcome#new'

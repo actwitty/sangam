@@ -1,4 +1,8 @@
-
+/****************************************************/
+/*
+ *
+ *
+ */
 function get_or_create_a_video_box(box_id, stream){
   var small_box_id = 'video_box_' + stream.document.activity_id;
   var div =  $("#" + box_id);

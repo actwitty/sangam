@@ -1,0 +1,96 @@
+.awppm_stm_post_attachments
+  width: 100%
+  height: auto
+  border: 0px solid red
+  margin: 5px 0 5px 0
+  display: inline-block
+
+  .awppm_stm_attachment_single_image_box
+    border: 1px solid #ccc
+    padding: 5px
+    float: left
+    margin-left: 10px
+    margin-top: 10px
+    display: inline-block
+
+    .awppm_stm_attachment_image_delete
+      border: 0px solid #ccc
+      float: right
+      margin-top: -12px
+      margin-right: -12px
+      display: block
+      position: relative
+      &:hover
+        cursor: pointer
+      img
+        width: 14px
+        height: 14px
+      span
+        font-family: Calibri, Tahoma, Geneva, sans-serif
+        position: absolute
+        left: 1em
+        top: 1em
+        z-index: 1000
+        margin-left: 0
+        width: 100px
+        background-color: #ffffcc
+        border: 1px solid #ccc
+        display: none
+      &:hover span
+        display: block
+      
+    img
+      vertical-align: middle
+      border: 0px solid #ddd
+
+  .awppm_stm_attachment_single_video_box
+    border: 1px solid #ccc
+    padding: 5px
+    margin-top: 15px
+    width: 432px  
+
+    .awppm_stm_attachment_video_delete
+      float: right
+      margin-top: -12px
+      margin-right: -12px
+      display: block
+      position: relative
+      &:hover
+        cursor: pointer
+      
+      img
+        width: 14px
+        height: 14px
+        display: block
+      span
+        font-family: Calibri, Tahoma, Geneva, sans-serif
+        position: absolute
+        left: 1em
+        top: 1em
+        z-index: 99
+        margin-left: 0
+        width: 100px
+        background-color: #ffffcc
+        border: 1px solid #ccc
+        display: none
+      &:hover span
+        display: block
+        
+    iframe
+      vertical-align: middle
+      display: block
+
+  .awppm_stm_post_attachments_view_all
+    width: 100%
+    height: 20px
+    border: 0px solid blue
+    color: #666666
+    color: #c24e42
+    span
+      font-size: 10px
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+      float: right
+      cursor: pointer
+
+.aw_ppm_stm_post_images_hide_extras
+  display: none

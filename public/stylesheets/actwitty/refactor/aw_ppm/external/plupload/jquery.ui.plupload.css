@@ -1,0 +1,257 @@
+/*
+   Plupload
+------------------------------------------------------------------- */
+/* line 6, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_wrapper {
+  font-size: 11px;
+  width: 500px;
+}
+
+/* line 14, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+div.plupload .plupload_file {
+  border-width: 0 0 0px 0;
+}
+
+/* line 15, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+div.plupload div.plupload_header {
+  border-width: 0 0 1px 0;
+  position: relative;
+}
+
+/* line 17, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_file .ui-icon {
+  cursor: pointer;
+}
+
+/* line 21, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.ui-icon-circle-minus {
+  border: 0px solid red;
+  width: 15px;
+  height: 15px;
+  background-image: url("/images/actwitty/refactor/aw_ppm/external/plupload/delete.gif");
+  background-repeat: no-repeat;
+}
+
+/* line 29, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.ui-icon-circle-check {
+  border: 0px solid red;
+  width: 15px;
+  height: 15px;
+  background-image: url("/images/actwitty/refactor/aw_ppm/external/plupload/done.gif");
+  background-repeat: no-repeat;
+}
+
+/* line 37, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.ui-icon-circle-arrow-w {
+  border: 0px solid red;
+  width: 15px;
+  height: 15px;
+  background-image: url("/images/actwitty/refactor/aw_ppm/external/plupload/throbber.gif");
+  background-repeat: no-repeat;
+}
+
+/* line 51, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_header_title {
+  font-size: 12px;
+}
+
+/* line 56, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_header_text {
+  font-size: 12px;
+}
+
+/* line 61, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_filelist_content {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 460px;
+  overflow: hidden;
+  table-layout: fixed;
+}
+
+/* line 70, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_filelist {
+  border-collapse: collapse;
+  margin: 0px;
+  padding: 0px;
+  width: 460px;
+}
+
+/* line 77, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_header_cell {
+  overflow: hidden;
+  height: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 0 0.2em #DDD, 0 0 0.2em #DDD;
+  vertical-align: middle;
+}
+
+/* line 87, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_cell {
+  overflow: hidden;
+}
+
+/* line 93, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_internal_cell {
+  white-space: nowrap;
+  overflow: hidden;
+  height: 20px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/* line 100, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_internal_cell_simple {
+  white-space: nowrap;
+  overflow: hidden;
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/* line 110, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_file {
+  border-left: none;
+  border-right: none;
+  height: 25px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* line 118, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_scroll {
+  max-height: 60px;
+  min-height: 80px;
+  overflow-y: auto;
+}
+
+/* line 124, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_delete, .plupload_file_action, .plupload_file_size, .plupload_file_status {
+  width: 20px;
+}
+
+/* line 125, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_file_name {
+  overflow: hidden;
+  padding-left: 10px;
+}
+
+/* line 131, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_delete {
+  width: 20px;
+  height: 20px;
+  border: 0px solid blue;
+}
+
+/* line 139, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_progress {
+  width: 60px;
+}
+
+/* line 140, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_progress_container {
+  padding: 1px;
+}
+
+/* Floats */
+/* line 145, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_right {
+  float: right;
+}
+
+/* line 146, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_left {
+  float: left;
+}
+
+/* line 147, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_clear, .plupload_clearer {
+  clear: both;
+}
+
+/* line 148, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_clearer, .plupload_progress_bar {
+  display: block;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* line 153, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_clearer {
+  height: 0;
+}
+
+/* Misc */
+/* line 156, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_hidden {
+  display: none;
+}
+
+/* line 159, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_droptext {
+  background: transparent;
+  text-align: center;
+  vertical-align: middle;
+  border: 0;
+  line-height: 165px;
+}
+
+/* line 167, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_buttons, .plupload_upload_status {
+  float: left;
+  display: inline;
+}
+
+/* line 172, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_button {
+  cursor: pointer;
+  display: inline;
+}
+
+/* line 174, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_message {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 182, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_message p {
+  padding: 0.7em;
+  margin: 0;
+}
+
+/* line 187, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_message strong {
+  font-weight: bold;
+}
+
+/* line 191, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_message i {
+  font-style: italic;
+}
+
+/* line 195, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_message p span.ui-icon {
+  float: left;
+  margin-right: 0.3em;
+}
+
+/* line 201, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload_message_close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+/* line 208, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.scss */
+.plupload .ui-sortable-placeholder {
+  height: 35px;
+}

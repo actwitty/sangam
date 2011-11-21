@@ -1,0 +1,232 @@
+#awppm_input_box_activate
+  position: absolute
+  top: 60px
+  left: 300px
+
+.button_classic
+  font-family: 'Yanone Kaffeesatz', arial, serif
+  font-size: 30px
+  color: #fff
+  text-decoration: none
+  display: block
+  width: 478px
+  padding: 10px
+  border: 1px solid #DDD
+  text-align: center
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  -o-border-radius: 5px
+  border-radius: 5px
+  background: #FFFFFF
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#eeeeee))
+  background: -moz-linear-gradient(0% 90% 90deg, #eeeeee, white)
+  border-color: #3278BE
+  background: #4195DD
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82))
+  background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd)
+  &:hover
+    color: #eee
+    border-color: #3278BE
+    background: #4195DD
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82))
+    background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd)
+  &:active
+    background: #4195DD
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#003c82), to(#4195dd))
+    background: -moz-linear-gradient(0% 90% 90deg, #4195dd, #003c82)
+  &.notransitions
+    -webkit-transition: none
+    -moz-transition: none
+    -o-transition: none
+    transition: none
+
+
+#awppm_input_box
+  height: 140px
+  height: auto
+  width: 600px
+  border: 1px solid #ddd
+  /*margin-left:300px;
+   *margin-top:-100px;
+  margin-top: 20px
+  margin-left: 200px
+  padding: 14px
+  padding-top: 20px
+  position: relative
+  /* border-radius: 10px
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+  display: none
+
+.awppm_input_busy_box
+  position: absolute
+  top: 0
+  left: 0
+  margin-left: 0
+  margin-top: 0
+  z-index: 2
+  width: 100%
+  height: 100%
+  background: rgb(0, 0, 0)
+  background: rgba(0, 0, 0, 0.1)
+  display: none
+  .awppm_input_busy_mini_box
+    width: 50px
+    height: 50px
+    margin-left: -25px
+    margin-top: -25px
+    top: 50%
+    left: 50%
+    position: absolute
+    img.awppm_input_busy_image
+      width: 50px
+      height: 50px
+      margin: auto
+
+#awppm_del_ipbox
+  position: absolute
+  top: 5px
+  right: 5px
+  cursor: pointer
+
+#awppm_input_label
+  color: #333
+  font-size: 30px
+  font-weight: bold
+  width: 400px
+  margin-left: 50px
+  border: 0px solid red
+  text-shadow: 0 0 0.2em #ddd, 0 0 0.2em #ddd
+
+@mixin awppm_ip_placement_width
+  width: 550px
+  margin-left: 50px
+
+#awppm_ip_channel
+  @include awppm_ip_placement_width
+
+#awppm_ip_channel input
+  width: 395px
+  width: 500px
+  height: 30px
+  border: 1px solid #ddd
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+
+#awppm_ip_category
+  @include awppm_ip_placement_width
+  height: 40px
+  margin-top: 10px
+  margin-bottom: 8px
+  display: none
+
+.awppm_ip_cat, .awppm_ip_subcat
+  width: 48%
+  width: 240px
+  height: 30px
+  border: 1px solid #ddd
+  -moz-box-shadow: 0 0 2px #ddd
+  -webkit-box-shadow: 0 0 2px #ddd
+  box-shadow: 0 0 2px #ddd
+
+.awppm_ip_cat
+  vertical-align: middle
+  margin-right: 8px
+
+.awppm_ip_subcat
+  vertical-align: middle
+  margin-right: 8px
+  color: #ddd
+  margin-left: 6px
+  &:focus
+    color: #333
+
+#awppm_ip_post
+  @include awppm_ip_placement_width
+  width: 600px
+  margin-top: 10px
+  textarea
+    width: 500px
+    height: 80px
+    border: 1px solid #ddd
+    -moz-box-shadow: 0 0 8px #ddd
+    -webkit-box-shadow: 0 0 8px #ddd
+    box-shadow: 0 0 8px #ddd
+    border-bottom: none
+    resize: none
+
+#awppm_ip_location
+  @include awppm_ip_placement_width
+  margin-top: 5px
+
+.awppm_ip_add_attachment 
+  @include awppm_ip_placement_width
+  width: 505px
+  margin-top: 5px
+  border: 1px solid #ddd
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+  display: none
+
+#awppm_ip_location input
+  width: 395px
+  height: 30px
+  border: 1px solid #ddd
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+  display: none
+
+
+
+#awppm_ip_options
+  @include awppm_ip_placement_width
+  width: 500px
+  height: 40px
+  border: 0px solid #ddd
+  margin-top: -3px
+  margin-bottom: 10px
+  border-top: none
+  img
+    float: right
+    height: 30px
+    margin-top: 5px
+
+.awppm_post_share
+  vertical-align: baseline
+
+#awppm_ip_submit
+  width: 250px
+  margin-left: 310px
+  margin-top: 10px
+  border: 0px solid red
+  span
+    color: black
+    vertical-align: baseline
+  img
+    vertical-align: baseline
+
+.awppm_pub_btn
+  height: 40px
+  width: 100px
+  padding: 10px
+
+#awppm_ip_addphoto
+  position: absolute
+  right: 10px
+  top: 60px
+  width: 100px
+  height: 30px
+
+#awppm_ip_addlocation
+  position: absolute
+  right: 10px
+  top: 100px
+  width: 100px
+  height: 30px
+
+#awppm_input_dummy
+  height: 200px
