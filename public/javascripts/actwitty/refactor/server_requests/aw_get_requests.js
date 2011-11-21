@@ -66,7 +66,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                             },     
                                       'AW_SRV_PPM_STM_GET_STREAM_LIKES'      : {
                                                                              
-                                                                              'CB': function aw_temp_resp_fn_9(params){
+                                                                              'CB': function aw_temp_resp_fn_7(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_render_stream_likes(params);
                                                                                     },
@@ -76,7 +76,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                             },        
                                       'AW_SRV_PPM_STM_GET_STREAM_COMMENTS'      : {
                                                                              
-                                                                              'CB': function aw_temp_resp_fn_10(params){
+                                                                              'CB': function aw_temp_resp_fn_8(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_render_stream_comments(params);
                                                                                     },
@@ -86,7 +86,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                             },         
                                       'AW_SRV_PPM_STM_GET_STREAM_SHARES'      : {
                                                                              
-                                                                              'CB': function aw_temp_resp_fn_11(params){
+                                                                              'CB': function aw_temp_resp_fn_9(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_render_stream_shares(params);
                                                                                     },
@@ -96,7 +96,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                             },     
                                        'AW_SRV_PPM_STM_GET_RECOMMENDED_CHANNELS'      : {
                                                                              
-                                                                              'CB': function aw_temp_resp_fn_12(params){
+                                                                              'CB': function aw_temp_resp_fn_10(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_render_recommended_channels(params);
                                                                                     },
@@ -105,7 +105,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                             },           
                                        'AW_SRV_PPM_STM_GET_ALL_MENTIONS'      : {
                                                                              
-                                                                              'CB': function aw_temp_resp_fn_13(params){
+                                                                              'CB': function aw_temp_resp_fn_11(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_render_all_mentions(params);
                                                                                     },
@@ -115,7 +115,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                             },       
                                       'AW_SRV_PPM_STM_GET_ALL_LOCATIONS'      : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_14(params){
+                                                                              'CB': function aw_temp_resp_fn_12(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_render_all_locations(params);
                                                                                     },

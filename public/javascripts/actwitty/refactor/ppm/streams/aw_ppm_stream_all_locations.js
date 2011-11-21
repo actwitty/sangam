@@ -42,7 +42,9 @@ function aw_api_srv_resp_ppm_stm_render_all_locations(params){
   $.each(locations_data, function(i,location_info){
     if( i < 5){
       var single_html =   '<div class="aw_ppm_stm_dyn_location_box">' +
-                            '<a class="aw_ppm_stm_dyn_location_link">' +
+                            '<a class="aw_ppm_stm_dyn_location_link aw_js_ppm_stm_location_filter_changer">' +
+                              '<input type="hidden" class="aw_js_ppm_stm_location_filter_changer_id" value="' + location_info.id + '" >' +
+                              '<input type="hidden" class="aw_js_ppm_stm_location_filter_changer_name" value="' + location_info.name + '" >' +
                               '<span>'  +
                                 location_info.name +
                               '</span>' +
@@ -79,12 +81,14 @@ function aw_api_ppm_stm_locations_modal_renderer(win_id, trigger_id){
   $.each(locations_data, function(i,location_info){
     var location_info_html = "";
     if( location_info.type == 2){
-      location_info_html = '<div class="aw_ppm_stm_dyn_locations_modal_box" >' +
+      location_info_html = '<div class="aw_ppm_stm_dyn_locations_modal_box aw_js_ppm_stm_location_filter_changer" >' +
                             '<div class="aw_ppm_stm_dyn_locations_map_box" id="' + aw_get_location_box_id(location_info) +  '"  >' +
                             '</div>' +
                             '<div class="aw_ppm_stm_dyn_location_label_box">' +
                                 '<span>' + location_info.name + '</span>' +
                             '</div>' +
+                            '<input type="hidden" class="aw_js_ppm_stm_location_filter_changer_id" value="' + location_info.id + '" >' +
+                            '<input type="hidden" class="aw_js_ppm_stm_location_filter_changer_name" value="' + location_info.name + '" >' +
                           '</div>';
   } else{
       var location_image = '/images/actwitty/refactor/aw_ppm/channel/aw_unknown_geo_location.jpg';
@@ -92,6 +96,8 @@ function aw_api_ppm_stm_locations_modal_renderer(win_id, trigger_id){
                           '<div class="aw_ppm_stm_dyn_location_label_box">' +
                               '<span>' + location_info.name + '</span>' +
                           '</div>' +
+                          '<input type="hidden" class="aw_js_ppm_stm_location_filter_changer_id" value="' + location_info.id + '" >' +
+                          '<input type="hidden" class="aw_js_ppm_stm_location_filter_changer_name" value="' + location_info.name + '" >' +
                         '</div>';
                           
   }

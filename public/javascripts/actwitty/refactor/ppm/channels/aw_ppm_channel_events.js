@@ -105,6 +105,33 @@ $(document).ready(function(){
 
   });
 
+
+  $(".aw_js_ppm_chn_mentions").live('click', function(){
+    var mention_id = $(this).find(".aw_js_ppm_chn_mention_id").val();
+    var mention_name = $(this).find(".aw_js_ppm_chn_mention_name").html();
+    window.location.href = '/home/streams?id=' + aw_lib_get_page_owner_id() + '&m_id=' +  mention_id + "&m_name=" + mention_name;
+  });
+
+  $(".aw_js_ppm_chn_locations").live('click', function(){
+    var location_id = $(this).find(".aw_js_ppm_chn_location_id").val();
+    var location_name = $(this).find(".aw_js_ppm_chn_location_name").html();
+    window.location.href = '/home/streams?id=' + aw_lib_get_page_owner_id() + '&l_id=' +  location_id + "&l_name=" + location_name;
+  });
+
+  $(".aw_js_ppm_chn_locations").live('click', function(){
+    var location_id = $(this).find(".aw_js_ppm_chn_location_id").val();
+    var location_name = $(this).find(".aw_js_ppm_chn_location_name").html();
+    window.location.href = '/home/streams?id=' + aw_lib_get_page_owner_id() + '&l_id=' +  location_id + "&l_name=" + location_name;
+  });
+
+  $(".aw_js_ppm_channel_box_filter_setter").live('click', function(){
+    var channel_info = aw_api_ppm_get_chn_contex_for_key($(this).attr('id'));
+    var channel_name = channel_info.word.name;
+    var channel_id = channel_info.word.id;
+    var user_id = channel_info.user.id;
+    window.location.href = '/home/streams?id=' + user_id + '&c_id=' +  channel_id + "&c_name=" + channel_name; 
+    
+  });
   /* more click event handler end */
   
 });

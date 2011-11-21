@@ -19,11 +19,11 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/cars.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/cars.jpg' 
                                                   },
-                                          'celebration':{
+                                          'holidays and events':{
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/celebration.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/celebration.jpg' 
                                                   },
-                                          'culture': {
+                                          'culture and society': {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/culture.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/culture.jpg' 
                                                   },
@@ -60,7 +60,7 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/hobbies.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/hobbies.png' 
                                                   },
-                                        'nonprofit': {
+                                        'nonprofits': {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/nonprofits.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/nonprofits.jpg' 
                                                   },
@@ -95,5 +95,17 @@ function aw_lib_get_default_channel_theme_for_category(category){
     return aw_local_default_channel_theme_json[category];
   }else{
     return aw_local_default_channel_theme_json['default'];
+  }
+}
+
+/*
+ *
+ *
+ */
+function aw_lib_get_default_stream_theme_for_category(category){
+  if ( category && category.length && aw_local_default_channel_theme_json[category]){
+    return aw_local_default_channel_theme_json[category].bkg;
+  }else{
+    return aw_local_default_channel_theme_json['default'].bkg;
   }
 }
