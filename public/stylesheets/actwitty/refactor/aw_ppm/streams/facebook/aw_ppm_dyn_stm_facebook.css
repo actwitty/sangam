@@ -1,0 +1,66 @@
+/* line 1, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.aw_ppm_dyn_stm_fb_post_text {
+  /*border:1px solid blue; */
+  font-size: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 0px;
+  width: 570px;
+  margin-left: 30px;
+  margin-left: 0px;
+  border: 0px solid red;
+  padding: 0;
+}
+/* line 11, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.aw_ppm_dyn_stm_fb_post_text:hover {
+  border: 1px solid #f8f8f8;
+}
+/* line 13, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fp_text_box {
+  text-align: left;
+  color: #444444;
+  font-size: 13px;
+  line-height: 1.53em;
+}
+/* line 18, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fp_link_text_box {
+  text-align: left;
+  color: #444444;
+  font-size: 13px;
+  line-height: 1.53em;
+}
+/* line 23, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fp_link_text_box a {
+  color: #3b5998;
+  font-weight: bold;
+}
+
+/* line 27, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.awppm_stm_fb_post_attachments {
+  width: 100%;
+  height: auto;
+  border: 0px solid red;
+  margin: 5px 0 5px 0;
+  display: inline-block;
+}
+/* line 34, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box {
+  margin-left: 10px;
+  margin-top: 10px;
+  display: inline-block;
+}
+/* line 38, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box img {
+  vertical-align: middle;
+  border: 1px solid #cccccc;
+  padding: 2px;
+}
+/* line 43, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_video_box {
+  margin-top: 15px;
+  width: 432px;
+}
+/* line 46, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_video_box iframe {
+  vertical-align: middle;
+  display: block;
+}
