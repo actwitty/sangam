@@ -196,6 +196,17 @@ function aw_api_get_stream_main_html(stream_info){
   if( session_owner_id == stream_info.post.user.id ){
     delete_html =  '<span class="aw_ppm_dyn_stm_stream_delete aw_js_ppm_stm_delete_post">X</span>';
   }
+
+  var content_html = '';
+  if(aw_api_ppm_stm_facebook_post_check(stream_info)){
+    content_html = '<div class="aw_ppm_dyn_stm_stream_post_fb_data aw_js_ppm_stm_fb_content_box" />' +
+                   '</div>';
+  }else{
+    content_html = '<div class="aw_ppm_dyn_stm_stream_post_text aw_js_ppm_stm_stream_text">' +
+                      '<p>' + stream_info.post.text + '</p> ' +
+                    '</div>';
+  }
+
   var html = '<li class="aw_ppm_dyn_stm_stream_li_box aw_js_ppm_stream_box_backtracker" id="' + aw_api_get_stream_id(stream_info) + '" >' +
                 '<div class="aw_ppm_dyn_stm_stream_div_box" >' +
                     delete_html +
@@ -215,9 +226,9 @@ function aw_api_get_stream_main_html(stream_info){
                     /* check and add title */
                     aw_get_stream_title_html(stream_info) +
                     aw_get_stream_location_html(stream_info) +
-                    '<div class="aw_ppm_dyn_stm_stream_post_text aw_js_ppm_stm_stream_text">' +
-                      '<p>' + stream_info.post.text + '</p> ' +
-                    '</div>' +
+
+                    content_html +
+
                     aw_ppm_stm_attachments_get_images_html(stream_info) +
                     aw_ppm_stm_attachments_get_videos_html(stream_info) +
                     aw_get_actions_box_html(stream_info) +
@@ -231,6 +242,8 @@ function aw_api_get_stream_main_html(stream_info){
 /************************************************************/
 function aw_api_srv_add_new_stream(stream_info){
   var html = aw_api_get_stream_main_html(stream_info);
+  
+
   $('#aw_js_ppm_stm_post_timeline_list').prepend(html);
   aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
   aw_api_ppm_add_stream_context(aw_api_get_stream_id(stream_info), stream_info);
@@ -252,6 +265,9 @@ function aw_api_srv_resp_ppm_stm_render_streams(params){
 
   $.each(data.stream, function(i, stream_info){
     if(stream_info.post){
+      if(aw_api_ppm_stm_facebook_post_check(stream_info)){
+        aw_api_ppm_stm_facebook_make_srv_get_request(stream_info);
+      }
       var html = aw_api_get_stream_main_html(stream_info);
       $('#aw_js_ppm_stm_post_timeline_list').append(html);
       aw_api_ppm_stm_attachments_enable_fancybox(stream_info);

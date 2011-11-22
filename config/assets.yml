@@ -60,6 +60,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_all_locations.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_modal_manager.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_enricher.js
+    - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_srv_request.js
+    - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_renders.js
   profile_main_extra:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
@@ -127,6 +129,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_mentions.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_locations.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css

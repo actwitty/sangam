@@ -1,29 +1,31 @@
-=render :partial => "home/top_bar" 
+.awppm_chn_channel_wrapper.awppm_chn_channel_column1
+  =render :partial => "home/top_bar"
 
-.wrapper.col3
-  #p-ch-st-tab-sect
-    #p-ch-st-tab
-      .p-cstab
-        #streams_list.p-awp-post-stream
-          
-          
+.awppm_chn_channel_wrapper.awppm_chn_channel_column2
+  #awppm_chn_user_box
+    #awppm_chn_user_section
+      #awppm_chn_user_info
+        #awppm_chn_user_img
+          %center
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %img{:src => @user.photo_small_url}/
+          %center
+            %a{:href => "/home/show?id=#{@user.id}"}
+              %span #{@user.full_name}
 
-.wrapper.col4
-  #p-content-sect
-    %ul
-      %li.p-con-l-fltr
-        #channels_left_side_bar
-          =render :partial => "home/channel_left_side"
       
 
 /Secret cookies
-%input#page_owner_id{:type => "hidden", :value => "" }
-%input#page_mode{ :type => "hidden", :value => "#{@page_mode}" }
-%input#post_id{ :type => "hidden", :value => "#{@post_id}" }
--if user_signed_in?
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
+%input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 - else
-  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
+
 
 
 

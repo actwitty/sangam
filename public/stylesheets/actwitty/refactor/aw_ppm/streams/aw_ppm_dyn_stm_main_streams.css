@@ -129,6 +129,21 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box span {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 /* line 101, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data {
+  font-size: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-top: 0px;
+  width: 570px;
+  margin-left: 30px;
+  margin-left: 0px;
+  border: 0px solid red;
+  padding: 0;
+}
+/* line 110, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data:hover {
+  border: 1px solid #f8f8f8;
+}
+/* line 112, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text {
   /*border:1px solid blue; */
   font-size: 12px;
@@ -140,24 +155,24 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text {
   border: 0px solid red;
   padding: 0;
 }
-/* line 111, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 122, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text:hover {
   border: 1px solid #f8f8f8;
 }
-/* line 113, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 124, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p {
   text-align: left;
   color: #444444;
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 118, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 129, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity {
   color: #444444;
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 122, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter {
   border-radius: 10px;
   padding-left: 2px;
@@ -167,7 +182,7 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_
   font-size: 12px;
   position: relative;
 }
-/* line 130, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 141, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter span {
   font-size: 11px;
   font-weight: bold;
@@ -185,13 +200,13 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_
   border-radius: 3px 3px 3px 3px;
   display: none;
 }
-/* line 146, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 157, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter span:hover {
   cursor: pointer;
   border: 1px solid #dddddd;
   color: #333333;
 }
-/* line 150, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 161, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter:hover span {
   display: block;
 }

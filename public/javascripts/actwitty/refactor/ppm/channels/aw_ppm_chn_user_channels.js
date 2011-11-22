@@ -68,6 +68,10 @@ function aw_api_srv_resp_ppm_chn_render_user_channels(params){
     data.pop();
   }
   $.each(data, function(i, channel_info){
+    if( i==0 && !channel_info.word){
+      $('#aw_js_ppm_user_chn_container').html("No channels created so far.");
+      return;
+    }
     var html = aw_get_user_channel_html(channel_info);
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_CHN_GET_USER_CHANNELS', channel_info.time);
     $('#aw_js_ppm_user_chn_container').append(html);

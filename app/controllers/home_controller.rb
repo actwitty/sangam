@@ -154,6 +154,7 @@ class HomeController < ApplicationController
       @user=User.find_by_id(user_id)
       if @user.nil?
         if user_signed_in?
+          Rails.logger.info("[CNTRL] [HOME] [STREAMS] User is signed in")
           @user=current_user
           Rails.logger.info("[CNTRL] [HOME] [STREAMS] Setting user id to current user as incorrect id mentioned")
         else
@@ -162,6 +163,13 @@ class HomeController < ApplicationController
         end
       end
     end
+
+
+      if user_signed_in?
+        authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+        @fb_access_token = authentication.token
+        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+      end
 
   end
   ###################################################################################

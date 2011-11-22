@@ -58,7 +58,10 @@ function aw_api_srv_resp_ppm_chn_render_user_locations(params){
     }
   }
   $.each(data, function(i, location_info){
-    
+    if( i==0 && !location_info.id){
+      $('#aw_js_ppm_user_chn_container').html("No checkin to a location so far.");
+      return;
+    } 
     var map_id =  aw_get_location_box_id(location_info) + "_map";
     var html = aw_get_user_locations_html(location_info);
     $('#aw_js_ppm_user_location_container').append(html);
