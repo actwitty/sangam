@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
 
   include  ActionView::Helpers
+
+
   serialize       :social_counters_array, Array
   serialize       :analytics_summary, Hash
 
@@ -45,6 +47,10 @@ class Location < ActiveRecord::Base
   def sanitize_data
     self.location_name = sanitize(self.location_name) if !self.location_name.blank?
     Rails.logger.debug("[MODEL] [LOCATION] [sanitize_data] ")
+  end
+
+  class << self
+    include TextFormatter
   end
 
   def self.create_location(location_hash ={})
@@ -108,6 +114,30 @@ class Location < ActiveRecord::Base
     end
 
     return location_ids
+
+  end
+
+  #INPUT =>  {name => "mara" }
+  #OUTPUT =>
+  #              { :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"},  #
+  #              {   :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york", :city => "New York",
+  #                 :country => "bangalore"},                                                      OR
+  #              { :id => 1234, :type => 2, :name => "John's home"},
+  #        ...]
+  def self.search(params)
+
+    Rails.logger.info("[MODEL] [LOCATION] [search] entering #{params.inspect}")
+    array = []
+
+    if !params[:name].blank?
+      Location.where(['location_name ILIKE ?', "#{params[:name]}%"]).
+            limit(AppConstants.max_number_of_locations).all.each do |attr|
+             array << format_location(attr)
+      end
+    end
+
+    Rails.logger.info("[MODEL] [LOCATION] [search] leaving #{params.inspect}")
+    array
 
   end
 

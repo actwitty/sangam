@@ -194,7 +194,8 @@ class Summary < ActiveRecord::Base
 
            params[:summary_category] = AppConstants.default_category if params[:summary_category].blank?
 
-           category = SummaryCategory.create_summary_category(:summary_id => summary.id, :category_id => params[:summary_category])
+           category = SummaryCategory.create_summary_category(:summary_id => summary.id,:activity_name => params[:activity_name],
+                                                              :category_id => params[:summary_category])
 
            if category.blank?
              Rails.logger.error("[MODEL] [SUMMARY] [CREATE_SUMMARY] summary category creation failed #{params.inspect}")
@@ -385,23 +386,6 @@ class Summary < ActiveRecord::Base
         a.attributes
       end
 
-#      #INPUT => {:name => "foo"}
-#      #OUPUT => [{:names =>"food",  :category_id => "food", :category_name => "food and drink"}, ...]
-#      def search_name(params)
-#        array = []
-#        unless params[:name].blank?
-#          #user_type is added for ADMIN USER
-#          select("activity_name,category_data").order("full_name").
-#                      where( ['users.email = ?
-#                                or full_name ILIKE ?', search,
-#                                                       "%#{search}%"]).all.each do |attr|
-#            Rails.logger.info("[MODEL] [USER] [SEARCH] ============= #{attr}")
-#            #ADMIN USER
-#            array << attr if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
-#          end
-#        end
-#        array
-#      end
       private
         def update_word_in_models(word, word_id, summary)
           Summary.update_all({:activity_name => word, :activity_word_id => word_id},

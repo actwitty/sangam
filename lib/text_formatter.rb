@@ -236,6 +236,7 @@ module TextFormatter
           :id => category.id,
           :category_id => category.category_id,
           :name => SUMMARY_CATEGORIES[category.category_id]['name'],
+          :channel => category.activity_name,
           :type => category.category_type,
           :hierarchy => SUMMARY_CATEGORIES[category.category_id]['hierarchy'],
           :user_id => category.user_id,
@@ -259,8 +260,8 @@ module TextFormatter
          :image => AppConstants.entity_image_thumb_base + entity.entity_image,
          :time => entity.updated_at,
          :description => (!entity.entity_doc['key'].blank? && !entity.entity_doc['key']['value'].blank?) ?
-                          AppConstants.entity_description_url + entity.entity_doc['key']['value'] : nil
-
+                          AppConstants.entity_description_url + entity.entity_doc['key']['value'] : nil,
+         :type =>  entity.entity_doc.blank? ? nil : entity.entity_doc['type']
         }
     h
   end

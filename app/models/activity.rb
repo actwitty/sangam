@@ -146,6 +146,7 @@ class Activity < ActiveRecord::Base
           return {}
         end
 
+        puts params[:activity].inspect
         #set mandatory parameters if missing
         params[:status] = AppConstants.status_public if params[:status].nil?
         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
@@ -156,7 +157,7 @@ class Activity < ActiveRecord::Base
         ################################### Create Activity Word ################################################
 
         word_obj = ActivityWord.create_activity_word(params[:activity], "verb-form")
-
+         puts params[:activity].inspect
         #################################### CREATE SUMMARY ######################################################
         #summary is processed earlier as to keep counter_cache active.
         #counter_cache only works for create & destroy methods

@@ -1105,11 +1105,11 @@ describe Activity do
     end
 
     it "should fetch summary category properly" do
-       a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
+       a1 = @u.create_activity(:word => "Eating" , :text => " <script>alert(alok)</script>
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
-                                   <mention><name>PIZZA<name><id>235<id><mention> hello
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello Pizza Hut
                                    http://www.youtube.com/watch?222 http://form6.flickr.com/ wow
-                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "hello"}},
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "maha llo"}},
                               :enrich => true,
                               :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
                                              {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],:summary_category => "animals",
@@ -1117,24 +1117,25 @@ describe Activity do
                               :tags => [{:name => "jump2"}, {:name => "Anna hazare 2"}], :status =>
                                             AppConstants.status_public)
        a2 = @u.create_activity(:word => "eating" , :text => "http://www.vimeo.com/watch?333",
-                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "hello"}},
+                              :location =>  {:web_location =>{:web_location_url => "3OOGLE.com", :web_location_title => "mallo"}},
                               :enrich => true,
                               :documents => [{:url => "https://s3.amazonaws.com/3.jpg" },
                                              {:caption => "3_2", :url => "http://a.com/3.jpg" },],
 
                               :tags => [{:name => "jump3"}, {:name => "Anna hazare 3"}], :status =>  AppConstants.status_public)
-#       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
-#                              :enrich => true,
-#                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
-#                                            AppConstants.status_public)
-#       a4 = @u.create_activity(:word => "beating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
-#                              :enrich => true,
-#                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
-#                                            AppConstants.status_public)
-#       a5 = @u.create_activity(:word => "eating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
-#                              :enrich => true,
-#                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
-#                                            AppConstants.status_public)
+       a3 = @u.create_activity(:word => "marry" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+       a4 = @u.create_activity(:word => "Eat" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.46, :geo_name => "madama curie"}},
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
+       a5 = @u.create_activity(:word => "eating" , :text => "sachin tendulkar http://twitpic.com/123 http://www.vimeo.com/watch?444 pizza",
+                              :enrich => true,
+                              :tags => [{:name => "jump4"}, {:name => "Anna hazare 4"}], :status =>
+                                            AppConstants.status_public)
        a6 = @u.create_activity(:word => "eating" , :text => "", :enrich => true,
                                :source_name => "facebook", :status => AppConstants.status_public, :source_msg_id => "909090909")
        a7 = @u.create_activity(:word => "eating" , :text => "",:enrich => true,:location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
@@ -1146,13 +1147,17 @@ describe Activity do
 
        s = Summary.where(:id => a1[:post][:summary_id]).first
        puts s.inspect
+       s.should_not be_blank
 
        puts "Get Stream 1"
        a =@u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_user, :filter => {:word_id => a1[:post][:word][:id] },
                          :updated_at => Time.now.utc})
+       a.should_not be_blank
        puts a.inspect
+
        a = SummaryRank.add_analytics({:fields => ["posts"], :summary_id => a1[:post][:summary_id] })
        puts a.inspect
+       a.should_not be_blank
 
        a5 = @u.create_activity(:word => "eating" , :text => "http://www.youtube.com/watch?222 http://www.flickr.com/ wow",:location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true,:summary_category=>"cars" ,
@@ -1199,6 +1204,16 @@ describe Activity do
        @u.remove_activity(a5[:post][:id])
        work_off
        a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
+       puts a.inspect
+       work_off
+       @u.get_user_activities(@u.id,1)
+       a = @u.search_models({:type => "entity",:name => "pi"})
+       puts a.inspect
+       a = @u.search_models({:type => "user",:name => "l"})
+       puts a.inspect
+       a = @u.search_models({:type => "channel",:name => "EA"})
+       puts a.inspect
+      a = @u.search_models({:type => "location",:name => "MA"})
        puts a.inspect
     end
 #    TEST REMOVE ENTITY

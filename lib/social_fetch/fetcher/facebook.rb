@@ -63,18 +63,21 @@ module SocialFetch
                                                     :geo_name => attr["place"]["name"],:geo_city => loc[:city], :geo_country => loc[:country]}}
           end
 
-          #set the post in data
-          data[:post] = activity
 
           #first see if message has link .. get first link in message and categorize based on that
           if !attr["message"].blank?
             data[:category] = SocialFetch::Helper::Parser.extract_data(attr["message"])
+            activity[:text] = attr["message"]
           end
 
           #if category is blank or of type text then check if there a link is present in blob
           if data[:category].blank? or (data[:category][:type] == AppConstants.data_type_text)
             data[:category] = SocialFetch::Helper::Parser.extract_data(attr["link"]) if !attr["link"].blank?
           end
+
+          #set the post in data if message or link or both is present
+          data[:post] = activity if !data[:category].blank?
+
         else
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [data_adaptor] blank data for #{log.inspect}")
         end

@@ -29,7 +29,7 @@ class Entity < ActiveRecord::Base
   #validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
 
   class << self
-
+     include TextFormatter
   #  {'guid'=>nil,         //unique id regarding entity   always present if content found in freebase
   #   'name'=>nil,      //name of entity   always present
   #   'mid'=>nil,        // machine ID       always present if content found on freebase
@@ -55,10 +55,15 @@ class Entity < ActiveRecord::Base
       entity_hash.delete('/common/topic/image') if !entity_hash['/common/topic/image'].nil?
       entity_hash.delete('guid') if !entity_hash['guid'].nil?
 
-
       if !entity_hash['type'].blank?
         entity_type =  entity_hash['type']
-        entity_hash.delete('type')
+
+        entity_type.each do |attr|
+          next if (attr['id'] =~ /^\/common/) or (attr['id'] =~ /^\/user/) #skip the common or user type
+          entity_hash['type'] = attr #just keep first type for search over entity table
+          break      #break at first valid type
+        end
+
       end
 
       entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
@@ -74,8 +79,8 @@ class Entity < ActiveRecord::Base
           return entity
         end
       end
-      entity_hash.delete('mid') if !entity_hash['mid'].blank?
-      entity_hash.delete('name') if !entity_hash['name'].blank?
+#      entity_hash.delete('mid') if !entity_hash['mid'].blank?
+#      entity_hash.delete('name') if !entity_hash['name'].blank?
       begin
 
          entity_type.each do |entry|
@@ -83,7 +88,7 @@ class Entity < ActiveRecord::Base
                              :entity_type_name => entry['name'].downcase)
          end
 
-         entity_hash.delete('type') if !entity_hash['type'].blank?
+         #entity_hash.delete('type') if !entity_hash['type'].blank?
 
          puts "==== #{entity.inspect}"
          EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
@@ -113,6 +118,25 @@ class Entity < ActiveRecord::Base
     #return relations .. use each, all, first to load object
     def search_entity_by_type(type)
       Entity.joins(:entity_types).where(:entity_types => {:entity_type_name => type.downcase} )
+    end
+
+    #INPUT => {:name => "foo"}
+    #OUPUT => [
+    #           {
+    #             :id => entity.id, :name => "sachin tendulkar", :image => "http://xyz.com",:time => Thu, 14 Jul 2011 05:42:20 UTC +00:00,
+    #             :description => "http://wikipedia.com/sachin_tendulkar",  :type => {'id' => '/cricket/athlete' , 'name' => 'athlete'}
+    #          }
+    #     ,...]
+    def search(params)
+      Rails.logger.info("[MODEL] [ENTITY] [SEARCH] entering #{params}")
+      array = []
+      if !params[:name].blank?
+        where( ['entity_name ILIKE ?', "#{params[:name]}%"]).order("updated_at DESC").limit(AppConstants.max_number_of_entities).each do |attr|
+              array << format_entity(attr)
+        end
+       end
+      Rails.logger.info("[MODEL] [ENTITY] [SEARCH] leaving #{params}")
+      array
     end
   end
 

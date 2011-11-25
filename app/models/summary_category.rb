@@ -15,7 +15,7 @@ class SummaryCategory < ActiveRecord::Base
   validates_uniqueness_of :summary_id
 
   after_save :update_summary
-  attr_accessible :category_id, :user_id, :category_type, :summary_id
+  attr_accessible :category_id, :user_id, :category_type, :summary_id, :activity_name
 
   def update_summary
     Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [THEME] [update_summary] entering")
@@ -29,7 +29,7 @@ class SummaryCategory < ActiveRecord::Base
 
   class << self
 
-    #INPUT => {:summary_id => 123, category_id => "sports"}
+    #INPUT => {:summary_id => 123, category_id => "sports", :activity_name => "IAmSporty"}
 
     def create_summary_category(params)
 
@@ -99,6 +99,23 @@ class SummaryCategory < ActiveRecord::Base
       Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [UPDATE_SUMMARY_CATEGORY] rescue #{params.inspect} #{e.message}" )
       false
     end
+
+
+      #INPUT => {:name => "foo"}
+      #OUPUT => [{:name  =>"food",  :category_id => "food", :category_name => "food and drink"}, ...]
+      def search(params)
+        Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [SEARCH] entering #{params}")
+        array = []
+        if !params[:name].blank?
+
+          where( ['activity_name ILIKE ?', "#{params[:name]}%"]).order("MAX(updated_at) DESC").group(:category_id,:activity_name).count.each do |attr|
+            array << {:name => attr[0][1], :category_id => attr[0][0],:category_name => SUMMARY_CATEGORIES[attr[0][0]]['name']}
+          end
+
+        end
+        Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [SEARCH] leaving #{params}")
+        array
+      end
   end
 
 end
