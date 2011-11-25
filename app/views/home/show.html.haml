@@ -23,6 +23,7 @@
       #aw_js_ppm_user_channel_data.awppm_chn_data_section.awppm_chn_userchannel_data
         .awppm_chn_data_section_label
           %span #{@user.full_name}'s Channels
+        .awppm_chn_data_section_stream_link_box_wrapper
           .awppm_chn_data_section_stream_link_box
             .aw_ppm_stream_link_info_hover_box Stream view for posts by #{@user.full_name}
             %a{:href => "/home/streams?id=#{@user.id}&s=p"}
@@ -39,6 +40,7 @@
           #aw_js_ppm_subscribed_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
               %span #{@user.full_name}'s Subscribed Channels
+            .awppm_chn_data_section_stream_link_box_wrapper
               .awppm_chn_data_section_stream_link_box
                 .aw_ppm_stream_link_info_hover_box Stream view for subscriptions of #{@user.full_name}
                 %a{:href => "/home/streams?id=#{@user.id}&s=s"}
@@ -75,6 +77,7 @@
           #aw_js_ppm_all_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
               %span World over Channels
+            .awppm_chn_data_section_stream_link_box_wrapper
               .awppm_chn_data_section_stream_link_box
                 .aw_ppm_stream_link_info_hover_box Stream view for all channels
                 %a{:href => "/home/streams?id=#{@user.id}&s=a"}
