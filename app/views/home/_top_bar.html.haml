@@ -1,26 +1,22 @@
 #awppm_header_box
-  %img.aw_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_ppm_logo_topbar.png"}
-    /for PUBLIC SHOW put the ghost_user
-    -if user_signed_in? && !if_ghost_user?
-      #awppm_header_user_image
-        %img#aw_js_ppm_header_user_image_click{:src => "#{@current_user.photo_small_url}"}/
-        .awppm_header_options_menu
-          %ul
-            %li
-              %a{:href => "/home/show"} home
-            %li
-              %a{:href => "/home/settings"} settings
-            %li
-              %a{:href => "/help/show"} help center
-            %li
-              %a{:href => "/users/sign_out"} logout
-    %input#awppm_header_search.button_actwitty.red{:type => "button", :value => "Search"}
-      #awppm_header_search_options
-        %input{:name => "search_type", :type => "radio", :value => "channels"}/
-        Channels
-        %input{:name => "search_type", :type => "radio", :value => "people"}/
-        People
-        %input{:placeholder => "Search", :type => "text"}
+  %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_ppm_logo_topbar.png"}
+  %input#awppm_header_search.button_actwitty.red{:type => "button", :value => "Search"}
+  #awppm_header_search_options
+    #awppm_header_search_header
+      %input#awppm_header_search_channel{:name => "search_type", :type => "radio", :value => "channels"}/
+      Channels
+      %input#awppm_header_search_people{:name => "search_type", :type => "radio", :value => "people"}/
+      People
+    %input{:placeholder => "Search", :type => "text"}
+
+  #awppm_header_user_bar
+    %a#awppm_header_user_settings{:href => "/home/settings"} 
+      -if user_signed_in? && !if_ghost_user?
+        %img{:src =>"#{@current_user.photo_small_url}", :width=>"30", :height=>"30"}
+      -if if_ghost_user?
+        %img{:src => "/images/actwitty/refactor/aw_ppm/common/User.png"}
+      %span #{@user.full_name}
+    %a#awppm_header_user_logout{:href => "/users/sign_out"} Logout
               
             
             
