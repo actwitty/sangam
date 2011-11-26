@@ -53,6 +53,8 @@ class Document < ActiveRecord::Base
    def remove_theme_and_update_analytics
      Rails.logger.debug("[MODEL] [DOCUMENT] [remove_theme_and_update_analytics] entering #{self.inspect} ")
 
+     puts "removing document #{self.id}"
+
      Theme.where(:document_id => self.id).all.each do |attr|
        Theme.create_theme(:theme_type => AppConstants.theme_default,:summary_id => attr.summary_id,:author_id =>attr.author_id)
      end
@@ -82,6 +84,9 @@ class Document < ActiveRecord::Base
    public
 
      class << self
+       include TextFormatter
+       include QueryPlanner
+
        #This clears and adjusts the summary of document being deleted ""explicitly"
        #This function should always be called after deleting document explicitly
        #and not as outcome of activity delete
@@ -155,7 +160,25 @@ class Document < ActiveRecord::Base
          nil
        end
 
+       #INPUT => {:document_id => 123, :current_user_id => 345} #self user
+       #OUTPUT => deleted doc or blank {}
+       def remove_document(params)
 
+          Rails.logger.debug("[MODEL] [Document] [remove_document] entering")
+
+          d = Document.where(:owner_id => params[:current_user_id], :id => params[:document_id]).first
+
+          if d.blank?
+            Rails.logger.debug("[MODEL] [Document]  [remove_document] returning blank JSON")
+            return {}
+          end
+
+          d.destroy
+          Document.reset_summary(d.summary_id)
+
+          Rails.logger.debug("[MODEL] [Document] [remove_document] leaving")
+          d
+       end
 
        #TODO => NEED TO support activity_word_id, Summary, Captions and url constraints
        #this function is called from delayed job.. when upload i done through rails server.
@@ -195,7 +218,148 @@ class Document < ActiveRecord::Base
           end
        end
 
-      end
+
+
+
+       #COMMENT - Only returns public post which has summary
+       #INPUT
+       #user_id => 123 #If same as current use then mix streams with friends other wise only user
+       #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+       #
+       #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+       #:category => "image" or "video"
+
+       def get_document_summary(params)
+
+          Rails.logger.debug("[MODEL] [Document] [get_document_summary] entering")
+          h = {}
+          user = nil
+
+          return {} if (params[:user_id].blank? || params[:category].blank?)
+
+          h = process_filter_modified(params)
+
+          if h.blank?
+            Rails.logger.debug("[MODEL] [Document] [get_document_summary] Leaving => Blank has returned by process_filter => #{params.inspect}")
+            return {}
+          end
+
+          doc_hash = {}
+
+          h[:id] = h[:summary_id] if !h[:summary_id].blank?
+          h.delete(:summary_id)
+          h = pq_summary_filter(h)
+
+          Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
+            if attr.document_array.size > 0
+              doc_hash[attr.document_array[0]]= {
+                  :word => {:id => attr.activity_word_id, :name => attr.activity_name},
+                  :time => attr.updated_at,
+                  :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
+                  :count => attr.documents_count,
+                  :document => nil
+              }
+            end
+          end
+
+          #doc_hash.keys will give status_public docs as summary does not exist for saved docs
+          h = {:id => doc_hash.keys, :category => params[:category]}
+
+          Document.where(h).all.each do |attr|
+            h = format_document(attr)
+            doc_hash[attr.id][:document] = h[:document]
+          end
+
+          #TODO need to get saved docs too
+          Rails.logger.debug("[MODEL] [Document] [get_document_summary] leaving")
+
+          #delete those keys in which doc_hash[key][document] is still nil.
+          #this is possible as summary does not contain info about about
+          doc_hash.each do |k,v|
+            doc_hash.delete(k) if doc_hash[k][:document].blank?
+          end
+          doc_hash.values
+       end
+
+
+
+
+       #COMMENT - Only returns public post which has summary
+       #INPUT
+       #:user_id => 123
+       #:page_type => 1(AppConstants.page_state_user) OR 2(AppConstants.page_state_subscribed) OR 3(AppConstants.page_state_all)
+       ##             OR 4(AppConstants.page_state_public)
+       #:filter => {:word_id => 123,
+       #            :source_name => "actwitty" or "twitter" or "dropbox" or "facebook" etc -CHECK constants,yml(SOURCE_NAME)
+       #            :entity_id => 235,
+       #            :location_id => 789, :entity_id => 234 }
+       #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
+       #:category => "image" or "video"
+
+       def get_document_stream(params)
+
+          Rails.logger.debug("[MODEL] [Document] [get_document_stream] entering")
+          h = {}
+          user = nil
+          summary = nil
+
+          if params[:category].blank?
+
+            Rails.logger.debug("[MODEL] [Document] [get_document_stream] category cant be blank => return blank json => #{params.inspect}")
+            return {}
+
+          end
+
+          h = process_filter_modified(params)
+
+          if h.blank?
+            Rails.logger.debug("[MODEL] [Document] [get_document_stream] Leaving => Blank has returned by process_filter => #{params.inspect}")
+            return {}
+          end
+
+          doc_array = []
+
+          if !h[:entity_id].blank?
+
+            Rails.logger.debug("[MODEL] [Document] [get_document_stream] => Hub/Entity based filtering => #{h.inspect}")
+
+            h[:user_id] = user if !user.blank?   #this will be true for page_state_user or page_state_all
+
+            h = pq_hub_filter(h)
+
+            activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+
+            h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
+
+          else
+           # pq_document_filter will fill owner_id. so commenting these two lines
+           # h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
+           # h.delete(:user_id)
+            h[:category] = params[:category]
+            h[:status] =  AppConstants.status_public
+
+          end
+
+          h = pq_document_filter(h)
+
+          Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
+              limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
+
+            h = format_document(attr)
+            doc_array <<  {
+                            :word => {:id => attr.activity_word_id, :name => attr.activity_word.word_name},
+                            :time => attr.updated_at,
+                            :user => {:id => attr.owner_id, :full_name => attr.owner.full_name, :photo => attr.owner.photo_small_url},
+                            :document => h[:document]
+                          }
+          end
+
+          Rails.logger.debug("[MODEL] [Document] [get_document_stream] leaving")
+          doc_array
+       end
+
+
+     end
 end
 
 

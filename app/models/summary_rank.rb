@@ -25,26 +25,30 @@ class SummaryRank < ActiveRecord::Base
   def  update_analytics_in_models
     Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] entering ")
 
+    #puts self.channel_ranks[Time.now.strftime("%m/%d/%y")]
+    rank = nil
+    rank = self.channel_ranks[Time.now.strftime("%m/%d/%y")]   if  !self.channel_ranks.blank?
     if !self.summary_id.blank?
 
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.summary_id} with #{self.analytics_summary}")
       s = Summary.where(:id => self.summary_id).first
       s.analytics_summary = {}
-      s.update_attributes(:analytics_summary => self.analytics_summary)
+
+      s.update_attributes(:analytics_summary => self.analytics_summary, :rank => "123")
 
     elsif !self.location_id.blank?
 
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.location_id} with #{self.analytics_summary}")
       l = Location.where(:id => self.location_id).first
       l.analytics_summary = {}
-      l.update_attributes(:analytics_summary => self.analytics_summary)
+      l.update_attributes(:analytics_summary => self.analytics_summary, :rank => rank)
 
     elsif !self.entity_id.blank
 
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.entity_id} with #{self.analytics_summary}")
       e = Entity.where(:id => self.entity_id).first
       e.analytics_summary = {}
-      e.update_attributes(:analytics_summary => self.analytics_summary)
+      e.update_attributes(:analytics_summary => self.analytics_summary, :rank => rank)
 
     end
     Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] leaving ")

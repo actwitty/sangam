@@ -462,22 +462,23 @@ class User < ActiveRecord::Base
 
   #INPUT user_id => 123
   #sort_order => 1 (lexicographical) or  2 (based on updated)
-  #returns hash of : {:name => "eating" ,:id => 123 }
+  #returns hash of : {:name => "eating" ,:id => 123,:summary_id => 234,
+  #                   :category_data => {
+  #                      :id => "food",:name => "food and drink",:type => "/food", :hierarchy => "/", :default_channel => "food"
+  #                   }
   #   OR
   #    {} if invalid user
   def get_user_activities( user_id, sort_order)
 
      Rails.logger.debug("[MODEL] [User] [get_user_activities] entering ")
 
-     h = Activity.where(:author_id => user_id, :status => AppConstants.status_public, :meta_activity => false).
-         group(:summary_id, :activity_word_id, :activity_name).order("MAX(updated_at)  DESC").count
-
      word_array = []
 
-     h.each do |k,v|
-#        word_hash << {:name => k[1], :id => k[0]}
-       word_array << {:name => k[2], :id => k[1], :summary_id => k[0]}
+     Summary.where(:user_id => user_id).all.each do |attr|
+        word_array << {:name => attr.activity_name, :id => attr.activity_word_id,
+                       :summary_id => attr.id, :category_data => format_summary_category(attr.category_id) }
      end
+
 
      if !sort_order.blank? && sort_order == 1
         word_array = word_array.sort {|x, y| x[:name] <=> y[:name] }
@@ -549,11 +550,11 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [get_user_locations] leaving ")
     lh
 
-    end
+  end
 
   #always current_user's id (logged in)
   #INPUT
-  #filter => {:word_id => 123, :entity_id => 456, :location_id => 789 }
+  #filter => { :category_type => "/sports", :entity_id => 456, :location_id => 789 }
   #OUTPUT array of {:id => 123, :name => "samarth" , :image => "images/234"}
   def get_related_friends(params)
 
@@ -575,6 +576,7 @@ class User < ActiveRecord::Base
     h = process_filter(params[:filter])
 
     h[:user_id] = friend_objs.keys
+
     if !h[:entity_id].blank?
 
       h = pq_hub_filter(h)
@@ -610,6 +612,7 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [get_related_entities] entering ")
     h = {}
 
+    params[:current_user_id] = self.id
     h = process_filter_modified(params)
 
     if h.blank?
@@ -651,6 +654,7 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [get_related_locations] entering ")
     h = {}
 
+    params[:current_user_id] = self.id
     h = process_filter_modified(params)
 
     if h.blank?
@@ -687,10 +691,7 @@ class User < ActiveRecord::Base
     Rails.logger.debug("[MODEL] [User] [get_enriched_activities] entering ")
     en = []
 
-    Activity.includes(:author, :base_location).where(:id => activity_ids, :enriched => true).all.each do |attr|
-      a = format_activity(attr)
-      en << a
-    end
+    en = Activity.get_enriched_activities({:activity_ids => activity_ids})
 
     puts en
     Rails.logger.debug("[MODEL] [User] [get_enriched_activities] leaving ")
@@ -709,21 +710,8 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [USER] [get_draft_activity] entering")
 
-    h = process_filter(params[:filter])
-
-    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
-
-    h[:status] =  AppConstants.status_saved
-
-    h[:meta_activity] = false
-
-    h[:user_id] = self.id
-
-    h = pq_activity_filter(h)
-
-    activity = Activity.where(h).group(:id).order("MAX(updated_at) DESC").count
-
-    array = get_all_activity(activity.keys)
+    params[:current_user_id] = self.id
+    array = Activity.get_draft_activity(params)
 
     Rails.logger.debug("[MODEL] [User] [get_draft_activity] leaving ")
 
@@ -738,38 +726,7 @@ class User < ActiveRecord::Base
   def remove_entity_from_activity(activity_id, entity_id)
     Rails.logger.debug("[MODEL] [User] [remove_entity_from_activity] entering ")
 
-    activity = Activity.where(:id => activity_id).first
-
-    if !activity.activity_text.blank?
-       text = unlink_an_entity(activity.activity_text,  entity_id)
-       Activity.update_all({:activity_text=> text},{:id => activity_id})
-    else
-      Rails.logger.debug("[MODEL] [User] [remove_entity_from_activity] activity_text blank => LEAVING")
-      activity = format_activity(activity)
-      return activity
-    end
-
-    #Destroy Hub entries for that
-    Hub.destroy_all(:activity_id => activity_id, :entity_id => entity_id)
-
-    #Reset Summary for entity id
-    if !activity.summary_id.nil?
-
-      s = Summary.where(:id => activity.summary_id).first
-
-      #Recreate Entity Array for given summary
-      s.entity_array = []
-      a = Hub.where(:summary_id => activity.summary_id, :entity_id.not_eq => nil).group(:entity_id).
-              limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
-
-      s.entity_array = a.keys if !a.blank?
-
-      s.update_attributes(:entity_array => s.entity_array)
-      #Summary.update_all({:entity_array => [s.entity_array]}, {:id => activity.summary_id})
-    end
-    s = Summary.where(:id => activity.summary_id).first
-
-    activity = format_activity(activity)
+    activity = Activity.remove_entity_from_activity({:activity_id => activity_id, :entity_id => entity_id})
 
     Rails.logger.debug("[MODEL] [User] [remove_entity_from_activity] leaving")
     activity
@@ -783,7 +740,7 @@ class User < ActiveRecord::Base
   #    :text =>   ""entity box + @@ + location box" or nil [OPTIONAL]
   #    :location => {
   #                  :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"
-  #                  :geo_city => "bangalore", :geo_country => "india"}
+  #                  :geo_city => "bangalore", :geo_country => "india",  :geo_region => "Karnataka"}
   #                                      OR
   #                  :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
   #                                      OR
@@ -856,20 +813,13 @@ class User < ActiveRecord::Base
     a
   end
 
-  #INPUT
-  #activity_id => 123
+  #INPUT  => activity_id => 123
+  #OUTPUT => attributes of deleted activity
   def remove_activity(activity_id)
-
     Rails.logger.debug("[MODEL] [USER] [remove_activity] entering ")
-
-    a = Activity.where(:id => activity_id, :author_id => self.id).first
-    if a.blank?
-      Rails.logger.debug("[MODEL] [User] [remove_activity] returning empty json ")
-      return {}
-    end
-    a.destroy
+    a = Activity.remove_activity({:activity_id => activity_id , :current_user_id => self.id})
     Rails.logger.debug("[MODEL] [User] [remove_activity] leaving ")
-    a.attributes
+    a
   end
 
   #INPUT { :activity_id => 123,
@@ -882,22 +832,13 @@ class User < ActiveRecord::Base
   ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
   #TODO fix it
   def publish_activity(params)
-    puts params[:update]
     Rails.logger.debug("[MODEL] [USER] [publish_activity] entering")
 
-    a = remove_activity(params[:activity_id])
-
-    if a.blank?
-      Rails.logger.debug("[MODEL] [User] [publish_activity]  returning empty json ")
-      return {}
-    end
-
-    params.delete(:activity_id)
-    activity = create_activity(params)
+    params[:current_user_id] = self.id
+    activity = Activity.publish_activity(params)
 
     Rails.logger.debug("[MODEL] [USER] [publish_activity] leaving")
     activity
-
   end
 
   #INPUT { :activity_id => 123,
@@ -911,81 +852,8 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [User] [update_activity] entering ")
 
-    a = Activity.where(:id => params[:activity_id]).first
-
-
-    #false activity
-    if a.blank?
-      Rails.logger.debug("[MODEL] [User] [update_activity] [ERROR] returning empty json ")
-      return {}
-    end
-
-    #store summary_id to see if summary id is not changed in update
-    prev_summary_id = a.summary_id
-
-    #delete existing documents which are not in input params
-    url = []
-
-    #collect params docs in array
-    unless params[:documents].blank?
-      params[:documents].each do |attr|
-        url << attr[:url]
-      end
-    end
-
-    #remove the existing activity docs if input params docs is blank
-    destroy_ids = []
-    delete_ids = []
-    if url.blank?
-       a.documents.clear if a.documents.size > 0
-    else
-      a.documents.each do |attr|
-        url.include?(attr.url) ? delete_ids << attr.id : destroy_ids << attr.id
-      end
-      Document.destroy_all(:id => destroy_ids) if !destroy_ids.blank?
-      Document.delete_all(:id => delete_ids) if !delete_ids.blank?
-    end
-
-    #delete existing tags
-    a.tags.clear if a.tags.size > 0
-
-    #delete related hubs
-    a.hubs.clear
-
-    #params.delete(:activity_id)
-    params[:update] = true
-
-    a = create_activity(params)
-
-    #store summary_id to see if summary id is not changed in update
-    if a[:post][:summary_id] != prev_summary_id
-
-      #update Social counter with new summary_id
-      if !a[:post][:social_counters].blank?
-        SocialCounter.update_all({:summary_id => a[:post][:summary_id]},{:summary_id => prev_summary_id,
-                                                                        :activity_id => a[:post][:id]})
-
-        #Recreate Social Counter Array for given summary
-        s = Summary.where(:id => a[:post][:summary_id]).first
-        s.social_counters_array = []
-        SocialCounter.where(:summary_id =>a[:post][:summary_id]).group(:source_name, :action).count.each do |k,v|
-          s.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
-        end
-        s.update_attributes(s.attributes)
-      end
-
-    end
-
-    #Now rebuild the older summary. New summary will be build during create activity.
-    #Only we have social counters of old summary need to migrate to new one.. this is done in upper block
-    Summary.reset_counters( prev_summary_id, :activities)
-    s = Summary.where(:id => prev_summary_id).first
-    if s.activities.size == 0
-      s.destroy
-    else
-      s.rebuild_a_summary
-    end
-
+    params[:current_user_id] = self.id
+    a = Activity.update_activity(params)
 
     Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
     a
@@ -995,66 +863,13 @@ class User < ActiveRecord::Base
   #OUTPUT =   See get_stream output in HASH :stream => {}
   def get_all_activity(activity_ids)
 
-    Rails.logger.debug("[MODEL] [User] [get_all_activity] entering ")
+    params ={}
     array = []
-    index = 0
-    hash = {}
+    Rails.logger.debug("[MODEL] [User] [get_all_activity] entering ")
 
-    Activity.includes(:author, :base_location).where(:id => activity_ids).order("updated_at DESC").all.each do |attr|
-
-      array << format_activity(attr)
-      array[index][:comments] = {:count => attr.comments.size, :array => [] }
-      array[index][:documents]= {:count => attr.documents.size, :array => []}
-      array[index][:tags]=      {:count => attr.tags.size, :array => []}
-      array[index][:campaigns]= []
-      hash[attr.id] = index
-      index = index + 1
-    end
-
-    #Commenting this whole blob. As per New UX only count is needed
-#    Comment.includes(:author).where(:activity_id => activity_ids).all.each do |attr|
-#       h = format_comment(attr)
-#       array[hash[attr.activity_id]][:comments][:array] << h[:comment]
-#    end
-
-    Document.where(:activity_id => activity_ids).all.each do |attr|
-       h = format_document(attr)
-       array[hash[attr.activity_id]][:documents][:array] << h[:document]
-    end
-
-    Tag.where(:activity_id => activity_ids).all.each do |attr|
-       h = format_tag(attr)
-       array[hash[attr.activity_id]][:tags][:array] << h[:tag]
-    end
-
-    campaign_hash = {}
-    temp_hash = {}
-    index = 0
-    #Get all the campaigns grouped for those activity
-    Campaign.where(:activity_id => activity_ids).group(:activity_id, :name).count.each do |k,v|
-
-       h = {:name => k[1], :count => v , :user => false}
-       campaign_hash[k[0]].nil? ? campaign_hash[k[0]] = [h] : campaign_hash[k[0]] << h
-       temp_hash[{:id => k[0], :name => k[1]}] = campaign_hash[k[0]].count -1
-
-    end
-
-    #Get all the campaigns grouped for those activity by current user
-    #Set user_id if user has acted on  campaign
-    Campaign.where(:activity_id => activity_ids, :author_id => self.id).group(:activity_id, :name).count.
-        each do |k,v|
-        if !campaign_hash[k[0]].nil?
-          campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user] =  true
-          campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user_id] =  self.id
-       end
-    end
-
-
-    campaign_hash.each do |k,v|
-      v.each do |entry|
-       array[hash[k]][:campaigns] << entry
-      end
-    end
+    params[:current_user_id] = self.id
+    params[:activity_ids] =activity_ids
+    array = Activity.get_all_activity(params)
 
     Rails.logger.debug("[MODEL] [User] [get_all_activity] leaving")
     array
@@ -1079,11 +894,12 @@ class User < ActiveRecord::Base
   #   :word=>{:id=>10, :name=>"eating"}, :time=>Sat, 30 Jul 2011 21:41:56 UTC +00:00,
   #   :text=>"<a href=# value=11 class=js_activity_entity>pizza</a>  with <a href=# value=5 class=js_activity_mention>Alok Srivastava</a>",
   #   :enriched=>true, :summary_id=>9, :sub_title=>nil, :source_name=>"actwitty", :status=>1, :campaign_types=>1,:source_msg_id => "12233",
+  #   :category_data => {:id => "food",:name => "food and drink",:type => "/food", :hierarchy => "/", :default_channel => "food"   }
   #  },
   # :location=>
   #  {
   #   :type=>2, :lat=>#<BigDecimal:9de78e0,'0.2345E2',18(18)>, :long=>#<BigDecimal:9de77c8,'0.4545E2',18(18)>, :name=>"marathalli", :id=>8
-  #   ,:city => "bangalore", :country => "india"
+  #   ,:city => "bangalore", :country => "india", :region => "karnataka"
   #  },
   #  :comments=>
   #  {
@@ -1119,6 +935,7 @@ class User < ActiveRecord::Base
   #     [{:name=>"support", :count=>1, :user=>true, :user_id=>5}, {:name=>"like", :count=>2, :user=>false}]
   # }
   # ]
+  ####COMMENT IF CHANNEL FILTER THEN FOLLOWING THREE
   # :theme_data => {
   #                 :id => 123, :theme_type => theme.theme_type,# [ 1 (AppConstants.theme_default) OR 2 (AppConstants.theme_color) OR 3 (AppConstants.theme_document)],
   #                 :user_id => 123,:summary_id => 134,:time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
@@ -1130,11 +947,6 @@ class User < ActiveRecord::Base
   #                                                     OR
   #                 :fg_color => "0x6767623", :bg_color => "0x78787834" # :theme_type => AppConstants.theme_color
   #                 }
-  # :category_data => {
-  #                     :id => category.id, :category_id => "food",:name => "food and drink",:type => "/food",
-  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
-  #                     :channel => "IAmFoodie"
-  #                   }
   # :analytics_summary => {
   #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
   #                         "comments" => {:total => 34, :actwitty => 20, :facebook => 14 }, "likes" =>{:total => 123, :actwitty => 33, :facebook => 90 }
@@ -1146,54 +958,15 @@ class User < ActiveRecord::Base
   #                         "subscribers" => 345, "documents" =>  {"total" => 160, "image" => 24, "video" => 90, "audio" => 46}
   #                         "channel_ranks" => 234
   #                       }
+  #:category_data => {:id => "food",:name => "food and drink",:type => "/food", :hierarchy => "/", :default_channel => "food"   }
   #}
   def get_stream(params ={})
 
     Rails.logger.debug("[MODEL] [USER] [get_stream] entering")
 
-    stream = {}
-    h = process_filter_modified(params)
+    params[:current_user_id] = self.id
 
-    if h.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_stream] Leaving => Blank has returned by process_filter => #{params.inspect}")
-      return {}
-    end
-
-    #use HUB only if entity filter is there
-    if !h[:entity_id].blank?
-
-      # need to check this anyway  - For time being
-      # we have to delete hub
-      h = pq_hub_filter(h)
-      Rails.logger.debug("[MODEL] [USER] [get_stream] => Hub/Entity based filtering => #{h.inspect}")
-      activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
-
-    else
-
-      h[:status] =  AppConstants.status_public
-
-      h[:meta_activity] = false
-
-      h = pq_activity_filter(h)
-
-      Rails.logger.debug("[MODEL] [USER] [get_stream] => Activity based filtering => #{h.inspect}")
-
-      #show only public post.. Need to take care private and shared post
-      activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
-    end
-
-    array = get_all_activity(activity.keys)
-
-    stream[:stream] = array
-
-    if !h[:activity_word_id].blank?
-        if params[:page_type] == AppConstants.page_state_user
-           s = Summary.where(:user_id => params[:user_id],:activity_word_id => h[:activity_word_id]).first
-           stream[:theme_data] = s.theme_data
-           stream[:analytics_summary] = s.analytics_summary
-           stream[:category_data] = s.category_data
-        end
-    end
+    stream = Activity.get_stream(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_stream] leaving")
     stream
@@ -1228,9 +1001,7 @@ class User < ActiveRecord::Base
   #                 :fg_color => "0x6767623", :bg_color => "0x78787834" # :theme_type => AppConstants.theme_color
   #                 }
   # :category_data => {
-  #                     :id => category.id, :category_id => "food",:name => "food and drink",:type => "/food",
-  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
-  #                     :channel => "IAmFoodie"
+  #                      :id => "food",:name => "food and drink",:type => "/food", :hierarchy => "/", :default_channel => "food"
   #                   }
   # :analytics_summary => {
   #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
@@ -1258,177 +1029,20 @@ class User < ActiveRecord::Base
   # :friends=>[{:id=>38, :full_name=>"lemony2 lime2", :photo=>"images/id_2"}]
   # }
   #]
-  require "social_fetch/social_fetch"
+
 
   def get_summary(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_summary] entering")
 
-    #Below two lines are for testing
-    #Activity.destroy_all(:author_id => self.id)
-    SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
+    params[:current_user_id] = self.id
 
-    h = process_filter_modified(params)
-
-    if h.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_summary] Leaving => Blank has returned by process_filter => #{params.inspect}")
-      return {}
-    end
-
-    documents= {}
-    tags = {}
-    activities = {}
-    locations = {}
-    entities = {}
-    friends ={}
-    subscribed = {}
-
-    summaries = []
-    index = 0
-
-    h[:id] = h[:summary_id] if !h[:summary_id].blank?
-    h.delete(:summary_id)
-    user = h[:user_id]
-
-    h = pq_summary_filter(h)
-
-    summary = Summary.includes(:user).where(h).limit(AppConstants.max_number_of_summmary).order("updated_at DESC").
-        all.each do |attr|
-
-        summaries[index] ={:id => attr.id,
-                             :word => {:id => attr.activity_word_id, :name => attr.activity_name},
-                             :time => attr.updated_at,
-                             :user => {:id => attr.user_id, :full_name => attr.user.full_name,
-                                       :photo => attr.user.photo_small_url, :user_type => attr.user.user_type}, #user type is added for ADMIN USER
-                             :activity_count => attr.activities.size,
-                             :document_count => attr.documents.size, :tag_count => attr.tags.size,
-                             :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
-                             :category_data => attr.category_data, :analytics_summary => attr.analytics_summary,
-                             :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
-                              }
-        attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
-        attr.document_array.each {|idx| documents[idx].nil? ? documents[idx] = [index] : documents[idx] <<  index }
-        attr.tag_array.each       {|idx| tags[idx].nil? ? tags[idx] = [index] : tags[idx] <<  index }
-        attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
-        attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
-
-        subscribed[attr.id]  = index
-
-        #creates the hash mapping words to respective index
-        friends[attr.activity_word_id].nil? ? friends[attr.activity_word_id] = [index] : friends[attr.activity_word_id] << index
-        index = index + 1
-      end
-
-    if !documents.keys.blank?
-      Document.where(:id => documents.keys).order("updated_at DESC").all.each do|attr|
-        h = format_document(attr)
-        documents[attr.id].each do |idx|
-          summaries[idx][:documents] << h[:document]
-        end
-      end
-      documents = {}
-    end
-
-    if !tags.keys.blank?
-      Tag.where(:id => tags.keys).order("updated_at DESC").all.each do|attr|
-        h = format_tag(attr)
-        tags[attr.id].each do |idx|
-          summaries[idx][:tags] << h[:tag]
-        end
-      end
-      tags = {}
-    end
-
-    if !locations.keys.blank?
-      Location.where(:id => locations.keys).order("updated_at DESC").all.each do|attr|
-        h = format_location(attr)
-        #h[:id] = attr.id
-        locations[attr.id].each do |idx|
-          summaries[idx][:locations] << h
-        end
-      end
-      locations={}
-    end
-
-    if !entities.keys.blank?
-      Entity.where(:id => entities.keys).order("updated_at DESC").all.each do|attr|
-        entities[attr.id].each do |idx|
-          #summaries[idx][:entities] << {:id => attr.id, :name => attr.entity_name, :image =>  attr.entity_image }
-          summaries[idx][:entities] << format_entity(attr)
-        end
-      end
-      entities ={}
-    end
-
-    if !activities.keys.blank?
-      Activity.where(:id => activities.keys).order("updated_at DESC").all.each do|attr|
-        activities[attr.id].each do |idx|
-          summaries[idx][:recent_text] << { :text => attr.activity_text, :time => attr.updated_at.utc}
-        end
-      end
-      activities = {}
-    end
-
-    # Mark Summaries which user has not subscribed. This will be only applicable if page_state == all or public
-    #TODO => Public summary marking is blocked as of now
-
-    if (params[:user_id] != self.id)||(params[:page_type] == AppConstants.page_state_all)
-
-      SummarySubscribe.where(:summary_id => subscribed.keys, :subscriber_id => self.id ).all.each do |attr|
-        summaries[subscribed[attr.summary_id]][:subscribed] = true
-      end
-
-    end
-    subscribed = {}
-
-    #FETCH RELATED FRIEND
-
-    #friends will only be fetched current use == visited user
-    if params[:page_type] == AppConstants.page_state_all
-      #user's friends are already populated in user ARRAY
-      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - OTHERS MODE" )
-      user.delete(self.id) if user.blank?
-    else
-      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - ME MODE" )
-      #other wise get the user's followings and populate the related followings
-      user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
-    end
-
-    if (!user.blank?) && (!friends.keys.blank?)
-      h  = {}
-      h[:user_id] = user
-      h[:activity_word_id] = friends.keys
-      h = pq_summary_filter(h)
-
-      Summary.includes(:user).where(h).group(:user_id, :activity_word_id ).count.each do |k,v|
-        activities[k[0]] = k[1]
-      end
-
-      Rails.logger.debug("[MODEL] [USER] [get_summary] getting friends related friends - #{activities.keys.inspect} \n #{friends.keys.inspect}" )
-      if !activities.keys.blank?
-        User.where(:id => activities.keys).all.each do |attr|
-          # activities[attr.id] => activity_word_id
-          friends[activities[attr.id]].each do |idx|
-
-            #dont show a friend in his own summary as related friend
-            if summaries[idx][:user][:id] != attr.id
-
-              if summaries[idx][:friends].size < AppConstants.max_number_of_a_type_in_summmary
-                summaries[idx][:friends] << {:id => attr.id , :full_name => attr.full_name, :photo => attr.photo_small_url}
-              end
-
-            end
-
-          end
-
-        end
-      end
-    end
+    summaries = Summary.get_summary(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_summary] leaving")
+
     #FETCHING RELATED FRIEND -- DONE
     summaries
-
   end
 
 
@@ -1439,29 +1053,12 @@ class User < ActiveRecord::Base
   #sent.
 
   def get_activity_stream(params)
-    h = {}
 
     Rails.logger.debug("[MODEL] [USER] [get_activity_stream] entering")
 
-    a = ActivityWord.where(:id => params[:word_id]).first
-    if a.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_activity_stream] returning blank JSON")
-      return {}
-    end
+    params[:current_user_id] = self.id
+    hash = Activity.get_activity_stream(params)
 
-    hash ={:id => params[:word_id], :name => a.word_name }
-
-    h[:activity_word_id] =  params[:word_id]
-
-    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
-
-    h[:status]   = AppConstants.status_public
-
-    h = pq_activity_filter(h)
-
-    activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
-
-    hash[:stream] = get_all_activity(activity.keys)
     Rails.logger.debug("[MODEL] [USER] [get_activity_stream] leaving")
     hash
   end
@@ -1480,23 +1077,9 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [USER] [get_entity_stream] entering")
 
-    e = Entity.where(:id => params[:entity_id]).first
-    if e.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_entity_stream] returning blank JSON")
-      return {}
-    end
+    params[:current_user_id] = self.id
+    hash = Entity.get_entity_stream(params)
 
-    hash = format_entity(e)
-
-    h[:entity_id] =  params[:entity_id]
-
-    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
-
-    h = pq_hub_filter(h)
-
-    activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
-
-    hash[:stream] = get_all_activity(activity.keys)
     Rails.logger.debug("[MODEL] [USER] [get_entity_stream] leaving")
     hash
 
@@ -1520,32 +1103,13 @@ class User < ActiveRecord::Base
     h = {}
     Rails.logger.debug("[MODEL] [USER] [get_location_stream] entering")
 
+    params[:current_user_id] = self.id
+    hash = Location.get_location_stream(params)
 
-    l = Location.where(:id => params[:location_id]).first
-    if l.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_location_stream] returning blank JSON")
-      return {}
-    end
-
-    hash = format_location(l)
-    #hash[:id] = l.id
-
-    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
-
-    h[:status]   = AppConstants.status_public
-
-    h[:meta_activity] = false
-
-    h[:location_id] = l.id
-
-    h = pq_activity_filter(h)
-
-    activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
-
-    hash[:stream] = get_all_activity(activity.keys)
     Rails.logger.debug("[MODEL] [USER] [get_location_stream] leaving")
     hash
   end
+
   #COMMENT => To Create a campaign
   #INPUT =>
   # :name => "like"
@@ -1602,33 +1166,8 @@ class User < ActiveRecord::Base
 
     Rails.logger.debug("[MODEL] [USER] [remove_campaign] entering")
 
-    params[:author_id] = params[:user_id]
-    params.delete(:user_id)
+    ch = Campaign.remove_campaign(params)
 
-    h = pq_campaign_filter(params)
-    campaign = Campaign.where(h).first
-
-    if campaign.nil?
-      Rails.logger.debug("[MODEL] [USER] [remove_campaign] leaving => returning blank json")
-      return {}
-    end
-
-    hash = campaign.attributes.except("value", "author_id", "father_id", "id", "created_at", "updated_at")
-
-    campaign.father.destroy
-
-    #group by campaign name for remaining count
-    h= Campaign.where(hash).group(:name).count
-
-    ch = {}
-
-    #user will always be false as user can only delete his campaign
-    #which is unique in scope of activity and campaign name
-    ch[:user] = false
-    ch[:count] = h.values[0].nil? ? 0 : h.values[0]
-    ch[:name] = hash["name"]
-
-    puts ch
     Rails.logger.debug("[MODEL] [USER] [remove_campaign] leaving")
 
     ch
@@ -1784,19 +1323,14 @@ class User < ActiveRecord::Base
   #OUTPUT => deleted doc or blank {}
   def remove_document(document_id)
 
-    Rails.logger.debug("[MODEL] [USER] [load_all_comment] entering")
+    Rails.logger.debug("[MODEL] [USER] [remove_document] entering")
+    params = {}
+    params[:current_user_id] = self.id
+    params[:document_id] = document_id
 
-    d = Document.where(:owner_id => self.id, :id => document_id).first
+    d = Document.remove_document(params)
 
-    if d.blank?
-      Rails.logger.debug("[MODEL] [USER] [remove_document] returning blank JSON")
-      return {}
-    end
-
-    d.destroy
-    Document.reset_summary(d.summary_id)
-
-    Rails.logger.debug("[MODEL] [USER] [load_all_comment] leaving")
+    Rails.logger.debug("[MODEL] [USER] [remove_document] leaving")
     d
   end
 
@@ -1813,53 +1347,13 @@ class User < ActiveRecord::Base
   def get_document_summary(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_document_summary] entering")
-    h = {}
-    user = nil
 
-    return {} if (params[:user_id].blank? || params[:category].blank?)
+    params[:current_user_id] = self.id
+    doc_array = Document.get_document_summary(params)
 
-    h = process_filter_modified(params)
-
-    if h.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_document_summary] Leaving => Blank has returned by process_filter => #{params.inspect}")
-      return {}
-    end
-
-    doc_hash = {}
-
-    h[:id] = h[:summary_id] if !h[:summary_id].blank?
-    h.delete(:summary_id)
-    h = pq_summary_filter(h)
-
-    Summary.includes(:user, :activity_word).where(h).order("updated_at DESC").limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
-      if attr.document_array.size > 0
-        doc_hash[attr.document_array[0]]= {
-            :word => {:id => attr.activity_word_id, :name => attr.activity_name},
-            :time => attr.updated_at,
-            :user => {:id => attr.user_id, :full_name => attr.user.full_name, :photo => attr.user.photo_small_url},
-            :count => attr.documents_count,
-            :document => nil
-        }
-      end
-    end
-
-    #doc_hash.keys will give status_public docs as summary does not exist for saved docs
-    h = {:id => doc_hash.keys, :category => params[:category]}
-
-    Document.where(h).all.each do |attr|
-      h = format_document(attr)
-      doc_hash[attr.id][:document] = h[:document]
-    end
-
-    #TODO need to get saved docs too
     Rails.logger.debug("[MODEL] [USER] [get_document_summary] leaving")
 
-    #delete those keys in which doc_hash[key][document] is still nil.
-    #this is possible as summary does not contain info about about
-    doc_hash.each do |k,v|
-      doc_hash.delete(k) if doc_hash[k][:document].blank?
-    end
-    doc_hash.values
+    doc_array
   end
 
 
@@ -1880,60 +1374,9 @@ class User < ActiveRecord::Base
   def get_document_stream(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] entering")
-    h = {}
-    user = nil
-    summary = nil
 
-    if params[:category].blank?
-
-      Rails.logger.debug("[MODEL] [USER] [get_document_stream] category cant be blank => return blank json => #{params.inspect}")
-      return {}
-
-    end
-
-    h = process_filter_modified(params)
-
-    if h.blank?
-      Rails.logger.debug("[MODEL] [USER] [get_document_stream] Leaving => Blank has returned by process_filter => #{params.inspect}")
-      return {}
-    end
-
-    doc_array = []
-
-    if !h[:entity_id].blank?
-
-      Rails.logger.debug("[MODEL] [USER] [get_document_stream] => Hub/Entity based filtering => #{h.inspect}")
-
-      h[:user_id] = user if !user.blank?   #this will be true for page_state_user or page_state_all
-
-      h = pq_hub_filter(h)
-
-      activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
-
-      h = {:activity_id => activity.keys,:category => params[:category] , :status =>  AppConstants.status_public }
-
-    else
-     # pq_document_filter will fill owner_id. so commenting these two lines
-     # h[:owner_id] = h[:user_id]  if !h[:user_id].blank?   #this will be true for page_state_user or page_state_all
-     # h.delete(:user_id)
-      h[:category] = params[:category]
-      h[:status] =  AppConstants.status_public
-
-    end
-
-    h = pq_document_filter(h)
-
-    Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
-        limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
-
-      h = format_document(attr)
-      doc_array <<  {
-                      :word => {:id => attr.activity_word_id, :name => attr.activity_word.word_name},
-                      :time => attr.updated_at,
-                      :user => {:id => attr.owner_id, :full_name => attr.owner.full_name, :photo => attr.owner.photo_small_url},
-                      :document => h[:document]
-                    }
-    end
+    params[:current_user_id] = self.id
+    doc_array = Document.get_document_stream(params)
 
     Rails.logger.debug("[MODEL] [USER] [get_document_stream] leaving")
     doc_array
@@ -2068,11 +1511,24 @@ class User < ActiveRecord::Base
   #INPUT => None
   #OUTPUT => Same as get_summary (all public summary)
   def get_recent_public_summary
+
     array = []
+    h = {}
+
+    Rails.logger.debug("[MODEL] [USER] [get_recent_public_summary] entering")
+
     get_summary({:page_type => AppConstants.page_state_subscribed, :updated_at => Time.now.utc}).each do |attr|
+
+      next if h[attr[:user][:id]] == true
+
+      h[attr[:user][:id]] = true if h[attr[:user][:id]].blank?
+
       #ADMIN USER blocking in global display of channels
       array << attr if attr[:user][:user_type].nil? ||  (attr[:user][:user_type] == AppConstants.user_type_regular)
+
     end
+    Rails.logger.debug("[MODEL] [USER] [get_recent_public_summary] leaving")
+
     array
   end
 
@@ -2219,106 +1675,7 @@ class User < ActiveRecord::Base
     []
   end
   # private methods
-  private
-
-
-
-
-  def process_filter(filter)
-
-
-    return {} if filter.nil?
-
-    h = {}
-
-    if !filter[:word_id].blank?
-      h[:activity_word_id] = filter[:word_id]
-    end
-    if !filter[:location_id].blank?
-      h[:location_id] = filter[:location_id]
-    end
-    if !filter[:entity_id].blank?
-       h[:entity_id] = filter[:entity_id]
-    end
-    if !filter[:source_name].blank?
-      h[:source_name] = filter[:source_name]
-    end
-    h
-  end
-
-  #If No User is given or No Page_Type is give always PUBLIC data will come
-  #For Subscribed Page => Always self user subscription
-  #For All page => Always self user followers channel
-  #For User page => params[:user_id] is used.
-  def process_filter_modified(params)
-
-
-    h = {}
-    user = nil
-    summary = nil
-
-    h = process_filter(params[:filter])
-
-    #if no user is given, it means need public to view documents only on filters
-    if params[:user_id].blank? || params[:page_type].blank?
-
-      Rails.logger.debug("[MODEL] [USER] [process_filter] page_state = page_state_public as user or page_type is blank => #{params.inspect}")
-      params[:page_type] = AppConstants.page_state_public
-
-    end
-
-    #Subscribed Page  => Always with self
-    if params[:page_type] == AppConstants.page_state_subscribed
-      #only Self can access the subscribed and of its known
-      summary =  SummarySubscribe.where(:subscriber_id => self.id).group(:summary_id).count
-
-      if summary.blank?
-        Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_subscribed => No Subscriber=>
-                             #{params.inspect}")
-        return {}
-      end
-
-      h[:summary_id] = summary.keys
-      Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_subscribed => #{self.inspect}")
-
-    end
-
-    #All Page => Always with self
-    if params[:page_type] == AppConstants.page_state_all
-
-##     Commenting as we did not want contact based all data now
-       Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_all => #{params.inspect}")
-       user = Contact.select("friend_id").where(:user_id => self.id).map(&:friend_id)
-       user.blank? ? user = [self.id] : user << self.id
-       h[:user_id] = user
- #     Rails.logger.debug("[MODEL] [USER] [process_filter] page state = page_state_all => #{params.inspect}")
-
-       #get all categories of user
-       #find users having similar categories - Ideally based on my high ranked channels
-       #then If number of user is not enough fall back to more generic categories and then to latest updates
-#        category = SummaryCategory.select(:category_type).where(:user_id=> self.id).map(&:category_type)
-#        user = SummaryCategory.select(:user_id).where(:user_id.not_eq => self.id,:category_type=> category).map(&:user_id)
-#        if user.blank? or user.size < AppConstants.max_number_of_users
-#           cat = category_type.split()
-#        end
-    end
-
-    #USER/ME Page
-    if params[:page_type] == AppConstants.page_state_user
-
-       Rails.logger.debug("[MODEL] [USER] [process_filter] page_state = page_state_user => #{params.inspect}")
-       h[:user_id] = params[:user_id]
-
-    end
-
-    #DEFAULT IS PUBLIC => IN this page user and summary variables will be nil. So only on filters
-    h[:updated_at] = params[:updated_at].to_time.utc  if !params[:updated_at].blank?
-
-    h
-  end
-
-
-
+  # private
 end
 
 

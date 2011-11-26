@@ -60,7 +60,8 @@ module SocialFetch
           if !attr["place"].blank?
             loc = attr["place"]["location"]
             activity[:location] = {:geo_location => {:geo_latitude => loc[:latitude] , :geo_longitude => loc[:longitude],
-                                                    :geo_name => attr["place"]["name"],:geo_city => loc[:city], :geo_country => loc[:country]}}
+                                                    :geo_name => attr["place"]["name"],:geo_city => loc[:city],
+                                                    :geo_country => loc[:country], :geo_region => loc[:region]}}
           end
 
 

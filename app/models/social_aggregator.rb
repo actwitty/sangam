@@ -127,17 +127,19 @@ class SocialAggregator < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: social_aggregators
 #
-#  id            :integer         not null, primary key
-#  user_id       :integer
-#  activity_id   :integer
-#  summary_id    :integer
-#  source_name   :string(255)
-#  source_msg_id :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                  :integer         not null, primary key
+#  user_id             :integer         not null
+#  activity_id         :integer         not null
+#  summary_id          :integer         not null
+#  provider_created_at :datetime        not null
+#  source_name         :string(255)     not null
+#  source_msg_id       :string(255)     not null
+#  created_at          :datetime
+#  updated_at          :datetime
 #
 

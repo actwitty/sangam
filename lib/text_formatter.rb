@@ -230,18 +230,14 @@ module TextFormatter
     h
   end
 
-  def format_summary_category(category)
+  def format_summary_category(category_id)
     h = {}
     h = {
-          :id => category.id,
-          :category_id => category.category_id,
-          :name => SUMMARY_CATEGORIES[category.category_id]['name'],
-          :channel => category.activity_name,
-          :type => category.category_type,
-          :hierarchy => SUMMARY_CATEGORIES[category.category_id]['hierarchy'],
-          :user_id => category.user_id,
-          :summary_id => category.summary_id,
-          :time => category.updated_at
+          :id => category_id,
+          :name => SUMMARY_CATEGORIES[category_id]['name'],
+          :type => SUMMARY_CATEGORIES[category_id]['type'],
+          :hierarchy => SUMMARY_CATEGORIES[category_id]['hierarchy'],
+          :default_channel => SUMMARY_CATEGORIES[category_id]['channel']
         }
   end
 
@@ -284,7 +280,7 @@ module TextFormatter
         h = {:type => AppConstants.location_type_web, :url => loc.location_url, :name => loc.location_name}
       when AppConstants.location_type_geo
         h = {:type => AppConstants.location_type_geo, :lat => loc.location_lat, :long => loc.location_long,
-            :name => loc.location_name, :city => loc.location_city, :country => loc.location_country}
+            :name => loc.location_name, :city => loc.location_city, :country => loc.location_country, :region => loc.location_region}
       when AppConstants.location_type_unresolved
         h = {:type => AppConstants.location_type_unresolved, :name => loc.location_name}
       else
@@ -318,7 +314,8 @@ module TextFormatter
         :status => activity.status,
         :campaign_types => activity.campaign_types,
         :social_counters => activity.social_counters_array,
-        :source_msg_id => activity.source_msg_id
+        :source_msg_id => activity.source_msg_id,
+        :category_data => format_summary_category(activity.category_id)
       }
 
     if !activity.base_location_id.blank?

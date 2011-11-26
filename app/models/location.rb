@@ -21,6 +21,7 @@ class Location < ActiveRecord::Base
   has_many :unresolved_joins, :class_name => "LocationHub",:foreign_key => :unresolved_join_id, :dependent => :destroy
 
   has_many  :campaigns, :dependent => :destroy
+  has_many  :summary_ranks, :dependent => :destroy
 
   #TODO the serializable base_location_data in activity is not delete with this..check
   has_many :base_activities, :foreign_key => :base_location_id, :class_name => "Activity", :dependent => :nullify
@@ -51,6 +52,7 @@ class Location < ActiveRecord::Base
 
   class << self
     include TextFormatter
+    include QueryPlanner
   end
 
   def self.create_location(location_hash ={})
@@ -69,7 +71,7 @@ class Location < ActiveRecord::Base
       new_hash = location_hash[:geo_location]
       h = {:location_type => AppConstants.location_type_geo, :location_lat => new_hash[:geo_latitude],
            :location_long => new_hash[:geo_longitude], :location_name => new_hash[:geo_name], :location_city => new_hash[:geo_city],
-            :location_country => new_hash[:geo_country]}
+            :location_country => new_hash[:geo_country], :location_region => new_hash[:geo_region]}
 
     elsif !location_hash[:unresolved_location].nil?
       new_hash = location_hash[:unresolved_location]
@@ -82,7 +84,7 @@ class Location < ActiveRecord::Base
       l = nil
       #Validation Uniqueness fails
       if /has already been taken/ =~ e.message
-        h = h.except(:location_name, :location_city,:location_country)
+        h = h.except(:location_name, :location_city,:location_country, :location_region)
         l = Location.where(h).first
         Rails.logger.info("Location => create_location => Rescue => Uniq index found " + l.location_type.to_s)
       end
@@ -190,15 +192,59 @@ class Location < ActiveRecord::Base
     return loc_join
   end
   #Input is location object
-   def self.SearchJoin(location)
+  def self.SearchJoin(location)
      assoc = [:web_join_id, :geo_join_id, :unresolved_join_id]
 
      location_ids = LocationHub.where(assoc[location.location_type - 1] => location.id).all
      location_ids.each do |attr|
        puts attr.web_join_id.to_s + " " + attr.geo_join_id.to_s + " " + attr.unresolved_join_id.to_s
      end
-   end
+  end
+
+
+  #INPUT => {:location_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601), :current_user_id => 1234}
+  #OUTPUT => { :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"
+  #                                                      OR
+  #                 :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york", :city => "New York",
+  #                 :country => "bangalore"
+  #                                                      OR
+  #                :id => 1234, :type => 2, :name => "John's home" ,
+  #:stream => [{:post => .... }]# same as stream
+  ##COMMENT => If updated_at parameter is sent, it means client already has entity info so, only stream part will be
+  #sent.
+  #COMMENT=> Near location search is pending
+  def self.get_location_stream(params)
+
+    h = {}
+    Rails.logger.debug("[MODEL] [Location] [get_location_stream] entering")
+
+    l = Location.where(:id => params[:location_id]).first
+    if l.blank?
+      Rails.logger.debug("[MODEL] [Location][get_location_stream] returning blank JSON")
+      return {}
+    end
+
+    hash = format_location(l)
+    #hash[:id] = l.id
+
+    h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
+
+    h[:status]   = AppConstants.status_public
+
+    h[:meta_activity] = false
+
+    h[:location_id] = l.id
+
+    h = pq_activity_filter(h)
+
+    activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
+
+    hash[:stream] = Activity.get_all_activity({:current_user_id => params[:current_user_id],:activity_ids => activity.keys})
+    Rails.logger.debug("[MODEL] [Location] [get_location_stream] leaving")
+    hash
+  end
 end
+
 
 
 
@@ -216,7 +262,10 @@ end
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime
-#  location_city         :text
-#  location_country      :text
+#  analytics_summary     :text
+#  location_city         :string(255)
+#  location_country      :string(255)
+#  location_region       :string(255)
+#  rank                  :string(255)
 #
 

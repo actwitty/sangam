@@ -116,6 +116,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: entities
@@ -128,5 +129,7 @@ end
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime
+#  analytics_summary     :text
+#  rank                  :string(255)
 #
 

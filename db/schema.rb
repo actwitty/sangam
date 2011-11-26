@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121132911) do
+ActiveRecord::Schema.define(:version => 20111126135000) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -33,15 +33,19 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source_msg_id"
+    t.string   "category_type"
+    t.string   "category_id"
   end
 
   add_index "activities", ["activity_word_id", "base_location_id", "source_name", "status"], :name => "index_activities_on_word_loc_source_status"
   add_index "activities", ["activity_word_id", "status"], :name => "index_activities_on_activity_word_id_and_status"
   add_index "activities", ["author_id", "activity_word_id", "status"], :name => "index_activities_on_author_id_and_activity_word_id_and_status"
   add_index "activities", ["author_id", "base_location_id", "status"], :name => "index_activities_on_author_id_and_base_location_id_and_status"
+  add_index "activities", ["author_id", "category_type", "base_location_id"], :name => "index_activities_on_author_category_location"
   add_index "activities", ["author_id", "source_name", "status"], :name => "index_activities_on_author_id_and_source_name_and_status"
   add_index "activities", ["author_id", "status", "meta_activity"], :name => "index_activities_on_author_id_and_status_and_meta_activity"
   add_index "activities", ["base_location_id", "status"], :name => "index_activities_on_base_location_id_and_status"
+  add_index "activities", ["category_type"], :name => "index_activities_on_category_type"
   add_index "activities", ["id", "author_id"], :name => "index_activities_on_id_and_author_id"
   add_index "activities", ["id", "enriched"], :name => "index_activities_on_id_and_enriched"
   add_index "activities", ["source_msg_id"], :name => "index_activities_on_source_msg_id"
@@ -198,10 +202,12 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "analytics_summary"
+    t.string   "rank"
   end
 
   add_index "entities", ["entity_guid"], :name => "index_entities_on_entity_guid", :unique => true
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name"
+  add_index "entities", ["rank"], :name => "index_entities_on_rank"
   add_index "entities", ["updated_at"], :name => "index_entities_on_updated_at"
 
   create_table "entity_documents", :force => true do |t|
@@ -289,11 +295,13 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
     t.integer  "status",           :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category_type"
   end
 
   add_index "hubs", ["activity_id"], :name => "index_hubs_on_activity_id"
   add_index "hubs", ["activity_word_id", "summary_id"], :name => "index_hubs_on_activity_word_id_and_summary_id"
   add_index "hubs", ["activity_word_id", "user_id"], :name => "index_hubs_on_activity_word_id_and_user_id"
+  add_index "hubs", ["category_type"], :name => "index_hubs_on_category_type"
   add_index "hubs", ["entity_id", "summary_id"], :name => "index_hubs_on_entity_id_and_summary_id"
   add_index "hubs", ["entity_id", "user_id"], :name => "index_hubs_on_entity_id_and_user_id"
   add_index "hubs", ["location_id", "summary_id"], :name => "index_hubs_on_location_id_and_summary_id"
@@ -325,9 +333,11 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
     t.text     "social_counters_array"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "location_city"
-    t.text     "location_country"
     t.text     "analytics_summary"
+    t.string   "location_city"
+    t.string   "location_country"
+    t.string   "location_region"
+    t.string   "rank"
   end
 
   add_index "locations", ["location_city"], :name => "index_locations_on_location_city"
@@ -335,8 +345,10 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
   add_index "locations", ["location_lat", "location_long"], :name => "index_locations_on_location_lat_and_location_long", :unique => true
   add_index "locations", ["location_long"], :name => "index_locations_on_location_long"
   add_index "locations", ["location_name"], :name => "index_locations_on_location_name"
+  add_index "locations", ["location_region"], :name => "index_locations_on_location_region"
   add_index "locations", ["location_type", "location_name"], :name => "index_locations_on_location_type_and_location_name"
   add_index "locations", ["location_url"], :name => "index_locations_on_location_url", :unique => true
+  add_index "locations", ["rank"], :name => "index_locations_on_rank"
   add_index "locations", ["updated_at"], :name => "index_locations_on_updated_at"
 
   create_table "loops", :force => true do |t|
@@ -454,13 +466,18 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
     t.text     "theme_data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "category_data"
+    t.string   "category_id"
+    t.string   "category_type"
+    t.string   "rank"
     t.text     "analytics_summary"
   end
 
   add_index "summaries", ["activity_name"], :name => "index_summaries_on_activity_name"
   add_index "summaries", ["activity_word_id"], :name => "index_summaries_on_activity_word_id"
+  add_index "summaries", ["category_id"], :name => "index_summaries_on_category_id"
+  add_index "summaries", ["category_type"], :name => "index_summaries_on_category_type"
   add_index "summaries", ["id", "updated_at"], :name => "index_summaries_on_id_and_updated_at"
+  add_index "summaries", ["rank"], :name => "index_summaries_on_rank"
   add_index "summaries", ["updated_at"], :name => "index_summaries_on_updated_at"
   add_index "summaries", ["user_id", "activity_word_id"], :name => "index_summaries_on_user_id_and_activity_word_id", :unique => true
   add_index "summaries", ["user_id", "updated_at"], :name => "index_summaries_on_user_id_and_updated_at"

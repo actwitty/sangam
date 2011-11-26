@@ -223,7 +223,7 @@ describe Activity do
 
 
       act3 = @u.create_activity( :word => "singing" , :text => "AR rehman's jai ho",
-                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli", :geo_city => "bangalore"}},
+                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli", :geo_city => "bangalore", :geo_region => "karnataka"}},
                               :enrich => true)
       act4 = @u.create_activity( :word => "painting" , :text => "Sachin tendulkar  rahul dravid",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh", :geo_city => "bangalore", :geo_country => "india"}},
@@ -243,10 +243,10 @@ describe Activity do
                               :enrich => true)
        act7 = @u2.create_activity( :word => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
                               :location => {:web_location =>{:web_location_url => "google.com", :web_location_title => "hello"}},
-                             :enrich => true)
+                             :enrich => true, :summary_category => "sports")
       act4 = @u.create_activity( :word => "listening" , :text => "Nakkad wale khisko from delhi belly",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
-                              :enrich => true)
+                              :enrich => true, :summary_category => "sports")
       act5 = @u1.create_activity( :word => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
@@ -287,13 +287,13 @@ describe Activity do
       puts h.inspect
       h.should_not be_nil
 
-      wi = ActivityWord.where(:word_name => "eating").first
-      e = Entity.where(:entity_name => "pizza").first
+      wi = ActivityWord.where(:word_name => "Eating").first
+      e = Entity.where(:entity_name => "roti").first
       l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
       filter = {:word_id => wi.id,  :source_name => "actwitty"}
 
       puts "Related Friends"
-      h = @u.get_related_friends( {:filter => filter})
+      h = @u.get_related_friends( {:filter => {:category_type => "/stories", :entity_id => e.id, :source_name => "actwitty"}})
       puts h.inspect
       h.should_not be_nil
       puts "============================================================="
@@ -678,7 +678,9 @@ describe Activity do
       h[:activity_id] = a.id
 
       c = @u.update_activity( h)
-      #puts c
+      puts "=====================update activity===================="
+      puts c
+
       work_off
       summary = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts summary
@@ -710,11 +712,11 @@ describe Activity do
       puts s.inspect
 
       puts "get document summary"
-      a = @u.get_document_summary({:user_id=> @u.id, :category => "image"})
+      a = @u.get_document_summary({:user_id=> @u.id, :page_type => AppConstants.page_state_user, :category => "image"})
       puts a
 
       puts "get document stream"
-      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "video"})
+      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "image"})
       puts a
 
     end
@@ -1082,14 +1084,14 @@ describe Activity do
        a = @u.get_social_counter({:activity_id => a3[:post][:id]})
        puts a
 
-       a = Activity.where(:activity_name => "eating").all
+       a = Activity.where(:activity_name => "Eating").all
        puts "============eating============"
        a.each do |attr|
          puts attr.inspect
        end
 
        a.should be_blank
-       a = Activity.where(:activity_name => "marry").all
+       a = Activity.where(:activity_name => "Marry").all
        a.should_not be_blank
        puts "============beating============"
        a.each do |attr|
@@ -1141,80 +1143,80 @@ describe Activity do
        a7 = @u.create_activity(:word => "eating" , :text => "",:enrich => true,:location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :source_name => "facebook", :status => AppConstants.status_public, :source_msg_id => "1254324")
        s = @u.update_summary_category(:summary_id => a1[:post][:summary_id],:category_id => "animals")
-       work_off
-       puts s.inspect
-       s.should_not be_blank
-
-       s = Summary.where(:id => a1[:post][:summary_id]).first
-       puts s.inspect
-       s.should_not be_blank
-
-       puts "Get Stream 1"
-       a =@u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_user, :filter => {:word_id => a1[:post][:word][:id] },
-                         :updated_at => Time.now.utc})
-       a.should_not be_blank
-       puts a.inspect
-
-       a = SummaryRank.add_analytics({:fields => ["posts"], :summary_id => a1[:post][:summary_id] })
-       puts a.inspect
-       a.should_not be_blank
-
-       a5 = @u.create_activity(:word => "eating" , :text => "http://www.youtube.com/watch?222 http://www.flickr.com/ wow",:location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
-                              :enrich => true,:summary_category=>"cars" ,
-                               :status => AppConstants.status_public)
-
-       @u1.subscribe_summary(a5[:post][:summary_id])
-       @u2.subscribe_summary(a5[:post][:summary_id])
-
-       s1 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "facebook", :action => "share"})
-       s2 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "twitter", :action => "share", :desc => "wow"})
-
-       com1 = @u1.create_comment(:activity_id => a5[:post][:id], :text => "11111111111 1")
-       puts com1
-       com2 = @u.create_comment(:activity_id => a5[:post][:id], :text => " 2222222222222 ")
-       puts com2
-
-       @c1 = @u1.create_campaign( :name => "like", :value => 1,:activity_id => a5[:post][:id] )
-       @c2 = @u3.create_campaign( :name => "like", :value => 2, :activity_id => a5[:post][:id] )
-
-       work_off
-
-       a = SummaryRank.add_analytics({:fields => ["likes"], :summary_id => a5[:post][:summary_id] })
-       puts a.inspect
-
-       @u2.unsubscribe_summary(a5[:post][:summary_id])
+#       work_off
+#       puts s.inspect
+#       s.should_not be_blank
 #
-       work_off
-
-       a = @u.get_analytics({:fields => ["all"], :summary_id => a5[:post][:summary_id] })
-       puts a.inspect
-
-
-       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
-       puts a.inspect
-
-
-       @u1.remove_comment(com1[:comment][:id])
-       @u1.remove_campaign({:activity_id => a5[:post][:id], :user_id => @u1.id, :name => "like"})
-
-       work_off
-       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
-       puts a.inspect
-
-       @u.remove_activity(a5[:post][:id])
-       work_off
-       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
-       puts a.inspect
-       work_off
-       @u.get_user_activities(@u.id,1)
-       a = @u.search_models({:type => "entity",:name => "pi"})
-       puts a.inspect
-       a = @u.search_models({:type => "user",:name => "l"})
-       puts a.inspect
-       a = @u.search_models({:type => "channel",:name => "EA"})
-       puts a.inspect
-      a = @u.search_models({:type => "location",:name => "MA"})
-       puts a.inspect
+#       s = Summary.where(:id => a1[:post][:summary_id]).first
+#       puts s.inspect
+#       s.should_not be_blank
+#
+#       puts "Get Stream 1"
+#       a =@u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_user, :filter => {:word_id => a1[:post][:word][:id] },
+#                         :updated_at => Time.now.utc})
+#       a.should_not be_blank
+#       puts a.inspect
+#
+#       a = SummaryRank.add_analytics({:fields => ["posts"], :summary_id => a1[:post][:summary_id] })
+#       puts a.inspect
+#       a.should_not be_blank
+#
+#       a5 = @u.create_activity(:word => "eating" , :text => "http://www.youtube.com/watch?222 http://www.flickr.com/ wow",:location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
+#                              :enrich => true,:summary_category=>"cars" ,
+#                               :status => AppConstants.status_public)
+#
+#       @u1.subscribe_summary(a5[:post][:summary_id])
+#       @u2.subscribe_summary(a5[:post][:summary_id])
+#
+#       s1 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "facebook", :action => "share"})
+#       s2 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "twitter", :action => "share", :desc => "wow"})
+#
+#       com1 = @u1.create_comment(:activity_id => a5[:post][:id], :text => "11111111111 1")
+#       puts com1
+#       com2 = @u.create_comment(:activity_id => a5[:post][:id], :text => " 2222222222222 ")
+#       puts com2
+#
+#       @c1 = @u1.create_campaign( :name => "like", :value => 1,:activity_id => a5[:post][:id] )
+#       @c2 = @u3.create_campaign( :name => "like", :value => 2, :activity_id => a5[:post][:id] )
+#
+#       work_off
+#
+#       a = SummaryRank.add_analytics({:fields => ["likes"], :summary_id => a5[:post][:summary_id] })
+#       puts a.inspect
+#
+#       @u2.unsubscribe_summary(a5[:post][:summary_id])
+##
+#       work_off
+#
+#       a = @u.get_analytics({:fields => ["all"], :summary_id => a5[:post][:summary_id] })
+#       puts a.inspect
+#
+#
+#       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
+#       puts a.inspect
+#
+#
+#       @u1.remove_comment(com1[:comment][:id])
+#       @u1.remove_campaign({:activity_id => a5[:post][:id], :user_id => @u1.id, :name => "like"})
+#
+#       work_off
+#       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
+#       puts a.inspect
+#
+#       @u.remove_activity(a5[:post][:id])
+#       work_off
+#       a = @u.get_analytics_summary({ :summary_id => a5[:post][:summary_id] })
+#       puts a.inspect
+#       work_off
+#       @u.get_user_activities(@u.id,1)
+#       a = @u.search_models({:type => "entity",:name => "pi"})
+#       puts a.inspect
+#       a = @u.search_models({:type => "user",:name => "l"})
+#       puts a.inspect
+#       a = @u.search_models({:type => "channel",:name => "EA"})
+#       puts a.inspect
+#      a = @u.search_models({:type => "location",:name => "MA"})
+#       puts a.inspect
     end
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY
@@ -1227,6 +1229,7 @@ describe Activity do
 
   end
 end
+
 
 
 
@@ -1267,5 +1270,7 @@ end
 #  created_at            :datetime
 #  updated_at            :datetime
 #  source_msg_id         :string(255)
+#  category_type         :string(255)
+#  category_id           :string(255)
 #
 
