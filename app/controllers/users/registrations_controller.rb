@@ -6,14 +6,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     process_authentication=false
     Rails.logger.info("[CNTRL] [REGISTRATION] Registration called with params #{params}")
     build_resource
-
+    @key=''
+    @provider=''
+    @uid=''
     if !params.nil? && !params[:user].nil?
-      key=params[:user][:key]
-      provider=params[:user][:provider]
-      uid=params[:user][:uid]
-      Rails.logger.info("[CNTRL] [REGISTRATION] Into create #{provider} UID #{uid} Key #{key}")
-      if !key.nil? && !provider.nil? && !uid.nil? && !key.empty? &&  !provider.empty? && !uid.empty?
-        Rails.logger.info("[CNTRL] [REGISTRATION] Provider #{provider} UID #{uid} Key #{key}")
+      @key=params[:user][:key]
+      @provider=params[:user][:provider]
+      @uid=params[:user][:uid]
+      Rails.logger.info("[CNTRL] [REGISTRATION] Into create #{@provider} UID #{@uid} Key #{@key}")
+      if !@key.nil? && !@provider.nil? && !@uid.nil? && !@key.empty? &&  !@provider.empty? && !@uid.empty?
+        Rails.logger.info("[CNTRL] [REGISTRATION] Provider #{@provider} UID #{@uid} Key #{@key}")
         process_authentication=true
       end
     end
@@ -21,10 +23,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.save!
       if process_authentication
         Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
-        authentication=Authentication.find_by_provider_and_uid(provider, uid)
+        authentication=Authentication.find_by_provider_and_uid(@provider, @uid)
         unless authentication.nil?
           Rails.logger.info("[CNTRL] [REGISTRATION] Authentication is not nil")
-          if authentication.salt == key && authentication.user_id.nil?
+          if authentication.salt == @key && authentication.user_id.nil?
             user = resource
             authentication.user_id = user.id
             Rails.logger.info("[CNTRL] [REGISTRATION] Updating userid for authentication")

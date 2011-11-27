@@ -4,7 +4,7 @@
  *
  */
 function aw_get_all_channel_html(channel_info){
-  var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category.name); 
+  var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category_data); 
   var channel_theme = default_theme.thumb;
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
