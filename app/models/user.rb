@@ -349,20 +349,25 @@ class User < ActiveRecord::Base
     return users_list
 
   end
-
-  def self.search(search)
+  #INPUT => {:name => "sudh"}
+  #OUTPUT => [ :id => 123, :image => "http://xyz.com", :name => "sudhanshu saxena" }
+  def self.search(params)
+    Rails.logger.info("[MODEL] [USER] search entering #{params.inspect}")
     array = []
-    unless search.blank?
+    unless params[:name].blank?
       #user_type is added for ADMIN USER
       select("id,full_name,photo_small_url, user_type").order("full_name").
                   where( ['users.email = ?
-                            or full_name ILIKE ?', search,
-                                                   "%#{search}%"]).all.each do |attr|
+                            or full_name ILIKE ?', params[:name],
+                                                   "#{params[:name]}%"]).all.each do |attr|
         Rails.logger.info("[MODEL] [USER] [SEARCH] ============= #{attr}")
         #ADMIN USER
-        array << attr if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
+        h = {:id => attr.id, :image => attr.photo_small_url, :name => attr.full_name}
+        array << h if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
+
       end
     end
+    Rails.logger.info("[MODEL] [USER] search leaving #{params.inspect}")
     array
   end
 
@@ -477,6 +482,7 @@ class User < ActiveRecord::Base
      if !sort_order.blank? && sort_order == 1
         word_array = word_array.sort {|x, y| x[:name] <=> y[:name] }
      end
+
      Rails.logger.debug("[MODEL] [User] [get_user_activities] leaving ")
      word_array
 
@@ -1126,7 +1132,8 @@ class User < ActiveRecord::Base
   #                 }
   # :category_data => {
   #                     :id => category.id, :category_id => "food",:name => "food and drink",:type => "/food",
-  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00
+  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  #                     :channel => "IAmFoodie"
   #                   }
   # :analytics_summary => {
   #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
@@ -1222,7 +1229,8 @@ class User < ActiveRecord::Base
   #                 }
   # :category_data => {
   #                     :id => category.id, :category_id => "food",:name => "food and drink",:type => "/food",
-  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00
+  #                     :hierarchy => "/", :user_id => 123, :summary_id => 234, :time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  #                     :channel => "IAmFoodie"
   #                   }
   # :analytics_summary => {
   #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
@@ -2180,6 +2188,37 @@ class User < ActiveRecord::Base
     object = SummaryRank.get_analytics(params)
     Rails.logger.info("[MODEL] [USER] [get_analytics] leaving  " + params.inspect)
     object
+  end
+  #INPUT => {:type => "entity" OR "location"  OR "channel" OR "user" ,
+  #          :name => "sach" }
+  #OUTPUT => #if type entity
+  #         [
+  #           {
+  #             :id => entity.id, :name => "sachin tendulkar", :image => "http://xyz.com",:time => Thu, 14 Jul 2011 05:42:20 UTC +00:00,
+  #             :description => "http://wikipedia.com/sachin_tendulkar",  :type => {'id' => '/cricket/athlete' , 'name' => 'athlete'}
+  #          }
+  #     ,..]
+  #                           OR
+  #        #if type channel
+  #        [{:name  =>"food",  :category_id => "food", :category_name => "food and drink"}, ...]
+  #                           OR
+  #        #if type  location
+  #           [
+  #              { :id => 1234, :type => 1, :url => "http://google.com", :name => "Google"},  #
+  #              {   :id => 1234, :type => 2, :lat => 23.456, :long => 45.678, :name => "Time Square, New york", :city => "New York",
+  #                 :country => "bangalore"},                                                      OR
+  #              { :id => 1234, :type => 2, :name => "John's home"},
+  #        ...]
+  def search_models(params)
+    Rails.logger.info("[MODEL] [USER] search entering #{params.inspect}")
+    array = []
+    params[:type] = "SummaryCategory" if params[:type] == "channel"
+    klass = params[:type].camelize.constantize
+    array = klass.search({:name => params[:name]})
+    return array
+  rescue => e
+    Rails.logger.info("[MODEL] [USER] search RESCUE ERROR #{e.message} for #{params.inspect}")
+    []
   end
   # private methods
   private

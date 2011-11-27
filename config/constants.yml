@@ -31,6 +31,8 @@ development: &default
 
   max_number_of_summmary:               50
   max_number_of_users:                  50
+  max_number_of_entities:               50
+  max_number_of_locations:               50
 
 
   default_comment_string:               "Comment"

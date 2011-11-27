@@ -284,21 +284,44 @@ div.awppm_chn_channel_wrapper {
 /* line 225, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_section_label {
   height: 30px;
-  width: 100%;
-  background: #e5e5e5;
-  color: #333333;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: black;
+  color: white;
   font-size: 16px;
+  position: absolute;
+  top: -15px;
+  left: -1px;
+  margin-bottom: 10px;
+  -moz-box-shadow: 0 0 5px #dddddd;
+  -webkit-box-shadow: 0 0 5px #dddddd;
+  box-shadow: 0 0 5px #dddddd;
+  border-radius: 4px;
+  /* height: 30px */
+  /* width: 100% */
+  /* background: #e5e5e5 */
+  /* color: #333 */
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif */
+  /* font-size: 16px */
 }
-/* line 232, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 244, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_section_label span {
-  color: #333333;
+  color: white;
   font-size: 20px;
   padding: 8px;
   text-shadow: 0 1px rgba(255, 255, 255, 0.6);
 }
-/* line 237, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
-.awppm_chn_data_section_label .awppm_chn_data_section_stream_link_box {
+
+/* line 252, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box_wrapper {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  /* width: 50px */
+  /* height: 30px */
+  /* border: 1px solid red */
+}
+
+/* line 261, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box {
   height: 30px;
   width: 20px;
   display: block-inline;
@@ -306,18 +329,18 @@ div.awppm_chn_channel_wrapper {
   padding: 5px;
   position: relative;
 }
-/* line 245, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
-.awppm_chn_data_section_label .awppm_chn_data_section_stream_link_box a .awppm_chn_data_section_stream_link_img_box {
+/* line 269, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box a .awppm_chn_data_section_stream_link_img_box {
   background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1.png");
   width: 20px;
   height: 20px;
 }
-/* line 249, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
-.awppm_chn_data_section_label .awppm_chn_data_section_stream_link_box:hover .awppm_chn_data_section_stream_link_img_box {
+/* line 273, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box:hover .awppm_chn_data_section_stream_link_img_box {
   background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1_hover.png");
 }
-/* line 251, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
-.awppm_chn_data_section_label .awppm_chn_data_section_stream_link_box .aw_ppm_stream_link_info_hover_box {
+/* line 275, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box .aw_ppm_stream_link_info_hover_box {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 10px;
   position: absolute;
@@ -331,13 +354,13 @@ div.awppm_chn_channel_wrapper {
   overflow: hidden;
   display: none;
 }
-/* line 264, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
-.awppm_chn_data_section_label .awppm_chn_data_section_stream_link_box:hover .aw_ppm_stream_link_info_hover_box {
+/* line 288, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box:hover .aw_ppm_stream_link_info_hover_box {
   display: block;
 }
 
 /* for all and subscribed channels, we will have a slightly bigger size */
-/* line 269, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 297, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_info_more {
   width: 50px;
   height: 20px;
@@ -350,7 +373,7 @@ div.awppm_chn_channel_wrapper {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 280, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 308, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_channels_box {
   width: 100%;
   height: auto;
@@ -358,7 +381,7 @@ div.awppm_chn_channel_wrapper {
   margin-bottom: 30px;
 }
 
-/* line 286, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 314, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_busy_channels_box {
   position: absolute;
   top: 0;
@@ -371,7 +394,7 @@ div.awppm_chn_channel_wrapper {
   background: black;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 297, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 325, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_busy_channels_box .awppm_chn_busy_mini_box {
   width: 50px;
   height: 50px;
@@ -381,7 +404,7 @@ div.awppm_chn_channel_wrapper {
   left: 50%;
   position: absolute;
 }
-/* line 305, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 333, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_busy_channels_box .awppm_chn_busy_mini_box img.awppm_chn_busy_image {
   width: 50px;
   height: 50px;
