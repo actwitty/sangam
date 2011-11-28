@@ -1,13 +1,13 @@
 var aw_local_default_channel_theme_json = {
-                                          'pets and animals' : {
+                                          'animals' : {
                                                                   'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/pets.jpg',
                                                                   'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/pets.jpg' 
                                                                },
-                                          'arts and design': {
+                                          'arts': {
                                                                   'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/art.jpg',
                                                                   'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/art.jpg' 
                                                                },
-                                          'books and articles': {
+                                          'books': {
                                                                   'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/books.jpg',
                                                                   'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/books.jpg' 
                                                                },
@@ -19,11 +19,11 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/cars.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/cars.jpg' 
                                                   },
-                                          'holidays and events':{
+                                          'events':{
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/celebration.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/celebration.jpg' 
                                                   },
-                                          'culture and society': {
+                                          'politics': {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/culture.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/culture.jpg' 
                                                   },
@@ -36,7 +36,7 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/education.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/education.jpg' 
                                                   },
-                                        'fashion and style':{
+                                        'fashion':{
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/fashion.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/fashion.jpg' 
                                                   },
@@ -44,7 +44,7 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/food.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/food.jpg' 
                                                   },
-                                        'toys and games': {
+                                        'games': {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/games.jpeg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/games.jpg' 
                                                   },
@@ -56,7 +56,7 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/home.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/home.jpg' 
                                                   },
-                                        'hobbies and interest' : {
+                                        'hobbies' : {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/hobbies.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/hobbies.png' 
                                                   },
@@ -76,7 +76,7 @@ var aw_local_default_channel_theme_json = {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/technology.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/technology.png' 
                                                   },
-                                        'travel and places':{
+                                        'places':{
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/travel.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/travel.jpg' 
                                                   },
@@ -90,9 +90,9 @@ var aw_local_default_channel_theme_json = {
  *
  *
  */
-function aw_lib_get_default_channel_theme_for_category(category){
-  if ( category && category.length && aw_local_default_channel_theme_json[category]){
-    return aw_local_default_channel_theme_json[category];
+function aw_lib_get_default_channel_theme_for_category(category_data){
+  if ( category_data && category_data.category_id && aw_local_default_channel_theme_json[category_data.category_id]){
+    return aw_local_default_channel_theme_json[category_data.category_id];
   }else{
     return aw_local_default_channel_theme_json['default'];
   }
@@ -102,9 +102,9 @@ function aw_lib_get_default_channel_theme_for_category(category){
  *
  *
  */
-function aw_lib_get_default_stream_theme_for_category(category){
-  if ( category && category.length && aw_local_default_channel_theme_json[category]){
-    return aw_local_default_channel_theme_json[category].bkg;
+function aw_lib_get_default_stream_theme_for_category(category_data){
+  if ( category_data && category_data.category_id && aw_local_default_channel_theme_json[category_data.category_id]){
+    return aw_local_default_channel_theme_json[category_data.category_id].bkg;
   }else{
     return aw_local_default_channel_theme_json['default'].bkg;
   }

@@ -224,45 +224,73 @@ div.awppm_chn_channel_wrapper
 
 .awppm_chn_data_section_label
   height: 30px
-  width: 100%
-  background: #e5e5e5
-  color: #333
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  background: #000
+  color: #fff
   font-size: 16px
+  position: absolute
+  top: -15px
+  left: -1px
+  margin-bottom: 10px
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+  border-radius: 4px
+  /* height: 30px
+  /* width: 100%
+  /* background: #e5e5e5
+  /* color: #333
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  /* font-size: 16px
   span
-    color: #333
+    color: #fff
     font-size: 20px
     padding: 8px
     text-shadow: 0 1px rgba(255, 255, 255, 0.6)
-  .awppm_chn_data_section_stream_link_box
-    height: 30px
-    width: 20px
-    display: block-inline
-    float: right
-    padding: 5px
-    position: relative
-    a
-      .awppm_chn_data_section_stream_link_img_box
-        background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1.png")
-        width: 20px
-        height: 20px
-    &:hover  .awppm_chn_data_section_stream_link_img_box
-      background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1_hover.png")
-    .aw_ppm_stream_link_info_hover_box
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-      font-size: 10px
-      position: absolute
-      left: 1em
-      top: 3em
-      z-index: 99
-      width: 100px
-      height: 40px
-      background-color: #ffffcc
-      border: 1px solid #ccc
-      overflow: hidden
-      display: none
-    &:hover  .aw_ppm_stream_link_info_hover_box
-      display: block
+
+
+
+.awppm_chn_data_section_stream_link_box_wrapper
+  position: absolute
+  right: 0
+  top: 0px
+  /* width: 50px
+  /* height: 30px
+  /* border: 1px solid red
+
+
+.awppm_chn_data_section_stream_link_box
+  height: 30px
+  width: 20px
+  display: block-inline
+  float: right
+  padding: 5px
+  position: relative
+  a
+    .awppm_chn_data_section_stream_link_img_box
+      background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1.png")
+      width: 20px
+      height: 20px
+  &:hover  .awppm_chn_data_section_stream_link_img_box
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1_hover.png")
+  .aw_ppm_stream_link_info_hover_box
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 10px
+    position: absolute
+    left: 1em
+    top: 3em
+    z-index: 99
+    width: 100px
+    height: 40px
+    background-color: #ffffcc
+    border: 1px solid #ccc
+    overflow: hidden
+    display: none
+  &:hover  .aw_ppm_stream_link_info_hover_box
+    display: block
+
+
+
+
 /* for all and subscribed channels, we will have a slightly bigger size
 
 
