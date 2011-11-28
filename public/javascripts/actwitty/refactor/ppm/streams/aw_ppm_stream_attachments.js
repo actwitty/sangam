@@ -46,6 +46,7 @@ function aw_api_stm_get_attachment_box_id(stream_info, attachment_id){
 function aw_ppm_stm_attachments_get_videos_html(stream_info){
   var aw_videos_html = '';
   var aw_img_delete_html = '';
+  var aw_video_delete_html = '';
   var aw_videos_html = '';
   var videos_count = 0;
   if( stream_info.post.user.id == aw_lib_get_session_owner_id()){

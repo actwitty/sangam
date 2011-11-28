@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :validatable,:token_authenticatable,
          :lockable , :omniauthable
           #,:devise_create_users
-  attr_accessor :dob_str, :gender, :dob, :current_location, :current_geo_lat, :current_geo_long
+  attr_accessor :dob_str
   # Setup accessible (or protected) attributes for your model
   attr_accessible  :email, :username, :password,
                    :dob, :dob_str, :full_name, :gender,:photo_small_url,
@@ -67,7 +67,8 @@ class User < ActiveRecord::Base
 
 
   def validate_fields
-    Rails.logger.info("[MODEL] [USER] VALIDATION image [ #{self.photo_small_url} ]")
+    Rails.logger.info("[MODEL] [USER] BEFORE VALIDATION #{self.inspect}")
+    
     if self.username.present?
       self.username.strip!
       self.username.downcase!
@@ -111,8 +112,9 @@ class User < ActiveRecord::Base
     if !username_validation
       Rails.logger.info("[MODEL][User][validate_fields] username is bad")
     end
-
-    if self.gender.blank?
+    
+    Rails.logger.info("[MODEL][User][validate_fields][Gender] #{self.gender}")
+    if self.gender.blank? or self.gender.nil?
       Rails.logger.info("[MODEL][User][validate_fields] Gender is nil")
       self.errors.add :gender, "gender cannot be blank"
       gender_validation = false
@@ -125,13 +127,14 @@ class User < ActiveRecord::Base
     end
 
 
-    if self.dob.blank?
+    Rails.logger.info("[MODEL][User][validate_fields][DoB] #{self.dob}")
+    if self.dob.blank? or self.dob.nil?
       Rails.logger.info("[MODEL][User][validate_fields] DOB is nil")
       self.errors.add :dob, "date of birth cannot be blank"
       dob_validation = false
     end
 
-    if self.full_name.blank?
+    if self.full_name.blank? or self.full_name.nil?
       Rails.logger.info("[MODEL][User][validate_fields] Full Name is nil")
       self.errors.add :full_name, "name cannot be blank"
       name_validation = false
@@ -143,18 +146,22 @@ class User < ActiveRecord::Base
       end
     end
 
-    if self.current_location.blank? or self.current_geo_lat.blank? or self.current_geo_long.blank?
+    if self.current_location.blank? or self.current_geo_lat.blank? or self.current_geo_long.blank? or
+       self.current_location.nil? or self.current_geo_lat.nil? or self.current_geo_long.nil?
       Rails.logger.info("[MODEL][User][validate_fields] Geo location lat/long is invalid ")
       self.errors.add :current_location, "select a valid geo location"
       geo_validation = false
     end
-
+  
+    Rails.logger.info("[MODEL][User][validate_fields] Gender Validation #{gender_validation}")
     if !username_validation or !gender_validation or !name_validation or !geo_validation or !dob_validation
       Rails.logger.info("[MODEL][User][validate_fields] atleast one validation failed ")
       return false
     end
 
+    Rails.logger.info("[MODEL] [USER] AFTER VALIDATION #{self.inspect}")
     Rails.logger.info("[MODEL][User][validate_fields] Validations all good ")
+
     return true
   end
 
@@ -372,7 +379,7 @@ class User < ActiveRecord::Base
   end
 
   def import_foreign_profile_to_user(foreign_profile)
-    Rails.logger.info("[MODEL] [USER] [import_foreign_profile_to_user] called #{foreign_profile}")
+    Rails.logger.info("[MODEL] [USER] [import_foreign_profile_to_user] called #{foreign_profile.inspect}")
 
     unless  foreign_profile.name.blank?
       self.full_name = foreign_profile.name

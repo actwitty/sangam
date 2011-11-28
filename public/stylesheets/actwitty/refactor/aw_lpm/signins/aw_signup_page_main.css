@@ -329,9 +329,9 @@ img.awlpm_signup_aw_logo_img {
   width: 250px;
   height: 12px;
   font-size: 12px;
+  color: red;
   margin-left: 20px;
   display: block;
-  color: black;
 }
 
 /* line 214, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */

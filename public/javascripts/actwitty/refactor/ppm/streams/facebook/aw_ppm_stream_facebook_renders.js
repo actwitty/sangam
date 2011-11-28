@@ -58,7 +58,7 @@ function aw_api_facebook_render_post_data(stream_info, fb_data_json){
     image_html ='<div class="awppm_stm_fb_post_attachments">'  +
                   '<div class="awppm_stm_fb_attachment_single_image_box" >' +
                     '<a rel="aw_ppm_stm_facebook_fancy_box_img_grp_'+ aw_images_container_id +'" href="' + fb_data_json['image'] + '" title="' + caption  + '" >' + 
-                            '<img alt="" src="'+ fb_data_json['image'] + '"   width="200" alt="" />' +
+                            '<img alt="" src="'+ fb_data_json['image'] + '"   width="300" alt="" />' +
                     '</a>' +
                   '</div>' +
                 '</div>';
@@ -92,16 +92,17 @@ function aw_api_facebook_render_post_data(stream_info, fb_data_json){
       message = fb_data_json['internal_message'] + '<br>';
     }
 
-
-
-    text_html = '<div class="aw_ppm_dyn_stm_fp_text_box">' +
-                    '<p class="aw_ppm_dyn_stm_fp_text_box">' +
+    
+    text_html = '<div class="aw_ppm_dyn_stm_fb_post_text aw_js_ppm_stm_fb_post_text">' +
+                    '<p class="aw_ppm_dyn_stm_fb_text_box ">' +
                         message +
                     '</p>' +
-                    '<p class="aw_ppm_dyn_stm_fp_link_text_box">' +
+
+                    '<p class="aw_ppm_dyn_stm_fb_link_text_box">' +
                         description + '<br>' +
                         '<a href="' + link + '">' + link + '</a>' +
                     '</p>' +
+                    '<input type="hidden" class="aw_js_ppm_stm_fb_link" value="' + fb_data_json['link'] + '" />'+
                     '</div>' +
                   '</div>';
   }
@@ -113,4 +114,10 @@ function aw_api_facebook_render_post_data(stream_info, fb_data_json){
     aw_ppm_stm_activate_facebook_fancybox(aw_images_container_id);
   }
 
+}
+
+
+function  aw_api_ppm_stm_facebook_jump_to_fb_link(element){
+  var link = element.find(".aw_js_ppm_stm_fb_link").val();
+  window.location.href = link; 
 }

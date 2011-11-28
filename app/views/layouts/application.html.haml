@@ -32,17 +32,13 @@
 
     -if @page_mode != "authentications_page"
       = include_javascripts :autocomplete
-    %script{:src => "http://use.typekit.com/fuc7nvw.js", :type => "text/javascript"}
-
-    :javascript
-      try{Typekit.load();}catch(e){}
     :javascript
       if ($.browser.msie && $.browser.version.substr(0,1)<9){
         alert("oops!! You seems to be using older version of browser, ActWitty is not supported yet on your browser version. We suggest you to upgrade to higher version.");
       }
     = csrf_meta_tag
      
-    %link{:href => "/images/actwitty/favicon.ico", :rel => "icon", :type => "image/ico"}/
+    %link{:href => "/images/actwitty/refactor/aw_common/aw_favicon.ico", :rel => "icon", :type => "image/ico"}/
     
     
   /%body

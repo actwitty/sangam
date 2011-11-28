@@ -9,13 +9,13 @@
 /* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
 .aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_img_link img {
   padding: 1px;
-  border: 1px solid #444444;
+  border: 1px solid #cccccc;
   width: 25px;
   height: 25px;
 }
 /* line 12, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
-.aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_img_link:hover {
-  border: 1px solid #222222;
+.aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_img_link img:hover {
+  border: 1px solid #444444;
 }
 /* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.sass */
 .aw_ppm_stm_dyn_peoples_box a.aw_ppm_stm_dyn_people_name_link span {

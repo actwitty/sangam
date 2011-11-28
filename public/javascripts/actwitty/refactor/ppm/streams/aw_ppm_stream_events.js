@@ -121,5 +121,11 @@ $(document).ready(function(){
     aw_api_ppm_stm_main_jump_to_post_on_text_click($(this));
     return false;
   });
+
+  /* go to the facebook post */
+  $(".aw_js_ppm_stm_fb_post_text").live('click', function(){
+    aw_api_ppm_stm_facebook_jump_to_fb_link($(this));
+    return false;
+  });
   
 });
