@@ -191,7 +191,16 @@ var aw_srv_local_json_data_cache_manager = {
                                                                               'MULTI' : true,
                                                                               'URL' : "/home/get_document_stream.json"
                                                                                 
-                                                                               }
+                                                                               },
+                                        'AW_SRV_PPM_CMN_SEARCH_ANY_TYPE': {
+                                                                            'CB': function aw_temp_resp_fn_20(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_cmn_header_render_search_any(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/search_any.json"
+                                                                          }
 
                                                                             
                                     };

@@ -51,7 +51,7 @@ Sangam::Application.routes.draw do
   match '/home/get_streams' => 'home#get_streams'
   match '/home/remove_document' => 'home#remove_document'
 
-  match '/home/search_people' => 'home#search_people'
+  match '/home/search_any' => 'home#search_any'
 
   match '/view' => 'home#activity'
   match '/home/get_single_activity' => 'home#get_single_activity'

@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
                         :get_summary,:get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
                         :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,:get_related_locations,
-                        :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
+                        :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary, :search_any]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -243,17 +243,7 @@ class HomeController < ApplicationController
 	 Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
 
   end
-  ############################################
-  def search_people
-    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search params : #{params}")
-    response = User.search(params[:q])
-    response_json = response.to_json
-    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search response : #{response_json}")
-    if request.xhr?
-        expires_in 5.minutes
-        render :json => response_json, :status => 200
-    end
-  end
+  
   ############################################
   def subscribers
     Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] request params : #{params}")
@@ -1243,5 +1233,21 @@ class HomeController < ApplicationController
       render :text => "Not authorized", :status => '403'
     end
   end
+  ############################################
+  def search_any
+    Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search params : #{params}")
+    query = {}
+    query[:type] = params[:type]
+    query[:name] = params[:name]
+
+    response_json = current_user.search_models(query)
+    Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search response : #{response_json}")
+    if request.xhr?
+        expires_in 5.minutes
+        render :json => response_json, :status => 200
+    end
+  end
+  ############################################
+
 end
 

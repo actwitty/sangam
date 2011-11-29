@@ -77,7 +77,7 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
   html =    '<div class="aw_ppm_chn_dyn_anlytc_summary_header">' +
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_rank">'+
                       '<span class="aw_ppm_chn_dyn_analytc_rank_label"> Rank </span>'+
-                      '<img class="aw_ppm_chn_dyn_anlytc_rank_icon" src="/images/actwitty/refactor/aw_ppm/channel/analytics/analytic_rank_icon_1.png">'+
+                      '<img class="aw_ppm_chn_dyn_anlytc_rank_icon" src="/images/actwitty/refactor/aw_ppm/channel/analytics/analytic_rank_icon.png">'+
                       '<span>100</span>'+
                   '</div>'+
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_lut">'+
