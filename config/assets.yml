@@ -32,6 +32,10 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.js
     - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.full.js
     - public/javascripts/actwitty/refactor/ppm/externals/plupload/jquery.ui.plupload/jquery.ui.plupload.js
+    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
+    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
+    - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
+    - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
   profile_channels:
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_renderer.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_events.js
@@ -63,11 +67,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_srv_request.js
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_renders.js
   profile_main_extra:
-    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
-    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.elastic.source.js
-    - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
-    - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
     - public/javascripts/plugins/date.js
     - public/javascripts/plugins/actwitty-custom.js
     - public/javascripts/plugins/expander_readmore.js

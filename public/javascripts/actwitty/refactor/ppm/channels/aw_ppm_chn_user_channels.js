@@ -77,6 +77,7 @@ function aw_api_srv_resp_ppm_chn_render_user_channels(params){
     $('#aw_js_ppm_user_chn_container').append(html);
 
   });
+  $("abbr.aw_js_chn_timeago").timeago();
   /* enable the more button */
   $("#aw_js_ppm_user_chn_data_more").attr("disabled", false);
   $('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").hide();
