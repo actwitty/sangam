@@ -923,7 +923,7 @@ class HomeController < ApplicationController
     @user=current_user
     @profile_page = 1
     @page_mode="entity"
-    @entity_id = params[:entity_id]
+    @entity_id = params[:id]
 
   end
   ######################################
@@ -958,7 +958,7 @@ class HomeController < ApplicationController
     @user=current_user
     @profile_page = 1
     @page_mode="location"
-    @location_id = params[:location_id]
+    @location_id = params[:id]
 
   end
   ######################################
@@ -991,7 +991,7 @@ class HomeController < ApplicationController
     @user=current_user
     @profile_page = 1
     @page_mode="channel"
-    @channel_id = params[:channel_id]
+    @channel_id = params[:id]
 
   end
   ######################################
@@ -1238,12 +1238,11 @@ class HomeController < ApplicationController
     Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search params : #{params}")
     query = {}
     query[:type] = params[:type]
-    query[:name] = params[:name]
+    query[:name] = params[:q]
 
     response_json = current_user.search_models(query)
     Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search response : #{response_json}")
     if request.xhr?
-        expires_in 5.minutes
         render :json => response_json, :status => 200
     end
   end

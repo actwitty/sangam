@@ -69,7 +69,38 @@
   box-shadow: 0 0 8px #dddddd;
 }
 
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_search_autocomplete_box {
+  display: inline;
+  width: 100%;
+  height: 26px;
+}
 /* line 70, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_search_autocomplete_box .awppm_search_img_box {
+  display: block-inline;
+  width: 35px;
+  padding-left: 5px;
+  padding-right: 5px;
+  float: left;
+}
+/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_search_autocomplete_box .awppm_search_name_box {
+  width: 200px;
+  overflow: hidden;
+  display: block-inline;
+  padding: 5px;
+  float: left;
+  font-size: 13px;
+}
+/* line 83, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+.awppm_search_autocomplete_box .awppm_search_type_box {
+  display: block-inline;
+  float: right;
+  margin-right: 5px;
+  width: 26px;
+}
+
+/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_bar {
   position: absolute;
   top: 0;
@@ -93,7 +124,7 @@
   box-shadow: inset 0 0 2px black;
   padding: 3px 0px 3px 10px;
 }
-/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 116, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_bar:hover {
   background: white;
   background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
@@ -104,17 +135,17 @@
   background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
-/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_bar img {
   vertical-align: middle;
 }
-/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_bar span {
   color: #333333;
   font-weight: bold;
 }
 
-/* line 109, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 132, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_logout {
   text-decoration: none;
   float: right;
@@ -122,14 +153,14 @@
   margin-top: 7px;
   margin-right: 5px;
 }
-/* line 115, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 138, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_logout:hover {
   color: #b22222;
   font-weight: bold;
   font-size: 15px;
 }
 
-/* line 120, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 143, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_settings {
   text-decoration: none;
   float: right;
@@ -137,14 +168,14 @@
   margin-top: 7px;
   margin-right: 5px;
 }
-/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 149, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_settings:hover {
   color: #b22222;
   font-weight: bold;
   font-size: 15px;
 }
 
-/* line 131, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 154, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_info {
   text-decoration: none;
   float: left;
@@ -152,14 +183,14 @@
   margin-top: 0px;
   margin-left: 5px;
 }
-/* line 137, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 160, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_info:hover {
   color: #b22222;
   font-weight: bold;
   font-size: 15px;
 }
 
-/* line 148, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 171, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_image {
   height: 50px;
   width: 50px;
@@ -169,14 +200,14 @@
   overflow: hidden;
   background: none;
 }
-/* line 156, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 179, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_image a img {
   padding-top: 10px;
   width: 40px;
   float: right;
 }
 
-/* line 160, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 183, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu {
   position: absolute;
   top: 35px;
@@ -191,20 +222,20 @@
   border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
 }
-/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 196, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu ul {
   list-style: none;
   padding-top: 3px;
   background: #454545;
   margin-top: 0px;
 }
-/* line 178, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 201, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu ul li {
   display: block;
   padding: 5px 0 5px 0;
   margin-left: -40px;
 }
-/* line 182, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 205, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu ul li a {
   padding: 3px 0px;
   font-size: 14px;
@@ -217,7 +248,7 @@
   text-align: center;
   zoom: 1;
 }
-/* line 193, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 216, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu ul li a span {
   position: absolute;
   bottom: -1px;
@@ -230,13 +261,13 @@
   display: none;
   zoom: 1;
 }
-/* line 204, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 227, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu ul li:hover a {
   border-color: #d7dbea;
   color: white;
   background: black;
 }
-/* line 208, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
+/* line 231, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu ul li:hover a span {
   display: block;
 }
