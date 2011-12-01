@@ -27,8 +27,8 @@ $(document).ready(function(){
    aw_api_ppm_initialize_chn_page(); 
   }else if( page_context == "profile_stm_page"){
    aw_api_ppm_initialize_stm_page(); 
-  }else if( page_context == "single_post") {
-    single_post_initializer();  /* in single_post.js */
+  }else if( page_context == "profile_single_activity_page") {
+    aw_api_ppm_initialize_single_post_page();
   }else if( page_context == "entity"){
     show_all_on_entity();   /* in entity_page.js */
   }else if( page_context == "location"){

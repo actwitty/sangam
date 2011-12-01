@@ -200,7 +200,17 @@ var aw_srv_local_json_data_cache_manager = {
                                                                               'DATA' : {},
                                                                               'MULTI' : true,
                                                                               'URL' : "/home/search_any.json"
-                                                                          }
+                                                                          },
+                                        'AW_SRV_PPM_STM_SINGLEPOST_FETCH' : {
+                                                                                'CB' : function aw_temp_resp_fn_21(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_single(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_single_activity.json"
+                                                                            }
+                                          
 
                                                                             
                                     };

@@ -73,6 +73,8 @@ javascripts:
     - public/javascripts/plugins/expander_readmore.js
     - public/javascripts/plugins/jquery-list-splitter/jquery.easyListSplitter.js
     - public/javascripts/actwitty/alpha/custom.js
+  profile_single_post_page:
+    - public/javascripts/actwitty/refactor/ppm/streams/substates/singlepost/aw_ppm_stream_singlepost.js
   autocomplete:
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.ajaxQueue.js
@@ -136,6 +138,8 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/lib/thickbox.css
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.css
+  profile_single_post_page:
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.css
   extras:
     - public/stylesheets/actwitty/alpha/images_layout.css
     - public/stylesheets/actwitty/alpha/multimedia.css

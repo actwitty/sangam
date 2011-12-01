@@ -1,0 +1,116 @@
+/*ActWitty Stylesheet file
+  *File: AW Profile Page Stream Module
+  *code: AWPPM (awlpm) Actwitty Profile Page Stream
+  *Author: ActWitty Developers
+  *Author URI: http://www.actwitty.com
+
+
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+
+/******************************************** Common for all Columns main Div's ************************************
+
+@mixin awppm_stm_singlepost_default_full_width
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+/* ----------------------------------------------Wrapper-------------------------------------
+
+div.awppm_stm_singlepost_wrapper
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+
+.awppm_stm_singlepost_column1
+  color: #D2D2D2
+  /*background-color:#33ccff
+  background: #363436
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81
+  border: 0px solid red
+
+.awppm_stm_singlepost_column2
+  color: #FFFFFF
+  background-color: #ffffff
+  border: 0px solid green
+
+.awppm_stm_singlepost_column3
+  color: #000000
+  background-color: #ffffff
+  border: 0px solid blue
+
+/******************************************* User box section for user photo and input box *************************
+
+#awppm_stm_singlepost_user_box
+  @include awppm_stm_singlepost_default_full_width
+  height: auto
+  margin-bottom: 30px
+  border: 0px solid blue
+
+#awppm_stm_singlepost_user_section
+  width: 960px
+  height: auto
+  margin: auto
+  border: 0px solid red
+  position: relative
+
+#awppm_stm_singlepost_user_info
+  height: 150px
+  width: 200px
+  border: 1px solid #ddd
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+  position: absolute
+  top: 20px
+  left: 20px
+  overflow:hidden
+
+#awppm_stm_singlepost_user_img
+  margin-top: 40px
+  img
+    width: 60px
+    &:hover
+      border: 1px solid #ccc
+
+#awppm_stm_singlepost_user_info span
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif
+  color: #555
+  font-size: 16px
+  text-align: center
+  &:hover
+    font-weight: bold
+
+
+#awppm_stm_singlepost_timeline_container_box
+  height: auto
+  min-height: 200px
+  width: 580px
+  margin-left: 300px
+  padding: 15px 10px 10px 10px
+  border: 0px solid blue
+  border: 1px solid #f4f4f4
+  float: left
+  display: inline-block
+  
+  .awppm_stm_singlepost_stream_timelines
+    margin: 0
+    width: 100%
+    border: 0px solid red
+    margin-top: 80px
+    display: inline-block
+    .awppm_stm_singlepost_data_info_more
+      width: 50px
+      height: 20px
+      position: absolute
+      bottom: 0
+      right: 0
+      color: #000
+      text-align: center
+      font-weight: bold
+    ul.awppm_stm_singlepost_post_timeline_list
+      width: 100%

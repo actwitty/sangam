@@ -4,15 +4,25 @@
     %meta{:charset => 'utf-8'}
     %title ActWitty - Check-in your interests
     = include_stylesheets :defaults
+
     -if @page_mode == "landing_page" or @page_mode == "authentications_page"
       = include_stylesheets :landing_pages
+    
     -if @page_mode == "profile_chn_page" or @page_mode == "profile_stm_page"
       = include_stylesheets :profile_page_commons
       = include_stylesheets :profile_page_externals
+    
     -if @page_mode == "profile_chn_page"
       = include_stylesheets :profile_page_channels
+    
     -if @page_mode == "profile_stm_page"
       = include_stylesheets :profile_page_streams
+    
+    -if @page_mode == "profile_single_activity_page"
+      = include_stylesheets :profile_page_commons
+      = include_stylesheets :profile_page_externals
+      = include_stylesheets :profile_page_streams
+      = include_stylesheets :profile_single_post_page
 
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
@@ -29,6 +39,10 @@
 
     -if @page_mode == "profile_stm_page"
       = include_javascripts :profile_streams
+
+    -if @page_mode == "profile_single_activity_page"
+      = include_javascripts :profile_streams
+      = include_javascripts :profile_single_post_page
 
     -if @page_mode != "authentications_page"
       = include_javascripts :autocomplete

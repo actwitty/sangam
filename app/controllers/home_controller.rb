@@ -780,16 +780,15 @@ class HomeController < ApplicationController
   ##############################################
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
-    @user=current_user
     @profile_page = 1
-    @page_mode="single_post"
-    @post_id = params[:id]
+    @page_mode="profile_single_activity_page"
+    @single_post_id = params[:id]
   end
   ##############################################
 
   def get_single_activity
    Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
-   activity_id = Integer(params[:activity_id])
+   activity_id = Integer(params[:id])
    activity_ids = [activity_id]
     if user_signed_in?
       Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
