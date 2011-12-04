@@ -69,9 +69,59 @@ li.aw_ppm_dyn_stm_stream_li_box
           &:hover
             color: #ee8c00
             cursor: pointer
-      img.aw_ppm_dyn_stm_stream_img_source
-        width: 10px
-        height: 10px
+
+      .aw_ppm_dyn_stm_stream_rename_channel
+        width: 15px
+        height: 15px
+        display: inline-block
+        float: right
+        margin-right: 5px
+        margin-left: 2px
+        margin-top: 3px
+        background-image: url("/images/actwitty/refactor/aw_ppm/stream/rename_channel_inactive.png")
+        position: relative
+        span
+          font-family: Calibri, Tahoma, Geneva, sans-serif
+          position: absolute
+          left: 12px
+          top: 12px
+          z-index: 99
+          margin-left: 0
+          width: 150px
+          background-color: #ffffcc
+          border: 1px solid #ccc
+          display: none
+        &:hover
+          background-image: url("/images/actwitty/refactor/aw_ppm/stream/rename_channel.png")
+          cursor: pointer
+        &:hover span
+          display: block
+
+      .aw_ppm_dyn_stm_stream_img_source
+        width: 20px
+        height: 20px
+        float: right
+        margin-right: 5px
+        margin-left: 5px
+        display: inline-block
+        position: relative
+        span
+          font-family: Calibri, Tahoma, Geneva, sans-serif
+          position: absolute
+          left: 15px
+          top: 15px
+          z-index: 99
+          margin-left: 0
+          width: 150px
+          background-color: #ffffcc
+          border: 1px solid #ccc
+          display: none
+        &:hover
+          cursor: pointer
+        &:hover span
+          display: block
+
+      
 
       /* Post Info Section - End
 

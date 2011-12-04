@@ -92,12 +92,72 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_s
   color: #ee8c00;
   cursor: pointer;
 }
-/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
-li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info img.aw_ppm_dyn_stm_stream_img_source {
-  width: 10px;
-  height: 10px;
+/* line 73, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_rename_channel {
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  float: right;
+  margin-right: 5px;
+  margin-left: 2px;
+  margin-top: 3px;
+  background-image: url("/images/actwitty/refactor/aw_ppm/stream/rename_channel_inactive.png");
+  position: relative;
 }
-/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 83, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_rename_channel span {
+  font-family: Calibri, Tahoma, Geneva, sans-serif;
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 99;
+  margin-left: 0;
+  width: 150px;
+  background-color: #ffffcc;
+  border: 1px solid #cccccc;
+  display: none;
+}
+/* line 94, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_rename_channel:hover {
+  background-image: url("/images/actwitty/refactor/aw_ppm/stream/rename_channel.png");
+  cursor: pointer;
+}
+/* line 97, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_rename_channel:hover span {
+  display: block;
+}
+/* line 100, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_img_source {
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline-block;
+  position: relative;
+}
+/* line 108, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_img_source span {
+  font-family: Calibri, Tahoma, Geneva, sans-serif;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  z-index: 99;
+  margin-left: 0;
+  width: 150px;
+  background-color: #ffffcc;
+  border: 1px solid #cccccc;
+  display: none;
+}
+/* line 119, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_img_source:hover {
+  cursor: pointer;
+}
+/* line 121, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_div_box .aw_ppm_dyn_stm_stream_post_info .aw_ppm_dyn_stm_stream_img_source:hover span {
+  display: block;
+}
+/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_title {
   width: 100%;
   height: 30px;
@@ -105,7 +165,7 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_title {
   background-color: white;
   border: 0px solid red;
 }
-/* line 84, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_title span {
   font-size: 21px;
   font-weight: bold;
@@ -113,7 +173,7 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_title span {
   color: #666666;
   padding: 0;
 }
-/* line 90, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 140, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box {
   width: 100%;
   height: 20px;
@@ -122,18 +182,18 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box {
   margin: 0;
   padding: 0;
 }
-/* line 97, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 147, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box img {
   margin-right: 5px;
 }
-/* line 99, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 149, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box span {
   font-size: 14px;
   color: #c8c8c8;
   font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 155, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data {
   font-size: 12px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -144,11 +204,11 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data {
   border: 0px solid red;
   padding: 0;
 }
-/* line 114, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 164, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data:hover {
   border: 1px solid #f8f8f8;
 }
-/* line 116, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 166, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text {
   /*border:1px solid blue; */
   font-size: 12px;
@@ -160,24 +220,24 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text {
   border: 0px solid red;
   padding: 0;
 }
-/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 176, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text:hover {
   border: 1px solid #f8f8f8;
 }
-/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 178, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p {
   text-align: left;
   color: #444444;
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 183, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity {
   color: #444444;
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 137, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 187, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter {
   border-radius: 10px;
   padding-left: 2px;
@@ -187,7 +247,7 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_
   font-size: 12px;
   position: relative;
 }
-/* line 145, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 195, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter span {
   font-size: 11px;
   font-weight: bold;
@@ -205,13 +265,13 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_
   border-radius: 3px 3px 3px 3px;
   display: none;
 }
-/* line 161, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 211, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter span:hover {
   cursor: pointer;
   border: 1px solid #dddddd;
   color: #333333;
 }
-/* line 165, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 215, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter:hover span {
   display: block;
 }

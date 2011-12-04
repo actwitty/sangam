@@ -1,8 +1,9 @@
 !!!
-%html
+%html{"xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://opengraphprotocol.org/schema/"}
   %head
     %meta{:charset => 'utf-8'}
     %title ActWitty - Check-in your interests
+    = display_meta_tags :site => 'ActWitty'
     = include_stylesheets :defaults
 
     -if @page_mode == "landing_page" or @page_mode == "authentications_page"

@@ -94,6 +94,7 @@
          
 
 /Secret cookies
+%input#aw_js_ppm_fb_access_token{:type => "hidden", :value => "#{@fb_access_token}" }
 %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
 %input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
 %input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }

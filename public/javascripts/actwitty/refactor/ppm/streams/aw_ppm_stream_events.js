@@ -127,5 +127,10 @@ $(document).ready(function(){
     aw_api_ppm_stm_facebook_jump_to_fb_link($(this));
     return false;
   });
+
+  $(".aw_js_ppm_stm_chn_rename_submit").live('click', function(){
+    aw_api_ppm_stm_chn_rename_submit_handler($(this));
+    return false;
+  });
   
 });

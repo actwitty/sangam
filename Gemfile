@@ -69,6 +69,9 @@ gem "geocoder"
 #Facebook
 gem "koala"
 
+#Twitter
+gem "twitter"
+
 #Wordnik Api
 gem 'wordnik', ">= 0.3"
 
@@ -87,6 +90,8 @@ gem "right_aws"
 gem 'pusher'
 #for asynchronous web-socket
 gem 'em-http-request'
+#Facebook meta tags
+gem 'meta-tags', :require => 'meta_tags'
 
 group :development do
   #query reviewer

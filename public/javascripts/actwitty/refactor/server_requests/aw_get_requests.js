@@ -209,7 +209,17 @@ var aw_srv_local_json_data_cache_manager = {
                                                                               'DATA' : {},
                                                                               'MULTI' : true,
                                                                               'URL' : "/home/get_single_activity.json"
-                                                                            }
+                                                                            },
+                                      'AW_SRV_PPM_STM_CHN_RENAME_LIST'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_17(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_rename_channel_list(params);
+                                                                              },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_channels.json"
+                                                                            }                                                                           
                                           
 
                                                                             

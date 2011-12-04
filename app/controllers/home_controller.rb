@@ -165,12 +165,51 @@ class HomeController < ApplicationController
     end
 
 
-      if user_signed_in?
-        authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
-        @fb_access_token = authentication.token
-        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
-      end
+    if user_signed_in?
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      @fb_access_token = authentication.token
+      Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+    end
 
+    #FB: Open graph tags start
+    @page_type = "activity"
+    @page_site_name = "ActWitty"
+    @page_image = "#{@user.photo_small_url}"
+    
+    unless @aw_mention_filter_text_val.blank?
+      @page_description = "#{@page_description} filtered for mentions of #{@aw_mention_filter_text_val}"
+    end
+    @page_url = current_url(:id=>@user.id)
+
+
+    #FB: Open graph tags start
+    fb_og_title = "#{@user.full_name} streams at ActWitty"
+    unless @aw_chn_filter_text_val.blank?
+      fb_og_title = "#{@user.full_name} #{@aw_chn_filter_text_val} streams at ActWitty"
+    end
+    
+    fb_og_description = "#{@user.full_name} #{@aw_chn_filter_text_val} streams at ActWitty."
+    unless @aw_mention_filter_text_val.blank?
+      fb_og_description = "#{@page_description} filtered for mentions of #{@aw_mention_filter_text_val}"
+    end
+
+    set_meta_tags :open_graph => {
+                                  :title => fb_og_title,
+                                  :type => "activity",
+                                  :site_name => "ActWitty",
+                                  :image => "#{@user.photo_small_url}",
+                                  :description => fb_og_description,
+                                  :url => current_url(:id=>@user.id)
+                                  }
+    #FB: Open graph tags end
+
+  end
+  ###################################################################################
+  # # https://x.com/y/1?page=1
+  # + current_url( :page => 3 )
+  # = https://x.com/y/1?page=3
+  def current_url(overwrite={})
+    url_for :only_path => false, :params => params.merge(overwrite)
   end
   ###################################################################################
   def show
@@ -209,6 +248,21 @@ class HomeController < ApplicationController
         end
       end
     end
+    if user_signed_in?
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      @fb_access_token = authentication.token
+      Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+    end
+    #FB: Open graph tags start
+    set_meta_tags :open_graph => {
+                                  :title => "#{@user.full_name} Channels at ActWitty",
+                                  :type => "activity",
+                                  :site_name => "ActWitty",
+                                  :image => "#{@user.photo_small_url}",
+                                  :description => "#{@user.full_name} social footprint organized under activity or interest channels.",
+                                  :url => current_url(:id=>@user.id)
+                                  }
+    #FB: Open graph tags end
 
   end
   ############################################
@@ -670,6 +724,11 @@ class HomeController < ApplicationController
 
       #Alok Adding pusher support
       current_user.push_event_to_pusher({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
+
+
+      current_user.post_new_activity_to_facebook(params, response_json)
+      current_user.post_new_activity_to_twitter(params, response_json)
+      
       @activity_json = response_json;
       respond_to do |format|
         format.json
@@ -783,27 +842,79 @@ class HomeController < ApplicationController
     @profile_page = 1
     @page_mode="profile_single_activity_page"
     @single_post_id = params[:id]
+    
+    activity_ids = [Integer(params[:id])]
+    activity_arr = current_user.get_all_activity(activity_ids)
+    activity_arr.each do |activity|
+
+      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
+      
+      post_location = ''
+      unless activity[:post][:location].nil?
+        unless activity[:post][:location][:name].nil?
+          post_location = activity[:post][:location][:name]
+        end
+      end
+
+      post_img = ''
+      unless activity[:documents].nil?
+        activity[:documents][:array].each do |attachment|
+          if attachment[:category] == "image"
+            post_img =   attachment[:url]      
+            break
+          end          
+        end
+      end
+
+      post_video = ''
+      unless activity[:documents].nil?
+        activity[:documents][:array].each do |attachment|
+          if attachment[:category] == "video"
+            post_video =   attachment[:url]      
+            break
+          end          
+        end
+      end
+
+      post_keywords = ''
+      unless activity[:tagss].nil?
+        activity[:tags][:array].each do |tag|
+          post_keywords= "#{post_keywords} #{tag[:name]}"
+        end
+      end
+
+      #FB: Open graph tags start
+      set_meta_tags :open_graph => {
+                                    :title => "activity[:post][:user][:full_name] post on activity[:post][:word][:name]",
+                                    :type => "activity[:post][:word][:name]",
+                                    :site_name => "ActWitty",
+                                    :image => post_img,
+                                    :video => post_video,
+                                    :description => activity[:post][:text],
+                                    :url => "http://www.actwitty.com/view/id=#{params[:id]}",
+                                    :region => post_location,
+                                  },
+                  :title => "Check-in your interests",
+                  :keywords => post_keywords
+    end
+
+
+
+    #FB: Open graph tags end
   end
   ##############################################
 
   def get_single_activity
-   Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
-   activity_id = Integer(params[:id])
-   activity_ids = [activity_id]
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
-      response_json = current_user.get_all_activity(activity_ids)
+    Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
+    activity_id = Integer(params[:id])
+    activity_ids = [activity_id]
+    Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
+    response_json = current_user.get_all_activity(activity_ids)
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-         Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON for open user#{response_json}")
-        render :json => response_json, :status => 400
-      end
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
+      expires_in 10.minutes
+      render :json => response_json, :status => 200
     end
   end
 

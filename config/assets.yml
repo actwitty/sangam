@@ -45,6 +45,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_channels.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_mentions.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_locations.js
+    - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_srv_request.js
+    - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_renders.js
    
   profile_streams:
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_renderer.js
@@ -66,6 +68,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_enricher.js
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_srv_request.js
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_renders.js
+    - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_rename_channel.js
   profile_main_extra:
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.elastic.source.js
     - public/javascripts/plugins/date.js
@@ -132,6 +135,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_locations.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_right_side_people.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_rename_chn.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css

@@ -118,6 +118,8 @@ GEM
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
       rack (< 2, >= 1.1.0)
+    faraday_middleware (0.6.5)
+      faraday (~> 0.6.0)
     ffi (1.0.9)
     fssm (0.2.7)
     geocoder (1.0.2)
@@ -129,6 +131,7 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    hashie (1.0.0)
     htmlentities (4.3.0)
     http_parser.rb (0.5.2)
     i18n (0.5.0)
@@ -154,6 +157,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta-tags (1.2.4)
+      actionpack
     mime-types (1.16)
     multi_json (1.0.3)
     multi_xml (0.2.2)
@@ -269,6 +274,7 @@ GEM
     signature (0.1.2)
       ruby-hmac
     simple_form (1.4.1)
+    simple_oauth (0.1.5)
     spork (0.8.4)
     spruz (0.2.13)
     squeel (0.9.0)
@@ -280,6 +286,13 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    twitter (1.6.0)
+      faraday (~> 0.6.1)
+      faraday_middleware (~> 0.6.3)
+      hashie (~> 1.0.0)
+      multi_json (~> 1.0.0)
+      multi_xml (~> 0.2.0)
+      simple_oauth (~> 0.1.5)
     typhoeus (0.2.4)
       mime-types
       mime-types
@@ -327,6 +340,7 @@ DEPENDENCIES
   jquery-rails
   json
   koala
+  meta-tags
   no_peeping_toms!
   omniauth (>= 0.2.0)
   pg
@@ -344,5 +358,6 @@ DEPENDENCIES
   simple_form (= 1.4.1)
   spork (= 0.8.4)
   squeel
+  twitter
   validates_existence (>= 0.4)
   wordnik (>= 0.3)

@@ -27,7 +27,6 @@ function aw_api_srv_resp_ppm_stm_single(params){
   $.each(data, function(i, stream_info){
     aw_ppm_stm_singlepost_render_user_details(stream_info);
     var html = aw_api_get_stream_main_html(stream_info);
-    alert(html);
     $('#aw_js_ppm_stm_singlepost_list').append(html);
     aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
     aw_api_ppm_add_stream_context(aw_api_get_stream_id(stream_info), stream_info);

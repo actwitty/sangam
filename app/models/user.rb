@@ -462,6 +462,64 @@ class User < ActiveRecord::Base
 
   end
 
+  #Make post to facebook
+  def post_new_activity_to_facebook(params, new_activity)
+    Rails.logger.debug("[MODEL] [USER] [post activity to facebook]") 
+    if params[:fb].nil? or params[:fb] != 'true'
+        return
+    end
+
+    provider="facebook"
+    facebook_auth=Authentication.find_by_user_id_and_provider(self.id, provider)
+    
+    if facebook_auth.nil?
+      return
+    end
+
+    begin
+      Rails.logger.debug("[MODEL] [USER] [post activity to facebook] Posting to FB")
+      graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
+      graph.put_wall_post( new_activity[:post][:text], {
+                          :name => "Posted at ActWitty",
+                          :link => "http://www.actwitty.com/view/id=#{new_activity[:post][:id]}", 
+                          :caption => "#{self.full_name} posted on #{new_activity[:post][:word][:name]}",
+                        })  
+
+    rescue Koala::Facebook::APIError
+      Rails.logger.error("[MODEL] [USER] [post activity to facebook] Exception in fb koala") 
+    end
+
+
+
+  end
+
+  #Make post to twitter
+  def post_new_activity_to_twitter(params, new_activity)
+   
+    Rails.logger.error("[MODEL] [USER] [post activity to twitter] ") 
+    if params[:tw].nil? or params[:tw] != 'true'
+        return
+    end
+
+    provider="twitter"
+    twitter_auth=Authentication.find_by_user_id_and_provider(self.id, provider)
+
+    if twitter_auth.nil?
+      return
+    end
+    Rails.logger.debug("[MODEL] [USER] [post activity to facebook] Posting to twitter")
+    tweet_desc = "#{self.full_name } posted on #{new_activity[:post][:word][:name]} #{new_activity[:post][:text]}"
+    url = "http://www.actwitty.com/view/id=#{new_activity[:post][:id]}"
+    if tweet_desc.length > 134 - url.length
+      tweet_desc = tweet_desc[0...(134 - url.length)] + '...'
+    end
+    tweet = "#{tweet_desc} #{url}"
+    Twitter.update tweet
+
+  end
+
+  #############################################################################
+
   include TextFormatter
   include QueryPlanner
   #Alok Adding pusher support
@@ -1274,7 +1332,7 @@ class User < ActiveRecord::Base
     #Below two lines are for testing
     #Activity.destroy_all(:author_id => self.id)
     Rails.logger.debug("[MODEL] [USER] [get_summary] processing 1")
-    #SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
+   # SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
     Rails.logger.debug("[MODEL] [USER] [get_summary] processing")
 
     h = process_filter_modified(params)
@@ -2326,7 +2384,7 @@ class User < ActiveRecord::Base
     h
   end
 
-
+  
 
 end
 

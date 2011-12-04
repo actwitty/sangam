@@ -165,6 +165,7 @@ function aw_get_actions_box_html(stream_info){
                 '<div class="aw_ppm_stm_dyn_action_mentions aw_js_ppm_stm_mentions_action">' +
                   '<div class="aw_ppm_stm_dyn_action_mentions_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_mentions_count aw_js_ppm_stm_mentions_counter">0</div>' +
+                  '<span> Click here to highlight key terms mentioned in post. </span>' +
                 '</div>' +
 
                 '<div class="aw_ppm_stm_dyn_action_likes aw_js_ppm_stm_like_action">' +
@@ -175,11 +176,13 @@ function aw_get_actions_box_html(stream_info){
                 '<div class="aw_ppm_stm_dyn_action_shares aw_js_ppm_stm_shares_action">' +
                   '<div class="aw_ppm_stm_dyn_action_shares_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_shares_count aw_js_ppm_stm_shares_counter">0</div>' +
+                  '<span> Share this post on twitter or facebook. </span>' +
                 '</div>' +
                 
                 '<div class="aw_ppm_stm_dyn_action_comments aw_js_ppm_stm_comments_action">' +
                   '<div class="aw_ppm_stm_dyn_action_comments_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_comments_count aw_js_ppm_stm_comments_counter">0</div>' +
+                  '<span> Click to see comments or add comments. </span>' +
                 '</div>' +
               '</div>';
   return html;
@@ -192,19 +195,32 @@ function aw_get_actions_box_html(stream_info){
 function aw_api_get_stream_main_html(stream_info){
   var stream_li_id = aw_api_get_stream_id(stream_info);
   var delete_html = '';
+  var chn_rename_html = '';
+  var src_html = '';
   var session_owner_id = aw_lib_get_session_owner_id();
   if( session_owner_id == stream_info.post.user.id ){
     delete_html =  '<span class="aw_ppm_dyn_stm_stream_delete aw_js_ppm_stm_delete_post">X</span>';
+    chn_rename_html = '<div class="aw_ppm_dyn_stm_stream_rename_channel aw_js_ppm_rename_channel aw_js_ppm_stm_modal_invoker aw_js_ppm_stm_aw_modal_manager_stream_chn_name_change">' +
+                        '<span> click here to change channel of this post.</span>' +
+                      '</div>';
   }
 
   var content_html = '';
   if(aw_api_ppm_stm_facebook_post_check(stream_info)){
     content_html = '<div class="aw_ppm_dyn_stm_stream_post_fb_data aw_js_ppm_stm_fb_content_box" />' +
                    '</div>';
+    src_html = '<div class="aw_ppm_dyn_stm_stream_img_source">' +
+                '<img src="/images/actwitty/refactor/aw_ppm/stream/facebook_src.png" />' +
+                '<span> This post has been originated at Facebook </span>' +
+               '</div>';
   }else{
     content_html = '<div class="aw_ppm_dyn_stm_stream_post_text aw_js_ppm_stm_stream_text">' +
                       '<p>' + stream_info.post.text + '</p> ' +
                     '</div>';
+    src_html = '<div class="aw_ppm_dyn_stm_stream_img_source">' +
+                '<img src="/images/actwitty/refactor/aw_ppm/stream/actwitty_src.png" />' +
+                '<span> This post has been originated at ActWitty </span>' +
+               '</div>';
   }
 
   var html = '<li class="aw_ppm_dyn_stm_stream_li_box aw_js_ppm_stream_box_backtracker" id="' + aw_api_get_stream_id(stream_info) + '" >' +
@@ -220,6 +236,9 @@ function aw_api_get_stream_main_html(stream_info){
                       '<span class="aw_ppm_dyn_stm_stream_post_time">' +
                         '<abbr class="aw_js_timeago" title="' + stream_info.post.time + '"></abbr>' +
                       '</span>' +
+
+                        src_html +
+                        chn_rename_html +
 
                         '<a class="aw_ppm_dyn_stm_stream_post_chn_name" href="#" ><span>' + stream_info.post.word.name  + '</span></a>' +
                     '</div>' +

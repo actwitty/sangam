@@ -58,7 +58,7 @@ function aw_api_srv_resp_ppm_stm_render_all_mentions(params){
  *
  *
  */
-function aw_api_ppm_stm_mentions_modal_renderer(win_id, trigger_id){
+function aw_api_ppm_stm_mentions_modal_renderer(win_id, triggerer){
  var mentions_data = aw_api_ppm_stm_modal_get_data("aw_js_ppm_stm_aw_modal_manager_related_mentions");
 
  var header_html = '<div class="awppm_stm_dyn_mentions_header_box" >' +

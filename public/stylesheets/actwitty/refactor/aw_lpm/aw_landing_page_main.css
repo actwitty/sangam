@@ -228,7 +228,7 @@ img.awlpm_aw_logo_img {
 #awlpm_header_label {
   margin: 0 auto;
   margin-left: 10px;
-  font-size: 50px;
+  font-size: 40px;
   width: 400px;
   height: 50px;
   font-weight: bold;
@@ -344,7 +344,7 @@ img.awlpm_aw_logo_img {
 }
 /* line 304, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_updates_grid_row h3 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
   margin-bottom: 5px;
 }
@@ -371,12 +371,12 @@ img.awlpm_aw_logo_img {
 }
 /* line 325, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box h3 {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: bold;
 }
 /* line 329, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box p {
-  font-size: 20px;
+  font-size: 14px;
   color: #666666;
 }
 

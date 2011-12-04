@@ -3,14 +3,15 @@
 = javascript_include_tag 'actwitty/input_location'
 
 #awppm_input_box_activate.button_classic
-  Checkin Your Interest!!!
+  #awppm_input_box_attention_icon
+  Check-in Your Interest !
 #awppm_input_box.aw_js_ppm_ip_input_box
   .awppm_input_busy_box.aw_js_ppm_loading_animation
     .awppm_input_busy_mini_box
       %img.awppm_input_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
   %img#awppm_del_ipbox{:src => "/images/actwitty/refactor/aw_ppm/common/delete.png", :height => "8", :width => "8" }
     #awppm_input_label
-      Checkin Your Interest!!!
+      Check-in Your Interest !
     #awppm_ip_channel
       %input#aw_js_ppm_input_channel_name{:placeholder => "Channel", :type => "text"}
     #awppm_ip_category
@@ -55,9 +56,9 @@
       =render :partial => "home/upload_attachments.html.haml"
     #awppm_ip_submit
       %span Post to
-      %input.aw_profile_post_share{:type => "checkbox"}
+      %input#aw_js_ppm_fb_share.aw_profile_post_share{:type => "checkbox"}
         %img{:src => "/images/actwitty/refactor/aw_ppm/common/facebook.png"}
-      %input.aw_profile_post_share{:type => "checkbox"}
+      %input#aw_js_ppm_tw_share.aw_profile_post_share{:type => "checkbox"}
         %img{:src => "/images/actwitty/refactor/aw_ppm/common/twitter.png"}
       %input#aw_js_ppm_input_post_btn.awppm_pub_btn.button_actwitty.blue{:type => "button", :value => "Publish"}
 
