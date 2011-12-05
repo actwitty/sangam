@@ -69,14 +69,14 @@ Sangam::Application.routes.draw do
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 
 
-  match '/entity_page' => 'home#entity_page'
-  match '/home/get_entity_stream'   => 'home#get_entity_stream'
+  match '/mention_page' => 'home#mention_page'
+  match '/home/get_mention_specific_stream'   => 'home#get_mention_specific_stream'
 
   match '/location_page' => 'home#location_page'
-  match '/home/get_location_stream' => 'home#get_location_stream'
+  match '/home/get_location_specific_stream' => 'home#get_location_specific_stream'
 
   match '/channel_page' => 'home#channel_page'
-  match '/home/get_activity_stream' => 'home#get_activity_stream'
+  match '/home/get_channel_specific_stream' => 'home#get_channel_specific_stream'
 
 
   match '/home/get_document_channel' => 'home#get_document_channel'

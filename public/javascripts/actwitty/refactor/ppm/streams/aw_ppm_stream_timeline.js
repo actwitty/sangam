@@ -250,7 +250,13 @@ function aw_api_get_stream_main_html(stream_info){
                         src_html +
                         chn_rename_html +
 
-                        '<a class="aw_ppm_dyn_stm_stream_post_chn_name" href="#" ><span class="aw_js_ppm_stm_chn_name">' + stream_info.post.word.name  + '</span></a>' +
+                        '<a class="aw_ppm_dyn_stm_stream_post_chn_name" href="/channel_page?id=' + stream_info.post.word.id + ' ">' +
+                          '<span class="aw_js_ppm_stm_chn_name">' + 
+                            stream_info.post.word.name  + 
+                            '<span>Click to see all posts made globally under this channel</span>' +
+                          '</span>' + 
+
+                        '</a>' +
                     '</div>' +
                     /* check and add title */
                     aw_get_stream_title_html(stream_info) +

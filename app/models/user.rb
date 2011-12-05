@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
   after_validation :validate_fields
   before_validation  :parse_dob
 
+  #############################################################################
+  #Executed before validation, converts a string date into MM/DD/YYYY date format
   def parse_dob
 
     unless  self.dob_str.nil?
@@ -66,6 +68,8 @@ class User < ActiveRecord::Base
   end
 
 
+  #############################################################################
+  # Validation of fields while saving the user
   def validate_fields
     Rails.logger.info("[MODEL] [USER] BEFORE VALIDATION #{self.inspect}")
     
@@ -168,10 +172,12 @@ class User < ActiveRecord::Base
 
   # profile related api
 
+  #############################################################################
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
 
+  #############################################################################
   def get_pending_request_contacts
     users_list=nil
     friends_id_list = friends.select("user_id").where(:status =>
@@ -183,6 +189,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def get_raised_contact_requests_raised
     users_list=nil
     new_friends_id_list = contacts.select("user_id").where(:status =>
@@ -194,6 +201,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def get_contacts
     users_list=nil
     friends_id_list = contacts.select("friend_id").where(:status =>
@@ -205,6 +213,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def new_contact_request (friend_id)
     Contact.request_new(id, friend_id)
   end
@@ -221,6 +230,7 @@ class User < ActiveRecord::Base
    Contact.delete_contacts_from_both_ends(id, friend_id)
   end
 
+  #############################################################################
 
   def get_provider_uids_of_friends(provider, uid_list)
    friends_id_list = contacts.select("friend_id").map(&:friend_id)
@@ -231,6 +241,7 @@ class User < ActiveRecord::Base
   end
 
 
+  #############################################################################
   def get_uid_follow_status(provider, uid_list)
 
     auths = Authentication.all(:select => "uid, user_id", :conditions=> ['uid in (?)',
@@ -262,23 +273,28 @@ class User < ActiveRecord::Base
   end
 
 
+  #############################################################################
 
   def follow(friend_id)
     Contact.follow(id, friend_id)
   end
 
+  #############################################################################
   def unfollow(friend_id)
     Contact.unfollow(id, friend_id)
   end
 
+  #############################################################################
   def followers_count()
      friends.count()
   end
 
+  #############################################################################
   def followings_count()
     contacts.count()
   end
 
+  #############################################################################
   def check_follower(friend_id)
     contact=Contact.find_by_user_id_and_friend_id(id, friend_id)
     if contact.nil?
@@ -289,6 +305,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  #############################################################################
   def get_subscribers(user_id)
     users_list = Array.new
     friends_id_list = Contact.select("user_id").where(:friend_id => user_id).map(&:user_id)
@@ -305,6 +322,7 @@ class User < ActiveRecord::Base
     response = {:user => users_list}
   end
 
+  #############################################################################
   def get_subscriptions(user_id)
     users_list = Array.new
     friends_id_list = Contact.select("friend_id").where(:user_id => user_id).map(&:friend_id)
@@ -322,6 +340,7 @@ class User < ActiveRecord::Base
 
   end
 
+  #############################################################################
   def get_followers
     users_list = []
     friends_id_list = Contact.select("user_id").where(:friend_id => id).map(&:user_id)
@@ -346,6 +365,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def get_followings
     users_list=[]
     friends_id_list = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
@@ -356,6 +376,8 @@ class User < ActiveRecord::Base
     return users_list
 
   end
+  
+  #############################################################################
   #INPUT => {:name => "sudh"}
   #OUTPUT => [ :id => 123, :image => "http://xyz.com", :name => "sudhanshu saxena" }
   def self.search(params)
@@ -378,6 +400,7 @@ class User < ActiveRecord::Base
     array
   end
 
+  #############################################################################
   def import_foreign_profile_to_user(foreign_profile)
     Rails.logger.info("[MODEL] [USER] [import_foreign_profile_to_user] called #{foreign_profile.inspect}")
 
@@ -413,6 +436,7 @@ class User < ActiveRecord::Base
 
   end
 
+  #############################################################################
   def create_profile_from_foreign_profile(foreign_profile)
      Rails.logger.info("[MODEL] [USER] Create profile from foreign profile called")
      profile = Profile.new
@@ -462,6 +486,7 @@ class User < ActiveRecord::Base
 
   end
 
+  #############################################################################
   #Make post to facebook
   def post_new_activity_to_facebook(params, new_activity)
     Rails.logger.debug("[MODEL] [USER] [post activity to facebook]") 
@@ -493,6 +518,7 @@ class User < ActiveRecord::Base
 
   end
 
+  #############################################################################
   #Make post to twitter
   def post_new_activity_to_twitter(params, new_activity)
    

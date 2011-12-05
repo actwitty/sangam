@@ -136,7 +136,7 @@ function aw_get_autocomplete_result_click(item){
   }else if (current_mode == 'location'){
     var link = '/location_page?id=' + item.id;
   }else if (current_mode == 'entity'){
-    var link = '/entity_page?id=' + item.id;
+    var link = '/mention_page?id=' + item.id;
   }
 
   window.location.href = link; 

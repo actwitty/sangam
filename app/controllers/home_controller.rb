@@ -17,10 +17,18 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
-                        :get_summary,:get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
-                        :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,:get_related_locations,
-                        :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary, :search_any]
+  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, 
+                        :mention_page, :location_page, :channel_page, 
+                        :update_social_media_share, :get_summary,
+                        :get_entities,:get_channels, :get_locations,
+                        :get_mention_stream,:get_activity_stream,
+                        :get_location_stream,:get_document_stream,
+                        :get_streams, :get_related_entities,
+                        :get_related_locations, :get_social_counter, 
+                        :get_related_friends, :get_all_comments,
+                        :get_users_of_campaign, 
+                        :subscribers,:subscriptions,
+                        :get_latest_summary, :search_any]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -99,7 +107,6 @@ class HomeController < ApplicationController
   def streams
 
     @user=nil
-    @profile_page = 1
     @page_mode="profile_stm_page"
     @aw_stm_scope="p" #p/s/a
 
@@ -212,7 +219,6 @@ class HomeController < ApplicationController
   def show
 
     @user=nil
-    @profile_page = 1
     @page_mode="profile_chn_page"
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
@@ -265,7 +271,6 @@ class HomeController < ApplicationController
   ############################################
   def settings
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
-    @profile_page = 1
 	  @user = current_user 
 	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
 	  if !@user.nil?
@@ -836,7 +841,6 @@ class HomeController < ApplicationController
   ##############################################
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
-    @profile_page = 1
     @page_mode="profile_single_activity_page"
     @single_post_id = params[:id]
     @aw_stm_scope="p"
@@ -1041,71 +1045,61 @@ class HomeController < ApplicationController
    end
 
   ######################################
-  def entity_page
-    Rails.logger.info("[CNTRL][HOME][ ENTITY PAGE] request params #{params}")
+  def mention_page
+    Rails.logger.info("[CNTRL][HOME][ MENTION PAGE] request params #{params}")
 
     @user=current_user
-    @profile_page = 1
-    @page_mode="entity"
-    @entity_id = params[:id]
+    @page_mode="single_mention_page"
+    @mention_id = params[:id]
 
   end
   ######################################
-  def get_entity_stream
-    Rails.logger.info("[CNTRL][HOME][GET ENTITY STREAM] request params #{params}")
-    if params[:entity_id].blank?
+  def get_mention_specific_stream
+    Rails.logger.info("[CNTRL][HOME][GET MENTION STREAM] request params #{params}")
+    if params[:id].blank?
       render :json => {}, :status => 400
       return
     end
-    params[:entity_id] = Integer(params[:entity_id])
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] returned from model api with #{params}")
+    query = {}
+    query[:entity_id] = Integer(params[:id])
+    query[:updated_at] = params[:updated_at]
 
-      response_json = current_user.get_entity_stream(params)
+    Rails.logger.debug("[CNTRL][HOME][GET MENTION STREAM] returned from model api with #{query}")
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
+    response_json = current_user.get_entity_stream(query)
+
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET MENTION STREAM] sending response JSON #{response_json}")
+      expires_in 5.minutes
+      render :json => response_json, :status => 200
     end
-
   end
   ######################################
   def location_page
     Rails.logger.info("[CNTRL][HOME][ LOCATION PAGE] request params #{params}")
 
     @user=current_user
-    @profile_page = 1
-    @page_mode="location"
+    @page_mode="single_location_page"
     @location_id = params[:id]
 
   end
   ######################################
-  def get_location_stream
+  def get_location_specific_stream
     Rails.logger.info("[CNTRL][HOME][GET LOCATION STREAM] request params #{params}")
-    if params[:location_id].blank?
+    if params[:id].blank?
       render :json => {}, :status => 400
       return
     end
-    params[:word_id] = Integer(params[:location_id])
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] returned from model api with #{params}")
-      response_json = current_user.get_location_stream(params)
+    query[:word_id] = Integer(params[:id])
+    query[:updated_at] = params[:updated_at]
+    
+    Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] returned from model api with #{query}")
+    response_json = current_user.get_location_stream(query)
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
+      expires_in 5.minutes
+      render :json => response_json, :status => 200
     end
 
   end
@@ -1113,32 +1107,29 @@ class HomeController < ApplicationController
    def channel_page
     Rails.logger.info("[CNTRL][HOME][ CHANNEL PAGE] request params #{params}")
     @user=current_user
-    @profile_page = 1
-    @page_mode="channel"
+    @page_mode="single_channel_page"
     @channel_id = params[:id]
 
   end
   ######################################
-  def get_activity_stream
+  def get_channel_specific_stream
+
     Rails.logger.info("[CNTRL][HOME][GET CHANNEL STREAM] request params #{params}")
-    if params[:word_id].blank?
+    if params[:id].blank?
       render :json => {}, :status => 400
       return
     end
-    params[:word_id] = Integer(params[:word_id])
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] calling  model api with #{params}")
-      response_json = current_user.get_activity_stream(params)
+    query={}
+    query[:word_id] = Integer(params[:id])
+    query[:updated_at] = params[:updated_at]
+      
+    Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] calling  model api with #{query}")
+    response_json = current_user.get_activity_stream(query)
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
+      expires_in 5.minutes
+      render :json => response_json, :status => 200
     end
 
   end
@@ -1331,7 +1322,6 @@ class HomeController < ApplicationController
   end
   ####################################
   def facebook_friends
-    @profile_page = 1
     @page_mode = "facebook"
     provider="facebook"
     @page_mode="facebook"

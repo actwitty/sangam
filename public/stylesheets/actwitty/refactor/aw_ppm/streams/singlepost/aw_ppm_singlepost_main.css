@@ -113,10 +113,9 @@ div.awppm_stm_singlepost_wrapper {
   margin: 0;
   width: 100%;
   border: 0px solid red;
-  margin-top: 80px;
   display: inline-block;
 }
-/* line 106, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
+/* line 105, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines .awppm_stm_singlepost_data_info_more {
   width: 50px;
   height: 20px;
@@ -127,7 +126,7 @@ div.awppm_stm_singlepost_wrapper {
   text-align: center;
   font-weight: bold;
 }
-/* line 115, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
+/* line 114, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines ul.awppm_stm_singlepost_post_timeline_list {
   width: 100%;
 }

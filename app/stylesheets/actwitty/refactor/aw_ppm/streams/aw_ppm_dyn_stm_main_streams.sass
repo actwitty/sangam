@@ -66,6 +66,24 @@ li.aw_ppm_dyn_stm_stream_li_box
           color: #eb7400
           font-size: 16px
           font-weight: bold
+          position: relative
+          span
+            font-family: Calibri, Tahoma, Geneva, sans-serif
+            position: absolute
+            top: 14px
+            left: 25px
+            z-index: 99
+            margin-left: 0
+            color: black
+            font-size: 12px
+            font-weight: normal
+            width: 150px
+            background-color: #ffffcc
+            border: 1px solid #ccc
+            display: none
+          &:hover span
+            display: block
+            color: black
           &:hover
             color: #ee8c00
             cursor: pointer

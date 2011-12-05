@@ -203,7 +203,6 @@ var aw_srv_local_json_data_cache_manager = {
                                                                           },
                                         'AW_SRV_PPM_STM_SINGLEPOST_FETCH' : {
                                                                                 'CB' : function aw_temp_resp_fn_21(params){
-                                                                                      /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_single(params);
                                                                                     },
                                                                               'DATA' : {},
@@ -213,13 +212,39 @@ var aw_srv_local_json_data_cache_manager = {
                                       'AW_SRV_PPM_STM_CHN_RENAME_LIST'  : {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_17(params){
-                                                                                      /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_rename_channel_list(params);
                                                                               },
                                                                               'DATA' : {},
                                                                               'MULTI' : true,
                                                                               'URL' : "/home/get_channels.json"
-                                                                            }                                                                           
+                                                                            },
+                                      'AW_SRV_PPM_STM_CHN_PG_STREAM_LIST'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_18(params){
+                                                                                      aw_api_srv_resp_ppm_stm_chn_page_stream_list(params);
+                                                                              },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_channel_specific_stream.json"
+                                                                            },
+                                      'AW_SRV_PPM_STM_MENTION_PG_STREAM_LIST'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_19(params){
+                                                                                      aw_api_srv_resp_ppm_stm_mention_page_stream_list(params);
+                                                                              },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_mention_specific_stream.json"
+                                                                            },
+                                       'AW_SRV_PPM_STM_LOCATION_PG_STREAM_LIST'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_20(params){
+                                                                                      aw_api_srv_resp_ppm_stm_mention_page_stream_list(params);
+                                                                              },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'URL' : "/home/get_location_specific_stream.json"
+                                                                            }                                                                              
                                           
 
                                                                             
