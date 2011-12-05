@@ -39,7 +39,7 @@ function aw_api_ppm_stm_evt_hndl_mentions_action(element){
   if (!check_class_exist && mention_count != 0){
     $('#' + stream_main_box_id).find('.js_activity_entity').addClass("js_activity_entity_highlighter");
     if(stream_info.post.user.id == aw_lib_get_session_owner_id()){
-      var html = '<span class="aw_js_ppm_stm_delete_mention">Remove Mention</span>';
+      var html = '<span class="aw_ppm_dyn_stm_stream_remove_mention aw_js_ppm_stm_delete_mention">Remove Mention</span>';
       $('#' + stream_main_box_id).find('.js_activity_entity').append(html);
     }
     element.find(".aw_js_ppm_stm_action_image").removeClass("aw_ppm_stm_dyn_action_mentions_img");

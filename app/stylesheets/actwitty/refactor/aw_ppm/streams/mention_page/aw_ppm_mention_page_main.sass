@@ -13,53 +13,56 @@ $aw_var_default_color: #CCCCCC
 
 /******************************************** Common for all Columns main Div's ************************************
 
-@mixin awppm_stm_channel_page_default_full_width
+@mixin awppm_stm_mention_page_default_full_width
   position: relative
   margin: 0 auto 0
   display: block
   width: 990px
 /* ----------------------------------------------Wrapper-------------------------------------
 
-div.awppm_stm_channel_page_wrapper
+div.awppm_stm_mention_page_wrapper
   display: block
   width: 100%
   margin: 0
   text-align: left
 
-.awppm_stm_channel_page_column1
+.awppm_stm_mention_page_column1
   color: #D2D2D2
   background-color: #363436
   /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81
   border: 0px solid red
 
-.awppm_stm_channel_page_column2
+.awppm_stm_mention_page_column2
   color: #FFFFFF
   background-color: #ffffff
   border: 0px solid green
 
-.awppm_stm_channel_page_column3
+.awppm_stm_mention_page_column3
   color: #000000
   background-color: #ffffff
   border: 0px solid blue
 
 /******************************************* User box section for user photo and input box *************************
 
-#awppm_stm_channel_page_channel_info_box
-  @include awppm_stm_channel_page_default_full_width
+#awppm_stm_mention_page_channel_info_box
+  @include awppm_stm_mention_page_default_full_width
   height: auto
   margin-bottom: 30px
   border: 0px solid blue
 
-#awppm_stm_channel_page_channel_info_section
+#awppm_stm_mention_page_channel_info_section
   width: 960px
   height: auto
   margin: auto
   border: 0px solid red
   position: relative
 
-#awppm_stm_channel_page_channel_info_div
-  height: 150px
+#awppm_stm_mention_page_channel_info_div
   width: 200px
+  height: 135px
+  /*float:left;
+  display: inline-block
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
   border: 1px solid #ddd
   -moz-box-shadow: 0 0 8px #ddd
   -webkit-box-shadow: 0 0 8px #ddd
@@ -68,20 +71,21 @@ div.awppm_stm_channel_page_wrapper
   top: 20px
   left: 20px
   overflow:hidden
+  .awppm_stm_mention_page_channel_label
+    height: 22px
+    width: 100%
+    position: absolute
+    top: 0
+    background: rgb(0, 0, 0)
+    background: rgba(0, 0, 0, 0.6)
+    color: #fff
+    text-align: center
+    font-size: 16px
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-weight: bold
 
-#awppm_stm_channel_page_channel_info_img
-  margin-top: 40px
-  img
-    width: 60px
 
-#awppm_stm_channel_page_channel_info span
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif
-  color: #555
-  font-size: 16px
-  text-align: center
-
-
-#awppm_stm_channel_page_timeline_container_box
+#awppm_stm_mention_page_timeline_container_box
   height: auto
   min-height: 200px
   width: 580px
@@ -91,15 +95,24 @@ div.awppm_stm_channel_page_wrapper
   border: 1px solid #f4f4f4
   float: left
   display: inline-block
-  
-  .awppm_stm_channel_page_stream_timelines
+ 
+  .awppm_stm_mention_page_main_label
+    font-size: 32px
+    font-weight: bold
+    color: #333
+    display: block
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+
+  .awppm_stm_mention_page_stream_timelines
     margin: 0
-    width: 540px
+    width: 100%
     height: auto
+    min-height: 200px
     border: 0px solid red
     margin-top: 30px
     display: inline-block
-    .awppm_stm_channel_page_data_info_more
+    position: relative
+    .awppm_stm_mention_page_data_info_more
       width: 50px
       height: 20px
       position: absolute
@@ -108,7 +121,7 @@ div.awppm_stm_channel_page_wrapper
       color: #000
       text-align: center
       font-weight: bold
-    ul.awppm_stm_channel_page_post_timeline_list
+    ul.awppm_stm_mention_page_post_timeline_list
       width: 100%
     .awppm_stm_busy_channels_page
       position: absolute
@@ -134,4 +147,5 @@ div.awppm_stm_channel_page_wrapper
         width: 50px
         height: 50px
         margin: auto
+
 

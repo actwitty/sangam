@@ -132,5 +132,10 @@ $(document).ready(function(){
     aw_api_ppm_stm_chn_rename_submit_handler($(this));
     return false;
   });
+
+  $(".js_activity_entity_highlighter").live('click', function(){
+   window.location.href = "/mention_page?id=" + $(this).attr("value"); 
+   return false;
+  });
   
 });
