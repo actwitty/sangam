@@ -71,6 +71,15 @@ function aw_api_ppm_stm_modify_context_text_for_key(key, text){
  *
  *
  */
+function aw_api_ppm_stm_update_channel_name_id(key, channel_name, channel_id){
+  aw_local_ppm_stream_context_manager[key].post.word.id = channel_id;
+  aw_local_ppm_stream_context_manager[key].post.word.name = channel_name;
+}
+/******************************************/
+/*
+ *
+ *
+ */
 function aw_api_ppm_stm_modify_likes(key, user_state, like_count){
   if( aw_local_ppm_stream_context_manager[key]['campaigns']){
     delete aw_local_ppm_stream_context_manager[key]['campaigns'];
@@ -205,6 +214,7 @@ function aw_api_get_stream_main_html(stream_info){
                       '</div>';
   }
 
+
   var content_html = '';
   if(aw_api_ppm_stm_facebook_post_check(stream_info)){
     content_html = '<div class="aw_ppm_dyn_stm_stream_post_fb_data aw_js_ppm_stm_fb_content_box" />' +
@@ -240,7 +250,7 @@ function aw_api_get_stream_main_html(stream_info){
                         src_html +
                         chn_rename_html +
 
-                        '<a class="aw_ppm_dyn_stm_stream_post_chn_name" href="#" ><span>' + stream_info.post.word.name  + '</span></a>' +
+                        '<a class="aw_ppm_dyn_stm_stream_post_chn_name" href="#" ><span class="aw_js_ppm_stm_chn_name">' + stream_info.post.word.name  + '</span></a>' +
                     '</div>' +
                     /* check and add title */
                     aw_get_stream_title_html(stream_info) +

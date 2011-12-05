@@ -23,10 +23,10 @@
 /Secret cookies
 %input#aw_js_ppm_fb_access_token{:type => "hidden", :value => "#{@fb_access_token}" }
 %input#aw_js_ppm_singlepost_id{:type => "hidden", :value => "#{@single_post_id}" }
-%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "" }
-%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "" }
-%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "" }
-%input#cache_cookie_id{:type => "hidden", :value => "" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
+%input#cache_cookie_id{:type => "hidden", :value => "#{@user.updated_at}" }
 %input#page_mode{ :type => "hidden", :value => "#{@page_mode}" }
 - if user_signed_in?
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }

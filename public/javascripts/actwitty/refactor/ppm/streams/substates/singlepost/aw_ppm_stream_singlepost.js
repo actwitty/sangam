@@ -36,7 +36,7 @@ function aw_api_srv_resp_ppm_stm_single(params){
   $("abbr.aw_js_timeago").timeago();
     
   $('#aw_js_ppm_stm_stream_singlepost_div').find(".aw_js_ppm_loading_animation").hide();
-  retrn;
+  return;
 }
 
 /**********************************************************/

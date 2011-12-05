@@ -172,9 +172,6 @@ class HomeController < ApplicationController
     end
 
     #FB: Open graph tags start
-    @page_type = "activity"
-    @page_site_name = "ActWitty"
-    @page_image = "#{@user.photo_small_url}"
     
     unless @aw_mention_filter_text_val.blank?
       @page_description = "#{@page_description} filtered for mentions of #{@aw_mention_filter_text_val}"
@@ -842,12 +839,29 @@ class HomeController < ApplicationController
     @profile_page = 1
     @page_mode="profile_single_activity_page"
     @single_post_id = params[:id]
-    
+    @aw_stm_scope="p"
+    @user=nil
+    @fb_access_token=nil
+
     activity_ids = [Integer(params[:id])]
     activity_arr = current_user.get_all_activity(activity_ids)
     activity_arr.each do |activity|
 
-      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
+      #Will come only once as there is only one activity
+    
+      post_user_id = activity[:post][:user][:id]
+      if user_signed_in?
+        authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+        @fb_access_token = authentication.token
+        if post_user_id == current_user.id 
+          @user = current_user
+        end
+      else
+        @user = User.find_by_id(post_user_id)
+      end
+      Rails.logger.debug("[CNTRL][HOME][SINGLE ACTIVITY] returned from model api #{@user.inspect}")
+
+
       
       post_location = ''
       unless activity[:post][:location].nil?
@@ -885,8 +899,8 @@ class HomeController < ApplicationController
 
       #FB: Open graph tags start
       set_meta_tags :open_graph => {
-                                    :title => "activity[:post][:user][:full_name] post on activity[:post][:word][:name]",
-                                    :type => "activity[:post][:word][:name]",
+                                    :title => "#{activity[:post][:user][:full_name]} post on #{activity[:post][:word][:name]}",
+                                    :type => "#{activity[:post][:word][:name]}",
                                     :site_name => "ActWitty",
                                     :image => post_img,
                                     :video => post_video,
@@ -1352,6 +1366,20 @@ class HomeController < ApplicationController
 
     response_json = current_user.search_models(query)
     Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search response : #{response_json}")
+    if request.xhr?
+        render :json => response_json, :status => 200
+    end
+  end
+  ############################################
+  def rename_channel_of_post
+
+    Rails.logger.info("[CNTRL][HOME][RENAME POST CHANNEL] search params : #{params}")
+    query = {}
+    query[:activity_id] = params[:id]
+    query[:new_name] = params[:new_name]
+
+    response_json = current_user.rename_activity_name(query)
+    Rails.logger.info("[CNTRL][HOME][RENAME POST CHANNEL ] search response : #{response_json}")
     if request.xhr?
         render :json => response_json, :status => 200
     end

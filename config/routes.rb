@@ -89,24 +89,7 @@ Sangam::Application.routes.draw do
 
   match '/home/get_latest_summary' => 'home#get_latest_summary'
 
-  #match '/contacts/add' => 'contacts#add'
-  #match '/contacts/accept' => 'contacts#accept'
-  #match '/contacts/remove' => 'contacts#remove'
-  #match '/contacts/friends' => 'contacts#friends'
-  #match '/contacts/pending_friend_requests' => 'contacts#pending_friend_requests'
-  #match '/contacts/provider_add' => 'contacts#provider_add'
-  #match '/contacts/friendship' => 'contacts#friendship'
-
-  match '/contacts/facebook_friends' => 'contacts#facebook_friends'
-  match '/contacts/provider_follow' => 'contacts#provider_follow'
-
-  match '/contacts/followers' => 'contacts#followers'
-  match '/contacts/followings' => 'contacts#followings'
-  match '/contacts/follow' => 'contacts#follow'
-  match '/contacts/unfollow' => 'contacts#unfollow'
-
-  #match '/contacts/follow' => 'contacts#follow'
-  #match '/contacts/unfollow' => 'contacts#unfollow'
+  match '/home/rename_channel_of_post' => 'home#rename_channel_of_post'
 
 
   match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
