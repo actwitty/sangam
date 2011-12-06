@@ -7,7 +7,6 @@
         %span #{@current_user.full_name}
       %a#awppm_header_user_logout{:href => "/users/sign_out"} Logout
       %a#awppm_header_user_settings{:href => "/home/settings"} Settings
-      %a#awppm_header_channel_settings{:href => "/channel_settings/edit"} Channels
     -elsif if_ghost_user?
       %a#awppm_header_user_info{:href => "/"}
         %img{:src => "/images/actwitty/refactor/aw_ppm/common/User.png"}
