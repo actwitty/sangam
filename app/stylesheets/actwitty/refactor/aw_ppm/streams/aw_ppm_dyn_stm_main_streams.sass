@@ -162,13 +162,33 @@ li.aw_ppm_dyn_stm_stream_li_box
     border: 0px solid red
     margin: 0
     padding: 0
-    img
-      margin-right: 5px
-    span
-      font-size: 14px
-      color: #c8c8c8
-      font-weight: bold
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+    a
+      img
+        margin-right: 5px
+      span
+        font-size: 14px
+        color: #c8c8c8
+        font-weight: bold
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+        position: relative
+        span
+          font-family: Calibri, Tahoma, Geneva, sans-serif
+          position: absolute
+          left: 15px
+          top: 15px
+          z-index: 99
+          margin-left: 0
+          width: 150px
+          font-size: 12px
+          font-weight: normal
+          color: black
+          background-color: #ffffcc
+          border: 1px solid #ccc
+          display: none
+        &:hover
+          cursor: pointer
+        &:hover span
+          display: block
   
   .aw_ppm_dyn_stm_stream_post_fb_data
     font-size: 12px

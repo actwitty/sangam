@@ -204,18 +204,43 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box {
   margin: 0;
   padding: 0;
 }
-/* line 165, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
-li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box img {
+/* line 166, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box a img {
   margin-right: 5px;
 }
-/* line 167, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
-li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box span {
+/* line 168, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box a span {
   font-size: 14px;
   color: #c8c8c8;
   font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
 }
-/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 174, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box a span span {
+  font-family: Calibri, Tahoma, Geneva, sans-serif;
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  z-index: 99;
+  margin-left: 0;
+  width: 150px;
+  font-size: 12px;
+  font-weight: normal;
+  color: black;
+  background-color: #ffffcc;
+  border: 1px solid #cccccc;
+  display: none;
+}
+/* line 188, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box a span:hover {
+  cursor: pointer;
+}
+/* line 190, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_location_box a span:hover span {
+  display: block;
+}
+/* line 193, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data {
   font-size: 12px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -226,11 +251,11 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data {
   border: 0px solid red;
   padding: 0;
 }
-/* line 182, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 202, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data:hover {
   border: 1px solid #f8f8f8;
 }
-/* line 184, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 204, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text {
   /*border:1px solid blue; */
   font-size: 12px;
@@ -242,25 +267,25 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text {
   border: 1px solid white;
   padding: 0;
 }
-/* line 194, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 214, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text:hover {
   border: 1px solid #f8f8f8;
   cursor: pointer;
 }
-/* line 197, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 217, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p {
   text-align: left;
   color: #444444;
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 202, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 222, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity {
   color: #444444;
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 206, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 226, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter {
   border-radius: 10px;
   padding-left: 2px;
@@ -270,7 +295,7 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_
   font-size: 12px;
   position: relative;
 }
-/* line 214, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 234, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter span.aw_ppm_dyn_stm_stream_remove_mention {
   font-size: 11px;
   font-weight: bold;
@@ -288,13 +313,13 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_
   border-radius: 3px 3px 3px 3px;
   display: none;
 }
-/* line 230, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 250, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter span.aw_ppm_dyn_stm_stream_remove_mention:hover {
   cursor: pointer;
   border: 1px solid #dddddd;
   color: #333333;
 }
-/* line 234, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
+/* line 254, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */
 li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_text p .js_activity_entity_highlighter:hover span {
   display: block;
 }

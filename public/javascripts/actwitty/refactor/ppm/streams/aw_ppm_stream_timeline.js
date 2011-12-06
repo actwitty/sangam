@@ -144,8 +144,13 @@ function aw_get_stream_title_html(stream_info){
 function aw_get_stream_location_html(stream_info){
   if( stream_info.location && stream_info.location.name && stream_info.location.name.length){
     var html = '<div class="aw_ppm_dyn_stm_stream_location_box">' +
-                '<img src="/images/actwitty/refactor/aw_ppm/stream/at.png" width="10"/>' + 
-                  '<span>' + stream_info.location.name  + '</span>' +
+                  '<a href="/location_page?id=' + stream_info.location.id + '">' +
+                    '<img src="/images/actwitty/refactor/aw_ppm/stream/at.png" width="10"/>' + 
+                    '<span>' + stream_info.location.name  + 
+                      '<span>' +
+                          'click here to see all posts made at this location' +
+                      '</span>' +
+                    '</span>' +
                 '</div>';
 
     return html;

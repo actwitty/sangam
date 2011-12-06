@@ -1090,7 +1090,8 @@ class HomeController < ApplicationController
       render :json => {}, :status => 400
       return
     end
-    query[:word_id] = Integer(params[:id])
+    query={}
+    query[:location_id] = Integer(params[:id])
     query[:updated_at] = params[:updated_at]
     
     Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] returned from model api with #{query}")

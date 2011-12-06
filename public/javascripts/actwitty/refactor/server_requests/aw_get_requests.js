@@ -239,7 +239,7 @@ var aw_srv_local_json_data_cache_manager = {
                                        'AW_SRV_PPM_STM_LOCATION_PG_STREAM_LIST'  : {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_20(params){
-                                                                                      aw_api_srv_resp_ppm_stm_mention_page_stream_list(params);
+                                                                                      aw_api_srv_resp_ppm_stm_location_page_stream_list(params);
                                                                               },
                                                                               'DATA' : {},
                                                                               'MULTI' : true,
@@ -258,7 +258,7 @@ var aw_srv_local_json_data_cache_manager = {
  */
 function aw_api_srv_make_a_get_request(request_tag, params){
      if( request_tag.length == 0 ){
-        aw_lib_console_log("error","aw_api_srv: Request " + request_tag ); 
+        aw_lib_console_log("debug","aw_api_srv: Request " + request_tag ); 
         return -1;
      }
      if( params == null ){

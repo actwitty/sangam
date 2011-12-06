@@ -82,6 +82,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/substates/channel_page/aw_ppm_stream_channel_page.js
   mention_page:
     - public/javascripts/actwitty/refactor/ppm/streams/substates/mention_page/aw_ppm_stream_mention_page.js
+  location_page:
+    - public/javascripts/actwitty/refactor/ppm/streams/substates/location_page/aw_ppm_stream_location_page.js
   autocomplete:
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.bgiframe.min.js
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.ajaxQueue.js

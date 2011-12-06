@@ -46,7 +46,7 @@ $(document).ready(function(){
   
   } else if( page_context == "single_location_page"){
     
-    //aw_api_ppm_initialize_single_location_page();
+    aw_api_ppm_initialize_single_location_page();
 
   } else if( page_context == "facebook_friends_page"){
     //TODO: Add this page quickly for a viral
