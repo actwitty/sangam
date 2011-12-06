@@ -141,6 +141,7 @@ div.awppm_user_profile_settings_wrapper
   -moz-box-shadow: 0 0 8px #ddd
   -webkit-box-shadow: 0 0 8px #ddd
   box-shadow: 0 0 8px #ddd
+  position: relative
 
 #awppm_user_profile_settings_fields_box
   float: left
@@ -153,6 +154,20 @@ div.awppm_user_profile_settings_wrapper
   -moz-box-shadow: 0 0 8px #ddd
   -webkit-box-shadow: 0 0 8px #ddd
   box-shadow: 0 0 8px #ddd
+
+
+
+
+/****************** User Name
+#awppm_user_profile_settings_user_name
+  user-select: none 
+  -moz-user-select: none 
+  -khtml-user-select: none 
+  -webkit-user-select: none 
+  -o-user-select: none
+  input
+    readonly: true
+
 
 /****************** Default Share Box
 #awppm_user_profile_settings_share_box
@@ -257,7 +272,7 @@ div#awppm_user_profile_settings_profile_pic img
 
 
 #awppm_user_profile_settings_pswdchn_success
-  font-size: 16px
+  font-size: 12px
   color: #333
   text-align: center
   margin-top: 10px
@@ -327,10 +342,15 @@ div#awppm_user_profile_settings_profile_pic img
   margin-left: 40px
 
 .awppm_user_profile_deactivate
-  margin-top: 100px
+  /*margin-top: 70px
   text-align: center
   color: #333
+  font-weight: normal
   font-size: 10px
+  position: absolute
+  bottom: 5px
+  right: 5px
+
 
 
 .awppm_user_profile_settings_field

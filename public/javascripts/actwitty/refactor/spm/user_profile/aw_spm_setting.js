@@ -134,6 +134,8 @@ function aw_api_spm_initialize_user_settings_page(){
   //alert("setting JS in place");
   awppm_settings_page_elem_init();
 
+  
+
   if($("#awppm_user_settings_dob_input").length){
     $("#awppm_user_settings_dob_input").datepicker();
     $("#awppm_user_settings_dob_input").datepicker({ dateFormat: 'mm/dd/yyyy' });
@@ -249,6 +251,8 @@ $(document).ready(function(){
     //alert("i am settings page");
 
     awppm_settings_page_elem_init();
+
+    $("#awppm_user_profile_settings_user_name").attr("disabled", true); 
 
     $("#awppm_user_profile_settings_save").live('click',function() {
       $('#aw_spm_user_settings_box').find(".aw_js_ppm_loading_animation").show();
