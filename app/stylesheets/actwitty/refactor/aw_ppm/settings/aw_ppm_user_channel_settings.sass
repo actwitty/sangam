@@ -1,0 +1,389 @@
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+body
+  margin: 0
+  padding: 0
+  font-size: $aw_var_default_font_size
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_backgorund_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -15px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: 0px solid #DFDFDF
+  padding: 5px
+  color: #666666
+  background-color: #FFFFFF
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+/******************************************** Common for all Columns main Div's ************************************
+
+@mixin awcspm_user_profile_setting_default_full_width
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+/* ----------------------------------------------Wrapper-------------------------------------
+
+div.awcspm_channel_settings_wrapper
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+
+.awcspm_channel_settings_column1
+  color: #D2D2D2
+  /*background-color:#33ccff;
+  background: #363436
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81;
+  border: 0px solid red
+
+.awcspm_channel_settings_column2
+  color: #FFFFFF
+  background-color: #f0f0f0
+  border: 0px solid green
+
+.awcspm_channel_settings_column3
+  color: #000000
+  background-color: #ffffff
+  border: 0px solid blue
+
+.awcspm_channel_settings_column4
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+.awcspm_channel_settings_column5
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+
+
+/******************************************* User box section for user photo and input box *************************
+
+
+
+
+
+
+#awcspm_channel_settings_box
+  @include awcspm_user_profile_setting_default_full_width
+  height: 300px
+  height: auto
+  border: 0px solid red
+  background: #ffffff
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+  h3
+    color: #000
+    font-size: 32px
+    margin-left: 10px
+
+#awcspm_channel_settings_content
+  width: 100%
+  height: 800px
+  border: 0px solid red
+  margin-top: 20px
+
+.awcspm_channel_settings_menu_box
+  float: left
+  width: 300px
+  height: 500px
+  margin-left: 15px
+  margin-top: 10px
+  border: 1px solid #ddd
+  border-radius: 5px
+  overflow-y: auto
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+  h4
+    color: #000
+    font-size: 16px
+    text-align: center
+    margin: 5px
+
+
+#awcspm_channel_settings_fields_box
+  float: left
+  width: 600px
+  height: 790px
+  margin-left: 45px
+  margin-top: 10px
+  border: 1px solid #ddd
+  border-radius: 5px
+  position: relative
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+  h2
+    color: #454545
+    font-size: 17px
+    font-weight: normal
+    margin-left: 20px
+
+
+
+.awcspm_channel_info_edit_box
+  height: 150px
+  width: 200px
+  position: relative
+  border-bottom: 0px solid #ddd
+
+
+
+#awcspm_channel_info_fields
+  position: absolute
+  top: 30px
+  right: 0px
+  width: 400px
+  height: 150px
+
+
+
+/* for showing channel analytics
+div.aw_cspm_dyn_chn_analytics
+  font-family: Calibri, Tahoma, Geneva, sans-serif
+  position: absolute
+  left: 1em
+  top: 2em
+  z-index: 99
+  margin-left: 200px
+  margin-top: 5px
+  width: 350px
+  height: 280px
+  background-color: #ddd
+  /*background-image: url("/images/actwitty/refactor/aw_ppm/channel/analytics/my_channel_bck.png")
+  border: 1px solid #ccc
+  border-radius: 8px
+  -moz-box-shadow: 0 0 4px #333 
+  -webkit-box-shadow: 0 0 4px #333
+  box-shadow: 0 0 4px #333
+
+
+
+
+.awcspm_delete_channel
+  position: absolute
+  bottom: 25px
+  right: 10px
+  text-decoration: none
+  color: #ccc
+  font-size: 9px
+
+
+
+
+
+
+.awcspm_chn_data_info_header_edit
+  border: 1px solid black
+  height: 100px
+  margin-left: 15px
+  margin-top: 15px
+  position: relative
+  width: 170px
+
+
+#awcspm_channel_theme_selector_box
+  height: auto
+  width: 600px
+  border-top: 1px solid #ddd
+  border-bottom: 1px solid #ddd
+  padding: 0 0 10px 0
+  h5
+    font-size: 16px
+    color: #333
+    margin-left: 10px
+
+#awcspm_channel_theme_selection_list
+  height: 400px
+  overflow-y: auto
+
+
+
+
+.awcspm_channel_theme_box
+  width: 170px
+  height: 100px
+  float: left
+  margin-left: 20px
+  margin-top: 10px
+  position: relative
+  &:hover  .awcspm_channel_theme_info
+    display: block
+
+
+
+.awcspm_channel_theme_info
+  position: absolute
+  bottom: 0
+  height: 50px
+  width: 100%
+  background: #f0f0f0
+  opacity: 0.9
+  color: #000
+  font-size: 12px
+  display: none
+
+
+
+
+
+.awcspm_channel_settings_categories
+  width: 220px
+  height: 30px
+  border: 0px solid #ddd
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+  font-size: 14px
+  margin-left: 20px
+  margin-top: 10px
+
+
+
+.awcspm_channel_settings_save_btn
+  float: right
+  margin-top: 10px
+  width: 180px
+  height: 60px
+
+.awcspm_profile_data_info_header
+  width: 170px
+  height: 100px
+  border: 1px solid black
+  /*float:left;
+  display: inline-block
+  margin-left: 60px
+  margin-top: 15px
+  position: relative
+  cursor: pointer
+  &:hover  .awcspm_channel_edit_pop_up
+    display: block
+  
+.awcspm_channel_edit_pop_up
+  position: absolute
+  top: 70px
+  left: 50px
+  width: 100px
+  height: 30px
+  border: 1px solid #ddd
+  background: #fff
+  color: #000
+  font-size: 10px
+  display: none
+  padding: 5px
+
+
+.awcspm_profile_channel_labels
+  width: 100%
+  height: 18px
+  position: absolute
+  top: 0
+  background: rgb(0, 0, 0)
+  background: rgba(0, 0, 0, 0.6)
+  color: #fff
+  text-align: center
+  font-weight: bold
+
+.awcspm_profile_data_info
+  width: 230px
+  height: 130px
+  border: 1px solid #ddd
+  position: absolute
+  left: 130px
+  top: 100px
+  -moz-box-shadow: 0 0 5px #ddd
+  -webkit-box-shadow: 0 0 5px #ddd
+  box-shadow: 0 0 5px #ddd
+  z-index: 10
+  background-image: url("../images/grey_texture.png")
+  display: none
+
+.awcspm_channel_settings_field
+  height: 60px
+  width: 400px
+  padding-top: 10px
+  border-bottom: 0px solid #ddd
+  label
+    float: left
+    width: 130px
+    margin-top: 8px
+    margin-left: 10px
+    color: #000
+    font-size: 16px
+    font-weight: bold
+    vertical-align: middle
+  input
+    margin-top: 8px
+    font-size: 14px
+    height: 26px
+    margin-left: 20px
+    padding: 2px 10px
+    width: 200px
+    border: 1px solid #ddd
+    -moz-box-shadow: 0 0 8px #ddd
+    -webkit-box-shadow: 0 0 8px #ddd
+    box-shadow: 0 0 8px #ddd
+  textarea
+    margin-top: 8px
+    margin-left: 20px
+    width: 290px
+    height: 80px
+    resize: none
+    border: 1px solid #ddd
+    -moz-box-shadow: 0 0 8px #ddd
+    -webkit-box-shadow: 0 0 8px #ddd
+    box-shadow: 0 0 8px #ddd

@@ -36,6 +36,13 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
     - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
+  profile_settings:
+    - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting.js 
+  profile_channel_settings:
+    - public/javascripts/actwitty/refactor/spm/channel_profile/aw_cspm_setting.js
+    - public/javascripts/actwitty/refactor/spm/channel_profile/aw_cspm_theme_setting.js
+#   aw_ppm_chn_dyn_analytc.js will be needed in channel settings page, if we need to show analytics there
+    - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_dyn_analytc.js
   profile_channels:
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_renderer.js
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_events.js
@@ -107,10 +114,14 @@ javascripts:
     - public/javascripts/vendor/mailchimp/jquery.validate.js
     - public/javascripts/vendor/mailchimp/jquery126.min.js
 
+
+
+
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_modal_boxes.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
@@ -121,6 +132,12 @@ stylesheets:
   profile_page_commons:  
     - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.css
     - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.css
+  profile_page_settings:
+    - public/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.css
+  profile_channel_settings:
+    - public/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.css
+#   aw_ppm_chn_dyn_analytc.css will be needed in channel settings page if we need to show analytics here
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.css
   profile_page_channels:
     - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.css
     - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page.css

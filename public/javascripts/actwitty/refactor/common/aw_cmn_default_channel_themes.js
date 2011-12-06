@@ -1,20 +1,20 @@
 var aw_local_default_channel_theme_json = {
                                           'animals' : {
-                                                                  'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/pets.jpg',
-                                                                  'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/pets.jpg' 
-                                                               },
-                                          'arts': {
-                                                                  'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/art.jpg',
-                                                                  'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/art.jpg' 
-                                                               },
-                                          'books': {
-                                                                  'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/books.jpg',
-                                                                  'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/books.jpg' 
-                                                               },
-                                          'business': {
-                                                        'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/business.jpg',
-                                                        'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/business.jpg' 
+                                                        'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/pets.jpg',
+                                                        'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/pets.jpg' 
                                                       },
+                                          'arts': {
+                                                    'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/art.jpg',
+                                                    'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/art.jpg' 
+                                                   },
+                                          'books': {
+                                                    'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/books.jpg',
+                                                    'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/books.jpg' 
+                                                   },
+                                          'business': {
+                                                      'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/business.jpg',
+                                                      'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/business.jpg' 
+                                                    },
                                           'cars': {
                                                     'thumb': '/images/actwitty/refactor/aw_common/themes/channel_thumbs/cars.jpg',
                                                     'bkg' : '/images/actwitty/refactor/aw_common/themes/channel_backgrounds/cars.jpg' 
@@ -109,3 +109,34 @@ function aw_lib_get_default_stream_theme_for_category(category_data){
     return aw_local_default_channel_theme_json['default'].bkg;
   }
 }
+
+
+/*
+ * 
+ *
+ */
+
+function aw_lib_get_channel_theme_thumb(channel_info)
+{
+  if(typeof channel_info.documents.id == 'undefined')
+    return aw_lib_get_default_channel_theme_for_category(channel_info.category_data).thumb;
+  else
+    return channel_info.documents.thumb_url;
+}
+
+
+
+
+/*
+ * 
+ *
+ */
+function aw_lib_get_channel_theme_background(channel_info)
+{
+  if(typeof channel_info.documents.id == 'undefined'){
+   
+    return aw_lib_get_default_stream_theme_for_category(channel_info.category_data);
+  }else
+    return channel_info.documents.url;
+}
+

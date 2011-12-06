@@ -277,7 +277,7 @@ class Summary < ActiveRecord::Base
 
         if summary_old.activity_name == params[:new_name]
           Rails.logger.info("[MODEL] [SUMMARY] [update_summary] => same summary name given  " )
-          return s.attributes
+          return summary_old.attributes
         end
 
         #if new name is also a new summary, create the activity word and just update the name

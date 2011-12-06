@@ -268,38 +268,7 @@ class HomeController < ApplicationController
     #FB: Open graph tags end
 
   end
-  ############################################
-  def settings
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
-	  @user = current_user 
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
-	  if !@user.nil?
-	      @profile = Profile.find_by_user_id(@user.id)
-	      Rails.logger.info("[CNTRL][HOME][SETTINGS] If User is Not Nil, then profile: #{@profile.user_id}")
-	      puts @profile.user_id
-	      puts @profile.id
-	  end
-  end
-
-  ############################################
-  def settings_save
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
-	  @user = current_user
-	  @profile = current_user.profile
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:profile]}")
-	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
-	  if @profile.update_attributes(params[:profile])
-      unless params[:profile][:profile_photo_s].blank?
-        current_user.photo_small_url = params[:profile][:profile_photo_s]
-        current_user.save!
-      end
-	    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
-	    redirect_to(home_show_url)
-	  end
-	 Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
-
-  end
-  
+ 
   ############################################
   def subscribers
     Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] request params : #{params}")
@@ -1376,6 +1345,126 @@ class HomeController < ApplicationController
     end
   end
   ############################################
+  def settings
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
+    @profile_page = 1
+    @page_mode="profile_usr_settings_page"
+	  @user = current_user
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
+    Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User Location: #{@user.current_location}")
+	  if !@user.nil?
+	      @profile = Profile.find_by_user_id(@user.id)
+        if @profile.nil?
+            @profile = Profile.new(@user)
+            @profile.user_id = @user.id
+            if @profile.save
+              Rails.logger.info("[CNTRL][HOME][SETTINGS] Created profile with id: #{@profile.id}")
+            else
+              Rails.logger.info("[CNTRL][HOME][SETTINGS] Could not create profile")
+            end
+        end
+	      #Rails.logger.info("[CNTRL][HOME][SETTINGS] If User is Not Nil, then profile: #{@profile.user.user_id}")
+	      #puts @profile.user_id
+	      #puts @profile.id
+	  end
+  end
+
+  ############################################
+  def settings_save
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
+	  @user = current_user
+    
+	  @profile = current_user.profile
+	  
+    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information-- #{params[:user][:profile]}")
+	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
+	  if @profile.update_attributes(params[:user][:profile])
+      Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:user]}")
+      if @user.update_attributes(params[:user])
+        unless params[:user][:profile_photo_s].blank?
+          current_user.photo_small_url = params[:profile][:profile_photo_s]
+          current_user.save!
+        end
+	      Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
+        # TODO : need to decide whether we need to stay in same page or move to home page
+	      #redirect_to(home_show_url)
+	    end
+    end
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
+    respond_to do |format|
+      #format.html { render_with_scope :new }
+      format.js   {  }
+    end
+  
+  end
+
+  ########################################### 
+  def change_profile_pic
+     Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] Entry to Change Profile Pic")
+     Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] profile_pic value = #{params[:user][:photo_small_url]}")
+     @user = current_user
+     @user.photo_small_url = params[:user][:photo_small_url]
+     if @user.save!
+      Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] Could not save profile pic")
+     else
+      Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] Saved profile pic")
+     end
+  end
+
+  
+
+
+
+
+  ############################################
+  # change password through settings page
+  def change_password
+    @current_password = true
+    Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] Password change request")
+    @user = current_user
+    Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] Params #{params}")    
+    if @user.valid_password?(params[:user][:current_password])
+      if @user.update_with_password(params[:user])
+        sign_in(@user, :bypass => true)
+        Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] Password has been changed successfully")
+        return
+      else
+        Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] -- Not able to change password")    
+        #render :edit
+      end
+    else
+        Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] -- Current password is not same")    
+        @current_password = false
+        
+        return 
+    end
+    respond_to do |format|
+          format.js
+        end 
+  end
+
+
+  def deactivate_account
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Deactivating the account")
+    @user = current_user
+    @profile = current_user.profile
+    @authentication = Authentication.find_by_user_id(@user.id)
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] User values: #{@user}")
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Profile values : #{@profile}")
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Authentication values : #{@authentication}")
+    @authentication.destroy
+    @profile.destroy
+    @user.destroy
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Destroyed all related tables")
+ 
+    redirect_to root_path
+
+  end
+
+  
+
+
+
 
 end
 

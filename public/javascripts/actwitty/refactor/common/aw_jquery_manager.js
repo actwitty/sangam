@@ -32,6 +32,14 @@ $(document).ready(function(){
 
    aw_api_ppm_initialize_stm_page(); 
 
+  }else if( page_context == "profile_usr_settings_page") {
+    
+  aw_api_spm_initialize_user_settings_page();  
+  
+  }else if( page_context == "profile_channel_settings_page") {
+    
+   aw_api_cspm_chn_setting_request_user_channels();  
+  
   } else if( page_context == "profile_single_activity_page") {
 
     aw_api_ppm_initialize_single_post_page();
