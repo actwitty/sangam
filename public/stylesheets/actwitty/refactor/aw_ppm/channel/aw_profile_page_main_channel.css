@@ -335,10 +335,20 @@ div.awppm_chn_channel_wrapper {
   height: 20px;
 }
 /* line 271, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box a .awppm_chn_data_section_chn_setting_img_box {
+  background-image: url("/images/actwitty/refactor/aw_ppm/common/channel_setting_icon.png");
+  width: 20px;
+  height: 20px;
+}
+/* line 275, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_section_stream_link_box:hover .awppm_chn_data_section_stream_link_img_box {
   background-image: url("/images/actwitty/refactor/aw_ppm/common/streams_icon1_hover.png");
 }
-/* line 273, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 277, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+.awppm_chn_data_section_stream_link_box:hover .awppm_chn_data_section_chn_setting_img_box {
+  background-image: url("/images/actwitty/refactor/aw_ppm/common/channel_setting_icon_hover.png");
+}
+/* line 279, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_section_stream_link_box .aw_ppm_stream_link_info_hover_box {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 10px;
@@ -353,13 +363,13 @@ div.awppm_chn_channel_wrapper {
   overflow: hidden;
   display: none;
 }
-/* line 286, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 292, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_section_stream_link_box:hover .aw_ppm_stream_link_info_hover_box {
   display: block;
 }
 
 /* for all and subscribed channels, we will have a slightly bigger size */
-/* line 295, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 301, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_info_more {
   width: 50px;
   height: 20px;
@@ -372,7 +382,7 @@ div.awppm_chn_channel_wrapper {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 306, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 312, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_data_channels_box {
   width: 100%;
   height: auto;
@@ -380,7 +390,7 @@ div.awppm_chn_channel_wrapper {
   margin-bottom: 30px;
 }
 
-/* line 312, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 318, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_busy_channels_box {
   position: absolute;
   top: 0;
@@ -393,7 +403,7 @@ div.awppm_chn_channel_wrapper {
   background: black;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 323, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 329, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_busy_channels_box .awppm_chn_busy_mini_box {
   width: 50px;
   height: 50px;
@@ -403,7 +413,7 @@ div.awppm_chn_channel_wrapper {
   left: 50%;
   position: absolute;
 }
-/* line 331, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
+/* line 337, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_busy_channels_box .awppm_chn_busy_mini_box img.awppm_chn_busy_image {
   width: 50px;
   height: 50px;

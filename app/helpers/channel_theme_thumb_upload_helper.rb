@@ -1,4 +1,4 @@
-module ProfilepicHelper
+module ChannelThemeThumbUploadHelper
 
   #  Creates an instance of a plupload S3 file uploader
   ###
@@ -19,7 +19,7 @@ module ProfilepicHelper
   #
   #  max_filesize              2.megabytes
 
-  def s3_profile_pic_uploader(options = {})
+  def s3_channel_theme_thumb_uploader(options = {})
     options[:s3_config_filename] ||= "#{Rails.root}/#{AppConstants.cloud_keys}"
     config = YAML.load_file(options[:s3_config_filename])[Rails.env].symbolize_keys
     bucket            = config[:aws_bucket_name]
@@ -59,8 +59,7 @@ module ProfilepicHelper
     out = ""
 
     out << javascript_tag("$(function() {
-
-
+     
       function get_file_prefix(){
         var user_id = '#{current_user.id}';
         var now = new Date();
@@ -71,7 +70,7 @@ module ProfilepicHelper
       // image uploader via plupload
         var uploader = new plupload.Uploader({
                                                 runtimes : 'flash',
-                                                browse_button : 'awppm_user_profile_change_profile_pic',
+                                                browse_button : 'channel_thumb_selector',
                                                 max_file_size : '5mb',
                                                 url : base_url,
                                                 flash_swf_url: '/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.flash.swf',
@@ -85,8 +84,8 @@ module ProfilepicHelper
                                                                                           }
                                                         },
 	                                              resize : {
-                                                            width : 640,
-                                                            height: 480,
+                                                            width : 170,
+                                                            height: 100,
                                                             quality : 90
                                                          },
                                                 multipart: true,
@@ -153,7 +152,7 @@ module ProfilepicHelper
                                     /* main image completion handler */
                                   }else{
                                     /* thumbnail image completion handler */
-                                    aw_notify_profile_image(main_url, thumb_url);
+                                    aw_notify_channel_theme_thumbnail(main_url, thumb_url);
                                   }
                                 });
 

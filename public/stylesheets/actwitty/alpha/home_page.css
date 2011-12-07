@@ -1,97 +1,622 @@
 @charset "UTF-8";
 /*
-Syntax error: Invalid CSS after ".p-st-": expected pseudoclass or pseudoelement, was "}"
-        on line 231 of /home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/alpha/home_page.scss
+ * General conventions
+ * -------------------
+ *  "p" in start => profile
+ *  "l" => left
+ *  "r" => right
+ *  "ch" => channel
+ *  "st" => stream
+ *  "cstab" => channel stream tab
+ *  "fltr" => filter
+ *  "ip" => input
+ *  "awp" => act witty post
+ *
+ *
+ *  General Flow
+ *  ------------
+ *  1).The page width size has been fixed at 990px (Set in generalise section)
+ *  2).We can have background image strips as presented in wireframes. Strip colors can
+ *     be controlled by "wrapper" section in css. (for individual columns)
+ *  3).There are 4 columns (distributed as rows)
+ *      Col1: has header/top bar information
+ *      Col2: has input box
+ *      Col3: has Channel and stream tabs
+ *      Col4: has main content information
+ *          Col4 -> Col1: has left sidebar filters by content types (all/video/twitter etc)
+ *          Col4 -> Col2: has main content stream
+ *            Col4 -> Col2 -> Col1 : only in case of stream on, we have Show Containing bar
+ *          Col4 -> Col3: has right sidebar filters (Me/others) and Search Filters
+ *  
+ *  General Remarks
+ *  ---------------
+ *  1). All the placeholders are in place for images to be placed.
+ *  2). No jQuery implementation has be set currently
+ *  3). Some specifications related to tab bar is not in place.
+ *  4). Font-description have been mentioned at resp places to be changed on notice.
+ */
+/* line 40, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: verdana, Arial, Helvetica, sans-serif;
+  color: #CCCCCC;
+  background-color: #2E2E2E;
+}
 
-226: {
-227:   list-style:none;
-228: }
-229: .p-st-filter li
-230: {
-231:   display:inline:
-232: }
-233: .p-st-flt-label
-234: {
-235:   width:100px;
-236:   text-align:center;
+/* line 49, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+img {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
 
-Backtrace:
-/home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/alpha/home_page.scss:231
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:898:in `expected'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:841:in `expected'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:823:in `expr!'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:595:in `pseudo'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:491:in `simple_selector_sequence'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:466:in `_selector'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:445:in `selector'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:429:in `selector_sequence'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:354:in `ruleset'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:417:in `block in declaration_or_ruleset'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:872:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:872:in `rethrow'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:418:in `declaration_or_ruleset'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:380:in `block_child'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:369:in `block_contents'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:361:in `block'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:355:in `ruleset'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:379:in `block_child'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:372:in `block_contents'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:57:in `stylesheet'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:26:in `parse'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:320:in `_to_tree'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:293:in `_render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:241:in `block in render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/util.rb:297:in `silence_sass_warnings'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:241:in `render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:319:in `update_stylesheet'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:181:in `block (2 levels) in update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:175:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:175:in `block in update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:173:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:173:in `update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin.rb:81:in `update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin.rb:54:in `check_for_updates'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/rack.rb:51:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/client_side_validations-3.1.0/lib/client_side_validations/middleware.rb:18:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.5/lib/warden/manager.rb:35:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.5/lib/warden/manager.rb:34:in `catch'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.5/lib/warden/manager.rb:34:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/lock.rb:11:in `block in call'
-<internal:prelude>:10:in `synchronize'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/static.rb:33:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \".p-st-\": expected pseudoclass or pseudoelement, was \"}\"\A         on line 231 of /home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/alpha/home_page.scss\A \A 226: {\A 227:   list-style:none;\A 228: }\A 229: .p-st-filter li\A 230: {\A 231:   display:inline:\A 232: }\A 233: .p-st-flt-label\A 234: {\A 235:   width:100px;\A 236:   text-align:center;"; }
+/* line 50, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.clear {
+  clear: both;
+}
+
+/* line 51, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+br.clear {
+  clear: both;
+  margin-top: -15px;
+}
+
+/* line 52, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+/* line 54, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-view-campaign-comments {
+  display: none;
+}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+/* line 60, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+div.wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+/* line 67, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6 {
+  margin: 0 0 20px 0;
+  padding: 0 0 8px 0;
+  font-size: 22px;
+  font-weight: normal;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-bottom: 1px dashed #DDDDDD;
+}
+
+/* line 76, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.col1 {
+  color: #D2D2D2;
+  background-color: #778899;
+}
+
+/* line 77, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.col2 {
+  color: #FFFFFF;
+  background-color: #778899;
+}
+
+/* line 78, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.col3 {
+  color: #000000;
+  background-color: #7CCD7C;
+}
+
+/* line 79, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.col4 {
+  color: #666666;
+  background-color: #7CCD7C;
+}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+/* line 84, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#header, #p-ip-sect, #p-ch-st-tab-sect, #p-content-sect {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+}
+
+/* ----------------------------------------------Header-------------------------------------*/
+/* line 93, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#header {
+  padding: 0px 0;
+  z-index: 1000;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  width: 600px;
+  border: 1px solid red;
+}
+
+/* line 101, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#header h1, #header p {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 106, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#header #logo {
+  display: block;
+  float: left;
+  width: 260px;
+}
+
+/* line 112, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#header h1 {
+  margin: 0 0 7px 0;
+  font-size: 36px;
+  border: none;
+}
+
+/* line 118, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#header h1 a {
+  color: #D2D2D2;
+  background-color: #000000;
+}
+
+/* ----------------------------------------------Profile page input-------------------------------------*/
+/* line 128, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#input-box {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 600px;
+  height: 200px;
+  border: 2px solid #ddd;
+}
+
+/* line 137, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#p-ip-sect {
+  padding: 0px 0;
+  border: 1px solid blue;
+  width: 600px;
+}
+
+/* ----------------------------------------------Channel Stream Tab-------------------------------------*/
+/* line 148, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#p-ch-st-tab-sect {
+  padding: 0px 0;
+  border: 1px solid green;
+}
+
+/* line 154, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#p-ch-st-tab {
+  width: 600px;
+  height: 40px;
+  border: 1px solid blue;
+  margin-left: 195px;
+}
+
+/* line 162, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+ul.p-cstab {
+  margin: 0;
+  margin-left: 0px;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 40px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  width: 605px;
+  display: block;
+  background: #fffafa;
+}
+
+/* line 177, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+ul.p-cstab li {
+  display: block;
+  float: left;
+  margin: 0px 0 0 0px;
+  padding: 0 0px;
+  height: 40px;
+  line-height: 40px;
+  border: 0px solid #ddd;
+  margin-top: 1px;
+  margin-bottom: -1px;
+  position: relative;
+  background: #ddd;
+  width: 300px;
+  text-align: center;
+}
+
+/* line 194, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+ul.p-cstab li a {
+  text-decoration: none;
+  text-align: center;
+  color: #333;
+  font-size: 1.2em;
+  padding: 0 20px;
+  outline: none;
+  font-size: 16px;
+  font-family: â€˜Lucida Grandeâ€™, sans-serif;
+  font-weight: bold;
+}
+
+/* line 206, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+ul.p-cstab li:hover {
+  color: #00BFFF;
+  text-decoration: none;
+  background: red;
+}
+
+/* line 212, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+html ul.p-cstab li.active a, html ul.p-cstab li.active a:hover {
+  border-bottom: 1px solid #fff;
+  color: #00BFFF;
+  background: red;
+}
+
+/*****************************************  Stream Filters ***************************************/
+/* line 221, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-filter-sect {
+  width: 100%;
+  height: 50px;
+}
+
+/* line 226, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-filter {
+  list-style: none;
+}
+
+/* line 230, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-filter li {
+  display: inline;
+}
+
+/* line 234, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-flt-label {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* line 240, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-filter-box {
+  width: 150px;
+  height: 40px;
+  font-size: 22px;
+  color: red;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+  margin: 0 5px 0 2px;
+}
+
+/* line 251, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-filter-box span {
+  padding: 5px 0 0 0;
+}
+
+/* line 255, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-flt-channel {
+  background: #EE9572;
+}
+
+/* line 261, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-flt-entity {
+  background: #9AFF9A;
+}
+
+/* line 267, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-st-flt-location {
+  background: #2E8B57;
+}
+
+/* -------------------------------Left Bar Filter ----------------------------------*/
+/* line 276, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-con-l-fltr {
+  width: 190px;
+  height: auto;
+  border: 1px solid red;
+}
+
+/* line 282, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-l-fltr-1 {
+  width: 100%;
+  height: 300px;
+  border: 2px solid black;
+}
+
+/* line 293, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-content-type-fltr-sect {
+  height: 300px;
+  width: 100px;
+  border: 1px solid blue;
+  float: right;
+  display: block;
+}
+
+/* line 302, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-cont-typ-fltr {
+  height: 43px;
+  margin-top: 7px;
+  width: 70px;
+  border: 1px solid green;
+}
+
+/* line 312, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-l-fltr-2 {
+  width: 100%;
+  height: auto;
+  border: 1px solid red;
+}
+
+/* line 318, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-related-fltrs-sect {
+  height: auto;
+}
+
+/* line 324, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-rel-fltrs {
+  width: 100%;
+}
+
+/* line 328, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-rel-fltrs span {
+  float: right;
+}
+
+/* line 333, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-rel-fltr-tags {
+  width: 150px;
+  height: auto;
+  border: 1px solid green;
+  float: right;
+}
+
+/* line 342, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-fltr-tag-list {
+  display: block;
+  float: right;
+  margin: 2px 2px;
+}
+
+/* line 348, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-fltr-tag-list span {
+  background: #EED5B7;
+  padding: 2px;
+}
+
+/* line 354, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+ul.p-fltr-tag-list {
+  list-style: none;
+}
+
+/* line 359, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+ul.p-fltr-tag-list li {
+  display: inline;
+  background: #EED5B7;
+  padding: 2px;
+}
+
+/* ------------------------------- Right Bar Filter ---------------------------------*/
+/* line 370, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-con-r-fltr {
+  width: 150px;
+  height: auto;
+  border: 1px solid blue;
+}
+
+/* line 378, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-fltr-st {
+  width: 100%;
+  height: auto;
+  border: 1px solid red;
+}
+
+/* line 385, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-fltr-st-by {
+  height: 300px;
+}
+
+/* line 390, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-fltr-me {
+  margin-top: 7px;
+  width: 80px;
+  height: 108px;
+  border: 1px solid green;
+}
+
+/* line 398, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-fltr-others {
+  margin-top: 7px;
+  width: 80px;
+  height: 108px;
+  border: 1px solid blue;
+}
+
+/* line 407, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-search-fltr {
+  width: 100%;
+  height: auto;
+}
+
+/* line 412, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-search-fltr-bar {
+  height: 25px;
+  background: #ddd;
+  padding: 3px;
+}
+
+/* line 418, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-search-fltr-bar span {
+  float: right;
+  color: #333;
+  font-size: 14px;
+}
+
+/* line 425, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-fltr-by {
+  width: 100%;
+  height: 15px;
+  margin: 2px 0 2px 0;
+}
+
+/* line 431, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-r-fltr-by span {
+  font-size: 11px;
+}
+
+/* ----------------------------------------  Content stream -------------------------------------*/
+/* line 439, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#p-content-sect {
+  padding: 30px 0;
+  border: 1px solid red;
+}
+
+/* line 444, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#p-content-sect ul, #p-content-sect p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline;
+}
+
+/* line 453, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+#p-content-sect li {
+  display: block;
+  float: left;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+
+/* line 464, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-content {
+  width: 600px;
+  height: auto;
+  border: 1px solid green;
+}
+
+/* line 471, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-aw-post {
+  height: auto;
+  width: 100%;
+  border: 1px solid yellow;
+}
+
+/* line 479, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-channel {
+  width: 100%;
+  height: 30px;
+  border: 1px solid red;
+}
+
+/* line 486, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-channel-desc {
+  float: right;
+}
+
+/* line 491, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-channel-label {
+  font-size: 16px;
+  color: red;
+}
+
+/* line 496, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-channel-name {
+  font-size: 18px;
+  color: blue;
+  background: black;
+}
+
+/* line 504, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-subtitle {
+  width: 100%;
+  height: 30px;
+  border: 1px solid blue;
+}
+
+/* line 511, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-subtitle-name {
+  float: right;
+  font-size: 21px;
+  padding: 3px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* line 520, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-time {
+  width: 100%;
+  height: 20px;
+  border: 1px solid green;
+}
+
+/* line 526, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-time-content {
+  float: right;
+  font-size: 12px;
+}
+
+/* line 531, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-date {
+  width: 100%;
+  height: 20px;
+  border: 1px solid blue;
+}
+
+/* line 537, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-date-content {
+  float: right;
+  font-size: 12px;
+}
+
+/* line 543, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-content {
+  width: 100%;
+  height: auto;
+  disply: block;
+  border: 1px solid red;
+}
+
+/* line 551, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-content p {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* line 558, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-view-attachment {
+  display: block;
+  width: 100%;
+  height: 70px;
+  border: 1px solid red;
+}
+
+/* line 567, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-view-comment {
+  height: 17px;
+  width: 100%;
+}
+
+/* line 573, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-view-comment span {
+  float: right;
+  font-size: 13px;
+  color: #ddd;
+}
+
+/* line 579, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-view-comment span:hover {
+  cursor: pointer;
+}
+
+/* line 584, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-comments-section {
+  width: 100%;
+  height: auto;
+  border: 1px solid red;
+}
+
+/* line 591, ../../../../app/stylesheets/actwitty/alpha/home_page.scss */
+.p-awp-comment {
+  height: 40px;
+  border: 1px solid green;
+}

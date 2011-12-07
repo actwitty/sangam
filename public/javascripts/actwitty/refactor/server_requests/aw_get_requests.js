@@ -9,6 +9,16 @@ var aw_srv_local_json_data_cache_manager = {
                                                                               'DATA' : {},
                                                                               'URL' : "/home/get_latest_summary.json"
                                                                             },
+
+                                      'AW_SRV_CSPM_CHN_GET_USER_CHANNELS_LIST'  : {
+                                                                             
+                                                                              'CB': function aw_temp_resp_fn_1(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_cspm_chn_render_user_channels(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'URL' : "/home/get_summary.json"
+                                                                            },
                                       'AW_SRV_PPM_CHN_GET_USER_CHANNELS'  : {
                                                                              
                                                                               'CB': function aw_temp_resp_fn_1(params){
@@ -18,6 +28,7 @@ var aw_srv_local_json_data_cache_manager = {
                                                                               'DATA' : {},
                                                                               'URL' : "/home/get_summary.json"
                                                                             },
+
                                                                                                           
                                       'AW_SRV_PPM_CHN_GET_SUBSCRIBED_CHANNELS' : {
                                                                               

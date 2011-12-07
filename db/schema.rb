@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121132911) do
+ActiveRecord::Schema.define(:version => 20111203055055) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                     :null => false
@@ -391,6 +391,8 @@ ActiveRecord::Schema.define(:version => 20111121132911) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "fb_default_share"
+    t.boolean  "twt_default_share"
   end
 
   add_index "profiles", ["first_name", "last_name"], :name => "index_profiles_on_first_name_and_last_name"

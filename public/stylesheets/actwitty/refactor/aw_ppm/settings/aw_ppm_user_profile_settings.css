@@ -1,0 +1,489 @@
+/* line 6, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white;
+}
+
+/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+img {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 19, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.justify {
+  text-align: justify;
+}
+
+/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.bold {
+  font-weight: bold;
+}
+
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.center {
+  text-align: center;
+}
+
+/* line 28, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.right {
+  text-align: right;
+}
+
+/* line 31, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.nostart {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.clear {
+  clear: both;
+}
+
+/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+br.clear {
+  clear: both;
+  margin-top: -15px;
+}
+
+/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.fl_left {
+  float: left;
+}
+
+/* line 50, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.fl_right {
+  float: right;
+}
+
+/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.imgl, .imgr {
+  border: 0px solid #dfdfdf;
+  padding: 5px;
+  color: #666666;
+  background-color: white;
+}
+
+/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.imgl {
+  float: left;
+  margin: 0 8px 8px 0;
+  clear: left;
+}
+
+/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.imgr {
+  float: right;
+  margin: 0 0 8px 8px;
+  clear: right;
+}
+
+/******************************************* Common for all Columns main Div's ************************************ */
+/* ----------------------------------------------Wrapper------------------------------------- */
+/* line 77, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+div.awppm_user_profile_settings_wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+/* line 83, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_column1 {
+  color: #d2d2d2;
+  /*background-color:#33ccff; */
+  background: #363436;
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81; */
+  border: 0px solid red;
+}
+
+/* line 90, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_column2 {
+  color: white;
+  background-color: white;
+  border: 0px solid green;
+}
+
+/* line 95, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_column3 {
+  color: black;
+  background-color: white;
+  border: 0px solid blue;
+}
+
+/* line 100, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_column4 {
+  color: #ff9900;
+  background-color: #424242;
+  border-top: 1px solid #363631;
+}
+
+/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_column5 {
+  color: #ff9900;
+  background-color: #424242;
+  border-top: 1px solid #363631;
+}
+
+/****************************************** User box section for user photo and input box ************************* */
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_box {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  height: 300px;
+  height: auto;
+  border: 0px solid red;
+}
+/* line 122, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_box h3 {
+  color: black;
+  font-size: 32px;
+  margin-left: 10px;
+}
+
+/* line 127, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_content {
+  width: 100%;
+  height: 800px;
+  border: 0px solid red;
+  margin-top: 20px;
+}
+
+/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_menu_box {
+  float: left;
+  width: 300px;
+  height: 700px;
+  margin-left: 10px;
+  margin-top: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+  position: relative;
+}
+
+/* line 146, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_fields_box {
+  float: left;
+  width: 500px;
+  height: 700px;
+  margin-left: 90px;
+  margin-top: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+}
+
+/***************** User Name */
+/* line 162, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_user_name {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+/* line 168, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_user_name input {
+  readonly: true;
+}
+
+/***************** Default Share Box */
+/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_share_box {
+  position: relative;
+}
+
+/* line 176, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_settings_share_fb_box {
+  position: absolute;
+  top: 20px;
+  left: 140px;
+}
+
+/* line 180, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_settings_share_fb_img {
+  position: absolute;
+  top: 20px;
+  left: 180px;
+}
+
+/* line 185, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_settings_share_tw_box {
+  position: absolute;
+  top: 20px;
+  left: 260px;
+}
+
+/* line 189, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_settings_share_tw_img {
+  position: absolute;
+  top: 20px;
+  left: 300px;
+}
+
+/* line 195, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_settings_share_box {
+  display-inline: block;
+}
+
+/* line 199, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_settings_gender {
+  width: 200px;
+  border: 1px solid #dddddd;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+/* line 207, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_save_btn {
+  float: right;
+  margin-top: 10px;
+  width: 180px;
+  height: 60px;
+}
+
+/* line 213, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_profile_pic {
+  width: 150px;
+  height: 200px;
+  border: 1px solid #dddddd;
+  margin: 0 auto;
+  margin-top: 30px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 198px;
+}
+
+/* line 223, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+div#awppm_user_profile_settings_profile_pic img {
+  margin-top: expression(( 150 - this.height ) / 2);
+  vertical-align: middle;
+}
+
+/* line 229, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_menu_box .awppm_user_profile_settings_menu_btn {
+  margin-left: 90px;
+  margin-top: 5px;
+}
+
+/* line 234, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_chng_pic_submit {
+  display: none;
+}
+
+/* line 237, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_pswd_label {
+  font-family: "Yanone Kaffeesatz", arial, serif;
+  font-size: 18px;
+  color: #dddddd;
+  text-decoration: none;
+  display: block;
+  width: 250px;
+  padding: 0px;
+  border: 1px solid #dddddd;
+  text-align: center;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  border: solid 1px #333333;
+  background: #333333;
+  background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(black));
+  background: -moz-linear-gradient(top, #666666, black);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000');
+  position: absolute;
+  top: -15px;
+  left: -1px;
+}
+
+/*********************************** Password Change Settings ********************************************* */
+/* line 262, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_change_pswd {
+  width: 250px;
+  height: 180px;
+  height: auto;
+  padding-top: 25px;
+  margin: 0 auto;
+  margin-top: 70px;
+  position: relative;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+/* line 274, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_pswdchn_success {
+  font-size: 12px;
+  color: #333333;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: none;
+}
+
+/* line 283, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_curpswd_error, #awppm_user_profile_settings_newpswd_error, #awppm_user_profile_settings_mismatchpswd_error {
+  display: none;
+}
+
+/* line 286, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_oldpswd {
+  height: 20px;
+  border: 1px solid red;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+/* line 292, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_newpswd {
+  height: 20px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+/* line 297, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_cnfrmpswd {
+  height: 20px;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+/* line 303, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_pswd_btn {
+  width: 120px;
+  height: 40px;
+  margin-top: 15px;
+  margin-left: 60px;
+}
+
+/* line 309, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_pswd_error {
+  color: red;
+  text-align: center;
+}
+
+/* line 314, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_change_pswd a {
+  position: absolute;
+  top: 160px;
+  left: 20px;
+  text-decoration: none;
+  color: #333333;
+  font-size: 10px;
+}
+
+/* line 322, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_newpswd, .awppm_user_profile_settings_cnfrmpswd, .awppm_user_profile_settings_oldpswd {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+}
+
+/************************************************* Profile Deactivation ************************** */
+/*.awppm_user_profile_deactivate
+ * height: 0px
+ * width: 200px
+ * padding: 8px
+ * margin-top: 70px
+ * margin-left: 40px */
+/* line 344, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_deactivate {
+  /*margin-top: 70px */
+  text-align: center;
+  color: #333333;
+  font-weight: normal;
+  font-size: 10px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+/* line 356, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_field {
+  height: 60px;
+  width: 500px;
+  padding-top: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+/* line 361, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_field label {
+  float: left;
+  width: 130px;
+  margin-top: 8px;
+  margin-left: 10px;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+/* line 370, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_field input {
+  margin-top: 8px;
+  font-size: 14px;
+  height: 26px;
+  margin-left: 20px;
+  padding: 2px 10px;
+  width: 272px;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+}
+/* line 381, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+.awppm_user_profile_settings_field textarea {
+  margin-top: 8px;
+  margin-left: 20px;
+  width: 290px;
+  height: 80px;
+  resize: none;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 8px #dddddd;
+  -webkit-box-shadow: 0 0 8px #dddddd;
+  box-shadow: 0 0 8px #dddddd;
+}
+
+/* line 392, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#fb_connect_sm {
+  background: url("../images/fb_connect_sm.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  float: left;
+  height: 22px;
+  margin-left: 20px;
+  margin-top: 8px;
+  overflow: hidden;
+  text-indent: -1000px;
+  width: 120px;
+}
+
+/* line 403, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_biodata {
+  height: 110px;
+}
+
+/* line 407, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+div.awppm_user_profile_settings_field span.error {
+  color: red;
+  margin-left: 180px;
+}

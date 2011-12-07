@@ -1,4 +1,4 @@
-module ProfilepicHelper
+module ProfilePicUploadHelper
 
   #  Creates an instance of a plupload S3 file uploader
   ###
@@ -19,7 +19,7 @@ module ProfilepicHelper
   #
   #  max_filesize              2.megabytes
 
-  def s3_profile_pic_uploader(options = {})
+  def s3_user_profile_pic_uploader(options = {})
     options[:s3_config_filename] ||= "#{Rails.root}/#{AppConstants.cloud_keys}"
     config = YAML.load_file(options[:s3_config_filename])[Rails.env].symbolize_keys
     bucket            = config[:aws_bucket_name]
@@ -36,6 +36,7 @@ module ProfilepicHelper
 
     id = options[:id] ? "_#{options[:id]}" : ''
 
+    Rails.logger.info("===========================Plupload Profile pic helper ")
     policy = Base64.encode64(
       "{'expiration': '#{options[:expiration_date]}',
         'conditions': [
@@ -57,10 +58,11 @@ module ProfilepicHelper
    puts signature
 
     out = ""
-
-    out << javascript_tag("$(function() {
-
-
+    
+    out << javascript_tag("
+      
+      $(function() {
+      
       function get_file_prefix(){
         var user_id = '#{current_user.id}';
         var now = new Date();

@@ -1,88 +1,1377 @@
+@charset "UTF-8";
 /*
-Syntax error: Invalid CSS after "  width:40": expected pseudoclass or pseudoelement, was "{"
-        on line 540 of /home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/alpha/layout.scss
+ * General conventions
+ * -------------------
+ *  "p" in start => profile
+ *  "l" => left
+ *  "r" => right
+ *  "ch" => channel
+ *  "st" => stream
+ *  "cstab" => channel stream tab
+ *  "fltr" => filter
+ *  "ip" => input
+ *  "awp" => act witty post
+ *
+ *
+ *  General Flow
+ *  ------------
+ *  1).The page width size has been fixed at 990px (Set in generalise section)
+ *  2).We can have background image strips as presented in wireframes. Strip colors can
+ *     be controlled by "wrapper" section in css. (for individual columns)
+ *  3).There are 4 columns (distributed as rows)
+ *      Col1: has header/top bar information
+ *      Col2: has input box
+ *      Col3: has Channel and stream tabs
+ *      Col4: has main content information
+ *          Col4 -> Col1: has left sidebar filters by content types (all/video/twitter etc)
+ *          Col4 -> Col2: has main content stream
+ *            Col4 -> Col2 -> Col1 : only in case of stream on, we have Show Containing bar
+ *          Col4 -> Col3: has right sidebar filters (Me/others) and Search Filters
+ *  
+ *  General Remarks
+ *  ---------------
+ *  1). All the placeholders are in place for images to be placed.
+ *  2). No jQuery implementation has be set currently
+ *  3). Some specifications related to tab bar is not in place.
+ *  4). Font-description have been mentioned at resp places to be changed on notice.
+ */
+/* line 40, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: verdana, Arial, Helvetica, sans-serif;
+  color: #CCCCCC;
+  background-color: #fff;
+}
 
-535: .del-camp:hover
-536: {
-537:   cursor:pointer;
-538: }
-539: 
-540: .del-camp-inactive:
-541: {
-542:   display:none;
-543: }
-544: .campaign-btn
-545: {
+/* line 49, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+img {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
 
-Backtrace:
-/home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/alpha/layout.scss:540
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:898:in `expected'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:841:in `expected'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:823:in `expr!'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:595:in `pseudo'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:491:in `simple_selector_sequence'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:466:in `_selector'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:445:in `selector'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:429:in `selector_sequence'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:354:in `ruleset'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:379:in `block_child'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:372:in `block_contents'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:57:in `stylesheet'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/scss/parser.rb:26:in `parse'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:320:in `_to_tree'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:293:in `_render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:241:in `block in render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/util.rb:297:in `silence_sass_warnings'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/engine.rb:241:in `render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:319:in `update_stylesheet'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:181:in `block (2 levels) in update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:175:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:175:in `block in update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:173:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/compiler.rb:173:in `update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin.rb:81:in `update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin.rb:54:in `check_for_updates'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.7/lib/sass/plugin/rack.rb:51:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/client_side_validations-3.1.0/lib/client_side_validations/middleware.rb:18:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.5/lib/warden/manager.rb:35:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.5/lib/warden/manager.rb:34:in `catch'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.5/lib/warden/manager.rb:34:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/methodoverride.rb:24:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/sendfile.rb:107:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/runtime.rb:17:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/lock.rb:11:in `block in call'
-<internal:prelude>:10:in `synchronize'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/lock.rb:11:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/static.rb:33:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/content_length.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.3/lib/rack/handler/webrick.rb:52:in `service'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+/* line 50, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.clear {
+  clear: both;
+}
+
+/* line 51, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+br.clear {
+  clear: both;
+  margin-top: -15px;
+}
+
+/* line 52, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+/* ----------------------------------------------Wrapper-------------------------------------*/
+/* line 57, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+div.wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+/* line 64, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6 {
+  margin: 0 0 20px 0;
+  padding: 0 0 8px 0;
+  font-size: 22px;
+  font-weight: normal;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-bottom: 1px dashed #DDDDDD;
+}
+
+/* line 73, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.col1 {
+  color: #D2D2D2;
+  background-color: #FFFFFD;
+}
+
+/* line 74, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.col2 {
+  color: #FFFFFF;
+  background-color: #FFFFFD;
+}
+
+/* line 75, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.col3 {
+  color: #000000;
+  background-color: #FFFFFD;
+}
+
+/* line 76, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.col4 {
+  color: #666666;
+  background-color: #FFFFFD;
+}
+
+/* ----------------------------------------------Generalise-------------------------------------*/
+/* line 81, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#header, #p-ip-sect, #p-ch-st-tab-sect, #p-content-sect {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  border: 0px solid red;
+}
+
+/* ----------------------------------------------Header-------------------------------------*/
+/* line 92, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#header {
+  padding: 0px 0;
+  z-index: 1000;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  width: 605px;
+  height: 50px;
+  border: 0px solid red;
+}
+
+/* line 102, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#top-bar {
+  position: fixed;
+  border: 0px solid red;
+  background: #454545;
+  width: 624px;
+  -moz-box-shadow: 4px 4px 4px #b0b0b0;
+  -webkit-box-shadow: 4px 4px 4px #b0b0b0;
+  box-shadow: 4px 4px 4px #b0b0b0;
+}
+
+/* line 113, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#header h1, #header p {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 119, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#logo {
+  display: block;
+  float: left;
+  width: 120px;
+  height: 50px;
+  border: 0px solid white;
+}
+
+/* line 127, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#header h1 {
+  margin: 0 0 7px 0;
+  font-size: 36px;
+  border: none;
+}
+
+/* line 133, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#header h1 a {
+  color: #D2D2D2;
+  background-color: #000000;
+}
+
+/* line 141, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#home_page_nav {
+  width: 120px;
+  float: right;
+  border: 0px solid red;
+  position: relative;
+  height: 50px;
+  display: inline;
+  /*
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+  */
+  /*
+      -moz-box-shadow: 2px 2px 2px #c0c0c0;
+      -webkit-box-shadow: 2px 2px 2px #c0c0c0;
+      box-shadow: 2px 2px 2px #c0c0c0;
+  */
+  /*
+      -moz-box-shadow:inset 0 0 1px #000000;
+      -webkit-box-shadow:inset 0 0 1px #000000;
+      box-shadow:inset 0 0 1px #000000;
+  */
+}
+
+/* line 167, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#profile_header_user_img {
+  float: right;
+  padding: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+/* line 175, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-topbar-home {
+  float: left;
+  padding: 0px;
+  margin-left: -20px;
+  margin-top: 11px;
+  width: 28px;
+  height: 28px;
+  background-image: url(../images/home_icon_normal.png);
+}
+
+/* line 185, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-topbar-home:hover {
+  background-image: url(../images/home_icon_hover.png);
+  cursor: pointer;
+}
+
+/* --------------- Search Bar -----------------*/
+/* line 193, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#searchwrapper {
+  width: 250px;
+  height: 28px;
+  /*background-image:url('../images/search_bar.png');*/
+  /*background-repeat:no-repeat; */
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  margin-left: 20px;
+  margin-top: 15px;
+  display: inline;
+}
+
+/* line 206, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#searchwrapper form {
+  display: inline;
+}
+
+/* line 208, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.searchbox {
+  border: 0px;
+  /*important*/
+  /*background-color:transparent; 
+  position:absolute; important*/
+  /*top:4px;
+  left:9px;*/
+  width: 220px;
+  height: 25px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: #333;
+  margin-left: 20px;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* line 226, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.searchbox:focus {
+  border: 1px solid #eee;
+  background: #ddd;
+}
+
+/* line 231, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.searchbox_submit {
+  border: 0px;
+  /*important*/
+  background-color: transparent;
+  /*important*/
+  position: absolute;
+  /*important*/
+  top: 4px;
+  left: 265px;
+  width: 32px;
+  height: 28px;
+  opacity: 40%;
+}
+
+/* ----------------------------------------------Profile page input-------------------------------------*/
+/* line 247, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-ip-sect {
+  padding: 0px 0;
+  border: 1px solid #fff;
+  width: 605px;
+  /*margin-top:10px;*/
+}
+
+/* line 255, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-box {
+  margin-bottom: 5px;
+  width: 624px;
+  height: auto;
+  border: 1px solid #ddd;
+}
+
+/* line 265, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-section {
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  border: 1px solid red;
+}
+
+/* line 274, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.user-info-section {
+  width: 80px;
+  height: 100px;
+  border: 0px solid black;
+  display: block;
+  margin: 40px 0 40px 80px;
+}
+
+/* line 283, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.user-info-section img {
+  width: 70px;
+  height: 70px;
+  padding: 3px;
+}
+
+/* line 290, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.user-info-section span {
+  display: block;
+  position: relative;
+  top: 0px;
+  /*this positions the tooltip*/
+  left: 0px;
+  /*this positions the tooltip*/
+  padding: 5px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* line 302, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.home_page_inputs {
+  display: block;
+  /*border:1px solid #ddd;*/
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 10px 10px 10px;
+  width: 585px;
+  margin-top: 20px;
+  /*
+   margin-left:300px;
+   margin-top:-110px;
+   */
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  /* 
+    -moz-box-shadow: 5px 5px 5px #ccc;
+    -webkit-box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 5px 5px 5px #ccc;
+  */
+  -moz-box-shadow: inset 0 0 0px #000000;
+  -webkit-box-shadow: inset 0 0 0px #000000;
+  box-shadow: inset 0 0 0px #000000;
+  background: #fff;
+  display: none;
+}
+
+/* line 336, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.input-whats-up {
+  margin-top: 20px;
+}
+
+/* line 340, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.add-page-input {
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 580px;
+  padding: 3px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+/* line 351, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.page_input_close span {
+  width: 15px;
+  height: 15px;
+  float: right;
+  background: url("../images/close.png");
+}
+
+/* line 359, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.activity_location {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 18px;
+}
+
+/* line 368, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.entity_maps {
+  width: 100%;
+  height: auto;
+}
+
+/* line 375, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.activities {
+  float: left;
+  width: 50%;
+}
+
+/* line 380, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.locations {
+  float: left;
+  width: 50%;
+}
+
+/* line 385, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#activity_input {
+  margin-left: 0px;
+  border: 1px solid #ddd;
+}
+
+/* line 390, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#searchTextField {
+  width: 90%;
+  padding: 1px;
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 30px;
+  border: 1px solid gray;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  border: 1px solid #ddd;
+}
+
+/* line 403, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.input_text_box {
+  width: 90%;
+  padding: 1px;
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 30px;
+  border: 1px solid #ddd;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+/* line 416, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.symbol {
+  color: #87CEEB;
+  /*border:1px solid red;*/
+}
+
+/* line 421, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.symbol_at {
+  margin-left: -10px;
+}
+
+/* line 427, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.symbol_icon {
+  width: 15px;
+  height: 15px;
+}
+
+/* line 434, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#entity_input {
+  padding: 2px;
+  margin-left: 20px;
+  /*margin-left:3.15%;*/
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: block;
+  border: 1px solid #ddd;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: gray;
+  width: 95%;
+  height: 25px;
+}
+
+/* line 448, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input_entity {
+  float: left;
+}
+
+/* line 452, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input_addons {
+  display: block;
+  width: 100%;
+}
+
+/* line 457, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.input_addons_links {
+  display: inline;
+  list-style-type: none;
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+/* line 465, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.link_addon_icons {
+  width: 25px;
+  height: 25px;
+  border: 2px solid gray;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+/* line 478, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input_campaign {
+  /*border:1px solid gray;*/
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  color: #ccc;
+  padding: 5px 0 5px 0;
+  margin-top: 10px;
+  border: 0px solid red;
+}
+
+/* line 488, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input_campaign span {
+  margin-left: 20px;
+  border: 0px solid red;
+}
+
+/* line 494, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.ask-campaign {
+  margin-left: 10px;
+}
+
+/* line 498, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#campaign_label {
+  margin-left: 13px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+  border: 0px solid red;
+  vertical-align: middle;
+}
+
+/* line 509, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#campaign {
+  border: 1px solid gray;
+}
+
+/* line 514, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.campaign-type {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  border: 0px solid blue;
+  padding: 0 5px 0 5px;
+}
+
+/* line 523, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.del-camp {
+  color: green;
+  width: 9px;
+  height: 9px;
+  border: 0px solid red;
+  font-size: 8px;
+  margin-top: 0px;
+  margin-left: 0px;
+  background: url("../images/close_mini.png");
+  display: none;
+}
+
+/* line 536, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.del-camp:hover {
+  cursor: pointer;
+}
+
+/* line 541, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.del-camp-inactive {
+  display: none;
+}
+
+/* line 545, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.campaign-btn {
+  width: 40px;
+  height: 20px;
+  display: inline-block;
+  margin-left: 0px;
+  border: 1px solid gray;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  background-color: #ddd;
+  color: #333;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+
+/* line 563, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.campaign-btn:hover {
+  cursor: pointer;
+}
+
+/* line 568, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.camp-support {
+  width: 60px;
+}
+
+/* line 572, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.selected-camp {
+  border: 1px solid #4bacb2;
+  background: #4bacb2;
+  color: #f1f1f1;
+}
+
+/* line 582, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.campaign-btn span {
+  text-align: center;
+}
+
+/* line 588, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#post_submit {
+  width: 100%;
+  height: 30px;
+  border: 0px solid red;
+}
+
+/* line 595, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.post-fb-twt {
+  width: 120px;
+  height: 30px;
+  border: 0px solid blue;
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 606, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.fbtwt-pub {
+  border: 0px solid red;
+  margin-left: -5px;
+  display: inline-block;
+}
+
+/* line 617, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#post_submit_button {
+  border: 1px solid gray;
+  margin-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  background-color: #92d050;
+  color: #282828;
+  width: 80px;
+  height: 30px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  float: right;
+}
+
+/* line 635, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-attachments-section {
+  width: 95%;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 20px;
+  height: auto;
+  border: 1px solid #ddd;
+  display: none;
+}
+
+/* line 645, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#attachment-list {
+  width: 100%;
+  height: auto;
+  border: 0px solid red;
+}
+
+/* line 651, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.choose-attach {
+  disabled: true;
+}
+
+/* line 655, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-addmore-attachments {
+  width: 100%;
+  height: 20px;
+}
+
+/* line 660, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-addmore-attachments a {
+  float: right;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  color: #7D9EC0;
+}
+
+/* line 668, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.attach-caption {
+  border: 1px solid #ddd;
+  color: #ddd;
+  height: 25px;
+  width: 300px;
+}
+
+/* line 676, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.delete-attach {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+/* line 681, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.input-attachment {
+  width: 400px;
+  height: 50px;
+  padding: 5px;
+  border: 0px solid blue;
+  /*float:left;*/
+}
+
+/* line 690, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.input-attachment a {
+  text-decoration: none;
+  text-align: center;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-weight: normal;
+  font-size: 10px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+/* ----Input Character Count ---- */
+/* line 705, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-char-count {
+  width: 100%;
+  height: 30px;
+  display: none;
+}
+
+/* line 712, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#input-char-count span {
+  float: right;
+  font-size: 12px;
+  font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+  font-weight: normal;
+  color: #7a7a7a;
+}
+
+/* ---- Hover on Image Addition ---- */
+/* line 721, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+a.info {
+  position: relative;
+  z-index: 0;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 722, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+a.info span {
+  display: none;
+  text-decoration: none;
+}
+
+/* line 723, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+a.info:hover {
+  z-index: 1;
+  background: #fff;
+}
+
+/* line 724, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+a.info:hover span {
+  display: block;
+  position: absolute;
+  top: -10px;
+  /*this positions the tooltip*/
+  left: 55px;
+  /*this positions the tooltip*/
+  width: 80px;
+  /*border:1px solid #fff;*/
+  background: #87ceeb;
+  color: #fff;
+  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 5px;
+}
+
+/* ----------------------------------------------Channel Stream Tab-------------------------------------*/
+/* line 745, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-ch-st-tab-sect {
+  padding: 0px 0;
+  border: 0px solid green;
+}
+
+/* line 751, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-ch-st-tab {
+  width: 605px;
+  height: 50px;
+  border: 0px solid blue;
+  margin-left: 195px;
+}
+
+/* line 759, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-cstab {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 48px;
+  border-top: 0px solid #ddd;
+  border-bottom: 0px solid #ddd;
+  width: 620px;
+  display: block;
+  background: #afafaf;
+  border: 0px solid blue;
+  margin-left: 2px;
+}
+
+/* line 775, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-cstab li {
+  display: block;
+  float: left;
+  margin: 0px 0 0 0px;
+  padding: 0px 0px;
+  height: 38px;
+  line-height: 38px;
+  border: 0px solid #ddd;
+  margin-top: 1px;
+  margin-left: 0px;
+  margin-bottom: -1px;
+  position: relative;
+  background: gray;
+  width: 295px;
+  text-align: center;
+  border-bottom: 5px solid white;
+  border-top: 5px solid gray;
+}
+
+/* line 795, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-cstab li.p-ch-tab {
+  margin-left: 7px;
+  background: #fff;
+}
+
+/* line 801, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-cstab li a {
+  text-decoration: none;
+  text-align: center;
+  color: #333;
+  font-size: 1.2em;
+  padding: 0 20px;
+  outline: none;
+  font-size: 16px;
+  font-family: â€˜Lucida Grandeâ€™, sans-serif;
+  font-weight: bold;
+}
+
+/* line 813, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-cstab li:hover {
+  color: #00BFFF;
+  text-decoration: none;
+}
+
+/* line 818, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+html ul.p-cstab li.active a, html ul.p-cstab li.active a:hover {
+  border-bottom: 1px solid #fff;
+  color: #00BFFF;
+}
+
+/*****************************************  Stream Filters ***************************************/
+/* line 829, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-fltr-box {
+  width: 100%;
+  height: 50ipx;
+}
+
+/* line 835, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-filter-sect {
+  height: 50px;
+  width: 100%;
+}
+
+/* line 840, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-filter {
+  margin: 0;
+  padding: 0;
+  width: 620px;
+  list-style: none;
+  position: absolute;
+  z-index: 2000;
+  background: #CCCCCC;
+  border: 0px solid red;
+  /*height:*/
+}
+
+/* line 852, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-filter li {
+  display: inline;
+}
+
+/* line 856, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-flt-label {
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* line 862, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-filter-box {
+  width: auto;
+  height: 42px;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+  /*padding:10px 5px 5px 5px;
+  margin:8px 5px 0 2px;*/
+}
+
+/* line 874, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-flt-actor {
+  width: 150px;
+  height: 34px;
+  display: inline-block;
+  float: left;
+  border: 0px solid green;
+  margin: 0px 1px 0 0px;
+  border: 4px solid #afaf93;
+}
+
+/* line 885, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-flt-actor span {
+  padding: 0px 0 0 0;
+  margin-top: 5px;
+  border: 0px solid blue;
+  font-size: 22px;
+}
+
+/* line 894, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-flt-channel {
+  background: #903737;
+  color: #a4a88d;
+}
+
+/* line 901, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-flt-entity {
+  background: #adb093;
+  color: #a4a88d;
+}
+
+/* line 908, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-st-flt-location {
+  background: #274521;
+  color: #a4a88d;
+}
+
+/* -------------------------------Left Bar Filter ----------------------------------*/
+/* line 918, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-con-l-fltr {
+  width: 190px;
+  height: auto;
+  border: 1px solid #fff;
+}
+
+/* line 925, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-l-fltr-1 {
+  width: 190px;
+  height: 300px;
+  border: 0px solid black;
+  position: absolute;
+}
+
+/* line 937, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-content-type-fltr-sect {
+  height: 160px;
+  width: 160px;
+  border: 0px solid blue;
+  float: right;
+  display: block;
+}
+
+/* line 946, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-cont-typ-fltr {
+  height: 43px;
+  margin-top: 7px;
+  width: 70px;
+  border: 0px solid green;
+  /*background-image: url("../images/all.png");*/
+  background-repeat: no-repeat;
+  float: left;
+}
+
+/* line 956, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-cont-typ-fltr:hover {
+  cursor: pointer;
+}
+
+/* line 960, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-all {
+  background-image: url("../images/all_unselected.png");
+}
+
+/* line 961, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-all:hover {
+  background-image: url("../images/all_hover.png");
+}
+
+/* line 962, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-drafts {
+  background-image: url("../images/drafts_unselected.png");
+}
+
+/* line 963, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-drafts:hover {
+  background-image: url("../images/drafts_hover.png");
+}
+
+/* line 964, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-videos {
+  background-image: url("../images/videos_unselected.png");
+}
+
+/* line 965, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-videos:hover {
+  background-image: url("../images/videos_hover.png");
+}
+
+/* line 966, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-images {
+  background-image: url("../images/images_unselected.png");
+}
+
+/* line 967, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-images:hover {
+  background-image: url("../images/images_hover.png");
+}
+
+/* line 968, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-twitter {
+  background-image: url("../images/twitter_unselected.png");
+}
+
+/* line 969, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#cont-typ-fltr-twitter:hover {
+  background-image: url("../images/twitter_hover.png");
+}
+
+/* line 973, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-l-fltr-2 {
+  width: 100%;
+  width: 190px;
+  height: auto;
+  border: 0px solid gray;
+  margin-top: 180px;
+  position: absolute;
+}
+
+/* line 982, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-related-fltrs-sect {
+  height: auto;
+}
+
+/* line 988, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-rel-fltrs {
+  width: 100%;
+}
+
+/* line 992, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-rel-fltrs span {
+  float: right;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* line 999, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-rel-fltr-tags {
+  width: 100%;
+  height: auto;
+  border: 0px solid green;
+  float: right;
+}
+
+/* line 1008, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-fltr-tag-list {
+  display: block;
+  float: right;
+  margin: 2px 2px;
+}
+
+/* line 1014, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-fltr-tag-list span {
+  background: #585858;
+  padding: 2px;
+  font-weight: normal;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 10px;
+  padding: 2px;
+}
+
+/* line 1030, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-fltr-tag-list {
+  list-style: none;
+}
+
+/* line 1035, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+ul.p-fltr-tag-list li {
+  display: inline;
+  background: #EED5B7;
+  padding: 2px;
+}
+
+/* line 1043, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-fltr-tag-list span.p-selected-fltr-entity {
+  background: #2D7010;
+  color: #fff;
+}
+
+/* ------------------------------- Right Bar Filter ---------------------------------*/
+/* line 1050, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-con-r-fltr {
+  width: 150px;
+  height: auto;
+  border: 1px solid #fff;
+  margin-left: 10px;
+}
+
+/* line 1057, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-content {
+  width: 150px;
+  height: auto;
+  border: 0px solid red;
+  margin-left: 20px;
+}
+
+/* line 1066, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-st {
+  width: 100%;
+  width: 180px;
+  height: auto;
+  height: 80px;
+  border: 0px solid red;
+  position: fixed;
+}
+
+/* line 1076, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-st-by {
+  height: 180px;
+}
+
+/* line 1081, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-me {
+  margin-top: 7px;
+  width: 80px;
+  height: 60px;
+  border: 0px solid green;
+  background-image: url("../images/me_unselected.png");
+  background-repeat: no-repeat;
+  float: left;
+}
+
+/* line 1090, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-me:hover {
+  background-image: url("../images/me_hover.png");
+  cursor: pointer;
+}
+
+/* line 1092, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-others {
+  margin-top: 7px;
+  width: 80px;
+  height: 60px;
+  border: 0px solid blue;
+  background-image: url("../images/others_unselected.png");
+  background-repeat: no-repeat;
+  float: left;
+}
+
+/* line 1101, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-others:hover {
+  background-image: url("../images/others_hover.png");
+  cursor: pointer;
+}
+
+/* line 1104, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-search-fltr {
+  width: 100%;
+  width: 150px;
+  height: auto;
+  margin-top: 160px;
+  position: fixed;
+}
+
+/* line 1115, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-search-fltr-bar {
+  height: 25px;
+  background: #ddd;
+  padding: 3px;
+}
+
+/* line 1121, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-search-fltr-bar span {
+  float: right;
+  color: #333;
+  font-size: 14px;
+}
+
+/* line 1128, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-by {
+  width: 100%;
+  height: 15px;
+  margin: 2px 0 2px 0;
+}
+
+/* line 1134, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-r-fltr-by span {
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+/* ----------------------------------------  Content stream -------------------------------------*/
+/* line 1143, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-content-sect {
+  padding: 0px 0;
+  border: 0px solid red;
+  margin-top: 0px;
+}
+
+/* line 1149, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-content-sect ul, #p-content-sect p {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline;
+}
+
+/* line 1158, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+#p-content-sect li {
+  display: block;
+  float: left;
+  margin: 0 5px 0 0;
+  padding: 0;
+}
+
+/* line 1169, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-content {
+  width: 600px;
+  height: auto;
+  border: 0px solid gray;
+  background: #fff;
+}
+
+/* line 1176, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-post-stream {
+  width: 100%;
+  height: auto;
+  border: 10px solid #afafaf;
+  border-top: none;
+}
+
+/* line 1183, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-aw-post {
+  height: auto;
+  width: 100%;
+  width: 550px;
+  border: 0px solid yellow;
+  margin-top: 8px;
+  margin-left: 10px;
+  padding: 10px;
+}
+
+/* line 1196, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-channel {
+  width: 100%;
+  height: 30px;
+  border: 0px solid red;
+}
+
+/* line 1203, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-channel-desc {
+  float: right;
+}
+
+/* line 1208, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-channel-label {
+  font-size: 16px;
+  color: #e5e5e5;
+}
+
+/* line 1213, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-channel-name {
+  font-size: 18px;
+  background: #903737;
+  color: #a4a88d;
+}
+
+/* line 1221, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-subtitle {
+  width: 100%;
+  height: 30px;
+  border: 0px solid blue;
+}
+
+/* line 1228, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-subtitle-name {
+  float: right;
+  font-size: 21px;
+  padding: 3px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* line 1237, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-time {
+  width: 100%;
+  height: 20px;
+  margin-top: 5px;
+  border: 0px solid green;
+}
+
+/* line 1244, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-time-content {
+  float: right;
+  font-size: 10px;
+}
+
+/* line 1249, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-date {
+  width: 100%;
+  height: 20px;
+  border: 0px solid blue;
+}
+
+/* line 1255, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-date-content {
+  float: right;
+  font-size: 12px;
+}
+
+/* line 1261, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-content {
+  width: 100%;
+  height: auto;
+  border: 0px solid red;
+}
+
+/* line 1268, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-content p {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* line 1276, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-view-attachments {
+  width: 100%;
+  height: 60px;
+  border: 1px solid red;
+}
+
+/* line 1283, ../../../../app/stylesheets/actwitty/alpha/layout.scss */
+.p-awp-view-attachments a {
+  width: 30px;
+  height: 30px;
+}
+
+/*
+#header,#p-ip-sect ,#p-ch-st-tab-sect,#p-content-sect 
+{
+  border:0px solid red;
+}
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"  width:40\": expected pseudoclass or pseudoelement, was \"{\"\A         on line 540 of /home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/alpha/layout.scss\A \A 535: .del-camp:hover\A 536: {\A 537:   cursor:pointer;\A 538: }\A 539: \A 540: .del-camp-inactive:\A 541: {\A 542:   display:none;\A 543: }\A 544: .campaign-btn\A 545: {"; }

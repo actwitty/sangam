@@ -28,6 +28,10 @@
             .aw_ppm_stream_link_info_hover_box Stream view for posts by #{@user.full_name}
             %a{:href => "/home/streams?id=#{@user.id}&s=p"}
               .awppm_chn_data_section_stream_link_img_box
+          .awppm_chn_data_section_stream_link_box
+            .aw_ppm_stream_link_info_hover_box Settings for channels by #{@user.full_name}
+            %a{:href => "/channel_settings/edit"}
+              .awppm_chn_data_section_chn_setting_img_box
                 
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
