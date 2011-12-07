@@ -156,7 +156,7 @@
 }
 
 /* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-#awppm_ip_category {
+.awppm_ip_category {
   width: 550px;
   margin-left: 50px;
   height: 40px;

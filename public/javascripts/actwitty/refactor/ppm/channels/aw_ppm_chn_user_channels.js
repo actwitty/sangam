@@ -4,11 +4,21 @@
  *
  */
 function aw_get_user_channel_html(channel_info){
+  // commented to verify theme api's  TODO: replace all
+  /*
   var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category_data); 
   var channel_theme = default_theme.thumb;
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
   }
+  */
+
+  var channel_theme = aw_lib_get_channel_theme_thumb(channel_info);
+  if( channel_info.theme_data.url && channel_info.theme_data.url.length){
+    channel_theme = channel_info.theme_data.url;
+  }
+
+
   var box_id = aw_lib_get_channel_box_id(channel_info);
 
   aw_api_ppm_add_channel_context(box_id, channel_info);
