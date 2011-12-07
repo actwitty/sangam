@@ -153,6 +153,8 @@ function aw_input_box_reset_after_post(){
   $("#aw_js_ppm_input_add_attachment_partial").hide();
   $("#aw_js_ppm_show_hide_attachment").attr("src", "/images/actwitty/refactor/aw_ppm/common/attachment_gray.png");
 
+  $("#aw_js_ppm_category_hide").hide();
+
   $("#awppm_input_box").hide();
   $("#awppm_input_box_activate").show();
 

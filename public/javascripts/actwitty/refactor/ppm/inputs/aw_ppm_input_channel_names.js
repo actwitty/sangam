@@ -314,11 +314,10 @@ function aw_api_srv_resp_ppm_cmn_render_user_suggest_channels(params){
 		    matchContains: true,
 		    highlightItem: false,
         formatItem: function(channel) {
-          $("#awppm_ip_category").show();
           return channel.name;
         }
       }).result(function(event, item) {
-        $("#awppm_ip_category").hide();
+        $("#aw_js_ppm_category_hide").hide();
         $("#aw_js_ppm_input_channel_category").val(aw_local_users_channels_data[item.name].category);
       });
 }
@@ -338,5 +337,8 @@ function aw_api_ppm_input_initialize_auto_suggest(){
                   'aw_srv_protocol_cookie' : {}
                };
   aw_api_srv_make_a_get_request('AW_SRV_PPM_CMN_GET_USER_AUTOCOMPELTE_CHANNELS',  params);
+  $("#aw_js_ppm_input_channel_name").one("keypress", function () {
+    $("#aw_js_ppm_category_hide").show();
+  });
 }
 

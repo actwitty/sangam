@@ -303,6 +303,7 @@ function aw_api_srv_resp_ppm_stm_render_streams(params){
   var data = aw_api_srv_get_data_for_request('AW_SRV_PPM_STM_GET_STREAMS');
   var cookie = params['aw_srv_protocol_cookie'];
 
+  alert(JSON.stringify(data));
   $.each(data.stream, function(i, stream_info){
     if(stream_info.post){
       if(aw_api_ppm_stm_facebook_post_check(stream_info)){
@@ -340,14 +341,12 @@ function aw_api_ppm_stm_request_streams(on_init){
   if( typeof on_init == 'undefined' ){
       on_init = 0;
   }
-
   if( on_init ){
     aw_api_ppm_stream_context_reinit();
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_STM_GET_STREAMS', '');
     /* erase the timeline */
     $("#aw_js_ppm_stm_post_timeline_list").html('');
   }
-
   $("#aw_js_ppm_stm_data_more").attr("disabled", true);
   $('#aw_js_ppm_stm_stream_timelines_div').find(".aw_js_ppm_loading_animation").show();
   var srv_params = {

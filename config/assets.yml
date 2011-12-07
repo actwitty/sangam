@@ -47,7 +47,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_all_locations.js
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_srv_request.js
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_renders.js
-   
   profile_streams:
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_renderer.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_events.js
@@ -75,7 +74,6 @@ javascripts:
     - public/javascripts/plugins/actwitty-custom.js
     - public/javascripts/plugins/expander_readmore.js
     - public/javascripts/plugins/jquery-list-splitter/jquery.easyListSplitter.js
-    - public/javascripts/actwitty/alpha/custom.js
   profile_single_post_page:
     - public/javascripts/actwitty/refactor/ppm/streams/substates/singlepost/aw_ppm_stream_singlepost.js
   channel_page:
@@ -156,21 +154,4 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.css
   location_page:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/location_page/aw_ppm_location_page_main.css
-  extras:
-    - public/stylesheets/actwitty/alpha/images_layout.css
-    - public/stylesheets/actwitty/alpha/multimedia.css
-    - public/stylesheets/actwitty/alpha/actwitty-profile-settings.css
-    - public/stylesheets/actwitty/alpha/actwitty-channel-page.css
-    - public/stylesheets/actwitty/alpha/comments-streams.css
-    - public/stylesheets/actwitty/alpha/campaign-streams.css
-    - public/stylesheets/actwitty/alpha/share-streams.css
-    - public/stylesheets/actwitty/alpha/boxer.css
-    - public/stylesheets/actwitty/about.css
-    - public/stylesheets/actwitty/validations.css
-    - public/stylesheets/actwitty/simple_form.css
-    - public/stylesheets/actwitty/image_scroll.css
-    - public/stylesheets/actwitty/alpha/main_page_user.css
-    - public/stylesheets/actwitty/alpha/actwitty_home_page.css
-    - public/stylesheets/actwitty/alpha/settings.css
-    - public/stylesheets/actwitty/alpha/fb_friends.css
 

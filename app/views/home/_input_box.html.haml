@@ -1,6 +1,5 @@
 / Java scripts includes
 %script{:src => "http://maps.google.com/maps/api/js?sensor=true&libraries=places", :type => "text/javascript"}
-= javascript_include_tag 'actwitty/input_location'
 
 #awppm_input_box_activate.button_classic
   #awppm_input_box_attention_icon
@@ -14,7 +13,7 @@
       Check-in Your Interest !
     #awppm_ip_channel
       %input#aw_js_ppm_input_channel_name{:placeholder => "Channel", :type => "text"}
-    #awppm_ip_category
+    #aw_js_ppm_category_hide.awppm_ip_category
       %select#aw_js_ppm_input_channel_category.awppm_ip_cat
         %option{:value => 'animals'} Pets and Animals
         %option{:value => 'arts'} Arts and Design
