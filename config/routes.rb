@@ -31,8 +31,6 @@ Sangam::Application.routes.draw do
   match '/channel_settings/update' => 'channel_settings#update_channels'
 
 
-  #match '/home/settings' => 'user_settings#settings'
-  #match '/home/settings_save' => 'user_settings#settings_save'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -137,6 +135,10 @@ Sangam::Application.routes.draw do
   match '/home/unsubscribe_summary' => 'home#unsubscribe_summary'
 
   match '/facebook/wall' => 'facebook#get_last_few_from_wall'
+
+  match '/home/get_analytics_summary' => 'home#get_analytics_summary'
+  match '/home/get_analytics' => 'home#get_analytics'
+
   #Alok Adding pusher support
   match '/pusher/auth' => 'home#pusher_auth'
 

@@ -74,6 +74,8 @@
 
     -if @page_mode == "profile_stm_page"
       = include_javascripts :profile_streams
+      = include_javascripts :charts_analytics
+      = include_javascripts :highcharts
 
     -if @page_mode == "profile_single_activity_page"
       = include_javascripts :profile_streams

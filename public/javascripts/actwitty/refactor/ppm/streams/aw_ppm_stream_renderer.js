@@ -119,6 +119,7 @@ function aw_api_ppm_stm_main_handle_filter_change(){
   aw_api_ppm_stm_request_mentions(1);
   aw_api_ppm_stm_request_locations(1);
   aw_api_ppm_stm_request_similar_ppl(1);
+  aw_api_ppm_stm_chart_generate_sources_distribution_chart();
 
 }
 /******************************************/
@@ -132,7 +133,8 @@ function aw_internal_ppm_stm_srv_requests_on_init(){
   aw_api_ppm_stm_request_mentions(1);
   aw_api_ppm_stm_request_locations(1);
   aw_api_ppm_stm_request_similar_ppl(1);
-  aw_api_ppm_stm_set_stream_page_bkg();
+  aw_api_ppm_stm_set_stream_page_bkg();  
+  aw_api_ppm_stm_chart_generate_sources_distribution_chart();
 }
 /******************************************/
 /* Main initializer function

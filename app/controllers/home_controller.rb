@@ -28,7 +28,9 @@ class HomeController < ApplicationController
                         :get_related_friends, :get_all_comments,
                         :get_users_of_campaign, 
                         :subscribers,:subscriptions,
-                        :get_latest_summary, :search_any]
+                        :get_latest_summary, :search_any,
+                        :get_analytics_summary,
+                        :get_analytics]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -1444,8 +1446,9 @@ class HomeController < ApplicationController
   end
 
 
+  ############################################
   def deactivate_account
-    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Deactivating the account")
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Deactivating the account #{params}")
     @user = current_user
     @profile = current_user.profile
     @authentication = Authentication.find_by_user_id(@user.id)
@@ -1461,7 +1464,74 @@ class HomeController < ApplicationController
 
   end
 
+  ############################################
   
+  def get_analytics_summary
+    Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS_SUMMARY] Params:#{params}")
+    query={}
+    if params[:type] == "channel"
+      query[:summary_id] =  Integer(params[:id])
+    elsif params[:type] == "location"
+      query[:location_id] =  Integer(params[:id])
+    elsif params[:type] == "mention"
+      query[:entity_id] =  Integer(params[:id])
+    else
+      Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS_SUMMARY] Analytics summary type incorrect")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
+    end
+    
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS_SUMMARY] Calling model api params #{query}")
+    response_json = current_user.get_analytics_summary(query)
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS_SUMMARY] model api response #{query}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json
+    end
+
+  end
+  ############################################
+
+  def get_analytics
+    Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS] Params:#{params}")
+    query={}
+    if params[:type] == "channel"
+      query[:summary_id] =  Integer(params[:id])
+    elsif params[:type] == "location"
+      query[:location_id] =  Integer(params[:id])
+    elsif params[:type] == "mention"
+      query[:entity_id] =  Integer(params[:id])
+    else
+      Rails.logger.error("[CNTRL][HOME][GET_ANALYTICS] [ERROR] Analytics summary type incorrect")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
+    end
+   
+    if !params[:fields].nil?
+      field_arr = Array.new()
+      params[:fields].each do |index, value|
+       field_arr = doc_arr << value
+      end
+      params[:fields]= field_arr
+    else
+      Rails.logger.error("[CNTRL][HOME][GET_ANALYTICS] [ERROR] No fields mentioned")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
+    end
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS] Calling model api params #{query}")
+    response_json = current_user.get_analytics_summary(query)
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS] model api response #{query}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json
+    end
+  end 
 
 
 
