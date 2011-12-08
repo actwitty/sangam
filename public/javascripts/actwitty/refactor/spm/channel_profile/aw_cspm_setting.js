@@ -199,18 +199,17 @@ function aw_api_srv_resp_cspm_chn_render_user_channels(params){
       return;
     }
     if (i==0){
-      aw_cspm_set_channel_for_edit(channel_info);
       var channel_bckg = aw_lib_get_channel_theme_background(channel_info);
       $(".awcspm_channel_settings_column2").css('background','url('+channel_bckg+')');
       $("#awcspm_channel_edit_label_header").html('Channel <strong>'+channel_info.word.name+'</strong> is set for edit');
       aw_local_curr_active_channel_key =  "aw_cspm_channel_list_" + channel_info.word.id ;
+      aw_cspm_set_channel_for_edit(channel_info,aw_local_curr_active_channel_key);
     }
    
     
     var html = aw_get_channel_lists_settings_html(channel_info);
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_CSPM_CHN_GET_USER_CHANNELS_LIST', channel_info.time);
     $('#awcspm_js_channel_settings_list_box').append(html);
-
   });
   
   // TODO

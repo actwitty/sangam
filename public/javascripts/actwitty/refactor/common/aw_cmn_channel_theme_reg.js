@@ -1,11 +1,37 @@
 
+/*
+ * List of default code values for existing categories
+ * */
+var aw_local_default_channel_theme_json = {
+                                            'animals' :       '0x00000001',
+                                            'arts':           '0x00000002',    
+                                            'books':          '0x00000003',
+                                            'business':       '0x00000004',
+                                            'cars':           '0x00000005',
+                                            'events':         '0x00000006',
+                                            'politics':       '0x00000007', 
+                                            'entertainment':  '0x00000008',
+                                            'education':      '0x00000009',
+                                            'fashion':        '0x00000010', 
+                                            'food and drink': '0x00000011',
+                                            'games':          '0x00000012',
+                                            'health':         '0x00000013',
+                                            'home':           '0x00000014',    
+                                            'hobbies' :       '0x00000015',
+                                            'nonprofits':     '0x00000016',
+                                            'sports' :        '0x00000017',
+                                            'stories':        '0x00000018',
+                                            'technology':     '0x00000019',
+                                            'places':         '0x00000020',
+                                            'default':        '0xffffff00' 
+                                      };
 
 
 /*
  *  List of themes for channels. This is kind of a Theme Registry
  *  values like "0x000001" are actually the code values for particular theme.
  *  The value is not exactly a hex value -  just a convention.
- *  The default theme (currently set) is 0xffffff00
+ *  The default theme
  */
 var aw_local_channel_theme_list_json = {
 

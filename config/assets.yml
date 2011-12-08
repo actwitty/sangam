@@ -41,7 +41,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting.js 
   profile_channel_settings:
     - public/javascripts/actwitty/refactor/spm/channel_profile/aw_cspm_setting.js
-#    - public/javascripts/actwitty/refactor/spm/channel_profile/aw_cspm_theme_setting.js
 #   aw_ppm_chn_dyn_analytc.js will be needed in channel settings page, if we need to show analytics there
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_dyn_analytc.js
   profile_channels:
