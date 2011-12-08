@@ -303,7 +303,6 @@ function aw_api_srv_resp_ppm_stm_render_streams(params){
   var data = aw_api_srv_get_data_for_request('AW_SRV_PPM_STM_GET_STREAMS');
   var cookie = params['aw_srv_protocol_cookie'];
 
-  //alert(JSON.stringify(data));
   $.each(data.stream, function(i, stream_info){
     if(stream_info.post){
       if(aw_api_ppm_stm_facebook_post_check(stream_info)){

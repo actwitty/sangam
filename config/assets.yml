@@ -94,6 +94,13 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.ajaxQueue.js
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/thickbox-compressed.js
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/jquery.autocomplete.js
+  highcharts:
+    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/highcharts.js
+    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/modules/exporting.js
+    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/gray.js
+  charts_analytics:
+    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_main.js
+    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_all_channels_source_distribution.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js

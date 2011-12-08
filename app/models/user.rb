@@ -1358,7 +1358,7 @@ class User < ActiveRecord::Base
     #Below two lines are for testing
     #Activity.destroy_all(:author_id => self.id)
     Rails.logger.debug("[MODEL] [USER] [get_summary] processing 1")
-   # SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
+    SocialAggregator.create_social_data({:user_id => self.id, :provider => "facebook"})
     Rails.logger.debug("[MODEL] [USER] [get_summary] processing")
 
     h = process_filter_modified(params)
