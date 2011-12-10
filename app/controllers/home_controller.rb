@@ -1512,11 +1512,7 @@ class HomeController < ApplicationController
     end
    
     if !params[:fields].nil?
-      field_arr = Array.new()
-      params[:fields].each do |index, value|
-       field_arr = doc_arr << value
-      end
-      params[:fields]= field_arr
+      query[:fields]= params[:fields]
     else
       Rails.logger.error("[CNTRL][HOME][GET_ANALYTICS] [ERROR] No fields mentioned")
       if request.xhr?
@@ -1525,7 +1521,7 @@ class HomeController < ApplicationController
       return
     end
     Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS] Calling model api params #{query}")
-    response_json = current_user.get_analytics_summary(query)
+    response_json = current_user.get_analytics(query)
     Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS] model api response #{query}")
     if request.xhr?
       expires_in 10.minutes

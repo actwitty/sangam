@@ -27,6 +27,14 @@ function aw_api_ppm_stm_get_filter(){
 function aw_api_ppm_stm_get_chn_filter_id(){
   return $("#aw_js_ppm_stm_filter_chn_id").attr("value");
 }
+/**********************************************/
+/*
+ *
+ *
+ */
+function aw_api_ppm_stm_get_chn_filter_name(){
+  return $("#aw_js_ppm_stm_filter_chn_text").attr("value");
+}
 /********************************************/
 /*
  *

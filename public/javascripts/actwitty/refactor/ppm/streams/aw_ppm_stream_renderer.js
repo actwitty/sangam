@@ -107,7 +107,6 @@ function aw_api_ppm_stm_evt_hndl_more_click(element){
  */
 function aw_api_ppm_stm_main_handle_filter_change(){
   aw_api_ppm_stm_apply_filter_to_view();
-  
   if( aw_api_ppm_stream_get_timeline_state() == 'aw_js_ppm_stm_videos_mode'){
     aw_api_ppm_stm_videos_request(1);
   }else if ( aw_api_ppm_stream_get_timeline_state() == 'aw_js_ppm_stm_images_mode'){
@@ -119,7 +118,11 @@ function aw_api_ppm_stm_main_handle_filter_change(){
   aw_api_ppm_stm_request_mentions(1);
   aw_api_ppm_stm_request_locations(1);
   aw_api_ppm_stm_request_similar_ppl(1);
-  aw_api_ppm_stm_chart_generate_sources_distribution_chart();
+  if(aw_api_ppm_stm_get_chn_filter_id()){
+    aw_api_ppm_stm_chart_render_filtered_charts();
+  }else{
+    aw_api_ppm_stm_chart_generate_sources_distribution_chart();
+  }
 
 }
 /******************************************/
@@ -134,7 +137,12 @@ function aw_internal_ppm_stm_srv_requests_on_init(){
   aw_api_ppm_stm_request_locations(1);
   aw_api_ppm_stm_request_similar_ppl(1);
   aw_api_ppm_stm_set_stream_page_bkg();  
-  aw_api_ppm_stm_chart_generate_sources_distribution_chart();
+
+  if(aw_api_ppm_stm_get_chn_filter_id()){
+    aw_api_ppm_stm_chart_render_filtered_charts();
+  }else{
+    aw_api_ppm_stm_chart_generate_sources_distribution_chart();
+  }
 }
 /******************************************/
 /* Main initializer function

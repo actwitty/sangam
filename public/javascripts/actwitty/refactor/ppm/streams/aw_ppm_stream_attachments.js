@@ -49,6 +49,9 @@ function aw_ppm_stm_attachments_get_videos_html(stream_info){
   var aw_video_delete_html = '';
   var aw_videos_html = '';
   var videos_count = 0;
+  if(aw_api_ppm_stm_facebook_post_check(stream_info)){
+    return '';
+  }
   if( stream_info.post.user.id == aw_lib_get_session_owner_id()){
     aw_video_delete_html = '<div class="awppm_stm_attachment_video_delete aw_js_ppm_stm_delete_video" >' +
                             '<img src="/images/actwitty/refactor/aw_common/aw_close.png"> </img>' +
@@ -88,6 +91,10 @@ function aw_ppm_stm_attachments_get_images_html(stream_info){
   var max_images_to_show = 3;
   var aw_images_html = '';
   var aw_img_delete_html = '';
+
+  if(aw_api_ppm_stm_facebook_post_check(stream_info)){
+    return '';
+  }
   if( stream_info.post.user.id == aw_lib_get_session_owner_id()){
     aw_img_delete_html = '<div class="awppm_stm_attachment_image_delete aw_js_ppm_stm_delete_image" >' +
                             '<span>Click here to delete the image.</span>' +
