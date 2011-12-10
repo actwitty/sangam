@@ -398,15 +398,16 @@ function aw_api_srv_resp_ppm_stm_chart_all_channels(params){
  *
  */
 function aw_api_ppm_stm_chart_generate_sources_distribution_chart(){
-      var params = {
-                      'aw_srv_protocol_params' :{
-                                                  user_id: aw_lib_get_page_owner_id(),
-                                                  sort_order: 1,
-                                                },
-                      'aw_srv_protocol_cookie' : {}
-                  };
+      $("#aw_js_ppm_stm_chart_label").html("All channels analytics");    
+    var params = {
+                    'aw_srv_protocol_params' :{
+                                                user_id: aw_lib_get_page_owner_id(),
+                                                sort_order: 1,
+                                              },
+                    'aw_srv_protocol_cookie' : {}
+                };
 
-		  aw_api_srv_make_a_get_request('AW_SRV_PPM_STM_CHART_GET_ALL_CHANNELS', params);
+		aw_api_srv_make_a_get_request('AW_SRV_PPM_STM_CHART_GET_ALL_CHANNELS', params);
 }
 				
 
