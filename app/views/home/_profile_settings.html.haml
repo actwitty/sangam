@@ -1,4 +1,5 @@
 %link{:href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css", :rel => "stylesheet", :type => "text/css"}/
+
 #awppm_user_profile_settings_fields_box
   .awppm_busy_loading_box.aw_js_ppm_loading_animation
     .awppm_busy_mini_box
@@ -55,9 +56,10 @@
         %label Mobile
         = p.input :mobile_number ,
                   :label => false,
-                  :placeholder => "Mobile Number"
+                  :placeholder => "Mobile Number",
+                  :input_html => { :id=>'aw_spm_user_testing' }
 
-      .awppm_user_profile_settings_field
+      #awppm_user_profile_settings_location_field.awppm_user_profile_settings_field
         %label Location
         = f.input :current_location , 
                   :placeholder => "Location", 
@@ -70,7 +72,7 @@
         = f.input :current_geo_long , 
                   :label => false,
                   :input_html => { :id=>'aw_spm_user_setting_location_long_input', :type => 'hidden'}
-    #aw_spm_map_selector 
+        #aw_spm_map_selector 
 
     
 
@@ -79,7 +81,6 @@
     
 
        
-:javascript
-  aw_api_spm_initialize_user_settings_page() 
+
 
 

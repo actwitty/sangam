@@ -17,7 +17,7 @@ class Profile < ActiveRecord::Base
   #validates :first_name, :presence => true, :length => { :maximum => 32 }
   validates_length_of :first_name,  :maximum => 32
   validates_length_of :last_name,  :maximum => 32
-  validates_length_of :mobile_number, :in => 7..32, :allow_nil => true
+  validates_length_of :mobile_number, :in => 7..32, :allow_blank => true
   validates_length_of :phone_number, :in => 7..32, :allow_nil => true
   validates_length_of :company_name, :maximum => 64, :allow_nil => true
   validates_length_of :work_area, :maximum => 64, :allow_nil => true

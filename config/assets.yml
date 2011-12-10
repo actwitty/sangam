@@ -37,11 +37,12 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
     - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
+    
   profile_settings:
-    - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting.js 
+    - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting.js
+    - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting_location.js
   profile_channel_settings:
     - public/javascripts/actwitty/refactor/spm/channel_profile/aw_cspm_setting.js
-#   aw_ppm_chn_dyn_analytc.js will be needed in channel settings page, if we need to show analytics there
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_chn_dyn_analytc.js
   profile_channels:
     - public/javascripts/actwitty/refactor/ppm/channels/aw_ppm_channel_renderer.js
