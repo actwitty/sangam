@@ -100,7 +100,9 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/gray.js
   charts_analytics:
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_main.js
-    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_all_channels_source_distribution.js
+    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_unfiltered.js
+    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_filtered.js
+    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_timeseries_zoomable.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js
@@ -118,8 +120,6 @@ javascripts:
     - public/javascripts/vendor/mailchimp/jquery.form.js
     - public/javascripts/vendor/mailchimp/jquery.validate.js
     - public/javascripts/vendor/mailchimp/jquery126.min.js
-
-
 
 
 stylesheets:
