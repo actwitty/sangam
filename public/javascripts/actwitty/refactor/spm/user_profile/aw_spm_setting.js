@@ -115,6 +115,21 @@ function awppm_settings_page_elem_init()
 
 
 
+function trgr_sign_out_aft_pswd_chng()
+{
+  var count = 5;
+  countdown = setInterval(function(){
+    $("#awppm_user_profile_settings_pswdchn_success strong").html(count + " seconds!");
+    if (count == 0) {
+      // TODO : change it to base address
+      window.location = 'http://localhost:3000/';
+    }
+    count--;
+  }, 1000);
+
+
+}
+
 
 /*
  *
@@ -133,8 +148,8 @@ $(document).ready(function(){
 
 
     // to first get the confirmation from the user
-    $("#js_awppm_user_deactivate").live('click',function(){
-      var answer = confirm("Are you sure, you want to deactivate your ActWitty account??");
+    $("#js_awppm_user_deactivate").live('click',function(){ 
+      var answer = confirm("Deactivating your account will delete all your posts and data.Are you sure, you want to continue??");
       return answer;
     });  
 
@@ -145,18 +160,15 @@ $(document).ready(function(){
     $("#js_awppm_profile_setting_pswd_chng").live('click',function(){
       var new_pswd = $(".awppm_user_profile_settings_newpswd").val();
       var cnf_pswd = $(".awppm_user_profile_settings_cnfrmpswd").val();
-      if(new_pswd != cnf_pswd)
-      {
-
+      if(new_pswd != cnf_pswd){
+        awppm_settings_page_elem_init
         $("#awppm_user_profile_settings_mismatchpswd_error").show();
         return false;
       }
-      if(sanity_check_password())
-      {
+      if(sanity_check_password()){
         return true;
-      }
-      else
-      {
+      } else{
+        awppm_settings_page_elem_init();
         $("#awppm_user_profile_settings_newpswd_error").show();
         return false;
       }

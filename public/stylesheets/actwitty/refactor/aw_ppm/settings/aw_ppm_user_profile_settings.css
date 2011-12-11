@@ -184,7 +184,7 @@ div.awppm_user_profile_settings_wrapper {
   float: left;
   width: 500px;
   height: 750px;
-  margin-left: 90px;
+  margin-left: 140px;
   margin-top: 10px;
   border: 1px solid #dddddd;
   border-radius: 5px;
@@ -358,13 +358,17 @@ div#awppm_user_profile_settings_profile_pic img {
   margin-bottom: 10px;
   display: none;
 }
+/* line 303, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+#awppm_user_profile_settings_pswdchn_success strong {
+  color: #880000;
+}
 
-/* line 305, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 307, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 #awppm_user_profile_settings_curpswd_error, #awppm_user_profile_settings_newpswd_error, #awppm_user_profile_settings_mismatchpswd_error {
   display: none;
 }
 
-/* line 308, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 310, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_oldpswd {
   height: 20px;
   border: 1px solid red;
@@ -372,21 +376,21 @@ div#awppm_user_profile_settings_profile_pic img {
   margin-left: 20px;
 }
 
-/* line 314, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 316, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_newpswd {
   height: 20px;
   margin-top: 5px;
   margin-left: 20px;
 }
 
-/* line 319, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 321, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_cnfrmpswd {
   height: 20px;
   margin-top: 5px;
   margin-left: 20px;
 }
 
-/* line 325, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 327, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_pswd_btn {
   width: 120px;
   height: 40px;
@@ -394,13 +398,13 @@ div#awppm_user_profile_settings_profile_pic img {
   margin-left: 60px;
 }
 
-/* line 331, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 333, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_pswd_error {
   color: red;
   text-align: center;
 }
 
-/* line 336, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 338, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 #awppm_user_profile_settings_change_pswd a {
   position: absolute;
   top: 160px;
@@ -410,7 +414,7 @@ div#awppm_user_profile_settings_profile_pic img {
   font-size: 10px;
 }
 
-/* line 344, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 346, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_newpswd, .awppm_user_profile_settings_cnfrmpswd, .awppm_user_profile_settings_oldpswd {
   width: 200px;
   height: 30px;
@@ -427,7 +431,7 @@ div#awppm_user_profile_settings_profile_pic img {
  * padding: 8px
  * margin-top: 70px
  * margin-left: 40px */
-/* line 366, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 368, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_deactivate {
   /*margin-top: 70px */
   text-align: center;
@@ -439,14 +443,14 @@ div#awppm_user_profile_settings_profile_pic img {
   right: 5px;
 }
 
-/* line 378, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 380, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_field {
   height: 60px;
   width: 500px;
   padding-top: 10px;
   border-bottom: 1px solid #dddddd;
 }
-/* line 383, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 385, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_field label {
   float: left;
   width: 130px;
@@ -457,7 +461,7 @@ div#awppm_user_profile_settings_profile_pic img {
   font-weight: bold;
   vertical-align: middle;
 }
-/* line 392, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 394, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_field input {
   margin-top: 8px;
   font-size: 14px;
@@ -470,7 +474,7 @@ div#awppm_user_profile_settings_profile_pic img {
   -webkit-box-shadow: 0 0 8px #dddddd;
   box-shadow: 0 0 8px #dddddd;
 }
-/* line 403, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 405, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 .awppm_user_profile_settings_field textarea {
   margin-top: 8px;
   margin-left: 20px;
@@ -483,7 +487,7 @@ div#awppm_user_profile_settings_profile_pic img {
   box-shadow: 0 0 8px #dddddd;
 }
 
-/* line 414, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 416, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 #fb_connect_sm {
   background: url("../images/fb_connect_sm.png") no-repeat scroll 0 0 transparent;
   display: block;
@@ -496,12 +500,12 @@ div#awppm_user_profile_settings_profile_pic img {
   width: 120px;
 }
 
-/* line 425, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 427, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 #awppm_user_profile_settings_biodata {
   height: 110px;
 }
 
-/* line 429, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
+/* line 431, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.sass */
 div.awppm_user_profile_settings_field span.error {
   color: red;
   margin-left: 180px;
