@@ -131,6 +131,7 @@ stylesheets:
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_forgot_password.css
