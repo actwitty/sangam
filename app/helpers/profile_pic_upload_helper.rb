@@ -119,6 +119,8 @@ module ProfilePicUploadHelper
                                 var prefix='';
                                 uploader.bind('UploadFile',function(up,file){
                                   //alert('UPLOAD FILE');
+                                  //alert(file.name);
+                                  $('#aw_spm_user_settings_box').find('.aw_js_ppm_loading_animation').show();
                                    if(count==0){
                                      prefix =  get_file_prefix();
                                      var parts = file.name.split('.');

@@ -3,6 +3,7 @@ $aw_var_default_backgorund_color: #ffffff
 $aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
 $aw_var_default_font_size: 12px
 $aw_var_default_color: #CCCCCC
+$aw_var_default_settings_boxes_length: 750px
 body
   margin: 0
   padding: 0
@@ -133,7 +134,7 @@ div.awppm_user_profile_settings_wrapper
 #awppm_user_profile_settings_menu_box
   float: left
   width: 300px
-  height: 700px
+  height: 750px
   margin-left: 10px
   margin-top: 10px
   border: 1px solid #ddd
@@ -146,8 +147,8 @@ div.awppm_user_profile_settings_wrapper
 #awppm_user_profile_settings_fields_box
   float: left
   width: 500px
-  height: 700px
-  margin-left: 90px
+  height: 750px
+  margin-left: 140px
   margin-top: 10px
   border: 1px solid #ddd
   border-radius: 5px
@@ -204,12 +205,33 @@ div.awppm_user_profile_settings_wrapper
 
 
 
+#awppm_user_profile_settings_location_field
+  height: 230px
+
+
+#aw_spm_map_selector
+  padding: 2px
+  border: 1px solid #CCC
+  display: block
+  width: 290px
+  height: 150px
+  margin-left: 90px
+  float: right
+  margin-top: 8px
+  margin-right: 45px
+
 .awppm_user_profile_settings_save_btn
   float: right
   margin-top: 10px
   width: 180px
   height: 60px
 
+
+
+
+
+
+/****************************************Profile Pic Section
 #awppm_user_profile_settings_profile_pic
   width: 150px
   height: 200px
@@ -278,6 +300,8 @@ div#awppm_user_profile_settings_profile_pic img
   margin-top: 10px
   margin-bottom: 10px
   display: none
+  strong
+    color: #880000
   
 
 #awppm_user_profile_settings_curpswd_error,  #awppm_user_profile_settings_newpswd_error, #awppm_user_profile_settings_mismatchpswd_error
@@ -407,6 +431,5 @@ div#awppm_user_profile_settings_profile_pic img
 div.awppm_user_profile_settings_field span.error
   color: red
   margin-left: 180px
-
 
 

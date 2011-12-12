@@ -1,13 +1,13 @@
 
 
-/*
- * jS file to take care of channel settings page related queries.
+/***************************************************************************************************
+ * jS file to take care of channel settings page related queries.     
  *
  * awcspm_js_channel_settings_list_box : This is the main js related id for the left side of 
  *                                       channel settings page. 
  *                                       All channel lists(html) should be updated on this id
  *
- * /
+ *************************************************************************************************** /
 
 
 
@@ -135,17 +135,6 @@ function aw_api_cspm_get_contex_for_key(key){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /*
  *
  *
@@ -161,8 +150,7 @@ function aw_api_cspm_get_contex_for_key(key){
  */
 
 function aw_get_channel_lists_settings_html(channel_info){
-  var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category_data); 
-  var channel_theme = default_theme.thumb;
+  var channel_theme = aw_lib_get_channel_theme_thumb(channel_info);
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
   }
@@ -191,16 +179,6 @@ function aw_get_channel_lists_settings_html(channel_info){
 
 
 
-
-
-
-
-
-
-
-
-
-
 /*************************************************************/
 /*
  *
@@ -221,19 +199,20 @@ function aw_api_srv_resp_cspm_chn_render_user_channels(params){
       return;
     }
     if (i==0){
-      aw_cspm_set_channel_for_edit(channel_info);
       var channel_bckg = aw_lib_get_channel_theme_background(channel_info);
       $(".awcspm_channel_settings_column2").css('background','url('+channel_bckg+')');
       $("#awcspm_channel_edit_label_header").html('Channel <strong>'+channel_info.word.name+'</strong> is set for edit');
+      aw_local_curr_active_channel_key =  "aw_cspm_channel_list_" + channel_info.word.id ;
+      aw_cspm_set_channel_for_edit(channel_info,aw_local_curr_active_channel_key);
     }
    
     
     var html = aw_get_channel_lists_settings_html(channel_info);
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_CSPM_CHN_GET_USER_CHANNELS_LIST', channel_info.time);
     $('#awcspm_js_channel_settings_list_box').append(html);
-
   });
   
+  // TODO
   //$("abbr.aw_js_chn_timeago").timeago();
   //$("#aw_js_ppm_user_chn_data_more").attr("disabled", false);
   //$('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").hide();
@@ -250,7 +229,7 @@ function aw_api_srv_resp_cspm_chn_render_user_channels(params){
  *
  */
 function aw_api_cspm_chn_setting_request_user_channels(on_init){
-  // UNDO:SAMARTH
+  // TODO
   //$("#aw_js_ppm_user_chn_data_more").attr("disabled", true);
   //$('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").show();
   
@@ -260,7 +239,6 @@ function aw_api_cspm_chn_setting_request_user_channels(on_init){
   if( typeof on_init == 'undefined' ){
       on_init = 0;
   }
-  // UNDO:SAMARTH
   if( on_init == 1){
     req_cookie = { 'init' : 1 };
     aw_api_ppm_cmn_more_cookie_set('AW_SRV_CSPM_CHN_GET_USER_CHANNELS_LIST', '');
@@ -298,11 +276,12 @@ function build_channel_edit_html(channel_context)
                          '</div>'+
                          '<a class="awcspm_delete_channel" href="#">Delete Channel</a>';
 
-  var channel_analytics_html = '<div class="aw_cspm_dyn_chn_analytics">'+
+  // TODO: need to think on providing analytics info
+  /*var channel_analytics_html = '<div class="aw_cspm_dyn_chn_analytics">'+
                                   aw_ppm_channel_dyn_analytic_info_build(channel_context)+
                                '</div>';
   aw_ppm_channel_dyn_analytic_info_build(channel_context);
-
+  */
   //return channel_edit_html + channel_analytics_html;
   return channel_edit_html;
 }
@@ -322,21 +301,11 @@ function aw_cspm_set_channel_for_edit(channel_context,key)
   $("#awcspm_js_channel_info_edit_box").html(build_channel_edit_html(channel_context));
   $("#awcspm_js_channel_settings_name").val(channel_context.word.name);
   $("#awcspm_js_channel_settings_category").val(channel_context.category_data.name);
-
-
+  $("#awcspm_js_channel_theme_code_name").val(channel_context.theme_data.fg_color);
   $(".aw_js_cspm_channel_info_box_backtracker").val(key);
-  //$("#aw_cspm_js_channel_settings_background_src").attr("src",aw_lib_get_channel_theme_background(channel_context));
-  //$("#aw_cspm_js_channel_settings_thumb_src").attr("src",aw_lib_get_channel_theme_thumb(channel_context));
 
 
 }
-
-
-
-
-
-
-
 
 
 /*
@@ -347,8 +316,9 @@ function aw_cspm_set_channel_for_edit(channel_context,key)
 function build_channel_theme_selection_list() {
 
   $.each (aw_local_channel_theme_list_json, function (theme_selector) {
+
     var theme_selector_html = '<div class="awcspm_channel_theme_box">' +
-                                '<img class="awcspm_channel_theme_selector" width="170" height="100" src="'+aw_local_channel_theme_list_json[theme_selector].thumb+'">'+
+                                '<img class="awcspm_channel_theme_selector" width="170" height="100" id="'+theme_selector+'" src="'+aw_local_channel_theme_list_json[theme_selector].thumb+'">'+
                                 '<div class="awcspm_channel_theme_info">'+
                                   '<span>'+
                                       aw_local_channel_theme_list_json[theme_selector].text+
@@ -363,40 +333,20 @@ function build_channel_theme_selection_list() {
 
 
 
-
-
-
-
-
-
-
 /*
  *
  *
  */
 function aw_api_srv_resp_cspm_update_channel(params){
-  //var channel_info = aw_awpi_serv_resp_data_for_post_request_in_params(params); 
-  alert("resp");
-  //alert(JSON.stringify(params));
-  /*
-  if( typeof stream_info != 'undefined' ){
+  var edited_channel_box_id = params['aw_srv_protocol_cookie']['channel_box_id'];
+  var new_theme_code = params['aw_srv_protocol_cookie']['theme_code_name'];
 
-    var stream_main_box_id = aw_api_get_stream_id(stream_info);
+  updated_channel_context = aw_api_cspm_get_contex_for_key(params['aw_srv_protocol_cookie']['channel_box_id']);
 
-    
-    aw_api_ppm_stm_mentions_invalidate_text(stream_info);
-
-    
-    $('#' + stream_main_box_id).find('.js_activity_entity').addClass("js_activity_entity_highlighter");
-    var html = '<span class="aw_js_ppm_stm_delete_mention">Remove Mention</span>';
-    $('#' + stream_main_box_id).find('.js_activity_entity').append(html);
-
-    
-    aw_api_ppm_stm_modify_context_text_for_key(stream_main_box_id, stream_info.post.text );
-    aw_api_ppm_stm_mentions_revise_counters(aw_api_ppm_get_stm_contex_for_key(stream_main_box_id));
-
+  if(updated_channel_context.theme_data.fg_color != new_theme_code){
+    thumbnail_url = aw_lib_get_thumnail_for_theme_code(new_theme_code);
+    $("#"+edited_channel_box_id).css('background','url('+thumbnail_url+')'); 
   }
-  */
 }
 
 
@@ -410,28 +360,27 @@ function aw_api_srv_resp_cspm_update_channel(params){
  */
 function aw_save_channel_edit_updates() {
   var channel_name = $("#awcspm_js_channel_settings_name").val();
-  var channel_category = $("#awcspm_js_channel_settings_name").val();
-    
+  var channel_category = $("#awcspm_js_channel_settings_category").val();
+  var channel_theme_code = $("#awcspm_js_channel_theme_code_name").val();
+
   var channel_context = aw_api_cspm_get_contex_for_key(aw_local_curr_active_channel_key);
   var summary_id = channel_context.id;
-    
-    
+  
   var params = {
                'aw_srv_protocol_params' :  { 
                                               summary_id: summary_id,
-                                              theme_id:"0x000001", 
+                                              theme_id:channel_theme_code, 
                                               channel_name: channel_name, 
                                               channel_category: channel_category 
                                             },
                 'aw_srv_protocol_cookie' : {
-                                              'channel_box_id': aw_local_curr_active_channel_key 
+                                              'channel_box_id': aw_local_curr_active_channel_key,
+                                              'theme_code_name': channel_theme_code
                                            }     
                }
   aw_api_srv_make_a_post_request('AW_SRV_CSPM_CHANNEL_EDIT',params);     
 
 }
-
-
 
 
 
@@ -451,6 +400,7 @@ $(document).ready(function(){
   build_channel_theme_selection_list();
 
 
+
   $(".awcspm_profile_data_info_header").live('click',function(){
     var key = $(this).attr("id");
     var channel_context = aw_api_cspm_get_contex_for_key(key);
@@ -459,6 +409,7 @@ $(document).ready(function(){
     $(".awcspm_channel_settings_column2").css('background','url('+channel_st_bckg+')');
     $("#awcspm_channel_edit_label_header").html('Channel <strong>'+channel_context.word.name+'</strong> is set for edit');
     aw_local_curr_active_channel_key = key;
+
   
   });
   
@@ -469,8 +420,11 @@ $(document).ready(function(){
 
 
   $(".awcspm_channel_theme_selector").live('click',function(){
+    var theme_code = $(this).attr('id');
+    var bckg_url = aw_lib_get_background_for_theme_code(theme_code); 
+    $("#awcspm_js_channel_theme_code_name").val(theme_code);
     $("#awcspm_js_curr_chn_edit").css('background','url('+$(this).attr("src")+')');
-    $(".awcspm_channel_settings_column2").css('background','url('+$(this).attr("src")+')');
+    $(".awcspm_channel_settings_column2").css('background','url('+bckg_url+')');
   });
 
 });

@@ -12,7 +12,7 @@
     -if @page_mode == "profile_chn_page" or @page_mode == "profile_stm_page" or @page_mode == "profile_usr_settings_page" or @page_mode == "profile_channel_settings_page"
       = include_stylesheets :profile_page_commons
       = include_stylesheets :profile_page_externals
-    
+
     -if @page_mode == "profile_chn_page"
       = include_stylesheets :profile_page_channels
     
@@ -52,7 +52,7 @@
 
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
-    %script{:src => "http://maps.google.com/maps/api/js?sensor=false", :type => "text/javascript"}
+    %script{:src => "http://maps.google.com/maps/api/js?sensor=false&libraries=places", :type => "text/javascript"}
     = include_javascripts :jquery
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
    
@@ -64,18 +64,21 @@
 
    
     -if @page_mode == "profile_usr_settings_page"
-      = include_javascripts :profile_settings 
+      = include_javascripts :profile_settings
 
     -if @page_mode == "profile_channel_settings_page"
       = include_javascripts :profile_channel_settings 
 
     -if @page_mode == "profile_chn_page"
       = include_javascripts :profile_channels
+      /= include_javascripts :profile_inputs
 
     -if @page_mode == "profile_stm_page"
       = include_javascripts :profile_streams
+      / = include_javascripts :profile_inputs
       = include_javascripts :charts_analytics
       = include_javascripts :highcharts
+      
 
     -if @page_mode == "profile_single_activity_page"
       = include_javascripts :profile_streams
@@ -93,7 +96,7 @@
       = include_javascripts :profile_streams
       = include_javascripts :location_page
 
-    -if @page_mode != "authentications_page"
+    -if @page_mode != "authentications_page" 
       = include_javascripts :autocomplete
     :javascript
       if ($.browser.msie && $.browser.version.substr(0,1)<9){

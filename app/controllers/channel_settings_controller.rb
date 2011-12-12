@@ -23,10 +23,10 @@ class ChannelSettingsController < ApplicationController
       
 
       summary_theme_update ={:fg_color => params[:theme_id],
-                             :bg_color=>"0x0000f0",
+                             :bg_color=>"0x000000f0",
                              :author_id=>current_user.id,
                              :summary_id=>params[:summary_id],
-                             :theme_type=>1}
+                             :theme_type=>2}
       @user.create_theme(summary_theme_update)
 
       
