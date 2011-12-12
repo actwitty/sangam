@@ -1,0 +1,28 @@
+/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+#aw_profile_footer_box {
+  height: 40px;
+  border: 1px solid #dddddd;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: #ebece4;
+}
+/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+#aw_profile_footer_box ul {
+  list-style-type: none;
+}
+/* line 9, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+#aw_profile_footer_box li {
+  display: inline;
+  margin-right: 50px;
+}
+/* line 12, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+#aw_profile_footer_box input {
+  float: right;
+  margin-top: -5px;
+}
+/* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+#aw_profile_footer_box li a {
+  text-decoration: none;
+  color: #333333;
+  font-size: 13px;
+}
