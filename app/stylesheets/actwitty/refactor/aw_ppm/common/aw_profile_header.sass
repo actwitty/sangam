@@ -8,38 +8,64 @@ $aw_var_default_color: #CCCCCC
 #awppm_header_box
   position: relative
   margin: 0 auto 0
+  margin-bottom: 20px
   display: block
   width: 990px
-  height: 140px
+  height: 45px
   border: $aw_var_default_border_width solid red
   position: relative
 
 .awppm_profile_logo
-  position: absolute
-  top: 40px
-  left: 10px
+  position: relative
+  float: left
+  margin-top: 5px
+  margin-left: 0px
+
+
+#awppm_header_search_edit_box
+  position: relative
+  margin-top: 6px
+  margin-left: 70px
+  float: left
+  height: 25px
+  width: 280px
+  input
+    border: 1px solid #ddd
+    height: 20px
+    width: 280px
+    font-size: 14px
+    margin-top: 5px
+    border-radius: 5px
+
 .awppm_search_enable
-  position: absolute
-  top: 35px
-  right: 0px
-  width: 100px
+  position: relative
+  float: left
+  margin-top: 10px
+  margin-left: 2px
+  width: 25px
+  height: 25px
+  background-image: url("/images/actwitty/refactor/aw_ppm/common/search_inactive.png")
+  &:hover 
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/search_hover.png")
+    cursor: pointer
+
 
 .awppm_header_search_box
-  width: 320px
-  height: 65px
-  border: 3px solid #aa1317
+  width: 320
+  height: 15px
+  border: 3px solid #1457ba
   border-radius: 5px 0 5px 5px
   position: absolute
-  top: 60px
-  right: 2px
+  top: 33px
+  left: 235px
   padding: 5px 0px 5px 10px
   display: none
+  background-color: #363436
   background: -moz-linear-gradient(center top, #f5f5f5 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
 
   #awppm_header_search_options
     input
       border: 1px solid #ddd
-      margin-top: 8px
       margin-left: 5px
       width: 15px
       border-radius: 5px
@@ -51,30 +77,20 @@ $aw_var_default_color: #CCCCCC
       font-size: 13px
       &:hover
         font-weight: bold
-  #awppm_header_search_edit_box
-    input
-      border: 1px solid #ddd
-      height: 25px
-      width: 310px
-      font-size: 14px
-      margin-top: 5px
-      border-radius: 5px
-      -moz-box-shadow: 0 0 8px #ddd
-      -webkit-box-shadow: 0 0 8px #ddd
-      box-shadow: 0 0 8px #ddd
+ 
 
 .awppm_search_autocomplete_box
   display: inline
   width: 100%
-  height: 26px
+  height: 25px
   .awppm_search_img_box
     display: block-inline
-    width: 35px
+    width: 25px
     padding-left: 5px
     padding-right: 5px
     float: left
   .awppm_search_name_box
-    width: 200px
+    width: 120px
     overflow: hidden
     display: block-inline
     padding: 5px
@@ -84,7 +100,7 @@ $aw_var_default_color: #CCCCCC
     display: block-inline
     float: right
     margin-right: 5px
-    width: 26px 
+    width: 25px 
 
 
 

@@ -1,5 +1,6 @@
 #awppm_header_box
-  %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_ppm_logo_topbar.png"}
+  
+  %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_ppm_logo_small_topbar.png"}
   #awppm_header_user_bar
     -if user_signed_in? && !if_ghost_user?
       %a#awppm_header_user_info{:href => "/home/show?id=#{@current_user.id}"} 
@@ -11,7 +12,9 @@
       %a#awppm_header_user_info{:href => "/"}
         %img{:src => "/images/actwitty/refactor/aw_ppm/common/User.png"}
       %a#awppm_header_user_logout{:href => "/welcome/new"} Log-in
-  %input#aw_js_ppm_header_search.awppm_search_enable.button_actwitty.red{:type => "button", :value => "Search"}
+  #awppm_header_search_edit_box
+    %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
+  #aw_js_ppm_header_search.awppm_search_enable
   #aw_js_ppm_search_box.awppm_header_search_box
     #awppm_header_search_options
       %input#aw_js_ppm_header_search_ppl.aw_js_ppm_cmn_search_radio_click{:name => "aw_js_ppm_top_search_type", :type => "radio", :value => "user", :checked=> "true" } 
@@ -26,8 +29,6 @@
       %input#aw_js_ppm_header_search_mentions.aw_js_ppm_cmn_search_radio_click{:name => "aw_js_ppm_top_search_type", :type => "radio", :value => "entity"} 
       %label{:for => "aw_js_ppm_header_search_mentions"} Mentions
 
-    #awppm_header_search_edit_box
-      %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
 
   
               

@@ -1,9 +1,5 @@
 class FeedbackController < ApplicationController
 
-  def new
-    @feedback = Feedback.new
-    Rails.logger.info("[CNTRL] [FEEDBACK] New request")
-  end
 
   def create
     Rails.logger.info("[CNTRL] [FEEDBACK] Create request")
@@ -11,6 +7,9 @@ class FeedbackController < ApplicationController
       Feedback.feedback_add(params[:feedback][:name],
                           params[:feedback][:email],
                           params[:feedback][:feedback_text])
+    end
+    respond_to do |format|
+       format.js 
     end
   end
 end

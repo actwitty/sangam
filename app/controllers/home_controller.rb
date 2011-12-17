@@ -21,8 +21,8 @@ class HomeController < ApplicationController
                         :mention_page, :location_page, :channel_page, 
                         :update_social_media_share, :get_summary,
                         :get_entities,:get_channels, :get_locations,
-                        :get_mention_stream,:get_activity_stream,
-                        :get_location_stream,:get_document_stream,
+                        :get_mention_specific_stream,:get_channel_specific_stream,
+                        :get_location_specific_stream,:get_document_stream,
                         :get_streams, :get_related_entities,
                         :get_related_locations, :get_social_counter, 
                         :get_related_friends, :get_all_comments,
@@ -174,10 +174,12 @@ class HomeController < ApplicationController
     end
 
 
-    if user_signed_in?
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
       authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
-      @fb_access_token = authentication.token
-      Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+      end
     end
 
     #FB: Open graph tags start
@@ -244,7 +246,7 @@ class HomeController < ApplicationController
       user_id =  params[:id]
       @user=User.find_by_id(user_id)
       if @user.nil?
-        if user_signed_in?
+        if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
           @user=current_user
           Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as incorrect id mentioned")
         else
@@ -253,10 +255,12 @@ class HomeController < ApplicationController
         end
       end
     end
-    if user_signed_in?
+    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
       authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
-      @fb_access_token = authentication.token
-      Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
+      end
     end
     #FB: Open graph tags start
     set_meta_tags :open_graph => {
@@ -825,9 +829,11 @@ class HomeController < ApplicationController
       #Will come only once as there is only one activity
     
       post_user_id = activity[:post][:user][:id]
-      if user_signed_in?
+      if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
         authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
-        @fb_access_token = authentication.token
+        unless authentication.nil?
+          @fb_access_token = authentication.token
+        end
         if post_user_id == current_user.id 
           @user = current_user
         end
@@ -908,48 +914,6 @@ class HomeController < ApplicationController
   end
 
   ######################################
-  def get_draft_activities
-    Rails.logger.info("[CNTRL][HOME][GET DRAFT ACTIVITIES] request params #{params}")
-
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] returned from model api")
-      response_json = current_user.get_draft_activity(params)
-
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] sending response JSON #{response_json}")
-
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
-    end
-
-  end
-  ######################################
-  def publish_activity
-    Rails.logger.info("[CNTRL][HOME][PUBLISH ACTIVITY] request params #{params}")
-    args={}
-    args[:activity_id] = Integer(params[:activity_id])
-    args[:status] = 2
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
-      response_json = current_user.publish_activity(args)
-
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
-        expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
-    end
-
-  end
-  ######################################
    def process_edit_activity
     Rails.logger.info("[CNTRL][HOME][PROCESS EDITED ACTIVITY] request params #{params}")
 
@@ -1022,6 +986,12 @@ class HomeController < ApplicationController
     @user=current_user
     @page_mode="single_mention_page"
     @mention_id = params[:id]
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+      end
+    end
 
   end
   ######################################
@@ -1052,6 +1022,12 @@ class HomeController < ApplicationController
     @user=current_user
     @page_mode="single_location_page"
     @location_id = params[:id]
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+      end
+    end
 
   end
   ######################################
@@ -1081,6 +1057,13 @@ class HomeController < ApplicationController
     @user=current_user
     @page_mode="single_channel_page"
     @channel_id = params[:id]
+
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+      end
+    end
 
   end
   ######################################

@@ -129,17 +129,19 @@ function aw_get_autocomplete_html(item){
 function aw_get_autocomplete_result_click(item){
   var current_mode = aw_get_currently_active_search_mode();
   var link = "#";
-  if(current_mode == 'user'){
-    var link = '/home/show?id=' + item.id;
-  }else if (current_mode == 'channel'){
-    var link = '/channel_page?id=' + item.id;
-  }else if (current_mode == 'location'){
-    var link = '/location_page?id=' + item.id;
-  }else if (current_mode == 'entity'){
-    var link = '/mention_page?id=' + item.id;
+  if( item && item.id){
+    if(current_mode == 'user'){
+      var link = '/home/show?id=' + item.id;
+    }else if (current_mode == 'channel'){
+      var link = '/channel_page?id=' + item.id;
+    }else if (current_mode == 'location'){
+      var link = '/location_page?id=' + item.id;
+    }else if (current_mode == 'entity'){
+      var link = '/mention_page?id=' + item.id;
+    }
+    window.location.href = link; 
   }
 
-  window.location.href = link; 
 }
 /*******************************************************************************/
 /*
@@ -178,8 +180,10 @@ $(document).ready(function() {
   $("#aw_js_ppm_header_search").click(function () {
     if($("#aw_js_ppm_search_box").is(":visible")){
       $("#aw_js_ppm_search_box").hide();
+      $(this).css("background-image", "url(/images/actwitty/refactor/aw_ppm/common/search_inactive.png)");  
     }else{
       $("#aw_js_ppm_search_box").show();
+      $(this).css("background-image", "url(/images/actwitty/refactor/aw_ppm/common/search.png)"); 
     }
     $("#aw_js_ppm_header_search_text").val("");
     $("#aw_js_ppm_header_search_ppl").attr("checked", true);

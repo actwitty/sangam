@@ -26,6 +26,9 @@ function aw_api_srv_resp_ppm_stm_single(params){
 
   $.each(data, function(i, stream_info){
     aw_ppm_stm_singlepost_render_user_details(stream_info);
+    if(aw_api_ppm_stm_facebook_post_check(stream_info)){
+      aw_api_ppm_stm_facebook_make_srv_get_request(stream_info);
+    }
     var html = aw_api_get_stream_main_html(stream_info);
     $('#aw_js_ppm_stm_singlepost_list').append(html);
     aw_api_ppm_stm_attachments_enable_fancybox(stream_info);
@@ -63,5 +66,5 @@ function aw_ppm_stm_singlepost_get_stream(){
  *
  */
 function aw_api_ppm_initialize_single_post_page(){
-  aw_ppm_stm_singlepost_get_stream();
+  aw_api_ppm_stm_facebook_initialize_access_token(aw_ppm_stm_singlepost_get_stream);
 }

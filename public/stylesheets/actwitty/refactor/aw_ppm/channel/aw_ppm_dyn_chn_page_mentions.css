@@ -9,13 +9,21 @@
   margin-left: 10px;
   margin-top: 15px;
   position: relative;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px #333333;
+  -webkit-box-shadow: 0 0 10px #333333;
+  box-shadow: 0 0 10px #333333;
 }
-/* line 11, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
+/* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
 .aw_ppm_dyn_chn_mentions_box:hover {
   cursor: pointer;
   border: 1px solid #cccccc;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px #333333;
+  -webkit-box-shadow: 0 0 10px #333333;
+  box-shadow: 0 0 10px #333333;
 }
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
+/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
 .aw_ppm_dyn_chn_mentions_box div.aw_ppm_dyn_mention_info_hover_box {
   font-family: Calibri, Tahoma, Geneva, sans-serif;
   font-size: 10px;
@@ -29,13 +37,14 @@
   border: 1px solid #cccccc;
   overflow: hidden;
   display: none;
+  text-transform: capitalize;
 }
-/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
+/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
 .aw_ppm_dyn_chn_mentions_box:hover div.aw_ppm_dyn_mention_info_hover_box {
   display: block;
 }
 
-/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
+/* line 38, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
 .aw_ppm_dyn_chn_mention_label {
   width: 100%;
   height: 20px;
@@ -43,18 +52,21 @@
   position: absolute;
   bottom: 0px;
   background: black;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(71, 96, 121, 0.9);
 }
-/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
+/* line 46, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
 .aw_ppm_dyn_chn_mention_label img {
   height: 40px;
   vertical-align: middle;
 }
-/* line 40, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
+/* line 49, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.sass */
 .aw_ppm_dyn_chn_mention_label span {
+  padding-left: 2px;
+  padding-top: 2px;
   color: white;
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: capitalize;
 }
 
 /********************************************************************** */

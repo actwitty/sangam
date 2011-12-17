@@ -15,11 +15,11 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
   // this needs to be filled in
   var dyn_analytic_info_id = "analytic_box_" ;
   var html = "";
-
   var tweet_post_count = 0;
   var fb_post_count = 0;
   var aw_post_count = 0;
-  var subscribers ="No";
+  var total_post_count = 0;
+  var subscribers = 0;
   var male = 0;
   var female = 0;
   var like_count = 0;
@@ -39,6 +39,10 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
 
         if( channel_info.analytics_summary.posts.twitter ){
           tweet_post_count = channel_info.analytics_summary.posts.twitter;
+        }
+        
+        if( channel_info.analytics_summary.posts.total ){
+          total_post_count = channel_info.analytics_summary.posts.total;
         }
     }
 
@@ -75,68 +79,122 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
       });
   }
   html =    '<div class="aw_ppm_chn_dyn_anlytc_summary_header">' +
-                  '<div class="aw_ppm_chn_dyn_anlytc_summary_rank">'+
-                      '<span class="aw_ppm_chn_dyn_analytc_rank_label"> Rank </span>'+
-                      '<img class="aw_ppm_chn_dyn_anlytc_rank_icon" src="/images/actwitty/refactor/aw_ppm/channel/analytics/analytic_rank_icon.png">'+
-                      '<span>100</span>'+
-                  '</div>'+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_header_label" >' +
+                    '<span>' + 
+                      'SUMMARY OF ACTIVITIES' + 
+                    '</span>' +
+                  '</div>' +
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_category" >' +
+                    '<span class="aw_ppm_chn_dyn_anlytc_summary_category_label">' + 
+                      'CATEGORY: ' +
+                    '</span>' + 
+                    '<span class="aw_ppm_chn_dyn_anlytc_summary_category_text">' + 
+                      channel_info.category_data.name +
+                    '</span>' + 
+                  '</div>' +
+
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_lut">'+
-                      '<span>Last update : ' + 
-                      '<abbr class="aw_js_chn_timeago" title="' + last_update_time + '"></abbr>'+
+                      '<span>last updated : ' + 
+                        '<abbr class="aw_js_chn_timeago" title="' + last_update_time + '"></abbr>'+
                       '</span>' +
                   '</div>'+
-                '</div>'+
-                '<div class="aw_ppm_chn_dyn_analytc_summary_posts">'+
-                    '<h5>Posts</h5>'+
-                    '<div class="aw_ppm_chn_dyn_analytic_fb_post aw_ppm_chn_dyn_analytc_posts_box">'+
-                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/facebook_analytics.png" width="50">'+
-                       '<span>' + fb_post_count + '</span>'+
-                    '</div>'+
-                    '<div class="aw_ppm_chn_dyn_analytic_twt_post aw_ppm_chn_dyn_analytc_posts_box">'+
-                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/twitter_analytics.png" width="50">'+
-                        '<span>' + tweet_post_count + '</span>'+
-                    '</div>'+
-                    '<div class="aw_ppm_chn_dyn_analytic_aw_post aw_ppm_chn_dyn_analytc_posts_box">'+
-                       '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/actwitty_analytics.png" width="50">'+
-                       '<span>' + aw_post_count + '</span>'+
-                    '</div>'+
-                '</div>'+
-                '<div class="aw_ppm_chn_dyn_analytc_summary_counters">'+
-                  '<div class="aw_ppm_chn_dyn_analytc_summary_subscribers">'+
-                     '<span class="aw_ppm_chn_dyn_analytc_subcrb_count">' + subscribers + '</span>'+
-                     '<span>Subscribers</span>'+
-                  '</div>'+
-                  '<div class="aw_ppm_chn_dyn_analytc_summary_demograph">'+
-                      '<div class="aw_ppm_chn_dyn_analytc_demograph_box">'+
-                        '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/man.png" height="50">'+
-                        '<span>' + male + '</span>'+
-                      '</div>'+
-                      '<div class="aw_ppm_chn_dyn_analytc_demograph_box">'+
-                          '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/woman.png" height="50">'+
-                        '<span>' + female + '</span>'+
-                      '</div>'+
-                  '</div>'+
-                '</div>'+
 
-                '<div class="aw_ppm_chn_dyn_analytc_actions">'+
-                  '<div class="aw_ppm_chn_dyn_analytc_summary_actions">'+
-                     '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/analytic_like.png" width="30">'+
-                     '<span>' + like_count + '</span>'+
-                     '<span class="aw_ppm_chn_dyn_analytc_action_label">Likes</span>'+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">10000</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> RANKING </span>'+
                   '</div>'+
-                  '<div class="aw_ppm_chn_dyn_analytc_summary_actions">'+
-                     '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/share_active.png" width="30">'+
-                     '<span>' + share_count + '</span>'+
-                     '<span class="aw_ppm_chn_dyn_analytc_action_label">Shares</span>'+
+                 
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">' +
+                          fb_post_count + 
+                      '</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> FACEBOOK POSTS </span>'+
                   '</div>'+
-                  '<div class="aw_ppm_chn_dyn_analytc_summary_actions">'+
-                     '<img src="/images/actwitty/refactor/aw_ppm/channel/analytics/comments.png" width="30">'+
-                     '<span>' + comment_count + '</span>'+
-                     '<span class="aw_ppm_chn_dyn_analytc_action_label_comments ">Comments</span>'+
+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">' +
+                          tweet_post_count + 
+                      '</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> TWEETS </span>'+
                   '</div>'+
+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">' +
+                          aw_post_count + 
+                      '</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> ACTWITTY </span>'+
+                  '</div>'+
+
+                   '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                          'THAT MAKES IT ' + 
+                      '</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                        total_post_count +  
+                      '</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                          ' POSTS IN TOTAL ' + 
+                      '</span>'+
+                  '</div>'+
+
+                   
+
+                   '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                        + subscribers +
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                          ' SUBSCRIBERS,  ' + 
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                         male +
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                        ' MALES AND ' +
+                      '</span>'+
+
+                       '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                         female +
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                        ' FEMALES ' +
+                      '</span>'+
+
+                  '</div>'+
+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                        + like_count +
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                          ' LIKES,  ' + 
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                         share_count +
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                        ' POSTS SHARED AND ' +
+                      '</span>'+
+
+                       '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
+                         comment_count +
+                      '</span>'+
+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
+                        ' COMMENTS ' +
+                      '</span>'+
+                  '</div>'+
+
+
                 '</div>';
           
-  //the_big_modal_subscription_json[link_id] = {user_id: subscription.id};
   return html;
 }
 

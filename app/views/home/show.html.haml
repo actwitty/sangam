@@ -6,12 +6,13 @@
     #awppm_chn_user_section
       #awppm_chn_user_info
         #awppm_chn_user_img
-          %center
-            %a{:href => "/home/show?id=#{@user.id}"}
-              %img{:src => @user.photo_small_url}/
-          %center
-            %a{:href => "/home/show?id=#{@user.id}"}
-              %span #{@user.full_name}
+          %a{:href => "/home/show?id=#{@user.id}"}
+            %img{:src => @user.photo_small_url}/
+        #awppm_chn_user_name    
+          %a{:href => "/home/show?id=#{@user.id}"}
+            %span #{@user.full_name}
+        #awppm_chn_user_location   
+          %span #{@user.current_location} 
       #awppm_chn_input_box_wrapper
         -if user_signed_in?
           -if current_user.id == @user.id
@@ -22,16 +23,31 @@
     #awppm_chn_data_box
       #aw_js_ppm_user_channel_data.awppm_chn_data_section.awppm_chn_userchannel_data
         .awppm_chn_data_section_label
-          %span #{@user.full_name}'s Channels
+          -if user_signed_in?
+            -if current_user.id == @user.id
+              %span My areas of interest 
+            -else 
+              %span #{@user.full_name}'s areas of interest
+        -if user_signed_in?
+          -if current_user.id == @user.id
+            .awppm_chn_data_section_info_header
+              %span ActWitty understands your interest channels by processing your Facebook data. You can see posts in each channels by clicking them.
+          -else
+            .awppm_chn_data_section_info_header
+              %span Interest channels created based on Facebook data. You can see posts in each channels by clicking them.      
+                
+            
         .awppm_chn_data_section_stream_link_box_wrapper
           .awppm_chn_data_section_stream_link_box
             .aw_ppm_stream_link_info_hover_box Stream view for posts by #{@user.full_name}
             %a{:href => "/home/streams?id=#{@user.id}&s=p"}
               .awppm_chn_data_section_stream_link_img_box
-          .awppm_chn_data_section_stream_link_box
-            .aw_ppm_stream_link_info_hover_box Settings for channels by #{@user.full_name}
-            %a{:href => "/channel_settings/edit"}
-              .awppm_chn_data_section_chn_setting_img_box
+          -if user_signed_in?
+            -if current_user.id == @user.id    
+              .awppm_chn_data_section_stream_link_box
+                .aw_ppm_stream_link_info_hover_box Settings for channels by #{@user.full_name}
+                %a{:href => "/channel_settings/edit"}
+                  .awppm_chn_data_section_chn_setting_img_box
                 
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
@@ -43,7 +59,9 @@
         -if current_user.id == @user.id
           #aw_js_ppm_subscribed_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
-              %span #{@user.full_name}'s Subscribed Channels
+              %span Subscriptions of other's interests at ActWitty
+            .awppm_chn_data_section_info_header
+              %span Subscribed set of interest channels of other users on ActWitty. You can see posts in each channels by clicking them.
             .awppm_chn_data_section_stream_link_box_wrapper
               .awppm_chn_data_section_stream_link_box
                 .aw_ppm_stream_link_info_hover_box Stream view for subscriptions of #{@user.full_name}
@@ -60,7 +78,13 @@
 
       #aw_js_ppm_user_mentions_channel_data.awppm_chn_data_section
         .awppm_chn_data_section_label
-          %span #{@user.full_name}'s Mentions
+          -if user_signed_in?
+            -if current_user.id == @user.id
+              %span Things I mentioned in the posts 
+            -else 
+              %span #{@user.full_name}'s mentioned these in posts
+        .awppm_chn_data_section_info_header
+          %span These are the terms lately used in text in Facebook, ActWitty check ins. You can see post(s) for each mention by clicking them.               
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
             %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
@@ -69,7 +93,13 @@
 
       #aw_js_ppm_user_location_channel_data.awppm_chn_data_section
         .awppm_chn_data_section_label
-          %span #{@user.full_name}'s Locations
+          -if user_signed_in?
+            -if current_user.id == @user.id
+              %span Locations where I have been active 
+            -else 
+              %span #{@user.full_name}'s activity locations
+        .awppm_chn_data_section_info_header
+          %span These are the locations recently used for check in at Facebook, ActWitty check ins. You can see post(s) for each location by clicking them.               
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
             %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
@@ -80,7 +110,9 @@
         -if current_user.id == @user.id
           #aw_js_ppm_all_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
-              %span World over Channels
+              %span Popular Interest Channels Recommended
+            .awppm_chn_data_section_info_header
+              %span You can choose subscribe to them to see them in subscriptions. Click channels to see posts in each of them.               
             .awppm_chn_data_section_stream_link_box_wrapper
               .awppm_chn_data_section_stream_link_box
                 .aw_ppm_stream_link_info_hover_box Stream view for all channels

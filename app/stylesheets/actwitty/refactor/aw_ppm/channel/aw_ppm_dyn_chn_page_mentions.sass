@@ -8,9 +8,17 @@
   margin-left: 10px
   margin-top: 15px
   position: relative
+  border-radius: 5px
+  -moz-box-shadow: 0 0 10px #333 
+  -webkit-box-shadow: 0 0 10px #333
+  box-shadow: 0 0 10px #333
   &:hover
     cursor: pointer
     border: 1px solid #ccc
+    border-radius: 5px
+    -moz-box-shadow: 0 0 10px #333 
+    -webkit-box-shadow: 0 0 10px #333
+    box-shadow: 0 0 10px #333
   div.aw_ppm_dyn_mention_info_hover_box
     font-family: Calibri, Tahoma, Geneva, sans-serif
     font-size: 10px
@@ -24,6 +32,7 @@
     border: 1px solid #ccc
     overflow: hidden
     display: none
+    text-transform: capitalize
   &:hover  div.aw_ppm_dyn_mention_info_hover_box
     display: block
 .aw_ppm_dyn_chn_mention_label
@@ -33,14 +42,17 @@
   position: absolute
   bottom: 0px
   background: rgb(0, 0, 0)
-  background: rgba(0, 0, 0, 0.6)
+  background: rgba(71, 96, 121, 0.9)
   img
     height: 40px
     vertical-align: middle
   span
+    padding-left: 2px
+    padding-top: 2px
     color: #fff
     font-size: 14px
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    text-transform: capitalize
 
 /************************************************************************/
 

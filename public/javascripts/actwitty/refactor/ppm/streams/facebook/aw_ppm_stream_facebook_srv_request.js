@@ -1,4 +1,32 @@
-
+/***********************************************************/
+var aw_local_fb_access_token;
+/************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_ppm_stm_facebook_initialize_access_token(fn_cb){
+  var auth_token = $("#aw_js_ppm_fb_access_token").val();
+  if(auth_token.length){
+    aw_local_fb_access_token = auth_token;
+    fn_cb();
+    return;
+  }
+  FB.init({
+        appId      : '172893766124779',
+        channelUrl : aw_lib_get_base_url() + '/channel.html',
+        status     : true, 
+        cookie     : true, 
+        oauth      : true, 
+        xfbml      : true  
+      });
+  FB.getLoginStatus(function(response) {
+  if (response.authResponse) {
+    aw_local_fb_access_token = response.authResponse.accessToken;
+  } 
+  fn_cb();
+});
+}
 /************************************************************/
 /*
  *
@@ -16,12 +44,8 @@ function aw_api_ppm_stm_facebook_post_check(stream_info){
  *
  */
 function aw_api_ppm_facebook_get_signed_in_auth_token(){
-  var auth_token = $("#aw_js_ppm_fb_access_token").val();
-  if(auth_token.length){
-    return auth_token;
-  }
-
-  return '';
+  return aw_local_fb_access_token;
+ 
 }
 
 /************************************************************/

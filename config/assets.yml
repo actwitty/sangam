@@ -17,6 +17,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.js
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.custom.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_user_updates.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_events.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
     - public/javascripts/actwitty/refactor/server_requests/aw_post_requests.js
     - public/javascripts/actwitty/refactor/server_requests/aw_get_requests.js
@@ -126,6 +127,7 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_feedback.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_modal_boxes.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
   landing_pages:

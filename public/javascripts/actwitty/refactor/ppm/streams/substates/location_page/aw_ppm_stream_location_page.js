@@ -76,14 +76,23 @@ function aw_ppm_stm_single_location_get_stream(on_init){
     aw_api_srv_make_a_get_request('AW_SRV_PPM_STM_LOCATION_PG_STREAM_LIST',  params);
   return;
 }
+/*********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_ppm_location_page_init_cb(){
+   aw_ppm_stm_single_location_get_stream(1);
+}
 /**********************************************************/
 /*
  *
  *
  */
 function aw_api_ppm_initialize_single_location_page(){
-  aw_ppm_stm_single_location_get_stream(1);
+  aw_api_ppm_stm_facebook_initialize_access_token(aw_api_ppm_location_page_init_cb);
 }
+
 /**********************************************************/
 /*
  *

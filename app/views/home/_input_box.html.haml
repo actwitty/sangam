@@ -3,16 +3,16 @@
 
 #awppm_input_box_activate.button_classic
   #awppm_input_box_attention_icon
-  Check-in Your Interest !
+  Check-in your Interest
 #awppm_input_box.aw_js_ppm_ip_input_box
   .awppm_input_busy_box.aw_js_ppm_loading_animation
     .awppm_input_busy_mini_box
       %img.awppm_input_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
   %img#awppm_del_ipbox{:src => "/images/actwitty/refactor/aw_ppm/common/delete.png", :height => "8", :width => "8" }
     #awppm_input_label
-      Check-in Your Interest !
+      Write more into your interests
     #awppm_ip_channel
-      %input#aw_js_ppm_input_channel_name{:placeholder => "Channel", :type => "text"}
+      %input#aw_js_ppm_input_channel_name{:placeholder => "Interest Channel", :type => "text"}
     #aw_js_ppm_category_hide.awppm_ip_category
       %select#aw_js_ppm_input_channel_category.awppm_ip_cat
         %option{:value => 'animals'} Pets and Animals
@@ -44,12 +44,12 @@
         %option Sports
         %option Technology
     #awppm_ip_post
-      %textarea#aw_js_ppm_input_post_text{:placeholder => "Post.."}
+      %textarea#aw_js_ppm_input_post_text{:placeholder => "Share something about your interest channel..."}
     #awppm_ip_options
       %img#aw_js_ppm_show_hide_location{:src => "/images/actwitty/refactor/aw_ppm/common/location_gray.png"}
       %img#aw_js_ppm_show_hide_attachment{:src => "/images/actwitty/refactor/aw_ppm/common/attachment_gray.png"}
     #awppm_ip_location
-      %input#aw_js_ppm_input_location_name{:placeholder => "Location", :type => "input"}
+      %input#aw_js_ppm_input_location_name{:placeholder => "Activity location", :type => "input"}
       #aw_js_map
     #aw_js_ppm_input_add_attachment_partial.awppm_ip_add_attachment
       =render :partial => "home/upload_attachments.html.haml"
