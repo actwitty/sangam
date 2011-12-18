@@ -213,9 +213,9 @@ function aw_api_srv_resp_cspm_chn_render_user_channels(params){
   });
   
   // TODO
-  //$("abbr.aw_js_chn_timeago").timeago();
+  $("abbr.aw_js_chn_timeago").timeago();
   //$("#aw_js_ppm_user_chn_data_more").attr("disabled", false);
-  //$('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").hide();
+  $('#awcspm_js_channel_settings_list_box').find(".aw_js_ppm_loading_animation").hide();
 }
 
 
@@ -231,7 +231,7 @@ function aw_api_srv_resp_cspm_chn_render_user_channels(params){
 function aw_api_cspm_chn_setting_request_user_channels(on_init){
   // TODO
   //$("#aw_js_ppm_user_chn_data_more").attr("disabled", true);
-  //$('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").show();
+  $('#awcspm_js_channel_settings_list_box').find(".aw_js_ppm_loading_animation").show();
   
   
   var params = {};
