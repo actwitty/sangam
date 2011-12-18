@@ -171,7 +171,7 @@ div.awppm_chn_channel_wrapper {
 
 /* line 139, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 #awppm_chn_user_info {
-  height: 150px;
+  height: 130px;
   width: 200px;
   position: absolute;
   top: 10px;
@@ -196,7 +196,7 @@ div.awppm_chn_channel_wrapper {
 /* line 155, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 #awppm_chn_user_name {
   height: 26px;
-  width: 500px;
+  width: 300px;
   overflow: hidden;
   position: absolute;
   top: 10px;
@@ -214,7 +214,7 @@ div.awppm_chn_channel_wrapper {
 /* line 169, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 #awppm_chn_user_location {
   height: 16px;
-  width: 500px;
+  width: 300px;
   overflow: hidden;
   position: absolute;
   top: 38px;
@@ -384,7 +384,7 @@ div.awppm_chn_channel_wrapper {
   position: absolute;
   bottom: 0;
   right: 0;
-  color: black;
+  color: white;
   text-align: center;
   font-weight: bold;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

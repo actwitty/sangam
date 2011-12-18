@@ -81,9 +81,17 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
   html =    '<div class="aw_ppm_chn_dyn_anlytc_summary_header">' +
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_header_label" >' +
                     '<span>' + 
-                      'SUMMARY OF ACTIVITIES' + 
+                      'INFO CARD' + 
                     '</span>' +
                   '</div>' +
+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_lut">'+
+                      '<span>Last updated : ' + 
+                        '<abbr class="aw_js_chn_timeago" title="' + last_update_time + '"></abbr>'+
+                      '</span>' +
+                  '</div>'+
+
+
                   '<div class="aw_ppm_chn_dyn_anlytc_summary_category" >' +
                     '<span class="aw_ppm_chn_dyn_anlytc_summary_category_label">' + 
                       'CATEGORY: ' +
@@ -93,57 +101,50 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
                     '</span>' + 
                   '</div>' +
 
-                  '<div class="aw_ppm_chn_dyn_anlytc_summary_lut">'+
-                      '<span>last updated : ' + 
-                        '<abbr class="aw_js_chn_timeago" title="' + last_update_time + '"></abbr>'+
-                      '</span>' +
-                  '</div>'+
+                  
 
-                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">10000</span>'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> RANKING </span>'+
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">10000</span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label"> RANKING </span>'+
                   '</div>'+
                  
-                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">' +
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
                           fb_post_count + 
                       '</span>'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> FACEBOOK POSTS </span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label"> FACEBOOK   POSTS </span>'+
                   '</div>'+
 
-                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">' +
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
                           tweet_post_count + 
                       '</span>'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> TWEETS </span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label"> TWEETS </span>'+
                   '</div>'+
 
-                  '<div class="aw_ppm_chn_dyn_anlytc_summary_standard_box">'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_text aw_js_comma_seperated_numbers">' +
+                  '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
                           aw_post_count + 
                       '</span>'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_standard_label"> ACTWITTY </span>'+
+                      '<span class="aw_ppm_chn_dyn_anlytc_width_label"> ACTWITTY   POSTS </span>'+
                   '</div>'+
 
                    '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
-                      '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
-                          'THAT MAKES IT ' + 
-                      '</span>'+
                       '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
                         total_post_count +  
-                      '</span>'+
+                      '</span>' +
                       '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
                           ' POSTS IN TOTAL ' + 
-                      '</span>'+
-                  '</div>'+
+                      '</span>' +
+                  '</div>' +
 
-                   
+                  /* 
 
                    '<div class="aw_ppm_chn_dyn_anlytc_summary_width_box">'+
                       '<span class="aw_ppm_chn_dyn_anlytc_width_text aw_js_comma_seperated_numbers">' +
                         + subscribers +
                       '</span>'+
-
+                  
                       '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
                           ' SUBSCRIBERS,  ' + 
                       '</span>'+
@@ -190,7 +191,7 @@ function aw_ppm_channel_dyn_analytic_info_build(channel_info){
                       '<span class="aw_ppm_chn_dyn_anlytc_width_label">' +
                         ' COMMENTS ' +
                       '</span>'+
-                  '</div>'+
+                  '</div>'+ */
 
 
                 '</div>';

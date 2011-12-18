@@ -1,8 +1,8 @@
 /* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_input_box_activate {
   position: absolute;
-  top: 70px;
-  left: 200px;
+  top: 10px;
+  left: 640px;
   cursor: pointer;
 }
 

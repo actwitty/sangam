@@ -3,7 +3,7 @@
 .aw_ppm_dyn_chn_locations_box {
   width: 170px;
   height: 114px;
-  border: 1px solid black;
+  border: 1px solid #cccccc;
   /*float:left; */
   display: inline-block;
   margin-left: 10px;
@@ -16,7 +16,7 @@
 }
 /* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_locations.sass */
 .aw_ppm_dyn_chn_locations_box:hover {
-  border: 1px solid #cccccc;
+  border: 1px solid #555555;
   border-radius: 5px;
   -moz-box-shadow: 0 0 10px #333333;
   -webkit-box-shadow: 0 0 10px #333333;
@@ -53,11 +53,16 @@
   height: 20px;
   border: 0px solid red;
   position: absolute;
+  padding-top: 4px;
   bottom: 0px;
   background: black;
-  background: rgba(71, 96, 121, 0.9);
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
 }
-/* line 50, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_locations.sass */
+/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_locations.sass */
 .aw_ppm_dyn_chn_location_label_box span {
   color: white;
   font-size: 14px;

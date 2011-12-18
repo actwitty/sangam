@@ -93,6 +93,8 @@ gem 'em-http-request'
 #Facebook meta tags
 gem 'meta-tags', :require => 'meta_tags'
 
+#Rails paginate plugin
+gem 'will_paginate', '2.3.15'
 group :development do
   #query reviewer
   #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"

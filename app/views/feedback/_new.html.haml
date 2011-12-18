@@ -1,5 +1,6 @@
-= form_for(Feedback.new, :url => feedback_create_path, :html => { :method => :post,  :style => "display: none;  " }, :remote => true ) do |f|
-  %h3 SEND YOUR FEEDBACK TO ACTWITTY
+
+= form_for(Feedback.new(), :url => feedback_create_path, :html => { :method => :post,  :style => "display: none;  " }, :remote => true ) do |f|
+  %h3 HELP ACTWITTY SERVE YOU BETTER
   %p
     Kindly let us know your valuable feedback.
   %p

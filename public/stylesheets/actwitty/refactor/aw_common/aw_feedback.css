@@ -17,11 +17,16 @@
   right: 0;
   top: 0;
 }
-/* line 17, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
-#feedback_section form {
-  margin-left: 0px;
+/* line 16, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+#feedback_section img:hover {
+  cursor: pointer;
 }
 /* line 19, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+#feedback_section form {
+  margin-left: 0px;
+  margin-top: 0px;
+}
+/* line 22, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form h3 {
   color: white;
   font-size: 16px;
@@ -31,7 +36,7 @@
   margin-top: 5px;
   margin-bottom: 10px;
 }
-/* line 27, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 30, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form p {
   color: white;
   font-size: 12px;
@@ -41,7 +46,7 @@
   margin-bottom: 0px;
   margin-left: 10px;
 }
-/* line 36, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 39, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form ul {
   margin-left: 0px;
   padding-left: 0px;
@@ -50,14 +55,14 @@
   position: relative;
   list-style: none;
 }
-/* line 43, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 46, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form ul li {
   margin-top: 15px;
   width: 450px;
   padding-left: 10px;
   height: auto;
 }
-/* line 48, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 51, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form ul li span {
   height: 20px;
   width: 40px;
@@ -66,7 +71,7 @@
   color: white;
   margin-left: 5px;
 }
-/* line 56, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 59, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form ul li .aw_feedback_text_input {
   border: 1px solid #dddddd;
   height: 20px;
@@ -78,7 +83,7 @@
   -webkit-box-shadow: 0 0 8px #dddddd;
   box-shadow: 0 0 8px #dddddd;
 }
-/* line 66, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 69, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form ul li textarea {
   height: 80px;
   margin-top: 2px;
@@ -94,7 +99,7 @@
   box-shadow: 0 0 8px #dddddd;
   resize: none;
 }
-/* line 80, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
+/* line 83, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedback.sass */
 #feedback_section form #aw_feedback_submit {
   margin-left: 100px;
   margin-top: 15px;

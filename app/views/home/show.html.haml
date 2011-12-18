@@ -25,9 +25,9 @@
         .awppm_chn_data_section_label
           -if user_signed_in?
             -if current_user.id == @user.id
-              %span My areas of interest 
+              %span How am I showing myself on Internet 
             -else 
-              %span #{@user.full_name}'s areas of interest
+              %span #{@user.full_name}'s impression on Internet
         -if user_signed_in?
           -if current_user.id == @user.id
             .awppm_chn_data_section_info_header
@@ -52,14 +52,14 @@
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
             %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-        %input#aw_js_ppm_user_chn_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+        %input#aw_js_ppm_user_chn_data_more.button_actwitty.blue.awppm_chn_data_info_more{:type => "button", :value => "More"}
         #aw_js_ppm_user_chn_container.awppm_chn_data_channels_box
 
       -if user_signed_in?
         -if current_user.id == @user.id
           #aw_js_ppm_subscribed_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
-              %span Subscriptions of other's interests at ActWitty
+              %span I found these worth subscribing 
             .awppm_chn_data_section_info_header
               %span Subscribed set of interest channels of other users on ActWitty. You can see posts in each channels by clicking them.
             .awppm_chn_data_section_stream_link_box_wrapper
@@ -70,7 +70,7 @@
             .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
               .awppm_chn_busy_mini_box
                 %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-            %input#aw_js_ppm_subscribed_chn_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+            %input#aw_js_ppm_subscribed_chn_data_more.button_actwitty.blue.awppm_chn_data_info_more{:type => "button", :value => "More"}
             #aw_js_ppm_subscribed_chn_container.awppm_chn_data_channels_box
 
 
@@ -80,37 +80,37 @@
         .awppm_chn_data_section_label
           -if user_signed_in?
             -if current_user.id == @user.id
-              %span Things I mentioned in the posts 
+              %span My recent mentions in posts I made
             -else 
-              %span #{@user.full_name}'s mentioned these in posts
+              %span #{@user.full_name}'s mentioned these recently in posts
         .awppm_chn_data_section_info_header
           %span These are the terms lately used in text in Facebook, ActWitty check ins. You can see post(s) for each mention by clicking them.               
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
             %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-        %input#aw_js_ppm_mentions_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+        %input#aw_js_ppm_mentions_data_more.button_actwitty.blue.awppm_chn_data_info_more{:type => "button", :value => "More"}
         #aw_js_ppm_user_mention_container.awppm_chn_data_channels_box
 
       #aw_js_ppm_user_location_channel_data.awppm_chn_data_section
         .awppm_chn_data_section_label
           -if user_signed_in?
             -if current_user.id == @user.id
-              %span Locations where I have been active 
+              %span Recently I have been active at these places 
             -else 
-              %span #{@user.full_name}'s activity locations
+              %span #{@user.full_name}'s recent activity places
         .awppm_chn_data_section_info_header
           %span These are the locations recently used for check in at Facebook, ActWitty check ins. You can see post(s) for each location by clicking them.               
         .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
           .awppm_chn_busy_mini_box
             %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-        %input#aw_js_ppm_locations_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}        
+        %input#aw_js_ppm_locations_data_more.button_actwitty.blue.awppm_chn_data_info_more{:type => "button", :value => "More"}        
         #aw_js_ppm_user_location_container.awppm_chn_data_channels_box
 
       -if user_signed_in?
         -if current_user.id == @user.id
           #aw_js_ppm_all_channel_data.awppm_chn_data_section
             .awppm_chn_data_section_label
-              %span Popular Interest Channels Recommended
+              %span What more can I subscribe at ActWitty 
             .awppm_chn_data_section_info_header
               %span You can choose subscribe to them to see them in subscriptions. Click channels to see posts in each of them.               
             .awppm_chn_data_section_stream_link_box_wrapper
@@ -121,7 +121,7 @@
             .awppm_chn_busy_channels_box.aw_js_ppm_loading_animation
               .awppm_chn_busy_mini_box
                 %img.awppm_chn_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-            %input#aw_js_ppm_all_chn_data_more.button_actwitty.gray.awppm_chn_data_info_more{:type => "button", :value => "More"}
+            %input#aw_js_ppm_all_chn_data_more.button_actwitty.blue.awppm_chn_data_info_more{:type => "button", :value => "More"}
             #aw_js_ppm_all_chn_container.awppm_chn_data_channels_box
 
          
