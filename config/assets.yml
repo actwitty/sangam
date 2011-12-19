@@ -98,8 +98,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/jquery.autocomplete.js
   highcharts:
     - public/javascripts/actwitty/refactor/ppm/externals/highcharts/highcharts.js
-    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/modules/exporting.js
-    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/gray.js
+    #- public/javascripts/actwitty/refactor/ppm/externals/highcharts/modules/exporting.js
+    #- public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/gray.js
   charts_analytics:
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_main.js
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_unfiltered.js
@@ -155,6 +155,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.css
   profile_page_streams:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_profile_page_main_stream.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_attachments.css
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_actions.css

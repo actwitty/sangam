@@ -320,12 +320,13 @@ function aw_api_srv_resp_ppm_stm_chart_all_channels(params){
                                                                                               shares_series.data,
                                                                                               comments_series.data,
                                                                                               rank_series.data);
-
+                                                    
                                                     /*handle chart 3*/
                                                     aw_handle_channel_subscriber_gender_analytics_summary(params_cb,
                                                                                                           index,
                                                                                                           male_series.data,
                                                                                                           female_series.data);
+                                                    
                                                     /*handle chart 4 */
                                                     aw_handle_channel_attachments_analytics_summary(params_cb,
                                                                                                     index,
@@ -338,7 +339,7 @@ function aw_api_srv_resp_ppm_stm_chart_all_channels(params){
                                                       series_arr.push(twitter_series);
                                                       series_arr.push(facebook_series);
                                                       series_arr.push(actwitty_series);
-                                                   
+                                                       
                                                       var series_arr_karma = [];
                                                       series_arr_karma.push(likes_series);
                                                       series_arr_karma.push(shares_series);
@@ -348,37 +349,38 @@ function aw_api_srv_resp_ppm_stm_chart_all_channels(params){
                                                       var series_arr_subscribers = [];
                                                       series_arr_subscribers.push(male_series);
                                                       series_arr_subscribers.push(female_series);
-
+                                                      
                                                       var series_arr_multimedia = [];
                                                       series_arr_multimedia.push(images_series);
                                                       series_arr_multimedia.push(videos_series);
 
 
 
-                                                       aw_api_ppm_stm_charts_create_posts_distribution_chart("aw_js_ppm_stm_analytics_box_1",
-                                                                                                             categories_array,
-                                                                                                             series_arr);
-                                                       aw_api_ppm_stm_charts_create_posts_distribution_chart("aw_js_ppm_stm_analytics_box_1_large",
-                                                                                                             categories_array,
-                                                                                                             series_arr);
-
-                                                       aw_api_ppm_stm_charts_create_posts_karma_chart("aw_js_ppm_stm_analytics_box_2",
-                                                                                                             categories_array,
-                                                                                                             series_arr_karma);
-                                                       aw_api_ppm_stm_charts_create_posts_karma_chart("aw_js_ppm_stm_analytics_box_2_large",
-                                                                                                             categories_array,
-                                                                                                             series_arr_karma);
-                                                       aw_api_ppm_stm_charts_create_subscriber_gender_chart("aw_js_ppm_stm_analytics_box_3",
-                                                                                                             categories_array,
-                                                                                                             series_arr_subscribers);                                                                                      aw_api_ppm_stm_charts_create_subscriber_gender_chart("aw_js_ppm_stm_analytics_box_3_large",
-                                                                                                             categories_array,
-                                                                                                             series_arr_subscribers);  
-                                                       aw_api_ppm_stm_charts_create_multimedia_distribution_chart("aw_js_ppm_stm_analytics_box_4",
-                                                                                                                  categories_array,
-                                                                                                                  series_arr_multimedia);
-                                                        aw_api_ppm_stm_charts_create_multimedia_distribution_chart("aw_js_ppm_stm_analytics_box_4_large",
-                                                                                                                  categories_array,
-                                                                                                                  series_arr_multimedia)
+                                                      aw_api_ppm_stm_charts_create_posts_distribution_chart("aw_js_ppm_stm_analytics_box_1",
+                                                                                                            categories_array,
+                                                                                                            series_arr);
+                                                      aw_api_ppm_stm_charts_create_posts_distribution_chart("aw_js_ppm_stm_analytics_box_1_large",
+                                                                                                            categories_array,
+                                                                                                            series_arr);
+                                                      
+                                                      aw_api_ppm_stm_charts_create_posts_karma_chart("aw_js_ppm_stm_analytics_box_2",
+                                                                                                            categories_array,
+                                                                                                            series_arr_karma);
+                                                      aw_api_ppm_stm_charts_create_posts_karma_chart("aw_js_ppm_stm_analytics_box_2_large",
+                                                                                                            categories_array,
+                                                                                                            series_arr_karma);
+                                                      aw_api_ppm_stm_charts_create_subscriber_gender_chart("aw_js_ppm_stm_analytics_box_3",
+                                                                                                            categories_array,
+                                                                                                            series_arr_subscribers);                                                                                 aw_api_ppm_stm_charts_create_subscriber_gender_chart("aw_js_ppm_stm_analytics_box_3_large",
+                                                                                                            categories_array,
+                                                                                                            series_arr_subscribers);  
+                                                      
+                                                      aw_api_ppm_stm_charts_create_multimedia_distribution_chart("aw_js_ppm_stm_analytics_box_4",
+                                                                                                            categories_array,
+                                                                                                            series_arr_multimedia);
+                                                      aw_api_ppm_stm_charts_create_multimedia_distribution_chart("aw_js_ppm_stm_analytics_box_4_large",
+                                                                                                            categories_array,
+                                                                                                            series_arr_multimedia)
                                                     }
 
                                                   }
