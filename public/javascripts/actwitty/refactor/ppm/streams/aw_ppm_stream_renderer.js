@@ -153,12 +153,12 @@ function aw_internal_ppm_stm_srv_requests_on_init(){
  */
 function aw_ppm_local_stm_analytics_init()
 {
-  // we will not show analytics for subscribed view in streams page
+  // we will not show analytics for subscribed/all view in streams page
 
-  if (aw_api_ppm_stm_get_page_scope() == 2){
-    $("#awppm_stm_analytics_container_box").hide();
-  } else {
+  if (aw_api_ppm_stm_get_page_scope() == 1  ){
     $("#awppm_stm_analytics_container_box").show();
+  } else {
+    $("#awppm_stm_analytics_container_box").hide();
   }
 }
 
