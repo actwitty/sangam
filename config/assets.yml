@@ -183,4 +183,6 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.css
   location_page:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/location_page/aw_ppm_location_page_main.css
+  aw_internal_feedback_show_page:
+    - public/stylesheets/actwitty/refactor/aw_internals/aw_feedbacks_show.css
 

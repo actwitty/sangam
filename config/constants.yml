@@ -206,6 +206,10 @@ development: &default
   #FOR PUBLIC SHOW
   ghost_user_email:                   "administrator@actwitty.com"
 
+  #Allowed to see internals
+  authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
+  
+
   #FOR SUMMARY CATEGORY
   category_min_id:                    1
   category_max_id:                    99999

@@ -123,8 +123,8 @@ Sangam::Application.routes.draw do
   match '/about/show' => 'about#show'
   match '/team/show' => 'team#show'
 
-  match '/feedback/new' => 'feedback#new'
   match '/feedback/create' => 'feedback#create'
+  match '/feedback/show' => 'feedback#show'
 
   match '/sign_out' => 'welcome#new'
   match '/welcome/new' => 'welcome#new'
