@@ -71,10 +71,10 @@ module ProfilepicHelper
       // image uploader via plupload
         var uploader = new plupload.Uploader({
                                                 runtimes : 'flash',
-                                                browse_button : 'profile_img_selector',
+                                                browse_button : 'awppm_user_profile_change_profile_pic',
                                                 max_file_size : '5mb',
                                                 url : base_url,
-                                                flash_swf_url: '/javascripts/plupload/plupload.flash.swf',
+                                                flash_swf_url: '/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.flash.swf',
                                                 init : {
                                                           FilesAdded: function(up, files) {
                                                                                   plupload.each(files, function(file) {

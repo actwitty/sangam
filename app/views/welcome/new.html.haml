@@ -5,7 +5,7 @@
   #awlpm_header_section
     #awlpm_header_content_holder
       #awlpm_header_aw_logo
-        %img.awlpm_aw_logo_img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_small_logo.png"}
+        %img.awlpm_aw_logo_img{:src => "/images/actwitty/refactor/aw_lpm/aw_lpm_small_logo.png"}
       #awlpm_header_label
         Check-in Your Interests
 .awlpm_master_image_horizontal_section
@@ -19,43 +19,54 @@
     #awlpm_info_grid_container_header
     #awlpm_info_grid_container
       #awlpm_info_row_1.awlpm_info_grid_row
-        .awlpm_info_grid_subcontainer_box
-          .awlpm_info_display_box
-            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_checkin.jpg" }
-            %h3 Check-in Your Interests
-            %p  Check-in with interest channel, details, location and images.
-        .awlpm_info_grid_subcontainer_box
-          .awlpm_info_display_box
-            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_one_word_channels.jpg" }
-            %h3 One Word Channels
-            %p  Check-in to channels with interest expressed in one word.
-        .awlpm_info_grid_subcontainer_box
+
+        #aw_js_lpm_info_link_categorization.awlpm_info_grid_subcontainer_box
           .awlpm_info_display_box
             %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_auto_categorization.jpg" }
             %h3 Auto-Categorization
             %p  Get your data from Facebook, Twitter and Dropbox auto categorized to channels.
-      #awlpm_info_row_2.awlpm_info_grid_row
+
         .awlpm_info_grid_subcontainer_box
+          #aw_js_lpm_info_link_ranking.awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_ranking_and_analytics.jpg" }
+            %h3 Rank And Analytics
+            %p  You are ranked on every interest channel making it an engaging experience.
+
+
+        #aw_js_lpm_info_link_recommendations.awlpm_info_grid_subcontainer_box
           .awlpm_info_display_box
             %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_search_and_recommendations.jpg" }
             %h3 Search On Interests 
             %p  Search people based on their interest channels and connect more efficiently.
+       
+
+      #awlpm_info_row_2.awlpm_info_grid_row
+      
+              
         .awlpm_info_grid_subcontainer_box
-          .awlpm_info_display_box
-            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_ranking_and_analytics.jpg" }
-            %h3 Rank And Analytics
-            %p  You are ranked on every interest channel making it an engaging experience.
-        .awlpm_info_grid_subcontainer_box
-          .awlpm_info_display_box
+          #aw_js_lpm_info_link_subscription.awlpm_info_display_box
             %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_subscribe_selective.jpg" }
-            %h3 Selective Subscription
+            %h3 Subscriptions
             %p Pickup selected interests of other to subscribe and reject others. 
+
+        #aw_js_lpm_info_link_checkin.awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_checkin.jpg" }
+            %h3 Check-in Your Interests
+            %p  Check-in with interest channel, details, location and images.
+       
+        #aw_js_lpm_info_link_oneword.awlpm_info_grid_subcontainer_box
+          .awlpm_info_display_box
+            %img{:src => "images/actwitty/refactor/aw_lpm/aw_lpm_info_one_word_channels.jpg" }
+            %h3 One Word Channels
+            %p  Check-in to channels with interest expressed in one word.
       #awlpm_info_row_3.awlpm_updates_grid_row
-        %h3 Recent Interest Check-ins:
+        %h3 Live updates from ActWitty Users:
         #awlpm_js_user_updates.awlpm_info_channel_updates_box
       
     #awlpm_info_grid_container_footer
 
 =render :partial => "welcome/footer"
 
-%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }  
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
+

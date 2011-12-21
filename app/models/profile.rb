@@ -14,9 +14,10 @@ class Profile < ActiveRecord::Base
 
   # validate lengths
 
-  validates :first_name, :presence => true, :length => { :maximum => 32 }
+  #validates :first_name, :presence => true, :length => { :maximum => 32 }
+  validates_length_of :first_name,  :maximum => 32
   validates_length_of :last_name,  :maximum => 32
-  validates_length_of :mobile_number, :in => 7..32, :allow_nil => true
+  validates_length_of :mobile_number, :in => 7..32, :allow_blank => true
   validates_length_of :phone_number, :in => 7..32, :allow_nil => true
   validates_length_of :company_name, :maximum => 64, :allow_nil => true
   validates_length_of :work_area, :maximum => 64, :allow_nil => true
@@ -29,14 +30,14 @@ class Profile < ActiveRecord::Base
 
   #validate gender can only be one of three
   validates_inclusion_of :gender, :in => ['male','female','other'],:allow_nil => true
-  validates_acceptance_of :is_terms_accepted,
-                          :on => :create,
-                          :accept => true,
-                          :message => "Terms of service has to be accepted"
-  validates_acceptance_of :is_privacy_accepted,
-                          :on => :create,
-                          :accept => true,
-                          :message => "Privacy policy has to be accepted"
+  #validates_acceptance_of :is_terms_accepted,
+  #                        :on => :create,
+  #                        :accept => true,
+  #                        :message => "Terms of service has to be accepted"
+  #validates_acceptance_of :is_privacy_accepted,
+  #                        :on => :create,
+  #                        :accept => true,
+  #                        :message => "Privacy policy has to be accepted"
 
   #validate date of birth has already elapsed
   # gem 'date_validator'
@@ -51,6 +52,7 @@ class Profile < ActiveRecord::Base
   validates_existence_of :user      #works both ways
 
   def process_before_save
+     Rails.logger.info("[MODEL][PROFILE][PROCESS_BEFORE_SAVE] email: #{email}")
      if email.present?
       email.strip!
       email.downcase!
@@ -58,14 +60,18 @@ class Profile < ActiveRecord::Base
   end
 
   def update_user_full_name
-    user.full_name = first_name.strip + ' ' + last_name.strip
-    if !profile_photo_s.blank?
-        user.photo_small_url =  profile_photo_s
+    if first_name.present? and last_name.present?
+      user.full_name = first_name.strip + ' ' + last_name.strip
+      if !profile_photo_s.blank?
+          user.photo_small_url =  profile_photo_s
+      end
+      if user.photo_small_url.blank?
+          user.photo_small_url = AppConstants.user_no_image
+      end
+
+      user.save!
     end
-    if user.photo_small_url.blank?
-      user.photo_small_url = AppConstants.user_no_image
-    end
-    user.save!
+    
 
   end
 

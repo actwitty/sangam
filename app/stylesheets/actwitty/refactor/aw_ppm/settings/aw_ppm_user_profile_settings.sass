@@ -1,0 +1,435 @@
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+$aw_var_default_settings_boxes_length: 750px
+body
+  margin: 0
+  padding: 0
+  font-size: $aw_var_default_font_size
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_backgorund_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -15px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: 0px solid #DFDFDF
+  padding: 5px
+  color: #666666
+  background-color: #FFFFFF
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+/******************************************** Common for all Columns main Div's ************************************
+
+@mixin awppm_user_profile_setting_default_full_width
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+/* ----------------------------------------------Wrapper-------------------------------------
+
+div.awppm_user_profile_settings_wrapper
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+
+.awppm_user_profile_settings_column1
+  color: #D2D2D2
+  /*background-color:#33ccff;
+  background: #363436
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81;
+  border: 0px solid red
+
+.awppm_user_profile_settings_column2
+  color: #FFFFFF
+  background-color: #ffffff
+  border: 0px solid green
+
+.awppm_user_profile_settings_column3
+  color: #000000
+  background-color: #ffffff
+  border: 0px solid blue
+
+.awppm_user_profile_settings_column4
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+.awppm_user_profile_settings_column5
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+
+
+
+/******************************************* User box section for user photo and input box *************************
+
+
+
+
+#awppm_user_profile_settings_box
+  @include awppm_user_profile_setting_default_full_width
+  height: 300px
+  height: auto
+  border: 0px solid red
+  h3
+    color: #000
+    font-size: 32px
+    margin-left: 10px
+
+#awppm_user_profile_settings_content
+  width: 100%
+  height: 800px
+  border: 0px solid red
+  margin-top: 20px
+
+#awppm_user_profile_settings_menu_box
+  float: left
+  width: 300px
+  height: 750px
+  margin-left: 10px
+  margin-top: 10px
+  border: 1px solid #ddd
+  border-radius: 5px
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+  position: relative
+
+#awppm_user_profile_settings_fields_box
+  float: left
+  width: 500px
+  height: 750px
+  margin-left: 140px
+  margin-top: 10px
+  border: 1px solid #ddd
+  border-radius: 5px
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+
+
+
+
+/****************** User Name
+#awppm_user_profile_settings_user_name
+  user-select: none 
+  -moz-user-select: none 
+  -khtml-user-select: none 
+  -webkit-user-select: none 
+  -o-user-select: none
+  input
+    readonly: true
+
+
+/****************** Default Share Box
+#awppm_user_profile_settings_share_box
+  position: relative
+
+#awppm_user_settings_share_fb_box
+  position: absolute
+  top: 20px
+  left: 140px
+#awppm_user_settings_share_fb_img
+  position: absolute
+  top: 20px
+  left: 180px 
+
+#awppm_user_settings_share_tw_box
+  position: absolute
+  top: 20px
+  left: 260px 
+#awppm_user_settings_share_tw_img
+  position: absolute
+  top: 20px
+  left: 300px 
+
+
+.awppm_user_settings_share_box
+  display-inline: block
+
+
+#awppm_user_settings_gender
+  width: 200px
+  border: 1px solid #ddd
+  margin-left: 20px
+  margin-top: 10px
+
+
+
+#awppm_user_profile_settings_location_field
+  height: 230px
+
+
+#aw_spm_map_selector
+  padding: 2px
+  border: 1px solid #CCC
+  display: block
+  width: 290px
+  height: 150px
+  margin-left: 90px
+  float: right
+  margin-top: 8px
+  margin-right: 45px
+
+.awppm_user_profile_settings_save_btn
+  float: right
+  margin-top: 10px
+  width: 180px
+  height: 60px
+
+
+
+
+
+
+/****************************************Profile Pic Section
+#awppm_user_profile_settings_profile_pic
+  width: 150px
+  height: 200px
+  border: 1px solid #ddd
+  margin: 0 auto
+  margin-top: 30px
+  overflow: hidden
+  text-align: center
+  line-height: 198px
+
+div#awppm_user_profile_settings_profile_pic img
+  margin-top: expression(( 150 - this.height ) / 2) 
+  vertical-align: middle
+
+
+
+#awppm_user_profile_settings_menu_box .awppm_user_profile_settings_menu_btn
+  margin-left: 90px
+  margin-top: 5px
+
+
+.awppm_user_profile_chng_pic_submit
+  display: none
+
+.awppm_user_profile_settings_pswd_label
+  font-family: 'Yanone Kaffeesatz', arial, serif
+  font-size: 18px
+  color: #ddd
+  text-decoration: none
+  display: block
+  width: 250px
+  padding: 0px
+  border: 1px solid #DDD
+  text-align: center
+  -moz-border-radius: 2px
+  -webkit-border-radius: 2px
+  -o-border-radius: 2px
+  border-radius: 2px
+  border: solid 1px #333
+  background: #333
+  background: -webkit-gradient(linear, left top, left bottom, from(#666666), to(black))
+  background: -moz-linear-gradient(top, #666666, black)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#000000')
+  position: absolute
+  top: -15px
+  left: -1px
+
+
+/************************************ Password Change Settings *********************************************
+#awppm_user_profile_settings_change_pswd
+  width: 250px
+  height: 180px
+  height: auto
+  padding-top: 25px
+  margin: 0 auto
+  margin-top: 70px
+  position: relative
+  border: 1px solid #ddd
+  border-radius: 5px
+
+
+#awppm_user_profile_settings_pswdchn_success
+  font-size: 12px
+  color: #333
+  text-align: center
+  margin-top: 10px
+  margin-bottom: 10px
+  display: none
+  strong
+    color: #880000
+  
+
+#awppm_user_profile_settings_curpswd_error,  #awppm_user_profile_settings_newpswd_error, #awppm_user_profile_settings_mismatchpswd_error
+  display: none
+
+.awppm_user_profile_settings_oldpswd
+  height: 20px
+  border: 1px solid red
+  margin-top: 5px
+  margin-left: 20px
+
+.awppm_user_profile_settings_newpswd
+  height: 20px
+  margin-top: 5px
+  margin-left: 20px
+
+.awppm_user_profile_settings_cnfrmpswd
+  height: 20px
+  margin-top: 5px
+  margin-left: 20px
+
+
+.awppm_user_profile_settings_pswd_btn
+  width: 120px
+  height: 40px
+  margin-top: 15px
+  margin-left: 60px
+
+.awppm_user_profile_settings_pswd_error
+  color: red
+  text-align: center
+
+
+#awppm_user_profile_settings_change_pswd a
+  position: absolute
+  top: 160px
+  left: 20px
+  text-decoration: none
+  color: #333
+  font-size: 10px
+
+.awppm_user_profile_settings_newpswd, .awppm_user_profile_settings_cnfrmpswd, .awppm_user_profile_settings_oldpswd
+  width: 200px
+  height: 30px
+  border: 1px solid #ddd
+  -moz-box-shadow: 0 0 8px #ddd
+  -webkit-box-shadow: 0 0 8px #ddd
+  box-shadow: 0 0 8px #ddd
+
+
+
+
+
+/************************************************** Profile Deactivation **************************
+
+
+/*.awppm_user_profile_deactivate
+  height: 0px
+  width: 200px
+  padding: 8px
+  margin-top: 70px
+  margin-left: 40px
+
+.awppm_user_profile_deactivate
+  /*margin-top: 70px
+  text-align: center
+  color: #333
+  font-weight: normal
+  font-size: 10px
+  position: absolute
+  bottom: 5px
+  right: 5px
+
+
+
+.awppm_user_profile_settings_field
+  height: 60px
+  width: 500px
+  padding-top: 10px
+  border-bottom: 1px solid #ddd
+  label
+    float: left
+    width: 130px
+    margin-top: 8px
+    margin-left: 10px
+    color: #000
+    font-size: 16px
+    font-weight: bold
+    vertical-align: middle
+  input
+    margin-top: 8px
+    font-size: 14px
+    height: 26px
+    margin-left: 20px
+    padding: 2px 10px
+    width: 272px
+    border: 1px solid #ddd
+    -moz-box-shadow: 0 0 8px #ddd
+    -webkit-box-shadow: 0 0 8px #ddd
+    box-shadow: 0 0 8px #ddd
+  textarea
+    margin-top: 8px
+    margin-left: 20px
+    width: 290px
+    height: 80px
+    resize: none
+    border: 1px solid #ddd
+    -moz-box-shadow: 0 0 8px #ddd
+    -webkit-box-shadow: 0 0 8px #ddd
+    box-shadow: 0 0 8px #ddd
+
+#fb_connect_sm
+  background: url("../images/fb_connect_sm.png") no-repeat scroll 0 0 transparent
+  display: block
+  float: left
+  height: 22px
+  margin-left: 20px
+  margin-top: 8px
+  overflow: hidden
+  text-indent: -1000px
+  width: 120px
+
+#awppm_user_profile_settings_biodata
+  height: 110px
+
+
+div.awppm_user_profile_settings_field span.error
+  color: red
+  margin-left: 180px
+
+

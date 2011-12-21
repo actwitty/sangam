@@ -69,6 +69,9 @@ gem "geocoder"
 #Facebook
 gem "koala"
 
+#Twitter
+gem "twitter"
+
 #Wordnik Api
 gem 'wordnik', ">= 0.3"
 
@@ -87,8 +90,11 @@ gem "right_aws"
 gem 'pusher'
 #for asynchronous web-socket
 gem 'em-http-request'
-gem 'em-synchrony'
+#Facebook meta tags
+gem 'meta-tags', :require => 'meta_tags'
 
+#Rails paginate plugin
+gem 'will_paginate', '2.3.15'
 group :development do
   #query reviewer
   #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"

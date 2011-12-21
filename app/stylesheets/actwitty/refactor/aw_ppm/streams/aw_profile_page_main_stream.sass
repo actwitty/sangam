@@ -120,37 +120,54 @@ div.awppm_stm_wrapper
   position: relative
 
 #awppm_stm_user_info
-  height: 150px
+  height: 130px
   width: 200px
-  border: 1px solid #ddd
-  -moz-box-shadow: 0 0 8px #ddd
-  -webkit-box-shadow: 0 0 8px #ddd
-  box-shadow: 0 0 8px #ddd
   position: absolute
-  top: 20px
+  top: 10px
   left: 20px
-  overflow:hidden
 
 #awppm_stm_user_img
-  margin-top: 40px
+  margin-top: 5px
   img
-    width: 60px
+    width: 120px
+    height: 120px
+    border: 1px solid #ffffff
     &:hover
       border: 1px solid #ccc
 
-#awppm_stm_user_info span
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif
-  color: #555
-  font-size: 16px
-  text-align: center
-  &:hover
+#awppm_stm_user_name
+  height: 32px
+  width: 300px
+  overflow: hidden
+  position: absolute
+  top: 10px
+  left: 180px  
+  span
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    color: black
+    font-size: 26px
+    text-align: center
     font-weight: bold
+
+#awppm_stm_user_location
+  height: 16px
+  width: 300px
+  overflow: hidden
+  position: absolute
+  top: 38px
+  left: 180px  
+  span
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    color: #555
+    font-size: 14px
+    text-align: center
+    font-weight: normal
 
 #awppm_stm_input_box_wrapper
   width: 630px
-  min-height: 200px
-  margin-left: 100px
-  /*margin-top:-100px
+  margin-top: 40px
+  min-height: 100px
+  /*margin-top:-100px;
   border: 0px solid red
   display: inline-block
 
@@ -168,40 +185,25 @@ div.awppm_stm_wrapper
   background: #ffffff
 
 #awppm_stm_analytics_container_box
+  /*width: 860px
+  /*height: 470px
+  /*border-radius: 5px
+  /*margin: 10px 0 10px 0px
+  /*margin: 0px auto
+  /*border: 0px solid red
+  /*padding-left: 20px
+  /*background: -moz-linear-gradient(center top , #c4c4c4 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
+  /*-moz-box-shadow: inset 0 0 2px #000000
+  /*-webkit-box-shadow: inset 0 0 2px #000000
+  /*box-shadow: inset 0 0 2px #000000
   width: 100%
-  height: 140px
-  border-radius: 5px
-  margin: 10px 0 10px 0px
-  margin: 0px auto
-  border: 0px solid red
-  background: -moz-linear-gradient(center top , #c4c4c4 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
-  -moz-box-shadow: inset 0 0 2px #000000
-  -webkit-box-shadow: inset 0 0 2px #000000
-  box-shadow: inset 0 0 2px #000000
-  /* Analytics Styling Start
-  .awppm_stm_analytics_box
-    width: 200px
-    height: 120px
-    margin: 10px 0 10px 35px
-    border-radius: 5px
-    border: 1px solid #ddd
-    background: -moz-linear-gradient(center top , #F2F2F2 0pt, #F8F8F8 100%) repeat scroll 0 0 transparent
-    display-inline: block
-    float: left
-  /* Analytics Styling End
+  height: auto
+  margin-top: 10px
 
 
-#aw_js_ppm_stm_analytics_box_1
-  background-image: url("/images/actwitty/refactor/aw_ppm/stream/sample_analytics_images/1.png")
 
-#aw_js_ppm_stm_analytics_box_2
-  background-image: url("/images/actwitty/refactor/aw_ppm/stream/sample_analytics_images/2.jpg")
 
-#aw_js_ppm_stm_analytics_box_3
-  background-image: url("/images/actwitty/refactor/aw_ppm/stream/sample_analytics_images/3.jpg")
 
-#aw_js_ppm_stm_analytics_box_4
-  background-image: url("/images/actwitty/refactor/aw_ppm/stream/sample_analytics_images/4.png")
 
 
 #awppm_stm_all_information_container_box
@@ -210,9 +212,11 @@ div.awppm_stm_wrapper
   height: auto
   display: inline-block
   border: 0px solid blue
+  margin-bottom: 20px
 
 #awppm_stm_timeline_container_box
   height: auto
+  min-height: 300px
   width: 580px
   margin-top: 20px
   padding: 15px 10px 10px 10px
@@ -283,7 +287,7 @@ div.awppm_stm_wrapper
     position: absolute
     bottom: 0
     right: 0
-    color: #000
+    color: #fff
     text-align: center
     font-weight: bold
   .awppm_stm_stream_timelines
@@ -297,8 +301,8 @@ div.awppm_stm_wrapper
       height: 20px
       position: absolute
       bottom: 0
-      right: 0
-      color: #000
+      left: 0
+      color: #fff
       text-align: center
       font-weight: bold
     ul.awppm_stm_post_timeline_list
@@ -310,7 +314,8 @@ div.awppm_stm_wrapper
   font-size: 12px
   font-weight: bold
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
-  color: #7D9EC0
+  /*color: #7D9EC0
+  color: #0066cc
   text-align: left
   background: #f5f5f5
 @mixin awppm_stm_right_side_info_view_more
@@ -330,16 +335,17 @@ div.awppm_stm_wrapper
 
 /* Stream page righr
 #awppm_stm_right_side_info_container_box
-  width: 250px
-  height: 100px
+  width: 360px
   height: auto
-  border: 1px solid #f5f5f5
+  border: 0px solid #f5f5f5
   margin-top: 20px
   -o-box-shadow: 0 0 2px #3a3a3a
-  margin-left: 100px
+  margin-left: 10px
   float: left
   #awppm_stm_right_side_info_subcontainer_box
-    width: 100%
+    width: 250px
+    margin-left: 50px
+    border: 1px solid #f5f5f5
     #awppm_stm_right_side_info_related_people_container
       width: 100%
       border: 0px solid blue
@@ -409,3 +415,5 @@ div.awppm_stm_wrapper
       height: 50px
       margin: auto
 
+.awppm_hidden
+  display: none

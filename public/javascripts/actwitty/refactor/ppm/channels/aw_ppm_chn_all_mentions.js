@@ -37,7 +37,7 @@ function aw_api_srv_resp_ppm_chn_render_user_mentions(params){
   var cookie = params['aw_srv_protocol_cookie'];
   if ( cookie && cookie['init'] && cookie['init'] == 1 ){
     $('#aw_js_ppm_user_mention_container').html('');
-    while ( data.length > 24 ){
+    while ( data.length > 14 ){
       data.pop();
     }
   }

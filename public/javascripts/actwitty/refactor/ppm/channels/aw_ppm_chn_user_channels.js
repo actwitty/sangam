@@ -4,11 +4,21 @@
  *
  */
 function aw_get_user_channel_html(channel_info){
+  // commented to verify theme api's  TODO: replace all
+  /*
   var default_theme = aw_lib_get_default_channel_theme_for_category(channel_info.category_data); 
   var channel_theme = default_theme.thumb;
   if( channel_info.theme_data.url && channel_info.theme_data.url.length){
     channel_theme = channel_info.theme_data.url;
   }
+  */
+
+  var channel_theme = aw_lib_get_channel_theme_thumb(channel_info);
+  if( channel_info.theme_data.url && channel_info.theme_data.url.length){
+    channel_theme = channel_info.theme_data.url;
+  }
+
+
   var box_id = aw_lib_get_channel_box_id(channel_info);
 
   aw_api_ppm_add_channel_context(box_id, channel_info);
@@ -16,7 +26,7 @@ function aw_get_user_channel_html(channel_info){
   var channel_info_html = "";
   // build the channel analytic summary info, which will be displayed when hovered over channel icon
   var channel_dyn_analytic_info_html = aw_ppm_channel_dyn_analytic_info_build(channel_info);
-
+  
   if (aw_lib_get_page_owner_id() == aw_lib_get_session_owner_id()){
      channel_info_html = '<div class="aw_ppm_dyn_users_chn_box aw_js_ppm_channel_box_backtracker aw_js_ppm_channel_box_filter_setter" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             // channel dynamic summary info append
@@ -36,7 +46,7 @@ function aw_get_user_channel_html(channel_info){
      }
      channel_info_html =  '<div class="aw_ppm_dyn_users_chn_box aw_js_ppm_channel_box_backtracker aw_js_ppm_channel_box_filter_setter" style="background:url(' +channel_theme + '); background-size: 100%; background-repeat:no-repeat; background-position:center"  id="' + box_id + '" >' +
                             '<div class="aw_ppm_dyn_users_chn_info_hover_box">' +
-                                //TODO: Add the hover here
+                                channel_dyn_analytic_info_html +     
                             '</div>' +
                             '<div class="aw_ppm_dyn_users_own_chn_label_others_page">' +
                                 '<span>' + channel_info.word.name + '</span>' +
@@ -77,6 +87,8 @@ function aw_api_srv_resp_ppm_chn_render_user_channels(params){
     $('#aw_js_ppm_user_chn_container').append(html);
 
   });
+  $("abbr.aw_js_chn_timeago").timeago();
+  $("span.aw_js_comma_seperated_numbers").digits();
   /* enable the more button */
   $("#aw_js_ppm_user_chn_data_more").attr("disabled", false);
   $('#aw_js_ppm_user_channel_data').find(".aw_js_ppm_loading_animation").hide();

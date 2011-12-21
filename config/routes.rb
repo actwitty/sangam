@@ -5,6 +5,8 @@ Sangam::Application.routes.draw do
   #get "home/alpha"
   get '/users/sign_in', :to => 'welcome#new'
   get '/users/sign_up', :to => 'welcome#new'
+  
+  match '/home/change_password' => 'home#change_password'
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
                                       :sessions => "users/sessions",
@@ -14,7 +16,20 @@ Sangam::Application.routes.draw do
 
   devise_scope :user do
     post "/confirm_user"  =>  "users/confirmations#accept"
+    #match "/change_password"  =>  "users/passwords#change"
   end
+
+
+
+
+
+
+
+
+
+  match '/channel_settings/edit' => 'channel_settings#edit'
+  match '/channel_settings/update' => 'channel_settings#update_channels'
+
 
 
   # The priority is based upon order of creation:
@@ -28,8 +43,15 @@ Sangam::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   match '/home/facebook_friends' => 'home#facebook_friends'
+
+
   match '/home/settings' => 'home#settings'
   match '/home/settings_save' => 'home#settings_save'
+  match '/home/deactivate' => 'home#deactivate_account'
+  match '/home/change_profile_pic' => 'home#change_profile_pic'
+
+
+
   match '/home/get_channels' => 'home#get_channels'
   match '/home/get_entities' => 'home#get_entities'
   match '/home/delete_entities_from_post' => 'home#delete_entities_from_post'
@@ -51,7 +73,7 @@ Sangam::Application.routes.draw do
   match '/home/get_streams' => 'home#get_streams'
   match '/home/remove_document' => 'home#remove_document'
 
-  match '/home/search_people' => 'home#search_people'
+  match '/home/search_any' => 'home#search_any'
 
   match '/view' => 'home#activity'
   match '/home/get_single_activity' => 'home#get_single_activity'
@@ -69,14 +91,14 @@ Sangam::Application.routes.draw do
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 
 
-  match '/entity_page' => 'home#entity_page'
-  match '/home/get_entity_stream'   => 'home#get_entity_stream'
+  match '/mention_page' => 'home#mention_page'
+  match '/home/get_mention_specific_stream'   => 'home#get_mention_specific_stream'
 
   match '/location_page' => 'home#location_page'
-  match '/home/get_location_stream' => 'home#get_location_stream'
+  match '/home/get_location_specific_stream' => 'home#get_location_specific_stream'
 
   match '/channel_page' => 'home#channel_page'
-  match '/home/get_activity_stream' => 'home#get_activity_stream'
+  match '/home/get_channel_specific_stream' => 'home#get_channel_specific_stream'
 
 
   match '/home/get_document_channel' => 'home#get_document_channel'
@@ -89,24 +111,7 @@ Sangam::Application.routes.draw do
 
   match '/home/get_latest_summary' => 'home#get_latest_summary'
 
-  #match '/contacts/add' => 'contacts#add'
-  #match '/contacts/accept' => 'contacts#accept'
-  #match '/contacts/remove' => 'contacts#remove'
-  #match '/contacts/friends' => 'contacts#friends'
-  #match '/contacts/pending_friend_requests' => 'contacts#pending_friend_requests'
-  #match '/contacts/provider_add' => 'contacts#provider_add'
-  #match '/contacts/friendship' => 'contacts#friendship'
-
-  match '/contacts/facebook_friends' => 'contacts#facebook_friends'
-  match '/contacts/provider_follow' => 'contacts#provider_follow'
-
-  match '/contacts/followers' => 'contacts#followers'
-  match '/contacts/followings' => 'contacts#followings'
-  match '/contacts/follow' => 'contacts#follow'
-  match '/contacts/unfollow' => 'contacts#unfollow'
-
-  #match '/contacts/follow' => 'contacts#follow'
-  #match '/contacts/unfollow' => 'contacts#unfollow'
+  match '/home/rename_channel_of_post' => 'home#rename_channel_of_post'
 
 
   match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
@@ -118,8 +123,8 @@ Sangam::Application.routes.draw do
   match '/about/show' => 'about#show'
   match '/team/show' => 'team#show'
 
-  match '/feedback/new' => 'feedback#new'
   match '/feedback/create' => 'feedback#create'
+  match '/feedback/show' => 'feedback#show'
 
   match '/sign_out' => 'welcome#new'
   match '/welcome/new' => 'welcome#new'
@@ -130,6 +135,10 @@ Sangam::Application.routes.draw do
   match '/home/unsubscribe_summary' => 'home#unsubscribe_summary'
 
   match '/facebook/wall' => 'facebook#get_last_few_from_wall'
+
+  match '/home/get_analytics_summary' => 'home#get_analytics_summary'
+  match '/home/get_analytics' => 'home#get_analytics'
+
   #Alok Adding pusher support
   match '/pusher/auth' => 'home#pusher_auth'
 

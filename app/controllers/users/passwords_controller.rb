@@ -3,6 +3,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   def new
     Rails.logger.info("[CNTRL] [PASSWORD] Password new request")
+    @page_mode = "landing_page"
     build_resource({})
     render_with_scope :new
   end

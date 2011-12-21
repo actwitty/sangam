@@ -1,0 +1,50 @@
+.aw_feedbacks_show_wrapper.aw_feedbacks_show_column1
+  =render :partial => "home/top_bar"
+
+
+.aw_feedbacks_show_wrapper.aw_feedbacks_show_column2
+  .aw_feedback_label
+    %span Feedbacks to ActWitty
+  .aw_pagination_control
+    = will_paginate @feedbacks
+  %table.aw_feedbacks_rounded-corner-table
+    %thead
+      %tr
+        %th.rounded-company{:scope => "col"} Name
+        %th.rounded-q1{:scope => "col"} Email
+        %th.rounded-q2{:scope => "col"} Posted Time
+        %th.rounded-q3{:scope => "col"}  Feedback Text
+    %tfoot
+      %tr
+        %td.rounded-foot-left{:colspan => "3"}
+          %em ActWitty Feedbacks are to be kept confidential.
+        %td.rounded-foot-right  
+    %tbody
+     
+    - @feedbacks.each do |feedback|
+      %tr
+
+        -unless feedback.name.nil?
+          %td #{feedback.name}
+        -else
+          %td Anonymous
+      
+        -unless feedback.email.nil?
+          %td #{feedback.email}
+        -else
+          %td Anonymous email
+
+        %td #{feedback.created_at}
+        
+        %td{:width => "45%"} #{feedback.feedback_text}
+
+  .aw_pagination_control
+    = will_paginate @feedbacks
+
+
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
+

@@ -18,7 +18,7 @@
   overflow: hidden;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-/* line 20, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 21, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container {
   display: block;
   width: 480px;
@@ -32,14 +32,14 @@
   margin-right: 30px;
   border: 0px solid red;
 }
-/* line 32, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 33, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container .aw_ppm_stm_dyn_comment_new_section {
   width: 420px;
   margin-left: 50px;
   height: auto;
   display: block;
 }
-/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 38, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container .aw_ppm_stm_dyn_comment_new_section .aw_ppm_stm_dyn_comment_new_input {
   font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   width: 430px;
@@ -51,13 +51,13 @@
   width: 100%;
   margin: 0;
 }
-/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 48, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container .aw_ppm_stm_dyn_comment_new_section .aw_ppm_stm_dyn_comment_submit {
   height: 20px;
   width: 100px;
   margin-top: 10px;
 }
-/* line 52, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul {
   margin: 0;
   padding: 0;
@@ -65,14 +65,14 @@
   width: 100%;
   height: auto;
 }
-/* line 58, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li {
   width: 100%;
   margin-top: 2px;
   margin-bottom: 2px;
   border-bottom: 1px dotted #cccccc;
 }
-/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 65, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container span.aw_ppm_stm_dyn_comment_delete {
   float: right;
   font-family: "Helvetica", Arial, Helvetica, sans-serif;
@@ -81,22 +81,22 @@
   display: none;
   color: black;
 }
-/* line 71, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container span.aw_ppm_stm_dyn_comment_delete:hover {
   cursor: pointer;
 }
-/* line 73, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container:hover .aw_ppm_stm_dyn_comment_delete {
   display: block;
 }
-/* line 75, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section {
   width: 100%;
   min-height: 50px;
   height: auto;
   display: block;
 }
-/* line 80, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 81, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section .aw_ppm_stm_dyn_user_pic_section {
   width: 46px;
   height: auto;
@@ -104,14 +104,14 @@
   border: 0px solid green;
   float: left;
 }
-/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 88, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section .aw_ppm_stm_dyn_user_pic_section a img {
   width: 40px;
   height: 40px;
   padding: 2px;
   border: 1px solid #cccccc;
 }
-/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 94, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section .aw_ppm_stm_dyn_comment_section {
   width: 410px;
   height: auto;
@@ -121,12 +121,12 @@
   border: 0px solid red;
   overflow: hidden;
 }
-/* line 101, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 102, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section .aw_ppm_stm_dyn_comment_section p.aw_ppm_stm_dyn_comment_username {
   margin-right: 3px;
   display: inline;
 }
-/* line 104, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section .aw_ppm_stm_dyn_comment_section p.aw_ppm_stm_dyn_comment_username a {
   text-decoration: none;
   color: #333333;
@@ -134,7 +134,7 @@
   font-size: 12px;
   font-weight: bold;
 }
-/* line 110, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 111, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_info_section .aw_ppm_stm_dyn_comment_section p.aw_ppm_stm_dyn_comment_text {
   display: inline;
   font-family: "Helvetica", Arial, Helvetica, sans-serif;
@@ -142,13 +142,13 @@
   text-decoration: none;
   color: #444444;
 }
-/* line 116, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_date_stamp {
   width: 410px;
   margin-left: 50px;
   display: block;
 }
-/* line 120, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
+/* line 121, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_comments.sass */
 .aw_ppm_stm_dyn_comment_main_box .aw_ppm_stm_dyn_comments_list_container ul li .aw_ppm_stm_dyn_comment_container .aw_ppm_stm_dyn_comment_date_stamp span {
   font-size: 10px;
   color: #c8c8c8;

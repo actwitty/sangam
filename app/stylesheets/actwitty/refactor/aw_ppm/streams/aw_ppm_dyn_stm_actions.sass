@@ -1,5 +1,6 @@
 @mixin aw_ppm_stm_dyn_actions_base
   background: none repeat scroll 0 0 #F0F0F0
+  /*background: none repeat scroll 0 0 #0066cc
   border: 1px solid #C8C8C8
   border-radius: 3px 3px 3px 3px
   margin-left: 5px
@@ -8,7 +9,8 @@
   width: 50px
   padding: 5px 11px
   display: inline-block
-  color: #666666
+  /*color: #666666
+  /*color: #fff
   cursor: pointer
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 
@@ -42,6 +44,20 @@
 
   .aw_ppm_stm_dyn_action_mentions
     @include aw_ppm_stm_dyn_actions_base
+    position: relative
+    span
+      font-family: Calibri, Tahoma, Geneva, sans-serif
+      position: absolute
+      left: 30px
+      top: 20px
+      z-index: 99
+      margin-left: 0
+      width: 150px
+      background-color: #ffffcc
+      border: 1px solid #ccc
+      display: none
+    &:hover span
+      display: block
     &:hover
       @include aw_ppm_stm_dyn_actions_hover
     .aw_ppm_stm_dyn_action_mentions_img
@@ -56,6 +72,21 @@
 
   .aw_ppm_stm_dyn_action_shares
     @include aw_ppm_stm_dyn_actions_base
+    position: relative
+    span
+      font-family: Calibri, Tahoma, Geneva, sans-serif
+      position: absolute
+      left: 30px
+      top: 20px
+      z-index: 99
+      margin-left: 0
+      width: 150px
+      background-color: #ffffcc
+      border: 1px solid #ccc
+      display: none
+    &:hover span
+      display: block
+
     &:hover
       @include aw_ppm_stm_dyn_actions_hover
     .aw_ppm_stm_dyn_action_shares_img
@@ -104,6 +135,20 @@
 
   .aw_ppm_stm_dyn_action_comments
     @include aw_ppm_stm_dyn_actions_base
+    position: relative
+    span
+      font-family: Calibri, Tahoma, Geneva, sans-serif
+      position: absolute
+      left: 30px
+      top: 20px
+      z-index: 99
+      margin-left: 0
+      width: 150px
+      background-color: #ffffcc
+      border: 1px solid #ccc
+      display: none
+    &:hover span
+      display: block    
     &:hover
       @include aw_ppm_stm_dyn_actions_hover
     .aw_ppm_stm_dyn_action_comments_img

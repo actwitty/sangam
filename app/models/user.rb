@@ -1,5 +1,6 @@
 require 'thread'
 class User < ActiveRecord::Base
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
          :validatable,:token_authenticatable,
          :lockable , :omniauthable
           #,:devise_create_users
-  attr_accessor :dob_str, :gender, :dob, :current_location, :current_geo_lat, :current_geo_long
+  attr_accessor :dob_str
   # Setup accessible (or protected) attributes for your model
   attr_accessible  :email, :username, :password,
                    :dob, :dob_str, :full_name, :gender,:photo_small_url,
@@ -55,6 +56,8 @@ class User < ActiveRecord::Base
   after_validation :validate_fields
   before_validation  :parse_dob
 
+  #############################################################################
+  #Executed before validation, converts a string date into MM/DD/YYYY date format
   def parse_dob
 
     unless  self.dob_str.nil?
@@ -69,8 +72,11 @@ class User < ActiveRecord::Base
   end
 
 
+  #############################################################################
+  # Validation of fields while saving the user
   def validate_fields
-    Rails.logger.info("[MODEL] [USER] VALIDATION image [ #{self.photo_small_url} ]")
+    Rails.logger.info("[MODEL] [USER] BEFORE VALIDATION #{self.inspect}")
+    
     if self.username.present?
       self.username.strip!
       self.username.downcase!
@@ -114,8 +120,9 @@ class User < ActiveRecord::Base
     if !username_validation
       Rails.logger.info("[MODEL][User][validate_fields] username is bad")
     end
-
-    if self.gender.blank?
+    
+    Rails.logger.info("[MODEL][User][validate_fields][Gender] #{self.gender}")
+    if self.gender.blank? or self.gender.nil?
       Rails.logger.info("[MODEL][User][validate_fields] Gender is nil")
       self.errors.add :gender, "gender cannot be blank"
       gender_validation = false
@@ -128,13 +135,14 @@ class User < ActiveRecord::Base
     end
 
 
-    if self.dob.blank?
+    Rails.logger.info("[MODEL][User][validate_fields][DoB] #{self.dob}")
+    if self.dob.blank? or self.dob.nil?
       Rails.logger.info("[MODEL][User][validate_fields] DOB is nil")
       self.errors.add :dob, "date of birth cannot be blank"
       dob_validation = false
     end
 
-    if self.full_name.blank?
+    if self.full_name.blank? or self.full_name.nil?
       Rails.logger.info("[MODEL][User][validate_fields] Full Name is nil")
       self.errors.add :full_name, "name cannot be blank"
       name_validation = false
@@ -146,28 +154,34 @@ class User < ActiveRecord::Base
       end
     end
 
-    if self.current_location.blank? or self.current_geo_lat.blank? or self.current_geo_long.blank?
+    if self.current_location.blank? or self.current_geo_lat.blank? or self.current_geo_long.blank? or
+       self.current_location.nil? or self.current_geo_lat.nil? or self.current_geo_long.nil?
       Rails.logger.info("[MODEL][User][validate_fields] Geo location lat/long is invalid ")
       self.errors.add :current_location, "select a valid geo location"
       geo_validation = false
     end
-
+  
+    Rails.logger.info("[MODEL][User][validate_fields] Gender Validation #{gender_validation}")
     if !username_validation or !gender_validation or !name_validation or !geo_validation or !dob_validation
       Rails.logger.info("[MODEL][User][validate_fields] atleast one validation failed ")
       return false
     end
 
+    Rails.logger.info("[MODEL] [USER] AFTER VALIDATION #{self.inspect}")
     Rails.logger.info("[MODEL][User][validate_fields] Validations all good ")
+
     return true
   end
 
 
   # profile related api
 
+  #############################################################################
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
 
+  #############################################################################
   def get_pending_request_contacts
     users_list=nil
     friends_id_list = friends.select("user_id").where(:status =>
@@ -179,6 +193,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def get_raised_contact_requests_raised
     users_list=nil
     new_friends_id_list = contacts.select("user_id").where(:status =>
@@ -190,6 +205,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def get_contacts
     users_list=nil
     friends_id_list = contacts.select("friend_id").where(:status =>
@@ -201,6 +217,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def new_contact_request (friend_id)
     Contact.request_new(id, friend_id)
   end
@@ -217,6 +234,7 @@ class User < ActiveRecord::Base
    Contact.delete_contacts_from_both_ends(id, friend_id)
   end
 
+  #############################################################################
 
   def get_provider_uids_of_friends(provider, uid_list)
    friends_id_list = contacts.select("friend_id").map(&:friend_id)
@@ -227,6 +245,7 @@ class User < ActiveRecord::Base
   end
 
 
+  #############################################################################
   def get_uid_follow_status(provider, uid_list)
 
     auths = Authentication.all(:select => "uid, user_id", :conditions=> ['uid in (?)',
@@ -258,23 +277,28 @@ class User < ActiveRecord::Base
   end
 
 
+  #############################################################################
 
   def follow(friend_id)
     Contact.follow(id, friend_id)
   end
 
+  #############################################################################
   def unfollow(friend_id)
     Contact.unfollow(id, friend_id)
   end
 
+  #############################################################################
   def followers_count()
      friends.count()
   end
 
+  #############################################################################
   def followings_count()
     contacts.count()
   end
 
+  #############################################################################
   def check_follower(friend_id)
     contact=Contact.find_by_user_id_and_friend_id(id, friend_id)
     if contact.nil?
@@ -285,6 +309,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  #############################################################################
   def get_subscribers(user_id)
     users_list = Array.new
     friends_id_list = Contact.select("user_id").where(:friend_id => user_id).map(&:user_id)
@@ -301,6 +326,7 @@ class User < ActiveRecord::Base
     response = {:user => users_list}
   end
 
+  #############################################################################
   def get_subscriptions(user_id)
     users_list = Array.new
     friends_id_list = Contact.select("friend_id").where(:user_id => user_id).map(&:friend_id)
@@ -318,6 +344,7 @@ class User < ActiveRecord::Base
 
   end
 
+  #############################################################################
   def get_followers
     users_list = []
     friends_id_list = Contact.select("user_id").where(:friend_id => id).map(&:user_id)
@@ -342,6 +369,7 @@ class User < ActiveRecord::Base
     return users_list
   end
 
+  #############################################################################
   def get_followings
     users_list=[]
     friends_id_list = Contact.select("friend_id").where(:user_id => id).map(&:friend_id)
@@ -352,6 +380,8 @@ class User < ActiveRecord::Base
     return users_list
 
   end
+  
+  #############################################################################
   #INPUT => {:name => "sudh"}
   #OUTPUT => [ :id => 123, :image => "http://xyz.com", :name => "sudhanshu saxena" }
   def self.search(params)
@@ -374,8 +404,9 @@ class User < ActiveRecord::Base
     array
   end
 
+  #############################################################################
   def import_foreign_profile_to_user(foreign_profile)
-    Rails.logger.info("[MODEL] [USER] [import_foreign_profile_to_user] called #{foreign_profile}")
+    Rails.logger.info("[MODEL] [USER] [import_foreign_profile_to_user] called #{foreign_profile.inspect}")
 
     unless  foreign_profile.name.blank?
       self.full_name = foreign_profile.name
@@ -409,6 +440,7 @@ class User < ActiveRecord::Base
 
   end
 
+  #############################################################################
   def create_profile_from_foreign_profile(foreign_profile)
      Rails.logger.info("[MODEL] [USER] Create profile from foreign profile called")
      profile = Profile.new
@@ -457,6 +489,66 @@ class User < ActiveRecord::Base
      Rails.logger.info("[MODEL] [USER] Save profile from foreign profile")
 
   end
+
+  #############################################################################
+  #Make post to facebook
+  def post_new_activity_to_facebook(params, new_activity)
+    Rails.logger.debug("[MODEL] [USER] [post activity to facebook]") 
+    if params[:fb].nil? or params[:fb] != 'true'
+        return
+    end
+
+    provider="facebook"
+    facebook_auth=Authentication.find_by_user_id_and_provider(self.id, provider)
+    
+    if facebook_auth.nil?
+      return
+    end
+
+    begin
+      Rails.logger.debug("[MODEL] [USER] [post activity to facebook] Posting to FB")
+      graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
+      graph.put_wall_post( new_activity[:post][:text], {
+                          :name => "Posted at ActWitty",
+                          :link => "http://www.actwitty.com/view/id=#{new_activity[:post][:id]}", 
+                          :caption => "#{self.full_name} posted on #{new_activity[:post][:word][:name]}",
+                        })  
+
+    rescue Koala::Facebook::APIError
+      Rails.logger.error("[MODEL] [USER] [post activity to facebook] Exception in fb koala") 
+    end
+
+
+
+  end
+
+  #############################################################################
+  #Make post to twitter
+  def post_new_activity_to_twitter(params, new_activity)
+   
+    Rails.logger.error("[MODEL] [USER] [post activity to twitter] ") 
+    if params[:tw].nil? or params[:tw] != 'true'
+        return
+    end
+
+    provider="twitter"
+    twitter_auth=Authentication.find_by_user_id_and_provider(self.id, provider)
+
+    if twitter_auth.nil?
+      return
+    end
+    Rails.logger.debug("[MODEL] [USER] [post activity to facebook] Posting to twitter")
+    tweet_desc = "#{self.full_name } posted on #{new_activity[:post][:word][:name]} #{new_activity[:post][:text]}"
+    url = "http://www.actwitty.com/view/id=#{new_activity[:post][:id]}"
+    if tweet_desc.length > 134 - url.length
+      tweet_desc = tweet_desc[0...(134 - url.length)] + '...'
+    end
+    tweet = "#{tweet_desc} #{url}"
+    Twitter.update tweet
+
+  end
+
+  #############################################################################
 
   include TextFormatter
   include QueryPlanner

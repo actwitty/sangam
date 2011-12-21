@@ -8,44 +8,99 @@ $aw_var_default_color: #CCCCCC
 #awppm_header_box
   position: relative
   margin: 0 auto 0
+  margin-bottom: 20px
   display: block
   width: 990px
-  height: 140px
+  height: 45px
   border: $aw_var_default_border_width solid red
   position: relative
 
 .awppm_profile_logo
-  position: absolute
-  top: 40px
-  left: 10px
+  position: relative
+  float: left
+  margin-top: 5px
+  margin-left: 0px
 
-#awppm_header_search
-  position: absolute
-  top: 35px
-  right: 0px
-  width: 100px
 
-#awppm_header_search_options
-  width: 220px
-  height: 65px
-  border: 3px solid #aa1317
-  border-radius: 5px 0 5px 5px
-  position: absolute
-  top: 60px
-  right: 2px
-  padding: 5px 0px 5px 10px
-  display: none
-  background: -moz-linear-gradient(center top, #f5f5f5 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
+#awppm_header_search_edit_box
+  position: relative
+  margin-top: 6px
+  margin-left: 70px
+  float: left
+  height: 25px
+  width: 280px
   input
     border: 1px solid #ddd
-    height: 25px
-    width: 210px
+    height: 20px
+    width: 280px
     font-size: 14px
     margin-top: 5px
     border-radius: 5px
-    -moz-box-shadow: 0 0 8px #ddd
-    -webkit-box-shadow: 0 0 8px #ddd
-    box-shadow: 0 0 8px #ddd
+
+.awppm_search_enable
+  position: relative
+  float: left
+  margin-top: 10px
+  margin-left: 2px
+  width: 25px
+  height: 25px
+  background-image: url("/images/actwitty/refactor/aw_ppm/common/search_inactive.png")
+  &:hover 
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/search_hover.png")
+    cursor: pointer
+
+
+.awppm_header_search_box
+  width: 320
+  height: 15px
+  border: 3px solid #1457ba
+  border-radius: 5px 0 5px 5px
+  position: absolute
+  top: 33px
+  left: 235px
+  padding: 5px 0px 5px 10px
+  display: none
+  background-color: #363436
+  background: -moz-linear-gradient(center top, #f5f5f5 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
+
+  #awppm_header_search_options
+    input
+      border: 1px solid #ddd
+      margin-left: 5px
+      width: 15px
+      border-radius: 5px
+      -moz-box-shadow: 0 0 8px #ddd
+      -webkit-box-shadow: 0 0 8px #ddd
+      box-shadow: 0 0 8px #ddd
+    
+    label
+      font-size: 13px
+      &:hover
+        font-weight: bold
+ 
+
+.awppm_search_autocomplete_box
+  display: inline
+  width: 100%
+  height: 25px
+  .awppm_search_img_box
+    display: block-inline
+    width: 25px
+    padding-left: 5px
+    padding-right: 5px
+    float: left
+  .awppm_search_name_box
+    width: 120px
+    overflow: hidden
+    display: block-inline
+    padding: 5px
+    float: left
+    font-size: 13px
+  .awppm_search_type_box
+    display: block-inline
+    float: right
+    margin-right: 5px
+    width: 25px 
 
 
 
@@ -55,7 +110,7 @@ $aw_var_default_color: #CCCCCC
   position: absolute
   top: 0
   right: 0
-  width: 220px
+  width: 320px
   height: 28px
   border: 0px solid #ddd
   border-top: none
@@ -103,12 +158,25 @@ $aw_var_default_color: #CCCCCC
 
 #awppm_header_user_settings
   text-decoration: none
-  float: left
+  float: right
   color: #333
-  margin-top: 0px
+  margin-top: 7px
   margin-right: 5px
   &:hover
     color: #b22222
+    font-weight: bold
+    font-size: 15px
+
+#awppm_header_user_info
+  text-decoration: none
+  float: left
+  color: #333
+  margin-top: 0px
+  margin-left: 5px
+  &:hover
+    color: #b22222
+    font-weight: bold
+    font-size: 15px    
 
 
 

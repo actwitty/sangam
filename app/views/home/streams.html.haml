@@ -1,3 +1,6 @@
+#fb-root
+  %script{:src => "http://connect.facebook.net/en_US/all.js", :type => "text/javascript"}
+
 .awppm_stm_wrapper.awppm_stm_column1
   =render :partial => "home/top_bar"
 
@@ -6,28 +9,23 @@
     #awppm_stm_user_section
       #awppm_stm_user_info
         #awppm_stm_user_img
-          %center
-            %a{:href => "/home/show?id=#{@user.id}"}
-              %img{:src => @user.photo_small_url}/
-          %center
-            %a{:href => "/home/show?id=#{@user.id}"}
-              %span #{@user.full_name}
+          %a{:href => "/home/show?id=#{@user.id}"}
+            %img{:src => @user.photo_small_url}/
+        #awppm_stm_user_name    
+          %a{:href => "/home/show?id=#{@user.id}"}
+            %span #{@user.full_name}
+        #awppm_stm_user_location   
+          %span #{@user.current_location} 
       #awppm_stm_input_box_wrapper
         -if user_signed_in?
           -if current_user.id == @user.id
-            =render :partial => "home/input_box"
-
+            =render :partial => "home/input_box" 
 .awppm_stm_wrapper.awppm_stm_column3.aw_js_ppm_stm_theme_bkg
 
   
   #awppm_stm_complete_width_big_container_box.aw_js_ppm_stream_list_external_container
-    / This container has all streams details and analytics
-
-    #awppm_stm_analytics_container_box
-      #aw_js_ppm_stm_analytics_box_1.awppm_stm_analytics_box
-      #aw_js_ppm_stm_analytics_box_2.awppm_stm_analytics_box
-      #aw_js_ppm_stm_analytics_box_3.awppm_stm_analytics_box
-      #aw_js_ppm_stm_analytics_box_4.awppm_stm_analytics_box
+    / This container has all streams details
+    / Analytics has been moved to right side bar
 
   
     #awppm_stm_all_information_container_box.aw_js_ppm_stream_list_internal_container
@@ -75,7 +73,7 @@
           .awppm_stm_busy_channels_box.aw_js_ppm_loading_animation
             .awppm_stm_busy_mini_box
               %img.awppm_stm_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-          %input#aw_js_ppm_stm_data_more.button_actwitty.gray.awppm_stm_data_info_more{:type => "button", :value => "More"}
+          %input#aw_js_ppm_stm_data_more.button_actwitty.blue.awppm_stm_data_info_more{:type => "button", :value => "More"}
           %ul#aw_js_ppm_stm_post_timeline_list.awppm_stm_post_timeline_list
           %ul#aw_js_ppm_stm_videos_timeline_list.awppm_stm_videos_timeline_list
           %ul#aw_js_ppm_stm_images_timeline_list.awppm_stm_images_timeline_list
@@ -109,6 +107,24 @@
             #aw_js_ppm_stm_right_side_related_locations.awppm_stm_right_side_info_related_locations
             .awppm_stm_view_more.aw_js_ppm_stm_modal_invoker.aw_js_ppm_stm_aw_modal_manager_related_locations
               %span view more
+        
+        
+        / Analytics Section
+        #awppm_stm_analytics_container_box
+          .awppm_stm_single_analytics_container_label_box
+            %span#aw_js_ppm_stm_chart_label Channel Analytics
+          .awppm_stm_single_analytics_container_box
+            #aw_js_ppm_stm_analytics_box_1.awppm_stm_analytics_box
+            #aw_js_ppm_stm_analytics_box_1_large.awppm_stm_analytics_box_large
+          .awppm_stm_single_analytics_container_box.awppm_hidden
+            #aw_js_ppm_stm_analytics_box_2.awppm_stm_analytics_box
+            #aw_js_ppm_stm_analytics_box_2_large.awppm_stm_analytics_box_large
+          .awppm_stm_single_analytics_container_box.awppm_hidden
+            #aw_js_ppm_stm_analytics_box_3.awppm_stm_analytics_box
+            #aw_js_ppm_stm_analytics_box_3_large.awppm_stm_analytics_box_large
+          .awppm_stm_single_analytics_container_box
+            #aw_js_ppm_stm_analytics_box_4.awppm_stm_analytics_box
+            #aw_js_ppm_stm_analytics_box_4_large.awppm_stm_analytics_box_large
       / -------------------  Right side list for streams section End ---------------------------
 
 

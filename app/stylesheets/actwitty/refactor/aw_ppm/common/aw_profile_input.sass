@@ -1,17 +1,19 @@
 #awppm_input_box_activate
   position: absolute
-  top: 60px
-  left: 300px
+  top: 10px
+  left: 640px
+  cursor: pointer
 
 .button_classic
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-  font-size: 30px
+  font-size: 16px
   color: #fff
   text-decoration: none
   display: block
-  width: 478px
+  width: 200px
   padding: 10px
   border: 1px solid #DDD
+  vertical-align: middle
   text-align: center
   -moz-border-radius: 5px
   -webkit-border-radius: 5px
@@ -41,6 +43,17 @@
     transition: none
 
 
+  #awppm_input_box_attention_icon
+    height: 20px
+    width: 20px
+    display: inline-block
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/checkin.png")
+    margin-left: 10px
+    float: left
+  &:hover #awppm_input_box_attention_icon
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/checkin_hover.png")
+
+
 #awppm_input_box
   height: 140px
   height: auto
@@ -48,7 +61,7 @@
   border: 1px solid #ddd
   /*margin-left:300px;
    *margin-top:-100px;
-  margin-top: 20px
+  margin-top: 30px
   margin-left: 200px
   padding: 14px
   padding-top: 20px
@@ -92,8 +105,7 @@
 
 #awppm_input_label
   color: #333
-  font-size: 22px
-  font-weight: bold
+  font-size: 16px
   width: 400px
   margin-left: 50px
   margin-bottom: 2px
@@ -117,7 +129,7 @@
   -webkit-box-shadow: 0 0 8px #ddd
   box-shadow: 0 0 8px #ddd
 
-#awppm_ip_category
+#aw_js_ppm_category_hide
   @include awppm_ip_placement_width
   height: 40px
   margin-top: 10px

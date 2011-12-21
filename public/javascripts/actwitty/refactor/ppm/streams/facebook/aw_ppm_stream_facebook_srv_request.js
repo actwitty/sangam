@@ -1,4 +1,32 @@
-
+/***********************************************************/
+var aw_local_fb_access_token;
+/************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_ppm_stm_facebook_initialize_access_token(fn_cb){
+  var auth_token = $("#aw_js_ppm_fb_access_token").val();
+  if(auth_token.length){
+    aw_local_fb_access_token = auth_token;
+    fn_cb();
+    return;
+  }
+  FB.init({
+        appId      : '172893766124779',
+        channelUrl : aw_lib_get_base_url() + '/channel.html',
+        status     : true, 
+        cookie     : true, 
+        oauth      : true, 
+        xfbml      : true  
+      });
+  FB.getLoginStatus(function(response) {
+  if (response.authResponse) {
+    aw_local_fb_access_token = response.authResponse.accessToken;
+  } 
+  fn_cb();
+});
+}
 /************************************************************/
 /*
  *
@@ -16,12 +44,8 @@ function aw_api_ppm_stm_facebook_post_check(stream_info){
  *
  */
 function aw_api_ppm_facebook_get_signed_in_auth_token(){
-  var auth_token = $("#aw_js_ppm_fb_access_token").val();
-  if(auth_token.length){
-    return auth_token;
-  }
-
-  return '';
+  return aw_local_fb_access_token;
+ 
 }
 
 /************************************************************/
@@ -30,7 +54,7 @@ function aw_api_ppm_facebook_get_signed_in_auth_token(){
  *
  */
 function aw_api_ppm_stm_facebook_check_skip_processing(stream_info, fb_resp_data){
-  
+ 
   if( (fb_resp_data.message && fb_resp_data.message.length) || ( fb_resp_data.link &&  fb_resp_data.link.length) ){
     return false;
   }else{
@@ -119,7 +143,8 @@ function aw_api_process_facebook_links_with_fbid(stream_info, fbid, fb_resp_data
 
      if(fb_resp_data.message){
       fb_data_json['message'] = fb_resp_data.message;
-    }  
+    } 
+    fb_data_json['link'] = fb_resp_data.link;
     aw_api_facebook_render_post_data(stream_info, fb_data_json);
   });
 }
@@ -132,7 +157,9 @@ function aw_api_process_facebook_links_with_fbid(stream_info, fbid, fb_resp_data
  */
 function aw_api_ppm_stm_facebook_process_fb_data(stream_info, fb_resp_data){
   var fb_data_json = {};
+  fb_data_json['link'] = '';
   if(fb_resp_data.link){
+    fb_data_json['link'] = fb_resp_data.link;
     if(aw_api_ppm_stm_facebook_check_link_is_video(fb_resp_data.link)){
       fb_data_json['video'] = fb_resp_data.link; 
       fb_data_json['caption'] = fb_resp_data.caption; 

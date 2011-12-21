@@ -7,9 +7,9 @@ var aw_local_modal_reg_prefix="aw_js_ppm_stm_aw_modal_manager_";
 var aw_local_modal_manager_registry = {
     /* Related friends modal configuration */
     "aw_js_ppm_stm_aw_modal_manager_related_people"  :  {
-                                          renderer_fn:function aw_internal_modal_related_friends_caller(win_id, trigger_id){
+                                          renderer_fn:function aw_internal_modal_related_friends_caller(win_id, triggerer){
                                             return true;
-                                           // return aw_friends_render_related_modal(win_id, trigger_id);
+                                           // return aw_friends_render_related_modal(win_id, triggerer);
                                           },
                                           title:"Related Friends",
                                           top:50,
@@ -21,8 +21,8 @@ var aw_local_modal_manager_registry = {
                                       },
     /* Related entities modal configuration */
     "aw_js_ppm_stm_aw_modal_manager_related_mentions"  :  {
-                                          renderer_fn:function aw_internal_modal_related_mentions_caller(win_id, trigger_id){
-                                            return aw_api_ppm_stm_mentions_modal_renderer(win_id, trigger_id);
+                                          renderer_fn:function aw_internal_modal_related_mentions_caller(win_id, triggerer){
+                                            return aw_api_ppm_stm_mentions_modal_renderer(win_id, triggerer);
                                           },
                                           title:"Related Entities",
                                           top:50,
@@ -34,8 +34,8 @@ var aw_local_modal_manager_registry = {
                                       },
     /* Related locations modal configuration */
      "aw_js_ppm_stm_aw_modal_manager_related_locations"  :  {
-                                          renderer_fn:function aw_internal_modal_related_locations_caller(win_id, trigger_id){
-                                            return aw_api_ppm_stm_locations_modal_renderer(win_id, trigger_id);
+                                          renderer_fn:function aw_internal_modal_related_locations_caller(win_id, triggerer){
+                                            return aw_api_ppm_stm_locations_modal_renderer(win_id, triggerer);
                                           },
                                           title:"Related Locations",
                                           top:50,
@@ -47,9 +47,9 @@ var aw_local_modal_manager_registry = {
                                       },
     /* All channels modal configuration */
     "aw_js_ppm_stm_aw_modal_manager_all_channels" : {
-                                          renderer_fn:function aw_internal_modal_all_channels_caller(win_id, trigger_id){
+                                          renderer_fn:function aw_internal_modal_all_channels_caller(win_id, triggerer){
                                             //alert("calling related locations renderer");
-                                            //return aw_channels_render_all_modal(win_id, trigger_id);
+                                            //return aw_channels_render_all_modal(win_id, triggerer);
                                             return true;
                                           },
                                           title:"All Channels",
@@ -63,9 +63,9 @@ var aw_local_modal_manager_registry = {
                                    },
 
     "aw_js_ppm_stm_aw_modal_manager_stream_likes" : {
-                                          renderer_fn:function aw_internal_modal_like(win_id, trigger_id){
+                                          renderer_fn:function aw_internal_modal_like(win_id, triggerer){
                                             //alert("calling related locations renderer");
-                                            return aw_api_ppm_stm_like_modal_renderer(win_id, trigger_id);
+                                            return aw_api_ppm_stm_like_modal_renderer(win_id, triggerer);
                                           },
                                           title:" Stream Likes",
                                           top:50,
@@ -74,7 +74,20 @@ var aw_local_modal_manager_registry = {
                                           height:400,
                                           data_json:{}
                                      
-                        }
+                        },
+    "aw_js_ppm_stm_aw_modal_manager_stream_chn_name_change" : {
+                                          renderer_fn:function aw_internal_modal_like(win_id, triggerer){
+                                            //alert("calling related locations renderer");
+                                            return aw_api_ppm_stm_rename_channel(win_id, triggerer);
+                                          },
+                                          title:" Stream Likes",
+                                          top:50,
+                                          left:300,
+                                          width:650,
+                                          height:400,
+                                          data_json:{}
+                                     
+                                        }
                   };
 
 
@@ -103,10 +116,10 @@ function aw_api_ppm_stm_modal_get_data( registered_modal_id){
 /*
  * Call the target renderer of internal modal
  */
-function aw_api_ppm_stm_dialog_maker(registered_modal_id, container_window_id, trigger_id){
+function aw_api_ppm_stm_dialog_maker(registered_modal_id, container_window_id, triggerer){
   if(aw_local_modal_manager_registry[registered_modal_id]){
     if(aw_local_modal_manager_registry[registered_modal_id].renderer_fn){
-      var ret_val =  aw_local_modal_manager_registry[registered_modal_id].renderer_fn(container_window_id,trigger_id);
+      var ret_val =  aw_local_modal_manager_registry[registered_modal_id].renderer_fn(container_window_id,triggerer);
       if ( ret_val == true){
         $("html,body").css("overflow","hidden");
       }
@@ -204,7 +217,7 @@ $(document).ready(function() {
         //transition effect
         modal_window.fadeIn(2000); 
         if( registered_modal_id.length ){
-          var ret_code = aw_api_ppm_stm_dialog_maker(registered_modal_id, "modal_box_window_id", $(this).attr("id"));
+          var ret_code = aw_api_ppm_stm_dialog_maker(registered_modal_id, "modal_box_window_id", $(this));
           if(!ret_code){
             /*hide the parent of modal window box*/
             $("#modal_box_id").hide();

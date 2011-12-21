@@ -129,9 +129,24 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                               'DATA_TYPE': "script",
                                                                               'URL' : "/home/get_latest_summary.json"
                                                                             },
+                                                     
+
+                                                     'AW_SRV_CSPM_CHANNEL_EDIT'    : {
+                                                                              
+                                                                              'CB': function aw_temp_resp_fn_13(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_cspm_update_channel(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/channel_settings/update.json"
+                                                                            },
+  
+
                                                      'AW_SRV_PPM_STM_DELETE_MENTION'    : {
                                                                               
-                                                                              'CB': function aw_temp_resp_fn_7(params){
+                                                                              'CB': function aw_temp_resp_fn_13(params){
                                                                                       /* params -> summary JSON */
                                                                                       aw_api_srv_resp_ppm_stm_delete_mention_from_a_stream(params);
                                                                                     },
@@ -139,6 +154,16 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                               'MULTI' : true,
                                                                               'DATA_TYPE': "json",
                                                                               'URL' : "/home/delete_entities_from_post.json"
+                                                                            },
+                                                      'AW_SRV_PPM_STM_RENAME_CHANNEL' : {
+                                                                              'CB': function aw_temp_resp_fn_14(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_ppm_stm_chn_rename_done(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/home/rename_channel_of_post.json"
                                                                             }
 
                                                 };

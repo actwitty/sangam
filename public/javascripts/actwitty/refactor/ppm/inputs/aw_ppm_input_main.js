@@ -153,6 +153,8 @@ function aw_input_box_reset_after_post(){
   $("#aw_js_ppm_input_add_attachment_partial").hide();
   $("#aw_js_ppm_show_hide_attachment").attr("src", "/images/actwitty/refactor/aw_ppm/common/attachment_gray.png");
 
+  $("#aw_js_ppm_category_hide").hide();
+
   $("#awppm_input_box").hide();
   $("#awppm_input_box_activate").show();
 
@@ -166,7 +168,7 @@ function aw_api_srv_resp_ppm_input_create_post(params){
     var post_resp_json = aw_api_srv_resp_data_for_post_request('AW_SRV_PPM_CMN_CREATE_POST');
     aw_input_box_reset_after_post();
     clear_all_input_jsons();
-     $(".aw_js_ppm_ip_input_box").find(".aw_js_ppm_loading_animation").hide();
+    $(".aw_js_ppm_ip_input_box").find(".aw_js_ppm_loading_animation").hide();
 }
  
 /*
@@ -312,7 +314,17 @@ function document_upload_complete(){
   }else{
       post_activity = $('#aw_js_ppm_input_channel_name').val();
   }
-   
+  
+  var fb_share = "false";
+  var tw_share = "false"
+  if ( $("#aw_js_ppm_fb_share").val() == "on" ){
+    fb_share = "true";
+  }
+
+  if ( $("#aw_js_ppm_fb_share").val() == "on" ){
+    tw_share = "true";
+  }
+
   var post_json = { 
                     word : post_activity,
                     summary_category: $("#aw_js_ppm_input_channel_category").val(),
@@ -323,6 +335,8 @@ function document_upload_complete(){
                     campaign_types:get_campaigns(),
                     source_name:"actwitty",
                     sub_title:$('#aw_js_ppm_input_hidden_title').val(),
+                    fb: fb_share,
+                    tw: tw_share,
                     status:get_generate_status(),
                   };
 
@@ -422,17 +436,14 @@ $(document).ready(function() {
  *
  */
 function aw_ppm_input_fetch_new_stream(new_post_id){
- if(get_current_page_context() == 'profile_stm_page'){
    var params = {
                     'aw_srv_protocol_params' : {  
-                                                  activity_id: new_post_id
+                                                  id: new_post_id
                                               },
                     'aw_srv_protocol_cookie' : {
                                                }
                  };
    aw_api_srv_make_a_get_request('AW_SRV_PPM_INPUT_RESP_GET_NEW_POST',  params);
-  
-  }
 }
 /************************************************/
 /*
@@ -443,9 +454,11 @@ function aw_api_srv_resp_ppm_input_get_new_stream(params){
   var data = aw_awpi_serv_resp_data_for_get_request_in_params(params); 
   $.each(data, function(i,stream_info){
     if( stream_info ){
-      var aw_chn_filter_id = aw_api_ppm_stm_get_chn_filter_id();
-      if(aw_chn_filter_id.length == 0 || aw_chn_filter_id == stream_info.word.id){
-        aw_api_srv_add_new_stream(stream_info);
+      if(get_current_page_context() == 'profile_stm_page'){
+        var aw_chn_filter_id = aw_api_ppm_stm_get_chn_filter_id();
+        if(aw_chn_filter_id.length == 0 || aw_chn_filter_id == stream_info.word.id){
+          aw_api_srv_add_new_stream(stream_info);
+        }
       }
     } 
   });
@@ -476,3 +489,5 @@ function aw_ppm_input_fetch_new_summary(summary_id){
  */
 function aw_api_srv_resp_ppm_input_get_new_channels(params){
 }
+
+

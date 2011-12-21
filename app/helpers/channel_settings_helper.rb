@@ -1,0 +1,2 @@
+module ChannelSettingsHelper
+end

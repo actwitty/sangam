@@ -162,7 +162,7 @@ function aw_api_srv_resp_ppm_stm_render_stream_likes(params){
  *
  *
  */
-function aw_api_ppm_stm_like_modal_renderer(win_id, trigger_id){
+function aw_api_ppm_stm_like_modal_renderer(win_id, triggerer){
   var likes_data = aw_api_ppm_stm_modal_get_data( "aw_js_ppm_stm_aw_modal_manager_stream_likes");
   var header_title = '';
   if (likes_data.length > 1){

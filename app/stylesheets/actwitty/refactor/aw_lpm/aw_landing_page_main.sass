@@ -206,7 +206,7 @@ img.awlpm_aw_logo_img
 #awlpm_header_label
   margin: 0 auto
   margin-left: 10px
-  font-size: 50px
+  font-size: 40px
   width: 400px
   height: 50px
   font-weight: bold
@@ -302,7 +302,7 @@ img.awlpm_aw_logo_img
   border-bottom: 1px dotted gray
 
   h3  
-    font-size: 28px
+    font-size: 22px
     font-weight: bold
     margin-bottom: 5px
 
@@ -311,6 +311,14 @@ img.awlpm_aw_logo_img
   height: 330px
   margin-right: 5px
   float: left
+  border: 1px solid #fff
+  &:hover
+    border: 1px solid #ccc
+    cursor: pointer
+  &:hover p
+    font-weight: bold
+  &:hover img
+    border: 1px solid black
 
   .awlpm_info_display_box
     width: 215px
@@ -323,11 +331,11 @@ img.awlpm_aw_logo_img
     padding: 5px
     
   h3  
-    font-size: 28px
+    font-size: 22px
     font-weight: bold
     text-align:center
   p
-    font-size: 20px
+    font-size: 14px
     color: #666
     text-align:center
 
@@ -379,6 +387,8 @@ img.awlpm_aw_logo_img
   a
     text-decoration: none
     color: #ddd
+    &:hover
+      font-weight: bold
 
 #awlpm_footer_copyright
   text-align: center

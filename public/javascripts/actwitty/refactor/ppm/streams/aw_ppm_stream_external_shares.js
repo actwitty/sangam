@@ -127,7 +127,7 @@ function aw_api_ppm_stm_evt_hndl_shares_facebook_share(element){
   var url = aw_get_post_url(stream_info);
   var modal_href = "";
 
-  modal_href = 'http://www.facebook.com/sharer.php?u='+url
+  modal_href = 'http://www.facebook.com/sharer.php?status=wow&u=' + url;
 
   var winl = ($(window).width() - 600)/2; 
   var wint = ($(window).height() - 400)/2; 

@@ -66,6 +66,7 @@ function aw_api_srv_resp_ppm_chn_render_all_channels(params){
 
     }
   });
+  $("abbr.aw_js_chn_timeago").timeago();
   /* enable the more button */
   $("#aw_js_ppm_all_chn_data_more").attr("disabled", false);
     $('#aw_js_ppm_all_channel_data').find(".aw_js_ppm_loading_animation").hide();
@@ -92,7 +93,7 @@ function aw_api_ppm_chn_request_all_channels(on_init){
  
   var srv_params =   {
                         user_id : aw_lib_get_page_owner_id(), 
-                        updated_at: aw_api_ppm_cmn_more_cookie_get(), 
+                        updated_at: aw_api_ppm_cmn_more_cookie_get('AW_SRV_PPM_CHN_GET_ALL_CHANNELS'), 
                         page_type: 3,
                         cache_cookie:aw_lib_get_cache_cookie_id('AW_SRV_PPM_CHN_GET_ALL_CHANNELS')
                      };

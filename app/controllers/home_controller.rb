@@ -17,10 +17,20 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [ :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
-                        :get_summary,:get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
-                        :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,:get_related_locations,
-                        :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
+  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, 
+                        :mention_page, :location_page, :channel_page, 
+                        :update_social_media_share, :get_summary,
+                        :get_entities,:get_channels, :get_locations,
+                        :get_mention_specific_stream,:get_channel_specific_stream,
+                        :get_location_specific_stream,:get_document_stream,
+                        :get_streams, :get_related_entities,
+                        :get_related_locations, :get_social_counter, 
+                        :get_related_friends, :get_all_comments,
+                        :get_users_of_campaign, 
+                        :subscribers,:subscriptions,
+                        :get_latest_summary, :search_any,
+                        :get_analytics_summary,
+                        :get_analytics]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -99,7 +109,6 @@ class HomeController < ApplicationController
   def streams
 
     @user=nil
-    @profile_page = 1
     @page_mode="profile_stm_page"
     @aw_stm_scope="p" #p/s/a
 
@@ -165,18 +174,55 @@ class HomeController < ApplicationController
     end
 
 
-      if user_signed_in?
-        authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
         @fb_access_token = authentication.token
         Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
       end
+    end
 
+    #FB: Open graph tags start
+    
+    unless @aw_mention_filter_text_val.blank?
+      @page_description = "#{@page_description} filtered for mentions of #{@aw_mention_filter_text_val}"
+    end
+    @page_url = current_url(:id=>@user.id)
+
+
+    #FB: Open graph tags start
+    fb_og_title = "#{@user.full_name} streams at ActWitty"
+    unless @aw_chn_filter_text_val.blank?
+      fb_og_title = "#{@user.full_name} #{@aw_chn_filter_text_val} streams at ActWitty"
+    end
+    
+    fb_og_description = "#{@user.full_name} #{@aw_chn_filter_text_val} streams at ActWitty."
+    unless @aw_mention_filter_text_val.blank?
+      fb_og_description = "#{@page_description} filtered for mentions of #{@aw_mention_filter_text_val}"
+    end
+
+    set_meta_tags :open_graph => {
+                                  :title => fb_og_title,
+                                  :type => "activity",
+                                  :site_name => "ActWitty",
+                                  :image => "#{@user.photo_small_url}",
+                                  :description => fb_og_description,
+                                  :url => current_url(:id=>@user.id)
+                                  }
+    #FB: Open graph tags end
+
+  end
+  ###################################################################################
+  # # https://x.com/y/1?page=1
+  # + current_url( :page => 3 )
+  # = https://x.com/y/1?page=3
+  def current_url(overwrite={})
+    url_for :only_path => false, :params => params.merge(overwrite)
   end
   ###################################################################################
   def show
 
     @user=nil
-    @profile_page = 1
     @page_mode="profile_chn_page"
 
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Show request with #{params}")
@@ -200,7 +246,7 @@ class HomeController < ApplicationController
       user_id =  params[:id]
       @user=User.find_by_id(user_id)
       if @user.nil?
-        if user_signed_in?
+        if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
           @user=current_user
           Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as incorrect id mentioned")
         else
@@ -209,51 +255,26 @@ class HomeController < ApplicationController
         end
       end
     end
-
-  end
-  ############################################
-  def settings
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
-    @profile_page = 1
-	  @user = current_user 
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
-	  if !@user.nil?
-	      @profile = Profile.find_by_user_id(@user.id)
-	      Rails.logger.info("[CNTRL][HOME][SETTINGS] If User is Not Nil, then profile: #{@profile.user_id}")
-	      puts @profile.user_id
-	      puts @profile.id
-	  end
-  end
-
-  ############################################
-  def settings_save
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
-	  @user = current_user
-	  @profile = current_user.profile
-	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:profile]}")
-	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
-	  if @profile.update_attributes(params[:profile])
-      unless params[:profile][:profile_photo_s].blank?
-        current_user.photo_small_url = params[:profile][:profile_photo_s]
-        current_user.save!
+    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+        Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
       end
-	    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
-	    redirect_to(home_show_url)
-	  end
-	 Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
+    end
+    #FB: Open graph tags start
+    set_meta_tags :open_graph => {
+                                  :title => "#{@user.full_name} Channels at ActWitty",
+                                  :type => "activity",
+                                  :site_name => "ActWitty",
+                                  :image => "#{@user.photo_small_url}",
+                                  :description => "#{@user.full_name} social footprint organized under activity or interest channels.",
+                                  :url => current_url(:id=>@user.id)
+                                  }
+    #FB: Open graph tags end
 
   end
-  ############################################
-  def search_people
-    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search params : #{params}")
-    response = User.search(params[:q])
-    response_json = response.to_json
-    Rails.logger.info("[CNTRL][HOME][SEARCH PEOPLE] search response : #{response_json}")
-    if request.xhr?
-        expires_in 5.minutes
-        render :json => response_json, :status => 200
-    end
-  end
+ 
   ############################################
   def subscribers
     Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] request params : #{params}")
@@ -680,6 +701,11 @@ class HomeController < ApplicationController
 
       #Alok Adding pusher support
       current_user.push_event_to_pusher({:channel => "#{current_user.id}", :event => params[:action], :data => response_json})
+
+
+      current_user.post_new_activity_to_facebook(params, response_json)
+      current_user.post_new_activity_to_twitter(params, response_json)
+      
       @activity_json = response_json;
       respond_to do |format|
         format.json
@@ -790,76 +816,103 @@ class HomeController < ApplicationController
   ##############################################
   def activity
     Rails.logger.info("[CNTRL][HOME][ ACTIVITY] request params #{params}")
-    @user=current_user
-    @profile_page = 1
-    @page_mode="single_post"
-    @post_id = params[:id]
+    @page_mode="profile_single_activity_page"
+    @single_post_id = params[:id]
+    @aw_stm_scope="p"
+    @user=nil
+    @fb_access_token=nil
+
+    activity_ids = [Integer(params[:id])]
+    activity_arr = current_user.get_all_activity(activity_ids)
+    activity_arr.each do |activity|
+
+      #Will come only once as there is only one activity
+    
+      post_user_id = activity[:post][:user][:id]
+      if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+        authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+        unless authentication.nil?
+          @fb_access_token = authentication.token
+        end
+        if post_user_id == current_user.id 
+          @user = current_user
+        end
+      else
+        @user = User.find_by_id(post_user_id)
+      end
+      Rails.logger.debug("[CNTRL][HOME][SINGLE ACTIVITY] returned from model api #{@user.inspect}")
+
+
+      
+      post_location = ''
+      unless activity[:post][:location].nil?
+        unless activity[:post][:location][:name].nil?
+          post_location = activity[:post][:location][:name]
+        end
+      end
+
+      post_img = ''
+      unless activity[:documents].nil?
+        activity[:documents][:array].each do |attachment|
+          if attachment[:category] == "image"
+            post_img =   attachment[:url]      
+            break
+          end          
+        end
+      end
+
+      post_video = ''
+      unless activity[:documents].nil?
+        activity[:documents][:array].each do |attachment|
+          if attachment[:category] == "video"
+            post_video =   attachment[:url]      
+            break
+          end          
+        end
+      end
+
+      post_keywords = ''
+      unless activity[:tagss].nil?
+        activity[:tags][:array].each do |tag|
+          post_keywords= "#{post_keywords} #{tag[:name]}"
+        end
+      end
+
+      #FB: Open graph tags start
+      set_meta_tags :open_graph => {
+                                    :title => "#{activity[:post][:user][:full_name]} post on #{activity[:post][:word][:name]}",
+                                    :type => "#{activity[:post][:word][:name]}",
+                                    :site_name => "ActWitty",
+                                    :image => post_img,
+                                    :video => post_video,
+                                    :description => activity[:post][:text],
+                                    :url => "http://www.actwitty.com/view/id=#{params[:id]}",
+                                    :region => post_location,
+                                  },
+                  :title => "Check-in your interests",
+                  :keywords => post_keywords
+    end
+
+
+
+    #FB: Open graph tags end
   end
   ##############################################
 
   def get_single_activity
-   Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
-   activity_id = Integer(params[:activity_id])
-   activity_ids = [activity_id]
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
-      response_json = current_user.get_all_activity(activity_ids)
+    Rails.logger.info("[CNTRL][HOME][GET SINGLE ACTIVITY] request params #{params}")
+    activity_id = Integer(params[:id])
+    activity_ids = [activity_id]
+    Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] returned from model api")
+    response_json = current_user.get_all_activity(activity_ids)
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-         Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON for open user#{response_json}")
-        render :json => response_json, :status => 400
-      end
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET SINGLE ACTIVITY] sending response JSON #{response_json}")
+      expires_in 10.minutes
+      render :json => response_json, :status => 200
     end
   end
 
-  ######################################
-  def get_draft_activities
-    Rails.logger.info("[CNTRL][HOME][GET DRAFT ACTIVITIES] request params #{params}")
-
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] returned from model api")
-      response_json = current_user.get_draft_activity(params)
-
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET DRAFT ACTIVITIES] sending response JSON #{response_json}")
-
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
-    end
-
-  end
-  ######################################
-  def publish_activity
-    Rails.logger.info("[CNTRL][HOME][PUBLISH ACTIVITY] request params #{params}")
-    args={}
-    args[:activity_id] = Integer(params[:activity_id])
-    args[:status] = 2
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
-      response_json = {} #current_user.publish_activity(args)
-
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
-        expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
-    end
-
-  end
   ######################################
    def process_edit_activity
     Rails.logger.info("[CNTRL][HOME][PROCESS EDITED ACTIVITY] request params #{params}")
@@ -907,7 +960,7 @@ class HomeController < ApplicationController
     response_json={}
     if user_signed_in?
         Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] calling  model api with #{params}")
-        response_json = {} #current_user.update_activity(params)
+        response_json = current_user.update_activity(params)
         Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] returned response JSON #{response_json}")
 
     else
@@ -927,71 +980,74 @@ class HomeController < ApplicationController
    end
 
   ######################################
-  def entity_page
-    Rails.logger.info("[CNTRL][HOME][ ENTITY PAGE] request params #{params}")
+  def mention_page
+    Rails.logger.info("[CNTRL][HOME][ MENTION PAGE] request params #{params}")
 
     @user=current_user
-    @profile_page = 1
-    @page_mode="entity"
-    @entity_id = params[:entity_id]
+    @page_mode="single_mention_page"
+    @mention_id = params[:id]
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+      end
+    end
 
   end
   ######################################
-  def get_entity_stream
-    Rails.logger.info("[CNTRL][HOME][GET ENTITY STREAM] request params #{params}")
-    if params[:entity_id].blank?
+  def get_mention_specific_stream
+    Rails.logger.info("[CNTRL][HOME][GET MENTION STREAM] request params #{params}")
+    if params[:id].blank?
       render :json => {}, :status => 400
       return
     end
-    params[:entity_id] = Integer(params[:entity_id])
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] returned from model api with #{params}")
+    query = {}
+    query[:entity_id] = Integer(params[:id])
+    query[:updated_at] = params[:updated_at]
 
-      response_json = current_user.get_entity_stream(params)
+    Rails.logger.debug("[CNTRL][HOME][GET MENTION STREAM] returned from model api with #{query}")
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET ENTITY STREAM] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
+    response_json = current_user.get_entity_stream(query)
+
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET MENTION STREAM] sending response JSON #{response_json}")
+      expires_in 5.minutes
+      render :json => response_json, :status => 200
     end
-
   end
   ######################################
   def location_page
     Rails.logger.info("[CNTRL][HOME][ LOCATION PAGE] request params #{params}")
 
     @user=current_user
-    @profile_page = 1
-    @page_mode="location"
-    @location_id = params[:location_id]
+    @page_mode="single_location_page"
+    @location_id = params[:id]
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+      end
+    end
 
   end
   ######################################
-  def get_location_stream
+  def get_location_specific_stream
     Rails.logger.info("[CNTRL][HOME][GET LOCATION STREAM] request params #{params}")
-    if params[:location_id].blank?
+    if params[:id].blank?
       render :json => {}, :status => 400
       return
     end
-    params[:word_id] = Integer(params[:location_id])
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] returned from model api with #{params}")
-      response_json = current_user.get_location_stream(params)
+    query={}
+    query[:location_id] = Integer(params[:id])
+    query[:updated_at] = params[:updated_at]
+    
+    Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] returned from model api with #{query}")
+    response_json = current_user.get_location_stream(query)
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET LOCATION STREAM] sending response JSON #{response_json}")
+      expires_in 5.minutes
+      render :json => response_json, :status => 200
     end
 
   end
@@ -999,32 +1055,36 @@ class HomeController < ApplicationController
    def channel_page
     Rails.logger.info("[CNTRL][HOME][ CHANNEL PAGE] request params #{params}")
     @user=current_user
-    @profile_page = 1
-    @page_mode="channel"
-    @channel_id = params[:channel_id]
+    @page_mode="single_channel_page"
+    @channel_id = params[:id]
+
+    if user_signed_in?  and  current_user.email != AppConstants.ghost_user_email
+      authentication = Authentication.where(:user_id => current_user.id, :provider => 'facebook').all().first()
+      unless authentication.nil?
+        @fb_access_token = authentication.token
+      end
+    end
 
   end
   ######################################
-  def get_activity_stream
+  def get_channel_specific_stream
+
     Rails.logger.info("[CNTRL][HOME][GET CHANNEL STREAM] request params #{params}")
-    if params[:word_id].blank?
+    if params[:id].blank?
       render :json => {}, :status => 400
       return
     end
-    params[:word_id] = Integer(params[:word_id])
-    if user_signed_in?
-      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] calling  model api with #{params}")
-      response_json = current_user.get_activity_stream(params)
+    query={}
+    query[:word_id] = Integer(params[:id])
+    query[:updated_at] = params[:updated_at]
+      
+    Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] calling  model api with #{query}")
+    response_json = current_user.get_activity_stream(query)
 
-      if request.xhr?
-        Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
-        #expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
+    if request.xhr?
+      Rails.logger.debug("[CNTRL][HOME][GET CHANNEL STREAM] sending response JSON #{response_json}")
+      expires_in 5.minutes
+      render :json => response_json, :status => 200
     end
 
   end
@@ -1217,7 +1277,6 @@ class HomeController < ApplicationController
   end
   ####################################
   def facebook_friends
-    @profile_page = 1
     @page_mode = "facebook"
     provider="facebook"
     @page_mode="facebook"
@@ -1243,5 +1302,218 @@ class HomeController < ApplicationController
       render :text => "Not authorized", :status => '403'
     end
   end
+  ############################################
+  def search_any
+    Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search params : #{params}")
+    query = {}
+    query[:type] = params[:type]
+    query[:name] = params[:q]
+
+    response_json = current_user.search_models(query)
+    Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search response : #{response_json}")
+    if request.xhr?
+        render :json => response_json, :status => 200
+    end
+  end
+  ############################################
+  def rename_channel_of_post
+
+    Rails.logger.info("[CNTRL][HOME][RENAME POST CHANNEL] search params : #{params}")
+    query = {}
+    query[:activity_id] = params[:id]
+    query[:new_name] = params[:new_name]
+
+    response_json = current_user.rename_activity_name(query)
+    Rails.logger.info("[CNTRL][HOME][RENAME POST CHANNEL ] search response : #{response_json}")
+    if request.xhr?
+        render :json => response_json, :status => 200
+    end
+  end
+  ############################################
+  def settings
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS]  home/setting Page")
+    @profile_page = 1
+    @page_mode="profile_usr_settings_page"
+	  @user = current_user
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User id: #{@user.id}")
+    Rails.logger.info("[CNTRL][HOME][SETTINGS] Settings Page User Location: #{@user.current_location}")
+	  if !@user.nil?
+	      @profile = Profile.find_by_user_id(@user.id)
+        if @profile.nil?
+            @profile = Profile.new(@user)
+            @profile.user_id = @user.id
+            if @profile.save
+              Rails.logger.info("[CNTRL][HOME][SETTINGS] Created profile with id: #{@profile.id}")
+            else
+              Rails.logger.info("[CNTRL][HOME][SETTINGS] Could not create profile")
+            end
+        end
+	      #Rails.logger.info("[CNTRL][HOME][SETTINGS] If User is Not Nil, then profile: #{@profile.user.user_id}")
+	      #puts @profile.user_id
+	      #puts @profile.id
+	  end
+  end
+
+  ############################################
+  def settings_save
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Entry to Settings Update Page")
+	  @user = current_user
+    
+	  @profile = current_user.profile
+	  
+    Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information-- #{params[:user][:profile]}")
+	  #Document.UploadDocument(@user.id, nil ,  [params[:profile][:profile_photo_l]])
+	  if @profile.update_attributes(params[:user][:profile])
+      Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Settings Update Page Information #{params[:user]}")
+      if @user.update_attributes(params[:user])
+        unless params[:user][:profile_photo_s].blank?
+          current_user.photo_small_url = params[:profile][:profile_photo_s]
+          current_user.save!
+        end
+	      Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] After Updating Settings Page")
+        # TODO : need to decide whether we need to stay in same page or move to home page
+	      #redirect_to(home_show_url)
+	    end
+    end
+	  Rails.logger.info("[CNTRL][HOME][SETTINGS_SAVE] Exit From Settings Update Page")
+    respond_to do |format|
+      #format.html { render_with_scope :new }
+      format.js   {  }
+    end
+  
+  end
+
+  ########################################### 
+  def change_profile_pic
+     Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] Entry to Change Profile Pic")
+     Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] profile_pic value = #{params[:user][:photo_small_url]}")
+     @user = current_user
+     @user.photo_small_url = params[:user][:photo_small_url]
+     if @user.save!
+      Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] Could not save profile pic")
+     else
+      Rails.logger.info("[CNTRL][HOME][CHANGE_PROFILE_PIC] Saved profile pic")
+     end
+  end
+
+  
+
+
+
+
+  ############################################
+  # change password through settings page
+  def change_password
+    @current_password = true
+    Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] Password change request")
+    @user = current_user
+    Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] Params #{params}")    
+    if @user.valid_password?(params[:user][:current_password])
+      if @user.update_with_password(params[:user])
+        sign_in(@user, :bypass => true)
+        Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] Password has been changed successfully")
+        return
+      else
+        Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] -- Not able to change password")    
+        #render :edit
+      end
+    else
+        Rails.logger.info("[CNTRL] [HOME] [CHANGE_PASSWORD] -- Current password is not same")    
+        @current_password = false
+        
+        return 
+    end
+    respond_to do |format|
+          format.js
+        end 
+  end
+
+
+  ############################################
+  def deactivate_account
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Deactivating the account #{params}")
+    @user = current_user
+    @profile = current_user.profile
+    @authentication = Authentication.find_by_user_id(@user.id)
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] User values: #{@user}")
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Profile values : #{@profile}")
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Authentication values : #{@authentication}")
+    @authentication.destroy
+    @profile.destroy
+    @user.destroy
+    Rails.logger.info("[CNTRL] [HOME] [DEACTIVATE_ACCOUNT] Destroyed all related tables")
+ 
+    redirect_to root_path
+
+  end
+
+  ############################################
+  
+  def get_analytics_summary
+    Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS_SUMMARY] Params:#{params}")
+    query={}
+    if params[:type] == "channel"
+      query[:summary_id] =  Integer(params[:id])
+    elsif params[:type] == "location"
+      query[:location_id] =  Integer(params[:id])
+    elsif params[:type] == "mention"
+      query[:entity_id] =  Integer(params[:id])
+    else
+      Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS_SUMMARY] Analytics summary type incorrect")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
+    end
+    
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS_SUMMARY] Calling model api params #{query}")
+    response_json = current_user.get_analytics_summary(query)
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS_SUMMARY] model api response #{query}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json
+    end
+
+  end
+  ############################################
+
+  def get_analytics
+    Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS] Params:#{params}")
+    query={}
+    if params[:type] == "channel"
+      query[:summary_id] =  Integer(params[:id])
+    elsif params[:type] == "location"
+      query[:location_id] =  Integer(params[:id])
+    elsif params[:type] == "mention"
+      query[:entity_id] =  Integer(params[:id])
+    else
+      Rails.logger.error("[CNTRL][HOME][GET_ANALYTICS] [ERROR] Analytics summary type incorrect")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
+    end
+   
+    if !params[:fields].nil?
+      query[:fields]= params[:fields]
+    else
+      Rails.logger.error("[CNTRL][HOME][GET_ANALYTICS] [ERROR] No fields mentioned")
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
+    end
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS] Calling model api params #{query}")
+    response_json = current_user.get_analytics(query)
+    Rails.logger.info("[CNTRL][HOME][GET_ANALYTICS] model api response #{query}")
+    if request.xhr?
+      expires_in 10.minutes
+      render :json => response_json
+    end
+  end 
+
+
+
+
 end
 

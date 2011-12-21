@@ -1,34 +1,36 @@
-=render :partial => "home/top_bar" 
--if user_signed_in?
-  -if current_user.id == @user.id
-    #js_input_box
-      =render :partial => "home/input_box" 
+#fb-root
+  %script{:src => "http://connect.facebook.net/en_US/all.js", :type => "text/javascript"}
+.awppm_stm_channel_page_wrapper.awppm_stm_channel_page_column1
+  =render :partial => "/home/top_bar"
 
+.awppm_stm_channel_page_wrapper.awppm_stm_channel_page_column2
+  #awppm_stm_channel_page_channel_info_box
+    #awppm_stm_channel_page_channel_info_section
+      #awppm_stm_channel_page_channel_info_div.aw_js_ppm_channel_page_theme_thumb
+        .awppm_stm_channel_page_channel_label
+          %span#aw_js_ppm_channel_page_name
 
-.wrapper.col3
-  #p-ch-st-tab-sect
-    #p-ch-st-tab
-      .p-cstab
-        #channel_stream_header
-        #streams_list.p-awp-post-stream 
-        %a#more_channel_streams.more_loader{:href => "#"} More
-        %input#more_channel_streams_cookie{:type => "hidden", :value => ""}
-          
-          
-
-.wrapper.col4
-  #p-content-sect
-  
+      #awppm_stm_channel_page_timeline_container_box
+        %span#aw_js_ppm_stm_channel_page_main_label.awppm_stm_channel_page_main_label All streams
+        #aw_js_ppm_stm_stream_channel_page_div.awppm_stm_channel_page_stream_timelines
+          %input#aw_js_ppm_stm_channel_page_data_more.button_actwitty.gray.awppm_stm_channel_page_data_info_more{:type => "button", :value => "More"}
+          %ul#aw_js_ppm_stm_channel_page_list.awppm_stm_channel_page_post_timeline_list
+          .awppm_stm_busy_channels_page.aw_js_ppm_loading_animation
+            .awppm_stm_busy_mini_box
+              %img.awppm_stm_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
+      
 
 /Secret cookies
-%input#default_page_mode{:name => "default_page_mode", :type => "hidden", :value => "#{@filtered_mode}" }
-%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
-%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
-%input#channel_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@channel_id}" }
--if user_signed_in?
+%input#aw_js_ppm_fb_access_token{:type => "hidden", :value => "#{@fb_access_token}" }
+%input#aw_js_ppm_channel_page_channel_id{:type => "hidden", :value => "#{@channel_id}" }
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "" }
+%input#cache_cookie_id{:type => "hidden", :value => "" }
+%input#page_mode{ :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 - else
-  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }    
-
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
 
 

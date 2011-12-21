@@ -121,5 +121,21 @@ $(document).ready(function(){
     aw_api_ppm_stm_main_jump_to_post_on_text_click($(this));
     return false;
   });
+
+  /* go to the facebook post */
+  $(".aw_js_ppm_stm_fb_post_text").live('click', function(){
+    aw_api_ppm_stm_facebook_jump_to_fb_link($(this));
+    return false;
+  });
+
+  $(".aw_js_ppm_stm_chn_rename_submit").live('click', function(){
+    aw_api_ppm_stm_chn_rename_submit_handler($(this));
+    return false;
+  });
+
+  $(".js_activity_entity_highlighter").live('click', function(){
+   window.location.href = "/mention_page?id=" + $(this).attr("value"); 
+   return false;
+  });
   
 });

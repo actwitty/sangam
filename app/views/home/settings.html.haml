@@ -1,64 +1,43 @@
-#page-wrapper
-  #header
-    =render :partial => "home/top_bar"
-    /=render :partial => "welcome/logo"
+.awppm_user_profile_settings_wrapper.awppm_user_profile_settings_column1
+  =render :partial => "home/top_bar"
+.awppm_user_profile_settings_wrapper.awppm_user_profile_settings_column2
+  
+  #awppm_user_profile_settings_box
+    %h3 Settings
+    %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }
+    #awppm_user_profile_settings_content
+      #awppm_user_profile_settings_menu_box
+        =render :partial => "home/profile_pic_attachments.html.haml"        
+        #awppm_user_profile_settings_profile_pic
+          %img#awppm_js_user_img_settings.awppm_user_profile_setting_img{ :src => "#{@user.photo_small_url}"}
+        %input#awppm_user_profile_change_profile_pic.button_actwitty.blue.awppm_user_profile_settings_menu_btn{:type => "button", :value => "Change Profile Pic"}
+          =simple_form_for( @user, :as=>:user,:url => home_change_profile_pic_path, :remote => true , :html => { :method => :put })  do |f|
+            = f.input :photo_small_url , 
+                  :label => false,
+                  :input_html => {:type => 'hidden', :id=>'awppm_js_user_profile_settings_profile_pic_url' } 
+            
+            = f.submit "Submit", :type => "submit",:class=>"awppm_user_profile_chng_pic_submit", :id=>"awppm_user_profile_change_profile_pic_submit"  
+        
+        =render :partial => "home/password_settings"
+        %a{:href => "/home/deactivate"}
+          %h5#js_awppm_user_deactivate.awppm_user_profile_deactivate Deactivate Your ActWitty Account
+      #aw_spm_user_settings_box.js_user_settings_partial
+        =render :partial => "home/profile_settings"            
+
+
+%input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
+%input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
+%input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
+%input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
+
+:javascript
+  awppm_settings_page_elem_init()
+       
     
-  #settings-page
-    /#settings-sign-connect-desc
-    /%h3#settings-header Settings
-
-  #settings-page-block
-    /%h3#settings-header Settings Page
-    /#stylized.myform  :validate => true,
-    #settings-main.myform
-      = simple_form_for @profile,:html => {:multipart => true}, :file_field => {:multiple => true},:validate => true,  :url => home_settings_save_path do |f|
-
-        %label First Name
-        = f.input :first_name,:label=>false,  :input_html => { :size=> 30  }
-
-        %label Last Name
-        = f.input :last_name,:label=>false, :input_html => { :size=> 30  }
-
-        %label Gender
-        = f.input :sex, :label=> false, :collection => ['male','female','other'], :as => :select, :input_html => { }
-
-        %label Date of Birth
-        = f.input :dob, :label=> false, :as => :string, :input_html=>{ :size => "20", :type => "text", :class=>"settings-input dob",:id=>"profile_dob"}
-
-        %label City
-        = f.input :home_location, :label =>false, :input_html => { :size => 20, :class=>"settings-input" ,:id=>"settings_city" }
-
-        %label Mobile Number
-        = f.input :mobile_number, :label =>false, :input_html => { :size => 20, :class=>"settings-input" ,:id=>"settings_number" }
-        
-
-        %label Email
-        = f.input :email, :label =>false, :input_html => { :size => 20, :class=>"settings-input",:id=>"settings_email" }
-
-        %label Company Name
-        = f.input :company_name, :label =>false,  :input_html => { :size => 30, :class=>"settings-input",:id=>"settings_company" }
-
-        %label Address
-        = f.text_area :address, :cols=> 30 ,:rows => 5, :label =>false, :class=>"settings-textarea", :input_html => { :size => 30, :id=>"settings_address" }
-        
-
-        %label Website
-        = f.input :home_page, :label =>false, :placeholder => "http://", :input_html => { :size => 30, :class=>"settings-input",:id=>"settings_website" }
-
-        %label Interest
-        = f.input :interest, :label =>false, :input_html => { :size => 30, :class=>"settings-input ",:id=>"settings_interest" }
-
-        %label Photo
-        %img#user_settings_image{:alt => "", :src =>"#{@profile.profile_photo_l}", :width => "50", :height => "50"}/
-        /%img#user_settings_image{:alt => "", :src =>"#{@user.documents.url}", :width => "50", :height => "50"}/
-        = f.input :profile_photo_l,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
-        = f.input :profile_photo_s,:label=>false, :input_html => { :size => 10, :class=>"input-hidden"}
-        =render :partial => "home/profile_pic_attachments.html.haml"
-
-        = f.submit "Save", :type => "submit", :id=>"settings-button" 
-        /,:id=>"settings-button"
-
-  /=render :partial => "welcome/footer"
-=render :partial => "welcome/footer"
 
 

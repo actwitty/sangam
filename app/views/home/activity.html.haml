@@ -1,31 +1,37 @@
-.awppm_chn_channel_wrapper.awppm_chn_channel_column1
+#fb-root
+  %script{:src => "http://connect.facebook.net/en_US/all.js", :type => "text/javascript"}
+.awppm_stm_singlepost_wrapper.awppm_stm_singlepost_column1
   =render :partial => "home/top_bar"
 
-.awppm_chn_channel_wrapper.awppm_chn_channel_column2
-  #awppm_chn_user_box
-    #awppm_chn_user_section
-      #awppm_chn_user_info
-        #awppm_chn_user_img
+.awppm_stm_singlepost_wrapper.awppm_stm_singlepost_column2
+  #awppm_stm_singlepost_user_box
+    #awppm_stm_singlepost_user_section
+      #awppm_stm_singlepost_user_info
+        #awppm_stm_singlepost_user_img
           %center
-            %a{:href => "/home/show?id=#{@user.id}"}
-              %img{:src => @user.photo_small_url}/
+            %a.aw_js_ppm_singlepost_user_link{:href => "" }
+              %img.aw_js_ppm_singlepost_user_image{:src => ""}/
           %center
-            %a{:href => "/home/show?id=#{@user.id}"}
-              %span #{@user.full_name}
-
+            %a.aw_js_ppm_singlepost_user_link{:href => ""}
+              %span.aw_js_ppm_singlepost_user_name
+      #awppm_stm_singlepost_timeline_container_box
+        #aw_js_ppm_stm_stream_singlepost_div.awppm_stm_singlepost_stream_timelines
+          .awppm_stm_busy_channels_box.aw_js_ppm_loading_animation
+            .awppm_stm_busy_mini_box
+              %img.awppm_stm_busy_image{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
+        %ul#aw_js_ppm_stm_singlepost_list.awppm_stm_singlepost_post_timeline_list
       
 
 /Secret cookies
+%input#aw_js_ppm_fb_access_token{:type => "hidden", :value => "#{@fb_access_token}" }
+%input#aw_js_ppm_singlepost_id{:type => "hidden", :value => "#{@single_post_id}" }
 %input#page_owner_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.id}" }
 %input#page_owner_photo{:name => "user_photo_for_this_page", :type => "hidden", :value => "#{@user.photo_small_url}" }
 %input#page_owner_name{:name => "user_name_for_this_page", :type => "hidden", :value => "#{@user.full_name}" }
-%input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
-%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+%input#cache_cookie_id{:type => "hidden", :value => "#{@user.updated_at}" }
+%input#page_mode{ :type => "hidden", :value => "#{@page_mode}" }
 - if user_signed_in?
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
 - else
   %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
-
-
-
 

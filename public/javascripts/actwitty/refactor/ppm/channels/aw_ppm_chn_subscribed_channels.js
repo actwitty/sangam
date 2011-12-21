@@ -64,6 +64,7 @@ function aw_api_srv_resp_ppm_chn_render_subscribed_channels(params){
       aw_api_ppm_cmn_more_cookie_set('AW_SRV_PPM_CHN_GET_SUBSCRIBED_CHANNELS', channel_info.time);
     }
   });
+  $("abbr.aw_js_chn_timeago").timeago();
   /* enable the more button */
   $("#aw_js_ppm_subscribed_chn_data_more").attr("disabled", false);
   $('#aw_js_ppm_subscribed_channel_data').find(".aw_js_ppm_loading_animation").hide();
