@@ -22,6 +22,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :current_location
       t.decimal :current_geo_lat
       t.decimal :current_geo_long
+      t.integer :user_type, :default => AppConstants.user_type_regular
 
       t.timestamps
     end
@@ -33,6 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
     add_index :users, :unlock_token,         :unique => true
     add_index :users, :authentication_token, :unique => true
     add_index :users, :full_name
+    add_index :users, :user_type
 
   end
 

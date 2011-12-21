@@ -1,3 +1,4 @@
+require 'thread'
 require "query_manager"
 
 class Activity < ActiveRecord::Base
@@ -12,6 +13,8 @@ class Activity < ActiveRecord::Base
   belongs_to      :activity_word #, :touch => true user is touched through summary
 
   belongs_to      :base_location, :class_name => "Location"
+
+  belongs_to      :web_link
 
   #destroy will happen from activity
   has_many         :hubs, :dependent => :destroy
@@ -40,8 +43,6 @@ class Activity < ActiveRecord::Base
 
   has_many        :social_counters, :dependent => :destroy
 
-  has_one         :social_aggregator, :dependent => :destroy
-
   validates_existence_of  :author_id
   validates_existence_of  :activity_word_id
 
@@ -56,15 +57,17 @@ class Activity < ActiveRecord::Base
 
   validates_length_of     :sub_title,      :maximum => AppConstants.sub_title_length, :unless => Proc.new{|a| a.sub_title.nil?}
 
-  validates_length_of     :activity_text , :maximum => AppConstants.activity_text_length, :unless => Proc.new{|a| a.activity_text.nil?}
+  validates_length_of     :activity_text, :maximum => AppConstants.activity_text_length, :unless => Proc.new{|a| a.activity_text.nil?}
+
+  validates_uniqueness_of :source_msg_id, :scope => [:source_name, :author_id], :unless => Proc.new {|a| a.source_msg_id.nil?}
 
   before_save             :sanitize_data
 
-  after_destroy           :rebuild_summary_and_analytics
+  after_destroy           :rebuild_analytics
 
   after_save              :update_analytics
 
-  protected
+  public
 
     def sanitize_data
 
@@ -78,29 +81,39 @@ class Activity < ActiveRecord::Base
 
     end
 
-    def rebuild_summary_and_analytics
-      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary_and_analytics] - After Destroy entering")
+    def rebuild_analytics
+      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_analytics] - After Destroy entering")
 
       if !self.summary_id.blank?
-        s = Summary.where(:id => self.summary_id).first
-        s.rebuild_a_summary if !s.nil?
+#        s = Summary.where(:id => self.summary_id).first
+#        s.rebuild_a_summary if !s.nil?
 
-        #update_analytics
-        update_analytics
+         fields = create_fields_for_analytics
+         update_analytics(fields)
       end
 
-      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_summary_and_analytics] - After Destroy leaving")
+      Rails.logger.info("[MODEL] [ACTIVITY] [rebuild_analytics] - After Destroy leaving")
     end
 
-    def update_analytics
+    def update_analytics(fields = nil)
        Rails.logger.info("[MODEL] [ACTIVITY] [update_analytics] entering #{self.inspect}")
 
        #enable created_at and updated_at auto update immediately at after_save = just after Activity.create!
-       #ActiveRecord::Base.record_timestamps = true if ActiveRecord::Base.record_timestamps == false
+       ActiveRecord::Base.record_timestamps = true if ActiveRecord::Base.record_timestamps == false
 
-       SummaryRank.add_analytics({:fields => ["posts"], :summary_id => self.summary_id}) if !self.summary_id.blank?
+       fields = ["posts"] if fields.blank?
 
+       SummaryRank.add_analytics({:fields => fields, :summary_id => self.summary_id}) if !self.summary_id.blank?
        Rails.logger.info("[MODEL] [ACTIVITY] [update_analytics] leaving #{self.inspect}")
+    end
+
+    def create_fields_for_analytics
+      fields = ["posts"]
+      fields << "documents" if self.documents.size > 0
+      fields << "comments" if self.comments.size > 0
+      fields << "likes" if self.campaigns.size > 0
+      fields << "actions" if (!self.social_counters_array.blank? and  self.social_counters_array.size > 0)
+      fields
     end
 
   public
@@ -133,6 +146,11 @@ class Activity < ActiveRecord::Base
     #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
     #    :meta_activity => true/false #true for comment, campaign father activity creation otherwise false
     #    :source_msg_id => 123
+    #    :links => [{:url => "http://timesofindia.com/123.cms", :mime => AppConstants.mime_remote_link,
+    #             :provider => "timesofindia.com", :description => "Manmohan singh sleeping" [OPTIONAL],
+    #             :title => "indian politics"[OPTIONAL], :image_url => "http://timesofindia.com/123.jpg" [OPTIONAL]
+    #             ,:image_width => 90[OPTIONAL], :image_height => 120[OPTIONAL], :url_processed => true/false [OPTIONAL][Only come from pulled data]}]
+
 
     def create_activity(params={})
 
@@ -141,6 +159,7 @@ class Activity < ActiveRecord::Base
         summary = nil
         summary_hash = {}
         document_ids = []
+        link_ids = []
         array = []
         tag_ids =[]
 
@@ -149,7 +168,7 @@ class Activity < ActiveRecord::Base
           return {}
         end
 
-        puts params[:activity].inspect
+
         #set mandatory parameters if missing
         params[:status] = AppConstants.status_public if params[:status].nil?
         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
@@ -160,7 +179,7 @@ class Activity < ActiveRecord::Base
         ################################### Create Activity Word ################################################
 
         word_obj = ActivityWord.create_activity_word(params[:activity], "verb-form")
-         puts params[:activity].inspect
+
         #################################### CREATE SUMMARY ######################################################
         #summary is processed earlier as to keep counter_cache active.
         #counter_cache only works for create & destroy methods
@@ -196,11 +215,12 @@ class Activity < ActiveRecord::Base
         #Activity,create! or update in after_save callback
         #Commented - as we are not setting creatd_at and updated_at manually..But works very neatly..
         #To enable un-comment 4 lines and also in after_save callback
-#        if !params[:created_at].blank? and !params[:updated_at].blank?
-#          h[:created_at] = params[:created_at]
-#          h[:updated_at] = params[:updated_at]
-#          ActiveRecord::Base.record_timestamps = false
-#        end
+        if !params[:created_at].blank? and !params[:updated_at].blank?
+          h[:created_at] = params[:created_at]
+          h[:updated_at] = params[:updated_at]
+          h[:backup_created_timestamp] = Time.now.to_datetime
+          ActiveRecord::Base.record_timestamps = false
+        end
 
         if params[:update] == false
           #create activity => either root or child
@@ -223,7 +243,7 @@ class Activity < ActiveRecord::Base
 
           #Serialize Most recent activity texts
           if !obj.activity_text.blank?
-            summary_hash["activity"] = [obj.id]
+            #summary_hash["activity"] = [obj.id]
           end
 
 
@@ -234,37 +254,60 @@ class Activity < ActiveRecord::Base
               #Add location to params hash for hub creation
               params[:location_hash] = loc.id
               #Serialize Most recent location
-              summary_hash["location"] = [loc.id]
+              #summary_hash["location"] = [loc.id]
            end
           end
 
-          ###################################Generate Mentions#################################################
+          ################################### Generate Mentions #################################################
           if !params[:text].blank?
               params[:text] = Mention.create_mentions(params[:text], obj)
 
               #Save location and Mentions too
-              obj.update_attributes(:activity_text => params[:text],:base_location_id => params[:location_hash] )
+              #obj.update_attributes(:activity_text => params[:text],:base_location_id => params[:location_hash] )
+              Activity.update_all({:activity_text => params[:text],:base_location_id => params[:location_hash]},
+                                  {:id => obj.id})
           end
 
-          ##################################CREATE DOCUMENTS #####################################################
+
+          ################################## CREATE DOCUMENTS ###################################################
           #first get the mentioned document links
           array = []
-          array = get_documents(params[:text]) if !params[:text].blank?
-          !params[:documents].blank? ? params[:documents].concat(array) : (params[:documents] = array if !array.blank?)
 
+          #process in-text embedded links only for check-ins in Actwitty
+          #for rest process all links ( attached + in-text ) in data adaptor of provider
+          #this is done so that we can categorize external posts from providers in bulk
+          if params[:source_name] == AppConstants.source_actwitty
+            array = get_documents(params[:text]) if !params[:text].blank?
+          end
+
+          !params[:documents].blank? ? params[:documents].concat(array) : (params[:documents] = array)
+          params[:documents].concat(params[:links]) if !params[:links].blank?
+
+          doc_hash = {}
           if !params[:documents].blank?
             params[:documents].each do |attr|
+
+              #check if duplicate urls are there
+              if doc_hash[attr[:url]].blank?
+                doc_hash[attr[:url]]= true
+              else
+                next
+              end
+
               d = Document.create_document(:owner_id => params[:author_id], :activity_id => obj.id, :activity_word_id => word_obj.id,
                          :source_name =>params[:source_name],:summary_id => params[:summary_id], :url => attr[:url],
                          :thumb_url => attr[:thumb_url], :provider => attr[:provider],:uploaded => attr[:uploaded],
                          :mime => attr[:mime], :caption => attr[:caption], :location_id => params[:location_hash],
-                         :status => params[:status] )
+                         :status => params[:status], :name => attr[:name], :description => attr[:description],
+                         :image_url => attr[:image_url], :image_width => params[:image_width],:image_height => params[:image_height],
+                         :url_processed => params[:url_processed])
 
-              document_ids << d.id if !d.nil?
+              if !d.nil?
+                #document_ids << d.id
+              end
             end
-
             #Serialize Most recent docs
-            summary_hash["document"] = document_ids
+            #summary_hash["document"] = document_ids
           end
 
           #################################CREATE HASH TAGS######################################################
@@ -282,18 +325,20 @@ class Activity < ActiveRecord::Base
                           :tag_type => attr[:tag_type], :location_id => params[:location_hash],
                          :status => params[:status], :summary_id => params[:summary_id])
 
-              tag_ids << t.id if !t.nil?
+              #tag_ids << t.id if !t.nil?
 
             end
             #Serialize Most recent tags
-            summary_hash["tag"] = tag_ids
+            #summary_hash["tag"] = tag_ids
           end
 
           ################################# SERIALIZE TO SUMMARY ###################################################
+          #as we are calling update_all for loc amd mention.. so object will not be updated
+          obj.reload
 
           #Update Summary Data - Dont do it for saved data
           if params[:status] != AppConstants.status_saved
-            summary.serialize_data(summary_hash)
+            #summary.serialize_data(summary_hash)
           else
             return obj
           end
@@ -318,6 +363,13 @@ class Activity < ActiveRecord::Base
 
     rescue => e
         Rails.logger.error("[MODEL] [ACTIVITY] [create_activity] rescue => CreateActivity failed with #{e.message} for #{params.to_s}")
+
+        #Validation Uniqueness fails  [:source_msg_id, :source_name, :author_id]
+        if /has already been taken/ =~ e.message
+          Rails.logger.error("[MODEL] [ACTIVITY] [create_activity] rescue => Unique Validation failed
+                        [msg_id => #{params[:source_msg_id]} source_name => #{params[:source_name]}
+                        author_id => #{params[:author_id]}]")
+        end
         nil
     end
 
@@ -338,145 +390,6 @@ class Activity < ActiveRecord::Base
     end
 
 
-    #INPUT { :activity_id => 123,
-    #        REST ALL SAME PARAMETER AS create_activity
-    #      }
-    #OUTOUT => Same as create_activity
-    ##COMMENT => It is used for normal edits of activities. State change can also happen BUT only from PUBLIC to
-    ##           PRIVATE and VICE VERSA and NOT FROM SAVED to PUBLIC/PRIVATE
-    ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
-    def update_activity(params)
-
-      Rails.logger.debug("[MODEL] [Activity] [update_activity] entering ")
-
-      a = Activity.where(:id => params[:activity_id], :author_id => params[:current_user_id]).first
-
-      #false activity
-      if a.blank?
-        Rails.logger.debug("[MODEL] [Activity] [update_activity] [ERROR] returning empty json ")
-        return {}
-      end
-
-      #store summary_id to see if summary id is not changed in update
-      prev_summary_id = a.summary_id
-
-      #delete existing documents which are not in input params
-      url = []
-
-      #collect params docs in array
-      unless params[:documents].blank?
-        params[:documents].each do |attr|
-          url << attr[:url]
-        end
-      end
-
-      #remove the existing activity docs if input params docs is blank
-      destroy_ids = []
-      delete_ids = []
-      if url.blank?
-         a.documents.clear if a.documents.size > 0
-      else
-        a.documents.each do |attr|
-          url.include?(attr.url) ? delete_ids << attr.id : destroy_ids << attr.id
-        end
-        Document.destroy_all(:id => destroy_ids) if !destroy_ids.blank?
-        Document.delete_all(:id => delete_ids) if !delete_ids.blank?
-      end
-
-      #delete existing tags
-      a.tags.clear if a.tags.size > 0
-
-      #delete related hubs
-      a.hubs.clear
-
-      #params.delete(:activity_id)
-      params[:update] = true
-      params[:activity]= params[:word]
-      params[:author_id] = params[:current_user_id]
-      params[:meta_activity] = false
-
-      obj = create_activity(params)
-      if obj.blank?
-        Rails.logger.error("[MODEL] [Activity] [create_activity] [ERROR] returning empty json ")
-        return {}
-      end
-
-      a = format_activity(obj)
-
-      #store summary_id to see if summary id is not changed in update
-      if a[:post][:summary_id] != prev_summary_id
-
-        #update Social counter with new summary_id
-        if !a[:post][:social_counters].blank?
-          SocialCounter.update_all({:summary_id => a[:post][:summary_id]},{:summary_id => prev_summary_id,
-                                                                          :activity_id => a[:post][:id]})
-
-          #Recreate Social Counter Array for given summary
-          s = Summary.where(:id => a[:post][:summary_id]).first
-          s.social_counters_array = []
-          SocialCounter.where(:summary_id =>a[:post][:summary_id]).group(:source_name, :action).count.each do |k,v|
-            s.social_counters_array << {:source_name => k[0], :action => k[1], :count => v}
-          end
-          s.update_attributes(s.attributes)
-        end
-
-      end
-
-      #Now rebuild the older summary. New summary will be build during create activity.
-      #Only we have social counters of old summary need to migrate to new one.. this is done in upper block
-      Summary.reset_counters( prev_summary_id, :activities)
-      s = Summary.where(:id => prev_summary_id).first
-      if s.activities.size == 0
-        s.destroy
-      else
-        s.rebuild_a_summary
-      end
-
-      Rails.logger.debug("[MODEL] [Activity] [update_activity] leaving ")
-      a
-    end
-
-
-    #INPUT { :activity_id => 123,
-    #        :status => 1,
-    #        :current_user_id => 123
-    #      }
-    #OUTOUT => Same as create_activity
-    ##COMMENT => Changes state from saved to publish or private state. Dont use this api to change from
-    ##           private to public or vice versa .. its only from saved to public state as it destroys
-    ##           the previous activity and re-creates the new one.
-    ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
-    #TODO fix it
-    def publish_activity(params)
-
-      Rails.logger.debug("[MODEL] [Activity] [publish_activity] entering")
-
-      a = remove_activity({:activity_id => params[:activity_id], :current_user_id => params[:current_user_id]})
-
-      if a.blank?
-        Rails.logger.debug("[MODEL] [Activity] [publish_activity]  returning empty json ")
-        return {}
-      end
-
-      params.delete(:activity_id)
-
-      params[:activity]= params[:word]
-      params[:author_id] = params[:current_user_id]
-      params[:meta_activity] = false
-
-      obj = Activity.create_activity(params)
-      if obj.blank?
-        Rails.logger.error("[MODEL] [Activity] [create_activity] [ERROR] returning empty json ")
-        return {}
-      end
-      activity = format_activity(obj)
-
-      Rails.logger.debug("[MODEL] [Activity] [publish_activity] leaving")
-      activity
-
-    end
-
-
     #Removes all occurrences of an entity from an activity
     #INPUT => {activity_id => 123, entity_id => 234}
     #OUTPUT => Activity Blob
@@ -489,6 +402,7 @@ class Activity < ActiveRecord::Base
 
       if !activity.activity_text.blank?
          text = unlink_an_entity(activity.activity_text,  params[:entity_id])
+         puts text
          Activity.update_all({:activity_text=> text},{:id => params[:activity_id]})
       else
         Rails.logger.debug("[MODEL] [Activity] [remove_entity_from_activity] activity_text blank => LEAVING")
@@ -499,23 +413,10 @@ class Activity < ActiveRecord::Base
       #Destroy Hub entries for that
       Hub.destroy_all(:activity_id =>params[:activity_id], :entity_id => params[:entity_id])
 
-      #Reset Summary for entity id
-      if !activity.summary_id.nil?
+      #update analytics for entity id
+      SummaryRank.add_analytics({:fields => ["posts"], :entity_id => params[:entity_id]} )
 
-        s = Summary.where(:id => activity.summary_id).first
-
-        #Recreate Entity Array for given summary
-        s.entity_array = []
-        a = Hub.where(:summary_id => activity.summary_id, :entity_id.not_eq => nil).group(:entity_id).
-                limit(AppConstants.max_number_of_a_type_in_summmary).order("MAX(created_at) DESC").count
-
-        s.entity_array = a.keys if !a.blank?
-
-        s.update_attributes(:entity_array => s.entity_array)
-        #Summary.update_all({:entity_array => [s.entity_array]}, {:id => activity.summary_id})
-      end
-      s = Summary.where(:id => activity.summary_id).first
-
+      activity.reload
       activity = format_activity(activity)
 
       Rails.logger.debug("[MODEL] [Activity] [remove_entity_from_activity] leaving")
@@ -541,49 +442,26 @@ class Activity < ActiveRecord::Base
         array[index][:comments] = {:count => attr.comments.size, :array => [] }
         array[index][:documents]= {:count => attr.documents.size, :array => []}
         array[index][:tags]=      {:count => attr.tags.size, :array => []}
-        array[index][:campaigns]= []
+        array[index][:campaigns]= [{:name=>"like", :count=>attr.campaigns.size, :user=>false}]
         hash[attr.id] = index
         index = index + 1
       end
 
-      Document.where(:activity_id => params[:activity_ids]).all.each do |attr|
+      Document.includes(:web_link).where(:activity_id => params[:activity_ids]).all.each do |attr|
          h = format_document(attr)
          array[hash[attr.activity_id]][:documents][:array] << h[:document]
       end
 
-      Tag.where(:activity_id => params[:activity_ids]).all.each do |attr|
-         h = format_tag(attr)
-         array[hash[attr.activity_id]][:tags][:array] << h[:tag]
+      #the following block is only valid if only like campaigns are there in system
+      Campaign.where(:activity_id => params[:activity_ids],:author_id => params[:current_user_id]).all.each do |attr|
+        array[hash[attr.activity_id]][:campaigns][0][:user] = true
       end
 
-      campaign_hash = {}
-      temp_hash = {}
-      index = 0
-      #Get all the campaigns grouped for those activity
-      Campaign.where(:activity_id =>params[:activity_ids]).group(:activity_id, :name).count.each do |k,v|
+#      Tag.where(:activity_id => params[:activity_ids]).all.each do |attr|
+#         h = format_tag(attr)
+#         array[hash[attr.activity_id]][:tags][:array] << h[:tag]
+#      end
 
-         h = {:name => k[1], :count => v , :user => false}
-         campaign_hash[k[0]].nil? ? campaign_hash[k[0]] = [h] : campaign_hash[k[0]] << h
-         temp_hash[{:id => k[0], :name => k[1]}] = campaign_hash[k[0]].count -1
-
-      end
-
-      #Get all the campaigns grouped for those activity by current user
-      #Set user_id if user has acted on  campaign
-      Campaign.where(:activity_id => params[:activity_ids], :author_id => params[:current_user_id]).group(:activity_id, :name).count.
-          each do |k,v|
-          if !campaign_hash[k[0]].nil?
-            campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user] =  true
-            campaign_hash[k[0]][temp_hash[{:id => k[0], :name => k[1]}]][:user_id] =  params[:current_user_id]
-         end
-      end
-
-
-      campaign_hash.each do |k,v|
-        v.each do |entry|
-         array[hash[k]][:campaigns] << entry
-        end
-      end
 
       Rails.logger.debug("[MODEL] [ACTIVITY] [get_all_activity] leaving")
       array
@@ -639,30 +517,44 @@ class Activity < ActiveRecord::Base
     # :documents=>
     #  {
     #   :count=>2,
-    #   :array=>[
-    #           {:id=>1, :name=>"xyz.jpg",:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg",
-    #                               :caption=>nil, :source_name=>"actwitty",  :status=>1, :uploaded=>true, :category => "image"},
-    #           {:id=>2, :name=>"abc.jpg",:thumb_url => nil, :url=>"https://s3.amazonaws.com/abc.jpg", :caption=>nil, :source_name=>"actwitty",
-    #                                                                    :status=>1, :uploaded=>true, :category => "image"}
-    #           ]
-    #  },
-    # :campaigns=>
-    #     [{:name=>"support", :count=>1, :user=>true, :user_id=>5}, {:name=>"like", :count=>2, :user=>false}]
-    # }
-    # ]
-    ##COMMENT IF CHANNEL FILTER THEN
-    # :theme_data => {
-    #                 :id => 123, :theme_type => theme.theme_type,# [ 1 (AppConstants.theme_default) OR 2 (AppConstants.theme_color) OR 3 (AppConstants.theme_document)],
-    #                 :user_id => 123,:summary_id => 134,:time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
-    #
-    #                 :document_id => _id, #if :theme_type => AppConstants.theme_document
-    #                                                      OR
-    #                 :fg_color => AppConstants.theme_default_fg_color, :bg_color => AppConstants.theme_default_bg_color
-    #                         #if :theme_type => AppConstants.theme_default
-    #                                                     OR
-    #                 :fg_color => "0x6767623", :bg_color => "0x78787834" # :theme_type => AppConstants.theme_color
-    #                 }
-    # :analytics_summary => {
+  #      :array=>[
+  #           {:id=>1,:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg",
+  #            :caption=>nil, :source_name=>"actwitty",  :status=>1, :uploaded=>true,:activity_id=>230, :summary_id=>125, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #            :category => "image",
+  #           }
+  #
+  #          {:id=>2, :name=>"abc.docx",:thumb_url => nil, :url=>"https://s3.amazonaws.com/abc.docx", :caption=>nil, :source_name=>"actwitty",
+  #           :status=>1, :uploaded=>true, :activity_id=>230, :summary_id=>125,:time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #           :category => "application",
+  #          }
+  #
+  #          {
+  #          :id=>729, :url=>"http://timeofindia.com/123/234", :thumb_url=>nil, :caption=>nil, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #          :source_name=>"actwitty", :status=>2, :uploaded=>false, :activity_id=>230,  :summary_id=>125,
+  #          :category=>"link",
+  #          :url_description=>"fight of over FDI in retail intensifies at parliament",
+  #          :url_category=>"politics", :url_title=>"indian politics", :url_image=>nil, :url_provider=>"timesofindia.com"
+  #          }
+  #
+  #           ]
+  #  },
+  # :campaigns=>
+  #     [{:name=>"support", :count=>1, :user=>true, :user_id=>5}, {:name=>"like", :count=>2, :user=>false}]
+  # }
+  # ]
+  ##COMMENT IF CHANNEL FILTER THEN
+  # :theme_data => {
+  #                 :id => 123, :theme_type => theme.theme_type,# [ 1 (AppConstants.theme_default) OR 2 (AppConstants.theme_color) OR 3 (AppConstants.theme_document)],
+  #                 :user_id => 123,:summary_id => 134,:time => Thu, 21 Jul 2011 14:44:26 UTC +00:00,
+  #
+  #                :document_id => _id, #if :theme_type => AppConstants.theme_document
+  #                                                      OR
+  #                 :fg_color => AppConstants.theme_default_fg_color, :bg_color => AppConstants.theme_default_bg_color
+  #                         #if :theme_type => AppConstants.theme_default
+  #                                                     OR
+  #                 :fg_color => "0x6767623", :bg_color => "0x78787834" # :theme_type => AppConstants.theme_color
+  #                 }
+  # :analytics_summary => {
     #                          "posts" =>{:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45} #many new services can come this is Exemplary
     #                         "comments" => {:total => 34, :actwitty => 20, :facebook => 14 }, "likes" =>{:total => 123, :actwitty => 33, :facebook => 90 }
     #                         "actions" =>  {:share => 24, :views => 90},
@@ -711,7 +603,7 @@ class Activity < ActiveRecord::Base
         activity = Activity.where(h).limit(AppConstants.max_number_of_activities).group(:id).order("MAX(updated_at) DESC").count
       end
 
-      array = get_all_activity({:activity_ids => activity.keys})
+      array = get_all_activity({:activity_ids => activity.keys, :current_user_id => params[:current_user_id]})
 
       stream[:stream] = array
 
@@ -813,6 +705,77 @@ class Activity < ActiveRecord::Base
       Rails.logger.debug("[MODEL] [Activity] [get_activity_stream] leaving")
       hash
     end
+
+    #INPUT => :activity_id => 123, :new_name => "foodie", :user_id > 123
+    #OUPUT => returns activity object attributes as hash
+    def rename_activity_name(params)
+       Rails.logger.info("[MODEL] [Activity] [rename_activity_name] entering")
+
+       if params[:new_name].blank?
+         Rails.logger.info("[MODEL] [Activity] [rename_activity_name]  => BLANK activity name given  " )
+         return {}
+       end
+
+       a = Activity.where(:id => params[:activity_id]).first
+
+       if a.blank?
+         Rails.logger.info("[MODEL] [Activity] [rename_activity_name]  => invalid activity  " )
+         return {}
+       end
+
+       params[:new_name].capitalize!
+       if params[:new_name] == a.activity_name
+         Rails.logger.info("[MODEL] [Activity] [rename_activity_name]  => same activity name given  " )
+         return {}
+       end
+
+       if params[:user_id] != a.author_id
+         Rails.logger.info("[MODEL] [Activity] [rename_activity_name]  => invalid user  " )
+         return {}
+       end
+
+       summary_new = Summary.where(:user_id => a.author_id, :activity_name => params[:new_name]).first
+       if summary_new.blank?
+         Rails.logger.info("[MODEL] [Activity] [rename_activity_name] => summary name for this user does not exist " )
+         return {}
+       end
+
+       summary_old = Summary.where(:id => a.summary_id).first
+       if summary_old.blank?
+         Rails.logger.info("[MODEL] [Activity] [rename_activity_name] => ERROR old summary is blank how come " )
+          return {}
+       end
+
+       update_activity_associations(params[:new_name], summary_new, params[:activity_id])
+
+       #summary_new.rebuild_a_summary
+       fields = a.create_fields_for_analytics     #get only necessary field to update
+       SummaryRank.add_analytics({:fields => fields, :summary_id => summary_new.id})
+
+       #reset needed otherwise destroy will not happen
+       Summary.reset_counters(summary_new.id,:activities, :documents, :campaigns, :tags)
+       Summary.reset_counters(summary_old.id,:activities, :documents, :campaigns, :tags)
+
+       #reload & destroy old summary. If activities count is 0
+       summary_old.reload
+       if summary_old.activities.size == 0
+         summary_old.destroy
+       else
+         #summary_old.rebuild_a_summary
+         SummaryRank.add_analytics({:fields => fields, :summary_id => summary_old.id})
+       end
+
+       #as we are returning activity so no need to reload
+       #summary_new.reload
+       #summary_new.attributes
+
+       a.reload
+       Rails.logger.info("[MODEL] [Activity] [rename_activity_name] => leaving #{params.inspect}")
+       a.attributes
+    rescue => e
+       Rails.logger.info("[MODEL] [Activity] [rename_activity_name] => Rescue ERROR #{e.message} for #{params.inspect}")
+       nil
+    end
   end
 
 
@@ -853,12 +816,13 @@ class Activity < ActiveRecord::Base
         end
        
         #Update Activity Data
-        obj = Activity.where(:id => params[:activity_hash]).first
-        obj.update_attributes(:activity_text => params[:text],:enriched => true)
+        #obj = Activity.where(:id => params[:activity_hash]).first
+        #obj.update_attributes(:activity_text => params[:text],:enriched => true)
+        Activity.update_all({:activity_text => params[:text],:enriched => true}, {:id => params[:activity_hash]})
 
         #Update Summary's Entity Array
-        summary = Summary.where(:id => params[:summary_id]).first
-        summary.serialize_data({"entity" => entity})
+#        summary = Summary.where(:id => params[:summary_id]).first
+#        summary.serialize_data({"entity" => entity})
 
         Rails.logger.info("[MODEL] [ACTIVITY] [create_hub_entries] leaving ")
       rescue => e
@@ -914,9 +878,36 @@ class Activity < ActiveRecord::Base
 
       handle_asynchronously :post_proc_activity
 
+
+        #called from rename_activity_name
+      def update_activity_associations(new_name, summary_new, activity_id)
+
+        Activity.update_all({:activity_name => new_name, :activity_word_id =>summary_new.activity_word_id,
+                                :summary_id => summary_new.id}, { :id => activity_id })
+
+        Document.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
+                               { :activity_id => activity_id })
+
+        Tag.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
+                          { :activity_id => activity_id })
+
+        Hub.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
+                          { :activity_id => activity_id })
+
+        Campaign.update_all({:summary_id => summary_new.id},{ :activity_id => activity_id })
+
+        Comment.update_all({:summary_id => summary_new.id}, { :activity_id => activity_id })
+
+        SocialCounter.update_all({:summary_id => summary_new.id}, {:activity_id => activity_id})
+#
+#        SocialAggregator.update_all({:summary_id => summary_new.id}, {:activity_id => activity_id})
+      end
+
     end
 
 end
+
+
 
 
 
@@ -937,28 +928,31 @@ end
 #
 # Table name: activities
 #
-#  id                    :integer         not null, primary key
-#  activity_word_id      :integer         not null
-#  activity_text         :text
-#  activity_name         :text            not null
-#  author_id             :integer         not null
-#  base_location_id      :integer
-#  comments_count        :integer         default(0)
-#  documents_count       :integer         default(0)
-#  tags_count            :integer         default(0)
-#  campaign_types        :integer         not null
-#  status                :integer         not null
-#  source_name           :text            not null
-#  sub_title             :text
-#  summary_id            :integer
-#  enriched              :boolean
-#  meta_activity         :boolean
-#  blank_text            :boolean
-#  social_counters_array :text
-#  created_at            :datetime
-#  updated_at            :datetime
-#  source_msg_id         :string(255)
-#  category_type         :string(255)
-#  category_id           :string(255)
+#  id                       :integer         not null, primary key
+#  activity_word_id         :integer         not null
+#  activity_text            :text
+#  activity_name            :text            not null
+#  author_id                :integer         not null
+#  base_location_id         :integer
+#  comments_count           :integer         default(0)
+#  documents_count          :integer         default(0)
+#  tags_count               :integer         default(0)
+#  activities               :integer         default(0)
+#  campaigns_count          :integer         default(0)
+#  campaign_types           :integer         not null
+#  status                   :integer         not null
+#  source_name              :text            not null
+#  sub_title                :text
+#  summary_id               :integer
+#  enriched                 :boolean
+#  meta_activity            :boolean
+#  blank_text               :boolean
+#  social_counters_array    :text
+#  source_msg_id            :string(255)
+#  category_type            :string(255)
+#  category_id              :string(255)
+#  backup_created_timestamp :datetime
+#  created_at               :datetime
+#  updated_at               :datetime
 #
 

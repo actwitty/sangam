@@ -10,13 +10,20 @@ class CreateLocations < ActiveRecord::Migration
       t.decimal :location_lat, :precision => 18, :scale => 15
       t.decimal :location_long, :precision => 18, :scale => 15
 
-      t.text :social_counters_array
+      t.text    :social_counters_array
+
+      t.text    :analytics_summary
+      t.string  :location_city
+      t.string  :location_country
+      t.string  :location_region
+      t.string  :rank
+      t.integer :campaigns_count
 
       t.timestamps
 
     end
 
-    add_index :locations, [:location_type, :location_name]
+    add_index :locations, :location_type
     add_index :locations, :location_name
 
     add_index :locations, [:location_lat,:location_long ], :unique => true
@@ -25,18 +32,14 @@ class CreateLocations < ActiveRecord::Migration
     add_index :locations, :location_url, :unique => true
     add_index :locations, :updated_at
 
+    add_index :locations,  :location_city
+    add_index :locations,  :location_country
+    add_index :locations,  :location_region
+    add_index :locations,  :rank
+
   end
 
   def self.down
-    
-    remove_index :locations, [:location_type, :location_name]
-    remove_index :locations, :location_name
- 
-    remove_index :locations, [:location_lat,:location_long ]
-    remove_index :locations, :location_long
-
-    remove_index :locations, :location_url
-    remove_index :locations, :updated_at
 
     drop_table :locations
 

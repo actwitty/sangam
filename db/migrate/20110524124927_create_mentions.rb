@@ -13,10 +13,6 @@ class CreateMentions < ActiveRecord::Migration
   end
 
   def self.down
-
-    remove_index :mentions,[:user_id, :activity_id]
-    remove_index :mentions, :activity_id
-
     drop_table :mentions
   end
 end

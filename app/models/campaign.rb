@@ -1,13 +1,13 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User"
-  belongs_to :activity
+  belongs_to :activity, :counter_cache => true
 
-  belongs_to :entity
-  belongs_to :location
+  belongs_to :entity, :counter_cache => true
+  belongs_to :location, :counter_cache => true
   belongs_to :comment
-  belongs_to :document
-  belongs_to :summary
+  belongs_to :document, :counter_cache => true
+  belongs_to :summary, :counter_cache => true
 
   belongs_to :father, :class_name => "Activity"
 
@@ -245,6 +245,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -261,8 +262,8 @@ end
 #  value       :integer         not null
 #  status      :integer         not null
 #  source_name :text            not null
+#  summary_id  :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  summary_id  :integer
 #
 

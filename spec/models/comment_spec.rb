@@ -8,6 +8,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: comments
@@ -20,8 +21,8 @@ end
 #  text        :text            not null
 #  status      :integer         not null
 #  source_name :text            not null
+#  summary_id  :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  summary_id  :integer
 #
 

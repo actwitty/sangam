@@ -9,9 +9,6 @@ class CreateActivityWords < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :activity_words, :word_name
-    remove_index :activity_words, :updated_at
-
     drop_table :activity_words
   end
 end

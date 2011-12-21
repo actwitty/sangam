@@ -1,3 +1,4 @@
+require 'thread'
 module QueryPlanner
 
   def pq_campaign_filter(params)

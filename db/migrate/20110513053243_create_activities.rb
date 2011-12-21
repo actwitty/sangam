@@ -17,6 +17,7 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :comments_count, :default => 0
       t.integer :documents_count, :default => 0
       t.integer :tags_count, :default => 0
+      t.integer :activities, :campaigns_count, :default => 0
 
       t.integer :campaign_types, :null => false         # 1 to 7 or nil #at present each bit represent on campaign type. bit 0 => like,
                                         # bit 1=>support,bit 2=> :join
@@ -38,71 +39,48 @@ class CreateActivities < ActiveRecord::Migration
 
       t.text :social_counters_array
 
+      t.string  :source_msg_id
+      t.string  :category_type
+      t.string  :category_id
+
+      t.datetime  :backup_created_timestamp, :default => nil
+
       t.timestamps
     end
 
-       add_index :activities, [:summary_id, :blank_text]
+       add_index :activities, :summary_id
 
-       add_index :activities, [:summary_id, :base_location_id]
+       add_index :activities, :activity_name
+       add_index :activities, :author_id
 
-       add_index :activities, [:author_id, :status, :meta_activity]
+       add_index :activities, :source_name
 
-       add_index :activities, [:summary_id, :activity_word_id, :activity_name],
-                 :name => "index_activities_on_summary_word_activity_name"
+       add_index :activities, :base_location_id
 
-       add_index :activities, [:author_id, :activity_word_id, :status]
+       add_index :activities, :activity_word_id
 
-       add_index :activities, [:author_id, :base_location_id, :status]
-
-       add_index :activities, [:author_id, :source_name, :status]
-
-       add_index :activities, [:activity_word_id, :base_location_id, :source_name, :status],
-                 :name => "index_activities_on_word_loc_source_status"
-
-       add_index :activities, [:source_name, :status]
-
-       add_index :activities, [:base_location_id, :status]
-
-       add_index :activities, [:activity_word_id, :status]
+       add_index :activities,  :status
 
        add_index :activities, :updated_at
 
-       add_index :activities, [:id, :author_id]
+       add_index :activities, :enriched
 
-       add_index :activities, [:id, :enriched]
+       add_index :activities, :blank_text
 
+       add_index :activities, :meta_activity
+
+       add_index :activities, :source_msg_id
+
+       add_index :activities, :category_type
+
+       add_index :activities, :backup_created_timestamp
+
+       add_index :activities, [:source_msg_id, :source_name, :author_id], :unique => true,
+                              :name => "index_activities_msg_id_source_author"
   end
 
   def self.down
 
-      remove_index :activities, [:summary_id, :blank_text]
-
-      remove_index :activities, [:summary_id, :base_location_id]
-
-      remove_index :activities, [:author_id, :status, :meta_activity]
-
-      remove_index :activities, :name => "index_activities_on_summary_word_activity_name"
-
-      remove_index :activities, [:author_id, :activity_word_id, :status]
-
-      remove_index :activities, [:author_id, :base_location_id, :status]
-
-      remove_index :activities, [:author_id, :source_name, :status]
-
-      remove_index :activities, :name => "index_activities_on_word_loc_source_status"
-
-      remove_index :activities, [:source_name, :status]
-
-      remove_index :activities, [:base_location_id, :status]
-
-      remove_index :activities, [:activity_word_id, :status]
-
-      remove_index :activities, :updated_at
-
-      remove_index :activities, [:id, :author_id]
-
-      remove_index :activities, [:id, :enriched]
-
-      drop_table :activities
+       drop_table :activities
   end
 end

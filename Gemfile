@@ -87,6 +87,7 @@ gem "right_aws"
 gem 'pusher'
 #for asynchronous web-socket
 gem 'em-http-request'
+gem 'em-synchrony'
 
 group :development do
   #query reviewer

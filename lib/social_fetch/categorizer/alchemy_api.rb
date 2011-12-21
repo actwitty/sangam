@@ -34,7 +34,7 @@ module SocialFetch
               return AppConstants.default_category
             end
 
-            category = ALCHEMY_CATEGORIES[data["category"]][0]
+            category = MAP_CATEGORIES[data["category"]][0]
             category = AppConstants.default_category if category.blank? #this case can happen is mapping if categories failed
 
             Rails.logger.info("[LIB] [SOCIAL_FETCH] [CATEGORIZER] [ALCHEMY_API] [CATEGORIZE] [categorize] leaving

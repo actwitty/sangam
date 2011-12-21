@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
+  GET_FUNCTIONS_ARRAY= [ :get_single_activity, :activity, :entity_page, :location_page, :channel_page, :update_social_media_share,
                         :get_summary,:get_entities,:get_channels, :get_locations,:get_entity_stream,:get_activity_stream,
                         :get_location_stream,:get_document_stream,:get_streams, :get_related_entities,:get_related_locations,
                         :get_social_counter, :get_related_friends, :get_all_comments,:get_users_of_campaign, :subscribers,:subscriptions,:get_latest_summary]
@@ -846,7 +846,7 @@ class HomeController < ApplicationController
     args[:status] = 2
     if user_signed_in?
       Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] returned from model api with #{params}")
-      response_json = current_user.publish_activity(args)
+      response_json = {} #current_user.publish_activity(args)
 
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][PUBLISH ACTIVITY] sending response JSON #{response_json}")
@@ -907,7 +907,7 @@ class HomeController < ApplicationController
     response_json={}
     if user_signed_in?
         Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] calling  model api with #{params}")
-        response_json = current_user.update_activity(params)
+        response_json = {} #current_user.update_activity(params)
         Rails.logger.debug("[CNTRL][HOME][PROCESS EDITED ACTIVITY] returned response JSON #{response_json}")
 
     else

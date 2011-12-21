@@ -6,6 +6,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: social_counters
@@ -19,8 +20,8 @@ end
 #  location_id :integer
 #  entity_id   :integer
 #  author_id   :integer
+#  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
-#  desc        :text
 #
 

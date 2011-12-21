@@ -18,7 +18,7 @@ class CreateDocuments < ActiveRecord::Migration
 
       t.integer :summary_id
 
-      t.text    :url, :null => false
+      t.text    :url
       t.text    :thumb_url
 
       t.integer :status, :null => false     # 0 => saved, 1 => public share, 2 => private
@@ -34,58 +34,34 @@ class CreateDocuments < ActiveRecord::Migration
       t.text    :category, :null => false    #image, video, audio, document check constant.yml
 
       t.integer :location_id
+      t.integer :web_link_id
+      t.integer :campaigns_count
 
       t.text :social_counters_array
 
       t.timestamps
     end
 
-    add_index :documents, [:owner_id, :category, :status]
-    add_index :documents, [:summary_id, :category, :status]
-    add_index :documents, [:activity_id, :category, :status]
+    add_index :documents, :owner_id
+    add_index :documents, :summary_id
+    add_index :documents, :activity_id
 
-    add_index :documents, [:owner_id,:activity_word_id, :location_id], :name => "index_documents_on_owner_word_location"
-    add_index :documents, [:owner_id, :location_id]
+    add_index :documents, :activity_word_id
+    add_index :documents, :location_id
 
-    add_index :documents, [:summary_id,:activity_word_id, :location_id],  :name => "index_documents_on_summary_word_location"
-    add_index :documents, [:summary_id, :location_id]
 
-    add_index :documents, [:owner_id,:source_name]
-    add_index :documents, [:summary_id, :source_name]
+    add_index :documents,  :source_name
 
-    add_index :documents, [:category, :status]
+    add_index :documents, :category
     add_index :documents, :status
 
-    add_index :documents, [:id, :category]
-    add_index :documents, [:owner_id, :id]
-
     add_index :documents, :updated_at
+
+    add_index :documents, :web_link_id
 
   end
 
   def self.down
-
-    remove_index :documents, [:owner_id, :category, :status]
-    remove_index :documents, [:summary_id, :category, :status]
-    remove_index :documents, [:activity_id, :category, :status]
-
-    remove_index :documents, :name => "index_documents_on_owner_word_location"
-    remove_index :documents, [:owner_id, :location_id]
-
-    remove_index :documents, :name => "index_documents_on_summary_word_location"
-    remove_index :documents, [:summary_id, :location_id]
-
-    remove_index :documents, [:owner_id,:source_name]
-    remove_index :documents, [:summary_id, :source_name]
-
-    remove_index :documents, [:category, :status]
-    remove_index :documents, :status
-
-    remove_index :documents, [:id, :category]
-    remove_index :documents, [:owner_id, :id]
-
-    remove_index :documents, :updated_at
-
     drop_table :documents
   end
 end

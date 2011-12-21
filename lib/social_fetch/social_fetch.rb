@@ -7,16 +7,16 @@ require 'fetcher/facebook'
 module SocialFetch
 
   #INPUT => {:user_id => 123, :uid => "234", :access_token => "gdjjsagjgds.."}
-  #OUTPUT => array of messages from provider
+  #OUTPUT => array of messages from provider in descending order of creation time
 
   def self.pull_data(params)
 
-    Rails.logger.error("[LIB] [SOCIAL_FETCH] [pull_data] entering #{params.inspect}")
+    Rails.logger.info("[LIB] [SOCIAL_FETCH] [pull_data] entering #{params.inspect}")
 
     klass = "::SocialFetch::Fetcher::#{params[:provider].camelize}".camelize.constantize
     response = klass.pull_data(params)
 
-    Rails.logger.error("[LIB] [SOCIAL_FETCH] [pull_data] leaving #{params.inspect}")
+    Rails.logger.info("[LIB] [SOCIAL_FETCH] [pull_data] leaving #{params.inspect}")
 
     return response
 
@@ -25,14 +25,21 @@ module SocialFetch
     nil
   end
 
-  #INPUT => {
-  #           :user_id => 123, :uid => "234", :time => Time.now.utc #its an example it will be utc time,
-  #           :provider => "facebook",  :blob => {} #single facebook data blob,
-  #         }
+  #INPUT => {:user_id => 123, :uid => "234", :last_updated_at => Time.now.utc #its an example it will be utc time,
+  #         :blob => {} #single facebook data blob,  }
   #OUTPUT => {
-  #           :post => {:source_msg_id => "2342",:source_name => "facebook",:status => AppConstants.status_public,
-  #                 :enrich => true, :word => "stories", :summary_category => "stories",},
-  #           :category => {:data => "http://google.com", :type => AppConstants.data_type_weburl}
+  #            :post => {:source_msg_id => "2342",:source_name => "facebook",:status => AppConstants.status_public,
+  #                      :enrich => true/False, :word => "stories", :summary_category => "stories",
+  #                      :created_at => ,1994-11-05T13:15:30Z, :updated_at =>1994-11-05T13:15:30Z [OPTIONAL]
+  #                     :links => [
+  #                             { :url => "http://timesofindia.com/123.cms", :description => "Manmohan singh sleeping" [OPTIONAL],
+  #                               :title => "indian politics"[OPTIONAL], :mime => AppConstants.mime_remote_link,
+  #                               :provider => "timesofindia.com",
+  #                               :url_sha => "sedeidnksdskadnksdkasnk" [SHA KEY NEEDED TO OPTIMIZE CHECK OF URL,
+  #                               :ignore => true/false [THIS TELLS THAT IGNORE THIS LINK FOR CATEGORIZATION or RESOLUTION] }...
+  #                               :image_url => "http://timesofindia.com/123.jpg"
+  #                              ]
+  #                     }
   #          }
 
   def self.data_adaptor(params)

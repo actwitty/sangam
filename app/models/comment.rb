@@ -3,8 +3,8 @@ class Comment < ActiveRecord::Base
   include  ActionView::Helpers
 
   belongs_to :author, :class_name => "User"
-  belongs_to :activity,  :touch => true, :counter_cache => true
-  belongs_to :document,  :touch => true, :counter_cache => true
+  belongs_to :activity,  :counter_cache => true #,:touch => true
+  belongs_to :document,  :counter_cache => true #,:touch => true,
   belongs_to :summary
 
   belongs_to :father, :class_name => "Activity"
@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
 
   after_destroy         :ensure_destroy_cleanup
 
-  after_create          :touch_hubs
+  #after_create          :touch_hubs
 
   before_save           :sanitize_data
 
@@ -134,6 +134,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: comments
@@ -146,8 +147,8 @@ end
 #  text        :text            not null
 #  status      :integer         not null
 #  source_name :text            not null
+#  summary_id  :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  summary_id  :integer
 #
 

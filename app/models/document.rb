@@ -1,4 +1,5 @@
 #require 'file_size_validator'
+require 'thread'
 
 class Document < ActiveRecord::Base
 
@@ -8,6 +9,7 @@ class Document < ActiveRecord::Base
    belongs_to     :owner, :class_name => "User"
    belongs_to     :activity_word
    belongs_to     :location
+   belongs_to     :web_link, :counter_cache => true, :dependent => :destroy
 
    belongs_to     :summary, :counter_cache => true
 
@@ -23,15 +25,16 @@ class Document < ActiveRecord::Base
    validates_existence_of :activity_word_id  , :allow_nil => true
    validates_existence_of :summary_id , :allow_nil => true
    validates_existence_of :location_id , :allow_nil => true
+   validates_existence_of :web_link_id , :allow_nil => true
 
-   validates_presence_of  :name, :url, :mime, :source_name, :provider, :category, :status
+   validates_presence_of  :name, :mime, :source_name, :provider, :category, :status
 
-   validates_format_of    :url , :with =>  eval(AppConstants.url_validator)
+   validates_format_of    :url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.url.nil?}
    validates_format_of    :thumb_url , :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.thumb_url.nil?}
 
    validates_length_of    :name, :in => 1..AppConstants.document_name_length
    validates_length_of    :mime, :in => 1..AppConstants.document_mime_length
-   validates_length_of    :url, :in => 1..AppConstants.url_length
+   validates_length_of    :url, :in => 1..AppConstants.url_length,  :unless => Proc.new{|a| a.url.nil?}
    validates_length_of    :thumb_url, :maximum => AppConstants.url_length, :unless => Proc.new{|a| a.thumb_url.nil?}
    validates_length_of    :source_name,  :in => 1..AppConstants.source_name_length
    validates_length_of    :caption, :maximum => AppConstants.caption_text_length, :unless => Proc.new{|a| a.caption.nil?}
@@ -91,7 +94,7 @@ class Document < ActiveRecord::Base
        #This function should always be called after deleting document explicitly
        #and not as outcome of activity delete
        def reset_summary(summary_id)
-
+          Rails.logger.info("[MODEL] [DOCUMENT] [reset_summary] entering => summary_id = #{summary_id}")
           a = nil
           s = nil
           puts "deleting document pre"
@@ -99,41 +102,16 @@ class Document < ActiveRecord::Base
           if summary_id.nil?
             return
           end
-
-          #Remove from summary
-          s=Summary.where(:id => summary_id).first
-         #Recreate Document Array for given summary
-          s.document_array = []
-          a = Document.where(:summary_id => summary_id).group(:id).limit(AppConstants.max_number_of_a_type_in_summmary).
-              order("MAX(created_at) DESC").count
-          s.document_array = a.keys if !a.blank?
-          s.update_attributes(:document_array  => s.document_array)
-
-         #this block only bring one document
-#          if !s.blank? && !s.document_array.nil?
-#             puts "deleting document"
-#
-#             #Get the minimum element from document array
-#             id  = s.document_array.min
-#
-#             if s.document_array.include?(params[:id])
-#
-#               #then delete the input id form document array
-#               s.document_array.delete(params[:id])
-#
-#               #find the id which is just less than minimum present in doc array
-#               d = Document.where(:id.lt => id, :summary_id => s.id).first
-#
-#               s.serialize_data({"document"  => [d.id]}) if !d.blank?
-#
-#             end
-#
-#          end
+         SummaryRank.add_analytics({:fields => ["documents"], :summary_id => summary_id} )
+         Rails.logger.info("[MODEL] [DOCUMENT] [reset_summary] leaving => summary_id = #{summary_id}")
        end
 
        #for normal uploads only document name and URLS will come.
        def create_document(params)
 
+         Rails.logger.info("[MODEL] [Document] [create_document] #{params[:url]}")
+
+         web_link_id  = nil
          params[:provider]= AppConstants.provider_actwitty if params[:provider].nil?
 
          #uploaded will be set false in mentioned links
@@ -148,15 +126,35 @@ class Document < ActiveRecord::Base
          params[:status] = AppConstants.status_public if params[:status].nil?
          params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
 
+         params[:name] = (params[:provider] + " " + params[:category] ) if params[:name].blank?
+
+         #web_link_id will come if link is coming from pulled data from Facebook, Twitter etc
+         if params[:uploaded] == false
+           Rails.logger.info("[MODEL] [Document] [create_document] creating WEB LINK for #{params[:url]} ")
+           link = WebLink.create_web_link({:url => params[:url], :mime => params[:mime],:provider => params[:provider],
+                                              :name => params[:name], :description => params[:description],
+                                              :image_url => params[:image_url], :image_width => params[:image_width],
+                                              :image_height => params[:image_height], :url_processed => params[:url_processed]} )
+           if link.blank?
+              Rails.logger.info("[MODEL] [Document] [create_document] create WEB LINK  FAILED for #{params[:url]} ")
+              return nil
+           end
+           web_link_id = link.id
+         end
+
          d = Document.create!(:owner_id => params[:owner_id], :activity_id => params[:activity_id] ,
                               :activity_word_id => params[:activity_word_id],
                               :summary_id => params[:summary_id], :name => name, :mime => params[:mime],
                               :url => params[:url], :thumb_url => params[:thumb_url],:caption => params[:caption],
                               :source_name => params[:source_name],
                               :uploaded => params[:uploaded],:provider => params[:provider],
-                              :category => params[:category], :location_id => params[:location_id], :status => params[:status])
+                              :category => params[:category], :location_id => params[:location_id],
+                              :status => params[:status], :web_link_id => web_link_id )
+
+         Rails.logger.info("[MODEL] [Document] [create_document] leaving  for #{params[:url]} ")
+         return d
        rescue => e
-         Rails.logger.error("Document => create_document => Failed =>  #{e.message} #{name} ")
+         Rails.logger.error("[MODEL] [Document] [create_document] Rescue ERROR=> Failed =>  #{e.message} for #{params[:url]}")
          nil
        end
 
@@ -179,47 +177,6 @@ class Document < ActiveRecord::Base
           Rails.logger.debug("[MODEL] [Document] [remove_document] leaving")
           d
        end
-
-       #TODO => NEED TO support activity_word_id, Summary, Captions and url constraints
-       #this function is called from delayed job.. when upload i done through rails server.
-       #for normal uploads only document name and URLS will come.
-       #for them Document.create! is sufficient
-
-       def delay_create(owner_id, activity_id,path)
-         name = File.basename(path)
-         puts "==========================  #{path}"
-         d = Document.create!(:owner_id => owner_id, :activity_id => (activity_id.nil? ? nil : activity_id) ,
-                          :name => name, :mime => MIME::Types.type_for(name.to_s).first.to_s,
-                          :document_data => File.open(path))
-
-         d.url = d.document_data.url
-         d.thumb_url = d.document_data.thumb.url
-         d.save!
-         puts d.inspect
-       rescue => e
-         Rails.logger.error("Document => delay_create => Failed with #{e.message}")
-         nil
-       end
-
-
-       def create_document_uploader(owner_id, activity_id, path)
-         Delayed::Job.enqueue DocumentJob.new(owner_id, activity_id,path)
-       end
-
-       #useful for invocation from controllers as they give ActionDispatch::HTTP::Uploader as params
-       #callin "new" creates a cache snapshot of file in Rails.root/tmp/uploads as per initializers/fog.rb
-       #tmp is chosen as Heroku makes only this folder writable
-       #owner_id, activity_id, data_array
-       #data_array is array of ActionDispatch::HTTP::Uploader
-       def UploadDocument(owner_id, activity_id, data_array )
-          data_array.each do |attr|
-            d = Document.new(:owner_id => owner_id, :activity_id => activity_id, :document_data => attr)
-            create_document_uploader(owner_id, activity_id,"#{Rails.root}/tmp#{d.document_data.to_s}")
-          end
-       end
-
-
-
 
        #COMMENT - Only returns public post which has summary
        #INPUT
@@ -265,7 +222,7 @@ class Document < ActiveRecord::Base
           #doc_hash.keys will give status_public docs as summary does not exist for saved docs
           h = {:id => doc_hash.keys, :category => params[:category]}
 
-          Document.where(h).all.each do |attr|
+          Document.includes(:web_link).where(h).all.each do |attr|
             h = format_document(attr)
             doc_hash[attr.id][:document] = h[:document]
           end
@@ -294,7 +251,15 @@ class Document < ActiveRecord::Base
        #            :entity_id => 235,
        #            :location_id => 789, :entity_id => 234 }
        #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
-       #:category => "image" or "video"
+       #:category => "image" or "video" or "application" (for documents) or "link"
+       #OUTPUT => [
+       #          {:word=>{:id=>353, :name=>"Foodie"}, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00, :user=>{:id=>305, :full_name=>"lemony lime", :photo=>"images/id_1"},
+       #          :document=>{:id=>729, :url=>"http://timeofindia.com/123/234", :thumb_url=>nil, :caption=>nil, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+       #          :source_name=>"actwitty", :status=>2, :uploaded=>false, :category=>"application", :activity_id=>230,
+       #          :summary_id=>125,
+       #          :url_description=>"fight of over FDI in retail intensifies at parliament",
+       #          :url_category=>"politics", :url_title=>"indian politics", :url_image=>nil, :url_provider=>"timesofindia.com"}}, ...
+       #          ]
 
        def get_document_stream(params)
 
@@ -342,7 +307,7 @@ class Document < ActiveRecord::Base
 
           h = pq_document_filter(h)
 
-          Document.includes(:owner, :activity_word).where(h).order("updated_at DESC").
+          Document.includes(:owner, :activity_word, :web_link).where(h).order("updated_at DESC").
               limit(AppConstants.max_number_of_documents_pulled).all.each do |attr|
 
             h = format_document(attr)
@@ -372,6 +337,9 @@ end
 
 
 
+
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -385,7 +353,7 @@ end
 #  caption               :text
 #  comments_count        :integer
 #  summary_id            :integer
-#  url                   :text            not null
+#  url                   :text
 #  thumb_url             :text
 #  status                :integer         not null
 #  source_name           :text            not null
@@ -393,6 +361,8 @@ end
 #  provider              :text            not null
 #  category              :text            not null
 #  location_id           :integer
+#  web_link_id           :integer
+#  campaigns_count       :integer
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime

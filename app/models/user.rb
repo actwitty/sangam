@@ -1,3 +1,4 @@
+require 'thread'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -45,6 +46,8 @@ class User < ActiveRecord::Base
   #Though it only removes the user foreign key in entity ownership. But User ID  &  Entities
   # will not be deleted as of now. Only user's docs and activities
   has_many :entity_ownerships, :foreign_key => :owner_id, :dependent => :nullify
+
+  has_many :social_aggregators, :dependent => :destroy
 
   ##### ALOK changes ends here #####################
 
@@ -538,11 +541,17 @@ class User < ActiveRecord::Base
       return {}
     end
 
-    h = user.locations.order("updated_at DESC").each do |attr|
+    loc = Activity.where(:author_id => user_id).order("MAX(updated_at) DESC").group(:base_location_id).count
+    Location.where(:id => loc.keys).all.each do |attr|
       l = format_location(attr)
 #      l[:id] = attr.id
       lh <<  l
     end
+#    h = user.locations.order("updated_at DESC").each do |attr|
+#      l = format_location(attr)
+##      l[:id] = attr.id
+#      lh <<  l
+#    end
 
     if !sort_order.blank?  and sort_order == 1
       lh = lh.sort {|x, y| x[:name] <=> y[:name] }
@@ -807,7 +816,6 @@ class User < ActiveRecord::Base
       return {}
     end
     a = format_activity(obj)
-    puts a
 
     Rails.logger.debug("[MODEL] [User] [create_activity] leaving ")
     a
@@ -822,42 +830,6 @@ class User < ActiveRecord::Base
     a
   end
 
-  #INPUT { :activity_id => 123,
-  #        :status => 1
-  #      }
-  #OUTOUT => Same as create_activity
-  ##COMMENT => Changes state from saved to publish or private state. Dont use this api to change from
-  ##           private to public or vice versa .. its only from saved to public state as it destroys
-  ##           the previous activity and re-creates the new one.
-  ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
-  #TODO fix it
-  def publish_activity(params)
-    Rails.logger.debug("[MODEL] [USER] [publish_activity] entering")
-
-    params[:current_user_id] = self.id
-    activity = Activity.publish_activity(params)
-
-    Rails.logger.debug("[MODEL] [USER] [publish_activity] leaving")
-    activity
-  end
-
-  #INPUT { :activity_id => 123,
-  #        REST ALL SAME PARAMETER AS create_activity
-  #      }
-  #OUTOUT => Same as create_activity
-  ##COMMENT => It is used for normal edits of activities. State change can also happen BUT only from PUBLIC to
-  ##           PRIVATE and VICE VERSA and NOT FROM SAVED to PUBLIC/PRIVATE
-  ###          SAVED ACTIVITY CANT NOT be REVERTED back to PUBLISHED OR PRIVATE
-  def update_activity(params)
-
-    Rails.logger.debug("[MODEL] [User] [update_activity] entering ")
-
-    params[:current_user_id] = self.id
-    a = Activity.update_activity(params)
-
-    Rails.logger.debug("[MODEL] [User] [update_activity] leaving ")
-    a
-  end
 
   #INPUT = Array of activity ids
   #OUTPUT =   See get_stream output in HASH :stream => {}
@@ -923,12 +895,26 @@ class User < ActiveRecord::Base
   #
   # :documents=>
   #  {
-  #   :count=>2,
+  #   :count=>,
   #   :array=>[
-  #           {:id=>1, :name=>"xyz.jpg",:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg",
-  #                               :caption=>nil, :source_name=>"actwitty",  :status=>1, :uploaded=>true, :category => "image"},
-  #           {:id=>2, :name=>"abc.jpg",:thumb_url => nil, :url=>"https://s3.amazonaws.com/abc.jpg", :caption=>nil, :source_name=>"actwitty",
-  #                                                                    :status=>1, :uploaded=>true, :category => "image"}
+  #           {:id=>1,:thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg", :url=>"https://s3.amazonaws.com/xyz.jpg",
+  #            :caption=>nil, :source_name=>"actwitty",  :status=>1, :uploaded=>true,:activity_id=>230, :summary_id=>125, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #            :category => "image",
+  #           }
+  #
+  #          {:id=>2, :name=>"abc.docx",:thumb_url => nil, :url=>"https://s3.amazonaws.com/abc.docx", :caption=>nil, :source_name=>"actwitty",
+  #           :status=>1, :uploaded=>true, :activity_id=>230, :summary_id=>125,:time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #           :category => "application",
+  #          }
+  #
+  #          {
+  #          :id=>729, :url=>"http://timeofindia.com/123/234", :thumb_url=>nil, :caption=>nil, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #          :source_name=>"actwitty", :status=>2, :uploaded=>false, :activity_id=>230,  :summary_id=>125,
+  #          :category=>"link",
+  #          :url_description=>"fight of over FDI in retail intensifies at parliament",
+  #          :url_category=>"politics", :url_title=>"indian politics", :url_image=>nil, :url_provider=>"timesofindia.com"
+  #          }
+  #
   #           ]
   #  },
   # :campaigns=>
@@ -1357,8 +1343,6 @@ class User < ActiveRecord::Base
   end
 
 
-
-
   #COMMENT - Only returns public post which has summary
   #INPUT
   #:user_id => 123
@@ -1369,7 +1353,15 @@ class User < ActiveRecord::Base
   #            :entity_id => 235,
   #            :location_id => 789, :entity_id => 234 }
   #:updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601)
-  #:category => "image" or "video"
+  #:category => "image" or "video" or "application" (for documents) or "link"
+  #OUTPUT => [
+  #          {:word=>{:id=>353, :name=>"Foodie"}, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00, :user=>{:id=>305, :full_name=>"lemony lime", :photo=>"images/id_1"},
+  #          :document=>{:id=>729, :url=>"http://timeofindia.com/123/234", :thumb_url=>nil, :caption=>nil, :time=>Fri, 02 Dec 2011 11:32:53 UTC +00:00,
+  #          :source_name=>"actwitty", :status=>2, :uploaded=>false, :category=>"application", :activity_id=>230,
+  #          :summary_id=>125,
+  #          :url_description=>"fight of over FDI in retail intensifies at parliament",
+  #          :url_category=>"politics", :url_title=>"indian politics", :url_image=>nil, :url_provider=>"timesofindia.com"}}, ...
+  #          ]
 
   def get_document_stream(params)
 
@@ -1397,7 +1389,7 @@ class User < ActiveRecord::Base
   #                 OR
   #           :document_id => 456 or nil
   #
-  #           :desc => "hello" [OPTIONAL]  => for view action, desc should be  "IP=>123.123.123.123, ISP=>abc, location =>bangalore, lat>23.45, long=>45.23"
+  #           :description => "hello" [OPTIONAL]  => for view action, desc should be  "IP=>123.123.123.123, ISP=>abc, location =>bangalore, lat>23.45, long=>45.23"
   #                                           IP is MANDATORY FOR VIEW ACTION
   def create_social_counter(params)
     Rails.logger.debug("[MODEL] [USER] [create_social_counter] entering")
@@ -1587,7 +1579,7 @@ class User < ActiveRecord::Base
   def rename_activity_name(params)
     Rails.logger.info("[MODEL] [USER] [rename_activity_name] entering  " + params.to_s)
     params[:user_id] = self.id
-    s = Summary.rename_activity_name(params)
+    s = Activity.rename_activity_name(params)
     Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name] leaving  " + params.to_s)
     s
   end
@@ -1681,6 +1673,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -1709,6 +1702,7 @@ end
 #  current_location     :string(255)
 #  current_geo_lat      :decimal(, )
 #  current_geo_long     :decimal(, )
+#  user_type            :integer         default(0)
 #  created_at           :datetime
 #  updated_at           :datetime
 #  invitation_token     :string(60)
@@ -1716,6 +1710,5 @@ end
 #  invitation_limit     :integer
 #  invited_by_id        :integer
 #  invited_by_type      :string(255)
-#  user_type            :integer         default(0)
 #
 

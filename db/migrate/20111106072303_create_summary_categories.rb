@@ -12,7 +12,7 @@ class CreateSummaryCategories < ActiveRecord::Migration
     end
 
     add_index :summary_categories, :summary_id, :unique => true
-    add_index :summary_categories, [:category_id, :activity_name]
+    add_index :summary_categories, :category_id
     add_index :summary_categories, :activity_name
     add_index :summary_categories, :user_id
     add_index :summary_categories, :category_type
@@ -20,14 +20,6 @@ class CreateSummaryCategories < ActiveRecord::Migration
   end
 
   def self.down
-
-
-    remove_index :summary_categories, :summary_id
-    remove_index :summary_categories, [:category_id, :activity_name]
-    remove_index :summary_categories, :activity_name
-    remove_index :summary_categories, :user_id
-    remove_index :summary_categories, :category_type
-
     drop_table :summary_categories
   end
 end

@@ -1,3 +1,5 @@
+require 'thread'
+
 class Summary < ActiveRecord::Base
 
   serialize :entity_array,   Array
@@ -20,6 +22,8 @@ class Summary < ActiveRecord::Base
 
   has_many    :tags,       :order => "updated_at DESC"
 
+  has_many    :campaigns,       :order => "updated_at DESC"
+
   has_one     :theme
 
   has_many    :summary_subscribes
@@ -29,7 +33,7 @@ class Summary < ActiveRecord::Base
   has_one     :summary_rank
 
   belongs_to  :user, :touch => true
-  belongs_to  :activity_word, :touch => true
+  belongs_to  :activity_word #, :touch => true
   belongs_to  :theme
 
   validates_existence_of  :user_id, :activity_word_id
@@ -167,9 +171,6 @@ class Summary < ActiveRecord::Base
 
         self.update_attributes(hash)
     end
-    def deserialize_data
-
-    end
     class << self
 
       include TextFormatter
@@ -299,98 +300,37 @@ class Summary < ActiveRecord::Base
           Rails.logger.info("[MODEL] [SUMMARY] [update_summary] => new name is new summary for user " )
         else
           #if new name is existing summary, the merge all data of summary to existing summary
-          update_word_summary_in_models(summary_old,summary)
+          update_summary_id_in_models(summary_old,summary)
 
           #rebuild and reload to return properly. counter reset is happening in rebuild
-          summary.rebuild_a_summary
+          #summary.rebuild_a_summary
+          SummaryRank.add_analytics({:fields => ["all"], :summary_id => summary.id})
           summary.reload
 
-           #reset needed otherwise destroy will not happen
-          Summary.reset_counters(summary_old.id,:activities)
+          #reset needed otherwise destroy will not happen
+          Summary.reset_counters(summary_old.id,:activities, :documents, :campaigns, :tags)
+          Summary.reset_counters(summary.id,:activities, :documents, :campaigns, :tags)
 
           #reload & destroy old summary
           summary_old.reload
+
           if summary_old.activities.size == 0
           summary_old.destroy
           else
            #this part should not be executed
-           summary_old.rebuild_a_summary
-         end
+           #summary_old.rebuild_a_summary
+            SummaryRank.add_analytics({:fields => ["all"], :summary_id => summary_old.id})
+          end
 
           Rails.logger.info("[MODEL] [SUMMARY] [update_summary] => merging with old summary " )
         end
 
-        summary.attributes
-      end
+        Rails.logger.info("[MODEL] [SUMMARY] [update_summary] => leaving #{params.inspect}")
+        return summary.attributes
 
-      #INPUT => :activity_id => 123, :new_name => "foodie", :user_id > 123
-      #OUPUT => returns activity object attributes as hash
-      def rename_activity_name(params)
-         Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name] entering")
-
-         if params[:new_name].blank?
-          Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name]  => BLANK activity name given  " )
-          return {}
-         end
-
-         a = Activity.where(:id => params[:activity_id]).first
-
-         if a.blank?
-          Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name]  => invalid activity  " )
-          return {}
-         end
-
-         params[:new_name].capitalize!
-         if params[:new_name] == a.activity_name
-          Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name]  => same activity name given  " )
-          return {}
-         end
-
-         if params[:user_id] != a.author_id
-          Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name]  => invalid user  " )
-          return {}
-         end
-
-         summary_new = Summary.where(:user_id => a.author_id, :activity_name => params[:new_name]).first
-         if summary_new.blank?
-           Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name] => summary name for this user does not exist " )
-           return {}
-         end
-
-         summary_old = Summary.where(:id => a.summary_id).first
-         if summary_old.blank?
-           Rails.logger.info("[MODEL] [SUMMARY] [rename_activity_name] => ERROR old summary is blank how come " )
-           return {}
-         end
-
-         Activity.update_all({:activity_name => params[:new_name], :activity_word_id =>summary_new.activity_word_id,
-                              :summary_id => summary_new.id}, { :id => params[:activity_id] })
-         Document.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
-                             { :activity_id => params[:activity_id] })
-         Tag.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
-                        { :activity_id => params[:activity_id] })
-         Hub.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
-                        { :activity_id => params[:activity_id] })
-
-         summary_new.rebuild_a_summary
-
-         #reset needed otherwise destroy will not happen
-         Summary.reset_counters(summary_old.id,:activities)
-
-         #reload & destroy old summary. If activities count is 0
-         summary_old.reload
-         if summary_old.activities.size == 0
-          summary_old.destroy
-         else
-           summary_old.rebuild_a_summary
-         end
-
-         #as we are returning activity so no need to reload
-         #summary_new.reload
-         #summary_new.attributes
-
-        a.reload
-        a.attributes
+      rescue => e
+       Rails.logger.info("[MODEL] [SUMMARY] [update_summary] => Rescue ERROR #{e.message} for #{params.inspect}")
+       nil
       end
 
 
@@ -437,18 +377,6 @@ class Summary < ActiveRecord::Base
       #                       }
       #  :social_counters => [{:source_name=>"twitter", :action=>"share", :count=>1}, {:source_name=>"facebook", :action=>"share", :count=>2}]
       #
-      # :documents=>[{:id=>30, :name=>"ddd.jpg", :url=>"https://s3.amazonaws.com/ddd.jpg",
-      #           :thumb_url=>"https://s3.amazonaws.com/ddd_thumb.jpg", :caption=>nil, :source_name=>"actwitty",
-      #            :status=>1, :uploaded=>true, :category => "image"}]
-      #
-      # :tags => [{:id => 1, :name => "maradona", :type => 1, :ty :source_name=>"actwitty",  :status=>1}]
-      #
-      # :entities=>[{:id=>24, :name=>"rahul dravid", :image=>"/m/02cb7_j"}],
-      #
-      # :recent_text=>["burger at <a href=/entities/24 class=\"activity_entity\">rahul dravid</a>"],
-      #
-      # :friends=>[{:id=>38, :full_name=>"lemony2 lime2", :photo=>"images/id_2"}]
-      # }
       #]
       require "social_fetch/social_fetch"
 
@@ -458,7 +386,7 @@ class Summary < ActiveRecord::Base
 
         #Below two lines are for testing
         #Activity.destroy_all(:author_id => params[:current_user_id])
-        #SocialAggregator.create_social_data({:user_id => params[:current_user_id], :provider => "facebook"})
+        SocialAggregator.create_social_data({:user_id => params[:current_user_id], :provider => "facebook"})
 
         h = process_filter_modified(params)
 
@@ -497,13 +425,13 @@ class Summary < ActiveRecord::Base
                                  :social_counters => attr.social_counters_array, :theme_data => attr.theme_data,
                                  :category_data => format_summary_category(attr.category_id),
                                  :analytics_summary => attr.analytics_summary,
-                                 :locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
+                                 #:locations => [], :documents => [], :tags => [],:entities => [], :recent_text => [], :friends => []
                                   }
-            attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
-            attr.document_array.each {|idx| documents[idx].nil? ? documents[idx] = [index] : documents[idx] <<  index }
-            attr.tag_array.each       {|idx| tags[idx].nil? ? tags[idx] = [index] : tags[idx] <<  index }
-            attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
-            attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
+#            attr.location_array.each {|idx| locations[idx].nil? ? locations[idx] = [index] : locations[idx] <<  index }
+#            attr.document_array.each {|idx| documents[idx].nil? ? documents[idx] = [index] : documents[idx] <<  index }
+#            attr.tag_array.each       {|idx| tags[idx].nil? ? tags[idx] = [index] : tags[idx] <<  index }
+#            attr.entity_array.each {|idx| entities[idx].nil? ? entities[idx] = [index] : entities[idx] <<  index }
+#            attr.activity_array.each {|idx| activities[idx].nil? ? activities[idx] = [index] : activities[idx] <<  index }
 
             subscribed[attr.id]  = index
 
@@ -626,6 +554,7 @@ class Summary < ActiveRecord::Base
       end
 
   private
+        #called from update_summary
     def update_word_in_models(word, word_id, summary)
       Summary.update_all({:activity_name => word, :activity_word_id => word_id},
                          {:id => summary.id })
@@ -634,7 +563,9 @@ class Summary < ActiveRecord::Base
       Tag.update_all({:activity_word_id =>word_id},{ :summary_id => summary.id })
       Hub.update_all({:activity_word_id =>word_id},{ :summary_id => summary.id })
     end
-    def update_word_summary_in_models(summary_old, summary_new)
+
+      #called from update_summary
+    def update_summary_id_in_models(summary_old, summary_new)
       Activity.update_all({:activity_name => summary_new.activity_name, :activity_word_id =>summary_new.activity_word_id,
                                :summary_id => summary_new.id}, { :summary_id => summary_old.id })
       Document.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
@@ -644,9 +575,16 @@ class Summary < ActiveRecord::Base
       Hub.update_all({:activity_word_id =>summary_new.activity_word_id, :summary_id => summary_new.id},
                          { :summary_id => summary_old.id })
       SocialCounter.update_all({:summary_id => summary_new.id}, {:summary_id =>summary_old.id})
+
+#      SocialAggregator.update_all({:summary_id => summary_new.id}, {:summary_id =>summary_old.id})
+
+      #theme, summary_category and summary_rank has unique summary constraint so no point in replacing that
+      #summary_subscribers of old summary will be removed in destroy
     end
   end
 end
+
+
 
 
 
@@ -673,11 +611,12 @@ end
 #  tag_array             :text
 #  social_counters_array :text
 #  theme_data            :text
-#  created_at            :datetime
-#  updated_at            :datetime
 #  category_id           :string(255)
 #  category_type         :string(255)
 #  rank                  :string(255)
 #  analytics_summary     :text
+#  campaigns_count       :integer         default(0)
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 

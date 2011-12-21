@@ -23,10 +23,6 @@ class CreateEntityDocuments < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index  :entity_documents, :entity_id
-    remove_index  :entity_documents, :entity_doc_mid
-    remove_index  :entity_documents, :entity_doc_name
-
     drop_table :entity_documents
   end
 end

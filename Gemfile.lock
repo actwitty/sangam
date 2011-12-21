@@ -107,6 +107,8 @@ GEM
       http_parser.rb (>= 0.5.2)
     em-socksify (0.1.0)
       eventmachine
+    em-synchrony (1.0.0)
+      eventmachine (>= 1.0.0.beta.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (1.0.0.beta.3)
@@ -318,6 +320,7 @@ DEPENDENCIES
   devise (~> 1.2.0)
   devise_invitable (~> 0.4.0)
   em-http-request
+  em-synchrony
   factory_girl_rails
   geocoder
   haml (>= 3.0.25)

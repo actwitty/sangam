@@ -189,6 +189,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -205,8 +206,8 @@ end
 #  value       :integer         not null
 #  status      :integer         not null
 #  source_name :text            not null
+#  summary_id  :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  summary_id  :integer
 #
 

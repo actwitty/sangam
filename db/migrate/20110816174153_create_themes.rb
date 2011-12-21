@@ -8,8 +8,6 @@ class CreateThemes < ActiveRecord::Migration
       t.integer  :summary_id, :null => false
       t.integer  :document_id
 
-      t.text     :url
-
       t.integer  :theme_type, :null => false
       t.integer  :style
 
@@ -21,9 +19,6 @@ class CreateThemes < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :themes, [:author_id, :summary_id]
-    remove_index :themes, :summary_id
-    remove_index :themes, :document_id
     drop_table :themes
   end
 end

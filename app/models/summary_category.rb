@@ -30,7 +30,7 @@ class SummaryCategory < ActiveRecord::Base
       #at first time creation s.activities_count == 0
       if s.activities_count > 0
         Rails.logger.info("[MODEL] [SUMMARY_CATEGORY] [THEME] [update_summary] activities count > 0")
-        Activity.update_all({:category_type => self.category_id, :category_type => self.category_type},{ :summary_id => self.summary_id })
+        Activity.update_all({:category_id => self.category_id, :category_type => self.category_type},{ :summary_id => self.summary_id })
         Hub.update_all({:category_type => self.category_type},{ :summary_id => self.summary_id})
       end
 

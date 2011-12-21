@@ -11,6 +11,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: summaries
@@ -29,11 +31,12 @@ end
 #  tag_array             :text
 #  social_counters_array :text
 #  theme_data            :text
-#  created_at            :datetime
-#  updated_at            :datetime
 #  category_id           :string(255)
 #  category_type         :string(255)
 #  rank                  :string(255)
 #  analytics_summary     :text
+#  campaigns_count       :integer         default(0)
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 

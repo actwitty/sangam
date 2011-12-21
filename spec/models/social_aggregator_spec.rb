@@ -6,18 +6,18 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: social_aggregators
 #
-#  id                  :integer         not null, primary key
-#  user_id             :integer         not null
-#  activity_id         :integer         not null
-#  summary_id          :integer         not null
-#  provider_created_at :datetime        not null
-#  source_name         :string(255)     not null
-#  source_msg_id       :string(255)     not null
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id                   :integer         not null, primary key
+#  user_id              :integer
+#  provider             :string(255)
+#  uid                  :string(255)
+#  latest_msg_timestamp :datetime        default(1978-12-15 09:10:00 UTC)
+#  created_at           :datetime
+#  updated_at           :datetime
 #
 

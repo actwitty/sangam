@@ -1,3 +1,4 @@
+require 'thread'
 module TextFormatter
   include TranslateText
 
@@ -13,12 +14,12 @@ module TextFormatter
 
   #convert to html urls
   def link_to_type(controller, klass, name, id)
-    "<a href=\# value=#{id} class=#{klass}>#{name}</a>".html_safe
+    "<a href=# value=#{id} class=#{klass}>#{name}</a>".html_safe
   end
 
   #convert to html urls
   def sanitized_link_to_type(controller, klass, name, id)
-    /<a href="#" value="#{id}" class="#{klass}">#{name}<\/a>/
+    /<a href=# value=#{id} class=#{klass}>#{name}<\/a>/
   end
 
   #add entity references in text
@@ -60,9 +61,8 @@ module TextFormatter
   #convert an entity link into normal name without a link
   #this is used when entity id mentioned in entity url does not exist
   def unlink_an_entity(text,  entity_id)
-    regex = /<a href=\"#\" value=\"(#{entity_id})\" class=\"#{AppConstants.activity_entity_class}\">([\w\s]+)<\/a>/i
+    regex = /<a href=# value=(#{entity_id}) class=#{AppConstants.activity_entity_class}>([\w\s]+)<\/a>/i
     m = text.scan(regex)
-    puts m
     m.each do |m_array|
       text.gsub!( sanitized_link_to_type(AppConstants.entity_controller,AppConstants.activity_entity_class, m_array[1], m_array[0]) ,m_array[1])
     end
@@ -94,7 +94,7 @@ module TextFormatter
   #This will be used when sending the activity text for entity search
   #TODO - NOT UTF8 Compliance
   def remove_mentions_and_tags(text)
-    txt = text.gsub(/(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])/, "")
+    txt = text.gsub(/(<a href=# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])/, "")
     txt = txt.strip
   end
 
@@ -128,9 +128,12 @@ module TextFormatter
                 |#{AppConstants.audio_sources}"
 
     #Regex for mention or hashtag or url
-    regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?([^\s]*.)?(#{str}){1}(\/[^\s]*)?)/
+    #regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?([^\s]*.)?(#{str}){1}(\/[^\s]*)?)/
+    regex = /(<a href=# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)([^\s\/]+){1}(\/[^\s]+))/
 
     m = text.scan(regex)
+
+    puts "mask => #{m.inspect}"
 
     i =seed_index
     m.each do |attr|
@@ -173,30 +176,56 @@ module TextFormatter
   #TODO
   def get_documents(text)
     array = []
-
-    str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
+    sources = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
                 |#{AppConstants.audio_sources}"
-    arr = text.scan(/((http:\/\/|https:\/\/)([^\s]*.)?(#{str}){1}(\/[^\s]+))/)
+    extensions = "#{AppConstants.video_extensions}|#{AppConstants.image_extensions}|#{AppConstants.document_extensions}
+                |#{AppConstants.audio_extensions}"
+
+    arr = text.scan(/((http:\/\/|https:\/\/)([^\s\/]+){1}(\/[^\s]+))/)
+
+    #format of arr [["http://youtube.com/watch?222", "http://", "youtube.com", "/watch?222"],
+    # ["http://form6.flick.com/234/234", "http://", "form6.flick.com", "/234/234"]]
 
     arr.each do |attr|
 
-      if attr[3] =~ /#{AppConstants.document_sources}/
-        array << {:mime => AppConstants.mime_remote_document, :url => attr[0], :provider => attr[3], :uploaded => false}
-
-      elsif attr[3] =~ /#{AppConstants.image_sources}/
-        array << {:mime => AppConstants.mime_remote_image, :url => attr[0], :provider => attr[3],:uploaded => false}
-
-      elsif attr[3] =~ /#{AppConstants.video_sources}/
-        array << {:mime => AppConstants.mime_remote_video, :url => attr[0], :provider => attr[3],:uploaded => false}
-
-      elsif attr[3] =~ /#{AppConstants.audio_sources}/
-        array << {:mime => AppConstants.mime_remote_music, :url => attr[0], :provider => attr[3],:uploaded => false}
+      if !(s = attr[0].scan(/#{extensions}/)).blank?
+        array << {:mime => map_extensions_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false}
+      else !(s = attr[0].scan(/#{sources}/)).blank?
+        array << {:mime => map_sources_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false}
       end
 
     end
 
     array
   end
+
+  def map_sources_to_mime(ext)
+    if ext =~ /#{AppConstants.document_sources}/
+      return AppConstants.mime_remote_document
+    elsif ext =~ /#{AppConstants.image_sources}/
+      return AppConstants.mime_remote_image
+    elsif ext =~ /#{AppConstants.video_sources}/
+      return AppConstants.mime_remote_video
+    elsif ext =~ /#{AppConstants.audio_sources}/
+      return AppConstants.mime_remote_audio
+    else
+      AppConstants.mime_remote_link
+    end
+  end
+  def map_extensions_to_mime(ext)
+    if ext =~ /#{AppConstants.document_extensions}/
+      return AppConstants.mime_remote_document
+    elsif ext =~ /#{AppConstants.image_extensions}/
+      return AppConstants.mime_remote_image
+    elsif ext =~ /#{AppConstants.video_extensions}/
+      return AppConstants.mime_remote_video
+    elsif ext =~ /#{AppConstants.audio_extensions}/
+      return AppConstants.mime_remote_audio
+    else
+      AppConstants.mime_remote_link
+    end
+  end
+
   #need to write strong parser for remote docs
   #this is temporary for time being.. need to make all the parse in one call
   # like mentions, documents and hashes
@@ -269,7 +298,7 @@ module TextFormatter
     end
     hash = {}
     hash = {:id => attr.id, :source_name => attr.source_name, :action => attr.action, :time => attr.updated_at}
-    hash[:desc] =  attr.desc if !attr.desc.blank?
+    hash[:description] =  attr.description if !attr.description.blank?
   end
 
   #format a location object to generic form
@@ -314,14 +343,13 @@ module TextFormatter
         :status => activity.status,
         :campaign_types => activity.campaign_types,
         :social_counters => activity.social_counters_array,
-        :source_msg_id => activity.source_msg_id,
-        :category_data => format_summary_category(activity.category_id)
+        :source_msg_id => activity.source_msg_id
       }
 
-    if !activity.base_location_id.blank?
-      hash[:location] = format_location(activity.base_location)
-      #hash[:location][:id] = activity.base_location_id
-    end
+    hash[:category_data] = format_summary_category(activity.category_id) if !activity.category_id.blank?
+
+    hash[:location] = format_location(activity.base_location) if !activity.base_location_id.blank?
+
     hash
   end
 
@@ -362,6 +390,27 @@ module TextFormatter
               :category => document.category,
               :activity_id => document.activity_id,
               :summary_id => document.summary_id           }
+
+    if document.uploaded == false and !document.web_link.blank?
+
+       h =  format_web_link(document.web_link)
+       hash[:document] = hash[:document].merge(h[:web_link])
+
+    end
+
+    hash
+  end
+
+  def format_web_link(web_link)
+    hash = {}
+    hash[:web_link] = {
+       :url => web_link.url,
+       :url_description => web_link.description,
+       :url_category => web_link.category,
+       :url_title => web_link.name,
+       :url_image => web_link.image_url,
+       :url_provider => web_link.provider
+    }
     hash
   end
   #formats an campaign  ( extra => user_id which tells if current user is there & count )
