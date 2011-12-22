@@ -1,55 +1,61 @@
-
-= form_for(Feedback.new(), :url => feedback_create_path, :html => { :method => :post,  :style => "display: none;  " }, :remote => true ) do |f|
-  %h3 HELP ACTWITTY SERVE YOU BETTER
-  %p
-    Kindly let us know your valuable feedback.
-  %p
-    You can choose to mention name and/or email or be anonymous.
-  %ul.aw_feedback_fields
-    %li
-      %span Name
-      = f.text_field :name,{ :placeholder => "Name",:class=>'aw_feedback_text_input', :id=>'aw_js_feedback_name'}
-    %li
-      %span Email
-      = f.text_field :email,{ :placeholder => "Email", :class=>'aw_feedback_text_input', :id=>'aw_js_feedback_email'}
-    %li.aw_feedback_input_list
-      %span Feedback
-      %br/
-      = f.text_area :feedback_text,{:type => "text", :placeholder => "Let us know", :class=>'aw_feedback_text_input_area', :maxlength => 1000, :id=>'aw_js_feedback_text'}
-  = f.submit "SEND",{ :class=>'button_actwitty orange medium hover_point', :id => 'aw_feedback_submit' }
-%img{:src => "/images/actwitty/refactor/aw_common/feedback.png"}
+%input#aw_common_feedback_btn.button_actwitty.gray{:type => "button", :value => "Feedback"}
+  #aw_common_feedback_form_box
+    #aw_common_feedback_header
+      %h3 
+        Help 
+        %strong ACTWITTY 
+        Serve You Better
+      %h4 Kindly let us know your valuable feedback.
+      %h4 You can choose to mention name and/or email or be anonymous.
+    #aw_common_feedback_input_elem
+      = form_for(Feedback.new(), :url => feedback_create_path, :html => { :method => :post }, :remote => true ) do |f|
+        %ul
+          %li.aw_common_feedback_actor_name
+            %span Name
+            = f.text_field :name,{ :placeholder => "Name",:class=>'aw_feedback_text_input', :id=>'aw_js_feedback_name'}
+          %li.aw_common_feedback_actor_email
+            %span Email
+            = f.text_field :email,{ :placeholder => "Email", :class=>'aw_feedback_text_input', :id=>'aw_js_feedback_email'}
+          %li.aw_common_feedback_actor_text
+            %h5 Feedback
+            = f.text_area :feedback_text,{:type => "text", :placeholder => "Let us know", :class=>'aw_feedback_text_input_area', :maxlength => 1000, :id=>'aw_js_feedback_text'}
+        = f.submit "Submit",{ :class=>'button_actwitty blue hover_point', :id => 'aw_feedback_submit' }
+        %a#aw_common_feedback_close X close
 
 :javascript
   $(document).ready(function() {
-    var feed = $('#feedback_section');
-  	
-    feed.css("display", "block").data("showing", false).children("form").hide()
-    feed.css("height: 120px; margin-left: -400px");
+
+    var activate_feedback = $("#aw_common_feedback_btn");
+    var feedback_form_box = $("#aw_common_feedback_form_box");
+    var feedback_close = $("#aw_common_feedback_close");
+    
+    $("#aw_js_feedback_name").val("");
+    $("#aw_js_feedback_text").val("");
+    $("#aw_js_feedback_email").val("");
+    
+    activate_feedback.click(function(){
+      $(this).hide();
+      feedback_form_box.slideToggle('slow', function() {
+      });
+    });
   
-
-    var t = feed;
-  	t.animate({
-  						      marginLeft: "-400px",
-  						      height: "120px"
-  					      }).data("showing", false).children("img").attr("src", "/images/actwitty/refactor/aw_common/feedback.png").css("top", "0").siblings().hide();
-
-    feed.children("img").click(function() {
-  	  var t = feed;
-  		if(t.data("showing") == false) {
-        $("#aw_js_feedback_name").val('');
-        $("#aw_js_feedback_email").val('');
-        $("#aw_js_feedback_text").val('');
-  		  t.animate({
-  					        marginLeft: "0",
-  						      height: "350px"
-  					      }).data("showing", true).children("img").attr("src", "/images/actwitty/refactor/aw_common/hide_feedback.png").css("top", "100px").siblings().show();
-  		} else {
-  		  t.animate({
-  						      marginLeft: "-400px",
-  						      height: "120px"
-  					      }).data("showing", false).children("img").attr("src", "/images/actwitty/refactor/aw_common/feedback.png").css("top", "0").siblings().hide();
-  				  }
-  				
-  	});
-  			
+    feedback_close.click(function(){
+      feedback_form_box.slideToggle('slow', function() {
+        activate_feedback.show();
+      });
+    });
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+

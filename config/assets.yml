@@ -127,7 +127,8 @@ javascripts:
 stylesheets:
   defaults:
     - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
-    - public/stylesheets/actwitty/refactor/aw_common/aw_feedback.css
+    #- public/stylesheets/actwitty/refactor/aw_common/aw_feedback.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_modal_boxes.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
   landing_pages:
@@ -141,6 +142,7 @@ stylesheets:
   profile_page_commons:  
     - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.css
     - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.css
   profile_page_settings:
     - public/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_profile_settings.css
   profile_channel_settings:
