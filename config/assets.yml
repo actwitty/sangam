@@ -100,7 +100,7 @@ javascripts:
   highcharts:
     - public/javascripts/actwitty/refactor/ppm/externals/highcharts/highcharts.js
     #- public/javascripts/actwitty/refactor/ppm/externals/highcharts/modules/exporting.js
-    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/gray.js
+    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/blue.js
   charts_analytics:
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_main.js
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_unfiltered.js
