@@ -134,16 +134,13 @@ function aw_api_ppm_stm_charts_create_multimedia_distribution_chart(chart_box_id
 						renderTo: chart_box_id
 					},
 					title: {
-						text: 'Multimedia Share Analytics'
+						text: 'Multimedia Share Analytics',
 					},
 					xAxis: {
 						categories: channel_name_array,
             labels: {
-							rotation: -45,
+							rotation: -30,
 							align: 'right',
-							style: {
-								 font: 'normal 11px Verdana, sans-serif'
-							}
 						}
 					},
            yAxis: {

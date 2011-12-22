@@ -17,6 +17,7 @@ body
   font-family: $aw_var_default_font_family
   color: $aw_var_default_color
   background-color: $aw_var_default_backgorund_color
+  margin-bottom: 40px
 
 img
   border: 0
@@ -104,6 +105,12 @@ div.awppm_stm_wrapper
   background-color: #ffffff
   border: 0px solid blue
 
+
+.awppm_stm_column4
+  color: #666666
+  background-color: #ffffff
+  border: 0px solid black
+
 /******************************************* User box section for user photo and input box *************************
 
 #awppm_stm_user_box
@@ -181,8 +188,12 @@ div.awppm_stm_wrapper
   width: 990px
   height: auto
   border-radius: 4px
-  border: 1px solid #ddd
+  border: 1px solid #f5f5f5
   background: #ffffff
+  -moz-box-shadow: 0 0 5px #ededed
+  -webkit-box-shadow: 0 0 5px #ededed
+  box-shadow: 0 0 5px #ededed
+  margin-bottom: 30px
 
 #awppm_stm_analytics_container_box
   /*width: 860px
@@ -198,8 +209,11 @@ div.awppm_stm_wrapper
   /*box-shadow: inset 0 0 2px #000000
   width: 100%
   height: auto
-  margin-top: 10px
-
+  margin-top: 30px
+  border: 1px solid #f5f5f5
+  -moz-box-shadow: 0 0 5px #f5f5f5
+  -webkit-box-shadow: 0 0 5px #f5f5f5
+  box-shadow: 0 0 5px #f5f5f5
 
 
 
@@ -219,11 +233,13 @@ div.awppm_stm_wrapper
   min-height: 300px
   width: 580px
   margin-top: 20px
-  padding: 15px 10px 10px 10px
+  padding: 15px 10px 120px 10px
   border: 0px solid blue
   border: 1px solid #f4f4f4
   float: left
   display: inline-block
+  position: relative
+  margin-bottom: 20px
   /* Stream Page Main Label
   .awppm_stm_page_main_label
     font-size: 32px
@@ -301,23 +317,35 @@ div.awppm_stm_wrapper
       height: 20px
       position: absolute
       bottom: 0
-      left: 0
+      right: 0
       color: #fff
       text-align: center
       font-weight: bold
     ul.awppm_stm_post_timeline_list
       width: 100%
   /* Time Line Streams End
+
+
+
+@mixin awppm_stm_right_side_info_subcontainers
+  width: 100%
+  border: 1px solid #f5f5f5
+  height: 150px
+  border-radius: 5px
+  -moz-box-shadow: 0 0 2px #f5f5f5
+  -webkit-box-shadow: 0 0 2px #f5f5f5
+  box-shadow: 0 0 2px #f5f5f5
 @mixin awppm_stm_right_side_info_headers
   height: 20px
-  width: 250px
+  text-align: left
+@mixin awppm_stm_right_side_info_headers_span
   font-size: 12px
   font-weight: bold
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
-  /*color: #7D9EC0
-  color: #0066cc
-  text-align: left
-  background: #f5f5f5
+  color: #fff
+  background: #009ACD
+  padding: 3px
+  border-radius: 3px
 @mixin awppm_stm_right_side_info_view_more
   width: 100%
   height: 20px
@@ -345,13 +373,13 @@ div.awppm_stm_wrapper
   #awppm_stm_right_side_info_subcontainer_box
     width: 250px
     margin-left: 50px
-    border: 1px solid #f5f5f5
+    border: 0px solid #f5f5f5
     #awppm_stm_right_side_info_related_people_container
-      width: 100%
-      border: 0px solid blue
-      height: 150px
+      @include awppm_stm_right_side_info_subcontainers
       .awppm_stm_right_side_info_related_people_header
         @include awppm_stm_right_side_info_headers
+        span
+          @include  awppm_stm_right_side_info_headers_span
       .awppm_stm_right_side_info_related_people
         padding-top: 10px
         padding-bottom: 10px
@@ -362,12 +390,12 @@ div.awppm_stm_wrapper
             
 
     #awppm_stm_right_side_info_related_mentions_container
-      width: 100%
-      border: 0px solid blue
-      height: 150px
+      @include awppm_stm_right_side_info_subcontainers
       margin-top: 10px
       .awppm_stm_right_side_info_related_mentions_header
         @include awppm_stm_right_side_info_headers
+        span
+          @include awppm_stm_right_side_info_headers_span
       .awppm_stm_right_side_info_related_mentions
         padding-top: 10px
         padding-bottom: 10px
@@ -377,12 +405,12 @@ div.awppm_stm_wrapper
           @include awppm_stm_right_side_info_view_span
 
     #awppm_stm_right_side_info_related_locations_container
-      width: 100%
-      border: 0px solid blue
-      height: 150px
+      @include awppm_stm_right_side_info_subcontainers
       margin-top: 10px
       .awppm_stm_right_side_info_related_locations_header
         @include awppm_stm_right_side_info_headers
+        span
+          @include awppm_stm_right_side_info_headers_span
       .awppm_stm_right_side_info_related_locations
         padding-top: 10px
         padding-bottom: 10px
@@ -414,6 +442,13 @@ div.awppm_stm_wrapper
       width: 50px
       height: 50px
       margin: auto
+
+
+
+/**************************** AW Footer
+#aw_profile_footer_box
+  @include awppm_stm_default_full_width
+
 
 .awppm_hidden
   display: none

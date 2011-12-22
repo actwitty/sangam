@@ -10,8 +10,8 @@ Highcharts.theme = {
 		backgroundColor: {
 			linearGradient: [0, 0, 0, 400],
 			stops: [
-				[0, 'rgb(0, 154, 205)'],
-				[1, 'rgb(0, 120, 205)']
+				[0, 'rgb(96, 96, 96)'],
+				[1, 'rgb(16, 16, 16)']
 			]
 		},
 		borderWidth: 0,
@@ -28,7 +28,7 @@ Highcharts.theme = {
 	},
 	subtitle: {
 		style: {
-			color: '#FFF',
+			color: '#DDD',
 			font: '12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
 		}
 	},
@@ -38,13 +38,13 @@ Highcharts.theme = {
 		tickColor: '#999',
 		labels: {
 			style: {
-				color: '#fff',
+				color: '#999',
 				fontWeight: 'bold'
 			}
 		},
 		title: {
 			style: {
-				color: '#FFF',
+				color: '#AAA',
 				font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
 			}
 		}
@@ -57,20 +57,20 @@ Highcharts.theme = {
 		tickWidth: 0,
 		labels: {
 			style: {
-				color: '#fff',
+				color: '#999',
 				fontWeight: 'bold'
 			}
 		},
 		title: {
 			style: {
-				color: '#fff',
+				color: '#AAA',
 				font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
 			}
 		}
 	},
 	legend: {
 		itemStyle: {
-			color: '#fff'
+			color: '#CCC'
 		},
 		itemHoverStyle: {
 			color: '#FFF'
@@ -102,20 +102,20 @@ Highcharts.theme = {
 	plotOptions: {
 		line: {
 			dataLabels: {
-				color: '#fff'
+				color: '#CCC'
 			},
 			marker: {
-				lineColor: '#fff'
+				lineColor: '#333'
 			}
 		},
 		spline: {
 			marker: {
-				lineColor: '#fff'
+				lineColor: '#333'
 			}
 		},
 		scatter: {
 			marker: {
-				lineColor: '#fff'
+				lineColor: '#333'
 			}
 		},
 		candlestick: {
@@ -253,8 +253,8 @@ Highcharts.theme = {
 	// special colors for some of the demo examples
 	legendBackgroundColor: 'rgba(48, 48, 48, 0.8)',
 	legendBackgroundColorSolid: 'rgb(70, 70, 70)',
-	dataLabelsColor: '#fff',
-	textColor: '#fff',
+	dataLabelsColor: '#444',
+	textColor: '#E0E0E0',
 	maskColor: 'rgba(255,255,255,0.3)'
 };
 
