@@ -55,6 +55,16 @@
       = include_stylesheets :profile_page_externals
       = include_stylesheets :aw_internal_feedback_show_page
 
+    -if @page_mode == "aw_internal_inviteds_show_page"
+      = include_stylesheets :profile_page_externals
+      = include_stylesheets :profile_page_commons
+      = include_stylesheets :aw_internal_inviteds_show_page
+
+    -if @page_mode == "profile_thanks_page"
+      = include_stylesheets :profile_page_externals
+      = include_stylesheets :profile_page_commons
+      = include_stylesheets :profile_thanks_page
+
 
     %meta{'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1'}
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
@@ -102,9 +112,14 @@
       = include_javascripts :profile_streams
       = include_javascripts :location_page
     
+    -if @page_mode == "aw_internal_inviteds_show_page"
+      = include_javascripts :aw_internal_inviteds_show_page
 
+    /* This is an exclude condition. Mind it*/
     -if @page_mode != "authentications_page" 
       = include_javascripts :autocomplete
+
+      
     :javascript
       if ($.browser.msie && $.browser.version.substr(0,1)<9){
         alert("oops!! You seems to be using older version of browser, ActWitty is not supported yet on your browser version. We suggest you to upgrade to higher version.");

@@ -26,7 +26,8 @@ class HomeController < ApplicationController
                         :get_streams, :get_related_entities,
                         :get_related_locations, :get_social_counter, 
                         :get_related_friends, :get_all_comments,
-                        :get_users_of_campaign, 
+                        :get_users_of_campaign,
+                        :thanks,
                         :subscribers,:subscriptions,
                         :get_latest_summary, :search_any,
                         :get_analytics_summary,
@@ -184,6 +185,14 @@ class HomeController < ApplicationController
 
     #FB: Open graph tags start
     
+    # Check if uninvited user
+    existing_pg_authentication = Authentication.where(:user_id => @user.id, :provider => 'facebook').all().first()
+    invite_status = Invite.check_if_invite_exists('facebook', existing_pg_authentication.uid)
+    unless invite_status 
+      redirect_to :controller => "home", :action => "thanks"
+    end
+
+    
     unless @aw_mention_filter_text_val.blank?
       @page_description = "#{@page_description} filtered for mentions of #{@aw_mention_filter_text_val}"
     end
@@ -262,6 +271,13 @@ class HomeController < ApplicationController
         Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
       end
     end
+    # Check if uninvited user
+    existing_pg_authentication = Authentication.where(:user_id => @user.id, :provider => 'facebook').all().first()
+    invite_status = Invite.check_if_invite_exists('facebook', existing_pg_authentication.uid)
+    unless invite_status 
+      redirect_to :controller => "home", :action => "thanks"
+    end
+
     #FB: Open graph tags start
     set_meta_tags :open_graph => {
                                   :title => "#{@user.full_name} Channels at ActWitty",
@@ -274,7 +290,35 @@ class HomeController < ApplicationController
     #FB: Open graph tags end
 
   end
- 
+  ############################################
+  def thanks
+    @user=nil
+    @page_mode="profile_thanks_page"
+
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [THANKS] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
+      if @user.nil?
+        if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [THANKS] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      end
+    end
+
+
+  end
   ############################################
   def subscribers
     Rails.logger.info("[CNTRL][HOME][SUBSCRIBER] request params : #{params}")
