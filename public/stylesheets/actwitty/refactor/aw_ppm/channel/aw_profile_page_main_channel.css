@@ -16,7 +16,7 @@ body {
   font-size: 12px;
   font-family: "Helvetica", Arial, Helvetica, sans-serif;
   color: #cccccc;
-  background-color: #f5f5f5;
+  background-color: white;
 }
 
 /* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
@@ -124,7 +124,7 @@ div.awppm_chn_channel_wrapper {
 /* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.sass */
 .awppm_chn_channel_column2 {
   color: white;
-  background-color: #f5f5f5;
+  background-color: white;
   border: 0px solid green;
 }
 
