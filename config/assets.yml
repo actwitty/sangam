@@ -77,6 +77,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_srv_request.js
     - public/javascripts/actwitty/refactor/ppm/streams/facebook/aw_ppm_stream_facebook_renders.js
     - public/javascripts/actwitty/refactor/ppm/streams/aw_ppm_stream_rename_channel.js
+
   profile_main_extra:
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.elastic.source.js
     - public/javascripts/plugins/date.js
@@ -105,6 +106,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_unfiltered.js
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_filtered.js
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_timeseries_zoomable.js
+  aw_internal_inviteds_show_page:    
+    - public/javascripts/actwitty/refactor/aw_internals/aw_inviteds_show.js
   main:
     - public/javascripts/rails.js
     - public/javascripts/vendor/jqueryui.js
@@ -185,4 +188,9 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/streams/location_page/aw_ppm_location_page_main.css
   aw_internal_feedback_show_page:
     - public/stylesheets/actwitty/refactor/aw_internals/aw_feedbacks_show.css
+  aw_internal_inviteds_show_page:
+    - public/stylesheets/actwitty/refactor/aw_internals/aw_inviteds.css
+  profile_thanks_page:
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks.css
+
 

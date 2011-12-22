@@ -2,6 +2,7 @@ Sangam::Application.routes.draw do
 
   get "home/show"
   get "home/streams"
+  get "home/thanks"
   #get "home/alpha"
   get '/users/sign_in', :to => 'welcome#new'
   get '/users/sign_up', :to => 'welcome#new'
@@ -125,6 +126,12 @@ Sangam::Application.routes.draw do
 
   match '/feedback/create' => 'feedback#create'
   match '/feedback/show' => 'feedback#show'
+  
+  match '/invites/inviteds' => 'invites#inviteds'
+  match '/invites/accepted' => 'invites#accepted'
+  match '/invites/registered' => 'invites#registered'
+
+  match '/invites/create_new' => 'invites#create_new'
 
   match '/sign_out' => 'welcome#new'
   match '/welcome/new' => 'welcome#new'

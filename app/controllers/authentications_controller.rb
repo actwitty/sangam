@@ -129,7 +129,7 @@ class AuthenticationsController < ApplicationController
             redirect_to session[:return_to] || '/'
           end
         else
-          # An existing authentication for no signed in user
+          # New authentication for no signed in user
           Rails.logger.info("[CNTRL][Authentications] User is not signed in but auth is new.")
 
           authentication = Authentication.create( :provider => provider,
@@ -141,6 +141,12 @@ class AuthenticationsController < ApplicationController
             Rails.logger.info("[CNTRL][Authentications] New foreign profile to cache for new auth no signin.")
             authentication.foreign_profile = ForeignProfile.new
             authentication.foreign_profile.send("import_#{provider}",data)
+          end
+
+
+          invite_status = Invite.check_if_invite_exists(@provider, @uid)
+          if invite_status 
+            Invite.mark_invite_accepted(@provider, @uid)
           end
 
           Rails.logger.info("[CNTRL][Authentications] Redirecting to auth signup page.")
