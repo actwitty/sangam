@@ -5,24 +5,24 @@
 var aw_local_default_channel_theme_json = {
                                             'animals' :       '0x00000019',
                                             'arts':           '0x00000045',    
+                                            'automobiles':    '0x00000037',
                                             'books':          '0x00000005',
                                             'business':       '0x00000039',
-                                            'cars':           '0x00000037',
-                                            'events':         '0x00000007',
-                                            'politics':       '0x00000066', 
-                                            'entertainment':  '0x00000042',
                                             'education':      '0x00000055',
-                                            'fashion':        '0x00000018', 
-                                            'food and drink': '0x00000023',
+                                            'entertainment':  '0x00000042',
+                                            'food':           '0x00000023',
                                             'games':          '0x00000034',
                                             'health':         '0x00000021',
-                                            'home':           '0x00000028',    
                                             'hobbies' :       '0x00000027',
+                                            'home':           '0x00000028',    
+                                            'leisure':        '0x00000018', 
+                                            'products':       '0x00000067', 
                                             'nonprofits':     '0x00000044',
+                                            'places':         '0x00000047',
+                                            'world':          '0x00000066', 
                                             'sports' :        '0x00000052',
                                             'stories':        '0x00000060',
                                             'technology':     '0x00000043',
-                                            'places':         '0x0000000',
                                             'default':        '0xffffff00' 
                                       };
 
@@ -317,12 +317,6 @@ var aw_local_channel_theme_list_json = {
                                           'text': 'Paris',
                                           'name': 'Paris'
                                           },
-                                '0x00000048':{
-                                          'thumb': aw_local_theme_base_path + 'paris/thumb.jpg',
-                                          'bkg': aw_local_theme_base_path + 'paris/bkg.jpg',
-                                          'text': 'Paris',
-                                          'name': 'Paris'
-                                          },
                                 '0x00000049':{
                                           'thumb': aw_local_theme_base_path + 'peace/thumb.jpg',
                                           'bkg': aw_local_theme_base_path + 'peace/bkg.jpg',
@@ -430,7 +424,12 @@ var aw_local_channel_theme_list_json = {
                                           'bkg': aw_local_theme_base_path + 'world/bkg.jpg',
                                           'text': 'World Politics',
                                           'name': 'World'
-                                          },                                                                                    
+                                         },                                                                                                                   '0x00000067':{
+                                          'thumb': aw_local_theme_base_path + 'brands/thumb.jpg',
+                                          'bkg': aw_local_theme_base_path + 'brands/bkg.jpg',
+                                          'text': 'Brands to buy',
+                                          'name': 'Brands'
+                                          },                 
                                 '0xffffff00':  {
                                           'thumb': aw_local_theme_base_path + 'default/thumb.jpg',
                                           'bkg': aw_local_theme_base_path + 'default/bkg.jpg',

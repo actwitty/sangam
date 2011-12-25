@@ -16,16 +16,16 @@
  */
 /*
 function aw_lib_get_default_channel_theme_for_category(category_data){
-  if ( category_data && category_data.category_id && aw_local_default_channel_theme_json[category_data.category_id]){
-    return aw_local_default_channel_theme_json[category_data.category_id];
+  if ( category_data && category_data.id && aw_local_default_channel_theme_json[category_data.id]){
+    return aw_local_default_channel_theme_json[category_data.id];
   }else{
     return aw_local_default_channel_theme_json['default'];
   }
 }
 */
 function aw_lib_get_default_channel_theme_for_category(category_data){
-  if ( category_data && category_data.category_id && aw_local_default_channel_theme_json[category_data.category_id]){
-    var theme_code = aw_local_default_channel_theme_json[category_data.category_id];
+  if ( category_data && category_data.id && aw_local_default_channel_theme_json[category_data.id]){
+    var theme_code = aw_local_default_channel_theme_json[category_data.id];
     return aw_local_channel_theme_list_json[theme_code];
   }else{
     return aw_local_channel_theme_list_json['0xffffff00'];
@@ -39,8 +39,8 @@ function aw_lib_get_default_channel_theme_for_category(category_data){
  */
 /*
 function aw_lib_get_default_stream_theme_for_category(category_data){
-  if ( category_data && category_data.category_id && aw_local_default_channel_theme_json[category_data.category_id]){
-    return aw_local_default_channel_theme_json[category_data.category_id].bkg;
+  if ( category_data && category_data.id && aw_local_default_channel_theme_json[category_data.id]){
+    return aw_local_default_channel_theme_json[category_data.id].bkg;
   }else{
     return aw_local_default_channel_theme_json['default'].bkg;
   }
@@ -48,8 +48,8 @@ function aw_lib_get_default_stream_theme_for_category(category_data){
 
 
 function aw_lib_get_default_stream_theme_for_category(category_data){
-  if ( category_data && category_data.category_id && aw_local_default_channel_theme_json[category_data.category_id]){
-    var theme_code = aw_local_default_channel_theme_json[category_data.category_id] 
+  if ( category_data && category_data.id && aw_local_default_channel_theme_json[category_data.id]){
+    var theme_code = aw_local_default_channel_theme_json[category_data.id] 
     return aw_local_channel_theme_list_json[theme_code].bkg;
   }else{
     return aw_local_channel_theme_list_json['0xffffff00'].bkg;
@@ -65,11 +65,11 @@ function aw_lib_get_default_stream_theme_for_category(category_data){
 
 function aw_lib_get_channel_theme_thumb(channel_info)
 {
-  if (channel_info.category_data && channel_info.category_data.category_id && aw_local_default_channel_theme_json[channel_info.category_data.category_id]){
+  if (channel_info.category_data && channel_info.category_data.id && aw_local_default_channel_theme_json[channel_info.category_data.id]){
     if(typeof channel_info.theme_data.id != 'undefined' && channel_info.theme_data.fg_color != '0xffffff00' && aw_local_channel_theme_list_json[channel_info.theme_data.fg_color]){
       return aw_local_channel_theme_list_json[channel_info.theme_data.fg_color].thumb;  
     }else{
-      var theme_code = aw_local_default_channel_theme_json[channel_info.category_data.category_id];
+      var theme_code = aw_local_default_channel_theme_json[channel_info.category_data.id];
       return aw_local_channel_theme_list_json[theme_code].thumb;
     }
   }else{
@@ -85,11 +85,11 @@ function aw_lib_get_channel_theme_thumb(channel_info)
  */
 function aw_lib_get_channel_theme_background(channel_info)
 {
-  if ( channel_info.category_data && channel_info.category_data.category_id && aw_local_default_channel_theme_json[channel_info.category_data.category_id]){
+  if ( channel_info.category_data && channel_info.category_data.id && aw_local_default_channel_theme_json[channel_info.category_data.id]){
     if(typeof channel_info.theme_data.id != 'undefined' && channel_info.theme_data.fg_color != '0xffffff00' && aw_local_channel_theme_list_json[channel_info.theme_data.fg_color]){
       return aw_local_channel_theme_list_json[channel_info.theme_data.fg_color].bkg;  
     }else{
-      var theme_code = aw_local_default_channel_theme_json[channel_info.category_data.category_id];
+      var theme_code = aw_local_default_channel_theme_json[channel_info.category_data.id];
       return aw_local_channel_theme_list_json[theme_code].bkg;
     }
   }else{
