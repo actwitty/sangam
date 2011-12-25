@@ -3,31 +3,7 @@
  *code: AWLPM (awlpm) Actwitty Landing Page Main
  *Author: ActWitty Developers
  *Author URI: http://www.actwitty.com */
-@font-face {
-  font-family: "League Gothic";
-  src: url("/webfont/leaguegothic/League_Gothic-webfont.eot");
-  src: local("League Gothic Regular"), local("League Gothic"), url("/webfont/leaguegothic/LeagueGothic.woff") format("woff"), url("/webfont/leaguegothic/LeagueGothic.otf") format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg");
-}
-
-@font-face {
-  font-family: "Chunk Five";
-  src: url("/webfont/chunk/Chunkfive-webfont.eot");
-  src: local("Chunk Five Regular"), local("Chunk Five"), url("/webfont/chunk/Chunkfive-webfont.woff") format("woff"), url("/webfont/chunk/Chunk.otf") format("opentype"), url("/webfont/chunk/Chunkfive-webfont.svg#ChunkFive") format("svg");
-}
-
-@font-face {
-  font-family: "Sniglet";
-  src: url("/webfont/sniglet/Sniglet-webfont.eot");
-  src: local("Sniglet Regular"), local("Sniglet"), url("/webfont/sniglet/Sniglet-webfont.woff") format("woff"), url("/webfont/sniglet/Sniglet Regular.otf") format("opentype"), url("/webfont/sniglet/Sniglet-webfont.svg#Sniglet") format("svg");
-}
-
-@font-face {
-  font-family: "Knewave";
-  src: url("/webfont/knewave/knewave-webfont.eot");
-  src: local("Knewave Regular"), local("Sniglet"), url("/webfont/sniglet/Sniglet-webfont.woff") format("woff"), url("/webfont/sniglet/Sniglet Regular.otf") format("opentype"), url("/webfont/sniglet/Sniglet-webfont.svg#Sniglet") format("svg");
-}
-
-/* line 41, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 21, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 body {
   margin: 0;
   padding: 0;
@@ -37,68 +13,68 @@ body {
   background-color: #45bcd2;
 }
 
-/* line 49, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 29, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 img {
   border: 0;
   padding: 0;
   margin: 0;
 }
 
-/* line 54, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 34, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .justify {
   text-align: justify;
 }
 
-/* line 57, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 37, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .bold {
   font-weight: bold;
 }
 
-/* line 60, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 40, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .center {
   text-align: center;
 }
 
-/* line 63, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 43, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .right {
   text-align: right;
 }
 
-/* line 66, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 46, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .nostart {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 71, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 51, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .clear {
   clear: both;
 }
 
-/* line 74, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 54, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 br.clear {
   clear: both;
   margin-top: -15px;
 }
 
-/* line 78, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 58, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 a {
   outline: none;
   text-decoration: none;
 }
 
-/* line 82, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 62, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .fl_left {
   float: left;
 }
 
-/* line 85, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 65, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .fl_right {
   float: right;
 }
 
-/* line 88, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 68, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .imgl, .imgr {
   border: 0px solid #dfdfdf;
   padding: 5px;
@@ -106,14 +82,14 @@ a {
   background-color: #45bcd2;
 }
 
-/* line 94, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 74, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .imgl {
   float: left;
   margin: 0 8px 8px 0;
   clear: left;
 }
 
-/* line 99, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 79, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .imgr {
   float: right;
   margin: 0 0 8px 8px;
@@ -125,7 +101,7 @@ a {
  *
  */
 /* Landing page major horizontals of full width */
-/* line 116, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 96, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_tiny_login_header_horizontal_section {
   /* Make sure it includes the mixin for full width */
   display: block;
@@ -139,7 +115,7 @@ a {
   background: #45484d;
 }
 
-/* line 127, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 107, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_header_horizontal_section {
   /* Make sure it includes the mixin for full width */
   display: block;
@@ -159,7 +135,7 @@ a {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#45484d', endColorstr='#000000',GradientType=0 );
 }
 
-/* line 147, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 127, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_master_image_horizontal_section {
   /* Make sure it includes the mixin for full width */
   display: block;
@@ -171,7 +147,7 @@ a {
   border: 0px solid green;
 }
 
-/* line 156, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 136, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_slides_horizontal_section {
   /* Make sure it includes the mixin for full width */
   display: block;
@@ -191,13 +167,13 @@ a {
    * background: linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
    * filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=0 ) */
 }
-/* line 174, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 154, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_slides_horizontal_section a {
   color: white;
   background-color: #424242;
 }
 
-/* line 178, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 158, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_footer_horizontal_section {
   /* Make sure it includes the mixin for full width */
   display: block;
@@ -220,7 +196,7 @@ a {
 /* -------------------- Full Horizontal Sections Definition End ------------------------------------- */
 /* ----------------------------------------------Generalise------------------------------------- */
 /* --------------------------------------------Tiny Header---------------------------------- */
-/* line 220, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 200, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_local_sign_in_button {
   float: right;
   margin: 0 0 0 1px;
@@ -231,13 +207,13 @@ a {
   text-transform: uppercase;
 }
 
-/* line 229, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 209, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_local_sign_in_button a {
   color: #cccccc;
 }
 
 /* ----------------------------------------------Header------------------------------------- */
-/* line 233, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 213, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_header_section {
   /* Make sure it includes the mixin for wide */
   position: relative;
@@ -250,14 +226,14 @@ a {
   height: 90px;
 }
 
-/* line 241, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 221, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_header_content_holder {
   width: 100%;
   height: 65px;
   border: 0px solid red;
 }
 
-/* line 246, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 226, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_header_aw_logo {
   margin-top: 5px;
   /*margin-left: 250px */
@@ -268,13 +244,13 @@ a {
   position: relative;
 }
 
-/* line 255, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 235, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 img.awlpm_aw_logo_img {
   /*height: 232px */
   /*width: 950px */
 }
 
-/* line 259, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 239, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_header_label {
   margin: 0 auto;
   margin-left: 10px;
@@ -290,14 +266,14 @@ img.awlpm_aw_logo_img {
 }
 
 @-moz-document url-prefix() {
-  /* line 273, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+  /* line 253, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
   #awlpm_header_label {
     font-size: 50px;
   }
 }
 
 /* ---------------------------------------------- Intro/ForeignAuth section ----------------------------------------- */
-/* line 278, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 258, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_foreign_auth_section {
   padding: 0px;
   padding-top: 125px;
@@ -306,7 +282,7 @@ img.awlpm_aw_logo_img {
   position: relative;
 }
 
-/* line 285, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 265, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_foreign_auth_highlighter {
   background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_foreign_auth_highlighter.png") no-repeat scroll left top;
   display: block;
@@ -316,7 +292,7 @@ img.awlpm_aw_logo_img {
   height: 150px;
   position: relative;
 }
-/* line 293, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 273, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_foreign_auth_highlighter a.awlpm_fb_auth_logo {
   background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_fb_connect.jpg") no-repeat scroll left top;
   display: block;
@@ -324,7 +300,7 @@ img.awlpm_aw_logo_img {
   width: 300px;
   height: 49px;
 }
-/* line 299, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 279, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_foreign_auth_highlighter a.awlpm_t_auth_logo {
   background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_t_connect.jpg") no-repeat scroll left top;
   display: block;
@@ -333,19 +309,19 @@ img.awlpm_aw_logo_img {
   width: 300px;
   height: 49px;
 }
-/* line 306, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 286, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_foreign_auth_highlighter a.awlpm_fb_auth_logo:hover {
   border: 1px solid #cccccc;
   cursor: pointer;
 }
-/* line 309, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 289, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_foreign_auth_highlighter a.awlpm_t_auth_logo:hover {
   border: 1px solid #cccccc;
   cursor: pointer;
 }
 
 /* ----------------------------------------------Homepage Container ------------------------------------- */
-/* line 318, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 298, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_grid_container_parent {
   /* Make sure it includes the mixin for wide */
   position: relative;
@@ -356,13 +332,13 @@ img.awlpm_aw_logo_img {
   border: 0px solid red;
 }
 
-/* line 324, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 304, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_grid_container_header, #awlpm_info_grid_container_footer {
   height: 20px;
   border: 0px solid red;
 }
 
-/* line 328, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 308, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_grid_container {
   padding: 24px;
   height: 1200px;
@@ -378,7 +354,7 @@ img.awlpm_aw_logo_img {
   background: #0fb4e7;
 }
 
-/* line 345, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 325, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_row_1_2 {
   width: 830px;
   height: 50px;
@@ -387,7 +363,8 @@ img.awlpm_aw_logo_img {
   letter-spacing: 4px;
   word-spacing: 10px;
   text-align: center;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif */
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   padding-top: 15px;
   border-radius: 5px;
   color: #f0f0f0;
@@ -417,30 +394,30 @@ img.awlpm_aw_logo_img {
   /*background: #e6e2d5 */
 }
 
-/* line 386, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 367, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_row_1_2_color1 {
   color: #218868;
   color: white;
 }
 
-/* line 389, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 370, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_row_1_2_color2 {
   color: #fff68f;
   color: white;
 }
 
-/* line 392, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 373, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_row_1_2_color3 {
   color: #cd5555;
   color: white;
 }
 
-/* line 398, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 379, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_row_2 {
   margin-top: 20px;
 }
 
-/* line 401, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 382, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_row {
   width: 100%;
   height: 360px;
@@ -449,14 +426,14 @@ img.awlpm_aw_logo_img {
   border: 0px solid red;
   /*border-bottom: 1px dotted gray */
 }
-/* line 409, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 390, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_row h3 {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* line 415, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 396, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_updates_grid_row {
   width: 100%;
   height: 335px;
@@ -477,19 +454,19 @@ img.awlpm_aw_logo_img {
   -webkit-box-shadow: 0 0 2px #7f7f7f;
   box-shadow: 0 0 2px #7f7f7f;
 }
-/* line 436, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 417, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_updates_grid_row h3 {
   font-size: 17px;
   font-weight: normal;
   margin-bottom: 5px;
   padding: 2px 2px 2px 10px;
-  font-family: "Chunk Five";
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   text-align: center;
   color: #333333;
   text-shadow: 0 2px 2px white;
 }
 
-/* line 447, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 428, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box {
   width: 310px;
   height: 330px;
@@ -504,43 +481,45 @@ img.awlpm_aw_logo_img {
   /*&:hover img
    * border: 1px solid black */
 }
-/* line 461, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 442, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box .awlpm_info_display_box {
   width: 215px;
   height: 185px;
   margin: 10px auto;
 }
-/* line 465, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 446, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box img {
   width: 204px;
   height: 175px;
   border: 1px solid #cccccc;
   padding: 5px;
 }
-/* line 471, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 452, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box h3 {
   font-size: 18px;
   font-weight: normal;
   text-align: center;
-  font-family: "Chunk Five";
-  text-shadow: 0 1px 1px white;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  /*text-shadow: 0 1px 1px #FFFFFF */
+  font-weight: bold;
 }
-/* line 477, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 459, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box p {
   font-size: 14px;
   color: white;
   text-align: center;
-  font-weight: bold;
+  font-weight: normal;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
 }
 
-/* line 484, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 467, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_channel_updates_box {
   width: 100%;
   height: 330px;
 }
 
 /* ----------------------------------------------Footer------------------------------------- */
-/* line 493, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 476, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section {
   /* Make sure it includes the mixin for wide */
   position: relative;
@@ -551,11 +530,11 @@ img.awlpm_aw_logo_img {
   border: 0px solid red;
   text-align: left;
   margin: 0px auto;
-  font-family: "Chunk Five";
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   font-weight: normal;
 }
 
-/* line 502, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 485, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div {
   width: 890px;
   height: 240px;
@@ -563,7 +542,7 @@ img.awlpm_aw_logo_img {
   margin-left: 70px;
 }
 
-/* line 508, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 491, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div ul {
   float: left;
   padding: 0 20px 0 0;
@@ -571,44 +550,45 @@ img.awlpm_aw_logo_img {
   list-style: none outside none;
   margin-top: 50px;
 }
-/* line 514, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 497, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div ul:first {
   margin-left: 30px;
 }
 
-/* line 517, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 500, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .first_ul {
   margin-left: 30px;
 }
 
-/* line 520, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 503, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li {
   color: #dddddd;
   font-size: 10px;
   margin: 10px 0;
 }
-/* line 524, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 507, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li.awlpm_footer_label {
   color: white;
   font-size: 14px;
+  font-weight: bold;
   padding: 0 0 10px;
   text-align: left;
 }
-/* line 529, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 513, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li a {
   text-decoration: none;
   color: #dddddd;
 }
-/* line 532, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 516, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li a:hover {
   font-weight: bold;
 }
 
-/* line 535, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 519, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_copyright {
   text-align: center;
   font-size: 10px;
   color: white;
-  font-family: "Chunk Five";
-  font-weight: normal;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-weight: bold;
 }
