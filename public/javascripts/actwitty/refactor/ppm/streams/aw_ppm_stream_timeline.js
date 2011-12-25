@@ -181,24 +181,25 @@ function aw_get_actions_box_html(stream_info){
                   '<div class="aw_ppm_stm_dyn_action_mentions_count aw_js_ppm_stm_mentions_counter">0</div>' +
                   '<span> Click here to highlight key terms mentioned in post. </span>' +
                 '</div>' +
-
+                /*
                 '<div class="aw_ppm_stm_dyn_action_likes aw_js_ppm_stm_like_action">' +
                   '<div class="aw_ppm_stm_dyn_action_likes_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_likes_count aw_js_ppm_stm_likes_counter">0</div>' +
                 '</div>' +
-                
+                */
                 '<div class="aw_ppm_stm_dyn_action_shares aw_js_ppm_stm_shares_action">' +
                   '<div class="aw_ppm_stm_dyn_action_shares_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_shares_count aw_js_ppm_stm_shares_counter">0</div>' +
                   '<span> Share this post on twitter or facebook. </span>' +
-                '</div>' +
-                
+                '</div>' ;
+                /*
                 '<div class="aw_ppm_stm_dyn_action_comments aw_js_ppm_stm_comments_action">' +
                   '<div class="aw_ppm_stm_dyn_action_comments_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_comments_count aw_js_ppm_stm_comments_counter">0</div>' +
                   '<span> Click to see comments or add comments. </span>' +
                 '</div>' +
               '</div>';
+              */
   return html;
 }
 /*************************************************************/
@@ -271,6 +272,7 @@ function aw_api_get_stream_main_html(stream_info){
 
                     aw_ppm_stm_attachments_get_images_html(stream_info) +
                     aw_ppm_stm_attachments_get_videos_html(stream_info) +
+                    aw_ppm_stm_attachments_get_links_html(stream_info) +
                     aw_get_actions_box_html(stream_info) +
                     aw_api_ppm_stm_shares_get_html_box_html(stream_info) +
                     aw_api_ppm_stm_comment_get_initial_html() +
@@ -302,7 +304,6 @@ function aw_api_srv_add_new_stream(stream_info){
 function aw_api_srv_resp_ppm_stm_render_streams(params){
   var data = aw_api_srv_get_data_for_request('AW_SRV_PPM_STM_GET_STREAMS');
   var cookie = params['aw_srv_protocol_cookie'];
-  alert(JSON.stringify(data));
   $.each(data.stream, function(i, stream_info){
     if(stream_info.post){
       if(aw_api_ppm_stm_facebook_post_check(stream_info)){

@@ -16,13 +16,13 @@
   margin: auto;
   width: 500px;
   height: 400px;
-  border: 8px solid #33ccff;
+  /*border: 8px solid #33ccff */
   border-radius: 10px;
   -moz-border-radius: 10px;
-  background-color: white;
+  background-color: #0fb4e7;
 }
 
-/* line 55, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_aw_logo {
   margin-top: 15px;
   margin-left: 20px;
@@ -33,83 +33,102 @@
   position: relative;
 }
 
-/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 73, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 img.aw_lpm_forgot_pswd_aw_logo_img {
   height: 50px;
   width: 75px;
 }
 
-/* line 68, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 77, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_header_label {
   margin: 0 auto;
-  margin-left: 10px;
+  margin-left: 30px;
   width: 400px;
   height: 30px;
-  color: #444444;
+  color: white;
   border: 0px solid red;
   display: inline;
-  font-size: 24px;
+  font-size: 28px;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
   font-weight: bold;
+  text-align: center;
 }
 
-/* line 80, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 90, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_header_sub_label {
-  color: #444444;
-  font-size: 18px;
+  color: #faf0e6;
+  font-size: 14px;
   font-weight: bold;
   text-align: center;
   margin-top: 60px;
 }
 
-/* line 87, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 97, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_email_label {
-  color: #444444;
+  color: white;
   margin-left: 120px;
   margin-bottom: 3px;
   margin-top: 10px;
   border: 0px solid red;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
   margin-top: 20px;
 }
 
-/* line 91, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 101, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_password_label {
-  color: #444444;
+  color: white;
   margin-left: 120px;
   margin-bottom: 3px;
   margin-top: 10px;
   border: 0px solid red;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
 }
 
-/* line 95, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 105, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_email_input {
   width: 250px;
   height: 26px;
   margin-left: 120px;
   margin-bottom: 1px;
   color: black;
-  border: 1px solid #444444;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
   font: 14px/100% Arial, Helvetica, sans-serif;
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
 
-/* line 99, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 109, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_password_input {
   width: 250px;
   height: 26px;
   margin-left: 120px;
   margin-bottom: 1px;
   color: black;
-  border: 1px solid #444444;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
   font: 14px/100% Arial, Helvetica, sans-serif;
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
 
-/* line 104, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 114, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form {
   margin-left: 10px;
   font-size: 12px;
@@ -118,13 +137,13 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   width: 250px;
 }
 
-/* line 110, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 120, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form .field_with_errors {
   width: 200px;
   display: block;
 }
 
-/* line 113, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 123, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form .field_with_errors .error {
   width: 250px;
   height: 12px;
@@ -134,7 +153,7 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   color: black;
 }
 
-/* line 117, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 127, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_already_a_user {
   display: block;
   color: #444444;
@@ -146,7 +165,7 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   font-weight: normal;
 }
 
-/* line 131, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 141, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 input#aw_lpm_forgot_password_btn {
   width: 100px;
   height: 60px;
@@ -157,10 +176,14 @@ input#aw_lpm_forgot_password_btn {
   margin: auto;
   color: #fef4e9;
   border: solid 1px #da7c0c;
-  background: #f78d1d;
-  background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
-  background: -moz-linear-gradient(top, #faa51a, #f47a20);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  background: #ff3019;
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
   display: inline;
   font: 18px/100% Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -168,11 +191,9 @@ input#aw_lpm_forgot_password_btn {
   margin-top: 10px;
   margin-right: 125px;
 }
-/* line 151, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 165, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 input#aw_lpm_forgot_password_btn:hover {
   cursor: pointer;
   color: #fcd3a5;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
-  background: -moz-linear-gradient(top, #f47a20, #faa51a);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+  background: #ff3019;
 }

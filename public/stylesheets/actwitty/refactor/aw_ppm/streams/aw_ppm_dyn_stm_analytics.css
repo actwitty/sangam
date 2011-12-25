@@ -5,7 +5,7 @@
 
 /* line 6, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_label_box {
-  width: 98%;
+  width: 100%;
   display: block;
   height: 22px;
   overflow: hidden;
@@ -13,26 +13,27 @@
   text-align: left;
   margin-top: -5px;
   z-index: 10;
+  background: black;
+  border-radius: 3px;
 }
-/* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
+/* line 17, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_label_box span {
   font-size: 15px;
   font-weight: bold;
   color: white;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: left;
-  background: #009acd;
+  /*background: #333 */
   padding: 3px 10px 3px 10px;
-  border-radius: 3px;
 }
-/* line 24, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box {
   width: 360px;
   height: 210px;
   position: relative;
   margin-top: 10px;
 }
-/* line 30, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
+/* line 31, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box .awppm_stm_analytics_box {
   width: 350px;
   height: 200px;
@@ -40,7 +41,7 @@
   margin-top: 5px;
   margin-left: 5px;
 }
-/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
+/* line 38, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box .awppm_stm_analytics_box_large {
   width: 450px;
   height: 300px;
@@ -48,7 +49,7 @@
   z-index: 1000;
   border: 0px solid #dddddd;
 }
-/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
+/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box:hover .awppm_stm_analytics_box_large {
   top: -150px;
   left: -300px;

@@ -10,7 +10,7 @@
 $aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
 $aw_var_default_color: #CCCCCC
 $aw_var_default_font_size: 12px
-$aw_var_default_bkg_color: #f5f5f5
+$aw_var_default_bkg_color: #45bcd2
 $aw_var_default_border_width: 0px
 $aw_lpm_var_width_of_details:960px
 
@@ -32,6 +32,10 @@ $margin: 16px
   src: url('/webfont/sniglet/Sniglet-webfont.eot')
   src: local("Sniglet Regular"), local("Sniglet"), url("/webfont/sniglet/Sniglet-webfont.woff") format("woff"), url("/webfont/sniglet/Sniglet Regular.otf") format("opentype"), url("/webfont/sniglet/Sniglet-webfont.svg#Sniglet") format("svg")
 
+@font-face
+  font-family: 'Knewave'
+  src: url('/webfont/knewave/knewave-webfont.eot')
+  src: local("Knewave Regular"), local("Sniglet"), url("/webfont/sniglet/Sniglet-webfont.woff") format("woff"), url("/webfont/sniglet/Sniglet Regular.otf") format("opentype"), url("/webfont/sniglet/Sniglet-webfont.svg#Sniglet") format("svg")
 
 
 body
@@ -116,6 +120,8 @@ a
   z-index: 9999999
   height: 10px
   font-family: "Lucida Grande",Tahoma,Verdana
+  background: rgb(69,72,77)
+  
 
 
 .awlpm_header_horizontal_section
@@ -124,16 +130,27 @@ a
   @include awlpm_mixin_fullwidth_wrappers
 
   color: $aw_lpm_var_font_color
-  background-color: $aw_var_default_bkg_color
+  /*background-color: $aw_var_default_bkg_color
   border: $aw_var_default_border_width solid red
+  background: rgb(69,72,77)
+  background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 99%, rgba(0,0,0,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(99%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,1)))
+  background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  background: linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 )
 
+  
+
+  
 .awlpm_master_image_horizontal_section
 
   /* Make sure it includes the mixin for full width
   @include awlpm_mixin_fullwidth_wrappers
 
   background-color: $aw_var_default_bkg_color
-  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_master_intro_image.png")
+  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_template_bkg_bnw.png")
   border: $aw_var_default_border_width solid green
 
 .awlpm_info_slides_horizontal_section
@@ -143,6 +160,17 @@ a
   color: #000000
   background-color: $aw_var_default_bkg_color
   border: $aw_var_default_border_width solid blue
+  border-bottom: 1px solid #FFFFFF
+  background-image: url("/images/actwitty/refactor/aw_common/noisepattern.png")
+    /*
+      background: -moz-linear-gradient(top,  rgba(169,228,247,1) 0%, rgba(15,180,231,1) 100%)
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,228,247,1)), color-stop(100%,rgba(15,180,231,1)))
+      background: -webkit-linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      background: -o-linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      background: -ms-linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      background: linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=0 )
+  
   a
     color: #FFFFFF
     background-color: #424242
@@ -217,28 +245,29 @@ a
 
 #awlpm_header_aw_logo
   margin-top: 5px
-  margin-left: 250px
-  border: $aw_var_default_border_width solid green
+  /*margin-left: 250px
+  margin-left: 130px 
   height: 50px
   width: 75px
   display: inline
   position: relative
 
 img.awlpm_aw_logo_img
-  height: 50px
-  width: 75px
+  /*height: 232px
+  /*width: 950px
 
 #awlpm_header_label
   margin: 0 auto
   margin-left: 10px
-  font-size: 60px
-  width: 400px
+  font-size: 50px
+  /*width: 400px
   height: 50px
   font-weight: bold
-  color: #444444
+  color: #f5f5f5
   border: $aw_var_default_border_width solid red
   display: inline
-  font-family: 'League Gothic'
+  font-family: 'Arial'
+  text-align: center
 
 @-moz-document url-prefix()
   #awlpm_header_label
@@ -301,12 +330,16 @@ img.awlpm_aw_logo_img
   height: 1200px
   width: 100%
   border: $aw_var_default_border_width solid red
-  margin-top: 0px
+  margin-top: -70px
   border-radius: 10px
   background: #f5f5f5
   background-image: url("../images/noisepattern.png")
   /*border: $aw_var_default_border_width solid #FFFFFF
   border-radius: 15px 15px 15px 15px
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8)
+  background: rgba(15,180,231,1) 
+
+
 
 
 #awlpm_info_row_1_2
@@ -317,11 +350,11 @@ img.awlpm_aw_logo_img
   letter-spacing: 4px
   word-spacing: 10px
   text-align: center
-  font-family: 'Sniglet'
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif 	
   padding-top: 15px
   border-radius: 5px
   color: #f0f0f0
-  font-weight: normal
+  font-weight: bold
   /*text-shadow: 0 1px 1px #FFFFFF 
   background: rgb(73,192,240)
   background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(44,175,227,1) 100%)
@@ -331,6 +364,19 @@ img.awlpm_aw_logo_img
   background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
   background: linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2cafe3',GradientType=0 )
+
+  background-color: #424242
+  border-top: 1px solid #363631
+  background: rgb(82,82,82)
+  background: -moz-linear-gradient(top,  rgba(82,82,82,1) 0%, rgba(9,9,9,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(82,82,82,1)), color-stop(100%,rgba(9,9,9,1)))
+  background: -webkit-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -o-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#090909',GradientType=0 )
+
+
   -moz-box-shadow: 0 0 5px #888
   -webkit-box-shadow: 0 0 5px #888
   box-shadow: 0 0 5px #888
@@ -430,7 +476,7 @@ img.awlpm_aw_logo_img
     text-shadow: 0 1px 1px #FFFFFF
   p
     font-size: 14px
-    color: #666
+    color: #fff
     text-align: center
     font-weight: bold
 

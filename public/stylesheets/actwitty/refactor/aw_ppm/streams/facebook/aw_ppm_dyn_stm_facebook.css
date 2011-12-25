@@ -5,19 +5,16 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 0px;
   width: 570px;
-  margin-left: 30px;
-  margin-left: 0px;
-  border: 0px solid red;
+  padding-left: 2px;
   height: auto;
-  padding: 0;
+  border: 1px solid white;
   overflow: hidden;
 }
-/* line 15, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 12, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .aw_ppm_dyn_stm_fb_post_text:hover {
-  border: 1px solid #f8f8f8;
   cursor: pointer;
 }
-/* line 18, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 14, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_text_box {
   width: 560px;
   text-align: left;
@@ -25,7 +22,7 @@
   font-size: 13px;
   line-height: 1.53em;
 }
-/* line 24, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 20, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_link_text_box {
   width: 560px;
   text-align: left;
@@ -34,7 +31,7 @@
   line-height: 1.53em;
   overflow: hidden;
 }
-/* line 31, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 27, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_link_text_box a {
   width: 560px;
   color: #3b5998;
@@ -51,7 +48,7 @@
   word-wrap: break-word;
 }
 
-/* line 46, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 42, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .awppm_stm_fb_post_attachments {
   width: 100%;
   height: auto;
@@ -59,13 +56,13 @@
   margin: 5px 0 5px 0;
   display: inline-block;
 }
-/* line 53, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 49, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box {
   margin-left: 10px;
   margin-top: 10px;
   display: inline-block;
 }
-/* line 57, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
+/* line 53, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box img {
   vertical-align: middle;
   border: 1px solid #cccccc;

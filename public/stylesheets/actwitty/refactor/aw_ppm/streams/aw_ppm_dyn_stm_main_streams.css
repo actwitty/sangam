@@ -246,9 +246,9 @@ li.aw_ppm_dyn_stm_stream_li_box .aw_ppm_dyn_stm_stream_post_fb_data {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-top: 0px;
   width: 570px;
-  margin-left: 30px;
   margin-left: 0px;
-  border: 0px solid red;
+  margin-top: 5px;
+  border: 1px solid white;
   padding: 0;
 }
 /* line 202, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_main_streams.sass */

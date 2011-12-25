@@ -1,4 +1,4 @@
-%input#aw_common_feedback_btn.button_actwitty.blue{:type => "button", :value => "FEEDBACK"}
+%input#aw_common_feedback_btn.button_actwitty.rosy{:type => "button", :value => "FEEDBACK"}
   #aw_common_feedback_form_box
     #aw_common_feedback_header
       %h3 
@@ -19,7 +19,7 @@
           %li.aw_common_feedback_actor_text
             %h5 Feedback
             = f.text_area :feedback_text,{:type => "text", :placeholder => "Let us know", :class=>'aw_feedback_text_input_area', :maxlength => 1000, :id=>'aw_js_feedback_text'}
-        = f.submit "Submit",{ :class=>'button_actwitty blue hover_point', :id => 'aw_feedback_submit' }
+        = f.submit "Submit",{ :class=>'button_actwitty black hover_point', :id => 'aw_feedback_submit' }
         %a#aw_common_feedback_close X close
 
 :javascript

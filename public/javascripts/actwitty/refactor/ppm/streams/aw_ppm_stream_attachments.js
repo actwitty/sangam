@@ -80,7 +80,92 @@ function aw_ppm_stm_attachments_get_videos_html(stream_info){
     return '';
   }
 }
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_ppm_stm_attachments_get_links_html(stream_info){
 
+  var aw_link_delete_html  = '';
+  var links_count = 0;
+  var aw_links_html = '';
+  var single_html = '';
+  
+  $.each(stream_info.documents.array, function(i, attachment){
+      if( attachment.category == "link" ){
+        var attachment_box_id = aw_api_stm_get_attachment_box_id(stream_info, attachment.id);
+        var title_html = '';
+        var link_detail_html ='';
+        var link_provider_html = '';
+
+        /************************/
+        if( attachment.url_title ) {
+          title_html = '<a class="awppm_stm_attachment_link_title" src="' + attachment.url + '">' +
+                      attachment.url_title +
+                   '</a>';
+    
+        }else{
+          title_html = '<a class="awppm_stm_attachment_link_title" src="' + attachment.url + '"> Goto Link </a>';
+        }
+
+        /************************/
+        if ( attachment.url_description || attachment.url_image){
+          var description_html = '';
+          var img_html = '';
+          if( attachment.url_description ) {
+            description_html = '<p class="awppm_stm_attachment_link_description" >' +
+                              attachment.url_description +                    
+                           '</p>';
+          }
+
+          if( attachment.url_image ) {
+            img_html = '<img class="awppm_stm_attachment_link_thumbnail" src="' + attachment.url_image + '" />';
+          }
+          link_detail_html = '<div class="awppm_stm_attachment_single_link_details">' +
+                          img_html +
+                          description_html +
+                         '</div>';
+
+
+        }
+        /************************/
+        if ( attachment.url_provider ){
+          link_provider_html =  '<p class="awppm_stm_attachment_link_provider">' + 
+                                  'Provider: ' + attachment.url_provider +
+                                '</p>';
+        }
+        /************************/
+
+        links_count++;
+
+        var single_html = '<div class="awppm_stm_attachment_single_link_box aw_js_ppm_stm_link_attachment_box"  id="' + attachment_box_id + '">' +
+                              title_html +
+                              link_detail_html +
+                              link_provider_html +
+                          '</div>';
+
+        aw_links_html = aw_links_html + single_html;
+      }
+  });
+
+
+        
+
+  if( links_count ){
+    var html = '<div class="awppm_stm_post_attachments" >' +
+                 aw_links_html +
+              '</div>';
+      return html;
+  }else{
+    return '';
+  }
+
+    
+
+
+    
+}
 /***********************************************************/
 /*
  *
@@ -91,6 +176,7 @@ function aw_ppm_stm_attachments_get_images_html(stream_info){
   var max_images_to_show = 3;
   var aw_images_html = '';
   var aw_img_delete_html = '';
+
 
   if(aw_api_ppm_stm_facebook_post_check(stream_info)){
     return '';

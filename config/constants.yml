@@ -216,7 +216,9 @@ development: &default
   ghost_user_email:                   "administrator@actwitty.com"
 
   #Allowed to see internals
+  #Devloper:change this to reqd email
   authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
+
   
 
   #FOR SUMMARY CATEGORY
