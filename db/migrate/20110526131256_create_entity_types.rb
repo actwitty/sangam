@@ -3,8 +3,8 @@ class CreateEntityTypes < ActiveRecord::Migration
     create_table :entity_types do |t|
 
       t.integer :entity_id,  :null => false
-      t.string  :entity_type_uri
-      t.string  :entity_type_name,  :null => false
+      t.text  :entity_type_uri
+      t.text  :entity_type_name,  :null => false
 
       t.timestamps
     end

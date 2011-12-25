@@ -25,19 +25,19 @@ module SocialFetch
         json = {'access_token' => "#{params[:access_token]}"}
 
         json['batch']=[{"method"=>"GET",
-                            "relative_url"=>"#{params[:uid]}/feed?limit=3&since=#{latest_msg_timestamp}"},
-                        {"method"=>"GET",
-                            "relative_url"=>"#{params[:uid]}/likes?limit=3"},
-                        {"method"=>"GET",
-                            "relative_url"=>"#{params[:uid]}/books?limit=3"},
-                        {"method"=>"GET",
-                            "relative_url"=>"#{params[:uid]}/music?limit=3"},
-                        {"method"=>"GET",
-                            "relative_url"=>"#{params[:uid]}/movies?limit=3"}
+                            "relative_url"=>"#{params[:uid]}/feed?limit=3&since=#{latest_msg_timestamp}"}
+#                        {"method"=>"GET",
+#                            "relative_url"=>"#{params[:uid]}/likes?limit=3"},
+#                        {"method"=>"GET",
+#                            "relative_url"=>"#{params[:uid]}/books?limit=3"},
+#                        {"method"=>"GET",
+#                            "relative_url"=>"#{params[:uid]}/music?limit=3"},
+#                        {"method"=>"GET",
+#                            "relative_url"=>"#{params[:uid]}/movies?limit=3"}
                         ].to_json
 
 
-        response = ::SocialFetch::Helper::Http.em_post(FEED, json, "facebook")
+        response = ::EmHttp::Http.em_post(FEED, json, "facebook")
 
 
         data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
@@ -54,11 +54,12 @@ module SocialFetch
         #data_array = nil
         data_hash = {}
 
-        #if data_array.size > 1 then more than one type of data e.g. feed + like....
-        if data_array.size > 1
-          #reversed y and x as we have to sort in descending order
-          array = array.sort {|x, y| y["created_time"] <=> x["created_time"] }
-        end
+        #No Need to sort as we are changing the update_at time so it should automatically pick
+#        #if data_array.size > 1 then more than one type of data e.g. feed + like....
+#        if data_array.size > 1
+#          #reversed y and x as we have to sort in descending order
+#          array = array.sort {|x, y| y["created_time"] <=> x["created_time"] }
+#        end
 
         # return as hash
         data_hash["data"] = array
@@ -127,7 +128,8 @@ module SocialFetch
             arr = str.split('/')
             Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [data_adaptor] adding categories #{arr[0]} #{params.inspect}")
             #**************if category is their other than nil, then no need to categorize this post***********#
-            category = MAP_CATEGORIES[arr[0]][0] if !MAP_CATEGORIES[arr[0]].blank?
+            cat = MAP_CATEGORIES['facebook'][arr[0].downcase]
+            category = cat[0] if !cat.blank?
             valid_post = true
             Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [data_adaptor] adding categories #{log.inspect}")
           end
@@ -156,14 +158,14 @@ module SocialFetch
             #category = SocialFetch::Helper::Parser.extract_data(attr["message"])
             link = get_documents(attr["link"])
 
-            #reset the mime to system type
-            link[0][:mime] = convert_type_to_mime(attr["type"])
+            #reset the mime to system type. give higer priority to mimme found by our syste
+            mime = convert_type_to_mime(attr["type"])
+            link[0][:mime] = mime  if mime != AppConstants.mime_remote_link
 
             link[0][:description] = attr["description"]
             link[0][:name] = attr["name"]
-            link[0][:url_sha] = Digest::SHA1.hexdigest link[0][:url]
 
-            link[0][:provider] =~ /facebook.com/ ? link[0][:ignore] = true :  link[0][:ignore] = false
+            link[0][:provider] =~ /facebook.com\/photo.php/ ? link[0][:ignore] = true :  link[0][:ignore] = false
             activity[:links] = link
 
             #extract image_url
@@ -250,10 +252,10 @@ module SocialFetch
           #if updated before  the "last_updated_at" then dont accept
           return false if params[:latest_msg_timestamp] >= attr["created_time"].to_time.utc
 
-          #Avoid fetching data from sources whihc we are already supporting
-          #like twitter, foursquare, actwitty (for msg sharred on fb)
+          #Avoid fetching data from sources which we are already supporting
+          #like twitter, foursquare, actwitty (for msg shared on fb)
           if !attr["application"].blank?
-            return false if AppConstants.sources_active_list.include?(attr["application"].downcase)
+            return false if AppConstants.sources_active_list.include?(attr["application"]["name"].downcase)
           end
 
           true

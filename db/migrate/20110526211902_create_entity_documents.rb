@@ -6,12 +6,12 @@ class CreateEntityDocuments < ActiveRecord::Migration
 
       t.integer :entity_id, :null => false
       #entity_doc_name should be same enity_name in entity model
-      t.string  :entity_doc_name, :null => false
-      t.string  :entity_doc_mid, :null => false
+      t.text  :entity_doc_name, :null => false
+      t.text  :entity_doc_mid, :null => false
 
       t.text   :entity_doc_description
-      t.string  :entity_doc_photo_url
-      t.string  :entity_doc_wiki_url
+      t.text  :entity_doc_photo_url
+      t.text  :entity_doc_wiki_url
 
       t.timestamps
     end

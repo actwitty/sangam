@@ -33,28 +33,59 @@ class WebLink < ActiveRecord::Base
     #INPUT => {:url => "http://google.com/123", :provider => "google.com" [names as in categories.yml],
     #          :name => "good search engine", :description => "nice place to search information"
     #          ,:mime => AppConstants.mime_remote_image|video|link|music,  :image_width => params[:image_width],
-    #           :image_height => params[:image_height], :url_processed => params[:url_processed]  }
+    #           :image_height => params[:image_height], :canonical_url => params[:canonical_url], :category_id => params[:category_id,
+    #           :cache_age => 86400  }
 
     #OUTPUT => {:url => "http://google.com/123", :category => "sports" [names as in categories.yml],
     #          :name => "good search engine", :description => "nice place to search information"
     #          ,:image_url => "http://google.com/images/googlelogo.jpg", :url_sha1 => "hjjscjcbjcjscbjdbc..",
-    #          ,:mime => AppConstants.mime_remote_link, :provider => "google.com", :image_width => params[:image_width],
-    #           :image_height => params[:image_height], :url_processed => params[:url_processed] }
+    #          ,:mime => AppConstants.mime_remote_link, :provider => "google.com", :image_width => 220,
+    #           :image_height => 320, :category_id => "sports", :category_type => "/sports" }
 
     def create_web_link(params)
        Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] entering #{params.inspect}")
 
        object = nil
+       url = nil
+       h = {}
+
+       #swap canonical_url and url as canonical contains long url and "url" contains short url
+       if !params[:canonical_url].blank? and params[:url] != params[:canonical_url]
+         url = params[:url]
+
+         params[:url] = params[:canonical_url]
+         h = {:url_sha1 => Digest::SHA1.hexdigest(url), :url => url}
+
+         Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] shorl url found #{params[:url]} => long form is #{params[:canonical_url]}" )
+
+       end
+       params.delete(:canonical_url)
 
        params[:url_sha1] = Digest::SHA1.hexdigest params[:url]
+       params[:category_type] = SUMMARY_CATEGORIES[params[:category_id]]['type']
 
        object = WebLink.where(:url_sha1 => params[:url_sha1]).first
+
        if !object.blank?
+         #update object wth params if category_id is coming .. might be enriched url
+         if !params[:category_id].blank? and object.category_id.blank?
+           object.update_attributes(params)
+         end
+
          Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] web_link found #{params.inspect}" )
          return object
        end
 
+
        object = create!(params)
+
+       #now create short url entry
+       if !object.blank? and !url.blank?
+         Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] Creating Short url #{url}")
+         h[:web_link_id] = object.id
+         ShortWebLink.create!(h)
+       end
+
        Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] exiting #{params.inspect}")
        object
     rescue => e
@@ -86,6 +117,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: web_links
@@ -95,11 +128,15 @@ end
 #  url_sha1        :text            not null
 #  mime            :text            not null
 #  provider        :text            not null
-#  category        :text
 #  name            :text
 #  description     :text
 #  image_url       :text
+#  image_width     :integer
+#  image_height    :integer
 #  documents_count :integer         default(0)
+#  category_id     :text
+#  category_type   :text
+#  cache_age       :integer
 #  created_at      :datetime
 #  updated_at      :datetime
 #

@@ -517,9 +517,6 @@ class User < ActiveRecord::Base
     rescue Koala::Facebook::APIError
       Rails.logger.error("[MODEL] [USER] [post activity to facebook] Exception in fb koala") 
     end
-
-
-
   end
 
   #############################################################################

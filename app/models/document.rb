@@ -134,7 +134,8 @@ class Document < ActiveRecord::Base
            link = WebLink.create_web_link({:url => params[:url], :mime => params[:mime],:provider => params[:provider],
                                               :name => params[:name], :description => params[:description],
                                               :image_url => params[:image_url], :image_width => params[:image_width],
-                                              :image_height => params[:image_height], :url_processed => params[:url_processed]} )
+                                              :image_height => params[:image_height], :category_id => params[:category_id],
+                                              :canonical_url => params[:canonical_url], :cache_age => params[:cache_age]} )
            if link.blank?
               Rails.logger.info("[MODEL] [Document] [create_document] create WEB LINK  FAILED for #{params[:url]} ")
               return nil
@@ -149,7 +150,7 @@ class Document < ActiveRecord::Base
                               :source_name => params[:source_name],
                               :uploaded => params[:uploaded],:provider => params[:provider],
                               :category => params[:category], :location_id => params[:location_id],
-                              :status => params[:status], :web_link_id => web_link_id )
+                              :status => params[:status],  :web_link_id => web_link_id )
 
          Rails.logger.info("[MODEL] [Document] [create_document] leaving  for #{params[:url]} ")
          return d

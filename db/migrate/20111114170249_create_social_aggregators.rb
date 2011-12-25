@@ -2,8 +2,8 @@ class CreateSocialAggregators < ActiveRecord::Migration
   def self.up
     create_table :social_aggregators do |t|
       t.integer :user_id
-      t.string  :provider
-      t.string  :uid
+      t.text  :provider
+      t.text  :uid
       t.datetime :latest_msg_timestamp, :default => Time.utc(1978, 12, 15, 9, 10).to_datetime
       t.timestamps
     end

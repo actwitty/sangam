@@ -23,6 +23,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: hubs
@@ -36,7 +37,7 @@ end
 #  summary_id       :integer         not null
 #  source_name      :text            not null
 #  status           :integer         not null
-#  category_type    :string(255)
+#  category_type    :text
 #  created_at       :datetime
 #  updated_at       :datetime
 #

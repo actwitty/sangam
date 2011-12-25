@@ -58,12 +58,13 @@ describe ActivityWord do
 
 end
 
+
 # == Schema Information
 #
 # Table name: activity_words
 #
 #  id         :integer         not null, primary key
-#  word_name  :string(255)     not null
+#  word_name  :text            not null
 #  created_at :datetime
 #  updated_at :datetime
 #

@@ -1,4 +1,4 @@
-require 'thread'
+require 'digest/sha1'
 module TextFormatter
   include TranslateText
 
@@ -189,9 +189,9 @@ module TextFormatter
     arr.each do |attr|
 
       if !(s = attr[0].scan(/#{extensions}/)).blank?
-        array << {:mime => map_extensions_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false}
+        array << {:mime => map_extensions_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false, :url_sha1 => Digest::SHA1.hexdigest(attr[0]) }
       else !(s = attr[0].scan(/#{sources}/)).blank?
-        array << {:mime => map_sources_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false}
+        array << {:mime => map_sources_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false, :url_sha1 => Digest::SHA1.hexdigest(attr[0])}
       end
 
     end
@@ -406,11 +406,17 @@ module TextFormatter
     hash[:web_link] = {
        :url => web_link.url,
        :url_description => web_link.description,
-       :url_category => web_link.category,
+       :url_category => web_link.category_id,
        :url_title => web_link.name,
        :url_image => web_link.image_url,
        :url_provider => web_link.provider
     }
+    hash
+  end
+
+  def format_short_web_link(short_web_link)
+    hash = {}
+    hash = format_web_link(short_web_link.web_link)
     hash
   end
   #formats an campaign  ( extra => user_id which tells if current user is there & count )

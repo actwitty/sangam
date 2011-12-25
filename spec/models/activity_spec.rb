@@ -287,7 +287,7 @@ describe Activity do
       puts h.inspect
       h.should_not be_nil
 
-      wi = ActivityWord.where(:word_name => "Eating").first
+      wi = ActivityWord.where(:word_name => "eating").first
       e = Entity.where(:entity_name => "roti").first
       l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
       filter = {:word_id => wi.id,  :source_name => "actwitty"}
@@ -407,6 +407,7 @@ describe Activity do
       puts a
       puts "============================================================="
     end
+
     it "should read create read and delete comments" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
@@ -771,7 +772,7 @@ describe Activity do
 #      puts c
 #      c.should_not be_blank
 
-      a = Activity.where(:id => c[:post][:id]).first
+#      a = Activity.where(:id => c[:post][:id]).first
       puts a.inspect
       puts "============================="
       b = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
@@ -781,8 +782,8 @@ describe Activity do
 #      c = @u.publish_activity( h)
       work_off
       puts Summary.count
-      puts c.inspect
-      a = @u.get_draft_activity({:filter => {:word_id => a.activity_word_id}})
+      #puts c.inspect
+     # a = @u.get_draft_activity({:filter => {:word_id => a.activity_word_id}})
       b = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts b
     end
@@ -1065,7 +1066,7 @@ describe Activity do
        work_off
 
        a.should be_blank
-       a = Activity.where(:activity_name => "Marry").all
+       a = Activity.where(:activity_name => "marry").all
        a.should_not be_blank
        puts "============beating============"
        a.each do |attr|
@@ -1266,7 +1267,7 @@ describe Activity do
 #      puts a
 #      puts "============================================================="
 
-      w = ActivityWord.where(:word_name => "Foodie").first
+      w = ActivityWord.where(:word_name => "foodie").first
       a = @u.get_document_stream({:user_id => @u.id, :page_type => 1, :filter => {:word_id => w.id }, :category => "video"})
       puts a.inspect
       e = Entity.where(:entity_name => "pizza").first
@@ -1316,6 +1317,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
@@ -1340,9 +1342,9 @@ end
 #  meta_activity            :boolean
 #  blank_text               :boolean
 #  social_counters_array    :text
-#  source_msg_id            :string(255)
-#  category_type            :string(255)
-#  category_id              :string(255)
+#  source_msg_id            :text
+#  category_type            :text
+#  category_id              :text
 #  backup_created_timestamp :datetime
 #  created_at               :datetime
 #  updated_at               :datetime

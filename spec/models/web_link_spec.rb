@@ -6,6 +6,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: web_links
@@ -15,11 +17,15 @@ end
 #  url_sha1        :text            not null
 #  mime            :text            not null
 #  provider        :text            not null
-#  category        :text
 #  name            :text
 #  description     :text
 #  image_url       :text
+#  image_width     :integer
+#  image_height    :integer
 #  documents_count :integer         default(0)
+#  category_id     :text
+#  category_type   :text
+#  cache_age       :integer
 #  created_at      :datetime
 #  updated_at      :datetime
 #

@@ -149,7 +149,9 @@ class Activity < ActiveRecord::Base
     #    :links => [{:url => "http://timesofindia.com/123.cms", :mime => AppConstants.mime_remote_link,
     #             :provider => "timesofindia.com", :description => "Manmohan singh sleeping" [OPTIONAL],
     #             :title => "indian politics"[OPTIONAL], :image_url => "http://timesofindia.com/123.jpg" [OPTIONAL]
-    #             ,:image_width => 90[OPTIONAL], :image_height => 120[OPTIONAL], :url_processed => true/false [OPTIONAL][Only come from pulled data]}]
+    #             ,:image_width => 90[OPTIONAL], :image_height => 120[OPTIONAL],:category_id => "sports" [OPTIONAL if present "should be" Same as summary_category..]
+    #              :canonical_url => "timesofindia.com/123"[long url when url = a short url, OPTIONAL],
+    #              :cache_age => params[:cache_age][OPTIONAL will mostly come from pulled data]}]
 
 
     def create_activity(params={})
@@ -299,8 +301,8 @@ class Activity < ActiveRecord::Base
                          :thumb_url => attr[:thumb_url], :provider => attr[:provider],:uploaded => attr[:uploaded],
                          :mime => attr[:mime], :caption => attr[:caption], :location_id => params[:location_hash],
                          :status => params[:status], :name => attr[:name], :description => attr[:description],
-                         :image_url => attr[:image_url], :image_width => params[:image_width],:image_height => params[:image_height],
-                         :url_processed => params[:url_processed])
+                         :image_url => attr[:image_url], :image_width => attr[:image_width],:image_height => attr[:image_height],
+                         :category_id => attr[:category_id], :canonical_url => attr[:canonical_url], :cache_age => attr[:cache_age])
 
               if !d.nil?
                 #document_ids << d.id
@@ -723,7 +725,7 @@ class Activity < ActiveRecord::Base
          return {}
        end
 
-       params[:new_name].capitalize!
+       params[:new_name].downcase!
        if params[:new_name] == a.activity_name
          Rails.logger.info("[MODEL] [Activity] [rename_activity_name]  => same activity name given  " )
          return {}
@@ -924,6 +926,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
@@ -948,9 +951,9 @@ end
 #  meta_activity            :boolean
 #  blank_text               :boolean
 #  social_counters_array    :text
-#  source_msg_id            :string(255)
-#  category_type            :string(255)
-#  category_id              :string(255)
+#  source_msg_id            :text
+#  category_type            :text
+#  category_id              :text
 #  backup_created_timestamp :datetime
 #  created_at               :datetime
 #  updated_at               :datetime

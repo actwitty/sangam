@@ -39,9 +39,9 @@ class CreateActivities < ActiveRecord::Migration
 
       t.text :social_counters_array
 
-      t.string  :source_msg_id
-      t.string  :category_type
-      t.string  :category_id
+      t.text  :source_msg_id
+      t.text  :category_type
+      t.text  :category_id
 
       t.datetime  :backup_created_timestamp, :default => nil
 

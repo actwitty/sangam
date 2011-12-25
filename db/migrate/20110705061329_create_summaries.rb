@@ -4,7 +4,7 @@ class CreateSummaries < ActiveRecord::Migration
 
       t.integer :user_id, :null => false
       t.integer :activity_word_id, :null => false
-      t.string  :activity_name, :null => false
+      t.text  :activity_name, :null => false
 
       t.integer :activities_count, :default => 0
       t.integer :documents_count, :default => 0
@@ -18,9 +18,9 @@ class CreateSummaries < ActiveRecord::Migration
       t.text :social_counters_array
       t.text :theme_data
 
-      t.string :category_id
-      t.string :category_type
-      t.string :rank
+      t.text :category_id
+      t.text :category_type
+      t.text :rank
       t.text   :analytics_summary
       t.integer :campaigns_count, :default => 0
 

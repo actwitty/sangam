@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114170249) do
+ActiveRecord::Schema.define(:version => 20111223201844) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_word_id",                        :null => false
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
     t.boolean  "meta_activity"
     t.boolean  "blank_text"
     t.text     "social_counters_array"
-    t.string   "source_msg_id"
-    t.string   "category_type"
-    t.string   "category_id"
+    t.text     "source_msg_id"
+    t.text     "category_type"
+    t.text     "category_id"
     t.datetime "backup_created_timestamp"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
   add_index "activities", ["updated_at"], :name => "index_activities_on_updated_at"
 
   create_table "activity_words", :force => true do |t|
-    t.string   "word_name",  :null => false
+    t.text     "word_name",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -194,13 +194,13 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
   add_index "documents", ["web_link_id"], :name => "index_documents_on_web_link_id"
 
   create_table "entities", :force => true do |t|
-    t.string   "entity_name",                          :null => false
-    t.string   "entity_guid",                          :null => false
+    t.text     "entity_name",                          :null => false
+    t.text     "entity_guid",                          :null => false
     t.text     "entity_image"
     t.text     "entity_doc"
     t.text     "social_counters_array"
     t.text     "analytics_summary"
-    t.string   "rank"
+    t.text     "rank"
     t.integer  "campaigns_count",       :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -213,11 +213,11 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
 
   create_table "entity_documents", :force => true do |t|
     t.integer  "entity_id",              :null => false
-    t.string   "entity_doc_name",        :null => false
-    t.string   "entity_doc_mid",         :null => false
+    t.text     "entity_doc_name",        :null => false
+    t.text     "entity_doc_mid",         :null => false
     t.text     "entity_doc_description"
-    t.string   "entity_doc_photo_url"
-    t.string   "entity_doc_wiki_url"
+    t.text     "entity_doc_photo_url"
+    t.text     "entity_doc_wiki_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -238,8 +238,8 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
 
   create_table "entity_types", :force => true do |t|
     t.integer  "entity_id",        :null => false
-    t.string   "entity_type_uri"
-    t.string   "entity_type_name", :null => false
+    t.text     "entity_type_uri"
+    t.text     "entity_type_name", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -294,7 +294,7 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
     t.integer  "summary_id",       :null => false
     t.text     "source_name",      :null => false
     t.integer  "status",           :null => false
-    t.string   "category_type"
+    t.text     "category_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -330,10 +330,10 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
     t.decimal  "location_long",         :precision => 18, :scale => 15
     t.text     "social_counters_array"
     t.text     "analytics_summary"
-    t.string   "location_city"
-    t.string   "location_country"
-    t.string   "location_region"
-    t.string   "rank"
+    t.text     "location_city"
+    t.text     "location_country"
+    t.text     "location_region"
+    t.text     "rank"
     t.integer  "campaigns_count"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -399,20 +399,31 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
     t.integer  "abuse_count"
     t.boolean  "is_terms_accepted"
     t.boolean  "is_privacy_accepted"
+    t.boolean  "fb_default_share"
+    t.boolean  "twt_default_share"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "fb_default_share"
-    t.boolean  "twt_default_share"
   end
 
   add_index "profiles", ["first_name", "last_name"], :name => "index_profiles_on_first_name_and_last_name"
   add_index "profiles", ["last_name"], :name => "index_profiles_on_last_name"
 
+  create_table "short_web_links", :force => true do |t|
+    t.integer  "web_link_id", :null => false
+    t.text     "url",         :null => false
+    t.text     "url_sha1",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "short_web_links", ["url_sha1"], :name => "index_short_web_links_on_url_sha1"
+  add_index "short_web_links", ["web_link_id"], :name => "index_short_web_links_on_web_link_id"
+
   create_table "social_aggregators", :force => true do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
+    t.text     "provider"
+    t.text     "uid"
     t.datetime "latest_msg_timestamp", :default => '1978-12-15 09:10:00'
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -449,7 +460,7 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
   create_table "summaries", :force => true do |t|
     t.integer  "user_id",                              :null => false
     t.integer  "activity_word_id",                     :null => false
-    t.string   "activity_name",                        :null => false
+    t.text     "activity_name",                        :null => false
     t.integer  "activities_count",      :default => 0
     t.integer  "documents_count",       :default => 0
     t.integer  "tags_count",            :default => 0
@@ -460,9 +471,9 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
     t.text     "tag_array"
     t.text     "social_counters_array"
     t.text     "theme_data"
-    t.string   "category_id"
-    t.string   "category_type"
-    t.string   "rank"
+    t.text     "category_id"
+    t.text     "category_type"
+    t.text     "rank"
     t.text     "analytics_summary"
     t.integer  "campaigns_count",       :default => 0
     t.datetime "created_at"
@@ -478,9 +489,9 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
   add_index "summaries", ["user_id", "activity_word_id"], :name => "index_summaries_on_user_id_and_activity_word_id", :unique => true
 
   create_table "summary_categories", :force => true do |t|
-    t.string   "category_id",   :null => false
-    t.string   "category_type", :null => false
-    t.string   "activity_name", :null => false
+    t.text     "category_id",   :null => false
+    t.text     "category_type", :null => false
+    t.text     "activity_name", :null => false
     t.integer  "summary_id",    :null => false
     t.integer  "user_id",       :null => false
     t.datetime "created_at"
@@ -613,16 +624,21 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
     t.text     "url_sha1",                       :null => false
     t.text     "mime",                           :null => false
     t.text     "provider",                       :null => false
-    t.text     "category"
     t.text     "name"
     t.text     "description"
     t.text     "image_url"
+    t.integer  "image_width"
+    t.integer  "image_height"
     t.integer  "documents_count", :default => 0
+    t.text     "category_id"
+    t.text     "category_type"
+    t.integer  "cache_age"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "web_links", ["category"], :name => "index_web_links_on_category"
+  add_index "web_links", ["cache_age"], :name => "index_web_links_on_cache_age"
+  add_index "web_links", ["category_type"], :name => "index_web_links_on_category_type"
   add_index "web_links", ["mime"], :name => "index_web_links_on_mime"
   add_index "web_links", ["provider"], :name => "index_web_links_on_provider"
   add_index "web_links", ["url_sha1"], :name => "index_web_links_on_url_sha1", :unique => true
@@ -630,8 +646,8 @@ ActiveRecord::Schema.define(:version => 20111114170249) do
   create_table "word_forms", :force => true do |t|
     t.integer  "activity_word_id", :null => false
     t.integer  "related_word_id",  :null => false
-    t.string   "relation_type",    :null => false
-    t.string   "word_form_name",   :null => false
+    t.text     "relation_type",    :null => false
+    t.text     "word_form_name",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

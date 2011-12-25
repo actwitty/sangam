@@ -13,10 +13,10 @@ class CreateLocations < ActiveRecord::Migration
       t.text    :social_counters_array
 
       t.text    :analytics_summary
-      t.string  :location_city
-      t.string  :location_country
-      t.string  :location_region
-      t.string  :rank
+      t.text  :location_city
+      t.text  :location_country
+      t.text  :location_region
+      t.text  :rank
       t.integer :campaigns_count
 
       t.timestamps

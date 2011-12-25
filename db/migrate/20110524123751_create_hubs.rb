@@ -26,7 +26,7 @@ class CreateHubs < ActiveRecord::Migration
                                             # 3 => shared to group of people or group.When this value is 3,
                                             # we need to see access_visibility table to see the access
 
-      t.string  :category_type
+      t.text  :category_type
 
       t.timestamps
     end

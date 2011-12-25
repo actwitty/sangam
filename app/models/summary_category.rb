@@ -54,6 +54,8 @@ class SummaryCategory < ActiveRecord::Base
 
       params[:user_id] = s.user_id
 
+      params[:category_id] = params[:category_id].downcase
+
       params[:category_type] = SUMMARY_CATEGORIES[params[:category_id]]['type']
       if params[:category_type].blank?
         Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [CREATE_SUMMARY_CATEGORY] invalid category #{params.inspect}" )
@@ -132,14 +134,15 @@ class SummaryCategory < ActiveRecord::Base
 
 end
 
+
 # == Schema Information
 #
 # Table name: summary_categories
 #
 #  id            :integer         not null, primary key
-#  category_id   :string(255)     not null
-#  category_type :string(255)     not null
-#  activity_name :string(255)     not null
+#  category_id   :text            not null
+#  category_type :text            not null
+#  activity_name :text            not null
 #  summary_id    :integer         not null
 #  user_id       :integer         not null
 #  created_at    :datetime

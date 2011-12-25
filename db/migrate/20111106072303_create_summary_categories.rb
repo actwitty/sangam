@@ -1,9 +1,9 @@
 class CreateSummaryCategories < ActiveRecord::Migration
   def self.up
     create_table :summary_categories do |t|
-      t.string :category_id, :null => false
-      t.string :category_type, :null => false #
-      t.string :activity_name, :null => false #
+      t.text :category_id, :null => false
+      t.text :category_type, :null => false #
+      t.text :activity_name, :null => false #
 
       t.integer :summary_id, :null => false
       t.integer :user_id, :null => false

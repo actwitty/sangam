@@ -39,6 +39,7 @@ class CreateDocuments < ActiveRecord::Migration
 
       t.text :social_counters_array
 
+
       t.timestamps
     end
 

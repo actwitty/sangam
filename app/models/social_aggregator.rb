@@ -91,7 +91,7 @@ class SocialAggregator < ActiveRecord::Base
          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_DATA] entering #{params}")
 
          new_activity = nil
-         latest_msg_timestamp = nil
+         latest_msg_timestamp = Time.utc(1978, 12, 15, 9, 10)
 
          social_fetch = params[:social_fetch]
 
@@ -124,8 +124,8 @@ class SocialAggregator < ActiveRecord::Base
              activity << data
            end
          end
-
-         categorization_pipeline(activity)
+         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_DATA] #{activity.inspect}")
+         Categorization.categorization_pipeline(activity)  if !activity.blank?
 
          ############################Create Activities in DB in reverse order #####################################
          ################ As data is pulled in updated order from provider, we have create in reverse order ######
@@ -149,14 +149,17 @@ class SocialAggregator < ActiveRecord::Base
 
            new_activity = user.create_activity(h)
 
+           #this will set the timestamp too at successful insert of activity
+           if !new_activity.blank? and latest_msg_timestamp <  h[:created_at]
+             latest_msg_timestamp = h[:created_at]
+           end
+
          end
 
-         latest_msg_timestamp = activity[0][:post][:created_at] if !activity.blank?
-
          #update the latest_msg_timestamp in stats
-         if !latest_msg_timestamp.blank?
+         if latest_msg_timestamp > Time.utc(1978, 12, 15, 9, 10)
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_DATA] TIMESTAMP #{latest_msg_timestamp} for  #{params.inspect}")
-            social_fetch.update_attributes(:latest_msg_timestamp => latest_msg_timestamp.to_datetime)
+            social_fetch.update_attributes(:latest_msg_timestamp => latest_msg_timestamp)
          end
 
          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_DATA] leaving #{params.inspect}")
@@ -171,155 +174,6 @@ class SocialAggregator < ActiveRecord::Base
            #May be we can set Sync Error in Auth table and re-sync immediately .. but time being parking it
 
       end
-
-      def categorization_pipeline(activities)
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [CATEGORIZATION_PIPELINE] Entering => Number of activities => #{activities.size}")
-
-         ###################################### FIRST CREATE AND RESOLVE WEB LINKS #######################################################
-
-         text_categorization = {} # idx to text .. this post will be categorized with text categorization
-         link_categorization = {} # idx to [array of index] .. these post will be categorized with link resolution + text categorization
-         video_categorization = {} # idx to video link .. this post will be categorized with video service
-
-         links_to_resolve = {}  # link to {:position => 1, :index => 2} #postion is index in link array in a activity
-         complete_links = {}    # link to {:position => 1, :index => 2} #postion is index in link array in a activity
-         text_hash = {}         # text to activity id
-         sha_hash = {}          # sha to link
-
-         index = 0
-
-         params = {:activities => activities, :text_cat => text_categorization, :link_cat => link_categorization,
-                   :video_cat => video_categorization, :links_to_resolve => links_to_resolve, :complete_links => complete_links,
-                   :sha => sha_hash}
-
-         #Set up the pipeline :)
-         #I mean put relevant data in relevant buckets
-
-         activities.each_with_index do |activity, idx|
-
-           attr = activity[:post]
-           if !attr[:links].blank?
-             attr[:links].each_with_index do |link, pos|
-
-                cl = complete_link_info_present(link)
-
-                #consider only first link for categorization
-                if pos == 0
-
-                  #need to categorize the video using specific video service as they give precise category
-                  #Add text so that we can extract only entity, no categorize ( :categorize => false}
-                  if link[:mime] == AppConstants.mime_remote_video
-                    video_categorization[idx] = link[:url]
-                    text_categorization[idx] = {:text => attr[:text], :categorize => false} if (!attr[:text].blank? and (attr[:enrich] == true))
-
-                  #in case of music, we can put message directly to entertainment
-                  #Add text so that we can extract only entity, no categorize ( :categorize => false}
-
-                  elsif link[:mime] == AppConstants.mime_remote_music
-                    attr[:summary_category ] =  "entertainment"
-                    attr[:word] = SUMMARY_CATEGORIES[category]['channel']
-                    text_categorization[idx] = {:text => attr[:text], :categorize => false} if (!attr[:text].blank? and (attr[:enrich] == true))
-
-                  #if all the information of link is present like name, description and image_url then directly use
-                  #title and description and text to categorize
-                  #Add text so that we can extract its entity + categorize ( :categorize => true}
-                  elsif cl == true
-                    str = ""
-                    str = (attr[:text] + ".'") if (!attr[:text].blank? and (attr[:enrich] == true))
-                    text_categorization[idx] = {:text => str  + link[:name] + "." + link[:description], :categorize => true}
-
-                  #if link is there but its dumb link like facebook internal PHP links then directly use message text
-                  #entity + categorize ( :categorize => true}
-                  elsif link[:ignore] == true
-                    text_categorization[idx] = {:text => attr[:text], :categorize => true} if (!attr[:text].blank? and (attr[:enrich] == true))
-
-                 #otherwise use normal link resolution + text categorization combination
-                 #hashing is different here to optimize and ease of use.. also it needs to sent to text categorization
-                 #so hashing this way is easy
-                  else
-                    link_categorization[link[:url]] = [] if link_categorization[link[:url]].blank?
-                    link_categorization[link[:url]] << idx
-                  end
-                end
-                if cl == true
-                  complete_links[link[:url]] = [] if complete_links[link[:url]].blank?
-                  complete_links[link[:url]] << {:position => pos, :index => idx}
-                else
-                  links_to_resolve[link[:url]] = [] if links_to_resolve[link[:url]].blank?
-                  links_to_resolve[link[:url]] << {:position => pos, :index => idx}
-                end
-                sha_hash[link[:url_sha]] =  link[:url]
-             end
-           else
-             text_categorization[idx] = {:text => attr[:text], :categorize => true}  if (!attr[:text].blank? and (attr[:enrich] == true))
-           end
-         end
-
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [categorization_pipeline] Text #{text_categorization.inspect}")
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [categorization_pipeline] Link #{link_categorization.inspect}")
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [categorization_pipeline] Video #{video_categorization.inspect}")
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [categorization_pipeline] Complete #{complete_links.inspect}")
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [categorization_pipeline] Resolve #{links_to_resolve.inspect}")
-         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [categorization_pipeline] Sha #{sha_hash.inspect}")
-
-        ################# Search Web-link and Remove some links to resolve if complete links are found in web link######
-         WebLink.where(:url_sha => sha_hash.keys).all.each do |attr|
-           move_link_to_complete_and_text_categorize(params, attr)
-         end
-        ##################### Resolve Links [FIBER STALL] [N/20 multi call embedly batch limit]#########################
-         data = resolve_links(links_to_resolve.keys)
-        ####################################### update activity with links #############################################
-         data.each do |k,v|
-            move_link_to_complete_and_text_categorize(params, v)
-         end
-        ################### Create Web Links it can be done in documents.. only skip link resolution call there ########
-
-        ######## Update description + title + text (:categorize => true)of resolved link for Text Categorization.  #####
-
-        ########################### Categorize Video [FIBER STALL] [ M multi calls] and update activity category########
-
-        ################### Categorize Text and Get Entity(mask urls) [FIBER STALL] [ N multi calls] ###################
-
-        ################################## Update Activity Category  ###################################################
-
-        ################################## make entity hash, Freebase Batch request FIBER STALL ########################
-
-        ################################## Update Entities in Activity #################################################
-
-        ######retun activity
-        Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [CATEGORIZATION_PIPELINE] Leaving => Number of activities => #{activities.size}")
-      end
-
-      def move_link_to_complete_and_text_categorize(params, link)
-        attr = link
-
-        complete_links = params[:complete_links]
-        links_to_resolve = params[:links_to_resolve]
-        link_categorization = params[:link_cat]
-        text_categorization = params[:text_cat]
-
-        if complete_link_info_present(attr) == true
-          if !links_to_resolve[attr.url].blank?
-
-            #move those link to resolve to complete links
-            complete_links[attr.url] = [] if complete_links[attr.url].blank? #this should always be blank
-            complete_links[attr.url].concat(links_to_resolve[attr.url])
-
-            #move these complete links to text categorization category
-            if !link_categorization[attr.url].blank?
-              link_categorization[attr.url].each do |idx|
-                act = activities[idx][:post]
-                 str = ""
-                 str = (act[:text] + ".'") if (!act[:text].blank? and (act[:enrich] == true))
-                 text_categorization[idx] = {:text => str  + attr.name + "." + attr.description, :categorize => true}
-              end
-                 link_categorization.delete(attr.url)
-            end
-            links_to_resolve.delete(attr.url)
-          end
-        end
-      end
-
 
       def  complete_link_info_present(link)
         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [COMPLETE_LINK_INFO_PRESENT] entering => #{link}")
@@ -349,14 +203,15 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: social_aggregators
 #
 #  id                   :integer         not null, primary key
 #  user_id              :integer
-#  provider             :string(255)
-#  uid                  :string(255)
+#  provider             :text
+#  uid                  :text
 #  latest_msg_timestamp :datetime        default(1978-12-15 09:10:00 UTC)
 #  created_at           :datetime
 #  updated_at           :datetime

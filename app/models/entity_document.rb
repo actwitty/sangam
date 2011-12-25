@@ -1,19 +1,3 @@
-# == Schema Information
-# Schema version: 20110609094335
-#
-# Table name: entity_documents
-#
-#  id                     :integer         not null, primary key
-#  entity_id              :integer         not null
-#  entity_doc_name        :string(255)     not null
-#  entity_doc_mid         :string(255)     not null
-#  entity_doc_description :text
-#  entity_doc_photo_url   :string(255)
-#  entity_doc_wiki_url    :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
-#
-
 class EntityDocument < ActiveRecord::Base
 
   belongs_to :entity
@@ -39,3 +23,19 @@ class EntityDocument < ActiveRecord::Base
   validates_length_of :entity_doc_wiki_url, :maximum => 1024,
                                               :unless => Proc.new{|a| a.entity_doc_wiki_url.nil?}
 end
+
+# == Schema Information
+#
+# Table name: entity_documents
+#
+#  id                     :integer         not null, primary key
+#  entity_id              :integer         not null
+#  entity_doc_name        :text            not null
+#  entity_doc_mid         :text            not null
+#  entity_doc_description :text
+#  entity_doc_photo_url   :text
+#  entity_doc_wiki_url    :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+

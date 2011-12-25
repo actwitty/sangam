@@ -5,8 +5,8 @@ class CreateWordForms < ActiveRecord::Migration
       t.integer :activity_word_id, :null => false
       t.integer :related_word_id, :null => false
 
-      t.string  :relation_type, :null => false
-      t.string  :word_form_name, :null =>  false
+      t.text  :relation_type, :null => false
+      t.text  :word_form_name, :null =>  false
 
       t.timestamps
     end
