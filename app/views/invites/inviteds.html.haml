@@ -1,0 +1,67 @@
+.aw_inviteds_wrapper.aw_inviteds_column1
+  =render :partial => "home/top_bar"
+
+.aw_inviteds_wrapper.aw_inviteds_column2
+  
+  .aw_inviteds_new_invite
+    .aw_inviteds_new_invite_input_section
+      %label.aw_inviteds_new_invite_label Invite from facebook
+      %label.aw_inviteds_new_invite_facebook_label Facebook Identifier:
+      %input#aw_js_invite_from_facebook.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Facebook ID' }
+      %input#aw_js_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+    #aw_js_prefetched_info_section.aw_inviteds_new_invite_prefetch_section
+      %img#aw_js_invite_image{ :width=>'30px', :height=> '30px'}
+      %label#aw_js_invite_name
+      %input#aw_js_invite_fbid{:type=>'hidden', :value =>  ''}/
+      %input#aw_js_invite_btn.aw_inviteds_new_invite_button.button_actwitty.blue{:type => "button", :value => "Invite"}/
+
+
+
+.aw_inviteds_wrapper.aw_inviteds_column3
+  .aw_inviteds_label
+    %span  #{@total_invites} Invited to ActWitty
+  .aw_inviteds_pagination_control
+    = will_paginate @invites
+  %table.aw_inviteds_rounded-corner-table
+    %thead
+      %tr
+        %th.rounded-header{:scope => "col"} Picture
+        %th.rounded-q1{:scope => "col"} Name
+        %th.rounded-q2{:scope => "col"} Source
+        %th.rounded-q3{:scope => "col"} ID
+        %th.rounded-q4{:scope => "col"} Accepted
+        %th.rounded-q5{:scope => "col"} Registered
+        %th.rounded-q6{:scope => "col"} Invited Time
+        %th.rounded-q7{:scope => "col"}  Last Accessed
+    %tfoot
+      %tr
+        %td.rounded-foot-left{:colspan => "7"}
+          %em ActWitty invites are to be kept confidential.
+        %td.rounded-foot-right  
+    %tbody
+      -unless @invites.nil?
+        - @invites.each do |person|
+          %tr
+            %input.aw_js_process_inviteds_data_from_fb{:type => "hidden", :value => "#{person.identifier}"}
+            %td.aw_js_invited_img_td
+              %img{:src => "http://graph.facebook.com/#{person.identifier}/picture"}
+            %td.aw_js_invited_name_td
+      
+            %td #{person.service}
+            %td #{person.identifier}
+            %td #{person.accepted}
+            %td  #{person.registered}
+            %td  #{person.created_at}
+            %td  #{person.updated_at}
+        
+
+  .aw_inviteds_pagination_control
+    = will_paginate @invites
+
+
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
+

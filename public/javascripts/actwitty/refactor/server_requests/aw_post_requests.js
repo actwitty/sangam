@@ -164,7 +164,17 @@ var aw_srv_local_post_json_data_cache_manager = {
                                                                               'MULTI' : true,
                                                                               'DATA_TYPE': "json",
                                                                               'URL' : "/home/rename_channel_of_post.json"
-                                                                            }
+                                                                            },
+                                                      'AW_SRV_INTERNAL_CREATE_INVITE' : {
+                                                                              'CB': function aw_temp_resp_fn_15(params){
+                                                                                      /* params -> summary JSON */
+                                                                                      aw_api_srv_resp_aw_internal_invite(params);
+                                                                                    },
+                                                                              'DATA' : {},
+                                                                              'MULTI' : true,
+                                                                              'DATA_TYPE': "json",
+                                                                              'URL' : "/invites/create_new.json"
+                                                                            }                                                                                                                                
 
                                                 };
 

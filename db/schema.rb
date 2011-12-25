@@ -309,6 +309,15 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
   add_index "hubs", ["updated_at"], :name => "index_hubs_on_updated_at"
   add_index "hubs", ["user_id"], :name => "index_hubs_on_user_id"
 
+  create_table "invites", :force => true do |t|
+    t.string   "identifier"
+    t.string   "service"
+    t.boolean  "accepted"
+    t.boolean  "registered"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "location_hubs", :force => true do |t|
     t.integer  "web_join_id"
     t.integer  "geo_join_id"

@@ -10,13 +10,28 @@
 $aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
 $aw_var_default_color: #CCCCCC
 $aw_var_default_font_size: 12px
-$aw_var_default_bkg_color: #ffffff
+$aw_var_default_bkg_color: #f5f5f5
 $aw_var_default_border_width: 0px
 $aw_lpm_var_width_of_details:960px
 
 $aw_lpm_var_font_color:#D2D2D2
 
 $margin: 16px
+@font-face
+  font-family: 'League Gothic'
+  src: url('/webfont/leaguegothic/League_Gothic-webfont.eot')
+  src: local("League Gothic Regular"), local("League Gothic"), url("/webfont/leaguegothic/LeagueGothic.woff") format("woff"), url("/webfont/leaguegothic/LeagueGothic.otf") format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg")
+
+@font-face
+  font-family: 'Chunk Five'
+  src: url('/webfont/chunk/Chunkfive-webfont.eot')
+  src: local("Chunk Five Regular"), local("Chunk Five"), url("/webfont/chunk/Chunkfive-webfont.woff") format("woff"), url("/webfont/chunk/Chunk.otf") format("opentype"), url("/webfont/chunk/Chunkfive-webfont.svg#ChunkFive") format("svg")
+
+@font-face
+  font-family: 'Sniglet'
+  src: url('/webfont/sniglet/Sniglet-webfont.eot')
+  src: local("Sniglet Regular"), local("Sniglet"), url("/webfont/sniglet/Sniglet-webfont.woff") format("woff"), url("/webfont/sniglet/Sniglet Regular.otf") format("opentype"), url("/webfont/sniglet/Sniglet-webfont.svg#Sniglet") format("svg")
+
 
 
 body
@@ -140,6 +155,16 @@ a
   color: #FF9900
   background-color: #424242
   border-top: 1px solid #363631
+  background: rgb(82,82,82)
+  background: -moz-linear-gradient(top,  rgba(82,82,82,1) 0%, rgba(9,9,9,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(82,82,82,1)), color-stop(100%,rgba(9,9,9,1)))
+  background: -webkit-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -o-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#090909',GradientType=0 )
+
+
 
 /* -------------------- Full Horizontal Sections Definition End -------------------------------------
 
@@ -206,13 +231,18 @@ img.awlpm_aw_logo_img
 #awlpm_header_label
   margin: 0 auto
   margin-left: 10px
-  font-size: 40px
+  font-size: 60px
   width: 400px
   height: 50px
   font-weight: bold
   color: #444444
   border: $aw_var_default_border_width solid red
   display: inline
+  font-family: 'League Gothic'
+
+@-moz-document url-prefix()
+  #awlpm_header_label
+    font-size: 50px
 
 
 /* ---------------------------------------------- Intro/ForeignAuth section -----------------------------------------
@@ -259,7 +289,7 @@ img.awlpm_aw_logo_img
 #awlpm_info_grid_container_parent
   /* Make sure it includes the mixin for wide
   @include awlpm_mixin_wide_subsections
-  height: 1200px
+  height: 1300px
   border: $aw_var_default_border_width solid red
 
 #awlpm_info_grid_container_header, #awlpm_info_grid_container_footer
@@ -268,16 +298,59 @@ img.awlpm_aw_logo_img
 
 #awlpm_info_grid_container
   padding: 24px
-  height: 1100px
+  height: 1200px
   width: 100%
   border: $aw_var_default_border_width solid red
   margin-top: 0px
   border-radius: 10px
-  background: #fff
+  background: #f5f5f5
   background-image: url("../images/noisepattern.png")
-  border: $aw_var_default_border_width solid #FFFFFF
+  /*border: $aw_var_default_border_width solid #FFFFFF
   border-radius: 15px 15px 15px 15px
 
+
+#awlpm_info_row_1_2
+  width: $aw_lpm_var_width_of_details - 130px
+  height: 50px
+  margin: 0 auto
+  font-size: 35px
+  letter-spacing: 4px
+  word-spacing: 10px
+  text-align: center
+  font-family: 'Sniglet'
+  padding-top: 15px
+  border-radius: 5px
+  color: #f0f0f0
+  font-weight: normal
+  /*text-shadow: 0 1px 1px #FFFFFF 
+  background: rgb(73,192,240)
+  background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(44,175,227,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,192,240,1)), color-stop(100%,rgba(44,175,227,1)))
+  background: -webkit-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  background: -o-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  background: linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2cafe3',GradientType=0 )
+  -moz-box-shadow: 0 0 5px #888
+  -webkit-box-shadow: 0 0 5px #888
+  box-shadow: 0 0 5px #888
+  /*background: #e6e2d5
+
+
+.awlpm_info_row_1_2_color1
+  color: #218868 
+  color: #fff
+.awlpm_info_row_1_2_color2
+  color: #FFF68F
+  color: #fff
+.awlpm_info_row_1_2_color3
+  color: #CD5555
+  color: #fff
+
+
+
+#awlpm_info_row_2
+  margin-top: 20px
 
 .awlpm_info_grid_row
   width: 100%
@@ -285,7 +358,7 @@ img.awlpm_aw_logo_img
   padding-top: 5px
   padding-bottom: 5px
   border: $aw_var_default_border_width solid red
-  border-bottom: 1px dotted gray
+  /*border-bottom: 1px dotted gray
 
   h3  
     font-size: 28px
@@ -298,26 +371,45 @@ img.awlpm_aw_logo_img
   height: 335px
   padding-top: 5px
   padding-bottom: 5px
-  border: $aw_var_default_border_width solid red
-  border-bottom: 1px dotted gray
+  border: 1px solid #ddd
+  /*border-bottom: 1px dotted gray
+  border-radius: 5px
+  background: rgb(255,255,255)
+  background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)))
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 )
+
+  -moz-box-shadow: 0 0 2px #7f7f7f
+  -webkit-box-shadow: 0 0 2px #7f7f7f
+  box-shadow: 0 0 2px #7f7f7f
 
   h3  
-    font-size: 22px
-    font-weight: bold
+    font-size: 17px
+    font-weight: normal
     margin-bottom: 5px
+    padding: 2px 2px 2px 10px
+    font-family: 'Chunk Five'
+    text-align: center
+    color: #333
+    text-shadow: 0 2px 2px #FFFFFF
+
 
 .awlpm_info_grid_subcontainer_box
   width: 310px
   height: 330px
   margin-right: 5px
   float: left
-  border: 1px solid #fff
-  &:hover
+  border: 0px solid #fff
+  /*&:hover
     border: 1px solid #ccc
     cursor: pointer
-  &:hover p
+  /*&:hover p
     font-weight: bold
-  &:hover img
+  /*&:hover img
     border: 1px solid black
 
   .awlpm_info_display_box
@@ -331,13 +423,16 @@ img.awlpm_aw_logo_img
     padding: 5px
     
   h3  
-    font-size: 22px
-    font-weight: bold
-    text-align:center
+    font-size: 18px
+    font-weight: normal
+    text-align: center
+    font-family: 'Chunk Five'
+    text-shadow: 0 1px 1px #FFFFFF
   p
     font-size: 14px
     color: #666
-    text-align:center
+    text-align: center
+    font-weight: bold
 
 
 .awlpm_info_channel_updates_box
@@ -356,7 +451,8 @@ img.awlpm_aw_logo_img
   border: 0px solid red
   text-align: left
   margin: 0px auto
-
+  font-family: 'Chunk Five'
+  font-weight: normal
 #awlpm_footer_section_div
   width: 890px
   height: 240px
@@ -377,11 +473,11 @@ img.awlpm_aw_logo_img
 
 #awlpm_footer_section_div li
   color: #ddd
-  font-size: 14px
+  font-size: 10px
   margin: 10px 0
   &.awlpm_footer_label
     color: #ffffff
-    font-size: 18px
+    font-size: 14px
     padding: 0 0 10px
     text-align: left
   a
@@ -392,7 +488,9 @@ img.awlpm_aw_logo_img
 
 #awlpm_footer_copyright
   text-align: center
-  font-size: 14px
-  color: #ddd
+  font-size: 10px
+  color: #fff
+  font-family: 'Chunk Five'
+  font-weight: normal
 
 

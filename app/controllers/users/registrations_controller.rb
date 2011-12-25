@@ -24,6 +24,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if process_authentication
         Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
         authentication=Authentication.find_by_provider_and_uid(@provider, @uid)
+        
+        invite_status = Invite.check_if_invite_exists(@provider, @uid)
+        if invite_status 
+          Invite.mark_invite_registered(@provider, @uid)
+        end
+
         unless authentication.nil?
           Rails.logger.info("[CNTRL] [REGISTRATION] Authentication is not nil")
           if authentication.salt == @key && authentication.user_id.nil?
