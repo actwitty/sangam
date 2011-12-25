@@ -353,7 +353,7 @@ img.awlpm_aw_logo_img {
 
 /* line 312, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_row_1_2 {
-  width: 800px;
+  width: 830px;
   height: 50px;
   margin: 0 auto;
   font-size: 35px;
@@ -365,23 +365,45 @@ img.awlpm_aw_logo_img {
   border-radius: 5px;
   color: #f0f0f0;
   font-weight: normal;
-  text-shadow: 0 1px 1px white;
-  background: #cedce7;
-  background: -moz-linear-gradient(top, #cedce7 0%, #596a72 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cedce7), color-stop(100%, #596a72));
-  background: -webkit-linear-gradient(top, #cedce7 0%, #596a72 100%);
-  background: -o-linear-gradient(top, #cedce7 0%, #596a72 100%);
-  background: -ms-linear-gradient(top, #cedce7 0%, #596a72 100%);
-  background: linear-gradient(top, #cedce7 0%, #596a72 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 );
+  /*text-shadow: 0 1px 1px #FFFFFF */
+  background: #49c0f0;
+  background: -moz-linear-gradient(top, #49c0f0 0%, #2cafe3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #49c0f0), color-stop(100%, #2cafe3));
+  background: -webkit-linear-gradient(top, #49c0f0 0%, #2cafe3 100%);
+  background: -o-linear-gradient(top, #49c0f0 0%, #2cafe3 100%);
+  background: -ms-linear-gradient(top, #49c0f0 0%, #2cafe3 100%);
+  background: linear-gradient(top, #49c0f0 0%, #2cafe3 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#49c0f0', endColorstr='#2cafe3',GradientType=0 );
+  -moz-box-shadow: 0 0 5px #888888;
+  -webkit-box-shadow: 0 0 5px #888888;
+  box-shadow: 0 0 5px #888888;
+  /*background: #e6e2d5 */
 }
 
-/* line 337, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 340, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+.awlpm_info_row_1_2_color1 {
+  color: #218868;
+  color: white;
+}
+
+/* line 343, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+.awlpm_info_row_1_2_color2 {
+  color: #fff68f;
+  color: white;
+}
+
+/* line 346, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+.awlpm_info_row_1_2_color3 {
+  color: #cd5555;
+  color: white;
+}
+
+/* line 352, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_info_row_2 {
   margin-top: 20px;
 }
 
-/* line 340, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 355, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_row {
   width: 100%;
   height: 360px;
@@ -390,14 +412,14 @@ img.awlpm_aw_logo_img {
   border: 0px solid red;
   /*border-bottom: 1px dotted gray */
 }
-/* line 348, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 363, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_row h3 {
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-/* line 354, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 369, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_updates_grid_row {
   width: 100%;
   height: 335px;
@@ -418,7 +440,7 @@ img.awlpm_aw_logo_img {
   -webkit-box-shadow: 0 0 2px #7f7f7f;
   box-shadow: 0 0 2px #7f7f7f;
 }
-/* line 375, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 390, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_updates_grid_row h3 {
   font-size: 17px;
   font-weight: normal;
@@ -430,7 +452,7 @@ img.awlpm_aw_logo_img {
   text-shadow: 0 2px 2px white;
 }
 
-/* line 386, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 401, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box {
   width: 310px;
   height: 330px;
@@ -445,20 +467,20 @@ img.awlpm_aw_logo_img {
   /*&:hover img
    * border: 1px solid black */
 }
-/* line 400, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 415, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box .awlpm_info_display_box {
   width: 215px;
   height: 185px;
   margin: 10px auto;
 }
-/* line 404, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 419, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box img {
   width: 204px;
   height: 175px;
   border: 1px solid #cccccc;
   padding: 5px;
 }
-/* line 410, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 425, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box h3 {
   font-size: 18px;
   font-weight: normal;
@@ -466,7 +488,7 @@ img.awlpm_aw_logo_img {
   font-family: "Chunk Five";
   text-shadow: 0 1px 1px white;
 }
-/* line 416, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 431, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_grid_subcontainer_box p {
   font-size: 14px;
   color: #666666;
@@ -474,14 +496,14 @@ img.awlpm_aw_logo_img {
   font-weight: bold;
 }
 
-/* line 423, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 438, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .awlpm_info_channel_updates_box {
   width: 100%;
   height: 330px;
 }
 
 /* ----------------------------------------------Footer------------------------------------- */
-/* line 432, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 447, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section {
   /* Make sure it includes the mixin for wide */
   position: relative;
@@ -492,9 +514,11 @@ img.awlpm_aw_logo_img {
   border: 0px solid red;
   text-align: left;
   margin: 0px auto;
+  font-family: "Chunk Five";
+  font-weight: normal;
 }
 
-/* line 440, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 456, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div {
   width: 890px;
   height: 240px;
@@ -502,7 +526,7 @@ img.awlpm_aw_logo_img {
   margin-left: 70px;
 }
 
-/* line 446, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 462, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div ul {
   float: left;
   padding: 0 20px 0 0;
@@ -510,42 +534,44 @@ img.awlpm_aw_logo_img {
   list-style: none outside none;
   margin-top: 50px;
 }
-/* line 452, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 468, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div ul:first {
   margin-left: 30px;
 }
 
-/* line 455, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 471, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .first_ul {
   margin-left: 30px;
 }
 
-/* line 458, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 474, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li {
   color: #dddddd;
-  font-size: 14px;
+  font-size: 10px;
   margin: 10px 0;
 }
-/* line 462, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 478, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li.awlpm_footer_label {
   color: white;
-  font-size: 18px;
+  font-size: 14px;
   padding: 0 0 10px;
   text-align: left;
 }
-/* line 467, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 483, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li a {
   text-decoration: none;
   color: #dddddd;
 }
-/* line 470, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 486, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_section_div li a:hover {
   font-weight: bold;
 }
 
-/* line 473, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 489, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #awlpm_footer_copyright {
   text-align: center;
-  font-size: 14px;
-  color: #dddddd;
+  font-size: 10px;
+  color: white;
+  font-family: "Chunk Five";
+  font-weight: normal;
 }

@@ -5,17 +5,20 @@ describe SocialAggregator do
 end
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: social_aggregators
 #
-#  id            :integer         not null, primary key
-#  user_id       :integer
-#  activity_id   :integer
-#  summary_id    :integer
-#  source_name   :string(255)
-#  source_msg_id :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id                   :integer         not null, primary key
+#  user_id              :integer
+#  provider             :text
+#  uid                  :text
+#  latest_msg_timestamp :datetime        default(1978-12-15 09:10:00 UTC)
+#  created_at           :datetime
+#  updated_at           :datetime
 #
 

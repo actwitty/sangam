@@ -10,6 +10,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: summaries
@@ -17,7 +21,7 @@ end
 #  id                    :integer         not null, primary key
 #  user_id               :integer         not null
 #  activity_word_id      :integer         not null
-#  activity_name         :string(255)     not null
+#  activity_name         :text            not null
 #  activities_count      :integer         default(0)
 #  documents_count       :integer         default(0)
 #  tags_count            :integer         default(0)
@@ -28,8 +32,12 @@ end
 #  tag_array             :text
 #  social_counters_array :text
 #  theme_data            :text
+#  category_id           :text
+#  category_type         :text
+#  rank                  :text
+#  analytics_summary     :text
+#  campaigns_count       :integer         default(0)
 #  created_at            :datetime
 #  updated_at            :datetime
-#  category_data         :text
 #
 

@@ -1,14 +1,3 @@
-# == Schema Information
-# Schema version: 20110611114344
-#
-# Table name: activity_words
-#
-#  id         :integer         not null, primary key
-#  word_name  :string(255)     not null
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class ActivityWord < ActiveRecord::Base
 
   has_many :related_words, :foreign_key => :related_word_id, :class_name => "WordForm", :dependent => :destroy
@@ -45,7 +34,7 @@ class ActivityWord < ActiveRecord::Base
 
     def create_activity_word(word, relation = "")
 
-      word.capitalize!
+      word.downcase!
       #finding first instead of creating as more chances of find than create for words
       word_rel = ActivityWord.where(:word_name => word)
 
@@ -89,7 +78,7 @@ class ActivityWord < ActiveRecord::Base
       related_words = {}
       word =~ /^[A-Z]?[a-z]*/
       if $& == word
-        word.capitalize!
+        word.downcase!
         related_words =  Wordnik.word.get_related_words(word, :limit => 50, :type => relation)
         puts related_words
       end
@@ -107,7 +96,7 @@ class ActivityWord < ActiveRecord::Base
           w_obj =  ActivityWord.where(:word_name => attr).first
           begin
             if w_obj.blank?
-              puts attr.capitalize
+              puts attr.downcase
               w_obj = ActivityWord.create!(:word_name => attr)
             end
 
@@ -125,3 +114,14 @@ class ActivityWord < ActiveRecord::Base
     handle_asynchronously :CreateRelatedWords
   end
 end
+
+# == Schema Information
+#
+# Table name: activity_words
+#
+#  id         :integer         not null, primary key
+#  word_name  :text            not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+

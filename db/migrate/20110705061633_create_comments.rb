@@ -19,10 +19,12 @@ class CreateComments < ActiveRecord::Migration
 
       t.text    :source_name, :null => false            #"actwitty", "facebook", # "twitter",
                                         # "G+", "DropBox", "Mobile +919980906102","a@b.com
+      t.integer :summary_id
+
       t.timestamps
     end
 
-    add_index :comments, [:author_id, :id]
+    add_index :comments, :author_id
 
     add_index :comments, :activity_id
 
@@ -30,21 +32,15 @@ class CreateComments < ActiveRecord::Migration
 
     add_index :comments, :updated_at
 
+    add_index :comments, :summary_id
+
+    add_index :comments, :source_name
+
   end
 
 
 
   def self.down
-
-    remove_index :comments, [:author_id, :id]
-
-    remove_index :comments, :activity_id
-
-    remove_index :comments, :father_id
-
-    remove_index :comments, :updated_at
-
     drop_table :comments
-
   end
 end

@@ -28,11 +28,6 @@ class CreateSummaryRanks < ActiveRecord::Migration
   end
 
   def self.down
-
-    remove_index :summary_ranks, :summary_id
-    remove_index :summary_ranks, :location_id
-    remove_index :summary_ranks, :entity_id
-
     drop_table :summary_ranks
   end
 end

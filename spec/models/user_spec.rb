@@ -177,6 +177,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -205,6 +206,7 @@ end
 #  current_location     :string(255)
 #  current_geo_lat      :decimal(, )
 #  current_geo_long     :decimal(, )
+#  user_type            :integer         default(0)
 #  created_at           :datetime
 #  updated_at           :datetime
 #  invitation_token     :string(60)
@@ -212,6 +214,5 @@ end
 #  invitation_limit     :integer
 #  invited_by_id        :integer
 #  invited_by_type      :string(255)
-#  user_type            :integer         default(0)
 #
 

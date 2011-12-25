@@ -34,6 +34,8 @@ class CreateProfiles < ActiveRecord::Migration
       t.boolean :is_terms_accepted
       t.boolean :is_privacy_accepted
 
+      t.boolean :fb_default_share
+      t.boolean :twt_default_share
 
       t.integer :user_id
 

@@ -57,6 +57,9 @@ end
 
 
 
+
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -70,7 +73,7 @@ end
 #  caption               :text
 #  comments_count        :integer
 #  summary_id            :integer
-#  url                   :text            not null
+#  url                   :text
 #  thumb_url             :text
 #  status                :integer         not null
 #  source_name           :text            not null
@@ -78,6 +81,8 @@ end
 #  provider              :text            not null
 #  category              :text            not null
 #  location_id           :integer
+#  web_link_id           :integer
+#  campaigns_count       :integer
 #  social_counters_array :text
 #  created_at            :datetime
 #  updated_at            :datetime

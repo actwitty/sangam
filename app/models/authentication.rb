@@ -23,7 +23,7 @@ class Authentication < ActiveRecord::Base
   validates_uniqueness_of :uid, :scope => :provider
   before_save :make_salt
 
-  attr_accessible :provider, :uid, :token, :secret, :user_id
+  attr_accessible :provider, :uid, :token, :secret, :user_id, :data_sync_status
   def make_salt
     self.salt = Digest::SHA1.hexdigest("--#{Time.now.utc}--#{uid}--")
   end

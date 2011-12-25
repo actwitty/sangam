@@ -223,7 +223,7 @@ describe Activity do
 
 
       act3 = @u.create_activity( :word => "singing" , :text => "AR rehman's jai ho",
-                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli", :geo_city => "bangalore"}},
+                              :location => {:geo_location =>{:geo_latitude => 21.45 ,:geo_longitude => 43.45, :geo_name => "marathalli", :geo_city => "bangalore", :geo_region => "karnataka"}},
                               :enrich => true)
       act4 = @u.create_activity( :word => "painting" , :text => "Sachin tendulkar  rahul dravid",
                               :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "lalbagh", :geo_city => "bangalore", :geo_country => "india"}},
@@ -243,10 +243,10 @@ describe Activity do
                               :enrich => true)
        act7 = @u2.create_activity( :word => "photgraphy" , :text => "idli vada at <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> with Robin Uthhapa",
                               :location => {:web_location =>{:web_location_url => "google.com", :web_location_title => "hello"}},
-                             :enrich => true)
+                             :enrich => true, :summary_category => "sports")
       act4 = @u.create_activity( :word => "listening" , :text => "Nakkad wale khisko from delhi belly",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
-                              :enrich => true)
+                              :enrich => true, :summary_category => "sports")
       act5 = @u1.create_activity( :word => "eating" , :text => "pizza Dal chawal and gulab jamoon at sahib singh sultan",
                               :location => {:unresolved_location =>{:unresolved_location_name => "samarth's house"}},
                               :enrich => true)
@@ -288,12 +288,12 @@ describe Activity do
       h.should_not be_nil
 
       wi = ActivityWord.where(:word_name => "eating").first
-      e = Entity.where(:entity_name => "pizza").first
+      e = Entity.where(:entity_name => "roti").first
       l = Location.where(:location_type => AppConstants.location_type_geo, :location_lat => 23.45 ,:location_long => 45.45).first
       filter = {:word_id => wi.id,  :source_name => "actwitty"}
 
       puts "Related Friends"
-      h = @u.get_related_friends( {:filter => filter})
+      h = @u.get_related_friends( {:filter => {:category_type => "/stories", :entity_id => e.id, :source_name => "actwitty"}})
       puts h.inspect
       h.should_not be_nil
       puts "============================================================="
@@ -407,6 +407,7 @@ describe Activity do
       puts a
       puts "============================================================="
     end
+
     it "should read create read and delete comments" do
       act = @u.create_activity( :word => "eating" , :text => "pizza at pizza hut with
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
@@ -641,7 +642,7 @@ describe Activity do
       a6 =  @u.create_activity( :word => "marry" , :text => "deepika padukone and salman khan looks great",
                               :location =>  {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
                               :enrich => true,:status => AppConstants.status_saved)
-      work_off
+      #work_off
       id = a[:post][:id]
 #
 #      b = @u.get_stream({:user_id => @u.id,  :page_type => AppConstants.page_state_user})
@@ -650,6 +651,7 @@ describe Activity do
 
       puts "======================draft====================="
 
+      puts a6.inspect
       params = {:filter => {:word_id => a6[:post][:word][:id], :location_id => a6[:location][:id]}}
       puts params.inspect
       a = @u.get_draft_activity(params)
@@ -674,11 +676,6 @@ describe Activity do
       summary = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts summary
 
-      #a.destroy
-      h[:activity_id] = a.id
-
-      c = @u.update_activity( h)
-      #puts c
       work_off
       summary = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_user})
       puts summary
@@ -710,36 +707,15 @@ describe Activity do
       puts s.inspect
 
       puts "get document summary"
-      a = @u.get_document_summary({:user_id=> @u.id, :category => "image"})
+      a = @u.get_document_summary({:user_id=> @u.id, :page_type => AppConstants.page_state_user, :category => "image"})
       puts a
 
       puts "get document stream"
-      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "video"})
+      a = @u.get_document_stream({:user_id=> @u.id, :filter => {:source_name => "actwitty"}, :category => "image"})
       puts a
 
     end
-    it "should update the activity status" do
-      a = @u.create_activity( :word => "marry" , :text => "sachin tendulakr and rahul dravid
-                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
-                                                    {:url => "http://a.com/xyz.jpg" },
-                                               {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :status =>
-                                            AppConstants.status_saved,:tags => [{:name => "sleeping"}, {:name => "maradona"}])
-      puts a[:post][:status]
-      a = @u.publish_activity({:activity_id => a[:post][:id], :word => "marry" , :text => "sachin tendulakr and rahul dravid
-                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention> <mention><name>PIZZA<name><id>235<id><mention>",
-                              :location =>  {:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}},
-                              :enrich => true, :documents => [{ :url => "https://s3.amazonaws.com/xyz.jpg" },
-                                                    {:url => "http://a.com/xyz.jpg" },
-                                               {:url => "http://b.com/xyz.jpg" },{:url => "http://c.com/xyz.jpg" }], :tags => [{:name => "sleeping"}, {:name => "maradona"}],
-                              :status => AppConstants.status_public})
 
-      b = Activity.where(:id => a[:post][:id]).first
-      puts b.status
-
-      b.status.should ==  AppConstants.status_public
-    end
     it "should update the activity properly " do
       a1 = @u.create_activity(:word => "eating" , :text => " <script>alert(alok)</script>
                                    <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
@@ -789,14 +765,14 @@ describe Activity do
       c = nil
 
       ActiveRecord::Observer.with_observers(:document_observer) do
-        c = @u.update_activity( h)
+        #c = @u.update_activity( h)
       end
       work_off
 
-      puts c
-      c.should_not be_blank
+#      puts c
+#      c.should_not be_blank
 
-      a = Activity.where(:id => c[:post][:id]).first
+#      a = Activity.where(:id => c[:post][:id]).first
       puts a.inspect
       puts "============================="
       b = @u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all})
@@ -806,8 +782,8 @@ describe Activity do
 #      c = @u.publish_activity( h)
       work_off
       puts Summary.count
-      puts c.inspect
-      a = @u.get_draft_activity({:filter => {:word_id => a.activity_word_id}})
+      #puts c.inspect
+     # a = @u.get_draft_activity({:filter => {:word_id => a.activity_word_id}})
       b = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_all})
       puts b
     end
@@ -1082,11 +1058,12 @@ describe Activity do
        a = @u.get_social_counter({:activity_id => a3[:post][:id]})
        puts a
 
-       a = Activity.where(:activity_name => "eating").all
+       a = Activity.where(:activity_name => "Eating").all
        puts "============eating============"
        a.each do |attr|
          puts attr.inspect
        end
+       work_off
 
        a.should be_blank
        a = Activity.where(:activity_name => "marry").all
@@ -1101,6 +1078,7 @@ describe Activity do
        puts s.inspect
        s = @u.rename_activity_name({:activity_id => a3[:post][:id], :new_name => "beating"})
        puts s.inspect
+       work_off
        #@u.delete_summary({:summary_id => a3[:post][:summary_id]})
     end
 
@@ -1167,7 +1145,7 @@ describe Activity do
        @u2.subscribe_summary(a5[:post][:summary_id])
 
        s1 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "facebook", :action => "share"})
-       s2 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "twitter", :action => "share", :desc => "wow"})
+       s2 = @u.create_social_counter({:summary_id => a5[:post][:summary_id],:activity_id => a5[:post][:id], :source_name => "twitter", :action => "share", :description => "wow"})
 
        com1 = @u1.create_comment(:activity_id => a5[:post][:id], :text => "11111111111 1")
        puts com1
@@ -1216,6 +1194,100 @@ describe Activity do
       a = @u.search_models({:type => "location",:name => "MA"})
        puts a.inspect
     end
+    it "should create links properly" do
+      act = @u.create_activity(:word => "Eating" , :text => " <script>alert(alok)</script>
+                                   <mention><name>Alok Srivastava<name><id>#{@u.id}<id><mention>
+                                   <mention><name>PIZZA<name><id>235<id><mention> hello Pizza Hut
+                                   http://youtube.com/watch?222 http://form6.flickr.com/ wow
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "maha llo"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],:summary_category => "animals")
+      puts act.inspect
+
+      a1 = @u.create_activity(:word => "Eating" , :text => "pizza  http://youtube.com/watch?222 http://form6.flickr.com/234.docx wow
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "maha llo"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" },
+                                             {:caption => "2_2", :url => "http://a.com/2_1.jpg" },],:summary_category => "animals",
+                              :links => [{:url => "http://youtub.com/watch?4545", :mime => "link/remote",
+                                          :provider => "youtub.com", :uploaded => false, :name => "my videos", :description => "4747 4747"}])
+      a2 = @u.create_activity(:word => "just" , :text => "pizza  http://youtube.com/watch?222 http://form6.flickr.com/234.docx wow
+                                 ", :location =>  {:web_location =>{:web_location_url => "2OOGLE.com", :web_location_title => "maha llo"}},
+                              :enrich => true,
+                              :documents => [{:url => "https://s3.amazonaws.com/2.jpg" }],:summary_category => "animals" )
+      puts a1.inspect
+
+#
+##      s1 = @u.create_social_counter({:summary_id => a1[:post][:summary_id],:activity_id => a1[:post][:id], :source_name => "facebook", :action => "share"})
+#      com1 = @u1.create_comment(:activity_id => a1[:post][:id], :text => "11111111111 1")
+      camp = @u.create_campaign( :name => "like", :value => 2, :activity_id => a1[:post][:id] )
+      camp = @u.create_campaign( :name => "like", :value => 2, :activity_id => a2[:post][:id] )
+      camp = @u2.create_campaign( :name => "like", :value => 2, :activity_id => act[:post][:id] )
+      camp = @u1.create_campaign( :name => "like", :value => 2, :activity_id => act[:post][:id] )
+      camp = @u2.create_campaign( :name => "like", :value => 2, :activity_id => act[:post][:id] )
+
+#      w = ActivityWord.where(:word_name => "Just").first
+#      puts "Get Stream"
+#      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_user, :filter => {:word_id => w.id}})
+#      puts a
+#
+      work_off
+      puts "Get Summary 1"
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+
+      @u.rename_activity_name({:activity_id => act[:post][:id], :new_name => "just"})
+      work_off
+      puts "Get Summary 2"
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+      puts "============================================================"
+      puts "Update Summary"
+      @u.update_summary({:summary_id => a[0][:id], :new_name => "foodie"})
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+      work_off
+#      puts "Destroy Activity"
+#      a = Activity.where(:id => a2[:post][:id]).first
+#      a.destroy
+#      a = Activity.where(:id => a1[:post][:id]).first
+#      a.destroy
+      #@u.delete_summary({:summary_id => a[0][:id]})
+      work_off
+      puts "============================================================"
+      puts "Finally"
+      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+      puts a
+#
+#      a.destroy
+#      work_off
+#      puts "Get Summary Again"
+#      a =@u.get_summary({:user_id => @u.id, :page_type => AppConstants.page_state_all, :friend => true})
+#      puts a
+#      puts "============================================================="
+
+      w = ActivityWord.where(:word_name => "foodie").first
+      a = @u.get_document_stream({:user_id => @u.id, :page_type => 1, :filter => {:word_id => w.id }, :category => "video"})
+      puts a.inspect
+      e = Entity.where(:entity_name => "pizza").first
+      puts e.inspect
+      a = @u.remove_entity_from_activity(a1[:post][:id],e.id)
+      work_off
+      e = Entity.where(:entity_name => "pizza").first
+      puts e.inspect
+      a = @u.get_stream({:user_id => @u.id, :page_type => AppConstants.page_state_user})
+      puts a.inspect
+#
+      a = @u.get_document_stream({:user_id => @u.id, :page_type => 1, :filter => {:word_id => w.id }, :category => "link"})
+      puts a.inspect
+
+      a = @u.get_document_stream({:user_id => @u.id, :page_type => 1, :filter => {:word_id => w.id }, :category => "image"})
+      puts a.inspect
+
+      a = @u.get_document_stream({:user_id => @u.id, :page_type => 1, :filter => {:word_id => w.id }, :category => "application"})
+      puts a.inspect
+    end
 #    TEST REMOVE ENTITY
 #    TEST UPDATE ACTIVITY
 #    CLEAN GET STREAM
@@ -1242,30 +1314,39 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: activities
 #
-#  id                    :integer         not null, primary key
-#  activity_word_id      :integer         not null
-#  activity_text         :text
-#  activity_name         :text            not null
-#  author_id             :integer         not null
-#  base_location_id      :integer
-#  comments_count        :integer         default(0)
-#  documents_count       :integer         default(0)
-#  tags_count            :integer         default(0)
-#  campaign_types        :integer         not null
-#  status                :integer         not null
-#  source_name           :text            not null
-#  sub_title             :text
-#  summary_id            :integer
-#  enriched              :boolean
-#  meta_activity         :boolean
-#  blank_text            :boolean
-#  social_counters_array :text
-#  created_at            :datetime
-#  updated_at            :datetime
-#  source_msg_id         :string(255)
+#  id                       :integer         not null, primary key
+#  activity_word_id         :integer         not null
+#  activity_text            :text
+#  activity_name            :text            not null
+#  author_id                :integer         not null
+#  base_location_id         :integer
+#  comments_count           :integer         default(0)
+#  documents_count          :integer         default(0)
+#  tags_count               :integer         default(0)
+#  activities               :integer         default(0)
+#  campaigns_count          :integer         default(0)
+#  campaign_types           :integer         not null
+#  status                   :integer         not null
+#  source_name              :text            not null
+#  sub_title                :text
+#  summary_id               :integer
+#  enriched                 :boolean
+#  meta_activity            :boolean
+#  blank_text               :boolean
+#  social_counters_array    :text
+#  source_msg_id            :text
+#  category_type            :text
+#  category_id              :text
+#  backup_created_timestamp :datetime
+#  created_at               :datetime
+#  updated_at               :datetime
 #
 

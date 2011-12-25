@@ -2,7 +2,7 @@ class Hub < ActiveRecord::Base
   belongs_to :user
   belongs_to :activity
   belongs_to :location
-  belongs_to :entity, :touch => true
+  belongs_to :entity #, :touch => true
   belongs_to :activity_word
   belongs_to :summary
 
@@ -21,6 +21,9 @@ class Hub < ActiveRecord::Base
 end
 
 
+
+
+
 # == Schema Information
 #
 # Table name: hubs
@@ -34,6 +37,7 @@ end
 #  summary_id       :integer         not null
 #  source_name      :text            not null
 #  status           :integer         not null
+#  category_type    :text
 #  created_at       :datetime
 #  updated_at       :datetime
 #

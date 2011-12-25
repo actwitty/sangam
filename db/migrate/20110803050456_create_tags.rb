@@ -26,7 +26,7 @@ class CreateTags < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :tags, [:author_id, :activity_word_id]
+    add_index :tags, :author_id
 
     add_index :tags, :activity_word_id
 
@@ -38,16 +38,6 @@ class CreateTags < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :tags, [:author_id, :activity_word_id]
-
-    remove_index :tags, :activity_word_id
-
-    remove_index :tags, :summary_id
-
-    remove_index :tags, :activity_id
-
-    remove_index :tags, :updated_at
-
     drop_table :tags
   end
 end
