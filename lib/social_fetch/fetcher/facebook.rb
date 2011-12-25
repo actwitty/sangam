@@ -25,15 +25,15 @@ module SocialFetch
         json = {'access_token' => "#{params[:access_token]}"}
 
         json['batch']=[{"method"=>"GET",
-                            "relative_url"=>"#{params[:uid]}/feed?limit=3&since=#{latest_msg_timestamp}"}
-#                        {"method"=>"GET",
-#                            "relative_url"=>"#{params[:uid]}/likes?limit=3"},
-#                        {"method"=>"GET",
-#                            "relative_url"=>"#{params[:uid]}/books?limit=3"},
-#                        {"method"=>"GET",
-#                            "relative_url"=>"#{params[:uid]}/music?limit=3"},
-#                        {"method"=>"GET",
-#                            "relative_url"=>"#{params[:uid]}/movies?limit=3"}
+                            "relative_url"=>"#{params[:uid]}/feed?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"},
+                        {"method"=>"GET",
+                            "relative_url"=>"#{params[:uid]}/likes?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"},
+                        {"method"=>"GET",
+                            "relative_url"=>"#{params[:uid]}/books?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"},
+                        {"method"=>"GET",
+                            "relative_url"=>"#{params[:uid]}/music?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"},
+                        {"method"=>"GET",
+                            "relative_url"=>"#{params[:uid]}/movies?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"}
                         ].to_json
 
 

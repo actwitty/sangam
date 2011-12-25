@@ -47,7 +47,7 @@ class SocialAggregator < ActiveRecord::Base
 
         #this is the case when social data of user is pulled once but no data returned ..
         #may be he has not created any data at provider or some bug in our connection
-        if !social_fetch.latest_msg_timestamp.blank?
+        if social_fetch.latest_msg_timestamp > Time.utc(1970, 7, 8, 9, 10)
           #OVERIDE default settings for provider
           limit = AppConstants.maximum_import_every_time
           latest_msg_timestamp = social_fetch.latest_msg_timestamp

@@ -216,7 +216,7 @@ development: &default
   ghost_user_email:                   "administrator@actwitty.com"
 
   #Allowed to see internals
-  authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
+  authorized_see_internals_email_id:  "aloksrivastava78@gmail.com"
   
 
   #FOR SUMMARY CATEGORY
@@ -247,7 +247,7 @@ development: &default
   age_band_seniors:                      "65+"
 
   #text categorization
-  maximum_import_first_time:            10000
+  maximum_import_first_time:              200
   maximum_import_every_time:              10 #imports after first import is done
 
   data_type_weburl:                     "weburl"
