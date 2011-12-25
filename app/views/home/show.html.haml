@@ -17,6 +17,19 @@
         -if user_signed_in?
           -if current_user.id == @user.id
             =render :partial => "home/input_box" 
+      -if user_signed_in?
+        -if current_user.id == @user.id
+          #fb-root
+            :javascript
+              (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=#{AppConstants.facebook_app_id}";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            .fb-add-to-timeline{"data-show-faces" => "true"}
+          
         
 .awppm_chn_channel_wrapper.awppm_chn_channel_column3
   #awppm_chn_data_wrapper
