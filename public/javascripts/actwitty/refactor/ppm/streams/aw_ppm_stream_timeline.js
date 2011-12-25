@@ -181,24 +181,25 @@ function aw_get_actions_box_html(stream_info){
                   '<div class="aw_ppm_stm_dyn_action_mentions_count aw_js_ppm_stm_mentions_counter">0</div>' +
                   '<span> Click here to highlight key terms mentioned in post. </span>' +
                 '</div>' +
-
+                /*
                 '<div class="aw_ppm_stm_dyn_action_likes aw_js_ppm_stm_like_action">' +
                   '<div class="aw_ppm_stm_dyn_action_likes_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_likes_count aw_js_ppm_stm_likes_counter">0</div>' +
                 '</div>' +
-                
+                */
                 '<div class="aw_ppm_stm_dyn_action_shares aw_js_ppm_stm_shares_action">' +
                   '<div class="aw_ppm_stm_dyn_action_shares_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_shares_count aw_js_ppm_stm_shares_counter">0</div>' +
                   '<span> Share this post on twitter or facebook. </span>' +
-                '</div>' +
-                
+                '</div>' ;
+                /*
                 '<div class="aw_ppm_stm_dyn_action_comments aw_js_ppm_stm_comments_action">' +
                   '<div class="aw_ppm_stm_dyn_action_comments_img aw_js_ppm_stm_action_image"></div>' +
                   '<div class="aw_ppm_stm_dyn_action_comments_count aw_js_ppm_stm_comments_counter">0</div>' +
                   '<span> Click to see comments or add comments. </span>' +
                 '</div>' +
               '</div>';
+              */
   return html;
 }
 /*************************************************************/

@@ -5,35 +5,45 @@
   margin-top: 20px;
   margin-bottom: 40px;
   background: #ebece4;
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
-/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box ul {
   list-style-type: none;
   margin-top: 10px;
 }
-/* line 10, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+/* line 21, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box li {
   display: inline;
   margin-right: 50px;
   margin-left: 10px;
 }
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box input {
   float: right;
   margin-top: 0px;
 }
-/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box li a {
   text-decoration: none;
   color: #333333;
   font-size: 13px;
 }
-/* line 23, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box li a:hover {
   font-color: black;
 }
-/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
+/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box .aw_copyright {
   float: right;
   font-weight: bold;
+  margin-right: 10px;
+  color: #333333;
 }
