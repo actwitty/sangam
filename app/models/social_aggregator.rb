@@ -9,6 +9,7 @@ class SocialAggregator < ActiveRecord::Base
   class << self
     #INPUT => {:user_id => 123, :provider = "facebook"}
 
+    EPOCH_TIME = Time.utc(1970, 1, 1, 0, 0)
     def create_social_data(params)
 
       Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [CREATE_SOCIAL_DATA] entering #{params}")
@@ -32,14 +33,14 @@ class SocialAggregator < ActiveRecord::Base
 
       #default settings for provider
       limit =  AppConstants.maximum_import_first_time
-      latest_msg_timestamp = Time.utc(1970, 7, 8, 9, 10)
+      latest_msg_timestamp = EPOCH_TIME
 
       if social_fetch.blank?
         #create social fetch entry and set last_msg_timestamp to near epoch
         social_fetch = SocialAggregator.create!(:user_id => params[:user_id],
                                                 :provider => params[:provider], :uid => auth.uid)
 
-        last_updated_at = Time.utc(1978, 12, 15, 9, 10)
+        last_updated_at = EPOCH_TIME
         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [CREATE_SOCIAL_DATA] ====>>>>  first time  #{params.inspect}")
       else
         #set the last hit to provider. Social Fetch Stats is updated at every hit
@@ -47,7 +48,7 @@ class SocialAggregator < ActiveRecord::Base
 
         #this is the case when social data of user is pulled once but no data returned ..
         #may be he has not created any data at provider or some bug in our connection
-        if social_fetch.latest_msg_timestamp > Time.utc(1970, 7, 8, 9, 10)
+        if social_fetch.latest_msg_timestamp > EPOCH_TIME
           #OVERIDE default settings for provider
           limit = AppConstants.maximum_import_every_time
           latest_msg_timestamp = social_fetch.latest_msg_timestamp
@@ -91,7 +92,7 @@ class SocialAggregator < ActiveRecord::Base
          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_DATA] entering #{params}")
 
          new_activity = nil
-         latest_msg_timestamp = Time.utc(1978, 12, 15, 9, 10)
+         latest_msg_timestamp = EPOCH_TIME
 
          social_fetch = params[:social_fetch]
 
@@ -157,7 +158,7 @@ class SocialAggregator < ActiveRecord::Base
          end
 
          #update the latest_msg_timestamp in stats
-         if latest_msg_timestamp > Time.utc(1978, 12, 15, 9, 10)
+         if latest_msg_timestamp > EPOCH_TIME
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_DATA] TIMESTAMP #{latest_msg_timestamp} for  #{params.inspect}")
             social_fetch.update_attributes(:latest_msg_timestamp => latest_msg_timestamp)
          end
