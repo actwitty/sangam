@@ -30,6 +30,7 @@ class Entity < ActiveRecord::Base
 
   class << self
      include TextFormatter
+     include QueryPlanner
   #  {'guid'=>nil,         //unique id regarding entity   always present if content found in freebase
   #   'name'=>nil,      //name of entity   always present
   #   'mid'=>nil,        // machine ID       always present if content found on freebase
@@ -138,9 +139,53 @@ class Entity < ActiveRecord::Base
       Rails.logger.info("[MODEL] [ENTITY] [SEARCH] leaving #{params}")
       array
     end
+
+
+    #INPUT => {:entity_id => 12435, :updated_at => nil or 1994-11-05T13:15:30Z ( ISO 8601), :current_user_id => 1234}
+    #OUTPUT => { :id => 12435, :image => "http://freebase.com",:description => "http://freebase.com"
+    #:stream => [{:post => .... }]# same as stream
+    ##COMMENT => If updated_at parameter is sent, it means client already has entity info so, only stream part will be
+    #sent.
+    ##COMMENT=> Wikipedia description is optional. Still need to get the proper url for description even for
+    # freebase as new apis are changed
+    def get_entity_stream(params)
+      h = {}
+
+      Rails.logger.debug("[MODEL] [Entity] [get_entity_stream] entering")
+
+      e = Entity.where(:id => params[:entity_id]).first
+
+      if e.blank?
+        Rails.logger.debug("[MODEL] [Entity] [get_entity_stream] returning blank JSON")
+        return {}
+      end
+
+      hash = format_entity(e)
+
+      h[:entity_id] =  params[:entity_id]
+
+      h[:updated_at.lt] = params[:updated_at] if !params[:updated_at].blank?
+
+      h = pq_hub_filter(h)
+
+      activity = Hub.where(h).limit(AppConstants.max_number_of_activities).group(:activity_id).order("MAX(updated_at) DESC").count
+
+      hash[:stream] = Activity.get_all_activity({:current_user_id => params[:current_user_id], :activity_ids => activity.keys})
+
+      Rails.logger.debug("[MODEL] [Entity] [get_entity_stream] leaving")
+
+      hash
+
+    end
+
+
   end
 
 end
+
+
+
+
 
 
 # == Schema Information
@@ -148,11 +193,14 @@ end
 # Table name: entities
 #
 #  id                    :integer         not null, primary key
-#  entity_name           :string(255)     not null
-#  entity_guid           :string(255)     not null
+#  entity_name           :text            not null
+#  entity_guid           :text            not null
 #  entity_image          :text
 #  entity_doc            :text
 #  social_counters_array :text
+#  analytics_summary     :text
+#  rank                  :text
+#  campaigns_count       :integer         default(0)
 #  created_at            :datetime
 #  updated_at            :datetime
 #

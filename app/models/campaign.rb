@@ -1,13 +1,13 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User"
-  belongs_to :activity
+  belongs_to :activity, :counter_cache => true
 
-  belongs_to :entity
-  belongs_to :location
+  belongs_to :entity, :counter_cache => true
+  belongs_to :location, :counter_cache => true
   belongs_to :comment
-  belongs_to :document
-  belongs_to :summary
+  belongs_to :document, :counter_cache => true
+  belongs_to :summary, :counter_cache => true
 
   belongs_to :father, :class_name => "Activity"
 
@@ -66,7 +66,10 @@ def ensure_destroy_cleanup
 
 
   class << self
+
     include TextFormatter
+    include QueryPlanner
+
     # :author_id => 123
     # :name => "like"
     # :value => any integer index .. for example like =1 super-like  = 2 etc
@@ -170,6 +173,50 @@ def ensure_destroy_cleanup
       campaign = Campaign.find(campaign_id)
       campaign.father.destroy
     end
+
+
+    #COMMENT => To Remove a campaign. Only for the current_user. Output is remaining count
+    #INPUT => {
+    #         :activity_id => 1234 # OR :entity_id = 123 OR :location_id => 123 OR :comment_id =>  234 OR :document_id => 2345
+    #         :user_id => 234,
+    #         :name => "like"
+    #         }
+    #OUTPUT => { :name => "like", :count => 23, :user => false}  #user will always be false as user can only delete his campaign
+                                                                 #which is unique in scope of activity and campaign name
+    def remove_campaign(params)
+
+      Rails.logger.debug("[MODEL] [Campaign] [remove_campaign] entering")
+
+      params[:author_id] = params[:user_id]
+      params.delete(:user_id)
+
+      h = pq_campaign_filter(params)
+      campaign = Campaign.where(h).first
+
+      if campaign.nil?
+        Rails.logger.debug("[MODEL] [Campaign][remove_campaign] leaving => returning blank json")
+        return {}
+      end
+
+      hash = campaign.attributes.except("value", "author_id", "father_id", "id", "created_at", "updated_at")
+
+      campaign.father.destroy
+
+      #group by campaign name for remaining count
+      h= Campaign.where(hash).group(:name).count
+
+      ch = {}
+
+      #user will always be false as user can only delete his campaign
+      #which is unique in scope of activity and campaign name
+      ch[:user] = false
+      ch[:count] = h.values[0].nil? ? 0 : h.values[0]
+      ch[:name] = hash["name"]
+
+      Rails.logger.debug("[MODEL] [Campaign] [remove_campaign] leaving")
+
+      ch
+    end
   # :activity_id => 123
   #      OR
   # :entity_id => 123
@@ -198,6 +245,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -214,8 +262,8 @@ end
 #  value       :integer         not null
 #  status      :integer         not null
 #  source_name :text            not null
+#  summary_id  :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  summary_id  :integer
 #
 

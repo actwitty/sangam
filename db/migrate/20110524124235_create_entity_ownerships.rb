@@ -12,10 +12,6 @@ class CreateEntityOwnerships < ActiveRecord::Migration
   end
 
   def self.down
-
-    remove_index :entity_ownerships, [:entity_id,:owner_id]
-    remove_index :entity_ownerships, :owner_id
-
     drop_table :entity_ownerships
   end
 end

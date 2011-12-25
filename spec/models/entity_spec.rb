@@ -116,16 +116,23 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: entities
 #
 #  id                    :integer         not null, primary key
-#  entity_name           :string(255)     not null
-#  entity_guid           :string(255)     not null
+#  entity_name           :text            not null
+#  entity_guid           :text            not null
 #  entity_image          :text
 #  entity_doc            :text
 #  social_counters_array :text
+#  analytics_summary     :text
+#  rank                  :text
+#  campaigns_count       :integer         default(0)
 #  created_at            :datetime
 #  updated_at            :datetime
 #

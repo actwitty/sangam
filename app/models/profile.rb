@@ -79,6 +79,8 @@ class Profile < ActiveRecord::Base
 end
 
 
+
+
 # == Schema Information
 #
 # Table name: profiles
@@ -115,6 +117,8 @@ end
 #  abuse_count         :integer
 #  is_terms_accepted   :boolean
 #  is_privacy_accepted :boolean
+#  fb_default_share    :boolean
+#  twt_default_share   :boolean
 #  user_id             :integer
 #  created_at          :datetime
 #  updated_at          :datetime

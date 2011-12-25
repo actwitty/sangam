@@ -20,31 +20,37 @@ class SummaryRank < ActiveRecord::Base
   serialize :analytics_summary, Hash
   serialize :views, Hash
 
+  RANK_FIELDS = ["posts", "likes", "comments", "subscribers", "demographics", "action", "documents"]
+
   after_save  :update_analytics_in_models
 
   def  update_analytics_in_models
     Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] entering ")
 
+    #puts self.channel_ranks[Time.now.strftime("%m/%d/%y")]
+    rank = nil
+    rank = self.channel_ranks[Time.now.strftime("%m/%d/%y")]   if  !self.channel_ranks.blank?
     if !self.summary_id.blank?
 
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.summary_id} with #{self.analytics_summary}")
       s = Summary.where(:id => self.summary_id).first
       s.analytics_summary = {}
-      s.update_attributes(:analytics_summary => self.analytics_summary)
+
+      s.update_attributes(:analytics_summary => self.analytics_summary, :rank => rank)
 
     elsif !self.location_id.blank?
 
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.location_id} with #{self.analytics_summary}")
       l = Location.where(:id => self.location_id).first
       l.analytics_summary = {}
-      l.update_attributes(:analytics_summary => self.analytics_summary)
+      l.update_attributes(:analytics_summary => self.analytics_summary, :rank => rank)
 
-    elsif !self.entity_id.blank
+    elsif !self.entity_id.blank?
 
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] updating summary ID #{self.entity_id} with #{self.analytics_summary}")
       e = Entity.where(:id => self.entity_id).first
       e.analytics_summary = {}
-      e.update_attributes(:analytics_summary => self.analytics_summary)
+      e.update_attributes(:analytics_summary => self.analytics_summary, :rank => rank)
 
     end
     Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] leaving ")
@@ -124,34 +130,40 @@ class SummaryRank < ActiveRecord::Base
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] entering #{params}")
 
       updated = false
+
       h = params.except(:fields)
       hash = {}
+      subject = nil
       object = SummaryRank.where(h).first
 
       if object.blank?
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] new object #{h}")
 
         if !h[:summary_id].blank?
-          s = Summary.where(:id => h[:summary_id]).first
-          return nil if s.blank?
+          subject = Summary.where(:id => h[:summary_id]).first
+
+        elsif !h[:location_id].blank?
+          subject = Location.where(:id => h[:location_id]).first
+
+        else !h[:entity_id].blank?
+          subject = Entity.where(:id => h[:entity_id]).first
         end
 
-        if !h[:location_id].blank?
-          l = Location.where(:id => h[:location_id]).first
-          return nil if l.blank?
+        if subject.blank?
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] invalid object passed as input #{h}")
+          return nil
         end
-
-        if !h[:entity_id].blank?
-          e = Entity.where(:id => h[:entity_id]).first
-          return nil if e.blank?
-        end
-        # Put error check
 
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] creating object #{params}")
         object =create!(h)
       end
 
       date = Time.now.strftime("%m/%d/%y")
+
+      if params[:fields].include?("all")
+        Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] including ALL FIELDS #{params}")
+        params[:fields] =  RANK_FIELDS
+      end
 
       params[:fields].each do |attr|
 
@@ -175,9 +187,7 @@ class SummaryRank < ActiveRecord::Base
       if updated == true
         object.channel_ranks = {} if object.channel_ranks.blank?
         object.channel_ranks[date] = get_summary_rank(object)
-
         hash[:channel_ranks] = object.channel_ranks
-
         object.update_attributes!(hash)
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] Updating channel rank and analytics #{params}")
       end
@@ -195,7 +205,8 @@ class SummaryRank < ActiveRecord::Base
     private
       def get_summary_rank(object)
         #Dummy rank
-        object.analytics_summary["posts"][:total]
+        #object.analytics_summary["posts"][:total]
+        234
       end
       def get_age_band(age)
 

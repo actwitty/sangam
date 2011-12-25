@@ -3,11 +3,11 @@ sports:
   channel: sports
   hierarchy: /
   name: sports
-cars:
-  type: /cars
-  channel: cars
+automobiles:
+  type: /automobiles
+  channel: automobiles
   hierarchy: /
-  name: cars
+  name: automobiles
 entertainment:
   type: /entertainment
   channel: entertainment
@@ -18,11 +18,11 @@ games:
   channel: games
   hierarchy: /
   name: toys and games
-fashion:
-  type: /fashion
-  channel: fashion
+leisure:
+  type: /leisure
+  channel: leisure
   hierarchy: /
-  name: fashion and style
+  name: leisure,recreation and faishon
 nonprofits:
   type: /nonprofit
   channel: nonprofit
@@ -38,11 +38,11 @@ technology:
   channel: technology
   hierarchy: /
   name: technology
-politics:
-  type: /politics
-  channel: politics
+world:
+  type: /world
+  channel: world
   hierarchy: /
-  name: society and politics
+  name: society, religion, environment, law, crime and politics
 animals:
   type: /animals
   channel: animals
@@ -57,7 +57,7 @@ health:
   type: /health
   channel: health
   hierarchy: /
-  name: health
+  name: health, medical and phrama
 food:
   type: /food
   channel: food
@@ -74,15 +74,10 @@ arts:
   hierarchy: /
   name: arts and design
 places:
-  type: /travel
-  channel: travel
+  type: /places
+  channel: places_events
   hierarchy: /
-  name: travel and places
-events:
-  type: /events
-  channel: events
-  hierarchy: /
-  name: holidays and events
+  name: places, travel and events 
 home:
   type: /home
   channel: home
@@ -98,3 +93,8 @@ hobbies:
   channel: hobbies
   hierarchy: /
   name: hobbies and interests
+products:
+  type: /products
+  channel: products
+  hierarchy: /
+  name: brands and products

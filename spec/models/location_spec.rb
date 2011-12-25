@@ -184,6 +184,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: locations
@@ -195,9 +199,13 @@ end
 #  location_lat          :decimal(18, 15)
 #  location_long         :decimal(18, 15)
 #  social_counters_array :text
-#  created_at            :datetime
-#  updated_at            :datetime
+#  analytics_summary     :text
 #  location_city         :text
 #  location_country      :text
+#  location_region       :text
+#  rank                  :text
+#  campaigns_count       :integer
+#  created_at            :datetime
+#  updated_at            :datetime
 #
 

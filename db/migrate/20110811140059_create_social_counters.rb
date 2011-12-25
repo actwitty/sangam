@@ -14,10 +14,14 @@ class CreateSocialCounters < ActiveRecord::Migration
 
       t.integer :author_id
 
+      t.text :description
+
       t.timestamps
     end
-    add_index :social_counters, [:source_name, :action]
-    add_index :social_counters, [:summary_id, :activity_id]
+    add_index :social_counters, :source_name
+    add_index :social_counters,:action
+
+    add_index :social_counters, :summary_id
     add_index :social_counters, :activity_id
 
     add_index :social_counters, :author_id
@@ -31,20 +35,6 @@ class CreateSocialCounters < ActiveRecord::Migration
   end
 
   def self.down
-
-    remove_index :social_counters, [:source_name, :action]
-    remove_index :social_counters, [:summary_id, :activity_id]
-
-    remove_index :social_counters, :activity_id
-    remove_index :social_counters, :author_id
-
-    remove_index :social_counters, :updated_at
-
-    remove_index :social_counters, :location_id
-    remove_index :social_counters, :entity_id
-
-    remove_index :social_counters, :document_id
-
     drop_table :social_counters
   end
 end
