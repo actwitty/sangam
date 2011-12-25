@@ -426,7 +426,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.datetime "updated_at"
   end
 
-  add_index "short_web_links", ["url_sha1"], :name => "index_short_web_links_on_url_sha1"
+  add_index "short_web_links", ["url_sha1"], :name => "index_short_web_links_on_url_sha1", :unique => true
   add_index "short_web_links", ["web_link_id"], :name => "index_short_web_links_on_web_link_id"
 
   create_table "social_aggregators", :force => true do |t|

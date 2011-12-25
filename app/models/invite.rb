@@ -46,3 +46,17 @@ class Invite < ActiveRecord::Base
 
   end
 end
+
+# == Schema Information
+#
+# Table name: invites
+#
+#  id         :integer         not null, primary key
+#  identifier :string(255)
+#  service    :string(255)
+#  accepted   :boolean
+#  registered :boolean
+#  created_at :datetime
+#  updated_at :datetime
+#
+
