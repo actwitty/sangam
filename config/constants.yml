@@ -217,7 +217,7 @@ development: &default
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
+  authorized_see_internals_email_id:  "aloksrivastava78@gmail.com"
 
   
 
@@ -249,8 +249,8 @@ development: &default
   age_band_seniors:                      "65+"
 
   #text categorization
-  maximum_import_first_time:              200
-  maximum_import_every_time:              10 #imports after first import is done
+  maximum_import_first_time:              3
+  maximum_import_every_time:              3 #imports after first import is done
 
   data_type_weburl:                     "weburl"
   data_type_youtube:                    youtube    #as it will be used in regex

@@ -262,29 +262,28 @@ module Categorization
 
      params[:text_cat].each do |k,v|
      
-     if !v[:text].blank?   
-          req = ::Categorization::Categorizer::AlchemyApi.make_request(v[:text], k)
-          #resp =AlchemyApi.categorize_text([req])
-         
-          #nil check is important and not blank as rescue cases from open calais return nil
-          #if resp.nil?
-            req = ::Categorization::Categorizer::OpenCalais.make_request(v[:text], k)
-            #resp =OpenCalais.categorize([req])
-         # end
-          
-          categories = {} 
-          resp = vote(v[:text])
-          categories = resp if !resp.blank?
+     if !v[:text].blank?
+
 
           activity = params[:activities][k][:post]
-          
+
+          categories = {}
+
+          link = nil
+
+          if v[:link] == true
+            link = activity[:links][0][:url]
+          end
+
+          resp = vote(link,v[:text])
+          categories = resp if !resp.blank?
+
           if !categories.blank?
             activity[:word] =  categories[:name]
             activity[:summary_category] =  categories[:name]   #SUMMARY_CATEGORIES[category]['channel']
             #Rails.logger.info("[CATEGORIZER] [categorize] => activity => #{activity.inspect}")
 
             if v[:link] == true
-              link = activity[:links][0]
               activity[:links][0][:category_id] = categories[:name] #SUMMARY_CATEGORIES[v]['channel']
             end
 
@@ -294,12 +293,17 @@ module Categorization
      Rails.logger.info("[LIB] [CATEGORIZATION] [CATEGORIZE_LINK] => Leaving")
    end
    
-   def vote(text)
+   def vote(link, text)
      Rails.logger.info("[LIB] [CATEGORIZATION] [VOTE] entering")
      req = [] 
      score = 0
      req << ::Categorization::Categorizer::OpenCalais.make_request(text, "opencalais")
-     req << ::Categorization::Categorizer::AlchemyApi.make_request(text, "alchemyapi")
+
+     if text.length < 512  and !link.blank?
+       req << ::Categorization::Categorizer::AlchemyApi.make_request(link, "alchemyapi", "link")
+     else
+       req << ::Categorization::Categorizer::AlchemyApi.make_request(text, "alchemyapi", "text")
+     end
 
      response = ::EmHttp::Http.request(req)
      

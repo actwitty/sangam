@@ -15,8 +15,12 @@ module Categorization
 
 
       class << self
-        def make_request(content, handle)
-          {:method => "post", :url => ALCHEMY_TEXT_ENDPOINT, :params =>{'text'=>"#{content}",'apikey'=> ALCHEMY_API_KEY, 'outputMode'=> "json"}, :handle => handle}
+        def make_request(content, handle, type)
+          if type == "text"
+            return {:method => "post", :url => ALCHEMY_TEXT_ENDPOINT, :params =>{'text'=>"#{content}",'apikey'=> ALCHEMY_API_KEY, 'outputMode'=> "json"}, :handle => handle}
+          elsif type == "link"
+            return {:method => "post", :url => ALCHEMY_LINK_ENDPOINT, :params =>{'url'=>"#{content}",'apikey'=> ALCHEMY_API_KEY, 'outputMode'=> "json", }, :handle => handle}
+          end
         end
 
         def categorize_text(requests)
