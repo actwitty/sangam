@@ -1,0 +1,86 @@
+
+#aw_lpm_user_register
+  = simple_form_for(@user,:as=>:user, :url => user_registration_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
+    = f.input :photo_small_url , 
+              :label => false,
+              :input_html => { :type => 'hidden' }
+    #aw_lpm_sign_up_top_row_div
+      #aw_lpm_signup_top_left_div
+        #aw_lpm_signup_email_label
+          %span Email
+        = f.input :email ,
+                  :placeholder => "Email",
+                  :label => false,
+                  :input_html => { :id=>'aw_lpm_signup_email_input' }
+        #aw_lpm_signup_username_label
+          %span User Name
+        = f.input :username ,
+                  :placeholder => "User Name",
+                  :label => false,
+                  :input_html => { :id=>'aw_lpm_signup_username_input' }
+        #aw_lpm_signup_password_label
+          %span Password
+        = f.input :password , 
+                  :placeholder => "Password", 
+                  :label => false,
+                  :input_html => { :id=>'aw_lpm_signup_password_input' }
+      #aw_lpm_signup_top_right_div
+        #aw_lpm_signup_name_label
+          %span Full Name
+        = f.input :full_name , 
+                  :placeholder => "Full Name", 
+                  :label => false,
+                  :input_html => { :id=>'aw_lpm_signup_name_input' }
+
+        #aw_lpm_signup_dob_label
+          %span Date of Birth
+        = f.input :dob , 
+                  :placeholder => "Date of Birth", 
+                  :label => false,
+                  :as => :string,
+                  :input_html => { :id=>'aw_lpm_signup_dob_input' , :value => @user.dob }
+        = f.input :dob_str , 
+                  :label => false,
+                  :input_html => {:type => 'hidden', :id=>'dob_str' }
+        #aw_lpm_signup_gender_label
+          %span Gender
+        = f.input :gender , 
+                  :placeholder => "Gender", 
+                  :label => false,
+                  :collection => ['male','female','other'], :as => :select,
+                  :input_html => { :id=>'aw_lpm_signup_gender_input' }
+    #aw_lpm_sign_up_bottom_row_div
+      #aw_lpm_sign_up_bottom_row_left_div
+        #aw_lpm_location_auto_complete
+          #aw_lpm_signup_location_label
+            %span Location
+          = f.input :current_location , 
+                    :placeholder => "Location", 
+                    :label => false,
+                    :input_html => { :id=>'aw_lpm_signup_location_input' , :value => @user.current_location  }
+          = f.input :current_geo_lat , 
+                    :label => false,
+                    :input_html => { :id=>'aw_lpm_signup_location_lat_input', :type => 'hidden' }
+
+          = f.input :current_geo_long , 
+                    :label => false,
+                    :input_html => { :id=>'aw_lpm_signup_location_long_input', :type => 'hidden'}
+        #aw_lpm_map_selector
+      #aw_lpm_sign_up_bottom_row_right_div
+        %input{:name => "user[key]", :type => "hidden", :value => "#{@key}"}/
+        %input{:name => "user[provider]", :type => "hidden", :value => "#{@provider}"}/
+        %input{:name => "user[uid]", :type => "hidden", :value => "#{@uid}"}/
+        %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }
+        #aw_lpm_sign_up_bottom_row_right_div_internal
+          %input#signupbutton.button_actwitty.blue.medium.hover_point{:type => "button", :value => "Register !"}/
+        #aw_lpm_sign_up_terms_declaration
+          %p
+            By clicking register you agree to accept these
+            %a{:href => "/terms_of_service.html"}
+              terms and conditions.
+          
+        %a#aw_lpm_signup_already_a_user{:href => "/authentications/auth_signin_provider?key=#{@key}&provider=#{@provider}&uid=#{@uid}"} Click here if you are already registered.
+:javascript
+  aw_api_lpm_initialize_sign_up_page()
+
+ 
