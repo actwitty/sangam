@@ -222,7 +222,7 @@ development: &default
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:  "aloksrivastava78@gmail.com"
+  authorized_see_internals_email_id:  "83.samarth@gmail.com"
 
   
 
