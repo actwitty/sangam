@@ -5,7 +5,7 @@ var aw_local_fb_access_token;
  *
  *
  */
-function aw_api_ppm_stm_facebook_initialize_access_token(fn_cb){
+function aw_api_skpm_stm_facebook_initialize_access_token(fn_cb){
   var auth_token = $("#aw_js_ppm_fb_access_token").val();
   if(auth_token.length){
     aw_local_fb_access_token = auth_token;

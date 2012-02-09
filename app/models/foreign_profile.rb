@@ -3,10 +3,14 @@ class ForeignProfile < ActiveRecord::Base
 
 
 
-  def import_facebook(foreign_data)
-    Rails.logger.info("[CNTRL][import_facebook] Called.")
-    Rails.logger.info("[CNTRL][import_facebook] #{foreign_data}")
-
+  def import_facebook(omniauth)
+    Rails.logger.info("[MODEL][import_facebook] Called.")
+    foreign_data = omniauth['extra']['user_hash']
+    if foreign_data.nil?
+      Rails.logger.warn("[MODEL][import_facebook] No data to import.")
+      return
+    end
+    Rails.logger.info("[MODEL][import_facebook] #{foreign_data}")
 
     self.name = foreign_data["name"]
     self.first_name = foreign_data["first_name"]
@@ -32,31 +36,57 @@ class ForeignProfile < ActiveRecord::Base
       self.timezone = foreign_data["timezone"]
     end
     
-    if !self.locale = foreign_data["locale"].nil?
+    if  foreign_data["locale"].nil?
       self.locale = foreign_data["locale"]
     end
 
 
 
-    Rails.logger.info("[CNTRL][import_facebook] Just before Save")
+    Rails.logger.info("[MODEL][import_facebook] Just before Save")
     self.save!
-    Rails.logger.info("[CNTRL][import_facebook] Just after Save")
+    Rails.logger.info("[MODEL][import_facebook] Just after Save")
   end
 
 
-  def import_twitter(foreign_data)
-    Rails.logger.info("[CNTRL][import_twitter] #{foreign_data}")
+  def import_twitter(omniauth)
+    Rails.logger.info("[MODEL][import_twitter] Called.")
+    foreign_data = omniauth['extra']['user_hash']
+    if foreign_data.nil?
+      Rails.logger.warn("[MODEL][import_twitter] No data to import.")
+      return
+    end
+    Rails.logger.info("[MODEL][import_twitter] #{foreign_data}")
     self.name = foreign_data["name"]
     self.image = foreign_data["profile_image_url"]
     self.location = foreign_data["location"]
     self.screen_name = foreign_data["screen_name"]
     self.locale = foreign_data["lang"]
     self.url = foreign_data["url"]
-    Rails.logger.info("[CNTRL][import_facebook] Just before Save")
+    Rails.logger.info("[MODEL][import_twitter] Just before Save")
     self.save!
-    Rails.logger.info("[CNTRL][import_facebook] Just after Save")
+    Rails.logger.info("[MODEL][import_twitter] Just after Save")
   end
 
+  def import_linked_in(foreign_data)
+    Rails.logger.info("[MODEL][import_linked_in] Called.")
+    foreign_data = omniauth['user_info']
+    if foreign_data.nil?
+      Rails.logger.warn("[MODEL][import_linked_in] No data to import.")
+      return
+    end
+    Rails.logger.info("[MODEL][import_linked_in] #{foreign_data}")
+    self.first_name = foreign_data["first_name"]
+    self.last_name = foreign_data["last_name"]
+    self.image = foreign_data["image"]
+    self.location = foreign_data["location"]
+    self.description = foreign_data["description"]
+    self.name = foreign_data["name"]
+    self.url = foreign_data["public_profile_url"]
+
+    Rails.logger.info("[MODEL][import_linked_in] Just before Save")
+    self.save!
+    Rails.logger.info("[MODEL][import_linked_in] Just after Save")
+  end
 
 
 end

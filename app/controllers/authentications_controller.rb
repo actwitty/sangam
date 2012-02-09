@@ -87,6 +87,13 @@ class AuthenticationsController < ApplicationController
     sign_in_and_redirect(:user, current_user)
   end
 
+
+  ############################################################################
+  # This code has become spaghetti
+  # TODO: clean up this code
+  #
+  #
+
  def process_authentication
 
     omniauth = request.env["omniauth.auth"]
@@ -107,6 +114,9 @@ class AuthenticationsController < ApplicationController
       Rails.logger.info("[CNTRL][Authentications] A new foreign auth")
         if user_signed_in?
           Rails.logger.info("[CNTRL][Authentications] User is already signed in #{current_user.full_name}")
+
+          
+
           any_existing_auth_for_same_provider = current_user.authentications.find_by_provider(provider)
           if any_existing_auth_for_same_provider.nil?
             Rails.logger.info("[CNTRL][Authentications] No existing auth for #{provider} for user")
@@ -115,17 +125,19 @@ class AuthenticationsController < ApplicationController
                                                  :token=> omniauth['credentials']['token'],
                                                  :secret=> omniauth['credentials']['secret'],
                                                  :user_id=>current_user.id)
-            data = omniauth['extra']['user_hash']
-            unless data.nil?
-              Rails.logger.info("[CNTRL][Authentications] Cache the new foreign profile")
-              authentication.foreign_profile = ForeignProfile.new
-              authentication.foreign_profile.send("import_#{provider}",data)
-            end
-            #redirect back to where you came from
 
+            Rails.logger.info("[CNTRL][Authentications] Cache the new foreign profile")
+            authentication.foreign_profile = ForeignProfile.new
+            authentication.foreign_profile.send("import_#{provider}",omniauth)
+             
+            #redirect back to where you came from
+            #
+            
+            current_user.enable_service_for_data_gathering(provider)
             redirect_to session[:return_to] || '/'
           else
             Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")
+            current_user.enable_service_for_data_gathering(provider)
             redirect_to session[:return_to] || '/'
           end
         else
@@ -136,20 +148,22 @@ class AuthenticationsController < ApplicationController
                                                   :uid => uid,
                                                   :token=> omniauth['credentials']['token'],
                                                   :secret=> omniauth['credentials']['secret'])
-          data = omniauth['extra']['user_hash']
-          unless data.nil?
-            Rails.logger.info("[CNTRL][Authentications] New foreign profile to cache for new auth no signin.")
-            authentication.foreign_profile = ForeignProfile.new
-            authentication.foreign_profile.send("import_#{provider}",data)
-          end
 
 
-          invite_status = Invite.check_if_invite_exists(@provider, @uid)
-          if invite_status 
-            Invite.mark_invite_accepted(@provider, @uid)
-          end
+         Rails.logger.info("[CNTRL][Authentications] New foreign profile to cache for new auth no signin.")
+         authentication.foreign_profile = ForeignProfile.new
+         authentication.foreign_profile.send("import_#{provider}",omniauth)
 
-          Rails.logger.info("[CNTRL][Authentications] Redirecting to auth signup page.")
+
+         query_hash = {}
+         query_hash[provider] = uid
+        
+         invite_status = Invite.check_if_invite_exists(query_hash)
+         if invite_status 
+          Invite.mark_invite_accepted(provider, uid)
+         end
+
+         Rails.logger.info("[CNTRL][Authentications] Redirecting to auth signup page.")
           #if validation does not exist and user is not signed in do not allow access
 
           redirect_to :controller => 'authentications',
@@ -171,6 +185,8 @@ class AuthenticationsController < ApplicationController
           Rails.logger.info("[CNTRL][Authentications] User is being connected to auth")
           already_existing_auth.user_id =  current_user.id
           already_existing_auth.save!
+
+          current_user.enable_service_for_data_gathering(provider)
           redirect_to session[:return_to] || '/'
         else
 
@@ -179,6 +195,7 @@ class AuthenticationsController < ApplicationController
             already_existing_auth.save!
           end
           Rails.logger.info("[CNTRL][Authentications] Going back to where we came from")
+          current_user.enable_service_for_data_gathering(provider)
           redirect_to session[:return_to] || '/'
         end
       else
@@ -187,14 +204,11 @@ class AuthenticationsController < ApplicationController
           Rails.logger.info("[CNTRL][Authentications] Auth is not associated to any user.")
           already_existing_auth.save!
 
-
-         data = omniauth['extra']['user_hash']
-          unless data.nil?
-            Rails.logger.info("[CNTRL][Authentications] Foreign profile being saved for auth.")
-            already_existing_auth.foreign_profile = ForeignProfile.new
-            Rails.logger.info("[CNTRL][Authentications] Foreign profile import method call.")
-            already_existing_auth.foreign_profile.send("import_#{provider}",data)
-          end
+         Rails.logger.info("[CNTRL][Authentications] Foreign profile being saved for auth.")
+         already_existing_auth.foreign_profile = ForeignProfile.new
+         Rails.logger.info("[CNTRL][Authentications] Foreign profile import method call.")
+         already_existing_auth.foreign_profile.send("import_#{provider}",omniauth)
+         
 
           Rails.logger.info("[CNTRL][Authentications] Redirecting to auth sign in")
           redirect_to :controller => 'authentications',
@@ -207,14 +221,18 @@ class AuthenticationsController < ApplicationController
            # I know the user, allow him to get in
           Rails.logger.info("[CNTRL][Authentications] Known auth, user sign in [user id : #{already_existing_auth.user_id}]")
           already_existing_auth.save!
+        
+          invite_status = already_existing_auth.user.get_invited_status 
+          if invite_status 
+           already_existing_auth.user.enable_service_for_data_gathering(provider)
+          end
           sign_in_and_redirect(:user, already_existing_auth.user)
         end
       end
     end
-    rescue => e
-      Rails.logger.error("[CNTRL][Authentications] Save raised exception : #{e}")
-      redirect_to "/"
-
+  rescue => e
+    Rails.logger.error("[CNTRL][Authentications] Save raised exception : #{e}")
+    redirect_to "/"
   end
 
 end

@@ -1,0 +1,29 @@
+/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
+.aw_dyn_service_image_box {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  float: left;
+  margin-top: 25px;
+  margin-right: 3px;
+  margin-left: 3px;
+  position: relative;
+}
+/* line 10, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
+.aw_dyn_service_image_box .aw_dyn_service_img_small {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
+.aw_dyn_service_image_box .aw_dyn_service_img_large {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  z-index: 10;
+}
+/* line 20, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
+.aw_dyn_service_image_box:hover .aw_dyn_service_img_large {
+  display: block;
+}

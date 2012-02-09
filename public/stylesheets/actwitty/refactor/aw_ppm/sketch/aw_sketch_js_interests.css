@@ -1,0 +1,307 @@
+/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box {
+  width: 154px;
+  height: 213px;
+  background-color: black;
+  margin-left: 20px;
+  margin-top: 25px;
+  position: relative;
+  font-family: "RobotoRegular";
+  letter-spacing: 1px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px #333333;
+  -webkit-box-shadow: 0 0 10px #333333;
+  box-shadow: 0 0 10px #333333;
+}
+/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topic_logo_large {
+  display: block;
+}
+/* line 16, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_title {
+  height: 32px;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  background: #25a0da;
+  color: white;
+  text-align: center;
+  font-size: 28px;
+  font-family: "League Gothic";
+  text-transform: uppercase;
+  padding-top: 1px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+}
+/* line 33, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_yellow {
+  background-color: #f19720;
+}
+/* line 35, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_mid_green {
+  background-color: #309b46;
+}
+/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_red {
+  background-color: #e61e26;
+}
+/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_lilac {
+  background-color: #7e51a1;
+}
+/* line 41, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_brown {
+  background-color: #986827;
+}
+/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_pink {
+  background-color: #df73ad;
+}
+/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_light_green {
+  background-color: #8bc03f;
+}
+/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_light_magenta {
+  background-color: #ed1691;
+}
+/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_gray1 {
+  background-color: #c8c8c8;
+}
+/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_gray2 {
+  background-color: #6f6f6f;
+}
+/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_gray3 {
+  background-color: #676767;
+}
+/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_gray4 {
+  background-color: #575757;
+}
+/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_gray5 {
+  background-color: #888888;
+}
+/* line 61, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_grid_box_color_gray6 {
+  background-color: #3f3f3f;
+}
+/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 40px;
+  left: 8px;
+  overflow: hidden;
+}
+/* line 71, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left img.aw_sketch_dyn_topic_grid_img {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-family: "League Gothic";
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 79, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left span.aw_sketch_dyn_topic_grid_number {
+  width: 100%;
+  text-align: right;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  font-family: "League Gothic";
+  font-size: 36px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 92, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 40px;
+  left: 81px;
+  overflow: hidden;
+}
+/* line 99, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right img.aw_sketch_dyn_topic_grid_img {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-family: "League Gothic";
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 107, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right span.aw_sketch_dyn_topic_grid_number {
+  width: 100%;
+  text-align: right;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  font-family: "League Gothic";
+  font-size: 36px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 120, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 113px;
+  left: 8px;
+}
+/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left img.aw_sketch_dyn_topic_grid_img {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-family: "League Gothic";
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left span.aw_sketch_dyn_topic_grid_number {
+  width: 100%;
+  text-align: right;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  font-family: "League Gothic";
+  font-size: 36px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 147, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 113px;
+  left: 81px;
+}
+/* line 153, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right img.aw_sketch_dyn_topic_grid_img {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-family: "League Gothic";
+  font-size: 14px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 161, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right span.aw_sketch_dyn_topic_grid_number {
+  width: 100%;
+  text-align: right;
+  margin-top: 2px;
+  margin-right: 10px;
+  margin-bottom: 2px;
+  font-family: "League Gothic";
+  font-size: 36px;
+  font-weight: normal;
+  color: white;
+  display: block;
+}
+/* line 177, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_small {
+  position: absolute;
+  top: -15px;
+  left: 132px;
+  height: 30px;
+  width: 30px;
+}
+/* line 184, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_large {
+  position: absolute;
+  top: -20px;
+  left: 127px;
+  height: 40px;
+  width: 40px;
+  display: none;
+}
+/* line 192, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro {
+  height: 25px;
+  width: 100%;
+  border: 0px solid red;
+  position: absolute;
+  top: 186px;
+  left: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomright: 5px;
+}
+/* line 204, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_facebook {
+  height: 100%;
+  background-color: #005ca5;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  display: block;
+  float: left;
+  padding-top: 2px;
+  margin: 0;
+}
+/* line 216, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter {
+  height: 100%;
+  background-color: #23b7e9;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  display: inline-block;
+  float: right;
+  padding-top: 2px;
+  margin: 0;
+}
+
+/* line 228, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_js_topics_box_show_always {
+  display: inline-block;
+}
+
+/* line 231, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_js_topics_box_hide_on_less {
+  display: none;
+}
+
+/* line 234, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_js_topics_box_show_on_more {
+  display: inline-block;
+}
+
+/* line 237, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_show_more_topics_box {
+  height: 15px;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #0099b9;
+  font-size: 14px;
+  font-weight: normal;
+}
+/* line 246, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_show_more_topics_box:hover {
+  cursor: pointer;
+}

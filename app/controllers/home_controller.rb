@@ -17,7 +17,8 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, 
+  GET_FUNCTIONS_ARRAY= [:show, :sketch, :streams, 
+                        :get_single_activity, :activity, 
                         :mention_page, :location_page, :channel_page, 
                         :update_social_media_share, :get_summary,
                         :get_entities,:get_channels, :get_locations,
@@ -227,6 +228,69 @@ class HomeController < ApplicationController
   # = https://x.com/y/1?page=3
   def current_url(overwrite={})
     url_for :only_path => false, :params => params.merge(overwrite)
+  end
+  ###################################################################################
+  def sketch
+    @user=nil
+    @page_mode="profile_sketch_page"
+    Rails.logger.info("[CNTRL] [HOME] [SKETCH] Home Sketch request with #{params}")
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [SKETCH] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [SKETCH] User not signed in")
+    end
+
+
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
+      if @user.nil?
+        if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      end
+    end
+   @fb_access = {}
+   @tw_access = {}
+   if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+
+      authentications = Authentication.find_all_by_user_id(current_user.id)
+      Rails.logger.info("[CNTRL] [HOME] [SKETCH] Authentications #{authentications.inspect}")
+      authentications.each do |authentication|
+        if authentication.provider == "facebook"
+            @fb_access[:token] = authentication.token                         
+        elsif authentication.provider == "twitter"
+            @tw_access[:token] =  authentication.token
+            @tw_access[:secret] =  authentication.secret
+            @tw_access[:consumer_key] =  AppConstants.twitter_consumer_key
+            @tw_access[:consumer_secret] = AppConstants.twitter_consumer_secret
+            
+        end
+       end
+    end
+
+    # Check if uninvited user
+   invite_status = current_user.get_invited_status
+    unless invite_status 
+      redirect_to :controller => "home", :action => "thanks"
+    end
+
+    @service_uids = @user.get_service_user_ids()
+
   end
   ###################################################################################
   def show

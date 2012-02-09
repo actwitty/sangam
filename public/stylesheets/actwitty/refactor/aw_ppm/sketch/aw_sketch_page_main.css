@@ -1,0 +1,328 @@
+/*ActWitty Stylesheet file
+ *File: AW Profile Page Channel Module
+ *code: AWPPM (awppm) Actwitty Profile Page Channel Module
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com */
+@font-face {
+  font-family: "League Gothic";
+  src: url("/webfont/leaguegothic/League_Gothic-webfont.eot");
+  src: local("League Gothic Regular"), local("League Gothic"), url("/webfont/leaguegothic/LeagueGothic.woff") format("woff"), url("/webfont/leaguegothic/LeagueGothic.otf") format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg");
+}
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot");
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Regular-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Regular-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "RobotoLight";
+  src: url("/webfont/roboto/Roboto-Light-webfont.eot");
+  src: url("/webfont/roboto/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Light-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Light-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Light-webfont.svg#RobotoLight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "RobotoThin";
+  src: url("/webfont/roboto/Roboto-Thin-webfont.eot");
+  src: url("/webfont/roboto/Roboto-Thin-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Thin-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Thin-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Thin-webfont.svg#RobotoThin") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 48, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  margin-bottom: 40px;
+  background: #777777;
+}
+
+/* line 60, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_top_bar {
+  position: fixed;
+  _position: relative;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  width: 100%;
+}
+/* line 67, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_top_bar #top_bar_container {
+  width: 100%;
+  height: 40px;
+  display: block;
+  text-align: center;
+  position: relative;
+}
+/* line 73, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_top_bar #aw_top_bar_bkg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #111111;
+  background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#111111));
+  background: -moz-linear-gradient(top, #333333, #111111);
+  background: transparent 9;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333',endColorstr='#111111');
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* line 89, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper {
+  width: 1000px;
+  height: 100%;
+  display: block;
+  padding-top: 60px;
+  margin: 0 auto 0 auto;
+  _padding-top: 20px;
+  /* Side box */
+}
+/* line 98, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper #aw_front_page_container, #aw_page_wrapper #aw_page_container {
+  width: 920px;
+  margin: 0 40px;
+  position: relative;
+  z-index: 1;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  text-align: left;
+}
+/* line 110, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container {
+  width: 540px;
+  float: left;
+  display: inline-block;
+  z-index: 4;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  background: white;
+  height: 100%;
+  min-height: 800px;
+  /* infographics sections start */
+}
+/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container .aw_section_container_box {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 540px;
+  height: auto;
+  margin-top: 50px;
+  border: 0px solid red;
+}
+/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container .aw_section_container_box .aw_section_container_info_box {
+  height: auto;
+  width: 100%;
+  border: 0px solid blue;
+  /*float: left */
+}
+/* line 140, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container .aw_section_container_box .aw_section_container_info_box .aw_section_container_internal_data_box {
+  min-height: 100px;
+  height: auto;
+  margin-top: 15px;
+  padding-top: 25px;
+  position: relative;
+  border: 0px solid green;
+  width: 100%;
+  /* -webkit-border-radius: 5px
+   * -moz-border-radius: 5px
+   * border-radius: 5px
+   * box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5)
+   * -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5)
+   * -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5) */
+}
+/* line 159, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container .aw_section_container_box .aw_section_container_info_box .aw_section_container_internal_data_label {
+  font-family: "RobotoRegular";
+  letter-spacing: 1px;
+  background-color: white;
+  font-size: 20px;
+  padding-right: 10px;
+  position: absolute;
+  top: 0px;
+  left: 2px;
+  overflow: hidden;
+}
+/* line 171, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container .aw_section_container_box .aw_section_container_info_box hr.aw_section_container_top_delimiter {
+  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 1px;
+  width: 535px;
+  position: absolute;
+  top: 9px;
+  left: 2px;
+}
+/* line 179, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container .aw_section_container_box .aw_section_container_info_box hr.aw_section_container_bottom_delimiter {
+  position: relative;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 1px;
+  width: 535px;
+  margin-left: 2px;
+}
+/* line 188, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper #aw_sidebox_outer_container {
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 60px;
+  width: 100%;
+  _position: static;
+  _width: 520px;
+  _float: left;
+  _display: inline-block;
+}
+/* line 200, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper #aw_sidebox_outer_container .aw_sidebox_shell {
+  position: relative;
+  width: 920px;
+  margin: 0 auto;
+  padding: 0 40px;
+  _position: static;
+  _width: 520px;
+  _padding: 0;
+  _margin: 0;
+}
+/* line 210, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper #aw_sidebox_outer_container .aw_sidebox_shell .aw_stream_container {
+  background: white;
+  position: relative;
+  left: 10px;
+  top: 0;
+  max-width: 490px;
+  min-width: 370px;
+  height: 540px;
+  overflow-y: hidden;
+  -webkit-border-top-right-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -moz-border-radius-bottomright: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  display: none;
+  _position: static;
+  _width: 520px;
+}
+/* line 231, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper #aw_sidebox_outer_container .aw_sidebox_shell .aw_stream_container .aw_stream_entries {
+  display: block;
+  height: 100%;
+  margin-left: 10px;
+  overflow-y: auto;
+  position: relative;
+}
+/* line 238, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+#aw_page_wrapper .aw_infographic_container, #aw_page_wrapper .aw_stream_container {
+  color: #444444;
+}
+
+/* Static profile section */
+/* line 246, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_user_profile_pic {
+  width: 110px;
+  height: 110px;
+  background-color: white;
+  display: inline-block;
+  border: 0px solid green;
+  margin-left: 10px;
+  float: left;
+}
+/* line 254, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_user_profile_pic img {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 2px;
+}
+
+/* line 258, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_full_name {
+  display: inline-block;
+  float: left;
+  margin-left: 10px;
+  max-width: 400px;
+}
+/* line 264, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_full_name h2 {
+  color: #22bdc1;
+  font-size: 40px;
+  font-family: "RobotoRegular";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 274, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_description {
+  display: inline-block;
+  max-width: 400px;
+  max-height: 120px;
+  padding: 0px;
+  margin-top: 1px;
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-style: italic;
+  font-family: Georgia, serif;
+  color: #da1c5c;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 291, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_profile_details {
+  display: block;
+  margin-top: 10px;
+  width: 400px;
+  height: auto;
+  margin-left: 125px;
+  border: 0px solid green;
+}
+
+/* Friends section */
+/* line 299, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_friends_services_box {
+  width: 100%;
+  height: 56px;
+  margin-top: 10px;
+  padding-left: 25px;
+  display: block;
+}
+
+/* line 306, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */
+.aw_services_contacts_box {
+  width: 100%;
+  margin-top: 10px;
+  padding-left: 25px;
+  height: auto;
+  display: block;
+  overflow: hidden;
+}

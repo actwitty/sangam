@@ -1,7 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
 
-
   def create
     process_authentication=false
     Rails.logger.info("[CNTRL] [REGISTRATION] Registration called with params #{params}")
@@ -25,10 +24,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
         Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
         authentication=Authentication.find_by_provider_and_uid(@provider, @uid)
         
-        invite_status = Invite.check_if_invite_exists(@provider, @uid)
+        query_hash = {}
+        query_hash[@provider] = @uid
+        
+        invite_status = Invite.check_if_invite_exists(query_hash)
         if invite_status 
-          Invite.mark_invite_registered(@provider, @uid)
+          Invite.mark_invite_accepted(@provider, @uid)
         end
+
+
 
         unless authentication.nil?
           Rails.logger.info("[CNTRL] [REGISTRATION] Authentication is not nil")
@@ -36,17 +40,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
             user = resource
             authentication.user_id = user.id
             Rails.logger.info("[CNTRL] [REGISTRATION] Updating userid for authentication")
-            authentication.save!
-
-
-
+            begin
+              authentication.save!
+            rescue Exception => e
+              Rails.logger.error("[CNTRL][REGISTRATION] Authentication save failed #{e.message}")
+            end
+            user.enable_service_for_data_gathering(@provider)
           end
         end
       end
       sign_in(resource_name, resource)
       if request.xhr?
         respond_to do |format|
-         Rails.logger.info("[CNTRL] [REGISTRATION] after sign in path: /home/show" )
+         Rails.logger.info("[CNTRL] [REGISTRATION] after sign in path: /home/sketch" )
         format.js   { render :js => "window.location = '#{after_sign_in_path_for(resource)}'" }
         end
       end

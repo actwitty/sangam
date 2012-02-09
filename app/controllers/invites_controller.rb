@@ -11,19 +11,22 @@ class InvitesController < ApplicationController
       redirect_to :controller => "welcome", :action => "new"
     end
 
-    service="facebook"
+    service=params[:service]
     identifier=params[:id]
     
     accepted = false
     registered = false
-    authentication = Authentication.where(:uid => identifier, :provider => 'facebook').all().first()
+    authentication = Authentication.where(:uid => identifier, :provider => service).all().first()
     unless authentication.nil?
       accepted = true
       unless authentication.user_id.nil?
         registered = true
       end
     end
-    invite_status = Invite.check_if_invite_exists(service, identifier)
+    query_hash = {}
+    query_hash[service] = identifier
+
+    invite_status = Invite.check_if_invite_exists(query_hash)
     Rails.logger.info("[CNTRL] [INVITES] Invite existence #{invite_status}")
     unless invite_status
       Rails.logger.info("[CNTRL] [INVITES] Invite create new model request")

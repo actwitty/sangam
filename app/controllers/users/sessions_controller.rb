@@ -43,7 +43,17 @@ class Users::SessionsController < Devise::SessionsController
         else
           Rails.logger.info("[CNTRL] [SESSION] Authentication is nil" )
         end
+
+        query_hash = {}
+        query_hash[provider] = uid
+        
+        invite_status = @user.get_invited_status 
+        if invite_status 
+          @user.enable_service_for_data_gathering(provider)
+        end
+
       end
+
 
       respond_to do |format|
         Rails.logger.info("[CNTRL] [SESSION] after sign in path: /home/show" )

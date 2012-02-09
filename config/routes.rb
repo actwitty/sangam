@@ -1,6 +1,7 @@
 Sangam::Application.routes.draw do
 
   get "home/show"
+  get "home/sketch"
   get "home/streams"
   get "home/thanks"
   #get "home/alpha"
@@ -43,7 +44,6 @@ Sangam::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
-  match '/home/facebook_friends' => 'home#facebook_friends'
 
 
   match '/home/settings' => 'home#settings'
@@ -118,7 +118,6 @@ Sangam::Application.routes.draw do
   match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
 
 
-  match '/facebook/facebook_friends_list' => 'facebook#facebook_friends_list'
   match '/facebook/invite' => 'facebook#invite'
 
   match '/about/show' => 'about#show'

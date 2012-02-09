@@ -5,9 +5,9 @@ class WelcomeController < ApplicationController
 
     if user_signed_in?
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] User signed in")
-      redirect_to :controller => "home", :action => "show"
+      redirect_to :controller => "home", :action => "sketch"
       #redirect_to :controller => "home", :action => "alpha"
-      Rails.logger.info("[CNTRL] [WELCOME] [NEW] Redirect to home show")
+      Rails.logger.info("[CNTRL] [WELCOME] [NEW] Redirect to home sketch")
     else
       @page_mode="landing_page"
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] Main Page requested")

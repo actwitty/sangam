@@ -196,14 +196,21 @@ development: &default
 
   #Cloud Keys
   cloud_keys:                         "config/cloud_keys.yml"
+
+  #Services enabled in actwitty
+  services_enabled:                   "config/services.yml"
   
   #FB/Twitter ids registered using cloud@actwitty.com
   #FB url: https://developers.facebook.com/apps
   #Twitter url: https://dev.twitter.com/apps
+  #LinkedIn: https://www.linkedin.com/secure/developer
+
   facebook_app_id:                    '172893766124779'
   facebook_secret_key:                'd842d4c68c7698a9e0a0823333d691a2'
-  twitter_consumer_key:               'WWeEDiFxubwhlr45cEXDqw'
-  twitter_consumer_secret:            'J3EIt2m2drozoyHEOHu3MR8nO78RwNPjD7kYTRzJ8'
+  twitter_consumer_key:               '2E38F1bp3pmvGMW5hYUPtA'
+  twitter_consumer_secret:            'DfqFIM0Y3Z9JWWruWfi5V4kirktL0CpQzhebW9FE'
+  linkedin_app_id:                    'g0l32ovkc3vr'
+  linkedin_secret_key:                'D7DiN8Al6Ne5nPpE'
 
 
   #User Types

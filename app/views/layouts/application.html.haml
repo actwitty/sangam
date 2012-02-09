@@ -9,46 +9,13 @@
     -if @page_mode == "landing_page" or @page_mode == "authentications_page"
       = include_stylesheets :landing_pages
 
-    -if @page_mode == "profile_chn_page" or @page_mode == "profile_stm_page" or @page_mode == "profile_usr_settings_page" or @page_mode == "profile_channel_settings_page"
+    -if @page_mode == "profile_chn_page" or @page_mode == "profile_sketch_page" or @page_mode == "profile_stm_page" or @page_mode == "profile_usr_settings_page" or @page_mode == "profile_channel_settings_page"
       = include_stylesheets :profile_page_commons
       = include_stylesheets :profile_page_externals
 
-    -if @page_mode == "profile_chn_page"
-      = include_stylesheets :profile_page_channels
+    -if @page_mode == "profile_sketch_page"
+      = include_stylesheets :profile_page_sketch
     
-    -if @page_mode == "profile_stm_page"
-      = include_stylesheets :profile_page_streams
-
-    -if @page_mode == "profile_usr_settings_page"
-      = include_stylesheets :profile_page_settings
-    
-    -if @page_mode == "profile_channel_settings_page"
-      = include_stylesheets :profile_channel_settings    
-
-    
-    -if @page_mode == "profile_single_activity_page"
-      = include_stylesheets :profile_page_commons
-      = include_stylesheets :profile_page_externals
-      = include_stylesheets :profile_page_streams
-      = include_stylesheets :profile_single_post_page
-
-    -if @page_mode == "single_channel_page"
-      = include_stylesheets :profile_page_commons
-      = include_stylesheets :profile_page_externals
-      = include_stylesheets :profile_page_streams
-      = include_stylesheets :channel_page
-
-    -if @page_mode == "single_mention_page"
-      = include_stylesheets :profile_page_commons
-      = include_stylesheets :profile_page_externals
-      = include_stylesheets :profile_page_streams
-      = include_stylesheets :mention_page
-
-    -if @page_mode == "single_location_page"
-      = include_stylesheets :profile_page_commons
-      = include_stylesheets :profile_page_externals
-      = include_stylesheets :profile_page_streams
-      = include_stylesheets :location_page
 
     -if @page_mode == "aw_internal_feedback_show_page"
       = include_stylesheets :profile_page_commons
@@ -77,41 +44,13 @@
     = include_javascripts :actwittyall
     = include_javascripts :profile_commons
     = include_javascripts :profile_main_extra
-
+    = include_javascripts :bootstrap
    
-    -if @page_mode == "profile_usr_settings_page"
-      = include_javascripts :profile_settings
-
-    -if @page_mode == "profile_channel_settings_page"
-      = include_javascripts :profile_channel_settings 
-
-    -if @page_mode == "profile_chn_page"
-      = include_javascripts :profile_channels
-      /= include_javascripts :profile_inputs
-
-    -if @page_mode == "profile_stm_page"
-      = include_javascripts :profile_streams
-      / = include_javascripts :profile_inputs
-      = include_javascripts :charts_analytics
-      = include_javascripts :highcharts
-      
-
-    -if @page_mode == "profile_single_activity_page"
-      = include_javascripts :profile_streams
-      = include_javascripts :profile_single_post_page
     
-    -if @page_mode == "single_channel_page"
-      = include_javascripts :profile_streams
-      = include_javascripts :channel_page
-    
-    -if @page_mode == "single_mention_page"
-      = include_javascripts :profile_streams
-      = include_javascripts :mention_page
+    -if @page_mode == "profile_sketch_page"
+      = include_javascripts :profile_page_sketch
 
-    -if @page_mode == "single_location_page"
-      = include_javascripts :profile_streams
-      = include_javascripts :location_page
-    
+
     -if @page_mode == "aw_internal_inviteds_show_page"
       = include_javascripts :aw_internal_inviteds_show_page
 
