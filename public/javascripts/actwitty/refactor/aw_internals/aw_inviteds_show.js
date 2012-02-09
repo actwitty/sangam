@@ -85,7 +85,7 @@ function aw_process_invite_request(){
                   'aw_srv_protocol_cookie' : {
                                              }
                };
-  alert(JSON.stringify(params));
+  //alert(JSON.stringify(params));
   aw_api_srv_make_a_post_request('AW_SRV_INTERNAL_CREATE_INVITE',  params);
 }
 /************************************************/
