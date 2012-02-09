@@ -1,0 +1,129 @@
+/* line 6, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white;
+  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_template_bkg_bnw.png");
+}
+
+/* line 16, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+div.aw_ppm_thanks_wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+.aw_ppm_thanks_column1 {
+  color: #d2d2d2;
+  /*background-color:#33ccff; */
+  background: #363436;
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81; */
+  border: 0px solid red;
+}
+
+/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_box {
+  height: 800px;
+  width: 100%;
+  padding-top: 80px;
+}
+
+/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div {
+  margin: auto;
+  width: 750px;
+  height: 400px;
+  /*border: 8px solid #33ccff */
+  border-radius: 10px;
+  position: relative;
+  -moz-border-radius: 10px;
+  background-color: white;
+  -moz-box-shadow: 0 0 5px #888888;
+  -webkit-box-shadow: 0 0 5px #888888;
+  box-shadow: 0 0 5px #888888;
+  background: #88bfe8;
+  background: -moz-linear-gradient(top, #88bfe8 0%, #70b0e0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #88bfe8), color-stop(100%, #70b0e0));
+  background: -webkit-linear-gradient(top, #88bfe8 0%, #70b0e0 100%);
+  background: -o-linear-gradient(top, #88bfe8 0%, #70b0e0 100%);
+  background: -ms-linear-gradient(top, #88bfe8 0%, #70b0e0 100%);
+  background: linear-gradient(top, #88bfe8 0%, #70b0e0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#88bfe8', endColorstr='#70b0e0',GradientType=0 );
+}
+/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_info {
+  height: 130px;
+  width: 200px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_img {
+  margin-top: 5px;
+}
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_img img {
+  width: 120px;
+  height: 120px;
+  border: 1px solid white;
+}
+/* line 70, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_img img:hover {
+  border: 1px solid #cccccc;
+}
+/* line 73, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_name {
+  height: 26px;
+  width: 300px;
+  overflow: hidden;
+  position: absolute;
+  top: 10px;
+  left: 180px;
+}
+/* line 80, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_name span {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+}
+/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_location {
+  height: 16px;
+  width: 300px;
+  overflow: hidden;
+  position: absolute;
+  top: 38px;
+  left: 180px;
+}
+/* line 94, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_user_location span {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #555555;
+  font-size: 14px;
+  text-align: center;
+  font-weight: normal;
+}
+/* line 101, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_message {
+  height: 300px;
+  width: 600px;
+  position: absolute;
+  top: 200px;
+  left: 100px;
+}
+/* line 107, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks (copy).sass */
+#aw_ppm_thanks_main_div #aw_ppm_thanks_message span {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+}

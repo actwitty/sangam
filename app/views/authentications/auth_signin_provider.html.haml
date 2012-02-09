@@ -1,8 +1,8 @@
-=render :partial => "welcome/header"
 #aw_lpm_signin_main_box
+  %img{:src=>'/images/actwitty/refactor/aw_lpm/main_header.png'}
   #aw_lpm_signin_main_div
     #awlpm_signin_aw_header_label
-      Sign-in with your email address.
+      %img{:src=>'/images/actwitty/refactor/aw_lpm/sigin_label.png'}
     #aw_lpm_signin_box.js_signin_partial
       =render :partial => "users/sessions/new", :locals => { :user => @user }
 

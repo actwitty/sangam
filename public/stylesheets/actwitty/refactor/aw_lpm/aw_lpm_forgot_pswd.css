@@ -5,24 +5,27 @@
  *  Author URI: http://www.actwitty.com */
 /* line 12, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_main_box {
-  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_template_bkg_bnw.png");
   height: 700px;
   width: 100%;
-  padding-top: 80px;
 }
 
-/* line 18, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 17, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+#aw_lpm_forgot_pswd_main_box img {
+  width: 500px;
+  margin-left: 420px;
+}
+
+/* line 21, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_main_div {
   margin: auto;
-  width: 500px;
+  width: 600px;
   height: 400px;
   /*border: 8px solid #33ccff */
   border-radius: 10px;
   -moz-border-radius: 10px;
-  background-color: #0fb4e7;
 }
 
-/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 40, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_aw_logo {
   margin-top: 15px;
   margin-left: 20px;
@@ -33,102 +36,13 @@
   position: relative;
 }
 
-/* line 73, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 49, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 img.aw_lpm_forgot_pswd_aw_logo_img {
   height: 50px;
   width: 75px;
 }
 
-/* line 77, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-#aw_lpm_forgot_pswd_header_label {
-  margin: 0 auto;
-  margin-left: 30px;
-  width: 400px;
-  height: 30px;
-  color: white;
-  border: 0px solid red;
-  display: inline;
-  font-size: 28px;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-  font-weight: bold;
-  text-align: center;
-}
-
-/* line 90, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-#aw_lpm_forgot_pswd_header_sub_label {
-  color: #faf0e6;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 60px;
-}
-
-/* line 97, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-#aw_lpm_forgot_pswd_email_label {
-  color: white;
-  margin-left: 120px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 14px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-  margin-top: 20px;
-}
-
-/* line 101, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-#aw_lpm_forgot_pswd_password_label {
-  color: white;
-  margin-left: 120px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 14px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 105, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-#aw_lpm_forgot_pswd_email_input {
-  width: 250px;
-  height: 26px;
-  margin-left: 120px;
-  margin-bottom: 1px;
-  color: black;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-
-/* line 109, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-#aw_lpm_forgot_pswd_password_input {
-  width: 250px;
-  height: 26px;
-  margin-left: 120px;
-  margin-bottom: 1px;
-  color: black;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-
-/* line 114, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 58, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form {
   margin-left: 10px;
   font-size: 12px;
@@ -137,13 +51,13 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   width: 250px;
 }
 
-/* line 120, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form .field_with_errors {
   width: 200px;
   display: block;
 }
 
-/* line 123, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 67, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form .field_with_errors .error {
   width: 250px;
   height: 12px;
@@ -153,7 +67,7 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   color: black;
 }
 
-/* line 127, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 71, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_already_a_user {
   display: block;
   color: #444444;
@@ -165,7 +79,7 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   font-weight: normal;
 }
 
-/* line 141, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 85, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 input#aw_lpm_forgot_password_btn {
   width: 100px;
   height: 60px;
@@ -191,7 +105,7 @@ input#aw_lpm_forgot_password_btn {
   margin-top: 10px;
   margin-right: 125px;
 }
-/* line 165, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
+/* line 109, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 input#aw_lpm_forgot_password_btn:hover {
   cursor: pointer;
   color: #fcd3a5;

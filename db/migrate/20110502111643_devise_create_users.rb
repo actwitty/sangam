@@ -17,6 +17,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :full_name
       t.string :photo_small_url
+      t.string :country_code
       t.date :dob
       t.string :gender
       t.string :current_location

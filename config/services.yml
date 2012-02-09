@@ -1,0 +1,33 @@
+services_icon_base_path: /images/actwitty/refactor/aw_sketch/sources/
+services:
+  twitter:
+    name: Twitter
+    description: Microblogging platform
+    active_icon: twitter_active.png
+    inactive_icon: twitter_inactive.png       
+  facebook:
+    name: Facebook
+    description: General purpose social network
+    active_icon: facebook_active.png
+    inactive_icon: facebook_inactive.png
+  linked_in:
+    name: LinkedIn
+    description: Professional network
+    active_icon: linked_in_active.png
+    inactive_icon: linked_in_inactive.png    
+  youtube:
+    name: Youtube
+    description: Video sharing platform
+    active_icon: youtube_active.png
+    inactive_icon: youtube_inactive.png  
+  github:
+    name: Github 
+    description: Social Coding Platform
+    active_icon: github_active.png
+    inactive_icon: github_inactive.png
+  tumblr:
+    name: Tumblr
+    description: Microblogging platform
+    active_icon: tumblr_active.png
+    inactive_icon: tumblr_inactive.png
+  

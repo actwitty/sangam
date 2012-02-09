@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   attr_accessible  :email, :username, :password,
                    :dob, :dob_str, :full_name, :gender,:photo_small_url,
                    :current_location, :current_geo_lat, :current_geo_long,
-                   :password_confirmation, :remember_me, :user_type
+                   :password_confirmation, :remember_me, :user_type,
+                   :country_code
 				   #, :user_type  #user_type is only needed for ADMIN USER creation
 
   # relations #

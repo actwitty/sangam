@@ -3,122 +3,137 @@
  *code: AWLPM (awlpm) Actwitty Landing Page Sign Up Main
  *Author: ActWitty Developers
  *Author URI: http://www.actwitty.com */
-/* line 12, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_main_box {
-  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_template_bkg_bnw.png");
-  height: 800px;
-  width: 100%;
-  padding-top: 80px;
+@font-face {
+  font-family: "Roboto";
+  src: url("/webfont/roboto/Roboto-BoldCondensed.ttf");
 }
 
-/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 17, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_main_box {
+  height: 800px;
+  width: 100%;
+}
+
+/* line 21, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_main_box img {
+  width: 600px;
+  margin: 0 auto;
+}
+
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_signup_main_div {
+  font-family: Roboto;
   margin: auto;
-  width: 750px;
-  height: 700px;
+  width: 900px;
+  height: 800px;
   /*border: 8px solid #0fb4e7 */
   border-radius: 5px;
   -moz-border-radius: 10px;
-  background-color: #0fb4e7;
+  background-color: #fffff3;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 3px #dddddd;
+  -webkit-box-shadow: 0 0 3px #dddddd;
+  box-shadow: 0 0 3px #dddddd;
 }
 
-/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_top_row_div {
-  width: 720px;
-  height: 250px;
+  width: 890px;
+  height: 300px;
   margin-top: 35px;
   border: 0px solid black;
   display: block;
   float: left;
 }
 
-/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 50, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_bottom_row_div {
-  width: 720px;
-  height: 400px;
+  width: 860px;
+  height: 300px;
   border: 0px solid black;
   display: block;
   float: left;
 }
 
-/* line 41, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_bottom_row_left_div {
-  width: 300px;
+  width: 400px;
   height: 400px;
-  border: 0px solid black;
+  border: 0px solid red;
   display: inline-block;
   float: left;
 }
 
-/* line 48, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_bottom_row_right_div {
-  width: 300px;
+  width: 400px;
   height: 400px;
-  border: 0px solid black;
+  border: 0px solid red;
   display: inline-block;
   float: left;
 }
 
-/* line 56, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_register_row_div {
-  width: 720px;
+  width: 860px;
   height: 100px;
   display: block;
   float: left;
 }
 
-/* line 62, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_signup_top_left_div {
-  width: 300px;
+  width: 400px;
   height: 90%;
   display: inline-block;
   border: 0px solid red;
   margin-top: 10px;
-  margin-left: 70px;
+  margin-left: 20px;
   float: left;
 }
 
-/* line 71, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_signup_top_right_div {
-  width: 300px;
+  width: 400px;
   height: 90%;
   margin-top: 10px;
   display: inline-block;
   border: 0px solid green;
   float: left;
+  margin-left: 50px;
 }
 
-/* line 79, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 96, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_bottom_row_right_div_internal {
   width: 200px;
   height: 80px;
   margin-left: 80px;
-  margin-top: 40px;
+  margin-top: 0px;
   padding: 30px;
   padding-left: 80px;
   display: inline-block;
   border: 0px solid green;
 }
 
-/* line 90, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 107, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_location_auto_complete {
   display: block;
   width: 600px;
-  margin-left: 70px;
+  margin-left: 20px;
   margin-bottom: 5px;
 }
 
-/* line 96, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 113, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_map_selector {
   padding: 2px;
   border: 1px solid #cccccc;
   display: block;
-  width: 280px;
+  width: 300px;
   height: 250px;
-  margin-left: 90px;
+  margin-left: 40px;
 }
 
-/* line 141, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 167, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #awlpm_signup_aw_logo {
   margin-top: 15px;
   margin-left: 200px;
@@ -129,13 +144,13 @@
   position: relative;
 }
 
-/* line 150, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 176, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 img.awlpm_signup_aw_logo_img {
   height: 50px;
   width: 75px;
 }
 
-/* line 154, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 180, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #awlpm_signup_aw_header_label {
   margin: 0 auto;
   margin-left: 10px;
@@ -150,224 +165,273 @@ img.awlpm_signup_aw_logo_img {
   text-align: center;
 }
 
-/* line 167, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 193, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_signup_username_label {
-  color: #f5f5f5;
+  color: #b22222;
   margin-left: 20px;
   margin-bottom: 3px;
   margin-top: 10px;
   border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
 }
 
-/* line 170, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 196, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_signup_email_label {
-  color: #f5f5f5;
+  color: #b22222;
   margin-left: 20px;
   margin-bottom: 3px;
   margin-top: 10px;
   border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_password_label {
-  color: #f5f5f5;
-  margin-left: 20px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 176, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_name_label {
-  color: #f5f5f5;
-  margin-left: 20px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 179, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_dob_label {
-  color: #f5f5f5;
-  margin-left: 20px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 182, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_gender_label {
-  color: #f5f5f5;
-  margin-left: 20px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 185, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_location_label {
-  color: #f5f5f5;
-  margin-left: 20px;
-  margin-bottom: 3px;
-  margin-top: 10px;
-  border: 0px solid red;
-  font-size: 16px;
-  font-weight: bold;
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
-
-/* line 189, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_email_input {
-  width: 250px;
-  height: 26px;
-  margin-left: 20px;
-  margin-bottom: 1px;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-
-/* line 192, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_username_input {
-  width: 250px;
-  height: 26px;
-  margin-left: 20px;
-  margin-bottom: 1px;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-
-/* line 195, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_password_input {
-  width: 250px;
-  height: 26px;
-  margin-left: 20px;
-  margin-bottom: 1px;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
 }
 
 /* line 199, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_name_input {
-  width: 250px;
-  height: 26px;
+#aw_lpm_signup_password_label {
+  color: #b22222;
   margin-left: 20px;
-  margin-bottom: 1px;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
 }
 
 /* line 202, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_gender_input {
-  width: 250px;
-  height: 26px;
+#aw_lpm_signup_name_label {
+  color: #b22222;
   margin-left: 20px;
-  margin-bottom: 1px;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
 }
 
 /* line 205, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_dob_input {
-  width: 250px;
-  height: 26px;
+#aw_lpm_signup_dob_label {
+  color: #b22222;
   margin-left: 20px;
-  margin-bottom: 1px;
-  border: 1px solid #dddddd;
-  border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
 }
 
 /* line 208, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
-#aw_lpm_signup_location_input {
-  width: 250px;
-  height: 26px;
+#aw_lpm_signup_gender_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+}
+
+/* line 211, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_location_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+}
+
+/* line 216, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_email_input {
+  width: 300px;
+  height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
   border: 1px solid #dddddd;
   border-radius: 2px;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_email_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
 }
 
-/* line 211, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 219, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_username_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_username_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
+}
+
+/* line 222, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_password_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_password_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
+}
+
+/* line 226, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_name_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_name_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
+}
+
+/* line 229, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_gender_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_gender_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
+}
+
+/* line 232, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_dob_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_dob_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
+}
+
+/* line 235, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_location_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: Roboto;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+}
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+#aw_lpm_signup_location_input:focus {
+  -moz-box-shadow: 0 0 2px #888888;
+  -webkit-box-shadow: 0 0 2px #888888;
+  box-shadow: 0 0 2px #888888;
+}
+
+/* line 238, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_user_register .simple_form {
   margin-left: 10px;
   font-size: 12px;
@@ -376,36 +440,36 @@ img.awlpm_signup_aw_logo_img {
   width: 250px;
 }
 
-/* line 217, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 244, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_user_register .simple_form .field_with_errors {
   width: 200px;
   display: block;
 }
 
-/* line 220, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 247, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_user_register .simple_form .field_with_errors .error {
   width: 250px;
   height: 12px;
-  font-size: 12px;
+  font-size: 9px;
   color: red;
   margin-left: 20px;
   display: block;
 }
 
-/* line 223, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 250, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_sign_up_terms_declaration {
-  margin-left: 110px;
+  margin-left: 80px;
   margin-top: -10px;
   width: 100%;
   display: block;
   font-size: 14px;
 }
 
-/* line 230, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 257, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 #aw_lpm_signup_already_a_user {
   display: block;
   color: #444444;
-  margin-left: 110px;
+  margin-left: 80px;
   margin-top: 10px;
   width: 100%;
   border: 0px solid red;
@@ -413,7 +477,7 @@ img.awlpm_signup_aw_logo_img {
   font-weight: bold;
 }
 
-/* line 240, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 267, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 input#aw_lpm_signupbutton {
   width: 60px;
   background: #ff9600;
@@ -439,7 +503,7 @@ input#aw_lpm_signupbutton {
   background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
 }
-/* line 264, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
+/* line 291, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.sass */
 input#aw_lpm_signupbutton:hover {
   cursor: pointer;
   color: #fcd3a5;

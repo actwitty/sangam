@@ -1,20 +1,29 @@
-.aw_inviteds_wrapper.aw_inviteds_column1
-  =render :partial => "home/top_bar"
 
 .aw_inviteds_wrapper.aw_inviteds_column2
   
   .aw_inviteds_new_invite
     .aw_inviteds_new_invite_input_section
-      %label.aw_inviteds_new_invite_label Invite from facebook
+      %label.aw_inviteds_new_invite_label Invite from Facebook
       %label.aw_inviteds_new_invite_facebook_label Facebook Identifier:
-      %input#aw_js_invite_from_facebook.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Facebook ID' }
-      %input#aw_js_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+      %input#aw_js_facebook_invite.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Facebook ID' }
+      %input#aw_js_facebook_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+
+
+    .aw_inviteds_new_invite_input_section
+      %label.aw_inviteds_new_invite_label Invite from Twitter
+      %label.aw_inviteds_new_invite_facebook_label Twitter Identifier:
+      %input#aw_js_twitter_invite.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Twitter Handle' }
+      %input#aw_js_twitter_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+
+
+
     #aw_js_prefetched_info_section.aw_inviteds_new_invite_prefetch_section
       %img#aw_js_invite_image{ :width=>'30px', :height=> '30px'}
       %label#aw_js_invite_name
-      %input#aw_js_invite_fbid{:type=>'hidden', :value =>  ''}/
+      %label#aw_js_invite_service
+      %input#aw_js_invite_uid{:type=>'hidden', :value =>  ''}/
+      %input#aw_js_invite_service{:type=>'hidden', :value =>  ''}/
       %input#aw_js_invite_btn.aw_inviteds_new_invite_button.button_actwitty.blue{:type => "button", :value => "Invite"}/
-
 
 
 .aw_inviteds_wrapper.aw_inviteds_column3
@@ -43,9 +52,13 @@
         - @invites.each do |person|
           %tr
             %input.aw_js_process_inviteds_data_from_fb{:type => "hidden", :value => "#{person.identifier}"}
-            %td.aw_js_invited_img_td
-              %img{:src => "http://graph.facebook.com/#{person.identifier}/picture"}
-            %td.aw_js_invited_name_td
+            -if person.service == "facebook"
+              %td.aw_js_invited_img_td
+                %img{:src => "http://graph.facebook.com/#{person.identifier}/picture"}
+            -else person.service == "twitter"
+              %td.aw_js_invited_img_td
+                %img{:src => "https://api.twitter.com/1/users/profile_image.json?id=#{person.identifier}"}
+              %td.aw_js_invited_name_td
       
             %td #{person.service}
             %td #{person.identifier}
