@@ -110,7 +110,7 @@ development: &default
   source_posterous:               "posterous"
 
   #SOURCES CURRENTLY ACTIVE - MEANS WE ARE PULLING DATA FROM THEM
-  sources_local_list:            actwitty|actwitty_meta
+  sources_local_list:            twitter
   sources_private_list:          facebook
 
 
