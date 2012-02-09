@@ -8,10 +8,10 @@ require "entities/entities"
 require 'helpers/plan_table_query/plan_table_query'
 require 'helpers/format_object/format_object'
 
-require 'test/test_data'
-require 'test/test_services'
-require 'test/test_streams'
-require 'test/test_summaries'
+#require 'test/test_data'
+#require 'test/test_services'
+#require 'test/test_streams'
+#require 'test/test_summaries'
 
 module Api
 
