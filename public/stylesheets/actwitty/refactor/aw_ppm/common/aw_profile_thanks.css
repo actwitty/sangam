@@ -137,5 +137,19 @@ div.aw_ppm_thanks_wrapper {
   color: black;
   font-size: 28px;
   text-align: center;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+/* line 121, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks.sass */
+#aw_ppm_thanks_main_div a.aw_ppm_thanks_logout {
+  text-decoration: none;
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  font-size: 14px;
+  color: #cd0000;
+}
+/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks.sass */
+#aw_ppm_thanks_main_div a.aw_ppm_thanks_logout:hover {
   font-weight: bold;
 }
