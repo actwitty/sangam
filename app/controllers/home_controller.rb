@@ -271,12 +271,11 @@ class HomeController < ApplicationController
         Rails.logger.info("[CNTRL] [HOME] [STREAMS] Inlining in page FB access token #{@fb_access_token}")
       end
     end
-    # Check if uninvited user
-    existing_pg_authentication = Authentication.where(:user_id => @user.id, :provider => 'facebook').all().first()
-    invite_status = Invite.check_if_invite_exists('facebook', existing_pg_authentication.uid)
+  	# Check if uninvited user
+   	invite_status = current_user.get_invited_status
     unless invite_status 
       redirect_to :controller => "home", :action => "thanks"
-    end
+    end    
 
     #FB: Open graph tags start
     set_meta_tags :open_graph => {
