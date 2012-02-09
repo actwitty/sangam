@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
   attr_accessible  :email, :username, :password,
                    :dob, :dob_str, :full_name, :gender,:photo_small_url,
                    :current_location, :current_geo_lat, :current_geo_long,
-                   :password_confirmation, :remember_me, :user_type
+                   :password_confirmation, :remember_me, :user_type,
+                   :country_code
 				   #, :user_type  #user_type is only needed for ADMIN USER creation
 
   # relations #
@@ -1755,6 +1756,57 @@ class User < ActiveRecord::Base
     Rails.logger.info("[MODEL] [USER] search RESCUE ERROR #{e.message} for #{params.inspect}")
     []
   end
+
+  # INPUT => service provider name
+  #
+  #
+  def enable_service_for_data_gathering(provider)
+    if self.profile.nil?
+      Rails.logger.info("[MODEL][USER] Adding authentication to enabled service, new profile")
+      self.profile = Profile.new
+      self.profile.profile_enable_service(provider)
+    else
+      Rails.logger.info("[MODEL][USER] Adding authentication to enabled service, existing profile")
+      self.profile.profile_enable_service(provider)
+    end
+ end
+
+  # OUTPUT => 
+  #   
+  #
+  #
+  def get_service_user_ids()
+    hash = {}
+    Rails.logger.info("[MODEL][USER] get_service_user_ids")
+    profile = self.profile
+    Rails.logger.info("[MODEL][USER] get_service_user_ids Profile: #{profile.inspect}")
+    authentications = self.authentications
+    Rails.logger.info("[MODEL][USER] get_service_user_ids Profile: #{authentications.inspect}")
+   
+    self.authentications.each do |attr|
+      field = "#{attr.provider}_service_enabled"
+      if !profile[field].nil? &&
+          profile[field] == true
+        hash["#{attr.provider}"] = attr.uid 
+      end
+    end
+
+    hash
+
+  end
+
+  # Return true or false
+  def get_invited_status
+    authentications = Authentication.find_all_by_user_id(self.id)
+    query_hash = {}
+    authentications.each do |authentication|
+      query_hash[authentication.provider] = authentication.uid 
+    end
+    invite_status = Invite.check_if_invite_exists(query_hash)
+
+    invite_status
+  end
+
   # private methods
   # private
 end
