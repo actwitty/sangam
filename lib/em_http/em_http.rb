@@ -66,7 +66,7 @@ module EmHttp
         Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] leaving")
         Fiber.yield
       rescue => e
-        Rails.logger.info("[LIB] [EMHTTP] [REQUEST] for Rescue => #{e.message}")
+        Rails.logger.error("[LIB] [EMHTTP] [REQUEST] for **** RESCUE **** => #{e.message}")
       end
 
     end

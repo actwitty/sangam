@@ -11,15 +11,6 @@ class SummarySubscribe < ActiveRecord::Base
 
   validates_uniqueness_of  :summary_id, :scope => :subscriber_id
   after_destroy            :clear_follow
-  after_save               :update_analytics
-
-  def update_analytics
-    Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [update_analytics] entering #{self.inspect}")
-    if !self.summary_id.blank?
-      SummaryRank.add_analytics({:fields => ["subscribers", "demographics"], :summary_id => self.summary_id})
-    end
-    Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [update_analytics] leaving #{self.inspect}")
-  end
 
   def clear_follow
     Rails.logger.info("[MODEL] [SUMMARY_SUBSCRIBE] [clear_follow] entering")
@@ -72,7 +63,7 @@ class SummarySubscribe < ActiveRecord::Base
       obj.destroy
 
     rescue => e
-      Rails.logger.error("[MODEL] [SUMMARY_SUBSCRIBER] [unsubscribe_channel] rescue => #{e.message} with params #{params.inspect}")
+      Rails.logger.error("[MODEL] [SUMMARY_SUBSCRIBER] [unsubscribe_channel] **** RESCUE **** => #{e.message} with params #{params.inspect}")
       nil
     end
     #INPUT
@@ -107,7 +98,7 @@ class SummarySubscribe < ActiveRecord::Base
       return obj
 
     rescue => e
-      Rails.logger.error("[MODEL] [SUMMARY_SUBSCRIBER] [subscribe_channel] rescue => #{e.message} with params #{params.inspect}")
+      Rails.logger.error("[MODEL] [SUMMARY_SUBSCRIBER] [subscribe_channel] **** RESCUE **** => #{e.message} with params #{params.inspect}")
       nil
     end
   end

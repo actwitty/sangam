@@ -33,7 +33,7 @@ function aw_api_ppm_stm_facebook_initialize_access_token(fn_cb){
  *
  */
 function aw_api_ppm_stm_facebook_post_check(stream_info){
-  if( stream_info.post.source_name == 'facebook' && stream_info.post.source_msg_id ){
+  if( stream_info.post.source_name == 'facebook' && stream_info.post.source_object_id ){
     return true;
   }
   return false;
@@ -207,7 +207,7 @@ function aw_api_ppm_stm_facebook_process_fb_data(stream_info, fb_resp_data){
  *
  */
 function aw_api_ppm_stm_facebook_make_srv_get_request(stream_info){
-   var fb_url = 'https://graph.facebook.com/' + stream_info.post.source_msg_id +"?access_token="+ aw_api_ppm_facebook_get_signed_in_auth_token() + "&callback=?";
+   var fb_url = 'https://graph.facebook.com/' + stream_info.post.source_object_id +"?access_token="+ aw_api_ppm_facebook_get_signed_in_auth_token() + "&callback=?";
     $.getJSON(fb_url, function(fb_resp_data){
        if( !aw_api_ppm_stm_facebook_check_skip_processing(stream_info, fb_resp_data) ){
           aw_api_ppm_stm_facebook_process_fb_data(stream_info, fb_resp_data);

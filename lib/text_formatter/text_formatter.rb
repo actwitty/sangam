@@ -124,8 +124,7 @@ module TextFormatter
   #TODO - NOT UTF8 Compliance
   def mask_activity_text(text, seed_index, seed_hash)
 
-    str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
-                |#{AppConstants.audio_sources}"
+    str = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}|#{AppConstants.audio_sources}"
 
     #Regex for mention or hashtag or url
     #regex = /(<a href=\# value=\d+ class=#{AppConstants.activity_mention_class}>[\w\s]+<\/a>)|(#[\w\d]+[^\s])|((http:\/\/|https:\/\/)?([^\s]*.)?(#{str}){1}(\/[^\s]*)?)/
@@ -176,24 +175,21 @@ module TextFormatter
   #TODO
   def get_documents(text)
     array = []
-    sources = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}
-                |#{AppConstants.audio_sources}"
-    extensions = "#{AppConstants.video_extensions}|#{AppConstants.image_extensions}|#{AppConstants.document_extensions}
-                |#{AppConstants.audio_extensions}"
+    sources = "#{AppConstants.video_sources}|#{AppConstants.image_sources}|#{AppConstants.document_sources}|#{AppConstants.audio_sources}"
+    extensions="#{AppConstants.video_extensions}|#{AppConstants.image_extensions}|#{AppConstants.document_extensions}|#{AppConstants.audio_extensions}"
 
-    arr = text.scan(/((http:\/\/|https:\/\/)([^\s\/]+){1}(\/[^\s]+))/)
+    arr = text.scan(/((http:\/\/|https:\/\/)([^\s\/]+){1}(\/[^\s]*))/)
 
     #format of arr [["http://youtube.com/watch?222", "http://", "youtube.com", "/watch?222"],
     # ["http://form6.flick.com/234/234", "http://", "form6.flick.com", "/234/234"]]
 
-    arr.each do |attr|
 
+    arr.each do |attr|
       if !(s = attr[0].scan(/#{extensions}/)).blank?
         array << {:mime => map_extensions_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false, :url_sha1 => Digest::SHA1.hexdigest(attr[0]) }
       else !(s = attr[0].scan(/#{sources}/)).blank?
         array << {:mime => map_sources_to_mime(s[0]), :url => attr[0], :provider => attr[2],:uploaded => false, :url_sha1 => Digest::SHA1.hexdigest(attr[0])}
       end
-
     end
 
     array
@@ -238,217 +234,6 @@ module TextFormatter
       array << {:name => attr[0], :tag_type => AppConstants.tag_type_hash}
     end
     array
-  end
-
-  def format_theme(theme)
-    h = {}
-    h = {
-         :id => theme.id,
-         :fg_color => theme.fg_color,
-         :bg_color => theme.bg_color,
-         :document_id => theme.document_id,
-         :user_id => theme.author_id,
-         :summary_id => theme.summary_id,
-         :theme_type => theme.theme_type,
-         :time => theme.updated_at
-        }
-    if !theme.url.blank?
-      h[:url] = theme.url
-      h[:thumb_url] = theme.thumb_url
-    end
-    h
-  end
-
-  def format_summary_category(category_id)
-    h = {}
-    h = {
-          :id => category_id,
-          :name => SUMMARY_CATEGORIES[category_id]['name'],
-          :type => SUMMARY_CATEGORIES[category_id]['type'],
-          :hierarchy => SUMMARY_CATEGORIES[category_id]['hierarchy'],
-          :default_channel => SUMMARY_CATEGORIES[category_id]['channel']
-        }
-  end
-
-  def format_activity_word(word)
-    h = {}
-    h = {:id => word.id,
-         :name => word.word_name
-        }
-    h
-  end
-
-  def format_entity(entity)
-    h = {}
-    h = {:id => entity.id,
-         :name => entity.entity_name,
-         :image => AppConstants.entity_image_thumb_base + entity.entity_image,
-         :time => entity.updated_at,
-         :description => (!entity.entity_doc['key'].blank? && !entity.entity_doc['key']['value'].blank?) ?
-                          AppConstants.entity_description_url + entity.entity_doc['key']['value'] : nil,
-         :type =>  entity.entity_doc.blank? ? nil : entity.entity_doc['type']
-        }
-    h
-  end
-  #format social counter
-  def format_social_counter(attr)
-
-    if attr.nil?
-      return {}
-    end
-    hash = {}
-    hash = {:id => attr.id, :source_name => attr.source_name, :action => attr.action, :time => attr.updated_at}
-    hash[:description] =  attr.description if !attr.description.blank?
-  end
-
-  #format a location object to generic form
-  def format_location(loc)
-    h = {}
-    case loc.location_type
-      when AppConstants.location_type_web
-        h = {:type => AppConstants.location_type_web, :url => loc.location_url, :name => loc.location_name}
-      when AppConstants.location_type_geo
-        h = {:type => AppConstants.location_type_geo, :lat => loc.location_lat, :long => loc.location_long,
-            :name => loc.location_name, :city => loc.location_city, :country => loc.location_country, :region => loc.location_region}
-      when AppConstants.location_type_unresolved
-        h = {:type => AppConstants.location_type_unresolved, :name => loc.location_name}
-      else
-        h = {}
-    end
-    h[:id] = loc.id if !h.blank?
-    h[:time] = loc.updated_at
-    h
-  end
-
-
-  #formats an activity object to compatible format for sending outside
-  def format_activity(activity)
-
-    hash = {}
-    if activity.blank?
-      return {}
-    end
-
-    author = activity.author
-    hash[:post]={
-        :id => activity.id,
-        :user => {:id => author.id, :full_name => author.full_name, :photo => author.photo_small_url},
-        :word => {:id => activity.activity_word_id, :name => activity.activity_name},
-        :time => activity.updated_at,
-        :text => translate_activity_text(activity),
-        :enriched => activity.enriched,
-        :summary_id => activity.summary_id,
-        :sub_title => activity.sub_title,
-        :source_name => activity.source_name,
-        :status => activity.status,
-        :campaign_types => activity.campaign_types,
-        :social_counters => activity.social_counters_array,
-        :source_msg_id => activity.source_msg_id
-      }
-
-    hash[:category_data] = format_summary_category(activity.category_id) if !activity.category_id.blank?
-
-    hash[:location] = format_location(activity.base_location) if !activity.base_location_id.blank?
-
-    hash
-  end
-
-  #formats an comment to compatible format for sending outside
-  def format_comment(comment)
-    hash = {}
-    if comment.blank?
-      return {}
-    end
-    author = comment.author
-    hash[:comment] = {
-              :id => comment.id,
-              :user => {:id => comment.author_id, :full_name => author.full_name,:photo => author.photo_small_url},
-              :text => comment.text,
-              :time => comment.updated_at,
-#              :source_name => comment.source_name,
-#              :status => comment.status
-           }
-    hash
-  end
-
-  #formats an document hash  to compatible format for sending outside
-  def format_document(document)
-    hash = {}
-    if document.blank?
-      return {}
-    end
-
-    hash[:document] = {
-              :id => document.id,
-              :url => document.url,
-              :thumb_url => document.thumb_url,
-              :caption => document.caption,
-              :time =>  document.updated_at,
-              :source_name => document.source_name,
-              :status => document.status,
-              :uploaded => document.uploaded,
-              :category => document.category,
-              :activity_id => document.activity_id,
-              :summary_id => document.summary_id           }
-
-    if document.uploaded == false and !document.web_link.blank?
-
-       h =  format_web_link(document.web_link)
-       hash[:document] = hash[:document].merge(h[:web_link])
-
-    end
-
-    hash
-  end
-
-  def format_web_link(web_link)
-    hash = {}
-    hash[:web_link] = {
-       :url => web_link.url,
-       :url_description => web_link.description,
-       :url_category => web_link.category_id,
-       :url_title => web_link.name,
-       :url_image => web_link.image_url,
-       :url_provider => web_link.provider
-    }
-    hash
-  end
-
-  def format_short_web_link(short_web_link)
-    hash = {}
-    hash = format_web_link(short_web_link.web_link)
-    hash
-  end
-  #formats an campaign  ( extra => user_id which tells if current user is there & count )
-  #to compatible format for sending outside
-  def format_campaign(campaign, user_id = nil)
-    hash = {}
-    if campaign.blank?
-      return {}
-    end
-    if user_id.nil?
-      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => false, :time => campaign.updated_at }
-    else
-      hash[:campaign] = { :name => campaign.name, :count=> campaign.count,:user => true, :user_id =>campaign.user_id, :time => campaign.updated_at }
-    end
-  end
-
-  #format tag
-  def format_tag(tag)
-    hash = {}
-    if tag.blank?
-      return {}
-    end
-
-    hash[:tag] = {
-              :id => tag.id,
-              :name =>  tag.name,
-              :type => tag.tag_type,
-              :source_name => tag.source_name,
-              :status => tag.status,
-              :time => tag.updated_at,
-           }
-    hash
   end
   def test_format_text(text,entities)
     seed_hash ={}

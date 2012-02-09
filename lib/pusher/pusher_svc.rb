@@ -40,10 +40,10 @@ module PusherSvc
     Rails.logger.info("\n[LIB] [PUSHER_SVC] [create_pusher_private_channel] leaving => #{channel_name}, #{socket_id} ")
 
   rescue Pusher::Error => e
-    Rails.logger.debug("\n[LIB] [PUSHER_SVC] [create_pusher_private_channel] PusherError rescue => #{e.message}")
+    Rails.logger.error("\n[LIB] [PUSHER_SVC] [create_pusher_private_channel] PusherError **** RESCUE **** => #{e.message}")
 
   rescue  => e
-    Rails.logger.debug("\n[LIB] [PUSHER_SVC] [create_pusher_private_channel] RunTimeError rescue => #{e.message}")
+    Rails.logger.error("\n[LIB] [PUSHER_SVC] [create_pusher_private_channel] RunTimeError **** RESCUE **** => #{e.message}")
   end
 
   def pusher_event(params)
@@ -70,10 +70,10 @@ module PusherSvc
 
   rescue Pusher::Error => e
   # (Pusher::AuthenticationError, Pusher::HTTPError, or Pusher::Error)
-    Rails.logger.debug("\n[LIB] [PUSHER_SVC] [pusher_event] PusherError rescue => #{e.message}")
+    Rails.logger.error("\n[LIB] [PUSHER_SVC] [pusher_event] PusherError **** RESCUE **** => #{e.message}")
 
   rescue  => e
-    Rails.logger.debug("\n[LIB] [PUSHER_SVC] [pusher_event] PusherError rescue => #{e.message}")
+    Rails.logger.error("\n[LIB] [PUSHER_SVC] [pusher_event] PusherError **** RESCUE **** => #{e.message}")
   end
 
 end

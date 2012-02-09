@@ -12,8 +12,6 @@ class CreateCampaigns < ActiveRecord::Migration
 
       t.integer :comment_id
 
-      t.integer :document_id
-
       t.integer :father_id, :null => false
 
       t.text  :name, :null => false
@@ -44,9 +42,6 @@ class CreateCampaigns < ActiveRecord::Migration
 
     add_index :campaigns, [:comment_id, :author_id,  :name], :unique => true,
               :name => "index_campaign_on_comment_author_name"
-
-    add_index :campaigns, [:document_id, :author_id, :name], :unique => true,
-              :name => "index_campaign_on_document_author_name"
 
 
     add_index :campaigns, :name

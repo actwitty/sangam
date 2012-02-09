@@ -19,8 +19,6 @@ class GarbageDocument < ActiveRecord::Base
           Rails.logger.info("[MODEL] [GARBAGE_DOCUMENT] [cloud_delete] calling cloud delete #{attr.inspect}")
 
           status = GarbageDocument.delete_s3_key(s3_handle, attr.url)
-          GarbageDocument.delete_s3_key(s3_handle,attr.thumb_url) if !attr.thumb_url.blank? if status == true
-
           attr.delete if status == true
         end
       end
@@ -30,6 +28,7 @@ class GarbageDocument < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: garbage_documents
@@ -37,7 +36,6 @@ end
 #  id         :integer         not null, primary key
 #  table_name :text            not null
 #  url        :text            not null
-#  thumb_url  :text
 #  action     :integer         not null
 #  created_at :datetime
 #  updated_at :datetime

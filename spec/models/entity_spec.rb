@@ -11,12 +11,12 @@ describe Entity do
                            'key'=> {'namespace'=> "/wikipedia/en_id_1_1",'value'=>"content 1_1"},
                            'type'=>[{'id'=>"/common/topic_1_1",'name'=>"Topic"},{'id'=>"/common/music_1_2",'name'=>"Music_1_2"} ]
                           }
-    @e3 = Entity.create_entities(@u.id,@h)
+    @e3 = Entity.create_entities(@h)
     @h['mid'] = "/m/abcd1"
-    @e4 = Entity.create_entities(@u.id, @h)
+    @e4 = Entity.create_entities( @h)
     @h['mid'] = "/m/abcd2"
     @h['type'][0]['name'] = "music"
-    @e5 = Entity.create_entities(@u.id,@h)
+    @e5 = Entity.create_entities(@h)
   end
   describe "Validations"  do
 
@@ -37,7 +37,7 @@ describe Entity do
     end
     it "should have not have blank image" do
       lambda{
-        en = Factory(:entity, :entity_image => "")
+        en = Factory(:entity)
       }.should raise_error ActiveRecord::RecordInvalid
     end
     it "should have not have name with length more than 255" do
@@ -60,11 +60,6 @@ describe Entity do
         en = Factory(:entity, :entity_guid => a)
       }.should raise_error ActiveRecord::RecordInvalid
     end
-    it "should have not have nil entity_doc" do
-      lambda{
-        en = Factory(:entity, :entity_doc => nil)
-      }.should raise_error ActiveRecord::RecordInvalid
-    end
     it "should have not same entity guid for two entities" do
       lambda{
         en = Factory(:entity, :entity_guid => @e.entity_guid)
@@ -79,40 +74,14 @@ describe Entity do
   end
 
   describe "Read" do
-    it "should be able to read entity_doc based on entity guid " do
-      @h['mid'] = @e.entity_guid
-      eid = Entity.create_entities(@u.id, @h)
-      eid.entity_doc.should == @e.entity_doc
 
-    end
-    it "should be able to all entity based on entity type " do
-       eids = Entity.search_entity_by_type('Topic')
-       eids.should_not be_blank
-       eids.should include(@e3, @e4)
-       puts eids
-       eids.each do |eid|
-         puts eid.entity_name
-       end
-    end
-    it "should be able to entity based on entity name " do
-       eids = Entity.find_entity_by_name('Entity name 1')
-       eids.should_not be_blank
-       eids.should include(@e3, @e4, @e5)
-       puts eids
-       eids.each do |eid|
-         puts eid.entity_name
-       end
-    end
-    it "should be able to entity based on entity Guid " do
-       eid = Entity.find_entity_by_guid('/m/abcd')
-       eid.should_not be_nil
-       eid.should ==@e3
-       puts eid
-       eid.destroy
-    end
+
   end
 
 end
+
+
+
 
 
 
@@ -124,16 +93,13 @@ end
 #
 # Table name: entities
 #
-#  id                    :integer         not null, primary key
-#  entity_name           :text            not null
-#  entity_guid           :text            not null
-#  entity_image          :text
-#  entity_doc            :text
-#  social_counters_array :text
-#  analytics_summary     :text
-#  rank                  :text
-#  campaigns_count       :integer         default(0)
-#  created_at            :datetime
-#  updated_at            :datetime
+#  id               :integer         not null, primary key
+#  entity_name      :text            not null
+#  entity_guid      :text            not null
+#  entity_type_id   :text
+#  entity_type_name :text
+#  entity_svc       :text
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 

@@ -22,7 +22,7 @@ leisure:
   type: /leisure
   channel: leisure
   hierarchy: /
-  name: leisure,recreation and faishon
+  name: leisure,recreation and fashion
 nonprofits:
   type: /nonprofit
   channel: nonprofit
