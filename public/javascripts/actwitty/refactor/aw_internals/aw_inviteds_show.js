@@ -39,7 +39,7 @@ function aw_preprocess_invite_request(service, id){
         $("#aw_js_prefetched_info_section").show();
         $("#aw_js_invite_name").html(fbid_resp_data.first_name + ' ' + fbid_resp_data.last_name);
         $("#aw_js_invite_service").html("from Facebook");
-        $("#aw_js_invite_image").attr('src', 'http://graph.facebook.com/' + fbid + '/picture?type=square');
+        $("#aw_js_invite_image").attr('src', 'http://graph.facebook.com/' + fbid_resp_data.id + '/picture?type=square');
         $("#aw_js_invite_uid").val( fbid_resp_data.id );
         $("#aw_js_invite_service").val( "facebook" );
       }
@@ -84,7 +84,7 @@ function aw_process_invite_request(){
                   'aw_srv_protocol_cookie' : {
                                              }
                };
-  alert(JSON.stringify(params));
+  //alert(JSON.stringify(params));
   aw_api_srv_make_a_post_request('AW_SRV_INTERNAL_CREATE_INVITE',  params);
 }
 /************************************************/

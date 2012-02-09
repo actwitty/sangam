@@ -6,8 +6,6 @@ class CreateComments < ActiveRecord::Migration
 
       t.integer :activity_id
 
-      t.integer :document_id
-
       t.integer :father_id, :null => false
 
       t.text    :text, :null =>false

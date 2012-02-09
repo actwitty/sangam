@@ -1,0 +1,526 @@
+/*
+ *ActWitty Stylesheet file
+ *File: AW Landing Page
+ *code: AWLPM (awlpm) Actwitty Landing Page Main
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com
+
+
+
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_color: #CCCCCC
+$aw_var_default_font_size: 12px
+$aw_var_default_bkg_color: #45bcd2
+$aw_var_default_border_width: 0px
+$aw_lpm_var_width_of_details:960px
+
+$aw_lpm_var_font_color:#D2D2D2
+
+$margin: 16px
+
+body
+  margin: 0
+  padding: 0
+  font-size: 12px
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_bkg_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -15px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: $aw_var_default_border_width solid #DFDFDF
+  padding: 5px
+  color: #666666
+  background-color: $aw_var_default_bkg_color
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+
+/* -------------------- Full Horizontal Sections Definition Begin -------------------------------------
+/* * Mixin for full width
+   *
+   *
+@mixin awlpm_mixin_fullwidth_wrappers
+  display: block
+  width: 100%
+  margin: 0
+  text-align: left
+  h1, h2, h3, h4, h5, h6
+
+/* Landing page major horizontals of full width
+.awlpm_tiny_login_header_horizontal_section
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+  position: fixed
+  z-index: 9999999
+  height: 10px
+  font-family: "Lucida Grande",Tahoma,Verdana
+  background: rgb(69,72,77)
+  
+
+
+.awlpm_header_horizontal_section
+
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+
+  color: $aw_lpm_var_font_color
+  /*background-color: $aw_var_default_bkg_color
+  border: $aw_var_default_border_width solid red
+  background: rgb(69,72,77)
+  background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 99%, rgba(0,0,0,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(99%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,1)))
+  background: -webkit-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  background: -o-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  background: linear-gradient(top,  rgba(69,72,77,1) 0%,rgba(0,0,0,1) 99%,rgba(0,0,0,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 )
+
+  
+
+  
+.awlpm_master_image_horizontal_section
+
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+
+  background-color: $aw_var_default_bkg_color
+  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_template_bkg_bnw.png")
+  border: $aw_var_default_border_width solid green
+
+.awlpm_info_slides_horizontal_section
+
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+  color: #000000
+  background-color: $aw_var_default_bkg_color
+  border: $aw_var_default_border_width solid blue
+  border-bottom: 1px solid #FFFFFF
+  background-image: url("/images/actwitty/refactor/aw_common/noisepattern.png")
+    /*
+      background: -moz-linear-gradient(top,  rgba(169,228,247,1) 0%, rgba(15,180,231,1) 100%)
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,228,247,1)), color-stop(100%,rgba(15,180,231,1)))
+      background: -webkit-linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      background: -o-linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      background: -ms-linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      background: linear-gradient(top,  rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%)
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9e4f7', endColorstr='#0fb4e7',GradientType=0 )
+  
+  a
+    color: #FFFFFF
+    background-color: #424242
+
+.awlpm_footer_horizontal_section
+  
+  /* Make sure it includes the mixin for full width
+  @include awlpm_mixin_fullwidth_wrappers
+
+  color: #FF9900
+  background-color: #424242
+  border-top: 1px solid #363631
+  background: rgb(82,82,82)
+  background: -moz-linear-gradient(top,  rgba(82,82,82,1) 0%, rgba(9,9,9,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(82,82,82,1)), color-stop(100%,rgba(9,9,9,1)))
+  background: -webkit-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -o-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#090909',GradientType=0 )
+
+
+
+/* -------------------- Full Horizontal Sections Definition End -------------------------------------
+
+/* ----------------------------------------------Generalise-------------------------------------
+
+
+
+@mixin awlpm_mixin_wide_subsections
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: $aw_lpm_var_width_of_details
+
+@mixin awlpm_mixin_shadowed_border($border_rounding, $border_color)
+  -moz-box-shadow: $border_rounding $border_rounding $border_rounding $border_color
+  -webkit-box-shadow: $border_rounding $border_rounding $border_rounding $border_color
+  box-shadow: $border_rounding $border_rounding $border_rounding $border_color
+  -moz-border-radius-bottomleft: $border_rounding
+  -webkit-border-bottom-left-radius: $border_rounding
+  -moz-border-radius-bottomright: $border_rounding
+  -webkit-border-bottom-right-radius: $border_rounding
+
+/* --------------------------------------------Tiny Header----------------------------------
+
+#awlpm_local_sign_in_button 
+  float: right
+  margin: 0 0 0 1px
+  padding: 5px
+  background: #292D31
+  font-size: 9px
+  letter-spacing: 1px
+  text-transform: uppercase
+
+#awlpm_local_sign_in_button a
+  color: #ccc
+/* ----------------------------------------------Header-------------------------------------
+
+#awlpm_header_section
+  /* Make sure it includes the mixin for wide
+  @include awlpm_mixin_wide_subsections
+  padding: 0px 0
+  border: $aw_var_default_border_width solid black
+  padding-top: 40px
+  height: 90px 
+
+#awlpm_header_content_holder
+  width: 100%
+  height: 65px
+  border: $aw_var_default_border_width solid red
+
+#awlpm_header_aw_logo
+  margin-top: 5px
+  /*margin-left: 250px
+  margin-left: 130px 
+  height: 50px
+  width: 75px
+  display: inline
+  position: relative
+
+img.awlpm_aw_logo_img
+  /*height: 232px
+  /*width: 950px
+
+#awlpm_header_label
+  margin: 0 auto
+  margin-left: 10px
+  font-size: 50px
+  /*width: 400px
+  height: 50px
+  font-weight: bold
+  color: #f5f5f5
+  border: $aw_var_default_border_width solid red
+  display: inline
+  font-family: 'Arial'
+  text-align: center
+
+@-moz-document url-prefix()
+  #awlpm_header_label
+    font-size: 50px
+
+
+/* ---------------------------------------------- Intro/ForeignAuth section -----------------------------------------
+#awlpm_foreign_auth_section
+  padding: 0px
+  padding-top: 125px
+  height: 275px
+  border: $aw_var_default_border_width solid red
+  position: relative
+
+#awlpm_foreign_auth_highlighter
+  background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_foreign_auth_highlighter.png") no-repeat scroll left top
+  display: block
+  margin: 0 auto
+  padding-top: 22px
+  width: 350px
+  height: 150px
+  position: relative
+  a.awlpm_fb_auth_logo
+    background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_fb_connect.jpg") no-repeat scroll left top
+    display: block
+    margin: 0 auto
+    width: 300px
+    height: 49px
+  a.awlpm_t_auth_logo
+    background: url("/images/actwitty/refactor/aw_lpm/aw_lpm_t_connect.jpg") no-repeat scroll left top
+    display: block
+    margin: 0 auto
+    margin-top: 10px
+    width: 300px
+    height: 49px
+  a.awlpm_fb_auth_logo:hover
+    border: 1px solid #ccc
+    cursor: pointer
+  a.awlpm_t_auth_logo:hover
+    border: 1px solid #ccc
+    cursor: pointer
+  a span
+    display:none
+
+
+/* ----------------------------------------------Homepage Container -------------------------------------
+
+#awlpm_info_grid_container_parent
+  /* Make sure it includes the mixin for wide
+  @include awlpm_mixin_wide_subsections
+  height: 1300px
+  border: $aw_var_default_border_width solid red
+
+#awlpm_info_grid_container_header, #awlpm_info_grid_container_footer
+  height: 20px
+  border: $aw_var_default_border_width solid red
+
+#awlpm_info_grid_container
+  padding: 24px
+  height: 1200px
+  width: 100%
+  border: $aw_var_default_border_width solid red
+  margin-top: -70px
+  border-radius: 10px
+  background: #f5f5f5
+  background-image: url("../images/noisepattern.png")
+  /*border: $aw_var_default_border_width solid #FFFFFF
+  border-radius: 15px 15px 15px 15px
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8)
+  background: rgba(15,180,231,1) 
+
+
+
+
+#awlpm_info_row_1_2
+  width: $aw_lpm_var_width_of_details - 130px
+  height: 50px
+  margin: 0 auto
+  font-size: 35px
+  letter-spacing: 4px
+  word-spacing: 10px
+  text-align: center
+  /*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif 
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+  padding-top: 15px
+  border-radius: 5px
+  color: #f0f0f0
+  font-weight: bold
+  /*text-shadow: 0 1px 1px #FFFFFF 
+  background: rgb(73,192,240)
+  background: -moz-linear-gradient(top,  rgba(73,192,240,1) 0%, rgba(44,175,227,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(73,192,240,1)), color-stop(100%,rgba(44,175,227,1)))
+  background: -webkit-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  background: -o-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  background: linear-gradient(top,  rgba(73,192,240,1) 0%,rgba(44,175,227,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49c0f0', endColorstr='#2cafe3',GradientType=0 )
+
+  background-color: #424242
+  border-top: 1px solid #363631
+  background: rgb(82,82,82)
+  background: -moz-linear-gradient(top,  rgba(82,82,82,1) 0%, rgba(9,9,9,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(82,82,82,1)), color-stop(100%,rgba(9,9,9,1)))
+  background: -webkit-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -o-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  background: linear-gradient(top,  rgba(82,82,82,1) 0%,rgba(9,9,9,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#525252', endColorstr='#090909',GradientType=0 )
+
+
+  -moz-box-shadow: 0 0 5px #888
+  -webkit-box-shadow: 0 0 5px #888
+  box-shadow: 0 0 5px #888
+  /*background: #e6e2d5
+
+
+.awlpm_info_row_1_2_color1
+  color: #218868 
+  color: #fff
+.awlpm_info_row_1_2_color2
+  color: #FFF68F
+  color: #fff
+.awlpm_info_row_1_2_color3
+  color: #CD5555
+  color: #fff
+
+
+
+#awlpm_info_row_2
+  margin-top: 20px
+
+.awlpm_info_grid_row
+  width: 100%
+  height: 360px
+  padding-top: 5px
+  padding-bottom: 5px
+  border: $aw_var_default_border_width solid red
+  /*border-bottom: 1px dotted gray
+
+  h3  
+    font-size: 28px
+    font-weight: bold
+    margin-bottom: 5px
+
+
+.awlpm_updates_grid_row
+  width: 100%
+  height: 335px
+  padding-top: 5px
+  padding-bottom: 5px
+  border: 1px solid #ddd
+  /*border-bottom: 1px dotted gray
+  border-radius: 5px
+  background: rgb(255,255,255)
+  background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(47%,rgba(246,246,246,1)), color-stop(100%,rgba(237,237,237,1)))
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 )
+
+  -moz-box-shadow: 0 0 2px #7f7f7f
+  -webkit-box-shadow: 0 0 2px #7f7f7f
+  box-shadow: 0 0 2px #7f7f7f
+
+  h3  
+    font-size: 17px
+    font-weight: normal
+    margin-bottom: 5px
+    padding: 2px 2px 2px 10px
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+    text-align: center
+    color: #333
+    text-shadow: 0 2px 2px #FFFFFF
+
+
+.awlpm_info_grid_subcontainer_box
+  width: 310px
+  height: 330px
+  margin-right: 5px
+  float: left
+  border: 0px solid #fff
+  /*&:hover
+    border: 1px solid #ccc
+    cursor: pointer
+  /*&:hover p
+    font-weight: bold
+  /*&:hover img
+    border: 1px solid black
+
+  .awlpm_info_display_box
+    width: 215px
+    height: 185px
+    margin: 10px auto
+  img 
+    width: 204px
+    height: 175px
+    border: 1px solid #ccc
+    padding: 5px
+    
+  h3  
+    font-size: 18px
+    font-weight: normal
+    text-align: center
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+    /*text-shadow: 0 1px 1px #FFFFFF
+    font-weight: bold
+  p
+    font-size: 14px
+    color: #fff
+    text-align: center
+    font-weight: normal
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+
+
+.awlpm_info_channel_updates_box
+  width:  100%
+  height: 330px
+  
+
+
+
+/* ----------------------------------------------Footer-------------------------------------
+
+#awlpm_footer_section
+  /* Make sure it includes the mixin for wide
+  @include awlpm_mixin_wide_subsections
+  height: 240px
+  border: 0px solid red
+  text-align: left
+  margin: 0px auto
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+  font-weight: normal
+#awlpm_footer_section_div
+  width: 890px
+  height: 240px
+  border: 0px solid red
+  margin-left: 70px
+
+#awlpm_footer_section_div ul
+  float: left
+  padding: 0 20px 0 0
+  width: 190px
+  list-style: none outside none
+  margin-top: 50px
+  &:first
+    margin-left: 30px
+
+.first_ul
+  margin-left: 30px
+
+#awlpm_footer_section_div li
+  color: #ddd
+  font-size: 10px
+  margin: 10px 0
+  &.awlpm_footer_label
+    color: #ffffff
+    font-size: 14px
+    font-weight: bold
+    padding: 0 0 10px
+    text-align: left
+  a
+    text-decoration: none
+    color: #ddd
+    &:hover
+      font-weight: bold
+
+#awlpm_footer_copyright
+  text-align: center
+  font-size: 10px
+  color: #fff
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+  font-weight: bold
+
+

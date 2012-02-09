@@ -1,0 +1,24 @@
+.aw_ppm_thanks_wrapper.aw_ppm_thanks_column1
+  =render :partial => "/home/top_bar"
+
+#aw_ppm_thanks_main_box
+  #aw_ppm_thanks_main_div
+
+    #aw_ppm_thanks_user_info
+      #aw_ppm_thanks_user_img
+        %a{:href => "/home/show?id=#{@user.id}"}
+          %img{:src => @user.photo_small_url}/
+      #aw_ppm_thanks_user_name    
+        %a{:href => "/home/show?id=#{@user.id}"}
+          %span #{@user.full_name}
+      #aw_ppm_thanks_user_location   
+        %span #{@user.current_location}
+    #aw_ppm_thanks_message
+      -if user_signed_in?
+        -if current_user.id == @user.id
+          %span Thanks for registering with ActWitty. We have opened full featured release on invites. We will keep you posted.
+        -else
+          %span This is a default site for ActWitty user page.
+
+      -else
+        %span This is a default site for ActWitty user page.

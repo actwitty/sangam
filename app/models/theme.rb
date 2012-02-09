@@ -17,7 +17,7 @@ class Theme < ActiveRecord::Base
   validates_presence_of    :theme_type
 
   after_save               :update_summary
-  attr_accessor            :url, :thumb_url
+  attr_accessor            :url
 
   def update_summary
     Rails.logger.info("[MODEL] [THEME] [update_summary] entering")
@@ -26,7 +26,6 @@ class Theme < ActiveRecord::Base
       if !self.document_id.blank?
          d= Document.where(:id => self.document_id).first
          @url = d.url
-         @thumb_url = d.thumb_url
       end
 
       s.theme_data = format_theme(self)
@@ -114,7 +113,7 @@ class Theme < ActiveRecord::Base
 
     rescue => e
 
-      Rails.logger.info("[MODEL] [THEME] [create_theme] rescue => #{e.message} with params => #{params.inspect}" )
+      Rails.logger.info("[MODEL] [THEME] [create_theme] **** RESCUE ****=> #{e.message} with params => #{params.inspect}" )
 
       #Validation Uniqueness fails
       if /has already been taken/ =~ e.message
@@ -138,11 +137,6 @@ class Theme < ActiveRecord::Base
         Rails.logger.info("[MODEL] [THEME] [validate_documents] invalid document id")
         return nil
       end
-
-#      if d.url.blank? or d.thumb_url.blank?
-#        Rails.logger.info("[MODEL] [THEME] [validate_documents]  url or thumb_url is missing #{d.inspect}")
-#        return nil
-#      end
 
       Rails.logger.info("[MODEL] [THEME] [validate_documents] leaving")
       d

@@ -4,7 +4,7 @@ class WebLink < ActiveRecord::Base
 
   validates_presence_of :url, :url_sha1, :provider, :mime
   validates_uniqueness_of :url_sha1
-  validates_format_of     :url, :with =>  eval(AppConstants.url_validator)
+  #validates_format_of     :url, :with =>  eval(AppConstants.url_validator)
 
   has_many :documents
 
@@ -23,7 +23,6 @@ class WebLink < ActiveRecord::Base
       puts "Web Link Gone #{self.url}"
     else
       Rails.logger.info("[MODEL] [WEB_LINKS] [ensure_safe_destroy] web link Safe #{self.inspect}")
-      #cant call rebuild_a_summary from here as this is making the transaction itself false
       false
     end
 
@@ -31,13 +30,13 @@ class WebLink < ActiveRecord::Base
 
   class << self
     #INPUT => {:url => "http://google.com/123", :provider => "google.com" [names as in categories.yml],
-    #          :name => "good search engine", :description => "nice place to search information"
+    #          :title => "good search engine", :description => "nice place to search information"
     #          ,:mime => AppConstants.mime_remote_image|video|link|music,  :image_width => params[:image_width],
     #           :image_height => params[:image_height], :canonical_url => params[:canonical_url], :category_id => params[:category_id,
     #           :cache_age => 86400  }
 
     #OUTPUT => {:url => "http://google.com/123", :category => "sports" [names as in categories.yml],
-    #          :name => "good search engine", :description => "nice place to search information"
+    #          :title => "good search engine", :description => "nice place to search information"
     #          ,:image_url => "http://google.com/images/googlelogo.jpg", :url_sha1 => "hjjscjcbjcjscbjdbc..",
     #          ,:mime => AppConstants.mime_remote_link, :provider => "google.com", :image_width => 220,
     #           :image_height => 320, :category_id => "sports", :category_type => "/sports" }
@@ -59,10 +58,16 @@ class WebLink < ActiveRecord::Base
          Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] shorl url found #{params[:url]} => long form is #{params[:canonical_url]}" )
 
        end
+
        params.delete(:canonical_url)
 
        params[:url_sha1] = Digest::SHA1.hexdigest params[:url]
-       params[:category_type] = SUMMARY_CATEGORIES[params[:category_id]]['type']
+
+       if !params[:category_id].blank?
+         params[:category_type] = SUMMARY_CATEGORIES[params[:category_id]]['type']
+       else
+         params[:category_type] = AppConstants.default_category
+       end
 
        object = WebLink.where(:url_sha1 => params[:url_sha1]).first
 
@@ -76,6 +81,11 @@ class WebLink < ActiveRecord::Base
          return object
        end
 
+
+       if !params[:description].blank? and params[:description].length > AppConstants.url_description_length
+         params[:description] = params[:description][0..AppConstants.url_description_length]
+         Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] truncating description of #{url}")
+       end
 
        object = create!(params)
 
@@ -119,6 +129,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: web_links
@@ -128,7 +139,7 @@ end
 #  url_sha1        :text            not null
 #  mime            :text            not null
 #  provider        :text            not null
-#  name            :text
+#  title           :text
 #  description     :text
 #  image_url       :text
 #  image_width     :integer

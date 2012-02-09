@@ -5,7 +5,6 @@ class CreateGarbageDocuments < ActiveRecord::Migration
       t.text    :table_name, :null => false
 
       t.text    :url,         :null => false
-      t.text    :thumb_url
 
       t.integer :action,      :null => false
 

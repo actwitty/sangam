@@ -2,15 +2,13 @@ class Tag < ActiveRecord::Base
 
    belongs_to     :author, :class_name => "User"
    belongs_to     :activity_word
-   belongs_to     :location
 
-   belongs_to     :summary, :counter_cache => true
+   belongs_to     :summary
 
    belongs_to     :activity, :counter_cache => true
 
    validates_existence_of  :author_id, :activity_word_id,:activity_id
    validates_existence_of  :summary_id, :allow_nil => true
-   validates_existence_of  :location_id, :allow_nil => true
 
    validates_presence_of :name, :tag_type, :source_name, :status
 
@@ -28,32 +26,45 @@ class Tag < ActiveRecord::Base
       #set defaults if missing
       params[:status] = AppConstants.status_public if params[:status].nil?
 
+      #created_at and updated_at will take input value only when ActiveRecord::Base.record_timestamps is false
+      #ootherwise default
       Tag.create(:author_id => params[:author_id], :activity_id => params[:activity_id],:summary_id => params[:summary_id],
                  :activity_word_id => params[:activity_word_id], :source_name => params[:source_name],:name => params[:name],
-                :tag_type => params[:tag_type], :location_id => params[:location], :status => params[:status])
+                 :tag_type => params[:tag_type],  :status => params[:status],
+                 :source_name =>params[:source_name], :source_msg_id =>params[:source_msg_id],
+                 :status_at_source=> params[:status_at_source], :created_at => params[:created_at],
+                 :updated_at => params[:updated_at])
     rescue => e
-      Rails.logger.error("[MODEL] [TAG] [create_document] [rescue]=> Failed =>  #{e.message} #{name} ")
+      Rails.logger.error("[MODEL] [TAG] [create_document] **** RESCUE ****=> Failed =>  #{e.message} #{name} ")
       nil
     end
   end
 end
 
 
+
+
+
+
+
+
 # == Schema Information
 #
 # Table name: tags
 #
-#  id               :integer         not null, primary key
-#  author_id        :integer         not null
-#  activity_word_id :integer         not null
-#  summary_id       :integer
-#  activity_id      :integer         not null
-#  name             :text            not null
-#  tag_type         :integer         not null
-#  source_name      :text            not null
-#  location_id      :integer
-#  status           :integer         not null
-#  created_at       :datetime
-#  updated_at       :datetime
+#  id                       :integer         not null, primary key
+#  author_id                :integer         not null
+#  activity_word_id         :integer         not null
+#  summary_id               :integer
+#  activity_id              :integer         not null
+#  name                     :text            not null
+#  tag_type                 :integer         not null
+#  source_name              :text            not null
+#  source_msg_id            :text
+#  status_at_source         :integer
+#  status                   :integer         not null
+#  backup_created_timestamp :datetime        default(2012-02-09 11:32:04 UTC)
+#  created_at               :datetime
+#  updated_at               :datetime
 #
 

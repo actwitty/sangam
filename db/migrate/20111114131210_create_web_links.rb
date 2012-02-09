@@ -6,7 +6,7 @@ class CreateWebLinks < ActiveRecord::Migration
       t.text :mime, :null => false
       t.text :provider, :null => false
 
-      t.text :name
+      t.text :title
       t.text :description
 
       t.text :image_url

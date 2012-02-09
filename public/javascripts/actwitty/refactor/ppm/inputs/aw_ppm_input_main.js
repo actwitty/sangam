@@ -33,13 +33,7 @@ function get_campaign_status(campain_type){
  * Type 3: Other
  *
  * :location => {
- *      :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
- *       OR
- *      :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
- *       OR
- *      :unresolved_location =>{:unresolved_location_name => "http://google.com"}
- *       OR
- *      nil
+ *      :lat => 23.6567, :long => 120.3, :name => "sj"
  *  }
  *
  *  [location][geo_location]=
@@ -53,9 +47,9 @@ function get_location_json(){
   {
     return {
              geo_location : {
-                    geo_latitude : $('#aw_js_ppm_input_hidden_lat_value').val(), 
-                    geo_longitude : $('#aw_js_ppm_input_hidden_lng_value').val(), 
-                    geo_name : $('#aw_js_ppm_input_hidden_geo_location').val()} 
+                    lat : $('#aw_js_ppm_input_hidden_lat_value').val(),
+                    long : $('#aw_js_ppm_input_hidden_lng_value').val(),
+                    name : $('#aw_js_ppm_input_hidden_geo_location').val()}
            };
   }
   else if (aw_js_ppm_input_hidden_location_type == '2')
@@ -112,17 +106,17 @@ function get_location_string(){
   var location_string=""; 
   if(aw_js_ppm_input_hidden_location_type == '1')
   {
-     location_string = '&location[geo_location][geo_latitude]=' + $('#aw_js_ppm_input_hidden_lat_value').val() +
-                       '&location[geo_location][geo_longitude]=' + $('#aw_js_ppm_input_hidden_lng_value').val() +  
-                       '&location[geo_location][geo_name]=' + encodeURIComponent($('#aw_js_ppm_input_hidden_geo_location').val());
+     location_string = '&location[geo_location][lat]=' + $('#aw_js_ppm_input_hidden_lat_value').val() +
+                       '&location[geo_location][long]=' + $('#aw_js_ppm_input_hidden_lng_value').val() +
+                       '&location[geo_location][name]=' + encodeURIComponent($('#aw_js_ppm_input_hidden_geo_location').val());
 
             
   }
   else if (aw_js_ppm_input_hidden_location_type == '2')
   {
 
-    location_string = '&web_location[bocation_field][geo_latitude]=' + encodeURIComponent($('#aw_js_ppm_input_location_name').val()) +
-                      '&web_location[web_location_title][geo_longitude]=' + "hello";
+    location_string = '&web_location[bocation_field][lat]=' + encodeURIComponent($('#aw_js_ppm_input_location_name').val()) +
+                      '&web_location[web_location_title][long]=' + "hello";
   }
   else if (aw_js_ppm_input_hidden_location_type == '3')
   {
@@ -244,13 +238,8 @@ function get_campaigns(){
   :word => activity word or phrase in activity box  [MANDATORY]
   :text =>   ""entity box + @@ + location box" or nil [OPTIONAL]
   :location => {
-                    :geo_location => {:geo_latitude => 23.6567, :geo_longitude => 120.3, :geo_name => "sj"}
-                                        OR
-                    :web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"}
-                                        OR
-                    :unresolved_location =>{:unresolved_location_name => "xyxzw"}
-                                        OR
-                                       nil
+                   :lat => 23.6567, :long => 120.3, :name => "sj"
+
                    } [OPTIONAL]
   
   :documents => [{:caption => "abcd", :thumb_url => "https://s3.amazonaws.com/xyz_thumb.jpg",

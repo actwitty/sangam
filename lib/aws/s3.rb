@@ -28,7 +28,7 @@ module CloudAws
       
       #Handling the RuntimeError
       rescue => e
-        Rails.logger.warn("[LIB] [AWS] [S3] [create_s3_connection] rescue #{e.message} \n\n")
+        Rails.logger.error("[LIB] [AWS] [S3] [create_s3_connection] **** RESCUE **** #{e.message} \n\n")
         return nil
     end
 
@@ -58,7 +58,7 @@ module CloudAws
 
       #Handling the RuntimeError
       rescue => e
-        Rails.logger.error("[LIB] [AWS] [S3] [list_s3_bucket] rescue #{e.message} \n\n")
+        Rails.logger.error("[LIB] [AWS] [S3] [list_s3_bucket] **** RESCUE **** #{e.message} \n\n")
         return false
     end
 
@@ -94,7 +94,7 @@ module CloudAws
 
       #Handling the RuntimeError
       rescue => e
-        Rails.logger.error("[LIB] [AWS] [S3] [create_s3_bucket] rescue #{e.message} \n\n")
+        Rails.logger.error("[LIB] [AWS] [S3] [create_s3_bucket] **** RESCUE **** #{e.message} \n\n")
         return false
     end
 
@@ -136,7 +136,7 @@ module CloudAws
 
       #Handling the RuntimeError
       rescue => e
-         Rails.logger.error("[LIB] [AWS] [S3] [delete_s3_bucket] rescue  #{e.message} \n\n")
+         Rails.logger.error("[LIB] [AWS] [S3] [delete_s3_bucket] **** RESCUE **** #{e.message} \n\n")
          return false
     end
 
@@ -178,7 +178,7 @@ module CloudAws
 
       #Handling the RuntimeError
       rescue => e
-        Rails.logger.error("[LIB] [AWS] [S3] [delete_s3_key] rescue  #{e.message} \n\n")
+        Rails.logger.error("[LIB] [AWS] [S3] [delete_s3_key] **** RESCUE ****  #{e.message} \n\n")
         return false
 
     end
@@ -228,7 +228,7 @@ module CloudAws
 
       #Handling the RuntimeError
       rescue => e
-         Rails.logger.error("[LIB] [AWS] [S3] [create_s3_key] rescue #{e.message} \n\n")
+         Rails.logger.error("[LIB] [AWS] [S3] [create_s3_key] **** RESCUE **** #{e.message} \n\n")
          return false
     end
 

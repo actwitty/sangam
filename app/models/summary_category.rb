@@ -9,9 +9,6 @@ class SummaryCategory < ActiveRecord::Base
 
   validates_presence_of :category_id, :category_type
 
-  validates_length_of :category_id, :in => 1..AppConstants.category_id_length
-  validates_length_of :category_type, :in => 1..AppConstants.category_type_length
-
   validates_uniqueness_of :summary_id
 
   after_save :update_summary
@@ -65,7 +62,7 @@ class SummaryCategory < ActiveRecord::Base
       obj = create!(params)
       return obj
     rescue => e
-      Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [CREATE_SUMMARY_CATEGORY] rescue #{params.inspect} #{e.message}" )
+      Rails.logger.error("[MODEL] [SUMMARY_CATEGORY] [CREATE_SUMMARY_CATEGORY] **** RESCUE **** #{params.inspect} #{e.message}" )
 
       #Validation Uniqueness fails
       if /has already been taken/ =~ e.message

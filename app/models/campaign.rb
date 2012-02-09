@@ -1,13 +1,12 @@
 class Campaign < ActiveRecord::Base
 
   belongs_to :author, :class_name => "User"
-  belongs_to :activity, :counter_cache => true
+  belongs_to :activity
 
-  belongs_to :entity, :counter_cache => true
-  belongs_to :location, :counter_cache => true
+  belongs_to :entity
+  belongs_to :location
   belongs_to :comment
-  belongs_to :document, :counter_cache => true
-  belongs_to :summary, :counter_cache => true
+  belongs_to :summary
 
   belongs_to :father, :class_name => "Activity"
 
@@ -28,7 +27,6 @@ class Campaign < ActiveRecord::Base
   validates_uniqueness_of :entity_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.entity_id.nil?}
   validates_uniqueness_of :location_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.location_id.nil?}
   validates_uniqueness_of :comment_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.comment_id.nil?}
-  validates_uniqueness_of :document_id, :scope => [:author_id, :name], :unless => Proc.new {|a| a.document_id.nil?}
 
   validates_uniqueness_of :father_id
 
@@ -43,26 +41,16 @@ class Campaign < ActiveRecord::Base
 
   after_destroy :ensure_destroy_cleanup
 
-  after_save :update_analytics
 
+  def ensure_destroy_cleanup
+      #Delete to stop circular effect
+      puts "campaign delete"
+      puts "#{self.id}"
+      self.father.delete
 
-  def update_analytics
-    Rails.logger.info("[MODEL] [CAMPAIGN] [update_analytics] entering #{self.inspect}")
-    if !self.summary_id.blank?
-      SummaryRank.add_analytics({:fields => ["likes"], :summary_id => self.summary_id})
+      #also update the analytics
+      update_analytics
     end
-    Rails.logger.info("[MODEL] [CAMPAIGN] [update_analytics] leaving #{self.inspect}")
-  end
-
-def ensure_destroy_cleanup
-    #Delete to stop circular effect
-    puts "campaign delete"
-    puts "#{self.id}"
-    self.father.delete
-
-    #also update the analytics
-    update_analytics
-  end
 
 
   class << self
@@ -107,18 +95,6 @@ def ensure_destroy_cleanup
         user = object.author
         resource_name = object.text[0..AppConstants.max_string_len_for_display]
 
-      elsif params.has_key?(:document_id)
-
-        object = Document.includes(:owner).where(:id => params[:document_id]).first
-        user = object.owner
-        #no specific name for uploaded document as of now so nam is photo pr document
-        if object.mime =~ /image/
-          resource_type = "photo"
-        else
-          resource_type = "document"
-        end
-        params[:summary_id] = object.summary_id
-
       elsif params.has_key?(:location_id)
 
         object = Location.find(params[:location_id])
@@ -153,7 +129,7 @@ def ensure_destroy_cleanup
 
       #Create Father activity
       params[:father_id] =  Activity.create_activity(:author_id => params[:author_id], :activity => "&#{params[:name]}&" ,
-                                         :text => text,:enrich => false, :campaign_types => AppConstants.campaign_none,
+                                         :text => text,:enrich => false,
                                          :meta_activity => true).id
 
       #set mandatory parameters if missing
@@ -246,6 +222,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -256,7 +233,6 @@ end
 #  entity_id   :integer
 #  location_id :integer
 #  comment_id  :integer
-#  document_id :integer
 #  father_id   :integer         not null
 #  name        :text            not null
 #  value       :integer         not null

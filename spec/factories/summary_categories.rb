@@ -1,6 +1,6 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :summary_category do
+  factory :category_id do
     end
 end

@@ -10,7 +10,10 @@ body
   font-family: $aw_var_default_font_family
   color: $aw_var_default_color
   background-color: $aw_var_default_backgorund_color
-  background-image: url("/images/actwitty/refactor/aw_lpm/aw_lpm_template_bkg_bnw.png")
+
+@font-face 
+  font-family: 'Roboto'
+  src: url('/webfont/roboto/Roboto-BoldCondensed.ttf')
 
 
 div.aw_ppm_thanks_wrapper
@@ -29,7 +32,10 @@ div.aw_ppm_thanks_wrapper
 #aw_ppm_thanks_main_box
   height: 800px
   width: 100%
-  padding-top: 80px
+  padding-top: 50px
+  img
+    width: 600px
+    margin: 0 auto
 
 #aw_ppm_thanks_main_div
   margin: auto
@@ -43,22 +49,15 @@ div.aw_ppm_thanks_wrapper
   -moz-box-shadow: 0 0 5px #888
   -webkit-box-shadow: 0 0 5px#888
   box-shadow: 0 0 5px #888
-  background: rgb(136,191,232)
-  background: -moz-linear-gradient(top,  rgba(136,191,232,1) 0%, rgba(112,176,224,1) 100%)
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(136,191,232,1)), color-stop(100%,rgba(112,176,224,1)))
-  background: -webkit-linear-gradient(top,  rgba(136,191,232,1) 0%,rgba(112,176,224,1) 100%)
-  background: -o-linear-gradient(top,  rgba(136,191,232,1) 0%,rgba(112,176,224,1) 100%)
-  background: -ms-linear-gradient(top,  rgba(136,191,232,1) 0%,rgba(112,176,224,1) 100%)
-  background: linear-gradient(top,  rgba(136,191,232,1) 0%,rgba(112,176,224,1) 100%)
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#88bfe8', endColorstr='#70b0e0',GradientType=0 )
+  
 
-
+    
   
   #aw_ppm_thanks_user_info
     height: 130px
     width: 200px
     position: absolute
-    top: 10px
+    top: 20px
     left: 20px
 
     #aw_ppm_thanks_user_img
@@ -71,28 +70,35 @@ div.aw_ppm_thanks_wrapper
           border: 1px solid #ccc
 
     #aw_ppm_thanks_user_name
-      height: 26px
+      height: 52px
       width: 300px
       overflow: hidden
       position: absolute
       top: 10px
       left: 180px  
+      a
+        text-decoration: none
       span
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        color: #fff
-        font-size: 26px
+        font-family: 'Roboto'
+        color: #CD4F39
+        font-size: 50px
         text-align: center
         font-weight: bold
+        text-transform: uppercase
+      .aw_ppm_thanks_user_pretext
+        color: #424242
+        font-size: 40px
+        text-transform: lowercase
 
   #aw_ppm_thanks_user_location
     height: 16px
     width: 300px
     overflow: hidden
     position: absolute
-    top: 38px
+    top: 64px
     left: 180px  
     span
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+      font-family: 'Roboto'
       color: #555
       font-size: 14px
       text-align: center
@@ -105,9 +111,21 @@ div.aw_ppm_thanks_wrapper
     top: 200px
     left: 100px
     span
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-      color: #fff
+      font-family: 'Roboto'
+      color: #000
       font-size: 28px
       text-align: center
+      font-weight: normal
+      letter-spacing: 1px
+  
+  a.aw_ppm_thanks_logout
+    text-decoration: none
+    position: absolute
+    bottom: 3px
+    right: 5px
+    font-size: 14px
+    color: #CD0000
+    &:hover
       font-weight: bold
+
 
