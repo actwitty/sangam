@@ -205,7 +205,7 @@ development: &default
 
   #Services enabled in actwitty
   services_enabled:                   "config/services.yml"
-  
+
   #FB/Twitter ids registered using cloud@actwitty.com
   #FB url: https://developers.facebook.com/apps
   #Twitter url: https://dev.twitter.com/apps
@@ -221,14 +221,14 @@ development: &default
    #User Types
   user_type_regular:                  0
   user_type_admin:                    1
-  user_type_web_admin:                2                    
+  user_type_web_admin:                2
 
   #FOR PUBLIC SHOW
   ghost_user_email:                   "administrator@actwitty.com"
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:  "83.samarth@gmail.com"
+  authorized_see_internals_email_id:  "administrator@actwitty.com"
 
   
 

@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "category_type"
     t.text     "category_id"
     t.text     "actions"
-    t.datetime "backup_created_timestamp", :default => '2012-02-09 11:31:58'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:03'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.boolean  "uploaded",                                                    :null => false
     t.text     "category",                                                    :null => false
     t.integer  "web_link_id"
-    t.datetime "backup_created_timestamp", :default => '2012-02-09 11:32:01'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:06'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.text     "category_type"
-    t.datetime "backup_created_timestamp", :default => '2012-02-09 11:31:59'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:04'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -478,7 +478,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.integer  "status",                                                      :null => false
-    t.datetime "backup_created_timestamp", :default => '2012-02-09 11:32:04'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:09'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
