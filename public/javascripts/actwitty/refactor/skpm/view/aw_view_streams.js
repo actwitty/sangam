@@ -42,6 +42,29 @@ function aw_view_stream_get_text_html(entry){
 
   return html;
 }
+
+
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_view_stream_get_mentions_html(entry){
+  var html = "";
+  alert("----");
+  alert(entry.mentions.length);
+  /*if( entry.text ){
+    html = '<div class="aw_stream_mentions_box" >' +
+              
+           '</div>';
+  }
+  */
+  return html;
+}
+
+
+
+
 /*********************************************************/
 /*
  *
@@ -172,6 +195,9 @@ function aw_view_stream_get_attachments_html(entry){
  *
  */
 function aw_view_stream_get_entry_html(entry){
+
+  var html1 = aw_view_stream_get_mentions_html(entry); 
+
   var html = '<div class="aw_stream_entry_container" >' +
                 '<div class="aw_stream_originator_img" >' +
                   '<a href="' + entry.originator.url + '">' +
