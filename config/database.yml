@@ -30,7 +30,7 @@ development:
   charset: unicode 
   pool: 5
   host: localhost 
-  port: 5432
+  port: 5433
 
 
 test: &test
@@ -42,7 +42,7 @@ test: &test
   pool: 5
   host: localhost 
   min_messages: WARNING
-  port: 5432
+  port: 5433
 
 production:
   adapter: postgresql
@@ -52,7 +52,6 @@ production:
   charset: unicode
   pool: 5
   host: localhost 
-  port: 5432
 
 cucumber:
   <<: *test

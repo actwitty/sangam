@@ -6,9 +6,10 @@ module Categorization
         ALCHEMY_LINK_ENDPOINT="http://access.alchemyapi.com/calls/url/URLGetCategory"
         ALCHEMY_TEXT_ENDPOINT = "http://access.alchemyapi.com/calls/text/TextGetCategory"
 
-        ALCHEMY_API_KEY="98f6cdf9355987fa6a0100f5704c2bceccc19f4e"
+        #ALCHEMY_API_KEY="98f6cdf9355987fa6a0100f5704c2bceccc19f4e"
         #ALCHEMY_API_KEY="19f585889ffdc85973d4bb78754630bd4594fc40"
-        #ALCHEMY_API_KEY = "3690ab39e581e48d6f48c000e3c3313f1e227e28" #this is main registered key
+        #ALCHEMY_API_KEY ="3690ab39e581e48d6f48c000e3c3313f1e227e28" #this is main registered key
+        ALCHEMY_API_KEY ="8395fee07786621120e9dd84be8f14f1c30d1648"
 
         ALCHEMY_BATCH_LIMIT = 1
         ALCHEMY_RATE_LIMIT = 1

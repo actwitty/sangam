@@ -250,7 +250,8 @@ module Api
                 :time => activity.updated_at,
                 :summary_id => activity.summary_id,
                 :source_object_id => activity.source_object_id,
-                :source_object_type => activity.source_object_type
+                :source_object_type => activity.source_object_type,
+                :source_name => activity.source_name
               }
 
           if params[:object].status_at_source == AppConstants.status_private_at_source

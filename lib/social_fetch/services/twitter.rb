@@ -173,7 +173,7 @@ module SocialFetch
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] entering  #{params.inspect}")
 
           h = {:word => "stories",:category_id => "stories", :enrich => true,
-                    :source_name => "twitter", :status_at_source => 2, :source_uid => "2367263",}
+                    :source_name => "twitter", :status_at_source => AppConstants.status_public_at_source, :source_uid => "2367263",}
 
           id = 100000
           time =  DateTime.new(2012,1,31)
