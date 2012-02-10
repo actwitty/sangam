@@ -22,7 +22,7 @@ function aw_pulled_stream_allow_cookie(context){
  * null filter defaults to basic
  */
 function aw_pulled_stream_query_filter(filter){
-  
+   
   if( filter ){
     aw_local_unity_control_registry = new Date().getTime();
     var context={
@@ -36,13 +36,13 @@ function aw_pulled_stream_query_filter(filter){
             contentType: 'application/json',
             success: function (data) {
                 /* some event might have made this redundant */
-                if( aw_pulled_stream_allow_cookie(context)){
+                if( !aw_pulled_stream_allow_cookie(context)){
                   /* abandon */
                   aw_local_unity_control_registry=null;
                   return;
                 }
 
-                context['aw_data'] = data;
+                context['aw_data'] = data.stream;
                 aw_pulled_stream_splitter(context);
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
@@ -66,17 +66,20 @@ function aw_pulled_stream_query_filter(filter){
  */
 function aw_pulled_stream_splitter(context){
   var split_context={};
-  $.each( context.cb_data, function( key, post_data){
+  context['service_count'] = 0;
+  $.each( context.aw_data, function( key, post_data){
 
-    if( !split_context[post_data.source_name] ){
-      split_context[post_data.source_name] = { 
+    if( !split_context[post_data.post.source_name] ){
+      split_context[post_data.post.source_name] = { 
                                                 processed: false,
                                                 posts:{}
                                              };      
+      context.service_count++;
     }
-    split_context[post_data.source_name].posts[post_data.source_object_id] = post_data;
+    split_context[post_data.post.source_name]['posts'][post_data.post.source_object_id] = post_data;
   });
   context['services']=split_context;
+  aw_pulled_stream_process_services(context);
 }
 
 
@@ -87,7 +90,10 @@ function aw_pulled_stream_splitter(context){
  *
  */
 function aw_pulled_stream_process_services(context){
-  var context={};
+  $.each( context.services, function(service_name, split_context){
+    
+    aw_pulled_stream_services_registry[service_name](context);
+  });
 }
 
 /****************************************************************/
@@ -96,7 +102,7 @@ function aw_pulled_stream_process_services(context){
  *
  */
 function aw_pulled_stream_assimilate_services(context){
-  var total_count = context.services.length;
+  var total_count = context.service_count;
   var processed_count = 0;
   $.each(context.services, function(service_name, data){
     if( context.services[service_name].processed){
@@ -115,7 +121,6 @@ function aw_pulled_stream_assimilate_services(context){
  *
  */
 function aw_pulled_stream_sort_data(context){
-  var context={};
   var merged_arr=[];
   $.each(context.services, function(service_name, service_data){
     $.merge(merged_arr, service_data.data);

@@ -96,7 +96,7 @@ function aw_api_view_interest_render(data){
   var html = "";
   var single_box_html = "";
   var shown_count = 0;
-  var max_show = 8;
+  var max_show = 6;
   $.each(data, function(index, topic_detail) { 
     var internal_details_html = "";
     var position_count = 0;
@@ -188,56 +188,62 @@ function aw_api_view_show_or_hide_all_interest_topics(object){
  *
  */
 function aw_api_view_decode_filter(object){
-  var fitler_set = object.attr("filter_on").split(',');
+  var filter_set = object.attr("filter_on").split(',');
+  var filter_set_arr=[];
+  if( $.isArray(filter_set)){
+    filter_set_arr = filter_set;
+  }else{
+    filter_set_arr = [filter_set];
+  }
   var filter = {
                   user_id : aw_js_global_visited_user_credentials.id
                };
-  $.each( filter_set, function( index, filter){
-    if( filter == 'topic'){
+  
+  $.each( filter_set_arr, function( index, filter_title){
+    if( filter_title == 'topic' ){
       filter['summary_id'] =  object.attr("interest_id");
     }
     
-    if( filter == 'service'){
-      filter['summary_id'] =  object.attr("service");
+    if( filter_title == 'service'){
+      filter['source_name'] =  object.attr("service");
     }
 
-    if( filter == 'mention'){
+    if( filter_title == 'mention'){
       filter['entity'] =  { 
                               'all' : true
                           };
 
     }
 
-    if( filter == 'image'){
+    if( filter_title == 'image'){
        filter['document'] =  { 
                                   'all' : true,
                                   'type' : 'image'
                               };
     }
 
-    if( filter == 'video'){
+    if( filter_title == 'video'){
       filter['document'] =  { 
                                   'all' : true,
                                   'type' : 'video'
                               };
     }
 
-    if( filter == 'link'){
+    if( filter_title == 'link'){
        filter['document'] =  { 
                                   'all' : true,
                                   'type' : 'link'
                               };
     }
 
-    if( filter == 'location'){
+    if( filter_title == 'location'){
       filter['location'] = {
                             'all' : true
                             };
     }
 
   });
-
-  aw
+  aw_api_controller_change_filter_on_stream(filter);
 
 
 }

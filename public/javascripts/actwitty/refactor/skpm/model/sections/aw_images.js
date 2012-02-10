@@ -26,7 +26,6 @@ function aw_api_model_images_add_service(service_name){
  */
 var aw_api_model_receive_images_cb = function(service_name, data, status){
   aw_lib_console_log("DEBUG", "aw_api_model_receive_images_cb callback: " + service_name);
-
   /* there must be a service which is not processed */
   if( aw_local_images_services_to_poll[service_name] != null && 
       aw_local_images_services_to_poll[service_name] == 0){
@@ -40,7 +39,6 @@ var aw_api_model_receive_images_cb = function(service_name, data, status){
                                                                     return time2.local_timestamp - time1.local_timestamp;
                                                                  });
          // aw_lib_console_log("DEBUG", "aw_api_model_receive_images_cb callback: SORTED " + JSON.stringify(data));
-          
           aw_api_controller_render_images(aw_local_images_data_array);
         }
 

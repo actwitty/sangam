@@ -27,7 +27,7 @@ $(document).ready(function(){
   });
 
   $(".aw_js_filterer").live('click', function(){
-
+    aw_api_view_decode_filter($(this));
     return false;
   });
 
