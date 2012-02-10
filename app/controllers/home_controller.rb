@@ -1,4 +1,4 @@
-
+require 'api/api'
 class HomeController < ApplicationController
   #before_filter :only_when_user_is_logged_in, :only => :show
 
@@ -473,28 +473,6 @@ class HomeController < ApplicationController
 
   end
 
-
-  ############################################
-  def get_enriched_activities
-    Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] Get enriched  activities #{params}")
-
-
-    if user_signed_in?
-      Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] calling model api Filter:#{params[:filter]}")
-      response_json=current_user.get_enriched_activities(params[:post_ids])
-      Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] model returned #{response_json}")
-      if request.xhr?
-
-        render :json => response_json, :status => 200
-      end
-    else
-      Rails.logger.info("[CNTRL][HOME][ENRICHED ACTIVITIES] User not signed in")
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
-    end
-
-  end
   ############################################
   def get_all_comments
 
@@ -797,6 +775,7 @@ class HomeController < ApplicationController
     end
   end
   ############################################
+
    def get_summary
     Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
@@ -806,8 +785,10 @@ class HomeController < ApplicationController
         params[:page_type] = Integer(params[:page_type])
       end
        params[:user_id]=Integer(params[:user_id])
-       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params}")
-       response_json=current_user.get_summary(params)
+       Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params} #{current_user}")
+       response_json=current_user.get_summary({:user_id => params[:user_id]})
+       #response_json=current_user.post_new_activity_to_facebook({:user_id => params[:user_id]}, "fdfd")
+
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] returned from model api")
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] sending response JSON #{response_json}")

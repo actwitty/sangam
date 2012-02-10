@@ -40,7 +40,7 @@ class Mention < ActiveRecord::Base
                Rails.logger.info("[MODEL] [MENTION] [create_mentions] [rescue] => Uniq index found " )
             else
               #otherwise just untag the mention
-              Rails.logger.info("[MODEL] [MENTION] [create_mentions] [rescue] =>  " +  e.message )
+              Rails.logger.error("[MODEL] [MENTION] [create_mentions] **** RESCUE **** =>  " +  e.message )
               text= untag_a_mention(text,attr[0].to_i )
             end
          end

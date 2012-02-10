@@ -8,6 +8,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: web_links
@@ -17,7 +18,7 @@ end
 #  url_sha1        :text            not null
 #  mime            :text            not null
 #  provider        :text            not null
-#  name            :text
+#  title           :text
 #  description     :text
 #  image_url       :text
 #  image_width     :integer

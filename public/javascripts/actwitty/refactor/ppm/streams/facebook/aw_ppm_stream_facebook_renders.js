@@ -57,7 +57,7 @@ function aw_api_facebook_render_post_data(stream_info, fb_data_json){
   }
 
   var aw_images_container_id = aw_api_get_stream_id(stream_info) + '_fb_img';
-  alert(JSON.stringify(fb_data_json));
+  //alert(JSON.stringify(fb_data_json));
   if(fb_data_json['image']){
     image_html ='<div class="awppm_stm_fb_post_attachments">'  +
                   '<div class="awppm_stm_fb_attachment_single_image_box" >' +

@@ -60,9 +60,9 @@ describe Campaign do
    @u2 = Factory(:user)
    @u3 = Factory(:user)
 
-   @l1 = Location.create_location(:web_location =>{:web_location_url => "GOOGLE.com", :web_location_title => "hello"})
+   @l1 = Location.create_location({:lat => 13.45 ,:long => 15.45, :name => "13 15"})
    @a1 = @u1.create_activity( :word => "eating123456789" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
-                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "123456789011 marathalli"}},
+                              :location => {:lat => 23.45 ,:long => 45.45, :name => "123456789011 marathalli"},
                               :enrich => true)
    puts @a1
 
@@ -130,7 +130,7 @@ describe Campaign do
        c= Campaign.where(:id => @c3.id).first
        c.should be_nil
        @a1 = @u2.create_activity( :word => "eating" , :text => "pizza at pizza hut with @bhaloo @bandar @@ Marathalli",
-                              :location => {:geo_location =>{:geo_latitude => 23.45 ,:geo_longitude => 45.45, :geo_name => "marathalli"}},
+                              :location => {:lat => 23.45 ,:long => 45.45, :name => "marathalli"},
                               :enrich => true)
        @a1 = @a1[:post]
        c1 = Campaign.create_campaign( :author_id => @u1.id,:name => "like", :value => 1,
@@ -190,6 +190,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: campaigns
@@ -200,7 +201,6 @@ end
 #  entity_id   :integer
 #  location_id :integer
 #  comment_id  :integer
-#  document_id :integer
 #  father_id   :integer         not null
 #  name        :text            not null
 #  value       :integer         not null

@@ -4,6 +4,7 @@ development: &default
   activity_text_length:                 8192
   comment_text_length:                  2048
   url_length:                           1024
+  url_description_length:               255
   activity_name_length:                 255
   caption_text_length:                  64
   sub_title_length:                     255
@@ -25,7 +26,7 @@ development: &default
   max_string_len_for_display:           10
 
   #in one pull of an activity or summary in order of latest updates
-  max_number_of_activities:             50
+  max_number_of_activities:             300
 
   max_number_of_a_type_in_summmary:     6
 
@@ -71,9 +72,8 @@ development: &default
 
   entitiy_no_image:                     "/images/entity/default.png"
   user_no_image:                        "/images/profile/default.png"
-  entity_image_thumb_base:               "http://api.freebase.com/api/trans/image_thumb/guid/"
-  entity_image_raw_base:                 "http://api.freebase.com/api/trans/raw/guid/"
-  entity_description_url:               "http://en.wikipedia.org/wiki/index.html?curid="
+  entity_image_url_base:               "https://usercontent.googleapis.com/freebase/v1/image"
+  entity_desc_url_base:               "https://www.googleapis.com/freebase/v1/text"
 
   summary_word_count:                   15
   summary_document_count:               5
@@ -84,16 +84,19 @@ development: &default
 
 
   stream_max_count:                     15
-  #LOCATION_TYPE
-  location_type_web:                    1
-  location_type_geo:                    2
-  location_type_unresolved:             3
 
-  #STATUS
+  #LOCATION_TYPE
+  location_type_geo:                    1
+
+  #STATUS -> What user sets at actwitty for a message
   status_saved:                     1
   status_public:                    2
   status_private:                   3
-  status_shared:                    4  #need the loop visibility later
+  status_shared:                    4  #
+
+  #SOURCE_STATUS -> What sources like FB, Twitter etc sets for this m
+  status_private_at_source:         5  #need the loop visibility later
+  status_public_at_source:          6 #need the loop visibility later
 
   #these are defined SOURCE_NAME
   #there can be custom sources like emails and mobile number
@@ -107,7 +110,10 @@ development: &default
   source_posterous:               "posterous"
 
   #SOURCES CURRENTLY ACTIVE - MEANS WE ARE PULLING DATA FROM THEM
-  sources_active_list:            [actwitty, actwitty_meta]
+  sources_local_list:            actwitty|actwitty_meta
+  sources_private_list:          facebook
+
+
 
   #CAMPAIGN_TYPES
   campaign_none:                       1  #used for internal activities generated because of commenting or campaign creation
@@ -130,7 +136,7 @@ development: &default
   #Refer http://en.wikipedia.org/wiki/Internet_media_type
   mime_remote_image:                 "image/remote"
   mime_remote_video:                 "video/remote"
-  mime_remote_document:              "application/remote"
+  mime_remote_document:              "document/remote"
   mime_remote_music:                 "audio/remote"
   mime_remote_link:                  "link/remote"
 
@@ -143,10 +149,10 @@ development: &default
 #  category_image:                     "image"
 #  category_audio:                     "audio"
 #  category_video:                     "video"
-#  category_document:                  "application"
+#  category_document:                  "document"
 
   #Video Sources
-  video_sources:                      youtube\.com|vimeo\.com
+  video_sources:                      youtube\.com|vimeo\.com|blip\.tv|dailymotion\.com
   video_extensions:                    \.mpg|\.mpeg|\.flv|\.mp4        # \ is used to escape dots in regular expression
 
   #Image Sources
@@ -199,7 +205,7 @@ development: &default
 
   #Services enabled in actwitty
   services_enabled:                   "config/services.yml"
-  
+
   #FB/Twitter ids registered using cloud@actwitty.com
   #FB url: https://developers.facebook.com/apps
   #Twitter url: https://dev.twitter.com/apps
@@ -215,59 +221,53 @@ development: &default
    #User Types
   user_type_regular:                  0
   user_type_admin:                    1
-  user_type_web_admin:                2                    
+  user_type_web_admin:                2
 
   #FOR PUBLIC SHOW
   ghost_user_email:                   "administrator@actwitty.com"
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:  "83.samarth@gmail.com"
+  authorized_see_internals_email_id:  "administrator@actwitty.com"
 
   
 
   #FOR SUMMARY CATEGORY
-  category_min_id:                    1
-  category_max_id:                    99999
-
-  sub_category_min_id:                1000000
-  sub_category_max_id:                9999999
-
-  category_min_id:                    100000000
-  category_max_id:                    999999999
-
-  category_id_length:               255
+  category_id_length:                 255
   category_type_length:               255
 
   default_category:                   "stories"
 
   #Rank and Analytics
-  number_of_data_points:              90
+  number_of_data_points:              53 #max number of weeks in an year
+  analytics_default_number_of_week:   1
 
-  age_band_kids:                         "1-12"
-  age_band_teens:                        "13-17"
-  age_band_geny:                         "18-24"
-  age_band_genx:                         "25-34"
-  age_band_forties:                      "35-44"
-  age_band_fifties:                      "45-54"
-  age_band_sixties:                      "55-64"
-  age_band_seniors:                      "65+"
+  analytics_update_summaries:         "summaries"
+  analytics_update_user:              "user"
 
   #text categorization
-  maximum_import_first_time:              3
-  maximum_import_every_time:              3 #imports after first import is done
+  maximum_import_first_time:                100
+  maximum_import_every_time:                20 #imports after first import is done
 
-  data_type_weburl:                     "weburl"
-  data_type_youtube:                    youtube    #as it will be used in regex
-  data_type_facebook:                   facebook   #as it will be used in regex
-  data_type_text:                       "text"
+  min_text_length_for_text_categorization:  140
+  max_text_length_for_text_categorization:  512
+
+  #test service name
+  test_service:                             twitter
+
+  #source object type
+  source_object_type_post:                  "post"
+  source_object_type_like:                  "like"
+
 
   #Social Fecth
-  maximum_time_diff_for_social_fetch:   1 #minutes
+  maximum_time_diff_for_social_fetch:       1 #minutes
 
-  data_sync_not_started:                1
-  data_sync_going_on:                   2
-  data_sync_done:                       3
+  data_sync_new:                            1   #can be deleted in this state
+  data_sync_active:                         2
+  data_sync_done:                           3   #can be deleted in this state
+  data_sync_error:                          4   #can be deleted in this state
+
 
 production:
   <<: *default

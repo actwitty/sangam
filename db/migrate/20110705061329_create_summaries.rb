@@ -7,22 +7,11 @@ class CreateSummaries < ActiveRecord::Migration
       t.text  :activity_name, :null => false
 
       t.integer :activities_count, :default => 0
-      t.integer :documents_count, :default => 0
-      t.integer :tags_count, :default => 0
-
-      t.text :location_array
-      t.text :entity_array
-      t.text :activity_array
-      t.text :document_array
-      t.text :tag_array
-      t.text :social_counters_array
-      t.text :theme_data
 
       t.text :category_id
       t.text :category_type
-      t.text :rank
-      t.text   :analytics_summary
-      t.integer :campaigns_count, :default => 0
+
+      t.text   :analytics_snapshot
 
       t.timestamps
 
@@ -33,7 +22,6 @@ class CreateSummaries < ActiveRecord::Migration
     add_index :summaries, :activity_name
     add_index :summaries, :updated_at
 
-    add_index :summaries, :rank
     add_index :summaries, :category_id
     add_index :summaries, :category_type
   end

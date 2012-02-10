@@ -45,7 +45,7 @@ class ActivityWord < ActiveRecord::Base
           word_obj = word_rel.first
         end
       rescue => e
-        Rails.logger.info("ActivityWord => Create_Activity_word => Failed => #{e.message} => for word #{word}")
+        Rails.logger.error("ActivityWord => Create_Activity_word => Failed => #{e.message} => for word #{word}")
         return nil
       end
 
@@ -53,14 +53,17 @@ class ActivityWord < ActiveRecord::Base
         return word_obj
       end
 
-      #check if give type of relation exists for this word
-      rel = WordForm.where(:related_word_id => word_obj.id, :relation_type => relation)
-      puts " #{word} <=> #{relation} " + rel.count.to_s
-      if !rel.blank?
-        return word_obj
-      end
-
-      ActivityWord.CreateRelatedWords(word_obj, relation)
+      puts " #{word} <=> #{relation} "
+      #as of now lets block the wordnik as we are using fixed categories
+#      #check if give type of relation exists for this word
+#      rel = WordForm.where(:related_word_id => word_obj.id, :relation_type => relation)
+#      puts " #{word} <=> #{relation} " + rel.count.to_s
+#      if !rel.blank?
+#        return word_obj
+#      end
+#
+#
+#      #ActivityWord.CreateRelatedWords(word_obj, relation)
       word_obj
     end
 
@@ -102,8 +105,8 @@ class ActivityWord < ActiveRecord::Base
 
             WordForm.create!(:activity_word_id => w_obj.id , :word_form_name => attr, :related_word_id => word_obj.id,
                            :relation_type => relation)
-          rescue
-            Rails.logger.warn("Activity Word => CreateRelatedWords => Word Creation Error #{attr}")
+          rescue => e
+            Rails.logger.error("Activity Word => CreateRelatedWords => Word Creation Error#{e.message} For #{attr}")
           end
         end
       else
@@ -111,7 +114,7 @@ class ActivityWord < ActiveRecord::Base
       end
     end
 
-    handle_asynchronously :CreateRelatedWords
+    #handle_asynchronously :CreateRelatedWords
   end
 end
 

@@ -1,10 +1,6 @@
 ################# CAUTION!!  Should Not call delete of entity as we are going to hold them fore ever as of now :) #################
 class Entity < ActiveRecord::Base
 
-  serialize :entity_doc, Hash
-  serialize       :social_counters_array, Array
-  serialize       :analytics_summary, Hash
-
   # this nullify is in case some body deletes an entity for a reason . this SHOULD NOT happen though
   has_many      :hubs, :dependent => :nullify
 
@@ -13,112 +9,70 @@ class Entity < ActiveRecord::Base
   has_many      :locations, :through => :hubs
   has_many      :users, :through => :hubs
 
-  has_one       :entity_ownership, :dependent => :destroy    #should destroy
-  has_many      :entity_types, :dependent => :destroy
-  has_one       :entity_document, :dependent => :destroy
+#  has_one       :entity_ownership, :dependent => :destroy    #should destroy
+#  has_many      :entity_types, :dependent => :destroy
 
   has_many       :campaigns, :dependent => :destroy
 
   validates_presence_of   :entity_name, :entity_guid
   validates_uniqueness_of :entity_guid, :unique => true
 
-  validates_length_of     :entity_name, :in => 1..255
-  validates_length_of     :entity_guid, :in => 1..255
-  validates_length_of     :entity_image, :maximum => AppConstants.url_length
-
-  #validates_format_of :entity_image, :with =>  eval(AppConstants.url_validator), :unless => Proc.new{|a| a.entity_image == AppConstants.entitiy_no_image}
 
   class << self
      include TextFormatter
      include QueryPlanner
-  #  {'guid'=>nil,         //unique id regarding entity   always present if content found in freebase
-  #   'name'=>nil,      //name of entity   always present
-  #   'mid'=>nil,        // machine ID       always present if content found on freebase
-  #  '/common/topic/alias'=>[],      //alias name  optional array form
-  #  '/common/topic/image'=>[{'id'=>nil}],  //image optional array of hashes. hash con
-  #  'key'=>{'namespace'=>'/wikipedia/en_id','value'=>nil}   // wikipedia link in hash form value will contain wikipedia content id  optional
-  #  'type'=>[{'id'=>nil,'name'=>nil}]  //type info   array of hashes  id=> /common/topic   name=>"Topic"}
+  #  {:id => "/en/dropbox",         #unique id regarding entity always present=> /[SERVICE]/[OEM_ID]
+  #   :name=> "Dropbox",      //name of entity   always present
+  #   :type=> {:id=>"/music/artist" #service specific
+  #            , :name=>"Musical Artist"}
+  #   :svc => "freebase" }
   #
-    def create_entities(owner_id = nil, entity_hash ={})
+    def create_entities(entity_hash ={})
 
       entity_type = nil
-      if !entity_hash.has_key?('mid') or entity_hash['mid'].nil?
-        return nil
-      end
 
       begin
+        id = "/" + entity_hash[:svc] + entity_hash[:id]
+        entity = Entity.create!(:entity_guid => id,
+                                :entity_name => entity_hash[:name].downcase,
+                                :entity_type_id => entity_hash[:type][:id],
+                                :entity_type_name => entity_hash[:type][:name], :entity_svc => entity_hash[:svc])
 
-      entity_hash['image'].blank? ? entity_image = AppConstants.entitiy_no_image : entity_image = entity_hash['image']
-
-      #delete unnecessary information
-      entity_hash.delete('image') if !entity_hash['image'].nil?
-      entity_hash.delete('relevance:score') if !entity_hash['relevance:score'].nil?
-      entity_hash.delete('/common/topic/image') if !entity_hash['/common/topic/image'].nil?
-      entity_hash.delete('guid') if !entity_hash['guid'].nil?
-
-      if !entity_hash['type'].blank?
-        entity_type =  entity_hash['type']
-
-        entity_type.each do |attr|
-          next if (attr['id'] =~ /^\/common/) or (attr['id'] =~ /^\/user/) #skip the common or user type
-          entity_hash['type'] = attr #just keep first type for search over entity table
-          break      #break at first valid type
-        end
-
-      end
-
-      entity = Entity.create!(:entity_guid => entity_hash['mid'], :entity_name => entity_hash['name'].downcase,
-                              :entity_doc => entity_hash, :entity_image => entity_image)
-
-
+        return entity
       rescue => e
-        Rails.logger.info("Entity => CreateEntity => Rescue " +  e.message )
+        Rails.logger.error("[MODEL] [ENTITY] [CREATE_ENTITY] **** Rescue **** #{e.message} For #{entity_hash}" )
+
          #Validation Uniqueness fails
         if /has already been taken/ =~ e.message
-          Rails.logger.info("Entity => CreateEntity => Rescue => Unique " +  e.message + " " + entity_hash['mid'] )
-          entity = Entity.where(:entity_guid => entity_hash['mid']).first
+          Rails.logger.info("[MODEL] [ENTITY] [CREATE_ENTITY]  => Rescue => UNIQUE INDEX FOUND " +  e.message + " " + entity_hash[:id] )
+          entity = Entity.where(:entity_guid => id).first
           return entity
         end
       end
 #      entity_hash.delete('mid') if !entity_hash['mid'].blank?
 #      entity_hash.delete('name') if !entity_hash['name'].blank?
-      begin
-
-         entity_type.each do |entry|
-         id = EntityType.create!(:entity_id => entity.id , :entity_type_uri => entry['id'],
-                             :entity_type_name => entry['name'].downcase)
-         end
-
-         #entity_hash.delete('type') if !entity_hash['type'].blank?
-
-         puts "==== #{entity.inspect}"
-         EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
-
-      rescue => e
-        entity.destroy
-        puts "***** #{entity}"
-        entity_id = nil
-        Rails.logger.info("Entity => CreateEntity or CreateOwnership=> Type => Rescue " +  e.message )
-        return nil
-      end
-
-
-      return entity
-    end
-
-    #return relations .. use each, all, first to load object
-    def find_entity_by_name(name)
-      Entity.where(:entity_name => name.downcase)
-    end
-
-    #return object
-    def find_entity_by_guid(guid)
-      Entity.where(:entity_guid => guid).first
-    end
-
-    #return relations .. use each, all, first to load object
-    def search_entity_by_type(type)
-      Entity.joins(:entity_types).where(:entity_types => {:entity_type_name => type.downcase} )
+#      begin
+#
+#         #entity_hash[:type].each do |k|
+#         if !entity_hash[:type].blank?
+#           id = EntityType.create!(:entity_id => entity.id,:entity_type_uri => entity_hash[:type][:id],
+#                                 :entity_type_name => entity_hash[:type][:name].downcase)
+#         end
+#         #end
+#
+#         #entity_hash.delete('type') if !entity_hash['type'].blank?
+#
+#         puts "==== #{entity.inspect}"
+#         EntityOwnership.create!(:owner_id => owner_id, :entity_id => entity.id)
+#
+#      rescue => e
+#        entity.destroy
+#        puts "***** #{entity}"
+#        entity_id = nil
+#        Rails.logger.info("Entity => CreateEntity or CreateOwnership=> Type => Rescue " +  e.message )
+#        return nil
+#      end
+      #entity
     end
 
     #INPUT => {:name => "foo"}
@@ -177,11 +131,11 @@ class Entity < ActiveRecord::Base
       hash
 
     end
-
-
   end
-
 end
+
+
+
 
 
 
@@ -192,16 +146,13 @@ end
 #
 # Table name: entities
 #
-#  id                    :integer         not null, primary key
-#  entity_name           :text            not null
-#  entity_guid           :text            not null
-#  entity_image          :text
-#  entity_doc            :text
-#  social_counters_array :text
-#  analytics_summary     :text
-#  rank                  :text
-#  campaigns_count       :integer         default(0)
-#  created_at            :datetime
-#  updated_at            :datetime
+#  id               :integer         not null, primary key
+#  entity_name      :text            not null
+#  entity_guid      :text            not null
+#  entity_type_id   :text
+#  entity_type_name :text
+#  entity_svc       :text
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 

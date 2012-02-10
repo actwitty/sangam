@@ -14,7 +14,7 @@ class CreateHubs < ActiveRecord::Migration
       t.integer :user_id, :null => false
 
       #By default it should be set home location of user so ideally it should never be null as locations will not deleted
-      #but if deleted then it can be nullfied
+      #but if deleted then it can be nullified
       t.integer :location_id
 
       t.integer :summary_id, :null => false
@@ -25,8 +25,12 @@ class CreateHubs < ActiveRecord::Migration
       t.integer :status, :null => false     # 0 => saved, 1 => public share, 2 => private
                                             # 3 => shared to group of people or group.When this value is 3,
                                             # we need to see access_visibility table to see the access
+      t.text    :source_msg_id
+      t.integer :status_at_source
 
-      t.text  :category_type
+      t.text    :category_type
+
+      t.datetime :backup_created_timestamp, :default => Time.now.utc
 
       t.timestamps
     end
@@ -46,10 +50,14 @@ class CreateHubs < ActiveRecord::Migration
 
     add_index :hubs, :category_type
 
+    add_index :hubs, :source_msg_id
+
+    add_index :hubs, :status_at_source
+
+    add_index :hubs, :backup_created_timestamp
   end
 
   def self.down
-
     drop_table :hubs
   end
 end

@@ -37,7 +37,6 @@ describe Document do
                                       :activity_word_id => Factory(:activity_word).id,
                                       :summary_id => Factory(:summary).id,
                                       :url => "https://www.s3.amazon.com/1234/test.jpg",
-                                      :thumb_url => "https://www.s3.amazon.com/1234/234/thumb_test.jpg",
                                       :uploaded => true)
       puts @doc.inspect
       @doc.should_not be_nil
@@ -60,31 +59,33 @@ end
 
 
 
+
+
+
+
+
+
+
 # == Schema Information
 #
 # Table name: documents
 #
-#  id                    :integer         not null, primary key
-#  owner_id              :integer         not null
-#  activity_id           :integer
-#  activity_word_id      :integer
-#  name                  :text            not null
-#  mime                  :text
-#  caption               :text
-#  comments_count        :integer
-#  summary_id            :integer
-#  url                   :text
-#  thumb_url             :text
-#  status                :integer         not null
-#  source_name           :text            not null
-#  uploaded              :boolean         not null
-#  provider              :text            not null
-#  category              :text            not null
-#  location_id           :integer
-#  web_link_id           :integer
-#  campaigns_count       :integer
-#  social_counters_array :text
-#  created_at            :datetime
-#  updated_at            :datetime
+#  id                       :integer         not null, primary key
+#  owner_id                 :integer         not null
+#  activity_id              :integer
+#  activity_word_id         :integer
+#  summary_id               :integer
+#  url                      :text
+#  status                   :integer         not null
+#  source_name              :text            not null
+#  source_object_id         :text
+#  source_msg_id            :text
+#  status_at_source         :integer
+#  uploaded                 :boolean         not null
+#  category                 :text            not null
+#  web_link_id              :integer
+#  backup_created_timestamp :datetime        default(2012-02-09 11:32:01 UTC)
+#  created_at               :datetime
+#  updated_at               :datetime
 #
 
