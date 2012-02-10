@@ -4,8 +4,12 @@
  *
  */
 var aw_pulled_stream_services_registry = {
-                                            facebook: aw_pulled_stream_facebook_handler,
-                                            twitter: aw_pulled_stream_twitter_handler,
+                                            "facebook": function(context){
+                                              aw_pulled_stream_facebook_handler(context);
+                                            },
+                                            "twitter": function(context){
+                                              aw_pulled_stream_twitter_handler(context);
+                                            },
                                          };
 /*****************************************************************/
 /*
@@ -17,10 +21,14 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
     /* abandon */
     return;
   }
-  $.each( facebook_data.posts, function( index, post_data ){
-    if( post_data.entities && post_data.entities.array ){
+  var fb_data = context['services']['facebook'];
+  $.each( facebook_data, function( index, post_data ){
+
+    var pid = post_data.service.pid;
+    var post_mention_data = context['services']['facebook']['posts'][pid];
+    if( post_mention_data.entities && post_mention_data.entities.array ){
       var mention_arr = [];
-      $.each( post_data.entities.array, function( index, entity){
+      $.each( post_mention_data.entities.array, function( index, entity){
         var mention = {};
 
         if( entity.name ){
@@ -39,7 +47,7 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
         mention_arr.push( mention );
 
       });
-      facebook_data.posts[index]['mention'] = mention_arr;
+      facebook_data[index]['mention'] = mention_arr;
     }
   });
   context.services.facebook['data'] = facebook_data;
@@ -53,24 +61,23 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
  *
  *
  */
-var aw_pulled_stream_facebook_handler = 
-                          function( context ) {
+function aw_pulled_stream_facebook_handler ( context ) {
                                                 var fb_data = context['services']['facebook'];
                                                 var id_list_str = "";
-
                                                 $.each( fb_data.posts, function( key, post_data ){
-
+                                                  if( post_data.post.source_object_type != "post" ){
+                                                    return;
+                                                  }
                                                   if( id_list_str.length ){
-                                                    id_list_str = ',' + key;
+                                                    id_list_str = id_list_str + ',' + key;
                                                   }else{
                                                     id_list_str = key;
                                                   }
-
-                                                  aw_api_facebook_get_post_data_for_list_of_ids( id_list_str,
+                                                  
+                                                });
+                                                aw_api_facebook_get_post_data_for_list_of_ids( id_list_str,
                                                                                                  aw_pulled_stream_facebook_cb,
                                                                                                  context);
-
-                                                });
                                                                 
                                               };
 
@@ -80,8 +87,8 @@ var aw_pulled_stream_facebook_handler =
  *
  *
  */
-var aw_pulled_stream_twitter_handler =  
-                          function( context ) {
+
+function aw_pulled_stream_twitter_handler( context ) {
                                                  var tw_data = context['services']['twitter'];
                                                  var aw_post_json = {};
                                                  var twitter_data = []; 
@@ -101,14 +108,16 @@ var aw_pulled_stream_twitter_handler =
                                                                                     image: post_data.post.user.photo,
                                                                                     name: post_data.post.user.full_name,
                                                                                     url:  "/home/sketch?id=" + post_data.post.user.id,
-                                                                                    uid: aw_js_global_visited_user_foreign_ids[twitter]
+                                                                                    uid: aw_js_global_visited_user_foreign_ids['twitter']
                                                                                  };
 
                                                     if( post_data.location && post_data.location.name ){
                                                       aw_post_json["place"] = { name: post_data.location.name};
                                                     }
-
-                                                    if( post_data.location.lat && post_data.location.lng ){
+                                                    
+                                                    if( post_data.location && 
+                                                                post_data.location.lat && 
+                                                                  post_data.location.lng ){
                                                       aw_post_json["location"] = {
                                                                                     lat: post_data.location.lat,
                                                                                     lng: post_data.location.lng
@@ -127,7 +136,7 @@ var aw_pulled_stream_twitter_handler =
                                                         if( doc.url ){
                                                           attachment['url'] = doc.url;
                                                         }
-                                                        if( data.name ){
+                                                        if( doc.name ){
                                                           attachment['title'] = doc.name;
                                                         }
                                                         

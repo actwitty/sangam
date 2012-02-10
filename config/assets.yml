@@ -60,6 +60,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/model/services/aw_facebook.js
     - public/javascripts/actwitty/refactor/skpm/model/services/aw_facebook_access.js
     - public/javascripts/actwitty/refactor/skpm/model/services/aw_twitter.js
+    - public/javascripts/actwitty/refactor/skpm/model/dynamics/aw_local_stream_services.js
+    - public/javascripts/actwitty/refactor/skpm/model/dynamics/aw_local_stream.js
     - public/javascripts/actwitty/refactor/skpm/model/auth/aw_twitter.js
     - public/javascripts/actwitty/refactor/skpm/model/auth/sha1.js
     - public/javascripts/actwitty/refactor/skpm/model/auth/oauth.js

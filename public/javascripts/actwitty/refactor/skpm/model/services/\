@@ -55,16 +55,15 @@ function aw_api_facebook_get_profile(fn_cb){
                                                                       aw_api_facebook_get_visited_user_id());
 
 
-   var profile_json={};
    $.jsonp({
             url: url,
             timeout: 10000,
             cache: true,
-            success:
-                function(data) {
-        
+            function(json) {
+              //    aw_lib_console_log("DEBUG", "response:aw_api_facebook_get_profile : " + JSON.stringify(data));
                 aw_api_cache_add_service_cache_info("facebook", "static_profile", data);
 
+                var profile_json={};
 
 
                 if ( data.name )
@@ -113,12 +112,12 @@ function aw_api_facebook_get_profile(fn_cb){
                 profile_json['image'] = "http://graph.facebook.com/" + aw_api_facebook_get_visited_user_id() + "/picture?type=large";
                 
                 
-               
-          },
-          complete:
-            function(xOptions, textStatus) {
-               fn_cb("facebook", profile_json, 1);
-            }
+                fn_cb("facebook", profile_json, 1);
+                        },
+                        complete:
+                          function(xOptions, textStatus) {
+
+              }
     });
 
 
@@ -398,31 +397,26 @@ function aw_api_facebook_get_feeds(feed_type, fn_cb){
                                                               aw_js_global_fb_access["token"]).
                                                           replace("{FB_USER_ID}",
                                                               aw_api_facebook_get_visited_user_id());
-
-
+  var timer = window.setTimeout(function(){
+                                            aw_lib_console_log("WARN", "response failed:aw_api_facebook_get_feeds : " + feed_type);
+                                            fn_cb("facebook", [], 2);
+                                          }, 15000);
+  $.getJSON(url,function(fb_data) {
+    window.clearTimeout(timer);
+    aw_lib_console_log("DEBUG", "response:aw_api_facebook_get_feeds : " + feed_type);
+    aw_api_cache_add_service_cache_info("facebook", feed_type, fb_data);
     var data_arr = [];
-    $.jsonp({
-            url: url,
-            timeout: 10000,
-            cache: true,
-            success:
-                function(fb_data) {
-                  aw_lib_console_log("DEBUG", "response:aw_api_facebook_get_feeds : " + feed_type);
-                  aw_api_cache_add_service_cache_info("facebook", feed_type, fb_data);
-                  if(fb_data.data){
-                    $.each(fb_data.data, function(key,post){
-                      var post_json = aw_api_model_facebook_translate_post_to_aw_post(post);
-                      data_arr.push(post_json);
-                      /* handle cases for missing images */
-                    });
-                  }
-                },
-            complete:
-                function(fb_data) {
-                     fn_cb("facebook", data_arr, 1);
-                }
+    if(fb_data.data){
+      $.each(fb_data.data, function(key,post){
+        var post_json = aw_api_model_facebook_translate_post_to_aw_post(post);
+        data_arr.push(post_json);
+        /* handle cases for missing images */
+      });
+     }
+     fn_cb("facebook", data_arr, 1);
     });
-   
+
+    
 }
 
 /*****************************************************/
@@ -447,12 +441,13 @@ function aw_api_facebook_get_post_data_for_list_of_ids(id_list_str, fn_cb, cb_ar
             success: 
                 function(json) {
                   id_list_data = json;
+                  alert(JSON.stringify(id_list_data));
                 }, 
             complete:
                 function(xOptions, textStatus) {
                   var translated_data_array=[];
-                  if( id_list_data){
-                    $.each( id_list_data, function ( key, post_data){
+                  if( id_list_data.data && id_list_data.data.length){
+                    $.each( id_list_data.data, function ( key, post_data){
                       translated_data_array.push(aw_api_model_facebook_translate_post_to_aw_post(post_data));
                     });
                   }

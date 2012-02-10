@@ -806,30 +806,56 @@ class HomeController < ApplicationController
   def get_streams
     Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
     if user_signed_in?
-      if params[:page_type].blank?
-        params[:page_type] = 1
-      else
-        params[:page_type] = Integer(params[:page_type])
-      end
-      if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
 
+      if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
         params[:user_id]=Integer(params[:user_id])
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of current users")
       else
-
         params[:user_id]=Integer(params[:user_id])
-
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of other users")
-
       end
-        Rails.logger.debug("[CNTRL][HOME][GET STREAMS] Calling model api for #{params}")
-        response_json=current_user.get_stream(params)
-        Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
-        if request.xhr?
-          Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
-          expires_in 10.minutes
-          render :json => response_json, :status => 200
+
+      if !params[:document].nil? and !params[:document][:all].nil?
+        if params[:document][:all] == "true"
+          params[:document][:all] = true
+        else
+          params[:document][:all] = false          
         end
+      end      
+
+
+      if !params[:location].nil? and !params[:location][:all].nil?
+        if params[:location][:all] == "true"
+          params[:location][:all] = true
+        else
+          params[:location][:all] = false          
+        end
+      end      
+
+      if !params[:entity].nil? and !params[:entity][:all].nil?
+        if params[:entity][:all] == "true"
+          params[:entity][:all] = true
+        else
+          params[:entity][:all] = false          
+        end
+      end      
+
+      if !params[:document].nil? and !params[:document][:all].nil?
+        if params[:document][:all] == "true"
+          params[:document][:all] = true
+        else
+          params[:document][:all] = false          
+        end
+      end      
+
+      Rails.logger.debug("[CNTRL][HOME][GET STREAMS] Calling model api for #{params}")
+      response_json=current_user.get_stream(params)
+      Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
+        expires_in 10.minutes
+        render :json => response_json, :status => 200
+      end
 
     else
       Rails.logger.error("[CNTRL][HOME][GET STREAMS] Get summary failed as user is not signed in")
@@ -843,11 +869,7 @@ class HomeController < ApplicationController
    def get_summary
     Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
-      if params[:page_type].blank?
-        params[:page_type] = 1
-      else
-        params[:page_type] = Integer(params[:page_type])
-      end
+       
        params[:user_id]=Integer(params[:user_id])
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params} #{current_user}")
        response_json=current_user.get_summary({:user_id => params[:user_id]})

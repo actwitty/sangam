@@ -93,7 +93,7 @@ function aw_api_model_interests_server_request(){
 
             url: "/home/get_summary.json",
             type: 'GET',
-            data: { id :  aw_js_global_visited_user_credentials.id },
+            data: { user_id :  aw_js_global_visited_user_credentials.id },
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
@@ -130,13 +130,15 @@ function aw_api_model_interests_server_request(){
                     if( summary.analytics_snapshot.posts.total ){
                       interest_data.post = summary.analytics_snapshot.posts.total; 
                     }
-
+                    
                     $.each(summary.analytics_snapshot.posts, function(service_name, post_count){
-                      if( key != "total" ){
+
+                      if( service_name != "total" ){
                         var service = { 
                                         name: service_name,
                                         share: post_count/interest_data.post
                                       };
+                        interest_data.services.push(service);
                       }
                       
 
@@ -198,8 +200,9 @@ function aw_api_model_interests_server_request(){
  */
 function aw_api_model_interests_initialize(){
   /* make a get call to server */
-
-  aw_api_controller_render_interests(aw_interest_test_json);
+  aw_api_model_interests_server_request();
+  //TEST STUB
+  //aw_api_controller_render_interests(aw_interest_test_json);
 }
 
 

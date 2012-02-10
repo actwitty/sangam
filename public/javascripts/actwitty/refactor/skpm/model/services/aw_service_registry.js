@@ -41,8 +41,10 @@ var aw_global_services_api_registry = {
                                                       contacts:       function(fn_cb){
                                                                                   aw_api_twitter_get_contacts(fn_cb);                                                                                                                              },
                                                       images:         function(fn_cb){
+                                                                          aw_api_twitter_get_images(fn_cb);
                                                                       },
                                                       videos:         function(fn_cb){
+                                                                            aw_api_twitter_get_videos(fn_cb);
                                                                       },
                                                       locations:      function(fn_cb){
                                                                                   aw_api_twitter_get_locations(fn_cb);
