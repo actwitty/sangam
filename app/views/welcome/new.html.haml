@@ -3,7 +3,8 @@
     .aw_home_top_nav.top_nav_active
       %h3 ABOUT
     .aw_home_top_nav
-      %h3 BLOG
+      %a{:href=>"http://act-witty.blogspot.in/", :target => "_blank"}
+        %h3 BLOG
   %img{:src => "/images/actwitty/refactor/aw_lpm/main_header.png"}
     %h3#aw_home_main_desc
       RE-DISCOVER FOOTPRINT OF SOCIAL ACTIVITES
@@ -18,6 +19,11 @@
         %a{:href => "/users/auth/twitter"}
           %img{:src => "/images/actwitty/refactor/aw_lpm/tw_connect.png"}
     #aw_home_footer
-
+    #aw_home_follow_us
+      %a{:href=>"http://www.facebook.com/profile.php?id=100002598011158",:target => "_blank"}
+        %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
+      %a{:href=>"http://twitter.com/ActwittyTweets"}
+        %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
+      %span follow us on
 %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
 
