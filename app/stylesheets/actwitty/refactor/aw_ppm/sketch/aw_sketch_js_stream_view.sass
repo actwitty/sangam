@@ -1,19 +1,61 @@
+#aw_stream_container_header
+  width: 100%
+  height: 50px
+  background: #f4f4f4
+  border-radius: 0 5px 0 0
+
+#aw_stream_container_header_label
+  font-size: 24px
+  font-family: "RobotoBold"
+  color: #333
+  float: left
+  border: 0px solid red
+  margin-left: 15px
+  margin-top: 12px
+  vertical-align: middle
+
+
+#aw_stream_container_close
+  width: 60px
+  height: 30px
+  border: 0px solid red
+  float: right
+  margin-top: 15px
+  color: #999 !important
+  &:hover 
+    color: #333
+  a
+    text-decoration: none
+    color: #999
+    &:hover
+      color: #333
+
+
 .aw_stream_entry_container
   position: relative
-  border-bottom: 1px solid #EBEBEB
+  border-bottom: 2px dotted #100f1a
   min-height: 60px
   clear: both
   display: block
   outline: none
   margin-top: -1px
   border-top: 1px solid transparent
-  padding: 3px
+  padding: 5px 3px 5px 3px
 .aw_stream_originator_img
   float: left
-  height: 32px
-  overflow: hidden
-  width: 32px
   margin-top: 3px
+  a
+    text-decoration: none
+  img
+    height: 32px
+    overflow: hidden
+    width: 32px  
+    vertical-align: middle
+    margin-right: 4px
+  span
+    font-size: 13px
+    font-weight: bold
+    color: #333
 
 .aw_stream_src_img
   float: right
@@ -34,7 +76,7 @@
   span
     color: #333
 .aw_stream_content
-  margin-left: 2px
+  margin-left: 10px
   margin-right: 18px
   min-height: 48px
   width: 290px
@@ -46,7 +88,7 @@
     text-decoration:  none
     font-weight: bold
     color: #333
-    font-size: 12
+    font-size: 15px
     padding-right: 2px
     &:hover
       cursor: pointer
@@ -56,7 +98,8 @@
     text-decoration:  none
     font-weight: normal
     color: #777
-    font-size: 11px
+    font-size: 15px
+    font-weight: bold
     &:hover
       cursor: pointer
 
@@ -64,10 +107,10 @@
     padding-top: 1px
     min-height: 20px
     p
-      font-family: Arial,"Helvetica Neue",sans-serif
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif
       width: 100%
       line-height: 18px
-      font-size: 12px
+      font-size: 13px
       word-wrap: break-word
       .aw_text_mention
         color: #0099B9
@@ -80,10 +123,9 @@
     height: auto
     display: inline-block
     .aw_attachment_title
-      font-family: Arial,"Helvetica Neue",sans-serif
-      color: #0099B9
-      font-weight: normal
-      font-size: 12px
+      font-family: "RobotoBold"
+      color: #151D21
+      font-size: 18px
       text-decoration: none
       &:hover
         cursor: pointer
@@ -92,8 +134,8 @@
         padding-top: 2px
         width: 100%
         height: auto
-        font-family: Arial,"Helvetica Neue",sans-serif
-        font-size: 12px
+        font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+        font-size: 13px
         line-height: 18px
         color: #333        
         word-wrap: break-word
@@ -104,15 +146,16 @@
     .aw_attachment_caption
       width: 100%
       height: auto
-      font-family: Arial,"Helvetica Neue",sans-serif
-      font-size: 12px
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif
+      font-size: 13px
       line-height: 18px
       color: #333
+      clear: left
     .aw_attachment_embed
       display: block
       width: 100%
       height: auto
-      font-family: Arial,"Helvetica Neue",sans-serif
+      font-family: "lucida grande",tahoma,verdana,arial,sans-serif
       font-size: 12px
 
 

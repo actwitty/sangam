@@ -20,7 +20,7 @@
   -moz-box-shadow: 0 0 5px #888888;
   -webkit-box-shadow: 0 0 5px #888888;
   box-shadow: 0 0 5px #888888;
-  z-index: 1000;
+  z-index: 2000;
   display: none;
   background: #e95c41;
   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
@@ -75,8 +75,9 @@
   height: 30px;
   border: 0px solid green;
   margin-top: 20px;
+  margin-left: 40px;
 }
-/* line 60, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 61, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 #aw_common_feedback_input_elem ul li h5 {
   font-size: 12px;
   vertical-align: middle;
@@ -85,7 +86,7 @@
   color: #333333;
 }
 
-/* line 69, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 70, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 .aw_common_feedback_actor_name input, .aw_common_feedback_actor_email input {
   border: 1px solid #dddddd;
   height: 25px;
@@ -96,17 +97,17 @@
   box-shadow: 0 0 8px #dddddd;
 }
 
-/* line 79, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 80, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 .aw_common_feedback_actor_text {
   height: 100px;
 }
-/* line 81, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 82, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 .aw_common_feedback_actor_text h5 {
   font-size: 13px;
   color: #0066cc;
   margin: 0;
 }
-/* line 85, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 86, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 .aw_common_feedback_actor_text textarea {
   height: 100px;
   width: 260px;
@@ -119,7 +120,7 @@
   font-size: 12px;
 }
 
-/* line 96, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 97, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 #aw_feedback_submit {
   /*height: 40px */
   padding: 5px;
@@ -131,7 +132,7 @@
   right: 43px;
 }
 
-/* line 106, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
+/* line 107, ../../../../../app/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.sass */
 #aw_common_feedback_close {
   position: absolute;
   bottom: 15px;

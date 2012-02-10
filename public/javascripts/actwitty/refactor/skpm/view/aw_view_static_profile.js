@@ -9,7 +9,7 @@ function aw_api_view_static_profile_render(data){
       var location_html = "", work_html ="", study_html = "";
       if( data.location && data.location.length > 0){
         location_html = '<div class="aw_dyn_static_profile_details_element" >' +
-                          '<h3> Lives: </h3>' +
+                          '<h3> Lives in: </h3>' +
                           '<span>' + data.location +  '</span>' +
                         '</div>';
 
@@ -17,7 +17,7 @@ function aw_api_view_static_profile_render(data){
 
       if( data.work && data.work.length > 0){
         work_html = '<div class="aw_dyn_static_profile_details_element" >' +
-                          '<h3> Work : </h3>' +
+                          '<h3> Works at : </h3>' +
                           '<span>' + data.work +  '</span>' +
                         '</div>';
 
@@ -25,7 +25,7 @@ function aw_api_view_static_profile_render(data){
 
        if( data.study && data.study.length > 0){
         study_html = '<div class="aw_dyn_static_profile_details_element" >' +
-                         '<h3> Study: </h3>' +
+                         '<h3> Studied from: </h3>' +
                           '<span>' + data.study +  '</span>' +
                         '</div>';
 

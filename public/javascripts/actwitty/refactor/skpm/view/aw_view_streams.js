@@ -177,6 +177,7 @@ function aw_view_stream_get_entry_html(entry){
                   '<a href="' + entry.originator.url + '">' +
                     '<img src="' +  entry.originator.image  + '" width=100% height=100% />' +
                   '</a>' +
+                  '<span>'+ aw_view_stream_get_display_name(entry) + '</span>' +
                 '</div>' +
                 '<div class="aw_stream_src_img" >' +
                   '<img src="' + social_media_sources[entry.service.name] + '" width=16px height=16px />' +
@@ -185,7 +186,6 @@ function aw_view_stream_get_entry_html(entry){
                     '<abbr class="aw_js_timeago" title="' + entry.timestamp + '"></abbr>' +
                 '</div>' +
                 '<div class="aw_stream_content" >' +
-                  aw_view_stream_get_display_name(entry) +
                   aw_view_stream_get_text_html(entry) +
                   aw_view_stream_get_attachments_html(entry) +
                   
@@ -205,6 +205,7 @@ function aw_api_view_stream_render(data){
   });
   
   $("#aw_js_stream_entries").html(html);
+  
   $("abbr.aw_js_timeago").timeago();
   /*$(".aw_stream_oembed").oembed(null, 
                                 {
@@ -215,3 +216,24 @@ function aw_api_view_stream_render(data){
 }
 
 
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_stream_header_render(data){
+ var html = "Wall Feed";
+ 
+ $("#aw_stream_container_header_label").html(data);
+
+
+}
+
+
+
+$(document).ready(function() {
+ 
+  //$(".aw_stream_entries").jScrollPane();
+  //$(".aw_stream_entries").tinyscrollbar();
+  
+});

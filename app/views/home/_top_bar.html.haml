@@ -3,11 +3,8 @@
   %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_ppm_logo_small_topbar.png"}
   #awppm_header_user_bar
     -if user_signed_in? && !if_ghost_user?
-      %a#awppm_header_user_info{:href => "/home/sketch?id=#{@current_user.id}"} 
-        %img{:src =>"#{@current_user.photo_small_url}", :width=>"30", :height=>"30"}
-        %span #{@current_user.full_name}
+      
       %a#awppm_header_user_logout{:href => "/users/sign_out"} Logout
-      %a#awppm_header_user_settings{:href => "/home/settings"} Settings
     -elsif if_ghost_user?
       %a#awppm_header_user_info{:href => "/"}
         %img{:src => "/images/actwitty/refactor/aw_ppm/common/User.png"}

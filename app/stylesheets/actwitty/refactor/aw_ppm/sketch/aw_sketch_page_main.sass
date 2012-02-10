@@ -36,7 +36,9 @@
   font-weight: normal
   font-style: normal
 
-
+@font-face 
+  font-family: 'RobotoBold'
+  src: url('/webfont/roboto/Roboto-Bold.ttf')
 
 
 @mixin aw_infographics_boxes_width
@@ -160,7 +162,7 @@ body
           font-family: 'RobotoRegular'
           letter-spacing: 1px
           background-color: white
-          font-size:  20px
+          font-size:  24px
           padding-right: 10px
           position: absolute
           top: 0px
@@ -263,7 +265,7 @@ body
 
   h2
     color: #22bdc1
-    font-size: 40px
+    font-size: 44px
     font-family: 'RobotoRegular'
     letter-spacing: 1px
     text-transform: uppercase
@@ -287,14 +289,31 @@ body
   font-family: Georgia,serif
   color: #da1c5c
   -webkit-font-smoothing: antialiased
+  border: 1px solid red
 
 .aw_profile_details
   display: block
-  margin-top: 10px
+  margin-top: 20px
   width: 400px
   height: auto
-  margin-left: 125px
+  margin-left: 10px
   border: 0px solid green
+  clear: left
+
+.aw_dyn_static_profile_details_element
+  h3
+    color: #CD3333
+    font-family: 'RobotoBold'
+    font-weight: bold
+    size: 20px
+  span
+    color: #333
+    font-family: 'RobotoRegular'
+    font-weight: bold
+    size: 18px
+    
+
+
 /* Friends section
 .aw_friends_services_box
   width: 100%

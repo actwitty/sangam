@@ -12,8 +12,10 @@ function aw_api_view_images_render(data){
 
   $.each(data, function(key, image_json){
 
-    var img_html =  '<div class="aw_single_img_box" >' +
-                      '<img src="' + image_json.url + '" width="100%" />' +
+    var img_html =  '<div class="aw_single_img_box"  >' +
+                      '<a rel="example_group" href="'+ image_json.url +'">' +
+                        '<img src="' + image_json.url + '" width="100%" />' +
+                      '</a>'+
                     '</div>';
     if(count%3 == 0){
         html_col_1 = html_col_1 + img_html;
@@ -33,4 +35,14 @@ function aw_api_view_images_render(data){
               html_col_3 +
           '</div>';
   $("#aw_js_images_box").html(html);
+  
+	
+  $("a[rel=example_group]").fancybox({
+		'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
+		'titlePosition' 	: 'over',
+		'titleFormat'       : function(title, currentArray, currentIndex, currentOpts) {
+		    return '<span id="fancybox-title-over">Image ' +  (currentIndex + 1) + ' / ' + currentArray.length + ' ' + title + '</span>';
+	  }
+  });
 }

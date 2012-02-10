@@ -40,9 +40,23 @@
 
 
 /=render :partial => "home/top_bar"
-/#aw_top_bar
-/  #top_bar_container
-/    #aw_top_bar_bkg
+#aw_top_bar
+  #top_bar_container
+    #aw_top_bar_bkg
+      #aw_top_bar_box
+        %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_top_bar.png"}
+        #awppm_header_search_edit_box
+          %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
+        #aw_js_ppm_search_box.awppm_header_search_box
+        -if user_signed_in? && !if_ghost_user?
+          %a#awppm_header_user_logout{:href => "/users/sign_out"}
+            %img{:src=>"/images/actwitty/refactor/aw_ppm/common/aw_logout.png"}
+        -elsif if_ghost_user?
+          %a#awppm_header_user_info{:href => "/"}
+            %img{:src => "/images/actwitty/refactor/aw_ppm/common/User.png"}
+          %a#awppm_header_user_logout{:href => "/welcome/new"} Log-in
+
+
 
 #aw_page_wrapper
   #aw_page_container
@@ -137,6 +151,13 @@
     #aw_sidebox_outer_container
       .aw_sidebox_shell
         .aw_stream_container{:style=> "display: block; left: 530px; -webkit-transition-property: none; min-height: 100%; width: 380px;" }
+          #aw_stream_container_header
+            #aw_stream_container_header_label
+              Wall Feed
+            #aw_stream_container_close
+              %a{:href=>"#"} close 
+              %span x
+              
           #aw_js_stream_entries.aw_stream_entries
               
 

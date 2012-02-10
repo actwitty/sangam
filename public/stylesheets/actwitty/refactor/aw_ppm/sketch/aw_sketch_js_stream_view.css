@@ -1,26 +1,84 @@
 /* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_header {
+  width: 100%;
+  height: 50px;
+  background: #f4f4f4;
+  border-radius: 0 5px 0 0;
+}
+
+/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_header_label {
+  font-size: 24px;
+  font-family: "RobotoBold";
+  color: #333333;
+  float: left;
+  border: 0px solid red;
+  margin-left: 15px;
+  margin-top: 12px;
+  vertical-align: middle;
+}
+
+/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close {
+  width: 60px;
+  height: 30px;
+  border: 0px solid red;
+  float: right;
+  margin-top: 15px;
+  color: #999999 !important;
+}
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close:hover {
+  color: #333333;
+}
+/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close a {
+  text-decoration: none;
+  color: #999999;
+}
+/* line 30, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close a:hover {
+  color: #333333;
+}
+
+/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_entry_container {
   position: relative;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 2px dotted #100f1a;
   min-height: 60px;
   clear: both;
   display: block;
   outline: none;
   margin-top: -1px;
   border-top: 1px solid transparent;
-  padding: 3px;
+  padding: 5px 3px 5px 3px;
 }
 
-/* line 11, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_originator_img {
   float: left;
+  margin-top: 3px;
+}
+/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img a {
+  text-decoration: none;
+}
+/* line 49, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img img {
   height: 32px;
   overflow: hidden;
   width: 32px;
-  margin-top: 3px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img span {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333333;
 }
 
-/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 60, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_src_img {
   float: right;
   height: 16px;
@@ -28,12 +86,12 @@
   width: 16px;
   margin-top: 3px;
 }
-/* line 24, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_src_img:hover {
   cursor: pointer;
 }
 
-/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 69, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_time_orig {
   float: right;
   height: 16px;
@@ -42,14 +100,14 @@
   padding: 2px;
   overflow: hidden;
 }
-/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_time_orig span {
   color: #333333;
 }
 
-/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content {
-  margin-left: 2px;
+  margin-left: 10px;
   margin-right: 18px;
   min-height: 48px;
   width: 290px;
@@ -57,101 +115,102 @@
   display: inline-block;
   border: 0px solid green;
 }
-/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_screen_name {
   text-decoration: none;
   font-weight: bold;
   color: #333333;
-  font-size: 12;
+  font-size: 15px;
   padding-right: 2px;
 }
-/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_screen_name:hover {
   cursor: pointer;
 }
-/* line 54, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 96, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_name {
   padding-left: 2px;
   text-decoration: none;
   font-weight: normal;
   color: #777777;
-  font-size: 11px;
+  font-size: 15px;
+  font-weight: bold;
 }
-/* line 60, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_name:hover {
   cursor: pointer;
 }
-/* line 63, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 106, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box {
   padding-top: 1px;
   min-height: 20px;
 }
-/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 109, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box p {
-  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   width: 100%;
   line-height: 18px;
-  font-size: 12px;
+  font-size: 13px;
   word-wrap: break-word;
 }
-/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 115, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box p .aw_text_mention {
   color: #0099b9;
 }
-/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box p .aw_text_mention:hover {
   cursor: pointer;
 }
-/* line 77, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 120, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box {
   margin-top: 2px;
   width: 100%;
   height: auto;
   display: inline-block;
 }
-/* line 82, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_title {
-  font-family: Arial, "Helvetica Neue", sans-serif;
-  color: #0099b9;
-  font-weight: normal;
-  font-size: 12px;
+  font-family: "RobotoBold";
+  color: #151d21;
+  font-size: 18px;
   text-decoration: none;
 }
-/* line 88, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 130, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_title:hover {
   cursor: pointer;
 }
-/* line 91, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph {
   padding-top: 2px;
   width: 100%;
   height: auto;
-  font-family: Arial, "Helvetica Neue", sans-serif;
-  font-size: 12px;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-size: 13px;
   line-height: 18px;
   color: #333333;
   word-wrap: break-word;
 }
-/* line 100, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 142, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph .aw_attachment_image {
   height: auto;
   margin-right: 2px;
   float: left;
 }
-/* line 104, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 146, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_caption {
   width: 100%;
   height: auto;
-  font-family: Arial, "Helvetica Neue", sans-serif;
-  font-size: 12px;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-size: 13px;
   line-height: 18px;
   color: #333333;
+  clear: left;
 }
-/* line 111, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 154, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_embed {
   display: block;
   width: 100%;
   height: auto;
-  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   font-size: 12px;
 }
