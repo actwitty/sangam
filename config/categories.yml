@@ -75,7 +75,7 @@ arts:
   name: arts and design
 places:
   type: /places
-  channel: places_events
+  channel: places
   hierarchy: /
   name: places, travel and events 
 home:

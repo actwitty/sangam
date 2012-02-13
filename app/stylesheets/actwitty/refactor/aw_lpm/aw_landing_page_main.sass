@@ -6,6 +6,10 @@
  *Author URI: http://www.actwitty.com
 
 
+@font-face
+  font-family: 'League Gothic'
+  src: url('/webfont/leaguegothic/League_Gothic-webfont.eot')
+  src: local("League Gothic Regular"), local("League Gothic"), url("/webfont/leaguegothic/LeagueGothic.woff") format("woff"), url("/webfont/leaguegothic/LeagueGothic.otf") format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg")
 
 body
   margin: 0
@@ -36,8 +40,12 @@ body
   margin-right: 20px
   border-radius: 0 8px 0 8px
   border: 1px solid #ddd
-  background: #f53502
-  color: #f4f4f4
+  background: #88caed
+  color: #000
+  cursor: pointer
+  a
+    text-decoration: none
+    color: #000
 
 div
   &.top_nav_active
@@ -82,3 +90,87 @@ div
   width: 100%
   height: 25px
   background-image: url('/images/actwitty/refactor/aw_lpm/footer.gif')
+
+#aw_home_follow_us
+  width: 100%
+  height: 25px
+  .aw_like_us
+    float: left
+    margin-left: 5px
+  a
+    text-decoration: none
+  span
+    float: right
+    font-size: 12px
+    font-weight: bold
+    color: #333
+    margin-top: 4px
+  img
+    float: right
+    vertical-align: middle
+    margin-left: 3px
+    padding: 0
+
+
+
+.aw_home_about_full_width_box
+  width: 600px
+  height: 100px
+  text-align: center
+  margin-top: 5px
+  margin-bottom: 5px
+  margin-left: 150px
+  span
+    font-weight: normal
+    font-style: italic
+    font-size: 25px
+    color: #777
+
+
+#aw_home_about_box
+  width: 100%
+  height: 300px
+  display: block
+
+
+
+
+  .aw_home_about_vertical_box
+    width: 47%
+    float: left
+    padding: 10px
+    display: inline-block
+    border: 0px dotted #ccc
+    .aw_home_about_name_box
+      width: 100%
+      height: auto
+      overflow: hidden
+      margin-top: 5px
+
+      span
+        font-family: League Gothic
+        font-weight: normal
+        font-size: 64px
+        color: #000
+    .aw_home_about_services
+      width: 100%
+      height: auto
+      overflow: hidden
+      margin-top: 2px
+      .aw_home_about_services_link
+
+        height: auto
+        width: auto
+        display: inline-block
+        a
+          margin: 0px
+          padding: 0px
+          img
+            margin: 0px
+
+
+
+
+
+
+

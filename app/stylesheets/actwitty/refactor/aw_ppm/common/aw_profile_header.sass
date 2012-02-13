@@ -5,28 +5,36 @@ $aw_var_default_font_size: 12px
 $aw_var_default_color: #CCCCCC
 
 
+#aw_top_bar_box
+  width: 940px
+  height: 100%
+  margin: 0 auto
+  border: 0px solid yellow
+
+
 #awppm_header_box
   position: relative
   margin: 0 auto 0
   margin-bottom: 20px
   display: block
   width: 990px
-  /*height: 45px
-  height: 70px
+  height: 45px
   border: $aw_var_default_border_width solid red
   position: relative
 
 .awppm_profile_logo
   position: relative
   float: left
-  margin-top: 10px
-  margin-left: 0px
+  margin-top: 3px
+  margin-left: 10px
+
+
 
 
 #awppm_header_search_edit_box
   position: relative
-  margin-top: 6px
-  margin-left: 70px
+  margin-top: 5px
+  margin-left: 130px
   float: left
   height: 25px
   width: 280px
@@ -35,7 +43,6 @@ $aw_var_default_color: #CCCCCC
     height: 25px
     width: 280px
     font-size: 14px
-    margin-top: 15px
     border-radius: 3px
     background: rgb(255,255,255)
     background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%)
@@ -45,19 +52,6 @@ $aw_var_default_color: #CCCCCC
     background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
     background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%)
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 )
-
-
-.awppm_search_enable
-  position: relative
-  float: left
-  margin-top: 20px
-  margin-left: 2px
-  width: 30px
-  height: 30px
-  background-image: url("/images/actwitty/refactor/aw_ppm/common/search_inactive.png")
-  &:hover 
-    background-image: url("/images/actwitty/refactor/aw_ppm/common/search_hover.png")
-    cursor: pointer
 
 
 .awppm_header_search_box
@@ -73,20 +67,6 @@ $aw_var_default_color: #CCCCCC
   background-color: #363436
   background: -moz-linear-gradient(center top, #f5f5f5 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent
 
-  #awppm_header_search_options
-    input
-      border: 1px solid #ddd
-      margin-left: 5px
-      width: 15px
-      border-radius: 5px
-      -moz-box-shadow: 0 0 8px #ddd
-      -webkit-box-shadow: 0 0 8px #ddd
-      box-shadow: 0 0 8px #ddd
-    
-    label
-      font-size: 13px
-      &:hover
-        font-weight: bold
  
 
 .awppm_search_autocomplete_box
@@ -158,11 +138,12 @@ $aw_var_default_color: #CCCCCC
 #awppm_header_user_logout    
   text-decoration: none
   float: right
-  color: #333
+  color: #fff
   margin-top: 7px
-  margin-right: 5px
+  margin-right: 25px
+  font-size: 15px
   &:hover
-    color: #b22222
+    color: #fff
     font-weight: bold
     font-size: 15px
 

@@ -1,4 +1,6 @@
+/****************************************************************************/
 /*
+ *
  *
  *
  */
@@ -10,17 +12,19 @@ var mapOptions = {
 
 
 
+/****************************************************************************/
 /*
  *
  *
+ *
  */
-
 function aw_signup_geo_initialize_default_location(default_location){
   if (geocoder == null){
     geocoder = new google.maps.Geocoder();
   }
   geocoder.geocode( {'address': default_location }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
+      aw_get_country_name(results);
       var searchLoc = results[0].geometry.location;
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
@@ -35,7 +39,9 @@ function aw_signup_geo_initialize_default_location(default_location){
   });
 }
 
+/****************************************************************************/
 /*
+ *
  *
  *
  */
@@ -43,15 +49,14 @@ function aw_signup_geo_initialize() {
   google.maps.event.addListener(map, 'click', function(event) {
       var latLng = event.latLng;
       map.setCenter(latLng);
-      //map.setZoom(8);
       if (geocoder == null){
         geocoder = new google.maps.Geocoder();
       }
-      
       if (latLng) {
         geocoder.geocode({'latLng': latLng}, function(results, status) {
           if (status == google.maps.GeocoderStatus.OK) {
             if (results[1]) {
+              aw_get_country_name(results);
               $("#aw_lpm_signup_location_input").val(results[1].formatted_address);
               $("#aw_lpm_signup_location_lat_input").val(results[1].geometry.location.lat());
               $("#aw_lpm_signup_location_long_input").val(results[1].geometry.location.lng());
@@ -64,7 +69,9 @@ function aw_signup_geo_initialize() {
   });
 }
 
+/****************************************************************************/
 /*
+ *
  *
  *
  */
@@ -72,6 +79,7 @@ $(document).ready(function(){
 
     $("#signupbutton").live('click', function() {
       $("#dob_str").val($("#aw_lpm_signup_dob_input").val());
+
       $.ajax({
         url: "/users",
         type: 'POST',
@@ -109,7 +117,7 @@ $(document).ready(function(){
   
 
 });
-
+/****************************************************************************/
 /*
  *
  *
@@ -117,6 +125,43 @@ $(document).ready(function(){
  */
 var map;
 var geocoder;
+/****************************************************************************/
+/*
+ *
+ *
+ *
+ */
+function aw_get_country_name(geocoder_result){
+  var country_name = '';
+  if( geocoder_result && geocoder_result.length){
+    for(var i = 0; i < geocoder_result.length; i++) {
+      if( geocoder_result[i] && geocoder_result[i].address_components && geocoder_result[i].address_components.length){
+        for(var j = 0; j < geocoder_result[i].address_components.length; j++) {
+          if( geocoder_result[i].address_components[j] && 
+              geocoder_result[i].address_components[j].short_name && 
+              geocoder_result[i].address_components[j].types){
+              for(var k = 0; k < geocoder_result[i].address_components[j].types.length; k++) {
+                if ( geocoder_result[i].address_components[j].types[k] == 'country' ){
+                  country_name = geocoder_result[i].address_components[j].short_name;
+                  $("#aw_js_lpm_country_code").val(country_name);
+                  return false;
+                }
+            }
+          }
+        }
+      }
+      return false;
+    }
+  }
+}
+
+
+/****************************************************************************/
+/*
+ *
+ *
+ *
+ */
 function aw_api_lpm_initialize_sign_up_page(){
   if( $("#aw_lpm_signup_location_input").length){
     map = new google.maps.Map(document.getElementById("aw_lpm_map_selector"),mapOptions);
@@ -148,6 +193,7 @@ function aw_api_lpm_initialize_sign_up_page(){
             geocoder.geocode({'latLng': latlng}, function(results1, status1) {
               if (status1 == google.maps.GeocoderStatus.OK) {
                 if (results1[1]) {
+                  aw_get_country_name(results1);
                   response($.map(results1, function(loc) {
                     return {
                       label  : loc.formatted_address,
@@ -175,8 +221,6 @@ function aw_api_lpm_initialize_sign_up_page(){
       }
      }
   });
-
-
 
 }
 

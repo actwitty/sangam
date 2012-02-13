@@ -1,0 +1,132 @@
+
+a.aw_sketch_timeline_links
+  color: #ffffcc
+  text-decoration: none
+  -webkit-transition: 0.5s
+  -moz-transition: 0.5s
+  -o-transition: 0.5s
+  -ms-transition: 0.5s
+  transition: 0.5s
+  font-family: Georgia, serif
+  font-size: 14px
+  &:hover, &.selected
+    color: #777
+
+#aw_sketch_timeline
+  width: 520px
+  height: auto
+  overflow: hidden
+  margin: auto
+  position: relative
+  background: url('/images/actwitty/refactor/aw_sketch/timeline/dot.gif') left 45px repeat-x
+
+  ul.aw_sketch_timeline_dates
+    width: 520px
+    height: 60px
+    overflow: hidden
+    li
+      list-style: none
+      float: left
+      width: 140px
+      height: 50px
+      font-size: 18px
+      text-align: center
+      background: url('/images/actwitty/refactor/aw_sketch/timeline/biggerdot.png') center bottom no-repeat
+      a
+        line-height: 18px
+    .selected
+      font-size: 18px
+
+  ul.aw_sketch_timeline_details
+    width: 520px
+    height: auto
+    overflow: hidden
+    li
+      width: 520px
+      height: auto
+      list-style: none
+      float: left
+
+      .aw_sketch_timeline_week_snapshot_box
+        width: 425px
+        height: auto
+        margin-top: 15px
+        padding: 5px
+        display: block
+        margin-left: 40px
+        .aw_sketch_timeline_single_topic_box
+          width: 100%
+          height: 30px
+          display: block
+          float: left
+          overflow: hidden
+          img
+            float: left
+            margin-left: 5px
+            margin-top: 2px
+          .aw_label_box
+            float: left
+            margin-left: 10px
+            display: inline-block
+            height: 100%
+            width: 120px
+            overflow: hidden
+            padding-top: 5px
+            span
+              font-size: 18px
+              font-family: 'League Gothic'
+              letter-spacing: 1px
+              color: #777
+              text-transform: uppercase
+          .aw_graph_box
+            float: left
+            height: 15px
+            margin-top: 6px
+            max-width: 200px
+            background-color: #25a0da
+        .aw_graph_axis_box
+          margin-left: 150px
+          margin-top: 2px
+          width: 230px
+          height: 25px
+          display: block
+          float: left
+          border-top: 1px dotted #777
+          span.left_limit
+            float:left
+            font-size: 11px
+            color: #777
+          span.mid_limit
+            float: right
+            margin-right: 50px
+            font-size: 11px
+            color: #777
+          span.right_limit
+            float: right
+            font-size: 11px
+            color: #777
+
+
+              
+
+  .aw_sketch_timeline_prev, .aw_sketch_timeline_next
+    position: absolute
+    top: 0
+    font-size: 70px
+    top: 120px
+    width: 35px
+    height: 35px
+    background-repeat: no-repeat
+    text-indent: -9999px
+    overflow: hidden
+
+  .aw_sketch_timeline_next
+    right: 0
+    background-image: url('/images/actwitty/refactor/aw_sketch/timeline/right.png')
+
+  .aw_sketch_timeline_prev
+    left: 0
+    background-image: url('/images/actwitty/refactor/aw_sketch/timeline/left.png')
+
+  .aw_sketch_timeline_next.disabled, .aw_sketch_timeline_prev.disabled
+    opacity: 0.2

@@ -17,7 +17,8 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [:show, :streams, :get_single_activity, :activity, 
+  GET_FUNCTIONS_ARRAY= [:show, :sketch, :streams, 
+                        :get_single_activity, :activity, 
                         :mention_page, :location_page, :channel_page, 
                         :update_social_media_share, :get_summary,
                         :get_entities,:get_channels, :get_locations,
@@ -227,6 +228,69 @@ class HomeController < ApplicationController
   # = https://x.com/y/1?page=3
   def current_url(overwrite={})
     url_for :only_path => false, :params => params.merge(overwrite)
+  end
+  ###################################################################################
+  def sketch
+    @user=nil
+    @page_mode="profile_sketch_page"
+    Rails.logger.info("[CNTRL] [HOME] [SKETCH] Home Sketch request with #{params}")
+    if user_signed_in?
+      Rails.logger.info("[CNTRL] [HOME] [SKETCH] User signed in #{current_user.id} #{current_user.full_name}")
+    else
+      Rails.logger.info("[CNTRL] [HOME] [SKETCH] User not signed in")
+    end
+
+
+    #if no id mentioned or user not found try to fall back to current user
+    #if user not logged in then go to sign in page
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as no id mentioned")
+      else
+        Rails.logger.info("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
+      if @user.nil?
+        if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+          @user=current_user
+          Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as incorrect id mentioned")
+        else
+          Rails.logger.info("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as incorrect id mentioned")
+          redirect_to :controller => "welcome", :action => "new"
+        end
+      end
+    end
+   @fb_access = {}
+   @tw_access = {}
+   if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+
+      authentications = Authentication.find_all_by_user_id(current_user.id)
+      Rails.logger.info("[CNTRL] [HOME] [SKETCH] Authentications #{authentications.inspect}")
+      authentications.each do |authentication|
+        if authentication.provider == "facebook"
+            @fb_access[:token] = authentication.token                         
+        elsif authentication.provider == "twitter"
+            @tw_access[:token] =  authentication.token
+            @tw_access[:secret] =  authentication.secret
+            @tw_access[:consumer_key] =  AppConstants.twitter_consumer_key
+            @tw_access[:consumer_secret] = AppConstants.twitter_consumer_secret
+            
+        end
+       end
+    end
+
+    # Check if uninvited user
+   invite_status = current_user.get_invited_status
+    unless invite_status 
+      redirect_to :controller => "home", :action => "thanks"
+    end
+
+    @service_uids = @user.get_service_user_ids()
+
   end
   ###################################################################################
   def show
@@ -742,30 +806,56 @@ class HomeController < ApplicationController
   def get_streams
     Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
     if user_signed_in?
-      if params[:page_type].blank?
-        params[:page_type] = 1
-      else
-        params[:page_type] = Integer(params[:page_type])
-      end
-      if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
 
+      if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
         params[:user_id]=Integer(params[:user_id])
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of current users")
       else
-
         params[:user_id]=Integer(params[:user_id])
-
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of other users")
-
       end
-        Rails.logger.debug("[CNTRL][HOME][GET STREAMS] Calling model api for #{params}")
-        response_json=current_user.get_stream(params)
-        Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
-        if request.xhr?
-          Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
-          expires_in 10.minutes
-          render :json => response_json, :status => 200
+
+      if !params[:document].nil? and !params[:document][:all].nil?
+        if params[:document][:all] == "true"
+          params[:document][:all] = true
+        else
+          params[:document][:all] = false          
         end
+      end      
+
+
+      if !params[:location].nil? and !params[:location][:all].nil?
+        if params[:location][:all] == "true"
+          params[:location][:all] = true
+        else
+          params[:location][:all] = false          
+        end
+      end      
+
+      if !params[:entity].nil? and !params[:entity][:all].nil?
+        if params[:entity][:all] == "true"
+          params[:entity][:all] = true
+        else
+          params[:entity][:all] = false          
+        end
+      end      
+
+      if !params[:document].nil? and !params[:document][:all].nil?
+        if params[:document][:all] == "true"
+          params[:document][:all] = true
+        else
+          params[:document][:all] = false          
+        end
+      end      
+
+      Rails.logger.debug("[CNTRL][HOME][GET STREAMS] Calling model api for #{params}")
+      response_json=current_user.get_stream(params)
+      Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
+      if request.xhr?
+        Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
+        expires_in 10.minutes
+        render :json => response_json, :status => 200
+      end
 
     else
       Rails.logger.error("[CNTRL][HOME][GET STREAMS] Get summary failed as user is not signed in")
@@ -779,11 +869,7 @@ class HomeController < ApplicationController
    def get_summary
     Rails.logger.info("[CNTRL][HOME][GET SUMMARY] user get summary requested with params #{params}")
     if user_signed_in?
-      if params[:page_type].blank?
-        params[:page_type] = 1
-      else
-        params[:page_type] = Integer(params[:page_type])
-      end
+       
        params[:user_id]=Integer(params[:user_id])
        Rails.logger.debug("[CNTRL][HOME][GET SUMMARY] Calling model api #{params} #{current_user}")
        response_json=current_user.get_summary({:user_id => params[:user_id]})

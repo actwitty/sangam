@@ -606,6 +606,7 @@ class User < ActiveRecord::Base
   require 'api/api'
   include Api
 
+
   # private methods
   # private
 end

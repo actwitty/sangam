@@ -1,0 +1,126 @@
+/*********************************************************************/
+/* Facebook JSONP base url requests
+ *
+ *
+ */
+var aw_local_twitter_request_url_base = {
+                                    static_profile:  "https://graph.facebook.com/me/friends?access_token=",
+                                    user_feed: " https://graph.facebook.com/me/home?access_token=",
+                                    feeds: "https://graph.facebook.com/me/feed?access_token=",
+                                    images: {
+                                              tags: "https://graph.facebook.com/me/photos?access_token=",
+                                              albums: "https://graph.facebook.com/me/albums?access_token="
+                                            },
+                                    locations: "https://graph.facebook.com/me/checkins?access_token=",
+                                    videos: {
+                                              tags: "https://graph.facebook.com/me/videos?access_token=",
+                                              uploads: "https://graph.facebook.com/me/videos/uploaded?access_token="
+                                            }
+
+                                };
+
+/*****************************************************/
+function aw_twitter_resp(data){
+  alert("eureka");
+  alert(JSON.stringify(data));
+}
+
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_twitter_get_parameter_map( twitter_url ){
+  var accessor = {
+                   consumerSecret: aw_js_global_tw_access.consumer_secret,
+                   tokenSecret   : aw_js_global_tw_access.secret
+
+                 };
+
+  var message = {  action: "https://api.twitter.com/1/statuses/home_timeline.json",
+                   method: "GET",
+                   parameters: []
+                };
+  message.parameters.push(['realm', "https://api.twitter.com/1/statuses/home_timeline.json"]);
+  message.parameters.push(['oauth_version', '1.0']);
+  message.parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+  message.parameters.push(['oauth_consumer_key', aw_js_global_tw_access.consumer_key]);
+  message.parameters.push(['oauth_token', aw_js_global_tw_access.token]);
+  message.parameters.push(['callback', 'aw_twitter_resp']);
+  
+  
+  
+  OAuth.completeRequest(message, accessor);
+
+  var parameterMap = OAuth.getParameterMap(message.parameters);
+  
+  return parameterMap;
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_get_profile(fn_cb){
+
+ 
+  var url= "";
+  $.each(parameterMap, function(key, val) {
+    if (url.length == 0){
+      url = message.action + "?" + key + "=" + val;
+    }else{
+     /* if( key == "oauth_signature" ){
+        url = url + "&" + key + "=" + encodeURIComponent(val);
+      }else{*/
+        url = url + "&" + key + "=" + val;
+      //}
+    }
+    
+  });
+
+  $.getJSON("https://api.twitter.com/1/statuses/user_timeline.json?callback=?&screen_name=sudhanshu_80", function(data){
+    alert(JSON.stringify(data));
+  });
+
+  jQuery.ajax({ url: url, 
+               dataType: "jsonp",
+               type: "GET",
+                });
+  
+  aw_lib_console_log("DEBUG", "returned:aw_api_twitter_get_profile");
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_get_contacts(fn_cb){
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_get_images(fn_cb){
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_get_videos(fn_cb){
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_get_locations(fn_cb){
+}
+/****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_get_feeds(fn_cb){
+}

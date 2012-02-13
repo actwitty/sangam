@@ -209,6 +209,8 @@ development: &default
   #FB/Twitter ids registered using cloud@actwitty.com
   #FB url: https://developers.facebook.com/apps
   #Twitter url: https://dev.twitter.com/apps
+  #LinkedIn: https://www.linkedin.com/secure/developer
+
   facebook_app_id:                    '172893766124779'
   facebook_secret_key:                'd842d4c68c7698a9e0a0823333d691a2'
   twitter_consumer_key:               '2E38F1bp3pmvGMW5hYUPtA'
@@ -230,7 +232,6 @@ development: &default
   #Devloper:change this to reqd email
   authorized_see_internals_email_id:      "aloksrivastava78@gmail.com"
 
-  
 
   #FOR SUMMARY CATEGORY
   category_id_length:                       255
@@ -283,6 +284,13 @@ production:
   facebook_secret_key:                '5f9e34ae0030a63796bf8d75b71cbdb7'
   twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
   twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
+
+  #FOR PUBLIC SHOW
+  ghost_user_email:                       "administrator@actwitty.com"
+
+  #Allowed to see internals
+  #Devloper:change this to reqd email
+  authorized_see_internals_email_id:     "administrator@actwitty.com"
   #########################################################################
 
 test:

@@ -113,10 +113,10 @@ class SocialAggregator < ActiveRecord::Base
 
       Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_AGGREGATION_REQUEST] leaving #{params.inspect}")
 
-#      only for asynchronous testing
-#      user = User.where(:id => params[:user_id]).first
-#      a = user.get_summary({:user_id => user.id})
-#      puts a.inspect
+      #only for asynchronous testing
+      user = User.where(:id => params[:user_id]).first
+      a = user.get_summary({:user_id => user.id})
+      puts a.inspect
 
     rescue => e
 

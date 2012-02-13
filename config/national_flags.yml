@@ -1,0 +1,728 @@
+flags_base: /images/actwitty/refactor/aw_sketch/flags/
+countries:
+  AD: 
+    name: Andorra
+    flag: unknown.jpg
+  AE: 
+    name: United Arab Emirates
+    flag: United_Arab_Emirates.gif
+  AF: 
+    name: Afghanistan
+    flag: Afgainistan.gif
+  AG: 
+    name: Antigua and Barbuda
+    flag: unknown.jpg
+  AI: 
+    name: Anguilla
+    flag: unknown.jpg
+  AL: 
+    name: Albania
+    flag: Albania.gif
+  AM: 
+    name: Armenia
+    flag: unknown.jpg
+  AN: 
+    name: Netherlands Antilles
+    flag: unknown.jpg
+  AO: 
+    name: Angola
+    flag: unknown.jpg
+  AQ: 
+    name: Antarctica
+    flag: unknown.jpg
+  AR: 
+    name: Argentina
+    flag: argentina.gif
+  AS: 
+    name: American Samoa
+    flag: unknown.jpg
+  AT: 
+    name: Austria
+    flag: Austria.gif
+  AU: 
+    name: Australia
+    flag: Australia.gif
+  AW: 
+    name: Aruba
+    flag: unknown.jpg
+  AZ: 
+    name: Azerbaijan
+    flag: unknown.jpg
+  BA: 
+    name: Bosnia and Herzegovina
+    flag: Bosnia-Herzegovina.gif
+  BB: 
+    name: Barbados
+    flag: unknown.jpg
+  BD: 
+    name: Bangladesh
+    flag: unknown.jpg
+  BE: 
+    name: Belgium
+    flag: Belgium.gif
+  BF: 
+    name: Burkina Faso
+    flag: unknown.jpg
+  BG: 
+    name: Bulgaria
+    flag: Bulgari.gif
+  BH: 
+    name: Bahrain
+    flag: unknown.jpg
+  BI: 
+    name: Burundi
+    flag: unknown.jpg
+  BJ: 
+    name: Benin
+    flag: unknown.jpg
+  BM: 
+    name: Bermuda
+    flag: Bermuda.gif
+  BN: 
+    name: Brunei Darussalam
+    flag: Brunei.gif
+  BO: 
+    name: Bolivia
+    flag: Bolivia.gif
+  BR: 
+    name: Brazil
+    flag: Brazil.gif
+  BS: 
+    name: Bahamas
+    flag: Bahamas.gif
+  BT: 
+    name: Bhutan
+    flag: unknown.jpg
+  BV: 
+    name: Bouvet Island
+    flag: unknown.jpg
+  BW: 
+    name: Botswana
+    flag: unknown.jpg
+  BY: 
+    name: Belarus
+    flag: unknown.jpg
+  BZ: 
+    name: Belize
+    flag: Belize.gif
+  CA: 
+    name: Canada
+    flag: Canada.gif
+  CC: 
+    name: Cocos (Keeling) Islands
+    flag: unknown.jpg
+  CF: 
+    name: Central African Republic
+    flag: unknown.jpg
+  CG: 
+    name: Congo
+    flag: unknown.jpg
+  CH: 
+    name: Switzerland
+    flag: Switzerland.gif
+  CI: 
+    name: Cote D'Ivoire (Ivory Coast)
+    flag: unknown.jpg
+  CK: 
+    name: Cook Islands
+    flag: unknown.jpg
+  CL: 
+    name: Chile
+    flag: chile.gif
+  CM: 
+    name: Cameroon
+    flag: unknown.jpg
+  CN: 
+    name: China
+    flag: China.gif
+  CO: 
+    name: Colombia
+    flag: colombian.gif
+  CR: 
+    name: Costa Rica
+    flag: costa-rican.gif
+  CS: 
+    name: Czechoslovakia (former)
+    flag: unknown.jpg
+  CU: 
+    name: Cuba
+    flag: Cuba.gif
+  CV: 
+    name: Cape Verde
+    flag: unknown.jpg
+  CX: 
+    name: Christmas Island
+    flag: unknown.jpg
+  CY: 
+    name: Cyprus
+    flag: unknown.jpg
+  CZ: 
+    name: Czech Republic
+    flag: czech-republic.gif
+  DE: 
+    name: Germany
+    flag: german.gif
+  DJ: 
+    name: Djibouti
+  DK: 
+    name: Denmark
+    flag: Denmark.gif
+  DM: 
+    name: Dominica
+    flag: unknown.jpg
+  DO: 
+    name: Dominican Republic
+    flag: dominican-republic.gif
+  DZ: 
+    name: Algeria
+    flag: Algeria.gif
+  EC: 
+    name: Ecuador
+    flag: ecuador.gif
+  EE: 
+    name: Estonia
+    flag: unknown.jpg
+  EG: 
+    name: Egypt
+    flag: Egypt.gif
+  EH: 
+    name: Western Sahara
+    flag: unknown.jpg
+  ER: 
+    name: Eritrea
+    flag: unknown.jpg
+  ES: 
+    name: Spain
+    flag: Spain.gif
+  ET: 
+    name: Ethiopia
+    flag: unknown.jpg
+  FI: 
+    name: Finland
+    flag: Finland.gif
+  FJ: 
+    name: Fiji
+    flag: unknown.jpg
+  FK: 
+    name: Falkland Islands (Malvinas)
+    flag: unknown.jpg
+  FM: 
+    name: Micronesia
+    flag: unknown.jpg
+  FO: 
+    name: Faroe Islands
+    flag: unknown.jpg
+  FR: 
+    name: France
+    flag: France.gif
+  FX: 
+    name: France, Metropolitan
+    flag: unknown.jpg
+  GA: 
+    name: Gabon
+    flag: unknown.jpg
+  GB: 
+    name: Great Britain (UK)
+    flag: unknown.jpg
+  GD: 
+    name: Grenada
+    flag: unknown.jpg
+  GE: 
+    name: Georgia
+    flag: unknown.jpg
+  GF: 
+    name: French Guiana
+    flag: unknown.jpg
+  GH: 
+    name: Ghana
+    flag: unknown.jpg
+  GI: 
+    name: Gibraltar
+    flag: Gibraltar.gif
+  GL: 
+    name: Greenland
+    flag: unknown.jpg
+  GM: 
+    name: Gambia
+    flag: unknown.jpg
+  GN: 
+    name: Guinea
+    flag: unknown.jpg
+  GP: 
+    name: Guadeloupe
+    flag: unknown.jpg
+  GQ: 
+    name: Equatorial Guinea
+    flag: unknown.jpg
+  GR: 
+    name: Greece
+    flag: Greece.gif
+  GS: 
+    name: S. Georgia and S. Sandwich Isls.
+    flag: unknown.jpg
+  GT: 
+    name: Guatemala
+    flag: guatemalan.gif
+  GU: 
+    name: Guam
+    flag: unknown.jpg
+  GW: 
+    name: Guinea-Bissau
+    flag: unknown.jpg
+  GY: 
+    name: Guyana
+    flag: unknown.jpg
+  HK: 
+    name: Hong Kong
+    flag: unknown.jpg
+  HM: 
+    name: Heard and McDonald Islands
+    flag: unknown.jpg
+  HN: 
+    name: Honduras
+    flag: honduras.gif
+  HR: 
+    name: Croatia (Hrvatska)
+    flag: Croatia.gif
+  HT: 
+    name: Haiti
+    flag: haiti.gif
+  HU: 
+    name: Hungary
+    flag: Hungary.gif
+  ID: 
+    name: Indonesia
+    flag: Indonesia.gif
+  IE: 
+    name: Ireland
+    flag: Ireland.gif
+  IL: 
+    name: Israel
+    flag: Israel.gif
+  IM:
+    name: Isle of Man
+    flag: Isle-of-Man.gif
+  IN: 
+    name: India
+    flag: India.png
+  IO: 
+    name: British Indian Ocean Territory
+    flag: unknown.jpg
+  IQ: 
+    name: Iraq
+    flag: Iraq.gif
+  IR: 
+    name: Iran
+    flag: Iran.gif
+  IS: 
+    name: Iceland
+    flag: Iceland.gif
+  IT: 
+    name: Italy
+    flag: Italy.gif
+  JM: 
+    name: Jamaica
+    flag: Jamaica.gif
+  JO: 
+    name: Jordan
+  JP: 
+    name: Japan
+    flag: Japan.gif
+  KE: 
+    name: Kenya
+    flag: Kenya.gif
+  KG: 
+    name: Kyrgyzstan
+    flag: unknown.jpg
+  KH: 
+    name: Cambodia
+    flag: cambodia.gif
+  KI: 
+    name: Kiribati
+    flag: unknown.jpg
+  KM: 
+    name: Comoros
+    flag: unknown.jpg
+  KN: 
+    name: Saint Kitts and Nevis
+    flag: unknown.jpg
+  KP: 
+    name: Korea (North)
+    flag: North_Korea.gif
+  KR: 
+    name: Korea (South)
+    flag: unknown.jpg
+  KW: 
+    name: Kuwait
+    flag: Kuwait.gif
+  KY: 
+    name: Cayman Islands
+    flag: unknown.jpg
+  KZ: 
+    name: Kazakhstan
+    flag: unknown.jpg
+  LA: 
+    name: Laos
+    flag: unknown.jpg
+  LB: 
+    name: Lebanon
+    flag: unknown.jpg
+  LC: 
+    name: Saint Lucia
+    flag: unknown.jpg
+  LI: 
+    name: Liechtenstein
+    flag: unknown.jpg
+  LK: 
+    name: Sri Lanka
+    flag: unknown.jpg
+  LR: 
+    name: Liberia
+    flag: unknown.jpg
+  LS: 
+    name: Lesotho
+    flag: unknown.jpg
+  LT: 
+    name: Lithuania
+    flag: unknown.jpg
+  LU: 
+    name: Luxembourg
+    flag: unknown.jpg
+  LV: 
+    name: Latvia
+    flag: unknown.jpg
+  LY: 
+    name: Libya
+    flag: unknown.jpg
+  MA: 
+    name: Morocco
+    flag: moroccan.gif
+  MC: 
+    name: Monaco
+    flag: unknown.jpg
+  MD: 
+    name: Moldova
+    flag: unknown.jpg
+  MG: 
+    name: Madagascar
+    flag: unknown.jpg
+  MH: 
+    name: Marshall Islands
+    flag: unknown.jpg
+  MK: 
+    name: Macedonia
+    flag: unknown.jpg
+  ML: 
+    name: Mali
+    flag: unknown.jpg
+  MM: 
+    name: Myanmar
+    flag: unknown.jpg
+  MN: 
+    name: Mongolia
+    flag: unknown.jpg
+  MO: 
+    name: Macau
+    flag: unknown.jpg
+  MP: 
+    name: Northern Mariana Islands
+    flag: unknown.jpg
+  MQ: 
+    name: Martinique
+    flag: unknown.jpg
+  MR: 
+    name: Mauritania
+    flag: unknown.jpg
+  MS: 
+    name: Montserrat
+    flag: Montserrat.gif
+  MT: 
+    name: Malta
+    flag: unknown.jpg
+  MU: 
+    name: Mauritius
+    flag: unknown.jpg
+  MV: 
+    name: Maldives
+    flag: unknown.jpg
+  MW: 
+    name: Malawi
+    flag: unknown.jpg
+  MX: 
+    name: Mexico
+    flag: Mexico.gif
+  MY: 
+    name: Malaysia
+    flag: Malaysia.gif
+  MZ: 
+    name: Mozambique
+    flag: unknown.jpg
+  NA: 
+    name: Namibia
+    flag: unknown.jpg
+  NC: 
+    name: New Caledonia
+    flag: unknown.jpg
+  NE: 
+    name: Niger
+    flag: unknown.jpg
+  NF: 
+    name: Norfolk Island
+  NG: 
+    name: Nigeria
+    flag: Nigeria.gif
+  NI: 
+    name: Nicaragua
+    flag: unknown.jpg
+  NL: 
+    name: Netherlands
+    flag: Netherlands.gif
+  NO: 
+    name: Norway
+    flag: Norway.gif
+  NP: 
+    name: Nepal
+    flag: unknown.jpg
+  NR: 
+    name: Nauru
+    flag: unknown.jpg
+  NT: 
+    name: Neutral Zone
+    flag: unknown.jpg
+  NU: 
+    name: Niue
+    flag: unknown.jpg
+  NZ: 
+    name: New Zealand (Atearoa)
+    flag: New_Zealand.gif
+  OM: 
+    name: Oman
+    flag: unknown.jpg
+  PA: 
+    name: Panama
+    flag: Panama.gif
+  PE: 
+    name: Peru
+    flag: peru.gif
+  PF: 
+    name: French Polynesia
+    flag: unknown.jpg
+  PG: 
+    name: Papua New Guinea
+    flag: unknown.jpg
+  PH: 
+    name: Philippines
+    flag: unknown.jpg
+  PK: 
+    name: Pakistan
+    flag: Pakistan.gif
+  PL: 
+    name: Poland
+    flag: polish.gif
+  PM: 
+    name: St. Pierre and Miquelon
+    flag: unknown.jpg
+  PN: 
+    name: Pitcairn
+    flag: unknown.jpg
+  PR: 
+    name: Puerto Rico
+    flag: puerto-rican.gif
+  PT: 
+    name: Portugal
+    flag: portugese.gif
+  PW: 
+    name: Palau
+    flag: unknown.jpg
+  PY: 
+    name: Paraguay
+    flag: unknown.jpg
+  QA: 
+    name: Qatar
+    flag: unknown.jpg
+  RE: 
+    name: Reunion
+    flag: unknown.jpg
+  RO: 
+    name: Romania
+    flag: Romania.gif
+  RU: 
+    name: Russia
+    flag: Russian_Federation.gif
+  RW: 
+    name: Rwanda
+    flag: unknown.jpg
+  SA: 
+    name: Saudi Arabia
+    flag: unknown.jpg
+  Sb: 
+    name: Solomon Islands
+    flag: unknown.jpg
+  SC: 
+    name: Seychelles
+    flag: unknown.jpg
+  SD: 
+    name: Sudan
+  SE: 
+    name: Sweden
+    flag: Sweden.gif
+  SG: 
+    name: Singapore
+    flag: unknown.jpg
+  SH: 
+    name: St. Helena
+    flag: unknown.jpg
+  SI: 
+    name: Slovenia
+    flag: unknown.jpg
+  SJ: 
+    name: Svalbard and Jan Mayen Islands
+    flag: unknown.jpg
+  SK: 
+    name: Slovak Republic
+    flag: unknown.jpg
+  SL: 
+    name: Sierra Leone
+    flag: unknown.jpg
+  SM: 
+    name: San Marino
+    flag: unknown.jpg
+  SN: 
+    name: Senegal
+    flag: unknown.jpg
+  SO: 
+    name: Somalia
+    flag: unknown.jpg
+  SR: 
+    name: Suriname
+    flag: unknown.jpg
+  ST: 
+    name: Sao Tome and Principe
+    flag: unknown.jpg
+  SU: 
+    name: USSR (former)
+    flag: unknown.jpg
+  SV: 
+    name: El Salvador
+    flag: el-salvador.gif
+  SY: 
+    name: Syria
+    flag: unknown.jpg
+  SZ: 
+    name: Swaziland
+    flag: unknown.jpg
+  TC: 
+    name: Turks and Caicos Islands
+    flag: unknown.jpg
+  TD: 
+    name: Chad
+    flag: unknown.jpg
+  TF: 
+    name: French Southern Territories
+    flag: unknown.jpg
+  TG: 
+    name: Togo
+    flag: unknown.jpg
+  TH: 
+    name: Thailand
+    flag: Thailand.gif
+  TJ: 
+    name: Tajikistan
+    flag: unknown.jpg
+  TK: 
+    name: Tokelau
+    flag: unknown.jpg
+  TM: 
+    name: Turkmenistan
+    flag: unknown.jpg
+  TN: 
+    name: Tunisia
+    flag: unknown.jpg
+  TO: 
+    name: Tonga
+    flag: Tonga.gif
+  TP: 
+    name: East Timor
+    flag: unknown.jpg
+  TR: 
+    name: Turkey
+    flag: Turkey.gif
+  TT: 
+    name: Trinidad and Tobago
+    flag: unknown.jpg
+  TV: 
+    name: Tuvalu
+    flag: unknown.jpg
+  TW: 
+    name: Taiwan
+    flag: Taiwan.gif
+  TZ: 
+    name: Tanzania
+    flag: unknown.jpg
+  UA: 
+    name: Ukraine
+    flag: unknown.jpg
+  UG: 
+    name: Uganda
+  UK: 
+    name: United Kingdom
+    flag: United_Kingdom.gif
+  UM: 
+    name: US Minor Outlying Islands
+    flag: unknown.jpg
+  US: 
+    name: United States
+    flag: USA.gif
+  UY: 
+    name: Uruguay
+    flag: uruguay.gif
+  UZ: 
+    name: Uzbekistan
+    flag: unknown.jpg
+  VA: 
+    name: Vatican City State (Holy See)
+    flag: unknown.jpg
+  VC: 
+    name: Saint Vincent and the Grenadines
+    flag: unknown.jpg
+  VE: 
+    name: Venezuela
+    flag: Venezuela.gif
+  VG: 
+    name: Virgin Islands (British)
+    flag: British-Virgin-Islands.gif
+  VI: 
+    name: Virgin Islands (U.S.)
+  VN: 
+    name: Viet Nam
+    flag: vietnamese.gif
+  VU: 
+    name: Vanuatu
+    flag: unknown.jpg
+  WF: 
+    name: Wallis and Futuna Islands
+    flag: unknown.jpg
+  WS: 
+    name: Samoa
+    flag: unknown.jpg
+  YE: 
+    name: Yemen
+    flag: unknown.jpg
+  YT: 
+    name: Mayotte
+    flag: unknown.jpg
+  YU: 
+    name: Yugoslavia
+    flag: unknown.jpg
+  ZA: 
+    name: South Africa
+    flag: South_Africa.gif
+  ZM: 
+    name: Zambia
+    flag: unknown.jpg
+  ZR: 
+    name: Zaire
+    flag: unknown.jpg
+  ZW: 
+    name: Zimbabwe 
+    flag: Zimbabwe.gif

@@ -1,0 +1,244 @@
+/* Services colors */
+/* line 5, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_color_facebook {
+  background-color: #91addd;
+}
+
+/* line 8, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_color_twitter {
+  background-color: #23b7e9;
+}
+
+/* line 11, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_container {
+  width: 530px;
+  height: auto;
+  margin-bottom: 3px;
+  display: inline-block;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  position: relative;
+}
+/* line 19, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_container .aw_service_popularity_container_label {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-family: "League Gothic";
+  display: block;
+}
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_container .aw_service_popularity_service_logo {
+  position: absolute;
+  left: 440px;
+}
+
+/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container {
+  width: 100px;
+  height: 170px;
+  display: inline-block;
+  float: left;
+  position: relative;
+  margin-left: 25px;
+}
+/* line 38, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_topic_poularity_box {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 17px;
+  height: 150px;
+  width: 66px;
+}
+/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_topic_popularity_top {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  width: 350px;
+  height: 2px;
+  border-top: 1px dotted #dddddd;
+}
+/* line 52, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_topic_popularity_bottom {
+  position: absolute;
+  top: 160px;
+  left: 50px;
+  width: 350px;
+  height: 2px;
+  border-top: 1px dotted #dddddd;
+}
+/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_topic_popularity_middle {
+  position: absolute;
+  top: 85px;
+  left: 50px;
+  width: 350px;
+  height: 2px;
+  border-top: 1px dotted #dddddd;
+}
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_topic_popularity_one_third {
+  position: absolute;
+  top: 60px;
+  left: 50px;
+  width: 350px;
+  height: 2px;
+  border-top: 1px dotted #dddddd;
+}
+/* line 73, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_topic_popularity_two_third {
+  position: absolute;
+  top: 110px;
+  left: 50px;
+  width: 350px;
+  height: 2px;
+  border-top: 1px dotted #dddddd;
+}
+/* line 81, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container .aw_service_popularity_man {
+  position: absolute;
+  top: 10px;
+  left: 17px;
+  height: 150px;
+  width: 66px;
+}
+
+/* line 88, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels {
+  width: 300px;
+  height: 170px;
+  display: inline-block;
+  float: left;
+  position: relative;
+  margin-left: 15px;
+}
+/* line 96, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_3 {
+  top: 10px;
+}
+/* line 98, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_2_of_3 {
+  top: 60px;
+}
+/* line 100, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_3_of_3 {
+  top: 110px;
+}
+/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_3, .aw_service_topic_popularity_container_labels .aw_service_popularity_2_of_3, .aw_service_topic_popularity_container_labels .aw_service_popularity_3_of_3 {
+  position: absolute;
+  left: -15px;
+  height: 50px;
+  padding: 5px;
+  width: 100%;
+  overflow: hidden;
+}
+/* line 112, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_2 {
+  top: 10px;
+}
+/* line 114, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_2_of_2 {
+  top: 85px;
+}
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_2, .aw_service_topic_popularity_container_labels .aw_service_popularity_2_of_2 {
+  position: absolute;
+  left: -15px;
+  height: 75px;
+  padding: 5px;
+  width: 100%;
+  overflow: hidden;
+}
+/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_1 {
+  top: 10px;
+  left: 15px;
+  height: 150px;
+  padding: 5px;
+  width: 100%;
+  overflow: hidden;
+}
+/* line 132, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_1 .aw_service_popularity_adjective {
+  display: block;
+  width: 100%;
+  color: #25a0da;
+  text-align: center;
+  font-size: 46px;
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2px;
+}
+/* line 144, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_topic_popularity_container_labels .aw_service_popularity_1_of_1 .aw_service_popularity_topic {
+  display: block;
+  width: 100%;
+  color: #777777;
+  text-align: center;
+  font-size: 25px;
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+/* line 156, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_adjective_for_3 {
+  display: block;
+  width: 100%;
+  color: #a6a7a8;
+  text-align: center;
+  font-size: 38px;
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2px;
+  margin-top: 0px;
+}
+
+/* line 169, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_topic_for_3 {
+  display: block;
+  width: 100%;
+  color: #777777;
+  text-align: center;
+  font-size: 14px;
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+/* line 180, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_adjective_for_2 {
+  display: block;
+  width: 100%;
+  color: #a6a7a8;
+  text-align: center;
+  font-size: 38px;
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
+
+/* line 193, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.sass */
+.aw_service_popularity_topic_for_2 {
+  display: block;
+  width: 100%;
+  color: #777777;
+  text-align: center;
+  font-size: 20px;
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 2px;
+}

@@ -1,0 +1,73 @@
+/* line 1, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud {
+  font-family: "League Gothic";
+  letter-spacing: 1px;
+  color: #0099ff;
+  overflow: hidden;
+  position: relative;
+}
+/* line 7, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud a {
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+/* line 11, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud a:hover {
+  color: #00ddff;
+  color: #00ccff;
+}
+/* line 14, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span {
+  padding: 0;
+}
+/* line 16, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w10 {
+  font-size: 44px;
+  color: #2b60de;
+}
+/* line 19, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w9 {
+  font-size: 42px;
+  color: #306eff;
+}
+/* line 22, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w8 {
+  font-size: 40px;
+  color: #2b65ec;
+}
+/* line 25, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w7 {
+  font-size: 38px;
+  color: #3bb9ff;
+}
+/* line 28, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w6 {
+  font-size: 36px;
+  color: #38acec;
+}
+/* line 31, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w5 {
+  font-size: 32px;
+  color: #357ec7;
+}
+/* line 34, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w4 {
+  font-size: 28px;
+  color: #1589ff;
+}
+/* line 37, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w3 {
+  font-size: 24px;
+  color: #157dec;
+}
+/* line 40, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w2 {
+  font-size: 22px;
+  color: #1569c7;
+}
+/* line 43, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.sass */
+div.jqcloud span.w1 {
+  font-size: 20px;
+  color: #56a5ec;
+}
