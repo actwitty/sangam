@@ -25,7 +25,7 @@ function aw_api_view_mentions_render(data){
     view_mention_arr.push(entry);
   });
 
-  var html = '<div id="aw_js_sketch_mentions_jqcloud" style="width: 530px; height: 200px; "> </div>' ;
+  var html = '<div id="aw_js_sketch_mentions_jqcloud" style="width: 530px; height: 260px; "> </div>' ;
   $("#aw_js_mentions_list_box").html(html);
   $("#aw_js_sketch_mentions_jqcloud").jQCloud(view_mention_arr);
 }

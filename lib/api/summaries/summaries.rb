@@ -76,7 +76,7 @@ module Api
         end
 
         Rails.logger.info("[LIB] [API] [SUMMARIES] [GET_SUMMARY] leaving #{params.inspect}")
-
+        array  = array.sort {|a,b| b[:analytics_snapshot][:posts][:total] <=> a[:analytics_snapshot][:posts][:total]}
         array
       rescue => e
         Rails.logger.info("[LIB] [API] [SUMMARIES] [GET_SUMMARY] **** RESCUE **** #{e.message} For #{params.inspect}")

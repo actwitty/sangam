@@ -219,7 +219,7 @@ body {
   top: 0;
   max-width: 490px;
   min-width: 370px;
-  height: 540px;
+  height: 590px;
   overflow-y: hidden;
   -webkit-border-top-right-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
@@ -300,7 +300,7 @@ body {
   font-family: Georgia, serif;
   color: #da1c5c;
   -webkit-font-smoothing: antialiased;
-  border: 1px solid red;
+  border: 0px solid red;
 }
 
 /* line 294, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.sass */

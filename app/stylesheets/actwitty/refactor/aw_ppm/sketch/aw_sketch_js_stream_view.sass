@@ -15,13 +15,15 @@
   vertical-align: middle
 
 
-#aw_stream_container_close
+.aw_stream_container_close
   width: 60px
   height: 30px
   border: 0px solid red
   float: right
   margin-top: 15px
   color: #999 !important
+  display: none
+  cursor: pointer
   &:hover 
     color: #333
   a
@@ -126,6 +128,13 @@
       font-family: "RobotoBold"
       color: #151D21
       font-size: 18px
+      text-decoration: none
+      &:hover
+        cursor: pointer
+    .aw_attachment_title_milder
+      font-family: "RobotoRegular"
+      color: #25A0DA
+      font-size: 15px
       text-decoration: none
       &:hover
         cursor: pointer

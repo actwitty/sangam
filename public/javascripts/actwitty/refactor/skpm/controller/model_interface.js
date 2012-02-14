@@ -120,3 +120,25 @@ function aw_api_controller_render_images(data){
 function aw_api_controller_change_filter_on_stream(filter){
   aw_pulled_stream_query_filter(filter);
 }
+
+/************************************************************/
+/*
+ *
+ *
+ *
+ */
+function aw_api_controller_show_or_hide_close(show){
+  aw_api_view_show_or_hide_close(show);
+}
+
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_controller_tweak_stream_header(header_data){
+  if( header_data == null || header_data.length == 0){
+    header_data = "Wall Feeds";
+    aw_api_view_stream_header_render(header_data);
+  }
+}

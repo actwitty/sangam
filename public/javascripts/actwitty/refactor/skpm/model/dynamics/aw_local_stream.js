@@ -22,7 +22,6 @@ function aw_pulled_stream_allow_cookie(context){
  * null filter defaults to basic
  */
 function aw_pulled_stream_query_filter(filter){
-   
   if( filter ){
     aw_local_unity_control_registry = new Date().getTime();
     var context={
@@ -54,6 +53,8 @@ function aw_pulled_stream_query_filter(filter){
     });  
   }else{
     /* no async simply done */
+    aw_api_controller_show_or_hide_close(false);
+    aw_api_controller_tweak_stream_header();
     aw_api_controller_render_stream(aw_api_model_get_base_streams());
   }
 }
@@ -128,6 +129,7 @@ function aw_pulled_stream_sort_data(context){
   merged_arr.sort(function (time1, time2){
                                   return time2.local_timestamp - time1.local_timestamp;
                                });
+  aw_api_controller_show_or_hide_close(true);
   aw_api_controller_render_stream(merged_arr);
 }
 

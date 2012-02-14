@@ -84,9 +84,9 @@ function aw_view_stream_get_attachments_html(entry){
                           attachment.title +    
                        '</div>';
         }else{
-           title_html = '<div class="aw_attachment_title" >' +
+           title_html = '<div class="aw_attachment_title_milder" >' +
                           '<a href="' + attachment.url + '" />' +
-                          'Attached Link' +    
+                          attachment.url +    
                        '</div>';
         }
 
@@ -228,7 +228,18 @@ function aw_api_view_stream_header_render(data){
 
 
 }
-
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_show_or_hide_close(show){
+  if( show ){
+    $("#aw_js_stream_close_control").show();
+  }else{
+    $("#aw_js_stream_close_control").hide();
+  }
+}
 
 
 $(document).ready(function() {

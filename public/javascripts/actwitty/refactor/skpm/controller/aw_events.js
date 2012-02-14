@@ -1,4 +1,3 @@
-
 /*******************************************************/
 /*
  *
@@ -31,4 +30,14 @@ $(document).ready(function(){
     return false;
   });
 
+  $("#aw_js_stream_close_control").live('click', function(){
+    aw_api_controller_show_or_hide_close(false);
+    aw_api_controller_render_stream(aw_api_model_get_base_streams()); 
+    return false;
+  });
+  
+
+
+
+    
 });

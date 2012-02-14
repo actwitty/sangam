@@ -111,6 +111,11 @@ function aw_pulled_stream_twitter_handler( context ) {
                                                                                     uid: aw_js_global_visited_user_foreign_ids['twitter']
                                                                                  };
 
+
+                                                    if(post_data.post.text){
+                                                      aw_post_json["text"] = post_data.post.text;
+                                                    }
+
                                                     if( post_data.location && post_data.location.name ){
                                                       aw_post_json["place"] = { name: post_data.location.name};
                                                     }

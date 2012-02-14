@@ -19,29 +19,31 @@
 }
 
 /* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-#aw_stream_container_close {
+.aw_stream_container_close {
   width: 60px;
   height: 30px;
   border: 0px solid red;
   float: right;
   margin-top: 15px;
   color: #999999 !important;
-}
-/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-#aw_stream_container_close:hover {
-  color: #333333;
+  display: none;
+  cursor: pointer;
 }
 /* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-#aw_stream_container_close a {
+.aw_stream_container_close:hover {
+  color: #333333;
+}
+/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_container_close a {
   text-decoration: none;
   color: #999999;
 }
-/* line 30, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-#aw_stream_container_close a:hover {
+/* line 32, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_container_close a:hover {
   color: #333333;
 }
 
-/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_entry_container {
   position: relative;
   border-bottom: 2px dotted #100f1a;
@@ -54,16 +56,16 @@
   padding: 5px 3px 5px 3px;
 }
 
-/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 46, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_originator_img {
   float: left;
   margin-top: 3px;
 }
-/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 49, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_originator_img a {
   text-decoration: none;
 }
-/* line 49, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_originator_img img {
   height: 32px;
   overflow: hidden;
@@ -71,14 +73,14 @@
   vertical-align: middle;
   margin-right: 4px;
 }
-/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_originator_img span {
   font-size: 13px;
   font-weight: bold;
   color: #333333;
 }
 
-/* line 60, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 62, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_src_img {
   float: right;
   height: 16px;
@@ -86,12 +88,12 @@
   width: 16px;
   margin-top: 3px;
 }
-/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 68, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_src_img:hover {
   cursor: pointer;
 }
 
-/* line 69, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 71, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_time_orig {
   float: right;
   height: 16px;
@@ -100,12 +102,12 @@
   padding: 2px;
   overflow: hidden;
 }
-/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_time_orig span {
   color: #333333;
 }
 
-/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 80, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content {
   margin-left: 10px;
   margin-right: 18px;
@@ -115,7 +117,7 @@
   display: inline-block;
   border: 0px solid green;
 }
-/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 89, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_screen_name {
   text-decoration: none;
   font-weight: bold;
@@ -123,11 +125,11 @@
   font-size: 15px;
   padding-right: 2px;
 }
-/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 95, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_screen_name:hover {
   cursor: pointer;
 }
-/* line 96, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 98, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_name {
   padding-left: 2px;
   text-decoration: none;
@@ -136,16 +138,16 @@
   font-size: 15px;
   font-weight: bold;
 }
-/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_content_name:hover {
   cursor: pointer;
 }
-/* line 106, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 108, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box {
   padding-top: 1px;
   min-height: 20px;
 }
-/* line 109, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 111, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box p {
   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
   width: 100%;
@@ -153,33 +155,44 @@
   font-size: 13px;
   word-wrap: break-word;
 }
-/* line 115, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box p .aw_text_mention {
   color: #0099b9;
 }
-/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 119, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_stream_text_box p .aw_text_mention:hover {
   cursor: pointer;
 }
-/* line 120, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 122, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box {
   margin-top: 2px;
   width: 100%;
   height: auto;
   display: inline-block;
 }
-/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 127, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_title {
   font-family: "RobotoBold";
   color: #151d21;
   font-size: 18px;
   text-decoration: none;
 }
-/* line 130, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 132, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_title:hover {
   cursor: pointer;
 }
-/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_title_milder {
+  font-family: "RobotoRegular";
+  color: #25a0da;
+  font-size: 15px;
+  text-decoration: none;
+}
+/* line 139, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_title_milder:hover {
+  cursor: pointer;
+}
+/* line 142, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph {
   padding-top: 2px;
   width: 100%;
@@ -190,13 +203,13 @@
   color: #333333;
   word-wrap: break-word;
 }
-/* line 142, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 151, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph .aw_attachment_image {
   height: auto;
   margin-right: 2px;
   float: left;
 }
-/* line 146, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 155, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_caption {
   width: 100%;
   height: auto;
@@ -206,7 +219,7 @@
   color: #333333;
   clear: left;
 }
-/* line 154, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+/* line 163, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content .aw_attachment_box .aw_attachment_embed {
   display: block;
   width: 100%;

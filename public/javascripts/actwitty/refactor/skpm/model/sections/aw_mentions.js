@@ -5,14 +5,14 @@
  */
 var aw_js_mentions_test = [
 
-                                    {
-                                        name: "roger federer",
+                                     {
+                                        name: "Android",
                                         id:1231,
                                         weight: 7,
                                         img_url: "",
                                     },
                                     {
-                                        name: "aloo chaat",
+                                        name: "Infosys stocks",
                                         id:1231,
                                         weight: 3,
                                         img_url: "",
@@ -24,7 +24,7 @@ var aw_js_mentions_test = [
                                         img_url: "",
                                     },
                                     {
-                                        name: "pizza hut",
+                                        name: "Javascript",
                                         id:1231,
                                         weight: 10,
                                         img_url: "",
@@ -42,7 +42,7 @@ var aw_js_mentions_test = [
                                         img_url: "",
                                     },
                                     {
-                                        name: "kailash kher",
+                                        name: "dhoni",
                                         id:1231,
                                         weight: 4,
                                         img_url: "",

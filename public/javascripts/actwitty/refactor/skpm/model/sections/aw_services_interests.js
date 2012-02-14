@@ -9,15 +9,15 @@ var aw_js_service_tester = [
                                                   name: "facebook",
                                                   interests : [
                                                                   {
-                                                                     name: "sports",
+                                                                     name: "technology",
                                                                      id: 102
                                                                   },
                                                                   {
-                                                                     name: "entertainment",
+                                                                     name: "stories",
                                                                      id: 103
                                                                   },
                                                                   {
-                                                                     name: "politics",
+                                                                     name: "entertainment",
                                                                      id: 104
                                                                   },  
                                                                ]
@@ -27,11 +27,11 @@ var aw_js_service_tester = [
                                                   name: "twitter",
                                                   interests : [
                                                                   {
-                                                                     name: "sports",
+                                                                     name: "business",
                                                                      id: 102
                                                                   },
                                                                   {
-                                                                     name: "technology",
+                                                                     name: "sports",
                                                                      id: 106
                                                                   },
                                                                   

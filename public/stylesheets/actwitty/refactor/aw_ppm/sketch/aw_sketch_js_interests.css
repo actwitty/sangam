@@ -281,7 +281,11 @@
   padding-top: 2px;
   margin: 0;
 }
-/* line 228, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 227, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_facebook:hover {
+  cursor: pointer;
+}
+/* line 230, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter {
   height: 100%;
   background-color: #23b7e9;
@@ -294,23 +298,27 @@
   padding-top: 2px;
   margin: 0;
 }
+/* line 241, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter:hover {
+  cursor: pointer;
+}
 
-/* line 240, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 244, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_show_always {
   display: inline-block;
 }
 
-/* line 243, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 247, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_hide_on_less {
   display: none;
 }
 
-/* line 246, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 250, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_show_on_more {
   display: inline-block;
 }
 
-/* line 249, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 253, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_show_more_topics_box {
   height: 15px;
   width: 100%;
@@ -321,7 +329,7 @@
   font-size: 14px;
   font-weight: normal;
 }
-/* line 258, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 262, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_show_more_topics_box:hover {
   cursor: pointer;
 }

@@ -8,26 +8,26 @@ var aw_trends_test_json =   [
                                         interests: [
                                                         {
                                                            interest_id: 101, 
-                                                           name: "sports",
-                                                           category: "sports",
+                                                           name: "technology",
+                                                           category: "technology",
                                                            percent: 30
                                                         },
                                                         {
                                                            interest_id: 102, 
-                                                           name: "entertainment",
-                                                           category: "entertainment",
+                                                           name: "stories",
+                                                           category: "stories",
                                                            percent: 20
                                                         },
                                                         {
                                                            interest_id: 101, 
-                                                           name: "world",
-                                                           category: "world",
+                                                           name: "business",
+                                                           category: "business",
                                                            percent: 15
                                                         },
                                                        {
                                                            interest_id: 0, 
-                                                           name: "other",
-                                                           category: "other",
+                                                           name: "entertainment",
+                                                           category: "entertainment",
                                                            percent: 35
                                                         },
                                                    ],
