@@ -7,7 +7,12 @@ module Categorization
     module Services
 
       CALAIS_URL = "http://api.opencalais.com/enlighten/rest/"
+
       CALAIS_LICENSE_KEY = 'beuhp9a7nay6nxdku7j7zcxy'
+      #CALAIS_LICENSE_KEY =  'swcm89qzyvuttcv6jeskv85q'  #cloud@actwitty
+      #CALAIS_LICENSE_KEY = 'vqda4dmky3mnt3ygjjqdbxpt'  #alok@actwitty
+      #CALAIS_LICENSE_KEY = 'hfe94r47kpqr69enmvbs8sb6'  #aloksrivastava78@gmail
+
       CALAIS_RATE_LIMIT = 1 #QPS
 
       CALAIS_THRESHOLD_SCORE = 0.9
