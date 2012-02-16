@@ -9,9 +9,12 @@ module Categorization
       CALAIS_URL = "http://api.opencalais.com/enlighten/rest/"
 
       CALAIS_LICENSE_KEY = 'beuhp9a7nay6nxdku7j7zcxy'
-      #CALAIS_LICENSE_KEY =  'swcm89qzyvuttcv6jeskv85q'  #cloud@actwitty
-      #CALAIS_LICENSE_KEY = 'vqda4dmky3mnt3ygjjqdbxpt'  #alok@actwitty
-      #CALAIS_LICENSE_KEY = 'hfe94r47kpqr69enmvbs8sb6'  #aloksrivastava78@gmail
+      #CALAIS_LICENSE_KEY = 'swcm89qzyvuttcv6jeskv85q'  #cloud@actwitty.com
+      #CALAIS_LICENSE_KEY = 'vqda4dmky3mnt3ygjjqdbxpt'  #alok@actwitty.com
+      #CALAIS_LICENSE_KEY = 'hfe94r47kpqr69enmvbs8sb6'  #aloksrivastava78@gmail.com
+      #CALAIS_LICENSE_KEY  = '86v297e5xnqp5qw4bcc782n2' #administrator@actwitty.com
+      #CALAIS_LICENSE_KEY = 'txv9e7gdvwwjctg6pwqpm3a3' #priyanjali.rai@gmail.com
+      #CALAIS_LICENSE_KEY = 'rkwtrhpb7dxv9bvypmwz8yvj'  #no-reply@actwitty.com
 
       CALAIS_RATE_LIMIT = 1 #QPS
 
