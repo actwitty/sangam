@@ -3,10 +3,6 @@ embed_assets: datauri
 compress_assets: off
 gzip_assets: off
 javascripts:
-  flash_socket:
-    - public/javascripts/vendor/FABridge.js
-    - public/javascripts/vendor/swfobject.js
-    - public/javascripts/vendor/web_socket.js
   jquery:
     - public/javascripts/jquery/jquery-1.6.2.min.js
     - public/javascripts/rails.js
@@ -125,23 +121,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_timeseries_zoomable.js
   aw_internal_inviteds_show_page:    
     - public/javascripts/actwitty/refactor/aw_internals/aw_inviteds_show.js
-  main:
-    - public/javascripts/rails.js
-    - public/javascripts/vendor/jqueryui.js
-    - public/javascripts/vendor/jquery.tipsy.js
-    - public/javascripts/vendor/jquery.hotkeys.js
-    - public/javascripts/vendor/jquery.autoresize.min.js
-    - public/javascripts/vendor/jquery-ui-1.8.9.custom.min.js
-    - public/javascripts/vendor/jquery.infinitescroll.min.js
-  mobile:
-    - public/javascripts/vendor/jquery152.min.js
-    - public/javascripts/vendor/jquery.mobile-1.0a4.js
-    - public/javascripts/vendor/jquery.infinitescroll.min.js
-    - public/javascripts/rails.js
-  mailchimp:
-    - public/javascripts/vendor/mailchimp/jquery.form.js
-    - public/javascripts/vendor/mailchimp/jquery.validate.js
-    - public/javascripts/vendor/mailchimp/jquery126.min.js
 
 
 stylesheets:
