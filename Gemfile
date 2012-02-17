@@ -97,11 +97,6 @@ gem 'meta-tags', :require => 'meta_tags'
 #Rails paginate plugin
 gem 'will_paginate', '2.3.15'
 
-#thin
-gem 'thin'
-
-#newrelic
-gem 'newrelic_rpm'
 
 group :development do
   #query reviewer
