@@ -1,93 +1,230 @@
-/*
-Syntax error: Invalid CSS after "80%": expected expression (e.g. 1px, bold), was ";"
-        on line 165 of /home/sammy/actwitty/apple/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass
+/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_header {
+  width: 100%;
+  height: 50px;
+  background: #f4f4f4;
+  border-radius: 0 5px 0 0;
+}
 
-160: 
-161: 
-162: 
-163:  
-164: .aw_stream_mentions_box 
-165:   width: 80%;
-166:   height: auto;
-167:   display: inline-block
-168:   span
-169:     font-size: 12px
-170:     padding: 2px
+/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_header_label {
+  font-size: 24px;
+  font-family: "RobotoBold";
+  color: #333333;
+  float: left;
+  border: 0px solid red;
+  margin-left: 15px;
+  margin-top: 12px;
+  vertical-align: middle;
+}
 
-Backtrace:
-/home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass:165
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/scss/parser.rb:928:in `expected'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/script/lexer.rb:191:in `expected!'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/script/parser.rb:465:in `assert_done'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/script/parser.rb:50:in `parse'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/script/parser.rb:140:in `parse'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/script.rb:31:in `parse'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:829:in `parse_script'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:592:in `parse_property'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:581:in `parse_property_or_rule'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:562:in `parse_line'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:455:in `build_tree'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:474:in `block in append_children'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:473:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:473:in `append_children'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:464:in `block in build_tree'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:457:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:457:in `build_tree'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:474:in `block in append_children'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:473:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:473:in `append_children'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:329:in `_to_tree'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:299:in `_render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:247:in `block in render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/util.rb:310:in `silence_sass_warnings'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/engine.rb:247:in `render'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:339:in `update_stylesheet'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:202:in `block in update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:200:in `each'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin/compiler.rb:200:in `update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin.rb:81:in `update_stylesheets'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin.rb:54:in `check_for_updates'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/sass-3.1.15/lib/sass/plugin/rack.rb:51:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/client_side_validations-3.1.4/lib/client_side_validations/middleware.rb:18:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.6/lib/warden/manager.rb:35:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.6/lib/warden/manager.rb:34:in `catch'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/warden-1.0.6/lib/warden/manager.rb:34:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/head.rb:14:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/methodoverride.rb:24:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/flash.rb:182:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/cookies.rb:302:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:32:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:12:in `cache'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/query_cache.rb:31:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activerecord-3.0.7/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/callbacks.rb:416:in `_run_call_callbacks'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/sendfile.rb:106:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/logger.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/runtime.rb:17:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/activesupport-3.0.7/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/lock.rb:13:in `block in call'
-<internal:prelude>:10:in `synchronize'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/lock.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/actionpack-3.0.7/lib/action_dispatch/middleware/static.rb:30:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:168:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/application.rb:77:in `method_missing'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/static.rb:33:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/railties-3.0.7/lib/rails/rack/log_tailer.rb:14:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/content_length.rb:13:in `call'
-/home/alok/.rvm/gems/ruby-1.9.2-p180/gems/rack-1.2.5/lib/rack/handler/webrick.rb:52:in `service'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
-/home/alok/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"80%\": expected expression (e.g. 1px, bold), was \";\"\A         on line 165 of /home/sammy/actwitty/apple/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass\A \A 160: \A 161: \A 162: \A 163:  \A 164: .aw_stream_mentions_box \A 165:   width: 80%;\A 166:   height: auto;\A 167:   display: inline-block\A 168:   span\A 169:     font-size: 12px\A 170:     padding: 2px"; }
+/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close {
+  width: 60px;
+  height: 30px;
+  border: 0px solid red;
+  float: right;
+  margin-top: 15px;
+  color: #999999 !important;
+}
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close:hover {
+  color: #333333;
+}
+/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close a {
+  text-decoration: none;
+  color: #999999;
+}
+/* line 30, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+#aw_stream_container_close a:hover {
+  color: #333333;
+}
+
+/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_entry_container {
+  position: relative;
+  border-bottom: 2px dotted #100f1a;
+  min-height: 60px;
+  clear: both;
+  display: block;
+  outline: none;
+  margin-top: -1px;
+  border-top: 1px solid transparent;
+  padding: 5px 3px 5px 3px;
+}
+
+/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img {
+  float: left;
+  margin-top: 3px;
+}
+/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img a {
+  text-decoration: none;
+}
+/* line 49, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img img {
+  height: 32px;
+  overflow: hidden;
+  width: 32px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_originator_img span {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* line 60, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_src_img {
+  float: right;
+  height: 16px;
+  overflow: hidden;
+  width: 16px;
+  margin-top: 3px;
+}
+/* line 66, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_src_img:hover {
+  cursor: pointer;
+}
+
+/* line 69, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_time_orig {
+  float: right;
+  height: 16px;
+  margin-top: 3px;
+  margin-left: 2px;
+  padding: 2px;
+  overflow: hidden;
+}
+/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_time_orig span {
+  color: #333333;
+}
+
+/* line 78, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content {
+  margin-left: 10px;
+  margin-right: 18px;
+  min-height: 48px;
+  width: 290px;
+  height: auto;
+  display: inline-block;
+  border: 0px solid green;
+}
+/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_content_screen_name {
+  text-decoration: none;
+  font-weight: bold;
+  color: #333333;
+  font-size: 15px;
+  padding-right: 2px;
+}
+/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_content_screen_name:hover {
+  cursor: pointer;
+}
+/* line 96, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_content_name {
+  padding-left: 2px;
+  text-decoration: none;
+  font-weight: normal;
+  color: #777777;
+  font-size: 15px;
+  font-weight: bold;
+}
+/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_content_name:hover {
+  cursor: pointer;
+}
+/* line 106, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_text_box {
+  padding-top: 1px;
+  min-height: 20px;
+}
+/* line 109, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_text_box p {
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  width: 100%;
+  line-height: 18px;
+  font-size: 13px;
+  word-wrap: break-word;
+}
+/* line 115, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_text_box p .aw_text_mention {
+  color: #0099b9;
+}
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_stream_text_box p .aw_text_mention:hover {
+  cursor: pointer;
+}
+/* line 120, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box {
+  margin-top: 2px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_title {
+  font-family: "RobotoBold";
+  color: #151d21;
+  font-size: 18px;
+  text-decoration: none;
+}
+/* line 130, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_title:hover {
+  cursor: pointer;
+}
+/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph {
+  padding-top: 2px;
+  width: 100%;
+  height: auto;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333333;
+  word-wrap: break-word;
+}
+/* line 142, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph .aw_attachment_image {
+  height: auto;
+  margin-right: 2px;
+  float: left;
+}
+/* line 146, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_caption {
+  width: 100%;
+  height: auto;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333333;
+  clear: left;
+}
+/* line 154, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_content .aw_attachment_box .aw_attachment_embed {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-size: 12px;
+}
+
+/* line 164, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_mentions_box {
+  width: 80%;
+  height: auto;
+  display: inline-block;
+}
+/* line 168, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
+.aw_stream_mentions_box span {
+  font-size: 12px;
+  padding: 2px;
+  background: red;
+  color: white;
+}

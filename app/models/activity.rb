@@ -75,7 +75,6 @@ class Activity < ActiveRecord::Base
   class << self
     include QueryPlanner
     include TextFormatter
-    include PusherSvc
 
     #    :author_id => 123
     #
