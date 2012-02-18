@@ -10,7 +10,6 @@ gem 'pg'
 
 gem 'bundler', '>= 1.0.0'
 
-
 gem 'haml', '>= 3.0.25'
 gem 'compass'
 gem 'sass'
@@ -22,7 +21,7 @@ gem 'devise', '~> 1.2.0'
 gem 'devise_invitable', '~> 0.4.0'
 
 #Authentication
-gem 'omniauth', '~> 0.3.2'
+gem 'omniauth', '>= 0.2.0'
 gem 'render_component'
 
 
@@ -30,7 +29,7 @@ gem 'render_component'
 gem 'i18n-inflector-rails', '~> 1.0'
 
 #Uncatagorized
-gem 'addressable' , '~> 2.2.6'
+gem 'addressable' , '2.2.4'
 
 gem 'json'
 gem 'annotate'
@@ -96,8 +95,6 @@ gem 'meta-tags', :require => 'meta_tags'
 
 #Rails paginate plugin
 gem 'will_paginate', '2.3.15'
-
-
 group :development do
   #query reviewer
   #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
@@ -115,7 +112,7 @@ group :test do
   gem 'cucumber-rails'
   gem 'rspec', '>= 2.0.1'
   #gem 'rspec-rails', '>= 2.0.1'
-  gem 'simplecov'
+  gem 'rcov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
   #for observer's' test
