@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "category_type"
     t.text     "category_id"
     t.text     "actions"
-    t.datetime "backup_created_timestamp", :default => '2012-02-10 02:40:08'
+    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:26:53'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.boolean  "uploaded",                                                    :null => false
     t.text     "category",                                                    :null => false
     t.integer  "web_link_id"
-    t.datetime "backup_created_timestamp", :default => '2012-02-10 02:40:11'
+    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:26:56'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -193,21 +193,6 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
   add_index "entities", ["entity_guid"], :name => "index_entities_on_entity_guid", :unique => true
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name"
   add_index "entities", ["updated_at"], :name => "index_entities_on_updated_at"
-
-  create_table "entity_documents", :force => true do |t|
-    t.integer  "entity_id",              :null => false
-    t.text     "entity_doc_name",        :null => false
-    t.text     "entity_doc_mid",         :null => false
-    t.text     "entity_doc_description"
-    t.text     "entity_doc_photo_url"
-    t.text     "entity_doc_wiki_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "entity_documents", ["entity_doc_mid"], :name => "index_entity_documents_on_entity_doc_mid", :unique => true
-  add_index "entity_documents", ["entity_doc_name"], :name => "index_entity_documents_on_entity_doc_name"
-  add_index "entity_documents", ["entity_id"], :name => "index_entity_documents_on_entity_id", :unique => true
 
   create_table "entity_ownerships", :force => true do |t|
     t.integer  "owner_id"
@@ -279,7 +264,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.text     "category_type"
-    t.datetime "backup_created_timestamp", :default => '2012-02-10 02:40:09'
+    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:26:54'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -493,7 +478,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.integer  "status",                                                      :null => false
-    t.datetime "backup_created_timestamp", :default => '2012-02-10 02:40:15'
+    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:27:00'
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -45,15 +45,22 @@
           %a{:href => "https://twitter.com/#!/iam_sudhanshu",:target => "_blank"}
             %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png",:target => "_blank"}
 
-
+  #aw_home_about_place
+    %img{:src => "/images/actwitty/refactor/aw_lpm/ab3.png"}
+    #aw_home_about_incubation_box
+      %img{:src => "/images/actwitty/refactor/aw_lpm/nsrcel.png"}
+      %img{:src => "/images/actwitty/refactor/aw_lpm/iimb.png"}
+      #aw_home_about_incubation_label
+        We are incubated at NSRCEL-IIM Bangalore, India's top most technology startup incubator located inside IIM Bangalore
+            
   #aw_home_footer
 
-    #aw_home_follow_us
-      .fb-like.aw_like_us{"data-href" => "http://www.actwitty.com", "data-send" => "false", "data-show-faces" => "true", "data-width" => "450"}
-      %a{:href=>"http://www.facebook.com/pages/Actwitty/162060013895162",:target => "_blank"}
-        %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
-      %a{:href=>"http://twitter.com/#!/act_witty", :target => "_blank" }
-        %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
-      %span follow us on
+  #aw_home_follow_us
+    .fb-like.aw_like_us{"data-href" => "http://www.actwitty.com", "data-send" => "false", "data-show-faces" => "true", "data-width" => "450"}
+    %a{:href=>"http://www.facebook.com/pages/Actwitty/162060013895162",:target => "_blank"}
+      %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
+    %a{:href=>"http://twitter.com/#!/act_witty", :target => "_blank" }
+      %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
+    %span follow us on
 %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }
 
