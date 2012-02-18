@@ -1,6 +1,6 @@
 /*
 Syntax error: Invalid CSS after "80%": expected expression (e.g. 1px, bold), was ";"
-        on line 165 of /home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass
+        on line 165 of /home/sammy/actwitty/apple/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass
 
 160: 
 161: 
@@ -90,4 +90,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"80%\": expected expression (e.g. 1px, bold), was \";\"\A         on line 165 of /home/alok/work/actwitty/pre-production/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass\A \A 160: \A 161: \A 162: \A 163:  \A 164: .aw_stream_mentions_box \A 165:   width: 80%;\A 166:   height: auto;\A 167:   display: inline-block\A 168:   span\A 169:     font-size: 12px\A 170:     padding: 2px"; }
+  content: "Syntax error: Invalid CSS after \"80%\": expected expression (e.g. 1px, bold), was \";\"\A         on line 165 of /home/sammy/actwitty/apple/sangam/app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass\A \A 160: \A 161: \A 162: \A 163:  \A 164: .aw_stream_mentions_box \A 165:   width: 80%;\A 166:   height: auto;\A 167:   display: inline-block\A 168:   span\A 169:     font-size: 12px\A 170:     padding: 2px"; }
