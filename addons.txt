@@ -1,4 +1,0 @@
-custom_domains:basic
-logging:basic
-pgbackups:basic
-shared-database:5mb
