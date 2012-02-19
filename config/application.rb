@@ -46,6 +46,9 @@ module Sangam
     config.filter_parameters += [:password]
     # Configure generators values. Many other options are available,
 
+    #disable asset pipeline 
+    config.assets.enabled=false 
+
     # be sure to check the documentation.
     config.generators do |g|
       g.template_engine :haml

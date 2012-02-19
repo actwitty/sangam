@@ -67,14 +67,14 @@ Devise.setup do |config|
   # If invitation_limit is 0, users can't send invitations.
   # If invitation_limit n > 0, users can send n invitations.
   # Default: nil
-  config.invitation_limit = 50
+  #config.invitation_limit = 50
   
   # The key to be used to check existing users when sending an invitation
-  config.invite_key = :email
+  #config.invite_key = :email
   
   # Flag that force a record to be valid before being actually invited 
   # Default: false
-  config.validate_on_invite = true
+  #config.validate_on_invite = true
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
