@@ -78,6 +78,8 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.0.rc.3)
       compass (~> 0.12.rc.0)
+    compass_twitter_bootstrap (2.0.1.2)
+      compass
     cookiejar (0.3.0)
     cucumber (1.0.6)
       builder (>= 2.1.2)
@@ -297,6 +299,7 @@ DEPENDENCIES
   capybara
   client_side_validations
   compass-rails
+  compass_twitter_bootstrap
   cucumber-rails
   database_cleaner
   date_validator

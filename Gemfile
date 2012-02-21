@@ -16,9 +16,11 @@ gem 'bundler', '>= 1.0.0'
 gem 'haml', '>= 3.0.25'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
-gem  'compass-rails'
-gem 'sass-rails', "  ~> 3.2.3"
-
+group :assets do
+  gem  'compass-rails'
+  gem 'compass_twitter_bootstrap'
+  gem 'sass-rails', "  ~> 3.2.3"
+end
 #Security
 gem 'devise', '~> 1.2.0'
 #gem 'devise_invitable'
