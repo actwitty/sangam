@@ -14,10 +14,10 @@ gem 'bundler', '>= 1.0.0'
 
 
 gem 'haml', '>= 3.0.25'
-gem 'compass'
-gem 'sass'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
+gem  'compass-rails'
+gem 'sass-rails', "  ~> 3.2.3"
 
 #Security
 gem 'devise', '~> 1.2.0'
@@ -99,6 +99,7 @@ gem 'jquery-rails'
 
 #thin
 gem 'thin'
+
 group :development do
   #query reviewer
   #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"

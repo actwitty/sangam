@@ -1,12 +1,9 @@
-/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_input_box_activate {
   position: absolute;
   top: 10px;
   left: 640px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
-/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .button_classic {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -28,44 +25,32 @@
   border-color: #3278be;
   background: #4195dd;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82));
-  background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd);
-}
-/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.button_classic:hover {
-  color: #eeeeee;
-  border-color: #3278be;
-  background: #4195dd;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82));
-  background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd);
-}
-/* line 35, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.button_classic:active {
-  background: #4195dd;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#003c82), to(#4195dd));
-  background: -moz-linear-gradient(0% 90% 90deg, #4195dd, #003c82);
-}
-/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.button_classic.notransitions {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-/* line 46, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.button_classic #awppm_input_box_attention_icon {
-  height: 20px;
-  width: 20px;
-  display: inline-block;
-  background-image: url("/images/actwitty/refactor/aw_ppm/common/checkin.png");
-  margin-left: 10px;
-  float: left;
-}
-/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.button_classic:hover #awppm_input_box_attention_icon {
-  background-image: url("/images/actwitty/refactor/aw_ppm/common/checkin_hover.png");
-}
+  background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd); }
+  .button_classic:hover {
+    color: #eeeeee;
+    border-color: #3278be;
+    background: #4195dd;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4195dd), to(#003c82));
+    background: -moz-linear-gradient(0% 90% 90deg, #003c82, #4195dd); }
+  .button_classic:active {
+    background: #4195dd;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#003c82), to(#4195dd));
+    background: -moz-linear-gradient(0% 90% 90deg, #4195dd, #003c82); }
+  .button_classic.notransitions {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none; }
+  .button_classic #awppm_input_box_attention_icon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/checkin.png");
+    margin-left: 10px;
+    float: left; }
+  .button_classic:hover #awppm_input_box_attention_icon {
+    background-image: url("/images/actwitty/refactor/aw_ppm/common/checkin_hover.png"); }
 
-/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_input_box {
   height: 140px;
   height: auto;
@@ -82,10 +67,8 @@
   -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  display: none;
-}
+  display: none; }
 
-/* line 75, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_input_busy_box {
   position: absolute;
   top: 0;
@@ -97,34 +80,26 @@
   height: 100%;
   background: black;
   background: rgba(0, 0, 0, 0.1);
-  display: none;
-}
-/* line 87, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.awppm_input_busy_box .awppm_input_busy_mini_box {
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  margin-top: -25px;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
-/* line 95, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.awppm_input_busy_box .awppm_input_busy_mini_box img.awppm_input_busy_image {
-  width: 50px;
-  height: 50px;
-  margin: auto;
-}
+  display: none; }
+  .awppm_input_busy_box .awppm_input_busy_mini_box {
+    width: 50px;
+    height: 50px;
+    margin-left: -25px;
+    margin-top: -25px;
+    top: 50%;
+    left: 50%;
+    position: absolute; }
+    .awppm_input_busy_box .awppm_input_busy_mini_box img.awppm_input_busy_image {
+      width: 50px;
+      height: 50px;
+      margin: auto; }
 
-/* line 100, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_del_ipbox {
   position: absolute;
   top: 5px;
   right: 5px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
-/* line 106, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_input_label {
   color: #333333;
   font-size: 16px;
@@ -132,16 +107,12 @@
   margin-left: 50px;
   margin-bottom: 2px;
   border: 0px solid red;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
-/* line 119, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_channel {
   width: 550px;
-  margin-left: 50px;
-}
+  margin-left: 50px; }
 
-/* line 122, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_channel input {
   width: 500px;
   height: 30px;
@@ -150,20 +121,16 @@
   font-size: 13px;
   -moz-box-shadow: 0 0 8px #dddddd;
   -webkit-box-shadow: 0 0 8px #dddddd;
-  box-shadow: 0 0 8px #dddddd;
-}
+  box-shadow: 0 0 8px #dddddd; }
 
-/* line 132, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #aw_js_ppm_category_hide {
   width: 550px;
   margin-left: 50px;
   height: 40px;
   margin-top: 10px;
   margin-bottom: 8px;
-  display: none;
-}
+  display: none; }
 
-/* line 139, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_ip_cat, .awppm_ip_subcat {
   width: 240px;
   height: 30px;
@@ -172,62 +139,46 @@
   -moz-box-shadow: 0 0 2px #dddddd;
   -webkit-box-shadow: 0 0 2px #dddddd;
   box-shadow: 0 0 2px #dddddd;
-  background: white;
-}
-/* line 148, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.awppm_ip_cat option, .awppm_ip_subcat option {
-  color: black;
-  background: white;
-}
+  background: white; }
+  .awppm_ip_cat option, .awppm_ip_subcat option {
+    color: black;
+    background: white; }
 
-/* line 153, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_ip_cat {
   vertical-align: middle;
-  margin-right: 8px;
-}
+  margin-right: 8px; }
 
-/* line 157, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_ip_subcat {
   vertical-align: middle;
   margin-right: 8px;
   color: #dddddd;
   margin-left: 6px;
-  display: none;
-}
-/* line 162, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-.awppm_ip_subcat:focus {
-  color: #333333;
-}
+  display: none; }
+  .awppm_ip_subcat:focus {
+    color: #333333; }
 
-/* line 166, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_post {
   width: 550px;
   margin-left: 50px;
   width: 600px;
-  margin-top: 10px;
-}
-/* line 170, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-#awppm_ip_post textarea {
-  width: 500px;
-  height: 80px;
-  border: 1px solid #dddddd;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  -moz-box-shadow: 0 0 8px #dddddd;
-  -webkit-box-shadow: 0 0 8px #dddddd;
-  box-shadow: 0 0 8px #dddddd;
-  border-bottom: none;
-  resize: none;
-}
+  margin-top: 10px; }
+  #awppm_ip_post textarea {
+    width: 500px;
+    height: 80px;
+    border: 1px solid #dddddd;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    -moz-box-shadow: 0 0 8px #dddddd;
+    -webkit-box-shadow: 0 0 8px #dddddd;
+    box-shadow: 0 0 8px #dddddd;
+    border-bottom: none;
+    resize: none; }
 
-/* line 182, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_location {
   width: 550px;
   margin-left: 50px;
-  margin-top: 5px;
-}
+  margin-top: 5px; }
 
-/* line 186, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_ip_add_attachment {
   width: 550px;
   margin-left: 50px;
@@ -239,10 +190,8 @@
   -moz-box-shadow: 0 0 8px #dddddd;
   -webkit-box-shadow: 0 0 8px #dddddd;
   box-shadow: 0 0 8px #dddddd;
-  display: none;
-}
+  display: none; }
 
-/* line 198, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_location input {
   width: 395px;
   height: 30px;
@@ -250,10 +199,8 @@
   -moz-box-shadow: 0 0 8px #dddddd;
   -webkit-box-shadow: 0 0 8px #dddddd;
   box-shadow: 0 0 8px #dddddd;
-  display: none;
-}
+  display: none; }
 
-/* line 209, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_options {
   width: 550px;
   margin-left: 50px;
@@ -262,65 +209,46 @@
   border: 0px solid #dddddd;
   margin-top: -3px;
   margin-bottom: 10px;
-  border-top: none;
-}
-/* line 217, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-#awppm_ip_options img {
-  float: right;
-  height: 30px;
-  margin-top: 5px;
-}
+  border-top: none; }
+  #awppm_ip_options img {
+    float: right;
+    height: 30px;
+    margin-top: 5px; }
 
-/* line 222, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_post_share {
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 
-/* line 225, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_submit {
   width: 250px;
   margin-left: 310px;
   margin-top: 10px;
-  border: 0px solid red;
-}
-/* line 230, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-#awppm_ip_submit span {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  color: black;
-  vertical-align: baseline;
-}
-/* line 235, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
-#awppm_ip_submit img {
-  vertical-align: baseline;
-}
+  border: 0px solid red; }
+  #awppm_ip_submit span {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: black;
+    vertical-align: baseline; }
+  #awppm_ip_submit img {
+    vertical-align: baseline; }
 
-/* line 238, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 .awppm_pub_btn {
   height: 40px;
   width: 100px;
-  padding: 10px;
-}
+  padding: 10px; }
 
-/* line 243, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_addphoto {
   position: absolute;
   right: 10px;
   top: 60px;
   width: 100px;
-  height: 30px;
-}
+  height: 30px; }
 
-/* line 250, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_ip_addlocation {
   position: absolute;
   right: 10px;
   top: 100px;
   width: 100px;
-  height: 30px;
-}
+  height: 30px; }
 
-/* line 257, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.sass */
 #awppm_input_dummy {
-  height: 200px;
-}
+  height: 200px; }

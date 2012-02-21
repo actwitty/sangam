@@ -1,4 +1,3 @@
-/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_sketch_dyn_topics_box {
   width: 154px;
   height: 213px;
@@ -11,306 +10,224 @@
   border-radius: 5px;
   -moz-box-shadow: 0 0 10px #333333;
   -webkit-box-shadow: 0 0 10px #333333;
-  box-shadow: 0 0 10px #333333;
-}
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topic_logo_large {
-  display: block;
-}
-/* line 16, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_title {
-  height: 32px;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  background: #25a0da;
-  color: white;
-  text-align: center;
-  font-size: 28px;
-  font-family: "League Gothic";
-  text-transform: uppercase;
-  padding-top: 1px;
-  border-top-left-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  border-top-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-}
-/* line 33, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_yellow {
-  background-color: #f19720;
-}
-/* line 35, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_mid_green {
-  background-color: #309b46;
-}
-/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_red {
-  background-color: #e61e26;
-}
-/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_lilac {
-  background-color: #7e51a1;
-}
-/* line 41, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_brown {
-  background-color: #986827;
-}
-/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_pink {
-  background-color: #df73ad;
-}
-/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_light_green {
-  background-color: #8bc03f;
-}
-/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_light_magenta {
-  background-color: #ed1691;
-}
-/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray1 {
-  background-color: #c8c8c8;
-}
-/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray2 {
-  background-color: #6f6f6f;
-}
-/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray3 {
-  background-color: #676767;
-}
-/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray4 {
-  background-color: #575757;
-}
-/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray5 {
-  background-color: #989999;
-}
-/* line 61, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray6 {
-  background-color: #3f3f3f;
-}
-/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 40px;
-  left: 8px;
-  overflow: hidden;
-  cursor: pointer;
-}
-/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left:hover {
-  background: #575757;
-}
-/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 82, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 95, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 40px;
-  left: 81px;
-  overflow: hidden;
-  cursor: pointer;
-}
-/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right:hover {
-  background: #575757;
-}
-/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 113, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 113px;
-  left: 8px;
-  cursor: pointer;
-}
-/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left:hover {
-  background: #575757;
-}
-/* line 135, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 143, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 156, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 113px;
-  left: 81px;
-  cursor: pointer;
-}
-/* line 163, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right:hover {
-  background: #575757;
-}
-/* line 165, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 189, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_small {
-  position: absolute;
-  top: -15px;
-  left: 132px;
-  height: 30px;
-  width: 30px;
-}
-/* line 196, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_large {
-  position: absolute;
-  top: -20px;
-  left: 127px;
-  height: 40px;
-  width: 40px;
-  display: none;
-}
-/* line 204, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro {
-  height: 25px;
-  width: 100%;
-  border: 0px solid red;
-  position: absolute;
-  top: 186px;
-  left: 0px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  -moz-border-radius-bottomright: 5px;
-}
-/* line 216, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_facebook {
-  height: 100%;
-  background-color: #005ca5;
-  border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  display: block;
-  float: left;
-  padding-top: 2px;
-  margin: 0;
-}
-/* line 228, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter {
-  height: 100%;
-  background-color: #23b7e9;
-  border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  display: inline-block;
-  float: right;
-  padding-top: 2px;
-  margin: 0;
-}
+  box-shadow: 0 0 10px #333333; }
+  .aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topic_logo_large {
+    display: block; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_title {
+    height: 32px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background: #25a0da;
+    color: white;
+    text-align: center;
+    font-size: 28px;
+    font-family: "League Gothic";
+    text-transform: uppercase;
+    padding-top: 1px;
+    border-top-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    border-top-right-radius: 5px;
+    -moz-border-radius-topright: 5px; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_yellow {
+    background-color: #f19720; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_mid_green {
+    background-color: #309b46; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_red {
+    background-color: #e61e26; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_lilac {
+    background-color: #7e51a1; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_brown {
+    background-color: #986827; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_pink {
+    background-color: #df73ad; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_light_green {
+    background-color: #8bc03f; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_light_magenta {
+    background-color: #ed1691; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_gray1 {
+    background-color: #c8c8c8; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_gray2 {
+    background-color: #6f6f6f; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_gray3 {
+    background-color: #676767; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_gray4 {
+    background-color: #575757; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_gray5 {
+    background-color: #989999; }
+  .aw_sketch_dyn_topics_box .aw_grid_box_color_gray6 {
+    background-color: #3f3f3f; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    top: 40px;
+    left: 8px;
+    overflow: hidden;
+    cursor: pointer; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left:hover {
+      background: #575757; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left img.aw_sketch_dyn_topic_grid_img {
+      margin-left: 5px;
+      margin-top: 5px;
+      font-family: "League Gothic";
+      font-size: 14px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left span.aw_sketch_dyn_topic_grid_number {
+      width: 100%;
+      text-align: center;
+      margin-top: 2px;
+      margin-right: 10px;
+      margin-bottom: 2px;
+      font-family: "League Gothic";
+      font-size: 36px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    top: 40px;
+    left: 81px;
+    overflow: hidden;
+    cursor: pointer; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right:hover {
+      background: #575757; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right img.aw_sketch_dyn_topic_grid_img {
+      margin-left: 5px;
+      margin-top: 5px;
+      font-family: "League Gothic";
+      font-size: 14px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right span.aw_sketch_dyn_topic_grid_number {
+      width: 100%;
+      text-align: center;
+      margin-top: 2px;
+      margin-right: 10px;
+      margin-bottom: 2px;
+      font-family: "League Gothic";
+      font-size: 36px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    top: 113px;
+    left: 8px;
+    cursor: pointer; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left:hover {
+      background: #575757; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left img.aw_sketch_dyn_topic_grid_img {
+      margin-left: 5px;
+      margin-top: 5px;
+      font-family: "League Gothic";
+      font-size: 14px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left span.aw_sketch_dyn_topic_grid_number {
+      width: 100%;
+      text-align: center;
+      margin-top: 2px;
+      margin-right: 10px;
+      margin-bottom: 2px;
+      font-family: "League Gothic";
+      font-size: 36px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    top: 113px;
+    left: 81px;
+    cursor: pointer; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right:hover {
+      background: #575757; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right img.aw_sketch_dyn_topic_grid_img {
+      margin-left: 5px;
+      margin-top: 5px;
+      font-family: "League Gothic";
+      font-size: 14px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right span.aw_sketch_dyn_topic_grid_number {
+      width: 100%;
+      text-align: center;
+      margin-top: 2px;
+      margin-right: 10px;
+      margin-bottom: 2px;
+      font-family: "League Gothic";
+      font-size: 36px;
+      font-weight: normal;
+      color: white;
+      display: block; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_small {
+    position: absolute;
+    top: -15px;
+    left: 132px;
+    height: 30px;
+    width: 30px; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_large {
+    position: absolute;
+    top: -20px;
+    left: 127px;
+    height: 40px;
+    width: 40px;
+    display: none; }
+  .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro {
+    height: 25px;
+    width: 100%;
+    border: 0px solid red;
+    position: absolute;
+    top: 186px;
+    left: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomright: 5px; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_facebook {
+      height: 100%;
+      background-color: #005ca5;
+      border-bottom-left-radius: 5px;
+      -moz-border-radius-bottomleft: 5px;
+      border-bottom-right-radius: 5px;
+      -moz-border-radius-bottomright: 5px;
+      display: block;
+      float: left;
+      padding-top: 2px;
+      margin: 0; }
+    .aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter {
+      height: 100%;
+      background-color: #23b7e9;
+      border-bottom-left-radius: 5px;
+      -moz-border-radius-bottomleft: 5px;
+      border-bottom-right-radius: 5px;
+      -moz-border-radius-bottomright: 5px;
+      display: inline-block;
+      float: right;
+      padding-top: 2px;
+      margin: 0; }
 
-/* line 240, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_show_always {
-  display: inline-block;
-}
+  display: inline-block; }
 
-/* line 243, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_hide_on_less {
-  display: none;
-}
+  display: none; }
 
-/* line 246, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_show_on_more {
-  display: inline-block;
-}
+  display: inline-block; }
 
-/* line 249, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_show_more_topics_box {
   height: 15px;
   width: 100%;
@@ -319,9 +236,6 @@
   text-align: left;
   color: #0099b9;
   font-size: 14px;
-  font-weight: normal;
-}
-/* line 258, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_show_more_topics_box:hover {
-  cursor: pointer;
-}
+  font-weight: normal; }
+  .aw_show_more_topics_box:hover {
+    cursor: pointer; }

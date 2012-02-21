@@ -3,20 +3,15 @@
  *code: AWLPM (awlpm) Actwitty Landing Page Sign In Main
  *Author: ActWitty Developers
  *Author URI: http://www.actwitty.com */
-/* line 12, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_main_box {
   height: 700px;
-  width: 100%;
-}
+  width: 100%; }
 
-/* line 17, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_main_box img {
   width: 500px;
   margin: 0 auto;
-  display: block;
-}
+  display: block; }
 
-/* line 24, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_main_div {
   font-family: Roboto;
   margin: auto;
@@ -32,10 +27,8 @@
   border: 1px solid #dddddd;
   -moz-box-shadow: 0 0 3px #dddddd;
   -webkit-box-shadow: 0 0 3px #dddddd;
-  box-shadow: 0 0 3px #dddddd;
-}
+  box-shadow: 0 0 3px #dddddd; }
 
-/* line 89, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #awlpm_signin_aw_logo {
   margin-top: 15px;
   margin-left: 20px;
@@ -43,16 +36,12 @@
   height: 50px;
   width: 75px;
   display: inline;
-  position: relative;
-}
+  position: relative; }
 
-/* line 98, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 img.awlpm_signin_aw_logo_img {
   height: 50px;
-  width: 75px;
-}
+  width: 75px; }
 
-/* line 102, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #awlpm_signin_aw_header_label {
   margin: 0 auto;
   /*margin-left: 10px */
@@ -65,10 +54,8 @@ img.awlpm_signin_aw_logo_img {
   /* font: 20px/100% Arial, Helvetica, sans-serif */
   font-weight: bold;
   text-align: center;
-  padding-top: 10px;
-}
+  padding-top: 10px; }
 
-/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_email_label {
   color: #333333;
   margin-left: 220px;
@@ -80,10 +67,8 @@ img.awlpm_signin_aw_logo_img {
   letter-spacing: 1px;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
   /* font: 20px/100% Arial, Helvetica, sans-serif */
-  margin-top: 40px;
-}
+  margin-top: 40px; }
 
-/* line 121, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_password_label {
   color: #333333;
   margin-left: 220px;
@@ -94,10 +79,8 @@ img.awlpm_signin_aw_logo_img {
   font-weight: normal;
   letter-spacing: 1px;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
-  /* font: 20px/100% Arial, Helvetica, sans-serif */
-}
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
 
-/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_email_input {
   width: 250px;
   height: 40px;
@@ -113,16 +96,12 @@ img.awlpm_signin_aw_logo_img {
   background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
-}
-/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
-#aw_lpm_signin_email_input:focus {
-  -moz-box-shadow: 0 0 2px #888888;
-  -webkit-box-shadow: 0 0 2px #888888;
-  box-shadow: 0 0 2px #888888;
-}
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signin_email_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
 
-/* line 129, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_password_input {
   width: 250px;
   height: 40px;
@@ -138,41 +117,31 @@ img.awlpm_signin_aw_logo_img {
   background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
-}
-/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
-#aw_lpm_signin_password_input:focus {
-  -moz-box-shadow: 0 0 2px #888888;
-  -webkit-box-shadow: 0 0 2px #888888;
-  box-shadow: 0 0 2px #888888;
-}
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signin_password_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
 
-/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_user_session .simple_form {
   margin-left: 10px;
   font-size: 12px;
   color: black;
   display: block;
-  width: 250px;
-}
+  width: 250px; }
 
-/* line 140, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_user_session .simple_form .field_with_errors {
   width: 200px;
-  display: block;
-}
+  display: block; }
 
-/* line 143, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_user_session .simple_form .field_with_errors .error {
   width: 250px;
   height: 12px;
   font-size: 12px;
   margin-left: 120px;
   display: block;
-  color: black;
-}
+  color: black; }
 
-/* line 147, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 #aw_lpm_signin_already_a_user {
   display: block;
   color: #444444;
@@ -181,10 +150,8 @@ img.awlpm_signin_aw_logo_img {
   width: 100%;
   border: 0px solid red;
   font: 14px/100% Arial, Helvetica, sans-serif;
-  font-weight: normal;
-}
+  font-weight: normal; }
 
-/* line 158, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 .actwittysignin {
   width: 150px;
   height: 40px;
@@ -210,16 +177,12 @@ img.awlpm_signin_aw_logo_img {
   background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
   background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
   background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
-}
-/* line 185, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
-.actwittysignin:hover {
-  cursor: pointer;
-  color: #fcd3a5;
-  background: #ff3019;
-}
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); }
+  .actwittysignin:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: #ff3019; }
 
-/* line 191, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
 input#aw_lpm_signinbutton {
   width: 60px;
   background: #ff9600;
@@ -243,13 +206,10 @@ input#aw_lpm_signinbutton {
   background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
   display: inline;
-  font: 14px/100% Arial, Helvetica, sans-serif;
-}
-/* line 216, ../../../../../../app/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.sass */
-input#aw_lpm_signinbutton:hover {
-  cursor: pointer;
-  color: #fcd3a5;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
-  background: -moz-linear-gradient(top, #f47a20, #faa51a);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
-}
+  font: 14px/100% Arial, Helvetica, sans-serif; }
+  input#aw_lpm_signinbutton:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+    background: -moz-linear-gradient(top, #f47a20, #faa51a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a'); }

@@ -3,29 +3,22 @@
  *  code: AWLPM (awlpm) Actwitty Landing Page Sign In Main
  *  Author: ActWitty Developers
  *  Author URI: http://www.actwitty.com */
-/* line 12, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_main_box {
   height: 700px;
-  width: 100%;
-}
+  width: 100%; }
 
-/* line 17, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_main_box img {
   width: 500px;
-  margin-left: 420px;
-}
+  margin-left: 420px; }
 
-/* line 21, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_main_div {
   margin: auto;
   width: 600px;
   height: 400px;
   /*border: 8px solid #33ccff */
   border-radius: 10px;
-  -moz-border-radius: 10px;
-}
+  -moz-border-radius: 10px; }
 
-/* line 40, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_aw_logo {
   margin-top: 15px;
   margin-left: 20px;
@@ -33,41 +26,31 @@
   height: 50px;
   width: 75px;
   display: inline;
-  position: relative;
-}
+  position: relative; }
 
-/* line 49, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 img.aw_lpm_forgot_pswd_aw_logo_img {
   height: 50px;
-  width: 75px;
-}
+  width: 75px; }
 
-/* line 58, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form {
   margin-left: 10px;
   font-size: 12px;
   color: black;
   display: block;
-  width: 250px;
-}
+  width: 250px; }
 
-/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form .field_with_errors {
   width: 200px;
-  display: block;
-}
+  display: block; }
 
-/* line 67, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_user_session .simple_form .field_with_errors .error {
   width: 250px;
   height: 12px;
   font-size: 12px;
   margin-left: 120px;
   display: block;
-  color: black;
-}
+  color: black; }
 
-/* line 71, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 #aw_lpm_forgot_pswd_already_a_user {
   display: block;
   color: #444444;
@@ -76,10 +59,8 @@ img.aw_lpm_forgot_pswd_aw_logo_img {
   width: 100%;
   border: 0px solid red;
   font: 12px/100% Arial, Helvetica, sans-serif;
-  font-weight: normal;
-}
+  font-weight: normal; }
 
-/* line 85, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
 input#aw_lpm_forgot_password_btn {
   width: 100px;
   height: 60px;
@@ -103,11 +84,8 @@ input#aw_lpm_forgot_password_btn {
   font-weight: bold;
   float: right;
   margin-top: 10px;
-  margin-right: 125px;
-}
-/* line 109, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.sass */
-input#aw_lpm_forgot_password_btn:hover {
-  cursor: pointer;
-  color: #fcd3a5;
-  background: #ff3019;
-}
+  margin-right: 125px; }
+  input#aw_lpm_forgot_password_btn:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: #ff3019; }

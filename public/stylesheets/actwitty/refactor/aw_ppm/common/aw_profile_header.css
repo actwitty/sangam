@@ -1,12 +1,9 @@
-/* line 8, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #aw_top_bar_box {
   width: 940px;
   height: 100%;
   margin: 0 auto;
-  border: 0px solid yellow;
-}
+  border: 0px solid yellow; }
 
-/* line 15, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_box {
   position: relative;
   margin: 0 auto 0;
@@ -15,44 +12,36 @@
   width: 990px;
   height: 45px;
   border: 0px solid red;
-  position: relative;
-}
+  position: relative; }
 
-/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_profile_logo {
   position: relative;
   float: left;
   margin-top: 3px;
-  margin-left: 10px;
-}
+  margin-left: 10px; }
 
-/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_search_edit_box {
   position: relative;
   margin-top: 5px;
   margin-left: 130px;
   float: left;
   height: 25px;
-  width: 280px;
-}
-/* line 41, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_search_edit_box input {
-  border: 1px solid #dddddd;
-  height: 25px;
-  width: 280px;
-  font-size: 14px;
-  border-radius: 3px;
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
+  width: 280px; }
+  #awppm_header_search_edit_box input {
+    border: 1px solid #dddddd;
+    height: 25px;
+    width: 280px;
+    font-size: 14px;
+    border-radius: 3px;
+    background: white;
+    background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+    background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); }
 
-/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_search_box {
   width: 320;
   height: 15px;
@@ -64,41 +53,31 @@
   padding: 5px 0px 5px 10px;
   display: none;
   background-color: #363436;
-  background: -moz-linear-gradient(center top, #f5f5f5 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent;
-}
+  background: -moz-linear-gradient(center top, #f5f5f5 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent; }
 
-/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_search_autocomplete_box {
   display: inline;
   width: 100%;
-  height: 25px;
-}
-/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_search_autocomplete_box .awppm_search_img_box {
-  display: block-inline;
-  width: 25px;
-  padding-left: 5px;
-  padding-right: 5px;
-  float: left;
-}
-/* line 82, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_search_autocomplete_box .awppm_search_name_box {
-  width: 120px;
-  overflow: hidden;
-  display: block-inline;
-  padding: 5px;
-  float: left;
-  font-size: 13px;
-}
-/* line 89, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_search_autocomplete_box .awppm_search_type_box {
-  display: block-inline;
-  float: right;
-  margin-right: 5px;
-  width: 25px;
-}
+  height: 25px; }
+  .awppm_search_autocomplete_box .awppm_search_img_box {
+    display: block-inline;
+    width: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+    float: left; }
+  .awppm_search_autocomplete_box .awppm_search_name_box {
+    width: 120px;
+    overflow: hidden;
+    display: block-inline;
+    padding: 5px;
+    float: left;
+    font-size: 13px; }
+  .awppm_search_autocomplete_box .awppm_search_type_box {
+    display: block-inline;
+    float: right;
+    margin-right: 5px;
+    width: 25px; }
 
-/* line 99, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_bar {
   position: absolute;
   top: 0;
@@ -120,76 +99,56 @@
   -moz-box-shadow: inset 0 0 2px black;
   -webkit-box-shadow: inset 0 0 2px black;
   box-shadow: inset 0 0 2px black;
-  padding: 3px 0px 3px 10px;
-}
-/* line 122, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_bar:hover {
-  background: white;
-  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
-  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
-  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-/* line 132, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_bar img {
-  vertical-align: middle;
-}
-/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_bar span {
-  color: #333333;
-  font-weight: bold;
-}
+  padding: 3px 0px 3px 10px; }
+  #awppm_header_user_bar:hover {
+    background: white;
+    background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+    background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+    background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); }
+  #awppm_header_user_bar img {
+    vertical-align: middle; }
+  #awppm_header_user_bar span {
+    color: #333333;
+    font-weight: bold; }
 
-/* line 138, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_logout {
   text-decoration: none;
   float: right;
   color: white;
   margin-top: 7px;
   margin-right: 25px;
-  font-size: 15px;
-}
-/* line 145, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_logout:hover {
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
-}
+  font-size: 15px; }
+  #awppm_header_user_logout:hover {
+    color: white;
+    font-weight: bold;
+    font-size: 15px; }
 
-/* line 150, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_settings {
   text-decoration: none;
   float: right;
   color: #333333;
   margin-top: 7px;
-  margin-right: 5px;
-}
-/* line 156, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_settings:hover {
-  color: #b22222;
-  font-weight: bold;
-  font-size: 15px;
-}
+  margin-right: 5px; }
+  #awppm_header_user_settings:hover {
+    color: #b22222;
+    font-weight: bold;
+    font-size: 15px; }
 
-/* line 161, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_info {
   text-decoration: none;
   float: left;
   color: #333333;
   margin-top: 0px;
-  margin-left: 5px;
-}
-/* line 167, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_info:hover {
-  color: #b22222;
-  font-weight: bold;
-  font-size: 15px;
-}
+  margin-left: 5px; }
+  #awppm_header_user_info:hover {
+    color: #b22222;
+    font-weight: bold;
+    font-size: 15px; }
 
-/* line 178, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 #awppm_header_user_image {
   height: 50px;
   width: 50px;
@@ -197,16 +156,12 @@
   top: 20px;
   right: 10px;
   overflow: hidden;
-  background: none;
-}
-/* line 186, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-#awppm_header_user_image a img {
-  padding-top: 10px;
-  width: 40px;
-  float: right;
-}
+  background: none; }
+  #awppm_header_user_image a img {
+    padding-top: 10px;
+    width: 40px;
+    float: right; }
 
-/* line 190, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
 .awppm_header_options_menu {
   position: absolute;
   top: 35px;
@@ -219,54 +174,41 @@
   margin-top: 15px;
   background: #454545;
   border-radius: 0 0 5px 5px;
-  -moz-border-radius: 0 0 5px 5px;
-}
-/* line 203, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_header_options_menu ul {
-  list-style: none;
-  padding-top: 3px;
-  background: #454545;
-  margin-top: 0px;
-}
-/* line 208, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_header_options_menu ul li {
-  display: block;
-  padding: 5px 0 5px 0;
-  margin-left: -40px;
-}
-/* line 212, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_header_options_menu ul li a {
-  padding: 3px 0px;
-  font-size: 14px;
-  display: block;
-  margin: -6px 0 0 0;
-  position: relative;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF',GradientType=0 );
-  color: #dddddd;
-  text-decoration: none;
-  text-align: center;
-  zoom: 1;
-}
-/* line 223, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_header_options_menu ul li a span {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 1px;
-  display: block;
-  background: black;
-  z-index: 20;
-  display: none;
-  zoom: 1;
-}
-/* line 234, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_header_options_menu ul li:hover a {
-  border-color: #d7dbea;
-  color: white;
-  background: black;
-}
-/* line 238, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.sass */
-.awppm_header_options_menu ul li:hover a span {
-  display: block;
-}
+  -moz-border-radius: 0 0 5px 5px; }
+  .awppm_header_options_menu ul {
+    list-style: none;
+    padding-top: 3px;
+    background: #454545;
+    margin-top: 0px; }
+    .awppm_header_options_menu ul li {
+      display: block;
+      padding: 5px 0 5px 0;
+      margin-left: -40px; }
+      .awppm_header_options_menu ul li a {
+        padding: 3px 0px;
+        font-size: 14px;
+        display: block;
+        margin: -6px 0 0 0;
+        position: relative;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF',GradientType=0 );
+        color: #dddddd;
+        text-decoration: none;
+        text-align: center;
+        zoom: 1; }
+        .awppm_header_options_menu ul li a span {
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          display: block;
+          background: black;
+          z-index: 20;
+          display: none;
+          zoom: 1; }
+      .awppm_header_options_menu ul li:hover a {
+        border-color: #d7dbea;
+        color: white;
+        background: black; }
+        .awppm_header_options_menu ul li:hover a span {
+          display: block; }

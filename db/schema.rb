@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -31,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "category_type"
     t.text     "category_id"
     t.text     "actions"
-    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:26:53'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:03'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -164,7 +165,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.boolean  "uploaded",                                                    :null => false
     t.text     "category",                                                    :null => false
     t.integer  "web_link_id"
-    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:26:56'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:06'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -264,7 +265,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.text     "category_type"
-    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:26:54'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:04'
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -368,15 +369,18 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
   add_index "short_web_links", ["web_link_id"], :name => "index_short_web_links_on_web_link_id"
 
   create_table "social_aggregators", :force => true do |t|
-    t.integer  "user_id",                                                 :null => false
-    t.text     "provider",                                                :null => false
-    t.text     "uid",                                                     :null => false
-    t.datetime "latest_msg_timestamp", :default => '1970-01-01 00:00:00'
-    t.integer  "status",               :default => 1
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "user_id",                                                  :null => false
+    t.text     "provider",                                                 :null => false
+    t.text     "uid",                                                      :null => false
+    t.datetime "latest_msg_timestamp",  :default => '1970-01-01 00:00:00'
+    t.integer  "latest_msg_id",         :default => 0
+    t.integer  "status",                :default => 1
+    t.datetime "next_update_timestamp", :default => '1970-01-01 00:00:00'
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
   end
 
+  add_index "social_aggregators", ["next_update_timestamp"], :name => "index_social_aggregators_on_next_update_timestamp"
   add_index "social_aggregators", ["provider"], :name => "index_social_aggregators_on_provider"
   add_index "social_aggregators", ["status"], :name => "index_social_aggregators_on_status"
   add_index "social_aggregators", ["uid"], :name => "index_social_aggregators_on_uid"
@@ -478,7 +482,7 @@ ActiveRecord::Schema.define(:version => 20111223201844) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.integer  "status",                                                      :null => false
-    t.datetime "backup_created_timestamp", :default => '2012-02-15 16:27:00'
+    t.datetime "backup_created_timestamp", :default => '2012-02-09 20:13:09'
     t.datetime "created_at"
     t.datetime "updated_at"
   end

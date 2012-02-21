@@ -1,65 +1,48 @@
-/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
 .aw_single_contact_box {
   height: 56;
   width: 56;
   margin: 5px;
-  position: relative;
-}
-/* line 6, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
-.aw_single_contact_box:hover {
-  cursor: pointer;
-}
-/* line 9, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
-.aw_single_contact_box .aw_single_contact_image {
-  top: 0px;
-  left: 0px;
-  padding: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0 0 5px #333333;
-  -webkit-box-shadow: 0 0 5px #333333;
-  box-shadow: 0 0 5px #333333;
-}
-/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
-.aw_single_contact_box .aw_single_contact_service_img {
-  position: absolute;
-  top: 48px;
-  left: 48px;
-}
-/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
-.aw_single_contact_box .aw_single_contact_posts_count {
-  position: absolute;
-  top: 48px;
-  left: 0px;
-  height: 12px;
-  width: 16px;
-  overflow: hidden;
-  background-color: #333333;
-  color: white;
-  text-align: center;
-  font-size: 12px;
-  padding-bottom: 2px;
-  font-weight: normal;
-  border-radius: 2px;
-  opacity: 0.9;
-  filter: alpha(opacity=90);
-}
+  position: relative; }
+  .aw_single_contact_box:hover {
+    cursor: pointer; }
+  .aw_single_contact_box .aw_single_contact_image {
+    top: 0px;
+    left: 0px;
+    padding: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0 0 5px #333333;
+    -webkit-box-shadow: 0 0 5px #333333;
+    box-shadow: 0 0 5px #333333; }
+  .aw_single_contact_box .aw_single_contact_service_img {
+    position: absolute;
+    top: 48px;
+    left: 48px; }
+  .aw_single_contact_box .aw_single_contact_posts_count {
+    position: absolute;
+    top: 48px;
+    left: 0px;
+    height: 12px;
+    width: 16px;
+    overflow: hidden;
+    background-color: #333333;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 2px;
+    font-weight: normal;
+    border-radius: 2px;
+    opacity: 0.9;
+    filter: alpha(opacity=90); }
 
-/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
 .aw_js_single_contact_box_show_always {
-  display: inline-block;
-}
+  display: inline-block; }
 
-/* line 42, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
 .aw_js_single_contact_box_hide_on_less {
-  display: none;
-}
+  display: none; }
 
-/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
 .aw_js_single_contact_box_show_on_more {
-  display: inline-block;
-}
+  display: inline-block; }
 
-/* line 48, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
 .aw_show_more_contacts_box {
   height: 15px;
   width: 100%;
@@ -68,9 +51,6 @@
   text-align: left;
   color: #0099b9;
   font-size: 14px;
-  font-weight: normal;
-}
-/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.sass */
-.aw_show_more_contacts_box:hover {
-  cursor: pointer;
-}
+  font-weight: normal; }
+  .aw_show_more_contacts_box:hover {
+    cursor: pointer; }

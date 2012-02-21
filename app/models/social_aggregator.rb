@@ -101,7 +101,7 @@ class SocialAggregator < ActiveRecord::Base
         end
 
         #update user analytics
-        #SummaryRank.build_analytics(:user_id => params[:user_id], :action => AppConstants.analytics_update_user, :num_of_week => num_of_week)
+        SummaryRank.build_analytics(:user_id => params[:user_id], :action => AppConstants.analytics_update_user, :num_of_week => num_of_week)
 
         #update summaries analytics
         SummaryRank.build_analytics(:user_id => params[:user_id], :summary_id => summary_ids.keys,
@@ -114,9 +114,9 @@ class SocialAggregator < ActiveRecord::Base
       Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PROCESS_SOCIAL_AGGREGATION_REQUEST] leaving #{params.inspect}")
 
       #only for asynchronous testing
-      user = User.where(:id => params[:user_id]).first
-      a = user.get_summary({:user_id => user.id})
-      puts a.inspect
+#      user = User.where(:id => params[:user_id]).first
+#      a = user.get_summary({:user_id => user.id})
+#      puts a.inspect
 
     rescue => e
 
@@ -165,43 +165,28 @@ class SocialAggregator < ActiveRecord::Base
           Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  SERVICE NOT REGISTERED  #{params.inspect}")
           return {}
 
+        elsif Time.now.utc < social_fetch.next_update_timestamp
+          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  TOO EARLY TO START AGAIN
+                            Expected time => #{social_fetch.next_update_timestamp} for #{params.inspect}")
+          return {}
+        elsif social_fetch.status == AppConstants.data_sync_active
+           Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  On Request Still Active =>
+                            #{social_fetch.next_update_timestamp} for #{params.inspect}")
+          return {}
         else
-
-          #set the last hit to provider. Social Fetch Stats is updated at every hit
-          last_updated_at =  social_fetch.updated_at
 
           if social_fetch.latest_msg_timestamp > EPOCH_TIME
 
             #OVERIDE default settings for provider
             limit = AppConstants.maximum_import_every_time
-            latest_msg_timestamp = social_fetch.latest_msg_timestamp
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>> regular update #{params.inspect}  " )
-
-          else
-            Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  first time  #{params.inspect}")
-
-          end
-        end
-
-
-        #################################### Pull data from provider ##############################################
-
-        #if new registration then no need to check time_diff
-        if social_fetch.status != AppConstants.data_sync_new
-
-          time_diff = time_diff_in_minutes(last_updated_at)
-          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] TIME DIFF =>>>>>>>>>>> #{time_diff}   #{AppConstants.maximum_time_diff_for_social_fetch}")
-
-          if time_diff < AppConstants.maximum_time_diff_for_social_fetch
-            Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] leaving Time EARLY #{params.inspect}")
-            return nil
           end
 
-        else
         end
 
         hash = {:user_id => params[:user_id], :uid => params[:uid], :provider => params[:provider], :access_token => params[:token],
-                :limit => limit, :latest_msg_timestamp => latest_msg_timestamp, :social_fetch => social_fetch}
+                :limit => limit, :latest_msg_timestamp => social_fetch.latest_msg_timestamp,
+                :latest_msg_id => social_fetch.latest_msg_id, :social_fetch => social_fetch}
 
 
         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] leaving #{params.inspect}")
@@ -218,6 +203,7 @@ class SocialAggregator < ActiveRecord::Base
 
          new_activity = nil
          latest_msg_timestamp = EPOCH_TIME
+         latest_msg_id = nil
 
          social_fetch = params[:social_fetch]
 
@@ -246,7 +232,7 @@ class SocialAggregator < ActiveRecord::Base
          data_array.each do |attr|
 
            data = SocialFetch.data_adaptor({:provider => params[:provider], :blob => attr, :uid => params[:uid],
-                                          :latest_msg_timestamp => params[:latest_msg_timestamp] })
+                                          :latest_msg_timestamp => params[:latest_msg_timestamp], :latest_msg_id => params[:latest_msg_id] })
            if !data.blank?
              activity << data
            end
@@ -288,6 +274,11 @@ class SocialAggregator < ActiveRecord::Base
              if latest_msg_timestamp <  h[:created_at]
                latest_msg_timestamp = h[:created_at]
              end
+
+             #this will set the source object id too at successful insert of activity
+             if latest_msg_id <  h[:source_object_id]
+               latest_msg_id = h[:source_object_id]
+             end
            end
 
          end
@@ -295,21 +286,24 @@ class SocialAggregator < ActiveRecord::Base
          #update the latest_msg_timestamp in stats
          if latest_msg_timestamp > EPOCH_TIME
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION] TIMESTAMP #{latest_msg_timestamp} for  #{params.inspect}")
-            social_fetch.update_attributes(:latest_msg_timestamp => latest_msg_timestamp)
+            social_fetch.update_attributes(
+                                           :latest_msg_timestamp => latest_msg_timestamp,
+                                           :latest_msg_id => latest_msg_id,
+                                           :next_update_timestamp => Time.now.utc + (AppConstants.maximum_time_diff_for_social_fetch * 60)
+                                          )
          end
 
 
          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION] leaving #{params.inspect}")
 
          return summary_ids
-         rescue => e
-           Rails.logger.error("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION] ****ERROR INSIDE FIBER**** #{e.message} for #{params.inspect}")
+      rescue => e
+         Rails.logger.error("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION] ****ERROR INSIDE FIBER**** #{e.message} for #{params.inspect}")
 
-           #destroy last new_activity. as they can't be valid after create as we are setting them to nil
-           #so if they are non-null then they should be removed
-           Activity.destroy_all(:id => new_activity[:post][:id]) if !new_activity.blank?
-
-           return {}
+         #destroy last new_activity. as they can't be valid after create as we are setting them to nil
+         #so if they are non-null then they should be removed
+         Activity.destroy_all(:id => new_activity[:post][:id]) if !new_activity.blank?
+         return {}
       end
 
       def time_diff_in_minutes (time)

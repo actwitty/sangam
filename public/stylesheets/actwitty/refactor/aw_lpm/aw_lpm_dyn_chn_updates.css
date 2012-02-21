@@ -1,4 +1,3 @@
-/* line 1, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
 .aw_lpm_dyn_latest_update_chn_box {
   width: 170px;
   height: 114px;
@@ -11,10 +10,8 @@
   border-radius: 5px;
   -moz-box-shadow: 0 0 10px #333333;
   -webkit-box-shadow: 0 0 10px #333333;
-  box-shadow: 0 0 10px #333333;
-}
+  box-shadow: 0 0 10px #333333; }
 
-/* line 15, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
 .aw_lpm_dyn_latest_update_chn_label {
   width: 100%;
   height: 18px;
@@ -32,10 +29,8 @@
   border-top-left-radius: 5px;
   -moz-border-radius-topleft: 5px;
   border-top-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-}
+  -moz-border-radius-topright: 5px; }
 
-/* line 34, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
 .aw_lpm_dyn_latest_update_chn_user_info_box {
   width: 100%;
   height: 40px;
@@ -46,18 +41,13 @@
   background: rgba(0, 0, 0, 0.6);
   -moz-border-radius-bottomleft: 5px;
   border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-}
-/* line 46, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
-.aw_lpm_dyn_latest_update_chn_user_info_box img {
-  height: 40px;
-  vertical-align: middle;
-  border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-}
-/* line 51, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.sass */
-.aw_lpm_dyn_latest_update_chn_user_info_box span {
-  color: white;
-  font-size: 14px;
-  font-family: "Helvetica", Arial, Helvetica, sans-serif;
-}
+  -moz-border-radius-bottomright: 5px; }
+  .aw_lpm_dyn_latest_update_chn_user_info_box img {
+    height: 40px;
+    vertical-align: middle;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px; }
+  .aw_lpm_dyn_latest_update_chn_user_info_box span {
+    color: white;
+    font-size: 14px;
+    font-family: "Helvetica", Arial, Helvetica, sans-serif; }

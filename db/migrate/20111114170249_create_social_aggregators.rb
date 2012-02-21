@@ -2,12 +2,15 @@ class CreateSocialAggregators < ActiveRecord::Migration
   def self.up
     create_table :social_aggregators do |t|
       t.integer :user_id, :null => false
-      t.text  :provider, :null => false
-      t.text  :uid, :null => false
+      t.text    :provider, :null => false
+      t.text    :uid, :null => false
 
       t.datetime :latest_msg_timestamp, :default => Time.utc(1970, 1, 1, 0, 0).to_datetime
+      t.integer  :latest_msg_id, :default => 0
 
-      t.integer :status, :default => AppConstants.data_sync_new
+      t.integer  :status, :default => AppConstants.data_sync_new
+
+      t.datetime :next_update_timestamp, :default => Time.utc(1970, 1, 1, 0, 0).to_datetime
 
       t.timestamps
     end
@@ -16,6 +19,8 @@ class CreateSocialAggregators < ActiveRecord::Migration
     add_index :social_aggregators, :provider
     add_index :social_aggregators, :uid
     add_index :social_aggregators, :status
+    add_index :social_aggregators, :next_update_timestamp
+
   end
 
   def self.down

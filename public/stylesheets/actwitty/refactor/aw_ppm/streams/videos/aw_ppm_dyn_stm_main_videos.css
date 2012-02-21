@@ -1,119 +1,87 @@
 @charset "UTF-8";
-/* line 1, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
 li.aw_ppm_dyn_stm_videos_li_box {
   list-style-type: none;
   height: auto;
   margin-top: 10px;
   margin-left: -10px;
   margin-bottom: 20px;
-  border-bottom: 1px dotted #dddddd;
-}
-/* line 9, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box {
-  border: 0px solid red;
-  height: auto;
-  margin: 0;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  width: 580px;
-  padding: 15px 10px 10px 15px;
-  /* Post Info Section - Start */
-}
-/* line 21, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info {
-  width: 100%;
-  height: 30px;
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
-  border: 0px solid red;
-  margin-top: 25px;
-  margin-bottom: 10px;
-  /* Post Info Section - End */
-}
-/* line 29, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_img img {
-  width: 30px;
-  height: 30px;
-  /*border:0px solid red; */
-  padding: 0px;
-  margin: 0px 0 0 0px;
-  float: left;
-}
-/* line 36, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_img:hover {
-  cursor: pointer;
-}
-/* line 38, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_name {
-  text-decoration: none;
-  color: #3366cc;
-  color: #666666;
-  font-size: 12px;
-  font-weight: bold;
-  margin-left: 10px;
-  margin-right: 5px;
-}
-/* line 46, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_name:hover {
-  color: #333333;
-  cursor: pointer;
-}
-/* line 49, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info span.aw_ppm_dyn_stm_videos_post_time {
-  color: #444444;
-  font-size: 11px;
-}
-/* line 53, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_stream_videos_chn_name span {
-  float: right;
-  color: #eb7400;
-  font-size: 16px;
-  font-weight: bold;
-}
-/* line 58, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_stream_videos_chn_name span:hover {
-  color: #ee8c00;
-  cursor: pointer;
-}
-/* line 63, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_list_per_post {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: inline-block;
-  width: 100%;
-}
-/* line 68, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_list_per_post iframe {
-  margin-top: 5px;
-  vertical-align: middle;
-  display: block;
-  border: 1px solid #cccccc;
-  padding: 5px;
-}
-/* line 75, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post {
-  width: 100%;
-  height: 30px;
-  border: 0px solid red;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-/* line 81, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post a.aw_ppm_dyn_stm_video_goto_post_link {
-  margin-left: 10px;
-  margin-right: 5px;
-}
-/* line 84, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post a.aw_ppm_dyn_stm_video_goto_post_link span {
-  text-decoration: none;
-  color: #666666;
-  font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
-}
-/* line 90, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/videos/aw_ppm_dyn_stm_main_videos.sass */
-li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post a.aw_ppm_dyn_stm_video_goto_post_link:hover {
-  color: #333333;
-  cursor: pointer;
-}
+  border-bottom: 1px dotted #dddddd; }
+  li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box {
+    border: 0px solid red;
+    height: auto;
+    margin: 0;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    width: 580px;
+    padding: 15px 10px 10px 15px;
+    /* Post Info Section - Start */ }
+    li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info {
+      width: 100%;
+      height: 30px;
+      font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+      border: 0px solid red;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      /* Post Info Section - End */ }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_img img {
+        width: 30px;
+        height: 30px;
+        /*border:0px solid red; */
+        padding: 0px;
+        margin: 0px 0 0 0px;
+        float: left; }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_img:hover {
+        cursor: pointer; }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_name {
+        text-decoration: none;
+        color: #3366cc;
+        color: #666666;
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 10px;
+        margin-right: 5px; }
+        li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_videos_post_user_name:hover {
+          color: #333333;
+          cursor: pointer; }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info span.aw_ppm_dyn_stm_videos_post_time {
+        color: #444444;
+        font-size: 11px; }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_stream_videos_chn_name span {
+        float: right;
+        color: #eb7400;
+        font-size: 16px;
+        font-weight: bold; }
+        li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_post_info a.aw_ppm_dyn_stm_stream_videos_chn_name span:hover {
+          color: #ee8c00;
+          cursor: pointer; }
+    li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_list_per_post {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: inline-block;
+      width: 100%; }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_videos_list_per_post iframe {
+        margin-top: 5px;
+        vertical-align: middle;
+        display: block;
+        border: 1px solid #cccccc;
+        padding: 5px; }
+    li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post {
+      width: 100%;
+      height: 30px;
+      border: 0px solid red;
+      margin-top: 10px;
+      margin-bottom: 10px; }
+      li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post a.aw_ppm_dyn_stm_video_goto_post_link {
+        margin-left: 10px;
+        margin-right: 5px; }
+        li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post a.aw_ppm_dyn_stm_video_goto_post_link span {
+          text-decoration: none;
+          color: #666666;
+          font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
+          font-size: 12px;
+          font-weight: bold; }
+        li.aw_ppm_dyn_stm_videos_li_box .aw_ppm_dyn_stm_videos_div_box .aw_ppm_dyn_stm_video_view_full_post a.aw_ppm_dyn_stm_video_goto_post_link:hover {
+          color: #333333;
+          cursor: pointer; }

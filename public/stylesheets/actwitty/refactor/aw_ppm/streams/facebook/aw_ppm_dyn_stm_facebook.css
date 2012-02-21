@@ -1,4 +1,3 @@
-/* line 1, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .aw_ppm_dyn_stm_fb_post_text {
   /*border:1px solid blue; */
   font-size: 12px;
@@ -8,73 +7,54 @@
   padding-left: 2px;
   height: auto;
   border: 1px solid white;
-  overflow: hidden;
-}
-/* line 12, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.aw_ppm_dyn_stm_fb_post_text:hover {
-  cursor: pointer;
-}
-/* line 14, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_text_box {
-  width: 560px;
-  text-align: left;
-  color: #444444;
-  font-size: 13px;
-  line-height: 1.53em;
-}
-/* line 20, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_link_text_box {
-  width: 560px;
-  text-align: left;
-  color: #444444;
-  font-size: 13px;
-  line-height: 1.53em;
-  overflow: hidden;
-}
-/* line 27, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_link_text_box a {
-  width: 560px;
-  color: #3b5998;
-  font-size: 13px;
-  line-height: 1.53em;
-  text-decoration: none;
-  white-space: pre;
-  white-space: pre-wrap;
-  white-space: pre-line;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -hp-pre-wrap;
-  word-wrap: break-word;
-}
+  overflow: hidden; }
+  .aw_ppm_dyn_stm_fb_post_text:hover {
+    cursor: pointer; }
+  .aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_text_box {
+    width: 560px;
+    text-align: left;
+    color: #444444;
+    font-size: 13px;
+    line-height: 1.53em; }
+  .aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_link_text_box {
+    width: 560px;
+    text-align: left;
+    color: #444444;
+    font-size: 13px;
+    line-height: 1.53em;
+    overflow: hidden; }
+    .aw_ppm_dyn_stm_fb_post_text p.aw_ppm_dyn_stm_fb_link_text_box a {
+      width: 560px;
+      color: #3b5998;
+      font-size: 13px;
+      line-height: 1.53em;
+      text-decoration: none;
+      white-space: pre;
+      white-space: pre-wrap;
+      white-space: pre-line;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -hp-pre-wrap;
+      word-wrap: break-word; }
 
-/* line 42, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
 .awppm_stm_fb_post_attachments {
   width: 100%;
   height: auto;
   border: 0px solid red;
   margin: 5px 0 5px 0;
-  display: inline-block;
-}
-/* line 49, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box {
-  margin-left: 10px;
-  margin-top: 10px;
-  display: inline-block;
-}
-/* line 53, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box img {
-  vertical-align: middle;
-  border: 1px solid #cccccc;
-  padding: 2px;
-}
-/* line 62, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_video_box {
-  margin-top: 15px;
-  width: 432px;
-}
-/* line 65, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/facebook/aw_ppm_dyn_stm_facebook.sass */
-.awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_video_box iframe {
-  vertical-align: middle;
-  display: block;
-}
+  display: inline-block; }
+  .awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box {
+    margin-left: 10px;
+    margin-top: 10px;
+    display: inline-block; }
+    .awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_image_box img {
+      vertical-align: middle;
+      border: 1px solid #cccccc;
+      padding: 2px; }
+  .awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_video_box {
+    margin-top: 15px;
+    width: 432px; }
+    .awppm_stm_fb_post_attachments .awppm_stm_fb_attachment_single_video_box iframe {
+      vertical-align: middle;
+      display: block; }

@@ -5,38 +5,29 @@
  *Author URI: http://www.actwitty.com */
 /******************************************* Common for all Columns main Div's ************************************ */
 /* ----------------------------------------------Wrapper------------------------------------- */
-/* line 23, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 div.awppm_stm_mention_page_wrapper {
   display: block;
   width: 100%;
   margin: 0;
-  text-align: left;
-}
+  text-align: left; }
 
-/* line 29, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 .awppm_stm_mention_page_column1 {
   color: #d2d2d2;
   background-color: #363436;
   /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81 */
-  border: 0px solid red;
-}
+  border: 0px solid red; }
 
-/* line 35, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 .awppm_stm_mention_page_column2 {
   color: white;
   background-color: white;
-  border: 0px solid green;
-}
+  border: 0px solid green; }
 
-/* line 40, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 .awppm_stm_mention_page_column3 {
   color: black;
   background-color: white;
-  border: 0px solid blue;
-}
+  border: 0px solid blue; }
 
 /****************************************** User box section for user photo and input box ************************* */
-/* line 47, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 #awppm_stm_mention_page_channel_info_box {
   position: relative;
   margin: 0 auto 0;
@@ -45,108 +36,86 @@ div.awppm_stm_mention_page_wrapper {
   height: auto;
   margin-bottom: 30px;
   margin-top: 30px;
-  border: 0px solid blue;
-}
+  border: 0px solid blue; }
 
-/* line 54, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 #awppm_stm_mention_page_channel_info_section {
   width: 960px;
   height: auto;
   margin: auto;
   border: 0px solid red;
-  position: relative;
-}
+  position: relative; }
 
-/* line 61, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 .awppm_stm_mention_page_side_section {
   width: 300px;
   height: auto;
   display: inline-block;
   border: 0px solid green;
-  float: left;
-}
-/* line 67, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section #awppm_stm_mention_page_channel_info_div {
-  width: 300px;
-  height: 135px;
-  float: left;
-  display: inline-block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  border: 1px solid #dddddd;
-  -moz-box-shadow: 0 0 8px #dddddd;
-  -webkit-box-shadow: 0 0 8px #dddddd;
-  box-shadow: 0 0 8px #dddddd;
-}
-/* line 79, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section #awppm_stm_mention_page_channel_info_div .awppm_stm_mention_page_channel_label {
-  height: 22px;
-  width: 100%;
-  background: black;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
-}
-/* line 90, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box {
-  height: 900px;
-  width: 280px;
-  margin-top: 20px;
-  float: left;
-  display: inline-block;
-  border-radius: 5px;
-  border: 0px solid red;
-  padding-top: 20px;
-  padding-left: 20px;
-  background: -moz-linear-gradient(center top, #c4c4c4 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent;
-  -moz-box-shadow: inset 0 0 2px black;
-  -webkit-box-shadow: inset 0 0 2px black;
-  box-shadow: inset 0 0 2px black;
-}
-/* line 105, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_label_box {
-  width: 280px;
-  padding-bottom: 10px;
-  float: left;
-  display: block;
-  height: 20px;
-  overflow: hidden;
-}
-/* line 112, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_label_box span {
-  font-size: 17px;
-  font-weight: bold;
-  color: #333333;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-/* line 118, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_box {
-  width: 280px;
-  height: 200px;
-  display: inline-block;
-  float: left;
-  position: relative;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-/* line 126, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analyticsanalytics_box_large {
-  width: 600px;
-  height: 400px;
-  display: none;
-  z-index: 99;
-  position: absolute;
-}
-/* line 132, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-.awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_box:hover .awppm_stm_mentions_analyticsanalytics_box_large {
-  top: 0px;
-  left: 0px;
-  display: block;
-}
+  float: left; }
+  .awppm_stm_mention_page_side_section #awppm_stm_mention_page_channel_info_div {
+    width: 300px;
+    height: 135px;
+    float: left;
+    display: inline-block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border: 1px solid #dddddd;
+    -moz-box-shadow: 0 0 8px #dddddd;
+    -webkit-box-shadow: 0 0 8px #dddddd;
+    box-shadow: 0 0 8px #dddddd; }
+    .awppm_stm_mention_page_side_section #awppm_stm_mention_page_channel_info_div .awppm_stm_mention_page_channel_label {
+      height: 22px;
+      width: 100%;
+      background: black;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      font-size: 16px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: bold; }
+  .awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box {
+    height: 900px;
+    width: 280px;
+    margin-top: 20px;
+    float: left;
+    display: inline-block;
+    border-radius: 5px;
+    border: 0px solid red;
+    padding-top: 20px;
+    padding-left: 20px;
+    background: -moz-linear-gradient(center top, #c4c4c4 0pt, #f0f0f0 100%) repeat scroll 0 0 transparent;
+    -moz-box-shadow: inset 0 0 2px black;
+    -webkit-box-shadow: inset 0 0 2px black;
+    box-shadow: inset 0 0 2px black; }
+    .awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_label_box {
+      width: 280px;
+      padding-bottom: 10px;
+      float: left;
+      display: block;
+      height: 20px;
+      overflow: hidden; }
+      .awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_label_box span {
+        font-size: 17px;
+        font-weight: bold;
+        color: #333333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_box {
+      width: 280px;
+      height: 200px;
+      display: inline-block;
+      float: left;
+      position: relative;
+      padding-top: 10px;
+      padding-bottom: 10px; }
+      .awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analyticsanalytics_box_large {
+        width: 600px;
+        height: 400px;
+        display: none;
+        z-index: 99;
+        position: absolute; }
+      .awppm_stm_mention_page_side_section .awppm_stm_mentions_analytics_container_box .awppm_stm_mentions_analytics_container_box:hover .awppm_stm_mentions_analyticsanalytics_box_large {
+        top: 0px;
+        left: 0px;
+        display: block; }
 
-/* line 138, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
 #awppm_stm_mention_page_timeline_container_box {
   width: 580px;
   height: auto;
@@ -155,69 +124,54 @@ div.awppm_stm_mention_page_wrapper {
   top: 0px;
   left: 330px;
   border: 1px solid #f4f4f4;
-  display: inline-block;
-}
-/* line 148, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_main_label {
-  font-size: 32px;
-  font-weight: bold;
-  color: #333333;
-  display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-/* line 155, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines {
-  margin: 0;
-  width: 100%;
-  height: auto;
-  min-height: 200px;
-  border: 0px solid red;
-  margin-top: 30px;
-  display: inline-block;
-  position: relative;
-}
-/* line 164, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_mention_page_data_info_more {
-  width: 50px;
-  height: 20px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: black;
-  text-align: center;
-  font-weight: bold;
-}
-/* line 173, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines ul.awppm_stm_mention_page_post_timeline_list {
-  width: 100%;
-}
-/* line 175, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_busy_channels_page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 0;
-  margin-top: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background: black;
-  background: rgba(0, 0, 0, 0.1);
-  display: none;
-}
-/* line 187, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_busy_mini_box {
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  margin-top: -25px;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
-/* line 195, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/mention_page/aw_ppm_mention_page_main.sass */
-#awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_busy_mini_box img.awppm_stm_busy_image {
-  width: 50px;
-  height: 50px;
-  margin: auto;
-}
+  display: inline-block; }
+  #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_main_label {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333333;
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines {
+    margin: 0;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    border: 0px solid red;
+    margin-top: 30px;
+    display: inline-block;
+    position: relative; }
+    #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_mention_page_data_info_more {
+      width: 50px;
+      height: 20px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: black;
+      text-align: center;
+      font-weight: bold; }
+    #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines ul.awppm_stm_mention_page_post_timeline_list {
+      width: 100%; }
+    #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_busy_channels_page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 0;
+      margin-top: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background: black;
+      background: rgba(0, 0, 0, 0.1);
+      display: none; }
+    #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_busy_mini_box {
+      width: 50px;
+      height: 50px;
+      margin-left: -25px;
+      margin-top: -25px;
+      top: 50%;
+      left: 50%;
+      position: absolute; }
+      #awppm_stm_mention_page_timeline_container_box .awppm_stm_mention_page_stream_timelines .awppm_stm_busy_mini_box img.awppm_stm_busy_image {
+        width: 50px;
+        height: 50px;
+        margin: auto; }
