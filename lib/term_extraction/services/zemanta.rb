@@ -4,6 +4,7 @@ module TermExtraction
 
        ZEMANTA_ENDPOINT = "http://api.zemanta.com/services/rest/0.0/"
        ZEMANTA_API_KEY = "zlnboufb3ii9unbunrclum1r"
+       SKIP_KEYWORDS = {"RT" => true, "DM" => true}
 
        def self.get_keywords_markup(query=nil)
          Rails.logger.info("[LIB] [TEXT_EXTRACTION] [ZEMANTA] [get_keywords_markup] entering")
@@ -26,7 +27,7 @@ module TermExtraction
 
          data = JSON.parse(response[0][:response])
          data["markup"]["links"].each do |item|
-           keywords << item["anchor"]
+           keywords << item["anchor"]  if SKIP_KEYWORDS[item["anchor"]].blank?
            # pp item["anchor"]
          end
 

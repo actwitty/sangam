@@ -7,6 +7,9 @@ class Invite < ActiveRecord::Base
     def check_if_invite_exists(query_hash)
       begin
         Rails.logger.info("[MODEL][Invite] check_if_invite_exists #{query_hash.inspect} ")
+
+        return true
+
         query_string_arr = []
         query_string = ""
         query_string_arr << query_string
@@ -87,6 +90,7 @@ class Invite < ActiveRecord::Base
   end
 end
 
+
 # == Schema Information
 #
 # Table name: invites
@@ -96,7 +100,7 @@ end
 #  service    :string(255)
 #  accepted   :boolean
 #  registered :boolean
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 

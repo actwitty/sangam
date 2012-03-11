@@ -89,6 +89,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: entities
@@ -99,7 +100,7 @@ end
 #  entity_type_id   :text
 #  entity_type_name :text
 #  entity_svc       :text
-#  created_at       :datetime
-#  updated_at       :datetime
+#  created_at       :datetime        not null
+#  updated_at       :datetime        not null
 #
 

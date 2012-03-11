@@ -25,6 +25,7 @@ module EmHttp
         multi = EM::MultiRequest.new
 
         sites.each do |h|
+          Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] url => #{h[:url]}")
           Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] url => #{h[:url]} ,params => #{h[:params]}")
 
           h[:params] = {} if h[:params].blank?
@@ -43,6 +44,7 @@ module EmHttp
             end
             multi.add(h[:handle], EventMachine::HttpRequest.new(h[:url]).post(params))
           else
+
             multi.add(h[:handle], EventMachine::HttpRequest.new(h[:url]).get(h[:params]))
           end
         end
@@ -51,11 +53,11 @@ module EmHttp
         multi.callback{
           multi.responses[:callback].each do |k,v|
              Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] Callback")
-             array << {:handle => k, :response => v.response}
+             array << {:handle => k, :response => v.response, :header => v.response_header,:request => v.req }
           end
           multi.responses[:errback].each do |k,v|
             Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] ErrBack #{v.inspect}")
-            array << {:handle => k, :response => v.response}
+            array << {:handle => k, :response => v.response, :header => v.response_header,:request => v.req }
           end
 
             #can return blank array

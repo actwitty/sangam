@@ -16,6 +16,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: summaries
@@ -28,7 +30,8 @@ end
 #  category_id        :text
 #  category_type      :text
 #  analytics_snapshot :text
-#  created_at         :datetime
-#  updated_at         :datetime
+#  enabled_services   :text
+#  created_at         :datetime        not null
+#  updated_at         :datetime        not null
 #
 

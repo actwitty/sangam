@@ -51,7 +51,7 @@ function aw_pulled_stream_query_filter(filter, fn_cb){
                   return;
                 }
 
-                context['aw_data'] = data.stream;
+                context['aw_data'] = data;
                 aw_pulled_stream_splitter(context);
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 

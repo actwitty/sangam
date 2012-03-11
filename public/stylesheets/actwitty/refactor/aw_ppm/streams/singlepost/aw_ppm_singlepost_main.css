@@ -6,39 +6,30 @@
  *Author URI: http://www.actwitty.com */
 /******************************************* Common for all Columns main Div's ************************************ */
 /* ----------------------------------------------Wrapper------------------------------------- */
-/* line 23, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 div.awppm_stm_singlepost_wrapper {
   display: block;
   width: 100%;
   margin: 0;
-  text-align: left;
-}
+  text-align: left; }
 
-/* line 29, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 .awppm_stm_singlepost_column1 {
   color: #d2d2d2;
   /*background-color:#33ccff */
   background: #363436;
   /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81 */
-  border: 0px solid red;
-}
+  border: 0px solid red; }
 
-/* line 36, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 .awppm_stm_singlepost_column2 {
   color: white;
   background-color: white;
-  border: 0px solid green;
-}
+  border: 0px solid green; }
 
-/* line 41, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 .awppm_stm_singlepost_column3 {
   color: black;
   background-color: white;
-  border: 0px solid blue;
-}
+  border: 0px solid blue; }
 
 /****************************************** User box section for user photo and input box ************************* */
-/* line 48, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_user_box {
   position: relative;
   margin: 0 auto 0;
@@ -46,19 +37,15 @@ div.awppm_stm_singlepost_wrapper {
   width: 990px;
   height: auto;
   margin-bottom: 30px;
-  border: 0px solid blue;
-}
+  border: 0px solid blue; }
 
-/* line 54, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_user_section {
   width: 960px;
   height: auto;
   margin: auto;
   border: 0px solid red;
-  position: relative;
-}
+  position: relative; }
 
-/* line 61, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_user_info {
   height: 150px;
   width: 200px;
@@ -68,35 +55,23 @@ div.awppm_stm_singlepost_wrapper {
   box-shadow: 0 0 8px #dddddd;
   position: absolute;
   top: 20px;
-  left: 20px;
-}
+  left: 20px; }
 
-/* line 73, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_user_img {
-  margin-top: 40px;
-}
-/* line 75, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
-#awppm_stm_singlepost_user_img img {
-  width: 60px;
-}
-/* line 77, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
-#awppm_stm_singlepost_user_img img:hover {
-  border: 1px solid #cccccc;
-}
+  margin-top: 40px; }
+  #awppm_stm_singlepost_user_img img {
+    width: 60px; }
+    #awppm_stm_singlepost_user_img img:hover {
+      border: 1px solid #cccccc; }
 
-/* line 80, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_user_info span {
   font-family: â€˜Lucida Sans Unicodeâ€™, â€˜Lucida Grandeâ€™, sans-serif;
   color: #555555;
   font-size: 16px;
-  text-align: center;
-}
-/* line 85, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
-#awppm_stm_singlepost_user_info span:hover {
-  font-weight: bold;
-}
+  text-align: center; }
+  #awppm_stm_singlepost_user_info span:hover {
+    font-weight: bold; }
 
-/* line 89, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
 #awppm_stm_singlepost_timeline_container_box {
   height: auto;
   min-height: 200px;
@@ -106,27 +81,20 @@ div.awppm_stm_singlepost_wrapper {
   border: 0px solid blue;
   border: 1px solid #f4f4f4;
   float: left;
-  display: inline-block;
-}
-/* line 100, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
-#awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines {
-  margin: 0;
-  width: 100%;
-  border: 0px solid red;
-  display: inline-block;
-}
-/* line 105, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
-#awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines .awppm_stm_singlepost_data_info_more {
-  width: 50px;
-  height: 20px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: black;
-  text-align: center;
-  font-weight: bold;
-}
-/* line 114, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/singlepost/aw_ppm_singlepost_main.sass */
-#awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines ul.awppm_stm_singlepost_post_timeline_list {
-  width: 100%;
-}
+  display: inline-block; }
+  #awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines {
+    margin: 0;
+    width: 100%;
+    border: 0px solid red;
+    display: inline-block; }
+    #awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines .awppm_stm_singlepost_data_info_more {
+      width: 50px;
+      height: 20px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: black;
+      text-align: center;
+      font-weight: bold; }
+    #awppm_stm_singlepost_timeline_container_box .awppm_stm_singlepost_stream_timelines ul.awppm_stm_singlepost_post_timeline_list {
+      width: 100%; }

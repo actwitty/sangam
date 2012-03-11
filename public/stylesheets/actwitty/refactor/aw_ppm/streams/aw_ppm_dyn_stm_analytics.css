@@ -1,9 +1,7 @@
 @font-face {
   font-family: "ActwittyFont";
-  src: url(/webfont/leaguegothic/LeagueGothic.ttf);
-}
+  src: url(/webfont/leaguegothic/LeagueGothic.ttf); }
 
-/* line 6, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_label_box {
   width: 100%;
   display: block;
@@ -14,45 +12,34 @@
   margin-top: -5px;
   z-index: 10;
   background: black;
-  border-radius: 3px;
-}
-/* line 17, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
-#awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_label_box span {
-  font-size: 15px;
-  font-weight: bold;
-  color: white;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-align: left;
-  /*background: #333 */
-  padding: 3px 10px 3px 10px;
-}
-/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
+  border-radius: 3px; }
+  #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_label_box span {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: left;
+    /*background: #333 */
+    padding: 3px 10px 3px 10px; }
 #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box {
   width: 360px;
   height: 210px;
   position: relative;
-  margin-top: 10px;
-}
-/* line 31, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
-#awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box .awppm_stm_analytics_box {
-  width: 350px;
-  height: 200px;
-  border: 0px solid red;
-  margin-top: 5px;
-  margin-left: 5px;
-}
-/* line 38, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
-#awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box .awppm_stm_analytics_box_large {
-  width: 450px;
-  height: 300px;
-  display: none;
-  z-index: 1000;
-  border: 0px solid #dddddd;
-}
-/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/streams/aw_ppm_dyn_stm_analytics.sass */
-#awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box:hover .awppm_stm_analytics_box_large {
-  top: -150px;
-  left: -300px;
-  position: absolute;
-  display: block;
-}
+  margin-top: 10px; }
+  #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box .awppm_stm_analytics_box {
+    width: 350px;
+    height: 200px;
+    border: 0px solid red;
+    margin-top: 5px;
+    margin-left: 5px; }
+  #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box .awppm_stm_analytics_box_large {
+    width: 450px;
+    height: 300px;
+    display: none;
+    z-index: 1000;
+    border: 0px solid #dddddd; }
+  #awppm_stm_analytics_container_box .awppm_stm_single_analytics_container_box:hover .awppm_stm_analytics_box_large {
+    top: -150px;
+    left: -300px;
+    position: absolute;
+    display: block; }

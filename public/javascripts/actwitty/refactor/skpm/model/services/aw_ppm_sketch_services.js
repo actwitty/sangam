@@ -88,9 +88,9 @@ function aw_api_sketch_initialize(){
  */
 function aw_api_check_service_enabled(provider){
   if ( 
-        aw_js_global_services_user_enabled.profile &&
-        aw_js_global_services_user_enabled.profile[ provider + '_service_enabled' ] &&
-          aw_js_global_services_user_enabled.profile[ provider + '_service_enabled' ] == true ){
+        aw_js_global_services_user_enabled &&
+        aw_js_global_services_user_enabled[ provider + '_service_enabled' ] &&
+        aw_js_global_services_user_enabled[ provider + '_service_enabled' ] == true ){
     return true;
   }
   return false;

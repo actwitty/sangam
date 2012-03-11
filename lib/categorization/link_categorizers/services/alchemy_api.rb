@@ -8,8 +8,8 @@ module Categorization
 
         #ALCHEMY_API_KEY="98f6cdf9355987fa6a0100f5704c2bceccc19f4e"
         #ALCHEMY_API_KEY="19f585889ffdc85973d4bb78754630bd4594fc40"
-        #ALCHEMY_API_KEY ="3690ab39e581e48d6f48c000e3c3313f1e227e28" #this is main registered key
-        ALCHEMY_API_KEY ="8395fee07786621120e9dd84be8f14f1c30d1648"
+        ALCHEMY_API_KEY ="3690ab39e581e48d6f48c000e3c3313f1e227e28" #this is main registered key
+        #ALCHEMY_API_KEY ="8395fee07786621120e9dd84be8f14f1c30d1648"
 
         ALCHEMY_BATCH_LIMIT = 1
         ALCHEMY_RATE_LIMIT = 1
@@ -18,63 +18,20 @@ module Categorization
 
 
         class << self
-          def make_request(content, handle)
+          def make_request(content, handle, element)
+            (element == nil) or (element == 'idiv') ? str = "DIV" : str = element.upcase
             {
              :method => "post", :url => ALCHEMY_LINK_ENDPOINT,
              :params =>{
                         'url'=>"#{content}",
                         'apikey'=> ALCHEMY_API_KEY,
                         'outputMode'=> "json",
-                        'sourceText'=>'cquery',
-                        'cquery' => 'all DIV'    #paragraph section
+                        'sourceText'=>"cquery",
+                        'cquery' => "all #{str}"    #paragraph section
                        },
              :handle => handle
             }
           end
-
-          def categorize_link(links)
-            Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [categorize_link]
-                                entering => Number of link => #{links.size}")
-
-            if links.blank?
-              Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [categorize_link]  => Return blank as no links ")
-              return {}
-            end
-
-            hash = {}
-            response = []
-            request_array = []
-
-            links.each do |link|
-              request_array << {:method => "post", :url => ALCHEMY_LINK_ENDPOINT, :params =>{'url'=>"#{link}",'apikey'=> ALCHEMY_API_KEY, 'outputMode'=> "json", 'sourceText' => "cleaned_or_raw"}, :handle => link }
-            end
-
-            #batch limit adjustment
-            batch_arrays = request_array.enum_for(:each_slice,  ALCHEMY_BATCH_LIMIT).to_a
-
-            #control Rate limit now
-            rate_arrays = batch_arrays.enum_for(:each_slice,  ALCHEMY_RATE_LIMIT).to_a
-
-            rate_arrays.each do |batch|
-              batch.each do |array|
-                resp = ::EmHttp::Http.request(array)
-                response.concat(resp)
-              end
-              response.each do |attr|
-                resp = process_response(attr[:response])
-                #can check score here
-                hash[attr[:handle]]= resp[0][:name] if !resp.blank?
-              end
-            end
-
-            Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [categorize_link]=> #{hash.size}")
-
-            hash
-          rescue => e
-            Rails.logger.error("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [categorize_link] **** RESCUE **** => #{e.message}")
-            return nil
-          end
-
 
           def process_response(response)
 

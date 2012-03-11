@@ -47,8 +47,7 @@ module Api
                                                 :status => AppConstants.data_sync_new)
 
 
-        SocialAggregator.pick_social_aggregation_request(:user_id => params[:user_id],:provider => params[:provider],
-                                                         :uid => params[:uid])
+        SocialAggregator.schedule_job({:user_id => params[:user_id],:provider => params[:provider],:uid => params[:uid]})
 
 
         Rails.logger.info("[LIB] [API] [SERVICES] [ENABLE_SERVICE] leaving #{params.inspect}")
@@ -150,7 +149,7 @@ module Api
 
         array = []
         SocialAggregator.where(:user_id => params[:user_id]).all.each do |attr|
-          hash =  ::Api::Helpers::FormatObject.format_social_aggregator({:aggregator => attr})
+          hash =  ::Api::Helpers::FormatObject.format_social_aggregator({:object => attr})
           array << hash[:aggregator]
         end
 
@@ -160,34 +159,6 @@ module Api
       rescue => e
         Rails.logger.error("[LIB] [API] [SERVICES] [GET_SERVICE] **** RESCUE **** #{e.message} For #{params.inspect}")
         return []
-      end
-
-      #COMMENT => Used by CRON to periodically process user data
-      def periodically_process_users
-
-        Rails.logger.info("[LIB] [API] [SERVICES] [PERIODICALLY_PROCESS_USER] Entering #{params.inspect}")
-
-        t = time.now
-
-        array = []
-        SocialAggregator.where(":now - updated_at >= :time_limit",
-                               {:now => t,:time_limit => AppConstants.maximum_time_diff_for_social_fetch*60 } ).each do |attr|
-
-          #we can add other parameters too make request directed to user's particular service
-          #but as of now we want to process all of users registered account together so that analytics
-          #remains at one timestamp for all services
-
-          Rails.logger.info("[LIB] [API] [SERVICES] [PERIODICALLY_PROCESS_USER] going to queue #{attr.inspect}")
-          array << {:user_id => attr.user_id}
-        end
-
-        array.each do|request|
-          SocialAggregator.pick_social_aggregation_request(request)
-        end
-
-        Rails.logger.info("[LIB] [API] [SERVICES] [PERIODICALLY_PROCESS_USER] Leaving")
-      rescue => e
-        Rails.logger.error("[LIB] [API] [SERVICES] [PERIODICALLY_PROCESS_USER] **** RESCUE **** #{e.message} }")
       end
     end
   end

@@ -4,8 +4,6 @@ class Activity < ActiveRecord::Base
 
   include  ActionView::Helpers
 
-  serialize       :actions, Hash
-
   belongs_to      :author, :class_name => "User" #, :touch => true user is touched through summary
   belongs_to      :summary, :touch => true, :counter_cache => true, :dependent => :destroy
 
@@ -18,29 +16,11 @@ class Activity < ActiveRecord::Base
   #destroy will happen from activity
   has_many         :hubs, :dependent => :destroy
 
-  has_many         :entities, :through => :hubs
-  has_many         :locations,:through => :hubs
 
-#  has_many         :mentions, :dependent => :destroy #destroy will happen from activity
-#
-#  has_many         :campaigns, :dependent => :destroy, :order => "updated_at DESC"
-#
-#  has_many         :comments, :dependent => :destroy, :order => "updated_at DESC"
+  has_many         :tags, :dependent => :destroy
 
-  has_many         :tags, :dependent => :destroy, :order => "updated_at DESC"
-
-  # documents have life time more than activity.
-  # Documents will be removed from activity destroy as special handling is needed rather than usual destroy
-  # UPDATE 03/07/2011 - Now we are destroying  document with post.. so we are putting dependent destroy
-  has_many        :documents,  :dependent => :destroy, :order => "updated_at DESC"
-
-#  #:destroy is not causing circular effect as there is father "delete" in campaign
-#  has_one         :father_campaign, :foreign_key => :father_id, :class_name => "Campaign", :dependent => :destroy
-#
-#   #:destroy is not causing circular effect as there is father "delete" in comment
-#  has_one         :father_comment, :foreign_key => :father_id, :class_name => "Comment", :dependent => :destroy
-#
-#  has_many        :social_counters, :dependent => :destroy
+  has_many        :documents,  :dependent => :destroy
+  has_many        :source_actions,  :dependent => :destroy
 
   validates_existence_of  :author_id
   validates_existence_of  :activity_word_id
@@ -50,8 +30,6 @@ class Activity < ActiveRecord::Base
 
   validates_presence_of   :activity_name,  :source_name, :status, :status_at_source
 
-  validates_length_of     :activity_text, :maximum => AppConstants.activity_text_length, :unless => Proc.new{|a| a.activity_text.nil?}
-
   validates_uniqueness_of :source_object_id, :scope => [:source_name, :author_id], :unless => Proc.new {|a| a.source_object_id.nil?}
 
   before_save             :sanitize_data
@@ -60,12 +38,12 @@ class Activity < ActiveRecord::Base
 
     def sanitize_data
 
-      Rails.logger.info("[MODEL] [ACTIVITY] [sanitize_data] - Before Save entering")
+      Rails.logger.info("[MODEL] [ACTIVITY] [sanitize_data] Entering - Before Save entering")
 
       self.activity_text = sanitize(self.activity_text, :tags => AppConstants.sanity_tags, :attributes => AppConstants.sanity_attributes) if !self.activity_text.blank?
       self.activity_name = sanitize(self.activity_name) if !self.activity_name.blank?
 
-      Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data]- Before Save leaving")
+      Rails.logger.debug("[MODEL] [ACTIVITY] [sanitize_data] Leaving - Before Save leaving")
 
     end
 
@@ -73,9 +51,6 @@ class Activity < ActiveRecord::Base
   public
 
   class << self
-    include QueryPlanner
-    include TextFormatter
-    include PusherSvc
 
     #    :author_id => 123
     #
@@ -83,18 +58,33 @@ class Activity < ActiveRecord::Base
     #
     #    :text =>   "hello world"
     #
+    #    :yaml_text => "text:ljk;sdlsd"  #retains json format of source blob for easy display like for twitter, g+
+    #                                    #for which we are storing data
+    #                                    #.. if yaml_text present use replace :text with yaml_text while storing
+    #                                    # we are storing yamls to increase re-usability and simplicity in display functions
+    #                                    #in client side while doing mash-up with source data ( for example from twitter
+    #                                    #and twitter data from ou server )
+    #
+    #
     #    :location => {
     #                  :lat => 23.6567, :long => 120.3, :name => "sj",
     #                  :city => ""bangalore", :country => "india", :region => "Karnataka"}
     #                 }
     #    :documents => [{:url => "https://s3.amazonaws.com/xyz.jpg" }],
+    #
     #    :status => 0 or 1   #0 => saved, 1 => public share, #default => 1
+    #
     #    :source_name =>  "actwitty" or "twitter", or "facebook" or "gplus" or "dropbox" or "tumblr" or "posterous",
     #                       or custom email or mobile number #defualt is actwitty
-    #    :enrich => true (if want to enrich with entities ELSE false => make this when parent is true -- in our case )
+    #
     #    :source_object_id => 123
+    #
     #    :status_at_source => AppConstants.status_private_at_source|public_at_source
+    #
     #    :source_uid  => "123123213" #UID OF USER AT SOURCE
+    #
+    #    :source_created_at => ,1994-11-05T13:15:30Z, [MANDATORY]
+    #
     #    :links => [
     #                 {
     #                    :source_object_id => "23213123", [FOR UPLOADED IMAGES AT SOURCE]
@@ -109,13 +99,21 @@ class Activity < ActiveRecord::Base
     #                    :category_id => "sports" [OPTIONAL if present "should be" Same as summary_category..]
     #                    :canonical_url => "timesofindia.com/123"[long url when url = a short url, OPTIONAL],
     #                    :cache_age => params[:cache_age][OPTIONAL will mostly come from pulled data]
+    #                    :element  => "p" or "idiv" [divs without nesting] or "li"  or "td" or "tr"
     #                 }
     #             ]
-    #   :actions => {
-    #                 :likes => 20,
-    #                 :comments => 20,
-    #                 :shares => 40,
-    #                 :retweets => 40,
+    #     :mentions => [
+    #                    {:source_uid => "232131232", :name => "John Doe}, ..
+    #                  ] ,
+    #     :tags =>    [
+    #                   { :name => "pizza}, ..
+    #                 ] ,
+    #
+    #     :source_actions => {
+    #                 "likes" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+    #                 "comments" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+    #                 "shares" => {:count => 20,:meta => {}},
+    #                 "retweets" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
     #               },
     #
     #   :source_object_type => "post"/"like"  AppConstants.source_object_type_post/like
@@ -139,12 +137,16 @@ class Activity < ActiveRecord::Base
           return {}
         end
 
-
         #set mandatory parameters if missing
-        params[:status] = AppConstants.status_public if params[:status].nil?  #by default we assume user has set it public
-        params[:status_at_source] = AppConstants.status_public if params[:status_at_source].nil?  #by default we assume user has set it public
-        params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
-        params[:update] = false if params[:update].nil?
+        params[:status] = AppConstants.status_public if params[:status].blank?  #by default we assume user has set it public
+
+        params[:status_at_source] = AppConstants.status_public_at_source if params[:status_at_source].blank?  #by default we assume user has set it public
+
+        params[:source_name] =  AppConstants.source_actwitty if params[:source_name].blank?
+
+        params[:source_created_at] = Time.now.utc if params[:source_created_at].blank?
+
+        params[:update] = false if params[:update].blank?
 
         ################################### Create Activity Word ################################################
 
@@ -156,8 +158,11 @@ class Activity < ActiveRecord::Base
         #Not done for comments and campaign and saved activity
 
         #create summary
-        summary = Summary.create_summary(:user_id => params[:author_id],:activity_word_id => word_obj.id,
-                                           :activity_name => params[:word],:category_id => params[:category_id])
+        summary = Summary.create_summary(:user_id => params[:author_id],
+                                         :activity_word_id => word_obj.id,
+                                         :activity_name => params[:word],
+                                         :category_id => params[:category_id],
+                                         :source_created_at => params[:source_created_at])
         if summary.nil?
           Rails.logger.error("Activity => CreateActivity => Summary Creation Failed for #{params.to_s}")
           return nil
@@ -168,22 +173,30 @@ class Activity < ActiveRecord::Base
         ###################################### CREATE OR UPDATE ACTIVITY #################################################
 
         #dont store text for private posts
+        params[:if_yaml] = false
         if params[:status_at_source] == AppConstants.status_private
           text = ""
           Rails.logger.info("[MODEL] [ACTIVITY] [CREATE_ACTIVITY] Private Service.. not storing text")
         else
-          text = params[:text]
+          if !params[:yaml_text].blank?
+            text = params[:yaml_text]
+            params[:if_yaml] = true
+          else
+           text = params[:yaml_text]
+          end
         end
 
         h = {:activity_word_id => word_obj.id,
-             :activity_text =>  text , :activity_name => params[:word],
+             :activity_text =>  text ,
+             :if_yaml => params[:if_yaml],
+             :activity_name => params[:word],
              :author_id => params[:author_id],
              :summary_id => params[:summary_id], :status => params[:status],
              :source_name => params[:source_name],
              :source_object_id => params[:source_object_id],
              :status_at_source => params[:status_at_source],
-             :source_uid => params[:source_ui],
-             :actions => params[:actions]
+             :source_uid => params[:source_uid],
+             :source_created_at => params[:source_created_at]
              }
 
         if !summary.blank? #blank summary is possible when saved activity
@@ -194,18 +207,6 @@ class Activity < ActiveRecord::Base
 
         #default type is post .. check migration
         h[:source_object_type] = params[:source_object_type] if !params[:source_object_type].blank?
-
-        #this is used to insert social data from Fb, twitter etc at their actual time stamp.
-        #Auto update of time stamp is switched off. It is enabled immediately after
-        #Activity,create! or update in after_save callback
-        #Commented - as we are not setting created_at and updated_at manually..But works very neatly..
-        #To enable un-comment 4 lines and also in after_save callback
-        if !params[:created_at].blank? and !params[:updated_at].blank?
-          h[:created_at] = params[:created_at]
-          h[:updated_at] = params[:updated_at]
-          h[:backup_created_timestamp] = Time.now.utc
-          ActiveRecord::Base.record_timestamps = false
-        end
 
         if params[:update] == false
           #create activity => either root or child
@@ -242,17 +243,6 @@ class Activity < ActiveRecord::Base
           end
         end
 
-        ################################### Generate Mentions #################################################
-#          if !params[:text].blank?
-#              params[:text] = Mention.create_mentions(params[:text], obj)
-#
-#              #Save location and Mentions too
-#              #obj.update_attributes(:activity_text => params[:text],:base_location_id => params[:location_id] )
-#              Activity.update_all({:activity_text => params[:text],:base_location_id => params[:location_id]},
-#                                  {:id => obj.id})
-#          end
-
-
         ################################## CREATE DOCUMENTS ###################################################
         #first get the mentioned document links
         array = []
@@ -261,8 +251,8 @@ class Activity < ActiveRecord::Base
         #for rest process all links ( attached + in-text ) in data adaptor of provider
         #this is done so that we can categorize external posts from providers in bulk
 
-        if params[:source_name] == AppConstants.test_service
-          array = get_documents(params[:text]) if !params[:text].blank?
+        if params[:source_name] == AppConstants.test_service or Rails.env == "test"
+          array = ::Api::Helpers::Parser.get_documents(:text =>params[:text]) if !params[:text].blank?
         end
 
         !params[:documents].blank? ? params[:documents].concat(array) : (params[:documents] = array)
@@ -285,8 +275,8 @@ class Activity < ActiveRecord::Base
                          :image_url => attr[:image_url], :image_width => attr[:image_width],:image_height => attr[:image_height],
                          :category_id => attr[:category_id], :canonical_url => attr[:canonical_url], :cache_age => attr[:cache_age],
                          :source_name =>params[:source_name],:source_msg_id =>params[:source_object_id], :status_at_source=> params[:status_at_source],
-                         :source_object_id => attr[:source_object_id],:created_at => params[:created_at],
-                         :updated_at => params[:updated_at] })
+                         :source_object_id => attr[:source_object_id], :source_created_at => params[:source_created_at],
+                         :element => attr[:element],:ignore => attr[:ignore]})
 
 
           end
@@ -296,7 +286,9 @@ class Activity < ActiveRecord::Base
         #################################CREATE HASH TAGS######################################################
         #first get the mentioned tags
         array = []
-        array = get_tags(params[:text]) if !params[:text].blank?
+        if params[:source_name] == AppConstants.test_service or Rails.env == "test"
+          array = ::Api::Helpers::Parser.get_tags({:text =>params[:text]}) if !params[:text].blank?
+        end
 
         !params[:tags].blank? ? params[:tags].concat(array) :(params[:tags] = array if !array.blank?)
 
@@ -305,10 +297,23 @@ class Activity < ActiveRecord::Base
 
             t =Tag.create_tag({:author_id => params[:author_id], :activity_id => obj.id,
                           :activity_word_id => word_obj.id, :source_name => params[:source_name],:name => attr[:name],
-                          :tag_type => attr[:tag_type],
                           :status => params[:status], :summary_id => params[:summary_id],:source_name =>params[:source_name],
                           :source_msg_id =>params[:source_object_id], :status_at_source=> params[:status_at_source],
-                          :created_at => params[:created_at], :updated_at => params[:updated_at]})
+                          :source_created_at => params[:source_created_at]})
+
+
+          end
+        end
+
+        ################################# CREATE MENTIONS #####################################################
+        if !params[:mentions].blank?
+          params[:mentions].each do |attr|
+
+            m =Mention.create_mention({:author_id => params[:author_id], :activity_id => obj.id,
+                          :source_name => params[:source_name],:name => attr[:name], :source_uid => attr[:id],
+                          :status => params[:status], :summary_id => params[:summary_id],
+                          :source_msg_id =>params[:source_object_id], :status_at_source=> params[:status_at_source],
+                          :source_created_at => params[:source_created_at]})
 
 
           end
@@ -318,21 +323,25 @@ class Activity < ActiveRecord::Base
 
         add_entities(params) if !params[:text].blank?
 
+        ################################# CREATE ACTIONS #####################################################
+
+        if !params[:source_actions].blank?
+          params[:source_actions].each do |k,v|
+            SourceAction.create_source_action({:user_id => params[:author_id], :activity_id => obj.id,
+                                             :source_msg_id => params[:source_object_id], :source_name =>params[:source_name],
+                                             :summary_id => params[:summary_id],:source_created_at => params[:source_created_at],
+                                             :name => k, :count => v[:count], :meta => v[:meta]})
+          end
+        end
         ################################# FINALLY UPDATE ANALYTICS ############################################
         obj.reload
 
         Rails.logger.info("[MODEL] [ACTIVITY] [create_activity] leaving ")
 
-        #enable created_at and updated_at auto update immediately at after_save = just after Activity.create!
-        ActiveRecord::Base.record_timestamps = true if ActiveRecord::Base.record_timestamps == false
-
         return obj
 
     rescue => e
         Rails.logger.error("[MODEL] [ACTIVITY] [create_activity] **** RESCUE **** => CreateActivity failed with #{e.message} for #{params.to_s}")
-
-        #enable created_at and updated_at auto update immediately at after_save = just after Activity.create!
-        ActiveRecord::Base.record_timestamps = true if ActiveRecord::Base.record_timestamps == false
 
         #Validation Uniqueness fails  [:source_object_id, :source_name, :author_id]
         if /has already been taken/ =~ e.message
@@ -376,7 +385,7 @@ class Activity < ActiveRecord::Base
 
       def add_entities(params={})
 
-         Rails.logger.info("[MODEL] [ACTIVITY] [add_entities] entering =>  #{params.to_s}")
+         Rails.logger.info("[MODEL] [ACTIVITY] [add_entities] entering ")
 
          entities = []
 
@@ -434,6 +443,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: activities
@@ -444,9 +457,6 @@ end
 #  activity_name            :text            not null
 #  author_id                :integer         not null
 #  base_location_id         :integer
-#  documents_count          :integer         default(0)
-#  tags_count               :integer         default(0)
-#  hubs_count               :integer         default(0)
 #  status                   :integer         not null
 #  summary_id               :integer
 #  source_object_id         :text
@@ -456,9 +466,9 @@ end
 #  source_object_type       :text            default("post")
 #  category_type            :text
 #  category_id              :text
-#  actions                  :text
-#  backup_created_timestamp :datetime        default(2012-02-09 11:31:58 UTC)
-#  created_at               :datetime
-#  updated_at               :datetime
+#  backup_created_timestamp :datetime        default(2012-03-06 07:49:49 UTC)
+#  if_yaml                  :boolean         default(FALSE)
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

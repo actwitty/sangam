@@ -19,6 +19,7 @@ var aw_pulled_stream_services_registry = {
 function aw_pulled_stream_facebook_mentions_verified_cb(mentions_data, context){
   if( mentions_data ){
     var mentions_cookie = context['services']['facebook']['mentions_cookie'];
+    alert(JSON.stringify(mentions_data));
     $.each( mentions_data, function( index, mention_data ){
 
         var mention = {};
@@ -49,6 +50,7 @@ function aw_pulled_stream_facebook_mentions_verified_cb(mentions_data, context){
 
 
     });
+    alert("GOOD ONLY 2");
 
   }
   context.services.facebook.processed = true;
@@ -120,7 +122,7 @@ function aw_pulled_stream_facebook_handler ( context ) {
                                                 aw_pulled_stream_facebook_cb,
                                                 context);
                                                               
-                                            }
+}
 
 
 /*****************************************************************/

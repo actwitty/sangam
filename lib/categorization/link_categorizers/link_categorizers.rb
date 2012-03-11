@@ -2,48 +2,83 @@ module Categorization
   module LinkCategorizers
     class << self
       SERVICES_MODULE = ::Categorization::LinkCategorizers::Services
+
       def categorize(params)
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Entering => number of Text => #{params[:link_cat].keys.size}")
 
-         Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Entering => number of Text => #{params[:link_cat].keys.size}")
+        index = 0
+        req = []
+        hash = {}
 
-         params[:link_cat].each do |k,v|
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] #{params[:link_cat].inspect}")
 
-           resp = vote(k)
-           categories = {}
-           categories = resp if !resp.blank?
+        params[:link_cat].each do |k,v|
+          element = params[:activities][v[0]][:post][:links][0][:element]
+          req << SERVICES_MODULE::OpenCalais.make_request(k, "opencalais:#{k}") #service:idx creates uniq handle on service + index
+          req << SERVICES_MODULE::AlchemyApi.make_request(k, "alchemyapi:#{k}", element ) #service:idx creates uniq handle on service + index
 
-           if !categories.blank?
-             v.each do |idx|
-               activity = params[:activities][idx][:post]
-               activity[:word] =  categories[:name]
-               activity[:category_id] =  categories[:name]
+          index += 1
 
-               activity[:links][0][:category_id] = categories[:name]
-             end
-           end
-         end
+          if index == AppConstants.categorization_concurrency_limit
+            process_request(params,req)
+            req, index = [],0
+          end
+        end
 
-         Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Leaving")
+        if !req.blank?
+          process_request(params,req)
+        end
+
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Leaving")
+
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] **** RESCUE **** => #{e.message}")
       end
 
-      def vote(link)
+      def process_request(params,requests)
+
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] entering")
+
+        index,hash = 0, {}
+
+        response = ::EmHttp::Http.request(requests)
+
+        response.each do |resp|
+
+          arr = resp[:handle].split(":",2)     #spilt into service and url
+          hash[arr[1]] = [] if hash[arr[1]].blank?
+
+          if arr[0] == "alchemyapi"
+            cat = SERVICES_MODULE::AlchemyApi.process_response(resp[:response])
+          else
+            cat = SERVICES_MODULE::OpenCalais.process_response(resp[:response])
+          end
+          hash[arr[1]].concat(cat)
+
+        end
+
+        hash.each do |url, categories|
+
+          category = vote(categories)
+          if !category.blank?
+            params[:link_cat][url].each do |idx|
+              activity = params[:activities][idx][:post]
+              activity[:word] =  category[:name]
+              activity[:category_id] =  category[:name]
+              activity[:links][0][:category_id] = category[:name]
+            end
+          end
+        end
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] **** RESCUE **** => #{e.message}")
+      end
+
+
+      def vote(categories)
          Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] entering")
-         req = []
+
          score = 0
-         req << SERVICES_MODULE::OpenCalais.make_request(link, "opencalais")
-         req << SERVICES_MODULE::AlchemyApi.make_request(link, "alchemyapi")
-
-         response = ::EmHttp::Http.request(req)
-
-         categories = []
-         response.each do |resp|
-           if resp[:handle] == "alchemyapi"
-             cat = SERVICES_MODULE::AlchemyApi.process_response(resp[:response])
-           else
-             cat = SERVICES_MODULE::OpenCalais.process_response(resp[:response])
-           end
-           categories.concat(cat)
-         end
 
          if !categories.blank?
            index = 0

@@ -1,135 +1,30 @@
 # Enter your per-environment constants below
 
 development: &default
-  activity_text_length:                 8192
-  comment_text_length:                  2048
-  url_length:                           1024
   url_description_length:               255
-  activity_name_length:                 255
-  caption_text_length:                  64
-  sub_title_length:                     255
-  source_name_length:                   64
-  action_name_length:                   64    #actions like from "share", "post" "comment" "like" etc
-  document_name_length:                 255
-  document_mime_length:                 64
-  campaign_name_length:                 64
-  document_provider_length:             64
-  document_category_length:             32
-  tag_length:                           64
-  location_name_length:                 1024
-  max_number_of_documents_pulled:       50
 
-  #in megabytes
-  max_document_size:                    0.5
-
-  #after this length "..." will be shown
-  max_string_len_for_display:           10
-
-  #in one pull of an activity or summary in order of latest updates
-  max_number_of_activities:             300
-
-  max_number_of_a_type_in_summmary:     6
-
-  max_number_of_summmary:               50
+  max_number_of_summmaries:             50
   max_number_of_users:                  50
   max_number_of_entities:               50
   max_number_of_locations:              50
+  max_number_of_activities:             50
 
-
-  default_comment_string:               "Comment"
-
-  url_validator:                        "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"
-
-  entity_controller:                    "entities"
-  user_controller:                      "users"
-  location_controller:                  "locations"
-  activity_word_controller:             "activity_words"
-  activity_controller:                  "activities"
-  comment_controller:                   "comments"
-  document_controller:                  "documents"
-
-  #CSS class names for styling individual links
-  activity_entity_class:                "js_activity_entity"
-  activity_mention_class:               "js_activity_mention"
-  activity_location_class:              "js_activity_location"
-  activity_word_class:                  "js_activity_word"
-
-  campaign_username_class:              "js_campaign_username"
-  campaign_activity_class:              "js_campaign_activity"
-  campaign_entity_class:                "js_campaign_entity"
-  campaign_location_class:              "js_campaign_location"
-  campaign_comment_class:               "js_campaign_comment"
-  campaign_authorname_class:            "js_campaign_author_name"
-  campaign_document_class:              "js_campaign_document"
-
-  comment_authorname_class:             "js_comment_author_name"
-  comment_activity_class:               "js_comment_activity"
-  comment_document_class:               "js_comment_document"
-  comment_username_class:               "js_comment_username"
-
-  comment_class:
-  invalid_resource_id:                  0
-
-  entitiy_no_image:                     "/images/entity/default.png"
-  user_no_image:                        "/images/profile/default.png"
   entity_image_url_base:                "https://usercontent.googleapis.com/freebase/v1/image"
   entity_desc_url_base:                 "https://www.googleapis.com/freebase/v1/text"
 
-  summary_word_count:                   15
-  summary_document_count:               5
-  summary_entity_count:                 5
-  summary_location_count:               5
-  summary_friend_count:                 5
-  summary_text_count:                   5
-
-
-  stream_max_count:                     15
-
-  #LOCATION_TYPE
-  location_type_geo:                    1
 
   #STATUS -> What user sets at actwitty for a message
-  status_saved:                     1
-  status_public:                    2
-  status_private:                   3
-  status_shared:                    4  #
+  status_public:                    1
+  status_private:                   2
 
   #SOURCE_STATUS -> What sources like FB, Twitter etc sets for this m
-  status_private_at_source:         5  #need the loop visibility later
-  status_public_at_source:          6 #need the loop visibility later
+  status_public_at_source:         1
+  status_private_at_source:        2
 
   #these are defined SOURCE_NAME
   #there can be custom sources like emails and mobile number
   source_actwitty:                "actwitty"
   source_actwitty_meta:           "actwitty_meta"
-  source_twitter:                 "twitter"
-  source_facebook:                "facebook"
-  source_dropbox:                 "dropbox"
-  source_gplus:                   "gplus"
-  source_tumblr:                  "tumblr"
-  source_posterous:               "posterous"
-
-  #SOURCES CURRENTLY ACTIVE - MEANS WE ARE PULLING DATA FROM THEM
-  sources_local_list:            twitter
-  sources_private_list:          facebook
-
-
-
-  #CAMPAIGN_TYPES
-  campaign_none:                       1  #used for internal activities generated because of commenting or campaign creation
-  campaign_like:                       2
-  campaign_support:                    3
-  campaign_join:                       4
-
-  #document providers
-  provider_actwitty:                  "actwitty.com"
-  provider_dropbox:                   "dropbox.com"
-  provider_youtube:                   "youtube.com"
-  provider_vimeo:                     "vimeo.com"
-  provider_flickr:                    "flickr.com"
-  provider_twitpic:                   "twitpic.com"
-  provider_lastfm:                     "last.fm"
-  provider_spotify:                    "spotify.com"
 
   #Remote Document mime - They are custom not standard
   #TODO need to check properly
@@ -139,17 +34,6 @@ development: &default
   mime_remote_document:              "document/remote"
   mime_remote_music:                 "audio/remote"
   mime_remote_link:                  "link/remote"
-
-  #TAG TYPE
-  tag_type_hash:                     1    #mentioned
-  tag_type_blog:                     2    #explicitly mentioned by user as blog tags
-  tag_type_semantic:                 3    #tags from sources like zemanta
-
-#  #Document category
-#  category_image:                     "image"
-#  category_audio:                     "audio"
-#  category_video:                     "video"
-#  category_document:                  "document"
 
   #Video Sources
   video_sources:                      youtube\.com|vimeo\.com|blip\.tv|dailymotion\.com
@@ -174,31 +58,6 @@ development: &default
   #attributes List
   sanity_attributes:                    %w(href value class)
 
-  #cloud actions
-  cloud_action_document_destroy:      1
-
-  #number of documents to deleted from garbage_document table at once
-  max_document_destroy_from_cloud:    2
-
-  #Theme Color
-  theme_default_fg_color:             "0xffffff00"
-  theme_default_bg_color:             "0xffffff00"
-
-  #Theme type
-  theme_default:                      1
-  theme_color:                        2
-  theme_document:                     3
-
-  #Theme Style
-  theme_style_centerd:                 1
-  theme_style_tiled:                   2
-  theme_style_stretched:               3
-
-  #PAGE STATES
-  page_state_user:                    1
-  page_state_subscribed:              2
-  page_state_all:                     3
-  page_state_public:                  4
 
   #Cloud Keys
   cloud_keys:                         "config/cloud_keys.yml"
@@ -236,36 +95,42 @@ development: &default
 
 
   #FOR SUMMARY CATEGORY
-  category_id_length:                       255
-  category_type_length:                     255
-
   default_category:                         "stories"
 
   #Rank and Analytics
   number_of_data_points:                    53 #max number of weeks in an year
-  analytics_default_number_of_week:         1
-
+  analytics_default_number_of_week:         5
   analytics_update_summaries:               "summaries"
   analytics_update_user:                    "user"
 
-  #text categorization
-  maximum_import_first_time:                100
-  maximum_import_every_time:                20 #imports after first import is done
+  #Social Fetch
+  max_import_first_time:                  50
+  max_import_every_time:                  10
+  first_time_feed_storage:                50#100
+  every_time_feed_storage:                10#20 #imports after first import is done
 
+  #text categorization
   min_text_length_for_text_categorization:  140
   max_text_length_for_text_categorization:  512
+  categorization_concurrency_limit:         10
 
   #test service name
-  test_service:                             twitter
+  test_service:                             test
 
   #source object type
   source_object_type_post:                  "post"
   source_object_type_like:                  "like"
+  source_object_type_tweet:                 "tweet"
+  source_object_type_retweet:               "retweet"
 
+  #Local Actions
+  local_action_vote:                        "vote"
+  local_action_recommend:                   "recommend"
 
   #Social Fecth
-  maximum_time_diff_for_social_fetch:       1 #minutes
+  maximum_time_diff_for_social_fetch:       20 #in seconds
 
+   #status during social fetch pipeline
   data_sync_new:                            1   #can be deleted in this state
   data_sync_active:                         2
   data_sync_done:                           3   #can be deleted in this state
@@ -293,9 +158,8 @@ production:
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:     "administrator@actwitty.com"
+  authorized_see_internals_email_id:     "aloksrivastava78@gmail.com"
   #########################################################################
 
 test:
   <<: *default
-  #url_validator: "/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix"

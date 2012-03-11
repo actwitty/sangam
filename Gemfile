@@ -1,35 +1,43 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem "heroku"
+
+gem 'rails', '3.2.1'
 
 #ALOK need to use 0.8.7 as 0.9 > has DSL errors
-gem "rake", '0.8.7'
+gem 'rake'
 
 #gem 'mysql2', '0.2.6'
 gem 'pg'
 
 gem 'bundler', '>= 1.0.0'
 
+
 gem 'haml', '>= 3.0.25'
-gem 'compass'
-gem 'sass'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
-
+group :assets do
+  gem  'compass-rails'
+  gem 'compass_twitter_bootstrap'
+  gem 'sass-rails', "  ~> 3.2.3"
+end
 #Security
 gem 'devise', '~> 1.2.0'
-gem 'devise_invitable', '~> 0.4.0'
+#gem 'devise_invitable'
 
 #Authentication
-gem 'omniauth', '>= 0.2.0'
-gem 'render_component'
-
+#gem 'omniauth', '~> 0.3.2'
+gem 'omniauth', '~> 1.0.2'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'oa-core'
 
 #Inflected translations
 gem 'i18n-inflector-rails', '~> 1.0'
 
 #Uncatagorized
-gem 'addressable' , '2.2.4'
+gem 'addressable' , '~> 2.2.6'
 
 gem 'json'
 gem 'annotate'
@@ -53,8 +61,6 @@ gem 'rails3-generators'
 gem "validates_existence", ">= 0.4"
 
 
-#Jquery
-gem 'jquery-rails'
 gem 'client_side_validations'
 
 #Form Styling
@@ -72,12 +78,10 @@ gem "koala"
 #Twitter
 gem "twitter"
 
-#Wordnik Api
-gem 'wordnik', ">= 0.3"
-
 #Delayed Job
-gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
-gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delayed_job_active_record.git'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem "dj_remixes"
 
 
 #easy ARel
@@ -86,15 +90,19 @@ gem "squeel" # Last officially released gem
 #aws
 gem "right_aws"
 
-#pusher we-socket based notifications
-gem 'pusher'
 #for asynchronous web-socket
 gem 'em-http-request'
+
 #Facebook meta tags
 gem 'meta-tags', :require => 'meta_tags'
 
-#Rails paginate plugin
-gem 'will_paginate', '2.3.15'
+
+#Jquery
+gem 'jquery-rails'
+
+#thin
+gem 'thin'
+
 group :development do
   #query reviewer
   #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
@@ -102,7 +110,7 @@ end
 
 group :test, :development do
   gem 'factory_girl_rails', :require => false
-  gem 'rspec-rails', '>= 2.0.1'
+  gem 'rspec-rails', '2.6.1'
   gem 'capybara'
 end
 
@@ -112,9 +120,10 @@ group :test do
   gem 'cucumber-rails'
   gem 'rspec', '>= 2.0.1'
   #gem 'rspec-rails', '>= 2.0.1'
-  gem 'rcov'
+  gem 'simplecov'
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
   #for observer's' test
-  gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
+  gem 'no_peeping_toms'
 end
+

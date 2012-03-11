@@ -5,7 +5,7 @@ class ForeignProfile < ActiveRecord::Base
 
   def import_facebook(omniauth)
     Rails.logger.info("[MODEL][import_facebook] Called.")
-    foreign_data = omniauth['extra']['user_hash']
+    foreign_data = omniauth['extra']['raw_info']
     if foreign_data.nil?
       Rails.logger.warn("[MODEL][import_facebook] No data to import.")
       return
@@ -50,7 +50,7 @@ class ForeignProfile < ActiveRecord::Base
 
   def import_twitter(omniauth)
     Rails.logger.info("[MODEL][import_twitter] Called.")
-    foreign_data = omniauth['extra']['user_hash']
+    foreign_data = omniauth['extra']['raw_info']
     if foreign_data.nil?
       Rails.logger.warn("[MODEL][import_twitter] No data to import.")
       return
@@ -92,6 +92,7 @@ class ForeignProfile < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: foreign_profiles
@@ -112,7 +113,7 @@ end
 #  foreign_updated_time :string(255)
 #  authentication_id    :integer
 #  dob                  :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
 #
 

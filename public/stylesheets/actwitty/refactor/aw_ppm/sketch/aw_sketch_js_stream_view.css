@@ -1,12 +1,9 @@
-/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 #aw_stream_container_header {
   width: 100%;
   height: 40px;
   background: #d6f5f5;
-  border-radius: 0 5px 0 0;
-}
+  border-radius: 0 5px 0 0; }
 
-/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 #aw_stream_container_header_label {
   font-size: 24px;
   font-family: "RobotoBold";
@@ -15,10 +12,8 @@
   border: 0px solid red;
   margin-left: 15px;
   margin-top: 12px;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
-/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_container_close {
   width: 60px;
   height: 30px;
@@ -27,23 +22,15 @@
   margin-top: 15px;
   color: #999999 !important;
   display: none;
-  cursor: pointer;
-}
-/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_container_close:hover {
-  color: #444444;
-}
-/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_container_close a {
-  text-decoration: none;
-  color: #999999;
-}
-/* line 32, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_container_close a:hover {
-  color: #444444;
-}
+  cursor: pointer; }
+  .aw_stream_container_close:hover {
+    color: #444444; }
+  .aw_stream_container_close a {
+    text-decoration: none;
+    color: #999999; }
+    .aw_stream_container_close a:hover {
+      color: #444444; }
 
-/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_entry_container {
   position: relative;
   border-bottom: 1px dotted #444444;
@@ -54,72 +41,52 @@
   margin-top: -1px;
   border-top: 1px solid transparent;
   padding: 5px 3px 5px 3px;
-  width: 350px;
-}
+  width: 350px; }
 
-/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_originator_img {
   float: left;
-  margin-top: 3px;
-}
-/* line 50, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_originator_img a {
-  text-decoration: none;
-}
-/* line 52, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_originator_img img {
-  height: 32px;
-  overflow: hidden;
-  width: 32px;
-  vertical-align: middle;
-  margin-right: 4px;
-}
-/* line 58, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_originator_img span {
-  font-size: 13px;
-  font-weight: bold;
-  color: #444444;
-}
-/* line 62, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_originator_img .aw_stream_content_screen_name {
-  margin-left: 5px;
-  text-decoration: none;
-  font-family: "RobotoRegular";
-  font-weight: normal;
-  color: #444444;
-  font-size: 13px;
-  margin-right: 5px;
-  font-family: "RobotoRegular";
-  font-family-cursor: pointer;
-}
-/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_originator_img .aw_stream_content_name {
-  margin-left: 1px;
-  text-decoration: none;
-  font-weight: normal;
-  color: #25a0da;
-  font-family: "RobotoRegular";
-  font-size: 15px;
-}
-/* line 81, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_originator_img .aw_stream_content_name:hover {
-  cursor: pointer;
-}
+  margin-top: 3px; }
+  .aw_stream_originator_img a {
+    text-decoration: none; }
+  .aw_stream_originator_img img {
+    height: 32px;
+    overflow: hidden;
+    width: 32px;
+    vertical-align: middle;
+    margin-right: 4px; }
+  .aw_stream_originator_img span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #444444; }
+  .aw_stream_originator_img .aw_stream_content_screen_name {
+    margin-left: 5px;
+    text-decoration: none;
+    font-family: "RobotoRegular";
+    font-weight: normal;
+    color: #444444;
+    font-size: 13px;
+    margin-right: 5px;
+    font-family: "RobotoRegular";
+      font-family-cursor: pointer; }
+  .aw_stream_originator_img .aw_stream_content_name {
+    margin-left: 1px;
+    text-decoration: none;
+    font-weight: normal;
+    color: #25a0da;
+    font-family: "RobotoRegular";
+    font-size: 15px; }
+    .aw_stream_originator_img .aw_stream_content_name:hover {
+      cursor: pointer; }
 
-/* line 84, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_src_img {
   float: right;
   height: 16px;
   overflow: hidden;
   width: 16px;
-  margin-top: 3px;
-}
-/* line 90, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_src_img:hover {
-  cursor: pointer;
-}
+  margin-top: 3px; }
+  .aw_stream_src_img:hover {
+    cursor: pointer; }
 
-/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_time_orig {
   float: right;
   height: 16px;
@@ -128,14 +95,10 @@
   width: 100%;
   text-align: right;
   font-family: "RobotoRegular";
-  font-size: 10px;
-}
-/* line 102, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_time_orig span {
-  color: #444444;
-}
+  font-size: 10px; }
+  .aw_stream_time_orig span {
+    color: #444444; }
 
-/* line 104, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_content {
   margin-left: 10px;
   margin-right: 18px;
@@ -143,173 +106,124 @@
   width: 100%;
   height: auto;
   display: inline-block;
-  border: 0px solid green;
-}
-/* line 115, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_stream_text_box {
-  padding-top: 1px;
-  min-height: 20px;
-}
-/* line 118, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_stream_text_box p {
-  font-family: "RobotoRegular";
-  width: 90%;
-  line-height: 18px;
-  font-size: 13px;
-  word-wrap: break-word;
-}
-/* line 124, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_stream_text_box p .aw_text_mention {
-  color: #25a0da;
-}
-/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_stream_text_box p .aw_text_mention:hover {
-  cursor: pointer;
-}
-/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_location_box {
-  width: 90%;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-bottom: 2px;
-  text-align: right;
-}
-/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_location_box p {
-  font-family: "RobotoRegular";
-  line-height: 18px;
-  font-size: 15px;
-  color: #25a0da;
-}
-/* line 139, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_location_box p img {
-  height: 25px;
-  margin-right: 2px;
-}
-/* line 143, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box {
-  margin-top: 2px;
-  width: 100%;
-  height: auto;
-  display: inline-block;
-}
-/* line 148, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_title {
-  margin-bottom: 5px;
-}
-/* line 150, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_title a {
-  font-family: "RobotoRegular";
-  color: #25a0da;
-  font-size: 16px;
-  text-decoration: none;
-}
-/* line 155, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_title:hover {
-  cursor: pointer;
-}
-/* line 158, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_title_milder {
-  width: 90%;
-  margin-bottom: 5px;
-}
-/* line 161, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_title_milder a {
-  font-family: "RobotoRegular";
-  color: #25a0da;
-  font-size: 15px;
-  text-decoration: none;
-}
-/* line 166, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_title_milder:hover {
-  cursor: pointer;
-}
-/* line 169, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph {
-  padding-top: 2px;
-  width: 90%;
-  height: auto;
-  font-family: "RobotoRegular";
-  font-size: 11px;
-  line-height: 18px;
-  color: #444444;
-  word-wrap: break-word;
-}
-/* line 178, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_image_box {
-  width: 100%;
-}
-/* line 180, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_image_box .aw_attachment_image {
-  margin-left: auto;
-  padding: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0 0 5px #333333;
-  -webkit-box-shadow: 0 0 5px #333333;
-  box-shadow: 0 0 5px #333333;
-}
-/* line 187, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_caption {
-  width: 100%;
-  height: auto;
-  font-family: "RobotoRegular";
-  font-size: 13px;
-  line-height: 18px;
-  color: #444444;
-  clear: left;
-}
-/* line 195, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_embed {
-  display: block;
-  width: 100%;
-  height: auto;
-  font-family: "RobotoRegular";
-  font-size: 12px;
-}
-/* line 201, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_content .aw_attachment_box .aw_attachment_embed iframe {
-  border: 0px;
-  padding: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0 0 5px #333333;
-  -webkit-box-shadow: 0 0 5px #333333;
-  box-shadow: 0 0 5px #333333;
-}
+  border: 0px solid green; }
+  .aw_stream_content .aw_stream_text_box {
+    padding-top: 1px;
+    min-height: 20px; }
+    .aw_stream_content .aw_stream_text_box p {
+      font-family: "RobotoRegular";
+      width: 90%;
+      line-height: 18px;
+      font-size: 13px;
+      word-wrap: break-word; }
+      .aw_stream_content .aw_stream_text_box p .aw_text_mention {
+        color: #25a0da; }
+        .aw_stream_content .aw_stream_text_box p .aw_text_mention:hover {
+          cursor: pointer; }
+  .aw_stream_content .aw_location_box {
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-bottom: 2px;
+    text-align: right; }
+    .aw_stream_content .aw_location_box p {
+      font-family: "RobotoRegular";
+      line-height: 18px;
+      font-size: 15px;
+      color: #25a0da; }
+      .aw_stream_content .aw_location_box p img {
+        height: 25px;
+        margin-right: 2px; }
+  .aw_stream_content .aw_attachment_box {
+    margin-top: 2px;
+    width: 100%;
+    height: auto;
+    display: inline-block; }
+    .aw_stream_content .aw_attachment_box .aw_attachment_title {
+      margin-bottom: 5px; }
+      .aw_stream_content .aw_attachment_box .aw_attachment_title a {
+        font-family: "RobotoRegular";
+        color: #25a0da;
+        font-size: 16px;
+        text-decoration: none; }
+      .aw_stream_content .aw_attachment_box .aw_attachment_title:hover {
+        cursor: pointer; }
+    .aw_stream_content .aw_attachment_box .aw_attachment_title_milder {
+      width: 90%;
+      margin-bottom: 5px; }
+      .aw_stream_content .aw_attachment_box .aw_attachment_title_milder a {
+        font-family: "RobotoRegular";
+        color: #25a0da;
+        font-size: 15px;
+        text-decoration: none; }
+      .aw_stream_content .aw_attachment_box .aw_attachment_title_milder:hover {
+        cursor: pointer; }
+    .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_paragraph {
+      padding-top: 2px;
+      width: 90%;
+      height: auto;
+      font-family: "RobotoRegular";
+      font-size: 11px;
+      line-height: 18px;
+      color: #444444;
+      word-wrap: break-word; }
+    .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_image_box {
+      width: 100%; }
+      .aw_stream_content .aw_attachment_box .aw_attachment_content .aw_attachment_image_box .aw_attachment_image {
+        margin-left: auto;
+        padding: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 0 0 5px #333333;
+        -webkit-box-shadow: 0 0 5px #333333;
+        box-shadow: 0 0 5px #333333; }
+    .aw_stream_content .aw_attachment_box .aw_attachment_caption {
+      width: 100%;
+      height: auto;
+      font-family: "RobotoRegular";
+      font-size: 13px;
+      line-height: 18px;
+      color: #444444;
+      clear: left; }
+    .aw_stream_content .aw_attachment_box .aw_attachment_embed {
+      display: block;
+      width: 100%;
+      height: auto;
+      font-family: "RobotoRegular";
+      font-size: 12px; }
+      .aw_stream_content .aw_attachment_box .aw_attachment_embed iframe {
+        border: 0px;
+        padding: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 0 0 5px #333333;
+        -webkit-box-shadow: 0 0 5px #333333;
+        box-shadow: 0 0 5px #333333; }
 
-/* line 213, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
 .aw_stream_mentions_box {
   margin-top: 5px;
   width: 90%;
   height: auto;
-  display: inline-block;
-}
-/* line 218, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_mentions_box span {
-  display: block;
-  color: #444444;
-  font-family: "RobotoRegular";
-  color: #444444;
-  font-size: 13px;
-  line-height: 16px;
-  margin-bottom: 3px;
-}
-/* line 227, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_mentions_box a {
-  text-decoration: none;
-  font-family: "RobotoRegular";
-  font-size: 13px;
-  line-height: 16px;
-  border: 1px solid #25a0da;
-  border-radius: 5px 5px 5px 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  background: #d6f5f5;
-  padding: 2px;
-  color: #444444;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-/* line 241, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.sass */
-.aw_stream_mentions_box a:hover {
-  /* cursor: pointer */
-}
+  display: inline-block; }
+  .aw_stream_mentions_box span {
+    display: block;
+    color: #444444;
+    font-family: "RobotoRegular";
+    color: #444444;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 3px; }
+  .aw_stream_mentions_box a {
+    text-decoration: none;
+    font-family: "RobotoRegular";
+    font-size: 13px;
+    line-height: 16px;
+    border: 1px solid #25a0da;
+    border-radius: 5px 5px 5px 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background: #d6f5f5;
+    padding: 2px;
+    color: #444444;
+    margin-left: 5px;
+    margin-right: 5px; }
+    .aw_stream_mentions_box a:hover {
+      /* cursor: pointer */ }

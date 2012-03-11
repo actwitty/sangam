@@ -1,4 +1,3 @@
-/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
 .aw_dyn_service_image_box {
   width: 44px;
   height: 44px;
@@ -7,23 +6,16 @@
   margin-top: 40px;
   margin-right: 0px;
   margin-left: 8px;
-  position: relative;
-}
-/* line 10, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
-.aw_dyn_service_image_box .aw_dyn_service_img_small {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-}
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
-.aw_dyn_service_image_box .aw_dyn_service_img_large {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  display: none;
-  z-index: 10;
-}
-/* line 20, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
-.aw_dyn_service_image_box:hover .aw_dyn_service_img_large {
-  display: block;
-}
+  position: relative; }
+  .aw_dyn_service_image_box .aw_dyn_service_img_small {
+    position: absolute;
+    top: 5px;
+    left: 5px; }
+  .aw_dyn_service_image_box .aw_dyn_service_img_large {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+    z-index: 10; }
+  .aw_dyn_service_image_box:hover .aw_dyn_service_img_large {
+    display: block; }

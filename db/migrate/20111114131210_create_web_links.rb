@@ -20,6 +20,8 @@ class CreateWebLinks < ActiveRecord::Migration
       t.text :category_type
       t.integer :cache_age
 
+      t.text :element
+
       t.timestamps
     end
     add_index  :web_links, :url_sha1, :unique => true

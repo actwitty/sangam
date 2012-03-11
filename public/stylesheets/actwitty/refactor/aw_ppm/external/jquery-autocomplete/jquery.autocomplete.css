@@ -1,4 +1,3 @@
-/* line 1, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_results {
   padding: 0px;
   border: 1px solid #ccc;
@@ -7,19 +6,15 @@
   box-shadow: 0 0 8px #ddd;
   background-color: white;
   overflow: hidden;
-  z-index: 99999;
-}
+  z-index: 99999; }
 
-/* line 12, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_results ul {
   width: 100%;
   list-style-position: outside;
   list-style: none;
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
-/* line 20, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_results li {
   margin: 0px;
   padding: 2px 5px;
@@ -37,22 +32,15 @@
     in relative units scroll will be broken in firefox
   */
   line-height: 16px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
-/* line 40, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_loading {
-  background: white url("/images/actwitty/refactor/aw_ppm/common/throbber.gif") right center no-repeat;
-}
+  background: white url("/images/actwitty/refactor/aw_ppm/common/throbber.gif") right center no-repeat; }
 
-/* line 44, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_odd {
-  background-color: #eee;
-}
+  background-color: #eee; }
 
-/* line 48, ../../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.scss */
 .ac_over {
   /*background-color: #0A246A;*/
   background-color: #ccc;
-  color: white;
-}
+  color: white; }

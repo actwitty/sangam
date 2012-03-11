@@ -4,7 +4,7 @@ module Test
     def test_get_stream(user)
 #
       puts "Normal Stream"
-      s = user.get_stream({:user_id => user.id, :summary_id => @act[:post][:summary_id] })
+      s = user.get_stream({:user_id => user.id})
       puts s
 #
 #      puts "Normal Till"

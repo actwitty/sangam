@@ -1,2 +1,0 @@
-class WordFormsController < ApplicationController
-end

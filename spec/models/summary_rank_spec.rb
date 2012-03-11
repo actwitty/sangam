@@ -9,6 +9,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: summary_ranks
@@ -19,7 +20,7 @@ end
 #  activity_name :text
 #  category_id   :text
 #  analytics     :text
-#  created_at    :datetime
-#  updated_at    :datetime
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
 #
 

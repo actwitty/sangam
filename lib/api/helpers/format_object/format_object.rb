@@ -1,135 +1,50 @@
+require "format_analytics/analytics"
+
 module Api
   module Helpers
     module FormatObject
       class << self
 
+        ##format a Service Present in Social Aggregator to generic form.
+        #
+        #INPUT => {
+        #           :hash => {analytics_snapshot} #check api/summaries/summaries.rb      ,
+        #           :enabled_services => ["facebook", "twitter"]#[OPTIONAL]
+        #         }
         def format_analytics(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics] entering")
+          #Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics] entering")
 
-          return params[:hash]
+          return params[:hash] if params[:enabled_services].blank?
+          hash = {}
 
-          params[:hash] if params[:services].blank?
-
-          analytics = params[:hash]
-          services = params[:services]
-
-          #hash = analytics
-
-          #it belongs to summaries
-          if !analytics[:posts].blank?
-            s = analytics[:posts].except(:total)
-            is = s & service
+          #convert array of enabled services to hash
+          params[:enabled_services].each do |service|
+            hash[service.to_sym] = true
           end
 
-          #it belongs to summaries
-          if !analytics[:weeks].blank?
-
+          klass = "::Api::Helpers::FormatObject::FormatAnalytics::Analytics".camelize.constantize
+          params[:hash].each do |k,v|
+            v = klass.send("format_analytics_#{k}", {:hash => v, :enabled_services => hash}) if k != :timestamp
+            params[:hash].delete(k) if v.blank? #delete individual hash => weeks, posts, documents, locations, entities, local_actions, source_actions
           end
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics] leaving")
-          hash
-        end
-        # ##format a posts analytics to generic form.
-        #Also takes care of privacy .. in terms of masking the services user is not subscribed to
-        #This need can arise when months of analytics is generated for a service and then service is disabled
-        #The analytics data will still contain deleted service numbers.. so masking is needed
-        #INPUT => {
-        #           :hash => posts, :services => ["facebook", "twitter"] [OPTIONAL] #services to which user is authorised
-        #         }
-        def format_analytics_posts(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_posts] entering ")
+          params[:hash] = {} if params[:hash].size <=1 #only timestamp is remaining
 
-          params[:hash] if params[:services].blank?
-          posts = params[:hash]
+          #Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics] leaving")
+          params[:hash]
 
-          hash = {}
-
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_posts] leaving ")
-          hash
-        end
-        # ##format a documents analytics to generic form.
-        #Also takes care of privacy .. in terms of masking the services user is not subscribed to
-        #This need can arise when months of analytics is generated for a service and then service is disabled
-        #The analytics data will still contain deleted service numbers.. so masking is needed
-        #INPUT => {
-        #           :hash => documents, :services => ["facebook", "twitter"] [OPTIONAL] #services to which user is authorised
-        #         }
-        def format_analytics_documents(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_documents] entering ")
-
-          params[:hash] if params[:services].blank?
-          documents = params[:hash]
-
-          hash = {}
-
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_documents] leaving ")
-          hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
-
-
-        # ##format a locations analytics to generic form.
-        #Also takes care of privacy .. in terms of masking the services user is not subscribed to
-        #This need can arise when months of analytics is generated for a service and then service is disabled
-        #The analytics data will still contain deleted service numbers.. so masking is needed
-        #INPUT => {
-        #           :hash => locations, :services => ["facebook", "twitter"] [OPTIONAL] #services to which user is authorised
-        #         }
-        def format_analytics_locations(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_locations] entering ")
-
-          params[:hash] if params[:services].blank?
-          locations = params[:hash]
-
-          hash = {}
-
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_locations] leaving ")
-          hash
-        end
-        # ##format a entities analytics to generic form.
-        #Also takes care of privacy .. in terms of masking the services user is not subscribed to
-        #This need can arise when months of analytics is generated for a service and then service is disabled
-        #The analytics data will still contain deleted service numbers.. so masking is needed
-        #INPUT => {
-        #           :hash => entities, :services => ["facebook", "twitter"] [OPTIONAL] #services to which user is authorised
-        #         }
-        def format_analytics_entities(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_entities] entering ")
-
-          params[:hash] if params[:services].blank?
-          entities = params[:hash]
-
-          hash = {}
-
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_entities] leaving ")
-          hash
-        end
-
-        ##format a weeks analytics to generic form.
-        #Also takes care of privacy .. in terms of masking the services user is not subscribed to
-        #This need can arise when months of analytics is generated for a service and then service is disabled
-        #The analytics data will still contain deleted service numbers.. so masking is needed
-        #INPUT => {
-        #           :hash => weeks, :services => ["facebook", "twitter"] [OPTIONAL] #services to which user is authorised
-        #         }
-        def format_analytics_weeks(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_weeks] entering ")
-
-          params[:hash] if params[:services].blank?
-          weeks = params[:hash]
-
-          hash = {}
-
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_analytics_weeks] leaving ")
-          hash
-        end
         ##format a Service Present in Social Aggregator to generic form.
         #
         #INPUT => {
         #           :object => aggregator
         #         }
         def format_social_aggregator(params)
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_social_aggregator] entering ")
+          #Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_social_aggregator] entering ")
 
           aggregator = params[:object]
 
@@ -137,8 +52,11 @@ module Api
 
           hash[:aggregator] = {:user_id => aggregator.user_id, :provider => aggregator.provider, :uid => aggregator.uid, :status => aggregator.status}
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_social_aggregator] leaving ")
+          #Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_social_aggregator] leaving ")
           hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_social_aggregator]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -152,7 +70,7 @@ module Api
         #         }
         def format_entity(params)
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_entity] entering #{params[:parent].status_at_source.inspect}")
+          #Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_entity] entering #{params[:parent].status_at_source.inspect}")
 
           h = {}
 
@@ -179,8 +97,11 @@ module Api
           end
           h[:entity][:source_name] = params[:parent].source_name
           h[:entity][:source_msg_id] = params[:parent].source_msg_id
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_entity] leaving #{h.inspect}")
+          #Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_entity] leaving #{h.inspect}")
           h
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_entity]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -195,7 +116,7 @@ module Api
         #         }
         def format_location(params)
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT]  [format_location] entering #{params[:parent].status_at_source.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT]  [format_location] entering #{params[:parent].status_at_source.inspect}")
 
           h = {}
 
@@ -209,7 +130,7 @@ module Api
             h[:location] = {:id => loc.id}
 
           else
-            h[:location] = {:id => loc.id, :type => AppConstants.location_type_geo, :lat => loc.location_lat, :long => loc.location_long,
+            h[:location] = {:id => loc.id, :lat => loc.location_lat, :long => loc.location_long,
                    :name => loc.location_name, :city => loc.location_city, :country => loc.location_country,
                    :region => loc.location_region,  :source_object_id => loc.source_object_id}
 
@@ -217,8 +138,11 @@ module Api
           h[:location][:source_name] = params[:parent].source_name
           h[:location][:source_msg_id] = params[:parent].source_object_id
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_location] leaving  #{h.inspect}" )
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_location] leaving  #{h.inspect}" )
           h
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_location]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -232,7 +156,7 @@ module Api
         #         }
         def format_activity(params)
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_activity] entering #{params[:object].status_at_source.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_activity] entering #{params[:object].status_at_source.inspect}")
 
           hash = {}
 
@@ -247,7 +171,7 @@ module Api
           hash[:post]={
                 :id => activity.id,
                 :user => {:id => author.id, :full_name => author.full_name, :photo => author.photo_small_url},
-                :time => activity.updated_at,
+                :time => activity.source_created_at,
                 :summary_id => activity.summary_id,
                 :source_object_id => activity.source_object_id,
                 :source_object_type => activity.source_object_type,
@@ -258,13 +182,16 @@ module Api
 
           else
             hash[:post][:text] = activity.activity_text
-
+            hash[:post][:if_yaml]  =  activity.if_yaml
           end
           hash[:post][:category_data] = format_summary_category({:category_id => activity.category_id}) if !activity.category_id.blank?
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_activity] leaving #{hash.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_activity] leaving #{hash.inspect}")
 
           hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_activity]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -278,7 +205,7 @@ module Api
         #         }
         def format_document(params)
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_document] entering #{params[:object].status_at_source.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_document] entering #{params[:object].status_at_source.inspect}")
 
           hash = {}
 
@@ -306,9 +233,12 @@ module Api
             end
           end
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_document] leaving  #{hash.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_document] leaving  #{hash.inspect}")
 
           hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_document]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -322,7 +252,7 @@ module Api
         #         }
         def format_tag(params)
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_tag] entering #{params[:object].status_at_source.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_tag] entering #{params[:object].status_at_source.inspect}")
           hash = {}
 
           tag = params[:object]
@@ -342,8 +272,11 @@ module Api
             hash[:tag][:name] =  tag.name
           end
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_tag] leaving  #{hash.inspect}")
+          ##Rails.logger.info("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_tag] leaving  #{hash.inspect}")
           hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_tag]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -363,8 +296,10 @@ module Api
                 :hierarchy => SUMMARY_CATEGORIES[category_id]['hierarchy'],
                 :default_channel => SUMMARY_CATEGORIES[category_id]['channel']
               }
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_summary_category]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
-
 
         ##format web link object to generic form to compatible format for sending outside
         ##No need for privacy layer as it will sent through some core object like Document
@@ -390,6 +325,9 @@ module Api
              :url_provider => web_link.provider
           }
           hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_web_link]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
 
 
@@ -410,6 +348,9 @@ module Api
 
           hash = format_web_link({:object => short_web_link.web_link})
           hash
+        rescue => e
+          Rails.logger.error("[LIB] [API] [HELPERS] [FORMAT_OBJECT] [format_short_web_link]  **** RESCUE **** #{e.message} For #{params.inspect}")
+          {}
         end
       end
     end

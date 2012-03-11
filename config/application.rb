@@ -4,7 +4,7 @@ require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
 
 module Sangam
   class Application < Rails::Application
@@ -25,7 +25,6 @@ module Sangam
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-    config.active_record.observers = :document_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -45,6 +44,9 @@ module Sangam
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     # Configure generators values. Many other options are available,
+
+    #disable asset pipeline 
+    config.assets.enabled=false
 
     # be sure to check the documentation.
     config.generators do |g|

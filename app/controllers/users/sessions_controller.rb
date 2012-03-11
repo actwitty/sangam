@@ -48,8 +48,13 @@ class Users::SessionsController < Devise::SessionsController
         query_hash[provider] = uid
         
         invite_status = @user.get_invited_status 
-        if invite_status 
-          @user.enable_service_for_data_gathering(provider)
+        if invite_status           
+          enable_hash = {
+                            :user_id => @user.id,
+                            :provider => provider,
+                            :uid => uid
+                          }
+          @user.enable_service(enable_hash)
         end
 
       end

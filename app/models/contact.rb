@@ -1,19 +1,3 @@
-# == Schema Information
-# Schema version: 20110616040229
-#
-# Table name: contacts
-#
-#  id         :integer         not null, primary key
-#  status     :integer
-#  user_id    :integer
-#  friend_id  :integer
-#  loop_id    :integer
-#  strength   :decimal(5, 2)   default(100.0)
-#  relation   :string(255)     default("Friend")
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Contact < ActiveRecord::Base
 
 
@@ -162,3 +146,19 @@ class Contact < ActiveRecord::Base
 
 
 end
+
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id         :integer         not null, primary key
+#  status     :integer
+#  user_id    :integer
+#  friend_id  :integer
+#  loop_id    :integer
+#  strength   :decimal(5, 2)   default(100.0)
+#  relation   :string(255)     default("Friend")
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#
+

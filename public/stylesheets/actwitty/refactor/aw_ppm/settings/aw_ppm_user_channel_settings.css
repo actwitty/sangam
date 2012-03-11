@@ -1,145 +1,102 @@
-/* line 6, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 body {
   margin: 0;
   padding: 0;
   font-size: 12px;
   font-family: "Helvetica", Arial, Helvetica, sans-serif;
   color: #cccccc;
-  background-color: white;
-}
+  background-color: white; }
 
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 img {
   border: 0;
   padding: 0;
-  margin: 0;
-}
+  margin: 0; }
 
-/* line 19, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .justify {
-  text-align: justify;
-}
+  text-align: justify; }
 
-/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .bold {
-  font-weight: bold;
-}
+  font-weight: bold; }
 
-/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .center {
-  text-align: center;
-}
+  text-align: center; }
 
-/* line 28, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .right {
-  text-align: right;
-}
+  text-align: right; }
 
-/* line 31, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .nostart {
   list-style-type: none;
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
-/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .clear {
-  clear: both;
-}
+  clear: both; }
 
-/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 br.clear {
   clear: both;
-  margin-top: -15px;
-}
+  margin-top: -15px; }
 
-/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 a {
   outline: none;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
-/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .fl_left {
-  float: left;
-}
+  float: left; }
 
-/* line 50, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .fl_right {
-  float: right;
-}
+  float: right; }
 
-/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .imgl, .imgr {
   border: 0px solid #dfdfdf;
   padding: 5px;
   color: #666666;
-  background-color: white;
-}
+  background-color: white; }
 
-/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .imgl {
   float: left;
   margin: 0 8px 8px 0;
-  clear: left;
-}
+  clear: left; }
 
-/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .imgr {
   float: right;
   margin: 0 0 8px 8px;
-  clear: right;
-}
+  clear: right; }
 
 /******************************************* Common for all Columns main Div's ************************************ */
 /* ----------------------------------------------Wrapper------------------------------------- */
-/* line 77, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 div.awcspm_channel_settings_wrapper {
   display: block;
   width: 100%;
   margin: 0;
-  text-align: left;
-}
+  text-align: left; }
 
-/* line 83, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_column1 {
   color: #d2d2d2;
   /*background-color:#33ccff; */
   background: #363436;
   /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81; */
-  border: 0px solid red;
-}
+  border: 0px solid red; }
 
-/* line 90, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_column2 {
   color: white;
   background-color: white;
-  border: 0px solid green;
-}
+  border: 0px solid green; }
 
-/* line 95, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_column3 {
   color: black;
   background-color: white;
-  border: 0px solid blue;
-}
+  border: 0px solid blue; }
 
-/* line 100, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_column4 {
   color: #ff9900;
   background-color: #424242;
-  border-top: 1px solid #363631;
-}
+  border-top: 1px solid #363631; }
 
-/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_column5 {
   color: #ff9900;
   background-color: #424242;
-  border-top: 1px solid #363631;
-}
+  border-top: 1px solid #363631; }
 
 /****************************************** User box section for user photo and input box ************************* */
-/* line 119, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 #awcspm_channel_settings_box {
   position: relative;
   margin: 0 auto 0;
@@ -148,24 +105,18 @@ div.awcspm_channel_settings_wrapper {
   height: 300px;
   height: auto;
   border: 0px solid red;
-  background: white;
-}
-/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-#awcspm_channel_settings_box h3 {
-  color: black;
-  font-size: 32px;
-  margin-left: 10px;
-}
+  background: white; }
+  #awcspm_channel_settings_box h3 {
+    color: black;
+    font-size: 32px;
+    margin-left: 10px; }
 
-/* line 130, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 #awcspm_channel_settings_content {
   width: 100%;
   height: 800px;
   border: 0px solid red;
-  margin-top: 20px;
-}
+  margin-top: 20px; }
 
-/* line 136, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_menu_box {
   float: left;
   width: 300px;
@@ -177,17 +128,13 @@ div.awcspm_channel_settings_wrapper {
   overflow-y: auto;
   -moz-box-shadow: 0 0 5px #dddddd;
   -webkit-box-shadow: 0 0 5px #dddddd;
-  box-shadow: 0 0 5px #dddddd;
-}
-/* line 148, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-.awcspm_channel_settings_menu_box h4 {
-  color: black;
-  font-size: 16px;
-  text-align: center;
-  margin: 5px;
-}
+  box-shadow: 0 0 5px #dddddd; }
+  .awcspm_channel_settings_menu_box h4 {
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    margin: 5px; }
 
-/* line 155, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 #awcspm_channel_settings_fields_box {
   float: left;
   width: 600px;
@@ -199,35 +146,27 @@ div.awcspm_channel_settings_wrapper {
   position: relative;
   -moz-box-shadow: 0 0 5px #dddddd;
   -webkit-box-shadow: 0 0 5px #dddddd;
-  box-shadow: 0 0 5px #dddddd;
-}
-/* line 167, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-#awcspm_channel_settings_fields_box h2 {
-  color: #454545;
-  font-size: 17px;
-  font-weight: normal;
-  margin-left: 20px;
-}
+  box-shadow: 0 0 5px #dddddd; }
+  #awcspm_channel_settings_fields_box h2 {
+    color: #454545;
+    font-size: 17px;
+    font-weight: normal;
+    margin-left: 20px; }
 
-/* line 175, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_info_edit_box {
   height: 150px;
   width: 200px;
   position: relative;
-  border-bottom: 0px solid #dddddd;
-}
+  border-bottom: 0px solid #dddddd; }
 
-/* line 183, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 #awcspm_channel_info_fields {
   position: absolute;
   top: 30px;
   right: 0px;
   width: 400px;
-  height: 150px;
-}
+  height: 150px; }
 
 /* for showing channel analytics */
-/* line 193, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 div.aw_cspm_dyn_chn_analytics {
   font-family: Calibri, Tahoma, Geneva, sans-serif;
   position: absolute;
@@ -244,65 +183,49 @@ div.aw_cspm_dyn_chn_analytics {
   border-radius: 8px;
   -moz-box-shadow: 0 0 4px #333333;
   -webkit-box-shadow: 0 0 4px #333333;
-  box-shadow: 0 0 4px #333333;
-}
+  box-shadow: 0 0 4px #333333; }
 
-/* line 214, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_delete_channel {
   position: absolute;
   bottom: 25px;
   right: 10px;
   text-decoration: none;
   color: #cccccc;
-  font-size: 9px;
-}
+  font-size: 9px; }
 
-/* line 227, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_chn_data_info_header_edit {
   border: 1px solid black;
   height: 100px;
   margin-left: 15px;
   margin-top: 15px;
   position: relative;
-  width: 170px;
-}
+  width: 170px; }
 
-/* line 236, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 #awcspm_channel_theme_selector_box {
   height: auto;
   width: 600px;
   border-top: 1px solid #dddddd;
   border-bottom: 1px solid #dddddd;
-  padding: 0 0 10px 0;
-}
-/* line 242, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-#awcspm_channel_theme_selector_box h5 {
-  font-size: 16px;
-  color: #333333;
-  margin-left: 10px;
-}
+  padding: 0 0 10px 0; }
+  #awcspm_channel_theme_selector_box h5 {
+    font-size: 16px;
+    color: #333333;
+    margin-left: 10px; }
 
-/* line 247, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 #awcspm_channel_theme_selection_list {
   height: 400px;
-  overflow-y: auto;
-}
+  overflow-y: auto; }
 
-/* line 254, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_theme_box {
   width: 170px;
   height: 100px;
   float: left;
   margin-left: 20px;
   margin-top: 10px;
-  position: relative;
-}
-/* line 261, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-.awcspm_channel_theme_box:hover .awcspm_channel_theme_info {
-  display: block;
-}
+  position: relative; }
+  .awcspm_channel_theme_box:hover .awcspm_channel_theme_info {
+    display: block; }
 
-/* line 266, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_theme_info {
   position: absolute;
   bottom: 0;
@@ -312,10 +235,8 @@ div.aw_cspm_dyn_chn_analytics {
   opacity: 0.9;
   color: black;
   font-size: 12px;
-  display: none;
-}
+  display: none; }
 
-/* line 281, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_categories {
   width: 220px;
   height: 30px;
@@ -325,18 +246,14 @@ div.aw_cspm_dyn_chn_analytics {
   box-shadow: 0 0 5px #dddddd;
   font-size: 14px;
   margin-left: 20px;
-  margin-top: 10px;
-}
+  margin-top: 10px; }
 
-/* line 294, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_save_btn {
   float: right;
   margin-top: 10px;
   width: 180px;
-  height: 60px;
-}
+  height: 60px; }
 
-/* line 300, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_profile_data_info_header {
   width: 170px;
   height: 100px;
@@ -346,14 +263,10 @@ div.aw_cspm_dyn_chn_analytics {
   margin-left: 60px;
   margin-top: 15px;
   position: relative;
-  cursor: pointer;
-}
-/* line 310, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-.awcspm_profile_data_info_header:hover .awcspm_channel_edit_pop_up {
-  display: block;
-}
+  cursor: pointer; }
+  .awcspm_profile_data_info_header:hover .awcspm_channel_edit_pop_up {
+    display: block; }
 
-/* line 313, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_edit_pop_up {
   position: absolute;
   top: 70px;
@@ -365,10 +278,8 @@ div.aw_cspm_dyn_chn_analytics {
   color: black;
   font-size: 10px;
   display: none;
-  padding: 5px;
-}
+  padding: 5px; }
 
-/* line 327, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_profile_channel_labels {
   width: 100%;
   height: 18px;
@@ -378,10 +289,8 @@ div.aw_cspm_dyn_chn_analytics {
   background: rgba(0, 0, 0, 0.6);
   color: white;
   text-align: center;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
-/* line 338, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_profile_data_info {
   width: 230px;
   height: 130px;
@@ -394,49 +303,40 @@ div.aw_cspm_dyn_chn_analytics {
   box-shadow: 0 0 5px #dddddd;
   z-index: 10;
   background-image: url("../images/grey_texture.png");
-  display: none;
-}
+  display: none; }
 
-/* line 352, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
 .awcspm_channel_settings_field {
   height: 60px;
   width: 400px;
   padding-top: 10px;
-  border-bottom: 0px solid #dddddd;
-}
-/* line 357, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-.awcspm_channel_settings_field label {
-  float: left;
-  width: 130px;
-  margin-top: 8px;
-  margin-left: 10px;
-  color: black;
-  font-size: 16px;
-  font-weight: bold;
-  vertical-align: middle;
-}
-/* line 366, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-.awcspm_channel_settings_field input {
-  margin-top: 8px;
-  font-size: 14px;
-  height: 26px;
-  margin-left: 20px;
-  padding: 2px 10px;
-  width: 200px;
-  border: 1px solid #dddddd;
-  -moz-box-shadow: 0 0 8px #dddddd;
-  -webkit-box-shadow: 0 0 8px #dddddd;
-  box-shadow: 0 0 8px #dddddd;
-}
-/* line 377, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/settings/aw_ppm_user_channel_settings.sass */
-.awcspm_channel_settings_field textarea {
-  margin-top: 8px;
-  margin-left: 20px;
-  width: 290px;
-  height: 80px;
-  resize: none;
-  border: 1px solid #dddddd;
-  -moz-box-shadow: 0 0 8px #dddddd;
-  -webkit-box-shadow: 0 0 8px #dddddd;
-  box-shadow: 0 0 8px #dddddd;
-}
+  border-bottom: 0px solid #dddddd; }
+  .awcspm_channel_settings_field label {
+    float: left;
+    width: 130px;
+    margin-top: 8px;
+    margin-left: 10px;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: middle; }
+  .awcspm_channel_settings_field input {
+    margin-top: 8px;
+    font-size: 14px;
+    height: 26px;
+    margin-left: 20px;
+    padding: 2px 10px;
+    width: 200px;
+    border: 1px solid #dddddd;
+    -moz-box-shadow: 0 0 8px #dddddd;
+    -webkit-box-shadow: 0 0 8px #dddddd;
+    box-shadow: 0 0 8px #dddddd; }
+  .awcspm_channel_settings_field textarea {
+    margin-top: 8px;
+    margin-left: 20px;
+    width: 290px;
+    height: 80px;
+    resize: none;
+    border: 1px solid #dddddd;
+    -moz-box-shadow: 0 0 8px #dddddd;
+    -webkit-box-shadow: 0 0 8px #dddddd;
+    box-shadow: 0 0 8px #dddddd; }

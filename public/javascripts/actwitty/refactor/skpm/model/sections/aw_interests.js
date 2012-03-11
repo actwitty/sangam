@@ -133,55 +133,60 @@ function aw_api_model_interests_server_request(){
                   /******************* post ************************/
                   if( summary.analytics_snapshot.posts ){  
 
-                    if( summary.analytics_snapshot.posts.total ){
-                      interest_data.post = summary.analytics_snapshot.posts.total; 
-                      aw_local_total_posts += summary.analytics_snapshot.posts.total;
+                    if( summary.analytics_snapshot.posts &&
+                        summary.analytics_snapshot.posts.counts &&
+                        summary.analytics_snapshot.posts.counts.total ){
+                      interest_data.post =  summary.analytics_snapshot.posts.counts.total; 
+                      aw_local_total_posts += summary.analytics_snapshot.posts.counts.total;
                     }
-                    
-                    $.each(summary.analytics_snapshot.posts, function(service_name, post_count){
-
-                      if( service_name != "total" ){
+                    if( summary.analytics_snapshot.posts.counts.services ){
+                      $.each(summary.analytics_snapshot.posts.counts.services, 
+                          function(service_name, post_count){
                         var service = { 
-                                        name: service_name,
-                                        share: (post_count/interest_data.post)*100
-                                      };
+                                          name: service_name,
+                                          share: (post_count/interest_data.post)*100
+                                        };
                         interest_data.services.push(service);
-                      }
-
-                     });
+                      });
+                    }
 
                   }
                   
                   /**************** documents **********************/
-                  if( summary.analytics_snapshot.documents){
-                    if(summary.analytics_snapshot.documents.video
-                          && summary.analytics_snapshot.documents.video.total){
-                        interest_data.video = summary.analytics_snapshot.documents.video.total;
+                  if( summary.analytics_snapshot.documents &&
+                      summary.analytics_snapshot.documents.counts &&
+                      summary.analytics_snapshot.documents.counts.categories ){
+
+                    if(summary.analytics_snapshot.documents.counts.categories.video
+                          && summary.analytics_snapshot.documents.counts.categories.video.total){
+                        interest_data.video = summary.analytics_snapshot.documents.counts.categories.video.total;
                     }
 
-                    if( summary.analytics_snapshot.documents.image
-                          && summary.analytics_snapshot.documents.image.total){
-                        interest_data.image = summary.analytics_snapshot.documents.image.total;
+                    if(summary.analytics_snapshot.documents.counts.categories.image
+                          && summary.analytics_snapshot.documents.counts.categories.image.total){
+                        interest_data.image = summary.analytics_snapshot.documents.counts.categories.image.total;
 
                       }
 
-                    if( summary.analytics_snapshot.documents.link
-                          && summary.analytics_snapshot.documents.link.total){
-                      interest_data.link = summary.analytics_snapshot.documents.link.total;
+                    if( summary.analytics_snapshot.documents.counts.categories.link
+                          && summary.analytics_snapshot.documents.counts.categories.link.total){
+                      interest_data.link = summary.analytics_snapshot.documents.counts.categories.link.total;
 
                     }
                   }
 
                   /**************** mentions **********************/
-                  if( summary.analytics_snapshot.entities 
-                      && summary.analytics_snapshot.entities.total){
-                    interest_data.mention = summary.analytics_snapshot.entities.total;
+                  if( summary.analytics_snapshot.entities &&
+                        summary.analytics_snapshot.entities.counts &&
+                          summary.analytics_snapshot.entities.counts.total){
+                    interest_data.mention = summary.analytics_snapshot.entities.counts.total;
                   }
 
                   /**************** location **********************/
-                  if( summary.analytics_snapshot.locations 
-                      && summary.analytics_snapshot.locations.total){
-                    interest_data.location = summary.analytics_snapshot.locations.total;
+                  if( summary.analytics_snapshot.locations &&
+                        summary.analytics_snapshot.locations.counts &&
+                          summary.analytics_snapshot.locations.counts.total){
+                    interest_data.location = summary.analytics_snapshot.locations.counts.total;
                   }
 
                 }

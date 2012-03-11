@@ -1,0 +1,2 @@
+class SourceActionsController < ApplicationController
+end

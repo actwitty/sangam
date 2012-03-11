@@ -2,167 +2,444 @@ module SocialFetch
   module Services
     class Twitter
       class << self
-        include TextFormatter
-        DATA_ARRAY =
-       [
-"@ActwittyTweets cool, all the best !!!, go for it",
-"RT @VentureBeat: Samsung's Galaxy S III may be just 7mm thick, making it world's thinnest phone http://t.co/TqYqCzkA",
-"RT @jeresig: Really impressed by StratifiedJS - JS compiler that supports suspending execution in all browsers: http://t.co/Y6wXT7Bb",
-"RT @SusannahWeems: Networking Startup Nicira Wants To Mess Up Cisco and Juniper's Business  http://t.co/pEU85Shg",
-"RT @TheNextWeb: Apple hits Samsung with 278 patent claims in revised Australian lawsuit http://t.co/uuxw92lX by @m4tt on @TNWapple",
-"RT @ThisIsSethsBlog: Seth's Blog: You will be disappointed http://t.co/rEYvOE8r",
-"RT @newsycombinator: Did Mark Zuckerberg just accidentally leak the new newsfeed design? http://t.co/flwM0zEI",
-"RT @timoreilly: Most important sw company you've probably never heard of http://t.co/zciHxdfi Epic Systems, digitizing health records be ...",
-"RT @om: What a Facebook IPO means for Silicon Valley http://t.co/0vQfDgCY",
-"RT @VentureBeat: Facebook's biggest change yet: Actions are here http://t.co/Pf7svI6y",
-"RT @jeffbullas: Top 15 Social Media Channels Important For B2B Marketing [Survey] http://t.co/4lB5iX2t",
-"RT @jeffbullas: A Generation Of Tech Millionaires Under 30 [Infographic] http://t.co/04ys1VXN via @douglasi",
-"RT @VentureBeat: Samsung would be crazy to buy RIM http://t.co/DUmfWhZh",
-"RT @mashable: Facebook Finally Beats Google's Orkut ... in Brazil - http://t.co/P4m9dIYH",
-"RT @TechCrunch: Quora Launches An Off-Site Follow Button For Topics And People http://t.co/itW5R9mL by @alexia",
-"RT @marshallk: StackOverflow's year in review mega infographic thing is cool and the site had an incredible year http://t.co/O9AxryNg",
-"Aussie wunderkind gets $US250k for technology that could revolutionise web http://t.co/3X2F43uU via @theage",
-"RT @jeffbullas: 5 Tips To Build Your Personal Brand With Social Media http://t.co/xpu7urrO",
-"RT @Techmeme: Samsung Group plans record $41 billion investment in 2012 (Miyoung Kim / Reuters) http://t.co/RKWb0jRb http://t.co/6ky4e6Yb",
-"RT @newsycombinator: Building Twitter bootstrap http://t.co/YFiMXLOl",
-"RT @Techmeme: Wikipedia founder @jimmy_wales says the site will go offline for 24 hours on Wednesday to... http://t.co/piuFcOxX http://t ...",
-"RT @RWW: 5 Sorting Algorithms Facebook Should Consider Instead of Highlighted Stories http://t.co/0Rupyhpq",
-"Social Q&A service Beepl automatically finds experts for your questions | VentureBeat http://t.co/tHsTeeWJ via @venturebeat",
-"RT @TheNextWeb: Facebook reportedly to file IPO documents within the next month, go public in May http://t.co/ECTri29l by @m4tt on @tnwf ...",
-"RT @newsycombinator: CSSrefresh - Automatically Refresh CSS files http://t.co/Tjw6EaRx",
-"RT @MyInfographics: Web Designers vs Web Developers - You Decide! http://t.co/SVShANGo",
-"RT @fakingnews: Digvijay Singh has wished the best to the Indian team. Dhoni could now safely blame the losses on RSS.",
-"Facebook's Buggiest Page Was Created on Purpose http://t.co/O0hZX9Kv via @mashable",
-"RT @mashable: 4 Short-Form Blogging Networks Perfect for Customer Engagement - http://t.co/GAp0Qa9Y",
-"Why Facebooks Listen With Friends feature isnt a threat to Turntable | VentureBeat http://t.co/NpjeCtig via @venturebeat",
-"Click.to wants to make copy and paste obsolete | VentureBeat http://t.co/VqAi0LwC via @venturebeat",
-"Facebook Shower Curtain Lets You Clean Up With Your Favorite Site http://t.co/xct7oW4i via @mashable",
-"Apple's strategy .... way back in 1988...a video  http://t.co/kaskI29p",
-"RT @fakingnews: I'm updating my new year resolution to not watching cricket",
-"Nobody Goes to Facebook Anymore. Its Too Crowded !!!!!!.: http://t.co/xGHXp8G0 via @wordpressdotcom",
-"Internet Explorer 6 Usage Drops Below 1% in the U.S., Finally [VIDEO] http://t.co/7Ol1BAaB via @mashable",
-"RT @bhogleharsha: here we go again. indias opening partnerships in last 6 tests (inc this) 63,19,0,6,8,0,8,49,22,17,0. easy diagnosis o ...",
-"India is now the worlds biggest source of spam email http://t.co/8x9m5AGU via @TheNextWebIN",
-"30 Social Media Predictions for 2012 From the Pros | Social Media Examiner http://t.co/2kMkO1vX via @smexaminer",
-"RT @ZeeNews: Stringent law against cow slaughter in MP: BJP-ruled Madhya Pradesh has brought",
-"in a stringent law against cow s... http:// ...",
-"Seth Godin Blog: The chance of a lifetime http://t.co/ynygMK84 via @ThisIsSethsBlog",
-"RT @wikileaks: A rumour is spreading - at 250 tweets/a minute that Fidel Castro is dead. However there is nothing to back this up presently.",
-"RT @bokardo: Putting Facebook & Google into perspective: http://t.co/ZUNBk2T6 /ht @jowyang",
-"Like Hell Facebook Is Killing Google http://t.co/LPP0biun via @sai",
-"interesting analysis .... Why Burying Sign Up Buttons Helps Get More Sign Ups by ZURB http://t.co/w1YcXFys via @ZURB",
-"Top Google Algorithm Changes of 2011 http://t.co/aw0FmW5C via @myinfographics",
-"#ThingsThatDontGoTogether kim kardashian and her married status for long",
-"2011 Social Media Hits and Misses http://t.co/CJbzV543",
-"hmmm.... If You Want To Kill Your Competition Then You May As Well Kill Your Goals http://t.co/FJGU7LEb via @dannybrown",
-"Dead? Social Medias Explosive Growth is Only Beginning by @marshallk http://t.co/1hwhm5K2 via @RWW",
-"10 cloud startups to watch in 2012 http://t.co/jHUO20Lz",
-"Facebook Timeline Is Basically Your Digital Resume http://t.co/fW4SzpFC via @mashable",
-"Facebook 2012: What the Future Holds for the Social Media Powerhouse http://t.co/n4jP1tOv via @mashable",
-"RT @mashable: Heres how your eyes look at old and new Facebook, Twitter and Myspace pages - http://t.co/qVUnWlO0",
-"4 Free Alternatives to Siri http://t.co/3QqssEAI via @mashable",
-"@sudhanshu_80  congrats....thats really a grt news . Best wishes to @act_witty.",
-"Microsoft Working On Social Network For Students by @CopeWrites http://t.co/0vT2hsBO via @RWW",
-"6 Important Startup Trends that Defined 2011 http://t.co/M4ZKX3bZ via @mashbusiness @mashable",
-"Vote to choose Faking News Digvijay Singh of the Year: http://t.co/euAjaMsJ.... :) :)",
-"RT @TheNextWeb: Spotify signed up 300,000 independent labels in 2011, as it reveals the years top tracks http://t.co/PSzeEPkU by @TGW_P ...",
-"Heres How People Look at Your Facebook Profile -- Literally http://t.co/s262HKbd via @mashable",
-"RT @TheNextWeb: Report: 300 million users now access Facebook via its mobile apps http://t.co/pvHdAzfH by @m4tt",
-"RT @sardesairajdeep: Messiahs are dangerous. They raise expectations, and then are found to be human with feet of clay like all of us.",
-"The 9 Oddest Job Interview Questions Asked at Tech Companies in 2011 :)  http://t.co/OrdLkja8 via @mashbusiness @mashable",
-"RT @wikileaks: Milions of emails between some of the most powerful men in the world are about to be released. Help us search them http:/ ...",
-"Company Sues Former Employee for Value of 17,000 Twitter Followers :)  [VIDEO] http://t.co/LEtvQRPG via @mashbusiness @mashable",
-"RT @TheNextWeb: Apple reportedly building TV sets in Q1 for release by Q3 2012 http://t.co/kmI7K9Ck by @m4tt on @TNWapple",
-"Twitters 15 Major Milestones in 2011 http://t.co/rk8ayxep via @mashsocialmedia @mashable",
-"How Tech and Social Media Companies Cashed Out in 2011 http://t.co/0fALazQv via @mashbusiness @mashable",
-"RT @TheNextWeb: The Top Ten Media Apps of 2011 http://t.co/uModUVei by @abracarioca on @tnwmedia",
-"Now your robots can post status updates too with http://t.co/ZoYLHE84 | VentureBeat http://t.co/KrkZEzLF via @venturebeat",
-"New Wikipedia Layer on Geoloqi Gives You Vision Beyond the Greek Gods by @marshallk http://t.co/xeCsiPrQ via @RWW",
-"Minimalist Web Design: How Minimal is Too Minimal? http://t.co/dmWNutdt via @sixrevisions",
-"Lifehacker Top 10: Top 10 Under-Hyped Web Apps, 2011 Edition - @Lifehacker http://t.co/xGE1HNMB",
-"RT @markzukerberg: Followers, please retweet this INCREDIBLE movie http://t.co/qNYoGgt2",
-"RT @TechCrunch: How To Use Anyones Face As A Facebook Chat Emoticon http://t.co/yfzNYnBI by @joshconstine",
-"RT @sudhanshu_80: Ben Chestnut Mailchimp counder talking at CreativeMornings. Good talk for creative people http://t.co/i3RJ4JzB",
-"quite interesting :: 3 New Ways to Connect With Content That Interests You http://t.co/AoXoLusn via @mashbusiness @mashable",
-"Siri, What Were Your Top 5 Hacks And Mods Of 2011? http://t.co/rfv3EYLE via @techcrunch",
-"A Christmas Miracle! Facebook Chat (Kind Of) Supports Extended Rage Faces http://t.co/bEqWrwy8 via @techcrunch",
-"Go Daddy lost 21,054 domains yesterday in wake of SOPA PR disaster http://t.co/KJ06F72j via @TNWinsider",
-"RT @addthis: Did you know? Twitter makes up 52% of sharing in Japan! Check out more 2011 Sharing Trends here: http://t.co/POcTGqOE",
-"He Sees You When Youre Chatting, He Knows When Youve Been Tagged [COMIC] http://t.co/ff1rxRB6 via @mashable",
-"6 Crazy Tech Predictions for 2012 http://t.co/VmrhA7DQ via @mashable",
-"5 Ways to Win at Website Localization http://t.co/rJldvqTE via @mashdevdesign @mashable",
-"Only 26% of Consumers Think Facebook Storefronts Secure Against Fraud [STUDY] http://t.co/HDsSN48E via @mashable",
-"Facebook Subscriber  http://t.co/aeSpUsXI via @techcrunch",
-"RT @TechCrunch: No Ice Cream Sandwich For Galaxy S And Galaxy Tab, Says Samsung http://t.co/2dYcNPcu by @chrisvelazco",
-"Codecademy Builds Labs, A Web-Based Code Editor http://t.co/EsT0Ohf1 via @techcrunch",
-"How infographics jumped the shark | VentureBeat: http://t.co/j1hl7SaU via @AddThis",
-"Social Fixer Makes Facebook More Fun and Functional: http://t.co/irSDXGhn",
-"Microsoft shows off HTML5 with a snow flurry http://t.co/F60OFj7k #html5",
-"#Dropbox knows youre an early adopter, gives you a sneak peek of its new Android app http://t.co/s2JkHAbw",
-"RT @thoughtbot: Must-read post from @chadfowler: Re-thinking software development education http://t.co/RmSz8ckr",
-"RT @pamdyer: Does a Facebook like mean customers really like you? http://t.co/fgJO7uJV Different interpretations",
-"RT @jeresig: New Blog Post: JavaScript as a First Language: http://t.co/kjyucBkN",
-"RT @TechCrunch: The Definitive Guide To HTML5: 14 Predictions For 2012 http://t.co/AkkXg3hQ",
-"RT @pamdyer: Twitter revenue soars, but marketers dont see the platform as a strategic marketing channel http://t.co/1a1Z6jAv",
-"RT @sudhanshu_80: Chart on minutes spent on social networking sites. Facebook is the winner",
-"http://t.co/A5F0Rtjs #socialmedia",
-"RT @iange: #Github #employee #Aman #Gupta, aka @tmm1 on #Twitter was able to #dupe #Siri into #accepting #commands of #his own, a http:/ ...",
-"0ver 400 FREE icons inspired by advertisting art of the 1920-30s. #icons #webdesign @explainify http://t.co/3UCuOcxQ",
-"@sachin_rt : great job off the field too :) , wish you all the success in your fund raiser programs.",
-]
 
-       #INPUT => {:user_id => 123, :uid => "234", :access_token => "gdjjsagjgds.."}
-       #OUTPUT => array of messages from twitter in descending order of creation time
+        FEED = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true"
+
+        #INPUT => {:user_id => 123, :uid => "234", :access_token => "gdjjsagjgds..", :first_time => true or false}
+        #OUTPUT => array of messages from Twitter in descending order of creation time
         def pull_data(params)
 
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] entering  #{params.inspect}")
 
-          h = {:word => "stories",:category_id => "stories", :enrich => true,
-                    :source_name => "twitter", :status_at_source => AppConstants.status_public_at_source, :source_uid => "2367263",}
+          data_array = []
 
-          id = 100000
-          time = Time.now 
-          latest_msg_timestamp = params[:latest_msg_timestamp]
+          params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
 
-          if latest_msg_timestamp >= time
-            return []
-          end
+          url=FEED+"&count=#{limit}&user_id=#{params[:uid]}"
 
-          index = 0
-          array = []
+          response = ::EmHttp::Http.request([{:url => url, :params => {}, :method => "get", :handle => 0}])
 
-          DATA_ARRAY.each do |attr|
-            hash = {}
-            hash = hash.merge(h)
-            index = index + 1
-            hash[:source_object_id] = (id + index).to_s
-            hash[:created_at] = time - (index*60)
-            hash[:text] = attr
-            array << hash
-            break if index == 10 # AppConstants.maximum_import_first_time
-          end
-          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] leaving  #{params.inspect}")
-          array
-        rescue => e
-          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] **** RESCUE **** #{e.message} for #{params.inspect}")
+          data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
+
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] Leaving  #{params.inspect}")
+          data_array
+        rescue  => e
+         Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect}")
+         return []
         end
 
+        #     INPUT => {  :user_id => 123,
+        #                 :uid => "234",
+        #                 :latest_msg_timestamp => 1994-11-05T13:15:30Z ( ISO 8601) #its an example it will be utc time,
+        #                 :latest_msg_id => "2342423432"
+        #                 :blob => {} #single twitter data blob,
+        #              }
+        #     OUTPUT => {
+        #                 :post => {
+        #                             :status_at_source => AppConstants.status_private/public,[MANDATORY] [TELLS WHETHER TO STORE DATA FOR THIS MESSAGE OR NOT]
+        #
+        #                             :source_object_id => "2342", [MANDATORY]
+        #
+        #                             :source_name => "twitter", [MANDATORY]
+        #
+        #                             :source_uid => "12123232" #uid of user at twitter   [MANDATORY]
+        #
+        #                             :source_object_type => "post"/"like" AppConstants.source_object_type_post/like
+        #
+        #                             :status => AppConstants.status_public, [MANDATORY]
+        #
+        #                             :enrich => true/False, [MANDATORY]
+        #
+        #                             :word => "stories", [MANDATORY]
+        #
+        #                             :category_id => "stories",  [MANDATORY]
+        #
+        #                             :source_created_at => ,1994-11-05T13:15:30Z, [MANDATORY]
+        #
+        #                             :text => "hello world http://timesofindia.com/123.cms"  [OPTIONAL]
+        #
+        #                             :yaml_text => "text:ljk;sdlsd"  [OPTIONAL]   #retains json format of source blob for easy display like for twitter, g+
+        #                                                                          #for which we are storing data
+        #                                                                          #.. if yaml_text present use replace :text with yaml_text while storing
+        #                                                                          # we are storing yamls to increase re-usability and simplicity in display functions
+        #                                                                          #in client side while doing mash-up with source data ( for example from twitter
+        #                                                                          #and twitter data from ou server )
+        #
+        #
+        #                             :location = { [OPTIONAL]
+        #                                             :lat => 23.345 ,
+        #                                             :long => 46.2334],
+        #                                             :name => "MG Road",
+        #                                             :city => "Bangalore",
+        #                                             :country => "India",
+        #                                             :region => "karnataka",
+        #                                             :source_name => "twitter",
+        #                                             :source_object_id =>"234666"
+        #                                         }
+        #
+        #                             :links => [ [OPTIONAL]
+        #                                         {
+        #                                           :url => "http://timesofindia.com/123.cms",
+        #                                           :description => "Manmohan singh sleeping" [OPTIONAL],
+        #                                           :title => "indian politics"[OPTIONAL],
+        #                                           :mime => AppConstants.mime_remote_link,
+        #                                           :provider => "timesofindia.com",
+        #                                           :url_sha => "sedeidnksdskadnksdkasnk" [SHA KEY NEEDED TO OPTIMIZE CHECK OF URL,
+        #                                           :ignore => true/false [THIS TELLS THAT IGNORE THIS LINK FOR CATEGORIZATION or RESOLUTION]
+        #                                           :image_url => "http://timesofindia.com/123.jpg"
+        #                                           :source_object_id => "12313123" #FOR UPLOADED OBJECTS
+        #                                         }...
+        #                                       ]
+        #
+        #                             :mentions => [
+        #                                            {:source_uid => "232131232", :name => "John Doe}, ..
+        #                                          ]
+        #
+        #                             :tags =>    [
+        #                                            { :name => "pizza}, ..
+        #                                         ]
+        #
+        #                             :source_actions => {
+        #                                                  "likes" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+        #                                                  "comments" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+        #                                                  "shares" => {:count => 20,:meta => {}},
+        #                                                  "retweets" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+        #                                                },
+        #                          }
+        #               }
+        #
+        #                                               OR #FOR OLD POST WITH ACTIONS
+        #               {
+        #                 :invalid_post => {
+        #                                     :source_actions => {
+        #                                                           "likes" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+        #                                                           "comments" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+        #                                                           "shares" => {:count => 20,:meta => {}},
+        #                                                           "retweets" => {:count => 20,:meta => {:friends => [{:name => "alok",:id => "23232313"}...]}},
+        #                                                       },  [MANDATORY]
+        #                                    :source_object_id => "2342", [MANDATORY]
+        #                                  }
+        #             }
+        #                                            OR #META ACTIVITIES => "John likes Mac's post => We are not Processing this
+        #                              {} #blank
         def data_adaptor(params)
-          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] entering  #{params.inspect}")
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] entering ")
+
+          log = params.except(:blob)
+          attr = params[:blob]
+
+          activity = {}
+          data = {}
+
+          if validate_profile_feed_blob(params) == true
+
+            Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] initial dump")
+
+            activity = {
+                         :source_object_id => attr["id_str"],
+                         :source_name => "twitter",
+                         :status => AppConstants.status_public,
+                         :enrich => true,
+                         :source_created_at => attr["created_at"].to_time.utc,
+                         :source_uid => params[:uid],
+                       }
+            attr["retweeted"] == false ? activity[:source_object_type] = AppConstants.source_object_type_tweet : activity[:source_object_type] = AppConstants.source_object_type_retweet
+
+            if !attr["user"].blank? and attr["user"]["protected"] == true
+              activity[:status_at_source] = AppConstants.status_private_at_source
+            else
+              activity[:status_at_source] = AppConstants.status_public_at_source
+            end
+
+            activity[:category_id] = AppConstants.default_category
+            activity[:word] = AppConstants.default_category
+
+            source_actions = get_source_actions(attr)
+            activity[:source_actions] =  source_actions if !source_actions.blank?
+
+            links = get_links(attr)
+            activity[:links] = links  if !links.blank?
+
+            location = get_location(attr)
+            activity[:location] = location  if !location.blank?
+
+            tags = get_tags(attr)
+            activity[:tags] = tags  if !tags.blank?
+
+            mentions = get_mentions(attr)
+            activity[:mentions] = mentions  if !mentions.blank?
+
+            #do this at last as we are trimming the entities hash in blob in links, tags, mentions
+            activity[:text] = attr["text"]
+            activity[:yaml_text] = get_yaml(attr)
+
+            data[:post] = activity
+
+          elsif !attr["user"].blank? and (attr["user"]["id_str"] == params[:uid])
+            actions = get_source_actions(attr)
+
+            data[:invalid_post]= {:source_actions => actions, :source_object_id =>attr["id"]} if !actions.blank?
+
+            Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] Adding Actions => Old Post #{actions} for #{log.inspect}")
+
+          else
+            Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] Empty Data => Not a valid Post for #{log.inspect}")
+          end
+
+          data
+        rescue  => e
+           Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] **** RESCUE **** => #{e.message} for #{attr.inspect}")
+           {}
+        end
+
+
+      private
+        #INPUT => blob hash
+        #OUTPUT => Array of link hash
+        def get_links(blob)
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] Entering")
+          return if blob["entities"].blank?
+
+          links = []
+          if !blob["entities"]["urls"].blank?
+            blob["entities"]["urls"].each do |attr|
+
+              !attr["expanded_url"].blank? ? link =  attr["expanded_url"] : link =  attr["url"]
+              array = ::Api::Helpers::Parser.get_documents({:text => link})
+
+              if  array[0][:url] =~ /twitter.com\/[\w\/]+\/photo\/\w+/
+                array[0][:ignore] = true
+                array[0][:mime] = ::Api::Helpers::Parser.map_type_to_mime("photo") #override mime
+              else
+                array[0][:ignore] = false
+              end
+
+              array[0][:source_object_id] = attr["id_str"]
+
+              #delete the url as we want reduce the size of entity hash..
+              #to store it in yaml text.. we need there is only indices
+              attr.delete("display_url")
+              attr.delete("expanded_url")
+              attr.delete("url")
+
+              links << array[0]
+            end
+          end
+
+          if !blob["entities"]["media"].blank?
+            blob["entities"]["media"].each do |attr|
+              !attr["expanded_url"].blank? ? link =  attr["expanded_url"] : link =  attr["url"]
+              array = ::Api::Helpers::Parser.get_documents({:text => link})
+
+              array[0][:mime] = ::Api::Helpers::Parser.map_type_to_mime(attr["type"]) #override mime
+
+              array[0][:image_width] = attr["sizes"]["small"]["w"] if !attr["sizes"]["small"].blank?
+              array[0][:image_height] = attr["sizes"]["small"]["h"] if !attr["sizes"]["small"].blank?
+
+              array[0][:ignore] = true #ignore categorization of images
+              array[0][:source_object_id] = attr["id_str"]
+
+              #delete the url as we want reduce the size of entity hash..
+              #to store it in yaml text.. we need there is only indices
+              #only leave url as it might need to display image
+              attr.delete("display_url")
+              attr.delete("expanded_url")
+              attr.delete("media_url")
+              attr.delete("media_url_https")
+              attr.delete("sizes")
+              attr.delete("type")
+              attr.delete("id")
+              attr.delete("id_str")
+              links << array[0]
+
+            end
+          end
+
+          if links.blank?
+            blob["entities"].delete("urls")
+            blob["entities"].delete("media")
+          end
+
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] Leaving")
+          links
+        rescue  => e
+          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] **** RESCUE **** => #{e.message} for #{blob.inspect}")
+          []
+        end
+
+
+        #INPUT => blob hash
+        #OUTPUT => Tags hash
+        def get_tags(blob)
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_tags] Entering")
+
+          return if blob["entities"].blank?
+
+          tags = []
+          if !blob["entities"]["hashtags"].blank?
+            blob["entities"]["hashtags"].each do |attr|
+              tags << {:name => attr["text"]}
+
+              #delete entries so that entities hash redusces in size to store in yaml text
+              #only keep indices
+              attr.delete("text")
+            end
+
+          end
+
+          blob["entities"].delete("hashtags") if tags.blank?
+
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_tags] Leaving")
+
+          tags
+        rescue  => e
+          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_tags] **** RESCUE **** => #{e.message} for #{blob.inspect}")
+          []
+        end
+
+
+        #INPUT => blob hash
+        #OUTPUT => Mention hash
+        def get_mentions(blob)
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_mentions] Entering")
+
+          return if blob["entities"].blank?
+
+          mentions = []
+          if !blob["entities"]["user_mentions"].blank?
+            blob["entities"]["user_mentions"].each do |attr|
+              mentions << {:source_uid => attr["id_str"],:name => attr["name"]}
+
+              #delete entries so that entities hash redusces in size to store in yaml text
+              #only keep indices
+              attr.delete("name")
+              attr.delete("screen_name")
+              attr.delete("id")
+              attr.delete("id_str")
+            end
+           end
+
+          blob["entities"].delete("user_mentions") if mentions.blank?
+
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_mentions] Leaving")
+          mentions
+        rescue  => e
+          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_mentions] **** RESCUE **** => #{e.message} for #{blob.inspect}")
+          []
+        end
+
+        #INPUT => blob hash
+        #OUTPUT => Source Action Hash
+        def get_source_actions(blob)
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Entering #{blob.inspect}")
 
           hash = {}
-          links = []
 
-          links = get_documents(params[:blob][:text]) if !params[:blob][:text].blank?
+          if blob["retweeted"] == false and (blob["retweet_count"] > 0 )
+            hash =  {"retweets" => {:count => blob["retweet_count"], :meta => {}} }
+          end
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Leaving")
 
-          hash[:post] = params[:blob]
-          hash[:post][:links] = links if !links.blank?
-
-          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] leaving  #{params.inspect} for #{links}")
           hash
-        rescue => e
-          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [data_adaptor] **** RESCUE **** #{e.message} for #{params.inspect}")
+        rescue  => e
+          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] **** RESCUE **** => #{e.message} for #{blob.inspect}")
           {}
+        end
+
+        #INPUT => blob hash
+        #OUTPUT => Location hash
+        def get_location(blob)
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_location] Entering")
+
+          return if blob["place"].blank?
+
+          index,lat,long= 0,0,0
+          location = {}
+
+          #consider last set of co-ordinates => [..., [ [], [], [], [] ]]
+          if !blob["place"]["bounding_box"].blank?
+            blob["place"]["bounding_box"]["coordinates"].each do |array|
+
+              index,lat,long= 0,0,0
+              array.each do |attr|
+                lat += attr[0]
+                long +=attr[1]
+                index += 1
+              end
+            end
+
+              lat = lat/index
+              long = long/index
+
+              location ={
+                            :lat => lat ,
+                            :long => long,
+                            :name => blob["place"]["full_name"],
+                            :country => blob["place"]["country"],
+                            :source_name => "twitter",
+                            :source_object_id => blob["place"]["id"]
+                          }
+
+            end
+            #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_location] Leaving")
+            location
+          rescue  => e
+            Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_location] **** RESCUE **** => #{e.message} for #{blob.inspect}")
+            {}
+          end
+
+        #INPUT => blob
+        #OUTPUT => {  "retweeted" => true or false #tell whether tweet is retweeted or originated
+        #             "text" => "jdjsaajdhjhd hasdk",
+        #             "entities" => {
+        #                             "urls" => [{"indices" => [23, 22]},...],
+        #                             "user_mentions" =>  [{"indices" => [40, 45]},...],
+        #                             "hashtags => [{"indices" => [90, 97]},...],
+        #                             "media" => [{"indices" => [23, 22], "url" => "http://t.co/sdsasda"},...]
+        #                           }
+        #            "retweeted_status => {  #[OPTIONAL] #only present if its retweeted tweet. contains information of tweet's original user
+        #                                   "id" => 121221, "name" => "Jeff Thomson", "screen_name" => "jeff_thom", "photo_image_url"=> "http://twitter.com/photo/1"
+        #                                 }
+        #           "retweet_count" => 23 #shows actual retweet count => for retweeted tweet, it the count should not belong to user who is retweeting. it belongs to user who originated tweet
+        def get_yaml(blob)
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_yaml] Entering")
+          h = {}
+
+          h["retweeted"] = blob["retweeted"]
+          h["text"] = blob["text"]
+          h["entities"] = blob["entities"]
+
+          attr = blob["user"]
+
+          if !blob["retweeted_status"].blank?
+            attr = blob["retweeted_status"]["user"]
+            h["retweeted_status"] = {}
+            h["retweeted_status"]["user"] =  {"id_str" => attr["id_str"], "name" =>  attr["name"],
+                         "screen_name" => attr["screen_name"], "profile_image_url" => attr["profile_image_url"],
+                         "protected" =>  attr["protected"]}
+
+          end
+
+          h["retweet_count"] = blob["retweet_count"]
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_yaml] Leaving")
+
+          h.to_yaml
+        rescue  => e
+          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_yaml] **** RESCUE **** => #{e.message} for #{blob.inspect}")
+          blob["text"]
+        end
+
+        def validate_profile_feed_blob(params)
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [validate_profile_feed_blob] Entering")
+
+          #if updated before  the "last_updated_at" then dont accept
+          return false if params[:latest_msg_timestamp] >= params[:blob]["created_at"].to_time.utc
+
+          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [validate_profile_feed_blob] Leaving")
+          true
+        rescue  => e
+          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [validate_profile_feed_blob] **** RESCUE **** => #{e.message} for #{params.inspect}")
+          false
         end
       end
     end

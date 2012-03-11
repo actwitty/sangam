@@ -12,7 +12,7 @@ class Document < ActiveRecord::Base
 
    belongs_to     :summary
 
-   belongs_to     :activity, :counter_cache => true
+   belongs_to     :activity
 
    validates_existence_of :owner_id
    validates_existence_of :activity_id , :allow_nil => true
@@ -25,11 +25,6 @@ class Document < ActiveRecord::Base
    public
 
      class << self
-       include TextFormatter
-       include QueryPlanner
-
-
-
        #for normal uploads only document name and URLS will come.
        def create_document(params)
 
@@ -45,23 +40,31 @@ class Document < ActiveRecord::Base
          params[:category] = "document" if params[:category] == "application"
 
          #set mandatory parameters if missing
-         params[:status] = AppConstants.status_public if params[:status].nil?
-         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+         params[:status] = AppConstants.status_public if params[:status].blank?
+         params[:source_name] =  AppConstants.source_actwitty if params[:source_name].blank?
+
+         params[:status_at_source] = AppConstants.status_public_at_source if params[:status_at_source].blank?  #by default we assume user has set it public
+         params[:source_created_at] = Time.now.utc if params[:source_created_at].blank?
 
          #web_link_id will come if link is coming from pulled data from Facebook, Twitter etc
-         if params[:uploaded] == false
+         if (params[:uploaded] == false) and (params[:ignore] == false)
+
            Rails.logger.info("[MODEL] [Document] [create_document] creating WEB LINK for #{params[:url]} ")
+
            link = WebLink.create_web_link({:url => params[:url], :mime => params[:mime],
                                               :title => params[:title], :description => params[:description],
                                               :image_url => params[:image_url], :image_width => params[:image_width],
                                               :image_height => params[:image_height], :category_id => params[:category_id],
                                               :canonical_url => params[:canonical_url], :provider => params[:provider],
-                                              :cache_age => params[:cache_age]} )
+                                              :cache_age => params[:cache_age], :element => params[:element]} )
+
            if link.blank?
               Rails.logger.info("[MODEL] [Document] [create_document] create WEB LINK  FAILED for #{params[:url]} ")
               return nil
            end
            web_link_id = link.id
+
+           params[:url] = nil #now no need to store url for remote docs in Document row
          end
 
          #created_at and updated_at will take input value only when ActiveRecord::Base.record_timestamps is false
@@ -74,10 +77,9 @@ class Document < ActiveRecord::Base
                               :source_name => params[:source_name], :source_object_id => params[:source_object_id],
                               :source_msg_id => params[:source_msg_id], :status_at_source => params[:status_at_source],
                               :uploaded => params[:uploaded],
-                              :category => params[:category],
+                              :category => params[:category], :category_id => params[:category_id],
                               :status => params[:status],  :web_link_id => web_link_id,
-                              :created_at => params[:created_at], :updated_at => params[:updated_at]
-                            )
+                              :source_created_at => params[:source_created_at])
 
          Rails.logger.info("[MODEL] [Document] [create_document] leaving  for #{params[:url]} ")
          return d
@@ -131,6 +133,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -149,8 +155,9 @@ end
 #  uploaded                 :boolean         not null
 #  category                 :text            not null
 #  web_link_id              :integer
-#  backup_created_timestamp :datetime        default(2012-02-09 11:32:01 UTC)
-#  created_at               :datetime
-#  updated_at               :datetime
+#  backup_created_timestamp :datetime        default(2012-03-06 07:49:51 UTC)
+#  category_id              :text
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

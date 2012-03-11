@@ -19,9 +19,10 @@
                                       };
   var aw_js_global_visited_user_foreign_ids = #{@service_uids.to_json};
 
+
   var aw_js_global_services_enabled = #{YAML.load_file("#{Rails.root}/#{AppConstants.services_enabled}").to_json};
   var aw_js_categories_json = #{SUMMARY_CATEGORIES.to_json};
-  var aw_js_global_services_user_enabled = #{@user.profile.to_json};
+  var aw_js_global_rails_user_services_enabled = #{@services_enabled.to_json};
 
   var aw_js_global_fb_access = #{@fb_access.to_json};
   var aw_js_global_tw_access = #{@tw_access.to_json};

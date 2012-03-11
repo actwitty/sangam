@@ -26,11 +26,12 @@ class CreateHubs < ActiveRecord::Migration
                                             # 3 => shared to group of people or group.When this value is 3,
                                             # we need to see access_visibility table to see the access
       t.text    :source_msg_id
+
       t.integer :status_at_source
 
       t.text    :category_type
 
-      t.datetime :backup_created_timestamp, :default => Time.now.utc
+      t.datetime :source_created_at, :default => Time.now.utc
 
       t.timestamps
     end
@@ -54,7 +55,7 @@ class CreateHubs < ActiveRecord::Migration
 
     add_index :hubs, :status_at_source
 
-    add_index :hubs, :backup_created_timestamp
+    add_index :hubs, :source_created_at
   end
 
   def self.down

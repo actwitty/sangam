@@ -9,10 +9,6 @@ class CreateTags < ActiveRecord::Migration
       t.integer  :activity_id, :null => false
       t.text     :name, :null => false
 
-      t.integer  :tag_type, :null => false   # 1= > mentioned tags like hash tags,
-                                             #2 => added tags like added in blogs by user explicitly
-                                             #3 => added by semantic sources like zemanta
-
 
       t.text     :source_name, :null => false    # "actwitty", "facebook", # "twitter",
                                                  # "G+", "DropBox", "Mobile +919980906102","a@b.com
@@ -25,7 +21,7 @@ class CreateTags < ActiveRecord::Migration
                                             # we need to see access_visibility table to see the access
 
 
-      t.datetime :backup_created_timestamp, :default => Time.now.utc
+      t.datetime :source_created_at, :default => Time.now.utc
 
       t.timestamps
     end
@@ -40,7 +36,7 @@ class CreateTags < ActiveRecord::Migration
 
     add_index :tags, :updated_at
 
-    add_index :tags, :backup_created_timestamp
+    add_index :tags, :source_created_at
   end
 
   def self.down

@@ -21,7 +21,8 @@ class HomeController < ApplicationController
                         :get_entities,
                         :get_entities_verified,
                         :get_summary,
-                        :get_streams, 
+                        :get_streams,
+                        :get_services_enabled,
                         :thanks,
                         :search_any]
 
@@ -144,6 +145,9 @@ class HomeController < ApplicationController
     end
    @fb_access = {}
    @tw_access = {}
+
+   @services_enabled = current_user.get_services( { :user_id => @user.id } )
+
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
       authentications = Authentication.find_all_by_user_id(current_user.id)

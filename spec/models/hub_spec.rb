@@ -15,6 +15,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: hubs
@@ -31,8 +35,8 @@ end
 #  source_msg_id            :text
 #  status_at_source         :integer
 #  category_type            :text
-#  backup_created_timestamp :datetime        default(2012-02-09 11:31:59 UTC)
-#  created_at               :datetime
-#  updated_at               :datetime
+#  backup_created_timestamp :datetime        default(2012-03-06 07:49:50 UTC)
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

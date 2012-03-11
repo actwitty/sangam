@@ -12,6 +12,9 @@ class CreateSummaries < ActiveRecord::Migration
       t.text :category_type
 
       t.text   :analytics_snapshot
+      t.text   :enabled_services
+
+      t.datetime :source_created_at, :default => Time.now.utc
 
       t.timestamps
 
@@ -24,6 +27,8 @@ class CreateSummaries < ActiveRecord::Migration
 
     add_index :summaries, :category_id
     add_index :summaries, :category_type
+
+    add_index :summaries, :source_created_at
   end
 
   def self.down

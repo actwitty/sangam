@@ -133,11 +133,23 @@ class AuthenticationsController < ApplicationController
             #redirect back to where you came from
             #
             
-            current_user.enable_service_for_data_gathering(provider)
+
+           
+            enable_hash = {
+                            :user_id => current_user.id,
+                            :provider => provider,
+                            :uid => uid
+                          }
+            current_user.enable_service(enable_hash)
             redirect_to session[:return_to] || '/'
           else
             Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")
-            current_user.enable_service_for_data_gathering(provider)
+            enable_hash = {
+                            :user_id => current_user.id,
+                            :provider => provider,
+                            :uid => uid
+                          }
+            current_user.enable_service(enable_hash)
             redirect_to session[:return_to] || '/'
           end
         else
@@ -186,7 +198,12 @@ class AuthenticationsController < ApplicationController
           already_existing_auth.user_id =  current_user.id
           already_existing_auth.save!
 
-          current_user.enable_service_for_data_gathering(provider)
+          enable_hash = {
+                            :user_id => current_user.id,
+                            :provider => provider,
+                            :uid => uid
+                          }
+          current_user.enable_service(enable_hash)          
           redirect_to session[:return_to] || '/'
         else
 
@@ -195,7 +212,12 @@ class AuthenticationsController < ApplicationController
             already_existing_auth.save!
           end
           Rails.logger.info("[CNTRL][Authentications] Going back to where we came from")
-          current_user.enable_service_for_data_gathering(provider)
+          enable_hash = {
+                            :user_id => current_user.id,
+                            :provider => provider,
+                            :uid => uid
+                          }
+          current_user.enable_service(enable_hash)          
           redirect_to session[:return_to] || '/'
         end
       else
@@ -224,7 +246,12 @@ class AuthenticationsController < ApplicationController
         
           invite_status = already_existing_auth.user.get_invited_status 
           if invite_status 
-           already_existing_auth.user.enable_service_for_data_gathering(provider)
+           enable_hash = {
+                            :user_id => already_existing_auth.id,
+                            :provider => provider,
+                            :uid => uid
+                          }
+            already_existing_auth.user.enable_service(enable_hash) 
           end
           sign_in_and_redirect(:user, already_existing_auth.user)
         end

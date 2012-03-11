@@ -1,4 +1,3 @@
-/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
 #aw_profile_footer_box {
   height: 40px;
   border: 1px solid #dddddd;
@@ -12,38 +11,25 @@
   background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
   background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
   background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
-}
-/* line 18, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
-#aw_profile_footer_box ul {
-  list-style-type: none;
-  margin-top: 10px;
-}
-/* line 21, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
-#aw_profile_footer_box li {
-  display: inline;
-  margin-right: 50px;
-  margin-left: 10px;
-}
-/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
-#aw_profile_footer_box input {
-  float: right;
-  margin-top: 0px;
-}
-/* line 29, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
-#aw_profile_footer_box li a {
-  text-decoration: none;
-  color: #333333;
-  font-size: 13px;
-}
-/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
-#aw_profile_footer_box li a:hover {
-  font-color: black;
-}
-/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.sass */
-#aw_profile_footer_box .aw_copyright {
-  float: right;
-  font-weight: bold;
-  margin-right: 10px;
-  color: #333333;
-}
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); }
+  #aw_profile_footer_box ul {
+    list-style-type: none;
+    margin-top: 10px; }
+  #aw_profile_footer_box li {
+    display: inline;
+    margin-right: 50px;
+    margin-left: 10px; }
+  #aw_profile_footer_box input {
+    float: right;
+    margin-top: 0px; }
+  #aw_profile_footer_box li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 13px; }
+    #aw_profile_footer_box li a:hover {
+      font-color: black; }
+  #aw_profile_footer_box .aw_copyright {
+    float: right;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333333; }

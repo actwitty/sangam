@@ -618,7 +618,7 @@ label {
   color: #404040;
 }
 form .input {
-  margin-left: 150px;
+  /* margin-left: 150px; */
 }
 input[type=checkbox], input[type=radio] {
   cursor: pointer;

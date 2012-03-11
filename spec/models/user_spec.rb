@@ -178,6 +178,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: users
@@ -201,14 +203,15 @@ end
 #  disable_email        :boolean
 #  full_name            :string(255)
 #  photo_small_url      :string(255)
+#  country_code         :string(255)
 #  dob                  :date
 #  gender               :string(255)
 #  current_location     :string(255)
 #  current_geo_lat      :decimal(, )
 #  current_geo_long     :decimal(, )
 #  user_type            :integer         default(0)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
 #  invitation_token     :string(60)
 #  invitation_sent_at   :datetime
 #  invitation_limit     :integer
