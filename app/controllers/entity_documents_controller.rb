@@ -1,2 +1,0 @@
-class EntityDocumentsController < ApplicationController
-end

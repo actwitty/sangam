@@ -233,6 +233,7 @@ describe Contact do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: contacts
@@ -244,7 +245,7 @@ end
 #  loop_id    :integer
 #  strength   :decimal(5, 2)   default(100.0)
 #  relation   :string(255)     default("Friend")
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 

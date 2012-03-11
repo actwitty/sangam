@@ -11,6 +11,21 @@ describe Activity do
                 @u = Factory(:user)
                 ::Test.test_create_data(@u)
                 ::Test.test_get_stream(@u)
+
+                a = @u.get_summary(:user_id => @u.id)
+                puts a
+
+                a = @u.up_vote_summary(:user_id => @u.id,:summary_id => a[0][:id])
+                puts a
+
+                a = @u.get_summary(:user_id => @u.id, :enabled_services => ["facebook"] )
+                puts a
+
+                a = @u.down_vote_summary(:user_id => @u.id,:summary_id =>  a[0][:id])
+                puts a
+
+                a = @u.get_summary(:user_id => @u.id, :enabled_services => ["facebook"] )
+                puts a
       }.resume
     end
   end
@@ -20,14 +35,28 @@ describe Activity do
     EM.run do
       Fiber.new{
                 @u = Factory(:user)
-                ::Test.test_create_data(@u)
+                #::Test.test_create_data(@u)
+
+
+                Authentication.create!({:user_id => @u.id, :provider => "twitter", :uid => "43857071"})
+
+                @u.mock_enable_service({:user_id => @u.id})
                 ::Test.test_get_summary(@u)
-                puts "hello"
-                a = @u.get_summary({:user_id => @u.id})
+                work_off
+                sleep(10)
+                puts "dfsfdfdsf"
+                work_off
+
+                a = @u.get_entities(:user_id => @u.id, :enabled_services => ["twitter"])
                 puts a
+
+                a = @u.get_entities_verified(:user_id => @u.id, :enabled_services => ["twitter"] )
+                puts a
+
       }.resume
     end
   end
+
 
   it "get service properly" do
     #SocialAggregator.start_reactor
@@ -68,6 +97,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: activities
@@ -78,9 +111,6 @@ end
 #  activity_name            :text            not null
 #  author_id                :integer         not null
 #  base_location_id         :integer
-#  documents_count          :integer         default(0)
-#  tags_count               :integer         default(0)
-#  hubs_count               :integer         default(0)
 #  status                   :integer         not null
 #  summary_id               :integer
 #  source_object_id         :text
@@ -90,9 +120,9 @@ end
 #  source_object_type       :text            default("post")
 #  category_type            :text
 #  category_id              :text
-#  actions                  :text
-#  backup_created_timestamp :datetime        default(2012-02-09 11:31:58 UTC)
-#  created_at               :datetime
-#  updated_at               :datetime
+#  backup_created_timestamp :datetime        default(2012-03-06 07:49:49 UTC)
+#  if_yaml                  :boolean         default(FALSE)
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

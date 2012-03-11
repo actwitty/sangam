@@ -8,13 +8,17 @@ module Categorization
 
       CALAIS_URL = "http://api.opencalais.com/enlighten/rest/"
 
-      CALAIS_LICENSE_KEY = 'beuhp9a7nay6nxdku7j7zcxy'
+      CALAIS_LICENSE_KEY = ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt',
+                            'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
+                            'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7']
       #CALAIS_LICENSE_KEY = 'swcm89qzyvuttcv6jeskv85q'  #cloud@actwitty.com
       #CALAIS_LICENSE_KEY = 'vqda4dmky3mnt3ygjjqdbxpt'  #alok@actwitty.com
       #CALAIS_LICENSE_KEY = 'hfe94r47kpqr69enmvbs8sb6'  #aloksrivastava78@gmail.com
       #CALAIS_LICENSE_KEY  = '86v297e5xnqp5qw4bcc782n2' #administrator@actwitty.com
       #CALAIS_LICENSE_KEY = 'txv9e7gdvwwjctg6pwqpm3a3' #priyanjali.rai@gmail.com
       #CALAIS_LICENSE_KEY = 'rkwtrhpb7dxv9bvypmwz8yvj'  #no-reply@actwitty.com
+      #CALAIS_LICENSE_KEY = 'ayeayfcmcczp6sys6xfhh776'  #sudhanshu@actwitty.com
+      #CALAIS_LICENSE_KEY = 'yzkdtbtnrvspywz4nehdyhg7'  #sudhanshu.saxena@gmail.com
 
       CALAIS_RATE_LIMIT = 1 #QPS
 
@@ -22,39 +26,15 @@ module Categorization
 
       class OpenCalais
 
+        def self.get_key
+          size = CALAIS_LICENSE_KEY.size
+          CALAIS_LICENSE_KEY[Random.rand(size)]
+        end
         def self.make_request(content, index)
           xml = params_xml
-          {:method => "post", :params => {"content" => content,"licenseID" => CALAIS_LICENSE_KEY ,"paramsXML" => xml },
+          {:method => "post", :params => {"content" => content,"licenseID" => get_key ,"paramsXML" => xml },
                    :handle => index, :url => CALAIS_URL}
         end
-
-        #[]
-        def self.categorize(requests)
-
-          Rails.logger.info("[MODULE] [CATEGORIZATION] [CATEGORIZER] [OpenCalais] [categorize] entering")
-          hash = {}
-          response = []
-
-          #rate limit adjustment
-          request_array = requests.enum_for(:each_slice,  CALAIS_RATE_LIMIT).to_a
-          request_array.each do |array|
-            resp = ::EmHttp::Http.request(array)
-            response.concat(resp)
-          end
-
-          response.each do |attr|
-            resp = process_response(attr[:response])
-            hash[attr[:handle]]= resp if !resp.blank?
-          end
-
-          Rails.logger.info("[MODULE] [CATEGORIZATION] [CATEGORIZER] [OpenCalais] [categorize] => Size => #{hash.size}")
-          hash
-
-        rescue => e
-          Rails.logger.error("[MODULE] [CATEGORIZATION] [CATEGORIZER] [OpenCalais] [categorize] **** RESCUE ****=> #{e.message}")
-          return nil
-        end
-
 
         def self.process_response(response)
 

@@ -5,6 +5,7 @@ describe ForeignProfile do
 end
 
 
+
 # == Schema Information
 #
 # Table name: foreign_profiles
@@ -25,7 +26,7 @@ end
 #  foreign_updated_time :string(255)
 #  authentication_id    :integer
 #  dob                  :string(255)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
 #
 

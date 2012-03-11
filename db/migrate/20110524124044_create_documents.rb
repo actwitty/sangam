@@ -1,34 +1,38 @@
 class CreateDocuments < ActiveRecord::Migration
   def self.up
     create_table :documents do |t|
-      t.integer :owner_id , :null => false
+      t.integer  :owner_id , :null => false
 
-      t.integer :activity_id
+      t.integer  :activity_id
 
-      t.integer :activity_word_id
+      t.integer  :activity_word_id
 
-      t.integer :summary_id
+      t.integer  :summary_id
 
-      t.text    :url
+      t.text     :url
 
 
-      t.integer :status, :null => false     # 0 => saved, 1 => public share, 2 => private
-                                            # 3 => shared to group of people or group.When this value is 3,
-                                            # we need to see access_visibility table to see the access
+      t.integer  :status, :null => false     # 0 => saved, 1 => public share, 2 => private
+                                             # 3 => shared to group of people or group.When this value is 3,
+                                             # we need to see access_visibility table to see the access
 
-      t.text    :source_name, :null => false    #"actwitty", "facebook", # "twitter",
+      t.text     :source_name, :null => false    #"actwitty", "facebook", # "twitter",
                                                 # "G+", "DropBox", "Mobile +919980906102","a@b.com
-      t.text    :source_object_id           #object id of document at source
-      t.text    :source_msg_id              #id of message to which this document belongs .. at source like fb, t, g+ etc
-      t.integer :status_at_source           #same as msg's status at sources
+      t.text     :source_object_id           #object id of document at source
 
-      t.boolean :uploaded, :null => false       #checks if uploaded document or mentioned document
+      t.text     :source_msg_id              #id of message to which this document belongs .. at source like fb, t, g+ etc
 
-      t.text    :category, :null => false    #image, video, audio, document check constant.yml
+      t.integer  :status_at_source           #same as msg's status at sources
 
-      t.integer :web_link_id
+      t.boolean  :uploaded, :null => false       #checks if uploaded document or mentioned document
 
-      t.datetime :backup_created_timestamp, :default => Time.now.utc
+      t.text     :category, :null => false    #image, video, audio, document check constant.yml
+
+      t.integer  :web_link_id
+
+      t.datetime :source_created_at, :default => Time.now.utc
+
+      t.text     :category_id       #sports, entertainment etc
 
       t.timestamps
     end
@@ -48,7 +52,9 @@ class CreateDocuments < ActiveRecord::Migration
 
     add_index :documents, :web_link_id
 
-    add_index :documents, :backup_created_timestamp
+    add_index :documents, :source_created_at
+
+    add_index :documents, :category_id
 
   end
 

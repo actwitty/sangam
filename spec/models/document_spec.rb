@@ -66,6 +66,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -84,8 +88,9 @@ end
 #  uploaded                 :boolean         not null
 #  category                 :text            not null
 #  web_link_id              :integer
-#  backup_created_timestamp :datetime        default(2012-02-09 11:32:01 UTC)
-#  created_at               :datetime
-#  updated_at               :datetime
+#  backup_created_timestamp :datetime        default(2012-03-06 07:49:51 UTC)
+#  category_id              :text
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

@@ -4,6 +4,7 @@ describe Invite do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 
+
 # == Schema Information
 #
 # Table name: invites
@@ -13,7 +14,7 @@ end
 #  service    :string(255)
 #  accepted   :boolean
 #  registered :boolean
-#  created_at :datetime
-#  updated_at :datetime
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
 #
 

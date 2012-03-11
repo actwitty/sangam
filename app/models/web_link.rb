@@ -4,7 +4,6 @@ class WebLink < ActiveRecord::Base
 
   validates_presence_of :url, :url_sha1, :provider, :mime
   validates_uniqueness_of :url_sha1
-  #validates_format_of     :url, :with =>  eval(AppConstants.url_validator)
 
   has_many :documents
 
@@ -33,13 +32,14 @@ class WebLink < ActiveRecord::Base
     #          :title => "good search engine", :description => "nice place to search information"
     #          ,:mime => AppConstants.mime_remote_image|video|link|music,  :image_width => params[:image_width],
     #           :image_height => params[:image_height], :canonical_url => params[:canonical_url], :category_id => params[:category_id,
-    #           :cache_age => 86400  }
+    #           :cache_age => 86400, :element => "p" or "idiv" [divs without nesting] or "li"  or "td" or "tr" }
 
     #OUTPUT => {:url => "http://google.com/123", :category => "sports" [names as in categories.yml],
     #          :title => "good search engine", :description => "nice place to search information"
     #          ,:image_url => "http://google.com/images/googlelogo.jpg", :url_sha1 => "hjjscjcbjcjscbjdbc..",
     #          ,:mime => AppConstants.mime_remote_link, :provider => "google.com", :image_width => 220,
-    #           :image_height => 320, :category_id => "sports", :category_type => "/sports" }
+    #           :image_height => 320, :category_id => "sports", :category_type => "/sports",
+    #          :element =>nil or "p" or "idiv" [divs without nesting] or "li"  or "td" or "tr" }
 
     def create_web_link(params)
        Rails.logger.info("[MODEL] [WEB_LINKS] [create_web_link] entering #{params.inspect}")
@@ -130,6 +130,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: web_links
@@ -148,7 +149,7 @@ end
 #  category_id     :text
 #  category_type   :text
 #  cache_age       :integer
-#  created_at      :datetime
-#  updated_at      :datetime
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
 #
 

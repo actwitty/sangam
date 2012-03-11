@@ -41,21 +41,25 @@ require 'doc_categorizers/doc_categorizers'
             #link[:url] = remove_parameters_from_query(link[:url])
             if (link[:ignore].blank?) or (link[:ignore] == false)
 
-              cl = complete_link_info_present(link)
+              #cl = complete_link_info_present(link)
 
-              if cl == true
-                #this will save us from link resolution
-                #but still this incoming link does not have category
-                complete_links[link[:url]] = [] if complete_links[link[:url]].blank?
-                complete_links[link[:url]] << {:position => pos, :index => idx}
-              else
+              #if cl == true
+#                #this will save us from link resolution
+#                #but still this incoming link does not have category
+#                complete_links[link[:url]] = [] if complete_links[link[:url]].blank?
+#                complete_links[link[:url]] << {:position => pos, :index => idx}
+#              else
 
-                links_to_resolve[link[:url]] = [] if links_to_resolve[link[:url]].blank?
-                links_to_resolve[link[:url]] << {:position => pos, :index => idx}
-              end
+              links_to_resolve[link[:url]] = [] if links_to_resolve[link[:url]].blank?
+              links_to_resolve[link[:url]] << {:position => pos, :index => idx}
+#              end
               sha_hash[link[:url_sha1]] =  link[:url]
             end
           end
+        end
+
+        if (!attr[:text].blank? and (attr[:enrich] == true))
+          params[:term_extract][idx] = attr[:text]
         end
       end
 
@@ -68,14 +72,17 @@ require 'doc_categorizers/doc_categorizers'
       puts "=============================================================\n\n"
 
       ##################### Resolve Links [FIBER STALL] [N/20 multi call embedly batch limit]#########################
-#      data = {}
-#      data = ::LinkResolution.resolve_links(params)
-#
-#      data.each do |k,v|
-#        update_link_information(params, v)
-#      end
-#
-#      Rails.logger.info("[LIB] [CATEGORIZATION] [CATEGORIZATION_PIPELINE] =========AFTER LINK RESOLVE===========\n\n" )
+      data = {}
+      data = ::LinkResolution.resolve_links(params)
+
+      data.each do |k,v|
+        update_link_information(params, v)
+      end
+
+      Rails.logger.info("[LIB] [CATEGORIZATION] [CATEGORIZATION_PIPELINE] =========AFTER LINK RESOLVE===========\n\n" )
+
+      ############## Term Extraction - From Zemanta and Freebase ######################
+      ::TermExtraction.get_terms(params)
 
       ################################## Distribute Links across categorization types ##################################
 
@@ -86,9 +93,6 @@ require 'doc_categorizers/doc_categorizers'
 #
 #      Rails.logger.info("[LIB] [CATEGORIZATION] [CATEGORIZATION_PIPELINE] ==========AFTER TEXT EXTRACTION=======\n\n" )
       ################################################################################################################
-
-      ############## Term Extraction - From Zemanta and Freebase ######################
-      ::TermExtraction.get_terms(params)
 
       Rails.logger.info("[LIB] [CATEGORIZATION] [CATEGORIZATION_PIPELINE] ==========AFTER TERM EXTRACTION=======\n\n" )
       ################################################################################################################
@@ -116,7 +120,7 @@ require 'doc_categorizers/doc_categorizers'
 
        attr = activity[:post]
 
-       if !attr[:links].blank?
+       if !attr[:links].blank? and attr[:links][0][:ignore].blank?
          link = attr[:links][0]
          next if !link[:category_id].blank?
 
@@ -127,8 +131,8 @@ require 'doc_categorizers/doc_categorizers'
          end
          #url = remove_parameters_from_query(url)          #no need to consider
 
-           #consider only first link for categorization
-           #if link is there but its dumb link like facebook internal PHP links then directly use message text
+         #consider only first link for categorization
+         #if link is there but its dumb link like facebook internal PHP links then directly use message text
          if link[:ignore] == true
            i =0
          #need to categorize the video using specific video service as they give precise category
@@ -153,14 +157,12 @@ require 'doc_categorizers/doc_categorizers'
          end
 
        else
-          #lets block any normal text classification .. as of now only links and video
-          if (!attr[:text].blank? and (attr[:enrich] == true))
-            params[:text_cat][idx] = {:text => attr[:text]} if attr[:text].length >= AppConstants.min_text_length_for_text_categorization
-          end
-       end
-       #lets block any normal text classification .. as of now only links and video
-       if (!attr[:text].blank? and (attr[:enrich] == true))
-         params[:term_extract][idx] = attr[:text]
+         #lets block any normal text classification .. as of now only links and video
+         if (!attr[:text].blank? and (attr[:enrich] == true))
+           if !attr[:entities].blank?
+             params[:text_cat][idx] = {:text => attr[:text]} #if attr[:text].length >= AppConstants.min_text_length_for_text_categorization
+           end
+         end
        end
      end
      Rails.logger.info("[LIB] [CATEGORIZATION]  [distribute_links] leaving")
@@ -209,7 +211,8 @@ require 'doc_categorizers/doc_categorizers'
 
               #move link to different categorization service
               if !elem[:canonical_url].blank? and (elem[:url] != elem[:canonical_url])
-                mime = map_sources_to_mime(elem[:canonical_url])
+                mime = ::Api::Helpers::Parser.map_sources_to_mime({:source => elem[:canonical_url]})
+
                 Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] updating mime
                         from #{elem[:mime]} to #{mime} for #{elem[:canonical_url]} ")
                 elem[:mime] =  mime
@@ -265,14 +268,6 @@ require 'doc_categorizers/doc_categorizers'
      array
    rescue => e
      Rails.logger.error("[LIB] [CATEGORIZATION] [CHECK_LINKS_IN_DB] ERROR => **** RESCUE **** => #{e.message}")
-   end
-   #this only brings one function from module
-   def map_sources_to_mime(s)
-     ::TextFormatter.module_eval do
-        module_function(:map_sources_to_mime)
-        public :map_sources_to_mime
-     end
-     TextFormatter.map_sources_to_mime(s)
    end
 
    def remove_parameters_from_query(url)

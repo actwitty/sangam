@@ -24,9 +24,20 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: profiles
 #
+#  id                        :integer         not null, primary key
+#  facebook_service_enabled  :boolean
+#  twitter_service_enabled   :boolean
+#  linked_in_service_enabled :boolean
+#  facebook_update_share     :boolean
+#  twitter_update_share      :boolean
+#  user_id                   :integer
+#  created_at                :datetime        not null
+#  updated_at                :datetime        not null
 #
 

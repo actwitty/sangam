@@ -5,60 +5,80 @@ module Categorization
   module TextCategorizers
     class << self
       SERVICES_MODULE = ::Categorization::TextCategorizers::Services
+
       def categorize(params)
+        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] => Entering => number of Text => #{params[:text_cat].keys.size}")
 
-         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] => Entering => number of Text => #{params[:text_cat].keys.size}")
+        index = 0
+        req = []
+        hash = {}
 
-         index = 0
+        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] #{params[:text_cat].inspect}")
 
-         #move text which has entities for text categorization
-         params[:activities].each do |attr|
-             if !attr[:post][:entities].blank?
-             params[:text_cat][index] = {:text => attr[:post][:text]}
-           end
-           index += 1
-         end
+        params[:text_cat].each do |k,v|
+          if !v[:text].blank?
 
-         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] #{params[:text_cat].inspect}")
-         params[:text_cat].each do |k,v|
+            req << SERVICES_MODULE::OpenCalais.make_request(v[:text], "opencalais:#{k}") #service:idx creates uniq handle on service + index
+            req << SERVICES_MODULE::AlchemyApi.make_request(v[:text], "alchemyapi:#{k}") #service:idx creates uniq handle on service + index
+            index += 1
 
-            if !v[:text].blank?
-
-              activity = params[:activities][k][:post]
-
-              categories = {}
-
-              resp = vote(v[:text])
-              categories = resp if !resp.blank?
-
-              if !categories.blank?
-                activity[:word] =  categories[:name]
-                activity[:category_id] =  categories[:name]
-              end
+            if index == AppConstants.categorization_concurrency_limit
+              process_request(params,req)
+              req, index = [],0
             end
-         end
-         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] => Leaving")
+          end
+        end
+
+        if !req.blank?
+          process_request(params,req)
+        end
+
+        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] => Leaving")
+
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] **** RESCUE **** => #{e.message}")
       end
 
-      def vote(text)
-         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] entering")
-         req = []
+      def process_request(params,requests)
+
+        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] entering")
+        index,hash = 0, {}
+
+        response = ::EmHttp::Http.request(requests)
+
+        response.each do |resp|
+
+          arr = resp[:handle].split(":",2)     #spilt into service and idx in params
+          index = Integer(arr[1])
+          hash[index] = [] if hash[index].blank?
+
+          if arr[0] == "alchemyapi"
+            cat = SERVICES_MODULE::AlchemyApi.process_response(resp[:response])
+          else
+            cat = SERVICES_MODULE::OpenCalais.process_response(resp[:response])
+          end
+          hash[index].concat(cat)
+
+        end
+
+        hash.each do |idx, categories|
+
+          category = vote(categories)
+          if !category.blank?
+            activity = params[:activities][idx][:post]
+            activity[:word] =  category[:name]
+            activity[:category_id] =  category[:name]
+          end
+        end
+        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] **** RESCUE **** => #{e.message}")
+      end
+
+      def vote(categories)
+         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] entering #{categories.inspect}")
+
          score = 0
-         req << SERVICES_MODULE::OpenCalais.make_request(text, "opencalais")
-         req << SERVICES_MODULE::AlchemyApi.make_request(text, "alchemyapi")
-
-         response = ::EmHttp::Http.request(req)
-
-         categories = []
-         response.each do |resp|
-           if resp[:handle] == "alchemyapi"
-             cat = SERVICES_MODULE::AlchemyApi.process_response(resp[:response])
-           else
-             cat = SERVICES_MODULE::OpenCalais.process_response(resp[:response])
-           end
-           categories.concat(cat)
-         end
-
          if !categories.blank?
            index = 0
            categories.each_with_index do|attr, idx|
@@ -70,10 +90,10 @@ module Categorization
            return categories[index]
          end
          Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] leaving")
-         return []
+         return {}
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] **** RESCUE **** => #{e.message}")
-        return []
+        return {}
       end
     end
   end

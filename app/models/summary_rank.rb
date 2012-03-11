@@ -13,7 +13,7 @@ class SummaryRank < ActiveRecord::Base
   after_save  :update_analytics_in_models
 
   USER_ANALYTICS = ["weeks"]
-  SUMMARY_ANALYTICS = ["posts","documents", "entities", "locations"]
+  SUMMARY_ANALYTICS = ["posts","documents", "entities", "locations", "source_actions", "local_actions"]
 
   def  update_analytics_in_models
     Rails.logger.info("[MODEL] [SUMMARY_RANK] [update_analytics_in_models] entering ")
@@ -46,8 +46,8 @@ class SummaryRank < ActiveRecord::Base
     #INPUT => {
     #           :user_id => 123 [MANDATORY],
     #           :action => AppConstants.analytics_update_summaries or user [MANDATORY]
-    #           :summary_id => 1234 or ARRAY [OPTIONAL][FOR POSTS, DOCUMENTS, LOCATION, ENTITIES]
-    #           :num_of_week => 5 [OPTIONAL] .. If not present only current week is done
+    #           :summary_id => 1234 or ARRAY [OPTIONAL][NEEDED FOR POSTS, DOCUMENTS, LOCATION, ENTITIES]
+    #           :num_of_week => 5 [OPTIONAL] .. If not present only current week is taken n consideration
     #         }
     def build_analytics(params)
 
@@ -121,6 +121,7 @@ class SummaryRank < ActiveRecord::Base
           week = week -1
         end
       end
+
       Rails.logger.info("[MODEL] [SUMMARY_RANK] [BUILD_ANALYTICS] leaving #{params.inspect}")
     rescue => e
       Rails.logger.error("[MODEL] [SUMMARY_RANK] [BUILD_ANALYTICS] **** RESCUE **** #{e.message} For #{params.inspect}")
@@ -140,12 +141,13 @@ class SummaryRank < ActiveRecord::Base
 
       h = params.except(:fields, :date)
 
-      object = SummaryRank.where(h).first  #h = {:user_id => 123 , :summary_id => 123} OR {user_id => 123, :summary_id.eq => nil}
+      object = SummaryRank.where(h).first  #h = {:user_id => 123 , :summary_id => 123} OR {user_id => 123, :summary_id => nil}
 
       if object.blank?
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ANALYTICS] new object #{h}")
 
-        if params[:fields] == SUMMARY_ANALYTICS
+        #TODO if this is correct -CHECK
+        if !params[:summary_id].blank?
           #we can use summary id check but other case of user analytics also uses summary_id as squeel operator of eq
           s = Summary.where(:id => params[:summary_id]).first
 
@@ -207,7 +209,14 @@ class SummaryRank < ActiveRecord::Base
     private
 
       #INPUT => { :summary_id => 123}
-      #OUTPUT => {:total => 95, :facebook => 20, :twitter => 30, :actwitty => 45}
+      #OUTPUT => {
+      #            :counts => {
+      #                         :total => 95,
+      #                         :services => {
+      #                                        :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                      }
+      #                       }
+      #          }
       def add_posts_analytics(params)
 
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_POSTS_ANALYTICS] Entering #{params}")
@@ -217,7 +226,7 @@ class SummaryRank < ActiveRecord::Base
           return nil
         end
 
-        hash = {:total => 0}
+        hash = {:counts => {:total => 0, :services => {}}}
 
         query = {:summary_id => params[:summary_id]}
 
@@ -228,9 +237,15 @@ class SummaryRank < ActiveRecord::Base
         posts = Activity.where(h).group(:source_name).count
 
         posts.each do |attr|
-          hash[attr[0].to_sym] = attr[1]
-          hash[:total] += attr[1]
+          hash[:counts][:services][attr[0].to_sym] = attr[1]
+          hash[:counts][:total] += attr[1]
         end
+
+        if hash[:counts][:total] == 0
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_POSTS_ANALYTICS] No Posts found")
+          hash = {}
+        end
+
         puts "===== POSTS ======"
         puts hash.inspect
 
@@ -243,10 +258,34 @@ class SummaryRank < ActiveRecord::Base
 
 
       #INPUT => { :summary_id => 123}
-      #OUTPUT => {:total => 6, :image => {:total => 2, :facebook => 1, :twitter => 1},
-      #           :video => {:total => 2, :facebook => 1, :twitter => 1},
-      #          :audio => {:total => 0}, :document => {:total => 0},
-      #          :link => {:total => 2, :facebook => 2}}
+      #OUTPUT => {
+      #             :counts => {
+      #                         :total => 6,
+
+      #                         :categories => {
+      #                                           :image => {
+      #                                                       :total => 2,
+      #                                                       :services => {:facebook => 1, :twitter => 1}
+      #                                                     },
+      #                                           :video => {
+      #                                                       :total => 2,
+      #                                                       :services => {:facebook => 1, :twitter => 1}
+      #                                                   },
+      #                                           :audio => {
+      #                                                       :total => 0,
+      #                                                       :services => {}
+      #                                                     },
+      #                                           :document => {
+      #                                                           :total => 0,
+      #                                                           :services => {}
+      #                                                         },
+      #                                           :link => {
+      #                                                      :total => 2,
+      #                                                      :services => {:facebook => 2}
+      #                                                    }
+      #                                         }
+      #                        }
+      #            }
       def add_documents_analytics(params)
 
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_DOCUMENTS_ANALYTICS] entering #{params}")
@@ -256,8 +295,18 @@ class SummaryRank < ActiveRecord::Base
           return nil
         end
 
-        hash = {:total => 0, :image => {:total => 0}, :video => {:total => 0},
-                :audio => {:total => 0}, :document => {:total => 0},  :link => {:total => 0}}
+        hash = {
+                 :counts => {
+                              :total => 0,
+                              :categories => {
+                                               :image => {:total => 0, :services => {}},
+                                               :video => {:total => 0, :services => {}},
+                                               :audio => {:total => 0, :services => {}},
+                                               :document => {:total => 0, :services => {}},
+                                               :link => {:total => 0, :services => {}}
+                                             }
+                            }
+               }
 
         query = {:summary_id => params[:summary_id]}
 
@@ -268,9 +317,14 @@ class SummaryRank < ActiveRecord::Base
         docs = Document.where(h).group(:category, :source_name).count
         puts docs.inspect
         docs.each do |k,v|
-          hash[k[0].to_sym][:total] += v
-          hash[k[0].to_sym][k[1].to_sym] = v
-          hash[:total] += v
+          hash[:counts][:categories][k[0].to_sym][:total] += v
+          hash[:counts][:categories][k[0].to_sym][:services][k[1].to_sym] = v
+          hash[:counts][:total] += v
+        end
+
+        if hash[:counts][:total] == 0
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_DOCUMENTS_ANALYTICS] No Posts found")
+          hash = {}
         end
 
         puts "===== DOCUMENTS ======"
@@ -284,7 +338,14 @@ class SummaryRank < ActiveRecord::Base
       end
 
       #INPUT => { :summary_id => 123}
-      #OUTPUT => {:total => 2, :facebook => 1, :twitter => 1},
+      #OUTPUT => {
+      #            :counts => {
+      #                         :total => 95,
+      #                         :services => {
+      #                                        :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                      }
+      #                       }
+      #          }
       def add_locations_analytics(params)
 
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_LOCATIONS_ANALYTICS] entering #{params}")
@@ -294,7 +355,7 @@ class SummaryRank < ActiveRecord::Base
           return nil
         end
 
-        hash = {:total => 0}
+        hash = {:counts => {:total => 0, :services => {}}}
 
         query = {:summary_id => params[:summary_id], :all_location => true}
 
@@ -305,9 +366,15 @@ class SummaryRank < ActiveRecord::Base
         loc = Activity.where(h).group(:source_name).count
 
         loc.each do |attr|
-          hash[attr[0].to_sym] = attr[1]
-          hash[:total] += attr[1]
+          hash[:counts][attr[0].to_sym] = attr[1]
+          hash[:counts][:total] += attr[1]
         end
+
+        if hash[:counts][:total] == 0
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_LOCATIONS_ANALYTICS] No Posts found")
+          hash = {}
+        end
+
         puts "===== LOCATIONS ======"
         puts hash.inspect
 
@@ -319,7 +386,14 @@ class SummaryRank < ActiveRecord::Base
       end
 
       #INPUT => { :summary_id => 123}
-      #OUTPUT => {:total => 2, :facebook => 1, :twitter => 1},
+      #OUTPUT => {
+      #            :counts => {
+      #                         :total => 95,
+      #                         :services => {
+      #                                        :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                      }
+      #                       }
+      #          }
       def add_entities_analytics(params)
 
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ENTITIES_ANALYTICS] entering #{params}")
@@ -329,7 +403,7 @@ class SummaryRank < ActiveRecord::Base
           return nil
         end
 
-        hash = {:total => 0}
+        hash = {:counts => {:total => 0, :services => {}}}
 
         query = {:summary_id => params[:summary_id]}
 
@@ -340,9 +414,15 @@ class SummaryRank < ActiveRecord::Base
         hub = Hub.where(h).group(:source_name).count
 
         hub.each do |attr|
-          hash[attr[0].to_sym] = attr[1]
-          hash[:total] += attr[1]
+          hash[:counts][attr[0].to_sym] = attr[1]
+          hash[:counts][:total] += attr[1]
         end
+
+        if hash[:counts][:total] == 0
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_ENTITIES_ANALYTICS] No Posts found")
+          hash = {}
+        end
+
         puts "==== ENTITIES ====="
         puts hash.inspect
 
@@ -353,19 +433,183 @@ class SummaryRank < ActiveRecord::Base
         {}
       end
 
+      #INPUT => { :summary_id => 123}
+      #OUTPUT => {
+      #            :counts => {
+      #                         :total => 100,
+      #                         :actions => {
+      #                                        :likes => {
+      #                                                    :total => 50,
+      #                                                    :services => {:facebook => 20, :twitter => 30}
+      #                                                  },
+      #                                        :comments => {
+      #                                                       :total => 50,
+      #                                                       :services => {:facebook => 20, :twitter => 30}
+      #                                                  }
+      #                                     }
+      #                       }
+      #          }
+      def add_source_actions_analytics(params)
+        Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_SOURCE_ACTIONS_ANALYTICS] entering #{params}")
+
+        if params[:summary_id].blank?
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_SOURCE_ACTIONS_ANALYTICS] blank summary #{params}")
+          return nil
+        end
+
+        hash = {:counts => {:total => 0, :actions => {}}}
+
+        query = {:summary_id => params[:summary_id]}
+
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+
+        h = ::Api::Helpers::PlanTableQuery.plan_source_action_query(query)
+
+        s = SourceAction.where(h).group(:name, :source_name).sum(:count)
+        s.each do |k,v|
+          hash[:counts][:total] += v
+          hash[:counts][:actions][k[0].to_sym] = {:total => 0, :services => {}} if hash[:counts][:actions][k[0].to_sym].blank?
+          hash[:counts][:actions][k[0].to_sym][:total] += v
+          hash[:counts][:actions][k[0].to_sym][:services][k[1].to_sym] = v
+        end
+
+        if hash[:counts][:total] == 0
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_SOURCE_ACTIONS_ANALYTICS] No Posts found")
+          hash = {}
+        end
+
+        puts "==== SOURCE_ACTIONS ====="
+        puts hash.inspect
+
+        Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_SOURCE_ACTIONS_ANALYTICS] leaving #{params}")
+        hash
+      rescue => e
+        Rails.logger.error("[MODEL] [SUMMARY_RANK] [ADD_SOURCE_ACTIONS_ANALYTICS]  **** RESCUE **** #{e.message} For #{params.inspect}")
+        {}
+      end
+
+      #INPUT => { :summary_id => 123}
+      #OUTPUT => {
+      #            :counts => {
+      #                         :total => 95,
+      #                         :actions => {
+      #                                        :upvote => 20, :recommendations => 30
+      #                                      }
+      #                       }
+      #          }
+      def add_local_actions_analytics(params)
+        Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_LOCAL_ACTIONS_ANALYTICS] entering #{params}")
+
+        if params[:summary_id].blank?
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_LOCAL_ACTIONS_ANALYTICS] blank summary #{params}")
+          return nil
+        end
+
+        hash = {:counts => {:total => 0, :actions => {}}}
+
+        query = {:summary_id => params[:summary_id]}
+
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+
+        h = ::Api::Helpers::PlanTableQuery.plan_local_action_query(query)
+
+        s = LocalAction.where(h).group(:name).count
+        s.each do |k,v|
+          hash[:counts][:total] += v
+          hash[:counts][:actions][k[0].to_sym] = v
+        end
+
+        #dont enable as otherwise down votes will not be reflected
+#        if hash[:counts][:total] == 0
+#          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_SOURCE_ACTIONS_ANALYTICS] No Posts found")
+#          hash = {}
+#        end
+
+        Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_LOCAL_ACTIONS_ANALYTICS] leaving #{params}")
+        hash
+      rescue => e
+        Rails.logger.error("[MODEL] [SUMMARY_RANK] [ADD_LOCAL_ACTIONS_ANALYTICS]  **** RESCUE **** #{e.message} For #{params.inspect}")
+        {}
+      end
+
+
       #INPUT => { :user_id => 123}
       #OUTPUT => {
-      #            :services => {:facebook => 5, :twitter => 2},
-      #            "sports" => { :summary_d => 123, :posts => {:total => 2, :facebook => 1, :twitter => 1},
-      #                                             :documents => { :total => 6,
-      #                                                             :image => {:total => 2, :facebook => 1, :twitter => 1},
-      #                                                             :video => {:total => 2, :facebook => 1, :twitter => 1},
-      #                                                             :audio => {:total => 0}, :document => {:total => 0},
-      #                                                             :link => {:total => 2, :facebook => 2}},
-      #                                             :locations => {:total => 3, :facebook => 2, :twitter => 1},
-      #                                             :entities => {:total => 2, :facebook => 1, :twitter => 1}},
+      #            :services => {:facebook => 5, :twitter => 2}, #overall posts in services this week
+      #            :topics =>   {
+      #                           "sports" => {
+      #                                         :summary_id => 123,
+      #                                         :posts => {
+      #                                                     :counts => {
+      #                                                                   :total => 95,
+      #                                                     :services =>  {
+      #                                                                     :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                                                   }
+      #                                                                }
+      #                                                  }
       #
-      #            "technology" => {:summary_id => 124, :posts => {...},}
+      #                                        :documents => {
+      #                                                       :counts => {
+      #                                                                    :total => 6,
+      #                                                                    :categories => {
+      #                                                                                     :image => {
+      #                                                                                                 :total => 2,
+      #                                                                                                 :services => {:facebook => 1, :twitter => 1}
+      #                                                                                               },
+      #                                                                                     :video => {
+      #                                                                                                 :total => 2,
+      #                                                                                                 :services =>  {:facebook => 1, :twitter => 1}
+      #                                                                                               },
+      #                                                                                     :audio => {
+      #                                                                                                 :total => 0,
+      #                                                                                                 :services => {}
+      #                                                                                               },
+      #                                                                                     :document => {
+      #                                                                                                    :total => 0,
+      #                                                                                                    :services => {}
+      #                                                                                                  },
+      #                                                                                     :link =>    {
+      #                                                                                                   :total => 2,
+      #                                                                                                   :services =>  {:facebook => 2}
+      #                                                                                                 }
+      #                                                                                 }
+      #                                                                 }
+      #                                                     },
+      #                                     :locations => {
+      #                                                      :counts => {
+      #                                                                   :total => 95,
+      #                                                                   :services => {
+      #                                                                                  :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                                                                }
+      #                                                                 }
+      #                                                   },
+      #                                     :entities => {
+      #                                                     :counts => {
+      #                                                                   :total => 95,
+      #                                                                   :services => {
+      #                                                                                  :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                                                                }
+      #                                                                 }
+      #                                                  },
+      #                                     :source_actions  => {
+      #                                                           :counts => {
+      #                                                                        :total => 100,
+      #                                                                        :actions => {
+      #                                                                                      :likes => {
+      #                                                                                                  :total => 50,
+      #                                                                                                  :services => {:facebook => 20, :twitter => 30}
+      #                                                                                                },
+      #                                                                                      :comments => {
+      #                                                                                                     :total => 50,
+      #                                                                                                     :services => {:facebook => 20, :twitter => 30}
+      #                                                                                                   }
+      #                                                                                   }
+      #                                                                     }
+      #                                                         },
+      #                                 },
+      #
+      #                           "technology" => {:summary_id => 124, :posts => {...},}
+      #                       }
       #          }
       def add_weeks_analytics(params)
 
@@ -387,92 +631,125 @@ class SummaryRank < ActiveRecord::Base
         query[:since] = DateTime.commercial(params[:date][:year],params[:date][:week], 1).utc
         query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc
 
-        hash = {:services => {}}
+        hash = {:services => {}, :topics => {}}
 
         summary_ids = {}
 
         h = ::Api::Helpers::PlanTableQuery.plan_activity_query(query)
-        objects = Activity.where(h).group(:activity_name, :source_name, :summary_id).count
-        objects.each do |k,v|
-          hash[k[0]] = {:summary_id => k[2], :posts => {:total => 0}, :services => {}}  if hash[k[0]].blank?
-          hash[k[0]][:summary_id] = k[2]
 
-          posts = hash[k[0]][:posts]
-          posts[:total] += v
-          posts[k[1].to_sym] = v #source_name
+        objects = Activity.where(h).group(:activity_name, :source_name, :summary_id).count
+
+        objects.each do |k,v|
+          hash[:topics][k[0]] = {:summary_id => k[2], :posts => {:counts => {:total => 0, :services => {}}}}  if hash[k[0]].blank?
+          hash[:topics][k[0]][:summary_id] = k[2]
+
+          posts = hash[:topics][k[0]][:posts]
+          posts[:counts][:total] += v
+          posts[:counts][:services][k[1].to_sym] = v #source_name
 
           summary_ids[k[2]] = k[0] #keep the mapping to use below id => name
 
-          hash[:services][k[1].to_sym] += v #overall services analytics
+          hash[:services][k[1].to_sym] = 0 if  hash[:services][k[1].to_sym].blank?
+          hash[:services][k[1].to_sym] += v #overall posts in services this week
         end
 
         #now get others
         if !summary_ids.blank?
 
-          #get docs mapping to those summaries
+          #get docs mapping to those s
+          #ummaries
           h = ::Api::Helpers::PlanTableQuery.plan_document_query(query)
           objects = Document.where(h).group(:category, :source_name, :summary_id).count
 
+          puts objects.inspect
           objects.each do |k,v|
             name = summary_ids[k[2]]
 
-            if !hash[name].blank?
-              hash[name][:documents] = {:total => 0, :image => {:total => 0}, :video => {:total => 0},
-                                                    :audio => {:total => 0}, :document => {:total => 0},  :link => {:total => 0}}
-              docs = hash[name][:documents]
-              docs[:total] += v
-              docs[k[0].to_sym][:total] += v
-              docs[k[0].to_sym][] = v
+            if !hash[:topics][name].blank?
+              hash[:topics][name][:documents] = {:counts => {:total => 0, :categories => {:image => {:total => 0, :services => {}},
+                                                                                          :video => {:total => 0, :services => {}},
+                                                                                          :audio => {:total => 0, :services => {}},
+                                                                                          :document => {:total => 0, :services => {}},
+                                                                                          :link => {:total => 0, :services => {}}}}}
+              docs = hash[:topics][name][:documents]
+              docs[:counts][:categories][k[0].to_sym][:total] += v
+              docs[:counts][:categories][k[0].to_sym][:services][k[1].to_sym] = v
+              docs[:counts][:total] += v
             end
           end
 
           #get entities mapping to those summaries
           h = ::Api::Helpers::PlanTableQuery.plan_hub_query(query)
-          objects = Hub.where(query).group(:source_name, :summary_id).count
+          objects = Hub.where(h).group(:source_name, :summary_id).count
 
           objects.each do |k,v|
             name = summary_ids[k[1]]
 
-            if !hash[name].blank?
-              hash[name][:entities] = {:total => 0}
-              entities = hash[name][:entities]
-              entities[:total] += v
-              entities[k[0].to_sym] = v
+            if !hash[:topics][name].blank?
+              hash[:topics][name][:entities] = {:counts => {:total => 0, :services => {}}}
+              entities = hash[:topics][name][:entities]
+              entities[:counts][:total] += v
+              entities[:counts][:services][k[0].to_sym] = v
             end
           end
 
           #get locations mapping to those summaries
           query[:all_location] = true
           h = ::Api::Helpers::PlanTableQuery.plan_activity_query(query)
-          objects = Activity.where(query).group(:source_name, :summary_id).count
+          objects = Activity.where(h).group(:source_name, :summary_id).count
 
           objects.each do |k,v|
             name = summary_ids[k[1]]
 
-            if !hash[name].blank?
-              hash[name][:locations] = {:total => 0}
-              locations = hash[name][:locations]
-              locations[:total] += v
-              locations[k[0].to_sym] = v
+            if !hash[:topics][name].blank?
+              hash[:topics][name][:locations] = {:counts => {:total => 0, :services => {}}}
+              locations = hash[:topics][name][:locations]
+              locations[:counts][:total] += v
+              locations[:counts][:services][k[0].to_sym] = v
+            end
+          end
+
+          #get source action mapping to those summaries
+          query = query.except(:all_location)
+          h = ::Api::Helpers::PlanTableQuery.plan_source_action_query(query)
+          objects = SourceAction.where(h).group(:name, :source_name, :summary_id).sum(:count)
+
+          objects.each do |k,v|
+            name = summary_ids[k[2]]
+
+            if !hash[:topics][name].blank?
+              hash[:topics][name][:source_actions] = {:counts => {:total => 0, :actions => {}}}
+              source_action = hash[:topics][name][:source_actions]
+              source_action[:counts][:total] += v
+              source_action[:counts][:actions][k[0].to_sym] = {:total => 0, :services => {}} if source_action[:counts][:actions][k[0].to_sym].blank?
+              source_action[:counts][:actions][k[0].to_sym][:total] += v
+              source_action[:counts][:actions][k[0].to_sym][:services][k[1].to_sym] = v
             end
           end
         end
 
-        hash = hash.sort_by {|k,v| v[:posts][:total]}.reverse #returns array tuple [ [k,v], [k,v], [k,v]  ]
-        hash = Hash[hash]
-        puts "===== WEEKS ======="
+        if !hash[:topics].blank?
+          topics_hash = hash[:topics]
+          topics_hash = topics_hash.sort_by {|k,v| v[:posts][:counts][:total]}.reverse #returns array tuple [ [k,v], [k,v], [k,v]  ]
+          hash[:topics] = Hash[topics_hash]
+        else
+          hash = {}
+          Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_WEEKS_ANALYTICS] No Posts found")
+        end
 
+        puts "===== WEEKS ======="
         puts hash.inspect
 
         Rails.logger.info("[MODEL] [SUMMARY_RANK] [ADD_WEEKS_ANALYTICS] leaving #{params}")
+
         hash
       rescue => e
         Rails.logger.error("[MODEL] [SUMMARY_RANK] [ADD_WEEKS_ANALYTICS]  **** RESCUE **** #{e.message} For #{params.inspect}")
         {}
       end
-
   end
 end
+
 
 
 
@@ -488,7 +765,7 @@ end
 #  activity_name :text
 #  category_id   :text
 #  analytics     :text
-#  created_at    :datetime
-#  updated_at    :datetime
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
 #
 

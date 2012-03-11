@@ -35,26 +35,8 @@ class User < ActiveRecord::Base
 
 ##### ALOK changed it  ##########################
   has_many :activities, :foreign_key => :author_id , :dependent => :destroy
-  has_many :documents, :foreign_key => :owner_id
-  has_many :tags, :foreign_key => :author_id
-
-  #CREATE & DESTROY for hub, hub association, mentions, campaigns, entity_ownerships,summaries location_ownerships  will happen from activity create & destroy
-  #no explicit create & destroy is called by user for all these
-  has_many :summaries #destroy will happen through activity
-
-  has_many :hubs
-  has_many :entities, :through => :hubs, :uniq => true
-  has_many :locations, :through => :hubs, :uniq => true
-  has_many :activity_words, :through => :hubs, :uniq => true
-
-  has_many :mentions
-  has_many :campaigns,:foreign_key => :author_id
-
-  #Though it only removes the user foreign key in entity ownership. But User ID  &  Entities
-  # will not be deleted as of now. Only user's docs and activities
-  has_many :entity_ownerships, :foreign_key => :owner_id, :dependent => :nullify
-
   has_many :social_aggregators, :dependent => :destroy
+  has_many :summary_ranks, :dependent => :destroy
 
   ##### ALOK changes ends here #####################
 
@@ -615,6 +597,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: users
@@ -638,14 +622,15 @@ end
 #  disable_email        :boolean
 #  full_name            :string(255)
 #  photo_small_url      :string(255)
+#  country_code         :string(255)
 #  dob                  :date
 #  gender               :string(255)
 #  current_location     :string(255)
 #  current_geo_lat      :decimal(, )
 #  current_geo_long     :decimal(, )
 #  user_type            :integer         default(0)
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
 #  invitation_token     :string(60)
 #  invitation_sent_at   :datetime
 #  invitation_limit     :integer

@@ -1,7 +1,7 @@
 class Hub < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :activity, :counter_cache => true
+  belongs_to :activity
   belongs_to :location
   belongs_to :entity #, :touch => true
   belongs_to :activity_word
@@ -17,8 +17,6 @@ class Hub < ActiveRecord::Base
 
   validates_presence_of   :source_name, :status
 
-  validates_length_of     :source_name,  :in => 1..AppConstants.source_name_length
-
   class << self
 
      #created only for activities which has entities
@@ -29,13 +27,19 @@ class Hub < ActiveRecord::Base
         hubs_hash = {}
         entity = []
 
+        params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+        params[:source_created_at] = Time.now.utc if params[:source_created_at].blank?
+        params[:status] = AppConstants.status_public if params[:status].blank?  #by default we assume user has set it public
+        params[:status_at_source] = AppConstants.status_public_at_source if params[:status_at_source].blank?  #by default we assume user has set it public
+
         #created_at and updated_at will take input value only when ActiveRecord::Base.record_timestamps is false
         #ootherwise default
         h = {
               :activity_id => params[:activity_id], :activity_word_id => params[:activity_word_id], :user_id => params[:user_id],
-              :summary_id => params[:summary_id], :source_name => params[:source_name], :status_at_source => params[:status_at_source],
+              :summary_id => params[:summary_id], :source_name => params[:source_name],
+              :status_at_source => params[:status_at_source],:source_msg_id => params[:source_object_id],
               :status => params[:status], :category_type => params[:category_type], :location_id => params[:location_id],
-              :created_at => params[:created_at], :updated_at => params[:updated_at]
+              :source_created_at => params[:source_created_at],
             }
 
 
@@ -65,6 +69,10 @@ end
 
 
 
+
+
+
+
 # == Schema Information
 #
 # Table name: hubs
@@ -81,8 +89,8 @@ end
 #  source_msg_id            :text
 #  status_at_source         :integer
 #  category_type            :text
-#  backup_created_timestamp :datetime        default(2012-02-09 11:31:59 UTC)
-#  created_at               :datetime
-#  updated_at               :datetime
+#  backup_created_timestamp :datetime        default(2012-03-06 07:49:50 UTC)
+#  created_at               :datetime        not null
+#  updated_at               :datetime        not null
 #
 

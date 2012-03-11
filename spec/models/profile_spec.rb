@@ -158,46 +158,20 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: profiles
 #
-#  id                  :integer         not null, primary key
-#  first_name          :string(255)
-#  last_name           :string(255)
-#  short_status        :string(255)
-#  profile_photo_l     :string(255)
-#  profile_photo_m     :string(255)
-#  profile_photo_s     :string(255)
-#  home_location       :string(255)
-#  home_geo_lat        :decimal(, )
-#  home_geo_long       :decimal(, )
-#  current_location    :string(255)
-#  current_geo_lat     :decimal(, )
-#  current_geo_long    :decimal(, )
-#  age                 :integer
-#  dob                 :date
-#  gender              :string(255)
-#  theme               :string(255)
-#  address             :string(255)
-#  company_name        :string(255)
-#  phone_number        :string(255)
-#  mobile_number       :string(255)
-#  work_area           :string(255)
-#  interest            :string(255)
-#  home_page           :string(255)
-#  tag_string          :string(255)
-#  email               :string(255)
-#  searchable          :string(255)
-#  verified_account    :boolean
-#  is_celebrity        :boolean
-#  abuse_count         :integer
-#  is_terms_accepted   :boolean
-#  is_privacy_accepted :boolean
-#  fb_default_share    :boolean
-#  twt_default_share   :boolean
-#  user_id             :integer
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id                        :integer         not null, primary key
+#  facebook_service_enabled  :boolean
+#  twitter_service_enabled   :boolean
+#  linked_in_service_enabled :boolean
+#  facebook_update_share     :boolean
+#  twitter_update_share      :boolean
+#  user_id                   :integer
+#  created_at                :datetime        not null
+#  updated_at                :datetime        not null
 #
 

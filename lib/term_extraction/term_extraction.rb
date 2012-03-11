@@ -7,6 +7,14 @@ module TermExtraction
   #strings in text_hash
   def self.get_terms(params)
     Rails.logger.info("[LIB] [TERM_EXTRACTION] [GET_TERMS] Entering => Size of hash #{params[:term_extract].size}")
+#
+#    params[:activities].each_with_index do |activity, idx|
+#      attr = activity[:post]
+#      #lets block any normal text classification .. as of now only links and video
+#      if (!attr[:text].blank? and (attr[:enrich] == true))
+#        params[:term_extract][idx] = attr[:text]
+#      end
+#    end
 
     get_entities(params[:term_extract])
 

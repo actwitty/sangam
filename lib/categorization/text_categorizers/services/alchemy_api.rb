@@ -22,31 +22,6 @@ module Categorization
             {:method => "post", :url => ALCHEMY_TEXT_ENDPOINT, :params =>{'text'=>"#{content}",'apikey'=> ALCHEMY_API_KEY, 'outputMode'=> "json", }, :handle => handle}
           end
 
-          def categorize_text(requests)
-            Rails.logger.info("[MODULE] [CATEGORIZATION] [CATEGORIZER] [AlchemyApi] [categorize_text] => #{requests.size}")
-            hash = {}
-            response = []
-
-            #rate limit adjustment
-            request_array = requests.enum_for(:each_slice,  ALCHEMY_RATE_LIMIT).to_a
-            request_array.each do |array|
-              resp = ::EmHttp::Http.request(array)
-              response.concat(resp)
-            end
-
-            response.each do |attr|
-              resp = process_response(attr[:response])
-              hash[attr[:handle]]= resp if !resp.blank?
-            end
-
-            Rails.logger.info("[MODULE] [CATEGORIZATION] [CATEGORIZER] [AlchemyApi] [categorize_text] => #{hash.inspect}")
-            hash
-
-          rescue => e
-            Rails.logger.error("[MODULE] [CATEGORIZATION] [CATEGORIZER] [AlchemyApi] [categorize_text] => **** RESCUE **** => #{e.message}")
-            return nil
-          end
-
           def process_response(response)
 
             Rails.logger.info("[MODULE] [CATEGORIZATION] [CATEGORIZER] [AlchemyApi] [process_response] entering")

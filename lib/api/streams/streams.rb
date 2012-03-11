@@ -1,5 +1,3 @@
-require 'plan_table_query'
-require 'format_object'
 module Api
   module Streams
     class << self
@@ -11,7 +9,7 @@ module Api
       #           :user_id => 234 , #User whose data is being requested
       #
       #       activity_ids => Array of activity ids
-      #OUTPUT =   See get_stream output in HASH :stream => {}
+      #OUTPUT =   See get_stream output
       def get_all_activity(params)
 
         Rails.logger.info("[LIB] [API] [STREAMS] [get_all_activity] entering ")
@@ -35,7 +33,7 @@ module Api
           return []
         end
 
-        Activity.includes(:author, :base_location).where(h).limit(params[:limit]).order("updated_at DESC").all.each do |attr|
+        Activity.includes(:author, :base_location).where(h).limit(params[:limit]).order("source_created_at DESC").all.each do |attr|
 
           next if attr.status == AppConstants.status_private and foreign_user == true
 
@@ -62,15 +60,14 @@ module Api
         end
 
 
-#       Tag.where(:activity_id => hash.keys).all.each do |attr|
-#         h = ::Api::Helpers::FormatObject.format_tag({:object =>attr})
-#
-#         elem = array[hash[attr.activity_id]]
-#         elem[:tags] = {:count => 0, :array => []} if elem[:tags].blank?
-#         elem[:tags][:array] << h[:tag]
-#         elem[:tags][:count] += 1
-#       end
-#
+        Tag.where(:activity_id => hash.keys).all.each do |attr|
+          h = ::Api::Helpers::FormatObject.format_tag({:object =>attr})
+
+          elem = array[hash[attr.activity_id]]
+          elem[:tags] = {:count => 0, :array => []} if elem[:tags].blank?
+          elem[:tags][:array] << h[:tag]
+          elem[:tags][:count] += 1
+        end
 
 
         Hub.includes(:entity).where(:activity_id => hash.keys, :entity_id.not_eq => nil).all.each do |attr|
@@ -135,8 +132,6 @@ module Api
       #
       #
       #OUTPUT
-      #{
-      # :stream =>
       # [
       #
       #   {
@@ -145,7 +140,8 @@ module Api
       #     {
       #       :id=>10, :user=>{:id=>5, :full_name=>"lemony1 lime1", :photo=>"images/id_1"},
       #       :time=>Sat, 30 Jul 2011 21:41:56 UTC +00:00,
-      #       :text=> Had a great pizza at pizza hut #food #italian http://pizzahut.com/123/234,
+      #       :text=> text:Had a great pizza at pizza hut #food #italian http://pizzahut.com/123/234\n user_id:123
+      #       :if_yaml => true,
       #       :summary_id=>9,
       #       :source_name=>"twitter",
       #       :source_object_id => "12233",
@@ -274,7 +270,6 @@ module Api
       #  }# single post hash
       # ......
       # ]#stream array
-      #}#OUTPUT HASH
       def get_stream(params ={})
 
         Rails.logger.info("[LIB] [API] [STREAMS] [get_stream] entering #{params.inspect}")
@@ -285,7 +280,7 @@ module Api
           return {}
         end
 
-        stream = {}
+        array = []
 
         query = {
                    :user_id => params[:user_id],
@@ -299,13 +294,13 @@ module Api
 
         if !params[:filter].blank?
           if !params[:filter][:entity].blank?
-            stream = get_entity_stream(params)
+            array = get_entity_stream(params)
 
           elsif !params[:filter][:document].blank?
-            stream = get_document_stream(params)
+            array = get_document_stream(params)
 
           elsif !params[:filter][:location].blank?
-            stream = get_location_stream(params)
+            array  = get_location_stream(params)
 
           end
         else
@@ -316,15 +311,14 @@ module Api
                                   :user_id => params[:user_id],
                                   :limit => params[:limit],
                                  })
-          stream[:stream] = array if !array.blank?
 
         end
 
         Rails.logger.info("[LIB] [API] [STREAMS] [get_stream] leaving")
-        stream
+        array
       rescue => e
         Rails.logger.error("[LIB] [API] [STREAMS] [get_stream] **** ERROR **** #{e.message} for #{params.inspect}")
-        {}
+        []
       end
 
 
@@ -341,7 +335,7 @@ module Api
           return {}
         end
 
-        stream = {}
+        array = []
 
         args = params[:filter][:entity]
         h[:entity_id.not_eq] = nil if !args[:all].blank?
@@ -362,13 +356,11 @@ module Api
 
         array = get_all_activity(query)
 
-        stream[:stream] = array if !array.blank?
-
         Rails.logger.info("[LIB] [API] [STREAMS] [get_entity_stream] Leaving => Stream Size = #{array.size}")
-        stream
+        array
       rescue => e
         Rails.logger.error("[LIB] [API] [STREAMS] [get_entity_stream] **** ERROR **** #{e.message} for #{params.inspect}")
-        {}
+        []
       end
 
 
@@ -378,7 +370,7 @@ module Api
       def get_location_stream(params)
         Rails.logger.info("[LIB] [API] [STREAMS] [get_location_stream] Entering")
 
-        stream = {}
+        array = []
 
         args = params[:filter][:location]
         params[:query][:all_location] = true if !args[:all].blank?
@@ -391,14 +383,12 @@ module Api
                                   :limit => params[:limit],
                                 })
 
-        stream[:stream] = array if !array.blank?
-
         Rails.logger.info("[LIB] [API] [STREAMS] [get_location_stream] Leaving")
-        stream
+        array
 
       rescue => e
         Rails.logger.error("[LIB] [API] [STREAMS] [get_entity_stream] **** ERROR **** #{e.message} for #{params.inspect}")
-        {}
+        []
       end
 
 
@@ -416,7 +406,7 @@ module Api
           return {}
         end
 
-        stream = {}
+        array = []
 
         args = params[:filter][:document]
         #h[:id.not_eq] = nil if !args[:all].blank?
@@ -441,12 +431,13 @@ module Api
 
         array = get_all_activity(query)
 
-        stream[:stream] = array if !array.blank?
-
         Rails.logger.info("[LIB] [API] [STREAMS] [get_document_stream] Leaving")
-        stream
-      Rails.logger.error("[LIB] [API] [STREAMS] [get_document_stream] **** ERROR **** #{e.message} for #{params.inspect}")
-        {}
+
+        array
+
+      rescue => e
+        Rails.logger.error("[LIB] [API] [STREAMS] [get_document_stream] **** ERROR **** #{e.message} for #{params.inspect}")
+        []
       end
     end
   end

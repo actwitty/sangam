@@ -79,8 +79,9 @@ gem "koala"
 gem "twitter"
 
 #Delayed Job
-gem 'delayed_job', :git => 'git://github.com/collectiveidea/delayed_job.git'
-gem 'delayed_job_active_record', :git => 'git://github.com/collectiveidea/delayed_job_active_record.git'
+gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem "dj_remixes"
 
 
 #easy ARel
@@ -109,7 +110,7 @@ end
 
 group :test, :development do
   gem 'factory_girl_rails', :require => false
-  gem 'rspec-rails', '>= 2.0.1'
+  gem 'rspec-rails', '2.6.1'
   gem 'capybara'
 end
 
@@ -123,6 +124,6 @@ group :test do
   gem 'database_cleaner'
   gem 'spork', '0.8.4'
   #for observer's' test
-  gem 'no_peeping_toms', :git => 'git://github.com/alindeman/no_peeping_toms.git'
+  gem 'no_peeping_toms'
 end
 
