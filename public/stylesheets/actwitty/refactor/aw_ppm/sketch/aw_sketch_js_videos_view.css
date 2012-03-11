@@ -1,0 +1,62 @@
+/* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_videos_container_box {
+  width: 510px;
+  height: auto;
+  position: relative;
+  display: inline-block;
+  margin: 20px;
+  margin-top: 25px;
+}
+/* line 9, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_videos_container_box .aw_all_videos_container_box {
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+/* line 13, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_videos_container_box .aw_all_videos_container_box .aw_single_video_container_box {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333;
+}
+/* line 22, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_videos_container_box .aw_all_videos_container_box .aw_single_video_container_box iframe {
+  border: 0px;
+}
+
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_js_video_box_show_always {
+  display: inline-block;
+}
+
+/* line 28, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_js_video_box_hide_on_less {
+  display: none;
+}
+
+/* line 31, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_js_video_box_show_on_more {
+  display: inline-block;
+}
+
+/* line 34, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_show_more_videos_box {
+  height: 15px;
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #25a0da;
+  font-size: 14px;
+  font-weight: normal;
+  display: block;
+}
+/* line 44, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.sass */
+.aw_show_more_videos_box:hover {
+  cursor: pointer;
+}

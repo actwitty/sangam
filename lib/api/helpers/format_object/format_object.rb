@@ -159,7 +159,7 @@ module Api
           entity = params[:parent].entity
 
           #special for entities sources verified by private services and getting actual entities
-          params[:privacy] = true if  params[:privacy].blank?
+          params[:privacy] = true if  params[:privacy].nil?
 
           if params[:parent].status_at_source == AppConstants.status_private_at_source and params[:privacy] == true
 

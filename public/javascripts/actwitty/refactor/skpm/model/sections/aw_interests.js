@@ -83,12 +83,14 @@ var aw_interest_test_json =     [
  *
  */
 var aw_local_interest_data_json = [];
+var aw_local_total_posts = 0;
 /*************************************************/
 /*
  *
  *
  */
 function aw_api_model_interests_server_request(){
+
   $.ajax({
 
             url: "/home/get_summary.json",
@@ -97,6 +99,7 @@ function aw_api_model_interests_server_request(){
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
+              var rank = 1;
               $.each(data, function( index, summary){
                 var interest_data =  {
                                           interest_id: 0,
@@ -106,6 +109,7 @@ function aw_api_model_interests_server_request(){
                                           image: 0, 
                                           post: 0, 
                                           link: 0,
+                                          effort_rank: 0,
                                           location: 0,
                                           mention: 0, 
                                           services: [], 
@@ -113,6 +117,8 @@ function aw_api_model_interests_server_request(){
                                      };
                  
                 interest_data.interest_id = summary.id;
+                interest_data.effort_rank = rank;
+                rank++;
 
                 if( summary.word ){
                   interest_data.name =  summary.word.name;
@@ -129,6 +135,7 @@ function aw_api_model_interests_server_request(){
 
                     if( summary.analytics_snapshot.posts.total ){
                       interest_data.post = summary.analytics_snapshot.posts.total; 
+                      aw_local_total_posts += summary.analytics_snapshot.posts.total;
                     }
                     
                     $.each(summary.analytics_snapshot.posts, function(service_name, post_count){
@@ -136,11 +143,10 @@ function aw_api_model_interests_server_request(){
                       if( service_name != "total" ){
                         var service = { 
                                         name: service_name,
-                                        share: post_count/interest_data.post
+                                        share: (post_count/interest_data.post)*100
                                       };
                         interest_data.services.push(service);
                       }
-                      
 
                      });
 
@@ -181,8 +187,8 @@ function aw_api_model_interests_server_request(){
                 }
 
                 aw_local_interest_data_json.push(interest_data);
-                aw_api_controller_render_interests(aw_local_interest_data_json);
               });
+              aw_api_controller_render_interests(aw_local_interest_data_json);
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
             aw_lib_console_log("error",
@@ -200,6 +206,8 @@ function aw_api_model_interests_server_request(){
  */
 function aw_api_model_interests_initialize(){
   /* make a get call to server */
+  aw_local_total_posts = 0;
+  aw_local_interest_data_json = [];
   aw_api_model_interests_server_request();
   //TEST STUB
   //aw_api_controller_render_interests(aw_interest_test_json);
@@ -211,3 +219,97 @@ function aw_api_model_interests_initialize(){
  *
  *
  */
+function aw_api_model_get_interest_sentence(){
+
+  var adjective_map = {
+                         ' always talks about ' : {
+                                                    share: 100, 
+                                                    topics: []
+                                                  },
+                         ' dominantly at ' : {
+                                                share: 60, 
+                                                topics: []
+                                            },
+                         ' mostly at ' : {
+                                                share: 30, 
+                                                topics: []
+                                          },
+                          ' frequently talks about ' : {
+                                                share: 25, 
+                                                topics: []
+                                          },
+                          
+                         ' sometimes talks about ' : {
+                                                        share: 15, 
+                                                        topics: []
+                                                  },
+                         ' occasionally shares ' : {
+                                                        share: 10, 
+                                                        topics: []
+                                                  },
+                         ' rarely shares ' :  {
+                                                        share: 2, 
+                                                        topics: []
+                                             }
+                        };
+  
+  
+
+
+  $.each(aw_local_interest_data_json, function( index, topic_detail){
+    
+    var adjective = ' rarely shares ';
+    var percentage = (topic_detail.post * 100)/aw_local_total_posts;
+    
+    $.each( adjective_map, function ( key, adjective_detail){
+      if( adjective_detail.share <= percentage ){
+        adjective = key; 
+        return false;        
+      }
+    });
+    adjective_map[adjective].topics.push(topic_detail.name);
+    if ( index == 2 )
+      return false;
+  });
+
+  var sentence = aw_js_global_visited_user_credentials.name + ' these days ';
+  var dyn_sentence = "";
+  var dyn_sentence_arr = [];
+
+  $.each(adjective_map, function( adjective, adjective_detail){
+
+      if( adjective_detail.topics.length ){
+        
+          if( adjective_detail.topics.length == 1){
+
+            dyn_sentence = adjective + aw_js_categories_json[adjective_detail.topics[0]].sentence;
+          }else{
+            
+            dyn_sentence = adjective;
+            $.each(adjective_detail.topics, function( topic_idx, topic ){
+              if( topic_idx == 0 ){
+                dyn_sentence = dyn_sentence + aw_js_categories_json[topic].sentence;
+              }else if ( topic_idx == adjective_detail.topics.length - 1){
+                dyn_sentence = dyn_sentence + ', ' + aw_js_categories_json[topic].end_sentence;
+              }else{
+                dyn_sentence = dyn_sentence + ', ' + aw_js_categories_json[topic].sentence;
+              }
+            });
+          }
+         dyn_sentence_arr.push(dyn_sentence);
+        
+      }
+  });
+  
+  $.each(dyn_sentence_arr, function(index, dyn_sentence){
+    if( index == 0 ){
+      sentence = sentence + dyn_sentence;
+    }else if ( index == dyn_sentence_arr.length - 1){
+      sentence = sentence + ' and ' + dyn_sentence;
+    }else{
+      sentence = sentence + ', ' + dyn_sentence;
+    }  
+  });
+  return sentence;
+
+}

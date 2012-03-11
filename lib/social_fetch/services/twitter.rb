@@ -139,7 +139,7 @@ module SocialFetch
             hash[:created_at] = time - (index*60)
             hash[:text] = attr
             array << hash
-            break if index == AppConstants.maximum_import_first_time
+            break if index == 10 # AppConstants.maximum_import_first_time
           end
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] leaving  #{params.inspect}")
           array

@@ -98,7 +98,7 @@ module Api
         end
 
 
-          hash = hash.sort_by {|k,v| v[:count]}.reverse   if !hash.blank?
+          #hash = hash.sort_by {|k,v| v[:count]}.reverse   if !hash.blank?
           Rails.logger.info("[LIB] [API] [ENTITIES] [GET_ENTITIES_VERIFIED] leaving ")
 
           hash.values

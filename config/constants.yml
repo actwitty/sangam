@@ -33,7 +33,7 @@ development: &default
   max_number_of_summmary:               50
   max_number_of_users:                  50
   max_number_of_entities:               50
-  max_number_of_locations:               50
+  max_number_of_locations:              50
 
 
   default_comment_string:               "Comment"
@@ -72,8 +72,8 @@ development: &default
 
   entitiy_no_image:                     "/images/entity/default.png"
   user_no_image:                        "/images/profile/default.png"
-  entity_image_url_base:               "https://usercontent.googleapis.com/freebase/v1/image"
-  entity_desc_url_base:               "https://www.googleapis.com/freebase/v1/text"
+  entity_image_url_base:                "https://usercontent.googleapis.com/freebase/v1/image"
+  entity_desc_url_base:                 "https://www.googleapis.com/freebase/v1/text"
 
   summary_word_count:                   15
   summary_document_count:               5
@@ -110,7 +110,7 @@ development: &default
   source_posterous:               "posterous"
 
   #SOURCES CURRENTLY ACTIVE - MEANS WE ARE PULLING DATA FROM THEM
-  sources_local_list:            actwitty|actwitty_meta
+  sources_local_list:            twitter
   sources_private_list:          facebook
 
 
@@ -218,6 +218,8 @@ development: &default
   linkedin_app_id:                    'g0l32ovkc3vr'
   linkedin_secret_key:                'D7DiN8Al6Ne5nPpE'
 
+  twitpic_reg_key: '15c477f5b53647f8af58945dc78b658e'
+
 
   #User Types
    #User Types
@@ -226,26 +228,25 @@ development: &default
   user_type_web_admin:                2
 
   #FOR PUBLIC SHOW
-  ghost_user_email:                   "administrator@actwitty.com"
+  ghost_user_email:                       "administrator@actwitty.com"
 
   #Allowed to see internals
   #Devloper:change this to reqd email
   authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
 
-  
 
   #FOR SUMMARY CATEGORY
-  category_id_length:                 255
-  category_type_length:               255
+  category_id_length:                       255
+  category_type_length:                     255
 
-  default_category:                   "stories"
+  default_category:                         "stories"
 
   #Rank and Analytics
-  number_of_data_points:              53 #max number of weeks in an year
-  analytics_default_number_of_week:   1
+  number_of_data_points:                    53 #max number of weeks in an year
+  analytics_default_number_of_week:         1
 
-  analytics_update_summaries:         "summaries"
-  analytics_update_user:              "user"
+  analytics_update_summaries:               "summaries"
+  analytics_update_user:                    "user"
 
   #text categorization
   maximum_import_first_time:                100
@@ -285,6 +286,14 @@ production:
   facebook_secret_key:                '5f9e34ae0030a63796bf8d75b71cbdb7'
   twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
   twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
+  twitpic_reg_key: '15c477f5b53647f8af58945dc78b658e'
+
+  #FOR PUBLIC SHOW
+  ghost_user_email:                       "administrator@actwitty.com"
+
+  #Allowed to see internals
+  #Devloper:change this to reqd email
+  authorized_see_internals_email_id:     "administrator@actwitty.com"
   #########################################################################
 
 test:

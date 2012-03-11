@@ -17,6 +17,7 @@ a.aw_sketch_timeline_links
   height: auto
   overflow: hidden
   margin: auto
+  margin-top: 20px
   position: relative
   background: url('/images/actwitty/refactor/aw_sketch/timeline/dot.gif') left 45px repeat-x
 
@@ -64,69 +65,80 @@ a.aw_sketch_timeline_links
             float: left
             margin-left: 5px
             margin-top: 2px
+            cursor: pointer
           .aw_label_box
             float: left
             margin-left: 10px
             display: inline-block
             height: 100%
-            width: 120px
+            width: 140px
             overflow: hidden
             padding-top: 5px
             span
-              font-size: 18px
-              font-family: 'League Gothic'
+              font-size: 14px
+              font-family: 'RobotoRegular'
               letter-spacing: 1px
-              color: #777
+              color: #444
               text-transform: uppercase
+              cursor: pointer
           .aw_graph_box
             float: left
             height: 15px
             margin-top: 6px
             max-width: 200px
             background-color: #25a0da
+            cursor: pointer
         .aw_graph_axis_box
-          margin-left: 150px
+          margin-left: 170px
           margin-top: 2px
-          width: 230px
+          width: 210px
           height: 25px
           display: block
           float: left
-          border-top: 1px dotted #777
+          border-top: 1px dotted #444
           span.left_limit
             float:left
             font-size: 11px
-            color: #777
+            color: #444
           span.mid_limit
             float: right
             margin-right: 50px
             font-size: 11px
-            color: #777
+            color: #444
           span.right_limit
             float: right
             font-size: 11px
-            color: #777
+            color: #444
 
 
               
 
   .aw_sketch_timeline_prev, .aw_sketch_timeline_next
     position: absolute
-    top: 0
     font-size: 70px
-    top: 120px
-    width: 35px
-    height: 35px
+    top: 50%
+    margin-top: 13px
+    width: 25px
+    height: 25px
     background-repeat: no-repeat
     text-indent: -9999px
     overflow: hidden
 
   .aw_sketch_timeline_next
     right: 0
+    width: 25px
+    height: 25px
     background-image: url('/images/actwitty/refactor/aw_sketch/timeline/right.png')
+    background-size: 100%
+    cursor: pointer
 
   .aw_sketch_timeline_prev
     left: 0
+    width: 25px
+    height: 25px
     background-image: url('/images/actwitty/refactor/aw_sketch/timeline/left.png')
+    background-size: 100%
+    cursor: pointer
 
   .aw_sketch_timeline_next.disabled, .aw_sketch_timeline_prev.disabled
     opacity: 0.2

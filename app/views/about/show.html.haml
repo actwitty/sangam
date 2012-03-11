@@ -1,50 +1,59 @@
-/#page-wrapper
-/  #header
-#about_main  
-  #about
-    %p.title
-      ABOUT ACTWITTY
-    %br/
-    %p.multi-column
-      %span.heading
-        Channelize, Enrich and Connect 
-      %br/
-      %br/
-      Its time what ever valuable information we put up assists us to gives us a more organized visualizations. A visualization that tells what are the aspects of life. These visualizations enable netizen who could precisely showcase lifestyle, interests, thoughts, activities, ownerships, political views and what not. 
-      %br
-      %br
-      ActWitty is the platform for all such enthusiastic netizens to channelize their thoughts and collaborate to become more presentable and accessible. Enrichment of channels of interest by repetitive contributions and bringing in relevant channels from other people whom netizen follows.
-      %br/
-      %br/
-      These topical connections may range from interests, activities, to locations, to things netizens talk about.
+#fb-root
+:javascript
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 
-      %br/
-      %br/
-      %span.heading
-        What's in the name ?
-        %br/
-        %br/
-      ActWitty can be interpreted into  ways. 
-      "Acting witty" such that we get to present information in precise but most useful way.
-      Also, ActWitty sounds much like "Activity" which is akin to the channels which netizens share about.
-      %br/
-      %br/
-      %span.heading
-        Who can use ActWitty ?
-        %br/
-        %br/
-      Any netizen can be active and can be witty. So ActWitty is for all who want to reduce the clutter from their virtual dimension, who want to present their aspects of life, who want to be engaged in topical short lived social networks.
-      %br/
-      %br/
-      %span.heading
-        ActWitty's Commitment 
-        %br/
-        %br/
-      We are focussed to make aspects of life talked about, more accessible and bring out the richness of information. We believe in open sharing of the relevant information which a netizen believes is worth presenting as a characterstic. ActWitty has a commitment to bring out a new paradigm in user generated information browsing. 
-      %br/
-      %br/
-      %br/
-     
+#aw_home_main_container
+  #aw_home_top_header
+    .aw_home_top_nav
+      %a{:href=>"http://act-witty.blogspot.in/", :target => "_blank"}
+        %h3 BLOG
+    .aw_home_top_nav.top_nav_active
+      %a{:href=>"/about/show.html" }
+        %h3 ABOUT
+    .aw_home_top_nav
+      %a{:href=>"http://www.actwitty.com" }
+        %h3 HOME
 
-=render :partial => "welcome/footer"
+  .aw_home_about_full_width_box
+    %span "Actwitty is about to change the way we are perceived on internet. Its creates a complete you from your data and activities on various social networks."
+  #aw_home_about_box
+    .aw_home_about_vertical_box
+      .aw_home_about_name_box
+        %span Alok Srivastava
+      .aw_home_about_services
+        .aw_home_about_services_link
+          %a{:href => "http://in.linkedin.com/pub/alok-srivastava/2/313/8b3",:target => "_blank"}
+            %img{:src=>"/images/actwitty/refactor/aw_lpm/linkedin.png",:target => "_blank"}
+        .aw_home_about_services_link
+          %a{:href => "https://twitter.com/#!/alokic",:target => "_blank"}
+            %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png",:target => "_blank"}
+
+    .aw_home_about_vertical_box
+      .aw_home_about_name_box
+        %span Sudhanshu Saxena
+      .aw_home_about_services
+        .aw_home_about_services_link
+          %a{:href => "http://in.linkedin.com/pub/sudhanshu-saxena/2/372/4a8",:target => "_blank"}
+            %img{:src=>"/images/actwitty/refactor/aw_lpm/linkedin.png",:target => "_blank"}
+        .aw_home_about_services_link
+          %a{:href => "https://twitter.com/#!/iam_sudhanshu",:target => "_blank"}
+            %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png",:target => "_blank"}
+
+
+  #aw_home_footer
+
+    #aw_home_follow_us
+      .fb-like.aw_like_us{"data-href" => "http://www.actwitty.com", "data-send" => "false", "data-show-faces" => "true", "data-width" => "450"}
+      %a{:href=>"http://www.facebook.com/pages/Actwitty/162060013895162",:target => "_blank"}
+        %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
+      %a{:href=>"http://twitter.com/#!/act_witty", :target => "_blank" }
+        %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
+      %span follow us on
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" }
 

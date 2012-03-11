@@ -1,26 +1,79 @@
 /* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
 .aw_images_container_box {
+  width: 510px;
+  height: auto;
+  display: block;
+  margin-top: 25px;
+  margin-left: 8px;
+}
+/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_images_container_box .aw_images_internal_container_box {
   width: 100%;
   height: auto;
   display: block;
-  margin-top: 10px;
-  margin-left: 2px;
+  float: left;
 }
-/* line 7, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
-.aw_images_container_box .aw_images_col {
-  width: 33%;
+/* line 13, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_images_container_box .aw_images_internal_container_box .aw_images_col {
+  width: 170px;
   height: auto;
   display: inline-block;
   float: left;
   margin: 0px;
   padding: 0px;
 }
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
-.aw_images_container_box .aw_images_col .aw_single_img_box {
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-  -moz-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
-  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+/* line 20, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_images_container_box .aw_images_internal_container_box .aw_images_col .aw_single_img_box {
+  width: 166px;
   position: relative;
-  padding: 5px;
+  margin: 2px;
+}
+/* line 25, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_images_container_box .aw_images_internal_container_box .aw_images_col .aw_single_img_box a img.aw_tiled_image {
+  padding: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333;
+}
+/* line 31, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_images_container_box .aw_images_internal_container_box .aw_images_col .aw_single_img_box img.aw_images_service_img {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  margin-top: -25px;
+  margin-left: -20px;
+}
+
+/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_js_image_box_show_always {
+  display: inline-block;
+}
+
+/* line 42, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_js_image_box_hide_on_less {
+  display: none;
+}
+
+/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_js_image_box_show_on_more {
+  display: inline-block;
+}
+
+/* line 48, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_show_more_image_box {
+  height: 15px;
+  width: 100%;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #25a0da;
+  font-size: 14px;
+  font-weight: normal;
+  float: left;
+}
+/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.sass */
+.aw_show_more_image_box:hover {
+  cursor: pointer;
 }

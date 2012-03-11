@@ -13,19 +13,28 @@ class WelcomeController < ApplicationController
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] Main Page requested")
       #response.headers['Cache-Control'] = 'public, max-age=300'
        #FB: Open graph tags start
-      set_meta_tags :open_graph => {
-                                    :title => "ActWitty - Check-in your interests",
-                                    :type => "activity",
-                                    :site_name => "ActWitty",
-                                    :image => "http://www.actwitty.com/images/actwitty/refactor/aw_common/aw_logo.png",
-                                    :description => "An interest based social network which gathers your social foot print organized under interest channels from your favorite social networks.",
-                                    :url => "www.actwitty.com",
-                                    :locality => "Bangalore",
-                                    :region => "KA",
-                                    :'country-name' => "INDIA"
-                                  },
-                  :title => "Check-in your interests",
-                  :keywords => "social media, social networking, feeds, aggregator, location, declutter, SEO, blogger, checkin, ranks, badges, facebook, twitter",
+      set_meta_tags(:open_graph => {
+                                     :title => "Actwitty - The Complete You.",
+                                     :type => "product",
+                                     :site_name => "Actwitty",
+                                     :image => "http://actwitty.com/images/actwitty/refactor/aw_common/aw_logo.png",
+                                     :description => "Actwitty integrates your multiple social profiles like Facebook, Twitter, LinkedIn, Youtube, Tumblr etc. Actwitty processes your data from these sources and categorizes data into the topics like Technology, Food, Entertainment etc. This generate a complete you. Start acting witty at http://www.actwitty.com ",
+                                     :url => "http://www.actwitty.com",
+                                     :locality => "Bangalore",
+                                     :region => "KA",
+                                     :email => "contact@actwitty.com",
+                                     :'country-name' => "INDIA"
+                                   },
+                    :title => "The Complete You",
+                    :keywords => "actwitty, social profile, persona, interests, topics, activities, social analytics, social media",
+                    :author => "Actwitty",
+                    :copyright => "Actwitty",
+                    :ABSTRACT => "Actwitty integrates your multiple social profiles like Facebook, Twitter, LinkedIn, Youtube, Tumblr etc. Actwitty processes your data from these sources and categorizes data into the topics like Technology, Food, Entertainment etc. This generate a complete you. Start acting witty at http://www.actwitty.com ",
+                    :description => "Actwitty integrates your multiple social profiles like Facebook, Twitter, LinkedIn, Youtube, Tumblr etc. Actwitty processes your data from these sources and categorizes data into the topics like Technology, Food, Entertainment etc. This generate a complete you. Start acting witty at http://www.actwitty.com ")
+
+
+
+
 
 
 

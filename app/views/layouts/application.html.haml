@@ -2,11 +2,15 @@
 %html{"xmlns:fb" => "http://www.facebook.com/2008/fbml", "xmlns:og" => "http://opengraphprotocol.org/schema/"}
   %head
     %meta{:charset => 'utf-8'}
-    %title ActWitty - Check-in your interests
-    = display_meta_tags :site => 'ActWitty'
+    %title Actwitty - The Complete You.
+    %meta{:property=> "fb:admins", :content => "100002965451405"}/
+    %meta{:property=> "fb:app_id", :content => "180483002026787"}/
+
+
+    = display_meta_tags :site => 'Actwitty'
     = include_stylesheets :defaults
 
-    -if @page_mode == "landing_page" or @page_mode == "authentications_page"
+    -if @page_mode == "landing_page" or @page_mode == "authentications_page"  or @page_mode == "about_page"
       = include_stylesheets :landing_pages
 
     -if @page_mode == "profile_chn_page" or @page_mode == "profile_sketch_page" or @page_mode == "profile_stm_page" or @page_mode == "profile_usr_settings_page" or @page_mode == "profile_channel_settings_page"

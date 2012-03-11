@@ -42,4 +42,5 @@ function aw_api_view_locations_render(data){
                                       }); 
     });
   });
+  $("#aw_js_locations_busy").hide();
 }

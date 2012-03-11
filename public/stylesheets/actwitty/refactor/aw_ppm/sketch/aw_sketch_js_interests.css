@@ -1,335 +1,184 @@
 /* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box {
-  width: 154px;
-  height: 213px;
-  background-color: black;
-  margin-left: 20px;
-  margin-top: 25px;
+.aw_sketch_interest_main_box {
+  height: auto;
+  width: 100%;
+  min-height: 240px;
   position: relative;
-  font-family: "RobotoRegular";
-  letter-spacing: 1px;
-  border-radius: 5px;
-  -moz-box-shadow: 0 0 10px #333333;
-  -webkit-box-shadow: 0 0 10px #333333;
-  box-shadow: 0 0 10px #333333;
-}
-/* line 14, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topic_logo_large {
-  display: block;
-}
-/* line 16, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_title {
-  height: 32px;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  background: #25a0da;
-  color: white;
-  text-align: center;
-  font-size: 28px;
-  font-family: "League Gothic";
-  text-transform: uppercase;
-  padding-top: 1px;
-  border-top-left-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  border-top-right-radius: 5px;
-  -moz-border-radius-topright: 5px;
-}
-/* line 33, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_yellow {
-  background-color: #f19720;
-}
-/* line 35, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_mid_green {
-  background-color: #309b46;
-}
-/* line 37, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_red {
-  background-color: #e61e26;
-}
-/* line 39, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_lilac {
-  background-color: #7e51a1;
-}
-/* line 41, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_brown {
-  background-color: #986827;
-}
-/* line 43, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_pink {
-  background-color: #df73ad;
-}
-/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_light_green {
-  background-color: #8bc03f;
-}
-/* line 47, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_light_magenta {
-  background-color: #ed1691;
-}
-/* line 51, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray1 {
-  background-color: #c8c8c8;
-}
-/* line 53, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray2 {
-  background-color: #6f6f6f;
-}
-/* line 55, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray3 {
-  background-color: #676767;
-}
-/* line 57, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray4 {
-  background-color: #575757;
-}
-/* line 59, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray5 {
-  background-color: #989999;
-}
-/* line 61, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_grid_box_color_gray6 {
-  background-color: #3f3f3f;
-}
-/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 40px;
-  left: 8px;
+  border-bottom: 1px dotted #444444;
+  margin-top: 20px;
   overflow: hidden;
-  cursor: pointer;
-}
-/* line 72, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left:hover {
-  background: #575757;
-}
-/* line 74, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 82, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_left span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 95, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 40px;
-  left: 81px;
-  overflow: hidden;
-  cursor: pointer;
-}
-/* line 103, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right:hover {
-  background: #575757;
-}
-/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 113, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_top_right span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 126, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 113px;
-  left: 8px;
-  cursor: pointer;
-}
-/* line 133, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left:hover {
-  background: #575757;
-}
-/* line 135, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 143, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_left span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 156, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right {
-  position: absolute;
-  width: 65px;
-  height: 65px;
-  top: 113px;
-  left: 81px;
-  cursor: pointer;
-}
-/* line 163, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right:hover {
-  background: #575757;
-}
-/* line 165, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right img.aw_sketch_dyn_topic_grid_img {
-  margin-left: 5px;
-  margin-top: 5px;
-  font-family: "League Gothic";
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 173, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_grid_box_bottom_right span.aw_sketch_dyn_topic_grid_number {
-  width: 100%;
-  text-align: center;
-  margin-top: 2px;
-  margin-right: 10px;
-  margin-bottom: 2px;
-  font-family: "League Gothic";
-  font-size: 36px;
-  font-weight: normal;
-  color: white;
-  display: block;
-}
-/* line 189, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_small {
-  position: absolute;
-  top: -15px;
-  left: 132px;
-  height: 30px;
-  width: 30px;
-}
-/* line 196, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_logo_large {
-  position: absolute;
-  top: -20px;
-  left: 127px;
-  height: 40px;
-  width: 40px;
-  display: none;
-}
-/* line 204, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro {
-  height: 25px;
-  width: 100%;
-  border: 0px solid red;
-  position: absolute;
-  top: 186px;
-  left: 0px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  -moz-border-radius-bottomright: 5px;
-}
-/* line 216, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_facebook {
-  height: 100%;
-  background-color: #005ca5;
-  border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  display: block;
-  float: left;
-  padding-top: 2px;
-  margin: 0;
-}
-/* line 227, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_facebook:hover {
-  cursor: pointer;
-}
-/* line 230, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter {
-  height: 100%;
-  background-color: #23b7e9;
-  border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomleft: 5px;
-  border-bottom-right-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  display: inline-block;
-  float: right;
-  padding-top: 2px;
-  margin: 0;
-}
-/* line 241, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
-.aw_sketch_dyn_topics_box .aw_sketch_dyn_topic_service_distro .aw_sketch_dyn_topic_service_twitter:hover {
-  cursor: pointer;
 }
 
-/* line 244, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 10, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_interest_background_box {
+  margin: auto;
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 400px;
+  width: auto;
+  height: 100%;
+  z-index: -1;
+}
+/* line 21, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_interest_background_box .aw_sketch_interest_background_img {
+  height: 100%;
+  filter: alpha(opacity=9);
+  opacity: 0.09;
+  z-index: -1;
+}
+
+/* line 27, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box {
+  display: block;
+  border-top: 1px dotted #444444;
+  min-height: 45px;
+  height: auto;
+  width: 100%;
+  margin-top: -5px;
+  padding: 0;
+  position: relative;
+}
+/* line 36, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_index {
+  height: 32px;
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  left: 28px;
+  color: #cccccc;
+  cursor: pointer;
+  display: inline-block;
+}
+/* line 45, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_index p {
+  width: 100%;
+  margin: auto;
+  text-align: left;
+  font-family: "League Gothic";
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: normal;
+}
+/* line 54, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_name {
+  padding-left: 10px;
+  position: absolute;
+  top: 50%;
+  margin-top: -14px;
+  left: 60px;
+  height: 32px;
+  color: #25a0da;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+/* line 64, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_name p {
+  font-family: "RobotoRegular";
+  font-size: 30px;
+  font-weight: normal;
+  margin: auto;
+  line-height: 30px;
+}
+/* line 70, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_images {
+  top: 50%;
+  margin-top: -14px;
+  right: 125px;
+  position: absolute;
+  height: 32px;
+}
+/* line 76, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_images img.aw_sketch_dyn_topics_box_internal_img {
+  margin-left: 8px;
+  height: 26px;
+  margin-top: 3px;
+  filter: alpha(opacity=1);
+  opacity: 0.01;
+  cursor: pointer;
+}
+/* line 83, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_delimiter {
+  border-left: 1px dotted #444444;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 115px;
+  filter: alpha(opacity=1);
+  opacity: 0.01;
+}
+/* line 93, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_services {
+  top: 50%;
+  height: 32px;
+  margin-top: -14px;
+  left: 425px;
+  position: absolute;
+}
+/* line 99, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_services img.aw_sketch_dyn_topics_box_services_img {
+  margin-left: 8px;
+  height: 26px;
+  filter: alpha(opacity=1);
+  opacity: 0.01;
+  cursor: pointer;
+}
+/* line 105, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_images img.aw_sketch_dyn_topics_box_internal_img {
+  filter: alpha(opacity=95);
+  opacity: 0.95;
+}
+/* line 108, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_services img.aw_sketch_dyn_topics_box_services_img {
+  filter: alpha(opacity=95);
+  opacity: 0.95;
+}
+/* line 111, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_delimiter {
+  filter: alpha(opacity=95);
+  opacity: 0.95;
+}
+/* line 115, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_name {
+  color: #444444;
+}
+/* line 117, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_index {
+  color: #444444;
+}
+/* line 121, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+.aw_sketch_dyn_topics_box:hover {
+  background-color: #d6f5f5;
+}
+
+/* line 125, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_show_always {
   display: inline-block;
 }
 
-/* line 247, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 128, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_hide_on_less {
   display: none;
 }
 
-/* line 250, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 131, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_js_topics_box_show_on_more {
   display: inline-block;
 }
 
-/* line 253, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 134, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_show_more_topics_box {
   height: 15px;
   width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: left;
-  color: #0099b9;
+  color: #25a0da;
   font-size: 14px;
   font-weight: normal;
 }
-/* line 262, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
+/* line 143, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.sass */
 .aw_show_more_topics_box:hover {
   cursor: pointer;
 }

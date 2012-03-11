@@ -1,8 +1,7 @@
 Sangam::Application.routes.draw do
 
-  get "home/show"
+
   get "home/sketch"
-  get "home/streams"
   get "home/thanks"
   #get "home/alpha"
   get '/users/sign_in', :to => 'welcome#new'
@@ -22,18 +21,6 @@ Sangam::Application.routes.draw do
   end
 
 
-
-
-
-
-
-
-
-  match '/channel_settings/edit' => 'channel_settings#edit'
-  match '/channel_settings/update' => 'channel_settings#update_channels'
-
-
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -44,7 +31,10 @@ Sangam::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
+  
 
+  match '/home/get_entities' => 'home#get_entities'
+  match '/home/get_entities_verified' => 'home#get_entities_verified'
 
   match '/home/settings' => 'home#settings'
   match '/home/settings_save' => 'home#settings_save'
@@ -54,35 +44,11 @@ Sangam::Application.routes.draw do
 
 
   match '/home/get_channels' => 'home#get_channels'
-  match '/home/get_entities' => 'home#get_entities'
-  match '/home/delete_entities_from_post' => 'home#delete_entities_from_post'
-  match '/home/get_related_entities' => 'home#get_related_entities'
-  match '/home/get_locations' => 'home#get_locations'
-  match '/home/get_related_locations' => 'home#get_related_locations'
-  match '/home/get_enriched_activities' => 'home#get_enriched_activities'
-  match '/home/get_all_comments' => 'home#get_all_comments'
-  match '/home/get_users_of_campaign' => 'home#get_users_of_campaign'
-  match '/home/get_related_friends' => 'home#get_related_friends'
-  match '/home/create_campaign' => 'home#create_campaign'
-  match '/home/delete_campaign' => 'home#delete_campaign'
-  match '/home/delete_stream' => 'home#delete_stream'
-  match '/home/delete_comment' => 'home#delete_comment'
-  match '/home/create_comment' => 'home#create_comment'
-  match '/home/create_activity' => 'home#create_activity'
   match '/home/get_summary' => 'home#get_summary'
-  match '/home/get_friends_summary' => 'home#get_friends_summary'
   match '/home/get_streams' => 'home#get_streams'
-  match '/home/remove_document' => 'home#remove_document'
 
   match '/home/search_any' => 'home#search_any'
 
-  match '/view' => 'home#activity'
-  match '/home/get_single_activity' => 'home#get_single_activity'
-
-  match '/home/get_draft_activities' => 'home#get_draft_activities'
-  match '/home/publish_activity' => 'home#publish_activity'
-
-  match '/home/process_edit_activity' => 'home#process_edit_activity'
 
   match '/authentications/failure' => 'authentications#failure'
   match '/users/auth/:provider/callback' => 'authentications#process_authentication'
@@ -90,32 +56,6 @@ Sangam::Application.routes.draw do
   match '/authentications/auth_signup_provider' => 'authentications#auth_signup_provider'
   match '/authentications/auth_signin_provider' => 'authentications#auth_signin_provider'
   match '/authentications/auth_signin' => 'authentications#auth_signin'
-
-
-  match '/mention_page' => 'home#mention_page'
-  match '/home/get_mention_specific_stream'   => 'home#get_mention_specific_stream'
-
-  match '/location_page' => 'home#location_page'
-  match '/home/get_location_specific_stream' => 'home#get_location_specific_stream'
-
-  match '/channel_page' => 'home#channel_page'
-  match '/home/get_channel_specific_stream' => 'home#get_channel_specific_stream'
-
-
-  match '/home/get_document_channel' => 'home#get_document_channel'
-  match '/home/get_document_stream' => 'home#get_document_stream'
-
-  match '/home/get_subscribers' => 'home#subscribers'
-  match '/home/get_subscriptions' => 'home#subscriptions'
-
-  match '/home/create_theme' => 'home#create_theme'
-
-  match '/home/get_latest_summary' => 'home#get_latest_summary'
-
-  match '/home/rename_channel_of_post' => 'home#rename_channel_of_post'
-
-
-  match 'activity_words/activity_word_list' => 'activity_words#activity_word_list'
 
 
   match '/facebook/invite' => 'facebook#invite'
@@ -134,16 +74,10 @@ Sangam::Application.routes.draw do
 
   match '/sign_out' => 'welcome#new'
   match '/welcome/new' => 'welcome#new'
-  match '/home/update_social_media_share' => 'home#update_social_media_share'
-  match '/home/get_social_counter' => 'home#get_social_counter'
 
-  match '/home/subscribe_summary' => 'home#subscribe_summary'
-  match '/home/unsubscribe_summary' => 'home#unsubscribe_summary'
 
-  match '/facebook/wall' => 'facebook#get_last_few_from_wall'
 
-  match '/home/get_analytics_summary' => 'home#get_analytics_summary'
-  match '/home/get_analytics' => 'home#get_analytics'
+
 
   #Alok Adding pusher support
   match '/pusher/auth' => 'home#pusher_auth'

@@ -46,4 +46,5 @@ function aw_api_view_static_profile_render(data){
  *
  */
 function aw_api_view_static_profile_update_description(description){
+  $("#aw_js_user_description").html(description);
 }

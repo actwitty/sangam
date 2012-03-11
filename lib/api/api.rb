@@ -8,10 +8,12 @@ require "entities/entities"
 require 'helpers/plan_table_query/plan_table_query'
 require 'helpers/format_object/format_object'
 
-require 'test/test_data'
-require 'test/test_services'
-require 'test/test_streams'
-require 'test/test_summaries'
+if Rails.env != "production"
+  require 'test/test_data'
+  require 'test/test_services'
+  require 'test/test_streams'
+  require 'test/test_summaries'
+end
 
 module Api
 

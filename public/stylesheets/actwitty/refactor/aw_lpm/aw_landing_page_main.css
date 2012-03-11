@@ -3,7 +3,13 @@
  *code: AWLPM (awlpm) Actwitty Landing Page Main
  *Author: ActWitty Developers
  *Author URI: http://www.actwitty.com */
-/* line 10, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+@font-face {
+  font-family: "League Gothic";
+  src: url("/webfont/leaguegothic/League_Gothic-webfont.eot");
+  src: local("League Gothic Regular"), local("League Gothic"), url("/webfont/leaguegothic/LeagueGothic.woff") format("woff"), url("/webfont/leaguegothic/LeagueGothic.otf") format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg");
+}
+
+/* line 14, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 body {
   margin: 0;
   padding: 0;
@@ -14,7 +20,7 @@ body {
   background-image: url("/images/actwitty/refactor/aw_lpm/pattern2.png");
 }
 
-/* line 20, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 24, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_main_container {
   width: 960px;
   height: auto;
@@ -22,14 +28,14 @@ body {
   border: 0px solid red;
 }
 
-/* line 26, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 30, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_top_header {
   width: 100%;
   height: 100px;
   border: 0px solid blue;
 }
 
-/* line 31, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 35, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .aw_home_top_nav {
   float: right;
   width: 120px;
@@ -40,33 +46,34 @@ body {
   border: 1px solid #dddddd;
   background: #88caed;
   color: black;
+  cursor: pointer;
 }
-/* line 41, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 46, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 .aw_home_top_nav a {
   text-decoration: none;
   color: black;
 }
 
-/* line 46, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 51, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 div.top_nav_active {
   color: black;
   background: #f4f4f4;
 }
-/* line 49, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 54, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 div.aw_home_top_nav h3 {
   text-align: center;
   font-size: 20px;
   margin-top: 10px;
 }
 
-/* line 54, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 59, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_main_container img {
   display: block;
   margin: 0 auto;
   margin-left: 30px;
 }
 
-/* line 59, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 64, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_main_desc {
   margin: 0 auto;
   color: #333333;
@@ -75,7 +82,7 @@ div.aw_home_top_nav h3 {
   text-align: center;
 }
 
-/* line 66, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 71, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_desc {
   color: #2e3436;
   font-size: 17px;
@@ -85,37 +92,42 @@ div.aw_home_top_nav h3 {
   text-transform: uppercase;
 }
 
-/* line 74, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 79, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_social_signup {
   width: 100%;
   height: 50px;
   border: 0px solid red;
   margin-bottom: 30px;
 }
-/* line 79, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 84, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_social_signup img {
   float: right;
   margin-right: 20px;
   width: 250px;
 }
 
-/* line 84, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 89, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_footer {
   width: 100%;
   height: 25px;
   background-image: url("/images/actwitty/refactor/aw_lpm/footer.gif");
 }
 
-/* line 89, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 94, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_follow_us {
   width: 100%;
   height: 25px;
 }
-/* line 92, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 97, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_follow_us .aw_like_us {
+  float: left;
+  margin-left: 5px;
+}
+/* line 100, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_follow_us a {
   text-decoration: none;
 }
-/* line 94, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 102, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_follow_us span {
   float: right;
   font-size: 12px;
@@ -123,10 +135,78 @@ div.aw_home_top_nav h3 {
   color: #333333;
   margin-top: 4px;
 }
-/* line 100, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+/* line 108, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
 #aw_home_follow_us img {
   float: right;
   vertical-align: middle;
   margin-left: 3px;
   padding: 0;
+}
+
+/* line 116, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+.aw_home_about_full_width_box {
+  width: 600px;
+  height: 100px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 150px;
+}
+/* line 123, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+.aw_home_about_full_width_box span {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 25px;
+  color: #777777;
+}
+
+/* line 130, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+/* line 138, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box {
+  width: 47%;
+  float: left;
+  padding: 10px;
+  display: inline-block;
+  border: 0px dotted #cccccc;
+}
+/* line 144, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box .aw_home_about_name_box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-top: 5px;
+}
+/* line 150, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box .aw_home_about_name_box span {
+  font-family: League Gothic;
+  font-weight: normal;
+  font-size: 64px;
+  color: black;
+}
+/* line 155, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-top: 2px;
+}
+/* line 160, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link {
+  height: auto;
+  width: auto;
+  display: inline-block;
+}
+/* line 165, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link a {
+  margin: 0px;
+  padding: 0px;
+}
+/* line 168, ../../../../../app/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.sass */
+#aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link a img {
+  margin: 0px;
 }

@@ -45,7 +45,7 @@ class InvitesController < ApplicationController
   def inviteds
     Rails.logger.info("[CNTRL] [INVITES] Show Inviteds: [#{params}]")
     if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.info("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email}")
+      Rails.logger.info("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email} <> #{AppConstants.authorized_see_internals_email_id}")
       redirect_to :controller => "welcome", :action => "new"
     end
     unless user_signed_in?

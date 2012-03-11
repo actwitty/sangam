@@ -42,7 +42,8 @@ function aw_api_controller_sketch_start_data_pulls(){
       aw_api_model_stream_view_add_service(service_name);
       aw_api_model_images_add_service(service_name);
 
-      if ( aw_js_global_visited_user_credentials.id == aw_js_global_logged_in_user_credentials.id ){
+      if ( aw_js_global_visited_user_credentials.id == aw_js_global_logged_in_user_credentials.id )
+      {
         aw_api_model_visited_user_feed_add_service(service_name);
       }
     }
@@ -53,6 +54,7 @@ function aw_api_controller_sketch_start_data_pulls(){
   aw_api_model_static_profile_trigger_fetch();
   aw_api_model_stream_view_fetch();
   aw_api_model_visited_user_feed_fetch();
+  aw_api_model_videos_fetch();
   if ( aw_js_global_visited_user_credentials.id == aw_js_global_logged_in_user_credentials.id ){
     aw_api_model_visited_user_feed_fetch();
   }

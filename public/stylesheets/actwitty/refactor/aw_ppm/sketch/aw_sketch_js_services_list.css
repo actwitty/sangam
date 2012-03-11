@@ -1,12 +1,12 @@
 /* line 1, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */
 .aw_dyn_service_image_box {
-  width: 80px;
-  height: 80px;
+  width: 44px;
+  height: 44px;
   display: inline-block;
   float: left;
-  margin-top: 25px;
-  margin-right: 3px;
-  margin-left: 3px;
+  margin-top: 40px;
+  margin-right: 0px;
+  margin-left: 8px;
   position: relative;
 }
 /* line 10, ../../../../../../app/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.sass */

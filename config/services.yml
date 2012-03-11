@@ -14,7 +14,12 @@ services:
     name: LinkedIn
     description: Professional network
     active_icon: linked_in_active.png
-    inactive_icon: linked_in_inactive.png    
+    inactive_icon: linked_in_inactive.png 
+  googleplus:
+    name: Google+
+    description: Social networking platform
+    active_icon: google_plus_inactive.png
+    inactive_icon: google_plus_inactive.png
   youtube:
     name: Youtube
     description: Video sharing platform
@@ -30,4 +35,18 @@ services:
     description: Microblogging platform
     active_icon: tumblr_active.png
     inactive_icon: tumblr_inactive.png
-  
+  foodspotting:
+    name: FoodSpotting
+    description: Foodie platform
+    active_icon: foodspotting_inactive.png
+    inactive_icon: foodspotting_inactive.png    
+  posterous:
+    name: Posterous
+    description: Blogging Platform
+    active_icon: posterous_inactive.png
+    inactive_icon: posterous_inactive.png      
+  stackoverflow:
+    name: StackOverflow 
+    description: Technical discussion forum
+    active_icon: stackoverflow_inactive.png
+    inactive_icon: stackoverflow_inactive.png      

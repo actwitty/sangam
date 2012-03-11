@@ -21,6 +21,9 @@ function aw_api_controller_render_services_list(data){
  */
 function aw_api_controller_render_interests(data){
   aw_api_view_interest_render(data);
+  var description = aw_api_model_get_interest_sentence();
+  aw_api_model_static_profile_apply_description(description);
+  aw_api_view_static_profile_update_description(description);
 }
 
 /******************************************************/
@@ -118,7 +121,8 @@ function aw_api_controller_render_images(data){
  *
  */
 function aw_api_controller_change_filter_on_stream(filter){
-  aw_pulled_stream_query_filter(filter);
+  aw_api_view_show_stream_waiting();
+  aw_pulled_stream_query_filter(filter, null);
 }
 
 /************************************************************/
@@ -141,4 +145,13 @@ function aw_api_controller_tweak_stream_header(header_data){
     header_data = "Wall Feeds";
     aw_api_view_stream_header_render(header_data);
   }
+}
+
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_controller_show_videos(data){
+  aw_api_view_videos_render(data);
 }

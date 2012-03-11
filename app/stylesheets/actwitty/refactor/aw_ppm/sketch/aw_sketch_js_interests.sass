@@ -1,245 +1,126 @@
-.aw_sketch_dyn_topics_box
-  width: 154px
-  height: 213px
-  background-color: #000
-  margin-left: 20px
-  margin-top: 25px
+.aw_sketch_interest_main_box
+  height: auto
+  width: 100%
+  min-height: 240px
   position: relative
-  font-family: 'RobotoRegular'
-  letter-spacing: 1px
-  border-radius: 5px
-  -moz-box-shadow: 0 0 10px #333 
-  -webkit-box-shadow: 0 0 10px #333
-  box-shadow: 0 0 10px #333
-  &:hover .aw_sketch_dyn_topic_logo_large
-    display: block
-  .aw_sketch_dyn_topic_title
+  border-bottom: 1px dotted #444
+  margin-top: 20px
+  overflow: hidden
+
+.aw_sketch_interest_background_box
+  margin: auto
+  display: block
+  position: absolute
+  top: 0px
+  left: 400px
+  width: auto
+  height: 100%
+  z-index: -1
+
+
+  .aw_sketch_interest_background_img
+    height: 100%
+    filter: alpha(opacity=9)
+    opacity: .09
+    z-index: -1
+
+.aw_sketch_dyn_topics_box
+  display: block
+  border-top: 1px dotted #444
+  min-height: 45px
+  height: auto
+  width: 100%
+  margin-top: -5px
+  padding: 0
+  position: relative
+  .aw_sketch_dyn_topics_box_index
     height: 32px
-    width: 100%
     position: absolute
-    top: 0px
-    background: #25a0da 
-    color: #fff
-    text-align: center
-    font-size: 28px
-    font-family: 'League Gothic'
+    top: 50%
+    margin-top: -14px 
+    left: 28px
+    color: #ccc
+    cursor: pointer
+    display: inline-block
+    p
+      width: 100%
+      margin: auto
+      text-align: left
+      font-family: 'League Gothic'
+      font-size: 30px
+      line-height: 30px
+      font-weight: normal
+      
+  .aw_sketch_dyn_topics_box_name
+    padding-left: 10px
+    position: absolute
+    top: 50%
+    margin-top: -14px
+    left: 60px
+    height: 32px
+    color: #25a0da
     text-transform: uppercase
-    padding-top: 1px
-    border-top-left-radius: 5px
-    -moz-border-radius-topleft: 5px
-    border-top-right-radius: 5px
-    -moz-border-radius-topright: 5px
-   
-  .aw_grid_box_color_yellow 
-    background-color: #f19720
-  .aw_grid_box_color_mid_green
-    background-color: #309b46
-  .aw_grid_box_color_red
-    background-color: #e61e26
-  .aw_grid_box_color_lilac
-    background-color: #7e51a1
-  .aw_grid_box_color_brown
-    background-color: #986827
-  .aw_grid_box_color_pink
-    background-color: #df73ad
-  .aw_grid_box_color_light_green
-    background-color: #8bc03f
-  .aw_grid_box_color_light_magenta
-    background-color: #ed1691
-
-
-  .aw_grid_box_color_gray1 
-    background-color: #C8C8C8
-  .aw_grid_box_color_gray2
-    background-color: #6f6f6f
-  .aw_grid_box_color_gray3
-    background-color: #676767
-  .aw_grid_box_color_gray4
-    background-color: #575757
-  .aw_grid_box_color_gray5
-    background-color: #989999 
-  .aw_grid_box_color_gray6
-    background-color: #3f3f3f
-
-  .aw_sketch_dyn_topic_grid_box_top_left
+    cursor: pointer    
+    p
+      font-family: 'RobotoRegular'
+      font-size: 30px      
+      font-weight: normal
+      margin: auto
+      line-height: 30px
+  .aw_sketch_dyn_topics_box_images
+    top: 50%
+    margin-top: -14px
+    right: 125px
     position: absolute
-    width: 65px
-    height: 65px
-    top: 40px
-    left: 8px
-    overflow: hidden
-    cursor: pointer
-    &:hover
-      background: #575757
-    img.aw_sketch_dyn_topic_grid_img
-      margin-left: 5px
-      margin-top: 5px
-      font-family: 'League Gothic'
-      font-size: 14px
-      font-weight: normal
-      color: white
-      display: block
-    span.aw_sketch_dyn_topic_grid_number
-      width: 100%
-      text-align: center
-      margin-top: 2px
-      margin-right: 10px
-      margin-bottom: 2px
-      font-family: 'League Gothic'
-      font-size: 36px
-      font-weight: normal
-      color: white
-      display: block
-
-
-  .aw_sketch_dyn_topic_grid_box_top_right
+    height: 32px
+    img.aw_sketch_dyn_topics_box_internal_img
+      margin-left: 8px
+      height: 26px
+      margin-top: 3px
+      filter: alpha(opacity=1)
+      opacity: .01
+      cursor: pointer
+  .aw_sketch_dyn_topics_box_delimiter
+    border-left: 1px dotted #444
+    width: 1px
+    height: 100%
     position: absolute
-    width: 65px
-    height: 65px
-    top: 40px
-    left: 81px
-    overflow: hidden
-    cursor: pointer
-    &:hover
-      background: #575757
-    img.aw_sketch_dyn_topic_grid_img
-      margin-left: 5px
-      margin-top: 5px
-      font-family: 'League Gothic'
-      font-size: 14px
-      font-weight: normal
-      color: white
-      display: block
-    span.aw_sketch_dyn_topic_grid_number
-      width: 100%
-      text-align: center
-      margin-top: 2px
-      margin-right: 10px
-      margin-bottom: 2px
-      font-family: 'League Gothic'
-      font-size: 36px
-      font-weight: normal
-      color: white
-      display: block
+    top: 0
+    right: 115px
+    filter: alpha(opacity=1)
+    opacity: .01
 
-
-  .aw_sketch_dyn_topic_grid_box_bottom_left
+  .aw_sketch_dyn_topics_box_services
+    top: 50%
+    height: 32px
+    margin-top: -14px
+    left: 425px
     position: absolute
-    width: 65px
-    height: 65px
-    top: 113px
-    left: 8px
-    cursor: pointer
-    &:hover
-      background: #575757
-    img.aw_sketch_dyn_topic_grid_img
-      margin-left: 5px
-      margin-top: 5px
-      font-family: 'League Gothic'
-      font-size: 14px
-      font-weight: normal
-      color: white
-      display: block
-    span.aw_sketch_dyn_topic_grid_number
-      width: 100%
-      text-align: center
-      margin-top: 2px
-      margin-right: 10px
-      margin-bottom: 2px
-      font-family: 'League Gothic'
-      font-size: 36px
-      font-weight: normal
-      color: white
-      display: block
-    
+    img.aw_sketch_dyn_topics_box_services_img
+      margin-left: 8px
+      height: 26px
+      filter: alpha(opacity=1)
+      opacity: .01
+      cursor: pointer      
+  &:hover .aw_sketch_dyn_topics_box_images img.aw_sketch_dyn_topics_box_internal_img
+    filter: alpha(opacity=95)
+    opacity: .95
+  &:hover .aw_sketch_dyn_topics_box_services img.aw_sketch_dyn_topics_box_services_img
+    filter: alpha(opacity=95)
+    opacity: .95
+  &:hover .aw_sketch_dyn_topics_box_delimiter
+    filter: alpha(opacity=95)
+    opacity: .95
 
-  .aw_sketch_dyn_topic_grid_box_bottom_right
-    position: absolute
-    width: 65px
-    height: 65px
-    top: 113px
-    left: 81px
-    cursor: pointer
-    &:hover
-      background: #575757
-    img.aw_sketch_dyn_topic_grid_img
-      margin-left: 5px
-      margin-top: 5px
-      font-family: 'League Gothic'
-      font-size: 14px
-      font-weight: normal
-      color: white
-      display: block
-    span.aw_sketch_dyn_topic_grid_number
-      width: 100%
-      text-align: center
-      margin-top: 2px
-      margin-right: 10px
-      margin-bottom: 2px
-      font-family: 'League Gothic'
-      font-size: 36px
-      font-weight: normal
-      color: white
-      display: block
+  &:hover .aw_sketch_dyn_topics_box_name
+    color: #444
+  &:hover .aw_sketch_dyn_topics_box_index
+    color: #444
 
 
-  
+  &:hover
+    background-color: #D6F5F5
 
-    
-  .aw_sketch_dyn_topic_logo_small
-    position: absolute
-    top: -15px
-    left: 132px
-    height: 30px
-    width: 30px
-
-  .aw_sketch_dyn_topic_logo_large
-    position: absolute
-    top: -20px
-    left: 127px
-    height: 40px
-    width: 40px
-    display: none
-
-  .aw_sketch_dyn_topic_service_distro
-    height: 25px
-    width: 100%
-    border: 0px solid red
-    position: absolute
-    top: 186px
-    left: 0px
-    border-bottom-left-radius: 5px
-    border-bottom-right-radius: 5px
-    border-bottom-right-radius: 5px
-    -moz-border-radius-bottomright: 5px
-    -moz-border-radius-bottomright: 5px
-    .aw_sketch_dyn_topic_service_facebook
-      height: 100%
-      background-color: #005ca5
-      border-bottom-left-radius: 5px
-      -moz-border-radius-bottomleft: 5px
-      border-bottom-right-radius: 5px
-      -moz-border-radius-bottomright: 5px
-      display: block
-      float: left
-      padding-top: 2px
-      margin: 0
-      &:hover
-        cursor: pointer
-
-    .aw_sketch_dyn_topic_service_twitter
-      height: 100%
-      background-color: #23b7e9
-      border-bottom-left-radius: 5px
-      -moz-border-radius-bottomleft: 5px
-      border-bottom-right-radius: 5px
-      -moz-border-radius-bottomright: 5px
-      display: inline-block
-      float: right
-      padding-top: 2px
-      margin: 0
-      &:hover
-        cursor: pointer
 
 .aw_js_topics_box_show_always
   display: inline-block
@@ -256,9 +137,13 @@
   margin-top: 5px
   margin-bottom: 5px
   text-align: left
-  color: #0099B9
+  color: #25a0da
   font-size: 14px
   font-weight: normal
   &:hover
     cursor: pointer
-      
+
+
+
+
+  

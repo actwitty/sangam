@@ -70,5 +70,6 @@ function aw_api_view_trends_render(data){
 
   /* invoke timeliner */
   $().timelinr();
+  $("#aw_js_trends_busy").hide();
 
 }

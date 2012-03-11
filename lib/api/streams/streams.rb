@@ -308,8 +308,8 @@ module Api
             stream = get_location_stream(params)
 
           end
+         Rails.logger.info("[LIB] [API] [STREAMS] [VALIDATE] [get_stream] #{params}")
         else
-
           array = get_all_activity({
                                   :query => params[:query],
                                   :current_user_id => params[:current_user_id],
@@ -445,7 +445,8 @@ module Api
 
         Rails.logger.info("[LIB] [API] [STREAMS] [get_document_stream] Leaving")
         stream
-      Rails.logger.error("[LIB] [API] [STREAMS] [get_document_stream] **** ERROR **** #{e.message} for #{params.inspect}")
+      rescue => e
+        Rails.logger.error("[LIB] [API] [STREAMS] [get_document_stream] **** ERROR **** #{e.message} for #{params.inspect}")
         {}
       end
     end
