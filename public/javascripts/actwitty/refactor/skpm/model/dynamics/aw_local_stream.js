@@ -26,7 +26,6 @@ function aw_pulled_stream_allow_cookie(context){
  * null filter defaults to basic
  */
 function aw_pulled_stream_query_filter(filter, fn_cb){
-  //alert("BEFORE:" + JSON.stringify(filter));
   if( filter ){
     aw_local_unity_control_registry = new Date().getTime();
     var context={
@@ -36,7 +35,6 @@ function aw_pulled_stream_query_filter(filter, fn_cb){
     if( fn_cb != null){
       context.no_render_fn_cb = fn_cb;
     }
-   // alert(JSON.stringify(filter));
     $.ajax({
             url: "/home/get_streams",
             type: 'GET',

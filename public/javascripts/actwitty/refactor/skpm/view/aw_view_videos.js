@@ -54,13 +54,14 @@ function aw_api_view_videos_render(data){
     }
   });
 
-  if( show_more){
-    html =  '<div class="aw_all_videos_container_box">' +
+  html =  '<div class="aw_all_videos_container_box">' +
               html + 
-            '</div>' +
-            '<div class="aw_show_more_videos_box aw_js_show_more_videos"  state="show" >' +
-              'Show more videos' +
-            '</div>'; 
+            '</div>';
+  if( show_more){
+    
+    html = html + '<div class="aw_show_more_videos_box aw_js_show_more_videos"  state="show" >' +
+                    'Show more videos' +
+                  '</div>'; 
   }
 
   $("#aw_js_videos").html(html);
