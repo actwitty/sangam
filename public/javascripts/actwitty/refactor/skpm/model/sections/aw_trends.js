@@ -104,15 +104,86 @@ var aw_trends_test_json =   [
                                      }
                                  ];
 /*************************************************/
+/*
+ *
+ *
+ */
+function aw_api_model_trends_fetch_data(){
+    $.ajax({
+            url: "/home/get_analytics_timeline",
+            type: 'GET',
+            data: {
+                    user_id : aw_js_global_visited_user_credentials.id,
+                    rest : 2 
+                  },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (timeline_data) {
+              var trend_data = [];
+              var week_json   = {};
+              $.each( timeline_data, function( week_key, week_data ){
+                //var time = ('' + week_data.start_date).replace(/-/g,"/").replace(/[TZ]/g," ");
+                var interests = [];
+                var title = week_data.start_date;
+                var cumulative_total = 0;
+
+                if( week_data.weeks.services){
+                  $.each( week_data.weeks.services, function( service_name, count){
+                    cumulative_total += count;
+                  });
+                }
+
+                if( week_data.weeks.topics && cumulative_total) {
+                  $.each(week_data.weeks.topics, function( interest_name, data){
+                  
+                    if( week_data.weeks.topics[interest_name].posts &&
+                          week_data.weeks.topics[interest_name].posts.counts &&
+                            week_data.weeks.topics[interest_name].posts.counts.total ){
+                            var interest_json = {
+                                                  interest_id: week_data.weeks.topics[interest_name].summary_id,
+                                                  name: interest_name,
+                                                  category: interest_name,
+                                                  percent: (week_data.weeks.topics[interest_name].posts.counts.total * 100)/cumulative_total
+
+                                                };
+                            interests.push(interest_json);
+
+                    }
+                  });
+                      
+
+                  week_json = { 
+                              'title' : title,
+                              'interests' : interests
+                            };   
+
+                  trend_data.push(week_json);
+                }
+  
+              });             
+              //aw_api_controller_render_trends(time_line_data);
+              aw_api_controller_render_trends(trend_data);
+              aw_api_modal_handle_service_popularity(timeline_data);
+            },
+            error:function(XMLHttpRequest,textStatus, errorThrown){ 
+              aw_api_controller_render_trends([]);
+              aw_api_modal_handle_service_popularity(null);
+              aw_lib_console_log("error",
+                              "aw_api_model_trends_fetch_data:  Server request failed for " + request_tag 
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+        }
+    });
+}
+/*************************************************/
 /* 
- * List of services which will be polled to generate
- * static profile
+ * 
+ *
  *
  */
 function aw_api_model_trends_initialize(){
   /* make a get call to server */
+  aw_api_model_trends_fetch_data();
 
-  aw_api_controller_render_trends(aw_trends_test_json);
 }
 
 

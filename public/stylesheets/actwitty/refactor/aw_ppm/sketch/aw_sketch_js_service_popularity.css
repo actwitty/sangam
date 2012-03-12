@@ -33,20 +33,18 @@
       text-transform: uppercase;
       text-align: left; }
   .aw_service_popularity_segment .aw_service_popularity_interest_details {
-    width: 480px;
     height: auto;
-    padding-left: 5px;
-    padding-right: 5px;
+    width: auto;
+    margin-left: 60px;
     padding-bottom: 5px;
     border: 0px solid red;
     position: relative;
     display: block;
     float: left;
-    border-bottom: 1px dotted #444444;
-    margin: auto; }
+    border-bottom: 1px dotted #444444; }
     .aw_service_popularity_segment .aw_service_popularity_interest_details .aw_service_popularity_details_box {
-      width: 64px;
-      height: 64px;
+      width: 75px;
+      height: 75px;
       margin: auto;
       overflow: hidden;
       float: left;
@@ -56,27 +54,23 @@
       border-radius: 3px;
       -moz-box-shadow: 0 0 5px #333333;
       -webkit-box-shadow: 0 0 5px #333333;
-      box-shadow: 0 0 5px #333333; }
+      box-shadow: 0 0 5px #333333;
+      cursor: pointer; }
       .aw_service_popularity_segment .aw_service_popularity_interest_details .aw_service_popularity_details_box span.aw_service_popularity_number {
         display: block;
         width: 100%;
         text-transform: uppercase;
         text-align: center;
-        font-size: 44px;
+        font-size: 36px;
         font-family: "League Gothic";
         font-weight: normal;
-        color: white;
+        color: #333333;
         margin-top: 12px; }
-      .aw_service_popularity_segment .aw_service_popularity_interest_details .aw_service_popularity_details_box span.aw_service_popularity_field {
+      .aw_service_popularity_segment .aw_service_popularity_interest_details .aw_service_popularity_details_box img.aw_service_popularity_field {
         display: block;
-        width: 100%;
-        margin-top: 10px;
-        text-align: center;
-        font-size: 11px;
-        line-height: 12px;
-        font-family: "RobotoRegular";
-        font-weight: normal;
-        color: white; }
+        margin: auto;
+        margin-top: 8px;
+        width: 28px; }
 
 .aw_js_popularity_box_show_always {
   display: inline-block; }

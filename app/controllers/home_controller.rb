@@ -7,38 +7,34 @@ class HomeController < ApplicationController
 
    #Alok Adding pusher support
    #Commenting for time being
-#  after_filter  :pusher_event_push, :only => [:create_campaign, :delete_campaign, :delete_stream, :create_comment,
-#                                              :delete_comment,  :delete_entities_from_post, :remove_document,
-#                                             :publish_activity,  :update_social_media_share,
-#                                             :subscribe_summary, :unsubscribe_summary, :create_theme
-#                                              #:process_edit_activity,:create_activity
-#
+#  after_filter  :pusher_event_push, :only => [:create_activity]
+
 
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
   GET_FUNCTIONS_ARRAY= [ :sketch,
-                        :get_entities,
-                        :get_entities_verified,
-                        :get_summary,
-                        :get_streams,
-                        :get_services_enabled,
-                        :thanks,
-                        :search_any]
+                         :get_entities,
+                         :get_entities_verified,
+                         :get_summary,
+                         :get_streams,
+                         :get_services_enabled,
+                         :get_analytics_timeline,
+                         :thanks,
+                         :search_any]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
   before_filter  :authenticate_user , :except => GET_FUNCTIONS_ARRAY
   before_filter  :create_ghost_user, :only =>  GET_FUNCTIONS_ARRAY
   after_filter  :remove_ghost_user
-  ############################################
-  
+  ############################################  
   #TODO NEED FIX.. TEMPORARY
   def store_and_redirect_location
     #session[:return_to] = "/"
     redirect_to "/welcome/new",:status => 401
   end
- 
+  ###################################################################################
   #TODO NEED FIX.. TEMPORARY 
   def redirect_back_to
      if !session[:return_to].blank?
@@ -46,7 +42,7 @@ class HomeController < ApplicationController
        session[:return_to] = nil
      end
   end
-
+  ###################################################################################
   def  authenticate_user
     if user_signed_in?
       #This block should not hit ideally
@@ -62,7 +58,7 @@ class HomeController < ApplicationController
       return false
     end
   end
-
+  ###################################################################################
   def create_ghost_user
     if !user_signed_in?
       #ghost user can be added in session to avoid query
@@ -123,12 +119,13 @@ class HomeController < ApplicationController
     #if no id mentioned or user not found try to fall back to current user
     #if user not logged in then go to sign in page
     if params[:id].nil?
-      if user_signed_in?
-        @user=current_user
+      if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
+        @user=current_user 
         Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as no id mentioned")
       else
-        Rails.logger.info("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as no id mentioned")
+        Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as no id mentioned")
         redirect_to :controller => "welcome", :action => "new"
+        return
       end
     else
       user_id =  params[:id]
@@ -138,7 +135,7 @@ class HomeController < ApplicationController
           @user=current_user
           Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as incorrect id mentioned")
         else
-          Rails.logger.info("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as incorrect id mentioned")
+          Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
         end
       end
@@ -197,7 +194,7 @@ class HomeController < ApplicationController
           @user=current_user
           Rails.logger.info("[CNTRL] [HOME] [THANKS] Setting user id to current user as incorrect id mentioned")
         else
-          Rails.logger.info("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as incorrect id mentioned")
+          Rails.logger.warn("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
         end
       end
@@ -206,32 +203,7 @@ class HomeController < ApplicationController
 
   end
 
-  ############################################
-  def get_channels
-   Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] Get activities #{params}")
-    if params[:page_type].blank?
-      params[:page_type] = 1
-   else
-      params[:page_type] = Integer(params[:page_type])
-   end
-   if user_signed_in?
-      Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] calling model api #{params}")
-      params[:user_id] == Integer(params[:user_id]);
-      response_json=current_user.get_user_activities( params[:user_id], params[:sort_order])
-
-      Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] model returned #{response_json}")
-      if request.xhr?
-        expires_in 10.minutes
-        render :json => response_json, :status => 200
-      end
-    else
-      Rails.logger.info("[CNTRL][HOME][RELATED ACTIVITIES] User not signed in")
-      if request.xhr?
-        render :json => {}, :status => 400
-      end
-    end
-
-  end
+ 
  
   ############################################
   def get_streams
@@ -284,13 +256,15 @@ class HomeController < ApplicationController
       Rails.logger.debug("[CNTRL][HOME][GET STREAMS] returned from model api")
       if request.xhr?
         Rails.logger.debug("[CNTRL][HOME][GET STREAMS] sending response JSON #{response_json}")
-       # expires_in 10.minutes
+        expires_in 10.minutes
         render :json => response_json, :status => 200
       end
 
     else
       Rails.logger.error("[CNTRL][HOME][GET STREAMS] Get summary failed as user is not signed in")
       if request.xhr?
+        expires_in 10.minutes
+        Rails.logger.warn("[CNTRL] [HOME] [STREAMS][REJECTED] Params:#{params}")
         render :json => {}, :status => 400
       end
     end
@@ -315,6 +289,8 @@ class HomeController < ApplicationController
     else
       Rails.logger.error("[CNTRL][HOME][GET SUMMARY] Get summary failed as user is not signed in")
       if request.xhr?
+        expires_in 10.minutes
+        Rails.logger.warn("[CNTRL] [HOME] [SUMMARY][REJECTED] Params:#{params}")
         render :json => {}, :status => 400
       end
     end
@@ -369,7 +345,7 @@ class HomeController < ApplicationController
             if @profile.save
               Rails.logger.info("[CNTRL][HOME][SETTINGS] Created profile with id: #{@profile.id}")
             else
-              Rails.logger.info("[CNTRL][HOME][SETTINGS] Could not create profile")
+              Rails.logger.warn("[CNTRL][HOME][SETTINGS] Could not create profile")
             end
         end
 	      #Rails.logger.info("[CNTRL][HOME][SETTINGS] If User is Not Nil, then profile: #{@profile.user.user_id}")
@@ -466,18 +442,6 @@ class HomeController < ApplicationController
     redirect_to root_path
 
   end
-
-  ############################################
-  def get_analytics
-    Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS] Params:#{params}")
-    query={}
-    if request.xhr?
-      expires_in 10.minutes
-      render :json => {}
-      return
-    end
-  end
-
   ##################################################################
   def get_entities
     Rails.logger.info("[CNTRL] [HOME] [GET_ENTITIES] Params:#{params}")
@@ -490,10 +454,12 @@ class HomeController < ApplicationController
       Rails.logger.info("[CNTRL][HOME][GET_ENTITIES] model api response #{response_json}")
       if request.xhr?
         expires_in 10.minutes
-        render :json => {}
+        render :json => response_json
         return
       end
     else
+        expires_in 10.minutes
+        Rails.logger.warn("[CNTRL] [HOME] [GET_ENTITIES][REJECTED] Params:#{params}")
         render :json => {}, :status => 400
     end
   end
@@ -526,12 +492,39 @@ class HomeController < ApplicationController
 
     if request.xhr?
       expires_in 10.minutes
-      render :json => response_json, :status => 400
+      Rails.logger.warn("[CNTRL] [HOME] [GET_ENTITIES_VERIFIED][REJECTED] Params:#{params}")
+      render :json => {}, :status => 400
     end
     
   end
   ###################################################################  
-
+  def get_analytics_timeline
+    Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE] Params:#{params}")
+    unless  params[:user_id].nil?
+      query= {}
+      query[:user_id] = params[:user_id]
+      query[:num_of_week] = 5
+      query[:summary_snapshot] = true
+      #query[:enabled_services] Left un-assigned
+      
+      
+      Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE] Calling Model:#{query}")
+      response_json = current_user.get_analytics(query)
+       Rails.logger.debug("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE] Model Response:#{response_json}")
+      if request.xhr?
+        expires_in 10.minutes
+        Rails.logger.warn("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE][REJECTED] Params:#{params}")
+        render :json => response_json
+        return
+      end
+    else
+      if request.xhr?
+        expires_in 10.minutes
+        Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE][REJECTED] Params:#{params}")
+        render :json => {}, :status => 400
+      end
+    end
+  end
 
 
 end

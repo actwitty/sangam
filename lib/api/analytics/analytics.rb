@@ -81,12 +81,14 @@ module Api
       #                                                                                               :actions => {
       #                                                                                                             :likes => {
       #                                                                                                                         :total => 50,
-      #                                                                                                                         :services => {:facebook => 20, :twitter => 30}
+      #                                                                                                                         :services => {:facebook => 20}
       #                                                                                                                       },
       #                                                                                                             :comments => {
       #                                                                                                                           :total => 50,
-      #                                                                                                                           :services => {:facebook => 20, :twitter => 30}
+      #                                                                                                                           :services => {:facebook => 20}
       #                                                                                                                          }
+      # retweets
+      # shares
       #                                                                                                         }
       #                                                                                           }
       #                                                                               },
@@ -108,7 +110,7 @@ module Api
 
         objects = SummaryRank.where(:user_id => params[:user_id] ).all
 
-        if object.blank?
+        if objects.blank?
           Rails.logger.info("[LIB] [API] [ANALYTICS] [GET_ANALYTICS] nothing valid object found for params #{params}")
           return {}
         end
@@ -138,11 +140,12 @@ module Api
               yr = Integer(week.to_s[0..3])
               wk = Integer(week.to_s[4..-1])
 
+              hash[week] = ::Api::Helpers::FormatObject.format_analytics({:hash => object.analytics[week],
+                                                                          :enabled_services => params[:enabled_services]})
+              
               hash[week][:start_date] = DateTime.commercial(yr,wk, 1).utc
               hash[week][:end_date] = DateTime.commercial(yr,wk, 7).utc
 
-              hash[week] = ::Api::Helpers::FormatObject.format_analytics({:hash => object.analytics[week],
-                                                                          :enabled_services => params[:enabled_services]})
             end
           end
         end

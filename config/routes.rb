@@ -35,6 +35,7 @@ Sangam::Application.routes.draw do
 
   match '/home/get_entities' => 'home#get_entities'
   match '/home/get_entities_verified' => 'home#get_entities_verified'
+  match '/home/get_analytics_timeline' => 'home#get_analytics_timeline'
 
   match '/home/settings' => 'home#settings'
   match '/home/settings_save' => 'home#settings_save'
@@ -43,7 +44,6 @@ Sangam::Application.routes.draw do
 
 
 
-  match '/home/get_channels' => 'home#get_channels'
   match '/home/get_summary' => 'home#get_summary'
   match '/home/get_streams' => 'home#get_streams'
 

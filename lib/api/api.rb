@@ -579,7 +579,7 @@ module Api
       #                                     :services => {:facebook => 5, :twitter => 2}, #overall posts in services this week
       #                                     :topics =>   {
       #                                                    "sports" => {
-      #                                                                   :summary_d => 123,
+      #                                                                   :summary_id => 123,
       #                                                                   :posts => {
       #                                                                               :counts => {
       #                                                                                             :total => 95,

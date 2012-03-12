@@ -5,7 +5,7 @@
  */
 function aw_view_mentions_get_html(data){
 
-  var max_to_show_in_one_interest = 4;
+  var max_to_show_in_one_interest = 7;
   var max_interests_to_show = 3;
 
   var last_interest_name = "";
@@ -70,7 +70,7 @@ function aw_view_mentions_get_html(data){
                                 '<div class="aw_sketch_mention_img_box" >' +
                                   '<img ' + 
                                     'class="aw_js_mention_image_class" ' +
-                                    ' src="' + mention_data.image + "?maxwidth=200" + '"' +                                                                  ' desc_url="' + mention_data.description + '" ' +
+                                    ' src="' + mention_data.image + '?maxwidth=200&key=' + aw_global_freebase_api_key  +  '"' +                                                                  ' desc_url="' + mention_data.description + '" ' +
                                     ' name="' + mention_data.name + '" rel="aw_js_twipsy_mention_image" data-original-title="' + mention_data.name.toUpperCase() + ' " ' +
                                     ' />' +
                               '</div>' +
@@ -121,7 +121,7 @@ jQuery.fn.aw_api_js_get_description_fn = function() {
   var name = element.attr("name");
   var desc_url = $(this).attr("desc_url");
   if( desc_url.length ){
-    $.getJSON(desc_url + "?format=plain&maxlength=150&callback=?", function(data) {
+    $.getJSON(desc_url + '?format=plain&maxlength=150&key=' + aw_global_freebase_api_key  +  '&callback=?', function(data) {
     })
     .success(function(data){
       if( data && data.result){

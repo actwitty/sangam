@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.text     "source_object_type", :default => "post"
     t.text     "category_type"
     t.text     "category_id"
-    t.datetime "source_created_at",  :default => '2012-03-11 11:55:15'
+    t.datetime "source_created_at",  :default => '2012-03-12 12:06:02'
     t.boolean  "if_yaml",            :default => false
     t.datetime "created_at",                                            :null => false
     t.datetime "updated_at",                                            :null => false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.boolean  "uploaded",                                             :null => false
     t.text     "category",                                             :null => false
     t.integer  "web_link_id"
-    t.datetime "source_created_at", :default => '2012-03-11 11:55:17'
+    t.datetime "source_created_at", :default => '2012-03-12 12:06:05'
     t.text     "category_id"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.text     "category_type"
-    t.datetime "source_created_at", :default => '2012-03-11 11:55:16'
+    t.datetime "source_created_at", :default => '2012-03-12 12:06:04'
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
   end
@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.integer  "status"
-    t.datetime "source_created_at", :default => '2012-03-11 11:55:22'
+    t.datetime "source_created_at", :default => '2012-03-12 12:06:10'
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
   end
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.text     "meta",              :default => "--- {}\n\n"
     t.text     "name"
     t.integer  "count"
-    t.datetime "source_created_at", :default => '2012-03-11 11:55:21'
+    t.datetime "source_created_at", :default => '2012-03-12 12:06:09'
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
   end
@@ -351,7 +351,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.text     "category_type"
     t.text     "analytics_snapshot"
     t.text     "enabled_services"
-    t.datetime "source_created_at",  :default => '2012-03-11 11:55:19'
+    t.datetime "source_created_at",  :default => '2012-03-12 12:06:07'
     t.datetime "created_at",                                            :null => false
     t.datetime "updated_at",                                            :null => false
   end
@@ -387,7 +387,7 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
     t.text     "source_msg_id"
     t.integer  "status_at_source"
     t.integer  "status",                                               :null => false
-    t.datetime "source_created_at", :default => '2012-03-11 11:55:19'
+    t.datetime "source_created_at", :default => '2012-03-12 12:06:07'
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
   end

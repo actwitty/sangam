@@ -33,6 +33,7 @@ function aw_api_controller_render_interests(data){
  */
 function aw_api_controller_render_trends(data){
   aw_api_view_trends_render(data);
+  
 }
 /*******************************************************/
 /*

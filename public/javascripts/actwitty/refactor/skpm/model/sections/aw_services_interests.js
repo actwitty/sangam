@@ -16,7 +16,6 @@ var aw_js_service_tester = [
                                                       },
                                             twitter: {
                                                         retweets: 20,
-                                                        replies: 15
                                                      }
                                           }
                               },
@@ -31,7 +30,6 @@ var aw_js_service_tester = [
                                                       },
                                             twitter: {
                                                         retweets: 18,
-                                                        replies: 123
                                                      }
                                           }
                               },
@@ -46,7 +44,6 @@ var aw_js_service_tester = [
                                                       },
                                             twitter: {
                                                         retweets: 65,
-                                                        replies: 25
                                                      }
                                           }
                               },
@@ -61,7 +58,6 @@ var aw_js_service_tester = [
                                                       },
                                             twitter: {
                                                         retweets: 24,
-                                                        replies: 542
                                                      }
                                           }
                               },
@@ -76,14 +72,74 @@ var aw_js_service_tester = [
                                                       },
                                             twitter: {
                                                         retweets: 23,
-                                                        replies: 123
                                                      }
                                           }
                               }
                                                
                                                 
                           ];
+/****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_modal_handle_service_popularity(timeline_data){
+  var popularity_data = [];
+  var populated = false;
+  if( timeline_data ) {
 
+    var keys = [];
+    for (i in timeline_data) { keys.push(i); }
+
+
+    $.each( keys.reverse(), function( index, week_key ){
+      week_data = timeline_data[week_key];
+      alert(JSON.stringify(week_data));
+      if( week_data &&
+            week_data.weeks &&
+              week_data.weeks.topics ){
+
+
+        $.each( week_data.weeks.topics, function( interest_name, interest_data ){
+          if(interest_data.source_actions){
+
+            var interest = {
+                              name : interest_name,
+                              id : interest_data.summary_id,
+                              services: {}
+                            };
+            if( interest_data.source_actions.counts &&
+                  interest_data.source_actions.counts.actions){
+              $.each(interest_data.source_actions.counts.actions, 
+                            function( action_name, action_data ){
+
+                  if( action_data.services ){
+                    $.each( action_data.services, function( service_name, count ){
+                      if( !interest.services[service_name] ){
+                        interest.services[service_name] = {};
+                      }
+
+                      interest.services[service_name][action_name] = count;
+                      populated = true;
+                    });
+                  }
+
+              });
+
+
+            }
+            popularity_data.push(interest);
+          }
+        });
+      }
+
+      if( populated )
+        return false; /* break after first*/
+            
+    });
+    aw_api_view_service_popularity_render(popularity_data);
+  }
+}
 /****************************************************/
 /*
  *
@@ -91,7 +147,6 @@ var aw_js_service_tester = [
  */
 function aw_api_model_service_pouplarity_initialize(){
   /* make a get call to server */
-  aw_api_view_service_popularity_render(aw_js_service_tester);
 }
 
 

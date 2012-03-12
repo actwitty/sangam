@@ -19,15 +19,13 @@ var aw_js_service_color_codes = {
 function aw_view_get_all_details_for_interest_html(data){
   var html = '';
   $.each(data, function(service_name, service_data) {
-    var background_color = aw_js_service_color_codes[service_name];
       $.each(service_data, function(field_name, field_data) {
-        html = html + '<div class="aw_service_popularity_details_box  ' +  background_color + ' " >' +
+        html = html + '<div class="aw_service_popularity_details_box " >' +
                         '<span class="aw_service_popularity_number">' +
                             field_data +
                         '</span>'+
-                        '<span class="aw_service_popularity_field">' +
-                          field_name + ' on ' + service_name +
-                        '</span>' +
+                        '<img class="aw_service_popularity_field"' + 
+                              'src="/images/actwitty/refactor/aw_sketch/service_popularity/' + service_name + '_' + field_name + '.png">' +
                        
                       '</div>';
       });

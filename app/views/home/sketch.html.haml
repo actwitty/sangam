@@ -22,6 +22,7 @@
 
   var aw_js_global_services_enabled = #{YAML.load_file("#{Rails.root}/#{AppConstants.services_enabled}").to_json};
   var aw_js_categories_json = #{SUMMARY_CATEGORIES.to_json};
+  var aw_global_freebase_api_key = #{AppConstants.freebase_api_key};
   var aw_js_global_rails_user_services_enabled = #{@services_enabled.to_json};
 
   var aw_js_global_fb_access = #{@fb_access.to_json};

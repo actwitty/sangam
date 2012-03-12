@@ -47,9 +47,16 @@ function aw_api_view_trends_render(data){
 
   var dates_html = "";
   var details_html = "";
-  $.each(data, function(key, snapshot) {
+
+
+      
+  $.each(data.reverse(), function(key, snapshot) {
      var timeline_id = 'aw_js_timeline_' + key;
-     dates_html = dates_html + '<li><a class="aw_sketch_timeline_links" href="#' + timeline_id + '">' + snapshot.title + '</a> </li>';
+     dates_html = dates_html + '<li>' +
+                                  '<a class="aw_sketch_timeline_links" href="#' + timeline_id + '">' +
+                                    '<abbr class="aw_js_trend_timeago" title="' +  snapshot.title + '"></abbr>' +
+                                  '</a>' + 
+                               '</li>';
     
       details_html = details_html + '<li id="' + timeline_id + '" >' +
                                       '<div class="aw_sketch_timeline_week_snapshot_box">' +
@@ -68,8 +75,8 @@ function aw_api_view_trends_render(data){
   $("#aw_js_sketch_timeline_dates").html(dates_html);
   $("#aw_js_sketch_timeline_details").html(details_html);
 
+  $("abbr.aw_js_trend_timeago").timeago();
   /* invoke timeliner */
   $().timelinr();
   $("#aw_js_trends_busy").hide();
-
 }

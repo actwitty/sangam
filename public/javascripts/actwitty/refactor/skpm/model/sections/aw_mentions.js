@@ -455,8 +455,7 @@ function aw_api_model_fetch_mentions(){
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
-              //TODO: data replaced by aw_js_mentions_test
-              aw_process_pulled_mention_data(aw_js_mentions_test);
+              aw_process_pulled_mention_data(data);
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
               aw_lib_console_log("error",

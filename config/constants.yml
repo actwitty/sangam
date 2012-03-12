@@ -77,8 +77,8 @@ development: &default
   linkedin_app_id:                    'g0l32ovkc3vr'
   linkedin_secret_key:                'D7DiN8Al6Ne5nPpE'
 
-  twitpic_reg_key: '15c477f5b53647f8af58945dc78b658e'
-
+  twitpic_reg_key:                    '15c477f5b53647f8af58945dc78b658e'
+  freebase_api_key:                   '"AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U"'
 
   #User Types
    #User Types
@@ -151,8 +151,9 @@ production:
   facebook_secret_key:                '5f9e34ae0030a63796bf8d75b71cbdb7'
   twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
   twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
-  twitpic_reg_key: '15c477f5b53647f8af58945dc78b658e'
 
+  twitpic_reg_key:                    '15c477f5b53647f8af58945dc78b658e'
+  freebase_api_key:                   'AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U'
   #FOR PUBLIC SHOW
   ghost_user_email:                       "administrator@actwitty.com"
 
