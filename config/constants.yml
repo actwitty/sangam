@@ -102,18 +102,21 @@ development: &default
   analytics_update_user:                    "user"
 
   #Social Fetch
-  max_import_first_time:                  50
+  max_import_first_time:                  100
   max_import_every_time:                  10
   first_time_feed_storage:                50#100
-  every_time_feed_storage:                10#20 #imports after first import is done
+  every_time_feed_storage:                50#20 #imports after first import is done
 
   #text categorization
   min_text_length_for_text_categorization:  140
   max_text_length_for_text_categorization:  512
-  categorization_concurrency_limit:         10
+  categorization_concurrency_limit:         15
 
   #test service name
   test_service:                             test
+
+  #link resolution limit
+  link_resolution_batch_limit:              50
 
   #source object type
   source_object_type_post:                  "post"
@@ -126,7 +129,7 @@ development: &default
   local_action_recommend:                   "recommend"
 
   #Social Fecth
-  maximum_time_diff_for_social_fetch:       20 #in seconds
+  maximum_time_diff_for_social_fetch:        64800#in seconds    #18 hours
 
    #status during social fetch pipeline
   data_sync_new:                            1   #can be deleted in this state

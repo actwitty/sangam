@@ -182,7 +182,7 @@ class SummaryRank < ActiveRecord::Base
 
           #this sorting is done so that if old date is inserted at later time it will spoil the shift operation
           #at spillover below.. Ensures always oldest goes at start and spills first..
-          object.analytics = Hash[object.analytics]   if date < today
+          object.analytics = Hash[object.analytics.sort]   if date < today
 
           #remove data points if needed
           object.analytics.shift if object.analytics.length > AppConstants.number_of_data_points
@@ -597,11 +597,19 @@ class SummaryRank < ActiveRecord::Base
       #                                                                        :actions => {
       #                                                                                      :likes => {
       #                                                                                                  :total => 50,
-      #                                                                                                  :services => {:facebook => 20, :twitter => 30}
+      #                                                                                                  :services => {:facebook => 20}
       #                                                                                                },
       #                                                                                      :comments => {
       #                                                                                                     :total => 50,
-      #                                                                                                     :services => {:facebook => 20, :twitter => 30}
+      #                                                                                                     :services => {:facebook => 20}
+      #                                                                                                   }
+      #                                                                                      :shares => {
+      #                                                                                                     :total => 50,
+      #                                                                                                     :services => {:facebook => 20}
+      #                                                                                                   }
+      #                                                                                      :retweets => {
+      #                                                                                                     :total => 50,
+      #                                                                                                     :services => { :twitter => 30}
       #                                                                                                   }
       #                                                                                   }
       #                                                                     }

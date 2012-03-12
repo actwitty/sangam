@@ -13,7 +13,7 @@ module Categorization
         req = []
         hash = {}
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] #{params[:text_cat].inspect}")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] #{params[:text_cat].inspect}")
 
         params[:text_cat].each do |k,v|
           if !v[:text].blank?
@@ -33,7 +33,7 @@ module Categorization
           process_request(params,req)
         end
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] => Leaving")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] => Leaving")
 
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [categorize] **** RESCUE **** => #{e.message}")
@@ -41,7 +41,7 @@ module Categorization
 
       def process_request(params,requests)
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] entering")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] entering")
         index,hash = 0, {}
 
         response = ::EmHttp::Http.request(requests)
@@ -57,6 +57,7 @@ module Categorization
           else
             cat = SERVICES_MODULE::OpenCalais.process_response(resp[:response])
           end
+          Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] #{cat.inspect}")
           hash[index].concat(cat)
 
         end
@@ -70,13 +71,13 @@ module Categorization
             activity[:category_id] =  category[:name]
           end
         end
-        Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [PROCESS_REQUEST] **** RESCUE **** => #{e.message}")
       end
 
       def vote(categories)
-         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] entering #{categories.inspect}")
+         #Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] entering #{categories.inspect}")
 
          score = 0
          if !categories.blank?
@@ -89,7 +90,7 @@ module Categorization
            end
            return categories[index]
          end
-         Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] leaving")
+         #Rails.logger.info("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] leaving")
          return {}
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [TEXT_CATEGORIZERS] [VOTE] **** RESCUE **** => #{e.message}")

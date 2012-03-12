@@ -216,6 +216,7 @@ class Activity < ActiveRecord::Base
           obj.update_attributes!(h)
         end
 
+        puts "[ACTIVITY] OBJ_ID => #{h[:category_id]}  ===>  TEXT => #{text}"
 
         ######################################## START PROCESSING NON META ACTIVITY ###########################
 

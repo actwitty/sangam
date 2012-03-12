@@ -10,105 +10,143 @@ module Api
       #           :enabled_services => ["facebook', "twitter"...] #[OPTIONAL] Needed only when analytics of some services needs to blocked.. for privacy
       #         }
       #
-      #OUTPUT => {
-      #             First 4 numbers are year.. next one or two numbers are week in that year - year, 2012,week 5
-      #             20125 => {
+      #OUTPUT=>{
+      #          :trends => {
+      #                       First 4 numbers are year.. next one or two numbers are week in that year - year, 2012,week 5
+      #                       20125 => {
       #
-      #                         :start_date => Sun, 04 Feb 2012 00:00:00 UTC +00:00,
-      #                         :end_date => Sat, 11 Feb 2012 00:00:00 UTC +00:00
-      #                         :weeks => {
-      #                                     :services => {:facebook => 5, :twitter => 2}, #overall posts in services this week
-      #                                     :topics =>   {
-      #                                                    "sports" => {
-      #                                                                   :summary_d => 123,
-      #                                                                   :posts => {
-      #                                                                               :counts => {
-      #                                                                                             :total => 95,
-      #                                                                                             :services =>  {
-      #                                                                                                             :facebook => 20,
-      #                                                                                                             :twitter => 30,
-      #                                                                                                             :actwitty => 45
-      #                                                                                                           }
-      #                                                                                         }
-      #                                                                             }
+      #                                 :start_date => Sun, 04 Feb 2012 00:00:00 UTC +00:00,
+      #                                 :end_date => Sat, 11 Feb 2012 00:00:00 UTC +00:00
+      #                                 :weeks => {
+      #                                             :services => {:facebook => 5, :twitter => 2}, #overall posts in services this week
+      #                                             :topics =>   {
+      #                                                            "sports" => {
+      #                                                                         :summary_d => 123,
+      #                                                                         :posts => {
+      #                                                                                     :counts => {
+      #                                                                                                  :total => 95,
+      #                                                                                                  :services =>  {
+      #                                                                                                                :facebook => 20,
+      #                                                                                                                :twitter => 30,
+      #                                                                                                                :actwitty => 45
+      #                                                                                                               }
+      #                                                                                               }
+      #                                                                                  }
       #
-      #                                                                  :documents => {
-      #                                                                                  :counts => {
-      #                                                                                               :total => 6,
-      #                                                                                               :categories => {
-      #                                                                                                                :image => {
-      #                                                                                                                           :total => 2,
-      #                                                                                                                           :services => {:facebook => 1, :twitter => 1}
-      #                                                                                                                          },
-      #                                                                                                               :video => {
-      #                                                                                                                           :total => 2,
-      #                                                                                                                           :services => {:facebook => 1, :twitter => 1}
-      #                                                                                                                         },
-      #                                                                                                               :audio => {
-      #                                                                                                                           :total => 0,
-      #                                                                                                                           :services => {}
-      #                                                                                                                         },
-      #                                                                                                              :document => {
-      #                                                                                                                             :total => 0,
-      #                                                                                                                            :services => {}
-      #                                                                                                                           },
-      #                                                                                                              :link =>{
-      #                                                                                                                        :total => 2,
-      #                                                                                                                        :services => {:facebook => 2}
-      #                                                                                                                      }
-      #                                                                                                           }
-      #                                                                                         }
-      #                                                                             },
-      #                                                               :locations => {
-      #                                                                               :counts => {
-      #                                                                                            :total => 95,
-      #                                                                                            :services => {
-      #                                                                                                           :facebook => 20, :twitter => 30, :actwitty => 45
-      #                                                                                                         }
-      #                                                                                          }
-      #                                                                             },
-      #                                                              :entities => {
-      #                                                                             :counts => {
-      #                                                                                          :total => 95,
-      #                                                                                          :services => {
-      #                                                                                                         :facebook => 20, :twitter => 30, :actwitty => 45
-      #                                                                                                       }
-      #                                                                                        }
-      #                                                                           },
-      #                                                             :source_actions  => {
-      #                                                                                   :counts => {
-      #                                                                                               :total => 100,
-      #                                                                                               :actions => {
-      #                                                                                                             :likes => {
-      #                                                                                                                         :total => 50,
-      #                                                                                                                         :services => {:facebook => 20, :twitter => 30}
-      #                                                                                                                       },
-      #                                                                                                             :comments => {
-      #                                                                                                                           :total => 50,
-      #                                                                                                                           :services => {:facebook => 20, :twitter => 30}
-      #                                                                                                                          }
-      #                                                                                                         }
+      #                                                                        :documents => {
+      #                                                                                       :counts => {
+      #                                                                                                   :total => 6,
+      #                                                                                                   :categories => {
+      #                                                                                                                   :image => {
+      #                                                                                                                               :total => 2,
+      #                                                                                                                               :services => {:facebook => 1, :twitter => 1}
+      #                                                                                                                             },
+      #                                                                                                                   :video => {
+      #                                                                                                                               :total => 2,
+      #                                                                                                                               :services => {:facebook => 1, :twitter => 1}
+      #                                                                                                                             },
+      #                                                                                                                   :audio => {
+      #                                                                                                                               :total => 0,
+      #                                                                                                                               :services => {}
+      #                                                                                                                             },
+      #                                                                                                                   :document => {
+      #                                                                                                                                 :total => 0,
+      #                                                                                                                                 :services => {}
+      #                                                                                                                                },
+      #                                                                                                                   :link =>{
+      #                                                                                                                             :total => 2,
+      #                                                                                                                             :services => {:facebook => 2}
+      #                                                                                                                           }
+      #                                                                                                                  }
+      #                                                                                                 }
+      #                                                                                       },
+      #                                                                       :locations => {
+      #                                                                                       :counts => {
+      #                                                                                                   :total => 95,
+      #                                                                                                   :services => {
+      #                                                                                                                 :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                                                                                                }
+      #                                                                                                   }
+      #                                                                                     },
+      #                                                                       :entities => {
+      #                                                                                       :counts => {
+      #                                                                                                   :total => 95,
+      #                                                                                                   :services => {
+      #                                                                                                                 :facebook => 20, :twitter => 30, :actwitty => 45
+      #                                                                                                                }
+      #                                                                                                  }
+      #                                                                                   },
+      #                                                                      :source_actions  => {
+      #                                                                                            :counts => {
+      #                                                                                                         :total => 100,
+      #                                                                                                         :actions => {
+      #                                                                                                                       :likes => {
+      #                                                                                                                                   :total => 50,
+      #                                                                                                                                   :services => {:facebook => 20}
+      #                                                                                                                                 },
+      #                                                                                                                       :comments => {
+      #                                                                                                                                       :total => 50,
+      #                                                                                                                                       :services => {:facebook => 20}
+      #                                                                                                                                    }
+      #                                                                                                                       :shares => {
+      #                                                                                                                                     :total => 50,
+      #                                                                                                                                     :services => {:facebook => 20}
+      #                                                                                                                                   }
+      #                                                                                                                       :retweets => {
+      #                                                                                                                                       :total => 50,
+      #                                                                                                                                       :services => { :twitter => 30}
+      #                                                                                                                                     }
+      #                                                                                                                     }
+      #                                                                                                     }
+      #                                                                                         },
+      #
+      #                                                            "technology" => {:summary_id => 124, :posts => {...},}
+      #                                                          }
+      #
+      #                                           },
+      #
+      #
+      #                                }
+      #                     }
+      #          :popularity => {
+      #                             "sports" => {
+      #                                            :summary_d => 123,
+      #                                            :source_actions  => {
+      #                                                                 :counts => {
+      #                                                                              :total => 100,
+      #                                                                              :actions => {
+      #                                                                                           :likes => {
+      #                                                                                                      :total => 50,
+      #                                                                                                      :services => {:facebook => 20}
+      #                                                                                                     },
+      #                                                                                           :comments => {
+      #                                                                                                         :total => 50,
+      #                                                                                                         :services => {:facebook => 20}
+      #                                                                                                        }
+      #                                                                                           :shares => {
+      #                                                                                                       :total => 50,
+      #                                                                                                       :services => {:facebook => 20}
+      #                                                                                                      }
+      #                                                                                           :retweets => {
+      #                                                                                                         :total => 50,
+      #                                                                                                         :services => { :twitter => 30}
+      #                                                                                                        }
       #                                                                                           }
-      #                                                                               },
-      #
-      #                                                    "technology" => {:summary_id => 124, :posts => {...},}
-      #                                                  }
-      #                                   },
-      #
-      #
-      #                    }
-      #         }
+      #                                                                              }
+      #                                                                 },
+      #                             "technology" => {:summary_id => 124, :source_actions => {...},}
+      #                         }
+      #      }
 
 
       def get_analytics(params)
 
         Rails.logger.info("[LIB] [API] [ANALYTICS] [GET_ANALYTICS] entering #{params}")
-
-        hash = {}
+        hash = {:trends => {}, :popularity => {}}
 
         objects = SummaryRank.where(:user_id => params[:user_id] ).all
 
-        if object.blank?
+        if objects.blank?
           Rails.logger.info("[LIB] [API] [ANALYTICS] [GET_ANALYTICS] nothing valid object found for params #{params}")
           return {}
         end
@@ -134,15 +172,34 @@ module Api
             end
 
             weeks.each do |week|
-              hash[week] = {:start_date => nil, :end_date => nil, :weekly_trends => {}, :summary_snapshots => {}} if hash[week].blank?
+              hash[:trends][week] = {:start_date => nil, :end_date => nil, :weekly_trends => {}, :summary_snapshots => {}} if hash[:trends][week].blank?
               yr = Integer(week.to_s[0..3])
               wk = Integer(week.to_s[4..-1])
 
-              hash[week][:start_date] = DateTime.commercial(yr,wk, 1).utc
-              hash[week][:end_date] = DateTime.commercial(yr,wk, 7).utc
-
-              hash[week] = ::Api::Helpers::FormatObject.format_analytics({:hash => object.analytics[week],
+              hash[:trends][week] = ::Api::Helpers::FormatObject.format_analytics({:hash => object.analytics[week],
                                                                           :enabled_services => params[:enabled_services]})
+              hash[:trends][week][:start_date] = DateTime.commercial(yr,wk, 1).utc
+              hash[:trends][week][:end_date] = DateTime.commercial(yr,wk, 7).utc
+            end
+          end
+        end
+
+        #add popularity of respective week only when asked
+        objects.each do |object|
+          #Now process summary data
+          if !object.summary_id.blank?
+            k = nil
+
+            a = Hash[object.analytics.sort.reverse]
+            k = a.first[0] if !a.blank? #k is most recent week 20129 => year 2012, week 9
+
+            if !k.blank?
+              summary = ::Api::Helpers::FormatObject.format_analytics({:hash => object.analytics[k]})
+              if !summary.blank?
+                hash[:popularity][object.activity_name] = {:source_actions => {}}
+                hash[:popularity][object.activity_name][:source_actions] = summary[:source_actions]
+                hash[:popularity][object.activity_name][:summary_id] = object.summary_id
+              end
             end
           end
         end

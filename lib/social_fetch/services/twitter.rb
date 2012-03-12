@@ -197,7 +197,7 @@ module SocialFetch
         #INPUT => blob hash
         #OUTPUT => Array of link hash
         def get_links(blob)
-          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] Entering")
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] Entering")
           return if blob["entities"].blank?
 
           links = []
@@ -206,6 +206,8 @@ module SocialFetch
 
               !attr["expanded_url"].blank? ? link =  attr["expanded_url"] : link =  attr["url"]
               array = ::Api::Helpers::Parser.get_documents({:text => link})
+
+              next if array.blank?
 
               if  array[0][:url] =~ /twitter.com\/[\w\/]+\/photo\/\w+/
                 array[0][:ignore] = true
@@ -331,11 +333,11 @@ module SocialFetch
         #INPUT => blob hash
         #OUTPUT => Source Action Hash
         def get_source_actions(blob)
-          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Entering #{blob.inspect}")
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Entering ")
 
           hash = {}
 
-          if blob["retweeted"] == false and (blob["retweet_count"] > 0 )
+          if blob["retweeted_status"].blank? and (blob["retweeted"] == false) and (blob["retweet_count"] > 0 )
             hash =  {"retweets" => {:count => blob["retweet_count"], :meta => {}} }
           end
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Leaving")

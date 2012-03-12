@@ -2,7 +2,7 @@ module LinkResolution
   class << self
     #link array
     def resolve_links(params)
-      Rails.logger.info("[LIB] [LINK_RESOLUTION] [resolve_links] => Entering #{params[:links_to_resolve]}")
+      Rails.logger.info("[LIB] [LINK_RESOLUTION] [resolve_links] => Entering #{params[:links_to_resolve].size}")
       hash = {}
       #hash = ::LinkResolution::Services::Embedly.resolve_links(params[:links_to_resolve].keys) if !params[:links_to_resolve].blank?
       hash = ::LinkResolution::Services::Actwitty.resolve_links(params[:links_to_resolve].keys) if !params[:links_to_resolve].blank?

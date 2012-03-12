@@ -39,7 +39,6 @@ class ActivityWord < ActiveRecord::Base
         return word_obj
       end
 
-      puts " #{word} <=> #{relation} "
       word_obj
     end
   end

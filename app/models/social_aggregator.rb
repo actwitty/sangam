@@ -238,7 +238,8 @@ class SocialAggregator < ActiveRecord::Base
                     ======================= #{data_array.size} ====================== for #{params.inspect}")
 
          activity = []
-         index = 0
+         index_for_posts = 0
+         index_for_likes = 0
          old_activities = {}
          summary_ids = {}
 
@@ -255,7 +256,16 @@ class SocialAggregator < ActiveRecord::Base
            data = SocialFetch.data_adaptor({:provider => params[:provider], :blob => attr, :uid => params[:uid],
                                           :latest_msg_timestamp => params[:latest_msg_timestamp], :latest_msg_id => params[:latest_msg_id] })
            if !data[:post].blank?
-             index += 1
+
+             #store likes separately
+             if data[:post][:source_object_type] == AppConstants.source_object_type_like
+               next if index_for_likes == params[:storage_limit]
+               index_for_likes += 1
+
+             else
+               next if index_for_posts == params[:storage_limit]
+               index_for_posts += 1
+             end
              activity << data
 
            elsif !data[:invalid_post].blank?
@@ -266,8 +276,6 @@ class SocialAggregator < ActiveRecord::Base
                summary_ids[old_activities[msg_id][:summary_id]] = true  if result == true
              end
            end
-
-           break if index == params[:storage_limit]
          end
 
          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION]")

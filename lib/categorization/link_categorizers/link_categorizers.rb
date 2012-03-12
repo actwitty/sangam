@@ -4,13 +4,13 @@ module Categorization
       SERVICES_MODULE = ::Categorization::LinkCategorizers::Services
 
       def categorize(params)
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Entering => number of Text => #{params[:link_cat].keys.size}")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Entering => number of Text => #{params[:link_cat].keys.size}")
 
         index = 0
         req = []
         hash = {}
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] #{params[:link_cat].inspect}")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] #{params[:link_cat].inspect}")
 
         params[:link_cat].each do |k,v|
           element = params[:activities][v[0]][:post][:links][0][:element]
@@ -29,7 +29,7 @@ module Categorization
           process_request(params,req)
         end
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Leaving")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] => Leaving")
 
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [categorize] **** RESCUE **** => #{e.message}")
@@ -37,7 +37,7 @@ module Categorization
 
       def process_request(params,requests)
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] entering")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] entering")
 
         index,hash = 0, {}
 
@@ -53,6 +53,7 @@ module Categorization
           else
             cat = SERVICES_MODULE::OpenCalais.process_response(resp[:response])
           end
+
           hash[arr[1]].concat(cat)
 
         end
@@ -61,6 +62,8 @@ module Categorization
 
           category = vote(categories)
           if !category.blank?
+
+            Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] url => #{url}, Category => #{category.inspect} ")
             params[:link_cat][url].each do |idx|
               activity = params[:activities][idx][:post]
               activity[:word] =  category[:name]
@@ -69,14 +72,14 @@ module Categorization
             end
           end
         end
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] **** RESCUE **** => #{e.message}")
       end
 
 
       def vote(categories)
-         Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] entering")
+         #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] entering")
 
          score = 0
 
@@ -90,7 +93,7 @@ module Categorization
            end
            return categories[index]
          end
-         Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] leaving")
+         #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] leaving")
          return []
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] **** RESCUE **** => #{e.message}")

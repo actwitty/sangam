@@ -199,7 +199,7 @@ require 'doc_categorizers/doc_categorizers'
             elem = params[:activities][idx][:post][:links][pos] if  !params[:activities][idx][:post][:links].blank?
             if !elem.blank?
 
-              Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] updating link ")
+              #Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] updating link ")
               link.each do |k,v|
                 elem[k] = link[k]
               end
@@ -213,7 +213,7 @@ require 'doc_categorizers/doc_categorizers'
               if !elem[:canonical_url].blank? and (elem[:url] != elem[:canonical_url])
                 mime = ::Api::Helpers::Parser.map_sources_to_mime({:source => elem[:canonical_url]})
 
-                Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] updating mime
+                #Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] updating mime
                         from #{elem[:mime]} to #{mime} for #{elem[:canonical_url]} ")
                 elem[:mime] =  mime
               end
@@ -224,7 +224,7 @@ require 'doc_categorizers/doc_categorizers'
        end
      #end
 
-     Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] leaving ")
+     #Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] leaving ")
 
    rescue => e
      Rails.logger.error("[LIB] [CATEGORIZATION] [update_link_information] ERROR => **** RESCUE **** => #{e.message}")

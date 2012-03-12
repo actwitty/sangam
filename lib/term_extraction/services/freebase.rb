@@ -52,15 +52,20 @@ module TermExtraction
 
                if !name.blank? #and (name.downcase == query.downcase)
 
-                 hash[name] = {} if hash[name].blank?
-                 hash[name][:name]=result[0]['name']
-                 hash[name][:id]=result[0]['search']['id'] #adding freebase to make it domain specific
-                 hash[name][:svc] ="freebase"
+                 type_hash = {}
 
                  result[0]['type'].each do |type|
                    next if type["id"] =~ SKIP_TYPES
-                   hash[name][:type] = {:id => type["id"], :name => type["name"]}
+                   type_hash = {:id => type["id"], :name => type["name"]}
                    break
+                 end
+
+                 if !type_hash.blank?
+                   hash[name] = {} if hash[name].blank?
+                   hash[name][:type] = type_hash
+                   hash[name][:name]=result[0]['name']
+                   hash[name][:id]=result[0]['search']['id'] #adding freebase to make it domain specific
+                   hash[name][:svc] ="freebase"
                  end
                end
              end
