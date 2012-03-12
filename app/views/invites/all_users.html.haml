@@ -6,14 +6,13 @@
   .aw_feedback_label
     %span Feedbacks to ActWitty
   .aw_pagination_control
-    = will_paginate @feedbacks
+    = will_paginate  @user
   %table.aw_feedbacks_rounded-corner-table
     %thead
       %tr
         %th.rounded-company{:scope => "col"} Name
         %th.rounded-q1{:scope => "col"} Email
         %th.rounded-q2{:scope => "col"} Posted Time
-        %th.rounded-q3{:scope => "col"}  Feedback Text
     %tfoot
       %tr
         %td.rounded-foot-left{:colspan => "3"}
@@ -21,25 +20,15 @@
         %td.rounded-foot-right  
     %tbody
      
-    - @feedbacks.each do |feedback|
+    - @user.each do |user|
       %tr
-
-        -unless feedback.name.nil?
-          %td #{feedback.name}
-        -else
-          %td Anonymous
-      
-        -unless feedback.email.nil?
-          %td #{feedback.email}
-        -else
-          %td Anonymous email
-
-        %td #{feedback.created_at}
+        %td #{user.name}      
+        %td #{user.email}
         
-        %td{:width => "45%"} #{feedback.feedback_text}
+        
 
   .aw_pagination_control
-    = will_paginate @feedbacks
+    = will_paginate @user
 
 
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }

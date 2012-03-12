@@ -38,6 +38,7 @@ function aw_api_view_connections_active_friends_render(data){
   
    html = html + more_html;
    $("#aw_js_contacts").html(html);
+   $("#aw_js_connections_busy").hide();
 }
 /*************************************************************/
 /*

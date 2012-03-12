@@ -6,9 +6,9 @@
  */
 var aw_local_facebook_request_url_base = {
                                     static_profile:  "https://graph.facebook.com/{FB_USER_ID}?access_token={FB_ACCESS_TOKEN}&callback=?",
-                                    user_feed: "https://graph.facebook.com/{FB_USER_ID}/feed?access_token={FB_ACCESS_TOKEN}&fields=id,from,message,link,name,picture,caption,type,source,description,place,story&limit=200&callback=?",
+                                    user_feed: "https://graph.facebook.com/{FB_USER_ID}/feed?access_token={FB_ACCESS_TOKEN}&fields=id,from,message,link,name,picture,caption,type,source,description,place,story&limit=50&callback=?",
 
-                                    feeds: "https://graph.facebook.com/{FB_USER_ID}/home?access_token={FB_ACCESS_TOKEN}&fields=id,from,message,link,name,picture,caption,type,source,description,place,story&limit=200&callback=?",
+                                    feeds: "https://graph.facebook.com/{FB_USER_ID}/home?access_token={FB_ACCESS_TOKEN}&fields=id,from,message,link,name,picture,caption,type,source,description,place,story&limit=50&callback=?",
                                     
                                     albums: "https://graph.facebook.com/{FB_USER_ID}/albums?access_token={FB_ACCESS_TOKEN}&fields=id&limit=100&callback=?",
                                     images: "https://graph.facebook.com/{FB_USER_ID}/photos&fields=id,from,picture,source&limit=100?access_token={FB_ACCESS_TOKEN}&callback=?",

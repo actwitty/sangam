@@ -8,6 +8,27 @@
   src: url("/webfont/leaguegothic/League_Gothic-webfont.eot");
   src: local("League Gothic Regular"), local("League Gothic"), url("/webfont/leaguegothic/LeagueGothic.woff") format("woff"), url("/webfont/leaguegothic/LeagueGothic.otf") format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg"); }
 
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot");
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Regular-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Regular-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot");
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Regular-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Regular-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoLight";
+  src: url("/webfont/roboto/Roboto-Light-webfont.eot");
+  src: url("/webfont/roboto/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Light-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Light-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Light-webfont.svg#RobotoLight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 body {
   margin: 0;
   padding: 0;
@@ -167,5 +188,5 @@ div.aw_home_top_nav h3 {
   #aw_home_about_incubation_box #aw_home_about_incubation_label {
     font-size: 27px;
     font-weight: bold;
-    font-family: "Roboto";
+    font-family: "RobotoRegular";
     color: #444444; }

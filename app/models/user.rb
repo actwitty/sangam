@@ -554,17 +554,11 @@ class User < ActiveRecord::Base
   def get_service_user_ids()
     hash = {}
     Rails.logger.info("[MODEL][USER] get_service_user_ids")
-    profile = self.profile
-    Rails.logger.info("[MODEL][USER] get_service_user_ids Profile: #{profile.inspect}")
     authentications = self.authentications
     Rails.logger.info("[MODEL][USER] get_service_user_ids Profile: #{authentications.inspect}")
 
     self.authentications.each do |attr|
-      field = "#{attr.provider}_service_enabled"
-      if !profile[field].nil? &&
-          profile[field] == true
-        hash["#{attr.provider}"] = attr.uid
-      end
+      hash["#{attr.provider}"] = attr.uid
     end
 
     hash

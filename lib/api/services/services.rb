@@ -149,7 +149,7 @@ module Api
 
         array = []
         SocialAggregator.where(:user_id => params[:user_id]).all.each do |attr|
-          hash =  ::Api::Helpers::FormatObject.format_social_aggregator({:aggregator => attr})
+          hash =  ::Api::Helpers::FormatObject.format_social_aggregator({:object => attr})
           array << hash[:aggregator]
         end
 

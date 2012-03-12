@@ -22,7 +22,7 @@ end
 module Api
 
 ################################################ STREAMS ################################################
- #COMMENT - Only returns public post which has summary
+      #COMMENT - Only returns public post which has summary
       #INPUT
       #
       #:user_id => 123                                  #QUERY PART STARTS
@@ -725,9 +725,9 @@ module Api
       #
       #           :text =>   "hello world"  [OPTIONAL]
       #
-      #           :yaml_text => "text:ljk;sdlsd"  [OPTIONAL]   #retains json format of source blob for easy display like for twitter, g+
+      #           :json_text => "text:ljk;sdlsd"  [OPTIONAL]   #retains json format of source blob for easy display like for twitter, g+
       #                                                        #for which we are storing data
-      #                                                        #.. if yaml_text present use replace :text with yaml_text while storing
+      #                                                        #.. if json_text present use replace :text with json_text while storing
       #                                                        # we are storing yamls to increase re-usability and simplicity in display functions
       #                                                        #in client side while doing mash-up with source data ( for example from twitter
       #                                                        #and twitter data from ou server )

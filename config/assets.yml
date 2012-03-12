@@ -12,7 +12,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/rails/jquery_ujs.js
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.js
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.custom.js
-    - public/javascripts/actwitty/refactor/lpm/aw_lpm_user_updates.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_events.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
     - public/javascripts/actwitty/refactor/server_requests/aw_post_requests.js
@@ -75,17 +74,18 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_connections_active.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_locations.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_images.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_videos.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
     # ####################### Externals #############################
     - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js
     - public/javascripts/actwitty/refactor/common/externals/tagcloud/jquery.tagcloud.js
-    - public/javascripts/actwitty/refactor/common/externals/jQCloud/jqcloud-0.2.10.js
     - public/javascripts/actwitty/refactor/common/externals/jQCloud/jqcloud-0.2.10.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jquery.mousewheel.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jScrollPane.js
     - public/javascripts/actwitty/refactor/common/externals/tinyscroll/jquery.tinyscrollbar.min.js
     - public/javascripts/actwitty/refactor/common/externals/jsonp/jquery-jsonp-2.2.1.min.js
     - public/javascripts/actwitty/refactor/common/externals/cross-domain-ajax/jquery.xdomainajax.js
+    - public/javascripts/actwitty/refactor/common/externals/jpaginate/jquery.paginate.js
     #- public/javascripts/actwitty/refactor/common/externals/jquery_scrollbar/jquery.easing.1.3.js
     #- public/javascripts/actwitty/refactor/common/externals/jquery_scrollbar/jquery.mousewheel.min.js
     #- public/javascripts/actwitty/refactor/common/externals/jquery_scrollbar/jquery.mCustomScrollbar.js
@@ -155,9 +155,11 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_timeline.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_mentions.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/external/jQCloud/jqcloud.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/jPaginate/jpaginate.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css

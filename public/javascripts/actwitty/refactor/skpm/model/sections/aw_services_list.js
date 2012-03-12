@@ -6,7 +6,7 @@
 function aw_api_model_service_list_initialize(){
   var view_json = {};
   var aw_services_list = aw_js_global_services_enabled.services;
-  var user_enabled_services = aw_js_global_services_user_enabled.profile;
+  var user_enabled_services = aw_js_global_services_user_enabled;
 
   var services_icon_base = aw_js_global_services_enabled.services_icon_base_path;
 

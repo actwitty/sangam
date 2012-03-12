@@ -77,6 +77,8 @@ development: &default
   linkedin_app_id:                    'g0l32ovkc3vr'
   linkedin_secret_key:                'D7DiN8Al6Ne5nPpE'
 
+  twitpic_reg_key:                    '15c477f5b53647f8af58945dc78b658e'
+  freebase_api_key:                   '"AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U"'
 
   #User Types
    #User Types
@@ -89,7 +91,7 @@ development: &default
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:      "alok@actwitty.com"
+  authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
 
 
   #FOR SUMMARY CATEGORY
@@ -153,6 +155,8 @@ production:
   twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
   twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
 
+  twitpic_reg_key:                    '15c477f5b53647f8af58945dc78b658e'
+  freebase_api_key:                   'AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U'
   #FOR PUBLIC SHOW
   ghost_user_email:                       "administrator@actwitty.com"
 

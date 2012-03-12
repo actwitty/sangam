@@ -20,6 +20,7 @@ var aw_local_twitter_request_url_base = {
                                                notification_cb: null,
                                                error_timer: null
                                            }
+                                   
                                 };
 /*****************************************************/
 /*
@@ -64,6 +65,7 @@ function aw_twitter_cb_static_profile(data){
  *
  */
 function aw_twitter_get_auth_signed_url( twitter_url, callback_fn_name, addl_params ){
+
   var accessor = {
                    consumerSecret: aw_js_global_tw_access.consumer_secret,
                    tokenSecret   : aw_js_global_tw_access.secret
@@ -90,9 +92,12 @@ function aw_twitter_get_auth_signed_url( twitter_url, callback_fn_name, addl_par
   OAuth.completeRequest(message, accessor);
 
   var parameterMap = OAuth.getParameterMap(message.parameters);
-  
+
   var url= "";
   $.each(parameterMap, function(key, val) {
+    if( key == "oauth_signature" ){
+      val = encodeURIComponent(val);
+    }
     if (url.length == 0){
       url = message.action + key + "=" + val;
     }else{
@@ -100,6 +105,7 @@ function aw_twitter_get_auth_signed_url( twitter_url, callback_fn_name, addl_par
     }
     
   });
+
   return url;
 }
 /*****************************************************/
@@ -126,8 +132,11 @@ function aw_twitter_trigger_get_request( twitter_url){
  */
 function aw_api_twitter_get_profile(fn_cb){
   aw_lib_console_log("DEBUG", "entering: aw_api_twitter_get_profile ");
-  var url = aw_local_twitter_request_url_base['static_profile']['url'];
-  url = url + "?id=" +  aw_api_twitter_get_visited_user_id() + "&callback=aw_twitter_cb_static_profile";
+  var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base['static_profile'].url,
+                                           "aw_twitter_cb_static_profile",
+                                           {
+                                              "id" : aw_api_twitter_get_visited_user_id(),
+                                           });
   
   /* authorization not needed */
   /* cache callback */
@@ -230,7 +239,6 @@ function aw_api_twitter_get_feeds(feed_type, fn_cb){
   
   aw_lib_console_log("DEBUG", "entered:aw_api_twitter_get_feeds" + "feed_type");
   if( feed_type == "feeds"){
-    var url = "";
     var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base[feed_type].url,
                                            "aw_twitter_cb_feeds",
                                            {
@@ -245,9 +253,13 @@ function aw_api_twitter_get_feeds(feed_type, fn_cb){
     aw_twitter_trigger_get_request(url);                                           
 
   }else{
-    var url = aw_local_twitter_request_url_base['user_feed']['url'];
-    url = url + "?id=" +  aw_api_twitter_get_visited_user_id() + "&callback=aw_twitter_cb_user_feed";
-  
+    var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base[feed_type].url,
+                                           "aw_twitter_cb_user_feed",
+                                           {
+                                              "id" : aw_api_twitter_get_visited_user_id(),
+                                              "count" : 200
+                                           });
+ 
     /* authorization not needed */
     /* cache callback */
     aw_local_twitter_request_url_base['user_feed']['notification_cb'] = fn_cb;
@@ -277,7 +289,7 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
   aw_post_json["originator"] = {
                                     image:  data.user.profile_image_url,
                                     name: data.user.name,
-                                    screen_name: data.user.screen_name,
+                                    screen_name: '@' + data.user.screen_name,
                                     url:  'https://twitter.com/#!/' + data.user.screen_name,
                                     uid: data.user.id
                                  };
@@ -407,7 +419,7 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
         var replacement = {
                             start: hash_tag_data.indices[0],
                             end: hash_tag_data.indices[1],
-                            url: "https://twitter.com/#!/search?q=#" + hash_tag_data.text,
+                            url: "https://twitter.com/#!/search?q=%23" + hash_tag_data.text,
                             type: "mention_hashtag"
                            };
 
@@ -440,7 +452,7 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
           }
        
           //Exception to view handling but I see no go to this 
-          replace_str = '<a class="aw_text_mention ' + replace_data.type + ' " href="' + replace_data.url  +  '" >' +
+          replace_str = '<a class="aw_text_mention ' + replace_data.type + ' " href="' + replace_data.url  +  '"  target="_blank" >' +
                           replace_str +
                         '</a>';
           aw_post_json.text = start_str + replace_str + trail_str;

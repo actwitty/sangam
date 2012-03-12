@@ -117,20 +117,38 @@ body
     -webkit-border-radius: 5px
     -moz-border-radius: 5px
     border-radius: 5px
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5)
-    -moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5)
-    -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5)
+    box-shadow: 0 5px 5px #444
+    -moz-box-shadow: 0 5px 5px #444
+    -webkit-box-shadow: 0 5px 5px #444
     position: relative
     background: white
     height: 100%
     min-height: 800px
+
+    .aw_infographic_header
+      width: 100%
+      height: 40px
+      background: #D6F5F5
+      border-radius: 5px 0 0 0
+     
+
+    .aw_infographic_header_label
+      font-size: 24px
+      font-family: "RobotoBold"
+      color: #444
+      float: left
+      border: 0px solid red
+      margin-left: 15px
+      margin-top: 12px
+      vertical-align: middle
+
 
 
     /* infographics sections start
     .aw_section_container_box
       @include aw_infographics_boxes_width
       height: auto
-      margin-top: 50px
+      margin-top: 10px
       border: 0px solid red
 
       .aw_section_container_info_box
@@ -142,11 +160,11 @@ body
         .aw_section_container_internal_data_box
           min-height: 100px
           height: auto
-          margin-top: 15px
-          padding-top: 25px
+          margin-top: 0px
           position: relative
           border: 0px solid green
           width: 100%
+          padding-top: 10px
 
           
 
@@ -160,31 +178,24 @@ body
 
         .aw_section_container_internal_data_label
           font-family: 'RobotoRegular'
-          letter-spacing: 1px
+          font-weight: normal
+          font-size:  32px
+          padding-right: 5px
           background-color: white
-          font-size:  24px
-          padding-right: 10px
+          color: #444
           position: absolute
           top: 0px
           left: 2px
           overflow: hidden
         
         
-        hr.aw_section_container_top_delimiter
-          color: rgba(0, 0, 0, 0.5)
-          background-color: rgba(0, 0, 0, 0.5)
-          height: 1px
-          width: 535px
+        .aw_section_container_top_delimiter
+          border-top: 1px solid #444 
           position: absolute
-          top: 9px
+          top: 16px
           left: 2px
-        hr.aw_section_container_bottom_delimiter
-          position: relative
-          color: rgba(0, 0, 0, 0.5)
-          background-color: rgba(0, 0, 0, 0.5)
-          height: 1px
-          width: 535px
-          margin-left: 2px
+          width: 100%
+
 
   /* Side box
   #aw_sidebox_outer_container
@@ -214,10 +225,7 @@ body
         position: relative
         left: 10px
         top: 0
-        max-width: 490px
-        min-width: 370px
-        height: 540px
-        overflow-y: hidden
+        width: 370px
         -webkit-border-top-right-radius: 6px
         -webkit-border-bottom-right-radius: 6px
         -moz-border-radius-topright: 6px
@@ -229,13 +237,36 @@ body
         -moz-box-shadow: 0 2px 2px rgba(0,0,0,0.3)
         display: none
         _position: static
-        _width: 520px
         .aw_stream_entries
           display: block
-          height: 100%
-          margin-left: 10px
-          overflow-y: auto
+          margin-left: 5px
+          overflow-y: hidden
+          overflow-x: hidden
           position: relative
+          width: 365px
+          &:hover
+            overflow-y: auto
+          &::-webkit-scrollbar
+            width: 9px
+            height: 9px
+          &::-webkit-scrollbar-button
+            &:start:decrement, &:end:increment
+              display: block
+              height: 0
+          &::-webkit-scrollbar-track-piece
+            -webkit-border-radius: 0
+            -webkit-border-bottom-right-radius: 8px
+            -webkit-border-bottom-left-radius: 8px
+          &::-webkit-scrollbar-thumb
+            &:vertical
+              height: 50px
+              background-color: #444
+              -webkit-border-radius: 8px
+            &:horizontal
+              width: 50px
+              background-color: #444
+              -webkit-border-radius: 8px
+            
   
   .aw_infographic_container, .aw_stream_container
     color: #444444
@@ -252,24 +283,28 @@ body
   display: inline-block
   border: 0px solid green
   margin-left: 10px
+  margin-top: 11px
   float: left
   img
-    border: 1px solid  rgba(0, 0, 0, 0.5)
-    padding: 2px
+    padding: 3px
+    border-radius: 3px
+    -moz-box-shadow: 0 0 5px #333 
+    -webkit-box-shadow: 0 0 5px #333
+    box-shadow: 0 0 5px #333
 
 .aw_full_name
   display: inline-block
   float: left
   margin-left: 10px
   max-width: 400px
+  border: 0px solid green
 
   h2
-    color: #22bdc1
-    font-size: 44px
+    color: #25a0da
+    font-size: 24px
+    line-height: 24px
     font-family: 'RobotoRegular'
-    letter-spacing: 1px
-    text-transform: uppercase
-    font-weight: bold
+    font-weight: normal
     padding: 0
     margin: 0
 
@@ -278,39 +313,51 @@ body
   max-width: 400px
   max-height: 120px
   padding: 0px
-  margin-top: 1px
+  margin-top: 0px
+  margin-left: 10px
+  overflow: hidden
+  padding-top: 0px
+  /*
+    font-style: italics
+    font-size: 15px
+    font-family: 'RobotoRegular'
+    color: #444
+  font: italic 13px/18px Georgia,Times New Roman,serif
+  color: #777
+  word-wrap: break-word
+  text-overflow: ellipsis
+  border: 0px solid red
+
+.aw_profile_details
+  display: inline-block
+  max-width: 400px
+  max-height: 120px
+  padding: 0px
+  margin-top: 6px
   margin-left: 10px
   overflow: hidden
   text-overflow: ellipsis
   padding-top: 0
-  font-size: 16px
-  line-height: 20px
-  font-style: italic
-  font-family: Georgia,serif
-  color: #da1c5c
-  -webkit-font-smoothing: antialiased
-  border: 1px solid red
-
-.aw_profile_details
-  display: block
-  margin-top: 20px
-  width: 400px
-  height: auto
-  margin-left: 10px
-  border: 0px solid green
-  clear: left
+  line-height: 15px
+  font-style: normal
+  font-size: 15px
+  font-family: 'RobotoRegular'
+  color: #444
+  border: 0px solid red
 
 .aw_dyn_static_profile_details_element
   h3
-    color: #CD3333
-    font-family: 'RobotoBold'
-    font-weight: bold
-    size: 20px
-  span
-    color: #333
+    color: #444
     font-family: 'RobotoRegular'
-    font-weight: bold
-    size: 18px
+    font-weight: normal
+    size: 14px
+    font-size: 14px
+    line-height: 14px
+  span
+    color: #25a0da
+    font-family: 'RobotoRegular'
+    font-weight: normal
+    size: 14px
     
 
 
@@ -329,5 +376,37 @@ body
   height: auto
   display: block
   overflow: hidden
+.aw_locations_container_box
+  width: 495px
+  margin: 20px
+  margin-top: 30px
+  padding: 3px
+  border-radius: 3px
+  -moz-box-shadow: 0 0 5px #333 
+  -webkit-box-shadow: 0 0 5px #333
+  box-shadow: 0 0 5px #333
+  display: block
 
-
+.aw_busy_box
+  position: absolute
+  top: 0
+  left: 0
+  margin-left: 0
+  margin-top: 0
+  z-index: 2
+  width: 100%
+  height: 100%
+  background: rgb(255, 255, 255)
+  background: rgba(255, 255, 255, 0.6)
+  .aw_busy_mini_box
+    width: 50px
+    height: 50px
+    margin-left: -25px
+    margin-top: -25px
+    top: 50%
+    left: 50%
+    position: absolute
+    img.aw_busy_img
+      width: 50px
+      height: 50px
+      margin: auto

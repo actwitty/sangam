@@ -3,98 +3,153 @@ sports:
   channel: sports
   hierarchy: /
   name: sports
+  personalize: sporty
+  sentence: things on sports
+  end_sentence: and things on sports
 automobiles:
   type: /automobiles
   channel: automobiles
   hierarchy: /
   name: automobiles
+  personalize: roadie
+  sentence: roads, automobiles, cars
+  end_sentence: roads, automobiles and cars
 entertainment:
   type: /entertainment
   channel: entertainment
   hierarchy: /
   name: entertainment
+  personalize: entertainer
+  sentence: music, movies, entertainment
+  end_sentence: music, movies and entertainment
 games:
   type: /games
   channel: games
   hierarchy: /
   name: toys and games
+  personalize: gamer
+  sentence: fun, games
+  end_sentence: fun and games
 leisure:
   type: /leisure
   channel: leisure
   hierarchy: /
   name: leisure,recreation and fashion
-nonprofits:
+  personalize: fashionista 
+  sentence: leisure, recreation, fashion
+  end_sentence: leisure, recreation and fashion
+nonprofit:
   type: /nonprofit
   channel: nonprofit
   hierarchy: /
   name: nonprofits
+  personalize: philanthropist
+  sentence: philanthropy, not-for-profits
+  end_sentence: philanthropy and not-for-profits
 stories:
   type: /stories
   channel: stories
   hierarchy: /
   name: stories
+  sentence: general things with friends
+  end_sentence: and general things with friends
 technology:
   type: /technology
   channel: technology
   hierarchy: /
   name: technology
+  sentence: science, gadgets, technology
+  end_sentence: science, gadgets and technology
 world:
   type: /world
   channel: world
   hierarchy: /
   name: society, religion, environment, law, crime and politics
+  personalize: social
+  sentence: topics on society, religion, environment, law, crime and politics
+  end_sentence: topics on society, religion, environment, law, crime and politics
+
 animals:
   type: /animals
   channel: animals
   hierarchy: /
   name: pets and animals
+  sentence: things about animals, plants and wildlife
+  end_sentence: things about animals, plants and wildlife
 business:
   type: /business
   channel: business
   hierarchy: /
   name: business
+  sentence: market, business, entreprenuership 
+  end_sentence: market, business and entreprenuership
 health:
   type: /health
   channel: health
   hierarchy: /
   name: health, medical and phrama
+  sentence: fitness, health, medicines, pharmaceuticals
+  end_sentence: fitness, health, medicines and pharmaceuticals
 food:
   type: /food
   channel: food
   hierarchy: /
   name: food and drink
+  sentence: recipes, restaurants, food, drink
+  end_sentence: recipes, restaurants, food and drink
 books:
   type: /books
   channel: books
   hierarchy: /
   name: books and articles
+  personalize: reader
+  sentence: articles, books, reading material
+  end_sentence: articles, books and reading material
 arts:
   type: /arts
   channel: arts
   hierarchy: /
   name: arts and design
+  personalize: artist
+  sentence: aesthetics, art, design
+  sentence: aesthetics, art and design
 places:
   type: /places
   channel: places
   hierarchy: /
   name: places, travel and events 
+  personalize: tourist
+  sentence: tourism, places, travel, events, adventures
+  end_sentence: tourism, places, travel, events, adventures  
 home:
   type: /home
   channel: home
   hierarchy: /
   name: home
+  personalize: family person
+  sentence: family, managing home, furnishings, home decor
+  end_sentence: family, managing home, furnishings and home decor
 education:
   type: /eductaion
   channel: education
   hierarchy: /
   name: education
+  personalize: teacher
+  sentence: literacy, education, schools, colleges
+  end_sentence: literacy, education, schools and colleges
 hobbies:
   type: /hobbies
   channel: hobbies
   hierarchy: /
   name: hobbies and interests
+  personalize: hobbyist
+  sentence: hobbies, personal interests, amateurism
+  end_sentence: hobbies, personal interests and amateurism
 products:
   type: /products
   channel: products
   hierarchy: /
   name: brands and products
+  personalize: shopaholic
+  sentence: brands, products, shopping or marketting
+  end_sentence: brands, products and shopping or marketting

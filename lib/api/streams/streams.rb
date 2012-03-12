@@ -146,7 +146,7 @@ module Api
       #       :id=>10, :user=>{:id=>5, :full_name=>"lemony1 lime1", :photo=>"images/id_1"},
       #       :time=>Sat, 30 Jul 2011 21:41:56 UTC +00:00,
       #       :text=> text:Had a great pizza at pizza hut #food #italian http://pizzahut.com/123/234\n user_id:123
-      #       :if_yaml => true,
+      #       :if_json => true,
       #       :summary_id=>9,
       #       :source_name=>"twitter",
       #       :source_object_id => "12233",
@@ -310,8 +310,8 @@ module Api
           elsif !params[:filter][:source_action].blank?
             array  = get_source_action_stream(params)
           end
+         Rails.logger.info("[LIB] [API] [STREAMS] [VALIDATE] [get_stream] #{params}")
         else
-
           array = get_all_activity({
                                   :query => params[:query],
                                   :current_user_id => params[:current_user_id],

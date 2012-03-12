@@ -126,5 +126,11 @@ function aw_api_model_static_profile_trigger_fetch(){
   aw_lib_console_log("DEBUG", "exiting:aw_api_model_static_profile_trigger_fetch"); 
   
 }
-
-
+/*************************************************/
+/*
+ * apply interest string
+ *
+ */
+function  aw_api_model_static_profile_apply_description(description){
+  aw_local_static_profile_data_json.description =  description; 
+}

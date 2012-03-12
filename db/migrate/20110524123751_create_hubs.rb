@@ -31,7 +31,7 @@ class CreateHubs < ActiveRecord::Migration
 
       t.text    :category_type
 
-      t.datetime :source_created_at, :default => Time.now.utc
+      t.datetime :source_created_at,:default => Time.utc(1970, 1, 1, 0, 0).to_datetime
 
       t.timestamps
     end
