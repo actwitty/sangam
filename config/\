@@ -1,6 +1,0 @@
-services:
-  facebook:
-    name: Facebook
-    description: General purpose social network
-    active_icon: 
-    inactive_icon:     
