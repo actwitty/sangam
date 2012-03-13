@@ -337,6 +337,34 @@ body {
   box-shadow: 0 0 5px #333333;
   display: block; }
 
+.aw_fb_login_modal_fancybox {
+  width: 300px;
+  height: 300px; }
+
+.aw_fb_login_div {
+  width: 500px;
+  height: 300px;
+  display: block;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333;
+  position: relative; }
+  .aw_fb_login_div h3 {
+    color: #25a0da;
+    font-family: "RobotoRegular";
+    font-weight: normal;
+    size: 14px; }
+  .aw_fb_login_div img {
+    margin-left: 35px;
+    margin-top: 10px; }
+  .aw_fb_login_div .aw_fb_login_note {
+    position: absolute;
+    top: 240px;
+    left: 20px; }
+    .aw_fb_login_div .aw_fb_login_note span {
+      color: #333333; }
+
 .aw_busy_box {
   position: absolute;
   top: 0;

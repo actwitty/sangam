@@ -55,8 +55,7 @@
           %a#awppm_header_user_logout{:href => "/users/sign_out"}
           %a#awppm_header_user_home{:href => "/home/sketch?id=#{current_user.id}" }
         -elsif if_ghost_user?
-          %a#awppm_header_user_info{:href => "/"}
-          %a#awppm_header_user_logout{:href => "/welcome/new"} Log-in
+          %a#awppm_header_user_login{:href => "/welcome/new"} login
         #awppm_header_search_edit_box
           %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
 
@@ -197,7 +196,7 @@
         #aw_js_stream_container.aw_stream_container{:style=> "display: block; left: 540px; -webkit-transition-property: none; " }
           #aw_stream_container_header
             #aw_stream_container_header_label
-              WALL FEEDS
+              FEEDS
             #aw_js_stream_close_control.aw_stream_container_close
               %a{:href=>"#"} close 
               %span x
@@ -209,16 +208,13 @@
             
               
 
-
-/#aw_ppm_sketch_local_auth_box
-/  #aw_js_local_auth_modal.aw_ppm_sketch_local_auth_window
-/    %a#aw_js_local_auth_modal_close.aw_ppm_sketch_local_auth_box_close{:href => "#"} x
-/    %h3 You may need to do Facebook login to access the information
-/    .aw_ppm_sketch_local_auth_internal
-/      %img#aw_js_fb_login_btn{ :src => "/images/actwitty/refactor/aw_sketch/services/f-connect.png", :style => "cursor: pointer;"}
-/  #aw_js_local_auth_modal_mask.aw_ppm_sketch_local_auth_modal_mask
-
-
+.aw_fb_login_modal_fancybox{ :style => "display:none;" }
+  #aw_js_fb_login_modal_fancybox.aw_fb_login_div
+    %h3 Login to Facebook to view #{@user.full_name}'s Actwitty profile.
+    %img#aw_js_fb_login_btn{ :src => "/images/actwitty/refactor/aw_sketch/services/fb_connect.png"}
+    .aw_fb_login_note 
+      %span These Facebook credentials will not be stored by Actwitty. This will just make you log in to Facebook.
+  
 
 
 /Secret cookies
