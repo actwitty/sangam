@@ -130,108 +130,125 @@ function aw_pulled_stream_facebook_handler ( context ) {
 */
 
 function aw_pulled_stream_twitter_handler( context ) {
-                                               var tw_data = context['services']['twitter'];
-                                               var aw_post_json = {};
-                                               var twitter_data = []; 
-                                                $.each( tw_data.posts, function( key, post_data ){
-                                                  var aw_post_json = {};
+ var tw_data = context['services']['twitter'];
+ var aw_post_json = {};
+ var twitter_data = []; 
+ var json_data = null;
+ $.each( tw_data.posts, function( key, post_data ){
+    var aw_post_json = {};
+   
 
-                                                  aw_post_json["service"] = {
-                                                                              name: post_data.post.source_name,
-                                                                              pid: post_data.post.source_object_id
-                                                                            };
-
-                                                  aw_post_json["timestamp"] = post_data.post.time;
-                                                  var values = post_data.post.time.split(" ");
-                                                  var timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
-                                                  aw_post_json["local_timestamp"]  = new Date(Date.parse(timeValue)).getTime();
-                                                  aw_post_json["originator"] = {
-                                                                                  image: post_data.post.user.photo,
-                                                                                  name: post_data.post.user.full_name,
-                                                                                  url:  "/home/sketch?id=" + post_data.post.user.id,
-                                                                                  uid: aw_js_global_visited_user_foreign_ids['twitter']
-                                                                               };
-
-                                                  if( post_data.post.if_yaml ){
-                                                    var native_object = JSON.parse(post_data.post.text);
-                                                    alert(JSON.stringify(native_object));
-                                                  }
-                                                  if(post_data.post.text){
-                                                    aw_post_json["text"] = post_data.post.text;
-                                                  }
-
-                                                  if( post_data.location && post_data.location.name ){
-                                                    aw_post_json["place"] = { name: post_data.location.name};
-                                                  }
-                                                  
-                                                  if( post_data.location && 
-                                                              post_data.location.lat && 
-                                                                post_data.location.lng ){
-                                                    aw_post_json["location"] = {
-                                                                                  lat: post_data.location.lat,
-                                                                                  lng: post_data.location.lng
-                                                                                };
-                                                  }
-                                                  
-                                                  if( post_data.documents && post_data.documents.array ){
-                                                    var attachment_arr = [];
-                                                    $.each( post_data.documents.array, function( index, doc){
-                                                      var attachment = {};
-
-                                                      if( doc.type ){
-                                                        attachment['type'] = doc.type;
-                                                      }
-
-                                                      if( doc.url ){
-                                                        attachment['url'] = doc.url;
-                                                      }
-                                                      if( doc.name ){
-                                                        attachment['title'] = doc.name;
-                                                      }
-                                                      
-                                                      if( doc.url_description ) {
-                                                        attachment['description'] = doc.url_description;
-                                                      }
-
-                                                      attachment_arr.push( attachment );
-
-                                                    });
-                                                    aw_post_json['attachment'] = attachment_arr;
-                                                  }
+    aw_post_json["originator"] = {
+                                image: post_data.post.user.photo,
+                                name: post_data.post.user.full_name,
+                                url:  "/home/sketch?id=" + post_data.post.user.id,
+                                uid: aw_js_global_visited_user_foreign_ids['twitter']
+                               };
 
 
-                                                  if( post_data.entities && post_data.entities.array ){
-                                                    var mention_arr = [];
-                                                    $.each( post_data.entities.array, function( index, entity){
-                                                      var mention = {};
+    if(post_data.post.text){
+      aw_post_json["text"] = post_data.post.text;
+        
+    }
+    if( post_data.post.if_json ){
+      json_data = JSON.parse(post_data.post.text);
+      var aw_post_json_temp = aw_api_model_twitter_translate_post_to_aw_post(json_data);
+      aw_post_json_temp['originator'] = aw_post_json.originator;
+      aw_post_json = aw_post_json_temp;
+    
+      if(  json_data.retweeted_status){
+        aw_post_json["originator"] = {
+                                image: json_data.retweeted_status.user.profile_image_url,
+                                name: json_data.retweeted_status.user.name,
+                                url:  'https://twitter.com/#!/' + json_data.retweeted_status.user.screen_name,
+                                screen_name: '@' + json_data.retweeted_status.user.screen_name,
+                                uid: aw_js_global_visited_user_foreign_ids['twitter']
+                              };
 
-                                                      if( entity.name ){
-                                                        mention['name'] = entity.name;
-                                                      }
+      }
+    }
+    
+    aw_post_json["service"] = {
+                                name: post_data.post.source_name,
+                                pid: post_data.post.source_object_id
+                              };
 
-                                                      if( entity.image ){
-                                                        mention['image'] = entity.image;
-                                                      }
+    aw_post_json["timestamp"] = post_data.post.time;
+    var values = post_data.post.time.split(" ");
+    var timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+    aw_post_json["local_timestamp"]  = new Date(Date.parse(timeValue)).getTime();
+    if( post_data.location && post_data.location.name ){
+      aw_post_json["place"] = { name: post_data.location.name};
+    }
+    
+    if( post_data.location && 
+                post_data.location.lat && 
+                  post_data.location.lng ){
+      aw_post_json["location"] = {
+                                    lat: post_data.location.lat,
+                                    lng: post_data.location.lng
+                                  };
+    }
+    
+    if( post_data.documents && post_data.documents.array ){
+      var attachment_arr = [];
+      $.each( post_data.documents.array, function( index, doc){
+        var attachment = {};
 
-                                                      if( entity.description ){
-                                                        mention['description'] = entity.description;
-                                                      }
-                                                      
-                                                     
-                                                      mention_arr.push( mention );
+        if( doc.type ){
+          attachment['type'] = doc.type;
+        }
 
-                                                    });
-                                                    aw_post_json['mention'] = mention_arr;
-                                                  }
+        if( doc.url ){
+          attachment['url'] = doc.url;
+        }
+        if( doc.name ){
+          attachment['title'] = doc.name;
+        }
+        
+        if( doc.url_description ) {
+          attachment['description'] = doc.url_description;
+        }
+
+        attachment_arr.push( attachment );
+
+      });
+      aw_post_json['attachment'] = attachment_arr;
+    }
 
 
-                                                  twitter_data.push(aw_post_json);
-                                                });
-                                                  
-                                                  
-                                               context.services.twitter['data'] = twitter_data;
-                                               context.services.twitter.processed = true;
-                                                 aw_pulled_stream_assimilate_services(context); 
-                                              };
+    if( post_data.entities && post_data.entities.array ){
+      var mention_arr = [];
+      $.each( post_data.entities.array, function( index, entity){
+        var mention = {};
+
+        if( entity.name ){
+          mention['name'] = entity.name;
+        }
+
+        if( entity.image ){
+          mention['image'] = entity.image;
+        }
+
+        if( entity.description ){
+          mention['description'] = entity.description;
+        }
+        
+       
+        mention_arr.push( mention );
+
+      });
+      aw_post_json['mention'] = mention_arr;
+    }
+
+
+    twitter_data.push(aw_post_json);
+  });
+    
+    
+ context.services.twitter['data'] = twitter_data;
+ context.services.twitter.processed = true;
+ aw_pulled_stream_assimilate_services(context); 
+}
                                                             
 

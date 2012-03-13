@@ -35,6 +35,8 @@ function aw_pulled_stream_query_filter(filter, fn_cb){
     if( fn_cb != null){
       context.no_render_fn_cb = fn_cb;
     }
+
+    filter['cache'] = aw_js_global_visited_user_credentials.cache_time;
     $.ajax({
             url: "/home/get_streams",
             type: 'GET',

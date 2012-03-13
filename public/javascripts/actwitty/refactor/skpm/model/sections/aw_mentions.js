@@ -309,7 +309,8 @@ function aw_mentions_verified_fetch_details(context){
             type: 'GET',
             data: {
                     user_id : aw_js_global_visited_user_credentials.id,
-                    entity_ids : context.relook
+                    entity_ids : context.relook,
+                    cache : aw_js_global_visited_user_credentials.cache_time
                   },
             dataType: 'json',
             contentType: 'application/json',

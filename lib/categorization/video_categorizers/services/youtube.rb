@@ -48,6 +48,7 @@ module Categorization
           end
 
           url_arrays = links.enum_for(:each_slice,  YOUTUBE_BATCH_LIMIT).to_a
+
           url_sets = url_arrays.enum_for(:each_slice,  YOUTUBE_RATE_LIMIT).to_a
 
           request_array = []
@@ -74,9 +75,11 @@ module Categorization
                   </entry>"
               end
               post_data=post_data+"</feed>"
+
               if post_data.length > base_len
                 request_array << {:url => YOUTUBE_GDATA_BATCH_URL, :params =>  {:body => post_data, :head => {'content-type' => 'application/atom+xml'}}, :method => "post", :handle => idx}
               end
+
               post_data=YOUTUBE_POST_DATA
             end
 

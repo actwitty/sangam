@@ -125,7 +125,12 @@ module Api
       #                                                     OR
       #                              :id => 125
       #                         }
-      #
+      #                          OR
+      #              :source_action => {
+      #                                   :all => true
+      #                                                   OR
+      #                                   :name => "likes" or "comments" or"shares" or "retweets"
+      #                               }
       #           }
       #
       #:current_user_id => 123 #user_id for self (calling user)  #Handled internally
@@ -141,7 +146,7 @@ module Api
       #       :id=>10, :user=>{:id=>5, :full_name=>"lemony1 lime1", :photo=>"images/id_1"},
       #       :time=>Sat, 30 Jul 2011 21:41:56 UTC +00:00,
       #       :text=> text:Had a great pizza at pizza hut #food #italian http://pizzahut.com/123/234\n user_id:123
-      #       :if_yaml => true,
+      #       :if_json => true,
       #       :summary_id=>9,
       #       :source_name=>"twitter",
       #       :source_object_id => "12233",
@@ -201,7 +206,7 @@ module Api
       #                       :name => Pizza
       #                       :image => ""http://freebase.com/pizza.jpg",
       #                       :description => ""http://freebase.com/text.html",
-
+      #
       #                       :source_name => "twitter"
       #                       :source_msg_id =>  "12233", [OBJECT ID OF POST]
       #                   }
@@ -302,6 +307,8 @@ module Api
           elsif !params[:filter][:location].blank?
             array  = get_location_stream(params)
 
+          elsif !params[:filter][:source_action].blank?
+            array  = get_source_action_stream(params)
           end
          Rails.logger.info("[LIB] [API] [STREAMS] [VALIDATE] [get_stream] #{params}")
         else
@@ -437,6 +444,52 @@ module Api
 
       rescue => e
         Rails.logger.error("[LIB] [API] [STREAMS] [get_document_stream] **** ERROR **** #{e.message} for #{params.inspect}")
+        []
+      end
+
+      #INPUT => Same as get_stream
+      #OUTPUT => Same as get_stream
+      def get_source_action_stream(params)
+
+        Rails.logger.info("[LIB] [API] [STREAMS] [get_source_action_stream] Entering")
+
+        h = ::Api::Helpers::PlanTableQuery.plan_source_action_query(params[:query])
+
+        if h.blank?
+          Rails.logger.info("[LIB] [API] [STREAMS] [get_source_action_stream] entering Leaving => Blank Query Hash => #{params.inspect}")
+          return {}
+        end
+
+        array = []
+
+        args = params[:filter][:source_action]
+
+        #dont do anything if !args[:all].blank?
+        h[:name] = args[:name] if !args[:name].blank?
+
+        hash = {}
+
+        SourceAction.where(h).all.each do |attr|
+          hash[attr.activity_id] =  true
+        end
+
+        Rails.logger.info("[LIB] [API] [STREAMS] [get_source_action_stream] Number of Actions Found #{hash.size}")
+
+        query = {
+                  :query => {:id => hash.keys},
+                  :current_user_id => params[:current_user_id],
+                  :user_id => params[:user_id],
+                  :limit => params[:limit],
+                }
+
+        array = get_all_activity(query)
+
+        Rails.logger.info("[LIB] [API] [STREAMS] [get_source_action_stream] Leaving")
+
+        array
+
+      rescue => e
+        Rails.logger.error("[LIB] [API] [STREAMS] [get_source_action_stream] **** ERROR **** #{e.message} for #{params.inspect}")
         []
       end
     end

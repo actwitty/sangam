@@ -30,7 +30,7 @@ class CreateDocuments < ActiveRecord::Migration
 
       t.integer  :web_link_id
 
-      t.datetime :source_created_at, :default => Time.now.utc
+      t.datetime :source_created_at, :default => Time.utc(1970, 1, 1, 0, 0).to_datetime
 
       t.text     :category_id       #sports, entertainment etc
 

@@ -182,7 +182,7 @@ module Api
 
           else
             hash[:post][:text] = activity.activity_text
-            hash[:post][:if_yaml]  =  activity.if_yaml
+            hash[:post][:if_json]  =  activity.if_json
           end
           hash[:post][:category_data] = format_summary_category({:category_id => activity.category_id}) if !activity.category_id.blank?
 

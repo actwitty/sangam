@@ -17,7 +17,7 @@ module EmHttp
       #sites => ARRAY => [{:url => "http://gmai.com", :params => {}, :method => "get", :handle => "12333"}, ...] or
       #         HASH => {:url => "http://gmai.com", :params => {}, :method => "post", :handle => "12333" }
       def request(sites)
-        Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] #{sites.inspect}")
+        #Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] #{sites.inspect}")
         http = nil
 
         f = Fiber.current
@@ -25,8 +25,8 @@ module EmHttp
         multi = EM::MultiRequest.new
 
         sites.each do |h|
-          Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] url => #{h[:url]}")
-          Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] url => #{h[:url]} ,params => #{h[:params]}")
+          #Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] url => #{h[:url]}")
+          #Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] url => #{h[:url]} ,params => #{h[:params]}")
 
           h[:params] = {} if h[:params].blank?
 
@@ -52,11 +52,11 @@ module EmHttp
         array = []
         multi.callback{
           multi.responses[:callback].each do |k,v|
-             Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] Callback")
+             #Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] Callback")
              array << {:handle => k, :response => v.response, :header => v.response_header,:request => v.req }
           end
           multi.responses[:errback].each do |k,v|
-            Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] ErrBack #{v.inspect}")
+            #Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] ErrBack #{v.inspect}")
             array << {:handle => k, :response => v.response, :header => v.response_header,:request => v.req }
           end
 
@@ -65,7 +65,7 @@ module EmHttp
           f.resume(array)
         }
 
-        Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] leaving")
+        #Rails.logger.info("[LIB] [EMHTTP] [HTTP] [REQUEST] leaving")
         Fiber.yield
       rescue => e
         Rails.logger.error("[LIB] [EMHTTP] [REQUEST] for **** RESCUE **** => #{e.message}")

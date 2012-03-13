@@ -15,6 +15,7 @@ class Mention < ActiveRecord::Base
       params[:status] = AppConstants.status_public if params[:status].nil?
       params[:status_at_source] = AppConstants.status_public_at_source if params[:status_at_source].nil?
       params[:source_name] =  AppConstants.source_actwitty if params[:source_name].nil?
+      params[:source_created_at] = Time.now.utc if params[:source_created_at].blank?
 
       #created_at and updated_at will take input value only when ActiveRecord::Base.record_timestamps is false
       #ootherwise default

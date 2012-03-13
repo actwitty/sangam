@@ -10,15 +10,18 @@ module Categorization
 
       CALAIS_LICENSE_KEY = ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt',
                             'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
-                            'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7']
+                            'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
+                            'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
       #CALAIS_LICENSE_KEY = 'swcm89qzyvuttcv6jeskv85q'  #cloud@actwitty.com
       #CALAIS_LICENSE_KEY = 'vqda4dmky3mnt3ygjjqdbxpt'  #alok@actwitty.com
       #CALAIS_LICENSE_KEY = 'hfe94r47kpqr69enmvbs8sb6'  #aloksrivastava78@gmail.com
       #CALAIS_LICENSE_KEY  = '86v297e5xnqp5qw4bcc782n2' #administrator@actwitty.com
-      #CALAIS_LICENSE_KEY = 'txv9e7gdvwwjctg6pwqpm3a3' #priyanjali.rai@gmail.com
+      #CALAIS_LICENSE_KEY = 'txv9e7gdvwwjctg6pwqpm3a3'  #priyanjali.rai@gmail.com
       #CALAIS_LICENSE_KEY = 'rkwtrhpb7dxv9bvypmwz8yvj'  #no-reply@actwitty.com
       #CALAIS_LICENSE_KEY = 'ayeayfcmcczp6sys6xfhh776'  #sudhanshu@actwitty.com
       #CALAIS_LICENSE_KEY = 'yzkdtbtnrvspywz4nehdyhg7'  #sudhanshu.saxena@gmail.com
+      #CALAIS_LICENSE_KEY = 'yzkdtbtnrvspywz4nehdyhg7'  #sher.blr.2011@gmail.com
+      #CALAIS_LICENSE_KEY = 'yzkdtbtnrvspywz4nehdyhg7'  #cheetah.blr.2011@gmail.com
       CALAIS_RATE_LIMIT = 1 #QPS
 
       CALAIS_THRESHOLD_SCORE = 0.6
@@ -38,7 +41,7 @@ module Categorization
 
         def self.process_response(response)
 
-          Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [OpenCalais] [process_response] entering")
+          #Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [OpenCalais] [process_response] entering")
 
           if response.blank?
             Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [OpenCalais] [process_response]
@@ -59,7 +62,7 @@ module Categorization
             end
           end
 
-          Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [OpenCalais] [process_response] leaving =>
+          #Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [OpenCalais] [process_response] leaving =>
                            #{categories}")
           categories
         rescue => e

@@ -15,7 +15,8 @@
                                           country: '#{@user.country_code}',
                                           location: '#{@user.current_location}',
                                           lat: #{@user.current_geo_lat},
-                                          lng: #{@user.current_geo_long}
+                                          lng: #{@user.current_geo_long},
+                                          cache_time: '#{@user.updated_at}'
                                       };
   var aw_js_global_visited_user_foreign_ids = #{@service_uids.to_json};
 

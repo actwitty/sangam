@@ -41,8 +41,11 @@ module LinkResolution
             attr = Hash[attributes]
             if attr["src"] =~ /.*logo.*/
               @image = attr["src"]
-            elsif !@title_string.nil? && !attr["alt"].nil? && !attr["alt"].empty? && @title_string.match(attr["alt"])
-              @image = attr["src"]
+            elsif !@title_string.blank? && !attr["alt"].blank?
+              #Alok modified it
+              if Regexp.escape(@title_string).match(Regexp.escape(attr["alt"]))
+					      @image = attr["src"]
+              end
             end
           end
         else
@@ -145,12 +148,19 @@ module LinkResolution
             parser = Nokogiri::HTML::SAX::Parser.new(html_handler)
             parser.parse(response[:response])
 
+            c_url = response[:request].uri.scheme+"://"+response[:request].uri.host+response[:request].uri.path
+
+            #if parameters are there then no need to resolve that url
+            if response[:handle] =~ /\S+\?\S+/
+              c_url =response[:handle]
+            end
+
             hash[response[:handle]] =  {
                                          :url => response[:handle],
-                                         :canonical_url =>  response[:request].uri.scheme+ "://"+response[:request].uri.host+response[:request].uri.path,
+                                         :canonical_url =>  c_url,
                                          :title => html_handler.get_title, :description => html_handler.get_description,
                                          :image_url => html_handler.get_image, :element =>  html_handler.get_element_hash
-                                        }
+                                       }
           end
         end
         Rails.logger.info("[LIB] [LINK_RESOLUTION] [ACTWITTY] [RESOLVE_LINKS] Leaving")

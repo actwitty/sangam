@@ -14,28 +14,32 @@ module Categorization
         ALCHEMY_BATCH_LIMIT = 1
         ALCHEMY_RATE_LIMIT = 1
 
-        ALCHEMY_THRESHOLD_SCORE = 0.6
+        ALCHEMY_THRESHOLD_SCORE = 0.4
 
 
         class << self
           def make_request(content, handle, element)
-            (element == nil) or (element == 'idiv') ? str = "DIV" : str = element.upcase
-            {
-             :method => "post", :url => ALCHEMY_LINK_ENDPOINT,
-             :params =>{
-                        'url'=>"#{content}",
-                        'apikey'=> ALCHEMY_API_KEY,
-                        'outputMode'=> "json",
-                        'sourceText'=>"cquery",
-                        'cquery' => "all #{str}"    #paragraph section
-                       },
-             :handle => handle
-            }
+            str = "DIV"
+            if !element.blank?
+              str = element.upcase
+            end
+            h = {
+                 :method => "post", :url => ALCHEMY_LINK_ENDPOINT,
+                 :params =>{
+                            'url'=>"#{content}",
+                            'apikey'=> ALCHEMY_API_KEY,
+                            'outputMode'=> "json",
+                            'sourceText'=>"cquery",
+                            'cquery' => "all #{str}"    #paragraph section
+                           },
+                 :handle => handle
+               }
+            h
           end
 
           def process_response(response)
 
-            Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [process_response] entering")
+            #Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [process_response] entering")
 
             if response.blank?
               return []
@@ -55,7 +59,7 @@ module Categorization
               categories <<  {:name => cat[0], :score => json["score"].to_f, :category => json["category"] }
             end
 
-            Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [process_response] leaving => #{categories}")
+            #Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [process_response] leaving => #{categories}")
             return categories
           rescue => e
             Rails.logger.error("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [process_json] **** RESCUE **** => #{e.message}")

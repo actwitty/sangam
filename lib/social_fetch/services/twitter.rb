@@ -58,9 +58,9 @@ module SocialFetch
         #
         #                             :text => "hello world http://timesofindia.com/123.cms"  [OPTIONAL]
         #
-        #                             :yaml_text => "text:ljk;sdlsd"  [OPTIONAL]   #retains json format of source blob for easy display like for twitter, g+
+        #                             :json_text => "text:ljk;sdlsd"  [OPTIONAL]   #retains json format of source blob for easy display like for twitter, g+
         #                                                                          #for which we are storing data
-        #                                                                          #.. if yaml_text present use replace :text with yaml_text while storing
+        #                                                                          #.. if json_text present use replace :text with json_text while storing
         #                                                                          # we are storing yamls to increase re-usability and simplicity in display functions
         #                                                                          #in client side while doing mash-up with source data ( for example from twitter
         #                                                                          #and twitter data from ou server )
@@ -171,7 +171,7 @@ module SocialFetch
 
             #do this at last as we are trimming the entities hash in blob in links, tags, mentions
             activity[:text] = attr["text"]
-            activity[:yaml_text] = get_yaml(attr)
+            activity[:json_text] = get_json(attr)
 
             data[:post] = activity
 
@@ -197,8 +197,8 @@ module SocialFetch
         #INPUT => blob hash
         #OUTPUT => Array of link hash
         def get_links(blob)
-          #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] Entering")
-          return if blob["entities"].blank?
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_links] Entering")
+          return [] if blob["entities"].blank?
 
           links = []
           if !blob["entities"]["urls"].blank?
@@ -206,6 +206,8 @@ module SocialFetch
 
               !attr["expanded_url"].blank? ? link =  attr["expanded_url"] : link =  attr["url"]
               array = ::Api::Helpers::Parser.get_documents({:text => link})
+
+              next if array.blank?
 
               if  array[0][:url] =~ /twitter.com\/[\w\/]+\/photo\/\w+/
                 array[0][:ignore] = true
@@ -273,7 +275,7 @@ module SocialFetch
         def get_tags(blob)
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_tags] Entering")
 
-          return if blob["entities"].blank?
+          return [] if blob["entities"].blank?
 
           tags = []
           if !blob["entities"]["hashtags"].blank?
@@ -303,7 +305,7 @@ module SocialFetch
         def get_mentions(blob)
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_mentions] Entering")
 
-          return if blob["entities"].blank?
+          return [] if blob["entities"].blank?
 
           mentions = []
           if !blob["entities"]["user_mentions"].blank?
@@ -331,11 +333,11 @@ module SocialFetch
         #INPUT => blob hash
         #OUTPUT => Source Action Hash
         def get_source_actions(blob)
-          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Entering #{blob.inspect}")
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Entering ")
 
           hash = {}
 
-          if blob["retweeted"] == false and (blob["retweet_count"] > 0 )
+          if blob["retweeted_status"].blank? and (blob["retweeted"] == false) and (blob["retweet_count"] > 0 )
             hash =  {"retweets" => {:count => blob["retweet_count"], :meta => {}} }
           end
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_source_actions] Leaving")
@@ -351,7 +353,7 @@ module SocialFetch
         def get_location(blob)
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_location] Entering")
 
-          return if blob["place"].blank?
+          return {} if blob["place"].blank?
 
           index,lat,long= 0,0,0
           location = {}
@@ -401,13 +403,13 @@ module SocialFetch
         #                                   "id" => 121221, "name" => "Jeff Thomson", "screen_name" => "jeff_thom", "photo_image_url"=> "http://twitter.com/photo/1"
         #                                 }
         #           "retweet_count" => 23 #shows actual retweet count => for retweeted tweet, it the count should not belong to user who is retweeting. it belongs to user who originated tweet
-        def get_yaml(blob)
+        def get_json(blob)
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_yaml] Entering")
           h = {}
 
           h["retweeted"] = blob["retweeted"]
           h["text"] = blob["text"]
-          h["entities"] = blob["entities"]
+          h["entities"] = blob["entities"] if !blob["entities"].blank?
 
           attr = blob["user"]
 
@@ -423,7 +425,7 @@ module SocialFetch
           h["retweet_count"] = blob["retweet_count"]
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_yaml] Leaving")
 
-          h.to_yaml
+          h.to_json
         rescue  => e
           Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [get_yaml] **** RESCUE **** => #{e.message} for #{blob.inspect}")
           blob["text"]

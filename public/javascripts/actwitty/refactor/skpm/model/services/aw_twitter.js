@@ -280,19 +280,23 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
                               name: "twitter",
                               pid: data.id
                             };
-
-  aw_post_json["timestamp"] = data.created_at; /* convert to a common timestamp*/
-  var values = data.created_at.split(" ");
-  var timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
-  aw_post_json["local_timestamp"]  = new Date(Date.parse(timeValue)).getTime();
   
-  aw_post_json["originator"] = {
+  if(  data.created_at ){
+    aw_post_json["timestamp"] = data.created_at; /* convert to a common timestamp*/
+    var values = data.created_at.split(" ");
+    var timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+    aw_post_json["local_timestamp"]  = new Date(Date.parse(timeValue)).getTime();
+  }
+ 
+  if ( data.user ){
+    aw_post_json["originator"] = {
                                     image:  data.user.profile_image_url,
                                     name: data.user.name,
                                     screen_name: '@' + data.user.screen_name,
                                     url:  'https://twitter.com/#!/' + data.user.screen_name,
                                     uid: data.user.id
                                  };
+  }
 
   if( data.place && data.place.name){
     var location_name = data.place.name;
@@ -355,14 +359,25 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
     /* url, type, start, end */
     if(data.entities.urls){
       $.each(data.entities.urls, function(key, url_data){
-        var attachment = {};
-        attachment['type'] = "embed";
-        attachment['embed'] = data.url;
-        attachment_arr.push(attachment);
-        if( url_data.expanded_url){
-          attachment['embed'] = url_data.expanded_url;
+        if( url_data.url && url_data.url.length){
+          var attachment = {};
+          attachment['type'] = "embed";
+          attachment['embed'] = url_data.url;
+          attachment_arr.push(attachment);
+          if( url_data.expanded_url){
+            attachment['embed'] = url_data.expanded_url;
+          }
         }
-        
+        var replace_url = '';
+        if( !url_data.expanded_url &&
+            (!url_data.url ||
+            !url_data.url.length)){
+            replace_url = aw_post_json.text.substr( url_data.indices[0], 
+                                                  (url_data.indices[1] -
+                                                  url_data.indices[0])  );
+            url_data['url'] = replace_url;
+            url_data['expanded_url'] = replace_url;
+        }
         var replacement = {
                               start: url_data.indices[0],
                               end: url_data.indices[1],
@@ -380,28 +395,50 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
 
     if(data.entities.user_mentions){
        $.each(data.entities.user_mentions, function(key, mentions_data){
+        var replace_screen_name = mentions_data.screen_name;
+        if( !replace_screen_name ||
+            !replace_screen_name.length ){
+          replace_screen_name = aw_post_json.text.substr( mentions_data.indices[0], 
+                                                          (mentions_data.indices[1] -
+                                                          mentions_data.indices[0])  )
+        }
         var replacement = {
                                start: mentions_data.indices[0],
                                end: mentions_data.indices[1],
-                               url: "http://twitter.com/#!/" + mentions_data.screen_name,
+                               url: "http://twitter.com/#!/" + replace_screen_name,
                                type: "mention_user"
                             };
 
-            replacement_array.push(replacement);
+        replacement_array.push(replacement);
          
        });
     }
 
+
     if(data.entities.media){
-       $.each(data.entities.user_mentions, function(key, media_data){
+       $.each(data.entities.media, function(key, media_data){
+
+        var replace_url = '';
+        if( !media_data.expanded_url &&
+            !media_data.url ){
+          replace_url = aw_post_json.text.substr( media_data.indices[0], 
+                                                  (media_data.indices[1] -
+                                                  media_data.indices[0])  );
+          media_data['url'] = replace_url;
+          media_data['expanded_url'] = replace_url;
+        }
+
         var replacement = {
                                start: media_data.indices[0],
                                end: media_data.indices[1],
                                url:  media_data.expanded_url,
-                               type: "mention_user"
+                               type: "mention_link"
                             };
 
-         replacement_array.push(replacement);
+
+
+        replacement_array.push(replacement);
+         
          if( media_data.type == "photo" ){
            var attachment = {};
            attachment['type'] = "link";
@@ -410,12 +447,23 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
            attachment['url'] = media_data.url;
            attachment_arr.push(attachment);
          }
+
            
        });
     }
 
     if(data.entities.hashtags){
+     
        $.each(data.entities.hashtags, function(key, hash_tag_data){
+
+        var replace_hashtag = '';
+        if( !hash_tag_data.text ){
+          replace_hashtag = aw_post_json.text.substr( hash_tag_data.indices[0], 
+                                                  (hash_tag_data.indices[1] -
+                                                  hash_tag_data.indices[0])  )
+          hash_tag_data['text'] = replace_hashtag;
+        }
+
         var replacement = {
                             start: hash_tag_data.indices[0],
                             end: hash_tag_data.indices[1],
@@ -433,7 +481,6 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
                                                     return (tag2.start - tag1.start);
                                                  });
       
-
        $.each(replacement_array, function(key, replace_data){
           var start_str="", replace_str="", trail_str="";
           var length = aw_post_json.text.length;

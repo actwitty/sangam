@@ -95,7 +95,10 @@ function aw_api_model_interests_server_request(){
 
             url: "/home/get_summary.json",
             type: 'GET',
-            data: { user_id :  aw_js_global_visited_user_credentials.id },
+            data: { 
+                    user_id :  aw_js_global_visited_user_credentials.id,
+                    cache : aw_js_global_visited_user_credentials.cache_time
+                  },
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {

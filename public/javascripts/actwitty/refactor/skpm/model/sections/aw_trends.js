@@ -114,14 +114,15 @@ function aw_api_model_trends_fetch_data(){
             type: 'GET',
             data: {
                     user_id : aw_js_global_visited_user_credentials.id,
-                    rest : 2 
+                    cache : aw_js_global_visited_user_credentials.cache_time 
                   },
             dataType: 'json',
             contentType: 'application/json',
             success: function (timeline_data) {
               var trend_data = [];
               var week_json   = {};
-              $.each( timeline_data, function( week_key, week_data ){
+              var trend_timeline_data = timeline_data.trends;
+              $.each( trend_timeline_data, function( week_key, week_data ){
                 //var time = ('' + week_data.start_date).replace(/-/g,"/").replace(/[TZ]/g," ");
                 var interests = [];
                 var title = week_data.start_date;
@@ -163,7 +164,8 @@ function aw_api_model_trends_fetch_data(){
               });             
               //aw_api_controller_render_trends(time_line_data);
               aw_api_controller_render_trends(trend_data);
-              aw_api_modal_handle_service_popularity(timeline_data);
+              alert(JSON.stringify(timeline_data.popularity));
+              aw_api_modal_handle_service_popularity(timeline_data.popularity);
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
               aw_api_controller_render_trends([]);

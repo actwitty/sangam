@@ -98,7 +98,7 @@ module Api
       #                   {..}
       #          ]
 
-    def get_entities_verified(params)
+      def get_entities_verified(params)
         Rails.logger.info("[LIB] [API] [ENTITIES] [GET_ENTITIES_VERIFIED] entering ")
 
         if params[:user_id].blank? or params[:entity_ids].blank?
@@ -127,7 +127,7 @@ module Api
       rescue => e
         Rails.logger.error("[LIB] [API] [ENTITIES] [GET_ENTITIES_VERIFIED] **** ERROR **** #{e.message} for #{params.inspect}")
         []
-      end 
+      end
     end
   end
 end

@@ -58,9 +58,9 @@ class Activity < ActiveRecord::Base
     #
     #    :text =>   "hello world"
     #
-    #    :yaml_text => "text:ljk;sdlsd"  #retains json format of source blob for easy display like for twitter, g+
+    #    :json_text => "text:ljk;sdlsd"  #retains json format of source blob for easy display like for twitter, g+
     #                                    #for which we are storing data
-    #                                    #.. if yaml_text present use replace :text with yaml_text while storing
+    #                                    #.. if json_text present use replace :text with json_text while storing
     #                                    # we are storing yamls to increase re-usability and simplicity in display functions
     #                                    #in client side while doing mash-up with source data ( for example from twitter
     #                                    #and twitter data from ou server )
@@ -173,22 +173,22 @@ class Activity < ActiveRecord::Base
         ###################################### CREATE OR UPDATE ACTIVITY #################################################
 
         #dont store text for private posts
-        params[:if_yaml] = false
+        params[:if_json] = false
         if params[:status_at_source] == AppConstants.status_private
           text = ""
           Rails.logger.info("[MODEL] [ACTIVITY] [CREATE_ACTIVITY] Private Service.. not storing text")
         else
-          if !params[:yaml_text].blank?
-            text = params[:yaml_text]
-            params[:if_yaml] = true
+          if !params[:json_text].blank?
+            text = params[:json_text]
+            params[:if_json] = true
           else
-           text = params[:yaml_text]
+           text = params[:json_text]
           end
         end
 
         h = {:activity_word_id => word_obj.id,
              :activity_text =>  text ,
-             :if_yaml => params[:if_yaml],
+             :if_json => params[:if_json],
              :activity_name => params[:word],
              :author_id => params[:author_id],
              :summary_id => params[:summary_id], :status => params[:status],
@@ -216,6 +216,7 @@ class Activity < ActiveRecord::Base
           obj.update_attributes!(h)
         end
 
+        puts "[ACTIVITY] OBJ_ID => #{h[:category_id]}  ===>  TEXT => #{text}"
 
         ######################################## START PROCESSING NON META ACTIVITY ###########################
 

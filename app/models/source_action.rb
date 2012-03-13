@@ -16,7 +16,7 @@ class SourceAction < ActiveRecord::Base
     #           :source_msg_id => "3242324",
     #           :source_name =>"facebook",
     #           :source_created_at =>  ,1994-11-05T13:15:30Z
-    #           :summary_id => 345, :name => "like", :count => 25,
+    #           :summary_id => 345, :name => "likes", :count => 25,
     #           :meta => {:friends => [{:name => "alok",:id => "23232313"}...]} #IT CAN BE DIFFERENT FOR DIFFERENT ACTIONS
     #        }
     def create_source_action(params)
