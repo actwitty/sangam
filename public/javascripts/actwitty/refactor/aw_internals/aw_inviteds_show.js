@@ -180,6 +180,10 @@ $(document).ready(function(){
     aw_force_inject_job();
   });
 
+  $("#aw_js_enable_service_btn").click(function(){
+    aw_process_enable_service_request();
+  });
+
 });
 
 
