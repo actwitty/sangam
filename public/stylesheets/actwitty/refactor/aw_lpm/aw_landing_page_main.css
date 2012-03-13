@@ -22,13 +22,6 @@
   font-weight: normal;
   font-style: normal; }
 
-@font-face {
-  font-family: "RobotoLight";
-  src: url("/webfont/roboto/Roboto-Light-webfont.eot");
-  src: url("/webfont/roboto/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Light-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Light-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Light-webfont.svg#RobotoLight") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
 body {
   margin: 0;
   padding: 0;
@@ -103,6 +96,7 @@ div.aw_home_top_nav h3 {
 #aw_home_footer {
   width: 100%;
   height: 25px;
+  float: right;
   background-image: url("/images/actwitty/refactor/aw_lpm/footer.gif"); }
 
 #aw_home_follow_us {
@@ -143,26 +137,28 @@ div.aw_home_top_nav h3 {
   height: 200px;
   display: block; }
   #aw_home_about_box .aw_home_about_vertical_box {
-    width: 47%;
+    width: 37%;
+    height: 80px;
+    margin-left: 80px;
     float: left;
     padding: 10px;
     display: inline-block;
     border: 0px dotted #cccccc; }
     #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_name_box {
       width: 100%;
-      height: auto;
+      height: 47px;
       overflow: hidden;
       margin-top: 5px; }
       #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_name_box span {
         font-family: League Gothic;
         font-weight: normal;
-        font-size: 64px;
-        color: black; }
+        font-size: 40px;
+        line-height: 46px;
+        color: #333333; }
     #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services {
       width: 100%;
       height: auto;
-      overflow: hidden;
-      margin-top: 2px; }
+      overflow: hidden; }
       #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link {
         height: auto;
         width: auto;
@@ -181,12 +177,16 @@ div.aw_home_top_nav h3 {
 
 #aw_home_about_incubation_box {
   width: 100%;
-  height: 100px;
+  height: 30px;
   border: 0px solid blue;
   position: relative;
-  float: right; }
+  float: right;
+  display: block; }
   #aw_home_about_incubation_box #aw_home_about_incubation_label {
-    font-size: 27px;
-    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
     font-family: "RobotoRegular";
-    color: #444444; }
+    color: #333333;
+    float: right; }
+  #aw_home_about_incubation_box img {
+    float: right; }
