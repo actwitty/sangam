@@ -12,29 +12,15 @@ var aw_local_fb_access_token_cb;
  *
  */
 function aw_facebook_access_show_dialog(fn_cb){
-  aw_lib_console_log("DEBUG", "Now showing FB user login");
-  var modal_id = "#aw_js_local_auth_modal";
-  var maskHeight = $(document).height();
-  var maskWidth = $(window).width();
-     
-  //Set height and width to mask to fill up the whole screen
-  $('#aw_js_local_auth_modal_mask').css({'width':maskWidth,'height':maskHeight});
-         
-  //transition effect     
-  $('#aw_js_local_auth_modal_mask').fadeIn(1000);    
-  $('#aw_js_local_auth_modal_mask').fadeTo("slow",0.8);  
-     
-  //Get the window height and width
-  var winH = $(window).height();
-  var winW = $(window).width();
-               
-  //Set the popup window to center
-  $(modal_id).css('top',  winH/2-$(modal_id).height()/2);
-  $(modal_id).css('left', winW/2-$(modal_id).width()/2);
-     
-  //transition effect
-  $(modal_id).fadeIn(2000); 
+  aw_lib_console_log("DEBUG", "Now showing FB user login");   
   aw_local_fb_access_token_cb = fn_cb;
+
+  $.fancybox({
+        content: $('#aw_js_fb_login_modal_fancybox'),
+        onClosed:function() {
+                              aw_local_fb_access_token_cb();
+                            }
+  });
 }
 /*********************************************************************/
 /*
@@ -42,7 +28,7 @@ function aw_facebook_access_show_dialog(fn_cb){
  *
  */
 function aw_api_facebook_access_initialize_token(fn_cb){
-  
+    
   
     aw_lib_console_log("DEBUG", "entered:aw_api_facebook_access_initialize_token");
     
@@ -100,12 +86,13 @@ $(document).ready(function(){
             aw_js_global_fb_access['token'] = response.authResponse.accessToken;
           } else {
           }
+
+          $.fancybox.close();
+          aw_local_fb_access_token_cb();
         }, 
         {
           scope: ''
         });
-    $('#aw_js_local_auth_modal_mask, #aw_js_local_auth_modal').hide();
-    aw_local_fb_access_token_cb();
     return false;
   });
 
