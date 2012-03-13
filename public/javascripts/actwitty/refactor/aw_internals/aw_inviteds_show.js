@@ -180,7 +180,6 @@ $(document).ready(function(){
     aw_force_inject_job();
   });
 
-  $("#
 });
 
 

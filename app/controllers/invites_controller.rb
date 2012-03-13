@@ -157,15 +157,21 @@ class InvitesController < ApplicationController
       Rails.logger.error("[CNTRL] [FORCE_INJECT_JOB] Blocking non loggedin access to admin page")
       redirect_to :controller => "welcome", :action => "new"
     end
+    response = false
     service=params[:service]
     identifier=params[:id]
-
-    inject_job_hash = {
+    user_id = nil
+    authentication = Authentication.where(:uid => identifier, :provider => service).all().first()
+    unless authentication.user_id.nil?
+      user_id = authentication.user_id
+    
+      inject_job_hash = {
                         :user_id => user_id,
                         :provider => service,
                         :uid => identifier
                       }
-    response = user.inject_job(inject_job_hash)
+      response = current_user.inject_job(inject_job_hash)
+    end
         
     if request.xhr?
         render :json => { :status => response}, :status => 200

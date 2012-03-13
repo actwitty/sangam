@@ -152,14 +152,6 @@ ActiveRecord::Schema.define(:version => 20120309055319) do
   add_index "entities", ["entity_name"], :name => "index_entities_on_entity_name"
   add_index "entities", ["updated_at"], :name => "index_entities_on_updated_at"
 
-  create_table "feedbacks", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.text     "feedback_text"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "foreign_profiles", :force => true do |t|
     t.string   "name"
     t.string   "screen_name"
