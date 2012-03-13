@@ -18,7 +18,7 @@ function aw_api_model_service_list_initialize(){
         view_json[service_name] = {
                                       name: aw_services_list[service_name].name,
                                       icon: services_icon_base + "/" + aw_services_list[service_name].active_icon,
-                                      url: aw_global_services_api_registry[service_name].follow_url()
+                                      url: aw_global_services_api_registry[service_name].follow_url(),
 
                                   };
       

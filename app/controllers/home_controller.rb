@@ -218,36 +218,28 @@ class HomeController < ApplicationController
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of other users")
       end
 
-      if !params[:document].nil? and !params[:document][:all].nil?
-        if params[:document][:all] == "true"
-          params[:document][:all] = true
-        else
-          params[:document][:all] = false          
+      if !params[:filter].nil? and !params[:filter][:document].nil? and !params[:filter][:document][:all].nil?
+        if params[:filter][:document][:all] == "true"
+          params[:filter][:document][:all] = true        
         end
       end      
 
 
-      if !params[:location].nil? and !params[:location][:all].nil?
-        if params[:location][:all] == "true"
-          params[:location][:all] = true
-        else
-          params[:location][:all] = false          
+     if !params[:filter].nil? and !params[:filter][:location].nil? and !params[:filter][:location][:all].nil?
+        if params[:filter][:location][:all] == "true"
+          params[:filter][:location][:all] = true
         end
       end      
 
-      if !params[:entity].nil? and !params[:entity][:all].nil?
-        if params[:entity][:all] == "true"
-          params[:entity][:all] = true
-        else
-          params[:entity][:all] = false          
+      if !params[:filter].nil? and !params[:filter][:entity].nil? and !params[:filter][:entity][:all].nil?
+        if params[:filter][:entity][:all] == "true"
+          params[:filter][:entity][:all] = true
         end
       end      
 
-      if !params[:document].nil? and !params[:document][:all].nil?
-        if params[:document][:all] == "true"
-          params[:document][:all] = true
-        else
-          params[:document][:all] = false          
+      if !params[:filter].nil? and !params[:filter][:source_action].nil? and !params[:filter][:source_action][:all].nil?
+        if params[:filter][:source_action][:all] == "true"
+          params[:filter][:source_action][:all] = true
         end
       end      
 

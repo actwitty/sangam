@@ -63,8 +63,6 @@ Sangam::Application.routes.draw do
   match '/about/show' => 'about#show'
   match '/team/show' => 'team#show'
 
-  match '/feedback/create' => 'feedback#create'
-  match '/feedback/show' => 'feedback#show'
   
   match '/invites/inviteds' => 'invites#inviteds'
   match '/invites/accepted' => 'invites#accepted'

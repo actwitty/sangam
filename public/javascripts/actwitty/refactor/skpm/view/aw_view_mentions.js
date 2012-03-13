@@ -66,7 +66,10 @@ function aw_view_mentions_get_html(data){
           }
 
           one_interest_html = one_interest_html +
-                              '<div class="aw_sketch_mention_box ' + display_class + '" >' +
+                              '<div class="aw_sketch_mention_box aw_js_filterer ' + display_class + '" ' +
+                                  'aw_filter_on="mention" ' +
+                                  'aw_mention_filter="' + mention_data.id + '" ' +
+                                '>' +
                                 '<div class="aw_sketch_mention_img_box" >' +
                                   '<img ' + 
                                     'class="aw_js_mention_image_class" ' +

@@ -92,7 +92,7 @@
         .aw_section_container_info_box          
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
-            %h3 IDENTITY
+            %h3 SPREAD ACROSS TOPICS
           
           #aw_js_topics_list_box.aw_section_container_internal_data_box
             #aw_js_topics_shared_busy.aw_busy_box
@@ -151,7 +151,7 @@
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
-            %h3 CONNECTIONS 
+            %h3 ACTIVE CONNECTIONS 
           .aw_section_container_internal_data_box
             #aw_js_connections_busy.aw_busy_box
               .aw_busy_mini_box
@@ -186,7 +186,7 @@
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
-            %h3 PICTURES
+            %h3 LIFE IN PICTURES
           .aw_section_container_internal_data_box 
             #aw_js_images_busy.aw_busy_box
               .aw_busy_mini_box
@@ -225,4 +225,10 @@
 /Secret cookies
 %input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
-
+:javascript
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/qSgEkukkoJykzYLLS3m3w.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })(); 

@@ -18,9 +18,13 @@ var aw_js_service_color_codes = {
  */
 function aw_view_get_all_details_for_interest_html(data){
   var html = '';
-  $.each(data, function(service_name, service_data) {
+  $.each(data.services, function(service_name, service_data) {
       $.each(service_data, function(field_name, field_data) {
-        html = html + '<div class="aw_service_popularity_details_box " >' +
+        html = html + '<div class="aw_service_popularity_details_box aw_js_filterer " ' + 
+                        ' aw_filter_on="topic,action" ' +
+                        ' aw_interest_filter="' + data.id + '" ' +                       
+                        ' aw_action_filter="' + field_name + '" ' +                        
+                        ' >' +
                         '<span class="aw_service_popularity_number">' +
                             field_data +
                         '</span>'+
@@ -54,7 +58,7 @@ function aw_view_get_topic_popularity_html(index, data){
                         data.name + 
                      '</div>' +
                      '<div class="aw_service_popularity_interest_details" >' +
-                        aw_view_get_all_details_for_interest_html(data.services) +
+                        aw_view_get_all_details_for_interest_html(data) +
                      '</div>' +
                 '</div>';
    return html;  

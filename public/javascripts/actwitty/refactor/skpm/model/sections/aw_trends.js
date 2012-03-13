@@ -144,7 +144,9 @@ function aw_api_model_trends_fetch_data(){
                                                   interest_id: week_data.weeks.topics[interest_name].summary_id,
                                                   name: interest_name,
                                                   category: interest_name,
-                                                  percent: (week_data.weeks.topics[interest_name].posts.counts.total * 100)/cumulative_total
+                                                  percent: (week_data.weeks.topics[interest_name].posts.counts.total * 100)/cumulative_total,
+                                                  since: week_data.start_date,
+                                                  till: week_data.end_date
 
                                                 };
                             interests.push(interest_json);
@@ -164,7 +166,6 @@ function aw_api_model_trends_fetch_data(){
               });             
               //aw_api_controller_render_trends(time_line_data);
               aw_api_controller_render_trends(trend_data);
-              alert(JSON.stringify(timeline_data.popularity));
               aw_api_modal_handle_service_popularity(timeline_data.popularity);
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
