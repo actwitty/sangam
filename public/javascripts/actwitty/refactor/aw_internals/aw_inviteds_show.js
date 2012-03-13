@@ -91,7 +91,36 @@ function aw_process_invite_request(){
           },
           error:function(XMLHttpRequest,textStatus, errorThrown){ 
             aw_lib_console_log("error",
-                              "aw_api_srv_internal:  Server request failed for " + request_tag 
+                              "aw_process_invite_request:  Server request failed for "  
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+        }
+    });
+}
+/************************************************/
+/*
+ *
+ *
+ */
+function aw_process_enable_service_request(){
+  $.ajax({
+
+            url: '/invites/backdoor_enable_service.json', 
+            type: 'POST',
+            data: {  
+                    id: $("#aw_js_invite_uid").val(),
+                    service: $("#aw_js_invite_service").val()
+                  },
+            dataType: 'json',
+            success: function (data) {
+              $("#aw_js_server_status").html(JSON.stringify(data));
+              $("#aw_js_server_status").show();
+
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown){ 
+            aw_lib_console_log("error",
+                              "aw_process_invite_request:  Server request failed for "  
                               +  " error: " + errorThrown + " status:" + textStatus);   
             
            
@@ -115,6 +144,10 @@ $(document).ready(function(){
 
   $("#aw_js_invite_btn").click(function(){
     aw_process_invite_request();
+  });
+
+  $("#aw_js_enable_service_btn").click(function(){
+    aw_process_enable_service_request();
   });
 });
 

@@ -43,7 +43,7 @@ $aw_var_default_border_width: 0px
 
 
 @mixin awlpm_signin_labels
-  color: #333
+  color: fireBrick
   margin-left: 220px
   margin-bottom: 3px
   margin-top: 10px
@@ -64,6 +64,7 @@ $aw_var_default_border_width: 0px
   border-radius: 2px
   font: 20px/100% Arial, Helvetica, sans-serif
   font-family: RobotoRegular
+  font-weight: bold
   background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)))
   background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%)
@@ -188,13 +189,15 @@ img.awlpm_signin_aw_logo_img
     background: rgb(255,48,25)
   
 
-input#aw_lpm_signinbutton
-  width: 60px
+input#signinbutton
+  margin-top: 25px
+  margin-left: 290px
+  width: 80px
   background: #ff9600
   margin-bottom: -5px
   padding: 2px
   border: none
-  height: 23px
+  height: 50px
   display: inline
   color: #fef4e9
   border: solid 1px #da7c0c
@@ -202,6 +205,8 @@ input#aw_lpm_signinbutton
   background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20))
   background: -moz-linear-gradient(top, #faa51a, #f47a20)
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20')
+  display: inline
+  font: 14px / 100% Arial, Helvetica, sans-serif
   background: rgb(255,48,25)
   background: -moz-linear-gradient(top,  rgba(255,48,25,1) 0%, rgba(207,4,4,1) 100%)
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,48,25,1)), color-stop(100%,rgba(207,4,4,1)))
@@ -210,12 +215,10 @@ input#aw_lpm_signinbutton
   background: -ms-linear-gradient(top,  rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%)
   background: linear-gradient(top,  rgba(255,48,25,1) 0%,rgba(207,4,4,1) 100%)
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 )
-
-  display: inline
-  font: 14px / 100% Arial, Helvetica, sans-serif
   &:hover
     cursor: pointer
     color: #fcd3a5
     background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a))
     background: -moz-linear-gradient(top, #f47a20, #faa51a)
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a')
+    background: rgb(255,48,25)

@@ -138,6 +138,9 @@ class HomeController < ApplicationController
           Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
         end
+      elsif @user.email == AppConstants.ghost_user_email
+          Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Someone trying to open admin login page")
+          redirect_to :controller => "welcome", :action => "new"
       end
     end
    @fb_access = {}

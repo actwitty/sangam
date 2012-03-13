@@ -3,20 +3,6 @@
  *code: AWLPM (awlpm) Actwitty Landing Page Sign Up Main
  *Author: ActWitty Developers
  *Author URI: http://www.actwitty.com */
-@font-face {
-  font-family: "RobotoThin";
-  src: url("/webfont/roboto/Roboto-Thin-webfont.eot");
-  src: url("/webfont/roboto/Roboto-Thin-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Thin-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Thin-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Thin-webfont.svg#RobotoThin") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: "RobotoThin";
-  src: url("/webfont/roboto/Roboto-Thin-webfont.eot");
-  src: url("/webfont/roboto/Roboto-Thin-webfont.eot?#iefix") format("embedded-opentype"), url("/webfont/roboto/Roboto-Thin-webfont.woff") format("woff"), url("/webfont/roboto/Roboto-Thin-webfont.ttf") format("truetype"), url("/webfont/roboto/Roboto-Thin-webfont.svg#RobotoThin") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
 #aw_lpm_signup_main_box {
   height: 800px;
   width: 100%; }
