@@ -23,10 +23,14 @@ function aw_api_model_service_list_initialize(){
                                   };
       
     }else{
+        var service_auth_url = '#';
+        if( aw_services_list[service_name].enabled ){
+          service_auth_url = '/users/auth/' + service_name;
+        }
         view_json[service_name] = {
                                       name: aw_services_list[service_name].name,
                                       icon: services_icon_base + "/" + aw_services_list[service_name].inactive_icon,
-                                      url: '/users/auth/' + service_name
+                                      url: service_auth_url
 
                                   };      
     }

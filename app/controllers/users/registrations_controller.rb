@@ -45,13 +45,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
             rescue Exception => e
               Rails.logger.error("[CNTRL][REGISTRATION] Authentication save failed #{e.message}")
             end
-            
-            enable_hash = {
-                            :user_id => user.id,
-                            :provider => @provider,
-                            :uid => @uid
-                          }
-            user.enable_service(enable_hash)
+            if invite_status  
+              enable_hash = {
+                              :user_id => user.id,
+                              :provider => @provider,
+                              :uid => @uid
+                            }
+              user.enable_service(enable_hash)
+            end
           end
         end
       end

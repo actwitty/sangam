@@ -17,7 +17,10 @@ var aw_local_facebook_request_url_base = {
 
                                      post_id_list: "https://graph.facebook.com/?ids={FB_OBJECT_LISTS}&fields=id,from,message,link,name,picture,caption,type,source,description,place,story&access_token={FB_ACCESS_TOKEN}&callback=?",
 
-                                     id_list: "https://graph.facebook.com/?ids={FB_OBJECT_LISTS}&access_token={FB_ACCESS_TOKEN}&callback=?"
+                                     id_list: "https://graph.facebook.com/?ids={FB_OBJECT_LISTS}&access_token={FB_ACCESS_TOKEN}&callback=?",
+                                     likes: "https://graph.facebook.com/{FB_USER_ID}/likes?access_token={FB_ACCESS_TOKEN}&limit=300&callback=?",
+                                     like_list: "https://graph.facebook.com/?access_token={FB_ACCESS_TOKEN}&ids={FB_OBJECT_LISTS}&callback=?",
+
 
                                 };
 /*****************************************************/
@@ -274,6 +277,86 @@ function aw_api_model_facebook_parse_date(fb_date){
  *
  *
  */
+function aw_api_model_facebook_translate_like_to_aw_post(data, like_lookup){
+   var aw_post_json = {};
+  
+  aw_post_json["service"] = {
+                              name: "facebook",
+                              pid: data.id
+                            };
+   aw_post_json["originator"] = {
+                                    image: "http://graph.facebook.com/" + aw_js_global_visited_user_foreign_ids.facebook + "/picture?type=square",
+                                    name: aw_js_global_visited_user_credentials.name,
+                                    url:  "http://www.facebook.com/profile.php?id=" + aw_js_global_visited_user_foreign_ids.id,
+                                    uid: aw_js_global_visited_user_foreign_ids.id
+                                 };
+
+   if( data.name ){
+      aw_post_json["text"] = aw_js_global_visited_user_credentials.name 
+                              + " likes " 
+                              + data.name  ;
+   }
+   
+   if( like_lookup[data.id].created_time ){    
+    aw_post_json["timestamp"] = like_lookup[data.id].created_time;
+    aw_post_json["local_timestamp"] = aw_api_model_facebook_parse_date(like_lookup[data.id].created_time).getTime();
+   }
+
+  var attachment = {};
+  if( data.link ){
+    attachment['type'] = "link";
+    if( data.link ){
+      attachment['url'] = data.link;
+    }
+
+    if( data.name ){
+      attachment['title'] = data.name;
+    }
+
+    if( data.website ){
+      attachment['name'] = data.website;
+    }
+
+    if(  data.description ){
+      attachment['description'] = data.description;
+    }
+  
+    if( data.picture ){
+      attachment['image_url'] = data.picture;
+    }
+
+  }
+
+
+   if( data.location ){
+     aw_post_json["place"] = '';
+     if( data.location.street){
+      
+       aw_post_json["place"] = data.location.street;
+     }
+
+     if( data.location.city){
+       aw_post_json["place"] = aw_post_json["place"] + ', ' + data.location.city;
+     }
+
+    if( data.location.country){
+       aw_post_json["place"] = aw_post_json["place"] + ', ' + data.location.country;
+     }
+
+    if( data.location.zip){
+       aw_post_json["place"] = aw_post_json["zip"] + ', ' + data.location.zip;
+     }
+
+  }
+
+  aw_post_json['attachment'] = [attachment];
+  return aw_post_json;
+}
+/***************************************************/
+/*
+ *
+ *
+ */
 function aw_api_model_facebook_translate_post_to_aw_post(data){
   var aw_post_json = {};
   var aw_post_list_images_fetch = [];
@@ -430,7 +513,109 @@ function aw_api_facebook_get_feeds(feed_type, fn_cb){
  *
  *
  */
-function aw_api_facebook_get_post_data_for_list_of_ids(id_list_str, fn_cb, cb_arg ){
+function aw_api_facebook_get_likes_data_for_list_of_ids_internal( likes_id_list_str,
+                                                                 fn_cb,
+                                                                 cb_arg,
+                                                                 likes_data){
+  var fetched_likes = {};
+  if( likes_data ){
+    var url = aw_local_facebook_request_url_base.like_list.
+                                                      replace("{FB_ACCESS_TOKEN}", 
+                                                                aw_js_global_fb_access["token"]).
+                                                      replace("{FB_OBJECT_LISTS}",
+                                                                likes_id_list_str);
+    $.jsonp({
+            url: url,
+            timeout: 10000,
+            cache: true,
+            success: 
+                function(json) {
+                  fetched_likes = json;
+                }, 
+            complete:
+                function(xOptions, textStatus) {
+                  var like_lookup_json = {};
+                  var translated_like_posts_array=[];
+                  $.each( likes_data.data, function(index, like_data){
+                    like_lookup_json[like_data.id] = like_data;
+                  });
+
+
+                  $.each( fetched_likes, function(index, fetched_like_data){
+
+                    if( like_lookup_json[ fetched_like_data['id'] ]){
+                      var translated_post = aw_api_model_facebook_translate_like_to_aw_post(fetched_like_data, like_lookup_json);
+                      translated_like_posts_array.push(translated_post);
+                    }
+                  });
+
+
+                  fn_cb(translated_like_posts_array, cb_arg);
+                  
+                 
+                }
+    });
+  }else{
+   fn_cb([], cb_arg);
+  }
+  
+}
+
+/*****************************************************/
+/*
+ *
+ *
+ */
+//TODO: do something better
+var aw_global_fb_cache_likes = null;
+function aw_api_facebook_get_likes_data_for_list_of_ids( likes_id_list_str,
+                                                         fn_cb,
+                                                         cb_arg ){
+  aw_lib_console_log("DEBUG", "entered:aw_api_facebook_process_likes_list_of_ids");
+  if( !aw_global_fb_cache_likes ){
+    var url = aw_local_facebook_request_url_base.likes.
+                                                      replace("{FB_ACCESS_TOKEN}", 
+                                                                aw_js_global_fb_access["token"]).
+                                                      replace("{FB_USER_ID}",
+                                                                aw_api_facebook_get_visited_user_id());
+    $.jsonp({
+            url: url,
+            timeout: 10000,
+            cache: true,
+            success: 
+                function(json) {
+                  aw_global_fb_cache_likes = json;
+                }, 
+            complete:
+                function(xOptions, textStatus) {
+                  aw_api_facebook_get_likes_data_for_list_of_ids_internal(likes_id_list_str,
+                                                                          fn_cb,
+                                                                          cb_arg,
+                                                                          aw_global_fb_cache_likes);  
+                 
+                }
+
+
+    });
+
+
+  }else{
+           aw_api_facebook_get_likes_data_for_list_of_ids_internal(likes_id_list_str,
+                                                                          fn_cb,
+                                                                          cb_arg,
+                                                                          aw_global_fb_cache_likes);
+  }
+}
+
+
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_facebook_get_post_data_for_list_of_ids(id_list_str, 
+                                                       fn_cb, 
+                                                       cb_arg ){
   aw_lib_console_log("DEBUG", "entered:aw_api_facebook_get_data_for_list_of_ids");
   var url = aw_local_facebook_request_url_base.post_id_list.
                                                       replace("{FB_ACCESS_TOKEN}", 
@@ -439,6 +624,7 @@ function aw_api_facebook_get_post_data_for_list_of_ids(id_list_str, fn_cb, cb_ar
                                                                 aw_api_facebook_get_visited_user_id()).
                                                       replace("{FB_OBJECT_LISTS}",
                                                                 id_list_str);
+
   var id_list_data= {};
   $.jsonp({
             url: url,

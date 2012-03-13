@@ -130,9 +130,9 @@ div.aw_inviteds_wrapper {
   padding-top: 10px;
   display: block; }
   .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section {
-    padding: 10px;
-    height: 40px;
+    height: 100px;
     width: 900px;
+    margin-top: 10px;
     border: 1px dotted #cccccc;
     margin: auto;
     display: block; }
@@ -141,15 +141,19 @@ div.aw_inviteds_wrapper {
       width: 100%;
       height: 20px;
       color: #555555;
+      margin-left: 20px;
+      margin-top: 5px;
+      margin-bottom: 5px;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
     .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_label {
       color: black;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 14px;
       font-weight: bold;
-      width: 100px;
+      width: 150px;
       height: 20px;
-      margin-left: 20px; }
+      margin-left: 20px;
+      text-align: left; }
     .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_id {
       border: 1px solid #cccccc;
       color: black;
@@ -167,26 +171,47 @@ div.aw_inviteds_wrapper {
       .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_preprocess_button:hover {
         cursor: pointer; }
   .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section {
-    height: 120px;
-    width: 150px;
+    height: 200px;
+    width: 900px;
     border: 1px dotted #cccccc;
     display: none;
-    margin-left: 20px; }
+    margin-top: 10px;
+    margin: auto; }
     .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section img {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       padding: 1px;
       border: 1px solid #cccccc;
       margin-left: 50px;
-      margin-top: 2px; }
-    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section label {
-      color: black;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-size: 13px;
-      width: 50px;
-      height: 15px;
-      margin: auto;
-      margin-top: 2px; }
+      margin-top: 10px;
+      padding: 3px;
+      border-radius: 3px;
+      -moz-box-shadow: 0 0 5px #333333;
+      -webkit-box-shadow: 0 0 5px #333333;
+      box-shadow: 0 0 5px #333333; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_details_fetched {
+      margin-left: 10px;
+      padding-left: 10px;
+      margin-top: 5px;
+      height: auto;
+      width: 200px;
+      display: block; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_details_fetched .aw_fetched_name {
+        color: #333333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        height: 15px;
+        margin-top: 2px;
+        margin-right: 2px;
+        display: inline-block; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_details_fetched .aw_service_name {
+        color: #333333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        width: 100px;
+        height: 15px;
+        margin-top: 2px;
+        display: inline-block; }
     .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_inviteds_new_invite_button {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-size: 18px;
@@ -196,44 +221,9 @@ div.aw_inviteds_wrapper {
       margin-bottom: 10px; }
       .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_inviteds_new_invite_button:hover {
         cursor: pointer; }
-
-.aw_inviteds_pagination_control {
-  font-size: 16px;
-  height: 18px;
-  width: 960px;
-  color: #555555;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: auto;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 10px; }
-
-.aw_inviteds_rounded-corner-table {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: 45px;
-  width: 960px;
-  margin: auto;
-  text-align: left;
-  border-collapse: collapse; }
-  .aw_inviteds_rounded-corner-table thead th.rounded-header {
-    background: #b9c9fe url("/images/actwitty/refactor/aw_internal/left.png") left -1px no-repeat; }
-  .aw_inviteds_rounded-corner-table thead th.rounded-q7 {
-    background: #b9c9fe url("/images/actwitty/refactor/aw_internal/right.png") right -1px no-repeat; }
-  .aw_inviteds_rounded-corner-table th {
-    padding: 8px;
-    font-weight: bold;
-    font-size: 16px;
-    color: #003399;
-    background: #b9c9fe; }
-  .aw_inviteds_rounded-corner-table td {
-    padding: 8px;
-    font-size: 14px;
-    background: #e8edff;
-    border-top: 1px solid white;
-    color: #666699; }
-  .aw_inviteds_rounded-corner-table tfoot td.rounded-foot-left {
-    background: #e8edff url("/images/actwitty/refactor/aw_internal/botleft.png") left bottom no-repeat; }
-  .aw_inviteds_rounded-corner-table tfoot td.rounded-foot-right {
-    background: #e8edff url("/images/actwitty/refactor/aw_internal/botright.png") right bottom no-repeat; }
-  .aw_inviteds_rounded-corner-table tbody tr:hover td {
-    background: #d0dafd; }
+  .aw_inviteds_new_invite .aw_inviteds_server_response {
+    width: 900px;
+    height: 30px;
+    margin: auto;
+    border: 1px dotted #cccccc;
+    display: none; }

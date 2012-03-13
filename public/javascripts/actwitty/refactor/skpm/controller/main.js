@@ -21,6 +21,8 @@ function aw_api_controller_sketch_main_init(){
     /* facebook is not there no need to check current log in */
     aw_api_controller_sketch_start_data_pulls();
   }
+
+  aw_api_view_search_autocomplete();
 }
 
 /******************************************************************/

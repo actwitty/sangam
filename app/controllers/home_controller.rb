@@ -21,7 +21,7 @@ class HomeController < ApplicationController
                          :get_services_enabled,
                          :get_analytics_timeline,
                          :thanks,
-                         :search_any]
+                         :search_user]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -309,14 +309,13 @@ class HomeController < ApplicationController
     end
   end
   ############################################
-  def search_any
-    Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search params : #{params}")
+  def search_user
+    Rails.logger.info("[CNTRL][HOME][SEARCH USER] search params : #{params}")
     query = {}
-    query[:type] = params[:type]
     query[:name] = params[:q]
 
-    response_json = current_user.search_models(query)
-    Rails.logger.info("[CNTRL][HOME][SEARCH ANY] search response : #{response_json}")
+    response_json = current_user.search_user(query)
+    Rails.logger.info("[CNTRL][HOME][SEARCH USER] search response : #{response_json}")
     if request.xhr?
         render :json => response_json, :status => 200
     end

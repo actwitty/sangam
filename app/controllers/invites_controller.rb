@@ -32,12 +32,12 @@ class InvitesController < ApplicationController
       Rails.logger.info("[CNTRL] [INVITES] Invite create new model request")
       Invite.create_new_invite(service, identifier, accepted, registered)
       if request.xhr?
-          render :json => {}, :status => 200
+          render :json => {:invite => 'done', :accepted => accepted, :registered => registered }, :status => 200
       end
     else
       Rails.logger.info("[CNTRL] [INVITES] Already invited")
       if request.xhr?
-        render :json => {}, :status => 400
+          render :json => {:invite => 'already', :accepted => accepted, :registered => registered }, :status => 200
       end
     end
   end
@@ -55,7 +55,7 @@ class InvitesController < ApplicationController
     @page_mode="aw_internal_inviteds_show_page"
     @user = current_user
     @total_invites = Invite.count()
-    @invites = Invite.find(:all, :order => 'created_at DESC').paginate(:page => params[:page], :per_page => 10)
+    
   end
 
   def accepted

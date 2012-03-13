@@ -3,14 +3,14 @@
   
   .aw_inviteds_new_invite
     .aw_inviteds_new_invite_input_section
-      %label.aw_inviteds_new_invite_label Invite from Facebook
+      .aw_inviteds_new_invite_label Invite from Facebook
       %label.aw_inviteds_new_invite_facebook_label Facebook Identifier:
       %input#aw_js_facebook_invite.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Facebook ID' }
       %input#aw_js_facebook_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
 
 
     .aw_inviteds_new_invite_input_section
-      %label.aw_inviteds_new_invite_label Invite from Twitter
+      .aw_inviteds_new_invite_label Invite from Twitter
       %label.aw_inviteds_new_invite_facebook_label Twitter Identifier:
       %input#aw_js_twitter_invite.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Twitter Handle' }
       %input#aw_js_twitter_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
@@ -18,58 +18,16 @@
 
 
     #aw_js_prefetched_info_section.aw_inviteds_new_invite_prefetch_section
-      %img#aw_js_invite_image{ :width=>'30px', :height=> '30px'}
-      %label#aw_js_invite_name
-      %label#aw_js_invite_service
+      %img#aw_js_invite_image{ :width=>'50px', :height=> '50px'}
+      .aw_details_fetched
+        #aw_js_invite_name.aw_fetched_name
+        #aw_js_invite_service.aw_service_name
       %input#aw_js_invite_uid{:type=>'hidden', :value =>  ''}/
       %input#aw_js_invite_service{:type=>'hidden', :value =>  ''}/
       %input#aw_js_invite_btn.aw_inviteds_new_invite_button.button_actwitty.blue{:type => "button", :value => "Invite"}/
-
-
-.aw_inviteds_wrapper.aw_inviteds_column3
-  .aw_inviteds_label
-    %span  #{@total_invites} Invited to ActWitty
-  .aw_inviteds_pagination_control
-    = will_paginate @invites
-  %table.aw_inviteds_rounded-corner-table
-    %thead
-      %tr
-        %th.rounded-header{:scope => "col"} Picture
-        %th.rounded-q1{:scope => "col"} Name
-        %th.rounded-q2{:scope => "col"} Source
-        %th.rounded-q3{:scope => "col"} ID
-        %th.rounded-q4{:scope => "col"} Accepted
-        %th.rounded-q5{:scope => "col"} Registered
-        %th.rounded-q6{:scope => "col"} Invited Time
-        %th.rounded-q7{:scope => "col"}  Last Accessed
-    %tfoot
-      %tr
-        %td.rounded-foot-left{:colspan => "7"}
-          %em ActWitty invites are to be kept confidential.
-        %td.rounded-foot-right  
-    %tbody
-      -unless @invites.nil?
-        - @invites.each do |person|
-          %tr
-            %input.aw_js_process_inviteds_data_from_fb{:type => "hidden", :value => "#{person.identifier}"}
-            -if person.service == "facebook"
-              %td.aw_js_invited_img_td
-                %img{:src => "http://graph.facebook.com/#{person.identifier}/picture"}
-            -else person.service == "twitter"
-              %td.aw_js_invited_img_td
-                %img{:src => "https://api.twitter.com/1/users/profile_image.json?id=#{person.identifier}"}
-              %td.aw_js_invited_name_td
+    #aw_js_server_status.aw_inviteds_server_response
       
-            %td #{person.service}
-            %td #{person.identifier}
-            %td #{person.accepted}
-            %td  #{person.registered}
-            %td  #{person.created_at}
-            %td  #{person.updated_at}
-        
 
-  .aw_inviteds_pagination_control
-    = will_paginate @invites
 
 
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
