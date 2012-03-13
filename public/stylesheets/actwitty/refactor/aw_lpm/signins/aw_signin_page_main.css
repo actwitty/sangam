@@ -57,7 +57,7 @@ img.awlpm_signin_aw_logo_img {
   padding-top: 10px; }
 
 #aw_lpm_signin_email_label {
-  color: #333333;
+  color: fireBrick;
   margin-left: 220px;
   margin-bottom: 3px;
   margin-top: 10px;
@@ -70,7 +70,7 @@ img.awlpm_signin_aw_logo_img {
   margin-top: 40px; }
 
 #aw_lpm_signin_password_label {
-  color: #333333;
+  color: fireBrick;
   margin-left: 220px;
   margin-bottom: 3px;
   margin-top: 10px;
@@ -90,6 +90,7 @@ img.awlpm_signin_aw_logo_img {
   border-radius: 2px;
   font: 20px/100% Arial, Helvetica, sans-serif;
   font-family: RobotoRegular;
+  font-weight: bold;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
   background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
@@ -111,6 +112,7 @@ img.awlpm_signin_aw_logo_img {
   border-radius: 2px;
   font: 20px/100% Arial, Helvetica, sans-serif;
   font-family: RobotoRegular;
+  font-weight: bold;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
   background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
@@ -183,13 +185,15 @@ img.awlpm_signin_aw_logo_img {
     color: #fcd3a5;
     background: #ff3019; }
 
-input#aw_lpm_signinbutton {
-  width: 60px;
+input#signinbutton {
+  margin-top: 25px;
+  margin-left: 290px;
+  width: 80px;
   background: #ff9600;
   margin-bottom: -5px;
   padding: 2px;
   border: none;
-  height: 23px;
+  height: 50px;
   display: inline;
   color: #fef4e9;
   border: solid 1px #da7c0c;
@@ -197,6 +201,8 @@ input#aw_lpm_signinbutton {
   background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
   background: -moz-linear-gradient(top, #faa51a, #f47a20);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  display: inline;
+  font: 14px/100% Arial, Helvetica, sans-serif;
   background: #ff3019;
   background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
@@ -204,12 +210,11 @@ input#aw_lpm_signinbutton {
   background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
   background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
   background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
-  display: inline;
-  font: 14px/100% Arial, Helvetica, sans-serif; }
-  input#aw_lpm_signinbutton:hover {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); }
+  input#signinbutton:hover {
     cursor: pointer;
     color: #fcd3a5;
     background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
     background: -moz-linear-gradient(top, #f47a20, #faa51a);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a'); }
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+    background: #ff3019; }

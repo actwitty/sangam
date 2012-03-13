@@ -1,5 +1,5 @@
 #aw_lpm_user_session
-  = simple_form_for(:user,@user, :url => user_session_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
+  = simple_form_for(:user, :as => @user, :url => user_session_path, :remote => true, :html => { :id => "signin", :class=>"inputform" }) do |f|
     #aw_lpm_signin_email_label
       %span Email
     = f.input :email ,
@@ -15,6 +15,6 @@
     %input{:name => "user[key]", :type => "hidden", :value => "#{@key}"}/
     %input{:name => "user[provider]", :type => "hidden", :value => "#{@provider}"}/
     %input{:name => "user[uid]", :type => "hidden", :value => "#{@uid}"}/
-    %input#signinbutton.actwittysignin.button_actwitty.blue.medium.hover_point{ :type => "button", :value => "Sign In !"}/
+    %input#signinbutton.button_actwitty.blue.medium.hover_point{ :type => "button", :value => "Sign In !"}/
     %a#aw_lpm_signin_already_a_user{:href => "/users/password/new"} Click here to reset password.
     

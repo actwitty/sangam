@@ -69,6 +69,7 @@ Sangam::Application.routes.draw do
   match '/invites/registered' => 'invites#registered'
 
   match '/invites/create_new' => 'invites#create_new'
+  match '/invites/backdoor_enable_service' => 'invites#backdoor_enable_service'
 
   match '/sign_out' => 'welcome#new'
   match '/welcome/new' => 'welcome#new'
