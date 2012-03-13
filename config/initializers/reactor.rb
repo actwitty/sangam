@@ -4,7 +4,7 @@ def start_reactor
     Thread.new {
       Rails.logger.info("[CONFIG] [INITIALIZER] [REACTOR] Reactor running")
       EM.run {
-        Rails.logger.flush
+
       }
     }
   end

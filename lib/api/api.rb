@@ -472,6 +472,24 @@ module Api
         status
       end
 
+
+      #ASSUMPTION => Service is already enabled
+      #
+      #INPUT {
+      #         :current_user_id => 123
+      #         :user_id => 123,
+      #         :provider => "facebook"/"twitter" [MANDATORY]
+      #         :uid => 123 [MANDATORY]
+      #
+      #      }
+      #OUTPUT => true [ON SUCCESS], false [ON FAILURE]
+      def inject_job(params)
+        params[:current_user_id] = self.id
+        result = ::Api::Services.inject_job(params)
+        result
+      end
+
+
       #INPUT => {:user_id => 123, :provider => "facebook/twitter"}
       def mock_enable_service(params)
 

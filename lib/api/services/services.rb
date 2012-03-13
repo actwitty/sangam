@@ -193,6 +193,46 @@ module Api
         Rails.logger.error("[LIB] [API] [SERVICES] [get_status] **** RESCUE **** #{e.message} For #{params.inspect}")
         return AppConstants.user_service_status_idle
       end
+
+
+      #ASSUMPTION => Service is already enabled
+      #
+      #INPUT {
+      #         :current_user_id => 123
+      #         :user_id => 123,
+      #         :provider => "facebook"/"twitter" [MANDATORY]
+      #         :uid => 123 [MANDATORY]
+      #
+      #      }
+      #OUTPUT => true [ON SUCCESS], false [ON FAILURE]
+      def inject_job(params)
+        Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Entering #{params.inspect}")
+
+        if params[:user_id].blank? or params[:provider].blank? or params[:uid].blank?
+          Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] User or Provider or UID at provider cant be blank => #{params.inspect}")
+          return false
+        end
+
+        if params[:user_id] != params[:current_user_id]
+          Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Un-Authorized user => #{params.inspect}")
+          return false
+        end
+
+        social_fetch = SocialAggregator.where(:user_id => params[:user_id],:provider => params[:provider], :uid => params[:uid]).first
+
+        if social_fetch.blank?
+          Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Service is not enabled #{params.inspect} #{social_fetch.inspect}")
+          return false
+        end
+        SocialAggregator.schedule_job({:user_id => params[:user_id],:provider => params[:provider],:uid => params[:uid]})
+
+        Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Entering #{params.inspect}")
+
+        true
+       rescue => e
+        Rails.logger.error("[LIB] [API] [SERVICES] [INJECT_JOB] **** RESCUE **** #{e.message} For #{params.inspect}")
+        false
+      end
     end
   end
 end
