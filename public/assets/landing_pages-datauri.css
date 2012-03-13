@@ -1,0 +1,1182 @@
+/*ActWitty Stylesheet file
+ *File: AW Landing Page
+ *code: AWLPM (awlpm) Actwitty Landing Page Main
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com */
+@font-face {
+  font-family: "League Gothic";
+  src: url(/webfont/leaguegothic/League_Gothic-webfont.eot);
+  src: local("League Gothic Regular"), local("League Gothic"), url(/webfont/leaguegothic/LeagueGothic.woff?1324442542) format("woff"), url(/webfont/leaguegothic/LeagueGothic.otf) format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg"); }
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(/webfont/roboto/Roboto-Regular-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Regular-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Regular-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(/webfont/roboto/Roboto-Regular-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Regular-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Regular-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoLight";
+  src: url(/webfont/roboto/Roboto-Light-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Light-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Light-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Light-webfont.svg#RobotoLight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  color: #cccccc;
+  margin-bottom: 40px; }
+
+#aw_home_main_container {
+  width: 960px;
+  height: auto;
+  margin: 0 auto;
+  border: 0px solid red; }
+
+#aw_home_top_header {
+  width: 100%;
+  height: 100px;
+  border: 0px solid blue; }
+
+.aw_home_top_nav {
+  float: right;
+  width: 120px;
+  height: 50px;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 0 8px 0 8px;
+  border: 1px solid #dddddd;
+  background: #88caed;
+  color: black;
+  cursor: pointer; }
+  .aw_home_top_nav a {
+    text-decoration: none;
+    color: black; }
+
+div.top_nav_active {
+  color: black;
+  background: #f4f4f4; }
+div.aw_home_top_nav h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px; }
+
+#aw_home_main_container img {
+  display: block;
+  margin: 0 auto;
+  margin-left: 30px; }
+
+#aw_home_main_desc {
+  margin: 0 auto;
+  color: #333333;
+  font-size: 30px;
+  margin-bottom: 15px;
+  text-align: center; }
+
+#aw_home_desc {
+  color: #2e3436;
+  font-size: 17px;
+  line-height: 24px;
+  padding-bottom: 35px;
+  text-align: center; }
+
+#aw_home_social_signup {
+  width: 100%;
+  height: 50px;
+  border: 0px solid red;
+  margin-bottom: 30px; }
+  #aw_home_social_signup img {
+    float: right;
+    margin-right: 20px;
+    width: 250px; }
+
+#aw_home_footer {
+  width: 100%;
+  height: 25px;
+  background-image: url(/images/actwitty/refactor/aw_lpm/footer.gif?1328817918); }
+
+#aw_home_follow_us {
+  width: 100%;
+  height: 25px; }
+  #aw_home_follow_us .aw_like_us {
+    float: left;
+    margin-left: 5px; }
+  #aw_home_follow_us a {
+    text-decoration: none; }
+  #aw_home_follow_us span {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333333;
+    margin-top: 4px; }
+  #aw_home_follow_us img {
+    float: right;
+    vertical-align: middle;
+    margin-left: 3px;
+    padding: 0; }
+
+.aw_home_about_full_width_box {
+  width: 600px;
+  height: 100px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 150px; }
+  .aw_home_about_full_width_box span {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 14px;
+    color: #444444; }
+
+#aw_home_about_box {
+  width: 100%;
+  height: 200px;
+  display: block; }
+  #aw_home_about_box .aw_home_about_vertical_box {
+    width: 47%;
+    float: left;
+    padding: 10px;
+    display: inline-block;
+    border: 0px dotted #cccccc; }
+    #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_name_box {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      margin-top: 5px; }
+      #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_name_box span {
+        font-family: League Gothic;
+        font-weight: normal;
+        font-size: 64px;
+        color: black; }
+    #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      margin-top: 2px; }
+      #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link {
+        height: auto;
+        width: auto;
+        display: inline-block; }
+        #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link a {
+          margin: 0px;
+          padding: 0px; }
+          #aw_home_about_box .aw_home_about_vertical_box .aw_home_about_services .aw_home_about_services_link a img {
+            margin: 0px; }
+
+#aw_home_about_place {
+  width: 960px;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 0px; }
+
+#aw_home_about_incubation_box {
+  width: 100%;
+  height: 100px;
+  border: 0px solid blue;
+  position: relative;
+  float: right; }
+  #aw_home_about_incubation_box #aw_home_about_incubation_label {
+    font-size: 27px;
+    font-weight: bold;
+    font-family: "RobotoRegular";
+    color: #444444; }
+
+.aw_lpm_dyn_latest_update_chn_box {
+  width: 170px;
+  height: 114px;
+  border: 1px solid #555555;
+  /*float:left; */
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 15px;
+  position: relative;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0 10px #333333;
+  -webkit-box-shadow: 0 0 10px #333333;
+  box-shadow: 0 0 10px #333333; }
+
+.aw_lpm_dyn_latest_update_chn_label {
+  width: 100%;
+  height: 18px;
+  position: absolute;
+  top: 0;
+  background: black;
+  background: rgba(0, 102, 204, 0.9);
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 3px;
+  border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px; }
+
+.aw_lpm_dyn_latest_update_chn_user_info_box {
+  width: 100%;
+  height: 40px;
+  border: 0px solid red;
+  position: absolute;
+  bottom: 0px;
+  background: black;
+  background: rgba(0, 0, 0, 0.6);
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  -moz-border-radius-bottomright: 5px; }
+  .aw_lpm_dyn_latest_update_chn_user_info_box img {
+    height: 40px;
+    vertical-align: middle;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px; }
+  .aw_lpm_dyn_latest_update_chn_user_info_box span {
+    color: white;
+    font-size: 14px;
+    font-family: "Helvetica", Arial, Helvetica, sans-serif; }
+
+/*  ActWitty Stylesheet file
+ *  File: AW Landing Page Sign In Module
+ *  code: AWLPM (awlpm) Actwitty Landing Page Sign In Main
+ *  Author: ActWitty Developers
+ *  Author URI: http://www.actwitty.com */
+#aw_lpm_forgot_pswd_main_box {
+  height: 700px;
+  width: 100%; }
+
+#aw_lpm_forgot_pswd_main_box img {
+  width: 500px;
+  margin-left: 420px; }
+
+#aw_lpm_forgot_pswd_main_div {
+  margin: auto;
+  width: 600px;
+  height: 400px;
+  /*border: 8px solid #33ccff */
+  border-radius: 10px;
+  -moz-border-radius: 10px; }
+
+#aw_lpm_forgot_pswd_aw_logo {
+  margin-top: 15px;
+  margin-left: 20px;
+  border: 0px solid green;
+  height: 50px;
+  width: 75px;
+  display: inline;
+  position: relative; }
+
+img.aw_lpm_forgot_pswd_aw_logo_img {
+  height: 50px;
+  width: 75px; }
+
+#aw_lpm_user_session .simple_form {
+  margin-left: 10px;
+  font-size: 12px;
+  color: black;
+  display: block;
+  width: 250px; }
+
+#aw_lpm_user_session .simple_form .field_with_errors {
+  width: 200px;
+  display: block; }
+
+#aw_lpm_user_session .simple_form .field_with_errors .error {
+  width: 250px;
+  height: 12px;
+  font-size: 12px;
+  margin-left: 120px;
+  display: block;
+  color: black; }
+
+#aw_lpm_forgot_pswd_already_a_user {
+  display: block;
+  color: #444444;
+  margin-left: 225px;
+  margin-top: 10px;
+  width: 100%;
+  border: 0px solid red;
+  font: 12px/100% Arial, Helvetica, sans-serif;
+  font-weight: normal; }
+
+input#aw_lpm_forgot_password_btn {
+  width: 100px;
+  height: 60px;
+  background: #ff9600;
+  padding: 2px;
+  border: none;
+  display: inline;
+  margin: auto;
+  color: #fef4e9;
+  border: solid 1px #da7c0c;
+  background: #ff3019;
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
+  display: inline;
+  font: 18px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  float: right;
+  margin-top: 10px;
+  margin-right: 125px; }
+  input#aw_lpm_forgot_password_btn:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: #ff3019; }
+
+/*ActWitty Stylesheet file
+ *File: AW Landing Page Sign Up Module
+ *code: AWLPM (awlpm) Actwitty Landing Page Sign Up Main
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com */
+#aw_lpm_signup_main_box {
+  height: 800px;
+  width: 100%; }
+
+#aw_lpm_signup_main_box img {
+  width: 600px;
+  margin: 0 auto; }
+
+#aw_lpm_signup_main_div {
+  font-family: RobotoRegular;
+  margin: auto;
+  width: 900px;
+  height: 800px;
+  /*border: 8px solid #0fb4e7 */
+  border-radius: 5px;
+  -moz-border-radius: 10px;
+  background-color: #fffff3;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 3px #dddddd;
+  -webkit-box-shadow: 0 0 3px #dddddd;
+  box-shadow: 0 0 3px #dddddd; }
+
+#aw_lpm_sign_up_top_row_div {
+  width: 890px;
+  height: 300px;
+  margin-top: 35px;
+  border: 0px solid black;
+  display: block;
+  float: left; }
+
+#aw_lpm_sign_up_bottom_row_div {
+  width: 860px;
+  height: 300px;
+  border: 0px solid black;
+  display: block;
+  float: left; }
+
+#aw_lpm_sign_up_bottom_row_left_div {
+  width: 400px;
+  height: 400px;
+  border: 0px solid red;
+  display: inline-block;
+  float: left; }
+
+#aw_lpm_sign_up_bottom_row_right_div {
+  width: 400px;
+  height: 400px;
+  border: 0px solid red;
+  display: inline-block;
+  float: left; }
+
+#aw_lpm_sign_up_register_row_div {
+  width: 860px;
+  height: 100px;
+  display: block;
+  float: left; }
+
+#aw_lpm_signup_top_left_div {
+  width: 400px;
+  height: 90%;
+  display: inline-block;
+  border: 0px solid red;
+  margin-top: 10px;
+  margin-left: 20px;
+  float: left; }
+
+#aw_lpm_signup_top_right_div {
+  width: 400px;
+  height: 90%;
+  margin-top: 10px;
+  display: inline-block;
+  border: 0px solid green;
+  float: left;
+  margin-left: 50px; }
+
+#aw_lpm_sign_up_bottom_row_right_div_internal {
+  width: 200px;
+  height: 80px;
+  margin-left: 80px;
+  margin-top: 0px;
+  padding: 30px;
+  padding-left: 80px;
+  display: inline-block;
+  border: 0px solid green; }
+
+#aw_lpm_location_auto_complete {
+  display: block;
+  width: 600px;
+  margin-left: 20px;
+  margin-bottom: 5px; }
+
+#aw_lpm_map_selector {
+  padding: 2px;
+  border: 1px solid #cccccc;
+  display: block;
+  width: 300px;
+  height: 250px;
+  margin-left: 40px; }
+
+#awlpm_signup_aw_logo {
+  margin-top: 15px;
+  margin-left: 200px;
+  border: 0px solid green;
+  height: 50px;
+  width: 75px;
+  display: inline;
+  position: relative; }
+
+img.awlpm_signup_aw_logo_img {
+  height: 50px;
+  width: 75px; }
+
+#awlpm_signup_aw_header_label {
+  margin: 0 auto;
+  margin-left: 10px;
+  /*width: 400px */
+  height: 30px;
+  color: white;
+  border: 0px solid red;
+  /*display: inline */
+  font-size: 44px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  font-weight: bold;
+  text-align: center; }
+
+#aw_lpm_signup_username_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_email_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_password_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_name_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_dob_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_gender_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_location_label {
+  color: #b22222;
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signup_email_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_email_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signup_username_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_username_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signup_password_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_password_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signup_name_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_name_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signup_gender_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_gender_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signup_dob_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_dob_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signup_location_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 20px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signup_location_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_user_register .simple_form {
+  margin-left: 10px;
+  font-size: 12px;
+  color: black;
+  display: block;
+  width: 250px; }
+
+#aw_lpm_user_register .simple_form .field_with_errors {
+  width: 200px;
+  display: block; }
+
+#aw_lpm_user_register .simple_form .field_with_errors .error {
+  width: 250px;
+  height: 12px;
+  font-size: 11px;
+  color: red;
+  margin-left: 20px;
+  display: block; }
+
+#aw_lpm_sign_up_terms_declaration {
+  margin-left: 80px;
+  margin-top: -10px;
+  width: 100%;
+  display: block;
+  font-size: 14px; }
+
+#aw_lpm_signup_already_a_user {
+  display: block;
+  color: #444444;
+  margin-left: 80px;
+  margin-top: 10px;
+  width: 100%;
+  border: 0px solid red;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold; }
+
+input#aw_lpm_signupbutton {
+  width: 60px;
+  background: #ff9600;
+  margin-bottom: -5px;
+  padding: 2px;
+  border: none;
+  height: 23px;
+  display: inline;
+  color: #fef4e9;
+  border: solid 1px #da7c0c;
+  background: #f78d1d;
+  background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+  background: -moz-linear-gradient(top, #faa51a, #f47a20);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  display: inline;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  background: #ff3019;
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); }
+  input#aw_lpm_signupbutton:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+    background: -moz-linear-gradient(top, #f47a20, #faa51a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+    background: #ff3019; }
+
+/*ActWitty Stylesheet file
+ *File: AW Landing Page Sign In Module
+ *code: AWLPM (awlpm) Actwitty Landing Page Sign In Main
+ *Author: ActWitty Developers
+ *Author URI: http://www.actwitty.com */
+#aw_lpm_signin_main_box {
+  height: 700px;
+  width: 100%; }
+
+#aw_lpm_signin_main_box img {
+  width: 500px;
+  margin: 0 auto;
+  display: block; }
+
+#aw_lpm_signin_main_div {
+  font-family: RobotoRegular;
+  margin: auto;
+  width: 700px;
+  height: 400px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 5px;
+  -moz-border-radius: 10px;
+  background-color: #fffff3;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 3px #dddddd;
+  -webkit-box-shadow: 0 0 3px #dddddd;
+  box-shadow: 0 0 3px #dddddd; }
+
+#awlpm_signin_aw_logo {
+  margin-top: 15px;
+  margin-left: 20px;
+  border: 0px solid green;
+  height: 50px;
+  width: 75px;
+  display: inline;
+  position: relative; }
+
+img.awlpm_signin_aw_logo_img {
+  height: 50px;
+  width: 75px; }
+
+#awlpm_signin_aw_header_label {
+  margin: 0 auto;
+  /*margin-left: 10px */
+  width: 600px;
+  height: 30px;
+  color: white;
+  border: 0px solid red;
+  /*display: inline */
+  font-size: 26px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  font-weight: bold;
+  text-align: center;
+  padding-top: 10px; }
+
+#aw_lpm_signin_email_label {
+  color: fireBrick;
+  margin-left: 220px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  margin-top: 40px; }
+
+#aw_lpm_signin_password_label {
+  color: fireBrick;
+  margin-left: 220px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_signin_email_input {
+  width: 250px;
+  height: 40px;
+  margin-left: 220px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  font-weight: bold;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signin_email_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_signin_password_input {
+  width: 250px;
+  height: 40px;
+  margin-left: 220px;
+  margin-bottom: 1px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-family: RobotoRegular;
+  font-weight: bold;
+  background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
+  background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -o-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: -ms-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(top, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); }
+  #aw_lpm_signin_password_input:focus {
+    -moz-box-shadow: 0 0 2px #888888;
+    -webkit-box-shadow: 0 0 2px #888888;
+    box-shadow: 0 0 2px #888888; }
+
+#aw_lpm_user_session .simple_form {
+  margin-left: 10px;
+  font-size: 12px;
+  color: black;
+  display: block;
+  width: 250px; }
+
+#aw_lpm_user_session .simple_form .field_with_errors {
+  width: 200px;
+  display: block; }
+
+#aw_lpm_user_session .simple_form .field_with_errors .error {
+  width: 250px;
+  height: 12px;
+  font-size: 12px;
+  margin-left: 120px;
+  display: block;
+  color: black; }
+
+#aw_lpm_signin_already_a_user {
+  display: block;
+  color: #444444;
+  margin-left: 290px;
+  margin-top: 20px;
+  width: 100%;
+  border: 0px solid red;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  font-weight: normal; }
+
+.actwittysignin {
+  width: 150px;
+  height: 40px;
+  background: #ff9600;
+  margin-bottom: -5px;
+  padding: 2px;
+  border: none;
+  display: inline;
+  color: #fef4e9;
+  border: solid 1px #da7c0c;
+  background: #f78d1d;
+  background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+  background: -moz-linear-gradient(top, #faa51a, #f47a20);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  font: 16px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-left: 320px;
+  margin-top: 20px;
+  background: #ff3019;
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); }
+  .actwittysignin:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: #ff3019; }
+
+input#signinbutton {
+  margin-top: 25px;
+  margin-left: 290px;
+  width: 80px;
+  background: #ff9600;
+  margin-bottom: -5px;
+  padding: 2px;
+  border: none;
+  height: 50px;
+  display: inline;
+  color: #fef4e9;
+  border: solid 1px #da7c0c;
+  background: #f78d1d;
+  background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+  background: -moz-linear-gradient(top, #faa51a, #f47a20);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+  display: inline;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  background: #ff3019;
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); }
+  input#signinbutton:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+    background: -moz-linear-gradient(top, #f47a20, #faa51a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+    background: #ff3019; }
+
+/*  ActWitty Stylesheet file
+ *  File: AW Landing Page Sign In Module
+ *  code: AWLPM (awlpm) Actwitty Landing Page Sign In Main
+ *  Author: ActWitty Developers
+ *  Author URI: http://www.actwitty.com */
+#aw_lpm_forgot_pswd_main_box {
+  height: 700px;
+  width: 100%;
+  font-family: "RobotoRegular"; }
+
+#aw_lpm_forgot_pswd_main_box img {
+  width: 500px; }
+
+#aw_lpm_forgot_pswd_main_div {
+  margin: auto;
+  width: 600px;
+  height: 400px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  border: 1px solid #dddddd;
+  -moz-box-shadow: 0 0 3px #dddddd;
+  -webkit-box-shadow: 0 0 3px #dddddd;
+  box-shadow: 0 0 3px #dddddd; }
+
+#aw_lpm_forgot_pswd_aw_logo {
+  margin-top: 15px;
+  margin-left: 20px;
+  border: 0px solid green;
+  height: 50px;
+  width: 75px;
+  display: inline;
+  position: relative; }
+
+img.aw_lpm_forgot_pswd_aw_logo_img {
+  height: 50px;
+  width: 75px; }
+
+#aw_lpm_forgot_pswd_header_label {
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 500px;
+  height: 80px;
+  color: #333333;
+  border: 0px solid red;
+  display: inline-block;
+  font-size: 35px;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px; }
+
+#aw_lpm_forgot_pswd_header_sub_label {
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  margin-top: 60px;
+  letter-spacing: 1px; }
+
+#aw_lpm_forgot_pswd_email_label {
+  color: #b22222;
+  margin-left: 170px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: bold;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */
+  margin-top: 60px; }
+
+#aw_lpm_forgot_pswd_password_label {
+  color: #b22222;
+  margin-left: 170px;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  border: 0px solid red;
+  font-size: 14px;
+  font-weight: bold;
+  /* font: 20px/100% Arial, Helvetica, sans-serif */ }
+
+#aw_lpm_forgot_pswd_email_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 170px;
+  margin-bottom: 1px;
+  color: black;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 28px/100% Arial, Helvetica, sans-serif;
+  font-family: "RobotoRegular";
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); }
+
+#aw_lpm_forgot_pswd_password_input {
+  width: 300px;
+  height: 40px;
+  margin-left: 170px;
+  margin-bottom: 1px;
+  color: black;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  font: 28px/100% Arial, Helvetica, sans-serif;
+  font-family: "RobotoRegular";
+  background: white;
+  background: -moz-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(47%, #f6f6f6), color-stop(100%, #ededed));
+  background: -webkit-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -o-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: -ms-linear-gradient(top, white 0%, #f6f6f6 47%, #ededed 100%);
+  background: linear-gradient(top, #ffffff 0%, #f6f6f6 47%, #ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); }
+
+#aw_lpm_user_session .simple_form {
+  margin-left: 10px;
+  font-size: 12px;
+  color: black;
+  display: block;
+  width: 250px; }
+
+#aw_lpm_user_session .simple_form .field_with_errors {
+  width: 200px;
+  display: block; }
+
+#aw_lpm_user_session .simple_form .field_with_errors .error {
+  width: 250px;
+  height: 12px;
+  font-size: 12px;
+  margin-left: 120px;
+  display: block;
+  color: black; }
+
+#aw_lpm_forgot_pswd_already_a_user {
+  display: block;
+  color: #444444;
+  margin-left: 225px;
+  margin-top: 10px;
+  width: 100%;
+  border: 0px solid red;
+  font: 12px/100% Arial, Helvetica, sans-serif;
+  font-weight: normal; }
+
+input#aw_lpm_forgot_password_btn {
+  width: 100px;
+  height: 60px;
+  background: #ff9600;
+  padding: 2px;
+  border: none;
+  display: inline;
+  margin: auto;
+  color: #fef4e9;
+  border: solid 1px #da7c0c;
+  background: #ff3019;
+  background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 );
+  display: inline;
+  font: 18px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  float: right;
+  margin-top: 10px;
+  margin-right: 125px; }
+  input#aw_lpm_forgot_password_btn:hover {
+    cursor: pointer;
+    color: #fcd3a5;
+    background: #ff3019; }
+
+.simple_form label {
+  /*float: left;*/
+  /*margin: 2px 10px;*/
+  margin-top: 20px;
+  color: #87CEEB; }
+
+.simple_form div.input {
+  margin-bottom: 2px; }
+
+.simple_form div.boolean, .simple_form input[type='submit'] {
+  margin-left: 0px; }
+
+.simple_form div.boolean label, .simple_form label.collection_radio {
+  /*margin-top:20px ;*/ }
+
+.simple_form label.collection_radio {
+  /*margin-right: 10px;*/ }
+
+.confirmation-fields .field_with_errors {
+  /*display:block;*/ }
+
+.input-hidden {
+  display: none; }
