@@ -507,7 +507,7 @@ class HomeController < ApplicationController
        Rails.logger.debug("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE] Model Response:#{response_json}")
       if request.xhr?
         expires_in 10.minutes
-        Rails.logger.warn("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE][REJECTED] Params:#{params}")
+        Rails.logger.debug("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE] Params:#{params}")
         render :json => response_json
         return
       end
@@ -516,6 +516,26 @@ class HomeController < ApplicationController
         expires_in 10.minutes
         Rails.logger.info("[CNTRL] [HOME] [GET_ANALYTICS_TIMELINE][REJECTED] Params:#{params}")
         render :json => {}, :status => 400
+      end
+    end
+  end
+  ####################################################################
+  def get_sketch_data_status
+    Rails.logger.info("[CNTRL] [HOME] [GET_SKETCH_DATA_STATUS] Params:#{params}")
+    unless  params[:user_id].nil?
+      query = {}
+      query[:user_id] = Integer(params[:user_id])
+      Rails.logger.warn("[CNTRL] [HOME] [GET_SKETCH_DATA_STATUS] model call :#{query}")
+      response = current_user.get_status(query)
+      Rails.logger.warn("[CNTRL] [HOME] [GET_SKETCH_DATA_STATUS] model response :#{response}")
+      if request.xhr?
+        
+        render :json => {:status => response}
+      end
+    else
+      if request.xhr?
+        Rails.logger.info("[CNTRL] [HOME] [GET_SKETCH_DATA_STATUS] Params:#{params}")
+        render :json => {:status => 1}, :status => 400
       end
     end
   end

@@ -1,4 +1,77 @@
 /******************************************************************/
+/*
+ *
+ *
+ */
+var aw_global_status_manager = {
+                                  status : 1,
+                                  fancybox_open: false,
+                                  fancybox_modal: false,
+                                  fancybox_timer: null
+                               };
+
+
+/******************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_control_verify_status_of_sketch_page(){
+  
+    $.ajax({
+            url: "/home/get_sketch_data_status",
+            type: 'GET',
+            data: {
+                    user_id : aw_js_global_visited_user_credentials.id,
+                  },
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function ( status_data ) {
+              aw_global_status_manager.fancybox_timer = null;
+              if(status_data.status ) {
+                if(status_data.status == 1){
+                  aw_global_status_manager.fancybox_modal = true;
+                }else if(status_data.status == 2){
+                  aw_global_status_manager.fancybox_modal = false;
+                }else if (status_data.status == 3){
+                  if(aw_global_status_manager.fancybox_open){
+                      $.fancybox.close();
+                      aw_global_status_manager.fancybox_open = false;
+                  }
+                }
+
+                if(  status_data.status != 3 ){                    
+                    
+                  if( !aw_global_status_manager.fancybox_open ){
+                    $.fancybox({
+                      content: $('#aw_js_fb_data_busy_modal_fancybox'),
+                      modal: aw_global_status_manager.fancybox_modal,
+                      onClosed:function() {
+                                            if( aw_global_status_manager.fancybox_timer ){
+                                              window.clearTimeout(aw_global_status_manager.fancybox_timer); 
+                                            }
+                                        }
+                      });
+                      aw_global_status_manager.fancybox_open = true;
+                    }
+
+                    aw_global_status_manager.fancybox_timer = window.setTimeout(  aw_api_control_verify_status_of_sketch_page(), 10000);
+
+
+                }
+              }
+
+            },error:function(XMLHttpRequest,textStatus, errorThrown){ 
+
+            }
+          });
+
+
+ 
+}
+
+
+/******************************************************************/
 var aw_js_global_services_user_enabled={};
 /* Main entry point to sketch initialize
  *
@@ -7,7 +80,7 @@ var aw_js_global_services_user_enabled={};
 function aw_api_controller_sketch_main_init(){
 
   aw_lib_console_log("DEBUG", "Entry point into main controller");
-
+  aw_api_control_verify_status_of_sketch_page();
   $.each(aw_js_global_rails_user_services_enabled, function( index, service_data){
     if ( service_data['provider'] ){
       aw_js_global_services_user_enabled[ service_data['provider'] + '_service_enabled'] = true;

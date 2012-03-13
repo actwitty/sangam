@@ -172,7 +172,7 @@ function aw_api_model_trends_fetch_data(){
               aw_api_controller_render_trends([]);
               aw_api_modal_handle_service_popularity(null);
               aw_lib_console_log("error",
-                              "aw_api_model_trends_fetch_data:  Server request failed for " + request_tag 
+                              "aw_api_model_trends_fetch_data:  Server request failed for "  
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });
