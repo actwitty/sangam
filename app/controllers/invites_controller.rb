@@ -146,6 +146,32 @@ class InvitesController < ApplicationController
 
       
    end
+  def force_inject_job_for_user
+    Rails.logger.info("[CNTRL] [FORCE_INJECT_JOB]  [#{params}]")
+    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
+      Rails.logger.error("[CNTRL] [FORCE_INJECT_JOB] Warning some one trying to breach #{ current_user.email}")
+      redirect_to :controller => "welcome", :action => "new"
+    end
+
+     unless user_signed_in?
+      Rails.logger.error("[CNTRL] [FORCE_INJECT_JOB] Blocking non loggedin access to admin page")
+      redirect_to :controller => "welcome", :action => "new"
+    end
+    service=params[:service]
+    identifier=params[:id]
+
+    inject_job_hash = {
+                        :user_id => user_id,
+                        :provider => service,
+                        :uid => identifier
+                      }
+    response = user.inject_job(inject_job_hash)
+        
+    if request.xhr?
+        render :json => { :status => response}, :status => 200
+    end
+
+  end
 
   def uninvited
   end

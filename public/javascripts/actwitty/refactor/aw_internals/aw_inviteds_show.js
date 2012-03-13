@@ -127,6 +127,36 @@ function aw_process_enable_service_request(){
         }
     });
 }
+
+/***********************************************/
+/*
+ *
+ *
+ */
+function aw_force_inject_job(){
+   $.ajax({
+
+            url: '/invites/force_inject_job_for_user.json', 
+            type: 'POST',
+            data: {  
+                    id: $("#aw_js_invite_uid").val(),
+                    service: $("#aw_js_invite_service").val()
+                  },
+            dataType: 'json',
+            success: function (data) {
+              $("#aw_js_server_status").html(JSON.stringify(data));
+              $("#aw_js_server_status").show();
+
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown){ 
+            aw_lib_console_log("error",
+                              "aw_process_invite_request:  Server request failed for "  
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+        }
+    });
+}
 /************************************************/
 /*
  *
@@ -146,9 +176,11 @@ $(document).ready(function(){
     aw_process_invite_request();
   });
 
-  $("#aw_js_enable_service_btn").click(function(){
-    aw_process_enable_service_request();
+  $("#aw_js_inject_job_btn").click(function(){
+    aw_force_inject_job();
   });
+
+  $("#
 });
 
 
