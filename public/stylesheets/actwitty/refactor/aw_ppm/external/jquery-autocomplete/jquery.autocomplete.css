@@ -1,10 +1,12 @@
 .ac_results {
   padding: 0px;
+  margin-top: -2px;
   border: 1px solid #ccc;
-  -moz-box-shadow: 0 0 8px #ddd;
-  -webkit-box-shadow: 0 0 8px #ddd;
-  box-shadow: 0 0 8px #ddd;
   background-color: white;
+  margin-left: 7px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   overflow: hidden;
   z-index: 99999; }
 
@@ -37,10 +39,5 @@
 .ac_loading {
   background: white url("/images/actwitty/refactor/aw_ppm/common/throbber.gif") right center no-repeat; }
 
-.ac_odd {
-  background-color: #eee; }
-
 .ac_over {
-  /*background-color: #0A246A;*/
-  background-color: #ccc;
-  color: white; }
+  /*background-color: #0A246A;*/ }

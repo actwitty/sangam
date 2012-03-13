@@ -75,17 +75,28 @@ function aw_api_srv_resp_aw_internal_invite(){
  *
  */
 function aw_process_invite_request(){
+  $.ajax({
 
-  var params = {
-                  'aw_srv_protocol_params' : {  
-                                                id: $("#aw_js_invite_uid").val(),
-                                                service: $("#aw_js_invite_service").val()
-                                             },
-                  'aw_srv_protocol_cookie' : {
-                                             }
-               };
-  //alert(JSON.stringify(params));
-  aw_api_srv_make_a_post_request('AW_SRV_INTERNAL_CREATE_INVITE',  params);
+            url: '/invites/create_new.json', 
+            type: 'POST',
+            data: {  
+                    id: $("#aw_js_invite_uid").val(),
+                    service: $("#aw_js_invite_service").val()
+                  },
+            dataType: 'json',
+            success: function (data) {
+              $("#aw_js_server_status").html(JSON.stringify(data));
+              $("#aw_js_server_status").show();
+
+          },
+          error:function(XMLHttpRequest,textStatus, errorThrown){ 
+            aw_lib_console_log("error",
+                              "aw_api_srv_internal:  Server request failed for " + request_tag 
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+        }
+    });
 }
 /************************************************/
 /*
