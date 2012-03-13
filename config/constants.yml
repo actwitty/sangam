@@ -156,7 +156,7 @@ production:
   twitter_consumer_secret:            'h0UJ0VRXNPVkVMtuY5p9C8gyk7N9B1uXXMId740ITo'
 
   twitpic_reg_key:                    '15c477f5b53647f8af58945dc78b658e'
-  freebase_api_key:                   'AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U'
+  freebase_api_key:                   '"AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U"'
   #FOR PUBLIC SHOW
   ghost_user_email:                       "administrator@actwitty.com"
 
