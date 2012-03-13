@@ -461,9 +461,11 @@ module Api
       #         :user_id => 123
       #       },
       # OUTPUT
-      #       "busy"
-      #         OR
-      #       "idle"
+      #  data_sync_new:                            1   #can be deleted in this state
+      #                       OR
+      #  data_sync_active:                         2
+      #                       OR
+      #  data_sync_done:                           3   #can be deleted in this state
 
       def get_status(params)
         status = ::Api::Services.get_status(params)
