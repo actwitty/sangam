@@ -1,0 +1,239 @@
+/*ActWitty Stylesheet file
+ *File: 
+ *code: 
+ *Author: 
+ *Author URI:  */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white; }
+
+img {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+.justify {
+  text-align: justify; }
+
+.bold {
+  font-weight: bold; }
+
+.center {
+  text-align: center; }
+
+.right {
+  text-align: right; }
+
+.nostart {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.clear {
+  clear: both; }
+
+br.clear {
+  clear: both;
+  margin-top: -15px; }
+
+a {
+  outline: none;
+  text-decoration: none; }
+
+.fl_left {
+  float: left; }
+
+.fl_right {
+  float: right; }
+
+.imgl, .imgr {
+  border: 0px solid #dfdfdf;
+  padding: 5px;
+  color: #666666;
+  background-color: white; }
+
+.imgl {
+  float: left;
+  margin: 0 8px 8px 0;
+  clear: left; }
+
+.imgr {
+  float: right;
+  margin: 0 0 8px 8px;
+  clear: right; }
+
+/******************************************* Common for all Columns main Div's ************************************ */
+/* ----------------------------------------------Wrapper------------------------------------- */
+div.aw_inviteds_wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  height: auto;
+  display: block; }
+
+.aw_inviteds_column1 {
+  color: #d2d2d2;
+  /*background-color:#33ccff; */
+  background: #363436;
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81; */
+  border: 0px solid red; }
+
+.aw_inviteds_column2 {
+  color: white;
+  background-color: white;
+  border: 0px solid green; }
+
+.aw_inviteds_column3 {
+  color: white;
+  background-color: white;
+  border: 0px solid green; }
+
+/****************************************** User box section for user photo and input box ************************* */
+#aw_inviteds_data_wrapper {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  height: auto;
+  min-height: 900px;
+  margin-top: 20px;
+  border: 0px solid red; }
+
+.aw_inviteds_label {
+  height: 20px;
+  width: 960px;
+  margin: auto;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+  .aw_inviteds_label span {
+    font-size: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #333333; }
+
+.aw_inviteds_new_invite {
+  font-size: 16px;
+  height: auto;
+  width: 960px;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  display: block; }
+  .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section {
+    padding: 10px;
+    height: 40px;
+    width: 900px;
+    border: 1px dotted #cccccc;
+    margin: auto;
+    display: block; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_label {
+      font-size: 16px;
+      width: 100%;
+      height: 20px;
+      color: #555555;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_label {
+      color: black;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      width: 100px;
+      height: 20px;
+      margin-left: 20px; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_id {
+      border: 1px solid #cccccc;
+      color: black;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      width: 200px;
+      height: 20px;
+      margin-left: 20px; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_preprocess_button {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      width: 80px;
+      height: 30px;
+      margin-left: 20px; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_preprocess_button:hover {
+        cursor: pointer; }
+  .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section {
+    height: 120px;
+    width: 150px;
+    border: 1px dotted #cccccc;
+    display: none;
+    margin-left: 20px; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section img {
+      width: 40px;
+      height: 40px;
+      padding: 1px;
+      border: 1px solid #cccccc;
+      margin-left: 50px;
+      margin-top: 2px; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section label {
+      color: black;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      width: 50px;
+      height: 15px;
+      margin: auto;
+      margin-top: 2px; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_inviteds_new_invite_button {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      width: 80px;
+      height: 30px;
+      margin-left: 35px;
+      margin-bottom: 10px; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_inviteds_new_invite_button:hover {
+        cursor: pointer; }
+
+.aw_inviteds_pagination_control {
+  font-size: 16px;
+  height: 18px;
+  width: 960px;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.aw_inviteds_rounded-corner-table {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 45px;
+  width: 960px;
+  margin: auto;
+  text-align: left;
+  border-collapse: collapse; }
+  .aw_inviteds_rounded-corner-table thead th.rounded-header {
+    background: #b9c9fe url(/images/actwitty/refactor/aw_internal/left.png?1324442541) left -1px no-repeat; }
+  .aw_inviteds_rounded-corner-table thead th.rounded-q7 {
+    background: #b9c9fe url(/images/actwitty/refactor/aw_internal/right.png?1324442541) right -1px no-repeat; }
+  .aw_inviteds_rounded-corner-table th {
+    padding: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #003399;
+    background: #b9c9fe; }
+  .aw_inviteds_rounded-corner-table td {
+    padding: 8px;
+    font-size: 14px;
+    background: #e8edff;
+    border-top: 1px solid white;
+    color: #666699; }
+  .aw_inviteds_rounded-corner-table tfoot td.rounded-foot-left {
+    background: #e8edff url(/images/actwitty/refactor/aw_internal/botleft.png?1324442541) left bottom no-repeat; }
+  .aw_inviteds_rounded-corner-table tfoot td.rounded-foot-right {
+    background: #e8edff url(/images/actwitty/refactor/aw_internal/botright.png?1324442541) right bottom no-repeat; }
+  .aw_inviteds_rounded-corner-table tbody tr:hover td {
+    background: #d0dafd; }
