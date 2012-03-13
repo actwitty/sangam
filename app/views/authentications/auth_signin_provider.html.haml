@@ -7,3 +7,13 @@
       =render :partial => "users/sessions/new", :locals => { :user => @user }
 
 %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
+
+
+/Feed Back User Voice
+:javascript
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/qSgEkukkoJykzYLLS3m3w.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })(); 

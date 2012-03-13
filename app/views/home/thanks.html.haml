@@ -9,18 +9,26 @@
           %img{:src => @user.photo_small_url}/
       #aw_ppm_thanks_user_name    
         %a{:href => "/home/show?id=#{@user.id}"}
-          %span.aw_ppm_thanks_user_pretext hi 
+          %span.aw_ppm_thanks_user_pretext Hi ! 
           %span #{@user.full_name}
       #aw_ppm_thanks_user_location   
         %span #{@user.current_location}
     #aw_ppm_thanks_message
       -if user_signed_in?
         -if current_user.id == @user.id
-          %span Thanks for registering with ActWitty. We will keep you posted.
+          %span Thanks for registering with Actwitty (Private Beta). We are processing all invites and soon we will get back to you.
         -else
-          %span This is a default site for ActWitty user page.
+          %span This is a default site for Actwitty user page.
 
       -else
-        %span This is a default site for ActWitty user page.
+        %span This is a default site for Actwitty user page.
     %a.aw_ppm_thanks_logout{:href=>"/users/sign_out"} Sign out for now 
-      
+
+/Feed Back User Voice
+:javascript
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/qSgEkukkoJykzYLLS3m3w.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })(); 
