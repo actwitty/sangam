@@ -76,6 +76,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_locations.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_images.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_videos.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_filterer.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
     # ####################### Externals #############################
     - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js

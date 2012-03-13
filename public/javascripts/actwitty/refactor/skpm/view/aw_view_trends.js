@@ -24,8 +24,13 @@ function aw_get_graph_html(interests){
       graph_width = minimum_width + interest_detail.percent;
     }
     //alert("range:" + range+ " lowest:" + lowest + " highest:" + highest + " percent:" + interest_detail.percent + " width:" + graph_width);
-    html = html + '<div class="aw_sketch_timeline_single_topic_box aw_js_interest_trend_backtracker">' +
-                      '<input type="hidden" value="' + interest_detail.interest_id + '" />' +
+    html = html + '<div class="aw_sketch_timeline_single_topic_box aw_js_filterer" ' + 
+                        ' aw_filter_on="topic,since,till" ' +
+                        ' aw_interest_filter="' + interest_detail.interest_id + '" ' +                       
+                        ' aw_since_filter="' + interest_detail.since + '" ' +                        
+                        ' aw_till_filter="' + interest_detail.till + '" ' +                        
+                      '>' +
+
                       '<img src="/images/actwitty/refactor/aw_sketch/topics/' + interest_detail.category + '.png" width=25px height=25px >' +
                       '<div class="aw_label_box" >' +
                         '<span>' +
