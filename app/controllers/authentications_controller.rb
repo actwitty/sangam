@@ -113,7 +113,12 @@ class AuthenticationsController < ApplicationController
     if already_existing_auth.nil?
       Rails.logger.info("[CNTRL][Authentications] A new foreign auth")
         if user_signed_in?
+
           Rails.logger.info("[CNTRL][Authentications] User is already signed in #{current_user.full_name}")
+
+          query_hash = {}
+          query_hash[provider] = uid        
+          invite_status = Invite.check_if_invite_exists(query_hash)
 
           
 
@@ -134,22 +139,26 @@ class AuthenticationsController < ApplicationController
             #
             
 
-           
-            enable_hash = {
-                            :user_id => current_user.id,
-                            :provider => provider,
-                            :uid => uid
-                          }
-            current_user.enable_service(enable_hash)
+            if current_user.get_invited_status() == true
+              enable_hash = {
+                              :user_id => current_user.id,
+                              :provider => provider,
+                              :uid => uid
+                            }           
+              current_user.enable_service(enable_hash)
+            end
+            
             redirect_to session[:return_to] || '/'
           else
             Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")
-            enable_hash = {
+            if current_user.get_invited_status() == true
+              enable_hash = {
                             :user_id => current_user.id,
                             :provider => provider,
                             :uid => uid
                           }
-            current_user.enable_service(enable_hash)
+              current_user.enable_service(enable_hash)
+            end
             redirect_to session[:return_to] || '/'
           end
         else
@@ -197,13 +206,16 @@ class AuthenticationsController < ApplicationController
           Rails.logger.info("[CNTRL][Authentications] User is being connected to auth")
           already_existing_auth.user_id =  current_user.id
           already_existing_auth.save!
+          
+          if current_user.get_invited_status() == true
+            enable_hash = {
+                              :user_id => current_user.id,
+                              :provider => provider,
+                              :uid => uid
+                            }
+            current_user.enable_service(enable_hash)          
+          end
 
-          enable_hash = {
-                            :user_id => current_user.id,
-                            :provider => provider,
-                            :uid => uid
-                          }
-          current_user.enable_service(enable_hash)          
           redirect_to session[:return_to] || '/'
         else
 
@@ -245,7 +257,7 @@ class AuthenticationsController < ApplicationController
           already_existing_auth.save!
         
           invite_status = already_existing_auth.user.get_invited_status 
-          if invite_status 
+          if invite_status? 
            enable_hash = {
                             :user_id => already_existing_auth.id,
                             :provider => provider,

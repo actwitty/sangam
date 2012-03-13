@@ -51,9 +51,34 @@ function aw_pulled_stream_facebook_mentions_verified_cb(mentions_data, context){
     });
 
   }
-  context.services.facebook.processed = true;
-  aw_pulled_stream_assimilate_services(context); 
+  context.services.facebook['internal_processed']--;
+  if(!context.services.facebook['internal_processed']){
+    context.services.facebook.processed = true;
+    aw_pulled_stream_assimilate_services(context); 
+  }
 }
+/****************************************************************/
+/*
+ *
+ *
+ */
+function aw_pulled_stream_facebook_likes_cb(facebook_data, context){
+  if ( !aw_pulled_stream_allow_cookie(context) ){
+    /* abandon */
+   return;
+  }
+  if( context.services.facebook['data'] ){
+    context.services.facebook['data'] = $.merge( context.services.facebook['data'], facebook_data);
+  }else{
+    context.services.facebook['data'] = facebook_data;
+  }
+  context.services.facebook['internal_processed']--;
+  if(!context.services.facebook['internal_processed']){
+    context.services.facebook.processed = true;
+    aw_pulled_stream_assimilate_services(context); 
+  }
+}
+
 /*****************************************************************/
 /*
 *
@@ -92,7 +117,11 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
     }
   });
   context.services.facebook['mentions_cookie'] = mentions_cookie;
-  context.services.facebook['data'] = facebook_data;
+  if( context.services.facebook['data'] ){
+    context.services.facebook['data'] = $.merge( context.services.facebook['data'], facebook_data);
+  }else{
+    context.services.facebook['data'] = facebook_data;
+  }
   aw_get_mentions_details_for_mentionlist(entity_list, aw_pulled_stream_facebook_mentions_verified_cb, context );
 
 
@@ -106,20 +135,43 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
 function aw_pulled_stream_facebook_handler ( context ) {
   var fb_data = context['services']['facebook'];
   var id_list_str = "";
+  var like_id_list_str = "";
   $.each( fb_data.posts, function( key, post_data ){
-    if( post_data.post.source_object_type != "post" ){
-      return;
+
+    
+    if(  post_data.post.source_object_type == "post" ){
+     
+     if( id_list_str.length ){
+        id_list_str = id_list_str + ',' + key;
+      }else{
+        id_list_str = key;
+      }
+
+    }else if(post_data.post.source_object_type == "like"){
+
+      if( like_id_list_str.length ){
+        like_id_list_str = like_id_list_str + ',' + key;
+      }else{
+        like_id_list_str = key;
+      }
+
     }
-    if( id_list_str.length ){
-      id_list_str = id_list_str + ',' + key;
-    }else{
-      id_list_str = key;
-    }
+   
   });
-  aw_api_facebook_get_post_data_for_list_of_ids( id_list_str,
-                                                aw_pulled_stream_facebook_cb,
-                                                context);
-                                                              
+  context.services.facebook['internal_processed'] = 0;
+  if( id_list_str.length ){
+    context.services.facebook['internal_processed']++;
+    aw_api_facebook_get_post_data_for_list_of_ids( id_list_str,
+                                                 aw_pulled_stream_facebook_cb,
+                                                 context);
+  }
+
+  if( like_id_list_str.length ){
+    context.services.facebook['internal_processed']++;
+    aw_api_facebook_get_likes_data_for_list_of_ids( like_id_list_str,
+                                                 aw_pulled_stream_facebook_likes_cb,
+                                                 context);
+  }
 }
 
 
