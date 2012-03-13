@@ -55,7 +55,7 @@ function aw_api_control_verify_status_of_sketch_page(){
                       aw_global_status_manager.fancybox_open = true;
                     }
 
-                    aw_global_status_manager.fancybox_timer = window.setTimeout(  aw_api_control_verify_status_of_sketch_page(), 10000);
+                    aw_global_status_manager.fancybox_timer = window.setTimeout(  aw_api_control_verify_status_of_sketch_page, 10000);
 
 
                 }
