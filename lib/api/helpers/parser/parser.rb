@@ -32,7 +32,7 @@ module Api
             end
           end
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [PARSER] [get_documents] Leaving #{params.inspect}")
+          Rails.logger.info("[LIB] [API] [HELPERS] [PARSER] [get_documents] Leaving #{array.inspect}")
           array
         rescue => e
           Rails.logger.error("[LIB] [API] [HELPERS] [PARSER] [get_documents]  ERROR => **** RESCUE **** => #{e.message} for #{params[:text]}")
@@ -55,7 +55,7 @@ module Api
             array << {:name => attr[0]}
           end
 
-          Rails.logger.info("[LIB] [API] [HELPERS] [PARSER] [GET_TAGS] Leaving #{params.inspect}")
+          Rails.logger.info("[LIB] [API] [HELPERS] [PARSER] [GET_TAGS] Leaving #{array.inspect}")
           array
         rescue => e
           Rails.logger.error("[LIB] [API] [HELPERS] [PARSER] [GET_TAGS] ERROR => **** RESCUE **** => #{e.message} for #{params[:text]}")

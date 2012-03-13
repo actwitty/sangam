@@ -448,28 +448,29 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: activities
 #
-#  id                       :integer         not null, primary key
-#  activity_word_id         :integer         not null
-#  activity_text            :text
-#  activity_name            :text            not null
-#  author_id                :integer         not null
-#  base_location_id         :integer
-#  status                   :integer         not null
-#  summary_id               :integer
-#  source_object_id         :text
-#  status_at_source         :integer
-#  source_name              :text            not null
-#  source_uid               :text
-#  source_object_type       :text            default("post")
-#  category_type            :text
-#  category_id              :text
-#  backup_created_timestamp :datetime        default(2012-03-06 07:49:49 UTC)
-#  if_yaml                  :boolean         default(FALSE)
-#  created_at               :datetime        not null
-#  updated_at               :datetime        not null
+#  id                 :integer         not null, primary key
+#  activity_word_id   :integer         not null
+#  activity_text      :text
+#  activity_name      :text            not null
+#  author_id          :integer         not null
+#  base_location_id   :integer
+#  status             :integer         not null
+#  summary_id         :integer
+#  source_object_id   :text
+#  status_at_source   :integer
+#  source_name        :text            not null
+#  source_uid         :text
+#  source_object_type :text            default("post")
+#  category_type      :text
+#  category_id        :text
+#  source_created_at  :datetime        default(1970-01-01 00:00:00 UTC)
+#  if_json            :boolean         default(FALSE)
+#  created_at         :datetime        not null
+#  updated_at         :datetime        not null
 #
 

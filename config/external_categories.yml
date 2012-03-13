@@ -24,6 +24,7 @@ opencalais:
   health_medical_pharma: [health]
   hospitality_recreation: [leisure]
   human_interest: [stories]
+  human interest: [stories]
   labor: [world]
   law_crime: [world]
   politics: [world]

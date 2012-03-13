@@ -135,6 +135,9 @@ require 'doc_categorizers/doc_categorizers'
          #if link is there but its dumb link like facebook internal PHP links then directly use message text
          if link[:ignore] == true
            i =0
+         elsif link[:mime] == AppConstants.mime_remote_image
+           i = 0 #dont send the for categorization
+
          #need to categorize the video using specific video service as they give precise category
          elsif link[:mime] == AppConstants.mime_remote_video
            params[:video_cat][url] = [] if params[:video_cat][url].blank?
@@ -214,7 +217,7 @@ require 'doc_categorizers/doc_categorizers'
                 mime = ::Api::Helpers::Parser.map_sources_to_mime({:source => elem[:canonical_url]})
 
                 #Rails.logger.info("[LIB] [CATEGORIZATION] [update_link_information] updating mime
-                        from #{elem[:mime]} to #{mime} for #{elem[:canonical_url]} ")
+                        #from #{elem[:mime]} to #{mime} for #{elem[:canonical_url]} ")
                 elem[:mime] =  mime
               end
             end

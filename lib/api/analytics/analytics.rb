@@ -196,6 +196,7 @@ module Api
             if !k.blank?
               summary = ::Api::Helpers::FormatObject.format_analytics({:hash => object.analytics[k]})
               if !summary.blank?
+                Rails.logger.info("[LIB] [API] [ANALYTICS] [GET_ANALYTICS] Summary Check #{summary.inspect}")
                 hash[:popularity][object.activity_name] = {:source_actions => {}}
                 hash[:popularity][object.activity_name][:source_actions] = summary[:source_actions]
                 hash[:popularity][object.activity_name][:summary_id] = object.summary_id

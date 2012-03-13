@@ -100,7 +100,7 @@ module Api
       #
       #:since => 1994-11-05T13:15:30Z ( ISO 8601)
       #
-      #:from => 1992-11-05T13:15:30Z ( ISO 8601)        #QUERY PART ENDS
+      #:till => 1992-11-05T13:15:30Z ( ISO 8601)        #QUERY PART ENDS
       #
       #
       #:limit => 200                                    #LIMIT RESULT OF QUERY
