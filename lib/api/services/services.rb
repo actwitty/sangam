@@ -213,10 +213,10 @@ module Api
           return false
         end
 
-        if params[:user_id] != params[:current_user_id]
-          Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Un-Authorized user => #{params.inspect}")
-          return false
-        end
+#        if params[:user_id] != params[:current_user_id]
+#          Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Un-Authorized user => #{params.inspect}")
+#          return false
+#        end
 
         social_fetch = SocialAggregator.where(:user_id => params[:user_id],:provider => params[:provider], :uid => params[:uid]).first
 
