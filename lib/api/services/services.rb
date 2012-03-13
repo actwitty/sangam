@@ -160,6 +160,33 @@ module Api
         Rails.logger.error("[LIB] [API] [SERVICES] [GET_SERVICE] **** RESCUE **** #{e.message} For #{params.inspect}")
         return []
       end
+
+      # INPUT {
+      #         :user_id => 123
+      #       },
+      # OUTPUT
+      #       "busy"
+      #         OR
+      #       "idle"
+
+      def get_status(params)
+
+        Rails.logger.info("[LIB] [API] [SERVICES] [get_status]Entering => user_id => #{params[:user_id]}")
+
+        status = AppConstants.user_service_status_idle
+
+        SocialAggregator.where(:user_id => params[:user_id]).all.each do |attr|
+          if attr.status == AppConstants.data_sync_active
+            status = AppConstants.user_service_status_busy
+          end
+        end
+
+        Rails.logger.info("[LIB] [API] [SERVICES] [get_status] leaving #{params[:user_id]} => #{status}")
+        status
+      rescue => e
+        Rails.logger.error("[LIB] [API] [SERVICES] [get_status] **** RESCUE **** #{e.message} For #{params.inspect}")
+        return AppConstants.user_service_status_idle
+      end
     end
   end
 end

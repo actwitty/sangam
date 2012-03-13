@@ -8,7 +8,7 @@ class Invite < ActiveRecord::Base
       begin
         Rails.logger.info("[MODEL][Invite] check_if_invite_exists #{query_hash.inspect} ")
 
-        return true
+        #return true
 
         query_string_arr = []
         query_string = ""

@@ -41,7 +41,7 @@ development: &default
 
   #Image Sources
   image_sources:                      flickr\.com|twitpic\.com
-  image_extensions:                    \.jpeg|\.jpg|\.bmp
+  image_extensions:                    \.jpeg|\.jpg|\.bmp|\.png
 
   #document sources
   document_sources:                   dropbox\.com
@@ -91,7 +91,7 @@ development: &default
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
+  authorized_see_internals_email_id:  "aloksrivastava78@gmail.com"
 
 
   #FOR SUMMARY CATEGORY
@@ -114,9 +114,6 @@ development: &default
   max_text_length_for_text_categorization:  512
   categorization_concurrency_limit:         15
 
-  #test service name
-  test_service:                             test
-
   #link resolution limit
   link_resolution_batch_limit:              50
 
@@ -138,6 +135,9 @@ development: &default
   data_sync_active:                         2
   data_sync_done:                           3   #can be deleted in this state
   data_sync_error:                          4   #can be deleted in this state
+
+  user_service_status_busy:                 "busy"
+  user_service_status_idle:                 "idle"
 
 
 production:
@@ -167,3 +167,6 @@ production:
 
 test:
   <<: *default
+
+  #test service name
+  test_service:                             test

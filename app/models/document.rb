@@ -137,27 +137,28 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: documents
 #
-#  id                       :integer         not null, primary key
-#  owner_id                 :integer         not null
-#  activity_id              :integer
-#  activity_word_id         :integer
-#  summary_id               :integer
-#  url                      :text
-#  status                   :integer         not null
-#  source_name              :text            not null
-#  source_object_id         :text
-#  source_msg_id            :text
-#  status_at_source         :integer
-#  uploaded                 :boolean         not null
-#  category                 :text            not null
-#  web_link_id              :integer
-#  backup_created_timestamp :datetime        default(2012-03-06 07:49:51 UTC)
-#  category_id              :text
-#  created_at               :datetime        not null
-#  updated_at               :datetime        not null
+#  id                :integer         not null, primary key
+#  owner_id          :integer         not null
+#  activity_id       :integer
+#  activity_word_id  :integer
+#  summary_id        :integer
+#  url               :text
+#  status            :integer         not null
+#  source_name       :text            not null
+#  source_object_id  :text
+#  source_msg_id     :text
+#  status_at_source  :integer
+#  uploaded          :boolean         not null
+#  category          :text            not null
+#  web_link_id       :integer
+#  source_created_at :datetime        default(1970-01-01 00:00:00 UTC)
+#  category_id       :text
+#  created_at        :datetime        not null
+#  updated_at        :datetime        not null
 #
 

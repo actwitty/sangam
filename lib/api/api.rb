@@ -33,7 +33,7 @@ module Api
       #
       #:since => 1994-11-05T13:15:30Z ( ISO 8601)
       #
-      #:from => 1992-11-05T13:15:30Z ( ISO 8601)        #QUERY PART ENDS
+      #:till  => 1992-11-05T13:15:30Z ( ISO 8601)        #QUERY PART ENDS
       #
       #
       #:limit => 200                                    #LIMIT RESULT OF QUERY
@@ -457,6 +457,19 @@ module Api
       end
 
 
+      # INPUT {
+      #         :user_id => 123
+      #       },
+      # OUTPUT
+      #       "busy"
+      #         OR
+      #       "idle"
+
+      def get_status(params)
+        status = ::Api::Services.get_status(params)
+        status
+      end
+
       #INPUT => {:user_id => 123, :provider => "facebook/twitter"}
       def mock_enable_service(params)
 
@@ -492,6 +505,7 @@ module Api
         Rails.logger.error("[LIB] [API] [MOCK_ENABLE_SERVICES] **** RESCUE **** #{e.message} for #{params.inspect}")
         false
       end
+
 ################################################ SEARCH ################################################
 
       #INPUT => {

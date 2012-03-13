@@ -15,6 +15,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: social_aggregators
@@ -27,9 +28,9 @@ end
 #  latest_msg_id           :text            default("")
 #  status                  :integer         default(1)
 #  next_update_timestamp   :datetime        default(1970-01-01 00:00:00 UTC)
-#  update_interval         :integer         default(60)
-#  every_time_feed_storage :integer         default(5)
-#  first_time_feed_storage :integer         default(5)
+#  update_interval         :integer         default(600)
+#  every_time_feed_storage :integer         default(2)
+#  first_time_feed_storage :integer         default(2)
 #  created_at              :datetime        not null
 #  updated_at              :datetime        not null
 #

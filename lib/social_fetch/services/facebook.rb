@@ -167,7 +167,7 @@ module SocialFetch
 
         if validate_profile_feed_blob(params) == true
 
-          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [data_adaptor] initial dump #{attr.inspect}")
+          Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [data_adaptor] initial dump")
 
           activity = {
                        :source_object_id => attr["id"],

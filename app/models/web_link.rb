@@ -131,6 +131,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: web_links
@@ -149,6 +150,7 @@ end
 #  category_id     :text
 #  category_type   :text
 #  cache_age       :integer
+#  element         :text
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
 #

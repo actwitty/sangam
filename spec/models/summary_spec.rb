@@ -18,6 +18,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: summaries
@@ -31,6 +32,7 @@ end
 #  category_type      :text
 #  analytics_snapshot :text
 #  enabled_services   :text
+#  source_created_at  :datetime        default(1970-01-01 00:00:00 UTC)
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
 #
