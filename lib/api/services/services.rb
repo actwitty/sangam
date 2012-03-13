@@ -165,19 +165,25 @@ module Api
       #         :user_id => 123
       #       },
       # OUTPUT
-      #       "busy"
-      #         OR
-      #       "idle"
+      #  data_sync_new:                            1   #can be deleted in this state
+      #                       OR
+      #  data_sync_active:                         2
+      #                       OR
+      #  data_sync_done:                           3   #can be deleted in this state
 
       def get_status(params)
 
         Rails.logger.info("[LIB] [API] [SERVICES] [get_status]Entering => user_id => #{params[:user_id]}")
 
-        status = AppConstants.user_service_status_idle
+        status = AppConstants.data_sync_new
 
         SocialAggregator.where(:user_id => params[:user_id]).all.each do |attr|
+          if attr.status == AppConstants.data_sync_done
+            return AppConstants.data_sync_done
+          end
+
           if attr.status == AppConstants.data_sync_active
-            status = AppConstants.user_service_status_busy
+            status =AppConstants.data_sync_active
           end
         end
 
