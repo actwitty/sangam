@@ -259,7 +259,7 @@ class AuthenticationsController < ApplicationController
           invite_status = already_existing_auth.user.get_invited_status 
           if invite_status 
            enable_hash = {
-                            :user_id => already_existing_auth.user_id,
+                            :user_id => already_existing_auth.user.id,
                             :provider => provider,
                             :uid => uid
                           }
