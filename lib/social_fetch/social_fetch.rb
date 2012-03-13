@@ -9,8 +9,10 @@ module SocialFetch
   #          :user_id => 123,
   #          :uid => "234",
   #          :access_token => "gdjjsagjgds.."
+  #          :token_secret => "jsdhfkjfhkj" or nil
+  #          :first_time => true or false
   #         }
-  #OUTPUT => array of messages from provider in descending order of creation time
+  #OUTPUT => array of messages from provider in descending order of creation time in service specific format
 
   def self.pull_data(params)
 

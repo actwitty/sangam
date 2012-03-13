@@ -105,7 +105,7 @@ development: &default
 
   #Social Fetch
   max_import_first_time:                  100
-  max_import_every_time:                  10
+  max_import_every_time:                  20
   first_time_feed_storage:                50#100
   every_time_feed_storage:                50#20 #imports after first import is done
 

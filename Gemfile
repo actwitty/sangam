@@ -32,6 +32,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'oa-core'
+gem 'oauth'
 
 #Inflected translations
 gem 'i18n-inflector-rails', '~> 1.0'

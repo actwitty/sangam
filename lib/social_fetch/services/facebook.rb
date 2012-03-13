@@ -8,8 +8,15 @@ module SocialFetch
 
       FEED = "https://graph.facebook.com/"
 
-      #INPUT => {:user_id => 123, :uid => "234", :access_token => "gdjjsagjgds..", :first_time => true or false}
-      #OUTPUT => array of messages from Facebook in descending order of creation time
+
+      #INPUT => {
+      #          :user_id => 123,
+      #          :uid => "234",
+      #          :access_token => "gdjjsagjgds.."
+      #          :token_secret => "jsdhfkjfhkj" or nil
+      #          :first_time => true or false
+      #         }
+      #OUTPUT => array of messages from facebook in descending order of creation time in facebook specific format
       def self.pull_data(params)
         Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] entering  #{params.inspect}")
 

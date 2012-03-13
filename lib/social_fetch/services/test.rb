@@ -165,8 +165,14 @@ module SocialFetch
           "BBC News - Samsung Nexus Prime smartphone delay is 'Jobs tribute' http://t.co/Hnz8L4HW",
         ]
 
-       #INPUT => {:user_id => 123, :uid => "234", :access_token => "gdjjsagjgds.."}
-       #OUTPUT => array of messages from test in descending order of creation time
+        #INPUT => {
+        #          :user_id => 123,
+        #          :uid => "234",
+        #          :access_token => "gdjjsagjgds.."
+        #          :token_secret => "jsdhfkjfhkj" or nil
+        #          :first_time => true or false
+        #         }
+        #OUTPUT => array of messages from test service in descending order of creation time in test service specific format
         def pull_data(params)
 
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TEST] [pull_data] entering  #{params.inspect}")

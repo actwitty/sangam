@@ -3,25 +3,46 @@ module SocialFetch
     class Twitter
       class << self
 
-        FEED = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true"
+        FEED = "https://api.twitter.com/1/statuses/user_timeline.json"
 
-        #INPUT => {:user_id => 123, :uid => "234", :access_token => "gdjjsagjgds..", :first_time => true or false}
-        #OUTPUT => array of messages from Twitter in descending order of creation time
+        #INPUT => {
+        #          :user_id => 123,
+        #          :uid => "234",
+        #          :access_token => "gdjjsagjgds.."
+        #          :token_secret => "jsdhfkjfhkj" or nil
+        #          :first_time => true or false
+        #         }
+        #OUTPUT => array of messages from twitter in descending order of creation time in twitter specific format
         def pull_data(params)
 
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] entering  #{params.inspect}")
 
           data_array = []
 
+          oauth = ::Oauth1::OauthUtil.new
+
+          oauth.consumer_key=AppConstants.twitter_consumer_key
+          oauth.consumer_secret=AppConstants.twitter_consumer_secret
+
+          oauth.token_secret=params[:token_secret]
+          oauth.token = params[:access_token]
+
           params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
 
-          url=FEED+"&count=#{limit}&user_id=#{params[:uid]}"
+          service_opts = {'include_rts' => true, 'include_entities'=> true, 'count' => limit, 'user_id' => params[:uid]}
+
+          parsed_url = URI.parse( FEED )
+
+          hash = {:parsed_url => parsed_url, :service_opts => service_opts}
+
+          url = "#{ parsed_url.scheme}://#{parsed_url.host}#{ parsed_url.path }?#{ oauth.sign(hash).query_string }"
 
           response = ::EmHttp::Http.request([{:url => url, :params => {}, :method => "get", :handle => 0}])
 
           data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 
           Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] Leaving  #{params.inspect}")
+
           data_array
         rescue  => e
          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect}")

@@ -1,7 +1,7 @@
 require 'json'
 require 'eventmachine'
 require 'fiber'
-require 'job'
+require 'job_scheduler/job_scheduler'
 class SocialAggregator < ActiveRecord::Base
 
   belongs_to :user
@@ -25,7 +25,7 @@ class SocialAggregator < ActiveRecord::Base
       Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SCHEDULE_JOB] Entering #{params.inspect}")
 
       if !params[:scheduled_time].blank?
-        worker = SubscriptionWorker.new(params)
+        worker = ::JobScheduler::JobWorker.new(params)
         worker.enqueue!
       else
         SocialAggregator.delay.pick_social_aggregation_request(params)
@@ -55,7 +55,8 @@ class SocialAggregator < ActiveRecord::Base
       Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [PICK_SOCIAL_AGGREGATION_REQUEST] Authorized Service")
 
       Authentication.where(params).all.each do |attr|
-        hash = setup_social_aggregation(:user_id => params[:user_id], :provider => attr.provider, :uid => attr.uid, :token => attr.token)
+        hash = setup_social_aggregation(:user_id => params[:user_id], :provider => attr.provider, :uid => attr.uid,
+                                        :access_token => attr.token, :token_secret => attr.secret)
         array << hash if !hash.blank?
       end
 
@@ -197,7 +198,8 @@ class SocialAggregator < ActiveRecord::Base
           end
 
           hash ={
-                  :user_id => params[:user_id], :uid => params[:uid], :provider => params[:provider], :access_token => params[:token],
+                  :user_id => params[:user_id], :uid => params[:uid], :provider => params[:provider],
+                  :access_token => params[:access_token], :token_secret => params[:token_secret],
                   :storage_limit => storage_limit, :latest_msg_timestamp => sa.latest_msg_timestamp, :first_time => first_time,
                   :latest_msg_id => sa.latest_msg_id, :social_aggregator_id => sa.id,
                   :status => sa.status, :update_interval => sa.update_interval
@@ -224,7 +226,8 @@ class SocialAggregator < ActiveRecord::Base
          latest_msg_id = ""
 
          data_array = SocialFetch.pull_data({:user_id => params[:user_id], :uid => params[:uid],:provider => params[:provider],
-                                                :access_token => params[:access_token], :first_time => params[:first_time]} )
+                                                :access_token => params[:access_token], :token_secret => params[:token_secret],
+                                                :first_time => params[:first_time]} )
 
          if data_array.blank?
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION] empty data returned #{params.inspect}")

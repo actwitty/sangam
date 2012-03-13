@@ -311,6 +311,7 @@ DEPENDENCIES
   meta-tags
   no_peeping_toms
   oa-core
+  oauth
   omniauth (~> 1.0.2)
   omniauth-facebook
   omniauth-linkedin
