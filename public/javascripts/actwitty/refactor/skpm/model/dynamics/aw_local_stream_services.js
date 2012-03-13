@@ -152,7 +152,10 @@ function aw_pulled_stream_twitter_handler( context ) {
                                                                                   uid: aw_js_global_visited_user_foreign_ids['twitter']
                                                                                };
 
-
+                                                  if( post_data.post.if_yaml ){
+                                                    var native_object = JSON.parse(post_data.post.text);
+                                                    alert(JSON.stringify(native_object));
+                                                  }
                                                   if(post_data.post.text){
                                                     aw_post_json["text"] = post_data.post.text;
                                                   }

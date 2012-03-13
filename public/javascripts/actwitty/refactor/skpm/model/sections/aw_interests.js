@@ -231,11 +231,11 @@ function aw_api_model_get_interest_sentence(){
                                                     share: 100, 
                                                     topics: []
                                                   },
-                         ' dominantly at ' : {
+                         ' is dominantly at ' : {
                                                 share: 60, 
                                                 topics: []
                                             },
-                         ' mostly at ' : {
+                         ' is mostly at ' : {
                                                 share: 30, 
                                                 topics: []
                                           },
@@ -244,15 +244,15 @@ function aw_api_model_get_interest_sentence(){
                                                 topics: []
                                           },
                           
-                         ' sometimes talks about ' : {
+                         ' often talks about ' : {
                                                         share: 15, 
                                                         topics: []
                                                   },
-                         ' occasionally shares ' : {
+                         ' sometimes talks about ' : {
                                                         share: 10, 
                                                         topics: []
                                                   },
-                         ' rarely shares ' :  {
+                         ' occasionally shares ' :  {
                                                         share: 2, 
                                                         topics: []
                                              }

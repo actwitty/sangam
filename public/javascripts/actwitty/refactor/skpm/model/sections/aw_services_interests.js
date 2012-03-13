@@ -94,7 +94,6 @@ function aw_api_modal_handle_service_popularity(timeline_data){
 
     $.each( keys.reverse(), function( index, week_key ){
       week_data = timeline_data[week_key];
-      alert(JSON.stringify(week_data));
       if( week_data &&
             week_data.weeks &&
               week_data.weeks.topics ){

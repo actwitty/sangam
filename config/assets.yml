@@ -60,6 +60,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/model/auth/aw_twitter.js
     - public/javascripts/actwitty/refactor/skpm/model/auth/sha1.js
     - public/javascripts/actwitty/refactor/skpm/model/auth/oauth.js
+
     # ####################### Controller ############################
     - public/javascripts/actwitty/refactor/skpm/controller/main.js
     - public/javascripts/actwitty/refactor/skpm/controller/aw_events.js
