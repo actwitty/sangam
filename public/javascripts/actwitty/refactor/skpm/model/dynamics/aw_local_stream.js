@@ -57,7 +57,7 @@ function aw_pulled_stream_query_filter(filter, fn_cb){
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
               aw_local_unity_control_registry=null;
               aw_lib_console_log("error",
-                              "aw_pulled_stream_query_filter:  Server request failed for " + request_tag 
+                              "aw_pulled_stream_query_filter:  Server request failed for "  
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });  
@@ -171,7 +171,7 @@ function aw_get_mentions_details_for_mentionlist(mention_list, fn_cb, cb_context
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
               fn_cb(null, cb_context);
               aw_lib_console_log("error",
-                              "aw_get_mentions_details_for_mentionlist:  Server request failed for " + request_tag 
+                              "aw_get_mentions_details_for_mentionlist:  Server request failed for "  
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });  
