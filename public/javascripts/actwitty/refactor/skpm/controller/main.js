@@ -37,6 +37,7 @@ function aw_api_control_verify_status_of_sketch_page(){
                   if(aw_global_status_manager.fancybox_open){
                       $.fancybox.close();
                       aw_global_status_manager.fancybox_open = false;
+                      location.reload();
                   }
                 }
 
