@@ -136,6 +136,9 @@ development: &default
   data_sync_done:                           3   #can be deleted in this state
   data_sync_error:                          4   #can be deleted in this state
 
+  user_service_status_busy:                 "busy"
+  user_service_status_idle:                 "idle"
+
 
 production:
   <<: *default
