@@ -174,10 +174,10 @@ class SocialAggregator < ActiveRecord::Base
           Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  SERVICE NOT REGISTERED  #{params.inspect}")
           return {}
 
-#        elsif Time.now.utc < sa.next_update_timestamp
-#          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  TOO EARLY TO START AGAIN
-#                            Expected time => #{sa.next_update_timestamp} for #{params.inspect}")
-#          return {}
+        elsif Time.now.utc < sa.next_update_timestamp
+          Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  TOO EARLY TO START AGAIN
+                            Expected time => #{sa.next_update_timestamp} for #{params.inspect}")
+          return {}
         elsif sa.status == AppConstants.data_sync_active
            Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>>  On Request Still Active =>
                             #{sa.next_update_timestamp} for #{params.inspect}")
