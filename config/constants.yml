@@ -104,8 +104,8 @@ development: &default
   analytics_update_user:                    "user"
 
   #Social Fetch
-  max_import_first_time:                  100
-  max_import_every_time:                  20
+  max_import_first_time:                  200
+  max_import_every_time:                  200
   first_time_feed_storage:                50#100
   every_time_feed_storage:                50#20 #imports after first import is done
 

@@ -520,7 +520,7 @@ module SocialFetch
           end
 
           #if updated before  the "last_updated_at" then dont accept
-          return false if params[:latest_msg_timestamp] >= blob["created_time"].to_time.utc
+          #return false if params[:latest_msg_timestamp] >= blob["created_time"].to_time.utc
 
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [validate_profile_feed_blob] leaving")
 
