@@ -91,7 +91,7 @@ development: &default
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:  "sudhanshu.saxena@gmail.com"
+  authorized_see_internals_email_id:  "aloksrivastava78@gmail.com"
 
 
   #FOR SUMMARY CATEGORY
@@ -127,7 +127,7 @@ development: &default
   local_action_vote:                        "vote"
   local_action_recommend:                   "recommend"
 
-  #Social Fecth
+  #Social Fetch
   maximum_time_diff_for_social_fetch:        64800#in seconds    #18 hours
 
    #status during social fetch pipeline
