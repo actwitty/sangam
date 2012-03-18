@@ -50,8 +50,7 @@ module SocialFetch
           hash = JSON.parse(attr["body"])
           array.concat(hash["data"]) if !hash["data"].blank?
         end
-
-        a , b = nil,nil
+        
         #sort to mix likes and post
         array.sort! do |x,y|
            y["created_time"] = EPOCH_TIME if  y["created_time"].blank? #sometimes blank created_time comes in facebook
@@ -64,7 +63,7 @@ module SocialFetch
         return array
 
       rescue  => e
-         Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect} #{a.inspect}   #{b.inspect}")
+         Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect}")
          return []
       end
 
@@ -378,7 +377,6 @@ module SocialFetch
           end
 
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [get_category] Leaving")
-          puts "#{blob["category"]} ===> #{category}"
           category
 
         rescue  => e
