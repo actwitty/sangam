@@ -297,6 +297,8 @@ function aw_api_model_facebook_translate_like_to_aw_post(data, like_lookup){
                               + data.name  ;
    }
    
+   aw_post_json["timestamp"] = '';  
+   aw_post_json["local_timestamp"] = 0;
    if( like_lookup[data.id].created_time ){    
     aw_post_json["timestamp"] = like_lookup[data.id].created_time;
     aw_post_json["local_timestamp"] = aw_api_model_facebook_parse_date(like_lookup[data.id].created_time).getTime();
@@ -366,8 +368,13 @@ function aw_api_model_facebook_translate_post_to_aw_post(data){
                               pid: data.id
                             };
 
-  aw_post_json["timestamp"] = data.created_time;
-  aw_post_json["local_timestamp"] = aw_api_model_facebook_parse_date(data.created_time).getTime();
+  if( data.created_time ){
+    aw_post_json["timestamp"] = data.created_time;
+    aw_post_json["local_timestamp"] = aw_api_model_facebook_parse_date(data.created_time).getTime();
+  }else{
+    aw_post_json["timestamp"] = '';
+    aw_post_json["local_timestamp"] = 0;
+  }
   
   if( data.from != null && data.from.id != null && data.from.name ){
     aw_post_json["originator"] = {

@@ -28,10 +28,10 @@
               %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
           -if user_signed_in? && !if_ghost_user?
             %li
-              %a{:href => "/home/sketch?id=#{@current_user.id}"} 
+              %a{:href => "/show?id=#{@current_user.id}"} 
                 %img{:src =>"#{@current_user.photo_small_url}",  :style=> "margin-top: -3px", :width=>"25", :height=>"25"}
             %li.menu
-              %a.menu{:href => "/home/sketch?id=#{@current_user.id}"} #{@current_user.full_name}
+              %a.menu{:href => "/show?id=#{@current_user.id}"} #{@current_user.full_name}
               %ul.menu-dropdown
                 %li
                   %a{:href => "/home/settings"} Settings

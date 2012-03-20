@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     aw_api_lpm_initialize_sign_up_page();
 
-  }else if ( page_context == "profile_sketch_page" ){
+  }else if ( page_context == "profile_show_page" ){
      aw_api_controller_sketch_main_init();
   }
 

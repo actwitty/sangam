@@ -24,6 +24,7 @@ function aw_get_graph_html(interests){
       graph_width = minimum_width + interest_detail.percent;
     }
     //alert("range:" + range+ " lowest:" + lowest + " highest:" + highest + " percent:" + interest_detail.percent + " width:" + graph_width);
+    var trend_twipsy = 'Click to see posts made under the topic ' + interest_detail.name;
     html = html + '<div class="aw_sketch_timeline_single_topic_box aw_js_filterer" ' + 
                         ' aw_filter_on="topic,since,till" ' +
                         ' aw_interest_filter="' + interest_detail.interest_id + '" ' +                       
@@ -31,13 +32,13 @@ function aw_get_graph_html(interests){
                         ' aw_till_filter="' + interest_detail.till + '" ' +                        
                       '>' +
 
-                      '<img src="/images/actwitty/refactor/aw_sketch/topics/' + interest_detail.category + '.png" width=25px height=25px >' +
+                      '<img rel="aw_js_twipsy_trend" data-original-title="' + trend_twipsy + '" src="/images/actwitty/refactor/aw_sketch/topics/' + interest_detail.category + '.png" width=25px height=25px >' +
                       '<div class="aw_label_box" >' +
-                        '<span>' +
+                        '<span rel="aw_js_twipsy_trend" data-original-title="' + trend_twipsy + '" >' +
                           interest_detail.name +
                         '</span>' +
                       '</div>' +
-                      '<div class="aw_graph_box" style="width:' + graph_width + 'px;" />' +                      
+                      '<div rel="aw_js_twipsy_trend" data-original-title="' + trend_twipsy + '" class="aw_graph_box" style="width:' + graph_width + 'px;" />' +                      
                   '</div>';
   });
   return html;
@@ -81,6 +82,9 @@ function aw_api_view_trends_render(data){
   $("#aw_js_sketch_timeline_details").html(details_html);
 
   $("abbr.aw_js_trend_timeago").timeago();
+  $("div[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
+  $("img[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
+  $("span[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
   /* invoke timeliner */
   $().timelinr();
   $("#aw_js_trends_busy").hide();

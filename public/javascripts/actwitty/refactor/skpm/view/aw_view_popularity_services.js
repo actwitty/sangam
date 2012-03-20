@@ -16,14 +16,17 @@ var aw_js_service_color_codes = {
  *
  *
  */
-function aw_view_get_all_details_for_interest_html(data){
+function aw_view_get_all_details_for_interest_html(interest_name, data){
   var html = '';
+  
   $.each(data.services, function(service_name, service_data) {
       $.each(service_data, function(field_name, field_data) {
+        var twipsy = 'Click to see all posts from ' + service_name + ' with ' + field_name + ' under ' + interest_name + '.';
         html = html + '<div class="aw_service_popularity_details_box aw_js_filterer " ' + 
                         ' aw_filter_on="topic,action" ' +
                         ' aw_interest_filter="' + data.id + '" ' +                       
                         ' aw_action_filter="' + field_name + '" ' +                        
+                        ' rel="aw_js_twipsy_popularity" data-original-title="' +  twipsy + ' "' +
                         ' >' +
                         '<span class="aw_service_popularity_number">' +
                             field_data +
@@ -37,6 +40,7 @@ function aw_view_get_all_details_for_interest_html(data){
     });
   
   return html;
+
 }
 /***************************************************************/
 /*
@@ -58,7 +62,7 @@ function aw_view_get_topic_popularity_html(index, data){
                         data.name + 
                      '</div>' +
                      '<div class="aw_service_popularity_interest_details" >' +
-                        aw_view_get_all_details_for_interest_html(data) +
+                        aw_view_get_all_details_for_interest_html(data.name, data) +
                      '</div>' +
                 '</div>';
    return html;  
@@ -71,9 +75,8 @@ function aw_view_get_topic_popularity_html(index, data){
 function aw_api_view_service_popularity_render(data){
   var html= "";
   $.each(data, function(index, interest_data) {
-     html = html + '<div class="aw_service_popularity_segment" >' +
-                      aw_view_get_topic_popularity_html(index, interest_data) +
-                   '</div>';
+     html = html + aw_view_get_topic_popularity_html(index, interest_data);
+;
   });
   if( show_more_popularity){
     html =  html + '<div class="aw_show_more_popularity_box aw_js_show_more_popularity"  state="show"  >' +
@@ -81,6 +84,7 @@ function aw_api_view_service_popularity_render(data){
                 '</div>';
   }
   $("#aw_js_service_popularity_box").html(html);
+  $("div[rel=aw_js_twipsy_popularity]").twipsy({  live: true, placement: "below" }); 
   $("#aw_js_popularity_busy").hide();
 }
 

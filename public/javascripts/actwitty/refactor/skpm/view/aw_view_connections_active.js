@@ -7,20 +7,21 @@ function aw_api_view_connections_active_friends_render(data){
    var html = "<h3> Currently active friends on various networks</h3>";
    var count_elements = 0;
    var max_to_show = 21;
-   $.each(data, function(key, data) {
-     var single_post = data[0];
+   $.each(data, function(key, per_user_data) {
+     var single_post = per_user_data[0];
      var display_class = "aw_js_single_contact_box_show_always";
 
      if( count_elements >= max_to_show){
         display_class = "aw_js_single_contact_box_hide_on_less";
      }
-     html = html + '<div class="aw_single_contact_box aw_js_active_friend_contact_click ' + display_class +  ' " key='+ key +'>' +
+     var twipsy = single_post.originator.name + ' has ' + per_user_data.length + ' posts from ' + single_post.service.name + ' in your wall. Click to read them.';
+     html = html + '<div class="aw_single_contact_box aw_js_active_friend_contact_click ' + display_class +  ' " key='+ key +  ' rel="aw_js_twipsy_connections" data-original-title="' +  twipsy + ' "' + '>' +
                       '<img class="aw_single_contact_image" src="' + single_post.originator.image + '" width=56px height=56px />' +
                       '<img class="aw_single_contact_service_img" src="/images/actwitty/refactor/aw_sketch/contacts/' +   single_post.service.name +  '.png" width=16px height=16px />' +
                       
                       '<div class="aw_single_contact_posts_count" >' +
                         '<span>' +
-                          data.length +
+                          per_user_data.length +
                         '</span>' +
                       '</div>' +
                    '</div>';
@@ -38,6 +39,7 @@ function aw_api_view_connections_active_friends_render(data){
   
    html = html + more_html;
    $("#aw_js_contacts").html(html);
+   $("div[rel=aw_js_twipsy_connections]").twipsy({  live: true, placement: "below" }); 
    $("#aw_js_connections_busy").hide();
 }
 /*************************************************************/

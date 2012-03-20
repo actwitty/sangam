@@ -193,7 +193,7 @@ function aw_pulled_stream_twitter_handler( context ) {
     aw_post_json["originator"] = {
                                 image: post_data.post.user.photo,
                                 name: post_data.post.user.full_name,
-                                url:  "/home/sketch?id=" + post_data.post.user.id,
+                                url:  "/show?id=" + post_data.post.user.id,
                                 uid: aw_js_global_visited_user_foreign_ids['twitter']
                                };
 

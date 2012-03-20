@@ -48,7 +48,7 @@ function aw_view_mentions_get_html(data){
           one_interest_html = '<div id="aw_js_mentions_view_tab" ' + 'class="aw_sketch_mentions_segment ' + tab_class + '">' +
                                 '<div class="aw_sketch_one_interest_header">' +
                                   '<span>' +
-                                    mention_data.interest_name.toUpperCase() +
+                                    mention_data.interest_name.toUpperCase() + ' - have ' + mention_data.total_mentions + ' mentions ' +
                                   '</span>' +
                                 '</div>' +
                               '<div class="aw_sketch_one_interest_mention" >';

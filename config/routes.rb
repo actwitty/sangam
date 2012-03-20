@@ -32,11 +32,12 @@ Sangam::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   
+  match '/show' => 'home#show'
 
   match '/home/get_entities' => 'home#get_entities'
   match '/home/get_entities_verified' => 'home#get_entities_verified'
   match '/home/get_analytics_timeline' => 'home#get_analytics_timeline'
-   match '/home/get_sketch_data_status' => 'home#get_sketch_data_status'
+  match '/home/get_sketch_data_status' => 'home#get_sketch_data_status'
 
 
   match '/home/settings' => 'home#settings'

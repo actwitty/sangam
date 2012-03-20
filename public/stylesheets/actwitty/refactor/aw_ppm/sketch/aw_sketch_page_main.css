@@ -238,7 +238,8 @@ body {
   border: 0px solid green;
   margin-left: 10px;
   margin-top: 11px;
-  float: left; }
+  float: left;
+  cursor: pointer; }
   .aw_user_profile_pic img {
     padding: 3px;
     border-radius: 3px;
@@ -251,7 +252,8 @@ body {
   float: left;
   margin-left: 10px;
   max-width: 400px;
-  border: 0px solid green; }
+  border: 0px solid green;
+  cursor: pointer; }
   .aw_full_name h2 {
     color: #25a0da;
     font-size: 24px;
@@ -357,7 +359,8 @@ body {
     size: 14px; }
   .aw_fb_login_div img {
     margin-left: 35px;
-    margin-top: 10px; }
+    margin-top: 10px;
+    cursor: pointer; }
   .aw_fb_login_div .aw_fb_login_note {
     position: absolute;
     top: 240px;

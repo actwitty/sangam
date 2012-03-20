@@ -1,5 +1,5 @@
 a.aw_sketch_timeline_links {
-  color: #ffffcc;
+  color: #cccccc;
   text-decoration: none;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -9,7 +9,7 @@ a.aw_sketch_timeline_links {
   font-family: Georgia, serif;
   font-size: 14px; }
   a.aw_sketch_timeline_links:hover, a.aw_sketch_timeline_links.selected {
-    color: #777777; }
+    color: #333333; }
 
 #aw_sketch_timeline {
   width: 520px;

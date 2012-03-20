@@ -256,6 +256,8 @@ function aw_api_twitter_get_feeds(feed_type, fn_cb){
     var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base[feed_type].url,
                                            "aw_twitter_cb_user_feed",
                                            {
+                                              "include_entities" : true,
+                                              "include_rts" : true,
                                               "id" : aw_api_twitter_get_visited_user_id(),
                                               "count" : 200
                                            });
@@ -280,7 +282,8 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
                               name: "twitter",
                               pid: data.id
                             };
-  
+  aw_post_json["timestamp"]='';
+  aw_post_json["local_timestamp"]=0;
   if(  data.created_at ){
     aw_post_json["timestamp"] = data.created_at; /* convert to a common timestamp*/
     var values = data.created_at.split(" ");

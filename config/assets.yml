@@ -14,28 +14,13 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.custom.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_events.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
-    - public/javascripts/actwitty/refactor/server_requests/aw_post_requests.js
-    - public/javascripts/actwitty/refactor/server_requests/aw_get_requests.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
-    - public/javascripts/actwitty/refactor/common/aw_cmn_channel_theme_reg.js
-    - public/javascripts/actwitty/refactor/common/aw_cmn_default_channel_themes.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
   profile_commons:
-    - public/javascripts/actwitty/refactor/ppm/common/aw_cmn_more_cookie_manager.js
-    - public/javascripts/actwitty/refactor/ppm/header/aw_ppm_header_main.js
-    - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_location.js
-    - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_main.js
-    - public/javascripts/actwitty/refactor/ppm/inputs/aw_ppm_input_channel_names.js
-    - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.js
-    - public/javascripts/actwitty/refactor/ppm/externals/plupload/plupload.full.js
-    - public/javascripts/actwitty/refactor/ppm/externals/plupload/jquery.ui.plupload/jquery.ui.plupload.js
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
     - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
-  profile_settings:
-    - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting.js
-    - public/javascripts/actwitty/refactor/spm/user_profile/aw_spm_setting_location.js
   profile_page_sketch:
       # ####################### Model ############################
     - public/javascripts/actwitty/refactor/skpm/model/cache/aw_cache.js
@@ -80,8 +65,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_search.js
     # ####################### Externals #############################
     - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js
-    - public/javascripts/actwitty/refactor/common/externals/tagcloud/jquery.tagcloud.js
-    - public/javascripts/actwitty/refactor/common/externals/jQCloud/jqcloud-0.2.10.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jquery.mousewheel.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jScrollPane.js
     - public/javascripts/actwitty/refactor/common/externals/jsonp/jquery-jsonp-2.2.1.min.js
@@ -98,10 +81,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.ajaxQueue.js
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/thickbox-compressed.js
     - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/jquery.autocomplete.js
-  highcharts:
-    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/highcharts.js
-    #- public/javascripts/actwitty/refactor/ppm/externals/highcharts/modules/exporting.js
-    - public/javascripts/actwitty/refactor/ppm/externals/highcharts/themes/gray.js
   bootstrap:
     - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-alerts.js
     - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-dropdown.js
@@ -111,11 +90,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-scrollspy.js
     - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-buttons.js
     - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-tabs.js
-  charts_analytics:
-    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_main.js
-    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_unfiltered.js
-    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_streams_filtered.js
-    - public/javascripts/actwitty/refactor/ppm/streams/analytics/aw_ppm_chart_timeseries_zoomable.js
   aw_internal_inviteds_show_page:    
     - public/javascripts/actwitty/refactor/aw_internals/aw_inviteds_show.js
 
@@ -156,16 +130,11 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/external/jPaginate/jpaginate.css
   profile_page_externals:
-    - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.ui.plupload.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/external/plupload/jquery.plupload.queue.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/lib/thickbox.css
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.css
     
-  aw_internal_feedback_show_page:
-    - public/stylesheets/actwitty/refactor/aw_internals/aw_feedbacks_show.css
   aw_internal_inviteds_show_page:
     - public/stylesheets/actwitty/refactor/aw_internals/aw_inviteds.css
   profile_thanks_page:

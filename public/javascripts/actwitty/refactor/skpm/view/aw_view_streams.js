@@ -264,7 +264,7 @@ function aw_api_view_stream_render(data){
   });
   
   $("#aw_js_stream_entries").html(html);
-  
+  $("#aw_js_stream_entries").scrollTop(0); 
   $("abbr.aw_js_timeago").timeago();
   $("#aw_js_stream_busy").hide();
 
