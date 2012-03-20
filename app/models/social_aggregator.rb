@@ -324,20 +324,18 @@ class SocialAggregator < ActiveRecord::Base
 
          time = Time.now.utc + params[:update_interval]
 
+         h = {:next_update_timestamp => time}
+
          #update the latest_msg_timestamp in stats
          if latest_msg_timestamp > EPOCH_TIME
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [START_SOCIAL_AGGREGATION] TIMESTAMP #{latest_msg_timestamp} for  #{params.inspect}")
 
-            SocialAggregator.update_all(
-                                         {
-                                           :latest_msg_timestamp => latest_msg_timestamp,
-                                           :latest_msg_id => latest_msg_id,
-                                           :next_update_timestamp => time
-                                          },
-                                         {:id => params[:social_aggregator_id]}
-                                        )
-
+            h[:latest_msg_timestamp] = latest_msg_timestamp
+            h[:latest_msg_id] = latest_msg_id
          end
+
+         SocialAggregator.update_all(h, {:id => params[:social_aggregator_id]})
+
          SocialAggregator.schedule_job({:user_id => params[:user_id],:provider => params[:provider],:uid => params[:uid],
                                       :scheduled_time => time })
 
@@ -351,6 +349,17 @@ class SocialAggregator < ActiveRecord::Base
          #destroy last new_activity. as they can't be valid after create as we are setting them to nil
          #so if they are non-null then they should be removed
          Activity.destroy_all(:id => new_activity[:post][:id]) if !new_activity.blank?
+
+         #this removes the enabled job for Social Aggregator if it fails even at first time
+         #[ISSUE][102][TECH][SERVER]Failed Social Fetch for first time should disable_service and enable at re-login
+         if params[:latest_msg_timestamp] == EPOCH_TIME
+           SocialAggregator.destroy_all(:id => params[:social_aggregator_id])
+         else
+           time = Time.now.utc + params[:update_interval]
+           SocialAggregator.schedule_job({:user_id => params[:user_id],:provider => params[:provider],:uid => params[:uid],
+                                      :scheduled_time => time })
+         end
+
          return {}
       end
    end

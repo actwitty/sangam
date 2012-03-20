@@ -7,6 +7,7 @@ module SocialFetch
     class Facebook
 
       FEED = "https://graph.facebook.com/"
+      EPOCH_TIME = Time.utc(1970, 1, 1, 0, 0)
 
 
       #INPUT => {
@@ -23,15 +24,14 @@ module SocialFetch
         data_array = []
 
         #latest_msg_timestamp = params[:latest_msg_timestamp].strftime("%Y%m%dT%H%M")
-
-        json = {'access_token' => "#{params[:access_token]}"}
+         json = {'access_token' => "#{params[:access_token]}"}
 
         params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
         query_array=   [
                           {"method"=>"GET",
-                              "relative_url"=>"#{params[:uid]}/feed?limit=#{limit}"},
+                              "relative_url"=>"me/feed?limit=#{limit}"},
                           {"method"=>"GET",
-                              "relative_url"=>"#{params[:uid]}/likes?limit=#{limit}"},
+                              "relative_url"=>"me/likes?limit=#{limit}"},
 #                          {"method"=>"GET",
 #                              "relative_url"=>"#{params[:uid]}/feed?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"},
 #                          {"method"=>"GET",
@@ -50,11 +50,15 @@ module SocialFetch
           hash = JSON.parse(attr["body"])
           array.concat(hash["data"]) if !hash["data"].blank?
         end
-
+        
         #sort to mix likes and post
-        array.sort! {|x,y| y["created_time"] <=> x["created_time"]}
+        array.sort! do |x,y|
+           y["created_time"] = EPOCH_TIME if  y["created_time"].blank? #sometimes blank created_time comes in facebook
+           x["created_time"] = EPOCH_TIME if  x["created_time"].blank?
+           y["created_time"] <=> x["created_time"]
+        end
 
-        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] leaving #{params.inspect}")
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] leaving #{params.inspect} ")
 
         return array
 
@@ -226,7 +230,7 @@ module SocialFetch
             #copy story as text if activity[:text] is blank
             #means attr["message"] is blank. even if attr["story"] is blank no probs
             if  activity[:text].blank?
-              activity[:text] = attr["story"]
+              activity[:text] = attr["story"]  if attr["story"] !~ /Guhesh Ramanathan is now friends with/
               activity[:enrich] = false #no need to enrich the story
             end
 
@@ -295,12 +299,12 @@ module SocialFetch
             location ={
                         :lat => loc["latitude"] ,
                         :long => loc["longitude"],
-                        :name => attr["place"]["name"],
+                        :name => blob["place"]["name"],
                         :city => loc["city"],
                         :country => loc["country"],
                         :region => loc["region"],
                         :source_name => "facebook",
-                        :source_object_id => attr["place"]["id"]
+                        :source_object_id => blob["place"]["id"]
                       }
 
             #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [get_location] Location Found")
@@ -517,6 +521,11 @@ module SocialFetch
           #if from is present, then it should must be from owner
           if !blob["from"].blank?
             return false if (blob["from"]["id"] != params[:uid])
+          end
+
+          #if created_time is not present invalid
+          if blob["created_time"].blank?
+            return false
           end
 
           #if updated before  the "last_updated_at" then dont accept

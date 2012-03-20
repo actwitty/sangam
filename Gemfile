@@ -43,6 +43,7 @@ gem 'addressable' , '~> 2.2.6'
 gem 'json'
 gem 'annotate'
 
+gem 'nokogiri'
 #File uploading
 ##gem "fog"
 ##gem "carrierwave", :git => 'git://github.com/jnicklas/carrierwave.git'

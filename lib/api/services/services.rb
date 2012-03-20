@@ -224,6 +224,11 @@ module Api
           Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Service is not enabled #{params.inspect} #{social_fetch.inspect}")
           return false
         end
+
+        #update the time time stamp for the job other it will fail
+        #[ISSUE][101][TECH][SERVER]Inject Job should update the time in social aggregator
+        SocialAggregator.update_all({:next_update_timestamp => Time.now.utc}, {:id => social_fetch.id})
+
         SocialAggregator.schedule_job({:user_id => params[:user_id],:provider => params[:provider],:uid => params[:uid]})
 
         Rails.logger.info("[LIB] [API] [SERVICES] [INJECT_JOB] Entering #{params.inspect}")
