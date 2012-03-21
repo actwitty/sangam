@@ -61,15 +61,16 @@ Sangam::Application.routes.draw do
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 
 
-  match '/facebook/invite' => 'facebook#invite'
 
   match '/about/show' => 'about#show'
   match '/team/show' => 'team#show'
 
   
-  match '/invites/inviteds' => 'invites#inviteds'
-  match '/invites/accepted' => 'invites#accepted'
-  match '/invites/registered' => 'invites#registered'
+  match '/invites/addnew' => 'invites#addnew'
+  match '/invites/userbase' => 'invites#userbase'
+  match '/invites/uninviteds' => 'invites#uninviteds'
+  match '/invites/pending' => 'invites#pending'
+  match '/invites/get_user_counts' => 'invites#get_user_counts'
 
   match '/invites/create_new' => 'invites#create_new'
   match '/invites/backdoor_enable_service' => 'invites#backdoor_enable_service'

@@ -21,10 +21,12 @@
       = include_stylesheets :profile_page_sketch
     
 
-    -if @page_mode == "aw_internal_inviteds_show_page"
+    -if @page_mode == "aw_internal_inviteds_show_page" or @page_mode == "aw_internal_show_user_counters_page"
       = include_stylesheets :profile_page_externals
       = include_stylesheets :profile_page_commons
       = include_stylesheets :aw_internal_inviteds_show_page
+      = include_stylesheets :profile_page_sketch
+
 
     -if @page_mode == "profile_thanks_page"
       = include_stylesheets :profile_page_externals
@@ -50,7 +52,7 @@
       = include_javascripts :profile_page_sketch
 
 
-    -if @page_mode == "aw_internal_inviteds_show_page"
+    -if @page_mode == "aw_internal_inviteds_show_page" or @page_mode == "aw_internal_show_user_counters_page"
       = include_javascripts :aw_internal_inviteds_show_page
 
     /* This is an exclude condition. Mind it*/

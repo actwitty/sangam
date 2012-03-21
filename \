@@ -160,24 +160,8 @@ function aw_force_inject_job(){
 /***********************************************/
 
 function aw_api_internal_fetch_user_counts(){
-    $.ajax({
-            url: "/invites/get_user_counts",
-            type: 'GET',
-            data: {a:1},
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (counts_data) {
-              $("#aw_js_total_users").html(counts_data.users_count + ' Users');
-              $("#aw_js_invitations").html(counts_data.inviteds_count + ' Inviteds');
-              $("#aw_js_uninviteds").html(counts_data.uninviteds_count + ' Uninviteds');
-
-            },
-            error:function(XMLHttpRequest,textStatus, errorThrown){ 
-              aw_lib_console_log("error",
-                              "aw_mentions_verified_fetch_details:  Server request failed for "
-                              +  " error: " + errorThrown + " status:" + textStatus);   
-        }
-    });  
+  $("abbr.aw_js_user_creation_date").timeago();
+  alert("123");
 }
 
 /************************************************/

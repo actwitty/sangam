@@ -137,6 +137,7 @@ stylesheets:
     
   aw_internal_inviteds_show_page:
     - public/stylesheets/actwitty/refactor/aw_internals/aw_inviteds.css
+    - public/stylesheets/actwitty/refactor/aw_internals/aw_user_listings.css
   profile_thanks_page:
     - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks.css
 
