@@ -44,8 +44,8 @@ function aw_api_view_locations_render(data){
       show_loc = true;
     });
   });
-  if( show_loc ){
-    $("#aw_js_locations_busy").hide();
-    $("#aw_js_locations_main_container").show();
+  $("#aw_js_locations_busy").hide();
+  if( !show_loc ){
+    $("#aw_js_locations_main_container").hide();
   }
 }
