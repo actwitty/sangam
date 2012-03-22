@@ -1,3 +1,12 @@
+.aw_popularity_header_label {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+  font-size: 14px;
+  font-family: "RobotoRegular";
+  color: #25a0da; }
+
 .aw_service_popularity_container_box {
   width: 510px;
   height: auto;

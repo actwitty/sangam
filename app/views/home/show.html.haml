@@ -67,7 +67,7 @@
       .aw_infographic_header
         .aw_infographic_header_label THE INFOGRAPHICS
           
-      .aw_section_container_box
+      #aw_js_profile_main_container.aw_section_container_box
         .aw_section_container_info_box
           %a.aw_user_profile_pic{:href=> "/show?id=#{@user.id}"  }
             %img{:src=> "#{@user.photo_small_url}", :height => "100px", :width => "100px"  }
@@ -77,7 +77,7 @@
             #aw_js_user_description.aw_description
             #aw_js_user_details.aw_profile_details
 
-      .aw_section_container_box
+      #aw_js_services_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
@@ -85,7 +85,7 @@
           #aw_js_services_list_box.aw_section_container_internal_data_box
 
 
-      .aw_section_container_box
+      #aw_js_interests_main_container.aw_section_container_box
         .aw_section_container_info_box          
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
@@ -97,7 +97,7 @@
                 %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }    
 
 
-      .aw_section_container_box
+      #aw_js_mentions_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
@@ -105,7 +105,8 @@
           .aw_section_container_internal_data_box
             #aw_js_mentions_busy.aw_busy_box
               .aw_busy_mini_box
-                %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }    
+                %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }         
+            .aw_mentions_header_label The high value terms quoted in the shared posts. Click to see the quoted posts. 
             .aw_sketch_mentions_list_container
               #aw_js_mentions_list_box.aw_sketch_mention_box
 
@@ -113,7 +114,7 @@
 
 
 
-      .aw_section_container_box
+      #aw_js_trends_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
@@ -122,6 +123,7 @@
             #aw_js_trends_busy.aw_busy_box
               .aw_busy_mini_box
                 %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
+            .aw_trends_header_label Topic trends across snapshots of weeks. Click to read the posts in timeline.
             #aw_sketch_timeline
               %ul#aw_js_sketch_timeline_dates.aw_sketch_timeline_dates
               %ul#aw_js_sketch_timeline_details.aw_sketch_timeline_details
@@ -132,7 +134,7 @@
    
 
 
-      .aw_section_container_box
+      #aw_js_popularity_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
@@ -144,7 +146,7 @@
             #aw_js_service_popularity_box.aw_service_popularity_container_box
 
 
-      .aw_section_container_box
+      #aw_js_connections_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
@@ -153,38 +155,41 @@
             #aw_js_connections_busy.aw_busy_box
               .aw_busy_mini_box
                 %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-            #aw_js_friends_count_box.aw_friends_services_box
+            / #aw_js_friends_count_box.aw_friends_services_box
             #aw_js_contacts.aw_services_contacts_box
 
-      .aw_section_container_box
+      #aw_js_locations_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
             %h3 LOCATION CHECK-INS
           .aw_section_container_internal_data_box 
+            .aw_locations_header_label Locations pinned across time in services. Click to see the quoted posts. 
             #aw_js_locations_busy.aw_busy_box
               .aw_busy_mini_box
                 %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
             #aw_js_locations.aw_locations_container_box
               #aw_js_locations_map_canvas{:style => "height:300px; width: 300px padding-left: 25px"}
 
-      .aw_section_container_box
+      #aw_js_videos_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
             %h3 VIDEOS
           .aw_section_container_internal_data_box 
+            .aw_videos_header_label Videos shared, liked across services. Play them all. 
             #aw_js_videos_busy.aw_busy_box
               .aw_busy_mini_box
                 %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
             #aw_js_videos.aw_videos_container_box
 
-      .aw_section_container_box
+      #aw_js_images_main_container.aw_section_container_box
         .aw_section_container_info_box
           .aw_section_container_top_delimiter
           .aw_section_container_internal_data_label
             %h3 LIFE IN PICTURES
-          .aw_section_container_internal_data_box 
+          .aw_section_container_internal_data_box
+            .aw_images_header_label Pictures uploaded across time on the services. Click to maximize. 
             #aw_js_images_busy.aw_busy_box
               .aw_busy_mini_box
                 %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }

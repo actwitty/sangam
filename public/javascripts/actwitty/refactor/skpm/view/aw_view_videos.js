@@ -63,9 +63,11 @@ function aw_api_view_videos_render(data){
                     'Show more videos' +
                   '</div>'; 
   }
-
-  $("#aw_js_videos").html(html);
-  $("#aw_js_videos_busy").hide();
+  if( html.length) {
+    $("#aw_js_videos").html(html);
+    $("#aw_js_videos_busy").hide();
+    $("#aw_js_videos_main_container").show();
+  }
 }
 
 /****************************************************************/

@@ -4,7 +4,7 @@
  *
  */
 function aw_api_view_connections_active_friends_render(data){
-   var html = "<h3> Currently active friends on various networks</h3>";
+   var html = '<div class="aw_contacts_header_label"> Connections recently said something on your wall. Click them to read </div>';
    var count_elements = 0;
    var max_to_show = 21;
    $.each(data, function(key, per_user_data) {
@@ -38,9 +38,12 @@ function aw_api_view_connections_active_friends_render(data){
    }
   
    html = html + more_html;
-   $("#aw_js_contacts").html(html);
-   $("div[rel=aw_js_twipsy_connections]").twipsy({  live: true, placement: "below" }); 
-   $("#aw_js_connections_busy").hide();
+   if( html.length ){
+     $("#aw_js_contacts").html(html);
+     $("div[rel=aw_js_twipsy_connections]").twipsy({  live: true, placement: "below" }); 
+     $("#aw_js_connections_main_container").show();
+     $("#aw_js_connections_busy").hide();
+   }
 }
 /*************************************************************/
 /*

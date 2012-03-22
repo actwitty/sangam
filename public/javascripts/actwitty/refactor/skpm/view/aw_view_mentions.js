@@ -102,13 +102,17 @@ function aw_view_mentions_get_html(data){
  *
  */
 function aw_api_view_mentions_render(data){
-  $("#aw_js_mentions_list_box").html(aw_view_mentions_get_html(data));
-  $("img[rel=aw_js_twipsy_mention_image]").twipsy({  live: true, placement: "below" }); 
-  $("#aw_js_mentions_busy").hide();
-  /* fetch descriptions */ 
-  $(".aw_js_mention_image_class").each( function(index){
-    $(this).aw_api_js_get_description_fn();
-  });
+  var html = aw_view_mentions_get_html(data);
+  if( html.length ){
+    $("#aw_js_mentions_list_box").html(html);
+    $("img[rel=aw_js_twipsy_mention_image]").twipsy({  live: true, placement: "below" }); 
+    $("#aw_js_mentions_main_container").show();
+    $("#aw_js_mentions_busy").hide();
+    /* fetch descriptions */ 
+    $(".aw_js_mention_image_class").each( function(index){
+      $(this).aw_api_js_get_description_fn();
+    });
+  }
 
 
   

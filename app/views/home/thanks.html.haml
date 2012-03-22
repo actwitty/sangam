@@ -1,14 +1,15 @@
 #aw_ppm_thanks_main_box
   %center
-    %img{:src=>"/images/actwitty/refactor/aw_lpm/main_header.png"} 
+    %a{:href=>'http://www.actwitty.com'}
+      %img{:src=>"/images/actwitty/refactor/aw_lpm/main_header.png"} 
   #aw_ppm_thanks_main_div
     
     #aw_ppm_thanks_user_info
       #aw_ppm_thanks_user_img
-        %a{:href => "/home/show?id=#{@user.id}"}
+        %a{:href => "/show?id=#{@user.id}"}
           %img{:src => @user.photo_small_url}/
       #aw_ppm_thanks_user_name    
-        %a{:href => "/home/show?id=#{@user.id}"}
+        %a{:href => "/show?id=#{@user.id}"}
           %span.aw_ppm_thanks_user_pretext Hi ! 
           %span #{@user.full_name}
       #aw_ppm_thanks_user_location   

@@ -81,6 +81,7 @@ var aw_js_global_services_user_enabled={};
 function aw_api_controller_sketch_main_init(){
 
   aw_lib_console_log("DEBUG", "Entry point into main controller");
+  aw_api_view_initialize_views();
   aw_api_control_verify_status_of_sketch_page();
   $.each(aw_js_global_rails_user_services_enabled, function( index, service_data){
     if ( service_data['provider'] ){

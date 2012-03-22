@@ -81,11 +81,15 @@ function aw_api_view_service_popularity_render(data){
   if( show_more_popularity){
     html =  html + '<div class="aw_show_more_popularity_box aw_js_show_more_popularity"  state="show"  >' +
                   'Show all interest popularities.' +
-                '</div>';
+                '</div>';  
   }
-  $("#aw_js_service_popularity_box").html(html);
-  $("div[rel=aw_js_twipsy_popularity]").twipsy({  live: true, placement: "below" }); 
-  $("#aw_js_popularity_busy").hide();
+  if( html.length ){
+    var header_html = '<div class="aw_contacts_header_label"> The response from people on shared data. Click to see the posts. </div>' + html;
+    $("#aw_js_service_popularity_box").html(header_html);
+    $("div[rel=aw_js_twipsy_popularity]").twipsy({  live: true, placement: "below" }); 
+    $("#aw_js_popularity_busy").hide();
+    $("#aw_js_popularity_main_container").show();
+  }
 }
 
 /****************************************************************/

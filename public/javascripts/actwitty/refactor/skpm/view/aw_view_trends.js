@@ -77,15 +77,17 @@ function aw_api_view_trends_render(data){
                                     '</li>';
      
   });
+  if ( dates_html.length && details_html.length ){
+    $("#aw_js_sketch_timeline_dates").html(dates_html);
+    $("#aw_js_sketch_timeline_details").html(details_html);
 
-  $("#aw_js_sketch_timeline_dates").html(dates_html);
-  $("#aw_js_sketch_timeline_details").html(details_html);
-
-  $("abbr.aw_js_trend_timeago").timeago();
-  $("div[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
-  $("img[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
-  $("span[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
-  /* invoke timeliner */
-  $().timelinr();
-  $("#aw_js_trends_busy").hide();
+    $("abbr.aw_js_trend_timeago").timeago();
+    $("div[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
+    $("img[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
+    $("span[rel=aw_js_twipsy_trend]").twipsy({  live: true, placement: "below" }); 
+    /* invoke timeliner */
+    $().timelinr();
+    $("#aw_js_trends_busy").hide();
+    $("#aw_js_trends_main_container").show();
+  }
 }

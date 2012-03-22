@@ -30,5 +30,8 @@ function aw_api_view_service_list_render(data){
                   '</div>';
 
   });
-  $("#aw_js_services_list_box").html(html);
+  if( html.length ){
+    $("#aw_js_services_list_box").html(html);
+    $("#aw_js_services_main_container").show();
+  }
 }
