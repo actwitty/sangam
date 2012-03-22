@@ -379,23 +379,23 @@ body {
   position: relative; }
   .aw_data_busy_div h3 {
     color: #25a0da;
-    margin-top: 30px;
+    margin-top: 10px;
     font-family: "RobotoRegular";
     font-weight: normal;
     font-size: 22px; }
   .aw_data_busy_div .aw_data_cookie {
-    margin-top: 20px;
-    margin-left: 90px;
+    margin-top: 10px;
+    margin-left: 10px;
     position: absolute;
     font-family: "RobotoRegular";
-    font-size: 18px; }
+    font-size: 15px; }
     .aw_data_busy_div .aw_data_cookie span {
       color: #333333; }
   .aw_data_busy_div img {
-    margin-left: 150px;
-    margin-top: 90px;
-    width: 130px;
-    height: 130px; }
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 280px;
+    height: 260px; }
   .aw_data_busy_div .aw_data_busy_note {
     position: absolute;
     top: 350px;

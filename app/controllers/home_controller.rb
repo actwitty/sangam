@@ -530,6 +530,7 @@ class HomeController < ApplicationController
       if request.xhr?
         
         render :json => {:status => response}
+
       end
     else
       if request.xhr?
