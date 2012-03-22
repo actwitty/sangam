@@ -6,6 +6,7 @@
 function aw_api_view_images_render(data){
   var html="";
   var count = 0;
+  var show_any = false;
   var max_images_to_show = 10;
   var show_more = false;
   var display_class = "aw_js_image_box_show_always";
@@ -14,6 +15,7 @@ function aw_api_view_images_render(data){
   var html_col_3 = '<div class="aw_images_col" >';
 
   $.each(data, function(key, image_json){
+    show_any = true;
 
     if( count > max_images_to_show){
       show_more = true;
@@ -53,7 +55,7 @@ function aw_api_view_images_render(data){
           '</div>';  
   }
 
-  if( html.length ){
+  if( show_any ){
     $("#aw_js_images_box").html(html);
     
 	
