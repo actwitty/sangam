@@ -45,7 +45,7 @@ function aw_preprocess_invite_request(service, id){
       }
     });
   }else if( service == "twitter" ){
-    var url = 'https://api.twitter.com/1/users/lookup.json?screen_name=' + id + '&callback=?';
+    var url = 'https://api.twitter.com/1/users/lookup.json?screen_name=' + id + '&user_id=' + id + '&callback=?';
     var details = {};
     
     $.getJSON(url, function(tw_resp_data){
@@ -163,13 +163,13 @@ function aw_api_internal_fetch_user_counts(){
     $.ajax({
             url: "/invites/get_user_counts",
             type: 'GET',
-            data: {a:1},
+            data: {},
             dataType: 'json',
             contentType: 'application/json',
             success: function (counts_data) {
-              $("#aw_js_total_users").html(counts_data.users_count + ' Users');
+              $("#aw_js_total_users").html(counts_data.users_count[0].user.count + ' Users');
               $("#aw_js_invitations").html(counts_data.inviteds_count + ' Inviteds');
-              $("#aw_js_uninviteds").html(counts_data.uninviteds_count + ' Uninviteds');
+              $("#aw_js_uninviteds").html(counts_data.uninviteds_count[0].authentication.count + ' Uninviteds');
 
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 

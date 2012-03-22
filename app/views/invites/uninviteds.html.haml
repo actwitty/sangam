@@ -1,0 +1,78 @@
+#aw_top_bar
+  #top_bar_container
+    #aw_top_bar_bkg
+      #aw_top_bar_box
+        %a{:href => "http://www.actwitty.com"}
+          %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_top_bar.png"}
+        -if user_signed_in? && !if_ghost_user?
+          %a#awppm_header_user_logout{:href => "/users/sign_out"}
+          %a#awppm_header_user_home{:href => "/show?id=#{current_user.id}" }
+        -elsif if_ghost_user?
+          %a#awppm_header_user_login{:href => "/welcome/new"} login
+        #awppm_header_search_edit_box
+          %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
+
+  
+.aw_user_listing_wrapper
+  .aw_users_counts_box
+    .aw_counters_section
+      %span#aw_js_total_users
+    .aw_counters_section
+      %span#aw_js_invitations
+    .aw_counters_section
+      %span#aw_js_uninviteds
+    
+  .aw_users_page_title
+    %h3 Users Signed up but not invited
+  .aw_users_list_table
+    .aw_users_table_header
+      .aw_user_image_header
+        %span image
+      .aw_user_name_header
+        %span name
+      .aw_user_gender_header
+        %span gender
+      .aw_user_service_header
+        %span Service
+      .aw_user_id_header
+        %span UID
+      .aw_user_location_header
+        %span Location
+      .aw_user_creation_header
+        %span created
+      .aw_user_login_header
+        %span logged in
+
+
+    - newest=nil
+    - oldest=nil
+    -@users_list.each do |user|
+      .aw_users_table_row
+        .aw_user_image
+          %img{:src =>"#{user.photo_small_url}", :width => "40px"}
+        .aw_user_name
+          %span #{user.full_name}
+        .aw_user_gender
+          %span #{user.gender}
+        .aw_user_service
+          %span #{user.provider}
+        .aw_user_id
+          %span #{user.uid}
+        .aw_user_location
+          %span #{user.current_location}
+        .aw_user_creation
+          %span #{user.created_at.strftime("%d/%m/%y")}
+        .aw_user_login
+          %span #{user.last_sign_in_at.strftime("%d/%m/%y")}
+      -if newest.nil?
+        -newest = user.created_at
+      - oldest =  user.created_at
+  -unless newest.nil?
+    .aw_users_list_nav
+      .aw_users_table_row
+        %a.aw_navigate_button.button_actwitty.blue{:href => "/invites/userbase?newer=#{newest}" } Newer
+        -unless oldest.nil?
+          %a.aw_navigate_button.button_actwitty.blue{:href => "/invites/userbase?older=#{oldest}" } Older
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+
+

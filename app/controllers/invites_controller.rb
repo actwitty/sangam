@@ -78,14 +78,21 @@ class InvitesController < ApplicationController
       return
     end
     
-    users_count = User.count( :all,
-                               :select => "distinct users.id",
-                               :joins =>  "INNER JOIN authentications au ON au.user_id=users.id INNER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service")
+    users_count = User.find( :all,
+                              :select => "count(distinct users.id)",
+                              :joins =>  "INNER JOIN authentications au ON au.user_id=users.id INNER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
+                              )
 
-    uninviteds_count = Authentication.count( :all,                                              
-                                              :joins =>  "LEFT OUTER JOIN invites AS inv ON inv.identifier = authentications.uid AND authentications.provider = inv.service")
+    uninviteds_count =  Authentication.find( :all,
+                                               :select => "count(distinct u.id)",
+                                               :joins =>  "LEFT OUTER JOIN invites AS inv ON inv.identifier = authentications.uid AND authentications.provider = inv.service  INNER JOIN users AS u ON u.id = authentications.user_id",
+                                               :conditions => "inv.id IS NULL"
+                                               ) 
 
-    inviteds_count = Invite.count(:all)
+
+
+    inviteds_count = Invite.count(:all,
+                                  :conditions => "invites.accepted != true" )
 
     users_json = {
                     :users_count => users_count,
@@ -94,7 +101,7 @@ class InvitesController < ApplicationController
                   }
 
       if request.xhr?
-        expires_in 10.minutes
+        #expires_in 10.minutes
         render :json => users_json, :status => 200
       end
                   
@@ -131,11 +138,36 @@ class InvitesController < ApplicationController
   end
 
   def uninviteds
-    
+    unless check_authorization_email?
+        redirect_to :controller => "welcome", :action => "new"
+        return 
+      end
+      newer_time = params[:newer]
+      older_time = params[:older]
+      conditions="inv.id IS NULL"
+      unless newer_time.nil?
+        conditions = ["users.created_at >= ? AND invites.id IS NULL",  newer_time] 
+      end
+
+      unless older_time.nil?
+        conditions = ["users.created_at <= ? AND invites.id IS NULL",  older_time] 
+      end
+
+                                     
+      @users_list = User.find( :all,
+                              :joins =>  "INNER JOIN authentications au ON au.user_id=users.id LEFT OUTER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
+                            :select => "distinct users.id, au.provider, au.uid, users.photo_small_url, users.full_name, users.gender, users.current_location, users.created_at, users.last_sign_in_at",
+                            :order => "users.created_at DESC",
+                            :limit => 100,
+                            :conditions => conditions)
+
+
+    @page_mode="aw_internal_show_user_counters_page"
+
 
   end
 
-    def pending
+  def pending
     
 
 

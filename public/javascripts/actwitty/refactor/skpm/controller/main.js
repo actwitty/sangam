@@ -30,7 +30,7 @@ function aw_api_control_verify_status_of_sketch_page(){
               aw_global_status_manager.fancybox_timer = null;
               if(status_data.status ) {
                 if(status_data.status == 1){
-                  aw_global_status_manager.fancybox_modal = true;
+                  aw_global_status_manager.fancybox_modal = false; /* always false */
                 }else if(status_data.status == 2){
                   aw_global_status_manager.fancybox_modal = false;
                 }else if (status_data.status == 3){
