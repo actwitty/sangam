@@ -1,0 +1,467 @@
+/*ActWitty Stylesheet file
+ *File: 
+ *code: 
+ *Author: 
+ *Author URI:  */
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white; }
+
+img {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+.justify {
+  text-align: justify; }
+
+.bold {
+  font-weight: bold; }
+
+.center {
+  text-align: center; }
+
+.right {
+  text-align: right; }
+
+.nostart {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.clear {
+  clear: both; }
+
+br.clear {
+  clear: both;
+  margin-top: -15px; }
+
+a {
+  outline: none;
+  text-decoration: none; }
+
+.fl_left {
+  float: left; }
+
+.fl_right {
+  float: right; }
+
+.imgl, .imgr {
+  border: 0px solid #dfdfdf;
+  padding: 5px;
+  color: #666666;
+  background-color: white; }
+
+.imgl {
+  float: left;
+  margin: 0 8px 8px 0;
+  clear: left; }
+
+.imgr {
+  float: right;
+  margin: 0 0 8px 8px;
+  clear: right; }
+
+/******************************************* Common for all Columns main Div's ************************************ */
+/* ----------------------------------------------Wrapper------------------------------------- */
+div.aw_inviteds_wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  height: auto;
+  display: block;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  color: white;
+  background-color: white; }
+
+/****************************************** User box section for user photo and input box ************************* */
+#aw_inviteds_data_wrapper {
+  position: relative;
+  margin: 0 auto 0;
+  display: block;
+  width: 990px;
+  height: auto;
+  min-height: 900px;
+  margin-top: 20px;
+  border: 0px solid red; }
+
+.aw_inviteds_label {
+  height: 20px;
+  width: 960px;
+  margin: auto;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+  .aw_inviteds_label span {
+    font-size: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #333333; }
+
+.aw_inviteds_new_invite {
+  font-size: 16px;
+  height: auto;
+  width: 960px;
+  color: #555555;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  display: block; }
+  .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section {
+    height: 100px;
+    width: 900px;
+    margin-top: 10px;
+    border: 1px dotted #cccccc;
+    margin: auto;
+    display: block; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_label {
+      font-size: 16px;
+      width: 100%;
+      height: 20px;
+      color: #555555;
+      margin-left: 20px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_label {
+      color: black;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      width: 150px;
+      height: 20px;
+      margin-left: 20px;
+      text-align: left; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_id {
+      border: 1px solid #cccccc;
+      color: black;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      width: 200px;
+      height: 20px;
+      margin-left: 20px; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_preprocess_button {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      width: 80px;
+      height: 30px;
+      margin-left: 20px; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_preprocess_button:hover {
+        cursor: pointer; }
+  .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section {
+    height: 200px;
+    width: 900px;
+    border: 1px dotted #cccccc;
+    display: none;
+    margin-top: 10px;
+    margin: auto; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section img {
+      width: 50px;
+      height: 50px;
+      padding: 1px;
+      border: 1px solid #cccccc;
+      margin-left: 50px;
+      margin-top: 10px;
+      padding: 3px;
+      border-radius: 3px;
+      -moz-box-shadow: 0 0 5px #333333;
+      -webkit-box-shadow: 0 0 5px #333333;
+      box-shadow: 0 0 5px #333333; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_details_fetched {
+      margin-left: 10px;
+      padding-left: 10px;
+      margin-top: 5px;
+      height: auto;
+      width: 200px;
+      display: block; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_details_fetched .aw_fetched_name {
+        color: #333333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        height: 15px;
+        margin-top: 2px;
+        margin-right: 2px;
+        display: inline-block; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_details_fetched .aw_service_name {
+        color: #333333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        width: 100px;
+        height: 15px;
+        margin-top: 2px;
+        display: inline-block; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_inviteds_new_invite_button {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      width: 80px;
+      height: 30px;
+      margin-left: 35px;
+      margin-bottom: 10px; }
+      .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section .aw_inviteds_new_invite_button:hover {
+        cursor: pointer; }
+  .aw_inviteds_new_invite .aw_inviteds_server_response {
+    width: 900px;
+    height: 30px;
+    margin: auto;
+    border: 1px dotted #cccccc;
+    display: none; }
+
+/*ActWitty Stylesheet file
+ *File: 
+ *code: 
+ *Author: 
+ *Author URI:  */
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(/webfont/roboto/Roboto-Regular-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Regular-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Regular-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white; }
+
+img {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+.justify {
+  text-align: justify; }
+
+.bold {
+  font-weight: bold; }
+
+.center {
+  text-align: center; }
+
+.right {
+  text-align: right; }
+
+.nostart {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.clear {
+  clear: both; }
+
+br.clear {
+  clear: both;
+  margin-top: -120px; }
+
+a {
+  outline: none;
+  text-decoration: none; }
+
+.fl_left {
+  float: left; }
+
+.fl_right {
+  float: right; }
+
+.imgl, .imgr {
+  border: 0px solid #dfdfdf;
+  padding: 20px;
+  color: #666666;
+  background-color: white; }
+
+.imgl {
+  float: left;
+  margin: 0 8px 8px 0;
+  clear: left; }
+
+.imgr {
+  float: right;
+  margin: 0 0 8px 8px;
+  clear: right; }
+
+/******************************************* Common for all Columns main Div's ************************************ */
+/* ----------------------------------------------Wrapper------------------------------------- */
+.aw_user_listing_wrapper {
+  display: block;
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: left;
+  height: auto;
+  display: block;
+  color: white;
+  background-color: white;
+  border: 0px solid green; }
+  .aw_user_listing_wrapper .aw_users_page_title {
+    width: 800px;
+    margin: 0px auto;
+    height: auto;
+    display: block; }
+  .aw_user_listing_wrapper .aw_users_counts_box {
+    width: 800px;
+    margin: 0px auto;
+    height: auto;
+    display: block;
+    height: 60px; }
+    .aw_user_listing_wrapper .aw_users_counts_box .aw_counters_section {
+      width: 250px;
+      color: black;
+      display: inline-block;
+      float: left; }
+      .aw_user_listing_wrapper .aw_users_counts_box .aw_counters_section span {
+        margin: 4px auto;
+        font-size: 40px; }
+
+/****************************************** User box section for user photo and input box ************************* */
+.aw_users_list_table {
+  width: 900px;
+  margin: 0px auto;
+  height: auto;
+  display: block;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 20px #333333;
+  -webkit-box-shadow: 0 0 20px #333333;
+  box-shadow: 0 0 20px #333333; }
+  .aw_users_list_table .aw_users_table_header {
+    height: 30px;
+    border-bottom: 1px dotted #cccccc;
+    font-size: 13px;
+    font-family: "RobotoRegular";
+    font-weight: normal;
+    display-inline: block;
+    color: #25a0da;
+    text-transform: uppercase;
+    padding-top: 3px; }
+    .aw_users_list_table .aw_users_table_header .aw_user_image_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_image_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_name_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_name_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_gender_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_gender_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_service_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_service_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_id_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_id_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_location_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_location_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_creation_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_creation_header span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_login_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_login_header span {
+        margin: 0px auto; }
+  .aw_users_list_table .aw_users_table_row {
+    height: auto;
+    border-bottom: 1px dotted #cccccc;
+    font-size: 13px;
+    font-family: "RobotoRegular";
+    font-weight: normal;
+    border-bottom: 1px dotted #cccccc;
+    display: block;
+    color: black; }
+    .aw_users_list_table .aw_users_table_row .aw_user_image {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_image img {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_name {
+      margin-left: 10px;
+      display: inline-block; }
+      .aw_users_list_table .aw_users_table_row .aw_user_name span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_gender {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_gender span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_service {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_service span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_id {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_id span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_location {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_location span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_creation {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_creation span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_login {
+      margin-left: 10px;
+      display: inline-block;
+      margin-left: 20px; }
+      .aw_users_list_table .aw_users_table_row .aw_user_login span {
+        margin: 0px auto; }
+
+.aw_users_list_nav {
+  width: 800px;
+  padding-top: 5px;
+  margin: 0px auto;
+  height: auto;
+  display: block; }
+
+.aw_navigate_button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  width: 80px;
+  height: 22px;
+  margin-left: 35px;
+  margin-bottom: 5px;
+  padding-top: 15px; }
+  .aw_navigate_button:hover {
+    cursor: pointer; }
