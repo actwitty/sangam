@@ -101,26 +101,29 @@ function aw_api_view_interest_render(data){
    }
   
   html = base_html + more_html;
-  $("#aw_js_topics_list_box").html(html);
-  $("img[rel=twipsy]").twipsy({  live: true, placement: "below" });
-  $("p[rel=twipsy]").twipsy({  live: true, placement: "below" });
+  if( html.length ){
+    $("#aw_js_topics_list_box").html(html);
+    $("img[rel=twipsy]").twipsy({  live: true, placement: "below" });
+    $("p[rel=twipsy]").twipsy({  live: true, placement: "below" });
 
 
-  var topic_box_min_height = $(".aw_sketch_dyn_topics_box:first").css("min-height");
-  topic_box_min_height = topic_box_min_height.replace("px","");
-  var main_box_min_height = $(".aw_sketch_interest_main_box:first").css("min-height");
-  main_box_min_height = main_box_min_height.replace("px","");
-  var display_height = parseInt(topic_box_min_height) * total_count;
+    var topic_box_min_height = $(".aw_sketch_dyn_topics_box:first").css("min-height");
+    topic_box_min_height = topic_box_min_height.replace("px","");
+    var main_box_min_height = $(".aw_sketch_interest_main_box:first").css("min-height");
+    main_box_min_height = main_box_min_height.replace("px","");
+    var display_height = parseInt(topic_box_min_height) * total_count;
   
-  if( display_height < main_box_min_height ){
-    var min_box_height = main_box_min_height / total_count;
-    $(".aw_sketch_dyn_topics_box").each(function(index) {
-      $(this).height(min_box_height + 'px');
-    });
+    if( display_height < main_box_min_height ){
+      var min_box_height = main_box_min_height / total_count;
+      $(".aw_sketch_dyn_topics_box").each(function(index) {
+        $(this).height(min_box_height + 'px');
+      });
 
+    }
+
+    $("#aw_js_topics_shared_busy").hide();
+    $("#aw_js_interests_main_container").show();
   }
-
-  $("#aw_js_topics_shared_busy").hide();
 
 }
 /****************************************************************/

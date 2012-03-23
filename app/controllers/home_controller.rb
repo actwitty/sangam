@@ -13,13 +13,14 @@ class HomeController < ApplicationController
   
 #  #FOR  PUBLIC SHOW OF POST/ACCOUNT
   include ApplicationHelper
-  GET_FUNCTIONS_ARRAY= [ :sketch,
+  GET_FUNCTIONS_ARRAY= [ :show,
                          :get_entities,
                          :get_entities_verified,
                          :get_summary,
                          :get_streams,
                          :get_services_enabled,
                          :get_analytics_timeline,
+                         :get_sketch_data_status,
                          :thanks,
                          :search_user]
 
@@ -47,13 +48,13 @@ class HomeController < ApplicationController
     if user_signed_in?
       #This block should not hit ideally
       if if_ghost_user?
-        Rails.logger.info("[MODEL] [CNTRL] [AUTHENTICATE_USER] ***** ghost user active .. CHECK HOW?????? ****** REQUEST URI = #{request.request_uri}")
+        Rails.logger.info("[MODEL] [CNTRL] [AUTHENTICATE_USER] ***** ghost user active .. CHECK HOW?????? ****** ")
         sign_out(current_user)
         store_and_redirect_location
         return false
       end  
     else
-      Rails.logger.info("[MODEL] [CNTRL] [AUTHENTICATE_USER] REQUEST URI = #{request.request_uri}")
+      Rails.logger.info("[MODEL] [CNTRL] [AUTHENTICATE_USER]")
       store_and_redirect_location
       return false
     end
@@ -105,25 +106,23 @@ class HomeController < ApplicationController
     url_for :only_path => false, :params => params.merge(overwrite)
   end
   ###################################################################################
-  def sketch
+  def show
     @user=nil
-    @page_mode="profile_sketch_page"
-    Rails.logger.info("[CNTRL] [HOME] [SKETCH] Home Sketch request with #{params}")
+    @page_mode="profile_show_page"
+    Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params}")
     if user_signed_in?
-      Rails.logger.info("[CNTRL] [HOME] [SKETCH] User signed in #{current_user.id} #{current_user.full_name}")
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
     else
-      Rails.logger.info("[CNTRL] [HOME] [SKETCH] User not signed in")
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] User not signed in")
     end
 
 
-    #if no id mentioned or user not found try to fall back to current user
-    #if user not logged in then go to sign in page
     if params[:id].nil?
       if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
         @user=current_user 
-        Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as no id mentioned")
+        Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as no id mentioned")
       else
-        Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as no id mentioned")
+        Rails.logger.warn("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as no id mentioned")
         redirect_to :controller => "welcome", :action => "new"
         return
       end
@@ -133,13 +132,13 @@ class HomeController < ApplicationController
       if @user.nil?
         if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
           @user=current_user
-          Rails.logger.info("[CNTRL] [HOME] [SKETCH] Setting user id to current user as incorrect id mentioned")
+          Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as incorrect id mentioned")
         else
-          Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Redirecting to welcome new as incorrect id mentioned")
+          Rails.logger.warn("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
         end
       elsif @user.email == AppConstants.ghost_user_email
-          Rails.logger.warn("[CNTRL] [HOME] [SKETCH] Someone trying to open admin login page")
+          Rails.logger.warn("[CNTRL] [HOME] [SHOW] Someone trying to open admin login page")
           redirect_to :controller => "welcome", :action => "new"
       end
     end
@@ -151,7 +150,7 @@ class HomeController < ApplicationController
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
       authentications = Authentication.find_all_by_user_id(current_user.id)
-      Rails.logger.info("[CNTRL] [HOME] [SKETCH] Authentications #{authentications.inspect}")
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] Authentications #{authentications.inspect}")
       authentications.each do |authentication|
         if authentication.provider == "facebook"
             @fb_access[:token] = authentication.token                         
@@ -531,6 +530,7 @@ class HomeController < ApplicationController
       if request.xhr?
         
         render :json => {:status => response}
+
       end
     else
       if request.xhr?

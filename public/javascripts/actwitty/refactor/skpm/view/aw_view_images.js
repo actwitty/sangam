@@ -6,6 +6,7 @@
 function aw_api_view_images_render(data){
   var html="";
   var count = 0;
+  var show_any = false;
   var max_images_to_show = 10;
   var show_more = false;
   var display_class = "aw_js_image_box_show_always";
@@ -14,6 +15,7 @@ function aw_api_view_images_render(data){
   var html_col_3 = '<div class="aw_images_col" >';
 
   $.each(data, function(key, image_json){
+    show_any = true;
 
     if( count > max_images_to_show){
       show_more = true;
@@ -21,7 +23,7 @@ function aw_api_view_images_render(data){
     }
 
     var img_html =  '<div class="aw_single_img_box ' + display_class + '"  >' +
-                      '<a rel="example_group" href="'+ image_json.url +'">' +
+                      '<a rel="aw_img_group" href="'+ image_json.url +'">' +
                         '<img src="' + image_json.url + '" width=160px class="aw_tiled_image" />' +
                       '</a>'+
                        '<img class="aw_images_service_img" src="/images/actwitty/refactor/aw_sketch/images/' +   image_json.service.name +  '.png" width=16px height=16px />' +
@@ -52,18 +54,22 @@ function aw_api_view_images_render(data){
               'Show more pictures' +
           '</div>';  
   }
-  $("#aw_js_images_box").html(html);
-  
+
+  if( show_any ){
+    $("#aw_js_images_box").html(html);
+    
 	
-  $("a[rel=example_group]").fancybox({
-		'transitionIn'		: 'none',
-		'transitionOut'		: 'none',
-		'titlePosition' 	: 'over',
-		'titleFormat'       : function(title, currentArray, currentIndex, currentOpts) {
-		    return '<span id="fancybox-title-over">Image ' +  (currentIndex + 1) + ' / ' + currentArray.length + ' ' + title + '</span>';
-	  }
-  });
-  $("#aw_js_images_busy").hide();
+    $("a[rel=aw_img_group]").fancybox({
+	  	'transitionIn'		: 'none',
+		  'transitionOut'		: 'none',
+  		'titlePosition' 	: 'over',
+	  	'titleFormat'       : function(title, currentArray, currentIndex, currentOpts) {
+		      return '<span id="fancybox-title-over">Image ' +  (currentIndex + 1) + ' / ' + currentArray.length + ' ' + title + '</span>';
+	    }
+    });
+    $("#aw_js_images_main_container").show();
+    $("#aw_js_images_busy").hide();
+  }
 }
 
 /****************************************************************/

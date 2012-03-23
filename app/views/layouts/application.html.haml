@@ -13,23 +13,20 @@
     -if @page_mode == "landing_page" or @page_mode == "authentications_page"  or @page_mode == "about_page"
       = include_stylesheets :landing_pages
 
-    -if @page_mode == "profile_chn_page" or @page_mode == "profile_sketch_page" or @page_mode == "profile_stm_page" or @page_mode == "profile_usr_settings_page" or @page_mode == "profile_channel_settings_page"
+    -if @page_mode == "profile_show_page"
       = include_stylesheets :profile_page_commons
       = include_stylesheets :profile_page_externals
 
-    -if @page_mode == "profile_sketch_page"
+    -if @page_mode == "profile_show_page"
       = include_stylesheets :profile_page_sketch
     
 
-    -if @page_mode == "aw_internal_feedback_show_page"
-      = include_stylesheets :profile_page_commons
-      = include_stylesheets :profile_page_externals
-      = include_stylesheets :aw_internal_feedback_show_page
-
-    -if @page_mode == "aw_internal_inviteds_show_page"
+    -if @page_mode == "aw_internal_inviteds_show_page" or @page_mode == "aw_internal_show_user_counters_page"
       = include_stylesheets :profile_page_externals
       = include_stylesheets :profile_page_commons
       = include_stylesheets :aw_internal_inviteds_show_page
+      = include_stylesheets :profile_page_sketch
+
 
     -if @page_mode == "profile_thanks_page"
       = include_stylesheets :profile_page_externals
@@ -51,11 +48,11 @@
     = include_javascripts :bootstrap
    
     
-    -if @page_mode == "profile_sketch_page"
+    -if @page_mode == "profile_show_page"
       = include_javascripts :profile_page_sketch
 
 
-    -if @page_mode == "aw_internal_inviteds_show_page"
+    -if @page_mode == "aw_internal_inviteds_show_page" or @page_mode == "aw_internal_show_user_counters_page"
       = include_javascripts :aw_internal_inviteds_show_page
 
     /* This is an exclude condition. Mind it*/
@@ -74,7 +71,6 @@
     
   /%body
   %body
-    =render :partial => "home/modal"
 
     = yield
  

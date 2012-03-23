@@ -1,14 +1,24 @@
 class InvitesController < ApplicationController
- 
-  def create_new
-    Rails.logger.info("[CNTRL] [INVITES] Create NEW: [#{params}]")
-    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.info("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email}")
-      redirect_to :controller => "welcome", :action => "new"
-    end
+
+  def check_authorization_email?
     unless user_signed_in?
       Rails.logger.info("[CNTRL] [INVITES] Blocking non loggedin access to admin page")
+      return false
+    end
+    
+    admin_emails = AppConstants.authorized_see_internals_email_ids.split(',')
+    unless admin_emails.include? current_user.email
+      Rails.logger.info("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email}")
+      return false
+    end
+    return true
+  end
+
+  def create_new
+    Rails.logger.info("[CNTRL] [INVITES] Create NEW: [#{params}]")
+    unless check_authorization_email?
       redirect_to :controller => "welcome", :action => "new"
+      return 
     end
 
     service=params[:service]
@@ -42,62 +52,134 @@ class InvitesController < ApplicationController
     end
   end
 
-  def inviteds
+  def addnew
     Rails.logger.info("[CNTRL] [INVITES] Show Inviteds: [#{params}]")
-    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.info("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email} <> #{AppConstants.authorized_see_internals_email_id}")
+
+    unless check_authorization_email?
       redirect_to :controller => "welcome", :action => "new"
+      return 
     end
-    unless user_signed_in?
-      Rails.logger.info("[CNTRL] [INVITES] Blocking non loggedin access to admin page")
-      redirect_to :controller => "welcome", :action => "new"
-    end
+
     @page_mode="aw_internal_inviteds_show_page"
     @user = current_user
     @total_invites = Invite.count()
     
   end
+  
+  
+  
 
-  def accepted
-    Rails.logger.info("[CNTRL] [INVITES] Show Accepteds: [#{params}]")
-    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.info("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email}")
-      redirect_to :controller => "welcome", :action => "new"
+  def get_user_counts()
+      
+    unless check_authorization_email?
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+      return
     end
-    unless user_signed_in?
-      Rails.logger.info("[CNTRL] [INVITES] Blocking non loggedin access to admin page")
-      redirect_to :controller => "welcome", :action => "new"
-    end
-    @page_mode="aw_internal_inviteds_show_page"
-    @user = current_user
-    @invites = Invite.find(:all, :conditions => { :accepted => true, :registered => false } , :order => 'created_at DESC').paginate(:page => params[:page], :per_page => 10)
+    
+    users_count = User.find( :all,
+                              :select => "count(distinct users.id)",
+                              :joins =>  "INNER JOIN authentications au ON au.user_id=users.id INNER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
+                              )
+
+    uninviteds_count =  Authentication.find( :all,
+                                               :select => "count(distinct u.id)",
+                                               :joins =>  "LEFT OUTER JOIN invites AS inv ON inv.identifier = authentications.uid AND authentications.provider = inv.service  INNER JOIN users AS u ON u.id = authentications.user_id",
+                                               :conditions => "inv.id IS NULL"
+                                               ) 
+
+
+
+    inviteds_count = Invite.count(:all,
+                                  :conditions => "invites.accepted != true" )
+
+    users_json = {
+                    :users_count => users_count,
+                    :uninviteds_count => uninviteds_count,
+                    :inviteds_count => inviteds_count
+                  }
+
+      if request.xhr?
+        #expires_in 10.minutes
+        render :json => users_json, :status => 200
+      end
+                  
+                
   end
 
-  def registered
-    Rails.logger.info("[CNTRL] [INVITES] Show Registereds: [#{params}]")
-    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.error("[CNTRL] [INVITES] Warning some one trying to breach #{ current_user.email}")
-      redirect_to :controller => "welcome", :action => "new"
-    end
-    unless user_signed_in?
-      Rails.logger.error("[CNTRL] [INVITES] Blocking non loggedin access to admin page")
-      redirect_to :controller => "welcome", :action => "new"
-    end
-    @page_mode="aw_internal_inviteds_show_page"
-    @user = current_user
-    @invites = Invite.find(:all, :conditions => { :accepted => true, :registered => false } , :order => 'created_at DESC').paginate(:page => params[:page], :per_page => 10)
+ 
+
+  def userbase()
+      unless check_authorization_email?
+        redirect_to :controller => "welcome", :action => "new"
+        return 
+      end
+      newer_time = params[:newer]
+      older_time = params[:older]
+      conditions=[]
+      unless newer_time.nil?
+        conditions = ["users.created_at >= ?",  newer_time] 
+      end
+
+      unless older_time.nil?
+        conditions = ["users.created_at <= ?",  older_time] 
+      end
+      @users_list = User.find( :all,
+                            :joins =>  "INNER JOIN authentications au ON au.user_id=users.id INNER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
+                            :select => "distinct users.id, users.photo_small_url, users.full_name, users.gender, users.current_location, users.created_at, users.last_sign_in_at",
+                            :order => "users.created_at DESC",
+                            :limit => 100,
+                            :conditions => conditions)
+
+
+    @page_mode="aw_internal_show_user_counters_page"
+
   end
+
+  def uninviteds
+    unless check_authorization_email?
+        redirect_to :controller => "welcome", :action => "new"
+        return 
+      end
+      newer_time = params[:newer]
+      older_time = params[:older]
+      conditions="inv.id IS NULL"
+      unless newer_time.nil?
+        conditions = ["users.created_at >= ? AND invites.id IS NULL",  newer_time] 
+      end
+
+      unless older_time.nil?
+        conditions = ["users.created_at <= ? AND invites.id IS NULL",  older_time] 
+      end
+
+                                     
+      @users_list = User.find( :all,
+                              :joins =>  "INNER JOIN authentications au ON au.user_id=users.id LEFT OUTER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
+                            :select => "distinct users.id, au.provider, au.uid, users.photo_small_url, users.full_name, users.gender, users.current_location, users.created_at, users.last_sign_in_at",
+                            :order => "users.created_at DESC",
+                            :limit => 100,
+                            :conditions => conditions)
+
+
+    @page_mode="aw_internal_show_user_counters_page"
+
+
+  end
+
+  def pending
+    
+
+
+  end
+
+  
 
    def backdoor_enable_service
     Rails.logger.info("[CNTRL] [BACKDOOR_ENABLE_SERVICE]  [#{params}]")
-    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.error("[CNTRL] [BACKDOOR_ENABLE_SERVICE] Warning some one trying to breach #{ current_user.email}")
+    unless check_authorization_email?
       redirect_to :controller => "welcome", :action => "new"
-    end
-
-     unless user_signed_in?
-      Rails.logger.error("[CNTRL] [BACKDOOR_ENABLE_SERVICE] Blocking non loggedin access to admin page")
-      redirect_to :controller => "welcome", :action => "new"
+      return 
     end
     
     service=params[:service]
@@ -148,14 +230,9 @@ class InvitesController < ApplicationController
    end
   def force_inject_job_for_user
     Rails.logger.info("[CNTRL] [FORCE_INJECT_JOB]  [#{params}]")
-    if user_signed_in? and current_user.email != AppConstants.authorized_see_internals_email_id
-      Rails.logger.error("[CNTRL] [FORCE_INJECT_JOB] Warning some one trying to breach #{ current_user.email}")
+    unless check_authorization_email?
       redirect_to :controller => "welcome", :action => "new"
-    end
-
-     unless user_signed_in?
-      Rails.logger.error("[CNTRL] [FORCE_INJECT_JOB] Blocking non loggedin access to admin page")
-      redirect_to :controller => "welcome", :action => "new"
+      return 
     end
     response = false
     service=params[:service]

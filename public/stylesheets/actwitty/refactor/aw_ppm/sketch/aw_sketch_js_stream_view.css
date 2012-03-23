@@ -20,11 +20,10 @@
   border: 0px solid red;
   float: right;
   margin-top: 15px;
+  font-size: 14px;
   color: #999999 !important;
   display: none;
   cursor: pointer; }
-  .aw_stream_container_close:hover {
-    color: #444444; }
   .aw_stream_container_close a {
     text-decoration: none;
     color: #999999; }

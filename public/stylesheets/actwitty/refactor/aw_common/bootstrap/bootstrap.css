@@ -2254,18 +2254,18 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   position: absolute;
   visibility: visible;
   padding: 5px;
-  font-size: 11px;
+  font-size: 14px;
   z-index: 1000;
-  filter: alpha(opacity=80);
-  -khtml-opacity: 0.8;
-  -moz-opacity: 0.8;
-  opacity: 0.8;
+  filter: alpha(opacity=95);
+  -khtml-opacity: 0.95;
+  -moz-opacity: 0.95;
+  opacity: 0.95;
 }
 .twipsy.fade.in {
-  filter: alpha(opacity=80);
-  -khtml-opacity: 0.8;
-  -moz-opacity: 0.8;
-  opacity: 0.8;
+  filter: alpha(opacity=95);
+  -khtml-opacity: 0.95;
+  -moz-opacity: 0.95;
+  opacity: 0.95;
 }
 .twipsy.above .twipsy-arrow {
   bottom: 0;

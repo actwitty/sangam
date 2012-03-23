@@ -375,8 +375,10 @@ function aw_process_pulled_mention_data(data){
   context['awaited_count'] = 0;
   
   /* get a processable json ready and we are good */
+  var total_mentions = 0;
   $.each(data, function( interest_name, mention_arr){
     if( mention_arr.length ){  
+      total_mentions += mention_arr.length;
       $.each(mention_arr, function( index, mention_data){
         mention_data["interest_name"] = interest_name;
         
@@ -475,6 +477,35 @@ function aw_api_model_fetch_mentions(){
  *
  */
 function aw_verified_mentions_render_all(context){
+  if( context.data_array && context.data_array.length){
+    var mention_count = {};
+    var interest_names = [];
+    var render_data_array = [];
+    $.each(context.data_array, function(index, mention_data){
+      if( typeof mention_count[mention_data.interest_name] == 'undefined' ){
+        mention_count[mention_data.interest_name] = {};
+        mention_count[mention_data.interest_name]['count'] = 0;
+        mention_count[mention_data.interest_name]['indexes'] = [];
+
+        interest_names.push(mention_data.interest_name);
+
+      }
+      mention_count[mention_data.interest_name].count++;
+      mention_count[mention_data.interest_name].indexes.push(index);
+    });
+
+    interest_names.sort(function (interest_name1, interest_name2){
+                                                                    return mention_count[interest_name2].count - mention_count[interest_name1].count;
+                                                                  });
+
+    $.each(interest_names, function( idx, interest_name){
+      $.each( mention_count[interest_name].indexes, function( i, mention_index){
+        context.data_array[mention_index]['total_mentions'] = mention_count[interest_name].count;
+        render_data_array.push( context.data_array[mention_index] );
+      });
+    });
+    context.data_array = render_data_array;
+  }
   aw_api_controller_render_mentions(context.data_array);
 }
 

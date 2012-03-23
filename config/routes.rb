@@ -32,11 +32,12 @@ Sangam::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   
+  match '/show' => 'home#show'
 
   match '/home/get_entities' => 'home#get_entities'
   match '/home/get_entities_verified' => 'home#get_entities_verified'
   match '/home/get_analytics_timeline' => 'home#get_analytics_timeline'
-   match '/home/get_sketch_data_status' => 'home#get_sketch_data_status'
+  match '/home/get_sketch_data_status' => 'home#get_sketch_data_status'
 
 
   match '/home/settings' => 'home#settings'
@@ -60,15 +61,16 @@ Sangam::Application.routes.draw do
   match '/authentications/auth_signin' => 'authentications#auth_signin'
 
 
-  match '/facebook/invite' => 'facebook#invite'
 
   match '/about/show' => 'about#show'
   match '/team/show' => 'team#show'
 
   
-  match '/invites/inviteds' => 'invites#inviteds'
-  match '/invites/accepted' => 'invites#accepted'
-  match '/invites/registered' => 'invites#registered'
+  match '/invites/addnew' => 'invites#addnew'
+  match '/invites/userbase' => 'invites#userbase'
+  match '/invites/uninviteds' => 'invites#uninviteds'
+  match '/invites/pending' => 'invites#pending'
+  match '/invites/get_user_counts' => 'invites#get_user_counts'
 
   match '/invites/create_new' => 'invites#create_new'
   match '/invites/backdoor_enable_service' => 'invites#backdoor_enable_service'

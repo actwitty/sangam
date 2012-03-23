@@ -1,0 +1,292 @@
+/*
+ *ActWitty Stylesheet file
+ *File: 
+ *code: 
+ *Author: 
+ *Author URI: 
+
+
+$aw_var_default_border_width: 0px
+$aw_var_default_backgorund_color: #ffffff
+$aw_var_default_font_family: "Helvetica", Arial, Helvetica, sans-serif
+$aw_var_default_font_size: 12px
+$aw_var_default_color: #CCCCCC
+
+
+@font-face 
+  font-family: 'RobotoRegular'
+  src: url('/webfont/roboto/Roboto-Regular-webfont.eot')
+  src: url('/webfont/roboto/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('/webfont/roboto/Roboto-Regular-webfont.woff') format('woff'),url('/webfont/roboto/Roboto-Regular-webfont.ttf') format('truetype'),url('/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular') format('svg')
+  font-weight: normal
+  font-style: normal
+
+
+body
+  margin: 0
+  padding: 0
+  font-size: $aw_var_default_font_size
+  font-family: $aw_var_default_font_family
+  color: $aw_var_default_color
+  background-color: $aw_var_default_backgorund_color
+
+img
+  border: 0
+  padding: 0
+  margin: 0
+
+.justify
+  text-align: justify
+
+.bold
+  font-weight: bold
+
+.center
+  text-align: center
+
+.right
+  text-align: right
+
+.nostart
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+.clear
+  clear: both
+
+br.clear
+  clear: both
+  margin-top: -120px
+
+a
+  outline: none
+  text-decoration: none
+
+.fl_left
+  float: left
+
+.fl_right
+  float: right
+
+.imgl, .imgr
+  border: 0px solid #DFDFDF
+  padding: 20px
+  color: #666666
+  background-color: #FFFFFF
+
+.imgl
+  float: left
+  margin: 0 8px 8px 0
+  clear: left
+
+.imgr
+  float: right
+  margin: 0 0 8px 8px
+  clear: right
+/******************************************** Common for all Columns main Div's ************************************
+
+@mixin aw_inviteds_default_full_width
+  position: relative
+  margin: 0 auto 0
+  display: block
+  width: 990px
+/* ----------------------------------------------Wrapper-------------------------------------
+
+.aw_user_listing_wrapper
+  display: block
+  width: 100%
+  padding-top: 100px
+  padding-bottom: 100px
+  text-align: left
+  height: auto
+  display: block
+  color: #FFFFFF
+  background-color: #ffffff
+  border: 0px solid green
+
+  .aw_users_page_title
+    width: 800px
+    margin: 0px auto
+    height: auto
+    display: block
+    h3
+    
+  .aw_users_counts_box
+    width: 800px
+    margin: 0px auto
+    height: auto
+    display: block
+    height: 60px
+    .aw_counters_section
+      width: 250px
+      color: black
+      display: inline-block
+      float: left
+      span
+        margin: 4px  auto
+        font-size: 40px
+
+
+
+
+/******************************************* User box section for user photo and input box *************************
+
+
+.aw_users_list_table
+  width: 900px
+  margin: 0px auto
+  height: auto
+  display: block
+  border-radius: 3px
+  -moz-box-shadow: 0 0 20px #333 
+  -webkit-box-shadow: 0 0 20px #333
+  box-shadow: 0 0 20px #333
+
+  .aw_users_table_header
+    height: 30px
+    border-bottom: 1px dotted #ccc
+    font-size: 13px
+    font-family: 'RobotoRegular'
+    font-weight: normal
+    display-inline: block
+    color: #25a0da
+    text-transform: uppercase
+    padding-top: 3px
+
+    .aw_user_image_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+
+    .aw_user_name_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+
+    .aw_user_gender_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto
+    .aw_user_service_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+    .aw_user_id_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+
+    .aw_user_location_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+
+    .aw_user_creation_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+
+    .aw_user_login_header
+      width: 100px
+      display: inline-block
+      margin-left: 5px
+      span
+        margin: 0px auto 
+
+  .aw_users_table_row
+    height: auto
+    border-bottom: 1px dotted #ccc
+    font-size: 13px
+    font-family: 'RobotoRegular'
+    font-weight: normal 
+    border-bottom: 1px dotted #ccc
+    display: block
+    color: black
+
+    .aw_user_image
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      img
+        margin: 0px auto 
+
+    .aw_user_name
+      margin-left: 10px
+      display: inline-block
+      span
+        margin: 0px auto 
+
+    .aw_user_gender
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      span
+        margin: 0px auto 
+
+    .aw_user_service
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      span
+        margin: 0px auto 
+    .aw_user_id
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      span
+        margin: 0px auto 
+
+    .aw_user_location
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      span
+        margin: 0px auto 
+
+    .aw_user_creation
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      span
+        margin: 0px auto 
+
+    .aw_user_login
+      margin-left: 10px
+      display: inline-block
+      margin-left: 20px
+      span
+        margin: 0px auto 
+
+
+.aw_users_list_nav
+  width: 800px
+  padding-top: 5px
+  margin: 0px auto
+  height: auto
+  display: block
+
+
+.aw_navigate_button
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-size: 18px
+  width: 80px
+  height: 22px
+  margin-left: 35px
+  margin-bottom: 5px
+  padding-top: 15px
+  &:hover
+    cursor: pointer

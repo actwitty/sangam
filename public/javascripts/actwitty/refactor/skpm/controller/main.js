@@ -30,7 +30,7 @@ function aw_api_control_verify_status_of_sketch_page(){
               aw_global_status_manager.fancybox_timer = null;
               if(status_data.status ) {
                 if(status_data.status == 1){
-                  aw_global_status_manager.fancybox_modal = true;
+                  aw_global_status_manager.fancybox_modal = false; /* always false */
                 }else if(status_data.status == 2){
                   aw_global_status_manager.fancybox_modal = false;
                 }else if (status_data.status == 3){
@@ -81,6 +81,7 @@ var aw_js_global_services_user_enabled={};
 function aw_api_controller_sketch_main_init(){
 
   aw_lib_console_log("DEBUG", "Entry point into main controller");
+  aw_api_view_initialize_views();
   aw_api_control_verify_status_of_sketch_page();
   $.each(aw_js_global_rails_user_services_enabled, function( index, service_data){
     if ( service_data['provider'] ){
