@@ -211,7 +211,7 @@ function aw_pulled_stream_twitter_handler( context ) {
       var aw_post_json_temp = aw_api_model_twitter_translate_post_to_aw_post(json_data);
       aw_post_json_temp['originator'] = aw_post_json.originator;
       aw_post_json = aw_post_json_temp;
-    
+     
       if(  json_data.retweeted_status){
         aw_post_json["originator"] = {
                                 image: json_data.retweeted_status.user.profile_image_url,
@@ -221,8 +221,17 @@ function aw_pulled_stream_twitter_handler( context ) {
                                 uid: aw_js_global_visited_user_foreign_ids['twitter']
                               };
 
+       if( aw_js_global_tw_access.uid != json_data.retweeted_status.user.id_str ){
+            aw_post_json["action"] = [{
+                                  name: 'Retweet',
+                                  type: 'link',
+                                  url: 'https://twitter.com/intent/retweet?tweet_id=' +  post_data.post.source_object_id
+                               }];
+          }                              
+
       }
     }
+   
     
     aw_post_json["service"] = {
                                 name: post_data.post.source_name,

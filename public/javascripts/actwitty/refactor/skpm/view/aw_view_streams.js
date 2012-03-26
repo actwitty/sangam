@@ -70,6 +70,40 @@ function aw_view_stream_get_mentions_html(entry){
 }
 
 
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_view_stream_get_actions_html(entry){
+  var html = "";
+  if( entry.action && entry.action.length ){
+    var internal_html = "";
+
+    $.each( entry.action, function(index, action_data){
+      if( action_data.type == "link" ){
+        internal_html = internal_html + '<div class="aw_single_action aw_js_action_link_click aw_single_action_link " action_url="' + action_data.url + '" action_name="' + action_data.name + '" >' +
+                                            action_data.name + 
+                                      '</div>';
+       }else if( action_data.type == "static" ){
+
+         internal_html = internal_html + '<div class="aw_single_action aw_single_action_static"  >' +
+                                            action_data.name + 
+                                         '</div>';
+
+       }
+    });
+
+
+    html = '<div class="aw_actions_box" >' +
+                internal_html + 
+           '</div>';
+  }
+
+  
+  return html;
+}
+
 
 
 /*********************************************************/
@@ -247,6 +281,7 @@ function aw_view_stream_get_entry_html(entry){
                   aw_view_stream_get_attachments_html(entry) +
                   aw_view_stream_get_mentions_html(entry) +
                   aw_view_stream_get_location_html(entry) +
+                  aw_view_stream_get_actions_html(entry) +
                   
                 '</div>' +
              '</div>';
@@ -320,4 +355,16 @@ function aw_api_view_stream_apply_height(body_height){
  */
 function aw_api_view_show_stream_waiting(){
   $("#aw_js_stream_busy").show();
+}
+/************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_stream_apply_link_action(element){
+  var url = element.attr('action_url');
+  var name = element.attr('action_name');
+   window.open(url, name,
+                  'menubar=0,resizable=0,width=550,height=420,top=200,left=400');
+
 }

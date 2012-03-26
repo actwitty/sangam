@@ -56,7 +56,11 @@ $(document).ready(function(){
     aw_api_controller_render_stream(aw_api_model_get_base_streams()); 
     return false;
   });
-  
+ 
+  $(".aw_js_action_link_click").live('click', function(){
+    aw_api_view_stream_apply_link_action($(this));
+    return false;
+  });
  
 
    var body_height = $(window).height();

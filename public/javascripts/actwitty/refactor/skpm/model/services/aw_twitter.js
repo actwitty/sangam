@@ -330,7 +330,7 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
   var aw_post_json = {};
   aw_post_json["service"] = {
                               name: "twitter",
-                              pid: data.id
+                              pid: data.id_str
                             };
   aw_post_json["timestamp"]='';
   aw_post_json["local_timestamp"]=0;
@@ -340,7 +340,16 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
     var timeValue = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
     aw_post_json["local_timestamp"]  = new Date(Date.parse(timeValue)).getTime();
   }
- 
+  aw_post_json["action"] = [];
+  
+  if ( data.retweet_count && data.retweet_count != 0 ){
+      aw_post_json["action"].push({
+                                  name: data.retweet_count + ' Retweets',
+                                  type: 'static'
+                               });
+
+  }
+
   if ( data.user ){
     aw_post_json["originator"] = {
                                     image:  data.user.profile_image_url,
@@ -349,8 +358,23 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
                                     url:  'https://twitter.com/#!/' + data.user.screen_name,
                                     uid: data.user.id
                                  };
+    if( aw_js_global_tw_access.uid != data.user.id 
+      && data.retweeted == false){
+      aw_post_json["action"].push({
+                                  name: 'Retweet',
+                                  type: 'link',
+                                  url: 'https://twitter.com/intent/retweet?tweet_id=' + data.id_str
+                               });
+
+    }
+
   }
 
+  
+
+
+  
+  
   if( data.place && data.place.name){
     var location_name = data.place.name;
     if( data.place.full_name ){

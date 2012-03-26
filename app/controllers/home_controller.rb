@@ -159,6 +159,7 @@ class HomeController < ApplicationController
         elsif authentication.provider == "twitter"
             @tw_access[:token] =  authentication.token
             @tw_access[:secret] =  authentication.secret
+            @tw_access[:uid] = authentication.uid
             @tw_access[:consumer_key] =  AppConstants.twitter_consumer_key
             @tw_access[:consumer_secret] = AppConstants.twitter_consumer_secret
             @tw_access[:twpic_app_id] = AppConstants.twitpic_reg_key
