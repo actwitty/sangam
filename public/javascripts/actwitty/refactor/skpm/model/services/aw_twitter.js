@@ -226,8 +226,23 @@ function aw_twitter_cb_user_feed(tw_data){
  */
 var aw_twitter_cb_err_feeds = function(){
   if(aw_local_twitter_request_url_base.feeds.notification_cb){
-     aw_local_twitter_request_url_base.feeds.notification_cb('twitter', [], 2);
+     var data_err = [];
+     data_err.push(aw_api_model_twitter_inject_error_post());
+     aw_local_twitter_request_url_base.feeds.notification_cb('twitter', data_err, 2);
      aw_local_twitter_request_url_base.feeds.notification_cb = null;
+  }
+};
+/***************************************************/
+/*
+ *
+ *
+ */
+var aw_twitter_cb_err_user_feed = function(){
+  if(aw_local_twitter_request_url_base.user_feed.notification_cb){
+     var data_err = [];
+     data_err.push(aw_api_model_twitter_inject_error_post());
+     aw_local_twitter_request_url_base.user_feed.notification_cb('twitter', data_err, 2);
+     aw_local_twitter_request_url_base.user_feed.notification_cb = null;
   }
 };
 /****************************************************/
@@ -265,10 +280,45 @@ function aw_api_twitter_get_feeds(feed_type, fn_cb){
     /* authorization not needed */
     /* cache callback */
     aw_local_twitter_request_url_base['user_feed']['notification_cb'] = fn_cb;
-    aw_local_twitter_request_url_base['feeds']['error_timer'] = window.setTimeout(aw_twitter_cb_err_feeds, 10000);
+    aw_local_twitter_request_url_base['user_feed']['error_timer'] = window.setTimeout(aw_twitter_cb_err_user_feed, 10000);
     aw_twitter_trigger_get_request( url );
   }
     
+}
+/***************************************************/
+/*
+ *
+ *
+ */
+function aw_api_model_twitter_inject_error_post(){
+  aw_lib_console_log("DEBUG", "aw_api_model_twitter_inject_error_post:Entered");
+  var aw_post_json = {};
+   aw_post_json["service"] = {
+                              name: "twitter",
+                              pid: "aw_service_error"
+                            };
+   aw_post_json["originator"] = {
+                                    image: aw_js_global_visited_user_credentials.pic,
+                                    name: aw_js_global_visited_user_credentials.name,
+                                    url:  "/show?id=" + aw_js_global_visited_user_credentials.id,
+                                    uid: aw_js_global_visited_user_foreign_ids.id
+                                 };
+
+   aw_post_json["timestamp"] = '';  
+   aw_post_json["local_timestamp"] = 0;
+
+   aw_post_json["text"] = "Access to Twitter data has not be authorized to you.";
+
+   var attachment = {};
+   attachment['type'] = "link";
+   attachment['url'] = '/show';
+   attachment['title'] = "Facebook data could not be fetched";
+   attachment['image_url'] = "/images/actwitty/refactor/aw_sketch/stream_view/denied/aw_twitter_access_denied.png";
+
+   aw_post_json['attachment'] = [attachment];
+
+  return aw_post_json;
+
 }
 
 /***************************************************/
