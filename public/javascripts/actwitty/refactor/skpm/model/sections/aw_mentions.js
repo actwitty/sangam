@@ -351,7 +351,7 @@ function aw_mentions_verified_fetch_details(context){
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
               aw_verified_mentions_render_all(context);
               aw_lib_console_log("error",
-                              "aw_mentions_verified_fetch_details:  Server request failed for " + request_tag 
+                              "aw_mentions_verified_fetch_details:  Server request failed for "  
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });  
@@ -465,7 +465,7 @@ function aw_api_model_fetch_mentions(){
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
               aw_lib_console_log("error",
-                              "aw_api_model_fetch_mentions:  Server request failed for " + request_tag 
+                              "aw_api_model_fetch_mentions:  Server request failed for " 
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });

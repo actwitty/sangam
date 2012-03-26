@@ -91,31 +91,35 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
   }
   var mentions_cookie = {};
   var entity_list = "";
-  $.each( facebook_data, function( index, post_data ){
+  if( facebook_data ){
+    $.each( facebook_data, function( index, post_data ){
 
-    var pid = post_data.service.pid;
-    var post_mention_data = context['services']['facebook']['posts'][pid];
-    if( post_mention_data.entities && post_mention_data.entities.array ){
+      var pid = post_data.service.pid;
+      var post_mention_data = context['services']['facebook']['posts'][pid];
+      if( post_mention_data 
+            && post_mention_data.entities 
+              && post_mention_data.entities.array ){
+  
+        $.each( post_mention_data.entities.array, function( count, entity){
+          if( entity_list.length == 0 ){
+            entity_list = entity.id;
+          }else{
+            entity_list = entity_list + "," + entity.id;
+          }
 
-      $.each( post_mention_data.entities.array, function( count, entity){
-        if( entity_list.length == 0 ){
-          entity_list = entity.id;
-        }else{
-          entity_list = entity_list + "," + entity.id;
-        }
+          if( mentions_cookie[entity.id] ){
+            mentions_cookie[entity.id].push(index);
+          }else{
+            mentions_cookie[entity.id] = [index];
+          }
 
-        if( mentions_cookie[entity.id] ){
-          mentions_cookie[entity.id].push(index);
-        }else{
-          mentions_cookie[entity.id] = [index];
-        }
+        });
 
-      });
-
-    }else{
-      facebook_data[index]['mention'] = [];
-    }
-  });
+      }else{
+        facebook_data[index]['mention'] = [];
+      }
+    });
+  }
   context.services.facebook['mentions_cookie'] = mentions_cookie;
   if( context.services.facebook['data'] ){
     context.services.facebook['data'] = $.merge( context.services.facebook['data'], facebook_data);

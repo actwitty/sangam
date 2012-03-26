@@ -12,7 +12,8 @@
   height: auto;
   display: block;
   margin-top: 25px;
-  margin-left: 8px; }
+  margin-left: 8px;
+  padding-left: 5px; }
   .aw_images_container_box .aw_images_internal_container_box {
     width: 100%;
     height: auto;

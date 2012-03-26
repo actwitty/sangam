@@ -259,7 +259,15 @@ function aw_view_stream_get_entry_html(entry){
  */
 function aw_api_view_stream_render(data){
   var html = "";
+  var aw_error_rendered = {};
   $.each(data, function(key, entry){
+    if (  entry.service.pid && entry.service.pid == "aw_service_error" ){ 
+      if( aw_error_rendered[entry.service.name] ){
+        return;
+      }else{
+        aw_error_rendered[entry.service.name] = true;
+      }
+    }
     html= html + aw_view_stream_get_entry_html(entry);
   });
   

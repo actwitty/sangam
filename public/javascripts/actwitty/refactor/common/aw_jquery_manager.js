@@ -23,13 +23,18 @@ $(document).ready(function(){
 
     aw_api_lpm_initialize_sign_up_page();
 
-  }else if ( page_context == "profile_show_page" ){
+  }else if ( page_context == "profile_show_page"){
 
      aw_api_controller_sketch_main_init();
+
+  } else  if ( page_context == "profile_thanks_page"){
+     
+     aw_api_controller_view_minimal_init();    
 
   }else if ( page_context == "aw_internal_show_user_counters_page" ){
 
      aw_api_internal_fetch_user_counts();
+     aw_api_controller_view_minimal_init();
   }
 
  
