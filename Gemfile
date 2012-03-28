@@ -104,7 +104,9 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'jquery-rails'
 
 #thin
-gem 'thin'
+  gem 'thin'
+
+gem 'pdfkit'
 
 group :development do
   #query reviewer
