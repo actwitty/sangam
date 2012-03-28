@@ -272,6 +272,43 @@ function aw_api_model_facebook_parse_date(fb_date){
     var second = fb_date.substr(17,2);
     return new Date(year, month, day, hour, minute, second);
   }
+
+/***************************************************/
+/*
+ *
+ *
+ */
+function aw_api_model_facebook_inject_error_post(){
+  aw_lib_console_log("DEBUG", "aw_api_model_facebook_inject_error_post:Entered");
+  var aw_post_json = {};
+   aw_post_json["service"] = {
+                              name: "facebook",
+                              pid: "aw_service_error"
+                            };
+   aw_post_json["originator"] = {
+                                    image: "http://graph.facebook.com/" + aw_js_global_visited_user_foreign_ids.facebook + "/picture?type=square",
+                                    name: aw_js_global_visited_user_credentials.name,
+                                    url:  "http://www.facebook.com/profile.php?id=" + aw_js_global_visited_user_foreign_ids.id,
+                                    uid: aw_js_global_visited_user_foreign_ids.id
+                                 };
+
+   aw_post_json["timestamp"] = '';  
+   aw_post_json["local_timestamp"] = 0;
+
+   aw_post_json["text"] = "Access to Facebook data has not be authorized to you.";
+
+   var attachment = {};
+   attachment['type'] = "link";
+   attachment['url'] = '/show';
+   attachment['title'] = "Facebook data could not be fetched";
+   attachment['image_url'] = "/images/actwitty/refactor/aw_sketch/stream_view/denied/aw_facebook_access_denied.png";
+
+   aw_post_json['attachment'] = [attachment];
+
+  return aw_post_json;
+
+}
+
 /***************************************************/
 /*
  *
@@ -280,7 +317,7 @@ function aw_api_model_facebook_parse_date(fb_date){
 function aw_api_model_facebook_translate_like_to_aw_post(data, like_lookup){
    var aw_post_json = {};
   
-  aw_post_json["service"] = {
+   aw_post_json["service"] = {
                               name: "facebook",
                               pid: data.id
                             };
@@ -329,7 +366,7 @@ function aw_api_model_facebook_translate_like_to_aw_post(data, like_lookup){
 
   }
 
-
+  aw_post_json['attachment'] = [attachment];
    if( data.location ){
      aw_post_json["place"] = '';
      if( data.location.street){
@@ -351,7 +388,6 @@ function aw_api_model_facebook_translate_like_to_aw_post(data, like_lookup){
 
   }
 
-  aw_post_json['attachment'] = [attachment];
   return aw_post_json;
 }
 /***************************************************/
@@ -498,18 +534,24 @@ function aw_api_facebook_get_feeds(feed_type, fn_cb){
             success:
                 function(fb_data) {
                   aw_lib_console_log("DEBUG", "response:aw_api_facebook_get_feeds : " + feed_type);
-                  aw_api_cache_add_service_cache_info("facebook", feed_type, fb_data);
-                  if(fb_data.data){
-                    $.each(fb_data.data, function(key,post){
-                      var post_json = aw_api_model_facebook_translate_post_to_aw_post(post);
-                      data_arr.push(post_json);
-                      /* handle cases for missing images */
-                    });
+                  if( fb_data && fb_data.error ){
+                      /* handle error */
+                      data_arr.push(aw_api_model_facebook_inject_error_post());
+                  }else{
+                    aw_api_cache_add_service_cache_info("facebook", feed_type, fb_data);
+                    if(fb_data.data){
+                      $.each(fb_data.data, function(key,post){
+                        var post_json = aw_api_model_facebook_translate_post_to_aw_post(post);
+                        data_arr.push(post_json);
+                        /* handle cases for missing images */
+                      });
+                    }
                   }
                 },
             complete:
                 function(fb_data) {
-                     fn_cb("facebook", data_arr, 1);
+                  aw_lib_console_log("DEBUG", "aw_api_facebook_get_post_data_for_list_of_ids:CB Hit");
+                  fn_cb("facebook", data_arr, 1);
                 }
     });
    
@@ -525,7 +567,7 @@ function aw_api_facebook_get_likes_data_for_list_of_ids_internal( likes_id_list_
                                                                  cb_arg,
                                                                  likes_data){
   var fetched_likes = {};
-  if( likes_data ){
+  if( likes_data && !likes_data.error){
     var url = aw_local_facebook_request_url_base.like_list.
                                                       replace("{FB_ACCESS_TOKEN}", 
                                                                 aw_js_global_fb_access["token"]).
@@ -555,7 +597,7 @@ function aw_api_facebook_get_likes_data_for_list_of_ids_internal( likes_id_list_
                       translated_like_posts_array.push(translated_post);
                     }
                   });
-
+                  aw_lib_console_log("DEBUG", "aw_api_facebook_get_post_data_for_list_of_ids:CB Hit");
 
                   fn_cb(translated_like_posts_array, cb_arg);
                   
@@ -563,7 +605,15 @@ function aw_api_facebook_get_likes_data_for_list_of_ids_internal( likes_id_list_
                 }
     });
   }else{
-   fn_cb([], cb_arg);
+    if( likes_data && likes_data.error){
+      /* handle error */
+      var error_arr = [];
+      error_arr.push(aw_api_model_facebook_inject_error_post());
+      fn_cb(error_arr, cb_arg);
+    }else{
+     fn_cb([], cb_arg);
+    }
+
   }
   
 }
@@ -643,12 +693,19 @@ function aw_api_facebook_get_post_data_for_list_of_ids(id_list_str,
                 }, 
             complete:
                 function(xOptions, textStatus) {
-                  var translated_data_array=[];
+                  var translated_data_array=[];                  
+
                   if( id_list_data){
-                    $.each( id_list_data, function ( key, post_data){
-                      translated_data_array.push(aw_api_model_facebook_translate_post_to_aw_post(post_data));
-                    });
+                    if( id_list_data.error ){
+                      /* handle error */
+                      translated_data_array.push(aw_api_model_facebook_inject_error_post());
+                    }else{
+                      $.each( id_list_data, function ( key, post_data){
+                        translated_data_array.push(aw_api_model_facebook_translate_post_to_aw_post(post_data));
+                      });
+                    }
                   }
+                  aw_lib_console_log("DEBUG", "aw_api_facebook_get_post_data_for_list_of_ids:CB Hit");
                   fn_cb(translated_data_array, cb_arg);
                 }
 

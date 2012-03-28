@@ -91,31 +91,35 @@ function aw_pulled_stream_facebook_cb(facebook_data, context){
   }
   var mentions_cookie = {};
   var entity_list = "";
-  $.each( facebook_data, function( index, post_data ){
+  if( facebook_data ){
+    $.each( facebook_data, function( index, post_data ){
 
-    var pid = post_data.service.pid;
-    var post_mention_data = context['services']['facebook']['posts'][pid];
-    if( post_mention_data.entities && post_mention_data.entities.array ){
+      var pid = post_data.service.pid;
+      var post_mention_data = context['services']['facebook']['posts'][pid];
+      if( post_mention_data 
+            && post_mention_data.entities 
+              && post_mention_data.entities.array ){
+  
+        $.each( post_mention_data.entities.array, function( count, entity){
+          if( entity_list.length == 0 ){
+            entity_list = entity.id;
+          }else{
+            entity_list = entity_list + "," + entity.id;
+          }
 
-      $.each( post_mention_data.entities.array, function( count, entity){
-        if( entity_list.length == 0 ){
-          entity_list = entity.id;
-        }else{
-          entity_list = entity_list + "," + entity.id;
-        }
+          if( mentions_cookie[entity.id] ){
+            mentions_cookie[entity.id].push(index);
+          }else{
+            mentions_cookie[entity.id] = [index];
+          }
 
-        if( mentions_cookie[entity.id] ){
-          mentions_cookie[entity.id].push(index);
-        }else{
-          mentions_cookie[entity.id] = [index];
-        }
+        });
 
-      });
-
-    }else{
-      facebook_data[index]['mention'] = [];
-    }
-  });
+      }else{
+        facebook_data[index]['mention'] = [];
+      }
+    });
+  }
   context.services.facebook['mentions_cookie'] = mentions_cookie;
   if( context.services.facebook['data'] ){
     context.services.facebook['data'] = $.merge( context.services.facebook['data'], facebook_data);
@@ -207,7 +211,7 @@ function aw_pulled_stream_twitter_handler( context ) {
       var aw_post_json_temp = aw_api_model_twitter_translate_post_to_aw_post(json_data);
       aw_post_json_temp['originator'] = aw_post_json.originator;
       aw_post_json = aw_post_json_temp;
-    
+     
       if(  json_data.retweeted_status){
         aw_post_json["originator"] = {
                                 image: json_data.retweeted_status.user.profile_image_url,
@@ -217,8 +221,17 @@ function aw_pulled_stream_twitter_handler( context ) {
                                 uid: aw_js_global_visited_user_foreign_ids['twitter']
                               };
 
+       if( aw_js_global_tw_access.uid != json_data.retweeted_status.user.id_str ){
+            aw_post_json["action"] = [{
+                                  name: 'Retweet',
+                                  type: 'link',
+                                  url: 'https://twitter.com/intent/retweet?tweet_id=' +  post_data.post.source_object_id
+                               }];
+          }                              
+
       }
     }
+   
     
     aw_post_json["service"] = {
                                 name: post_data.post.source_name,

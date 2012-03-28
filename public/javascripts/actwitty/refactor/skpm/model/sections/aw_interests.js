@@ -200,7 +200,7 @@ function aw_api_model_interests_server_request(){
             },
             error:function(XMLHttpRequest,textStatus, errorThrown){ 
             aw_lib_console_log("error",
-                              "aw_api_model_interests_server_request:  Server request failed for " + request_tag 
+                              "aw_api_model_interests_server_request:  Server request failed for " 
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });

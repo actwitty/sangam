@@ -112,6 +112,7 @@ class InvitesController < ApplicationController
 
   def userbase()
       unless check_authorization_email?
+      
         redirect_to :controller => "welcome", :action => "new"
         return 
       end
@@ -138,7 +139,7 @@ class InvitesController < ApplicationController
   end
 
   def uninviteds
-    unless check_authorization_email?
+      unless check_authorization_email?
         redirect_to :controller => "welcome", :action => "new"
         return 
       end

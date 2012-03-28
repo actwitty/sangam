@@ -226,3 +226,22 @@
     margin-right: 5px; }
     .aw_stream_mentions_box a:hover {
       /* cursor: pointer */ }
+
+.aw_actions_box {
+  margin-top: 2px;
+  width: 100%;
+  height: auto;
+  display: inline-block; }
+  .aw_actions_box .aw_single_action {
+    font-size: 13px;
+    font-family: "RobotoRegular";
+    display: inline-block;
+    margin-left: 5px; }
+    .aw_actions_box .aw_single_action:hover {
+      color: #333333; }
+  .aw_actions_box .aw_single_action_static {
+    color: #333333; }
+  .aw_actions_box .aw_single_action_link {
+    color: #777777;
+    color: #25a0da;
+    cursor: pointer; }

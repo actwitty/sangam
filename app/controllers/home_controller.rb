@@ -22,6 +22,7 @@ class HomeController < ApplicationController
                          :get_analytics_timeline,
                          :get_sketch_data_status,
                          :thanks,
+                         :waiting,
                          :search_user]
 
   #TODO NEED FIX.. TEMPORARY                                
@@ -136,16 +137,17 @@ class HomeController < ApplicationController
         else
           Rails.logger.warn("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
+          return
         end
       elsif @user.email == AppConstants.ghost_user_email
           Rails.logger.warn("[CNTRL] [HOME] [SHOW] Someone trying to open admin login page")
           redirect_to :controller => "welcome", :action => "new"
+          return
       end
     end
    @fb_access = {}
    @tw_access = {}
 
-   @services_enabled = current_user.get_services( { :user_id => @user.id } )
 
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
@@ -157,6 +159,7 @@ class HomeController < ApplicationController
         elsif authentication.provider == "twitter"
             @tw_access[:token] =  authentication.token
             @tw_access[:secret] =  authentication.secret
+            @tw_access[:uid] = authentication.uid
             @tw_access[:consumer_key] =  AppConstants.twitter_consumer_key
             @tw_access[:consumer_secret] = AppConstants.twitter_consumer_secret
             @tw_access[:twpic_app_id] = AppConstants.twitpic_reg_key
@@ -165,12 +168,41 @@ class HomeController < ApplicationController
        end
     end
 
-    # Check if uninvited user
+   # Check if uninvited user
    invite_status = current_user.get_invited_status
-    unless invite_status 
-      redirect_to :controller => "home", :action => "thanks"
+   query={}
+   query[:user_id] = @user.id  
+   process_status = current_user.get_status(query)
+    
+
+  # Check if waiting user
+  if user_signed_in? 
+    if current_user.id != @user.id
+      if process_status == 1
+        redirect_to "/waiting?id=#{@user.id}"
+        return
+      end
+    else
+      unless invite_status 
+        redirect_to "/thanks"
+        return
+      end
+    end
+  else
+    if process_status == 1
+      redirect_to "/waiting?id=#{@user.id}"
+      return
     end
 
+    unless invite_status 
+      redirect_to "/waiting?id=#{@user.id}"
+      return
+    end
+  end
+
+
+
+    @services_enabled = current_user.get_services( { :user_id => @user.id } )
     @service_uids = @user.get_service_user_ids()
 
   end
@@ -204,6 +236,31 @@ class HomeController < ApplicationController
 
 
   end
+
+  ############################################
+  def waiting
+    @user=nil
+    @page_mode="profile_thanks_page"
+
+    if params[:id].nil?
+      if user_signed_in?
+        @user=current_user
+        Rails.logger.info("[CNTRL] [HOME] [WAITING] Setting user id to current user as no id mentioned")
+        redirect_to "/show"
+      else
+        Rails.logger.info("[CNTRL] [HOME] [WAITING] Redirecting to welcome new as no id mentioned")
+        redirect_to :controller => "welcome", :action => "new"
+      end
+    else
+      user_id =  params[:id]
+      @user=User.find_by_id(user_id)
+      if @user.nil?
+         Rails.logger.info("[CNTRL] [HOME] [WAITING] Mentioned user does not exist")
+        redirect_to "/show"
+      end
+    end
+  end
+
 
  
  

@@ -1,13 +1,10 @@
 Sangam::Application.routes.draw do
 
 
-  get "home/sketch"
-  get "home/thanks"
   #get "home/alpha"
   get '/users/sign_in', :to => 'welcome#new'
   get '/users/sign_up', :to => 'welcome#new'
   
-  match '/home/change_password' => 'home#change_password'
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
                                       :sessions => "users/sessions",
@@ -33,6 +30,8 @@ Sangam::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
   
   match '/show' => 'home#show'
+  match '/thanks' => 'home#thanks'
+  match '/waiting' => 'home#waiting'
 
   match '/home/get_entities' => 'home#get_entities'
   match '/home/get_entities_verified' => 'home#get_entities_verified'
