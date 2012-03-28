@@ -48,7 +48,7 @@ module SocialFetch
 
         response = ::EmHttp::Http.em_post(FEED, json, "facebook")
 
-        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] JSON  #{response[0][:response].inspect}")
+        #Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] JSON  #{response[0][:response].inspect}")
         data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 
         array = []
