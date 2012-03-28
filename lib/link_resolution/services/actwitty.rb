@@ -138,7 +138,7 @@ module LinkResolution
           url_array.each_with_index do |url, idx|
             request_array << {:url => url, :params => {:redirects => 2}, :method => "get", :handle => url}
           end
-          response_array=call_em(request_array)
+          response_array=::EmHttp::Http.request(request_array)
 
           response_array.each do |response|
 
@@ -151,7 +151,7 @@ module LinkResolution
             #http://t.co/Rty767 => http://news.google.com/url?date=12122011&url=http://xyz.com/345"
             if !cgi["url"].blank?
               c_url = cgi["url"][0]
-              r_a = call_em([{:url => c_url, :params => {:redirects => 2}, :method => "get", :handle => c_url}])
+              r_a = ::EmHttp::Http.request([{:url => c_url, :params => {:redirects => 2}, :method => "get", :handle => c_url}])
               response = r_a[0]
             end
 
@@ -164,6 +164,7 @@ module LinkResolution
             parser = Nokogiri::HTML::SAX::Parser.new(html_handler)
             parser.parse(response[:response])
 
+            str = "DIV"
             element =  html_handler.get_element_hash
             (element == nil) or (element == 'idiv') ? str = "DIV" : str = element.upcase
 
