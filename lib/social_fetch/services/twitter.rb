@@ -19,17 +19,25 @@ module SocialFetch
 
           data_array = []
 
+#          access_token = '18095550-qevVTdcFREpul3XfvafSuYWoZlyjU3SWFii1kyg0C'
+#          uid = "18095550"
+#          token_secret = 'b83AKAthPRSxeWjv4TbPabdDAvWJ7twOZqeJOJgmoM'
+
+          access_token = params[:access_token]
+          uid = params[:uid]
+          token_secret = params[:token_secret]
+
           oauth = ::Oauth1::OauthUtil.new
 
           oauth.consumer_key=AppConstants.twitter_consumer_key
           oauth.consumer_secret=AppConstants.twitter_consumer_secret
 
-          oauth.token_secret=params[:token_secret]
-          oauth.token = params[:access_token]
+          oauth.token_secret=token_secret
+          oauth.token = access_token
 
           params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
 
-          service_opts = {'include_rts' => true, 'include_entities'=> true, 'count' => limit, 'user_id' => params[:uid]}
+          service_opts = {'include_rts' => true, 'include_entities'=> true, 'count' => limit, 'user_id' => uid}
 
           parsed_url = URI.parse( FEED )
 
@@ -37,7 +45,10 @@ module SocialFetch
 
           url = "#{ parsed_url.scheme}://#{parsed_url.host}#{ parsed_url.path }?#{ oauth.sign(hash).query_string }"
 
+          puts url
           response = ::EmHttp::Http.request([{:url => url, :params => {}, :method => "get", :handle => 0}])
+
+          puts response[0][:response].inspect
 
           data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 

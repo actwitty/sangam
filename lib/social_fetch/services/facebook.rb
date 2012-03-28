@@ -9,10 +9,6 @@ module SocialFetch
       FEED = "https://graph.facebook.com/"
       EPOCH_TIME = Time.utc(1970, 1, 1, 0, 0)
 
-      def fake_user_details(params)
-        a= Authentication.where(:user_id => params[:user_id]).first
-        {:access_token => a.token, :uid => a.uid}
-      end
       #INPUT => {
       #          :user_id => 123,
       #          :uid => "234",
@@ -28,12 +24,12 @@ module SocialFetch
 
         params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
 
-        access_token = 'AAACkJfk5SyMBAHgXkTpb6jsR1L4gTOxdUDxQ2bwtczi4m8MRjUzmHCbr7JNAawiVMDF5PvHASGec2lCugkoWmauvv5kZD'
-        uid = "764308664"
+#        access_token = 'AAACkJfk5SyMBABlISYn2rpGA5r7EPCl6trtO295R99izpB47jeodZCr1bpYbeSxHGc3gpeKu8pIblN7vvMExUkKOPRFUZD'
+#        uid = "504942988"
 
-#        access_token = params[:access_token]
-#        uid = "me"
-#
+        access_token = params[:access_token]
+        uid = "me"
+
         #latest_msg_timestamp = params[:latest_msg_timestamp].strftime("%Y%m%dT%H%M")
         json = {'access_token' => access_token}
 
@@ -52,6 +48,7 @@ module SocialFetch
 
         response = ::EmHttp::Http.em_post(FEED, json, "facebook")
 
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] JSON  #{response[0][:response].inspect}")
         data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 
         array = []
@@ -60,15 +57,17 @@ module SocialFetch
           hash = JSON.parse(attr["body"])
           array.concat(hash["data"]) if !hash["data"].blank?
         end
-        
+
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] Now Going to SORT")
+
         #sort to mix likes and post
         array.sort! do |x,y|
-           y["created_time"] = EPOCH_TIME if  y["created_time"].blank? #sometimes blank created_time comes in facebook
-           x["created_time"] = EPOCH_TIME if  x["created_time"].blank?
+           y["created_time"] = "#{EPOCH_TIME}" if  y["created_time"].blank? #sometimes blank created_time comes in facebook
+           x["created_time"] = "#{EPOCH_TIME}" if  x["created_time"].blank?
            y["created_time"] <=> x["created_time"]
         end
 
-        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] leaving #{params.inspect} ")
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] leaving #{params.inspect}")
 
         return array
 
