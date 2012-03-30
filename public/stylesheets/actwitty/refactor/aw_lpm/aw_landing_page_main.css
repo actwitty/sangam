@@ -75,6 +75,8 @@ div.aw_home_top_nav h3 {
   font-size: 30px;
   margin-bottom: 15px;
   text-align: center; }
+  #aw_home_main_desc a {
+    color: #333333; }
 
 #aw_home_desc {
   color: #2e3436;
@@ -82,6 +84,8 @@ div.aw_home_top_nav h3 {
   line-height: 24px;
   padding-bottom: 35px;
   text-align: center; }
+  #aw_home_desc a {
+    color: #333333; }
 
 #aw_home_social_signup {
   width: 100%;

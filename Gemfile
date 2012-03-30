@@ -106,7 +106,6 @@ gem 'jquery-rails'
 #thin
   gem 'thin'
 
-gem 'pdfkit'
 
 group :development do
   #query reviewer
