@@ -171,8 +171,17 @@ function aw_api_lpm_initialize_sign_up_page(){
   }
 
   if(  $("#aw_lpm_signup_dob_input").length){
-    $("#aw_lpm_signup_dob_input").datepicker();
-    $("#aw_lpm_signup_dob_input").datepicker({ dateFormat: 'mm/dd/yyyy' });
+    var default_date = new Date();
+    if(  $("#aw_lpm_signup_dob_input").val() &&  $("#aw_lpm_signup_dob_input").val().length){
+      var split = $("#aw_lpm_signup_dob_input").val().split('/');
+      default_date = new Date(split[2], split[0], split[1]); 
+    }
+    $("#aw_lpm_signup_dob_input").datepicker({ changeMonth: true, 
+                                               changeYear: true, 
+                                               dateFormat: 'mm/dd/yy',
+                                               maxDate: '-10y',
+                                               defaultDate: default_date
+                                               });
   }
 
 
