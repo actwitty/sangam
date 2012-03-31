@@ -22,7 +22,7 @@ group :assets do
   gem 'sass-rails', "  ~> 3.2.3"
 end
 #Security
-gem 'devise', '~> 1.2.0'
+gem 'devise', '~> 1.5.0'
 #gem 'devise_invitable'
 
 #Authentication
