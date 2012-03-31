@@ -4,19 +4,19 @@ class Users::SessionsController < Devise::SessionsController
       Rails.logger.info("[CNTRL] [SESSION] Failed to create session")
       Rails.logger.info("[CNTRL] [SESSION] Email add : #{params[:user][:email]}")
       @user = User.find_by_email(params[:user][:email])
-      if !@user.nil?
+      unless @user.nil?
           # Believe this is not needed now, therefore commented. Will check it though
           #if !@user.confirmation_token.nil?
           #  @user.errors[:email]="email confirmation is pending, click on confirmation resend"
           #elsif !@user.unlock_token.nil?
           #  @user.errors[:email]="account is locked, click on unlock account"
           #else
-            @user.errors[:email]="Invalid password, please retry"
           #end
       else
+          
         @user = User.new(:email => params[:user][:email])
-        @user.errors[:email]="Invalid credentials, please retry"
       end
+     
       clean_up_passwords(@user)
    end
 
@@ -42,6 +42,8 @@ class Users::SessionsController < Devise::SessionsController
           end
         else
           Rails.logger.info("[CNTRL] [SESSION] Authentication is nil" )
+          redirect_to :controller => "welcome", :action => "new"
+          return
         end
 
         query_hash = {}

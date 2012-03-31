@@ -17,7 +17,7 @@ $(document).ready(function(){
 
   if( page_context == "landing_page" ){
 
-    aw_api_lpm_initialize_landing_page(); 
+    /* nothing */
 
   } else if( page_context == "authentications_page" ){
 
