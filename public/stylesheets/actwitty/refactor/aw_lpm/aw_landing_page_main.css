@@ -80,33 +80,47 @@ div.aw_home_top_nav h3 {
     text-decoration: none; }
 
 #aw_home_desc {
-  color: #2e3436;
+  color: #25a0da;
   font-size: 17px;
   line-height: 24px;
   padding-bottom: 35px;
   text-align: center; }
   #aw_home_desc a {
-    color: #333333;
+    color: #25a0da;
     text-decoration: none; }
 
 #aw_home_social_signup {
   width: 100%;
   height: 50px;
   border: 0px solid red;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  padding-left: 75px; }
   #aw_home_social_signup img {
-    float: right;
-    margin-right: 20px;
+    float: left;
+    margin-left: 20px;
     width: 250px; }
 
-.aw_home_fb_like_box {
+.aw_home_horizontal_info_section {
   width: 960px;
   margin: 0px auto;
-  padding-left: 95px;
   display: block;
-  height: 25px; }
+  height: 50px; }
+
+.aw_home_fb_like_box {
+  width: 600px;
+  margin: 0px auto;
+  padding-left: 95px;
+  display: inline-block;
+  float: left;
+  height: 40px; }
   .aw_home_fb_like_box .aw_like_us {
     float: left; }
+
+.aw_home_know_more_box {
+  float: right;
+  margin-right: 20px;
+  margin-top: -20px;
+  display: inline-block; }
 
 .aw_home_help_box {
   width: 952px;
@@ -156,12 +170,11 @@ div.aw_home_top_nav h3 {
       width: 290px;
       display: block;
       margin: 0px auto;
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 22px;
       line-height: 22px;
-      font-weight: bold;
       font-family: "RobotoRegular";
-      color: #333333;
+      color: #25a0da;
       overflow: hidden;
       text-align: center;
       text-decoration: none; }
@@ -171,9 +184,10 @@ div.aw_home_top_nav h3 {
       width: 290px;
       display: block;
       margin: 0px auto;
+      margin-top: 5px;
       padding: 8px;
-      font-size: 16px;
-      line-height: 18px;
+      font-size: 14px;
+      line-height: 16px;
       font-weight: normal;
       font-family: "RobotoRegular";
       color: #333333;
