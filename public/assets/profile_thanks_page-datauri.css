@@ -1,0 +1,140 @@
+@font-face {
+  font-family: "League Gothic";
+  src: url(/webfont/leaguegothic/League_Gothic-webfont.eot);
+  src: local("League Gothic Regular"), local("League Gothic"), url(/webfont/leaguegothic/LeagueGothic.woff?1324442542) format("woff"), url(/webfont/leaguegothic/LeagueGothic.otf) format("opentype"), url("/webfont/leaguegothic/LeagueGothic.svg#LeagueGothic") format("svg"); }
+
+@font-face {
+  font-family: "RobotoRegular";
+  src: url(/webfont/roboto/Roboto-Regular-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Regular-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Regular-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Regular-webfont.svg#RobotoRegular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoLight";
+  src: url(/webfont/roboto/Roboto-Light-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Light-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Light-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Light-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Light-webfont.svg#RobotoLight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoThin";
+  src: url(/webfont/roboto/Roboto-Thin-webfont.eot?1328856180);
+  src: url("/webfont/roboto/Roboto-Thin-webfont.eot?#iefix") format("embedded-opentype"), url(/webfont/roboto/Roboto-Thin-webfont.woff?1328856180) format("woff"), url(/webfont/roboto/Roboto-Thin-webfont.ttf?1328856180) format("truetype"), url("/webfont/roboto/Roboto-Thin-webfont.svg#RobotoThin") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: "RobotoBold";
+  src: url(/webfont/roboto/Roboto-Bold.ttf?1328856180); }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica", Arial, Helvetica, sans-serif;
+  color: #cccccc;
+  background-color: white; }
+
+div.aw_ppm_thanks_wrapper {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left; }
+
+.aw_ppm_thanks_column1 {
+  color: #d2d2d2;
+  /*background-color:#33ccff; */
+  background: #363436;
+  /*background: -moz-linear-gradient(center top , #7E7F81 0pt, #363436 72%) repeat-y fixed 0 100px #7E7F81; */
+  border: 0px solid red; }
+
+#aw_ppm_thanks_main_box {
+  height: 800px;
+  width: 100%;
+  margin-top: 50px;
+  padding-top: 50px; }
+  #aw_ppm_thanks_main_box img {
+    width: 600px;
+    margin: 0 auto; }
+
+#aw_ppm_thanks_main_div {
+  margin: auto;
+  width: 750px;
+  height: 400px;
+  /*border: 8px solid #33ccff */
+  border-radius: 10px;
+  position: relative;
+  -moz-border-radius: 10px;
+  background-color: white;
+  -moz-box-shadow: 0 0 5px #888888;
+  -webkit-box-shadow: 0 0 5px #888888;
+  box-shadow: 0 0 5px #888888; }
+  #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info {
+    height: 130px;
+    width: 200px;
+    position: absolute;
+    top: 20px;
+    left: 20px; }
+    #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_img {
+      margin-top: 5px; }
+      #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_img img {
+        width: 120px;
+        height: 120px;
+        border: 1px solid white; }
+        #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_img img:hover {
+          border: 1px solid #cccccc; }
+    #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_name {
+      width: 500px;
+      overflow: hidden;
+      position: absolute;
+      top: 10px;
+      left: 180px; }
+      #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_name a {
+        text-decoration: none; }
+      #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_name span {
+        font-family: "RobotoRegular";
+        font-size: 32px;
+        line-height: 36px;
+        text-align: center;
+        color: #333333; }
+      #aw_ppm_thanks_main_div #aw_ppm_thanks_user_info #aw_ppm_thanks_user_name .aw_ppm_thanks_user_pretext {
+        color: #333333;
+        font-size: 32px;
+        line-height: 36px;
+        margin-right: 5px; }
+  #aw_ppm_thanks_main_div #aw_ppm_thanks_user_location {
+    height: 16px;
+    width: 300px;
+    overflow: hidden;
+    position: absolute;
+    top: 44px;
+    left: 180px; }
+    #aw_ppm_thanks_main_div #aw_ppm_thanks_user_location span {
+      font-family: "RobotoRegular";
+      color: #333333;
+      font-size: 14px;
+      text-align: center;
+      font-weight: normal; }
+  #aw_ppm_thanks_main_div #aw_ppm_thanks_message {
+    height: 300px;
+    width: 600px;
+    position: absolute;
+    top: 200px;
+    left: 100px; }
+    #aw_ppm_thanks_main_div #aw_ppm_thanks_message span {
+      font-family: "RobotoRegular";
+      color: #333333;
+      font-size: 28px;
+      line-height: 36px;
+      text-align: center;
+      font-weight: normal; }
+  #aw_ppm_thanks_main_div a.aw_ppm_thanks_logout {
+    text-decoration: none;
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+    font-size: 14px;
+    color: #cd0000; }
+    #aw_ppm_thanks_main_div a.aw_ppm_thanks_logout:hover {
+      font-weight: bold; }
