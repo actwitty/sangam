@@ -98,6 +98,10 @@ module Api
         #check whether Social Aggregator should not depend on activity as destroy
         Activity.destroy_all(:author_id => params[:user_id], :source_name => params[:provider], :source_uid => params[:uid])
 
+        #delete User specific summary rank as it has no association
+        #so need to delete explicitly.. It will be rebuild below if a summary is left
+        SummaryRank.delete_all(:user_id =>  params[:user_id])
+
         summaries= []
         #after all deletion of activities what will happen.. I guess summary rank wil also be destroyed
         #

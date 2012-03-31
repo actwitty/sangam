@@ -24,8 +24,8 @@ module SocialFetch
 
         params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
 
-#        access_token = 'AAACkJfk5SyMBABlISYn2rpGA5r7EPCl6trtO295R99izpB47jeodZCr1bpYbeSxHGc3gpeKu8pIblN7vvMExUkKOPRFUZD'
-#        uid = "504942988"
+#        access_token = 'AAACkJfk5SyMBAEcQK8uZCbEEFRsmzRZA0pErmtS1HoarD5jBzxcKxjmvhOb3A55ZBZApFdQzhuIE2Yv8K0VWNu1tYfV2usXuPxNDqZA59ogZDZD'
+#        uid = "100000542799258"
 
         access_token = params[:access_token]
         uid = "me"
@@ -58,10 +58,14 @@ module SocialFetch
           array.concat(hash["data"]) if !hash["data"].blank?
         end
 
-        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] Now Going to SORT")
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] Now Going to SORT ")
 
+        #a = nil
+        #b = nil
         #sort to mix likes and post
         array.sort! do |x,y|
+           #a = x
+           #b = y
            y["created_time"] = "#{EPOCH_TIME}" if  y["created_time"].blank? #sometimes blank created_time comes in facebook
            x["created_time"] = "#{EPOCH_TIME}" if  x["created_time"].blank?
            y["created_time"] <=> x["created_time"]
@@ -72,6 +76,7 @@ module SocialFetch
         return array
 
       rescue  => e
+         #Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect} \n #{a.inspect} \n #{b.inspect}")
          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect}")
          return []
       end
