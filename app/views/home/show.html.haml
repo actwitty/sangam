@@ -235,6 +235,7 @@
 %input#cache_cookie_id{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@user.updated_at}" }
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
 
+<p id="pdf_link"><%= Download This Page As PDF", order_path(@order, :format => "pdf") %></p>
 /Feed Back User Voice
 :javascript
   var uvOptions = {};
