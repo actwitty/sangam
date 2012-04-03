@@ -22,10 +22,10 @@
         %a{:href => "/show?id=#{@user.id}"}
           %span.aw_ppm_thanks_user_pretext Thanks for visiting 
           %span #{@user.full_name}
-      #aw_ppm_thanks_user_location   
-        %span #{@user.current_location}
+        #aw_ppm_thanks_user_location   
+          %span #{@user.current_location}
     #aw_ppm_thanks_message
-      %span Actwitty is running in private beta mode. Actwitty will soon activate #{@user.full_name}'s page.       
+      %span Oops ! Actwitty has to work on this page. We will soon get back with #{@user.full_name}'s page.       
 
 
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }

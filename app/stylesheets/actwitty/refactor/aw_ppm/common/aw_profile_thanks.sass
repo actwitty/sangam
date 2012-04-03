@@ -90,16 +90,16 @@ div.aw_ppm_thanks_wrapper
   
   #aw_ppm_thanks_user_info
     height: 130px
-    width: 200px
-    position: absolute
-    top: 20px
-    left: 20px
-
+    width: 100%
+    display: block
     #aw_ppm_thanks_user_img
-      margin-top: 5px
+      display: inline-block
+      width: 75px
+      margin-left: 20px
+      margin-top: 30px
       img
-        width: 120px
-        height: 120px
+        width: 70px
+        height: 70px
         border: 1px solid #ffffff
         &:hover
           border: 1px solid #ccc
@@ -107,48 +107,46 @@ div.aw_ppm_thanks_wrapper
     #aw_ppm_thanks_user_name
       width: 500px
       overflow: hidden
-      position: absolute
-      top: 10px
-      left: 180px  
+      overflow: hidden
+      margin-left: 20px
+      display: inline-block
       a
         text-decoration: none
       span
         font-family: 'RobotoRegular'
-        font-size: 32px
-        line-height: 36px
+        font-size: 22px
+        line-height: 24px
         text-align: center
         color: #333
       .aw_ppm_thanks_user_pretext
         color: #333
-        font-size: 32px
-        line-height: 36px
+        font-size: 22px
+        line-height: 24px
         margin-right: 5px
 
-  #aw_ppm_thanks_user_location
-    height: 16px
-    width: 300px
-    overflow: hidden
-    position: absolute
-    top: 44px
-    left: 180px  
-    span
-      font-family: 'RobotoRegular'
-      color: #333
-      font-size: 14px
-      text-align: center
-      font-weight: normal
+      #aw_ppm_thanks_user_location
+        width: 100%
+        overflow: hidden
+        display: inline-block
+
+        span
+          font-family: 'RobotoRegular'
+          color: #333
+          font-size: 14px
+          text-align: center
+          font-weight: normal
 
   #aw_ppm_thanks_message
     height: 300px
-    width: 600px
+    width: 450px
     position: absolute
     top: 200px
     left: 100px
     span
       font-family: 'RobotoRegular'
       color: #333
-      font-size: 28px
-      line-height: 36px
+      font-size: 22px
+      line-height: 34px
       text-align: center
       font-weight: normal
   
@@ -161,5 +159,25 @@ div.aw_ppm_thanks_wrapper
     color: #CD0000
     &:hover
       font-weight: bold
+
+  .aw_thanks_follow_us
+    width: 400px 
+    margin: 0px auto
+    height: 25px
+    margin-top: 5px
+    a
+      text-decoration: none
+    img
+      float: right
+      vertical-align: middle
+      margin-left: 3px
+      padding: 0      
+      width: 30px
+    span
+      float: right
+      font-size: 12px
+      font-weight: bold
+      color: #333
+      margin-top: 4px
 
 
