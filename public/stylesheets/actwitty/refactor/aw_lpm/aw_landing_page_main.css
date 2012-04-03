@@ -64,6 +64,19 @@ div.aw_home_top_nav h3 {
   font-size: 20px;
   margin-top: 10px; }
 
+.aw_home_actwitty_logo {
+  display: block;
+  width: 100%; }
+  .aw_home_actwitty_logo .aw_home_pvt_beta {
+    display: inline-block;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    top: 280px;
+    left: 220px; }
+    .aw_home_actwitty_logo .aw_home_pvt_beta img {
+      height: 18px; }
+
 #aw_home_main_container img {
   display: block;
   margin: 0 auto;
@@ -242,6 +255,42 @@ div.aw_home_top_nav h3 {
     font-style: italic;
     font-size: 14px;
     color: #444444; }
+
+.aw_home_testimonial_box {
+  width: 960px;
+  margin: 0px auto;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  height: 160px;
+  display: block;
+  padding-left: 0px;
+  padding-bottom: 8px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px dotted #cccccc; }
+  .aw_home_testimonial_box .aw_home_testimonial_box_header {
+    height: 36px;
+    font-size: 34px;
+    line-height: 36px;
+    font-family: "RobotoRegular";
+    color: #333333;
+    padding-top: 20px;
+    text-align: center; }
+  .aw_home_testimonial_box .aw_home_testimonials_list {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top: 20px; }
+    .aw_home_testimonial_box .aw_home_testimonials_list .aw_home_single_testimonial_box {
+      width: 100px;
+      height: 60px;
+      margin: 5px auto; }
+      .aw_home_testimonial_box .aw_home_testimonials_list .aw_home_single_testimonial_box a img {
+        border: 1px solid #cccccc;
+        padding: 5px;
+        -moz-box-shadow: 0 0 5px #333333;
+        -webkit-box-shadow: 0 0 5px #333333;
+        box-shadow: 0 0 5px #333333; }
 
 #aw_home_about_box {
   width: 100%;

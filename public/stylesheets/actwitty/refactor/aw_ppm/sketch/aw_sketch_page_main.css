@@ -376,13 +376,15 @@ body {
   width: 500px;
   height: 400px;
   display: block;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
   .aw_data_busy_div h3 {
     color: #25a0da;
     margin-top: 10px;
     font-family: "RobotoRegular";
     font-weight: normal;
-    font-size: 22px; }
+    font-size: 18px;
+    overflow: hidden; }
   .aw_data_busy_div .aw_data_cookie {
     margin-top: 10px;
     margin-left: 10px;

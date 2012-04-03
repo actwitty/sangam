@@ -128,7 +128,7 @@ class InvitesController < ApplicationController
       end
       @users_list = User.find( :all,
                             :joins =>  "INNER JOIN authentications au ON au.user_id=users.id INNER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
-                            :select => "distinct users.id, users.photo_small_url, users.full_name, users.gender, users.current_location, users.created_at, users.last_sign_in_at",
+                            :select => "distinct users.id, users.email, users.photo_small_url, users.full_name, users.gender, users.current_location, users.created_at, users.last_sign_in_at",
                             :order => "users.created_at DESC",
                             :limit => 100,
                             :conditions => conditions)
