@@ -118,8 +118,11 @@ function aw_view_api_check_and_get_video_iframe_html( url, width, height){
 	var vimeoUrl = url.match(/^http:\/\/(www\.)?vimeo\.com\/(clip\:)?(\d+).*$/);
 
   if(url.match('http://(www.)?youtube|youtu\.be')){
-    var youtube_id=url.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];
-    output = '<iframe class="video" width="'+width+'" height="'+height+'" src="http://www.youtube.com/embed/'+ youtube_id +'?wmode=transparent"></iframe>';
+    var split_str = url.split(/v\/|v=|youtu\.be\//)[1];
+    if( split_str ) {
+      var youtube_id = split_str.split(/[?&]/)[0];
+      output = '<iframe class="video" width="'+width+'" height="'+height+'" src="http://www.youtube.com/embed/'+ youtube_id +'?wmode=transparent"></iframe>';
+    }
   }else if(vimeoUrl){
 		output =  '<iframe class="video" src="http://player.vimeo.com/video/'+vimeoUrl[3]+'" width="'+width+'" height="'+height+'" frameborder="0" ></iframe>';
 	}else{
