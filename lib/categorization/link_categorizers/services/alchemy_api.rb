@@ -57,6 +57,9 @@ module Categorization
 
             if !cat.blank? and json["score"].to_f >= ALCHEMY_THRESHOLD_SCORE
               categories <<  {:name => cat[0], :score => json["score"].to_f, :category => json["category"] }
+            else
+              Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] ++++ IGONORES ++++ \n
+                                #{json["url"]}  ==> #{json["score"]} ")
             end
 
             #Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] [process_response] leaving => #{categories}")

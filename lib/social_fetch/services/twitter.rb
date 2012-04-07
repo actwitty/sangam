@@ -19,9 +19,9 @@ module SocialFetch
 
           data_array = []
 
-#          access_token = '18095550-qevVTdcFREpul3XfvafSuYWoZlyjU3SWFii1kyg0C'
-#          uid = "18095550"
-#          token_secret = 'b83AKAthPRSxeWjv4TbPabdDAvWJ7twOZqeJOJgmoM'
+#          access_token = '440859440-UGWWkwH5WAebLkwncu8hCN5kcmNiKbKzvFUkZx3W'
+#          uid = "440859440"
+#          token_secret = 'Hpqy3xEtp8zxLJEfZz3rNsMTg0Eg0Dx2qHHaLqOYDQ'
 
           access_token = params[:access_token]
           uid = params[:uid]
@@ -48,7 +48,7 @@ module SocialFetch
           puts url
           response = ::EmHttp::Http.request([{:url => url, :params => {}, :method => "get", :handle => 0}])
 
-          puts response[0][:response].inspect
+          #puts response[0][:response].inspect
 
           data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 
