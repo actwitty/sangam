@@ -29,7 +29,7 @@
     width: 100%;
     height: 20px;
     display: block;
-    margin-top: 5px;
+    margin-top: 8px;
     margin-bottom: 2px; }
     .aw_sketch_mention_box .aw_sketch_one_interest_header span {
       font-size: 14px;
@@ -46,22 +46,30 @@
     position: relative;
     display: block;
     float: left;
-    border-bottom: 1px dotted #444444; }
+    border-bottom: 1px dotted #444444;
+    text-align: center; }
     .aw_sketch_mention_box .aw_sketch_one_interest_mention .aw_sketch_mention_box {
-      width: 64px;
-      height: 64px;
-      margin: auto;
+      display: inline-block;
+      width: auto;
+      height: auto;
       overflow: hidden;
-      float: left;
-      padding: 2px;
-      margin: 2px;
+      padding: 5px;
+      margin-left: 5px;
+      margin-bottom: 5px;
       border-radius: 3px;
       -moz-box-shadow: 0 0 5px #333333;
       -webkit-box-shadow: 0 0 5px #333333;
       box-shadow: 0 0 5px #333333; }
+      .aw_sketch_mention_box .aw_sketch_one_interest_mention .aw_sketch_mention_box span {
+        font-size: 14px;
+        font-family: "RobotoRegular";
+        font-weight: normal;
+        text-align: left;
+        color: #333333; }
+        .aw_sketch_mention_box .aw_sketch_one_interest_mention .aw_sketch_mention_box span:hover {
+          cursor: pointer;
+          color: #25a0da; }
       .aw_sketch_mention_box .aw_sketch_one_interest_mention .aw_sketch_mention_box .aw_sketch_mention_img_box {
-        width: 60px;
-        height: 60px;
         display: block;
         overflow: hidden;
         margin: auto;
