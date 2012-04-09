@@ -70,13 +70,9 @@ function aw_view_mentions_get_html(data){
                                   'aw_filter_on="mention" ' +
                                   'aw_mention_filter="' + mention_data.id + '" ' +
                                 '>' +
-                                '<div class="aw_sketch_mention_img_box" >' +
-                                  '<img ' + 
-                                    'class="aw_js_mention_image_class" ' +
-                                    ' src="' + mention_data.image + '?maxwidth=200&key=' + aw_global_freebase_api_key  +  '"' +                                                                  ' desc_url="' + mention_data.description + '" ' +
-                                    ' name="' + mention_data.name + '" rel="aw_js_twipsy_mention_image" data-original-title="' + mention_data.name.toUpperCase() + ' " ' +
-                                    ' />' +
-                              '</div>' +
+                                '<span>' +
+                                  mention_data.name + 
+                                '</span>' +
                             '</div>';
         }
       }
@@ -109,9 +105,9 @@ function aw_api_view_mentions_render(data){
     $("#aw_js_mentions_main_container").show();
     $("#aw_js_mentions_busy").hide();
     /* fetch descriptions */ 
-    $(".aw_js_mention_image_class").each( function(index){
+   /* $(".aw_js_mention_image_class").each( function(index){
       $(this).aw_api_js_get_description_fn();
-    });
+    });*/
   }
 
 
