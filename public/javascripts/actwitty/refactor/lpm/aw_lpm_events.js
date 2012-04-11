@@ -14,6 +14,9 @@ function aw_lpm_redirect_on_click(post_id){
  *
  */
 $(document).ready(function(){
+
+  $(this).scrollTop(0);
+  
   $("#aw_js_lpm_info_link_checkin").click(function(){
     aw_lpm_redirect_on_click("123");
   });
@@ -37,5 +40,11 @@ $(document).ready(function(){
   $("#aw_js_lpm_info_link_subscription").click(function(){
     aw_lpm_redirect_on_click("123");
   });
+
+  $(".aw_home_know_more_box").click(function(){
+    $('html, body').animate({scrollTop: 530}, "slow");
+  });
+
+  
 
 });
