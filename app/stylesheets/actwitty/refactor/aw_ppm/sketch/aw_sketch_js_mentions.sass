@@ -33,7 +33,7 @@
     width: 100%
     height: 20px
     display: block
-    margin-top: 5px
+    margin-top: 8px
     margin-bottom: 2px
     span
       font-size: 14px
@@ -52,23 +52,30 @@
     display: block
     float: left
     border-bottom: 1px dotted #444
+    text-align: center
 
     .aw_sketch_mention_box
-      width: 64px
-      height: 64px
-      margin: auto
+      display: inline-block
+      width: auto
+      height: auto
       overflow: hidden
-      float: left
-      padding: 2px
-      margin: 2px
+      padding: 5px
+      margin-left: 5px
+      margin-bottom: 5px
       border-radius: 3px
       -moz-box-shadow: 0 0 5px #333 
       -webkit-box-shadow: 0 0 5px #333
       box-shadow: 0 0 5px #333
-
+      span
+        font-size: 14px
+        font-family: 'RobotoRegular'
+        font-weight: normal
+        text-align: left
+        color: #333
+        &:hover
+          cursor: pointer
+          color: #25a0da
       .aw_sketch_mention_img_box
-        width: 60px
-        height: 60px
         display: block
         overflow: hidden
         margin: auto
