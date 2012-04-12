@@ -24,8 +24,8 @@ module SocialFetch
 
         params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
 
-#        access_token = 'AAACkJfk5SyMBAEcQK8uZCbEEFRsmzRZA0pErmtS1HoarD5jBzxcKxjmvhOb3A55ZBZApFdQzhuIE2Yv8K0VWNu1tYfV2usXuPxNDqZA59ogZDZD'
-#        uid = "100000542799258"
+#        access_token = 'AAACkJfk5SyMBAHRuJSJjF8ZAK2N16Ise5YfZBCHUa6GhOpx3fsGYgbHhOHuhW6zZCNO3wBc8a4xBSKttGm1co7nJPOhYoRZC2IDMDFmuigZDZD'
+#        uid = "100002104475084"
 
         access_token = params[:access_token]
         uid = "me"

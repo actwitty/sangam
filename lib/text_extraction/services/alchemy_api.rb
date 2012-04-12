@@ -5,7 +5,7 @@ module TextExtraction
       ALCHEMY_EXTRACT_ENDPOINT="http://access.alchemyapi.com/calls/url/URLGetText"
 
       #ALCHEMY_API_KEY="98f6cdf9355987fa6a0100f5704c2bceccc19f4e"
-      ALCHEMY_API_KEY="19f585889ffdc85973d4bb78754630bd4594fc40"
+      #ALCHEMY_API_KEY="19f585889ffdc85973d4bb78754630bd4594fc40"
 
       ALCHEMY_BATCH_LIMIT = 1
       ALCHEMY_RATE_LIMIT = 5
@@ -28,8 +28,9 @@ module TextExtraction
             request_array = []
 
             links.each do |link|
-              request_array << {:method => "post", :url => ALCHEMY_EXTRACT_ENDPOINT, :params =>{'url'=>"#{link}",'apikey'=> ALCHEMY_API_KEY,
-                                                                 'outputMode'=> "json"}, :handle => link }
+              request_array << {:method => "post", :url => ALCHEMY_EXTRACT_ENDPOINT, :params =>{'url'=>"#{link}",
+                                                    'apikey'=> AppConstants.alchemy_api_key,
+                                                    'outputMode'=> "json"}, :handle => link }
             end
 
             #batch limit adjustment

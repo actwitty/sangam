@@ -230,7 +230,7 @@ class SummaryRank < ActiveRecord::Base
 
         query = {:summary_id => params[:summary_id]}
 
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week],7,23,59,59).utc if !params[:date].blank?
 
         h = ::Api::Helpers::PlanTableQuery.plan_activity_query(query)
 
@@ -310,7 +310,7 @@ class SummaryRank < ActiveRecord::Base
 
         query = {:summary_id => params[:summary_id]}
 
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week],7,23,59,59).utc if !params[:date].blank?
 
         h = ::Api::Helpers::PlanTableQuery.plan_document_query(query)
 
@@ -359,7 +359,7 @@ class SummaryRank < ActiveRecord::Base
 
         query = {:summary_id => params[:summary_id], :all_location => true}
 
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week],7,23,59,59).utc if !params[:date].blank?
 
         h = ::Api::Helpers::PlanTableQuery.plan_activity_query(query)
 
@@ -407,7 +407,7 @@ class SummaryRank < ActiveRecord::Base
 
         query = {:summary_id => params[:summary_id]}
 
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week],7,23,59,59).utc if !params[:date].blank?
 
         h = ::Api::Helpers::PlanTableQuery.plan_hub_query(query)
 
@@ -461,7 +461,7 @@ class SummaryRank < ActiveRecord::Base
 
         query = {:summary_id => params[:summary_id]}
 
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week],7,23,59,59).utc if !params[:date].blank?
 
         h = ::Api::Helpers::PlanTableQuery.plan_source_action_query(query)
 
@@ -509,7 +509,7 @@ class SummaryRank < ActiveRecord::Base
 
         query = {:summary_id => params[:summary_id]}
 
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc if !params[:date].blank?
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week],7,23,59,59).utc if !params[:date].blank?
 
         h = ::Api::Helpers::PlanTableQuery.plan_local_action_query(query)
 
@@ -637,7 +637,7 @@ class SummaryRank < ActiveRecord::Base
         end
 
         query[:since] = DateTime.commercial(params[:date][:year],params[:date][:week], 1).utc
-        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7).utc
+        query[:till] = DateTime.commercial(params[:date][:year],params[:date][:week], 7,23,59,59).utc
 
         hash = {:services => {}, :topics => {}}
 
