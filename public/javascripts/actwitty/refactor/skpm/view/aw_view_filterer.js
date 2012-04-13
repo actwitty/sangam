@@ -119,3 +119,47 @@ function aw_api_view_decode_filter(object){
 
 
 }
+/**************************************************
+ *
+ *
+ *
+ */
+function aw_api_view_decode_filter_header(object){
+  var filter_header_title =  object.attr("aw_filter_title");
+  var filter_header_set = filter_header_title.split(',');
+  var filter_header_set_arr = [];
+  var stream_header = {};
+  var header_text = "";
+  
+  if( $.isArray(filter_header_set)){
+    filter_header_set_arr = filter_header_set;
+  }else{
+    filter_header_set_arr = [filter_header_set];
+  }
+
+  $.each( filter_header_set_arr, function( index, filter_header_component){
+
+    var header_title = filter_header_component.split('=');
+    var section = header_title[0];
+    var name = header_title[1];
+    stream_header[section] = name;  
+
+  });
+
+  header_text = "<span> Posts made  ";
+  if( stream_header['topic']){
+    header_text = header_text +  stream_header['topic'];
+  }
+
+  if( stream_header['data_type']){
+    header_text = header_text +  stream_header['data_type'];
+  }
+
+
+  if( stream_header['service']){
+    header_text = header_text +  stream_header['service'];
+  }
+
+  header_text = header_text + ". </span>";
+  $("#aw_js_stream_internal_header").html(header_text);
+}

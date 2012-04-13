@@ -49,7 +49,6 @@
     border-bottom: 1px dotted #444444;
     text-align: center; }
     .aw_sketch_mention_box .aw_sketch_one_interest_mention .aw_sketch_mention_box {
-      display: inline-block;
       width: auto;
       height: auto;
       overflow: hidden;
