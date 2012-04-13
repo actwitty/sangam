@@ -369,5 +369,19 @@ function aw_api_view_stream_apply_link_action(element){
   var name = element.attr('action_name');
    window.open(url, name,
                   'menubar=0,resizable=0,width=550,height=420,top=200,left=400');
+}
 
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_stream_set_default_internal_header(){
+  var header_text = "<span> Your wall feed from enabled services. </span>";
+  if ( aw_js_global_visited_user_credentials.id != aw_js_global_logged_in_user_credentials.id )
+  {
+      header_text = '<span> ' + aw_js_global_visited_user_credentials.name + "'s all posts from enabled services. </span>";
+    
+  }
+  $("#aw_js_stream_internal_header").html(header_text);
 }

@@ -152,7 +152,7 @@ function aw_api_controller_sketch_start_data_pulls(){
     aw_api_model_visited_user_feed_fetch();
   }
   aw_api_model_images_fetch();
-
+  aw_api_view_stream_set_default_internal_header();
   aw_lib_console_log("DEBUG", "exitting: aw_api_controller_sketch_start_data_pulls");
 
 }

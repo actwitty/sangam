@@ -29,7 +29,8 @@ function aw_get_graph_html(interests){
                         ' aw_filter_on="topic,since,till" ' +
                         ' aw_interest_filter="' + interest_detail.interest_id + '" ' +                       
                         ' aw_since_filter="' + interest_detail.since + '" ' +                        
-                        ' aw_till_filter="' + interest_detail.till + '" ' +                        
+                        ' aw_till_filter="' + interest_detail.till + '" ' +  
+                        ' aw_filter_title="topic=made under topic ' + interest_detail.name  + ' " ' +
                       '>' +
 
                       '<img rel="aw_js_twipsy_trend" data-original-title="' + trend_twipsy + '" src="/images/actwitty/refactor/aw_sketch/topics/' + interest_detail.category + '.png" width=25px height=25px >' +

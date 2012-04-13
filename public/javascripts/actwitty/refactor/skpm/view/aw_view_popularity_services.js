@@ -25,7 +25,8 @@ function aw_view_get_all_details_for_interest_html(interest_name, data){
         html = html + '<div class="aw_service_popularity_details_box aw_js_filterer " ' + 
                         ' aw_filter_on="topic,action" ' +
                         ' aw_interest_filter="' + data.id + '" ' +                       
-                        ' aw_action_filter="' + field_name + '" ' +                        
+                        ' aw_action_filter="' + field_name + '" ' +  
+                        ' aw_filter_title="topic=made under topic ' + interest_name  + ' with ' + field_name + ',service= from ' + service_name + '"' +
                         ' rel="aw_js_twipsy_popularity" data-original-title="' +  twipsy + ' "' +
                         ' >' +
                         '<span class="aw_service_popularity_number">' +
