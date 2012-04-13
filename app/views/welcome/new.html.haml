@@ -4,9 +4,9 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=180483002026787";
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
     fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+  }(document, 'script', 'facebook-jssdk'));  
 
 #aw_home_main_container
   #aw_home_top_header
@@ -105,7 +105,7 @@
 #aw_home_footer
   
   #aw_home_follow_us
-    %a{:href=>"http://www.facebook.com/pages/Actwitty/162060013895162",:target => "_blank"}
+    %a{:href=>"http://www.facebook.com/actwitty",:target => "_blank"}
       %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
     %a{:href=>"http://twitter.com/#!/act_witty", :target => "_blank" }
       %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
