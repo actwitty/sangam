@@ -118,27 +118,32 @@ div.aw_home_top_nav h3 {
   margin: 0px auto;
   display: block;
   height: 50px; }
-
-.aw_home_fb_like_box {
-  width: 600px;
-  margin: 0px auto;
-  padding-left: 95px;
-  display: inline-block;
-  float: left;
-  height: 40px; }
-  .aw_home_fb_like_box .aw_like_us {
+  .aw_home_horizontal_info_section .aw_pageshare {
+    width: 540px;
+    height: 40px;
+    padding-left: 0px;
+    display: inline-block;
     float: left; }
+    .aw_home_horizontal_info_section .aw_pageshare .sbutton {
+      display: inline-block;
+      margin-left: 0px; }
+  .aw_home_horizontal_info_section .aw_fb_share_section {
+    display: inline-block;
+    width: 150px;
+    float: left;
+    margin-top: 0px;
+    margin-left: -15px; }
 
 .aw_home_know_more_box {
   float: right;
-  margin-right: 20px;
-  margin-top: -20px;
+  margin-right: 0px;
+  margin-top: -40px;
   display: inline-block; }
 
 .aw_home_help_box {
   width: 960px;
   margin: 0px auto;
-  margin-top: 55px;
+  margin-top: 15px;
   margin-bottom: 50px;
   height: 1310px;
   display: block;
@@ -220,7 +225,7 @@ div.aw_home_top_nav h3 {
 
 #aw_home_footer {
   width: 100%;
-  height: 200px;
+  height: 40px;
   float: right;
   background-color: #777777; }
 
@@ -294,11 +299,11 @@ div.aw_home_top_nav h3 {
 
 #aw_home_about_box {
   width: 100%;
-  height: 200px;
+  height: 300px;
   display: block; }
   #aw_home_about_box .aw_home_about_vertical_box {
     width: 37%;
-    height: 80px;
+    height: 100px;
     margin-left: 80px;
     float: left;
     padding: 10px;
