@@ -17,7 +17,7 @@ function aw_api_view_static_profile_render(data){
 
       if( data.work && data.work.length > 0){
         work_html = '<div class="aw_dyn_static_profile_details_element" >' +
-                          '<h3> Works at : </h3>' +
+                          '<h3> Worked at : </h3>' +
                           '<span>' + data.work +  '</span>' +
                         '</div>';
 

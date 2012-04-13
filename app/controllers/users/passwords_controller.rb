@@ -16,9 +16,7 @@ class Users::PasswordsController < Devise::PasswordsController
     if resource.errors.empty?
       Rails.logger.info("[CNTRL] [PASSWORD] Sign in redirect")
       redirect_to after_sign_in_path_for(resource)
-      puts "***************************Create if************************************"
     else
-      puts "***************************Create else************************************"
       #render_with_scope :new
       #render_with_scope :update
       redirect_to(home_show_url)

@@ -312,7 +312,7 @@ function aw_api_model_twitter_inject_error_post(){
    var attachment = {};
    attachment['type'] = "link";
    attachment['url'] = '/show';
-   attachment['title'] = "Facebook data could not be fetched";
+   attachment['title'] = "Twitter data could not be fetched";
    attachment['image_url'] = "/images/actwitty/refactor/aw_sketch/stream_view/denied/aw_twitter_access_denied.png";
 
    aw_post_json['attachment'] = [attachment];

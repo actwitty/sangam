@@ -138,6 +138,12 @@ a {
       margin-left: 5px; }
       .aw_users_list_table .aw_users_table_header .aw_user_name_header span {
         margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_header .aw_user_email_header {
+      width: 100px;
+      display: inline-block;
+      margin-left: 5px; }
+      .aw_users_list_table .aw_users_table_header .aw_user_email_header span {
+        margin: 0px auto; }
     .aw_users_list_table .aw_users_table_header .aw_user_gender_header {
       width: 100px;
       display: inline-block;
@@ -193,6 +199,11 @@ a {
       margin-left: 10px;
       display: inline-block; }
       .aw_users_list_table .aw_users_table_row .aw_user_name span {
+        margin: 0px auto; }
+    .aw_users_list_table .aw_users_table_row .aw_user_email {
+      margin-left: 10px;
+      display: inline-block; }
+      .aw_users_list_table .aw_users_table_row .aw_user_email span {
         margin: 0px auto; }
     .aw_users_list_table .aw_users_table_row .aw_user_gender {
       margin-left: 10px;

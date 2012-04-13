@@ -23,18 +23,29 @@
         %a{:href => "/show?id=#{@user.id}"}
           %span.aw_ppm_thanks_user_pretext Hi ! 
           %span #{@user.full_name}
-      #aw_ppm_thanks_user_location   
-        %span #{@user.current_location}
+        #aw_ppm_thanks_user_location   
+          %span #{@user.current_location}
     #aw_ppm_thanks_message
       -if user_signed_in?
         -if current_user.id == @user.id
-          %span Thanks for registering with Actwitty (Private Beta). We are processing all invites and soon we will get back to you.
+          %span Thanks for registering with Actwitty (Private Beta). We are processing all invites and in less than an hours time you will receive an email update from us.
         -else
           %span This is a default site for Actwitty user page.
 
       -else
         %span This is a default site for Actwitty user page.
+    
+
+    .aw_thanks_follow_us
+      %a{:href=>"http://www.facebook.com/pages/Actwitty/162060013895162",:target => "_blank"}
+        %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
+      %a{:href=>"http://twitter.com/#!/act_witty", :target => "_blank" }
+        %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
+      %span follow us on
+      
     %a.aw_ppm_thanks_logout{:href=>"/users/sign_out"} Sign out for now 
+
+    
 
 %input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
 /Feed Back User Voice

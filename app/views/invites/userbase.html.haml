@@ -30,6 +30,8 @@
         %span image
       .aw_user_name_header
         %span name
+      .aw_user_email_header
+        %span email
       .aw_user_gender_header
         %span gender
       .aw_user_location_header
@@ -48,6 +50,8 @@
           %img{:src =>"#{user.photo_small_url}", :width => "40px"}
         .aw_user_name
           %span #{user.full_name}
+        .aw_user_email
+          %span #{user.email}
         .aw_user_gender
           %span #{user.gender}
         .aw_user_location

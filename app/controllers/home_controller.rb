@@ -247,9 +247,11 @@ class HomeController < ApplicationController
         @user=current_user
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Setting user id to current user as no id mentioned")
         redirect_to "/show"
+        return
       else
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Redirecting to welcome new as no id mentioned")
         redirect_to :controller => "welcome", :action => "new"
+        return
       end
     else
       user_id =  params[:id]
@@ -257,7 +259,18 @@ class HomeController < ApplicationController
       if @user.nil?
          Rails.logger.info("[CNTRL] [HOME] [WAITING] Mentioned user does not exist")
         redirect_to "/show"
+        return
       end
+
+      query={}
+      query[:user_id] = @user.id  
+      process_status = current_user.get_status(query)
+      unless process_status == 1
+        redirect_to "/show?id=#{@user.id}"
+      return
+
+
+    end
     end
   end
 
