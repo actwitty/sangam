@@ -33,7 +33,11 @@ body {
   width: 960px;
   height: auto;
   margin: 0 auto;
-  border: 0px solid red; }
+  border: 0px solid red;
+  text-align: center; }
+  #aw_home_main_container a img {
+    margin-left: auto;
+    margin-right: auto; }
 
 #aw_home_top_header {
   width: 100%;
@@ -65,16 +69,26 @@ div.aw_home_top_nav h3 {
 
 .aw_home_actwitty_logo {
   display: block;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 20px; }
   .aw_home_actwitty_logo .aw_home_pvt_beta {
     display: inline-block;
     height: auto;
     width: 960px;
     position: absolute;
     top: 280px;
-    left: 220px; }
+    left: 820px; }
     .aw_home_actwitty_logo .aw_home_pvt_beta img {
-      height: 18px; }
+      height: 32px; }
+
+.aw_home_signup_free {
+  display: inline-block;
+  height: auto;
+  position: absolute;
+  top: 370px;
+  left: 270px; }
+  .aw_home_signup_free img {
+    height: 100px; }
 
 #aw_home_main_container img {
   display: block;
@@ -93,7 +107,7 @@ div.aw_home_top_nav h3 {
 
 #aw_home_desc {
   color: #333333;
-  font-size: 17px;
+  font-size: 24px;
   line-height: 24px;
   padding-bottom: 35px;
   text-align: center; }
@@ -102,14 +116,15 @@ div.aw_home_top_nav h3 {
     text-decoration: none; }
 
 #aw_home_social_signup {
-  width: 100%;
+  width: 535px;
   height: 50px;
   border: 0px solid red;
-  margin-bottom: 30px;
-  padding-left: 75px; }
-  #aw_home_social_signup img {
+  margin-bottom: 38px;
+  margin-left: auto;
+  margin-right: auto; }
+  #aw_home_social_signup a img {
     float: left;
-    margin-left: 20px;
+    margin-left: 10px;
     width: 250px; }
 
 .aw_home_horizontal_info_section {
@@ -136,7 +151,7 @@ div.aw_home_top_nav h3 {
 .aw_home_know_more_box {
   float: right;
   margin-right: 0px;
-  margin-top: -40px;
+  margin-top: -20px;
   display: inline-block;
   cursor: pointer; }
   .aw_home_know_more_box .aw_know_more_image {
