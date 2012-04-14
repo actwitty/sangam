@@ -1,7 +1,9 @@
 Sangam::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
-
+  
+  #force ssl
+  config.force_ssl = true
+  
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -44,9 +46,6 @@ Sangam::Application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
-
-  #force http request to https (ssl)
-  config.middleware.use "ForceSSL"
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
