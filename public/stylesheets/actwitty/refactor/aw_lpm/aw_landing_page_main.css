@@ -74,64 +74,78 @@ div.aw_home_top_nav h3 {
   .aw_home_actwitty_logo .aw_home_pvt_beta {
     display: inline-block;
     height: auto;
-    width: 960px;
-    position: absolute;
-    top: 280px;
-    left: 820px; }
+    width: 300px;
+    margin-left: 600px;
+    margin-top: -50px; }
     .aw_home_actwitty_logo .aw_home_pvt_beta img {
       height: 32px; }
-
-.aw_home_signup_free {
-  display: inline-block;
-  height: auto;
-  position: absolute;
-  top: 370px;
-  left: 270px; }
-  .aw_home_signup_free img {
-    height: 100px; }
 
 #aw_home_main_container img {
   display: block;
   margin: 0 auto;
   margin-left: 0px; }
 
-#aw_home_main_desc {
-  margin: 0 auto;
-  color: #333333;
-  font-size: 30px;
-  margin-bottom: 15px;
-  text-align: center; }
-  #aw_home_main_desc a {
-    color: #333333;
-    text-decoration: none; }
-
-#aw_home_desc {
-  color: #333333;
-  font-size: 24px;
-  line-height: 24px;
-  padding-bottom: 35px;
-  text-align: center; }
-  #aw_home_desc a {
-    color: #333333;
-    text-decoration: none; }
-
-#aw_home_social_signup {
-  width: 535px;
-  height: 50px;
-  border: 0px solid red;
-  margin-bottom: 38px;
-  margin-left: auto;
-  margin-right: auto; }
-  #aw_home_social_signup a img {
+.aw_home_info_box {
+  height: auto;
+  display: block;
+  margin-bottom: 5px;
+  float: left;
+  width: 100%; }
+  .aw_home_info_box .aw_home_signup_free {
+    width: 120px;
+    display: inline-block;
     float: left;
-    margin-left: 10px;
-    width: 250px; }
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-right: 20px; }
+    .aw_home_info_box .aw_home_signup_free img {
+      height: 100px; }
+  .aw_home_info_box .aw_home_info_section {
+    display: inline-block;
+    float: left; }
+    .aw_home_info_box .aw_home_info_section #aw_home_main_desc {
+      margin: 0 auto;
+      color: #333333;
+      font-size: 30px;
+      margin-bottom: 15px;
+      text-align: center; }
+      .aw_home_info_box .aw_home_info_section #aw_home_main_desc a {
+        color: #333333;
+        text-decoration: none; }
+    .aw_home_info_box .aw_home_info_section #aw_home_desc {
+      color: #333333;
+      font-size: 24px;
+      line-height: 24px;
+      padding-bottom: 35px;
+      text-align: center; }
+      .aw_home_info_box .aw_home_info_section #aw_home_desc a {
+        color: #333333;
+        text-decoration: none; }
+    .aw_home_info_box .aw_home_info_section #aw_home_social_signup {
+      width: 535px;
+      height: 50px;
+      margin-bottom: 30px;
+      margin-left: auto;
+      margin-right: auto; }
+      .aw_home_info_box .aw_home_info_section #aw_home_social_signup a img {
+        float: left;
+        margin-left: 10px;
+        width: 250px; }
+  .aw_home_info_box .aw_home_know_more_box {
+    float: right;
+    margin-right: 0px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 120px; }
+    .aw_home_info_box .aw_home_know_more_box .aw_know_more_image {
+      cursor: pointer; }
 
 .aw_home_horizontal_info_section {
   width: 960px;
   margin: 0px auto;
   display: block;
-  height: 50px; }
+  height: 50px;
+  padding-left: 120px; }
   .aw_home_horizontal_info_section .aw_pageshare {
     width: 540px;
     height: 40px;
@@ -148,19 +162,10 @@ div.aw_home_top_nav h3 {
     margin-top: 0px;
     margin-left: -15px; }
 
-.aw_home_know_more_box {
-  float: right;
-  margin-right: 0px;
-  margin-top: -20px;
-  display: inline-block;
-  cursor: pointer; }
-  .aw_home_know_more_box .aw_know_more_image {
-    cursor: pointer; }
-
 .aw_home_help_box {
   width: 960px;
   margin: 0px auto;
-  margin-top: 15px;
+  margin-top: 5px;
   margin-bottom: 50px;
   height: 1310px;
   display: block;
@@ -168,7 +173,8 @@ div.aw_home_top_nav h3 {
   padding-bottom: 8px;
   background-color: white;
   border-radius: 5px;
-  border: 1px dotted #cccccc; }
+  border: 1px dotted #cccccc;
+  float: left; }
   .aw_home_help_box .aw_home_help_header {
     height: 36px;
     font-size: 34px;
@@ -196,10 +202,7 @@ div.aw_home_top_nav h3 {
       background-color: #eeeeee; }
     .aw_home_help_box .aw_home_help_horizontal .aw_home_help_logo {
       width: 30px;
-      height: 30px;
-      position: absolute;
-      top: 5px;
-      left: 5px; }
+      height: 30px; }
     .aw_home_help_box .aw_home_help_horizontal a {
       text-decoration: none; }
     .aw_home_help_box .aw_home_help_horizontal .aw_home_help_image_box {
