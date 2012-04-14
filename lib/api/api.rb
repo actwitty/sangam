@@ -561,16 +561,20 @@ module Api
       #
       #                                     :source_name => "twitter"
       #                                     :source_msg_id =>  "12233", [OBJECT ID OF POST]
+      #
+      #                                     :summary_id => 234
       #                                 },
       #                                 {
       #                                     :count => 3
       #                                     :id => 124
       #                                     :source_name =>"facebook",
       #                                     :source_msg_id =>  "12234", [OBJECT ID OF POST]
+      #
+      #                                     :summary_id => 235
       #                                 }
       #                             ]
       #              "sports" => [..]
-      #           }OUTPUT_HASH
+      #           }OUTPUT HASH
       def get_entities(params)
         entities = ::Api::Entities.get_entities(params)
         entities

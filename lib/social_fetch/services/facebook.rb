@@ -9,7 +9,6 @@ module SocialFetch
       FEED = "https://graph.facebook.com/"
       EPOCH_TIME = Time.utc(1970, 1, 1, 0, 0)
 
-
       #INPUT => {
       #          :user_id => 123,
       #          :uid => "234",
@@ -23,15 +22,22 @@ module SocialFetch
 
         data_array = []
 
-        #latest_msg_timestamp = params[:latest_msg_timestamp].strftime("%Y%m%dT%H%M")
-         json = {'access_token' => "#{params[:access_token]}"}
-
         params[:first_time] == true ? limit =  AppConstants.max_import_first_time : limit = AppConstants.max_import_every_time
+
+#        access_token = 'AAACkJfk5SyMBAHRuJSJjF8ZAK2N16Ise5YfZBCHUa6GhOpx3fsGYgbHhOHuhW6zZCNO3wBc8a4xBSKttGm1co7nJPOhYoRZC2IDMDFmuigZDZD'
+#        uid = "100002104475084"
+
+        access_token = params[:access_token]
+        uid = "me"
+
+        #latest_msg_timestamp = params[:latest_msg_timestamp].strftime("%Y%m%dT%H%M")
+        json = {'access_token' => access_token}
+
         query_array=   [
                           {"method"=>"GET",
-                              "relative_url"=>"me/feed?limit=#{limit}"},
+                              "relative_url"=>"#{uid}/feed?limit=#{limit}"},
                           {"method"=>"GET",
-                              "relative_url"=>"me/likes?limit=#{limit}"},
+                              "relative_url"=>"#{uid}/likes?limit=#{limit}"},
 #                          {"method"=>"GET",
 #                              "relative_url"=>"#{params[:uid]}/feed?limit=#{params[:limit]}&since=#{latest_msg_timestamp}"},
 #                          {"method"=>"GET",
@@ -42,6 +48,7 @@ module SocialFetch
 
         response = ::EmHttp::Http.em_post(FEED, json, "facebook")
 
+        #Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] JSON  #{response[0][:response].inspect}")
         data_array = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 
         array = []
@@ -50,19 +57,26 @@ module SocialFetch
           hash = JSON.parse(attr["body"])
           array.concat(hash["data"]) if !hash["data"].blank?
         end
-        
+
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] Now Going to SORT ")
+
+        #a = nil
+        #b = nil
         #sort to mix likes and post
         array.sort! do |x,y|
-           y["created_time"] = EPOCH_TIME if  y["created_time"].blank? #sometimes blank created_time comes in facebook
-           x["created_time"] = EPOCH_TIME if  x["created_time"].blank?
+           #a = x
+           #b = y
+           y["created_time"] = "#{EPOCH_TIME}" if  y["created_time"].blank? #sometimes blank created_time comes in facebook
+           x["created_time"] = "#{EPOCH_TIME}" if  x["created_time"].blank?
            y["created_time"] <=> x["created_time"]
         end
 
-        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] leaving #{params.inspect} ")
+        Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] leaving #{params.inspect}")
 
         return array
 
       rescue  => e
+         #Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect} \n #{a.inspect} \n #{b.inspect}")
          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect}")
          return []
       end

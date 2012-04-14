@@ -140,7 +140,11 @@ development: &default
   user_service_status_busy:                 "busy"
   user_service_status_idle:                 "idle"
 
-
+  alchemy_api_key:                      "8395fee07786621120e9dd84be8f14f1c30d1648"
+  opencalais_api_key:                  ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt',
+                                        'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
+                                        'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
+                                        'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
 production:
   <<: *default
   #constant1:  "overriden value1"
@@ -163,7 +167,14 @@ production:
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_id:     "aloksrivastava78@gmail.com"
+  authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
+  authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
+
+  alchemy_api_key:                      "3690ab39e581e48d6f48c000e3c3313f1e227e28"
+  opencalais_api_key:                  ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt',
+                                        'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
+                                        'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
+                                        'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
   #########################################################################
 
 test:

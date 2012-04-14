@@ -135,32 +135,45 @@ module LinkResolution
 
         url_arrays.each do |url_array|
           request_array = []
-
           url_array.each_with_index do |url, idx|
-            request_array << {:url => url, :params => {:redirects => 1}, :method => "get", :handle => url}
+            request_array << {:url => url, :params => {:redirects => 2}, :method => "get", :handle => url}
           end
-
           response_array=::EmHttp::Http.request(request_array)
 
           response_array.each do |response|
 
-            html_handler=Actwitty.new
-            parser = Nokogiri::HTML::SAX::Parser.new(html_handler)
-            parser.parse(response[:response])
+            #c_url = response[:request].uri.scheme+ "://"+response[:request].uri.host+response[:request].uri.path
+            c_url = response[:request].uri.to_s
 
-            c_url = response[:request].uri.scheme+"://"+response[:request].uri.host+response[:request].uri.path
+            cgi = CGI::parse(c_url)
+
+            #this is used when actual url is part of query parameters like
+            #http://t.co/Rty767 => http://news.google.com/url?date=12122011&url=http://xyz.com/345"
+            if !cgi["url"].blank?
+              c_url = cgi["url"][0]
+              r_a = ::EmHttp::Http.request([{:url => c_url, :params => {:redirects => 2}, :method => "get", :handle => c_url}])
+              response = r_a[0]
+            end
 
             #if parameters are there then no need to resolve that url
             if response[:handle] =~ /\S+\?\S+/
               c_url =response[:handle]
             end
 
+            html_handler=Actwitty.new
+            parser = Nokogiri::HTML::SAX::Parser.new(html_handler)
+            parser.parse(response[:response])
+
+            str = "DIV"
+            element =  html_handler.get_element_hash
+            (element == nil) or (element == 'idiv') ? str = "DIV" : str = element.upcase
+
             hash[response[:handle]] =  {
                                          :url => response[:handle],
                                          :canonical_url =>  c_url,
                                          :title => html_handler.get_title, :description => html_handler.get_description,
-                                         :image_url => html_handler.get_image, :element =>  html_handler.get_element_hash
-                                       }
+                                         :image_url => html_handler.get_image, :element => str
+                                      }
           end
         end
         Rails.logger.info("[LIB] [LINK_RESOLUTION] [ACTWITTY] [RESOLVE_LINKS] Leaving")
