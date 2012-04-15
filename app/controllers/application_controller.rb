@@ -27,15 +27,17 @@ class ApplicationController < ActionController::Base
   APP_DOMAIN = 'actwitty.com'
   def ensure_domain
     if user_signed_in?
-#      full_name = current_user.full_name.split
-#      if request.env['HTTP_HOST'] != "#{full_name[0]}.#{APP_DOMAIN}"
-#        # HTTP 301 is a "permanent" redirect
-#        redirect_to "http://#{full_name[0]}.#{APP_DOMAIN}", :status => 301
-#      end
+      full_name = current_user.full_name.split
+      if request.env['HTTP_HOST'] != "#{full_name[0]}.#{APP_DOMAIN}"
+        # HTTP 301 is a "permanent" redirect
+        redirect_to "http://#{full_name[0]}.#{APP_DOMAIN}", :status => 301
+      end
     else
       url = ""
-      if request.url !~ /^https:\/\/www\./  and Rails.env == "production"
-        url = "https://www.#{request.host+request.fullpath}"
+      if request.url !~ /^https:\/\//  and Rails.env == "production"
+        subdomain = "www"
+        subdomain = request.subdomain if !request.subdomain.blank?
+        url = "https://#{subdomain}.#{request.host+request.fullpath}"
         redirect_to url
       end
 
