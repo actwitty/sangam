@@ -34,11 +34,15 @@ class ApplicationController < ActionController::Base
 #      end
 #    else
       url = ""
-      if request.url !~ /^https:\/\//  and Rails.env == "production"
-        subdomain = "www"
-        subdomain = request.subdomain if !request.subdomain.blank?
-        url = "https://#{subdomain}.#{request.host+request.fullpath}"
-        redirect_to url
+      if Rails.env == "production"
+        if request.url !~ /^https:\/\// or request.subdomain.blank?
+          if request.subdomain.blank?
+            url = "https://www.#{request.host+request.fullpath}"
+          else
+            url = "https://#{request.host+request.fullpath}"
+          end
+          redirect_to url
+        end
       end
 
   #  end
