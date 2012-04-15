@@ -34,9 +34,8 @@ class ApplicationController < ActionController::Base
 #      end
     else
       url = ""
-      if request.url !~ /^https:\/\/www\./
+      if request.url !~ /^https:\/\/www\./  and Rails.env == "production"
         url = "https://www.#{request.host+request.fullpath}"
-        puts url
         redirect_to url
       end
 

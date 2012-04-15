@@ -29,6 +29,10 @@ Sangam::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
   
+  constraints(Subdomain) do
+    match '/' => 'home#show'
+  end
+
   match '/show' => 'home#show'
   match '/thanks' => 'home#thanks'
   match '/waiting' => 'home#waiting'
