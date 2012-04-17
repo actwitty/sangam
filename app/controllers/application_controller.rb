@@ -30,8 +30,8 @@ class ApplicationController < ActionController::Base
        url = ""
        if user_signed_in?
          if request.url !~ /^http:\/\//
-           url = "http://#{request.host+request.fullpath}"
-           redirect_to url
+#           url = "http://#{request.host+request.fullpath}"
+#           redirect_to url
          end
        else
          if request.url !~ /^https:\/\// or request.subdomain.blank?
