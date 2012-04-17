@@ -1,15 +1,5 @@
 /****************************************************************************/
-/*
- *
- *
- *
- */
-var mapOptions = {
-  zoom: 5,
-  mapTypeId: google.maps.MapTypeId.ROADMAP,
-  center: new google.maps.LatLng(40.730885,-73.997383)
-};
-
+var mapOptions = null; 
 
 
 /****************************************************************************/
@@ -162,6 +152,15 @@ function aw_get_country_name(geocoder_result){
  */
 function aw_api_lpm_initialize_sign_up_page(){
   if( $("#aw_lpm_signup_location_input").length){
+
+    if( mapOptions == null) {
+      mapOptions = {
+          zoom: 5,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          center: new google.maps.LatLng(40.730885,-73.997383)
+      };
+
+    }
     map = new google.maps.Map(document.getElementById("aw_lpm_map_selector"),mapOptions);
     geocoder = new google.maps.Geocoder(); 
     aw_signup_geo_initialize();
