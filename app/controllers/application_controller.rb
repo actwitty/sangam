@@ -26,9 +26,10 @@ class ApplicationController < ActionController::Base
 
   APP_DOMAIN = 'actwitty.com'
   def ensure_domain
-     #if Rails.env == "production"
+     if Rails.env == "production"
        url = ""
        if user_signed_in?
+          puts "-------------- #{request.url} --------------"
 #         if request.url !~ /^http:\/\//
 #           redirect_to :protocol => 'http://'
 #         end
@@ -43,6 +44,6 @@ class ApplicationController < ActionController::Base
            end
          end
        end
-     #end
+     end
   end
 end
