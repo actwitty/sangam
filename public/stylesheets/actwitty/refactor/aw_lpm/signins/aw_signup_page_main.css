@@ -19,16 +19,15 @@
   /*border: 8px solid #0fb4e7 */
   border-radius: 5px;
   -moz-border-radius: 10px;
-  background-color: #fffff3;
   border: 1px solid #dddddd;
-  -moz-box-shadow: 0 0 3px #dddddd;
-  -webkit-box-shadow: 0 0 3px #dddddd;
-  box-shadow: 0 0 3px #dddddd; }
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333; }
 
 #aw_lpm_sign_up_top_row_div {
   width: 890px;
   height: 300px;
-  margin-top: 35px;
+  margin-top: 5px;
   border: 0px solid black;
   display: block;
   float: left; }
@@ -119,11 +118,10 @@ img.awlpm_signup_aw_logo_img {
   margin: 0 auto;
   margin-left: 10px;
   /*width: 400px */
-  height: 30px;
+  height: 20px;
   color: white;
   border: 0px solid red;
   /*display: inline */
-  font-size: 44px;
   /* font: 20px/100% Arial, Helvetica, sans-serif */
   font-weight: bold;
   text-align: center; }
@@ -210,9 +208,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -231,9 +230,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -252,9 +252,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -273,9 +274,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -294,9 +296,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -315,9 +318,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
@@ -336,9 +340,10 @@ img.awlpm_signup_aw_logo_img {
   height: 40px;
   margin-left: 20px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));

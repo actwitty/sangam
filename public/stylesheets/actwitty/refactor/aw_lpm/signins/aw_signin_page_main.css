@@ -23,11 +23,10 @@
   margin-top: 20px;
   border-radius: 5px;
   -moz-border-radius: 10px;
-  background-color: #fffff3;
   border: 1px solid #dddddd;
-  -moz-box-shadow: 0 0 3px #dddddd;
-  -webkit-box-shadow: 0 0 3px #dddddd;
-  box-shadow: 0 0 3px #dddddd; }
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333; }
 
 #awlpm_signin_aw_logo {
   margin-top: 15px;
@@ -86,11 +85,11 @@ img.awlpm_signin_aw_logo_img {
   height: 40px;
   margin-left: 220px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
-  font-weight: bold;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
   background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
@@ -108,11 +107,11 @@ img.awlpm_signin_aw_logo_img {
   height: 40px;
   margin-left: 220px;
   margin-bottom: 1px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   border-radius: 2px;
-  font: 20px/100% Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  color: #333333;
   font-family: RobotoRegular;
-  font-weight: bold;
   background: -moz-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, rgba(255, 255, 255, 0)));
   background: -webkit-linear-gradient(top, white 0%, rgba(255, 255, 255, 0) 100%);
