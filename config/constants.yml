@@ -176,6 +176,21 @@ production:
                                         'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
                                         'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
   #########################################################################
+staging:
+  <<: *default
+
+  facebook_app_id:                    '292732787407668'
+  facebook_secret_key:                '82e82066e5e569ef88d052d5eba51b0e'
+  twitter_consumer_key:               'aIJxWpkI3N3Zm3JZPqWVA'
+  twitter_consumer_secret:            'YhreSUMsZoLjdvUM9X4fFbsDlvGPM5uOWmUP9Nxvnbk'
+
+  #FOR PUBLIC SHOW
+  ghost_user_email:                       "administrator@actwitty.com"
+
+  #Allowed to see internals
+  #Devloper:change this to reqd email
+  authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
+  authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
 
 test:
   <<: *default
