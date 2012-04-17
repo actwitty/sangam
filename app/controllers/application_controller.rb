@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
      #if Rails.env == "production"
        url = ""
        if user_signed_in?
-         if request.url !~ /^http:\/\//
-           redirect_to :protocol => 'http://'
-         end
+#         if request.url !~ /^http:\/\//
+#           redirect_to :protocol => 'http://'
+#         end
        else
          if request.url !~ /^https:\/\// or request.subdomain.blank?
            if request.subdomain.blank?
