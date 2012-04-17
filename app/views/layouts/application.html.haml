@@ -12,6 +12,8 @@
 
     -if @page_mode == "landing_page" or @page_mode == "authentications_page"  or @page_mode == "about_page"
       = include_stylesheets :landing_pages
+    -if @page_mode == "authentications_page"
+      %script{:src => "http://maps.google.com/maps/api/js?sensor=false&libraries=places", :type => "text/javascript"}
 
     -if @page_mode == "profile_show_page"
       = include_stylesheets :profile_page_commons
@@ -58,7 +60,6 @@
     /* This is an exclude condition. Mind it*/
     -if @page_mode != "authentications_page" 
       = include_javascripts :autocomplete
-    
       
     :javascript
       if ($.browser.msie && $.browser.version.substr(0,1)<9){

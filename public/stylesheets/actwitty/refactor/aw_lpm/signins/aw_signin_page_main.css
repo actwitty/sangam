@@ -23,11 +23,10 @@
   margin-top: 20px;
   border-radius: 5px;
   -moz-border-radius: 10px;
-  background-color: #fffff3;
   border: 1px solid #dddddd;
-  -moz-box-shadow: 0 0 3px #dddddd;
-  -webkit-box-shadow: 0 0 3px #dddddd;
-  box-shadow: 0 0 3px #dddddd; }
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333; }
 
 #awlpm_signin_aw_logo {
   margin-top: 15px;
