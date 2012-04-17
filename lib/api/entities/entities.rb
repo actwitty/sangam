@@ -49,7 +49,7 @@ module Api
         h = {:user_id => params[:user_id]}
         h[:source_name] = params[:enabled_services ] if !params[:enabled_services].blank?   #TODO not optimal at all as DB query
 
-        Hub.includes(:entity, :activity_word, :summary_id).where(h).all.each do |attr|
+        Hub.includes(:entity, :activity_word).where(h).all.each do |attr|
           word = attr.activity_word.word_name
 
           hash[word] = [] if hash[word].blank?
