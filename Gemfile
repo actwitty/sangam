@@ -104,7 +104,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'jquery-rails'
 
 #thin
-  gem 'thin'
+gem 'thin'
 
 
 group :development do
