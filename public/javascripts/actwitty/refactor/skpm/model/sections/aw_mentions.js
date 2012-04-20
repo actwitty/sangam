@@ -456,7 +456,8 @@ function aw_api_model_fetch_mentions(){
             type: 'GET',
             data: { 
                     user_id :  aw_js_global_visited_user_credentials.id,
-                    cache : aw_js_global_visited_user_credentials.cache_time                    
+                    cache : aw_js_global_visited_user_credentials.cache_time,
+                    a: 2
                   },
             dataType: 'json',
             contentType: 'application/json',
