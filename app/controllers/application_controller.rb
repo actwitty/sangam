@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
          puts "-------------- #{request.url} --------------"
 
          if request.url !~ /^http:\/\//
+
            redirect_to :protocol => 'http://'
          end
 
