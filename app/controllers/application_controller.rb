@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
      if Rails.env == "production" or Rails.env == "staging"
        url = ""
        if user_signed_in?
-         puts "-------------- #{request.url} --------------"
+         puts "-------------- #{request.url} #{current_user.inspect}--------------"
 
          if request.url !~ /^http:\/\//
 
