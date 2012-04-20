@@ -1,4 +1,5 @@
 # Enter your per-environment constants below
+
 development: &default
   url_description_length:               255
 
@@ -52,10 +53,10 @@ development: &default
 
 
   #Tag List
-  sanity_tags:                        "%w(b i u mention img name id a)"
+  sanity_tags:                        ['b', 'i' , 'u', 'mention', 'img' , 'name',  'id', 'a']
 
   #attributes List
-  sanity_attributes:                    "%w(href value class)"
+  sanity_attributes:                    ['href', 'value', 'class']
 
 
   #Cloud Keys
@@ -80,7 +81,7 @@ development: &default
   freebase_api_key:                   '"AIzaSyBCJSgSk04-G_OTwdm7n9SMJSx_-ceKh8U"'
 
   #User Types
-  #User Types
+   #User Types
   user_type_regular:                  0
   user_type_admin:                    1
   user_type_web_admin:                2
@@ -128,9 +129,9 @@ development: &default
   local_action_recommend:                   "recommend"
 
   #Social Fetch
-  maximum_time_diff_for_social_fetch:        64800 #in seconds    #18 hours
+  maximum_time_diff_for_social_fetch:        64800#in seconds    #18 hours
 
-  #status during social fetch pipeline
+   #status during social fetch pipeline
   data_sync_new:                            1   #can be deleted in this state
   data_sync_active:                         2
   data_sync_done:                           3   #can be deleted in this state
@@ -140,7 +141,10 @@ development: &default
   user_service_status_idle:                 "idle"
 
   alchemy_api_key:                      "8395fee07786621120e9dd84be8f14f1c30d1648"
-  opencalais_api_key:                  ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt', 'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3', 'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7', 'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
+  opencalais_api_key:                  ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt',
+                                        'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
+                                        'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
+                                        'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
 production:
   <<: *default
   #constant1:  "overriden value1"
@@ -167,8 +171,46 @@ production:
   authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
 
   alchemy_api_key:                      "3690ab39e581e48d6f48c000e3c3313f1e227e28"
-  opencalais_api_key:                  ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt', 'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3', 'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7', 'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
+  opencalais_api_key:                  ['beuhp9a7nay6nxdku7j7zcxy', 'swcm89qzyvuttcv6jeskv85q', 'vqda4dmky3mnt3ygjjqdbxpt',
+                                        'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
+                                        'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
+                                        'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
+
+   #Rank and Analytics
+  number_of_data_points:                    53 #max number of weeks in an year
+  analytics_default_number_of_week:         5
+  analytics_update_summaries:               "summaries"
+  analytics_update_user:                    "user"
+
+  #Social Fetch
+  max_import_first_time:                  200
+  max_import_every_time:                  20
+  first_time_feed_storage:                50#100
+  every_time_feed_storage:                50#20 #imports after first import is done
+
+  #text categorization
+  min_text_length_for_text_categorization:  140
+  max_text_length_for_text_categorization:  512
+  categorization_concurrency_limit:         15
+
+  #link resolution limit
+  link_resolution_batch_limit:              50
   #########################################################################
+staging:
+  <<: *default
+
+  facebook_app_id:                    '292732787407668'
+  facebook_secret_key:                '82e82066e5e569ef88d052d5eba51b0e'
+  twitter_consumer_key:               'aIJxWpkI3N3Zm3JZPqWVA'
+  twitter_consumer_secret:            'YhreSUMsZoLjdvUM9X4fFbsDlvGPM5uOWmUP9Nxvnbk'
+
+  #FOR PUBLIC SHOW
+  ghost_user_email:                       "administrator@actwitty.com"
+
+  #Allowed to see internals
+  #Devloper:change this to reqd email
+  authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
+  authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
 
 test:
   <<: *default

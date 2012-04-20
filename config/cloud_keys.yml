@@ -13,6 +13,14 @@ production:
   pusher_app_id: 8164
   pusher_key_id: 082b78af7b43fe2cecea
   pusher_secret_key: 02e84edceda36cc1bce6
+
+staging:
+  <<: *default
+
+  pusher_app_id: 8164
+  pusher_key_id: 082b78af7b43fe2cecea
+  pusher_secret_key: 02e84edceda36cc1bce6
+
 test:
   <<: *default
 

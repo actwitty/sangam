@@ -30,7 +30,7 @@ development:
   charset: unicode 
   pool: 5
   host: localhost 
-  port: 5432
+  port: 5433
 
 
 test: &test
@@ -52,7 +52,17 @@ production:
   charset: unicode
   pool: 5
   host: localhost 
-  port: 5432
+  port: 5433
+
+staging:
+  adapter: postgresql
+  database: sangam_production
+  username: sangam
+  password: 'lemon124'
+  charset: unicode
+  pool: 5
+  host: localhost
+  port: 5433
 
 cucumber:
   <<: *test

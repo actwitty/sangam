@@ -89,8 +89,8 @@ div.aw_home_top_nav h3 {
   height: auto;
   display: block;
   margin-bottom: 5px;
-  float: left;
-  width: 100%; }
+  width: 100%;
+  height: 200px; }
   .aw_home_info_box .aw_home_signup_free {
     width: 120px;
     display: inline-block;
@@ -144,14 +144,14 @@ div.aw_home_top_nav h3 {
   width: 960px;
   margin: 0px auto;
   display: block;
-  height: 50px;
-  padding-left: 120px; }
+  height: 50px; }
   .aw_home_horizontal_info_section .aw_pageshare {
     width: 540px;
     height: 40px;
     padding-left: 0px;
     display: inline-block;
-    float: left; }
+    float: left;
+    margin-left: 150px; }
     .aw_home_horizontal_info_section .aw_pageshare .sbutton {
       display: inline-block;
       margin-left: 0px; }
@@ -173,8 +173,7 @@ div.aw_home_top_nav h3 {
   padding-bottom: 8px;
   background-color: white;
   border-radius: 5px;
-  border: 1px dotted #cccccc;
-  float: left; }
+  border: 1px dotted #cccccc; }
   .aw_home_help_box .aw_home_help_header {
     height: 36px;
     font-size: 34px;
@@ -291,8 +290,8 @@ div.aw_home_top_nav h3 {
   padding-left: 0px;
   padding-bottom: 8px;
   background-color: white;
-  border-radius: 5px;
-  border: 1px dotted #cccccc; }
+  border: 1px solid #cccccc;
+  border-radius: 5px; }
   .aw_home_testimonial_box .aw_home_testimonial_box_header {
     height: 36px;
     font-size: 34px;
@@ -302,14 +301,15 @@ div.aw_home_top_nav h3 {
     padding-top: 20px;
     text-align: center; }
   .aw_home_testimonial_box .aw_home_testimonials_list {
-    text-align: center;
     width: 100%;
     display: block;
     margin-top: 20px; }
     .aw_home_testimonial_box .aw_home_testimonials_list .aw_home_single_testimonial_box {
-      width: 100px;
+      width: auto;
       height: 60px;
-      margin: 5px auto; }
+      margin: 0px auto;
+      float: left;
+      margin-left: 195px; }
       .aw_home_testimonial_box .aw_home_testimonials_list .aw_home_single_testimonial_box a img {
         border: 1px solid #cccccc;
         padding: 5px;
