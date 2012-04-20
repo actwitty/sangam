@@ -120,7 +120,7 @@ places:
   name: places, travel and events 
   personalize: tourist
   sentence: tourism, places, travel, events, adventures
-  end_sentence: tourism, places, travel, events, adventures  
+  end_sentence: tourism, places, travel, events, adventures
 home:
   type: /home
   channel: home

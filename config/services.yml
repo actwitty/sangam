@@ -28,7 +28,7 @@ services:
     name: Youtube
     description: Video sharing platform
     active_icon: youtube_active.png
-    inactive_icon: youtube_inactive.png  
+    inactive_icon: youtube_inactive.png
     enabled: false
   github:
     name: Github 
@@ -46,17 +46,17 @@ services:
     name: FoodSpotting
     description: Foodie platform
     active_icon: foodspotting_inactive.png
-    inactive_icon: foodspotting_inactive.png    
+    inactive_icon: foodspotting_inactive.png
     enabled: false
   posterous:
     name: Posterous
     description: Blogging Platform
     active_icon: posterous_inactive.png
-    inactive_icon: posterous_inactive.png      
+    inactive_icon: posterous_inactive.png
     enabled: false
   stackoverflow:
     name: StackOverflow 
     description: Technical discussion forum
     active_icon: stackoverflow_inactive.png
-    inactive_icon: stackoverflow_inactive.png      
+    inactive_icon: stackoverflow_inactive.png
     enabled: false
