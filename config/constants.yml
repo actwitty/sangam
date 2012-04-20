@@ -175,6 +175,26 @@ production:
                                         'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
                                         'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
                                         'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
+
+   #Rank and Analytics
+  number_of_data_points:                    53 #max number of weeks in an year
+  analytics_default_number_of_week:         5
+  analytics_update_summaries:               "summaries"
+  analytics_update_user:                    "user"
+
+  #Social Fetch
+  max_import_first_time:                  200
+  max_import_every_time:                  20
+  first_time_feed_storage:                50#100
+  every_time_feed_storage:                50#20 #imports after first import is done
+
+  #text categorization
+  min_text_length_for_text_categorization:  140
+  max_text_length_for_text_categorization:  512
+  categorization_concurrency_limit:         15
+
+  #link resolution limit
+  link_resolution_batch_limit:              50
   #########################################################################
 staging:
   <<: *default

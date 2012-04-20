@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   APP_DOMAIN = 'actwitty.com'
   def ensure_domain
-     if Rails.env == "production"
+     if Rails.env == "production" or Rails.env == "staging"
        url = ""
        if user_signed_in?
          puts "-------------- #{request.url} --------------"
