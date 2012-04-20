@@ -53,7 +53,7 @@ development: &default
 
 
   #Tag List
-  sanity_tags:                        ['b', 'i' , 'u' 'mention', 'img' , 'name',  'id', 'a']
+  sanity_tags:                        ['b', 'i' , 'u', 'mention', 'img' , 'name',  'id', 'a']
 
   #attributes List
   sanity_attributes:                    ['href', 'value', 'class']
