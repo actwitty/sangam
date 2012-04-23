@@ -1,0 +1,61 @@
+:javascript
+  var actgreen_list = #{@actgreen_list.to_json};
+
+
+#aw_actgreen_main_header
+  %a{:href=>"http://www.actwitty.com"}
+    %img{:src => "/images/actwitty/refactor/aw_lpm/act_green/actgreen.jpg"}/
+    %img.actgreen_actwitty_logo{:src => "/images/actwitty/refactor/aw_lpm/act_green/aw_main_header.png"}/
+    %span.actgreen_b ACT
+    %span.actgreen_g GREEN
+
+#aw_actgreen_main_subheader
+  %h4 Actwitty is taking an initiative ActGreen.We welcome you to mark your wish for a tree in your neighbourhood or your checkin locations and share it to your social world. Actwitty, on its own, will plant a tree in Bangalore region for every hundredth profile added to the system till we reach 25,000 profiles.
+
+#aw_actgreen_main_box
+  #aw_actgreen_fields
+    = simple_form_for(@actgreen,:as=>:actgreen, :url => actgreen_new_path, :remote => true, :html => { :class=>"well form-horizontal" }) do |f|
+      %fieldset
+        %legend Act Green : Mark a tree
+        .control-group
+          %label.control-label{:for => "aw_actgreen_name"} Name
+          .controls
+            = f.input :name ,
+                      :label => false,
+                      :input_html => { :id=>'aw_actgreen_name', :class=>'input-xlarge', :placeholder => "Name ....", :type => "text" }
+        .control-group
+          %label.control-label{:for => "aw_actgreen_email"} Email
+          .controls
+            = f.input :email ,
+                      :label => false,
+                      :input_html => { :id=>'aw_actgreen_email', :class=>'input-xlarge', :placeholder => "Email ....", :type => "text" }
+            %p#aw_actgreen_email_err.help-block We need your email please!!  
+            %p#aw_actgreen_email_valid_err.help-block Valid email please!!  
+            %p.help-block We will let you know once the tree is planted!!
+        .control-group
+          %label.control-label{:for => "aw_actgreen_location_input"} Location
+          .controls
+            = f.input :location ,
+                      :label => false,
+                      :input_html => { :id=>'aw_actgreen_location_input', :class=>'input-xlarge',:placeholder => "Search for location...", :type => "text" }
+            %p#aw_actgreen_location_err.help-block We need the location please!!
+            %p.help-block You can also pick the location from clicking on the map.
+            = f.input :latitude , 
+                      :label => false,
+                      :input_html => { :id=>'aw_actgreen_location_lat_input', :type => 'hidden' }
+
+            = f.input :longitude , 
+                      :label => false,
+                      :input_html => { :id=>'aw_actgreen_location_long_input', :type => 'hidden'} 
+        .control-group
+          %label.control-label{:for => "actgreen_thoughts"} ActGreen Thoughts
+          .controls
+            = f.input :comment ,
+                      :label => false,
+                      :input_html => { :id=>'actgreen_thoughts', :class=>'input-xlarge', :placeholder => "Your Thoughts ....", :type => "text" }
+            %p.help-block Share your ActGreen thoughts with us.
+        .form-actions
+          = f.submit "ActGreen, mark a tree...", :type => "submit",:class=>"btn btn-success", :id=>"aw_actgreen_submit"
+        %p#actgreen_data_save_report.help-block Your wish for tree has been marked.
+        %p#actgreen_data_save_report_err.help-block OOPS!! There seems to be some error, kindly try after some time   
+  #aw_actgreen_map_canvas

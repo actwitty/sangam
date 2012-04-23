@@ -1,0 +1,62 @@
+#aw_actgreen_main_header {
+  width: 700px;
+  height: 160px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 5px; }
+
+#aw_actgreen_main_header a {
+  text-decoration: none;
+  position: relative; }
+
+#aw_actgreen_main_header img {
+  vertical-align: middle; }
+
+.actgreen_actwitty_logo {
+  position: absolute;
+  top: 40px;
+  left: 600px; }
+
+#aw_actgreen_main_header span {
+  font-size: 80px;
+  font-weight: bold;
+  margin-left: 10px;
+  vertical-align: middle; }
+
+.actgreen_b {
+  color: #29b50a; }
+
+.actgreen_g {
+  color: #b64d09; }
+
+#aw_actgreen_main_subheader {
+  width: 800px;
+  height: 50px;
+  text-align: center;
+  margin: 0 auto; }
+
+#aw_actgreen_map_canvas {
+  height: 480px;
+  width: 450px;
+  margin-top: 0.6em;
+  float: left;
+  margin-left: 10px; }
+
+#aw_actgreen_main_box {
+  width: 990px;
+  height: 700px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 5px; }
+
+#aw_actgreen_fields {
+  width: 500px;
+  float: left; }
+
+#aw_actgreen_email_err, #aw_actgreen_location_err, #aw_actgreen_email_valid_err {
+  color: red; }
+
+#actgreen_data_save_report {
+  color: blue;
+  font-size: 14px;
+  text-align: center; }

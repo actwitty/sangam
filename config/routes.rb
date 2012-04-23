@@ -4,7 +4,10 @@ Sangam::Application.routes.draw do
   #get "home/alpha"
   get '/users/sign_in', :to => 'welcome#new'
   get '/users/sign_up', :to => 'welcome#new'
-  
+ 
+  get   '/actgreen', :to => 'actgreen#show'
+  match '/actgreen/new', :to => 'actgreen#new'
+
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
                                       :sessions => "users/sessions",
