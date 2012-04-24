@@ -29,9 +29,15 @@ function aw_actgreen_setMarkersOnMap(map,locations)
     marker.setIcon(image);
     marker.setPosition(myLatLng);
     
+
+    if (place["name"] != "")
+      var user_detail = place["name"];
+    else
+      var user_detail = "Unknown";
+    
     // add an event listener for this marker
     var html_content = '<div><img src="/images/actwitty/refactor/aw_lpm/act_green/tree.png"><strong style="color:#8B5A2B;"> ' + 
-                         place["email"] + ' </strong> has marked a wish for a tree at <strong style="color:#008B45;">' + place["location"] + '</strong><br/>'+
+                         user_detail + ' </strong> has marked a wish for a tree at <strong style="color:#008B45;">' + place["location"] + '</strong><br/>'+
                          place["comment"]; 
     bindInfoWindow(marker, map, infowindow, html_content);
     
