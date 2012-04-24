@@ -6,6 +6,7 @@ sports:
   personalize: sporty
   sentence: things on sports
   end_sentence: and things on sports
+  fb_timeline: shares about sports
 automobiles:
   type: /automobiles
   channel: automobiles
@@ -14,6 +15,7 @@ automobiles:
   personalize: roadie
   sentence: roads, automobiles, cars
   end_sentence: roads, automobiles and cars
+  fb_timeline: shares about automobiles
 entertainment:
   type: /entertainment
   channel: entertainment
@@ -22,6 +24,7 @@ entertainment:
   personalize: entertainer
   sentence: music, movies, entertainment
   end_sentence: music, movies and entertainment
+  fb_timeline: shares about entertainment
 games:
   type: /games
   channel: games
@@ -30,6 +33,7 @@ games:
   personalize: gamer
   sentence: fun, games
   end_sentence: fun and games
+  fb_timeline: shares about fun and games
 leisure:
   type: /leisure
   channel: leisure
@@ -38,6 +42,7 @@ leisure:
   personalize: fashionista 
   sentence: leisure, recreation, fashion
   end_sentence: leisure, recreation and fashion
+  fb_timeline: shares about leisure recreation and fashions
 nonprofit:
   type: /nonprofit
   channel: nonprofit
@@ -46,6 +51,7 @@ nonprofit:
   personalize: philanthropist
   sentence: philanthropy, not-for-profits
   end_sentence: philanthropy and not-for-profits
+  fb_timeline: shares about nonprofits
 stories:
   type: /stories
   channel: stories
@@ -53,6 +59,7 @@ stories:
   name: stories
   sentence: general things with friends
   end_sentence: and general things with friends
+  fb_timeline: shares in general things
 technology:
   type: /technology
   channel: technology
@@ -60,6 +67,7 @@ technology:
   name: technology
   sentence: science, gadgets, technology
   end_sentence: science, gadgets and technology
+  fb_timeline: shares about technologies
 world:
   type: /world
   channel: world
@@ -68,6 +76,7 @@ world:
   personalize: social
   sentence: topics on society, religion, environment, law, crime and politics
   end_sentence: topics on society, religion, environment, law, crime and politics
+  fb_timeline: shares in world
 
 animals:
   type: /animals
@@ -76,6 +85,7 @@ animals:
   name: pets and animals
   sentence: things about animals, plants and wildlife
   end_sentence: things about animals, plants and wildlife
+  fb_timeline: shares about animals
 business:
   type: /business
   channel: business
@@ -83,6 +93,7 @@ business:
   name: business
   sentence: market, business, entreprenuership 
   end_sentence: market, business and entreprenuership
+  fb_timeline: shares about business
 health:
   type: /health
   channel: health
@@ -90,6 +101,7 @@ health:
   name: health, medical and phrama
   sentence: fitness, health, medicines, pharmaceuticals
   end_sentence: fitness, health, medicines and pharmaceuticals
+  fb_timeline: shares about health
 food:
   type: /food
   channel: food
@@ -97,6 +109,7 @@ food:
   name: food and drink
   sentence: recipes, restaurants, food, drink
   end_sentence: recipes, restaurants, food and drink
+  fb_timeline: shares about food
 books:
   type: /books
   channel: books
@@ -105,6 +118,7 @@ books:
   personalize: reader
   sentence: articles, books, reading material
   end_sentence: articles, books and reading material
+  fb_timeline: shares about reads
 arts:
   type: /arts
   channel: arts
@@ -113,6 +127,7 @@ arts:
   personalize: artist
   sentence: aesthetics, art, design
   sentence: aesthetics, art and design
+  fb_timeline: shares about arts
 places:
   type: /places
   channel: places
@@ -121,6 +136,7 @@ places:
   personalize: tourist
   sentence: tourism, places, travel, events, adventures
   end_sentence: tourism, places, travel, events, adventures
+  fb_timeline: shares about places
 home:
   type: /home
   channel: home
@@ -129,6 +145,7 @@ home:
   personalize: family person
   sentence: family, managing home, furnishings, home decor
   end_sentence: family, managing home, furnishings and home decor
+  fb_timeline: shares about home
 education:
   type: /eductaion
   channel: education
@@ -137,6 +154,7 @@ education:
   personalize: teacher
   sentence: literacy, education, schools, colleges
   end_sentence: literacy, education, schools and colleges
+  fb_timeline: shares about education
 hobbies:
   type: /hobbies
   channel: hobbies
@@ -145,6 +163,7 @@ hobbies:
   personalize: hobbyist
   sentence: hobbies, personal interests, amateurism
   end_sentence: hobbies, personal interests and amateurism
+  fb_timeline: shares about hobbies
 products:
   type: /products
   channel: products
@@ -153,3 +172,4 @@ products:
   personalize: shopaholic
   sentence: brands, products, shopping or marketting
   end_sentence: brands, products and shopping or marketting
+  fb_timeline: shares about products

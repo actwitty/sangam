@@ -10,6 +10,7 @@ require 'helpers/format_object/format_object'
 require 'helpers/format_object/format_analytics/analytics'
 
 require 'helpers/parser/parser'
+require "social_shares/fb_timeline"
 
 
 if Rails.env != "production"
@@ -833,5 +834,13 @@ module Api
 
         Rails.logger.info("[LIB] [API] [create_activity] leaving ")
         a
+      end
+
+      ######################
+      #
+      #
+      def fb_write_to_timeline(params={})
+         params[:user_id] = self.id
+         ::Api::FBTimeline.fb_write_to_timeline(params)         
       end
 end
