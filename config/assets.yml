@@ -16,6 +16,9 @@ javascripts:
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
+  actgreen:
+      # KEPT IT AS SEPARATE FOR EASY REMOVAL OF CAMPAIGN
+    - public/javascripts/actwitty/refactor/lpm/act_green/aw_actgreen.js
   profile_commons:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
@@ -101,6 +104,9 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
     - public/stylesheets/actwitty/refactor/aw_common/bootstrap/bootstrap.css
+  actgreen:
+    - public/stylesheets/actwitty/refactor/aw_lpm/act_green/aw_actgreen.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/act_green/bootstrap_actgreen.css
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
