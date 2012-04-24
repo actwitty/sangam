@@ -248,30 +248,69 @@ div.aw_home_top_nav h3 {
       text-align: center;
       text-decoration: none; }
 
-#aw_home_footer {
+#aw_home_main_footer {
   width: 100%;
-  height: 40px;
-  float: right;
+  height: 100px;
+  display: block;
   background-color: #777777; }
-
-#aw_home_follow_us {
-  width: 950px;
-  margin: 0px auto;
-  height: 25px;
-  margin-top: 5px; }
-  #aw_home_follow_us a {
-    text-decoration: none; }
-  #aw_home_follow_us span {
-    float: right;
-    font-size: 12px;
-    font-weight: bold;
-    color: white;
-    margin-top: 4px; }
-  #aw_home_follow_us img {
-    float: right;
-    vertical-align: middle;
-    margin-left: 3px;
-    padding: 0; }
+  #aw_home_main_footer #aw_home_footer {
+    width: 950px;
+    display: block;
+    margin: 0px auto; }
+    #aw_home_main_footer #aw_home_footer #aw_home_about_us {
+      display: inline-block;
+      margin-left: 5px;
+      margin-right: 10px;
+      height: 25px;
+      margin-top: 5px;
+      float: left; }
+      #aw_home_main_footer #aw_home_footer #aw_home_about_us a {
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        margin-top: 4px; }
+    #aw_home_main_footer #aw_home_footer #aw_home_act_green {
+      display: inline-block;
+      margin-left: 5px;
+      margin-right: 10px;
+      height: 25px;
+      margin-top: 2px;
+      float: left; }
+      #aw_home_main_footer #aw_home_footer #aw_home_act_green a {
+        text-decoration: none; }
+        #aw_home_main_footer #aw_home_footer #aw_home_act_green a img {
+          vertical-align: middle;
+          margin-left: 3px;
+          margin-top: -4px;
+          padding: 0; }
+        #aw_home_main_footer #aw_home_footer #aw_home_act_green a span {
+          font-size: 12px;
+          font-weight: bold;
+          color: white; }
+    #aw_home_main_footer #aw_home_footer #aw_home_follow_us {
+      display: inline-block;
+      margin-right: 20px;
+      height: 25px;
+      margin-top: 5px;
+      float: right; }
+      #aw_home_main_footer #aw_home_footer #aw_home_follow_us a {
+        text-decoration: none; }
+        #aw_home_main_footer #aw_home_footer #aw_home_follow_us a img {
+          float: right;
+          vertical-align: middle;
+          margin-left: 3px;
+          padding: 0; }
+        #aw_home_main_footer #aw_home_footer #aw_home_follow_us a span {
+          font-size: 12px;
+          font-weight: bold;
+          color: white; }
+      #aw_home_main_footer #aw_home_footer #aw_home_follow_us span {
+        float: right;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        margin-top: 4px; }
 
 .aw_home_about_full_width_box {
   width: 600px;
@@ -315,7 +354,7 @@ div.aw_home_top_nav h3 {
       height: 60px;
       margin: 0px auto;
       float: left;
-      margin-left: 195px; }
+      margin-left: 100px; }
       .aw_home_testimonial_box .aw_home_testimonials_list .aw_home_single_testimonial_box a img {
         border: 1px solid #cccccc;
         padding: 5px;
@@ -325,7 +364,7 @@ div.aw_home_top_nav h3 {
 
 #aw_home_about_box {
   width: 100%;
-  height: 300px;
+  height: 350px;
   display: block; }
   #aw_home_about_box .aw_home_about_vertical_box {
     width: 37%;
@@ -361,23 +400,22 @@ div.aw_home_top_nav h3 {
             margin: 0px; }
 
 #aw_home_about_place {
-  width: 960px;
+  display: block;
   height: auto;
   margin: 0 auto;
   margin-top: 0px; }
-
-#aw_home_about_incubation_box {
-  width: 100%;
-  height: 30px;
-  border: 0px solid blue;
-  position: relative;
-  float: right;
-  display: block; }
-  #aw_home_about_incubation_box #aw_home_about_incubation_label {
-    font-size: 20px;
-    line-height: 24px;
-    font-family: "RobotoRegular";
-    color: #333333;
-    float: right; }
-  #aw_home_about_incubation_box img {
-    float: right; }
+  #aw_home_about_place #aw_home_about_incubation_box {
+    width: 100%;
+    height: 30px;
+    border: 0px solid blue;
+    position: relative;
+    float: right;
+    display: block; }
+    #aw_home_about_place #aw_home_about_incubation_box #aw_home_about_incubation_label {
+      font-size: 20px;
+      line-height: 24px;
+      font-family: "RobotoRegular";
+      color: #333333;
+      float: right; }
+    #aw_home_about_place #aw_home_about_incubation_box img {
+      float: right; }
