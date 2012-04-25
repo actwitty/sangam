@@ -15,7 +15,7 @@ class ForeignProfile < ActiveRecord::Base
     self.name = foreign_data["name"]
     self.first_name = foreign_data["first_name"]
     self.last_name = foreign_data["last_name"]
-    self.image = "http://graph.facebook.com/#{foreign_data["id"]}/picture?type=square"
+    self.image = "http://graph.facebook.com/#{foreign_data["id"]}/picture?type=large"
     self.url = foreign_data["link"]
     self.gender = foreign_data["gender"]
     self.email = foreign_data["email"]
@@ -57,9 +57,9 @@ class ForeignProfile < ActiveRecord::Base
     end
     Rails.logger.info("[MODEL][import_twitter] #{foreign_data}")
     self.name = foreign_data["name"]
-    self.image = foreign_data["profile_image_url"]
-    self.location = foreign_data["location"]
     self.screen_name = foreign_data["screen_name"]
+    self.image = "https://api.twitter.com/1/users/profile_image?screen_name=#{self.screen_name}&size=bigger"
+    self.location = foreign_data["location"]
     self.locale = foreign_data["lang"]
     self.url = foreign_data["url"]
     Rails.logger.info("[MODEL][import_twitter] Just before Save")

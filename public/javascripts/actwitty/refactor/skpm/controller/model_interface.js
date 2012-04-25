@@ -165,3 +165,12 @@ function aw_controller_api_modify_twitter_url(url){
   aw_api_view_services_modify_twitter_url(url);
   
 }
+/*********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_controller_apply_profile_pic_patch(service, url){
+  aw_api_view_change_profile_pic(service, url);
+}
+

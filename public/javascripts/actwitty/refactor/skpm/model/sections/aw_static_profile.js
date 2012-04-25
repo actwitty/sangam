@@ -135,3 +135,14 @@ function aw_api_model_static_profile_trigger_fetch(){
 function  aw_api_model_static_profile_apply_description(description){
   aw_local_static_profile_data_json.description =  description; 
 }
+
+
+/*************************************************/
+/*
+ * 
+ *
+ */
+function aw_api_model_static_profile_patch_profile_pic_cb(service, url){
+  aw_api_controller_apply_profile_pic_patch(service, url);
+}
+

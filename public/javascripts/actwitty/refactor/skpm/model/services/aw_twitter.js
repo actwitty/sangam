@@ -58,6 +58,7 @@ function aw_twitter_cb_static_profile(data){
 
     if( data.screen_name ){
       var url = "https://twitter.com/#!/" + data.screen_name;
+      aw_api_handle_twitter_profile_pic(data.screen_name);
       aw_model_api_notify_url_twitter(url);
     }
     aw_local_twitter_request_url_base.static_profile.notification_cb('twitter', profile_json, 1);
@@ -593,4 +594,14 @@ function aw_api_model_twitter_translate_post_to_aw_post(data){
   }
   return aw_post_json;
 
+}
+
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_handle_twitter_profile_pic(screen_name){
+  var url = 'https://api.twitter.com/1/users/profile_image?screen_name=' + screen_name + '&size=bigger';
+  aw_api_model_static_profile_patch_profile_pic_cb('twitter', url);
 }
