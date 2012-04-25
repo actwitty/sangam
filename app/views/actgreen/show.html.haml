@@ -10,7 +10,7 @@
     %span.actgreen_g GREEN
 
 #aw_actgreen_main_subheader
-  %h4 We intend to make ourselves environment friendly by planting a tree every 100th signup, to compensate for servers being run to serve Actwitty users. You can wish a tree at your geo location and we will try to get that planted.
+  %h4 We intend to make ourselves environment friendly by planting a tree every 100th signup, to compensate for servers being run to serve Actwitty users. You can engage by wishing a tree at your geo location. We will try to get that planted starting from Bangalore. 
 #aw_actgreen_main_box
   #aw_actgreen_fields
     = simple_form_for(@actgreen,:as=>:actgreen, :url => actgreen_new_path, :remote => true, :html => { :class=>"well form-horizontal" }) do |f|
@@ -21,13 +21,13 @@
           .controls
             = f.input :name ,
                       :label => false,
-                      :input_html => { :id=>'aw_actgreen_name', :class=>'input-xlarge', :placeholder => "Name ....", :type => "text" }
+                      :input_html => { :id=>'aw_actgreen_name', :class=>'input-xlarge', :placeholder => "Name ....", :type => "text", :height=>"28px" }
         .control-group
           %label.control-label{:for => "aw_actgreen_email"} Email
           .controls
             = f.input :email ,
                       :label => false,
-                      :input_html => { :id=>'aw_actgreen_email', :class=>'input-xlarge', :placeholder => "Email ....", :type => "text" }
+                      :input_html => { :id=>'aw_actgreen_email', :class=>'input-xlarge', :placeholder => "Email ....", :type => "text", :height=>"28px" }
             %p#aw_actgreen_email_err.help-block We need your email please!!  
             %p#aw_actgreen_email_valid_err.help-block Valid email please!!  
             %p.help-block We will let you know once the tree is planted!!
@@ -36,7 +36,7 @@
           .controls
             = f.input :location ,
                       :label => false,
-                      :input_html => { :id=>'aw_actgreen_location_input', :class=>'input-xlarge',:placeholder => "Search for location...", :type => "text" }
+                      :input_html => { :id=>'aw_actgreen_location_input', :class=>'input-xlarge',:placeholder => "Search for location...", :type => "text", :height=>"28px" }
             %p#aw_actgreen_location_err.help-block We need the location please!!
             %p.help-block You can also pick the location from clicking on the map.
             = f.input :latitude , 
@@ -51,7 +51,7 @@
           .controls
             = f.input :comment ,
                       :label => false,
-                      :input_html => { :id=>'actgreen_thoughts', :class=>'input-xlarge', :placeholder => "Your Thoughts ....", :type => "text" }
+                      :input_html => { :id=>'actgreen_thoughts', :class=>'input-xlarge', :placeholder => "Your Thoughts ....", :type => "text", :height=>"28px" }
             %p.help-block Share your ActGreen thoughts with us.
         .form-actions
           = f.submit "ActGreen, mark a tree...", :type => "submit",:class=>"btn btn-success", :id=>"aw_actgreen_submit"

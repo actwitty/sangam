@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(:version => 20120423171243) do
 
   create_table "actgreens", :force => true do |t|
-    t.text     "name"
-    t.text     "email"
-    t.text     "location"
-    t.text     "latitude"
-    t.text     "longitude"
-    t.text     "comment"
+    t.string   "name"
+    t.string   "email"
+    t.string   "location"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
