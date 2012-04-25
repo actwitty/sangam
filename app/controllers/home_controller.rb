@@ -23,7 +23,8 @@ class HomeController < ApplicationController
                          :get_sketch_data_status,
                          :thanks,
                          :waiting,
-                         :search_user]
+                         :search_user,
+                         :create_crawled_user]
 
   #TODO NEED FIX.. TEMPORARY                                
   #before_filter :redirect_back_to
@@ -508,7 +509,7 @@ class HomeController < ApplicationController
   ##################################################################
   def get_entities
     Rails.logger.info("[CNTRL] [HOME] [GET_ENTITIES] Params:#{params}")
-    unless params[:user_id].nil?
+    if params[:user_id].nil?
        
       query={}
       query[:user_id] = Integer(params[:user_id])
@@ -613,33 +614,17 @@ class HomeController < ApplicationController
   ###################################################################
   def create_crawled_user
     Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
-    unless  params[:user_id].nil?
-      query= {}
-      query[:provider] = params[:provider]
-      query[:uid] = params[:uid]
-      query[:full_name] = params[:uid]
-      query[:photo] = params[:photo]
-      query[:location] = params[:location]
-      query[:username] = params[:username]
-      query[:auth_key] = params[:auth_key]
 
-      Rails.logger.info("[CNTRL] [HOME]  [CREATE_CRAWLED_USER] Calling Model:#{query}")
+    response_json = current_user.create_crawled_user(params)
 
-      response_json = current_user.create_crawled_user(query)
+    Rails.logger.debug("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Model Response:#{response_json}")
+    if request.post?
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
+      render :json => {:response => true}, :status => 200
 
-      Rails.logger.debug("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Model Response:#{response_json}")
-      if request.xhr?
-        expires_in 10.minutes
-        Rails.logger.debug("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
-        render :json => response_json
-        return
-      end
     else
-      if request.xhr?
-        expires_in 10.minutes
-        Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] [REJECTED] Params:#{params}")
-        render :json => {}, :status => 400
-      end
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] [REJECTED] Params:#{params}")
+      render :json => {}, :status => 400
     end
   end
   

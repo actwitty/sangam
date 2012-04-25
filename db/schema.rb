@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423175123) do
+ActiveRecord::Schema.define(:version => 20120423171243) do
 
   create_table "actgreens", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "location"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.string   "comment"
+    t.text     "name"
+    t.text     "email"
+    t.text     "location"
+    t.text     "latitude"
+    t.text     "longitude"
+    t.text     "comment"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -225,10 +225,10 @@ ActiveRecord::Schema.define(:version => 20120423175123) do
   create_table "local_actions", :force => true do |t|
     t.integer  "author_id"
     t.integer  "summary_id"
-    t.text     "meta",       :default => "--- {}\n"
+    t.text     "meta",       :default => "--- {}\n\n"
     t.text     "name"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   add_index "local_actions", ["author_id"], :name => "index_local_actions_on_author_id"
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20120423175123) do
     t.integer  "activity_id"
     t.text     "source_name"
     t.text     "source_msg_id"
-    t.text     "meta",              :default => "--- {}\n"
+    t.text     "meta",              :default => "--- {}\n\n"
     t.text     "name"
     t.integer  "count"
     t.datetime "source_created_at", :default => '1970-01-01 00:00:00'

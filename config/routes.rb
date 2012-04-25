@@ -8,6 +8,8 @@ Sangam::Application.routes.draw do
   get   '/actgreen', :to => 'actgreen#show'
   match '/actgreen/new', :to => 'actgreen#new'
 
+
+
  # devise_for :users
   devise_for :users, :controllers => {:registrations => "users/registrations",
                                       :sessions => "users/sessions",
@@ -35,6 +37,8 @@ Sangam::Application.routes.draw do
   constraints(Subdomain) do
     match '/' => 'home#show'
   end
+
+  post "/crawled_user"  =>  "home#create_crawled_user"
 
   match '/show' => 'home#show'
   match '/thanks' => 'home#thanks'

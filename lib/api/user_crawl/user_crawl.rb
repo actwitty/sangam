@@ -11,6 +11,7 @@ module Api
       #  :location => "Bangalore" [OPTIONAL]
       #  :username => "mashable" [OPTIONAL]
       #  :gender => "male" [OPTIONAL]
+      #  :email => pete@gmail.com
       #}
 
       def create_user(params)
@@ -26,6 +27,7 @@ module Api
         end
 
         full_name = params[:full_name]
+        s = nil
 
         a = Authentication.where({:uid => params[:uid], :provider => params[:provider]}).first
 
@@ -36,7 +38,7 @@ module Api
         end
 
         if params[:username].blank?
-          t = Time.now
+          s = Time.now.strftime("%Y%m%d%H%M%S")
           params[:username]=t.strftime("%Y%m%d%H%M%S")   #=> "Printed on 11/19/2007"
         end
 
@@ -45,12 +47,17 @@ module Api
         end
 
         if params[:gender].blank?
-          params[:gender]= "other"
+          params[:gender]= "male"
         end
 
-        user =  User.new(:username => s,
+        if params[:email].blank?
+          s = Time.now.strftime("%Y%m%d%H%M%S") if s.blank?
+          params[:email]= "#{s}@actwitty.com"
+        end
+
+        user =  User.new(:username => params[:username],
                                :full_name => full_name,
-                               :email => "crawler@actwitty.com",
+                               :email => params[:email],
                                :password => "XJksaU72134kLS",
                                :password_confirmation => "XJksaU72134kLS",
                                :gender => params[:gender],
