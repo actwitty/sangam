@@ -36,9 +36,11 @@ function aw_actgreen_setMarkersOnMap(map,locations)
       var user_detail = "Unknown";
     
     // add an event listener for this marker
-    var html_content = '<div><img src="/images/actwitty/refactor/aw_lpm/act_green/tree.png"><strong style="color:#8B5A2B;"> ' + 
+    var html_content = '<div style=" margin-top: 35px; padding: 4px;"><img src="/images/actwitty/refactor/aw_lpm/act_green/tree.png"><strong style="color:#8B5A2B;"> ' + 
                          user_detail + ' </strong> has marked a wish for a tree at <strong style="color:#008B45;">' + place["location"] + '</strong><br/>'+
-                         place["comment"]; 
+                         place["comment"] +
+                         '<br/><a href="https://www.actwitty.com" style="position: absolute; top: 0; left: 0;"><img src="/images/actwitty/refactor/aw_lpm/act_green/actgreen_map_info.png"></a>'+
+                         '</div>'; 
     bindInfoWindow(marker, map, infowindow, html_content);
     
 
@@ -50,15 +52,14 @@ function aw_actgreen_setMarkersOnMap(map,locations)
 function aw_actgreen_map_initialize() {
   var geocoder;
   var tree_image = '/images/actwitty/refactor/aw_lpm/act_green/tree.png';
-
+  
 
   var mapOptions = {
-    center: new google.maps.LatLng(12.9715987, 77.59456269999998),
+    center: new google.maps.LatLng(current_lat, current_lng),
     zoom: 13,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  var map = new google.maps.Map(document.getElementById('aw_actgreen_map_canvas'),
-    mapOptions);
+  map = new google.maps.Map(document.getElementById('aw_actgreen_map_canvas'), mapOptions);
 
   var input = document.getElementById('aw_actgreen_location_input');
   var autocomplete = new google.maps.places.Autocomplete(input);
@@ -125,7 +126,7 @@ function aw_actgreen_map_initialize() {
                   place.address_components[2].short_name || '')
                 ].join(' ');
     }
-    infowindow.setContent('<div><img src="/images/actwitty/refactor/aw_lpm/act_green/tree.png"><strong>' + place.name + '</strong><br>' + address);
+    infowindow.setContent('<div style=" margin-top: 35px; padding: 4px;"><img src="/images/actwitty/refactor/aw_lpm/act_green/tree.png"><strong>' + place.name + '</strong><br/>' + address + '<br/><a href="https://www.actwitty.com" style="position: absolute; top: 0; left: 0;"><img src="/images/actwitty/refactor/aw_lpm/act_green/actgreen_map_info.png"></a></div>');
     infowindow.open(map, marker);
     $("#aw_actgreen_location_input").val(place.name);
     $("#aw_actgreen_location_lat_input").val( map.getCenter().lat() );
@@ -168,11 +169,41 @@ function aw_actgreen_fields_initialize()
 }
 
 
+var current_lat =  12.894854;
+var current_lng =  77.602773;
+var map;
+function html5_geolocation_success(position)
+{
+  current_lat = position.coords.latitude;
+  current_lng = position.coords.longitude;
+  map.setCenter(new google.maps.LatLng(current_lat,current_lng));
+  
+}
+
+
+function html5_geolocation_error(msg)
+{
+  // if geolocation not active, default to bangalore location
+  current_lat = 23.165585998588607;
+  current_lng = 79.94302990000006;
+}
+
+
 $(document).ready(function() {
 
   $("#actgreen_data_save_report").hide();
   $("#actgreen_data_save_report_err").hide();
   aw_actgreen_fields_initialize();
+
+  
+  // check for geolocation values
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(html5_geolocation_success, html5_geolocation_error);
+  } else {
+    error('not supported'); 
+  }
+  
+  
   aw_actgreen_map_initialize();
 
   $("#aw_actgreen_submit").live('click',function(){
