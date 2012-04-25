@@ -23,7 +23,7 @@ function aw_api_view_service_list_render(data){
     }
     
     html = html + '<div class="aw_dyn_service_image_box" >' +
-                    '<a href=' + service_details.url + ' ' + target_blank  +' >' +
+                    '<a id="aw_service_url_' + service_details.name + '" href=' + service_details.url + ' ' + target_blank  +' >' +
                       '<img class="aw_dyn_service_img_small" src="' + service_details.icon + '" width=40px height=40px  />' + 
                       '<img class="aw_dyn_service_img_large" src="' + service_details.icon + '" width=44px height=44px  rel="twipsy" data-original-title="' + twipsy_string + '"/>' + 
                     '</a>' +
@@ -34,4 +34,13 @@ function aw_api_view_service_list_render(data){
     $("#aw_js_services_list_box").html(html);
     $("#aw_js_services_main_container").show();
   }
+}
+
+/********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_services_modify_twitter_url(url){
+  $('#aw_service_url_Twitter').attr("href", url);
 }

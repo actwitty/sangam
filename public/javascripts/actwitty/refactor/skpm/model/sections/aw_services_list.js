@@ -39,3 +39,12 @@ function aw_api_model_service_list_initialize(){
 
   aw_api_controller_render_services_list(view_json);
 }
+
+/**********************************************************************/
+/*
+ *
+ *
+ */
+function aw_model_api_notify_url_twitter(url){
+  aw_controller_api_modify_twitter_url(url);
+}

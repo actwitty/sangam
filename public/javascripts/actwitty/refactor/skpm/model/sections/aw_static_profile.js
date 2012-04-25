@@ -58,6 +58,7 @@ function aw_api_model_static_profile_initialize(){
                                             "location" :  aw_js_global_visited_user_credentials['location'],
                                             "country" : aw_js_global_visited_user_credentials['country'],
                                             "description" : ""
+
                                         };
 
 }
