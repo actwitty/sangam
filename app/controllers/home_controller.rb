@@ -627,8 +627,5 @@ class HomeController < ApplicationController
       render :json => {}, :status => 400
     end
   end
-  
-
-
 end
 
