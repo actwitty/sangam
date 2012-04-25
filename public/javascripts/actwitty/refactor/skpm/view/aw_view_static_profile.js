@@ -62,7 +62,9 @@ function aw_api_view_change_profile_pic(service, url){
       $("#aw_profile_picture").attr("src", url);
     }
   }else{
-    $("#aw_profile_picture").attr("src", url);
+     if( service == "twitter"){
+      $("#aw_profile_picture").attr("src", url);
+     }
   }
 
 }
