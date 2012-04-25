@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
      if Rails.env == "production" or Rails.env == "staging"
        url = ""
        if user_signed_in?
-         puts "-------------- #{request.url} #{current_user.inspect}--------------"
+         puts "-------------- #{request.url}--------------"
 
          if request.url !~ /^http:\/\//
 
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
        else
          if request.url !~ /^https:\/\// or request.subdomain.blank?
-           puts "=============== #{request.url} ================"
+           puts "=============== #{request.url}================"
            if request.subdomain.blank?
              url = "https://www.#{request.host+request.fullpath}"
              redirect_to url

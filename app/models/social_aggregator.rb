@@ -197,6 +197,15 @@ class SocialAggregator < ActiveRecord::Base
             Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] ====>>>> first time update #{params.inspect}  " )
           end
 
+          #this two cases are there to handle crawled user case
+          if params[:access_token].blank?
+            params[:access_token]=AppConstants.send("#{params[:provider]}_token")
+          end
+
+          if params[:token_secret].blank?
+            params[:token_secret]=AppConstants.send("#{params[:provider]}_secret")
+          end
+
           hash ={
                   :user_id => params[:user_id], :uid => params[:uid], :provider => params[:provider],
                   :access_token => params[:access_token], :token_secret => params[:token_secret],
@@ -205,9 +214,6 @@ class SocialAggregator < ActiveRecord::Base
                   :status => sa.status, :update_interval => sa.update_interval
                 }
         end
-
-
-
 
         Rails.logger.info("[MODEL] [SOCIAL_AGGREGATOR] [SETUP_SOCIAL_AGGREGATION] leaving #{params.inspect}")
 

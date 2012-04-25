@@ -10,7 +10,7 @@ module TermExtraction
       FREEBASE_TYPE_LIMIT = 5
       FREEBASE_RESULT_LIMIT = 1
 
-      SKIP_TYPES = /\/type|\/common|\/base|\/people\/person|\/influence|\/user/
+      SKIP_TYPES = /\/type|\/common|\/base|\/people|\/person|\/influence|\/user|\/cvg|\/m/
 
       def self.search_freebase(entities)
 

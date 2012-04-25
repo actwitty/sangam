@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_many :friends, :foreign_key => :friend_id, :class_name => 'Contact' #these are the friends in the contacts table
 
-  has_many :authentications
+  has_many :authentications   , :dependent => :destroy
 
 
 ##### ALOK changed it  ##########################

@@ -22,9 +22,10 @@ module UploadsHelper
   def s3_uploader(options = {})
     options[:s3_config_filename] ||= "#{Rails.root}/#{AppConstants.cloud_keys}"
     config = YAML.load_file(options[:s3_config_filename])[Rails.env].symbolize_keys
-    bucket            = config[:aws_bucket_name]
-    access_key_id     = config[:aws_access_key_id]
-    secret_access_key = config[:aws_secret_access_key]
+
+    bucket            = AppConstants.aws_bucket_name
+    access_key_id     = AppConstants.aws_access_key_id
+    secret_access_key = AppConstants.aws_secret_access_key
 
     options[:key] ||= 'test'  # folder on AWS to store file in
     options[:acl] ||= 'public-read'

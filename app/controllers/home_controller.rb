@@ -610,7 +610,38 @@ class HomeController < ApplicationController
     end
   end
 
-  
+  ###################################################################
+  def create_crawled_user
+    Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
+    unless  params[:user_id].nil?
+      query= {}
+      query[:provider] = params[:provider]
+      query[:uid] = params[:uid]
+      query[:full_name] = params[:uid]
+      query[:photo] = params[:photo]
+      query[:location] = params[:location]
+      query[:username] = params[:username]
+      query[:auth_key] = params[:auth_key]
+
+      Rails.logger.info("[CNTRL] [HOME]  [CREATE_CRAWLED_USER] Calling Model:#{query}")
+
+      response_json = current_user.create_crawled_user(query)
+
+      Rails.logger.debug("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Model Response:#{response_json}")
+      if request.xhr?
+        expires_in 10.minutes
+        Rails.logger.debug("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
+        render :json => response_json
+        return
+      end
+    else
+      if request.xhr?
+        expires_in 10.minutes
+        Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] [REJECTED] Params:#{params}")
+        render :json => {}, :status => 400
+      end
+    end
+  end
   
 
 

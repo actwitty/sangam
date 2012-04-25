@@ -85,6 +85,7 @@ development: &default
   user_type_regular:                  0
   user_type_admin:                    1
   user_type_web_admin:                2
+  user_type_crawled:                  3
 
   #FOR PUBLIC SHOW
   ghost_user_email:                       "administrator@actwitty.com"
@@ -145,16 +146,34 @@ development: &default
                                         'hfe94r47kpqr69enmvbs8sb6', '86v297e5xnqp5qw4bcc782n2', 'txv9e7gdvwwjctg6pwqpm3a3',
                                         'rkwtrhpb7dxv9bvypmwz8yvj', 'ayeayfcmcczp6sys6xfhh776', 'yzkdtbtnrvspywz4nehdyhg7',
                                         'dbj33hubrakj23czummr4kzx', 'v5mj9kcmwrnyzz7r27qawc2q']
+
+    #Crawled User limit
+  crawled_user_email:                     "dummyuser@actwitty.com"
+  crawled_user_password:                  "XJksaU72134kLS"
+  #crawled user token
+
+  #facebook token
+  facebook_token: 'AAAAAAITEghMBAMMQo0Dno9ND2TgKcBUe9reZCOZBDR7zZC7wCPvXLHBkRJjzNXu8QhSKgdOnzkeOZCT3GhTbGQoa4MlZA9EjnGlKvugPVR09HluWRN7ls'
+  facebook_secret: ''
+  #twitter token
+  twitter_token: '440859440-UGWWkwH5WAebLkwncu8hCN5kcmNiKbKzvFUkZx3W'
+  twitter_secret: 'Hpqy3xEtp8zxLJEfZz3rNsMTg0Eg0Dx2qHHaLqOYDQ'
+
+
+
+  #aws settings
+  aws_bucket_name: 'TestCloudActwitty'
+  aws_access_key_id: 'AKIAJMH2GTITVBHDSZ6Q'
+  aws_secret_access_key: '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'
+
+  #pusher settings
+  pusher_app_id: '8165'
+  pusher_key_id: 'e56f227bc500d2fb8364'
+  pusher_secret_key: 'e0948ca7a8b1c398dba3'
+
 production:
   <<: *default
   #constant1:  "overriden value1"
-  # Keys and ID for heroku test deployment
-  #facebook_app_id:                    '292732787407668'
-  #facebook_secret_key:                '82e82066e5e569ef88d052d5eba51b0e'
-  #twitter_consumer_key:               'aIJxWpkI3N3Zm3JZPqWVA'
-  #twitter_consumer_secret:            'YhreSUMsZoLjdvUM9X4fFbsDlvGPM5uOWmUP9Nxvnbk'
-
-  #######################################################################
   facebook_app_id:                    '180483002026787'
   facebook_secret_key:                '5f9e34ae0030a63796bf8d75b71cbdb7'
   twitter_consumer_key:               'TprGFKB9Puga2MVTqnhg'
@@ -167,7 +186,7 @@ production:
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
+  authorized_see_internals_email_ids:   "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
   authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
 
   alchemy_api_key:                      "3690ab39e581e48d6f48c000e3c3313f1e227e28"
@@ -195,6 +214,14 @@ production:
 
   #link resolution limit
   link_resolution_batch_limit:              50
+
+
+  #pusher settings
+  pusher_app_id: 8164
+  pusher_key_id: 082b78af7b43fe2cecea
+  pusher_secret_key: 02e84edceda36cc1bce6
+
+
   #########################################################################
 staging:
   <<: *default

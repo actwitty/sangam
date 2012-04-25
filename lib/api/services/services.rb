@@ -4,10 +4,11 @@ module Api
       #ASSUMPTION => Authorization with respective service is done
       #
       #INPUT {
-      #         :current_user_id => 123
-      #         :user_id => 123,
+      #         :current_user_id => 123 [MANDATORY]
+      #         :user_id => 123,[MANDATORY]
       #         :provider => "facebook"/"twitter" [MANDATORY]
       #         :uid => 123 [MANDATORY]
+      #         :crawled_user => true [OPTIONAL]
       #
       #      }
       #OUTPUT => true [ON SUCCESS], false [ON FAILURE]
@@ -25,7 +26,10 @@ module Api
           return false
         end
 
-        params = params.except(:current_user_id)
+        crawled_user = false
+        crawled_user = true if !params[:crawled_user].blank?
+
+        params = params.except(:current_user_id, :crawled_user)
 
         auth = Authentication.where(params).first
 
@@ -41,11 +45,20 @@ module Api
           return false
         end
 
-        #create social fetch entry and set last_msg_timestamp to near epoch
-        social_fetch = SocialAggregator.create!(:user_id => params[:user_id],
-                                                :provider => params[:provider], :uid => params[:uid],
-                                                :status => AppConstants.data_sync_new)
 
+        if crawled_user == false
+
+          Rails.logger.info("[LIB] [API] [SERVICES] [ENABLE_SERVICE] Regular User getting created")
+          #create social fetch entry and set last_msg_timestamp to near epoch
+          social_fetch = SocialAggregator.create!(:user_id => params[:user_id],
+                                                  :provider => params[:provider], :uid => params[:uid],
+                                                  :status => AppConstants.data_sync_new)
+        else
+          Rails.logger.info("[LIB] [API] [SERVICES] [ENABLE_SERVICE] Crawled User getting created")
+          social_fetch = SocialAggregator.create!(:user_id => params[:user_id],
+                                                  :provider => params[:provider], :uid => params[:uid],
+                                                  :status => AppConstants.data_sync_new)
+        end
 
         SocialAggregator.schedule_job({:user_id => params[:user_id],:provider => params[:provider],:uid => params[:uid]})
 
