@@ -6,12 +6,14 @@ require "search/search"
 require "entities/entities"
 require "admin/admin"
 require "user_crawl/user_crawl"
+require "social_shares/fb_timeline"
 
 require 'helpers/plan_table_query/plan_table_query'
 require 'helpers/format_object/format_object'
 require 'helpers/format_object/format_analytics/analytics'
 
 require 'helpers/parser/parser'
+
 
 
 if Rails.env != "production"
@@ -235,7 +237,7 @@ module Api
       #
       #     :word=>{:word_id=>44, :name=>"eating"},
       #
-      #     :user=>{:id=>39, :fulcurrent_user.emaill_name=>"lemony3 lime3", :photo=>"images/id_3"}
+      #     :user=>{:id=>39, :full_name=>"lemony3 lime3", :photo=>"images/id_3"}
       #
       #     :analytics_snapshot => {
       #                              :posts => {
@@ -835,6 +837,14 @@ module Api
 
         Rails.logger.info("[LIB] [API] [create_activity] leaving ")
         a
+      end
+
+      ######################
+      #
+      #
+      def fb_write_to_timeline(params={})
+         params[:user_id] = self.id
+         ::Api::FBTimeline.fb_write_to_timeline(params)         
       end
 ################################################ ACTIVITY ################################################
       def create_crawled_user(params)

@@ -73,6 +73,11 @@ body
     text-decoration: none
     color: #000
 
+.actgreen_nav
+  background: #2eb407
+  color: #b44e0e
+  a
+    color: #b44e0e
 div
   &.top_nav_active
     color: #000
@@ -111,11 +116,11 @@ div
     width: 120px
     display: inline-block
     float: left
-    margin-top: 50px
+    margin-top: 10px
     margin-left: 60px
     margin-right: 20px
     img 
-      height: 100px
+      height: 160px
   .aw_home_info_section
     display: inline-block
     float: left
@@ -158,6 +163,7 @@ div
     display: inline-block
     cursor: pointer
     margin-top: 120px
+
     .aw_know_more_image
       cursor: pointer
 
@@ -277,34 +283,72 @@ div
        
         
 
-
-
-#aw_home_footer
+.aw_home_main_footer
   width: 100%
-  height: 40px
-  float: right
+  height: 100px
+  display: block
   background-color: #777
+  .aw_home_footer
+    width: 950px
+    display: block
+    margin: 0px auto
 
-
-#aw_home_follow_us
-  width: 950px
-  margin: 0px auto
-  height: 25px
-  margin-top: 5px
+    .aw_home_about_us
+      display: inline-block
+      margin-left: 5px
+      margin-right: 10px
+      height: 25px
+      margin-top: 5px
+      float: left
+      a
+        text-decoration: none
+        font-size: 16px
+        font-family: "RobotoRegular"
+        color: white
+        margin-top: 4px
+    .aw_home_act_green
+      display: inline-block
+      margin-left: 5px
+      margin-right: 10px
+      height: 25px
+      margin-top: 2px
+      float: left
+      a
+        text-decoration: none
+        img
+          vertical-align: middle
+          margin-left: 3px
+          margin-top: -4px
+          padding: 0
+        span
+          font-size: 16px
+          font-family: "RobotoRegular"
+          color: white
+    .aw_home_follow_us
+      display: inline-block
+      margin-right: 20px
+      height: 25px
+      margin-top: 5px
+      float: right
   
-  a
-    text-decoration: none
-  span
-    float: right
-    font-size: 12px
-    font-weight: bold
-    color: white
-    margin-top: 4px
-  img
-    float: right
-    vertical-align: middle
-    margin-left: 3px
-    padding: 0
+      a
+        text-decoration: none
+        img
+          float: right
+          vertical-align: middle
+          margin-left: 3px
+          padding: 0
+        span
+          font-size: 16px
+          font-family: "RobotoRegular"
+          color: white
+      span
+        float: right
+        font-size: 16px
+        font-family: "RobotoRegular"
+        color: white
+        margin-top: 4px
+        
 
 
 
@@ -350,7 +394,7 @@ div
       height: 60px
       margin: 0px auto
       float: left
-      margin-left: 195px
+      margin-left: 100px
       a
         img
           border: 1px solid #ccc
@@ -362,7 +406,7 @@ div
 
 #aw_home_about_box
   width: 100%
-  height: 300px
+  min-height: 200px
   display: block
 
 
@@ -406,26 +450,26 @@ div
 
 
 #aw_home_about_place
-  width: 960px
+  display: block
   height: auto
   margin: 0 auto
   margin-top: 0px
 
-#aw_home_about_incubation_box
-  width: 100%
-  height: 30px
-  border: 0px solid blue
-  position: relative
-  float: right
-  display: block
-  #aw_home_about_incubation_label
-    font-size: 20px
-    line-height: 24px
-    font-family: "RobotoRegular"
-    color: #333
+  #aw_home_about_incubation_box
+    width: 100%
+    height: 30px
+    border: 0px solid blue
+    position: relative
     float: right
-  img
-    float: right
+    display: block
+    #aw_home_about_incubation_label
+      font-size: 20px
+      line-height: 24px
+      font-family: "RobotoRegular"
+      color: #333
+      float: right
+    img
+      float: right
 
 
 
