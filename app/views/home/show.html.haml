@@ -70,7 +70,7 @@
       #aw_js_profile_main_container.aw_section_container_box
         .aw_section_container_info_box
           %a.aw_user_profile_pic{:href=> "/show?id=#{@user.id}"  }
-            %img{:src=> "#{@user.photo_small_url}", :height => "100px", :width => "100px"  }
+            %img#aw_profile_picture{:src=> "#{@user.photo_small_url}", :height => "100px", :width => "100px"  }
           .aw_section_container_internal_data_box
             %a.aw_full_name{:href=> "/show?id=#{@user.id}"  }
               %h2 #{@user.full_name}

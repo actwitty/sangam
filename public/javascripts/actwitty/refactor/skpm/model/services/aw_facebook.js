@@ -57,7 +57,7 @@ function aw_api_facebook_get_profile(fn_cb){
                                                               replace("{FB_USER_ID}",
                                                                       aw_api_facebook_get_visited_user_id());
 
-
+   aw_api_handle_facebook_profile_pic();
    var profile_json={};
    $.jsonp({
             url: url,
@@ -663,7 +663,15 @@ function aw_api_facebook_get_likes_data_for_list_of_ids( likes_id_list_str,
                                                                           aw_global_fb_cache_likes);
   }
 }
-
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_handle_facebook_profile_pic(){
+  var url = 'http://graph.facebook.com/' + aw_api_facebook_get_visited_user_id() + '/picture?type=large';
+  aw_api_model_static_profile_patch_profile_pic_cb('facebook', url);
+}
 
 /*****************************************************/
 /*

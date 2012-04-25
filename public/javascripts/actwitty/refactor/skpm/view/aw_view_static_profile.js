@@ -48,3 +48,25 @@ function aw_api_view_static_profile_render(data){
 function aw_api_view_static_profile_update_description(description){
   $("#aw_js_user_description").html(description);
 }
+
+/*************************************************/
+/*
+ *
+ *
+ */
+
+function aw_api_view_change_profile_pic(service, url){
+  var existing_pic = $("#aw_profile_picture").attr("src");
+  if( existing_pic.indexOf("graph.facebook.com") >=0 ){
+    if( service == "facebook"){
+      $("#aw_profile_picture").attr("src", url);
+    }
+  }else{
+     if( service == "twitter"){
+      $("#aw_profile_picture").attr("src", url);
+     }
+  }
+
+}
+
+
