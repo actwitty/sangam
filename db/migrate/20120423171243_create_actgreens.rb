@@ -1,11 +1,11 @@
 class CreateActgreens < ActiveRecord::Migration
   def change
     create_table :actgreens do |t|
-      t.string :name
-      t.string :email
-      t.string :location
-      t.string :latitude
-      t.string :longitude
+      t.text :name
+      t.text :email
+      t.text :location
+      t.text :latitude
+      t.text :longitude
       t.text :comment
 
       t.timestamps
