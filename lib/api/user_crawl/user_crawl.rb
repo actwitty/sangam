@@ -2,7 +2,8 @@ module Api
   module UserCrawl
     class << self
       #INPUT
-      #{
+      #"  #COMES AS STRING
+      #
       #  :users =>
       #           [
       #             {
@@ -11,17 +12,19 @@ module Api
       #               :full_name => "Alok Srivastava"
       #               :photo => "http://xyz.com/123"  [OPTIONAL]
       #               :location => "Bangalore" [OPTIONAL]
-      #               :username => "mashable" [OPTIONAL]
       #               :gender => "male" [OPTIONAL]
-      #               :email => pete@gmail.com
       #             },
       #           ],
       #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"
-      #}
+      #
+      #"
 
-      def create_user(params)
-        Rails.logger.info("[LIB] [API] [USER_CRAWL] [create_user] entering #{params.inspect}")
+      def create_crawled_user(params)
+        Rails.logger.info("[LIB] [API] [USER_CRAWL] [create_crawled_user] entering #{params.inspect}")
 
+        if params.class == String
+          params = eval(params) #converts to hash
+        end
 
         if params[:auth_key] != AppConstants.authorized_see_internals_secret_key
           raise "Not an Authorised Crawl Request"
@@ -38,15 +41,16 @@ module Api
           a = Authentication.where({:uid => attr[:uid], :provider => attr[:provider]}).first
 
           if !a.blank?
-            if !a.token.blank?
-              raise "This user has already signed in"
-            end
+            Rails.logger.info("[LIB] [API] [USER_CRAWL] [create_crawled_user] =>
+                         :uid=> #{attr[:uid]}, :provider => #{attr[:provider]}  This user has already signed in" )
+            next
           end
 
-          if attr[:username].blank?
-            s = Time.now.strftime("%Y%m%d%H%M%S")
-            attr[:username]=t.strftime("%Y%m%d%H%M%S")   #=> "Printed on 11/19/2007"
-          end
+          #make username and email based on time as they can be already in use by regular user.. so better let the
+          #celebrity come and pick the available username and email manually
+          s = Time.now.strftime("%Y%m%d%H%M%S%6N")
+          attr[:username]=s   #=> "Printed on 11/19/2007"
+          attr[:email]= "#{s}@actwitty.com"
 
           if attr[:current_location].blank?
             attr[:current_location]= "Unknown"
@@ -54,11 +58,6 @@ module Api
 
           if attr[:gender].blank?
             attr[:gender]= "male"
-          end
-
-          if attr[:email].blank?
-            s = Time.now.strftime("%Y%m%d%H%M%S") if s.blank?
-            attr[:email]= "#{s}@actwitty.com"
           end
 
           user =  User.new(:username => attr[:username],
@@ -84,9 +83,9 @@ module Api
                                           :provider => attr[:provider], :uid => attr[:uid],:crawled_user => true})
         end
 
-        Rails.logger.info("[LIB] [API] [USER_CRAWL] [create_user] leaving #{params.inspect}")
+        Rails.logger.info("[LIB] [API] [USER_CRAWL] [create_crawled_user] leaving #{params.inspect}")
       rescue => e
-        Rails.logger.error("[LIB] [API] [USER_CRAWL] [create_user] **** RESCUE **** #{e.message} for #{params.inspect}")
+        Rails.logger.error("[LIB] [API] [USER_CRAWL] [create_crawled_user] **** RESCUE **** #{e.message} for #{params.inspect}")
       end
     end
   end

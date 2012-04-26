@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   #before_filter :only_when_user_is_logged_in, :only => :show
 
   #Alok Adding pusher support
-  protect_from_forgery :except => :pusher_auth # stop rails CSRF protection for this action
+  protect_from_forgery :except => :create_crawled_user # stop rails CSRF protection for this action
 
    #Alok Adding pusher support
    #Commenting for time being
@@ -615,7 +615,7 @@ class HomeController < ApplicationController
   def create_crawled_user
     Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
 
-    response_json = current_user.create_crawled_user(params)
+    response_json = current_user.create_crawled_user(params["data"])
 
     Rails.logger.debug("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Model Response:#{response_json}")
     if request.post?

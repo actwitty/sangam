@@ -839,15 +839,34 @@ module Api
         a
       end
 
-      ######################
+################################################ CRAWLED USER ################################################
+      #INPUT
+      #"  #COMES AS STRING
+      #
+      #  :users =>
+      #           [
+      #             {
+      #               :provider => "twitter",
+      #               :uid => "23232323",
+      #               :full_name => "Alok Srivastava"
+      #               :photo => "http://xyz.com/123"  [OPTIONAL]
+      #               :location => "Bangalore" [OPTIONAL]
+      #               :gender => "male" [OPTIONAL]
+      #             },
+      #           ],
+      #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"
+      #
+      #" #COMES AS STRING
+
+      def create_crawled_user(params)
+        result = ::Api::UserCrawl.create_crawled_user(params)
+      end
+
+############################################### SOCIAL SHARE ###########################################
       #
       #
       def fb_write_to_timeline(params={})
          params[:user_id] = self.id
-         ::Api::FBTimeline.fb_write_to_timeline(params)         
-      end
-################################################ ACTIVITY ################################################
-      def create_crawled_user(params)
-        result = ::Api::UserCrawl.create_user(params)
+         ::Api::FBTimeline.fb_write_to_timeline(params)
       end
 end
