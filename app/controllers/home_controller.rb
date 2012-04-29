@@ -205,7 +205,6 @@ class HomeController < ApplicationController
 
     @services_enabled = current_user.get_services( { :user_id => @user.id } )
     @service_uids = @user.get_service_user_ids()
-
   end
   
   ############################################

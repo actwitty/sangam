@@ -54,7 +54,6 @@ function aw_api_view_static_profile_update_description(description){
  *
  *
  */
-
 function aw_api_view_change_profile_pic(service, url){
   var existing_pic = $("#aw_profile_picture").attr("src");
   if( existing_pic.indexOf("graph.facebook.com") >=0 ){

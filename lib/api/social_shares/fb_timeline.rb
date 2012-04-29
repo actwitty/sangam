@@ -7,11 +7,12 @@ module Api
       #         }
       #   
 
-      def fb_write_to_timeline(params)
+      def fb_write_to_timeline_internal(params)
+        puts "#{params.inspect}"
         Rails.logger.info("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] entering #{params.inspect}")
-
-        if params[:category].blank? ||  params[:user_id].blank?
-          Rails.logger.info("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] entering #{params.inspect}")
+        
+        if params[:activities].nil?
+          Rails.logger.info("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] entering Nothing to write")
           return
         end
 
@@ -22,22 +23,20 @@ module Api
         end
 
         begin
-          Rails.logger.debug("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Posting to FB")
+          Rails.logger.debug("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Posting to FB #{facebook_auth.token}")
           graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
-          graph.put_connections( "me",
-                                 
-                                 :object => params[:url] )
           graph.batch do |batch_api|
             params[:activities].each do |activity|
+               Rails.logger.debug "PUTTING #{activity[:url]}"
               batch_api.put_connections(
                                           "og_lemonbaglocal:#{AW_CATEGORIES[activity[:category]]['fb_timeline']}",
-                                          :object => activity[:url]
+                                          :website => activity[:url]
                                        )
             end
           end
 
-          rescue Koala::Facebook::APIError
-            Rails.logger.error("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Exception in fb koala")
+          rescue Koala::Facebook::APIError => err
+            Rails.logger.error("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Exception in fb koala #{err.message}")
         end
 
 
