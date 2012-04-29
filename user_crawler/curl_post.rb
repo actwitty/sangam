@@ -1,25 +1,25 @@
-
+require './common.rb'
+require './emlib.rb'
+require './oauth1.rb'
 require 'curb'
 
 class CurlPost
+  class << self
+    SERVER_ENDPOINT = 'http://cold-dusk-3254.herokuapp.com/crawled_user'
+    DATA_FILE = "data/users"
 
-  SERVER_ENDPOINT = 'http://cold-dusk-3254.herokuapp.com/crawled_user'
-  DATA_FILE = "data/users"
+    def create_crawled_user
+      c = Curl::Easy.new(SERVER_ENDPOINT)
+      c.http_post( Curl::PostField.content('data', {:users => get_users , :auth_key=>'A1B2C3D4E5F6987654321ABCDEFGH'}))
+      c.perform
+    end
 
-  def call_em(requests)
-    response = MyHttp.request(requests)
-  end
-
-  def create_crawled_user
-    c = Curl::Easy.new(SERVER_ENDPOINT)
-    c.http_post( Curl::PostField.content('data', {:users => get_users , :auth_key=>'A1B2C3D4E5F6987654321ABCDEFGH'}))
-    c.perform
-  end
-
-  def get_users
-    f = File.open("data/users","r")
-    f.each do |line|
-
+    def get_users
+      array = []
+      f = File.open("data/users","r")
+      a = f.readlines
+      a.each {|l| array << eval(l)}
+      array
     end
   end
 end
@@ -43,7 +43,7 @@ if __FILE__ == $0
     
     EM.next_tick {
       Fiber.new { 
-       create_crawled_user
+       CurlPost.create_crawled_user
       }.resume
     }
 
