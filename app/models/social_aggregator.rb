@@ -26,7 +26,8 @@ class SocialAggregator < ActiveRecord::Base
 
       if !params[:scheduled_time].blank?
         worker = ::JobScheduler::JobWorker.new(params)
-        worker.enqueue!
+        id = worker.enqueue!
+        puts "****************************** #{id} *********************************"
       else
         SocialAggregator.delay.pick_social_aggregation_request(params)
       end

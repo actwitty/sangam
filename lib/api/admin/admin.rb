@@ -16,16 +16,9 @@ module Api
         end
 
         User.destroy_all(:user_id => params[:user_id])
-      end
-
-      # INPUT {
-      #         :current_user_id => 123, (it should be id of requesting user)
-      #         :user_id => 123,
-      #         :provider => "facebook"/"twitter" [MANDATORY]
-      #         :uid => 123 [MANDATORY]
-      #      }
-      def delete_service(params)
-        ::Api::Services.disable_service(params)
+        Rails.logger.info("[LIB] [API] [ADMIN] [DELETE_USER] leaving #{params.inspect}")
+      rescue => e
+        Rails.logger.error("[LIB] [API] [ADMIN] [DELETE_USER] **** RESCUE **** #{e.message} For #{params.inspect}")
       end
     end
   end

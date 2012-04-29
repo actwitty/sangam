@@ -1,0 +1,156 @@
+{:uid=>"2557521", :provider=>"twitter", :full_name=>"ESPN", :photo=>"http://a0.twimg.com/profile_images/1320005863/twitter_normal.jpg", :location=>"Bristol, CT"}
+{:uid=>"26257166", :provider=>"twitter", :full_name=>"SportsCenter", :photo=>"http://a0.twimg.com/profile_images/1753189352/SC_top_10_Logo_normal.png", :location=>"Rockin' Bristol, CT since 1979"}
+{:uid=>"96951800", :provider=>"twitter", :full_name=>"FC Barcelona", :photo=>"http://a0.twimg.com/profile_images/1129467829/fcb_normal.png", :location=>"Barcelona"}
+{:uid=>"19923144", :provider=>"twitter", :full_name=>"NBA", :photo=>"http://a0.twimg.com/profile_images/1787324427/National-Basketball-Association_normal.jpg", :location=>"New York, NY"}
+{:uid=>"23083404", :provider=>"twitter", :full_name=>"LeBron James", :photo=>"http://a0.twimg.com/profile_images/1898383083/KingJames_normal.jpg", :location=>"Amongst La Familia! "}
+{:uid=>"19426551", :provider=>"twitter", :full_name=>"NFL", :photo=>"http://a0.twimg.com/profile_images/701971734/avatar_normal.png"}
+{:uid=>"155659213", :provider=>"twitter", :full_name=>"Cristiano Ronaldo", :photo=>"http://a0.twimg.com/profile_images/1642508308/FAP23409_normal.jpg", :location=>"Madrid"}
+{:uid=>"60865434", :provider=>"twitter", :full_name=>"Kaka", :photo=>"http://a0.twimg.com/profile_images/1655121921/09072011-TwitterKaka-EsterTambasco-045_normal.jpg", :location=>"Madrid"}
+{:uid=>"18479513", :provider=>"twitter", :full_name=>"MLB", :photo=>"http://a0.twimg.com/profile_images/2151576465/128x128_MLB_Twitter_Icon_normal.jpg"}
+{:uid=>"50004938", :provider=>"twitter", :full_name=>"NHL", :photo=>"http://a0.twimg.com/profile_images/2121633465/NHL_2012_StanleyCupPlayoffs_English_Primary_normal.jpg", :location=>"30 cities in Canada + the U.S."}
+{:uid=>"35936474", :provider=>"twitter", :full_name=>"Kevin Durant", :photo=>"http://a0.twimg.com/profile_images/1743152748/Photo_on_2012-01-09_at_01.38__2_normal.jpg", :location=>"Oklahoma City, OK"}
+{:uid=>"17461978", :provider=>"twitter", :full_name=>"SHAQ", :photo=>"http://a0.twimg.com/profile_images/1673907275/image_normal.jpg", :location=>"BOSTON/EVERYWHERE"}
+{:uid=>"52422878", :provider=>"twitter", :full_name=>"Olympics", :photo=>"http://a0.twimg.com/profile_images/1376093193/profile-pic_normal.png", :location=>"Lausanne, Switzerland"}
+{:uid=>"300392950", :provider=>"twitter", :full_name=>"Twitter Sports", :photo=>"http://a0.twimg.com/profile_images/1395294125/sports_a_normal.png", :location=>"TwitterHQ"}
+{:uid=>"32453930", :provider=>"twitter", :full_name=>"Tiger Woods", :photo=>"http://a0.twimg.com/profile_images/2111368548/BayHill2-AP_normal.jpg", :location=>"Jupiter Island, FL"}
+{:uid=>"21254264", :provider=>"twitter", :full_name=>"SportsNation", :photo=>"http://a0.twimg.com/profile_images/1880163469/SNtwitLogo_normal.jpg", :location=>"Bristol, CT"}
+{:uid=>"14622632", :provider=>"twitter", :full_name=>"Rob Dyrdek", :photo=>"http://a0.twimg.com/profile_images/2170857715/ICON_09_normal.png", :location=>"Hollywood"}
+{:uid=>"33995409", :provider=>"twitter", :full_name=>"Dwyane Wade", :photo=>"http://a0.twimg.com/profile_images/1937894979/D._Wade_Hoodie2_normal.jpg", :location=>"I'm everywhere..."}
+{:uid=>"42519612", :provider=>"twitter", :full_name=>"Floyd Mayweather", :photo=>"http://a0.twimg.com/profile_images/2161979152/image_normal.jpg", :location=>"Las Vegas, NV"}
+{:uid=>"120943272", :provider=>"twitter", :full_name=>"Erin Andrews", :photo=>"http://a0.twimg.com/profile_images/1928450394/316732_216827861720699_100001804601514_512197_1636458402_n_normal.jpg", :location=>"Everywhere"}
+{:uid=>"42384760", :provider=>"twitter", :full_name=>"Carmelo Anthony", :photo=>"http://a0.twimg.com/profile_images/1940760171/image_normal.jpg", :location=>"WORLDWIDE"}
+{:uid=>"16812787", :provider=>"twitter", :full_name=>"Dwight Howard", :photo=>"http://a0.twimg.com/profile_images/1839940080/dh_icon_normal.jpg", :location=>"Orlando, FL"}
+{:uid=>"19900778", :provider=>"twitter", :full_name=>"London 2012", :photo=>"http://a0.twimg.com/profile_images/563087689/TwitterPinkLogo_normal.jpg", :location=>"London"}
+{:uid=>"16727535", :provider=>"twitter", :full_name=>"Lance Armstrong", :photo=>"http://a0.twimg.com/profile_images/1645732613/20110924_0718_Z1_4x4_PR_BW_normal.jpg", :location=>"Austin, TX"}
+{:uid=>"31122496", :provider=>"twitter", :full_name=>"NCAA", :photo=>"http://a0.twimg.com/profile_images/188987758/NCAA_primaryc_normal.gif"}
+{:uid=>"21879024", :provider=>"twitter", :full_name=>"Tony Hawk", :photo=>"http://a0.twimg.com/profile_images/1325015260/1979_driveway_fs_stink_normal.jpg", :location=>"San Diego & world at large"}
+{:uid=>"40519997", :provider=>"twitter", :full_name=>"Chad Ochocinco", :photo=>"http://a0.twimg.com/profile_images/2171185074/ochocinco_normal.jpg", :location=>"Lady Evelyn meet Evelyn"}
+{:uid=>"284089166", :provider=>"twitter", :full_name=>"Michael Wilbon", :photo=>"http://a0.twimg.com/profile_images/1316090878/Wilbon_Michael_cropped-1_normal.jpeg", :location=>"ESPN"}
+{:uid=>"62902439", :provider=>"twitter", :full_name=>"Reggie Bush", :photo=>"http://a0.twimg.com/profile_images/2150783656/reggie_bush_normal.jpg", :location=>"The Best Coast"}
+{:uid=>"16801904", :provider=>"twitter", :full_name=>"Shaun White", :photo=>"http://a0.twimg.com/profile_images/1577168627/118484386_TW_3461_CD9819E8F051460A2DB20C5C888B2C9B_normal.jpg", :location=>"Los Angeles"}
+{:uid=>"25629334", :provider=>"twitter", :full_name=>"Nate Robinson", :photo=>"http://a0.twimg.com/profile_images/2166165299/nate_robinson_normal.jpg", :location=>"Rain city ( word aapp ) "}
+{:uid=>"27115071", :provider=>"twitter", :full_name=>"Paul Pierce", :photo=>"http://a0.twimg.com/profile_images/113132420/Pierce_0398_normal.jpg"}
+{:uid=>"49153854", :provider=>"twitter", :full_name=>"NASCAR", :photo=>"http://a0.twimg.com/profile_images/1673535956/NASCAR_4C_PRT_500x500_normal.jpeg", :location=>"Daytona Beach, FL"}
+{:uid=>"16228398", :provider=>"twitter", :full_name=>"Mark Cuban", :photo=>"http://a0.twimg.com/profile_images/1422637130/mccigartrophy_normal.jpg"}
+{:uid=>"28669612", :provider=>"twitter", :full_name=>"LAMAR ODOM", :photo=>"http://a0.twimg.com/profile_images/1640670712/LamarBasketball_normal.jpg", :location=>"Los Angeles, CA"}
+{:uid=>"51263592", :provider=>"twitter", :full_name=>"Adam Schefter", :photo=>"http://a0.twimg.com/profile_images/1596252132/343417_normal.gif", :location=>"ÜT: 42.579178,-76.214574"}
+{:uid=>"96821645", :provider=>"twitter", :full_name=>"Jim Rome", :photo=>"http://a0.twimg.com/profile_images/642664903/pic_jimrome_normal.jpg", :location=>"ÜT: 33.674275,-117.837275"}
+{:uid=>"21586418", :provider=>"twitter", :full_name=>"Dana White", :photo=>"http://a0.twimg.com/profile_images/1125952203/IMG00163-20100917-1819_normal.jpg", :location=>"Las Vegas, NV"}
+{:uid=>"17299063", :provider=>"twitter", :full_name=>"PTI", :photo=>"http://a0.twimg.com/profile_images/1799942653/PTI-Social-Media-Icon-Transparent_normal.png", :location=>"Washington, DC"}
+{:uid=>"30465594", :provider=>"twitter", :full_name=>"Jason Terry", :photo=>"http://a0.twimg.com/profile_images/1534737472/75BUXYiA_normal", :location=>"Dallas, Texas"}
+{:uid=>"13838562", :provider=>"twitter", :full_name=>"andyroddick", :photo=>"http://a0.twimg.com/profile_images/442816661/andy-roddick-splash_normal.jpg", :location=>"Travelling"}
+{:uid=>"30793542", :provider=>"twitter", :full_name=>"Troy Aikman", :photo=>"http://a0.twimg.com/profile_images/1765489875/333236135_normal.jpg", :location=>"Dallas, TX"}
+{:uid=>"28870086", :provider=>"twitter", :full_name=>"Chris Mortensen", :photo=>"http://a0.twimg.com/profile_images/657785492/alex__mcfadden_normal.jpg", :location=>"Anywhere, USA"}
+{:uid=>"32135704", :provider=>"twitter", :full_name=>"Peter King", :photo=>"http://a0.twimg.com/profile_images/1734644174/worldcupbale_normal.jpg", :location=>"ÜT: 38.991698,-77.03542"}
+{:uid=>"21454322", :provider=>"twitter", :full_name=>"Drew Brees", :photo=>"http://a0.twimg.com/profile_images/1308604870/CIMG2208_normal.JPG", :location=>"New Orleans"}
+{:uid=>"39288259", :provider=>"twitter", :full_name=>"Larry Fitzgerald", :photo=>"http://a0.twimg.com/profile_images/1608424381/get-attachment-6.aspx_bigger_normal.jpg", :location=>"Arizona"}
+{:uid=>"12297052", :provider=>"twitter", :full_name=>"Women's Pro Soccer", :photo=>"http://a0.twimg.com/profile_images/1421186159/SEH_FB_normal.jpg", :location=>"San Francisco, CA"}
+{:uid=>"28665877", :provider=>"twitter", :full_name=>"Alex Morgan", :photo=>"http://a0.twimg.com/profile_images/1695409406/_W1_7107_FB_normal.jpg"}
+{:uid=>"246401452", :provider=>"twitter", :full_name=>"Brian Wilson", :photo=>"http://a0.twimg.com/profile_images/1380587474/stretchwilson_normal.jpg", :location=>"San Francisco, CA"}
+{:uid=>"85633543", :provider=>"twitter", :full_name=>"Landon Donovan", :photo=>"http://a0.twimg.com/profile_images/1951087260/landondonovan_normal.jpg", :location=>"LA "}
+{:uid=>"29842036", :provider=>"twitter", :full_name=>"Ryan Sheckler", :photo=>"http://a0.twimg.com/profile_images/1632301988/twitter_ryan_golf_10_sm_normal.jpg", :location=>"San Clemente, CA"}
+{:uid=>"36240413", :provider=>"twitter", :full_name=>"Chris Johnson", :photo=>"http://a0.twimg.com/profile_images/2144792226/ChrisJohnson28_normal.jpg", :location=>"ÜT: 33.985365,-118.396649"}
+{:uid=>"37367041", :provider=>"twitter", :full_name=>"Rudy Gay", :photo=>"http://a0.twimg.com/profile_images/1669088365/fb_MG_7317-600x411_normal.jpg"}
+{:uid=>"18915240", :provider=>"twitter", :full_name=>"JALEN ROSE", :photo=>"http://a0.twimg.com/profile_images/1525595454/x2_d0c23f_normal.jpeg", :location=>"DETROIT ROCK CITY"}
+{:uid=>"34630995", :provider=>"twitter", :full_name=>"Warren Sapp", :photo=>"http://a0.twimg.com/profile_images/2111152023/337786041_normal.jpg", :location=>"ÜT: 33.949403,-118.398831"}
+{:uid=>"17076218", :provider=>"twitter", :full_name=>"New York Jets", :photo=>"http://a0.twimg.com/profile_images/1993069818/Jets-Pin-Pro_normal.jpg", :location=>"New York "}
+{:uid=>"22922759", :provider=>"twitter", :full_name=>"Mark Sanchez", :photo=>"http://a0.twimg.com/profile_images/1768878463/image_normal.jpg", :location=>"NY, NJ and SoCal"}
+{:uid=>"32765534", :provider=>"twitter", :full_name=>"Bill Simmons", :photo=>"http://a0.twimg.com/profile_images/1887290966/grogan_normal.jpg", :location=>"Los Angeles (via Boston)"}
+{:uid=>"239543885", :provider=>"twitter", :full_name=>"Brandon Phillips", :photo=>"http://a0.twimg.com/profile_images/2043461748/DatDudeBP_normal.jpg", :location=>"ATL ~ CIN ~ ZAMUNDA"}
+{:uid=>"19249062", :provider=>"twitter", :full_name=>"Nick Swisher", :photo=>"http://a0.twimg.com/profile_images/1750921425/photo1_normal.PNG", :location=>"New York, NY"}
+{:uid=>"52529345", :provider=>"twitter", :full_name=>"Michelle Beadle", :photo=>"http://a0.twimg.com/profile_images/1705225286/image_normal.jpg"}
+{:uid=>"21056862", :provider=>"twitter", :full_name=>"Baron Davis", :photo=>"http://a0.twimg.com/profile_images/89398546/081027-obama-davis-bcol-4p.standard_normal.jpg", :location=>"NYC aka The Big Apple"}
+{:uid=>"22159122", :provider=>"twitter", :full_name=>"Tony Reali", :photo=>"http://a0.twimg.com/profile_images/1133116961/profile2_normal.jpg", :location=>"Washington, DC"}
+{:uid=>"40168339", :provider=>"twitter", :full_name=>"Ric Bucher", :photo=>"http://a0.twimg.com/profile_images/319250942/bucher_normal.jpg", :location=>"An NBA city near you"}
+{:uid=>"37896651", :provider=>"twitter", :full_name=>"Henry Winter", :photo=>"http://a0.twimg.com/profile_images/198358625/henrywinter_normal.jpg", :location=>"At a game"}
+{:uid=>"27471945", :provider=>"twitter", :full_name=>"Dara Torres", :photo=>"http://a0.twimg.com/profile_images/1609226565/image_normal.jpg"}
+{:uid=>"15876379", :provider=>"twitter", :full_name=>"Pete Carroll", :photo=>"http://a0.twimg.com/profile_images/1218479311/pctwitter2_normal.jpg", :location=>"Seattle"}
+{:uid=>"16203586", :provider=>"twitter", :full_name=>"Doug Ulman", :photo=>"http://a0.twimg.com/profile_images/1573956301/22fc6556-970d-4b32-93b6-7aaf38113c89_normal.jpg", :location=>"ÜT: 30.25975,-97.774105"}
+{:uid=>"34296189", :provider=>"twitter", :full_name=>"Jozy Altidore", :photo=>"http://a0.twimg.com/profile_images/1867266651/335462476_normal.jpg"}
+{:uid=>"36623013", :provider=>"twitter", :full_name=>"Grant Wahl", :photo=>"http://a0.twimg.com/profile_images/258411087/GrantWahl_normal.jpg", :location=>"Planet Fútbol"}
+{:uid=>"19120850", :provider=>"twitter", :full_name=>"Jerry Remy (RemDawg)", :photo=>"http://a0.twimg.com/profile_images/1844617352/Enhanced_Air_Guitar-2__1__normal.gif", :location=>"Red Sox Nation"}
+{:uid=>"39546218", :provider=>"twitter", :full_name=>"Angela Ruggiero", :photo=>"http://a0.twimg.com/profile_images/208789546/ARswing_comp._normal.jpg", :location=>"All over the world "}
+{:uid=>"84353161", :provider=>"twitter", :full_name=>"Mike Vick", :photo=>"http://a0.twimg.com/profile_images/1887673083/MikeVick_normal.jpg", :location=>"757/215"}
+{:uid=>"156132825", :provider=>"twitter", :full_name=>"Mike Tyson", :photo=>"http://a0.twimg.com/profile_images/2150584633/image_normal.jpg", :location=>"Las Vegas, NV"}
+{:uid=>"91189330", :provider=>"twitter", :full_name=>"Youth Olympic Games", :photo=>"http://a0.twimg.com/profile_images/1376201870/yog-logo_normal.PNG"}
+{:uid=>"15011421", :provider=>"twitter", :full_name=>"MLS Insider", :photo=>"http://a0.twimg.com/profile_images/1337738507/MLSILogo_normal.jpg", :location=>"New York, NY"}
+{:uid=>"17159397", :provider=>"twitter", :full_name=>"WNBA", :photo=>"http://a0.twimg.com/profile_images/1643830824/12_WNBA_FB_offseason_1_normal.jpg"}
+{:uid=>"18139461", :provider=>"twitter", :full_name=>"Boston Celtics", :photo=>"http://a0.twimg.com/profile_images/1862865261/ProfileIcon_200x200_normal.jpg", :location=>"Boston, MA"}
+{:uid=>"2557521", :provider=>"twitter", :full_name=>"ESPN", :photo=>"http://a0.twimg.com/profile_images/1320005863/twitter_normal.jpg", :location=>"Bristol, CT"}
+{:uid=>"26257166", :provider=>"twitter", :full_name=>"SportsCenter", :photo=>"http://a0.twimg.com/profile_images/1753189352/SC_top_10_Logo_normal.png", :location=>"Rockin' Bristol, CT since 1979"}
+{:uid=>"96951800", :provider=>"twitter", :full_name=>"FC Barcelona", :photo=>"http://a0.twimg.com/profile_images/1129467829/fcb_normal.png", :location=>"Barcelona"}
+{:uid=>"19923144", :provider=>"twitter", :full_name=>"NBA", :photo=>"http://a0.twimg.com/profile_images/1787324427/National-Basketball-Association_normal.jpg", :location=>"New York, NY"}
+{:uid=>"23083404", :provider=>"twitter", :full_name=>"LeBron James", :photo=>"http://a0.twimg.com/profile_images/1898383083/KingJames_normal.jpg", :location=>"Amongst La Familia! "}
+{:uid=>"19426551", :provider=>"twitter", :full_name=>"NFL", :photo=>"http://a0.twimg.com/profile_images/701971734/avatar_normal.png"}
+{:uid=>"155659213", :provider=>"twitter", :full_name=>"Cristiano Ronaldo", :photo=>"http://a0.twimg.com/profile_images/1642508308/FAP23409_normal.jpg", :location=>"Madrid"}
+{:uid=>"60865434", :provider=>"twitter", :full_name=>"Kaka", :photo=>"http://a0.twimg.com/profile_images/1655121921/09072011-TwitterKaka-EsterTambasco-045_normal.jpg", :location=>"Madrid"}
+{:uid=>"18479513", :provider=>"twitter", :full_name=>"MLB", :photo=>"http://a0.twimg.com/profile_images/2151576465/128x128_MLB_Twitter_Icon_normal.jpg"}
+{:uid=>"50004938", :provider=>"twitter", :full_name=>"NHL", :photo=>"http://a0.twimg.com/profile_images/2121633465/NHL_2012_StanleyCupPlayoffs_English_Primary_normal.jpg", :location=>"30 cities in Canada + the U.S."}
+{:uid=>"35936474", :provider=>"twitter", :full_name=>"Kevin Durant", :photo=>"http://a0.twimg.com/profile_images/1743152748/Photo_on_2012-01-09_at_01.38__2_normal.jpg", :location=>"Oklahoma City, OK"}
+{:uid=>"17461978", :provider=>"twitter", :full_name=>"SHAQ", :photo=>"http://a0.twimg.com/profile_images/1673907275/image_normal.jpg", :location=>"BOSTON/EVERYWHERE"}
+{:uid=>"52422878", :provider=>"twitter", :full_name=>"Olympics", :photo=>"http://a0.twimg.com/profile_images/1376093193/profile-pic_normal.png", :location=>"Lausanne, Switzerland"}
+{:uid=>"300392950", :provider=>"twitter", :full_name=>"Twitter Sports", :photo=>"http://a0.twimg.com/profile_images/1395294125/sports_a_normal.png", :location=>"TwitterHQ"}
+{:uid=>"32453930", :provider=>"twitter", :full_name=>"Tiger Woods", :photo=>"http://a0.twimg.com/profile_images/2111368548/BayHill2-AP_normal.jpg", :location=>"Jupiter Island, FL"}
+{:uid=>"21254264", :provider=>"twitter", :full_name=>"SportsNation", :photo=>"http://a0.twimg.com/profile_images/1880163469/SNtwitLogo_normal.jpg", :location=>"Bristol, CT"}
+{:uid=>"14622632", :provider=>"twitter", :full_name=>"Rob Dyrdek", :photo=>"http://a0.twimg.com/profile_images/2170857715/ICON_09_normal.png", :location=>"Hollywood"}
+{:uid=>"33995409", :provider=>"twitter", :full_name=>"Dwyane Wade", :photo=>"http://a0.twimg.com/profile_images/1937894979/D._Wade_Hoodie2_normal.jpg", :location=>"I'm everywhere..."}
+{:uid=>"42519612", :provider=>"twitter", :full_name=>"Floyd Mayweather", :photo=>"http://a0.twimg.com/profile_images/2161979152/image_normal.jpg", :location=>"Las Vegas, NV"}
+{:uid=>"120943272", :provider=>"twitter", :full_name=>"Erin Andrews", :photo=>"http://a0.twimg.com/profile_images/1928450394/316732_216827861720699_100001804601514_512197_1636458402_n_normal.jpg", :location=>"Everywhere"}
+{:uid=>"42384760", :provider=>"twitter", :full_name=>"Carmelo Anthony", :photo=>"http://a0.twimg.com/profile_images/1940760171/image_normal.jpg", :location=>"WORLDWIDE"}
+{:uid=>"16812787", :provider=>"twitter", :full_name=>"Dwight Howard", :photo=>"http://a0.twimg.com/profile_images/1839940080/dh_icon_normal.jpg", :location=>"Orlando, FL"}
+{:uid=>"19900778", :provider=>"twitter", :full_name=>"London 2012", :photo=>"http://a0.twimg.com/profile_images/563087689/TwitterPinkLogo_normal.jpg", :location=>"London"}
+{:uid=>"16727535", :provider=>"twitter", :full_name=>"Lance Armstrong", :photo=>"http://a0.twimg.com/profile_images/1645732613/20110924_0718_Z1_4x4_PR_BW_normal.jpg", :location=>"Austin, TX"}
+{:uid=>"31122496", :provider=>"twitter", :full_name=>"NCAA", :photo=>"http://a0.twimg.com/profile_images/188987758/NCAA_primaryc_normal.gif"}
+{:uid=>"21879024", :provider=>"twitter", :full_name=>"Tony Hawk", :photo=>"http://a0.twimg.com/profile_images/1325015260/1979_driveway_fs_stink_normal.jpg", :location=>"San Diego & world at large"}
+{:uid=>"40519997", :provider=>"twitter", :full_name=>"Chad Ochocinco", :photo=>"http://a0.twimg.com/profile_images/2171185074/ochocinco_normal.jpg", :location=>"Lady Evelyn meet Evelyn"}
+{:uid=>"284089166", :provider=>"twitter", :full_name=>"Michael Wilbon", :photo=>"http://a0.twimg.com/profile_images/1316090878/Wilbon_Michael_cropped-1_normal.jpeg", :location=>"ESPN"}
+{:uid=>"62902439", :provider=>"twitter", :full_name=>"Reggie Bush", :photo=>"http://a0.twimg.com/profile_images/2150783656/reggie_bush_normal.jpg", :location=>"The Best Coast"}
+{:uid=>"16801904", :provider=>"twitter", :full_name=>"Shaun White", :photo=>"http://a0.twimg.com/profile_images/1577168627/118484386_TW_3461_CD9819E8F051460A2DB20C5C888B2C9B_normal.jpg", :location=>"Los Angeles"}
+{:uid=>"25629334", :provider=>"twitter", :full_name=>"Nate Robinson", :photo=>"http://a0.twimg.com/profile_images/2166165299/nate_robinson_normal.jpg", :location=>"Rain city ( word aapp ) "}
+{:uid=>"27115071", :provider=>"twitter", :full_name=>"Paul Pierce", :photo=>"http://a0.twimg.com/profile_images/113132420/Pierce_0398_normal.jpg"}
+{:uid=>"49153854", :provider=>"twitter", :full_name=>"NASCAR", :photo=>"http://a0.twimg.com/profile_images/1673535956/NASCAR_4C_PRT_500x500_normal.jpeg", :location=>"Daytona Beach, FL"}
+{:uid=>"16228398", :provider=>"twitter", :full_name=>"Mark Cuban", :photo=>"http://a0.twimg.com/profile_images/1422637130/mccigartrophy_normal.jpg"}
+{:uid=>"28669612", :provider=>"twitter", :full_name=>"LAMAR ODOM", :photo=>"http://a0.twimg.com/profile_images/1640670712/LamarBasketball_normal.jpg", :location=>"Los Angeles, CA"}
+{:uid=>"51263592", :provider=>"twitter", :full_name=>"Adam Schefter", :photo=>"http://a0.twimg.com/profile_images/1596252132/343417_normal.gif", :location=>"ÜT: 42.579178,-76.214574"}
+{:uid=>"96821645", :provider=>"twitter", :full_name=>"Jim Rome", :photo=>"http://a0.twimg.com/profile_images/642664903/pic_jimrome_normal.jpg", :location=>"ÜT: 33.674275,-117.837275"}
+{:uid=>"21586418", :provider=>"twitter", :full_name=>"Dana White", :photo=>"http://a0.twimg.com/profile_images/1125952203/IMG00163-20100917-1819_normal.jpg", :location=>"Las Vegas, NV"}
+{:uid=>"17299063", :provider=>"twitter", :full_name=>"PTI", :photo=>"http://a0.twimg.com/profile_images/1799942653/PTI-Social-Media-Icon-Transparent_normal.png", :location=>"Washington, DC"}
+{:uid=>"30465594", :provider=>"twitter", :full_name=>"Jason Terry", :photo=>"http://a0.twimg.com/profile_images/1534737472/75BUXYiA_normal", :location=>"Dallas, Texas"}
+{:uid=>"13838562", :provider=>"twitter", :full_name=>"andyroddick", :photo=>"http://a0.twimg.com/profile_images/442816661/andy-roddick-splash_normal.jpg", :location=>"Travelling"}
+{:uid=>"30793542", :provider=>"twitter", :full_name=>"Troy Aikman", :photo=>"http://a0.twimg.com/profile_images/1765489875/333236135_normal.jpg", :location=>"Dallas, TX"}
+{:uid=>"28870086", :provider=>"twitter", :full_name=>"Chris Mortensen", :photo=>"http://a0.twimg.com/profile_images/657785492/alex__mcfadden_normal.jpg", :location=>"Anywhere, USA"}
+{:uid=>"32135704", :provider=>"twitter", :full_name=>"Peter King", :photo=>"http://a0.twimg.com/profile_images/1734644174/worldcupbale_normal.jpg", :location=>"ÜT: 38.991698,-77.03542"}
+{:uid=>"21454322", :provider=>"twitter", :full_name=>"Drew Brees", :photo=>"http://a0.twimg.com/profile_images/1308604870/CIMG2208_normal.JPG", :location=>"New Orleans"}
+{:uid=>"39288259", :provider=>"twitter", :full_name=>"Larry Fitzgerald", :photo=>"http://a0.twimg.com/profile_images/1608424381/get-attachment-6.aspx_bigger_normal.jpg", :location=>"Arizona"}
+{:uid=>"12297052", :provider=>"twitter", :full_name=>"Women's Pro Soccer", :photo=>"http://a0.twimg.com/profile_images/1421186159/SEH_FB_normal.jpg", :location=>"San Francisco, CA"}
+{:uid=>"28665877", :provider=>"twitter", :full_name=>"Alex Morgan", :photo=>"http://a0.twimg.com/profile_images/1695409406/_W1_7107_FB_normal.jpg"}
+{:uid=>"246401452", :provider=>"twitter", :full_name=>"Brian Wilson", :photo=>"http://a0.twimg.com/profile_images/1380587474/stretchwilson_normal.jpg", :location=>"San Francisco, CA"}
+{:uid=>"85633543", :provider=>"twitter", :full_name=>"Landon Donovan", :photo=>"http://a0.twimg.com/profile_images/1951087260/landondonovan_normal.jpg", :location=>"LA "}
+{:uid=>"29842036", :provider=>"twitter", :full_name=>"Ryan Sheckler", :photo=>"http://a0.twimg.com/profile_images/1632301988/twitter_ryan_golf_10_sm_normal.jpg", :location=>"San Clemente, CA"}
+{:uid=>"36240413", :provider=>"twitter", :full_name=>"Chris Johnson", :photo=>"http://a0.twimg.com/profile_images/2144792226/ChrisJohnson28_normal.jpg", :location=>"ÜT: 33.985365,-118.396649"}
+{:uid=>"37367041", :provider=>"twitter", :full_name=>"Rudy Gay", :photo=>"http://a0.twimg.com/profile_images/1669088365/fb_MG_7317-600x411_normal.jpg"}
+{:uid=>"18915240", :provider=>"twitter", :full_name=>"JALEN ROSE", :photo=>"http://a0.twimg.com/profile_images/1525595454/x2_d0c23f_normal.jpeg", :location=>"DETROIT ROCK CITY"}
+{:uid=>"34630995", :provider=>"twitter", :full_name=>"Warren Sapp", :photo=>"http://a0.twimg.com/profile_images/2111152023/337786041_normal.jpg", :location=>"ÜT: 33.949403,-118.398831"}
+{:uid=>"17076218", :provider=>"twitter", :full_name=>"New York Jets", :photo=>"http://a0.twimg.com/profile_images/1993069818/Jets-Pin-Pro_normal.jpg", :location=>"New York "}
+{:uid=>"22922759", :provider=>"twitter", :full_name=>"Mark Sanchez", :photo=>"http://a0.twimg.com/profile_images/1768878463/image_normal.jpg", :location=>"NY, NJ and SoCal"}
+{:uid=>"32765534", :provider=>"twitter", :full_name=>"Bill Simmons", :photo=>"http://a0.twimg.com/profile_images/1887290966/grogan_normal.jpg", :location=>"Los Angeles (via Boston)"}
+{:uid=>"239543885", :provider=>"twitter", :full_name=>"Brandon Phillips", :photo=>"http://a0.twimg.com/profile_images/2043461748/DatDudeBP_normal.jpg", :location=>"ATL ~ CIN ~ ZAMUNDA"}
+{:uid=>"19249062", :provider=>"twitter", :full_name=>"Nick Swisher", :photo=>"http://a0.twimg.com/profile_images/1750921425/photo1_normal.PNG", :location=>"New York, NY"}
+{:uid=>"52529345", :provider=>"twitter", :full_name=>"Michelle Beadle", :photo=>"http://a0.twimg.com/profile_images/1705225286/image_normal.jpg"}
+{:uid=>"21056862", :provider=>"twitter", :full_name=>"Baron Davis", :photo=>"http://a0.twimg.com/profile_images/89398546/081027-obama-davis-bcol-4p.standard_normal.jpg", :location=>"NYC aka The Big Apple"}
+{:uid=>"22159122", :provider=>"twitter", :full_name=>"Tony Reali", :photo=>"http://a0.twimg.com/profile_images/1133116961/profile2_normal.jpg", :location=>"Washington, DC"}
+{:uid=>"40168339", :provider=>"twitter", :full_name=>"Ric Bucher", :photo=>"http://a0.twimg.com/profile_images/319250942/bucher_normal.jpg", :location=>"An NBA city near you"}
+{:uid=>"37896651", :provider=>"twitter", :full_name=>"Henry Winter", :photo=>"http://a0.twimg.com/profile_images/198358625/henrywinter_normal.jpg", :location=>"At a game"}
+{:uid=>"27471945", :provider=>"twitter", :full_name=>"Dara Torres", :photo=>"http://a0.twimg.com/profile_images/1609226565/image_normal.jpg"}
+{:uid=>"15876379", :provider=>"twitter", :full_name=>"Pete Carroll", :photo=>"http://a0.twimg.com/profile_images/1218479311/pctwitter2_normal.jpg", :location=>"Seattle"}
+{:uid=>"16203586", :provider=>"twitter", :full_name=>"Doug Ulman", :photo=>"http://a0.twimg.com/profile_images/1573956301/22fc6556-970d-4b32-93b6-7aaf38113c89_normal.jpg", :location=>"ÜT: 30.25975,-97.774105"}
+{:uid=>"34296189", :provider=>"twitter", :full_name=>"Jozy Altidore", :photo=>"http://a0.twimg.com/profile_images/1867266651/335462476_normal.jpg"}
+{:uid=>"36623013", :provider=>"twitter", :full_name=>"Grant Wahl", :photo=>"http://a0.twimg.com/profile_images/258411087/GrantWahl_normal.jpg", :location=>"Planet Fútbol"}
+{:uid=>"19120850", :provider=>"twitter", :full_name=>"Jerry Remy (RemDawg)", :photo=>"http://a0.twimg.com/profile_images/1844617352/Enhanced_Air_Guitar-2__1__normal.gif", :location=>"Red Sox Nation"}
+{:uid=>"39546218", :provider=>"twitter", :full_name=>"Angela Ruggiero", :photo=>"http://a0.twimg.com/profile_images/208789546/ARswing_comp._normal.jpg", :location=>"All over the world "}
+{:uid=>"84353161", :provider=>"twitter", :full_name=>"Mike Vick", :photo=>"http://a0.twimg.com/profile_images/1887673083/MikeVick_normal.jpg", :location=>"757/215"}
+{:uid=>"156132825", :provider=>"twitter", :full_name=>"Mike Tyson", :photo=>"http://a0.twimg.com/profile_images/2150584633/image_normal.jpg", :location=>"Las Vegas, NV"}
+{:uid=>"91189330", :provider=>"twitter", :full_name=>"Youth Olympic Games", :photo=>"http://a0.twimg.com/profile_images/1376201870/yog-logo_normal.PNG"}
+{:uid=>"15011421", :provider=>"twitter", :full_name=>"MLS Insider", :photo=>"http://a0.twimg.com/profile_images/1337738507/MLSILogo_normal.jpg", :location=>"New York, NY"}
+{:uid=>"17159397", :provider=>"twitter", :full_name=>"WNBA", :photo=>"http://a0.twimg.com/profile_images/1643830824/12_WNBA_FB_offseason_1_normal.jpg"}
+{:uid=>"18139461", :provider=>"twitter", :full_name=>"Boston Celtics", :photo=>"http://a0.twimg.com/profile_images/1862865261/ProfileIcon_200x200_normal.jpg", :location=>"Boston, MA"}
