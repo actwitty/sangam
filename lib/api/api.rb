@@ -837,10 +837,17 @@ module Api
       end
 
       ######################
-      #
-      #
+      #  INPUT
+      #  params[:activities] =[ {
+      #                            :category => "technology", 
+      #                            :url => "http://gigaom.com/2012/04/26/the-clouds-next-seismic-shift-structure-2012"
+      #                          } ,
+      #                          {
+      #                            :category => "sports", 
+      #                            :url => "www.cricinfo.com" 
+      #                          } ]
       def fb_write_to_timeline(params={})
          params[:user_id] = self.id
-         ::Api::FBTimeline.fb_write_to_timeline(params)         
+         ::Api::FBTimeline.fb_write_to_timeline_internal(params)         
       end
 end
