@@ -4,12 +4,12 @@ class WelcomeController < ApplicationController
     Rails.logger.info("[CNTRL] [WELCOME] [NEW] New page requested")
 
     if user_signed_in?
-      Rails.logger.info("[CNTRL] [WELCOME] [NEW] User signed in")
-      url = "#{current_user.username}.#{AppConstants.server_base}"
-      puts url
+      Rails.logger.info("[CNTRL] [WELCOME] [NEW] User signed in #{AppConstants.server_base}")
+      url = "#{current_user.username}" + "." + "#{AppConstants.server_base}"
       redirect_to url
       #redirect_to :controller => "home", :action => "alpha"
-      Rails.logger.info("[CNTRL] [WELCOME] [NEW] Redirect to home sketch")
+      Rails.logger.info("[CNTRL] [WELCOME] [NEW] Redirect to #{url}")
+
     else
       @page_mode="landing_page"
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] Main Page requested")

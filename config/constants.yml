@@ -171,7 +171,7 @@ development: &default
   pusher_key_id: 'e56f227bc500d2fb8364'
   pusher_secret_key: 'e0948ca7a8b1c398dba3'
 
-  server_base: "localhost:3000"
+  server_base: '"localhost:3000"'
 
 production:
   <<: *default
@@ -223,7 +223,7 @@ production:
   pusher_key_id: 082b78af7b43fe2cecea
   pusher_secret_key: 02e84edceda36cc1bce6
   
-  server_base: "actwitty.com"
+  server_base: '"actwitty.com"'
 
 
   #########################################################################
@@ -242,10 +242,11 @@ staging:
   #Devloper:change this to reqd email
   authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
   authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
-  server_base: "lemonbag.com"
+  server_base: '"lemonbag.com"'
 
 test:
   <<: *default
 
   #test service name
   test_service:                             test
+  server_base: '"localhost:3000"'

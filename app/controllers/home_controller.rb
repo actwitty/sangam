@@ -213,43 +213,27 @@ class HomeController < ApplicationController
   def thanks
     @user=nil
     @page_mode="profile_thanks_page"
-    Rails.logger.info("[CNTRL] [HOME] [SHOW] #{request.subdomain}")
-    username = request.subdomain
-    if username.nil?
-      if user_signed_in?
-        @user=current_user
-        Rails.logger.info("[CNTRL] [HOME] [THANKS] Setting user id to current user as no id mentioned")
-      else
-        Rails.logger.info("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as no id mentioned")
-        redirect_to :controller => "welcome", :action => "new"
-      end
+    Rails.logger.info("[CNTRL] [HOME] [THANKS] #{params}")
+
+    if user_signed_in?
+      @user=current_user
+      Rails.logger.info("[CNTRL] [HOME] [THANKS] Setting user id to current user as no id mentioned")
     else
-      @user=User.find_by_username(username)
-      if @user.nil?
-        if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
-          @user=current_user
-          Rails.logger.info("[CNTRL] [HOME] [THANKS] Setting user id to current user as incorrect id mentioned")
-        else
-          Rails.logger.warn("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as incorrect id mentioned")
-          redirect_to :controller => "welcome", :action => "new"
-        end
-      end
+      Rails.logger.info("[CNTRL] [HOME] [THANKS] Redirecting to welcome new as no id mentioned")
+      redirect_to :controller => "welcome", :action => "new"
     end
-
-
   end
 
   ############################################
   def waiting
     @user=nil
     @page_mode="profile_thanks_page"
-    Rails.logger.info("[CNTRL] [HOME] [SHOW] #{request.subdomain}")
-    username = request.subdomain
-    if username.nil?
+    Rails.logger.info("[CNTRL] [HOME] [WAITING] #{params}")
+    if params[:id].nil?
       if user_signed_in?
         @user=current_user
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Setting user id to current user as no id mentioned")
-        redirect_to "/show"
+        redirect_to "#{AppConstants.server_base}"
         return
       else
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Redirecting to welcome new as no id mentioned")
@@ -257,10 +241,10 @@ class HomeController < ApplicationController
         return
       end
     else
-      @user=User.find_by_username(username)
+      @user=User.find_by_id(params[:id])
       if @user.nil?
-         Rails.logger.info("[CNTRL] [HOME] [WAITING] Mentioned user does not exist")
-        redirect_to "/show"
+        Rails.logger.info("[CNTRL] [HOME] [WAITING] Mentioned user does not exist")
+        redirect_to "#{@user.username}.#{AppConstants.server_base}"
         return
       end
 
@@ -268,7 +252,7 @@ class HomeController < ApplicationController
       query[:user_id] = @user.id  
       process_status = current_user.get_status(query)
       unless process_status == 1
-        redirect_to "/show?id=#{@user.id}"
+        redirect_to "#{@user.username}.#{AppConstants.server_base}"
       return
 
 
