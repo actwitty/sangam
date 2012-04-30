@@ -5,7 +5,9 @@ class WelcomeController < ApplicationController
 
     if user_signed_in?
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] User signed in")
-      redirect_to "/show"
+      url = "#{current_user.username}.#{request.host}:#{request.port}"
+      puts url
+      redirect_to url
       #redirect_to :controller => "home", :action => "alpha"
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] Redirect to home sketch")
     else
