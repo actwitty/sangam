@@ -35,7 +35,7 @@ function aw_api_view_search_autocomplete(){
  */
 function aw_get_autocomplete_result_click(item){
   if( item ){
-    window.location.href = 'http://www.' + item.username + '.actwitty.com';
+    window.location.href =  item.username + '.' + aw_js_server_base;
   }
 }
 

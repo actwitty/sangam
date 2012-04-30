@@ -7,6 +7,7 @@
 
 :javascript
   var aw_js_global_facebook_app_id = #{AppConstants.facebook_app_id};
+  var aw_js_server_base = #{AppConstants.server_base};
   var aw_js_global_visited_user_credentials = {
                                           id: '#{@user.id}',
                                           name: '#{@user.full_name}',
@@ -16,7 +17,8 @@
                                           location: '#{@user.current_location}',
                                           lat: #{@user.current_geo_lat},
                                           lng: #{@user.current_geo_long},
-                                          cache_time: '#{@user.updated_at}'
+                                          cache_time: '#{@user.updated_at}',
+                                          username: '#{@user.username}'
                                       };
   var aw_js_global_visited_user_foreign_ids = #{@service_uids.to_json};
 
@@ -54,7 +56,7 @@
           %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_top_bar.png"}
         -if user_signed_in? && !if_ghost_user?
           %a#awppm_header_user_logout{:href => "/users/sign_out"}
-          %a#awppm_header_user_home{:href => "/show?id=#{current_user.id}" }
+          %a#awppm_header_user_home{:href => "#{current_user.username}.#{AppConstants.server_base}" }
         -elsif if_ghost_user?
           %a#awppm_header_user_login{:href => "/welcome/new"} login
         #awppm_header_search_edit_box
@@ -69,10 +71,10 @@
           
       #aw_js_profile_main_container.aw_section_container_box
         .aw_section_container_info_box
-          %a.aw_user_profile_pic{:href=> "/show?id=#{@user.id}"  }
+          %a.aw_user_profile_pic{:href=>"#{@user.username}.#{AppConstants.server_base}" }
             %img#aw_profile_picture{:src=> "#{@user.photo_small_url}", :height => "100px", :width => "100px"  }
           .aw_section_container_internal_data_box
-            %a.aw_full_name{:href=> "/show?id=#{@user.id}"  }
+            %a.aw_full_name{:href=> "#{@user.username}.#{AppConstants.server_base}"  }
               %h2 #{@user.full_name}
             #aw_js_user_description.aw_description
             #aw_js_user_details.aw_profile_details
