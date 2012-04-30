@@ -111,8 +111,6 @@ class HomeController < ApplicationController
   def show
     @user=nil
     @page_mode="profile_show_page"
-    Rails.logger.info("[CNTRL] [HOME] [SHOW] #{request.subdomain}")
-    username = request.subdomain
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params}")
     if user_signed_in?
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
@@ -121,7 +119,7 @@ class HomeController < ApplicationController
     end
 
 
-    if username.nil?
+    if params[:id].nil?
       if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
         @user=current_user 
         Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as no id mentioned")
@@ -132,7 +130,7 @@ class HomeController < ApplicationController
       end
     else
     
-      @user=User.find_by_username(username)
+      @user=User.find_by_id(params[:id])
       if @user.nil?
         if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
           @user=current_user
@@ -244,7 +242,7 @@ class HomeController < ApplicationController
       @user=User.find_by_id(params[:id])
       if @user.nil?
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Mentioned user does not exist")
-        redirect_to "#{@user.username}.#{AppConstants.server_base}"
+        redirect_to "/show?id=#{@user.id}"
         return
       end
 
@@ -252,7 +250,7 @@ class HomeController < ApplicationController
       query[:user_id] = @user.id  
       process_status = current_user.get_status(query)
       unless process_status == 1
-        redirect_to "#{@user.username}.#{AppConstants.server_base}"
+        redirect_to "/show?id=#{@user.id}"
       return
 
 
