@@ -231,7 +231,7 @@ class HomeController < ApplicationController
       if user_signed_in?
         @user=current_user
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Setting user id to current user as no id mentioned")
-        redirect_to "#{AppConstants.server_base}"
+        redirect_to :controller => "welcome", :action => "new"
         return
       else
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Redirecting to welcome new as no id mentioned")

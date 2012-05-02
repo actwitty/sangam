@@ -92,7 +92,7 @@ function aw_api_view_interest_render(data){
   }
   var gender_html = "";
   if(gender_img.length){ 
-     gender_html '<div class="aw_sketch_interest_background_box" id="aw_js_show_gender_box" >' +
+     gender_html = '<div class="aw_sketch_interest_background_box" id="aw_js_show_gender_box" >' +
                       '<img class="aw_sketch_interest_background_img" src="' + gender_img +  '" height=100% />' +
                     '</div>' ;
   }
