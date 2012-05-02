@@ -52,7 +52,13 @@ module Api
           #celebrity come and pick the available username and email manually
 
           if !params[:username].blank? and params[:username] =~ /^[\w]{5,32}$/
-            s = User.where(:username => params[:username]).first
+            a = User.where(:username => params[:username]).first
+            if a.blank?
+              s = params[:username]
+            else
+              s = nil
+            end
+
           end
 
           if s.blank?
