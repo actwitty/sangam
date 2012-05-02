@@ -13,6 +13,7 @@ module Api
       #               :photo => "http://xyz.com/123"  [OPTIONAL]
       #               :location => "Bangalore" [OPTIONAL]
       #               :gender => "male" [OPTIONAL]
+      #               :username => "mashable"[OPTIONAL]
       #             },
       #           ],
       #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"
@@ -46,18 +47,27 @@ module Api
             next
           end
 
+          #first check if passed username is available
           #make username and email based on time as they can be already in use by regular user.. so better let the
           #celebrity come and pick the available username and email manually
-          s = Time.now.strftime("%Y%m%d%H%M%S%6N")
+
+          if !params[:username].blank? and params[:username] =~ /^[\w]{5,32}$/
+            s = User.where(:username => params[:username]).first
+          end
+
+          if s.blank?
+            s = Time.now.strftime("%Y%m%d%H%M%S%6N")
+          end
+
           attr[:username]=s   #=> "Printed on 11/19/2007"
           attr[:email]= "#{s}@actwitty.com"
 
-          if attr[:current_location].blank?
-            attr[:current_location]= "Unknown"
+          if attr[:location].blank?
+            attr[:location]= "Unknown"
           end
 
           if attr[:gender].blank?
-            attr[:gender]= "male"
+            attr[:gender]= "other"
           end
 
           user =  User.new(:username => attr[:username],
@@ -66,7 +76,7 @@ module Api
                                  :password => "XJksaU72134kLS",
                                  :password_confirmation => "XJksaU72134kLS",
                                  :gender => attr[:gender],
-                                 :current_location => attr[:current_location],
+                                 :current_location => attr[:location],
                                  :current_geo_lat => "0",
                                  :current_geo_long => "0",
                                  :dob => "01/01/1970",

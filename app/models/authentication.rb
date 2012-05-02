@@ -1,6 +1,6 @@
 class Authentication < ActiveRecord::Base
   belongs_to :user
-  has_one :foreign_profile
+  has_one :foreign_profile, :dependent => :destroy
 
   validates :uid, :provider, :presence => true
   validates_uniqueness_of :user_id, :scope => :provider, :allow_nil => true

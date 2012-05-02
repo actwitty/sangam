@@ -8,6 +8,7 @@ module SocialFetch
 
       FEED = "https://graph.facebook.com/"
       EPOCH_TIME = Time.utc(1970, 1, 1, 0, 0)
+      SKIP_STORIES = /friends|likes|tagged/
 
       #INPUT => {
       #          :user_id => 123,
@@ -240,15 +241,22 @@ module SocialFetch
 
           if !links.blank?
             activity[:links] = links
+            valid_post = true
 
             #copy story as text if activity[:text] is blank
             #means attr["message"] is blank. even if attr["story"] is blank no probs
+            #but if its skip kind of make post invalid
             if  activity[:text].blank?
-              activity[:text] = attr["story"]  if attr["story"] !~ /Guhesh Ramanathan is now friends with/
-              activity[:enrich] = false #no need to enrich the story
+              if !attr["story"].blank?
+                skip = attr["story"].scan(SKIP_STORIES)
+                if !skip.blank?
+                  valid_post = false
+                else
+                  activity[:text] = attr["story"]
+                  activity[:enrich] = false #no need to enrich the story
+                end
+              end
             end
-
-            valid_post = true
           end
 
           ########################################## Action #################################################################

@@ -492,7 +492,7 @@ class HomeController < ApplicationController
   ##################################################################
   def get_entities
     Rails.logger.info("[CNTRL] [HOME] [GET_ENTITIES] Params:#{params}")
-    if params[:user_id].nil?
+    unless params[:user_id].nil?
        
       query={}
       query[:user_id] = Integer(params[:user_id])
@@ -505,9 +505,9 @@ class HomeController < ApplicationController
         return
       end
     else
-        expires_in 10.minutes
-        Rails.logger.warn("[CNTRL] [HOME] [GET_ENTITIES][REJECTED] Params:#{params}")
-        render :json => {}, :status => 400
+      expires_in 10.minutes
+      Rails.logger.warn("[CNTRL] [HOME] [GET_ENTITIES][REJECTED] Params:#{params}")
+      render :json => {}, :status => 400
     end
   end
   ###################################################################

@@ -71,7 +71,8 @@ module Api
         return false
       end
 
-
+      # COMMENT => Only delete service data and does not delete authentication records as without authentication
+      #            there is no meaning of user being there
       # INPUT {
       #         :current_user_id => 123, (it should be id of requesting user)
       #         :user_id => 123,
@@ -242,7 +243,7 @@ module Api
           return false
         end
 
-        #update the time time stamp for the job other it will fail
+        #update the time time stamp for the job otherwise it will fail
         #[ISSUE][101][TECH][SERVER]Inject Job should update the time in social aggregator
         SocialAggregator.update_all({:next_update_timestamp => Time.now.utc}, {:id => social_fetch.id})
 

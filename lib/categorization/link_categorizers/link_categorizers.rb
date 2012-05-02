@@ -61,6 +61,7 @@ module Categorization
         hash.each do |url, categories|
 
           category = vote(categories)
+          category = get_default_category(url) if category.blank?
           if !category.blank?
 
             Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] url => #{url}, Category => #{category.inspect} ")
@@ -94,10 +95,26 @@ module Categorization
            return categories[index]
          end
          #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] leaving")
-         return []
+         return {}
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] **** RESCUE **** => #{e.message}")
-        return []
+        return {}
+      end
+
+      def get_default_category(url)
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] entering")
+
+        category = {}
+        u = URI.parse(url)
+        cat = DEFAULT_URL_CATEGORIES[u.host]
+
+        category[:name] = cat if !cat.blank?
+
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] leaving #{u.host} => #{category} ")
+        category
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] **** RESCUE **** => #{e.message}")
+        return {}
       end
     end
   end

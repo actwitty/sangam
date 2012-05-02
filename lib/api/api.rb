@@ -431,6 +431,8 @@ module Api
 
 
 
+      #COMMENT =>  Only delete service data and does not delete authentication records as without authentication
+      #            there is no meaning of user being there
       #INPUT {
       #         :user_id => 123,
       #         :provider => "facebook"/"twitter" [MANDATORY]
@@ -528,6 +530,13 @@ module Api
       rescue => e
         Rails.logger.error("[LIB] [API] [MOCK_ENABLE_SERVICES] **** RESCUE **** #{e.message} for #{params.inspect}")
         false
+      end
+############################################### ADMIN ###########################################
+
+      #{:user_id => 123}
+      def delete_user(params)
+        params[:current_user_id] = self.id
+        ::Api::Admin.delete_user(params)
       end
 
 ################################################ SEARCH ################################################
@@ -852,6 +861,7 @@ module Api
       #               :photo => "http://xyz.com/123"  [OPTIONAL]
       #               :location => "Bangalore" [OPTIONAL]
       #               :gender => "male" [OPTIONAL]
+      #               :username => "mashable"[OPTIONAL]
       #             },
       #           ],
       #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"
@@ -861,6 +871,7 @@ module Api
       def create_crawled_user(params)
         result = ::Api::UserCrawl.create_crawled_user(params)
       end
+
 
 ############################################### SOCIAL SHARE ###########################################
       ######################
