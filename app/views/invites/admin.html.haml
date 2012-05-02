@@ -1,0 +1,69 @@
+#aw_top_bar
+  #top_bar_container
+    #aw_top_bar_bkg
+      #aw_top_bar_box
+        %a{:href => "http://www.actwitty.com"}
+          %img.awppm_profile_logo{:src => "/images/actwitty/refactor/aw_ppm/common/aw_top_bar.png"}
+        -if user_signed_in? && !if_ghost_user?
+          %a#awppm_header_user_logout{:href => "/users/sign_out"}
+          %a#awppm_header_user_home{:href => "/show?id=#{current_user.id}" }
+        -elsif if_ghost_user?
+          %a#awppm_header_user_login{:href => "/welcome/new"} login
+        #awppm_header_search_edit_box
+          %input#aw_js_ppm_header_search_text{:placeholder => "Search", :type => "text"}
+
+.aw_inviteds_wrapper
+  
+  .aw_inviteds_new_invite
+    .aw_inviteds_new_invite_input_section
+      .aw_inviteds_new_invite_label Invite from Facebook
+      %label.aw_inviteds_new_invite_facebook_label Facebook Identifier:
+      %input#aw_js_facebook_invite.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Facebook ID' }
+      %input#aw_js_facebook_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+
+
+    .aw_inviteds_new_invite_input_section
+      .aw_inviteds_new_invite_label Invite from Twitter
+      %label.aw_inviteds_new_invite_facebook_label Twitter Identifier:
+      %input#aw_js_twitter_invite.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter Twitter Handle' }
+      %input#aw_js_twitter_invite_prefetch_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+
+    .aw_inviteds_new_invite_input_section
+      .aw_inviteds_new_invite_label Delete User 
+      %label.aw_inviteds_new_invite_facebook_label User ID:
+      %input#aw_js_delete_user_id.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter User ID' }
+      %input#aw_js_fetch_user_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+      %input#aw_js_delete_user_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Delete"}/
+      #aw_js_delete_user_box.aw_delete_user_box
+
+    .aw_inviteds_new_invite_input_section
+      .aw_inviteds_new_invite_label Delete User's Service 
+      %label.aw_inviteds_new_invite_facebook_label User ID:
+      %input#aw_js_delete_service_user_id.aw_inviteds_new_invite_facebook_id{:type => 'text', :placeholder => 'Enter User ID' }
+      %input#aw_js_fetch_delete_service_user_btn.aw_inviteds_new_invite_facebook_preprocess_button.button_actwitty.blue{:type => "button", :value => "Fetch"}/
+      #aw_js_delete_user_service_box.aw_delete_user_box
+         
+
+
+
+    #aw_js_prefetched_info_section.aw_inviteds_new_invite_prefetch_section
+      %img#aw_js_invite_image{ :width=>'50px', :height=> '50px'}
+      .aw_details_fetched
+        #aw_js_invite_name.aw_fetched_name
+        #aw_js_invite_service.aw_service_name
+      %input#aw_js_invite_uid{:type=>'hidden', :value =>  ''}/
+      %input#aw_js_invite_service{:type=>'hidden', :value =>  ''}/
+      %input#aw_js_invite_btn.aw_inviteds_new_invite_button.button_actwitty.blue{:type => "button", :value => "Invite"}/
+      %input#aw_js_enable_service_btn.aw_inviteds_new_invite_button.button_actwitty.blue{:type => "button", :value => "Enable"}/
+      %input#aw_js_inject_job_btn.aw_inviteds_new_invite_button.button_actwitty.blue{:type => "button", :value => "Inject Job"}/
+    #aw_js_server_status.aw_inviteds_server_response
+      
+
+
+
+%input#page_mode{:name => "user_id_for_this_page", :type => "hidden", :value => "#{@page_mode}" }
+- if user_signed_in?
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "#{current_user.id}" }
+- else
+  %input#session_owner_id{:name => "user_id_for_current_login", :type => "hidden", :value => "-1" }   
+

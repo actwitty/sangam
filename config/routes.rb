@@ -76,11 +76,15 @@ Sangam::Application.routes.draw do
   match '/team/show' => 'team#show'
 
   
-  match '/invites/addnew' => 'invites#addnew'
+  match '/invites/admin' => 'invites#admin'
   match '/invites/userbase' => 'invites#userbase'
   match '/invites/uninviteds' => 'invites#uninviteds'
   match '/invites/pending' => 'invites#pending'
   match '/invites/get_user_counts' => 'invites#get_user_counts'
+  match '/invites/get_user_to_delete' => 'invites#get_user_to_delete'
+  match '/invites/get_user_service_to_delete' => 'invites#get_user_service_to_delete'
+  match '/invites/delete_user' => 'invites#delete_user'
+  match '/invites/delete_user_service' => 'invites#delete_user_service'
 
   match '/invites/create_new' => 'invites#create_new'
   match '/invites/backdoor_enable_service' => 'invites#backdoor_enable_service'
