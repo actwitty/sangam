@@ -64,7 +64,8 @@
           -unless user.created_at.nil?
             %span #{user.created_at.strftime("%d/%m/%y")}
         .aw_user_login
-          %span #{user.last_sign_in_at.strftime("%d/%m/%y")}
+          -unless user.last_sign_in_at.nil?
+            %span #{user.last_sign_in_at.strftime("%d/%m/%y")}
       -if newest.nil?
         -newest = user.created_at
       - oldest =  user.created_at
