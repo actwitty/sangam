@@ -68,6 +68,7 @@ function aw_api_facebook_access_initialize_token(fn_cb){
       }
      
     });
+   aw_lib_console_log("DEBUG", "entered: FB Login status done");
 }
 
 /*******************************************************/

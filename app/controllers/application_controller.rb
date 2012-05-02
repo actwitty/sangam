@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
       redirect_to :controller=>'welcome', :action=>'new'
     end
   end
+  
+
 
   #Alok Adding pusher support
   def pusher_event_push

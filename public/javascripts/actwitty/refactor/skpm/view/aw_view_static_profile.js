@@ -7,7 +7,7 @@ function aw_api_view_static_profile_render(data){
    aw_lib_console_log("DEBUG", "entered:aw_api_view_static_profile_render");
    if ( data ){
       var location_html = "", work_html ="", study_html = "";
-      if( data.location && data.location.length > 0){
+      if( data.location && data.location.length > 0 && data.location != "unknown"){
         location_html = '<div class="aw_dyn_static_profile_details_element" >' +
                           '<h3> Lives in: </h3>' +
                           '<span>' + data.location +  '</span>' +
@@ -54,7 +54,6 @@ function aw_api_view_static_profile_update_description(description){
  *
  *
  */
-
 function aw_api_view_change_profile_pic(service, url){
   var existing_pic = $("#aw_profile_picture").attr("src");
   if( existing_pic.indexOf("graph.facebook.com") >=0 ){

@@ -13,7 +13,7 @@ require 'helpers/format_object/format_object'
 require 'helpers/format_object/format_analytics/analytics'
 
 require 'helpers/parser/parser'
-
+require "social_shares/fb_timeline"
 
 
 if Rails.env != "production"
@@ -874,10 +874,18 @@ module Api
 
 
 ############################################### SOCIAL SHARE ###########################################
-      #
-      #
+      ######################
+      #  INPUT
+      #  params[:activities] =[ {
+      #                            :category => "technology", 
+      #                            :url => "http://gigaom.com/2012/04/26/the-clouds-next-seismic-shift-structure-2012"
+      #                          } ,
+      #                          {
+      #                            :category => "sports", 
+      #                            :url => "www.cricinfo.com" 
+      #                          } ]
       def fb_write_to_timeline(params={})
          params[:user_id] = self.id
-         ::Api::FBTimeline.fb_write_to_timeline(params)
+         ::Api::FBTimeline.fb_write_to_timeline_internal(params)         
       end
 end

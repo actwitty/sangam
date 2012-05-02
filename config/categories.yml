@@ -6,7 +6,7 @@ sports:
   personalize: sporty
   sentence: things on sports
   end_sentence: and things on sports
-  fb_timeline: shares about sports
+  fb_timeline: sports
 automobiles:
   type: /automobiles
   channel: automobiles
@@ -15,7 +15,7 @@ automobiles:
   personalize: roadie
   sentence: roads, automobiles, cars
   end_sentence: roads, automobiles and cars
-  fb_timeline: shares about automobiles
+  fb_timeline: automobiles
 entertainment:
   type: /entertainment
   channel: entertainment
@@ -67,7 +67,7 @@ technology:
   name: technology
   sentence: science, gadgets, technology
   end_sentence: science, gadgets and technology
-  fb_timeline: shares about technologies
+  fb_timeline: technology
 world:
   type: /world
   channel: world

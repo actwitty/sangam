@@ -84,14 +84,20 @@ function aw_api_view_interest_render(data){
   
   
 
-  var gender_img = "/images/actwitty/refactor/aw_sketch/topics/women.svg"; 
+  var gender_img = ""; 
   if( aw_js_global_visited_user_credentials.gender == "male" ){
     gender_img = "/images/actwitty/refactor/aw_sketch/topics/men.svg"; 
+  }else if ( aw_js_global_visited_user_credentials.gender == "female" ){
+    gender_img = "/images/actwitty/refactor/aw_sketch/topics/women.svg";
+  }
+  var gender_html = "";
+  if(gender_img.length){ 
+     gender_html = '<div class="aw_sketch_interest_background_box" id="aw_js_show_gender_box" >' +
+                      '<img class="aw_sketch_interest_background_img" src="' + gender_img +  '" height=100% />' +
+                    '</div>' ;
   }
   var base_html = '<div class="aw_sketch_interest_main_box" >' +
-                    '<div class="aw_sketch_interest_background_box"  >' +
-                      '<img class="aw_sketch_interest_background_img" src="' + gender_img +  '" height=100% />' +
-                    '</div>' +
+                    gender_html +
                     html +
                   '</div>';
 
@@ -135,12 +141,14 @@ function aw_api_view_interest_render(data){
  *
  */
 function aw_api_view_reapply_interest_bkg(){
-  var gender_img = "/images/actwitty/refactor/aw_sketch/topics/women.svg"; 
-  if( aw_js_global_visited_user_credentials.gender == "male" ){
-    gender_img = "/images/actwitty/refactor/aw_sketch/topics/men.svg"; 
+  if( $("#aw_js_show_gender_box").length){
+    var gender_img = "/images/actwitty/refactor/aw_sketch/topics/women.svg"; 
+    if( aw_js_global_visited_user_credentials.gender == "male" ){
+      gender_img = "/images/actwitty/refactor/aw_sketch/topics/men.svg"; 
+    }
+    var html = '<img class="aw_sketch_interest_background_img" src="' + gender_img +  '"  height=100% />';
+    $(".aw_sketch_interest_background_box").html(html);
   }
-  var html = '<img class="aw_sketch_interest_background_img" src="' + gender_img +  '"  height=100% />';
-  $(".aw_sketch_interest_background_box").html(html);
 }
 /****************************************************************/
 /*

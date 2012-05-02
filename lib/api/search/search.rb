@@ -20,10 +20,10 @@ module Api
 
         array = []
 
-        User.select("id,full_name,photo_small_url, user_type").order("full_name").
+        User.select("id,full_name,photo_small_url, user_type, username").order("full_name").
              where( ['users.email = ? or full_name ILIKE ?', params[:name], "#{params[:name]}%"]).all.each do |attr|
 
-          h = {:id => attr.id, :image => attr.photo_small_url, :name => attr.full_name}
+          h = {:id => attr.id, :image => attr.photo_small_url, :name => attr.full_name, :username => attr.username}
 
           #ADMIN USER SHOULD NOT BE SEARCHED
           array << h if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
