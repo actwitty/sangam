@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   #before_filter :only_when_user_is_logged_in, :only => :show
 
   #Alok Adding pusher support
-  protect_from_forgery :except => :create_crawled_user # stop rails CSRF protection for this action
+  protect_from_forgery :except => [:create_crawled_user, :disable_service, :delete_user] # stop rails CSRF protection for this action
 
    #Alok Adding pusher support
    #Commenting for time being
@@ -609,6 +609,24 @@ class HomeController < ApplicationController
       Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] [REJECTED] Params:#{params}")
       render :json => {}, :status => 400
     end
+  end
+  ###################################################################
+  def delete_user
+    Rails.logger.info("[CNTRL] [HOME] [DELETE_USER] Params:#{params}")
+    response_json = current_user.delete_user({:user_id => params[:user_id], :provider => params[:provider], :uid => params[:uid]})
+
+    if request.post?
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
+      render :json => {:response => true}, :status => 200
+
+    else
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] [REJECTED] Params:#{params}")
+      render :json => {}, :status => 400
+    end
+  end
+  ###################################################################
+  def disable_service
+
   end
 end
 
