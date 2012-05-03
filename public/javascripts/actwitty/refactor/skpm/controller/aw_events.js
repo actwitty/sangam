@@ -63,7 +63,11 @@ $(document).ready(function(){
     aw_api_view_stream_apply_link_action($(this));
     return false;
   });
- 
+
+  $(".aw_js_stream_hover_originator").live( 'hover', function(){
+    alert("i was hovered");
+    return false;
+  });
 
    var body_height = $(window).height();
    aw_api_view_stream_apply_height(body_height);

@@ -111,7 +111,7 @@ class HomeController < ApplicationController
   def show
     @user=nil
     @page_mode="profile_show_page"
-    Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params}")
+    Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params} #{request.path}")
     if user_signed_in?
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
     else
@@ -119,7 +119,7 @@ class HomeController < ApplicationController
     end
 
 
-    if params[:id].nil?
+    if params[:username].nil?
       if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
         @user=current_user 
         Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as no id mentioned")
@@ -130,11 +130,12 @@ class HomeController < ApplicationController
       end
     else
     
-      @user=User.find_by_id(params[:id])
+      @user=User.where(:username => params[:username]).first
       if @user.nil?
         if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
-          @user=current_user
           Rails.logger.info("[CNTRL] [HOME] [SHOW] Setting user id to current user as incorrect id mentioned")
+          redirect_to "/#{current_user.username}"
+          return
         else
           Rails.logger.warn("[CNTRL] [HOME] [SHOW] Redirecting to welcome new as incorrect id mentioned")
           redirect_to :controller => "welcome", :action => "new"
@@ -180,7 +181,7 @@ class HomeController < ApplicationController
   if user_signed_in? 
     if current_user.id != @user.id
       if process_status == 1
-        redirect_to "/waiting?id=#{@user.id}"
+        redirect_to "/waiting?name=#{@user.username}"
         return
       end
     else
@@ -191,12 +192,12 @@ class HomeController < ApplicationController
     end
   else
     if process_status == 1
-      redirect_to "/waiting?id=#{@user.id}"
+      redirect_to "/waiting?name=#{@user.username}"
       return
     end
 
     unless invite_status 
-      redirect_to "/waiting?id=#{@user.id}"
+      redirect_to "/waiting?name=#{@user.username}"
       return
     end
   end
@@ -227,7 +228,7 @@ class HomeController < ApplicationController
     @user=nil
     @page_mode="profile_thanks_page"
     Rails.logger.info("[CNTRL] [HOME] [WAITING] #{params}")
-    if params[:id].nil?
+    if params[:name].nil?
       if user_signed_in?
         @user=current_user
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Setting user id to current user as no id mentioned")
@@ -239,10 +240,10 @@ class HomeController < ApplicationController
         return
       end
     else
-      @user=User.find_by_id(params[:id])
+      @user=User.where(:username => params[:name]).first
       if @user.nil?
         Rails.logger.info("[CNTRL] [HOME] [WAITING] Mentioned user does not exist")
-        redirect_to "/show?id=#{@user.id}"
+        redirect_to "/#{@user.username}"
         return
       end
 
@@ -250,7 +251,7 @@ class HomeController < ApplicationController
       query[:user_id] = @user.id  
       process_status = current_user.get_status(query)
       unless process_status == 1
-        redirect_to "/show?id=#{@user.id}"
+        redirect_to "/#{@user.username}"
       return
 
 

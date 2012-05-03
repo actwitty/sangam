@@ -259,7 +259,6 @@ body {
   cursor: pointer; }
   .aw_user_profile_pic img {
     width: 75px;
-    height: 75px;
     padding: 3px;
     border-radius: 3px;
     -moz-box-shadow: 0 0 5px #333333;

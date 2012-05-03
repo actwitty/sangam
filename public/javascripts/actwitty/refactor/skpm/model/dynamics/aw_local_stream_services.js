@@ -192,11 +192,10 @@ function aw_pulled_stream_twitter_handler( context ) {
  var json_data = null;
  $.each( tw_data.posts, function( key, post_data ){
     var aw_post_json = {};
-
     aw_post_json["originator"] = {
                                 image: post_data.post.user.photo,
                                 name: post_data.post.user.full_name,
-                                url:  "/show?id=" + post_data.post.user.id,
+                                url:  "/" + post_data.post.user.username,
                                 uid: aw_js_global_visited_user_foreign_ids['twitter']
                                };
 
@@ -278,7 +277,10 @@ function aw_pulled_stream_twitter_handler( context ) {
 
           attachment['image_url'] = doc.url_image;
         }
-
+        
+        if( doc.url_provider){
+          attachment['provider'] = doc.url_provider;
+        }
 
         attachment_arr.push( attachment );
 
