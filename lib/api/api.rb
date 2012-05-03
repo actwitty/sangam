@@ -437,7 +437,7 @@ module Api
       #         :user_id => 123,
       #         :provider => "facebook"/"twitter" [MANDATORY]
       #         :uid => 123 [MANDATORY]
-      #
+      #         :auth_key => "hdkjshfkjsdhkhfksdfsdf"[OPTIONAL == It is only used for Admin call(invite controller) as a mode for authorization..]
       #      }
       #OUTPUT => true [ON SUCCESS], false [ON FAILURE]
 
@@ -533,7 +533,10 @@ module Api
       end
 ############################################### ADMIN ###########################################
 
-      #{:user_id => 123}
+      #{
+      #  :user_id => 123,
+      #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"[OPTIONAL == It is only used for Admin call(invite controller)  as a mode for authorization..]
+      #}
       def delete_user(params)
         params[:current_user_id] = self.id
         ::Api::Admin.delete_user(params)
@@ -864,7 +867,7 @@ module Api
       #               :username => "mashable"[OPTIONAL]
       #             },
       #           ],
-      #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"
+      #  :auth_key => "hdkjshfkjsdhkhfksdfsdf" [MANDATORY == It is only used for curl based call as a mode for authorization..]
       #
       #" #COMES AS STRING
 
@@ -874,7 +877,6 @@ module Api
 
 
 ############################################### SOCIAL SHARE ###########################################
-      ######################
       #  INPUT
       #  params[:activities] =[ {
       #                            :category => "technology", 

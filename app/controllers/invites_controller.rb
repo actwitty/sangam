@@ -104,7 +104,7 @@ class InvitesController < ApplicationController
     if !params[:id].blank? 
       id = Integer(params[:id])
       user = User.find_by_id(id)
-      user.delete_user({:user_id => id})
+      user.delete_user({:user_id => id, :auth_key => AppConstants.authorized_see_internals_secret_key})
       
        if request.xhr?
         render :json => {}, :status => 200
@@ -127,7 +127,6 @@ class InvitesController < ApplicationController
     if !params[:id].blank? 
       id = Integer(params[:id])
       user = User.find_by_id(id)
-      #TODO: Alok test this call
       services = current_user.get_services( { :user_id => id } )
       users_json = {
                     :id => user.id,
@@ -157,15 +156,16 @@ class InvitesController < ApplicationController
      if !params[:id].blank? 
       id = Integer(params[:id])
       user = User.find_by_id(id)
-      #TODO Alok put an appropriate call
-      params = {}
-      params[:user_id] = id
-      params[:service] = params[:service]
-      #user.WHATEVERCALLYOUWANT(params)
-      
-       if request.xhr?
+      current_user.disable_service({
+                                    :user_id => id,
+                                    :provider => params[:service],
+                                    :uid => params[:uid],
+                                    :auth_key => AppConstants.authorized_see_internals_secret_key
+                                   })
+
+      if request.xhr?
         render :json => {}, :status => 200
-       end
+      end
     else
       if request.xhr?
         render :json => {}, :status => 400

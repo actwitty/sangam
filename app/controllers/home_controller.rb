@@ -613,7 +613,7 @@ class HomeController < ApplicationController
   ###################################################################
   def delete_user
     Rails.logger.info("[CNTRL] [HOME] [DELETE_USER] Params:#{params}")
-    response_json = current_user.delete_user({:user_id => params[:user_id], :provider => params[:provider], :uid => params[:uid]})
+    response_json = current_user.delete_user({:user_id => params[:user_id]})
 
     if request.post?
       Rails.logger.info("[CNTRL] [HOME] [CREATE_CRAWLED_USER] Params:#{params}")
@@ -626,7 +626,17 @@ class HomeController < ApplicationController
   end
   ###################################################################
   def disable_service
+    Rails.logger.info("[CNTRL] [HOME] [DISABLE_SERVICE] Params:#{params}")
+    response_json = current_user.disable_service({:user_id => params[:user_id], :provider => params[:provider], :uid => params[:uid]})
 
+    if request.post?
+      Rails.logger.info("[CNTRL] [HOME] [DISABLE_SERVICE] Params:#{params}")
+      render :json => {:response => true}, :status => 200
+
+    else
+      Rails.logger.info("[CNTRL] [HOME] [DISABLE_SERVICE] [REJECTED] Params:#{params}")
+      render :json => {}, :status => 400
+    end
   end
 end
 
