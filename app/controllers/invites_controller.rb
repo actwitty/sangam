@@ -52,7 +52,7 @@ class InvitesController < ApplicationController
     end
   end
 
-  def addnew
+  def admin
     Rails.logger.info("[CNTRL] [INVITES] Show Inviteds: [#{params}]")
 
     unless check_authorization_email?
@@ -67,7 +67,113 @@ class InvitesController < ApplicationController
   end
   
   
-  
+  def get_user_to_delete()
+    Rails.logger.info("[CNTRL] [INVITES] get_user_to_delete: [#{params}]")
+
+    unless check_authorization_email?
+      redirect_to :controller => "welcome", :action => "new"
+      return 
+    end
+
+    
+    if !params[:id].blank? 
+      id = Integer(params[:id])
+      user = User.find_by_id(id)
+      users_json = {
+                    :id => user.id,
+                    :name => user.full_name,
+                    :photo => user.photo_small_url
+                   }
+       if request.xhr?
+        render :json => users_json, :status => 200
+       end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+
+  def delete_user()
+    Rails.logger.info("[CNTRL] [INVITES] delete_user: [#{params}]")
+
+    unless check_authorization_email?
+      redirect_to :controller => "welcome", :action => "new"
+      return 
+    end
+    if !params[:id].blank? 
+      id = Integer(params[:id])
+      user = User.find_by_id(id)
+      user.delete_user({:user_id => id})
+      
+       if request.xhr?
+        render :json => {}, :status => 200
+       end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+
+  def get_user_service_to_delete()
+    Rails.logger.info("[CNTRL] [INVITES] get_user_service_to_delete: [#{params}]")
+
+    unless check_authorization_email?
+      redirect_to :controller => "welcome", :action => "new"
+      return 
+    end
+
+    if !params[:id].blank? 
+      id = Integer(params[:id])
+      user = User.find_by_id(id)
+      #TODO: Alok test this call
+      services = current_user.get_services( { :user_id => id } )
+      users_json = {
+                    :id => user.id,
+                    :name => user.full_name,
+                    :photo => user.photo_small_url,
+                    :services => services
+                   }
+       if request.xhr?
+        render :json => users_json, :status => 200
+       end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+
+  end
+
+  def delete_user_service()
+    Rails.logger.info("[CNTRL] [INVITES] delete_user_service: [#{params}]")
+
+    unless check_authorization_email?
+      redirect_to :controller => "welcome", :action => "new"
+      return 
+    end
+
+     if !params[:id].blank? 
+      id = Integer(params[:id])
+      user = User.find_by_id(id)
+      #TODO Alok put an appropriate call
+      params = {}
+      params[:user_id] = id
+      params[:service] = params[:service]
+      #user.WHATEVERCALLYOUWANT(params)
+      
+       if request.xhr?
+        render :json => {}, :status => 200
+       end
+    else
+      if request.xhr?
+        render :json => {}, :status => 400
+      end
+    end
+  end
+
+
 
   def get_user_counts()
       

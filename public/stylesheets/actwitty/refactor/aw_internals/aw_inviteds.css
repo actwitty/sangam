@@ -157,6 +157,11 @@ div.aw_inviteds_wrapper {
       margin-left: 20px; }
       .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_inviteds_new_invite_facebook_preprocess_button:hover {
         cursor: pointer; }
+    .aw_inviteds_new_invite .aw_inviteds_new_invite_input_section .aw_delete_user_box {
+      display: block;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      margin-left: 430px; }
   .aw_inviteds_new_invite .aw_inviteds_new_invite_prefetch_section {
     height: 200px;
     width: 900px;

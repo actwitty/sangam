@@ -60,7 +60,68 @@ function aw_preprocess_invite_request(service, id){
     });
   }
 }
+/*************************************************/
+function aw_process_fetch_user_details_for_delete(){
+  var user_id = $("#aw_js_delete_user_id").val();
+  $("#aw_js_delete_user_id").val("");
+  if( user_id.length ){
+    $.ajax({
+  
+              url: '/invites/get_user_to_delete.json', 
+              type: 'GET',
+              data: {  
+                      id: user_id,
+                    },
+              dataType: 'json',
+              success: function (data) {
+                if( data && data.id ){
+                  $("#aw_js_delete_user_box").html('');
+                  var html = '<img src="' + data.photo + '" width="30px" height="30px" id="aw_js_delete_user_img" cookie="' + data.id  + '" >' + 'ID=' + data.id + '; Name=' + data.name + '</img>';
+                  $("#aw_js_delete_user_box").html(html);       
+                            
+                }
 
+            },
+            error:function(XMLHttpRequest,textStatus, errorThrown){ 
+              aw_lib_console_log("error",
+                              "aw_process_invite_request:  Server request failed for "  
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+          }
+      });
+  }
+}
+/*************************************************/
+function aw_process_delete_user_request(){
+  if( $("#aw_js_delete_user_img").length){
+    var user_id = $("#aw_js_delete_user_img").attr("cookie");
+    if( user_id.length ){
+    $.ajax({
+  
+              url: '/invites/delete_user.json', 
+              type: 'GET',
+              data: {  
+                      id: user_id,
+                    },
+              dataType: 'json',
+              success: function (data) {
+                if( data && data.id ){
+                  $("#aw_js_delete_user_box").html(JSON.stringify(data));
+                }
+
+            },
+            error:function(XMLHttpRequest,textStatus, errorThrown){ 
+              aw_lib_console_log("error",
+                              "aw_process_invite_request:  Server request failed for "  
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+          }
+      });
+    }
+  }
+}
 /*************************************************/
 function aw_api_srv_resp_aw_internal_invite(){
   $("#aw_js_invite_name").html();
@@ -179,7 +240,73 @@ function aw_api_internal_fetch_user_counts(){
         }
     });  
 }
+/**************************************************/
+function aw_process_fetch_user_details_for_service_delete(){
+  var user_id = $("#aw_js_delete_service_user_id").val();
+  $("#aw_js_delete_service_user_id").val("");
+  if( user_id.length ){
+    $.ajax({
+  
+              url: '/invites/get_user_service_to_delete.json', 
+              type: 'GET',
+              data: {  
+                      id: user_id,
+                    },
+              dataType: 'json',
+              success: function (data) {
+                if( data && data.id ){
+                  $("#aw_js_delete_user_service_box").html('');
+                  var html = '<img src="' + data.photo + '" width="30px" height="30px" id="aw_js_delete_user_service_img" cookie="' + data.id  + '" >' + 'ID=' + data.id + '; Name=' + data.name + '</img>';
+                  var services_html="";
+                  $.each(data.services, function(key, service_json){
+                    services_html = '<input class="aw_inviteds_new_invite_facebook_preprocess_button button_actwitty blue aw_js_service_remove_btn" type="button" value="' + service_json.provider + '">' ;
+                  });
+                  html = html + services_html;
+                  $("#aw_js_delete_user_service_box").html(html);     
+                }
 
+            },
+            error:function(XMLHttpRequest,textStatus, errorThrown){ 
+              aw_lib_console_log("error",
+                              "aw_process_invite_request:  Server request failed for "  
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+          }
+      });
+  }
+}
+/************************************************/
+function aw_process_user_service_delete(ele){
+  if( $("#aw_js_delete_user_service_img").length){
+    var user_id = $("#aw_js_delete_user_service_img").attr("cookie");
+    if( user_id.length ){
+    $.ajax({
+  
+              url: '/invites/delete_user_service.json', 
+              type: 'GET',
+              data: {  
+                      id: user_id,
+                      service: ele.val(),
+                    },
+              dataType: 'json',
+              success: function (data) {
+                if( data && data.id ){
+                  $("#aw_js_delete_user_service_box").html(JSON.stringify(data));
+                }
+
+            },
+            error:function(XMLHttpRequest,textStatus, errorThrown){ 
+              aw_lib_console_log("error",
+                              "aw_process_invite_request:  Server request failed for "  
+                              +  " error: " + errorThrown + " status:" + textStatus);   
+            
+           
+          }
+      });
+    }
+  }
+}
 /************************************************/
 /*
  *
@@ -205,6 +332,22 @@ $(document).ready(function(){
 
   $("#aw_js_enable_service_btn").click(function(){
     aw_process_enable_service_request();
+  });
+
+  $("#aw_js_fetch_user_btn").click(function(){
+    aw_process_fetch_user_details_for_delete();
+  });
+
+  $("#aw_js_delete_user_btn").click(function(){
+    aw_process_delete_user_request();
+  });
+
+  $("#aw_js_fetch_delete_service_user_btn").click(function(){
+    aw_process_fetch_user_details_for_service_delete();
+  });
+
+  $(".aw_js_service_remove_btn").live('click', function(){
+    aw_process_user_service_delete($(this));
   });
 
 });
