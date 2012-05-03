@@ -159,7 +159,7 @@ if __FILE__ == $0
     out = STDIN.readline
     out = out.gsub(/\n/,"")
     #array = TwitterCrawler.process_request({:api => "suggestions",:options => {:category => "sports"}})
-    array = TwitterCrawler.process_file({:file_name => "data/sports_suggestions"})
+    array = TwitterCrawler.process_file({:file_name => "data/tech_suggestions"})
     puts "Em Done"
     pp "Command Line" + Thread.current.inspect
   end

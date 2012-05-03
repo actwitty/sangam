@@ -1,1 +1,29 @@
-{:uid=>"972651", :provider=>"twitter", :full_name=>"Pete Cashmore", :photo=>"http://a0.twimg.com/profile_images/1753189352/SC_top_10_Logo_normal.png", :location=>"NYC \/ SFC", :username => "mashable"}
+{:uid=>"50940456", :provider=>"twitter", :full_name=>"Kai-Fu Lee", :photo=>"http://a0.twimg.com/profile_images/1174436114/touxiang_normal.jpg", :location=>"Beijing, China"}
+{:uid=>"657863", :provider=>"twitter", :full_name=>"Kevin Rose", :photo=>"http://a0.twimg.com/profile_images/1777080527/kevin_normal.jpeg", :location=>"San Francisco, CA"}
+{:uid=>"66369206", :provider=>"twitter", :full_name=>"The FCC", :photo=>"http://a0.twimg.com/profile_images/1303190571/twitter_fcc_icon_normal.png", :location=>"Washington, DC"}
+{:uid=>"15208246", :provider=>"twitter", :full_name=>"Epicenter", :photo=>"http://a0.twimg.com/profile_images/196568862/73x73_epicenter_normal.jpg", :location=>"New York / San Francisco"}
+{:uid=>"6385432", :provider=>"twitter", :full_name=>"dick costolo", :photo=>"http://a0.twimg.com/profile_images/1537551435/final_dick_costolo_compressed_normal.jpg", :location=>"San Francisco"}
+{:uid=>"3829151", :provider=>"twitter", :full_name=>"Leo Laporte", :photo=>"http://a0.twimg.com/profile_images/1755421129/Profile_normal.jpg", :location=>"Petaluma, CA USA"}
+{:uid=>"9534522", :provider=>"twitter", :full_name=>"David Pogue", :photo=>"http://a0.twimg.com/profile_images/69259417/dp_photo__small__normal.jpg", :location=>"USA"}
+{:uid=>"930061", :provider=>"twitter", :full_name=>"Gina Trapani", :photo=>"http://a0.twimg.com/profile_images/1340259468/gtrapani_wadman_2011_160_normal.jpg", :location=>"San Diego, CA"}
+{:uid=>"746323", :provider=>"twitter", :full_name=>"Jeff Keni Pulver", :photo=>"http://a0.twimg.com/profile_images/179183875/vx22_normal.jpg", :location=>"New York"}
+{:uid=>"14749070", :provider=>"twitter", :full_name=>"Chad Hurley", :photo=>"http://a0.twimg.com/profile_images/1783095770/image1327602441_normal.png", :location=>"CA, USA"}
+{:uid=>"10454572", :provider=>"twitter", :full_name=>"Jenna Wortham", :photo=>"http://a0.twimg.com/profile_images/1541555730/qbEleAiJKZJRKqceqLRo_normal.gif", :location=>"Brooklyn "}
+{:uid=>"6708952", :provider=>"twitter", :full_name=>"Steve Case", :photo=>"http://a0.twimg.com/profile_images/1677058811/steve_case_wsj_bigger_normal.jpg", :location=>"Washington DC"}
+{:uid=>"989", :provider=>"twitter", :full_name=>"Om Malik", :photo=>"http://a0.twimg.com/profile_images/1771447545/image_normal.jpg", :location=>"ÜT: 37.795917,-122.39966"}
+{:uid=>"2148071", :provider=>"twitter", :full_name=>"Daniel Brusilovsky", :photo=>"http://a0.twimg.com/profile_images/1776612377/image1327361271_normal.png", :location=>"Silicon Valley, CA"}
+{:uid=>"858051", :provider=>"twitter", :full_name=>"Danny Sullivan", :photo=>"http://a0.twimg.com/profile_images/1765822586/image1326957210_normal.png", :location=>"Newport Beach, Orange County"}
+{:uid=>"36823", :provider=>"twitter", :full_name=>"Anil Dash", :photo=>"http://a0.twimg.com/profile_images/1364557668/image_normal.jpg", :location=>"NYC: 40.739069,-73.987082"}
+{:uid=>"12831", :provider=>"twitter", :full_name=>"Mike Krieger", :photo=>"http://a0.twimg.com/profile_images/1609774999/261011-23_normal.jpg", :location=>"37.760571,-122.387567"}
+{:uid=>"1175221", :provider=>"twitter", :full_name=>"Alex Howard", :photo=>"http://a0.twimg.com/profile_images/1520162269/twitter-profile-pic-small_normal.jpg", :location=>"Washington, DC"}
+{:uid=>"5763262", :provider=>"twitter", :full_name=>"Kara Swisher", :photo=>"http://a0.twimg.com/profile_images/55554130/310301880_SPjhh-L-1_normal.jpg", :location=>"San Francisco"}
+{:uid=>"42226885", :provider=>"twitter", :full_name=>"Vinod Khosla", :photo=>"http://a0.twimg.com/profile_images/298885807/Picture_2_normal.png"}
+{:uid=>"6141832", :provider=>"twitter", :full_name=>"Clay Shirky", :photo=>"http://a0.twimg.com/profile_images/608299691/hands_normal.jpg", :location=>"New York City"}
+{:uid=>"1305941", :provider=>"twitter", :full_name=>"Jason Kottke", :photo=>"http://a0.twimg.com/profile_images/28727752/jkottke-headshot3_normal.jpg", :location=>"New York, NY"}
+{:uid=>"749963", :provider=>"twitter", :full_name=>"Pierre Omidyar", :photo=>"http://a0.twimg.com/profile_images/860459345/PierreCB2_normal.jpg", :location=>"Honolulu, HI"}
+{:uid=>"33423", :provider=>"twitter", :full_name=>"John Gruber", :photo=>"http://a0.twimg.com/profile_images/546338003/gruber-sxsw-final_normal.png", :location=>"Philadelphia"}
+{:uid=>"790205", :provider=>"twitter", :full_name=>"Chad Fowler", :photo=>"http://a0.twimg.com/profile_images/1649145450/7477051e53904970be97c4324f7e6956_7_normal.jpg", :location=>"Washington DC, USA"}
+{:uid=>"11388132", :provider=>"twitter", :full_name=>"Lessig", :photo=>"http://a0.twimg.com/profile_images/1324704733/icon-550_normal.gif", :location=>"Brookline, MA"}
+{:uid=>"586", :provider=>"twitter", :full_name=>"Chris Sacca", :photo=>"http://a0.twimg.com/profile_images/1771648774/Sacca_profile_normal.jpg", :location=>"Truckee"}
+{:uid=>"3475", :provider=>"twitter", :full_name=>"Dave Morin", :photo=>"http://a0.twimg.com/profile_images/1880137593/dave_square_normal.png", :location=>"San Francisco"}
+{:uid=>"5252591", :provider=>"twitter", :full_name=>"Bill Gurley", :photo=>"http://a0.twimg.com/profile_images/2005596618/184795_10150118029359720_617069719_6145158_1919569_n_normal.jpeg", :location=>"Sand Hill Road"}
