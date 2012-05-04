@@ -480,7 +480,10 @@ function aw_api_model_facebook_translate_post_to_aw_post(data){
     attachment['type'] = "link";
     attachment['url'] = data.link;
     attachment['title'] = data.name;
-    attachment['name'] = data.caption;
+    if( data.caption ) {
+      attachment['name'] = data.caption;
+      attachment['provider'] = data.caption;
+    }
     attachment['description'] = data.description;
     
     if( !attachment['image_url'] ){

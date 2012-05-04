@@ -5,7 +5,7 @@ class WelcomeController < ApplicationController
 
     if user_signed_in?
       Rails.logger.info("[CNTRL] [WELCOME] [NEW] User signed in, redirect")
-      redirect_to "/show"
+      redirect_to "/#{current_user.username}"
       return
     else
       @page_mode="landing_page"

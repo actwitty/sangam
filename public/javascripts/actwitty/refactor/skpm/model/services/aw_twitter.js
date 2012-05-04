@@ -307,7 +307,7 @@ function aw_api_model_twitter_inject_error_post(){
    aw_post_json["originator"] = {
                                     image: aw_js_global_visited_user_credentials.pic,
                                     name: aw_js_global_visited_user_credentials.name,
-                                    url:  "/show?id=" + aw_js_global_visited_user_credentials.id,
+                                    url:  "/" + aw_js_global_visited_user_credentials.username,
                                     uid: aw_js_global_visited_user_foreign_ids.id
                                  };
 

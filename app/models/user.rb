@@ -43,7 +43,10 @@ class User < ActiveRecord::Base
   # Validations #
   after_validation :validate_fields
   before_validation  :parse_dob
-
+  #############################################################################
+  def to_param
+    username
+  end
   #############################################################################
   #Executed before validation, converts a string date into MM/DD/YYYY date format
   def parse_dob
@@ -91,6 +94,12 @@ class User < ActiveRecord::Base
     unless self.username =~ /^[\w]{5,32}$/      #regex means /^[0-9a-z_]+$/
       self.errors.add :username, "user name can be alphanumeric, underscore with atleast 5 characters."
       Rails.logger.info("[MODEL][User][validate_fields] username can only be alphanumeric or _")
+      username_validation = false
+    end
+
+    unless ExcludeUsernames[self.username].nil?
+      self.errors.add :username, "user name has already been taken"
+      Rails.logger.info("[MODEL][User][validate_fields] username is one of the reserved field")
       username_validation = false
     end
 

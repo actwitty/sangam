@@ -10,7 +10,7 @@ var social_media_sources = {
 function aw_view_stream_get_display_name(entry){
   var screen_name_html = "";
   var name = "";
-  if ( entry.originator.screen_name ){
+  if ( entry.originator.screen_name && entry.originator.screen_name.length){
     screen_name_html =  '<a class="aw_stream_content_name" href="' + entry.originator.url + '" target="_blank">' +
                           entry.originator.name +
                         '</a>' +
@@ -55,15 +55,15 @@ function aw_view_stream_get_mentions_html(entry){
     var internal_html = "";
 
     $.each( entry.mention, function(index, mention_data){
-      internal_html = internal_html + '<a src="' + mention_data.description + '" target="_blank"  >' +
+      internal_html = internal_html + '<li> <a src="' + mention_data.description + '" target="_blank"  >' +
                                         mention_data.name + 
-                                      '</a>';
+                                      '</a> </li>';
     });
 
-    html = '<div class="aw_stream_mentions_box" >' +
-               '<span> Mentions </span>' +
+    html = '<ul class="aw_stream_mentions_box" >' +
+               '<span> TAGS: </span>' +
                 internal_html + 
-           '</div>';
+           '</ul>';
   }
   
   return html;
@@ -82,21 +82,23 @@ function aw_view_stream_get_actions_html(entry){
 
     $.each( entry.action, function(index, action_data){
       if( action_data.type == "link" ){
-        internal_html = internal_html + '<div class="aw_single_action aw_js_action_link_click aw_single_action_link " action_url="' + action_data.url + '" action_name="' + action_data.name + '" >' +
+        internal_html = internal_html + '<li class="aw_js_action_link_click aw_single_action_link " action_url="' + action_data.url + '" action_name="' + action_data.name + '" >' +
                                             action_data.name + 
-                                      '</div>';
+                                      '</li>';
        }else if( action_data.type == "static" ){
 
-         internal_html = internal_html + '<div class="aw_single_action aw_single_action_static"  >' +
+         internal_html = internal_html + '<li class="aw_single_action aw_single_action_static"  >' +
                                             action_data.name + 
-                                         '</div>';
+                                         '</li>';
 
        }
     });
 
 
     html = '<div class="aw_actions_box" >' +
-                internal_html + 
+                '<ul>' +
+                  internal_html + 
+                '</ul>' +
            '</div>';
   }
 
@@ -145,69 +147,49 @@ function aw_view_stream_get_attachments_html(entry){
         var title_html = "";
         var content_html = "";
         var caption_html = "";
-       
+        var image_html = "";
+        if ( attachment.image_url ){
+             image_html = '<div class="aw_attachment_image_box" >' +
+                            '<img class="aw_attachment_image" src="' + attachment.image_url + ' " style="max-width:300px;" />' +
+                          '</div>';
+        } 
         if( attachment.title ){
-          title_html = '<div class="aw_attachment_title" >' +
-                          '<a href="' + attachment.url + '" target="_blank" >' +
-                            attachment.title +    
-                          '</a>' +
-                       '</div>';
-        }else{
-           title_html = '<div class="aw_attachment_title_milder" >' +
-                          '<a href="' + attachment.url + '" target="_blank">' +
-                            attachment.url +    
-                          '</a>' +
+          title_html = '<div class="aw_attachment_title_box" >' +
+                            '<a href="' + attachment.url + '" target="_blank" >' +
+                              attachment.title +    
+                            '</a>' +
                        '</div>';
         }
 
         if( attachment.description){
-          var image_html = "";
-          if ( attachment.image_url ){
-             image_html = '<div class="aw_attachment_image_box" >' +
-                            '<img class="aw_attachment_image" src="' + attachment.image_url + ' " style="max-width:300px;" />' +
-                          '</div>';
+          
+          if( attachment.provider ){
+            caption_html =  '<span class="aw_attachment_caption" >' +
+                                attachment.provider +
+                             '</span>';
           }
-          content_html = content_html + '<div class="aw_attachment_content" >' +
-                          image_html + 
-                          '<p class="aw_attachment_paragraph" >' +
-                              attachment.description +
-                          '</p>' +
-                        '</div>';
-        }else{
-          var image_html = "";
-          if ( attachment.image_url ){
-             image_html = '<div class="aw_attachment_image_box" >' +
-                            '<img class="aw_attachment_image" src="' + attachment.image_url + ' " style="max-width:300px;" />' +
-                          '</div>';
-          }
-
-          content_html = content_html + '<div class="aw_attachment_content" >' +
-                          '<p class="aw_attachment_paragraph" >' +
-                              image_html + 
-                          '</p>' +
-                        '</div>';
+          
+          content_html = content_html + '<div class="aw_attachment_content_box" >' +
+                                          '<p class="aw_attachment_paragraph" >' +
+                                              caption_html +
+                                              '  -  ' + attachment.description +
+                                          '</p>' +
+                                        '</div>';
         }
 
-        if( attachment.name ){
-          caption_html = '<div class="aw_attachment_caption" >' +
-                                attachment.name +
-                             '</div>';
-        }
+        
 
-        html = html + '<div class="aw_attachment_box">' +
-                         title_html +
-                         content_html + 
-                         caption_html +
-                      '</div>';
+        html = html + image_html +
+                      title_html +
+                      content_html;
       }else if( attachment.type == 'embed'){
-
         var title_html = "";
         var embed_html = "";
-        var description_html = "";
+        var content_html = "";
 
        
         if( attachment.title ){
-          title_html = '<div class="aw_attachment_title" >' +
+          title_html = '<div class="aw_attachment_title_box" >' +
                           '<a href="' + attachment.url + '" target="_blank" >' +
                             attachment.title +    
                           '</a>' +
@@ -215,30 +197,37 @@ function aw_view_stream_get_attachments_html(entry){
         }
 
         if( attachment.embed){
-          embed_html = '<div class="aw_attachment_embed" >' + 
-                          aw_view_api_check_and_get_video_iframe_html(attachment.embed,300,225) +
+          var embed_iframe = aw_view_api_check_and_get_video_iframe_html(attachment.embed,300,225);
+          if(embed_iframe.length){
+            embed_html = '<div class="aw_attachment_embed" >' + 
+                          embed_iframe +
                        '</div>';
+          }
         }
 
 
         if( attachment.description){
-           description_html = '<div class="aw_attachment_content" >' +
-                                '<p class="aw_attachment_paragraph" >' +
-                                    attachment.description +
-                                '</p>' +
-                              '</div>';
+          if( attachment.provider ){
+            caption_html =  '<span class="aw_attachment_caption" >' +
+                                attachment.provider +
+                             '</span>';
+          }
+          
+          content_html = content_html + '<div class="aw_attachment_content_box" >' +
+                                          '<p class="aw_attachment_paragraph" >' +
+                                              caption_html +
+                                               '  -  ' + attachment.description +
+                                          '</p>' +
+                                        '</div>';
         }
 
-        html = html + '<div class="aw_attachment_box">' +
+        html = html +    embed_html + 
                          title_html +
-                         embed_html + 
-                         description_html +
-                      '</div>';
+                         content_html;
 
       }
     });
   }
-
   return html;
 }
 /***********************************************************/
@@ -265,27 +254,37 @@ function aw_view_stream_get_location_html(entry){
  *
  */
 function aw_view_stream_get_entry_html(entry){
-
+  var attachment_html = aw_view_stream_get_attachments_html(entry);
+  var text_html = "";
+  var hover_html = "";
+  if(!attachment_html.length){
+    text_html = aw_view_stream_get_text_html(entry);
+  }else{
+   hover_html = aw_api_view_stream_generate_hover_info(entry);
+  }
   var html = '<div class="aw_stream_entry_container" >' +
-                '<div class="aw_stream_originator_img" >' +
-                  '<a href="' + entry.originator.url + '" target="_blank">' +
-                    '<img src="' +  entry.originator.image  + '" width=100% height=100% />' +
-                  '</a>' +
-                  '<span>'+ aw_view_stream_get_display_name(entry) + '</span>' +
-                '</div>' +
-                '<div class="aw_stream_src_img" >' +
-                  '<img src="' + social_media_sources[entry.service.name] + '" width=16px height=16px />' +
-                '</div>' +
+
                 '<div class="aw_stream_time_orig" >' +
                     '<abbr class="aw_js_timeago" title="' + entry.timestamp + '"></abbr>' +
                 '</div>' +
+
                 '<div class="aw_stream_content" >' +
-                  aw_view_stream_get_text_html(entry) +
-                  aw_view_stream_get_attachments_html(entry) +
+                  attachment_html +
+                  text_html +
                   aw_view_stream_get_mentions_html(entry) +
                   aw_view_stream_get_location_html(entry) +
-                  aw_view_stream_get_actions_html(entry) +
-                  
+                '</div>' +
+
+                aw_view_stream_get_actions_html(entry) +
+
+
+                '<div class="aw_originator_box aw_js_stream_hover_originator" >' +
+                  '<a href="' + entry.originator.url + '" target="_blank">' +
+                    '<img src="' +  entry.originator.image  + '" width=100% height=100% />' +
+                  '</a>' +
+                  aw_view_stream_get_display_name(entry) +
+                  '<img class="aw_stream_src_img" src="' + social_media_sources[entry.service.name] + '" width=16px height=16px />' +
+                  hover_html +                
                 '</div>' +
              '</div>';
   return html;
@@ -384,4 +383,97 @@ function aw_api_view_stream_set_default_internal_header(){
     
   }
   $("#aw_js_stream_internal_header").html(header_text);
+}
+/************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_stream_generate_hover_info( entry ){
+  var hover_html = "";
+  if( entry.text && entry.text.length){
+    var short_text = entry.text;
+    if( short_text.length > 500 ){
+      short_text = entry.text  
+                        .trim()
+                        .substring(0, 500)
+                        .split(" ")
+                        .slice(0, -1)
+                        .join(" ") + "...";
+    }
+    hover_html = '<div class="aw_stream_info_hover aw_js_stream_info_box" >' +
+                      '<span class="aw_stream_info_close_btn aw_stream_js_stream_info_close" >X</span>' +
+                      '<div class="aw_stream_info_box_header" >' +
+                        '<span>'  +
+                          aw_view_stream_get_display_name( entry ) +
+                        '</span>' +
+                      '</div>' +
+                      '<div class="aw_stream_info_hover_data" >' +
+                        '<div class="aw_stream_info_hover_img" >' +
+                         '<a href="' + entry.originator.url + '" target="_blank">' +
+                            '<img src="' +  entry.originator.image  + '" width=100% height=100% />' +
+                         '</a>' +
+                        '</div>' +
+                        '<div class="aw_stream_info_hover_text" >' +
+                          entry.text + 
+                        '</div>' +
+                      '</div>' +
+                   '</div>';
+  }
+  return hover_html;
+}
+/****************************************************************************/
+/*
+ *
+ *
+ */
+var hvr_handle_timer = null;
+var dlg_hvr_handle_timer = null;
+function aw_api_view_handle_hover_show_overlay(ele){
+  $(".aw_js_stream_info_box").hide();
+  
+  hover_ele = ele.find(".aw_js_stream_info_box");
+  if(!hover_ele.length){
+    return;
+  }
+  hover_ele.show();
+  if( hvr_handle_timer != null) {
+    clearTimeout(hvr_handle_timer);
+  }
+  if( dlg_hvr_handle_timer != null ){
+    clearTimeout(dlg_hvr_handle_timer);
+  }
+  hvr_handle_timer = setTimeout(function(){
+    hover_ele.hide();
+  }, 1500);
+}
+function aw_api_view_handle_hover_handle_overlay_hover_in(ele){
+  if( hvr_handle_timer != null) {
+    clearTimeout(hvr_handle_timer);
+  }
+  if( dlg_hvr_handle_timer != null ){
+    clearTimeout(dlg_hvr_handle_timer);
+  }
+}
+
+function aw_api_view_handle_hover_handle_overlay_hover_out(ele){
+  var hide_ele = ele;
+  dlg_hvr_handle_timer = setTimeout(function(){
+      hide_ele.hide();
+  }, 1500);
+}
+/****************************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_handle_hover_close(ele){
+  if( hvr_handle_timer != null) {
+    clearTimeout(hvr_handle_timer);
+  }
+  if( dlg_hvr_handle_timer != null ){
+    clearTimeout(dlg_hvr_handle_timer);
+  }
+
+  ele.closest( ".aw_js_stream_info_box" ).hide();
 }
