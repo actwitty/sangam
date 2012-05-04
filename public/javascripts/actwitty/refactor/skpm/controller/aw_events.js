@@ -65,10 +65,21 @@ $(document).ready(function(){
   });
 
   $(".aw_js_stream_hover_originator").live( 'hover', function(){
-    alert("i was hovered");
+    aw_api_view_handle_hover_show_overlay($(this));
     return false;
   });
 
+  $(".aw_js_stream_info_box").live('mouseenter', function(){
+                                                  aw_api_view_handle_hover_handle_overlay_hover_in($(this));
+                                                  return false;
+                                            }); 
+  $(".aw_js_stream_info_box").live('mouseleave', function(){
+                                                    aw_api_view_handle_hover_handle_overlay_hover_out($(this));
+                                                    return false;
+                                            });
+  $(".aw_stream_js_stream_info_close").live('click', function(){
+                                                        aw_api_view_handle_hover_close($(this));
+                                                     });
    var body_height = $(window).height();
    aw_api_view_stream_apply_height(body_height);
 

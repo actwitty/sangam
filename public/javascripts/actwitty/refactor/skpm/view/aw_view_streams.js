@@ -254,7 +254,11 @@ function aw_view_stream_get_location_html(entry){
  *
  */
 function aw_view_stream_get_entry_html(entry){
-
+  var attachment_html = aw_view_stream_get_attachments_html(entry);
+  var text_html = "";
+  if(!attachment_html.length){
+    text_html = aw_view_stream_get_text_html(entry);
+  }
   var html = '<div class="aw_stream_entry_container" >' +
 
                 '<div class="aw_stream_time_orig" >' +
@@ -262,8 +266,8 @@ function aw_view_stream_get_entry_html(entry){
                 '</div>' +
 
                 '<div class="aw_stream_content" >' +
-                  aw_view_stream_get_attachments_html(entry) +
-                  aw_view_stream_get_text_html(entry) +
+                  attachment_html +
+                  text_html +
                   aw_view_stream_get_mentions_html(entry) +
                   aw_view_stream_get_location_html(entry) +
                 '</div>' +
@@ -383,8 +387,19 @@ function aw_api_view_stream_set_default_internal_header(){
  *
  */
 function aw_api_view_stream_generate_hover_info( entry ){
-  var hover_html = '<div class="aw_stream_info_hover aw_js_stream_info_box" >' +
-                      '<span class="aw_stream_info_close_btn aw_stream_js_stream_info_close" >x</span>' +
+  var hover_html = "";
+  if( entry.text && entry.text.length){
+    var short_text = entry.text;
+    if( short_text.length > 500 ){
+      short_text = entry.text  
+                        .trim()
+                        .substring(0, 500)
+                        .split(" ")
+                        .slice(0, -1)
+                        .join(" ") + "...";
+    }
+    hover_html = '<div class="aw_stream_info_hover aw_js_stream_info_box" >' +
+                      '<span class="aw_stream_info_close_btn aw_stream_js_stream_info_close" >X</span>' +
                       '<div class="aw_stream_info_box_header" >' +
                         '<span>'  +
                           aw_view_stream_get_display_name( entry ) +
@@ -397,8 +412,65 @@ function aw_api_view_stream_generate_hover_info( entry ){
                          '</a>' +
                         '</div>' +
                         '<div class="aw_stream_info_hover_text" >' +
-                          'Hi' +
+                          entry.text + 
                         '</div>' +
                       '</div>' +
                    '</div>';
+  }
+  return hover_html;
+}
+/****************************************************************************/
+/*
+ *
+ *
+ */
+var hvr_handle_timer = null;
+var dlg_hvr_handle_timer = null;
+function aw_api_view_handle_hover_show_overlay(ele){
+  $(".aw_js_stream_info_box").hide();
+  
+  hover_ele = ele.find(".aw_js_stream_info_box");
+  if(!hover_ele.length){
+    return;
+  }
+  hover_ele.show();
+  if( hvr_handle_timer != null) {
+    clearTimeout(hvr_handle_timer);
+  }
+  if( dlg_hvr_handle_timer != null ){
+    clearTimeout(dlg_hvr_handle_timer);
+  }
+  hvr_handle_timer = setTimeout(function(){
+    hover_ele.hide();
+  }, 1500);
+}
+function aw_api_view_handle_hover_handle_overlay_hover_in(ele){
+  if( hvr_handle_timer != null) {
+    clearTimeout(hvr_handle_timer);
+  }
+  if( dlg_hvr_handle_timer != null ){
+    clearTimeout(dlg_hvr_handle_timer);
+  }
+}
+
+function aw_api_view_handle_hover_handle_overlay_hover_out(ele){
+  var hide_ele = ele;
+  dlg_hvr_handle_timer = setTimeout(function(){
+      hide_ele.hide();
+  }, 1500);
+}
+/****************************************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_handle_hover_close(ele){
+  if( hvr_handle_timer != null) {
+    clearTimeout(hvr_handle_timer);
+  }
+  if( dlg_hvr_handle_timer != null ){
+    clearTimeout(dlg_hvr_handle_timer);
+  }
+
+  ele.closest( ".aw_js_stream_info_box" ).hide();
 }
