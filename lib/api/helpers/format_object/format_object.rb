@@ -170,7 +170,7 @@ module Api
 
           hash[:post]={
                 :id => activity.id,
-                :user => {:id => author.id, :full_name => author.full_name, :photo => author.photo_small_url},
+                :user => {:id => author.id, :full_name => author.full_name, :photo => author.photo_small_url, :username => author.username},
                 :time => activity.source_created_at,
                 :summary_id => activity.summary_id,
                 :source_object_id => activity.source_object_id,

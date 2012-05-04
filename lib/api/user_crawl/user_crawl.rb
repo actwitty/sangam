@@ -51,8 +51,14 @@ module Api
           #make username and email based on time as they can be already in use by regular user.. so better let the
           #celebrity come and pick the available username and email manually
 
-          if !params[:username].blank? and params[:username] =~ /^[\w]{5,32}$/
-            s = User.where(:username => params[:username]).first
+          if (!attr[:username].blank?) and attr[:username] =~ /^[\w]{5,32}$/
+            a = User.where(:username => attr[:username]).first
+            if a.blank?
+              s = attr[:username]
+            else
+              s = nil
+            end
+
           end
 
           if s.blank?
@@ -60,7 +66,7 @@ module Api
           end
 
           attr[:username]=s   #=> "Printed on 11/19/2007"
-          attr[:email]= "#{s}@actwitty.com"
+          attr[:email]= "crawled_user_#{s}@actwitty.com"
 
           if attr[:location].blank?
             attr[:location]= "Unknown"

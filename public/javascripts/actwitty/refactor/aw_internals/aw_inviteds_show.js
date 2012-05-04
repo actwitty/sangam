@@ -258,8 +258,9 @@ function aw_process_fetch_user_details_for_service_delete(){
                   $("#aw_js_delete_user_service_box").html('');
                   var html = '<img src="' + data.photo + '" width="30px" height="30px" id="aw_js_delete_user_service_img" cookie="' + data.id  + '" >' + 'ID=' + data.id + '; Name=' + data.name + '</img>';
                   var services_html="";
+
                   $.each(data.services, function(key, service_json){
-                    services_html = '<input class="aw_inviteds_new_invite_facebook_preprocess_button button_actwitty blue aw_js_service_remove_btn" type="button" value="' + service_json.provider + '">' ;
+                    services_html += '<input class="aw_inviteds_new_invite_facebook_preprocess_button button_actwitty blue aw_js_service_remove_btn" type="button" value="' + service_json.provider + '" uid="' + service_json.uid + '">' ;
                   });
                   html = html + services_html;
                   $("#aw_js_delete_user_service_box").html(html);     
@@ -288,6 +289,7 @@ function aw_process_user_service_delete(ele){
               data: {  
                       id: user_id,
                       service: ele.val(),
+                      uid: ele.attr("uid")
                     },
               dataType: 'json',
               success: function (data) {

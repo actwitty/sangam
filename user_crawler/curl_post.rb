@@ -5,7 +5,8 @@ require 'curb'
 
 class CurlPost
   class << self
-    SERVER_ENDPOINT = 'http://actwitty.com/crawled_user'
+   # SERVER_ENDPOINT = 'http://actwitty-cedar.herokuapp.com/crawled_user'
+    SERVER_ENDPOINT = 'http://localhost:3000/crawled_user'
     DATA_FILE = "data/users"
 
     def create_crawled_user

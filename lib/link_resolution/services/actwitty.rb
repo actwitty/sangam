@@ -142,8 +142,11 @@ module LinkResolution
 
           response_array.each do |response|
 
-            #c_url = response[:request].uri.scheme+ "://"+response[:request].uri.host+response[:request].uri.path
-            c_url = response[:request].uri.to_s
+            uri = response[:request].uri
+            c_url=uri.scheme+ "://"+uri.host
+            c_url = "#{c_url}#{uri.path}" if !uri.path.blank?
+            c_url = "#{c_url}?#{uri.query}" if !uri.query.blank?
+            c_url = "#{c_url}?#{uri.fragment}" if !uri.fragment.blank?
 
             cgi = CGI::parse(c_url)
 

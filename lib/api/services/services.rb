@@ -78,32 +78,34 @@ module Api
       #         :user_id => 123,
       #         :provider => "facebook"/"twitter" [MANDATORY]
       #         :uid => 123 [MANDATORY]
+      #         :auth_key =>  "hdkjshfkjsdhkhfksdfsdf"[OPTIONAL == It is only used for Admin call(invite controller)  as a mode for authorization..]
       #      }
       def disable_service(params)
         Rails.logger.info("[LIB] [API] [SERVICES] [DISABLE_SERVICE] entering #{params.inspect}")
 
         sa = nil
         if params[:user_id].blank? or params[:provider].blank? or params[:uid].blank?
-          Rails.logger.info("[LIB] [API] [SERVICES] [DISABLE_SERVICE] User or Provider or UID at provider cant be blank => #{params.inspect}")
-          return false
+          raise "User or Provider or UID at provider cant be blank "
         end
 
-        if params[:user_id] != params[:current_user_id]
-          Rails.logger.info("[LIB] [API] [SERVICES] [ENABLE_SERVICE] Un-Authorized user => #{params.inspect}")
-          return false
+        if params[:auth_key].blank? and params[:user_id] != params[:current_user_id]
+          raise "Un-Authorized user "
         end
 
-        params = params.except(:current_user_id)
+        if !params[:auth_key].blank? and params[:auth_key] != AppConstants.authorized_see_internals_secret_key
+          raise "Un-Authorised Admin User "
+        end
+
+        params = params.except(:current_user_id, :auth_key)
+
         sa = SocialAggregator.where(params).first
 
         if sa.blank?
-          Rails.logger.info("[LIB] [API] [SERVICES] [DISABLE_SERVICE] Invalid request - No such service entry #{params.inspect}")
-          return false
+          raise "Invalid request - No such service entry"
         end
 
         if sa.status == AppConstants.data_sync_active
-          Rails.logger.info("[LIB] [API] [SERVICES] [DISABLE_SERVICE] Service Busy #{params.inspect}")
-          return false
+          raise "Service Busy"
         end
 
         sa.update_attributes(:status => AppConstants.data_sync_active)
@@ -119,13 +121,12 @@ module Api
         summaries= []
         #after all deletion of activities what will happen.. I guess summary rank wil also be destroyed
         #
-        Summaries.where(:user_id => params[:user_id]).all.each do |attr|
+        Summary.where(:user_id => params[:user_id]).all.each do |attr|
           summaries << attr.id
         end
 
         if !summaries.blank?
           Rails.logger.info("[LIB] [API] [SERVICES] [DISABLE_SERVICE] Updating Analytics #{params.inspect}")
-
 
           #update user analytics
           SummaryRank.build_analytics(:user_id => params[:user_id], :action => AppConstants.analytics_update_user,
@@ -136,7 +137,7 @@ module Api
                                     :action => AppConstants.analytics_update_summaries,
                                     :num_of_week => AppConstants.analytics_default_number_of_week)
         end
-        sa.destroy_all
+        SocialAggregator.destroy_all(:user_id => params[:user_id], :provider => params[:provider], :uid => params[:uid])
 
         Rails.logger.info("[LIB] [API] [SERVICES] [DISABLE_SERVICE] Leaving #{params.inspect}")
 
@@ -145,6 +146,8 @@ module Api
         sa.update_attributes(:status => AppConstants.data_sync_done)
 
         Rails.logger.error("[LIB] [API] [SERVICES] [DISABLE_SERVICE] **** RESCUE **** #{e.message} For #{params}")
+
+        return false
       end
 
 
@@ -171,7 +174,7 @@ module Api
           array << hash[:aggregator]
         end
 
-        Rails.logger.info("[LIB] [API] [SERVICES] [GET_SERVICE] Leaving #{params.inspect}")
+        Rails.logger.info("[LIB] [API] [SERVICES] [GET_SERVICE] Leaving #{array}")
         array
 
       rescue => e

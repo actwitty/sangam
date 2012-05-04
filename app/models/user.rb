@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
       self.errors.add :full_name, "name cannot be blank"
       name_validation = false
     else
-      unless self.full_name =~ /^[a-zA-Z0-9 \.]{1,100}$/      #regex means /^[0-9a-z_]+$/
+      unless self.full_name =~ /^[a-zA-Z0-9 \.-]{1,100}$/      #regex means /^[0-9a-z_]+$/
         self.errors.add :full_name, "name can only be english characters, space or dots "
         Rails.logger.info("[MODEL][User][validate_fields] name is not valid #{self.full_name} ")
         name_validation = false
