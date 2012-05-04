@@ -163,6 +163,11 @@ function aw_api_view_decode_filter_header(object){
     header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['service'] + '</span> ';
   }
 
+  if( stream_header['user']){
+    header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
+    header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['user'] + '</span> ';
+  }
+
   if( stream_header['response']){
     header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
     header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['response'] + '</span> ';
