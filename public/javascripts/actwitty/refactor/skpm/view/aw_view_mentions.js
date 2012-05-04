@@ -69,7 +69,7 @@ function aw_view_mentions_get_html(data){
                               '<div class="aw_sketch_mention_box aw_js_filterer ' + display_class + '" ' +
                                   'aw_filter_on="mention" ' +
                                   'aw_mention_filter="' + mention_data.id + '" ' +
-                                  'aw_filter_title="topic=about all topics with mention of ' + mention_data.name  + '" ' +
+                                  'aw_filter_title="topic=' + mention_data.name  + '" ' +
                                 '>' +
                                 '<span>' +
                                   mention_data.name + 

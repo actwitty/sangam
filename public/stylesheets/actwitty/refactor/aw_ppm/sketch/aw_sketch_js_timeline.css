@@ -4,8 +4,8 @@
   margin-bottom: 0px;
   margin-left: 18px;
   font-size: 14px;
-  font-family: "RobotoRegular";
-  color: #25a0da; }
+  font-family: Helvetica, Arial, sans-serif;
+  color: #008bf8; }
 
 a.aw_sketch_timeline_links {
   color: #cccccc;
@@ -81,7 +81,7 @@ a.aw_sketch_timeline_links {
             padding-top: 5px; }
             #aw_sketch_timeline ul.aw_sketch_timeline_details li .aw_sketch_timeline_week_snapshot_box .aw_sketch_timeline_single_topic_box .aw_label_box span {
               font-size: 14px;
-              font-family: "RobotoRegular";
+              font-family: Helvetica, Arial, sans-serif;
               letter-spacing: 1px;
               color: #444444;
               text-transform: uppercase;
@@ -91,7 +91,7 @@ a.aw_sketch_timeline_links {
             height: 15px;
             margin-top: 6px;
             max-width: 200px;
-            background-color: #25a0da;
+            background-color: #008bf8;
             cursor: pointer; }
         #aw_sketch_timeline ul.aw_sketch_timeline_details li .aw_sketch_timeline_week_snapshot_box .aw_graph_axis_box {
           margin-left: 170px;

@@ -19,23 +19,23 @@ function aw_api_view_interest_render(data){
     var image_path = "/images/actwitty/refactor/aw_sketch/topics/internals/";
 
     if ( topic_detail.video  && topic_detail.video != 0 ){
-      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.video + ' Videos" src="' + image_path + 'video.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="video,topic" video="all"  aw_filter_title="topic=about ' + topic_detail.name  + ',data_type=with videos" />';
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.video + ' Videos" src="' + image_path + 'video.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="video,topic" video="all"  aw_filter_title="topic=' + topic_detail.name  + ',data_type=videos" />';
     }
 
     if ( topic_detail.image  && topic_detail.image != 0 ){
-      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer"  rel="twipsy" data-original-title="' + topic_detail.image + ' Pictures" src="' + image_path + 'image.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="image,topic" aw_filter_title="topic=about ' + topic_detail.name  + ',data_type= with images" />';
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer"  rel="twipsy" data-original-title="' + topic_detail.image + ' Pictures" src="' + image_path + 'image.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="image,topic" aw_filter_title="' + topic_detail.name  + ',data_type=images" />';
     }
    
     if ( topic_detail.link  && topic_detail.link != 0 ){
-      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.link + ' Links" src="' + image_path + 'link.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="link,topic" aw_filter_title="topic=about ' + topic_detail.name  + ',data_type= with attached links" />';
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.link + ' Links" src="' + image_path + 'link.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="link,topic" aw_filter_title="topic=' + topic_detail.name  + ',data_type=links" />';
     }
 
     if ( topic_detail.location  && topic_detail.location != 0 ){
-      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.location + ' Places" src="' + image_path + 'location.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="location,topic" aw_filter_title="topic=about ' + topic_detail.name  + ',data_type= with locations" />';
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.location + ' Places" src="' + image_path + 'location.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="location,topic" aw_filter_title="topic=' + topic_detail.name  + ',data_type=locations" />';
     }
 
     if ( topic_detail.mention  && topic_detail.mention != 0 ){
-      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.mention + ' Mentions" src="' + image_path + 'mention.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="mention,topic" aw_filter_title="topic=about ' + topic_detail.name  + ',data_type= with some key mentions" />';
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.mention + ' Mentions" src="' + image_path + 'mention.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="mention,topic" aw_filter_title="topic=' + topic_detail.name  + ',data_type=mentions" />';
     }
 
   var services_html_internal = '';
@@ -45,7 +45,7 @@ function aw_api_view_interest_render(data){
                       + 'src="/images/actwitty/refactor/aw_sketch/topics/services/' + service.name + '.png" '                      +  'rel="twipsy" data-original-title="' + parseInt(service.share) + '% from ' + service.name + '" '    
                       + 'aw_interest_filter="' + topic_detail.interest_id + '" '
                       + 'aw_filter_on="service,topic" aw_service_filter="' + service.name + '"' 
-                      + 'aw_filter_title="topic=about ' + topic_detail.name  + ',service= from ' +  service.name + '" ' 
+                      + 'aw_filter_title="topic=' + topic_detail.name  + ',service=' +  service.name + '" ' 
                       + ' />';
   });
 
@@ -63,10 +63,10 @@ function aw_api_view_interest_render(data){
                         '<div class="aw_sketch_dyn_topics_box_index aw_js_filterer"' + 
                                       'aw_filter_on="topic"'  + 
                                       'aw_interest_filter="' + topic_detail.interest_id + '" ' +
-                                      'aw_filter_title="topic=about ' + topic_detail.name  + '" >' +
+                                      'aw_filter_title="topic=' + topic_detail.name  + '" >' +
                             '<p>' + topic_detail.post  + '</p>' +
                         '</div>' +
-                        '<div class="aw_sketch_dyn_topics_box_name aw_js_filterer" aw_filter_on="topic"   aw_interest_filter="' + topic_detail.interest_id + '" ' + 'aw_filter_title="topic=about ' + topic_detail.name  + '"  >' +
+                        '<div class="aw_sketch_dyn_topics_box_name aw_js_filterer" aw_filter_on="topic"   aw_interest_filter="' + topic_detail.interest_id + '" ' + 'aw_filter_title="topic=' + topic_detail.name  + '"  >' +
                           '<p rel="twipsy" data-original-title="'  + topic_twipsy + '" >' + topic_detail.name + '</p>' +
                         '</div>' +
                         '<div class="aw_sketch_dyn_topics_box_images" >' +
