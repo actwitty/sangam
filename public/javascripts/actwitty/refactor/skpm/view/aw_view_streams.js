@@ -256,8 +256,11 @@ function aw_view_stream_get_location_html(entry){
 function aw_view_stream_get_entry_html(entry){
   var attachment_html = aw_view_stream_get_attachments_html(entry);
   var text_html = "";
+  var hover_html = "";
   if(!attachment_html.length){
     text_html = aw_view_stream_get_text_html(entry);
+  }else{
+   hover_html = aw_api_view_stream_generate_hover_info(entry);
   }
   var html = '<div class="aw_stream_entry_container" >' +
 
@@ -281,7 +284,7 @@ function aw_view_stream_get_entry_html(entry){
                   '</a>' +
                   aw_view_stream_get_display_name(entry) +
                   '<img class="aw_stream_src_img" src="' + social_media_sources[entry.service.name] + '" width=16px height=16px />' +
-                  aw_api_view_stream_generate_hover_info(entry) +                
+                  hover_html +                
                 '</div>' +
              '</div>';
   return html;

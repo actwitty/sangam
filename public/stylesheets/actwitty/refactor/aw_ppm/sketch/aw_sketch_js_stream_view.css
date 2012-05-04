@@ -143,17 +143,16 @@
           cursor: pointer; }
   .aw_stream_content .aw_location_box {
     width: 90%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 2px;
     margin-bottom: 2px;
     text-align: right; }
     .aw_stream_content .aw_location_box p {
-      font-family: "RobotoRegular";
-      line-height: 18px;
-      font-size: 15px;
-      color: #25a0da; }
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      color: black; }
       .aw_stream_content .aw_location_box p img {
-        height: 25px;
+        height: 20px;
         margin-right: 2px; }
   .aw_stream_content .aw_attachment_image_box {
     display: inline-block;
