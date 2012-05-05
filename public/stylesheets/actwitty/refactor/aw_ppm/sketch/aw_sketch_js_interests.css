@@ -55,12 +55,12 @@
     margin-top: -14px;
     left: 60px;
     height: 32px;
-    color: #25a0da;
+    color: #008bf8;
     text-transform: uppercase;
     cursor: pointer; }
     .aw_sketch_dyn_topics_box .aw_sketch_dyn_topics_box_name p {
-      font-family: "RobotoRegular";
-      font-size: 30px;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 26px;
       font-weight: normal;
       margin: auto;
       line-height: 30px; }
@@ -108,9 +108,9 @@
     filter: alpha(opacity=95);
     opacity: 0.95; }
   .aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_name {
-    color: #444444; }
+    color: black; }
   .aw_sketch_dyn_topics_box:hover .aw_sketch_dyn_topics_box_index {
-    color: #444444; }
+    color: black; }
   .aw_sketch_dyn_topics_box:hover {
     background-color: #d6f5f5; }
 
@@ -129,7 +129,7 @@
   margin-top: 5px;
   margin-bottom: 5px;
   text-align: left;
-  color: #25a0da;
+  color: #008bf8;
   font-size: 14px;
   font-weight: normal; }
   .aw_show_more_topics_box:hover {

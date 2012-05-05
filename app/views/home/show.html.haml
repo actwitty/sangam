@@ -71,7 +71,7 @@
       #aw_js_profile_main_container.aw_section_container_box
         .aw_section_container_info_box
           %a.aw_user_profile_pic{:href=>"/#{@user.username}" }
-            %img#aw_profile_picture{:src=> "#{@user.photo_small_url}", :height => "100px", :width => "100px"  }
+            %img#aw_profile_picture{:src=> "#{@user.photo_small_url}"  }
           .aw_section_container_internal_data_box
             %a.aw_full_name{:href=>"/#{@user.username}" }
               %h2 #{@user.full_name}
@@ -200,16 +200,14 @@
       .aw_sidebox_shell
         #aw_js_stream_container.aw_stream_container{:style=> "display: block; left: 540px; -webkit-transition-property: none; " }
           #aw_stream_container_header
-            #aw_stream_container_header_label
+            #aw_js_stream_dynamic_header.aw_stream_container_header_label
               FEEDS
             #aw_js_stream_close_control.aw_stream_container_close
-              %a{:href=>"#"} close 
-              %span x
+              %a{:href=>"#"} close x
           
           #aw_js_stream_busy.aw_busy_box
             .aw_busy_mini_box
               %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }    
-          #aw_js_stream_internal_header.aw_stream_header
           #aw_js_stream_entries.aw_stream_entries
             
               

@@ -1,18 +1,35 @@
 #aw_stream_container_header
   width: 100%
-  height: 40px
+  min-height: 40px
+  height: auto
   background: #D6F5F5
   border-radius: 0 5px 0 0
+  display: block
 
-#aw_stream_container_header_label
+.aw_stream_container_header_label
   font-size: 24px
-  font-family: "RobotoBold"
-  color: #444
+  font-family: Helvetica, Arial, sans-serif
+  color: black
   float: left
   border: 0px solid red
   margin-left: 15px
   margin-top: 12px
   vertical-align: middle
+  width: 290px
+  display: block
+  
+  .aw_filter_delmiter
+    color: #444
+    vertical-align: middle
+    margin-top: 16px
+    font-size: 8px
+    font-family: Helvetica, Arial, sans-serif
+  .aw_filter_subfilter
+    color: black
+    vertical-align: middle
+    font-size: 17px
+    font-family: Helvetica, Arial, sans-serif
+    text-transform: capitalize
 
 
 .aw_stream_container_close
@@ -22,14 +39,13 @@
   float: right
   margin-top: 15px
   font-size: 14px
-  color: #999 !important
   display: none
   cursor: pointer
   a
     text-decoration: none
-    color: #999
+    color: #444
     &:hover
-      color: #444
+      color: black
 
 
 .aw_stream_entry_container
@@ -258,7 +274,7 @@
 
 .aw_stream_info_hover
   display: none
-  z-index: 9999 !important
+  z-index: 20 
   position: absolute
   bottom: 35px
   left: 0

@@ -150,7 +150,9 @@ function aw_view_stream_get_attachments_html(entry){
         var image_html = "";
         if ( attachment.image_url ){
              image_html = '<div class="aw_attachment_image_box" >' +
-                            '<img class="aw_attachment_image" src="' + attachment.image_url + ' " style="max-width:300px;" />' +
+                            '<a rel="aw_js_stream_imgs_fancy_box" href="' + attachment.image_url + '">' +
+                             '<img class="aw_attachment_image " src="' + attachment.image_url + ' " style="max-width:300px;" />' +
+                            '</a>' +
                           '</div>';
         } 
         if( attachment.title ){
@@ -160,19 +162,30 @@ function aw_view_stream_get_attachments_html(entry){
                             '</a>' +
                        '</div>';
         }
+        if( !attachment.description){
+          attachment.description = entry.text;
+        }
 
         if( attachment.description){
-          
+         var short_text = attachment.description;
+         if( short_text.length > 800 ){
+          short_text = attachment.description  
+                        .trim()
+                        .substring(0, 800)
+                        .split(" ")
+                        .slice(0, -1)
+                        .join(" ") + "...";
+          } 
           if( attachment.provider ){
             caption_html =  '<span class="aw_attachment_caption" >' +
                                 attachment.provider +
-                             '</span>';
+                             '</span> -  ' ;
           }
           
           content_html = content_html + '<div class="aw_attachment_content_box" >' +
                                           '<p class="aw_attachment_paragraph" >' +
                                               caption_html +
-                                              '  -  ' + attachment.description +
+                                               short_text +
                                           '</p>' +
                                         '</div>';
         }
@@ -312,7 +325,12 @@ function aw_api_view_stream_render(data){
   $("#aw_js_stream_entries").scrollTop(0); 
   $("abbr.aw_js_timeago").timeago();
   $("#aw_js_stream_busy").hide();
-
+  $("a[rel=aw_js_stream_imgs_fancy_box]").fancybox({
+	  	'transitionIn'		: 'none',
+		  'transitionOut'		: 'none',
+  		'titlePosition' 	: 'over',
+	  
+    });
 }
 
 
@@ -322,9 +340,8 @@ function aw_api_view_stream_render(data){
  *
  */
 function aw_api_view_stream_header_render(data){
- var html = "Wall Feed";
- 
- $("#aw_stream_container_header_label").html(data);
+ var html = "FEEDS";
+ $("#aw_js_stream_dynamic_header").html(html);
 
 
 }
@@ -376,13 +393,8 @@ function aw_api_view_stream_apply_link_action(element){
  *
  */
 function aw_api_view_stream_set_default_internal_header(){
-  var header_text = "<span> Your wall feed from enabled services. </span>";
-  if ( aw_js_global_visited_user_credentials.id != aw_js_global_logged_in_user_credentials.id )
-  {
-      header_text = '<span> ' + aw_js_global_visited_user_credentials.name + "'s all posts from enabled services. </span>";
-    
-  }
-  $("#aw_js_stream_internal_header").html(header_text);
+ var html = "FEEDS";
+ $("#aw_js_stream_dynamic_header").html(html);
 }
 /************************************************************/
 /*

@@ -146,20 +146,32 @@ function aw_api_view_decode_filter_header(object){
 
   });
 
-  header_text = "<span> Posts made  ";
+  header_text = '<span class="aw_filter_subfilter"> FEEDS </span> ';
   if( stream_header['topic']){
-    header_text = header_text +  stream_header['topic'];
+    header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
+    header_text = header_text +  ' <span class="aw_filter_subfilter"> ' + stream_header['topic'] + '</span> ';
   }
 
   if( stream_header['data_type']){
-    header_text = header_text +  stream_header['data_type'];
+    header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
+    header_text = header_text +  ' <span class="aw_filter_subfilter"> ' + stream_header['data_type'] + '</span> ';
   }
 
 
   if( stream_header['service']){
-    header_text = header_text +  stream_header['service'];
+    header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
+    header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['service'] + '</span> ';
   }
 
-  header_text = header_text + ". </span>";
-  $("#aw_js_stream_internal_header").html(header_text);
+  if( stream_header['user']){
+    header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
+    header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['user'] + '</span> ';
+  }
+
+  if( stream_header['response']){
+    header_text = header_text + '<span class="aw_filter_delmiter">>></span>';
+    header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['response'] + '</span> ';
+  }
+
+  $("#aw_js_stream_dynamic_header").html(header_text);
 }

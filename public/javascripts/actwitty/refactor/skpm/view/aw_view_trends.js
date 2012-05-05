@@ -30,7 +30,7 @@ function aw_get_graph_html(interests){
                         ' aw_interest_filter="' + interest_detail.interest_id + '" ' +                       
                         ' aw_since_filter="' + interest_detail.since + '" ' +                        
                         ' aw_till_filter="' + interest_detail.till + '" ' +  
-                        ' aw_filter_title="topic=made under topic ' + interest_detail.name  + ' " ' +
+                        ' aw_filter_title="topic=' + interest_detail.name  + ' trend" ' +
                       '>' +
 
                       '<img rel="aw_js_twipsy_trend" data-original-title="' + trend_twipsy + '" src="/images/actwitty/refactor/aw_sketch/topics/' + interest_detail.category + '.png" width=25px height=25px >' +

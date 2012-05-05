@@ -41,6 +41,7 @@ $(document).ready(function(){
     var data = aw_api_model_get_active_contact_stream(key);
     if( data != null){
       aw_api_view_stream_render(data);
+      aw_api_view_decode_filter_header($(this));
       aw_api_view_show_or_hide_close(true);
     }
     return false;
