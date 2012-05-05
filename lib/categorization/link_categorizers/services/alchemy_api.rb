@@ -14,7 +14,7 @@ module Categorization
         ALCHEMY_BATCH_LIMIT = 1
         ALCHEMY_RATE_LIMIT = 1
 
-        ALCHEMY_THRESHOLD_SCORE = 0.4
+        ALCHEMY_THRESHOLD_SCORE = 0.45
 
 
         class << self
