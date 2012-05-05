@@ -14,7 +14,7 @@ module Categorization
         ALCHEMY_BATCH_LIMIT = 1
         ALCHEMY_RATE_LIMIT = 1
 
-        ALCHEMY_THRESHOLD_SCORE = 0.45
+        ALCHEMY_THRESHOLD_SCORE = 0.4
 
 
         class << self
@@ -56,7 +56,7 @@ module Categorization
             cat = MAP_CATEGORIES['alchemyapi'][json["category"].downcase]
 
             if !cat.blank? and json["score"].to_f > ALCHEMY_THRESHOLD_SCORE
-              categories <<  {:name => cat[0], :score => json["score"].to_f, :category => json["category"] }
+              categories <<  {:name => cat[0], :score => json["score"].to_f, :category => json["category"] } if json["category"] != "unknown"
             else
               Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] ++++ IGONORES ++++ \n
                                 #{json["url"]}  ==> #{json["score"]} ")
