@@ -24,7 +24,8 @@ end
 
 url = "http://www.dailymail.co.uk/sport/cricket/article-2097152/England-lose-Test-Pakistan-slump-3-0-whitewash.html"
 
-categories = Trie.new
+require 'containers'
+categories = Containers::Trie.new
 
 categories.push("technology", true)
 categories.push("entertainment", true)
