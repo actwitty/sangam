@@ -56,7 +56,7 @@ module Categorization
             if  v["_typeGroup"] == "topics"
               cat = MAP_CATEGORIES['opencalais'][v["categoryName"].downcase]
 
-              if  !cat.blank? and v["score"].to_f >= CALAIS_THRESHOLD_SCORE
+              if  !cat.blank? and v["score"].to_f > CALAIS_THRESHOLD_SCORE
                 categories << {:name => cat[0] , :score => v["score"].to_f, :category => v["categoryName"]}
               end
             end
