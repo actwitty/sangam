@@ -23,7 +23,6 @@ function aw_actgreen_setMarkersOnMap(map,locations)
     var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
-        title: place["email"] + ": has marked a tree at "+ place["location"],
     });
     
     marker.setIcon(image);
