@@ -70,9 +70,9 @@ function aw_api_view_service_list_render(data){
        $("#aw_js_actwitty_upcoming").html(html_coming);
     }
 
-  //if( !self.page && !aw_js_global_logged_in_user_credentials.id){
+  if( !self.page && !aw_js_global_logged_in_user_credentials.id){
     $("#aw_js_get_actwitty").show();
-  //}
+  }
 }
 
 /********************************************************/
