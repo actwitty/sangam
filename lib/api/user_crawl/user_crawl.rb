@@ -14,6 +14,7 @@ module Api
       #               :location => "Bangalore" [OPTIONAL]
       #               :gender => "male" [OPTIONAL]
       #               :username => "mashable"[OPTIONAL]
+      #               :category => "technology" OR "entertainment" etc #default stories
       #             },
       #           ],
       #  :auth_key => "hdkjshfkjsdhkhfksdfsdf"
@@ -24,6 +25,7 @@ module Api
         Rails.logger.info("[LIB] [API] [USER_CRAWL] [create_crawled_user] entering #{params.inspect}")
 
         if params.class == String
+          params = params.gsub(/\'/,"")
           params = eval(params) #converts to hash
         end
 
@@ -93,6 +95,9 @@ module Api
           user.save!
 
           authentication = Authentication.create!( :user_id => user.id, :provider => attr[:provider],:uid => attr[:uid])
+
+          attr[:category] = AppConstants.default_category if attr[:category].blank?
+          UserMetaInfo.create!(:user_id => user.id , :category => attr[:category], :user_type => user.user_type)
 
           #hacking the current user id
           ::Api::Services.enable_service({:user_id => user.id, :current_user_id => user.id,

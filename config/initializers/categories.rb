@@ -1,2 +1,5 @@
 AW_CATEGORIES = YAML.load_file("#{Rails.root}/config/categories.yml")
 DEFAULT_URL_CATEGORIES = YAML.load_file("#{Rails.root}/config/default_url_categories.yml")
+SUMMARY_CATEGORIES = YAML.load_file("#{Rails.root}/config/categories.yml")
+MAP_CATEGORIES = YAML.load_file("#{Rails.root}/config/external_categories.yml")
+STEM_CATEGORIES = YAML.load_file("#{Rails.root}/config/stem_categories.yml")

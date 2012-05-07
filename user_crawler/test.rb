@@ -1,5 +1,6 @@
 require 'uri'
 require 'cgi'
+require './common.rb'
 
 hash = {"mashable.com" => "technology", "www.techcrunch.com" => "technology"}
 u = URI.parse("http://mashable.com:80/social/123/67")
@@ -21,24 +22,32 @@ if !"mashable".nil? and "mashable" =~ /^[\w]{5,32}$/
   puts "wow"
 end
 
+s = "alok 'srivast;ava".gsub(/\'|;/,"")
+puts s
 
-url = "http://www.dailymail.co.uk/sport/cricket/article-2097152/England-lose-Test-Pakistan-slump-3-0-whitewash.html"
+require 'algorithms'
 
-require 'containers'
-categories = Containers::Trie.new
+stems = YAML.load_file("../config/stem_categories.yml")
 
-categories.push("technology", true)
-categories.push("entertainment", true)
-categories.push("sports", true)
-
-found = false
-u= URI.parse(url)
-a = u.path.split("/")
-a.each do |attr|
-  if !categories.longest_prefix(attr).nil?
-    found = true
-    break
-  end
+STEM_CATEGORIES = Containers::Trie.new
+stems.each do |k,v|
+  STEM_CATEGORIES.push(k,v)
 end
 
-puts found
+def extract_categories_from_url(url)
+  category = {} 
+  a = url.split(/\/|\./)
+
+  a.each do |attr|
+    s = STEM_CATEGORIES.longest_prefix(attr)
+    if !s.blank?
+      category = {:name => STEM_CATEGORIES[s], :score => 1.0}
+      found = true
+      break
+    end
+  end
+
+  puts category
+end
+url = "http://political.dailymail.co.uk/sports/cricket/article-2097153/England-lose-Test-Pakistan-slump-3-0-whitewash.html"
+extract_categories_from_url(url)

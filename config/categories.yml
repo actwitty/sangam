@@ -173,3 +173,12 @@ products:
   sentence: brands, products, shopping or marketting
   end_sentence: brands, products and shopping or marketting
   fb_timeline: shares about products
+environment:
+  type: /environment
+  channel: environment
+  hierarchy: /
+  name: environment
+  personalize: environmentalist
+  sentence: nature, weather
+  end_sentence: and things on environment
+  fb_timeline: environment

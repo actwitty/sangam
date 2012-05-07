@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   has_many :activities, :foreign_key => :author_id , :dependent => :destroy
   has_many :social_aggregators, :dependent => :destroy
   has_many :summary_ranks, :dependent => :destroy
+  has_many :user_meta_infos, :dependent => :destroy
 
   ##### ALOK changes ends here #####################
 

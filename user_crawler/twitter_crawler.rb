@@ -50,7 +50,7 @@ class TwitterCrawler
 
 
 
-    def handle_request(api, response)
+    def handle_request(params, response)
 
       return [] if response.nil?
 
@@ -58,11 +58,11 @@ class TwitterCrawler
 
       d = File.open(DATA_FILE, "a+")
 
-      case api
+      case params[:api]
         when "suggestions"
 
         response["users"].each do |user|
-          u = extract_user(user,d)
+          u = extract_user(user,d, params[:category])
           array << u if !u.blank?
         end
 
@@ -71,7 +71,7 @@ class TwitterCrawler
       array
     end
 
-    def handle_file(type, file)
+    def handle_file(type, file, category)
 
       return [] if file.nil?
 
@@ -86,7 +86,7 @@ class TwitterCrawler
           hash = JSON.parse(json)
 
           hash["users"].each do |user|
-            u = extract_user(user, d)
+            u = extract_user(user, d, category)
             array << u if !u.blank?
           end
 
@@ -95,8 +95,8 @@ class TwitterCrawler
       array
     end
 
-    def extract_user(blob,file)
-      h = {:uid => blob["id_str"], :provider => "twitter", :full_name => blob["name"], :photo => blob["profile_image_url"]}
+    def extract_user(blob,file, category)
+      h = {:uid => blob["id_str"], :provider => "twitter", :full_name => blob["name"], :photo => blob["profile_image_url"], :username => blob["screen_name"], :category => category}
       h[:location] = blob["location"] if !blob["location"].blank?
       file.puts(h) if !h.blank?
       h
@@ -129,7 +129,7 @@ class TwitterCrawler
 
             hash = JSON.parse(response[0][:response])  if !response[0][:response].blank?
 
-            array = handle_request(params[:api], hash)
+            array = handle_request(params, hash)
           end
           array
           puts array
@@ -144,9 +144,7 @@ class TwitterCrawler
 
       type = params[:file_name].split("_")[1]
 
-      array= handle_file(type, f)
-
-
+      array= handle_file(type, f, params[:options][:category])
 
       array
     end
@@ -158,8 +156,14 @@ if __FILE__ == $0
   while true
     out = STDIN.readline
     out = out.gsub(/\n/,"")
+
+    if ARGV.size != 2
+      puts "Usage- ruby twitter_crawler.rb <JSON_FILEPATH> <CATEGORY>"
+      exit(1)
+    end
+
     #array = TwitterCrawler.process_request({:api => "suggestions",:options => {:category => "sports"}})
-    array = TwitterCrawler.process_file({:file_name => "data/tech_suggestions"})
+    array = TwitterCrawler.process_file({:file_name => ARGV[0], :options => {:category => ARGV[1]} })
     puts "Em Done"
     pp "Command Line" + Thread.current.inspect
   end
