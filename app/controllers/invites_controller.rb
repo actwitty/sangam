@@ -189,8 +189,6 @@ class InvitesController < ApplicationController
                               :joins =>  "INNER JOIN authentications au ON au.user_id=users.id INNER JOIN invites AS inv ON inv.identifier = au.uid AND au.provider = inv.service",
                               )
 
-    users_count = users_count + 2100
-
     uninviteds_count =  Authentication.find( :all,
                                                :select => "count(distinct u.id)",
                                                :joins =>  "LEFT OUTER JOIN invites AS inv ON inv.identifier = authentications.uid AND authentications.provider = inv.service  INNER JOIN users AS u ON u.id = authentications.user_id",
