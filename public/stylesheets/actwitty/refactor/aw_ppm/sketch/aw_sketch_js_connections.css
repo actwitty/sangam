@@ -4,8 +4,8 @@
   margin-bottom: 5px;
   margin-left: 5px;
   font-size: 14px;
-  font-family: "RobotoRegular";
-  color: #25a0da; }
+  font-family: Helvetica, Arial, sans-serif;
+  color: #008bf8; }
 
 .aw_single_contact_box {
   height: 56;
@@ -28,8 +28,8 @@
     left: 48px; }
   .aw_single_contact_box .aw_single_contact_posts_count {
     position: absolute;
-    top: 48px;
-    left: 0px;
+    top: 50px;
+    left: 2px;
     height: 12px;
     width: 16px;
     overflow: hidden;

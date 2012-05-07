@@ -6,7 +6,7 @@
 function aw_api_view_connections_active_friends_render(data){
    var html = '<div class="aw_contacts_header_label"> Connections recently said something on your wall. Click them to read </div>';
    var count_elements = 0;
-   var max_to_show = 21;
+   var max_to_show = 18;
    $.each(data, function(key, per_user_data) {
      var single_post = per_user_data[0];
      var display_class = "aw_js_single_contact_box_show_always";
@@ -18,7 +18,7 @@ function aw_api_view_connections_active_friends_render(data){
      html = html + '<div class="aw_single_contact_box aw_js_active_friend_contact_click ' + display_class +  
                         ' " key='+ key +  ' rel="aw_js_twipsy_connections" data-original-title="' +  twipsy + ' "' + 
                         ' aw_filter_title="service=' + single_post.service.name + ',user=' + single_post.originator.name + '" >' +
-                      '<img class="aw_single_contact_image" src="' + single_post.originator.image + '" width=56px height=56px />' +
+                      '<img class="aw_single_contact_image" src="' + single_post.originator.image + '" width=60px height=60px />' +
                       '<img class="aw_single_contact_service_img" src="/images/actwitty/refactor/aw_sketch/contacts/' +   single_post.service.name +  '.png" width=16px height=16px />' +
                       
                       '<div class="aw_single_contact_posts_count" >' +
