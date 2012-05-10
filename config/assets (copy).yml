@@ -1,0 +1,145 @@
+package_assets: on 
+embed_assets: datauri
+compress_assets: off
+gzip_assets: off
+javascripts:
+  jquery:
+    - public/javascripts/jquery/jquery-1.6.2.min.js
+    - public/javascripts/rails.js
+    - public/javascripts/application.js
+  actwittyall:
+    - public/javascripts/jquery/jquery-ui-1.8.14/ui/minified/jquery-ui.min.js
+    - public/javascripts/actwitty/refactor/common/externals/rails/jquery_ujs.js
+    - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.js
+    - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.custom.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_events.js
+    - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
+    - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
+    - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
+  profile_commons:
+    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
+    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
+    - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
+    - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
+  profile_page_sketch:
+      # ####################### Model ############################
+    - public/javascripts/actwitty/refactor/skpm/model/cache/aw_cache.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_static_profile.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_services_list.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_interests.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_trends.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_services_interests.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_connections.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_locations.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_mentions.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_videos.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_images.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_streams.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_visited_user_feeds.js
+    - public/javascripts/actwitty/refactor/skpm/model/services/aw_service_registry.js
+    - public/javascripts/actwitty/refactor/skpm/model/services/aw_facebook.js
+    - public/javascripts/actwitty/refactor/skpm/model/services/aw_facebook_access.js
+    - public/javascripts/actwitty/refactor/skpm/model/services/aw_twitter.js
+    - public/javascripts/actwitty/refactor/skpm/model/dynamics/aw_local_stream_services.js
+    - public/javascripts/actwitty/refactor/skpm/model/dynamics/aw_local_stream.js
+    - public/javascripts/actwitty/refactor/skpm/model/auth/sha1.js
+    - public/javascripts/actwitty/refactor/skpm/model/auth/oauth.js
+
+    # ####################### Controller ############################
+    - public/javascripts/actwitty/refactor/skpm/controller/main.js
+    - public/javascripts/actwitty/refactor/skpm/controller/aw_events.js
+    - public/javascripts/actwitty/refactor/skpm/controller/model_interface.js
+    # ####################### Views ############################
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_static_profile.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_services_list.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_interests.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_trends.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_mentions.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_popularity_services.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_connections_active.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_locations.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_images.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_videos.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_filterer.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_search.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_common.js
+    # ####################### Externals #############################
+    - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js
+    - public/javascripts/actwitty/refactor/common/externals/jscroll/jquery.mousewheel.js
+    - public/javascripts/actwitty/refactor/common/externals/jscroll/jScrollPane.js
+    - public/javascripts/actwitty/refactor/common/externals/jsonp/jquery-jsonp-2.2.1.min.js
+    - public/javascripts/actwitty/refactor/common/externals/cross-domain-ajax/jquery.xdomainajax.js
+
+  profile_main_extra:
+    - public/javascripts/actwitty/refactor/common/externals/input/jquery.elastic.source.js
+    - public/javascripts/plugins/date.js
+    - public/javascripts/plugins/actwitty-custom.js
+    - public/javascripts/plugins/expander_readmore.js
+    - public/javascripts/plugins/jquery-list-splitter/jquery.easyListSplitter.js
+  autocomplete:
+    - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.bgiframe.min.js
+    - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/jquery.ajaxQueue.js
+    - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/lib/thickbox-compressed.js
+    - public/javascripts/actwitty/refactor/common/externals/jquery-autocomplete/jquery.autocomplete.js
+  bootstrap:
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-alerts.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-dropdown.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-modal.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-twipsy.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-popover.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-scrollspy.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-buttons.js
+    - public/javascripts/actwitty/refactor/common/externals/bootstrap/bootstrap-tabs.js
+  aw_internal_inviteds_show_page:    
+    - public/javascripts/actwitty/refactor/aw_internals/aw_inviteds_show.js
+
+
+stylesheets:
+  defaults:
+    - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.css
+    - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
+    - public/stylesheets/actwitty/refactor/aw_common/bootstrap/bootstrap.css
+  landing_pages:
+    - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_forgot_pswd.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signup_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_page_main.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/signins/aw_signin_forgot_password.css
+    - public/stylesheets/actwitty/refactor/aw_lpm/external/simpleform/simple_form.css
+  profile_page_commons:  
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_header.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_input.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_footer.css
+  profile_page_channels:
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_profile_page_main_channel.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_mentions.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_dyn_chn_page_locations.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/channel/aw_ppm_chn_dyn_analytc.css
+  profile_page_sketch:
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_page_main.css 
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_static_profile.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_services_list.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_interests.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_timeline.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_service_popularity.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_connections.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_mentions.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.css
+  profile_page_externals:
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/lib/thickbox.css
+    - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.css
+    
+  aw_internal_inviteds_show_page:
+    - public/stylesheets/actwitty/refactor/aw_internals/aw_inviteds.css
+    - public/stylesheets/actwitty/refactor/aw_internals/aw_user_listings.css
+  profile_thanks_page:
+    - public/stylesheets/actwitty/refactor/aw_ppm/common/aw_profile_thanks.css
+
+
