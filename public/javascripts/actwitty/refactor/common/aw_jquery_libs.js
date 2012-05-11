@@ -117,6 +117,7 @@ function aw_lib_console_log(level, msg){
  if (level.length == 0 ) {
    level = "debug";
  }
+ return;
  if(msg.length == 0){
    msg = '';
  }

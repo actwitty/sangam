@@ -202,10 +202,31 @@ class HomeController < ApplicationController
     end
   end
 
-
-
+    user_interests = current_user.get_summary({:user_id => @user.id})
+    @user_bio_info = current_user.generate_bio_text( {
+                          :fullname => @user.full_name,
+                          :interests => user_interests
+                       })
+     
     @services_enabled = current_user.get_services( { :user_id => @user.id } )
     @service_uids = @user.get_service_user_ids()
+
+    set_meta_tags(:open_graph => {
+                                     :title => "Actwitty - The Complete Profile of #{@user.full_name}",
+                                     :type => "profile",
+                                     :site_name => "Actwitty",
+                                     :image => "#{@user_bio_info[:image]}",
+                                     :description => "#{@user_bio_info[:bio]}",
+                                     :url => "http://www.actwitty.com/#{@user.username}",
+                                     :locality => "#{@user.current_location}",
+                                     :email => "contact@actwitty.com",
+                                   },
+                    :title => "The Complete You",
+                    :keywords => "#{@user.full_name} #{@user_bio_info[:keywords]}",
+                    :author => "Actwitty",
+                    :copyright => "Actwitty",
+                    :ABSTRACT => "#{@user_bio_info[:bio]} ",
+                    :description => "#{@user_bio_info[:bio]}")
   end
   
   ############################################

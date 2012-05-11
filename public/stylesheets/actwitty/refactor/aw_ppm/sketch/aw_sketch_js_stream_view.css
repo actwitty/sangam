@@ -15,7 +15,7 @@
   margin-left: 15px;
   margin-top: 12px;
   vertical-align: middle;
-  width: 290px;
+  width: 320px;
   display: block; }
   .aw_stream_container_header_label .aw_filter_delmiter {
     color: #444444;
@@ -52,7 +52,7 @@
   display: block;
   outline: none;
   margin-top: 5px;
-  width: 340px; }
+  width: 370px; }
   .aw_stream_entry_container:hover .aw_actions_box ul {
     display: block; }
   .aw_stream_entry_container .aw_stream_time_orig {

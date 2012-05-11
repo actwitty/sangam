@@ -21,9 +21,6 @@ function aw_api_controller_render_services_list(data){
  */
 function aw_api_controller_render_interests(data){
   aw_api_view_interest_render(data);
-  var description = aw_api_model_get_interest_sentence();
-  aw_api_model_static_profile_apply_description(description);
-  aw_api_view_static_profile_update_description(description);
 }
 
 /******************************************************/

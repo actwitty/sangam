@@ -45,6 +45,7 @@ function aw_api_view_connections_active_friends_render(data){
      $("div[rel=aw_js_twipsy_connections]").twipsy({  live: true, placement: "below" }); 
      $("#aw_js_connections_main_container").show();
      $("#aw_js_connections_busy").hide();
+     $("#aw_js_contacts_nav").show();
    }
 }
 /*************************************************************/

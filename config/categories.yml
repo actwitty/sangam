@@ -8,6 +8,7 @@ sports:
   end_sentence: and things on sports
   fb_timeline: sports
   background: bkg1.jpg
+  img_counter: 1
 automobiles:
   type: /automobiles
   channel: automobiles
@@ -18,6 +19,7 @@ automobiles:
   end_sentence: roads, automobiles and cars
   fb_timeline: automobiles
   background: bkg1.jpg
+  img_counter: 2
 entertainment:
   type: /entertainment
   channel: entertainment
@@ -28,6 +30,7 @@ entertainment:
   end_sentence: music, movies and entertainment
   fb_timeline: shares about entertainment
   background: bkg2.jpg
+  img_counter: 3
 games:
   type: /games
   channel: games
@@ -38,6 +41,7 @@ games:
   end_sentence: fun and games
   fb_timeline: shares about fun and games
   background: bkg2.jpg
+  img_counter: 4
 leisure:
   type: /leisure
   channel: leisure
@@ -48,6 +52,7 @@ leisure:
   end_sentence: leisure, recreation and fashion
   fb_timeline: shares about leisure recreation and fashions
   background: bkg3.jpg
+  img_counter: 5
 nonprofit:
   type: /nonprofit
   channel: nonprofit
@@ -58,15 +63,17 @@ nonprofit:
   end_sentence: philanthropy and not-for-profits
   fb_timeline: shares about nonprofits
   background: bkg3.jpg
+  img_counter: 6
 stories:
   type: /stories
   channel: stories
   hierarchy: /
-  name: stories
+  name: stories and general chit chats
   sentence: general things with friends
   end_sentence: and general things with friends
   fb_timeline: shares in general things
   background: bkg4.jpg
+  img_counter: 7
 technology:
   type: /technology
   channel: technology
@@ -76,6 +83,7 @@ technology:
   end_sentence: science, gadgets and technology
   fb_timeline: technology
   background: bkg5.jpg
+  img_counter: 8
 world:
   type: /world
   channel: world
@@ -86,7 +94,7 @@ world:
   end_sentence: topics on society, religion, environment, law, crime and politics
   fb_timeline: shares in world
   background: bkg5.jpg
-
+  img_counter: 9
 animals:
   type: /animals
   channel: animals
@@ -96,6 +104,7 @@ animals:
   end_sentence: things about animals, plants and wildlife
   fb_timeline: shares about animals
   background: bkg6.jpg
+  img_counter: 10
 business:
   type: /business
   channel: business
@@ -105,6 +114,7 @@ business:
   end_sentence: market, business and entreprenuership
   fb_timeline: shares about business
   background: bkg7.jpg
+  img_counter: 11
 health:
   type: /health
   channel: health
@@ -114,6 +124,7 @@ health:
   end_sentence: fitness, health, medicines and pharmaceuticals
   fb_timeline: shares about health
   background: bkg6.jpg
+  img_counter: 12
 food:
   type: /food
   channel: food
@@ -123,6 +134,7 @@ food:
   end_sentence: recipes, restaurants, food and drink
   fb_timeline: shares about food
   background: bkg1.jpg
+  img_counter: 13
 books:
   type: /books
   channel: books
@@ -133,6 +145,7 @@ books:
   end_sentence: articles, books and reading material
   fb_timeline: shares about reads
   background: bkg3.jpg
+  img_counter: 14
 arts:
   type: /arts
   channel: arts
@@ -143,6 +156,7 @@ arts:
   sentence: aesthetics, art and design
   fb_timeline: shares about arts
   background: bkg5.jpg
+  img_counter: 15
 places:
   type: /places
   channel: places
@@ -153,6 +167,7 @@ places:
   end_sentence: tourism, places, travel, events, adventures
   fb_timeline: shares about places
   background: bkg2.jpg
+  img_counter: 16
 home:
   type: /home
   channel: home
@@ -163,6 +178,7 @@ home:
   end_sentence: family, managing home, furnishings and home decor
   fb_timeline: shares about home
   background: bkg5.jpg
+  img_counter: 17
 education:
   type: /eductaion
   channel: education
@@ -173,6 +189,7 @@ education:
   end_sentence: literacy, education, schools and colleges
   fb_timeline: shares about education
   background: bkg3.jpg
+  img_counter: 18
 hobbies:
   type: /hobbies
   channel: hobbies
@@ -183,7 +200,7 @@ hobbies:
   end_sentence: hobbies, personal interests and amateurism
   fb_timeline: shares about hobbies
   background: bkg6.jpg
-
+  img_counter: 19
 products:
   type: /products
   channel: products
@@ -194,3 +211,4 @@ products:
   end_sentence: brands, products and shopping or marketting
   fb_timeline: shares about products
   background: bkg7.jpg
+  img_counter: 20

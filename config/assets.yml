@@ -137,6 +137,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_sidebar.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/lib/thickbox.css

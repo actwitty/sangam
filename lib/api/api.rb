@@ -14,7 +14,7 @@ require 'helpers/format_object/format_analytics/analytics'
 
 require 'helpers/parser/parser'
 require "social_shares/fb_timeline"
-
+require "bio_curator/bio"
 
 if Rails.env != "production"
   require 'test/test_data'
@@ -890,4 +890,14 @@ module Api
          params[:user_id] = self.id
          ::Api::FBTimeline.fb_write_to_timeline_internal(params)         
       end
+
+############################################### SOCIAL SHARE ###########################################
+      #  INPUT
+      #  params   =             [ {
+      #                            :interests => {summary json}, 
+      #                          } 
+      #  OUTPUT = dynamic bio                          
+      def generate_bio_text(params={})
+         ::Api::BIOCurator.generate_social_bio_of_user(params)         
+      end      
 end

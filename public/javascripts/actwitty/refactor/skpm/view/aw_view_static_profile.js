@@ -35,17 +35,10 @@ function aw_api_view_static_profile_render(data){
         $("#aw_js_user_description").html( data.description );
       }
    }
+   $("#aw_js_static_profile_nav").show();
    aw_lib_console_log("DEBUG", "exited:aw_api_view_static_profile_render");
 }
 
-/*************************************************/
-/*
- *
- *
- */
-function aw_api_view_static_profile_update_description(description){
-  $("#aw_js_user_description").html(description);
-}
 
 /*************************************************/
 /*
