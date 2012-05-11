@@ -7,6 +7,7 @@ sports:
   sentence: things on sports
   end_sentence: and things on sports
   fb_timeline: sports
+  background: bkg1.jpg
 automobiles:
   type: /automobiles
   channel: automobiles
@@ -16,6 +17,7 @@ automobiles:
   sentence: roads, automobiles, cars
   end_sentence: roads, automobiles and cars
   fb_timeline: automobiles
+  background: bkg1.jpg
 entertainment:
   type: /entertainment
   channel: entertainment
@@ -25,6 +27,7 @@ entertainment:
   sentence: music, movies, entertainment
   end_sentence: music, movies and entertainment
   fb_timeline: shares about entertainment
+  background: bkg2.jpg
 games:
   type: /games
   channel: games
@@ -34,6 +37,7 @@ games:
   sentence: fun, games
   end_sentence: fun and games
   fb_timeline: shares about fun and games
+  background: bkg2.jpg
 leisure:
   type: /leisure
   channel: leisure
@@ -43,6 +47,7 @@ leisure:
   sentence: leisure, recreation, fashion
   end_sentence: leisure, recreation and fashion
   fb_timeline: shares about leisure recreation and fashions
+  background: bkg3.jpg
 nonprofit:
   type: /nonprofit
   channel: nonprofit
@@ -52,6 +57,7 @@ nonprofit:
   sentence: philanthropy, not-for-profits
   end_sentence: philanthropy and not-for-profits
   fb_timeline: shares about nonprofits
+  background: bkg3.jpg
 stories:
   type: /stories
   channel: stories
@@ -60,6 +66,7 @@ stories:
   sentence: general things with friends
   end_sentence: and general things with friends
   fb_timeline: shares in general things
+  background: bkg4.jpg
 technology:
   type: /technology
   channel: technology
@@ -68,6 +75,7 @@ technology:
   sentence: science, gadgets, technology
   end_sentence: science, gadgets and technology
   fb_timeline: technology
+  background: bkg5.jpg
 world:
   type: /world
   channel: world
@@ -77,6 +85,7 @@ world:
   sentence: topics on society, religion, environment, law, crime and politics
   end_sentence: topics on society, religion, environment, law, crime and politics
   fb_timeline: shares in world
+  background: bkg5.jpg
 
 animals:
   type: /animals
@@ -86,6 +95,7 @@ animals:
   sentence: things about animals, plants and wildlife
   end_sentence: things about animals, plants and wildlife
   fb_timeline: shares about animals
+  background: bkg6.jpg
 business:
   type: /business
   channel: business
@@ -94,6 +104,7 @@ business:
   sentence: market, business, entreprenuership 
   end_sentence: market, business and entreprenuership
   fb_timeline: shares about business
+  background: bkg7.jpg
 health:
   type: /health
   channel: health
@@ -102,6 +113,7 @@ health:
   sentence: fitness, health, medicines, pharmaceuticals
   end_sentence: fitness, health, medicines and pharmaceuticals
   fb_timeline: shares about health
+  background: bkg6.jpg
 food:
   type: /food
   channel: food
@@ -110,6 +122,7 @@ food:
   sentence: recipes, restaurants, food, drink
   end_sentence: recipes, restaurants, food and drink
   fb_timeline: shares about food
+  background: bkg1.jpg
 books:
   type: /books
   channel: books
@@ -119,6 +132,7 @@ books:
   sentence: articles, books, reading material
   end_sentence: articles, books and reading material
   fb_timeline: shares about reads
+  background: bkg3.jpg
 arts:
   type: /arts
   channel: arts
@@ -128,6 +142,7 @@ arts:
   sentence: aesthetics, art, design
   sentence: aesthetics, art and design
   fb_timeline: shares about arts
+  background: bkg5.jpg
 places:
   type: /places
   channel: places
@@ -137,6 +152,7 @@ places:
   sentence: tourism, places, travel, events, adventures
   end_sentence: tourism, places, travel, events, adventures
   fb_timeline: shares about places
+  background: bkg2.jpg
 home:
   type: /home
   channel: home
@@ -146,6 +162,7 @@ home:
   sentence: family, managing home, furnishings, home decor
   end_sentence: family, managing home, furnishings and home decor
   fb_timeline: shares about home
+  background: bkg5.jpg
 education:
   type: /eductaion
   channel: education
@@ -155,6 +172,7 @@ education:
   sentence: literacy, education, schools, colleges
   end_sentence: literacy, education, schools and colleges
   fb_timeline: shares about education
+  background: bkg3.jpg
 hobbies:
   type: /hobbies
   channel: hobbies
@@ -164,6 +182,8 @@ hobbies:
   sentence: hobbies, personal interests, amateurism
   end_sentence: hobbies, personal interests and amateurism
   fb_timeline: shares about hobbies
+  background: bkg6.jpg
+
 products:
   type: /products
   channel: products
@@ -173,6 +193,7 @@ products:
   sentence: brands, products, shopping or marketting
   end_sentence: brands, products and shopping or marketting
   fb_timeline: shares about products
+  background: bkg7.jpg
 environment:
   type: /environment
   channel: environment
@@ -182,3 +203,4 @@ environment:
   sentence: nature, weather
   end_sentence: and things on environment
   fb_timeline: environment
+  background: bkg7.jpg

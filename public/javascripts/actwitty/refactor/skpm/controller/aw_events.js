@@ -81,6 +81,17 @@ $(document).ready(function(){
   $(".aw_stream_js_stream_info_close").live('click', function(){
                                                         aw_api_view_handle_hover_close($(this));
                                                      });
+  $(document).scroll(function() {
+    var scroll_point = $(document).scrollTop();
+    if( scroll_point >= 380){
+      $('#aw_js_sidebox_container').addClass('aw_sidebox_outer_container_fixed');
+      $('#aw_js_sidebox_container').removeClass('aw_sidebox_outer_container_absolute');
+    }else{
+      $('#aw_js_sidebox_container').addClass('aw_sidebox_outer_container_absolute');
+      $('#aw_js_sidebox_container').removeClass('aw_sidebox_outer_container_fixed');
+    }
+    
+  });
    var body_height = $(window).height();
    aw_api_view_stream_apply_height(body_height);
 

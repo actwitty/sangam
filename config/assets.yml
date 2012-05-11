@@ -67,7 +67,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_search.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_common.js
-    # ####################### Externals #############################
+    # ####################### Externals ############################i
     - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jquery.mousewheel.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jScrollPane.js

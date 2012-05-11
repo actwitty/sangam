@@ -71,7 +71,6 @@ function aw_api_view_images_render(data){
     $("#aw_js_images_busy").hide();
   }
 }
-
 /****************************************************************/
 /*
  *
