@@ -14,5 +14,6 @@ function aw_api_view_initialize_views(){
   $("#aw_js_interests_main_container").hide();
   $("#aw_js_services_main_container").hide();
   //$("#aw_js_profile_main_container").hide();
+   $("img[rel=nav_twipsy]").twipsy({  live: true, placement: "right" });
 
 }

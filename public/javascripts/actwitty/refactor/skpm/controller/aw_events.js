@@ -83,18 +83,33 @@ $(document).ready(function(){
                                                      });
   $(document).scroll(function() {
     var scroll_point = $(document).scrollTop();
-    if( scroll_point >= 380){
+    if( scroll_point >= 360){
       $('#aw_js_sidebox_container').addClass('aw_sidebox_outer_container_fixed');
       $('#aw_js_sidebox_container').removeClass('aw_sidebox_outer_container_absolute');
+
+      $("#aw_js_left_side_navs").addClass('aw_vertical_navigation_fixed');
+      $("#aw_js_left_side_navs").removeClass('aw_vertical_navigation_absolute');
+
     }else{
       $('#aw_js_sidebox_container').addClass('aw_sidebox_outer_container_absolute');
       $('#aw_js_sidebox_container').removeClass('aw_sidebox_outer_container_fixed');
+      
+      $("#aw_js_left_side_navs").addClass('aw_vertical_navigation_absolute');
+      $("#aw_js_left_side_navs").removeClass('aw_vertical_navigation_fixed');
     }
-    
+
+   return false; 
+  });
+
+  $(".aw_js_scroll_nav").live('click', function(){
+    var scroll_to_top_id = $(this).attr("aw_scroll_top_id");
+    var position = $("#" + scroll_to_top_id).offset();
+    $('html, body').animate({scrollTop: position.top}, "slow");
+    return false;
   });
    var body_height = $(window).height();
    aw_api_view_stream_apply_height(body_height);
-
+ 
 
     
 });

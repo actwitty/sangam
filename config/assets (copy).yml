@@ -16,9 +16,6 @@ javascripts:
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_libs.js
-  actgreen:
-      # KEPT IT AS SEPARATE FOR EASY REMOVAL OF CAMPAIGN
-    - public/javascripts/actwitty/refactor/lpm/act_green/aw_actgreen.js
   profile_commons:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.mousewheel-3.0.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
@@ -67,7 +64,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_search.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_common.js
-    # ####################### Externals ############################i
+    # ####################### Externals #############################
     - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jquery.mousewheel.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jScrollPane.js
@@ -104,9 +101,6 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
     - public/stylesheets/actwitty/refactor/aw_common/bootstrap/bootstrap.css
-  actgreen:
-    - public/stylesheets/actwitty/refactor/aw_lpm/act_green/aw_actgreen.css
-    - public/stylesheets/actwitty/refactor/aw_lpm/act_green/bootstrap_actgreen.css
   landing_pages:
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_landing_page_main.css
     - public/stylesheets/actwitty/refactor/aw_lpm/aw_lpm_dyn_chn_updates.css
@@ -137,7 +131,6 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.css
-    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_sidebar.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/lib/thickbox.css

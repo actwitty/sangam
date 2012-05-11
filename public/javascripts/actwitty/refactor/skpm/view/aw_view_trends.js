@@ -90,5 +90,6 @@ function aw_api_view_trends_render(data){
     $().timelinr();
     $("#aw_js_trends_busy").hide();
     $("#aw_js_trends_main_container").show();
+    $("#aw_js_trends_nav").show();
   }
 }

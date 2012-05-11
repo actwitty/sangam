@@ -58,7 +58,7 @@ function aw_api_view_images_render(data){
   if( show_any ){
     $("#aw_js_images_box").html(html);
     
-	
+    $("#aw_js_pics_nav").show();
     $("a[rel=aw_img_group]").fancybox({
 	  	'transitionIn'		: 'none',
 		  'transitionOut'		: 'none',

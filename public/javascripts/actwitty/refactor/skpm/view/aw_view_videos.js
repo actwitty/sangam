@@ -154,6 +154,7 @@ function aw_api_view_videos_render(data){
     $("#aw_js_videos").html(html);
     $("#aw_js_videos_busy").hide();
     $("#aw_js_videos_main_container").show();
+    $("#aw_js_videos_nav").show();
   }
 
   $(".aw_js_video_thumbnails").each(function() {

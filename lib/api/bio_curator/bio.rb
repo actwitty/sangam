@@ -1,5 +1,5 @@
 module Api
-  module FBTimeline
+  module BIOCurator
     class << self
       #INPUT => {
       #            :user_id => "",
@@ -7,42 +7,121 @@ module Api
       #         }
       #   
 
-      def fb_write_to_timeline_internal(params)
-        puts "#{params.inspect}"
-        Rails.logger.info("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] entering #{params.inspect}")
-        
-        if params[:activities].nil?
-          Rails.logger.info("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] entering Nothing to write")
-          return
+      def generate_social_bio_of_user(params)
+        Rails.logger.info("[API] [BIOCurator] entering #{params.inspect}")
+        return_json = {}
+        return_json[:interests] = {} 
+        return_json[:bkg] =  "bkg4.jpg"
+        return_json[:bio] =  ""
+        return_json[:keywords] =  ""
+        return_json[:image] =  "http://actwitty.com/images/actwitty/refactor/aw_common/aw_logo.png"
+        adjective_map = {
+                         ' always talks about ' =>  {
+                                                      :share => 100, 
+                                                      :topics => []
+                                                    },
+                         ' is dominantly at ' =>    {
+                                                      :share => 60, 
+                                                      :topics => []
+                                                    },
+                         ' is mostly at ' =>        {
+                                                      :share => 30, 
+                                                      :topics => []
+                                                    },
+                          ' frequently talks about ' => {
+                                                          :share => 25, 
+                                                          :topics => []
+                                                        },
+                          
+                         ' often talks about ' => {
+                                                        :share => 15, 
+                                                        :topics => []
+                                                  },
+                         ' sometimes talks about ' => {
+                                                        :share => 10, 
+                                                        :topics => []
+                                                  },
+                         ' occasionally shares ' =>  {
+                                                        :share => 2, 
+                                                        :topics => []
+                                             }
+                        }
+        if  params[:interests].nil? or params[:interests].size == 0
+          return return_json
         end
+        total_posts = 0
+        return_json[:image] = "https://s3.amazonaws.com/actwitty_resources/fb_images/aw_interest"
+        for index in 0 ... params[:interests].size
+          total_posts = total_posts + params[:interests][index][:analytics_snapshot][:posts][:counts][:total]
+          params[:interests][index][:detail] =  SUMMARY_CATEGORIES[params[:interests][index][:word][:name]]['name']
+          return_json[:keywords] = return_json[:keywords] + " #{params[:interests][index][:word][:name]}"
+          if index < 3
+            return_json[:image] = return_json[:image] + '_' + SUMMARY_CATEGORIES[params[:interests][index][:word][:name]]['img_counter'].to_s
+          end
 
-        provider="facebook"
-        facebook_auth=Authentication.find_by_user_id_and_provider(params[:user_id], provider)
-        if facebook_auth.nil?
-          return
         end
+        return_json[:image] = return_json[:image] + '.jpeg'
+        return_json[:interests] = params[:interests]
+        return_json[:bkg] =  SUMMARY_CATEGORIES[params[:interests][0][:word][:name]]['background']
+        return_json[:bio] =  ""
 
-        begin
-          Rails.logger.debug("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Posting to FB #{facebook_auth.token}")
-          graph = Koala::Facebook::GraphAPI.new(facebook_auth.token)
-          graph.batch do |batch_api|
-            params[:activities].each do |activity|
-               Rails.logger.debug "PUTTING #{activity[:url]}"
-              batch_api.put_connections(
-                                          "og_lemonbaglocal:#{AW_CATEGORIES[activity[:category]]['fb_timeline']}",
-                                          :website => activity[:url]
-                                       )
+        percentage = 0
+        for index in 0 ... params[:interests].size
+          percentage = (params[:interests][index][:analytics_snapshot][:posts][:counts][:total] * 100)/total_posts
+          adjective = ' rarely shares '
+
+          adjective_map.each_pair do |key, adjective_detail|
+            if adjective_detail[:share] <= percentage
+              adjective = key; 
+              break        
             end
           end
 
-          rescue Koala::Facebook::APIError => err
-            Rails.logger.error("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Exception in fb koala #{err.message}")
+          adjective_map[adjective][:topics] << params[:interests][index][:word][:name]
+
+          if index == 2
+            break
+          end
         end
 
-
-        Rails.logger.debug("[API] [FBTimeline] [FB_WRITE_TO_TIMELINE] Posting to FB timeline done")
-        return
-      end 
+        sentence = params[:fullname] + ' these days ' 
+        dyn_sentence = ""
+        dyn_sentence_arr = []
+        
+        adjective_map.each_pair do |adjective, adjective_detail|
+          if adjective_detail[:topics].size > 0
+            if adjective_detail[:topics].size == 1
+              dyn_sentence = adjective + SUMMARY_CATEGORIES[adjective_detail[:topics][0]]['sentence']
+            else
+               dyn_sentence = adjective
+               for idx in 0 ... adjective_detail[:topics].size
+                if idx == 0
+                  dyn_sentence = dyn_sentence + SUMMARY_CATEGORIES[adjective_detail[:topics][idx]]['sentence']
+                elsif idx == (adjective_detail[:topics].size - 1)
+                  dyn_sentence = dyn_sentence + ', ' + SUMMARY_CATEGORIES[adjective_detail[:topics][idx]]['end_sentence']
+                else
+                  dyn_sentence = dyn_sentence + ', ' + SUMMARY_CATEGORIES[adjective_detail[:topics][idx]]['sentence']
+                end
+               end
+            end
+            dyn_sentence_arr << dyn_sentence
+          end
+        end
+          
+          
+        for idx in 0 ... dyn_sentence_arr.size
+          if idx == 0
+            sentence = sentence + dyn_sentence_arr[idx]
+          elsif idx == ( dyn_sentence_arr.size - 1 )
+            sentence = sentence + ' and ' + dyn_sentence_arr[idx]
+          else
+            sentence = sentence + ', ' + dyn_sentence_arr[idx]
+          end 
+        end
+        return_json[:bio] = sentence
+        return return_json
+               
+      end
     end
   end
 end

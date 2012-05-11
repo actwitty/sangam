@@ -85,11 +85,11 @@ function aw_api_view_service_popularity_render(data){
                 '</div>';  
   }
   if( html.length ){
-    var header_html = '<div class="aw_contacts_header_label"> The response from people on shared data. Click to see the posts. </div>' + html;
-    $("#aw_js_service_popularity_box").html(header_html);
+    $("#aw_js_service_popularity_box").html(html);
     $("div[rel=aw_js_twipsy_popularity]").twipsy({  live: true, placement: "below" }); 
     $("#aw_js_popularity_busy").hide();
     $("#aw_js_popularity_main_container").show();
+    $("#aw_js_popularity_nav").show();
   }
 }
 

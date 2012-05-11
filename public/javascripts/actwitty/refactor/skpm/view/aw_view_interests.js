@@ -49,13 +49,7 @@ function aw_api_view_interest_render(data){
                       + ' />';
   });
 
-   var topic_twipsy = "";
-   if(aw_js_categories_json[topic_detail.name] &&
-          aw_js_categories_json[topic_detail.name]['name']){
-    topic_twipsy = topic_detail.post + ' posts on ' + aw_js_categories_json[topic_detail.name]['name'];
-  }else{
-   topic_twipsy = topic_detail.post + ' posts ';    
-  }
+   var topic_twipsy = topic_detail.post + ' posts on ' + topic_detail.detail;
     if( shown_count >= max_show){
       display_class="aw_js_topics_box_hide_on_less";
     }

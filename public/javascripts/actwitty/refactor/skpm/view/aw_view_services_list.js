@@ -26,6 +26,8 @@ function aw_api_view_service_list_render(data){
           add_to_hover = true;
           twipsy_string = service_details.name  + " will be enabled by Actwitty shortly.";
         }
+      }else{
+        add_to_hover = true;
       }
       
     }else{
@@ -38,12 +40,14 @@ function aw_api_view_service_list_render(data){
       target_blank = ' target="_blank" ';
     }
     if( add_to_hover ) {
-      hover_html = hover_html + '<div class="aw_dyn_service_image_box" >' +
+      if( self_page ){
+        hover_html = hover_html + '<div class="aw_dyn_service_image_box" >' +
                       '<a id="aw_service_url_' + service_details.name + '" href=' + service_details.url + ' ' + target_blank  +' >' +
                         '<img class="aw_dyn_service_img_small" src="' + service_details.icon + '" width=40px height=40px  />' + 
                         '<img class="aw_dyn_service_img_large" src="' + service_details.icon + '" width=44px height=44px  rel="twipsy" data-original-title="' + twipsy_string + '"/>' + 
                       '</a>' +
                     '</div>';
+      }
     }else{
       html = html + '<div class="aw_dyn_service_image_box" >' +
                       '<a id="aw_service_url_' + service_details.name + '" href=' + service_details.url + ' ' + target_blank  +' >' +
@@ -69,8 +73,7 @@ function aw_api_view_service_list_render(data){
                           '</div>';
        $("#aw_js_actwitty_upcoming").html(html_coming);
     }
-
-  if( !self.page && !aw_js_global_logged_in_user_credentials.id){
+  if( !self_page && user_is_signed_in){
     $("#aw_js_get_actwitty").show();
   }
 }
