@@ -11,7 +11,7 @@ alchemyapi:
   religion: [world]
   recreation: [leisure]
   sports: [sports]
-  weather: [places]
+  weather: [environment]
   unknown: [stories]
 
 #OpenCalais
@@ -20,7 +20,7 @@ opencalais:
   disaster_accident: [world]
   education: [education]
   entertainment_culture: [entertainment]
-  environment: [world]
+  environment: [environment]
   health_medical_pharma: [health]
   hospitality_recreation: [leisure]
   human_interest: [stories]
@@ -32,7 +32,7 @@ opencalais:
   religion_belief: [world]
   war_conflict: [world]
   technology_internet: [technology]
-  weather: [places]
+  weather: [environment]
   sports: [sports]
   other: [stories]
 
@@ -53,7 +53,7 @@ youtube:
   pets & animals: [animals]
   science & technology: [technology]
   sports: [sports]
-  travel & events: [places]
+  travel & events: [leisure]
 
 
 #Facebook
@@ -100,9 +100,8 @@ facebook:
   company: [business]
   computers: [technology]
   computers/technology: [technology]
-  concert tour: [places]
+  concert tour: [leisure]
   concert venue: [places]
-  concert venue: [entertainment]
   consulting/business services: [business]
   dancer: [entertainment]
   doctor: [health]
@@ -113,7 +112,7 @@ facebook:
   energy/utility: [business]
   engineering/construction: [business]
   entertainer: [entertainment]
-  event planning/Event services: [places]
+  event planning/Event services: [business]
   farming/agriculture: [business]
   field of study: [education]
   fictional character: [games]
@@ -182,7 +181,7 @@ facebook:
   school: [education]
   school sports team: [sports]
   school: [education]
-  shopping/retail: [place]
+  shopping/retail: [business]
   small business: [business]
   software: [technology]
   song: [entertainment]
@@ -195,7 +194,7 @@ facebook:
   teacher: [education]
   telecommunication: [technology]
   tools/equipment: [business]
-  tours/sightseeing: [places]
+  tours/sightseeing: [leisure]
   transit stop: [business]
   transport/freight: [business]
   transportation: [business]

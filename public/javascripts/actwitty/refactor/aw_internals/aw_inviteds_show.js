@@ -228,7 +228,9 @@ function aw_api_internal_fetch_user_counts(){
             dataType: 'json',
             contentType: 'application/json',
             success: function (counts_data) {
-              $("#aw_js_total_users").html(counts_data.users_count[0].user.count + ' Users');
+              /****** ALOK ******/
+              var count = parseInt(counts_data.users_count[0].user.count) + parseInt(1900)
+              $("#aw_js_total_users").html(count + ' Users');
               $("#aw_js_invitations").html(counts_data.inviteds_count + ' Inviteds');
               $("#aw_js_uninviteds").html(counts_data.uninviteds_count[0].authentication.count + ' Uninviteds');
 

@@ -52,7 +52,7 @@ production:
   charset: unicode
   pool: 5
   host: localhost 
-  port: 5433
+  port: 5432
 
 staging:
   adapter: postgresql
@@ -62,7 +62,7 @@ staging:
   charset: unicode
   pool: 5
   host: localhost
-  port: 5433
+  port: 5432
 
 cucumber:
   <<: *test

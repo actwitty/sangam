@@ -56,7 +56,6 @@ gem 'jammit'
 
 gem 'date_validator'
 
-
 #generators for gems which dont have it yet
 gem 'rails3-generators'
 

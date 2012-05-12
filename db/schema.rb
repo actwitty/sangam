@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423171243) do
+ActiveRecord::Schema.define(:version => 20120507155331) do
 
   create_table "actgreens", :force => true do |t|
     t.string   "name"
@@ -225,10 +225,10 @@ ActiveRecord::Schema.define(:version => 20120423171243) do
   create_table "local_actions", :force => true do |t|
     t.integer  "author_id"
     t.integer  "summary_id"
-    t.text     "meta",       :default => "--- {}\n"
+    t.text     "meta",       :default => "--- {}\n\n"
     t.text     "name"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   add_index "local_actions", ["author_id"], :name => "index_local_actions_on_author_id"
@@ -309,8 +309,8 @@ ActiveRecord::Schema.define(:version => 20120423171243) do
     t.integer  "status",                  :default => 1
     t.datetime "next_update_timestamp",   :default => '1970-01-01 00:00:00'
     t.integer  "update_interval",         :default => 64800
-    t.integer  "every_time_feed_storage", :default => 25
-    t.integer  "first_time_feed_storage", :default => 25
+    t.integer  "every_time_feed_storage", :default => 10
+    t.integer  "first_time_feed_storage", :default => 10
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
   end
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20120423171243) do
     t.integer  "activity_id"
     t.text     "source_name"
     t.text     "source_msg_id"
-    t.text     "meta",              :default => "--- {}\n"
+    t.text     "meta",              :default => "--- {}\n\n"
     t.text     "name"
     t.integer  "count"
     t.datetime "source_created_at", :default => '1970-01-01 00:00:00'
@@ -401,6 +401,18 @@ ActiveRecord::Schema.define(:version => 20120423171243) do
   add_index "tags", ["source_created_at"], :name => "index_tags_on_source_created_at"
   add_index "tags", ["summary_id"], :name => "index_tags_on_summary_id"
   add_index "tags", ["updated_at"], :name => "index_tags_on_updated_at"
+
+  create_table "user_meta_infos", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "category",   :default => "stories"
+    t.integer  "user_type",  :default => 0
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "user_meta_infos", ["category"], :name => "index_user_meta_infos_on_category"
+  add_index "user_meta_infos", ["user_id"], :name => "index_user_meta_infos_on_user_id"
+  add_index "user_meta_infos", ["user_type"], :name => "index_user_meta_infos_on_user_type"
 
   create_table "users", :force => true do |t|
     t.string   "email"

@@ -14,6 +14,14 @@ module Categorization
 
         params[:link_cat].each do |k,v|
           element = params[:activities][v[0]][:post][:links][0][:element]
+
+          #extract category from url ny checking
+          category = extract_categories_from_url(k)
+          if !category.blank?
+            update_category(params, k, category)
+            next
+          end
+
           req << SERVICES_MODULE::OpenCalais.make_request(k, "opencalais:#{k}") #service:idx creates uniq handle on service + index
           req << SERVICES_MODULE::AlchemyApi.make_request(k, "alchemyapi:#{k}", element ) #service:idx creates uniq handle on service + index
 
@@ -37,7 +45,7 @@ module Categorization
 
       def process_request(params,requests)
 
-        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] entering")
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] entering")
 
         index,hash = 0, {}
 
@@ -61,23 +69,33 @@ module Categorization
         hash.each do |url, categories|
 
           category = vote(categories)
-          category = get_default_category(url) if category.blank?
-          if !category.blank?
 
-            Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] url => #{url}, Category => #{category.inspect} ")
+          category = get_default_category(url) if category.blank?
+
+          update_category(params, url, category)
+        end
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] **** RESCUE **** => #{e.message}")
+      end
+
+
+      def update_category(params, url, category)
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [UPDATE_CATEGORY] Entering")
+        if !category.blank?
+
+            Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS]  [UPDATE_CATEGORY] url => #{url}, Category => #{category.inspect} ")
             params[:link_cat][url].each do |idx|
               activity = params[:activities][idx][:post]
               activity[:word] =  category[:name]
               activity[:category_id] =  category[:name]
               activity[:links][0][:category_id] = category[:name]
             end
-          end
         end
-        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] Leaving")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [UPDATE_CATEGORY] Leaving")
       rescue => e
-        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [PROCESS_REQUEST] **** RESCUE **** => #{e.message}")
+        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [UPDATE_CATEGORY] **** RESCUE **** => #{e.message}")
       end
-
 
       def vote(categories)
          #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [VOTE] entering")
@@ -101,8 +119,8 @@ module Categorization
         return {}
       end
 
-      def get_default_category(url)
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] entering")
+       def get_default_category(url)
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] entering")
 
         category = {}
         u = URI.parse(url)
@@ -110,10 +128,31 @@ module Categorization
 
         category[:name] = cat if !cat.blank?
 
-        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] leaving #{u.host} => #{category} ")
+        #Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] leaving #{u.host} => #{category} ")
         category
       rescue => e
         Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [GET_DEFAULT_CATEGORY] **** RESCUE **** => #{e.message}")
+        return {}
+       end
+
+      def extract_categories_from_url(url)
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS] [EXTRACT_CATEGORIES_FROM_URL] entering")
+
+        category = {}
+        a = url.split(/\/|\./)
+
+        a.each do |attr|
+          s = STEM_CATEGORIES[attr]
+          if !s.blank?
+            category = {:name => s, :score => 1.0}
+            break
+          end
+        end
+
+        Rails.logger.info("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS]  [EXTRACT_CATEGORIES_FROM_URL] leaving #{url} => #{category} ")
+        category
+      rescue => e
+        Rails.logger.error("[LIB] [CATEGORIZATION] [LINK_CATEGORIZERS]  [EXTRACT_CATEGORIES_FROM_URL] **** RESCUE **** => #{e.message}")
         return {}
       end
     end

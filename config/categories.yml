@@ -212,3 +212,14 @@ products:
   fb_timeline: shares about products
   background: bkg7.jpg
   img_counter: 20
+environment:
+  type: /environment
+  channel: environment
+  hierarchy: /
+  name: environment
+  personalize: environmentalist
+  sentence: nature, weather
+  end_sentence: and things on environment
+  fb_timeline: environment
+  background: bkg7.jpg
+  img_counter: 21

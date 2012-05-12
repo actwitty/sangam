@@ -55,8 +55,8 @@ module Categorization
             categories = []
             cat = MAP_CATEGORIES['alchemyapi'][json["category"].downcase]
 
-            if !cat.blank? and json["score"].to_f >= ALCHEMY_THRESHOLD_SCORE
-              categories <<  {:name => cat[0], :score => json["score"].to_f, :category => json["category"] }
+            if !cat.blank? and json["score"].to_f > ALCHEMY_THRESHOLD_SCORE
+              categories <<  {:name => cat[0], :score => json["score"].to_f, :category => json["category"] } if json["category"] != "unknown"
             else
               Rails.logger.info("[MODULE] [CATEGORIZATION] [LINK_CATEGORIZER] [AlchemyApi] ++++ IGONORES ++++ \n
                                 #{json["url"]}  ==> #{json["score"]} ")
