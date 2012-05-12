@@ -149,8 +149,6 @@ class HomeController < ApplicationController
     end
    @fb_access = {}
    @tw_access = {}
-
-
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
       authentications = Authentication.find_all_by_user_id(current_user.id)
@@ -217,16 +215,16 @@ class HomeController < ApplicationController
                                      :site_name => "Actwitty",
                                      :image => "#{@user_bio_info[:image]}",
                                      :description => "#{@user_bio_info[:bio]}",
-                                     :url => "http://www.actwitty.com/#{@user.username}",
-                                     :locality => "#{@user.current_location}",
-                                     :email => "contact@actwitty.com",
+                                     :url => "#{AppConstants.server_base}/#{@user.username}",
                                    },
-                    :title => "The Complete You",
+                    :title => "Actwitty - The Complete Profile of #{@user.full_name}",
                     :keywords => "#{@user.full_name} #{@user_bio_info[:keywords]}",
                     :author => "Actwitty",
                     :copyright => "Actwitty",
                     :ABSTRACT => "#{@user_bio_info[:bio]} ",
                     :description => "#{@user_bio_info[:bio]}")
+    @session_new = 2
+
   end
   
   ############################################
