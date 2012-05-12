@@ -1,1 +1,2 @@
-{:uid=>"972651", :provider=>"twitter", :full_name=>"Pete Cashmore", :photo=>"http://a0.twimg.com/profile_images/2015016150/petecashmoreavatar_normal.png", :username=>"mashable", :category=>"sports", :location=>"NYC / SF"}
+{:uid=>"20536157", :provider=>"twitter", :full_name=>"A Googler", :photo=>"http://a0.twimg.com/profile_images/77186109/favicon_normal.png", :username=>"google", :category=>"technology", :location=>"Mountain View, CA"}
+{:uid=>"5252591", :provider=>"twitter", :full_name=>"Bill Gurley", :photo=>"http://a0.twimg.com/profile_images/2005596618/184795_10150118029359720_617069719_6145158_1919569_n_normal.jpeg", :username=>"bgurley", :category=>"technology", :location=>"Sand Hill Road"}
