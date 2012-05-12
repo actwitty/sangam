@@ -92,7 +92,7 @@ development: &default
 
   #Allowed to see internals
   #Devloper:change this to reqd email
-  authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com"
+  authorized_see_internals_email_ids:  "aloksrivastava78@gmail.com,sudhanshu.saxena@gmail.com,83.samarth@gmail.com"
   authorized_see_internals_secret_key:  "A1B2C3D4E5F6987654321ABCDEFGH"
 
 

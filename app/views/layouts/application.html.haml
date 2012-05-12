@@ -63,7 +63,7 @@
       = include_javascripts :actgreen
 
     /* This is an exclude condition. Mind it*/
-    -if @page_mode != "authentications_page" or @page_mode != "actgreen_page"
+    -if @page_mode != "authentications_page" and @page_mode != "actgreen_page"
       = include_javascripts :autocomplete
       
     :javascript
