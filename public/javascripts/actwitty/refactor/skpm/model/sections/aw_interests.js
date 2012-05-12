@@ -197,8 +197,8 @@ function aw_api_model_interests_process_interest_data(data) {
 function aw_api_model_interests_server_request(){
   if( aw_js_global_user_interests ){
       aw_api_model_interests_process_interest_data(aw_js_global_user_interests);
-  }
-  $.ajax({
+  }else{
+    $.ajax({
 
             url: "/home/get_summary.json",
             type: 'GET',
@@ -216,6 +216,7 @@ function aw_api_model_interests_server_request(){
                               +  " error: " + errorThrown + " status:" + textStatus);   
         }
     });
+  }
 }
 
 /*************************************************/

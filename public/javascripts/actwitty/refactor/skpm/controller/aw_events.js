@@ -104,7 +104,7 @@ $(document).ready(function(){
   $(".aw_js_scroll_nav").live('click', function(){
     var scroll_to_top_id = $(this).attr("aw_scroll_top_id");
     var position = $("#" + scroll_to_top_id).offset();
-    $('html, body').animate({scrollTop: position.top}, "slow");
+    $('html, body').animate({scrollTop: (position.top - 40)}, "slow");
     return false;
   });
    var body_height = $(window).height();
