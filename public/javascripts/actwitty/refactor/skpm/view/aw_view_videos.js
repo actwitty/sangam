@@ -8,10 +8,11 @@ function aw_model_api_video_thumb_cb(ele, url, thumbnail, id, type){
     ele.hide();
     return;
   }
-
+  
   var video_url = "";
+  ele.removeClass("aw_single_video_no_show").addClass("aw_single_video_show");
   if(type == "youtube"){
-    video_url = 'http://www.youtube.com/embed/'+ id +'?wmode=transparent&rel=0&autoplay=1';
+    video_url = 'http://www.youtube.com/v/'+ id +'?wmode=transparent&rel=0&autoplay=1';
   }else if(type == "vimeo"){
     video_url = 'http://player.vimeo.com/video/' + id + '?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff';
   }else{
@@ -24,16 +25,16 @@ function aw_model_api_video_thumb_cb(ele, url, thumbnail, id, type){
                    '</a>';
   
   ele.html(img_html);
+
   $("a[rel=aw_video_img_group]").fancybox({
                   'type' : 'iframe',
-                  // hide the related video suggestions and autoplay the video
                   'href' : $(this).href,
                   'overlayShow' : true,
                   'centerOnScroll' : true,
                   'speedIn' : 100,
                   'speedOut' : 50,
                   'width' : 640,
-                  'height' : 480
+                  'height' : 480,
                 });
 
 }
@@ -129,7 +130,7 @@ function aw_api_view_videos_render(data){
                 display_class = "aw_js_video_box_hide_on_less";
                 show_more = true;
               }
-                html = html + '<div class="aw_single_video_container_box aw_js_video_thumbnails ' + display_class + '" video_url="' + attachment.embed + '">' +
+                html = html + '<div class="aw_single_video_container_box aw_js_video_thumbnails aw_single_video_no_show' + display_class + '" video_url="' + attachment.embed + '">' +
                                 video_html +
                               '</div>';
                 show_count++;
