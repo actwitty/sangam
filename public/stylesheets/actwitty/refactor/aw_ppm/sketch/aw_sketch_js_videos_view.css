@@ -18,6 +18,10 @@
     display: inline-block;
     width: 100%;
     height: auto; }
+    .aw_videos_container_box .aw_all_videos_container_box .aw_single_video_no_show {
+      display: none; }
+    .aw_videos_container_box .aw_all_videos_container_box .aw_single_video_show {
+      display: inline-block; }
     .aw_videos_container_box .aw_all_videos_container_box .aw_single_video_container_box {
       float: left;
       margin-left: 10px;

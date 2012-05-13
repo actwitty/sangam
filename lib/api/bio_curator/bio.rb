@@ -51,21 +51,33 @@ module Api
         end
         total_posts = 0
         return_json[:image] = "https://s3.amazonaws.com/actwitty_resources/fb_images/aw_interest"
+
+        added=0
+        first_found = -1
         for index in 0 ... params[:interests].size
           total_posts = total_posts + params[:interests][index][:analytics_snapshot][:posts][:counts][:total]
-          params[:interests][index][:detail] =  SUMMARY_CATEGORIES[params[:interests][index][:word][:name]]['name']
-          return_json[:keywords] = return_json[:keywords] + " #{params[:interests][index][:word][:name]}"
-          if index < 3
-            return_json[:image] = return_json[:image] + '_' + SUMMARY_CATEGORIES[params[:interests][index][:word][:name]]['img_counter'].to_s
+          if SUMMARY_CATEGORIES[params[:interests][index][:word][:name]].nil?
+            params[:interests][index][:detail] =  params[:interests][index][:word][:name]
+          else
+            params[:interests][index][:detail] =  SUMMARY_CATEGORIES[params[:interests][index][:word][:name]]['name']
+            if added < 3 
+              return_json[:image] = return_json[:image] + '_' + SUMMARY_CATEGORIES[params[:interests][index][:word][:name]]['img_counter'].to_s
+            end
+            added = added + 1
+            if first_found < 0
+              first_found = index
+              return_json[:bkg] =  SUMMARY_CATEGORIES[params[:interests][0][:word][:name]]['background']
+            end
           end
+          return_json[:keywords] = return_json[:keywords] + " #{params[:interests][index][:word][:name]}"
 
         end
         return_json[:image] = return_json[:image] + '.jpeg'
         return_json[:interests] = params[:interests]
-        return_json[:bkg] =  SUMMARY_CATEGORIES[params[:interests][0][:word][:name]]['background']
         return_json[:bio] =  ""
 
         percentage = 0
+        added = 0
         for index in 0 ... params[:interests].size
           percentage = (params[:interests][index][:analytics_snapshot][:posts][:counts][:total] * 100)/total_posts
           adjective = ' rarely shares '
@@ -76,11 +88,14 @@ module Api
               break        
             end
           end
+      
+          unless SUMMARY_CATEGORIES[params[:interests][index][:word][:name]].nil?
+            adjective_map[adjective][:topics] << params[:interests][index][:word][:name]
 
-          adjective_map[adjective][:topics] << params[:interests][index][:word][:name]
-
-          if index == 2
-            break
+            if added == 2
+              break
+            end
+            added = added + 1
           end
         end
 
