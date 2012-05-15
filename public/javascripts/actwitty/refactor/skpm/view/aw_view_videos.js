@@ -130,7 +130,7 @@ function aw_api_view_videos_render(data){
                 display_class = "aw_js_video_box_hide_on_less";
                 show_more = true;
               }
-                html = html + '<div class="aw_single_video_container_box aw_js_video_thumbnails aw_single_video_no_show' + display_class + '" video_url="' + attachment.embed + '">' +
+                html = html + '<div class="aw_single_video_container_box aw_js_video_thumbnails aw_single_video_no_show ' + display_class + '" video_url="' + attachment.embed + '">' +
                                 video_html +
                               '</div>';
                 show_count++;

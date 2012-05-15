@@ -7,7 +7,7 @@ var aw_local_geo_map=null;
 function aw_api_view_locations_initialize_map_view(lat, lng){
   var visited_user_home = aw_api_controller_get_visited_user_current_location();
   var home = new google.maps.LatLng(visited_user_home.lat, 
-                                    visited_user_home.lng);  
+                                    visited_user_home.lng);
   var mapOptions = {  
     zoom:      5,  
     center:    home,  
@@ -46,6 +46,6 @@ function aw_api_view_locations_render(data){
   });
   $("#aw_js_locations_busy").hide();
   if( !show_loc ){
-    $("#aw_js_locations_main_container").hide();
+   // $("#aw_js_locations_main_container").hide();
   }
 }
