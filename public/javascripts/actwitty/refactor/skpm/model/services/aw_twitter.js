@@ -99,7 +99,6 @@ function aw_twitter_get_auth_signed_url( twitter_url, callback_fn_name, addl_par
                    parameters: []
                 };
   
-  message.parameters.push(['realm', twitter_url]);
   message.parameters.push(['oauth_version', '1.0']);
   message.parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
   message.parameters.push(['oauth_consumer_key', aw_js_global_tw_access.consumer_key]);
