@@ -19,6 +19,21 @@ var aw_local_twitter_request_url_base = {
                                                url: "https://api.twitter.com/1/statuses/home_timeline.json",
                                                notification_cb: null,
                                                error_timer: null
+                                           },
+                                    followers:{
+                                                url: "https://api.twitter.com/1/followers/ids.json",
+                                                notification_cb: null,
+                                                error_timer: null
+                                              },
+                                    followings:{
+                                                  url: "https://api.twitter.com/1/friends/ids.json",
+                                                  notification_cb: null,
+                                                  error_timer: null
+                                               },
+                                    lookup:{
+                                              url: "https://api.twitter.com/1/users/lookup.json",
+                                              notification_cb: null,
+                                              error_timer: null
                                            }
                                    
                                 };
@@ -142,7 +157,7 @@ function aw_api_twitter_get_profile(fn_cb){
   var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base['static_profile'].url,
                                            "aw_twitter_cb_static_profile",
                                            {
-                                              "id" : aw_api_twitter_get_visited_user_id(),
+                                              "user_id" : aw_api_twitter_get_visited_user_id(),
                                            });
   
   /* authorization not needed */
@@ -156,7 +171,127 @@ function aw_api_twitter_get_profile(fn_cb){
  *
  *
  */
+function aw_twitter_cb_lookup(tw_data){
+  if(aw_local_twitter_request_url_base.lookup.notification_cb){
+    if( aw_local_twitter_request_url_base.lookup.error_timer ){
+       clearTimeout(aw_local_twitter_request_url_base.lookup.error_timer);
+       aw_local_twitter_request_url_base.lookup.error_timer=null;
+    }
+    var data_arr=[];
+    if( tw_data ){
+      $.each(tw_data, function(index, contact){
+        var follower ={
+                        name: contact.name,
+                        id: contact.id,
+                        screen_name: contact.screen_name,
+                        photo: contact.profile_image_url
+                      };
+        data_arr.push(follower);
+      });
+
+      aw_local_twitter_request_url_base.lookup.notification_cb('twitter', data_arr, 1);
+      aw_local_twitter_request_url_base.lookup.notification_cb = null;
+    }else{
+      aw_local_twitter_request_url_base.lookup.notification_cb('twitter', [], 1);
+      aw_local_twitter_request_url_base.lookup.notification_cb = null;
+    }
+  }
+}
+/****************************************************/
+/*
+ *
+ *
+ */
+var aw_twitter_cb_err_lookup = function(){
+  if(aw_local_twitter_request_url_base.lookup.notification_cb){
+     aw_local_twitter_request_url_base.lookup.notification_cb('twitter', [], 2);
+     aw_local_twitter_request_url_base.lookup.notification_cb = null;
+  }
+};
+
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_api_twitter_lookup_contacts(fn_cb, ids_arr){
+   aw_lib_console_log("DEBUG", "entered:aw_api_twitter_lookup_contacts");
+   var id_str = "";
+   $.each(ids_arr, function(index, id){
+    if(index > 99){ /* twitter only allows 100 lookups in a go */
+      return false;
+    }
+
+    if( id_str.length ){
+      id_str = id_str + ',' + id;
+    }else{
+      id_str = '' + id;
+    }
+   });
+   var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base.lookup.url,
+                                           "aw_twitter_cb_lookup",
+                                           {
+                                              "include_entities" : false,
+                                              "user_id" : id_str,
+                                           });
+
+    aw_local_twitter_request_url_base['lookup']['notification_cb'] = fn_cb;
+    aw_local_twitter_request_url_base['lookup']['error_timer'] = window.setTimeout(aw_twitter_cb_err_lookup, 10000);
+    aw_twitter_trigger_get_request(url);               
+}
+/*****************************************************/
+/*
+ *
+ *
+ */
+function aw_twitter_cb_contacts(tw_data){
+  if(aw_local_twitter_request_url_base.followers.notification_cb){
+    if( aw_local_twitter_request_url_base.followers.error_timer ){
+       clearTimeout(aw_local_twitter_request_url_base.followers.error_timer);
+       aw_local_twitter_request_url_base.followers.error_timer=null;
+    }
+    var id_str="";
+    if( tw_data && tw_data.ids ){
+      
+      aw_api_twitter_lookup_contacts( aw_local_twitter_request_url_base.followers.notification_cb,
+                                      tw_data.ids);
+      aw_local_twitter_request_url_base.followers.notification_cb = null;
+    }else{
+      aw_local_twitter_request_url_base.followers.notification_cb('twitter', [], 1);
+      aw_local_twitter_request_url_base.followers.notification_cb = null;
+    }
+  }
+}
+/****************************************************/
+/*
+ *
+ *
+ */
+var aw_twitter_cb_err_followers = function(){
+  if(aw_local_twitter_request_url_base.followers.notification_cb){
+     aw_local_twitter_request_url_base.followers.notification_cb('twitter', [], 2);
+     aw_local_twitter_request_url_base.followers.notification_cb = null;
+  }
+};
+/*****************************************************/
+/*
+ *
+ *
+ */
 function aw_api_twitter_get_contacts(fn_cb){
+
+   aw_lib_console_log("DEBUG", "entered:aw_api_twitter_get_contacts");
+   var url = aw_twitter_get_auth_signed_url(aw_local_twitter_request_url_base.followers.url,
+                                           "aw_twitter_cb_contacts",
+                                           {
+                                              "include_entities" : false,
+                                              "user_id" : aw_api_twitter_get_visited_user_id(),
+                                           });
+
+    aw_local_twitter_request_url_base['followers']['notification_cb'] = fn_cb;
+    aw_local_twitter_request_url_base['followers']['error_timer'] = window.setTimeout(aw_twitter_cb_err_followers, 10000);
+    aw_twitter_trigger_get_request(url);                                           
+
 }
 /*****************************************************/
 /*

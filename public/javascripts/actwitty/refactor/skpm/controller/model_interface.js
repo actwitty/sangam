@@ -96,6 +96,7 @@ function aw_api_controller_copy_stream_to_visited_user_feeds(feed_data){
 function aw_api_controller_notify_feed_fetched(data){
   aw_api_model_connections_update_locations(data);
 }
+
 /**********************************************************/
 /*
  *
@@ -170,4 +171,11 @@ function aw_controller_api_modify_twitter_url(url){
 function aw_api_controller_apply_profile_pic_patch(service, url){
   aw_api_view_change_profile_pic(service, url);
 }
-
+/*********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_controller_show_invitables_render(data){
+  aw_api_view_invitables_render(data);
+}

@@ -20,6 +20,7 @@ var aw_local_facebook_request_url_base = {
                                      id_list: "https://graph.facebook.com/?ids={FB_OBJECT_LISTS}&access_token={FB_ACCESS_TOKEN}&callback=?",
                                      likes: "https://graph.facebook.com/{FB_USER_ID}/likes?access_token={FB_ACCESS_TOKEN}&limit=300&callback=?",
                                      like_list: "https://graph.facebook.com/?access_token={FB_ACCESS_TOKEN}&ids={FB_OBJECT_LISTS}&callback=?",
+                                     friends: "https://graph.facebook.com/{FB_USER_ID}/friends?access_token={FB_ACCESS_TOKEN}&limit=5000&callback=?"
 
 
                                 };
@@ -135,6 +136,40 @@ function aw_api_facebook_get_profile(fn_cb){
  *
  */
 function aw_api_facebook_get_contacts(fn_cb){
+  var url = aw_local_facebook_request_url_base.friends.
+                                                      replace("{FB_ACCESS_TOKEN}", 
+                                                              aw_js_global_fb_access["token"]).
+                                                      replace("{FB_USER_ID}",
+                                                              aw_api_facebook_get_visited_user_id());
+
+  var data_arr = [];
+  $.jsonp({
+            url: url,
+            timeout: 10000,
+            cache: true,
+            success:
+                function(fb_data) {
+                  if(fb_data.data){
+                    $.each(fb_data.data, function(key,friend){
+                      var contact_json = {
+                                            name: friend.name,
+                                            uid: friend.id,
+                                            photo: 'https://graph.facebook.com/' + friend.id + '/picture'
+                        
+                                         }
+
+
+                      data_arr.push(contact_json);
+                    });
+                  }
+                },
+            complete:
+                function(fb_data) {
+                  aw_lib_console_log("DEBUG", "aw_api_facebook_get_post_data_for_list_of_ids:CB Hit");
+                  fn_cb("facebook", data_arr, 1);
+                }
+  });
+
 }
 /*****************************************************/
 /*

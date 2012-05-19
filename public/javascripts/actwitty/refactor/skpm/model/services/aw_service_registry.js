@@ -13,7 +13,7 @@ var aw_global_services_api_registry = {
                                                                                   aw_api_facebook_get_profile(fn_cb);
                                                                                 },
                                                       contacts:       function(fn_cb){
-                                                                                  aw_api_facebook_get_contacts(fn_cb);                                                                                                                              },
+                                                                                  aw_api_facebook_get_contacts(fn_cb);                                                                                            },
                                                       images:         function(fn_cb){
                                                                                   aw_api_facebook_get_images(fn_cb);                                                                                                                                },
                                                       videos:         function(fn_cb){
@@ -39,7 +39,7 @@ var aw_global_services_api_registry = {
                                                                                   aw_api_twitter_get_profile(fn_cb);
                                                                                 },
                                                       contacts:       function(fn_cb){
-                                                                                  aw_api_twitter_get_contacts(fn_cb);                                                                                                                              },
+                                                                                  aw_api_twitter_get_contacts(fn_cb);                                                                                 },
                                                       images:         function(fn_cb){
                                                                           aw_api_twitter_get_images(fn_cb);
                                                                       },

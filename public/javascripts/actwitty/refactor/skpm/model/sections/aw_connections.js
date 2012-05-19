@@ -17,6 +17,7 @@ function aw_api_model_connections_update_active_friends(data){
     
    });
    aw_api_controller_connections_active_friends_render(aw_connections_data_updates);
+ 
 }
 /********************************************************/
 /*

@@ -31,22 +31,24 @@ function aw_api_facebook_access_initialize_token(fn_cb){
     
   
     aw_lib_console_log("DEBUG", "entered:aw_api_facebook_access_initialize_token");
-    
-    if( aw_js_global_fb_access.token ){
-      aw_lib_console_log("DEBUG", "entered:User has given FB access no problems");
-      fn_cb();
-      return;
-    }
-    
+
     FB.init({
           appId      : aw_js_global_facebook_app_id,
           channelUrl : aw_lib_get_base_url() + '/channel.html',
           status     : true, 
           cookie     : true, 
           oauth      : true, 
-          xfbml      : true
+          xfbml      : true,
+          frictionlessRequests: true
         });
-   aw_lib_console_log("DEBUG", "entered: FB init done");
+
+
+    if( aw_js_global_fb_access.token ){
+      aw_lib_console_log("DEBUG", "entered:User has given FB access no problems");
+      fn_cb();
+      return;
+    }
+    
 
     FB.getLoginStatus(function(response) {
       if (response.status === 'connected') {
@@ -58,6 +60,7 @@ function aw_api_facebook_access_initialize_token(fn_cb){
         aw_lib_console_log("DEBUG", "FB a user who has authorized actwitty is logged in");
         var uid = response.authResponse.userID;
         aw_js_global_fb_access['token'] = response.authResponse.accessToken;
+          
         fn_cb();
       }else if (response.status === 'not_authorized') {
         aw_lib_console_log("DEBUG", "FB detected a user login, who has not authorized Actwitty, show FB login");
@@ -68,6 +71,8 @@ function aw_api_facebook_access_initialize_token(fn_cb){
       }
      
     });
+
+  
    aw_lib_console_log("DEBUG", "entered: FB Login status done");
 }
 
