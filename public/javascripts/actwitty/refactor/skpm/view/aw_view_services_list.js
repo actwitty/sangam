@@ -73,7 +73,7 @@ function aw_api_view_service_list_render(data){
                           '</div>';
        $("#aw_js_actwitty_upcoming").html(html_coming);
     }
-  if( !self_page && user_is_signed_in){
+  if( !self_page && !user_is_signed_in){
     $("#aw_js_get_actwitty").show();
   }
 }
