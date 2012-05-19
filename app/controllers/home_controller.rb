@@ -111,9 +111,11 @@ class HomeController < ApplicationController
   def show
     @user=nil
     @page_mode="profile_show_page"
-    Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params} #{request.path}")
+    @show_invite_friends = false
+    Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params} #{request.path} #{session.inspect}")
     if user_signed_in?
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
+     
     else
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User not signed in")
     end
@@ -152,7 +154,7 @@ class HomeController < ApplicationController
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
       authentications = Authentication.find_all_by_user_id(current_user.id)
-      Rails.logger.info("[CNTRL] [HOME] [SHOW] Authentications #{authentications.inspect}")
+
       authentications.each do |authentication|
         if authentication.provider == "facebook"
             @fb_access[:token] = authentication.token                         
@@ -168,38 +170,53 @@ class HomeController < ApplicationController
        end
     end
 
-   # Check if uninvited user
+   # ------------------------- Check if uninvited user -----------------------
    invite_status = current_user.get_invited_status
    query={}
    query[:user_id] = @user.id  
    process_status = current_user.get_status(query)
     
 
-  # Check if waiting user
-  if user_signed_in? 
-    if current_user.id != @user.id
+    # ------------------------ Check if waiting user --------------------------
+    if user_signed_in? 
+      if current_user.id != @user.id
+        if process_status == 1
+          redirect_to "/waiting?name=#{@user.username}"
+          return
+        end
+      else
+        unless invite_status 
+          redirect_to "/thanks"
+          return
+        end
+      end
+    else
       if process_status == 1
         redirect_to "/waiting?name=#{@user.username}"
         return
       end
-    else
+
       unless invite_status 
-        redirect_to "/thanks"
+        redirect_to "/waiting?name=#{@user.username}"
         return
       end
     end
-  else
-    if process_status == 1
-      redirect_to "/waiting?name=#{@user.username}"
-      return
+    #------------------- Set invite others cookie -----------------------------
+    @aw_js_user_invites_check = "no"
+    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email 
+      if current_user.id == @user.id
+        unless session[:new_session_check].nil?
+          if session[:new_session_check] == "new"
+            session[:new_session_check] = "old"
+          end
+        else
+          session[:new_session_check] = "new"
+          @aw_js_user_invites_check = "yes"
+        end
+      end
     end
-
-    unless invite_status 
-      redirect_to "/waiting?name=#{@user.username}"
-      return
-    end
-  end
-
+    
+    #@aw_js_user_invites_check = "yes" - short circuit test
     user_interests = current_user.get_summary({:user_id => @user.id})
     @user_bio_info = current_user.generate_bio_text( {
                           :fullname => @user.full_name,
@@ -223,7 +240,6 @@ class HomeController < ApplicationController
                     :copyright => "Actwitty",
                     :ABSTRACT => "#{@user_bio_info[:bio]} ",
                     :description => "#{@user_bio_info[:bio]}")
-    @session_new = 2
 
   end
   

@@ -31,6 +31,7 @@ class Users::SessionsController < Devise::SessionsController
       provider=params[:user][:provider]
       uid=params[:user][:uid]
 
+
       if !key.nil? && !provider.nil? && !uid.nil? && !key.empty? &&  !provider.empty? && !uid.empty?
         Rails.logger.info("[CNTRL] [SESSION] Foreign Auth Save Provider #{provider} uid #{uid} key #{key}")
         authentication=Authentication.find_or_create_by_provider_and_uid(provider, uid)

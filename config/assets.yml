@@ -38,6 +38,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/model/sections/aw_videos.js
     - public/javascripts/actwitty/refactor/skpm/model/sections/aw_images.js
     - public/javascripts/actwitty/refactor/skpm/model/sections/aw_streams.js
+    - public/javascripts/actwitty/refactor/skpm/model/sections/aw_friends.js
     - public/javascripts/actwitty/refactor/skpm/model/sections/aw_visited_user_feeds.js
     - public/javascripts/actwitty/refactor/skpm/model/services/aw_service_registry.js
     - public/javascripts/actwitty/refactor/skpm/model/services/aw_facebook.js
@@ -67,6 +68,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_search.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_common.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_invite.js
     # ####################### Externals ############################i
     - public/javascripts/actwitty/refactor/common/externals/timelinr/jquery.timelinr-0.9.5.js
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jquery.mousewheel.js

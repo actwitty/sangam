@@ -20,7 +20,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 12;
+  z-index: 15;
   width: 100%; }
   .aw_top_bar .top_bar_container {
     width: 100%;
@@ -324,12 +324,12 @@ body {
     height: auto;
     display: block;
     position: relative;
-    z-index: 1; }
+    z-index: 10; }
   .aw_page_wrapper .aw_infographic_container {
     width: 540px;
     float: left;
+    z-index: 13;
     display: inline-block;
-    z-index: 5;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -399,7 +399,7 @@ body {
 .aw_left_side_navs {
   display: inline-block;
   border: 1px solid green;
-  z-index: 4; }
+  z-index: 11; }
 
 /* Side box */
 .aw_sidebox_outer_container {
@@ -533,6 +533,136 @@ body {
   box-shadow: 0 0 5px #333333;
   display: block; }
 
+.aw_fb_invites_list_div {
+  width: 640px;
+  height: 430px;
+  display: block;
+  border-radius: 3px;
+  -moz-box-shadow: 0 0 5px #333333;
+  -webkit-box-shadow: 0 0 5px #333333;
+  box-shadow: 0 0 5px #333333;
+  position: relative;
+  overflow: hidden; }
+  .aw_fb_invites_list_div h3 {
+    color: #008bf8;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    size: 14px;
+    padding-left: 20px; }
+  .aw_fb_invites_list_div .aw_fb_invites_list_div_internal {
+    display: block;
+    width: 600px;
+    margin-left: 20px;
+    border: solid 1px #9e9e9e;
+    margin-top: 10px;
+    padding: 0px;
+    background-color: #f2f2f2; }
+    .aw_fb_invites_list_div .aw_fb_invites_list_div_internal form.aw_invite_fb_friends_form {
+      display: block;
+      font-family: Helvetica, Arial, sans-serif;
+      font-weight: normal;
+      margin: 0px;
+      width: 600px;
+      size: 14px;
+      padding: 6px 0px;
+      border-bottom: solid 1px #9e9e9e;
+      background-color: #f2f2f2; }
+      .aw_fb_invites_list_div .aw_fb_invites_list_div_internal form.aw_invite_fb_friends_form input.aw_invite_fb_friends_name_search {
+        opacity: 0.6;
+        width: 90%;
+        margin-left: 10px;
+        padding: 3px 3px 3px 23px;
+        border: solid 1px #9e9e9e;
+        background: white url(/images/actwitty/refactor/aw_sketch/invite/search.png) -3px center no-repeat;
+        font: normal 12px/12px Arial, sans-serif; }
+    .aw_fb_invites_list_div .aw_fb_invites_list_div_internal ul.fb_friends_ul {
+      list-style: none;
+      width: 600px;
+      height: 270px;
+      margin: 0px;
+      background-color: #eceff5;
+      overflow-y: auto; }
+      .aw_fb_invites_list_div .aw_fb_invites_list_div_internal ul.fb_friends_ul li.fb_friends_li {
+        display: inline-block;
+        float: left;
+        margin-left: 10px;
+        margin-top: 15px;
+        height: 40px;
+        width: 180px;
+        overflow: hidden; }
+        .aw_fb_invites_list_div .aw_fb_invites_list_div_internal ul.fb_friends_ul li.fb_friends_li input.aw_invite_contact_check {
+          margin-right: 2px;
+          margin-top: 2px; }
+        .aw_fb_invites_list_div .aw_fb_invites_list_div_internal ul.fb_friends_ul li.fb_friends_li img.aw_invite_contact_image {
+          padding: 2px;
+          width: 30px;
+          max-height: 30px;
+          border: 1px solid #eceff5;
+          vertical-align: middle; }
+        .aw_fb_invites_list_div .aw_fb_invites_list_div_internal ul.fb_friends_ul li.fb_friends_li span.aw_invite_contact_name {
+          font-size: 11px;
+          font-family: Helvetica, Arial, sans-serif;
+          color: black;
+          width: 110px;
+          margin-left: 3px; }
+    .aw_fb_invites_list_div .aw_fb_invites_list_div_internal .aw_fb_invites_footer {
+      margin-top: 0;
+      border-top: solid 1px #9e9e9e;
+      background-color: #f2f2f2;
+      height: 34px;
+      width: 600px;
+      display: inline-block; }
+      .aw_fb_invites_list_div .aw_fb_invites_list_div_internal .aw_fb_invites_footer .aw_fb_invites_footer_select_all {
+        float: left;
+        margin-top: 12px;
+        margin-left: 10px;
+        color: #5b5b5b;
+        font: bold 13px/13px Arial, sans-serif;
+        height: 13px;
+        display: inline-block;
+        width: 200px; }
+        .aw_fb_invites_list_div .aw_fb_invites_list_div_internal .aw_fb_invites_footer .aw_fb_invites_footer_select_all input[type=checkbox] {
+          margin: 0px;
+          padding: 0px;
+          float: left;
+          line-height: 13px; }
+      .aw_fb_invites_list_div .aw_fb_invites_list_div_internal .aw_fb_invites_footer .aw_fb_invites_footer_submit {
+        float: right;
+        margin-top: 5px;
+        margin-right: 30px;
+        display: inline-block;
+        background-color: #f2f2f2; }
+        .aw_fb_invites_list_div .aw_fb_invites_list_div_internal .aw_fb_invites_footer .aw_fb_invites_footer_submit input[type=button] {
+          background: #ff9600;
+          margin-bottom: -5px;
+          padding: 2px;
+          border: none;
+          height: 30px;
+          display: inline;
+          color: #fef4e9;
+          border: solid 1px #da7c0c;
+          background: #f78d1d;
+          background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+          background: -moz-linear-gradient(top, #faa51a, #f47a20);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+          display: inline;
+          font: bold 13px/13px Arial, sans-serif;
+          background: #ff3019;
+          background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404));
+          background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+          background: -o-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+          background: -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%);
+          background: linear-gradient(top, #ff3019 0%, #cf0404 100%);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); }
+          .aw_fb_invites_list_div .aw_fb_invites_list_div_internal .aw_fb_invites_footer .aw_fb_invites_footer_submit input[type=button]:hover {
+            cursor: pointer;
+            color: #fcd3a5;
+            background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+            background: -moz-linear-gradient(top, #f47a20, #faa51a);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+            background: #ff3019; }
+
 .aw_fb_login_modal_fancybox {
   width: 300px;
   height: 300px; }
@@ -607,7 +737,7 @@ body {
   left: 0;
   margin-left: 0;
   margin-top: 0;
-  z-index: 2;
+  z-index: 12;
   width: 100%;
   height: 100%;
   background: white;

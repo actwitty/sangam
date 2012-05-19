@@ -171,7 +171,7 @@ development: &default
   pusher_key_id: 'e56f227bc500d2fb8364'
   pusher_secret_key: 'e0948ca7a8b1c398dba3'
 
-  server_base: 'myapp.com:3000'
+  server_base: 'localhost:3000'
 
 production:
   <<: *default
