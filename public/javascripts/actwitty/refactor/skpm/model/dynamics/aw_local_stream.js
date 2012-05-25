@@ -44,6 +44,7 @@ function aw_pulled_stream_query_filter(filter, fn_cb){
             dataType: 'json',
             contentType: 'application/json',
             success: function (data) {
+              
                 /* some event might have made this redundant */
                 if( !aw_pulled_stream_allow_cookie(context)){
                   /* abandon */

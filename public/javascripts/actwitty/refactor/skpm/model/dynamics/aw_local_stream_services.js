@@ -260,6 +260,9 @@ function aw_pulled_stream_twitter_handler( context ) {
 
         if( doc.type ){
           attachment['type'] = doc.type;
+          if( attachment['type'] == 'video' ){
+            attachment['type'] = 'embed';
+          }
         }
 
         if( doc.url ){
@@ -267,15 +270,20 @@ function aw_pulled_stream_twitter_handler( context ) {
         }
         if( doc.url_title ){
           attachment['title'] = doc.url_title;
+          if( doc.type == 'video' ){
+            attachment['embed'] = attachment['url'];
+          }
         }
         
         if( doc.url_description ) {
           attachment['description'] = doc.url_description;
+
         }
         
         if( doc.url_image){
 
           attachment['image_url'] = doc.url_image;
+         
         }
         
         if( doc.url_provider){
@@ -315,12 +323,13 @@ function aw_pulled_stream_twitter_handler( context ) {
 
 
     twitter_data.push(aw_post_json);
+    
   });
     
     
  context.services.twitter['data'] = twitter_data;
  context.services.twitter.processed = true;
- aw_pulled_stream_assimilate_services(context); 
+ aw_pulled_stream_assimilate_services(context);
 }
                                                             
 

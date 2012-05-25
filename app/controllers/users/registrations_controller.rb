@@ -19,7 +19,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
     resource.password_confirmation = resource.password
+
+    if resource.user_type == AppConstants.user_type_crawled
+      resource.user_type = user_type_regular
+    end
+
     if resource.save!
+      resource.user_type = 
       if process_authentication
         Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
         authentication=Authentication.find_by_provider_and_uid(@provider, @uid)
@@ -32,7 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           Invite.mark_invite_accepted(@provider, @uid)
         end
 
-
+        
 
         unless authentication.nil?
           Rails.logger.info("[CNTRL] [REGISTRATION] Authentication is not nil")

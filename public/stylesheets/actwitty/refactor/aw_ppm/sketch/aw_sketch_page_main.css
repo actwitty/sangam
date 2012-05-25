@@ -389,10 +389,12 @@ body {
             display: block; }
 
 .aw_sidebox_outer_container_fixed {
+  z-index: 3;
   top: 50px;
   position: fixed; }
 
 .aw_sidebox_outer_container_absolute {
+  z-index: 3;
   top: 30px;
   position: absolute; }
 

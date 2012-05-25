@@ -10,7 +10,7 @@ function aw_model_api_video_thumb_cb(ele, url, thumbnail, id, type){
   }
   
   var video_url = "";
-  ele.removeClass("aw_single_video_no_show").addClass("aw_single_video_show");
+  ele.removeClass("aw_single_video_no_show");
   if(type == "youtube"){
     video_url = 'http://www.youtube.com/v/'+ id +'?wmode=transparent&rel=0&autoplay=1';
   }else if(type == "vimeo"){

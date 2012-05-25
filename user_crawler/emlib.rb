@@ -3,7 +3,6 @@ require 'em-http-request'
 require 'json'
 require 'pp'
 require 'fiber'
-require 'em-synchrony'
 
 Thread.abort_on_exception=true
 
