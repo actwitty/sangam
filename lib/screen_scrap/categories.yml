@@ -1,0 +1,100 @@
+sports:
+  type: /sports
+  channel: sports
+  hierarchy: /
+  name: sports
+automobiles:
+  type: /automobiles
+  channel: automobiles
+  hierarchy: /
+  name: automobiles
+entertainment:
+  type: /entertainment
+  channel: entertainment
+  hierarchy: /
+  name: entertainment
+games:
+  type: /games
+  channel: games
+  hierarchy: /
+  name: toys and games
+leisure:
+  type: /leisure
+  channel: leisure
+  hierarchy: /
+  name: leisure,recreation and faishon
+nonprofits:
+  type: /nonprofit
+  channel: nonprofit
+  hierarchy: /
+  name: nonprofits
+stories:
+  type: /stories
+  channel: stories
+  hierarchy: /
+  name: stories
+technology:
+  type: /technology
+  channel: technology
+  hierarchy: /
+  name: technology
+world:
+  type: /world
+  channel: world
+  hierarchy: /
+  name: society, religion, environment, law, crime and politics
+animals:
+  type: /animals
+  channel: animals
+  hierarchy: /
+  name: pets and animals
+business:
+  type: /business
+  channel: business
+  hierarchy: /
+  name: business
+health:
+  type: /health
+  channel: health
+  hierarchy: /
+  name: health, medical and phrama
+food:
+  type: /food
+  channel: food
+  hierarchy: /
+  name: food and drink
+books:
+  type: /books
+  channel: books
+  hierarchy: /
+  name: books and articles
+arts:
+  type: /arts
+  channel: arts
+  hierarchy: /
+  name: arts and design
+places:
+  type: /places
+  channel: places_events
+  hierarchy: /
+  name: places, travel and events 
+home:
+  type: /home
+  channel: home
+  hierarchy: /
+  name: home
+education:
+  type: /eductaion
+  channel: education
+  hierarchy: /
+  name: education
+hobbies:
+  type: /hobbies
+  channel: hobbies
+  hierarchy: /
+  name: hobbies and interests
+products:
+  type: /products
+  channel: products
+  hierarchy: /
+  name: brands and products

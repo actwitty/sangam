@@ -1,0 +1,16 @@
+
+mashable:
+  category:
+    tag: 'nav#local > div.page-container'
+    type: "class"
+    delimiter: " "
+    index: 1
+    ignore: [tech, social media]
+    
+      
+
+techcrunch:
+  category:
+    tag: 'div.post-category-name > h3 > a'
+    type: "text"
+
