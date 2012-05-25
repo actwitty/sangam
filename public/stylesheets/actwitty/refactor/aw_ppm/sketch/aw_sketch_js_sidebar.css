@@ -1,10 +1,12 @@
 .aw_vertical_navigation_fixed {
   top: 70px;
-  position: fixed; }
+  position: fixed;
+  z-index: 11; }
 
 .aw_vertical_navigation_absolute {
   top: 80px;
-  position: absolute; }
+  position: absolute;
+  z-index: 11; }
 
 .aw_vertical_navigation ul {
   list-style: none;

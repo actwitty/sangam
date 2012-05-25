@@ -151,6 +151,7 @@ function aw_api_controller_sketch_start_data_pulls(){
   aw_api_model_stream_view_fetch();
   aw_api_model_visited_user_feed_fetch();
   aw_api_model_videos_fetch();
+  //aw_api_model_location_fetch();
   aw_api_model_visited_user_friends_fetch();
   if ( aw_js_global_visited_user_credentials.id == aw_js_global_logged_in_user_credentials.id ){
     aw_api_model_visited_user_feed_fetch();

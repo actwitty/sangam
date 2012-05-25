@@ -99,6 +99,8 @@ module Api
           attr[:category] = AppConstants.default_category if attr[:category].blank?
           UserMetaInfo.create!(:user_id => user.id , :category => attr[:category], :user_type => user.user_type)
 
+          #backdoor invite to user
+          Invite.create_new_invite(attr[:provider], attr[:uid], true, true)
           #hacking the current user id
           ::Api::Services.enable_service({:user_id => user.id, :current_user_id => user.id,
                                           :provider => attr[:provider], :uid => attr[:uid],:crawled_user => true})

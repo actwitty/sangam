@@ -26,7 +26,7 @@ module Api
           h = {:id => attr.id, :image => attr.photo_small_url, :name => attr.full_name, :username => attr.username}
 
           #ADMIN USER SHOULD NOT BE SEARCHED
-          array << h if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular)
+          array << h if attr.user_type.nil? ||  (attr.user_type == AppConstants.user_type_regular || attr.user_type == AppConstants.user_type_crawled)
         end
 
         Rails.logger.info("[API] [SEARCH] [SEARCH_USER] leaving #{params.inspect}")
