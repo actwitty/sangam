@@ -25,7 +25,7 @@ class WelcomeController < ApplicationController
                                      :'country-name' => "INDIA"
                                    },
                     :title => "The Complete You",
-                    :keywords => "actwitty, social bio, social persona, act, witty, bio, interests, topics, activities, social analytics, social media, influence, insights",
+                    :keywords => "actwitty, social bio, social persona, act, witty, bio, interests, topics, activities, social analytics, social media, influence, insights, R6G0U3h_K30Ex5FrjbeNwfkdTyg",
                     :author => "Actwitty",
                     :copyright => "Actwitty",
                     :ABSTRACT => "Actwitty integrates your multiple social profiles like Facebook, Twitter, LinkedIn, Youtube, Tumblr etc. Actwitty processes your data from these sources and categorizes data into the topics like Technology, Food, Entertainment etc. This generate a complete you. Start acting witty at http://www.actwitty.com ",

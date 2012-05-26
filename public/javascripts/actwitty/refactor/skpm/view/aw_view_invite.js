@@ -91,6 +91,7 @@ function aw_api_view_init_invite_search(){
 function aw_api_view_invitables_render(data){
   var fb_friends_html = "";
   aw_api_view_init_invite_search();
+  var show_invite = false;
   if( data["facebook"] ){
     $.each(data["facebook"], function(index, contact){
         fb_friends_html = fb_friends_html + '<li class="fb_friends_li aw_js_fb_friend_list_entry aw_js_invites_show_on_filter aw_invite_contact_check" >' +
@@ -116,14 +117,15 @@ function aw_api_view_invitables_render(data){
                             '<input type="button" id="aw_js_fb_invites_submit" value="Continue" />' +                          
                          '</div>' +
                       '</div>';
+    show_invite = true;
     $("#aw_js_fb_invite_search_box").html(fb_html);
     aw_api_view_set_invite_list_filter();
   }
 
- // if(aw_js_global_check_invites == "yes"){
-    $.fancybox({
-          content: $('#aw_js_fb_invite_friends_fancybox')
-
-    });
- // } 
+  if( show_invite ){
+      $.fancybox({
+            content: $('#aw_js_fb_invite_friends_fancybox')
+  
+      });
+  } 
 }

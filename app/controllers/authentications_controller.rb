@@ -64,12 +64,11 @@ class AuthenticationsController < ApplicationController
             @welcome_user_picture = "/images/user.png"
           end
 
-          Rails.logger.info("[CNTRL][Authentications] Provider picture #{@user_picture}")
         else
           Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Authentication fails")
           redirect_to "/"
         end
-        Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Exiting")
+        Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Exiting #{@user.inspect}")
       end
   end	
 
@@ -148,7 +147,6 @@ class AuthenticationsController < ApplicationController
               current_user.enable_service(enable_hash)
             end
             
-            redirect_to session[:return_to] || '/'
           else
             Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")
             if current_user.get_invited_status() == true
@@ -254,8 +252,23 @@ class AuthenticationsController < ApplicationController
         else
            # I know the user, allow him to get in
           Rails.logger.info("[CNTRL][Authentications] Known auth, user sign in [user id : #{already_existing_auth.user_id}]")
+          
+          if already_existing_auth.user.user_type == AppConstants.user_type_crawled             
+            Rails.logger.info("[CNTRL][Authentications] Cache the new foreign profile")
+            already_existing_auth.foreign_profile = ForeignProfile.new
+            already_existing_auth.foreign_profile.send("import_#{provider}",omniauth)
+            already_existing_auth.save!
+
+            redirect_to :controller => 'authentications',
+                        :action => 'auth_signup_provider',
+                          :provider => provider,
+                          :uid => uid,
+                          :key => already_existing_auth.salt
+              return
+          end
+
+
           already_existing_auth.save!
-        
           invite_status = already_existing_auth.user.get_invited_status 
           if invite_status 
            enable_hash = {
