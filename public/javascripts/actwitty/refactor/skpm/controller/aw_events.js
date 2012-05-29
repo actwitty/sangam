@@ -115,7 +115,8 @@ $(document).ready(function(){
   });
 
   $(".aw_js_scroll_nav").live('click', function(){
-    activate_profile_deactivate_streams();
+    // TODO: NEW_STREAMS
+    //activate_profile_deactivate_streams();
     var scroll_to_top_id = $(this).attr("aw_scroll_top_id");
     var position = $("#" + scroll_to_top_id).offset();
     $('html, body').animate({scrollTop: position.top}, "slow");
