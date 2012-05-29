@@ -117,6 +117,8 @@ function aw_api_view_decode_filter(object){
 
   aw_api_controller_change_filter_on_stream(filter);
 
+  aw_cache_api_set_data("aw.filter",filter);
+
 
 }
 /**************************************************
@@ -130,7 +132,9 @@ function aw_api_view_decode_filter_header(object){
   var filter_header_set_arr = [];
   var stream_header = {};
   var header_text = "";
-  
+ 
+  var filter = aw_cache_api_get_data("aw.filter",null);
+
   if( $.isArray(filter_header_set)){
     filter_header_set_arr = filter_header_set;
   }else{
@@ -174,4 +178,46 @@ function aw_api_view_decode_filter_header(object){
   }
 
   $("#aw_js_stream_dynamic_header").html(header_text);
+
+
+  if (aw_cache_api_get_data("aw.layout",null) == "streams_layout") {
+   var header_text = aw_api_view_prepare_stream_layout_filter_header(stream_header, object, header_text);
+  }
+
+  aw_cache_api_set_data("aw.stream.topic",header_text);
+  aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_meta_data);
+   
+}
+
+
+/*
+ *
+ *
+ */
+function aw_api_view_prepare_stream_layout_filter_header(stream_header, object, header_text)
+{
+  var trend_since = object.attr("aw_since_filter");
+  var trend_till = object.attr("aw_till_filter");
+  var html = "";
+
+  //var stream_layout_header_label_html = '<span>' + stream_header['topic'].toUpperCase() + '</span>'; 
+  var stream_layout_header_label_html = '<span>' + header_text.toUpperCase() + '</span>'; 
+  $(".aw_streams_layout_interests_header_label").html(stream_layout_header_label_html); 
+
+
+  if (trend_since && trend_till) {
+     html = html +
+             '<div class="aw_streams_layout_trends_header">'+
+               '<span> from </span>' +
+               '<span class="aw_streams_layout_trends_heading" title='+ trend_since +'></span>'+
+               '<span> to </span>' +
+               '<span class="aw_streams_layout_trends_heading" title='+ trend_till +'></span>'+
+             '</div>';
+     return html;
+  } else
+  return stream_header['topic'];
+  
+
+
+
 }

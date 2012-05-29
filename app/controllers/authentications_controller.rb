@@ -64,6 +64,7 @@ class AuthenticationsController < ApplicationController
             @welcome_user_picture = "/images/user.png"
           end
 
+          Rails.logger.info("[CNTRL][Authentications] Provider picture #{@user_picture}")
         else
           Rails.logger.info("[CNTRL][Authentications][AUTH SIGNUP PVDR] Authentication fails")
           redirect_to "/"
@@ -269,6 +270,7 @@ class AuthenticationsController < ApplicationController
 
 
           already_existing_auth.save!
+        
           invite_status = already_existing_auth.user.get_invited_status 
           if invite_status 
            enable_hash = {

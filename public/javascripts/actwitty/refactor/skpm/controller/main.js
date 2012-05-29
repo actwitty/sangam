@@ -11,6 +11,11 @@ var aw_global_status_manager = {
                                };
 
 
+/* Objects for holding html elements for page's stream and profile */
+var aw_global_streams_html_section = $(".aw_page_stream_overlap_wrapper");
+var aw_global_profile_html_section = $(".aw_page_wrapper");
+
+
 /******************************************************************/
 /*
  *
@@ -164,6 +169,36 @@ function aw_api_controller_sketch_start_data_pulls(){
 
 
 
+/*
+ * utilities for handling html show/hide events 
+ */
+function activate_streams_deactivate_profile()
+{
+  $(".aw_page_stream_overlap_wrapper").show();
+  $(".aw_page_wrapper").hide();
+  $(".aw_actwitty_share_on_social_media").hide();
+
+  $(".aw_page_sketch_header").css("height","140px");
+  $(".aw_banner_image_box").css("height","140px");
+  $(".aw_banner_info_box").css("height","140px");
+
+  aw_cache_api_set_data("aw.layout","streams_layout");
+
+}
+
+function activate_profile_deactivate_streams()
+{
+  $(".aw_page_stream_overlap_wrapper").hide();
+  $(".aw_page_wrapper").show();
+  $(".aw_actwitty_share_on_social_media").show();
+
+  $(".aw_page_sketch_header").css("height","300px");
+  $(".aw_banner_image_box").css("height","300px");
+  $(".aw_banner_info_box").css("height","300px");
+
+  aw_cache_api_set_data("aw.layout","infographic_layout");
+
+}
 
 
 

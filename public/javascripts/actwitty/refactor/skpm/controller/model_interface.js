@@ -20,6 +20,7 @@ function aw_api_controller_render_services_list(data){
  *
  */
 function aw_api_controller_render_interests(data){
+  aw_cache_api_set_data("aw.interests",data);
   aw_api_view_interest_render(data);
 }
 
@@ -38,7 +39,9 @@ function aw_api_controller_render_trends(data){
  *
  */
 function aw_api_controller_render_mentions(data){
+  aw_cache_api_set_data("aw.mentions",data);
   aw_api_view_mentions_render(data);
+
 }
 /*******************************************************/
 /*
@@ -56,6 +59,22 @@ function aw_api_controller_render_service_popularity(data){
 function aw_api_controller_render_stream(data){
   aw_api_view_stream_render(data);
 }
+
+/********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_controller_render_stream_layout(data){
+  aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_header);
+  aw_api_view_stream_layout_render(data);
+
+  
+}
+
+
+
+
 /********************************************************/
 /*
  *
@@ -121,8 +140,13 @@ function aw_api_controller_render_images(data){
  */
 function aw_api_controller_change_filter_on_stream(filter){
   aw_api_view_show_stream_waiting();
-  aw_pulled_stream_query_filter(filter, null);
+  // TODO: NEW_STREAMS
+  //aw_pulled_stream_query_filter(filter, aw_api_controller_render_stream_layout);
+  aw_pulled_stream_query_filter(filter, aw_api_controller_render_stream);
 }
+
+
+
 
 /************************************************************/
 /*
@@ -171,11 +195,13 @@ function aw_controller_api_modify_twitter_url(url){
 function aw_api_controller_apply_profile_pic_patch(service, url){
   aw_api_view_change_profile_pic(service, url);
 }
-/*********************************************************/
+
+
+/********************************************************/
 /*
- *
- *
+ *   API callback to view for rendering streams in different layout
  */
-function aw_api_controller_show_invitables_render(data){
-  aw_api_view_invitables_render(data);
+
+function aw_api_controller_show_streams_layout(data){
+  aw_api_view_streams_layout_render(data);
 }

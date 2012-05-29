@@ -101,7 +101,10 @@ Sangam::Application.routes.draw do
 
   resource :sitemaps, :only => :show
 
+  #match ":username" => "home#show"
   match ":username" => "home#show"
+  match ":username/streams/:stream" => "home#show"
+
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :users

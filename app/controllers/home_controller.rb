@@ -121,6 +121,18 @@ class HomeController < ApplicationController
     end
 
 
+    if params[:stream].nil?
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for profile sketch #{params} #{request.path}")
+      @active_stream = "all"
+    else
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for stream sketch #{params} #{request.path}")
+      #@active_stream = params[:stream]
+      @active_stream = "all"
+
+    end
+
+
+
     if params[:username].nil?
       if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
         @user=current_user 
@@ -151,6 +163,8 @@ class HomeController < ApplicationController
     end
    @fb_access = {}
    @tw_access = {}
+
+
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
       authentications = Authentication.find_all_by_user_id(current_user.id)
