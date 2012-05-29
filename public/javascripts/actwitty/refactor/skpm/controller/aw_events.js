@@ -47,11 +47,24 @@ $(document).ready(function(){
     return false;
   });
 
+
+  /* The click event which drives filters on streams to be applied and shown in streams section*/
   $(".aw_js_filterer").live('click', function(){
+    // TODO : NEW_STREAMS
+    //activate_streams_deactivate_profile();
     aw_api_view_decode_filter($(this));
     aw_api_view_decode_filter_header($(this));
     return false;
   });
+
+  /* The click event which drives filters on streams to be applied and shown in streams section*/
+  $(".aw_js_stream_layout_filterer").live('click', function(){
+    aw_api_view_decode_filter($(this));
+    aw_api_view_decode_filter_header($(this));
+    aw_api_view_highlight_current_interest($(this));
+    return false;
+  });
+
 
   $("#aw_js_stream_close_control").live('click', function(){
     aw_api_controller_show_or_hide_close(false);
@@ -102,15 +115,19 @@ $(document).ready(function(){
   });
 
   $(".aw_js_scroll_nav").live('click', function(){
+    activate_profile_deactivate_streams();
     var scroll_to_top_id = $(this).attr("aw_scroll_top_id");
     var position = $("#" + scroll_to_top_id).offset();
-    $('html, body').animate({scrollTop: (position.top - 40)}, "slow");
+    $('html, body').animate({scrollTop: position.top}, "slow");
     return false;
   });
-   var body_height = $(window).height();
-   aw_api_view_stream_apply_height(body_height);
+  var body_height = $(window).height();
+  aw_api_view_stream_apply_height(body_height);
  
 
+  $("#aw_streams_layout_header_viewer").live('click',function() {
+    aw_api_view_stream_prepare_header_viewer_operator();
+  });
     
 });
 

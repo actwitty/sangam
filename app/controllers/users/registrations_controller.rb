@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+
   def create
     process_authentication=false
     Rails.logger.info("[CNTRL] [REGISTRATION] Registration called with params #{params}")
@@ -45,6 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     if new_user.save!
       if process_authentication
+        Rails.logger.info("[CNTRL] [REGISTRATION] Registration for authentication request")
         authentication=Authentication.find_by_provider_and_uid(@provider, @uid)
         
         query_hash = {}

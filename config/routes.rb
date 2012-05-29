@@ -100,7 +100,10 @@ Sangam::Application.routes.draw do
   match '/pusher/auth' => 'home#pusher_auth'
 
 
+  #match ":username" => "home#show"
   match ":username" => "home#show"
+  match ":username/streams/:stream" => "home#show"
+
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :users

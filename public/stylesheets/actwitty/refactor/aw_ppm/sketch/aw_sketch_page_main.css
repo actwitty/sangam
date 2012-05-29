@@ -60,7 +60,8 @@ body {
   background: -o-linear-gradient(top, #676f72 0%, #595e62 52%, #505559 100%);
   background: -ms-linear-gradient(top, #676f72 0%, #595e62 52%, #505559 100%);
   background: linear-gradient(top, #676f72 0%, #595e62 52%, #505559 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#676f72', endColorstr='#505559',GradientType=0 ); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#676f72', endColorstr='#505559',GradientType=0 );
+  background-image: url(/images/actwitty/refactor/aw_common/grain_dark_gray.jpg); }
   .aw_page_sketch_header .aw_banner_box {
     width: 950px;
     margin: 0px auto;
@@ -189,7 +190,7 @@ body {
           width: 150px;
           padding: 10px;
           margin-left: 20px;
-          margin-top: 40px;
+          margin-top: 30px;
           display: inline-block;
           cursor: pointer;
           position: relative; }
@@ -209,7 +210,7 @@ body {
             display: none;
             z-index: 20;
             position: absolute;
-            top: 0px;
+            top: -60px;
             left: 0;
             width: 300px;
             padding: 10px;
@@ -310,8 +311,19 @@ body {
   height: auto;
   position: relative;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  background: #fafafa; }
 
+/* actwitty streams overlap section */
+.aw_page_stream_overlap_wrapper {
+  position: relative;
+  width: 950px;
+  height: auto;
+  margin: 0px auto;
+  margin-top: 40px;
+  display: none; }
+
+/* actwitty main(rather old) section */
 .aw_page_wrapper {
   position: relative;
   width: 950px;

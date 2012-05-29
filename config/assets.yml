@@ -24,6 +24,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/fancybox/jquery.fancybox-1.3.4.pack.js
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.alphanumeric.pack.js
     - public/javascripts/actwitty/refactor/common/externals/date/jquery.timeago.js
+    - public/javascripts/actwitty/refactor/common/externals/jquery-waitforimages/jquery.waitforimages.js
+
   profile_page_sketch:
       # ####################### Model ############################
     - public/javascripts/actwitty/refactor/skpm/model/cache/aw_cache.js
@@ -53,6 +55,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/controller/main.js
     - public/javascripts/actwitty/refactor/skpm/controller/aw_events.js
     - public/javascripts/actwitty/refactor/skpm/controller/model_interface.js
+    - public/javascripts/actwitty/refactor/skpm/controller/aw_utility.js
     # ####################### Views ############################
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_static_profile.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_services_list.js
@@ -66,6 +69,7 @@ javascripts:
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_videos.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_filterer.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams.js
+    - public/javascripts/actwitty/refactor/skpm/view/aw_view_streams_layout.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_search.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_common.js
     - public/javascripts/actwitty/refactor/skpm/view/aw_view_invite.js
@@ -75,6 +79,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/jscroll/jScrollPane.js
     - public/javascripts/actwitty/refactor/common/externals/jsonp/jquery-jsonp-2.2.1.min.js
     - public/javascripts/actwitty/refactor/common/externals/cross-domain-ajax/jquery.xdomainajax.js
+    - public/javascripts/actwitty/refactor/common/externals/masonry/jquery.isotope.min.js
+    
 
   profile_main_extra:
     - public/javascripts/actwitty/refactor/common/externals/input/jquery.elastic.source.js
@@ -139,6 +145,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_image.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_videos_view.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_view.css
+    - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_stream_layout_view.css
     - public/stylesheets/actwitty/refactor/aw_ppm/sketch/aw_sketch_js_sidebar.css
   profile_page_externals:
     - public/stylesheets/actwitty/refactor/aw_ppm/external/jquery-autocomplete/jquery.autocomplete.css

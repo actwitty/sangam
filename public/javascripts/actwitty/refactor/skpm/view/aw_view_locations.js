@@ -56,6 +56,7 @@ function aw_api_view_locations_render(data){
                                         title:    post.place.name,  
                                         icon:     '/images/actwitty/refactor/aw_sketch/location_pins/active/' + post.service.name + '_location.png'
                                       }); 
+      show_loc = true;
     });
   });
   $("#aw_js_locations_busy").hide();
