@@ -99,6 +99,7 @@ Sangam::Application.routes.draw do
   #Alok Adding pusher support
   match '/pusher/auth' => 'home#pusher_auth'
 
+  resource :sitemaps, :only => :show
 
   match ":username" => "home#show"
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -109,6 +110,7 @@ Sangam::Application.routes.draw do
   resources :contacts
   resources :feedbacks
   resource  :documents
+  #
 
   # Sample resource route with options:
   #   resources :products do
