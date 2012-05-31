@@ -210,8 +210,14 @@ function aw_api_view_stream_layout_apply_styleclass_entries(data, content_count_
 
 
 
-
-
+/*
+ *
+ */
+function raw_text_length(str)
+{
+    var text = '<div>'+str+'</div>';
+    return $(text).text().length;
+}
 
 
 
@@ -253,7 +259,8 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
 
         if( attachment.description){
          var short_text = attachment.description;
-         if( short_text.length > 300 ){
+
+         if( raw_text_length(short_text) > 300 ){
           short_text = attachment.description  
                         .trim()
                         .substring(0, 300)
@@ -263,7 +270,7 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
           } 
           if( attachment.provider ){
             var short_provider_text = attachment.provider;
-            if (short_provider_text.length > 300) {
+            if (raw_text_length(short_provider_text) > 300) {
                 short_provider_text =  attachment.provider
                                        .trim()
                                        .substring(0, 300)
@@ -448,12 +455,18 @@ function aw_api_streams_layout_build_global_images_section(content, content_disp
 {
   if (content.attachment) {
     $.each(content.attachment, function(key, attachment){
-       if (attachment.image_url && content_display_index.global_images.count < 4) {
-           content_display_index.global_images.html = content_display_index.global_images.html + 
+       if (attachment.image_url && content_display_index.global_images.count < 4 ) {
+           var image = new Image();
+           image.src = attachment.image_url;
+           //image.onload = function(){
+           {
+               content_display_index.global_images.html = content_display_index.global_images.html + 
                                                       '<a rel="aw_streams_layout_fallback_filler_img_fancybox" href=' + attachment.image_url + '>'+
-                                                      '<img class="aw_streams_layout_filler_img" src="' + attachment.image_url + '">'+
+                                                          '<img class="aw_streams_layout_filler_img" src="' + attachment.image_url + '">'+
                                                       '</a>';
-           content_display_index.global_images.count = content_display_index.global_images.count + 1;
+               content_display_index.global_images.count = content_display_index.global_images.count + 1;
+               content_display_index.global_images.img_obj[attachment.image_url] = content_display_index.global_images.html; 
+           }
          }
     });
   }
@@ -530,6 +543,7 @@ function aw_api_view_stream_layout_render(data)
 
   var aw_error_rendered = {};
 
+  // SAMMY TODO: Either of them is not needed....need re-factoring
   var content_types_count ={
                               images: 0,
                               videos: 0,
@@ -562,7 +576,8 @@ function aw_api_view_stream_layout_render(data)
                           global_images :
                                   {
                                     count:0,
-                                    html: ""
+                                    html: "",
+                                    img_obj: {}
                                   },
                       };
 
@@ -583,37 +598,37 @@ function aw_api_view_stream_layout_render(data)
     
     content_type = aw_api_view_stream_layout_get_content_category(entry); 
 
-    // Build html for video section if any.
-    if (content_type == "has_video") {
-      video_html = video_html + aw_api_view_streams_layout_render_videos_section(entry);
-      //content_types_count.videos++;
-      content_display_index.shown.videos++;
-    } else if (content_type == "has_short_post" ) {
-      // Build htmls for small posts section
-      if (content_display_index.shown.short_posts < content_display_index.to_show.short_posts) {
-        small_posts_html = small_posts_html + aw_view_stream_layout_get_entry_html(entry,"article_width_wit_post");
-      }
-      content_display_index.shown.short_posts++;
-    } else if (content_type == "has_image") {
-      if ((str = aw_api_streams_layout_build_images_section(entry)) != "" ) {
-         if (content_types_count.images < 5 )
-           images_html = images_html + str;
-         content_types_count.images++;
-      } 
-    } else if (content_type == "has_long_post" ) {
-      // Build html for posts section if any.
-      if (content_display_index.shown.long_posts < content_display_index.to_show.long_posts)
-          html= html + aw_view_stream_layout_get_entry_html(entry);
-      content_display_index.shown.long_posts++;
-    } 
-
-
-    index++;
+    switch(content_type) {
+    case 'has_video':
+            video_html = video_html + aw_api_view_streams_layout_render_videos_section(entry);
+            content_display_index.shown.videos++;
+            break;
+    case 'has_short_post':
+            // Build htmls for small posts section
+            if (content_display_index.shown.short_posts < content_display_index.to_show.short_posts) 
+                small_posts_html = small_posts_html + aw_view_stream_layout_get_entry_html(entry,"article_width_wit_post");
+            content_display_index.shown.short_posts++; 
+            break;
+    case 'has_image':
+            if ((str = aw_api_streams_layout_build_images_section(entry)) != "" ) {
+                if (content_types_count.images < 5 )
+                    images_html = images_html + str;
+                content_types_count.images++;
+            }
+            break;
+    case 'has_long_post':
+            if (content_display_index.shown.long_posts < content_display_index.to_show.long_posts)
+                html= html + aw_view_stream_layout_get_entry_html(entry);
+            content_display_index.shown.long_posts++;
+            break;
+    }
 
     aw_api_streams_layout_build_global_images_section(entry,content_display_index);
   });
   
 
+
+  // TODO : The sequence is needed, but the looping is redundant - this can be done from above loop itself
   index  = 0;  
   var count = 0;
   $.each(data, function(key, entry){
@@ -672,6 +687,8 @@ function aw_api_view_stream_layout_render(data)
   
   if(content_display_index.to_show.filCol_posts > 0) {
     $("#aw_streams_layout_posts_entries_fitCol").show();
+    if(content_display_index.to_show.short_posts == 0 && content_display_index.to_show.long_posts == 0)
+      $("#aw_streams_layout_posts_entries_fitCol").prepend(fitCol_posts_html); 
     $("#awstreams_layout_posts_entries_fitCol_left").html(fitCol_left_posts_html);
     $("#awstreams_layout_posts_entries_fitCol_right").html(fitCol_right_posts_html);
   } else {
@@ -704,7 +721,8 @@ function aw_api_view_stream_layout_render(data)
   		'titlePosition' 	: 'over',
 	  
     });
- 
+
+ // Prepare for final layouting
  aw_api_view_streams_layout_apply_final_layouting(content_display_index );
   
 }
@@ -938,14 +956,18 @@ function aw_api_view_apply_fillers(content_display_index)
     filler_image_insertion();
   });
   */
+  //setTimeout(filler_image_insertion(), 800);
+  
   $('#aw_streams_layout_entries_box').waitForImages(function() {
 
     //alert('All images are loaded.');
     //$(this).slideUp();
     filler_image_insertion();
   });
-
-
+  /*$('#aw_streams_layout_entries_box').load(function() {
+      filler_image_insertion();
+  });*/ 
+filler_image_insertion();
 }
 
 

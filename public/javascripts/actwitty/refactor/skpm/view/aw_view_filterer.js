@@ -200,8 +200,8 @@ function aw_api_view_prepare_stream_layout_filter_header(stream_header, object, 
   var trend_till = object.attr("aw_till_filter");
   var html = "";
 
-  //var stream_layout_header_label_html = '<span>' + stream_header['topic'].toUpperCase() + '</span>'; 
-  var stream_layout_header_label_html = '<span>' + header_text.toUpperCase() + '</span>'; 
+  var stream_layout_header_label_html = '<span>' + stream_header['topic'].toUpperCase() + '</span>'; 
+  //var stream_layout_header_label_html = '<span>' + header_text.toUpperCase() + '</span>'; 
   $(".aw_streams_layout_interests_header_label").html(stream_layout_header_label_html); 
 
 

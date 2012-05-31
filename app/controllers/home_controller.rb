@@ -126,6 +126,7 @@ class HomeController < ApplicationController
       @active_stream = "all"
     else
       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for stream sketch #{params} #{request.path}")
+      # TODO: NEW_STREAMS
       #@active_stream = params[:stream]
       @active_stream = "all"
 
