@@ -686,9 +686,11 @@ function aw_api_view_stream_layout_render(data)
 
   
   if(content_display_index.to_show.filCol_posts > 0) {
-    $("#aw_streams_layout_posts_entries_fitCol").show();
+    var $filCol_entries_block = $("#aw_streams_layout_posts_entries_fitCol");
+    $filCol_entries_block.show();
+    $("#aw_streams_layout_posts_entries_fitCol .aw_streams_layout_sectional_view_header").remove(); 
     if(content_display_index.to_show.short_posts == 0 && content_display_index.to_show.long_posts == 0)
-      $("#aw_streams_layout_posts_entries_fitCol").prepend(fitCol_posts_html); 
+       $filCol_entries_block.prepend(fitCol_posts_html); 
     $("#awstreams_layout_posts_entries_fitCol_left").html(fitCol_left_posts_html);
     $("#awstreams_layout_posts_entries_fitCol_right").html(fitCol_right_posts_html);
   } else {
@@ -787,9 +789,34 @@ function aw_api_view_stream_layout_render_header(data)
 
 
 
-function aw_stream_layout_prepare_meta_info_html(meta_data_type, meta_data_value)
+/*
+ if ( topic_detail.video  && topic_detail.video != 0 ){
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.video + ' Videos" src="' + image_path + 'video.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="video,topic" video="all"  aw_filter_title="topic=' + topic_detail.name  + ',data_type=videos" />';
+    }
+
+    if ( topic_detail.image  && topic_detail.image != 0 ){
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer"  rel="twipsy" data-original-title="' + topic_detail.image + ' Pictures" src="' + image_path + 'image.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="image,topic" aw_filter_title="' + topic_detail.name  + ',data_type=images" />';
+    }
+   
+    if ( topic_detail.link  && topic_detail.link != 0 ){
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.link + ' Links" src="' + image_path + 'link.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="link,topic" aw_filter_title="topic=' + topic_detail.name  + ',data_type=links" />';
+    }
+
+    if ( topic_detail.location  && topic_detail.location != 0 ){
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.location + ' Places" src="' + image_path + 'location.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="location,topic" aw_filter_title="topic=' + topic_detail.name  + ',data_type=locations" />';
+    }
+
+    if ( topic_detail.mention  && topic_detail.mention != 0 ){
+      internal_image_list = internal_image_list + '<img class="aw_sketch_dyn_topics_box_internal_img aw_js_filterer" rel="twipsy" data-original-title="' + topic_detail.mention + ' Mentions" src="' + image_path + 'mention.png" aw_interest_filter="' + topic_detail.interest_id + '" aw_filter_on="mention,topic" aw_filter_title="topic=' + topic_detail.name  + ',data_type=mentions" />';
+    }
+
+ 
+ */
+
+
+function aw_stream_layout_prepare_meta_info_html(meta_data_type, meta_data_value, entry, filter_on)
 {
-  var html = '<div class="aw_streams_layout_interests_meta_info_box">'+
+  var html = '<div class="aw_streams_layout_interests_meta_info_box aw_js_filterer" aw_interest_filter="' + entry.interest_id + '" aw_filter_on="'+filter_on+'" aw_filter_title="topic=' + entry.name  + ',data_type='+ meta_data_type +'" >'+
                '<div class="aw_streams_layout_interests_meta_info_icon">'+
                  '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/'+ meta_data_type+'.png">'+
                '</div>'+
@@ -815,22 +842,22 @@ function aw_api_view_stream_layout_render_meta_data(data)
     if (entry.name == active_stream_topic) {
 
       if(entry.post > 0)
-        html = html + aw_stream_layout_prepare_meta_info_html("posts",entry.post);
+        html = html + aw_stream_layout_prepare_meta_info_html("posts", entry.post, entry, "topic");
       
       if(entry.image > 0)
-        html = html + aw_stream_layout_prepare_meta_info_html("images",entry.image);
+        html = html + aw_stream_layout_prepare_meta_info_html("images",entry.image, entry, "image,topic");
  
       if(entry.video > 0)
-        html = html + aw_stream_layout_prepare_meta_info_html("videos",entry.video);
+        html = html + aw_stream_layout_prepare_meta_info_html("videos",entry.video, entry, "video,topic");
 
       if(entry.link > 0)
-        html = html + aw_stream_layout_prepare_meta_info_html("links",entry.link);
+        html = html + aw_stream_layout_prepare_meta_info_html("links",entry.link, entry, "link,topic");
 
       if(entry.location > 0)
-        html = html + aw_stream_layout_prepare_meta_info_html("locations",entry.location);
+        html = html + aw_stream_layout_prepare_meta_info_html("locations",entry.location, entry, "location,topic");
     
       if(entry.mention > 0)
-        html = html + aw_stream_layout_prepare_meta_info_html("mentions",entry.mention);
+        html = html + aw_stream_layout_prepare_meta_info_html("mentions",entry.mention, entry, "mention,topic");
     }
   });
   if (html == "") {
@@ -1040,7 +1067,8 @@ function aw_api_streams_layout_render_mentions_section(data)
   var decoded_mentions = {};
   var last_interest_name = "";
   var index = 0
-  var currently_set_interest = aw_cache_api_get_data("aw.stream.topic",null);
+  var currently_set_interest = aw_cache_api_get_data("aw.stream.topic", null);
+  var active_filter = aw_cache_api_get_data("aw.filter", null);
 
   if (!data.length) {
     $streams_layout_mention_section.html("");
@@ -1057,44 +1085,39 @@ function aw_api_streams_layout_render_mentions_section(data)
     
     if( mention_data.process == "done" && mention_data.image && mention_data.interest_name == currently_set_interest ){
       
-      if( last_interest_name.length == 0 ||
-          last_interest_name != mention_data.interest_name ){
+        if( last_interest_name.length == 0 ||
+            last_interest_name != mention_data.interest_name ){
           
-          if( last_interest_name.length != 0)  
-              html = html + '</div>';  
+            if( last_interest_name.length != 0)  
+                html = html + '</div>';  
 
-          html = html +    
-                 '<div class="aw_stream_layout_mentions_entry_box masonry_item " >'+
-                   '<div class="aw_stream_layout_mentions_entry_label_header" >'+
-                     '<span>'+ 
-                       mention_data.interest_name +
-                     '</span>'+
-                   '</div>';
-         index = index + 1;
-      } 
-      html = html + 
-             '<div class="aw_stream_layout_mentions_entry_name aw_js_filterer " '+
-               'aw_filter_on="mention" ' +
-               'aw_mention_filter="' + mention_data.id + '" ' +
-               'aw_filter_title="topic=' + mention_data.name  + '" ' +
-             '>'+
-               mention_data.name+
-             '</div>';
-      last_interest_name = mention_data.interest_name;
-      
+            html = html +    
+                   '<div class="aw_stream_layout_mentions_entry_box masonry_item " >'+
+                     '<div class="aw_stream_layout_mentions_entry_label_header" >'+
+                       '<span>'+ 
+                         mention_data.interest_name +
+                       '</span>'+
+                    '</div>';
+          index = index + 1;
+        } 
+        html = html + 
+               '<div class="aw_stream_layout_mentions_entry_name aw_js_filterer " '+
+                 'aw_filter_on="mention" ' +
+                 'aw_mention_filter="' + mention_data.id + '" ' +
+                 'aw_filter_title="topic=' + mention_data.name  + '" ' +
+                  '>'+
+                  mention_data.name+
+                '</div>';
+        last_interest_name = mention_data.interest_name;
     }
   });
    
-   if( index == 0) 
-     $streams_layout_mention_section.hide();
-   else {
-     $streams_layout_mention_section.show();
-     $streams_layout_mention_section.html(html);
-   }
-
-  
-    
-    
+  if( index == 0) 
+      $streams_layout_mention_section.hide();
+  else {
+       $streams_layout_mention_section.show();
+       $streams_layout_mention_section.html(html);
+  }
 }
 
 

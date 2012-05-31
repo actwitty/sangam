@@ -472,7 +472,7 @@ function aw_api_view_handle_hover_show_overlay(ele){
   }
   hvr_handle_timer = setTimeout(function(){
     hover_ele.hide();
-  }, 1500);
+  }, 500);
 }
 function aw_api_view_handle_hover_handle_overlay_hover_in(ele){
   if( hvr_handle_timer != null) {
@@ -487,7 +487,7 @@ function aw_api_view_handle_hover_handle_overlay_hover_out(ele){
   var hide_ele = ele;
   dlg_hvr_handle_timer = setTimeout(function(){
       hide_ele.hide();
-  }, 1500);
+  }, 500);
 }
 /****************************************************************************/
 /*
