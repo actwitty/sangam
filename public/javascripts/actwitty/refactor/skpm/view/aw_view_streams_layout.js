@@ -648,7 +648,7 @@ function aw_api_view_stream_layout_render(data)
 
 
 
-
+  aw_cache_api_set_data("aw.streamlayout.displayprop", content_display_index);
 
 
 
@@ -1058,6 +1058,8 @@ function aw_api_streams_layout_render_mentions_section(data)
   var currently_set_interest = aw_cache_api_get_data("aw.stream.topic", null);
   var active_filter = aw_cache_api_get_data("aw.filter", null);
 
+  var aw_stream_layout_disp_prop = aw_cache_api_get_data("aw.streamlayout.displayprop", null);
+
   if (!data.length) {
     $streams_layout_mention_section.html("");
     $streams_layout_mention_section.hide();
@@ -1116,6 +1118,14 @@ function aw_api_streams_layout_render_mentions_section(data)
       $streams_layout_mention_section.hide();
   else {
       $streams_layout_mention_section.show();
+      if (aw_stream_layout_disp_prop.to_show.short_posts == 0  && aw_stream_layout_disp_prop.to_show.long_posts == 0) {
+          $streams_layout_mention_section.removeClass("aw_streams_layout_entries_small_width"); 
+          $streams_layout_mention_section.addClass("aw_streams_layout_entries_full_width");   
+      } else {
+          $streams_layout_mention_section.addClass("aw_streams_layout_entries_small_width"); 
+          $streams_layout_mention_section.removeClass("aw_streams_layout_entries_full_width");   
+      }
+        
       $streams_layout_mention_section.html(html);
   }
 }

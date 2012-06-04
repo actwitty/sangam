@@ -136,21 +136,22 @@
 #awstreams_layout_posts_entries_fitCol_right {
   float: left;
   padding: 5px 0;
-  margin: 0px 5px 5px 5px;
+  margin: 0px 5px 5px 45px;
   width: 46%; }
 
 #aw_streams_layout_mentions_entries {
   float: left;
   border: 0px solid #cccccc;
   padding: 5px 0;
-  margin: 0px 5px 5px 5px; }
+  margin: 0px 5px 5px 5px;
+  margin-right: 30px; }
 
 .aw_streams_layout_sectional_view_header {
   font-size: 22px;
   color: #333333;
   font-weight: bold;
   padding: 5px 0 5px 0px;
-  border-bottom: 2px solid #cccccc; }
+  border-bottom: 2px solid #333333; }
 
 #aw_streams_layout_content_container {
   width: 100%;
@@ -159,9 +160,9 @@
   margin-top: 10px; }
 
 .masonry_item {
-  margin: 8px;
+  /*margin: 8px */
   float: left;
-  padding: 5px;
+  padding: 2px;
   border-bottom: 1px solid #cccccc;
   border-radius: 3px; }
 
@@ -502,8 +503,14 @@
 
 /*********** STREAM LAYOUT ENTRIES HEADER */
 #aw_streams_layout_content_header {
-  border-bottom: 2px solid #dddddd;
-  padding-bottom: 10px; }
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  background-color: rgba(17, 205, 238, 0.04);
+  -webkit-box-shadow: 0 4px 3px -3px #333333;
+  -moz-box-shadow: 0 4px 3px -3px #333333;
+  box-shadow: 0 4px 3px -3px #333333; }
 
 .aw_streams_layout_sidebar_entry {
   width: 100%;
@@ -597,12 +604,17 @@
   max-width: 400px; }
 
 /********** MENTIONS SECTION ********** */
+.aw_streams_layout_entries_full_width .aw_stream_layout_mentions_entry_box {
+  width: 420px;
+  margin-left: 30px; }
+
+.aw_streams_layout_entries_small_width .aw_stream_layout_mentions_entry_box {
+  width: 350px;
+  border-bottom: 1px solid #cccccc; }
+
 .aw_stream_layout_mentions_entry_box {
-  clear: both;
   margin-top: 10px;
-  border-bottom: 1px solid #cccccc;
-  display-inline: block;
-  width: 100%;
+  float: left;
   /*min-height: 100px */ }
   .aw_stream_layout_mentions_entry_box .aw_stream_layout_mentions_entry_label_header {
     float: left;
