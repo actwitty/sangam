@@ -51,6 +51,17 @@ function aw_streams_layout_view_html_init_post_layout(type)
 }
 
 
+
+/*
+ *
+ */
+function raw_text_length(str)
+{
+    var text = '<div>'+str+'</div>';
+    return $(text).text().length;
+}
+
+
 /*
  *
  * The api to filter the category for stream content.
@@ -203,21 +214,11 @@ function aw_api_view_stream_layout_apply_styleclass_entries(data, content_count_
     });
   }
 
-
-
-
 }
 
 
 
-/*
- *
- */
-function raw_text_length(str)
-{
-    var text = '<div>'+str+'</div>';
-    return $(text).text().length;
-}
+
 
 
 
@@ -377,7 +378,6 @@ function aw_view_stream_layout_get_entry_html(entry, force_class){
   
   var text_html = "";
   var hover_html = "";
-  //var randomNum = Math.ceil(Math.random()*3); /* Pick random number between 1 and 2 */
 
   var content_type = aw_api_view_stream_layout_get_content_category(entry);
   var aw_isotope_class = aw_api_stream_layout_prepare_isotope_class(content_type); 
@@ -512,10 +512,6 @@ function aw_api_view_streams_layout_prepare_display_index_table(data, content_ty
     content_display_index.to_show.short_posts = 0;
     content_display_index.to_show.long_posts = 0;
   }
-
-  
-   
-
 }
 
 
@@ -543,7 +539,7 @@ function aw_api_view_stream_layout_render(data)
 
   var aw_error_rendered = {};
 
-  // SAMMY TODO: Either of them is not needed....need re-factoring
+  // TODO: Either of them is not needed....need re-factoring
   var content_types_count ={
                               images: 0,
                               videos: 0,
@@ -946,11 +942,7 @@ function aw_api_view_apply_fillers(content_display_index)
    
 
    var valid_major_block_post_count = (content_display_index.to_show.long_posts >= 1 && content_display_index.to_show.short_posts >= 1)
-   /*
-   alert(posts_block_height);
-   alert(small_posts_block_height);
-   alert(mentions_block_height);
-   */
+   
    function filler_image_insertion() {
     if (block_diff > 100  && valid_major_block_post_count ) {
        $(".aw_streams_layout_image_filler_section").remove();
@@ -996,6 +988,7 @@ function aw_api_view_apply_fillers(content_display_index)
 
 function aw_api_view_streams_layout_apply_final_layouting(content_display_index)
 {
+  /*
    if (0) {
     var $container = $('#aw_streams_layout_entries');
     $container.isotope({
@@ -1021,7 +1014,7 @@ function aw_api_view_streams_layout_apply_final_layouting(content_display_index)
     });
 
   } else {
-    /*
+    
     var $tumblelog = $('#aw_streams_layout_entries');
     $tumblelog.imagesLoaded( function(){
       $tumblelog.masonry({
@@ -1037,10 +1030,10 @@ function aw_api_view_streams_layout_apply_final_layouting(content_display_index)
         columnWidth: 240,
       });
     });
-    */
+    
    
   }
-
+  */
 
   aw_api_view_apply_fillers(content_display_index);
 }
@@ -1076,9 +1069,21 @@ function aw_api_streams_layout_render_mentions_section(data)
 
   html = html + aw_streams_layout_view_html_init_post_layout("mentions");
 
+
+
+  // if filer is set, then we will show mentions for all insterests...else we will show mention for only currently set interest
+  // experimental... if there are lots of false positives... then we can change it
+  function is_condition_ok(str1, str2)
+  {
+     if (typeof active_filter.filter != 'undefined')
+         return true;
+     else 
+         return str1 === str2;
+  }
+  
   $.each(data, function(key, mention_data){
     
-    if( mention_data.process == "done" && mention_data.image && mention_data.interest_name == currently_set_interest ){
+    if( mention_data.process == "done" && mention_data.image && is_condition_ok(mention_data.interest_name, currently_set_interest)) {
       
         if( last_interest_name.length == 0 ||
             last_interest_name != mention_data.interest_name ){
@@ -1110,8 +1115,8 @@ function aw_api_streams_layout_render_mentions_section(data)
   if( index == 0) 
       $streams_layout_mention_section.hide();
   else {
-       $streams_layout_mention_section.show();
-       $streams_layout_mention_section.html(html);
+      $streams_layout_mention_section.show();
+      $streams_layout_mention_section.html(html);
   }
 }
 

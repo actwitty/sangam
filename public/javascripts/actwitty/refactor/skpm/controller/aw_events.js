@@ -51,7 +51,7 @@ $(document).ready(function(){
   /* The click event which drives filters on streams to be applied and shown in streams section*/
   $(".aw_js_filterer").live('click', function(){
     // TODO : NEW_STREAMS
-    //activate_streams_deactivate_profile();
+    activate_streams_deactivate_profile();
     aw_api_view_decode_filter($(this));
     aw_api_view_decode_filter_header($(this));
     return false;
@@ -116,7 +116,7 @@ $(document).ready(function(){
 
   $(".aw_js_scroll_nav").live('click', function(){
     // TODO: NEW_STREAMS
-    //activate_profile_deactivate_streams();
+    activate_profile_deactivate_streams();
     var scroll_to_top_id = $(this).attr("aw_scroll_top_id");
     var position = $("#" + scroll_to_top_id).offset();
     $('html, body').animate({scrollTop: (position.top - 40)}, "slow");

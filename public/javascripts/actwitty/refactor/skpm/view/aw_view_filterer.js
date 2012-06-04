@@ -184,10 +184,52 @@ function aw_api_view_decode_filter_header(object){
    var header_text = aw_api_view_prepare_stream_layout_filter_header(stream_header, object, header_text);
   }
 
-  aw_cache_api_set_data("aw.stream.topic",header_text);
+  var layout_header = aw_api_view_construct_stream_layout_header(stream_header);
+
+  $(".aw_streams_layout_interests_header_label").html(layout_header);
+
+  aw_cache_api_set_data("aw.stream.topic",stream_header['topic']);
   aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_meta_data);
    
 }
+
+
+/*
+ *
+ */
+function aw_api_view_construct_stream_layout_header(stream_header)
+{
+    var header_text = "" 
+    if( stream_header['topic']){
+        header_text = header_text +  ' <span class="aw_filter_subfilter"> ' + stream_header['topic'] + '</span> ';
+    }
+
+    if( stream_header['data_type']){
+        header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
+        header_text = header_text +  ' <span class="aw_filter_subfilter"> ' + stream_header['data_type'] + '</span> ';
+    }
+
+
+    if( stream_header['service']){
+        header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
+        header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['service'] + '</span> ';
+    }
+
+    if( stream_header['user']){
+        header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
+        header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['user'] + '</span> ';
+    }
+
+    if( stream_header['response']){
+        header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
+        header_text = header_text +  '<span class="aw_filter_subfilter"> ' + stream_header['response'] + '</span> ';
+    }
+    return header_text;
+}
+
+
+
+
 
 
 /*
@@ -202,7 +244,7 @@ function aw_api_view_prepare_stream_layout_filter_header(stream_header, object, 
 
   var stream_layout_header_label_html = '<span>' + stream_header['topic'].toUpperCase() + '</span>'; 
   //var stream_layout_header_label_html = '<span>' + header_text.toUpperCase() + '</span>'; 
-  $(".aw_streams_layout_interests_header_label").html(stream_layout_header_label_html); 
+  $(".aw_streams_layout_interests_header_label").html(header_text); 
 
 
   if (trend_since && trend_till) {
