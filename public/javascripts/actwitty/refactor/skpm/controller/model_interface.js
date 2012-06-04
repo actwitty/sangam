@@ -142,8 +142,8 @@ function aw_api_controller_change_filter_on_stream(filter){
   aw_api_view_show_stream_waiting();
   // TODO: NEW_STREAMS   toggle comments for lines in the block
   {
-    aw_pulled_stream_query_filter(filter, aw_api_controller_render_stream_layout);
-    //aw_pulled_stream_query_filter(filter, aw_api_controller_render_stream);
+    //aw_pulled_stream_query_filter(filter, aw_api_controller_render_stream_layout);
+    aw_pulled_stream_query_filter(filter, aw_api_controller_render_stream);
   }
 }
 
