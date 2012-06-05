@@ -127,6 +127,7 @@ function aw_api_view_decode_filter(object){
  *
  */
 function aw_api_view_decode_filter_header(object){
+  var filter_titles_as_str =  object.attr("aw_filter_on");
   var filter_header_title =  object.attr("aw_filter_title");
   var filter_header_set = filter_header_title.split(',');
   var filter_header_set_arr = [];
@@ -181,12 +182,15 @@ function aw_api_view_decode_filter_header(object){
 
 
   if (aw_cache_api_get_data("aw.layout",null) == "streams_layout") {
-   var header_text = aw_api_view_prepare_stream_layout_filter_header(stream_header, object, header_text);
+      var header_text = aw_api_view_prepare_stream_layout_filter_header(stream_header, object, header_text);
+      $("span.aw_streams_layout_trends_heading").timeago();
   }
 
-  var layout_header = aw_api_view_construct_stream_layout_header(stream_header);
+  var layout_header = aw_api_view_construct_stream_layout_header(stream_header, filter_titles_as_str);
 
   $(".aw_streams_layout_interests_header_label").html(layout_header);
+  $("#aw_streams_layout_interests_meta_data").html(header_text);
+  $("span.aw_streams_layout_trends_heading").timeago();
 
   aw_cache_api_set_data("aw.stream.topic",stream_header['topic']);
   aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_meta_data);
@@ -197,10 +201,19 @@ function aw_api_view_decode_filter_header(object){
 /*
  *
  */
-function aw_api_view_construct_stream_layout_header(stream_header)
+function aw_api_view_construct_stream_layout_header(stream_header, filter_titles_as_str)
 {
-    var header_text = "" 
+    var header_text = "";
+    var filter = aw_cache_api_get_data("aw.filter",null);
+
     if( stream_header['topic']){
+        if (filter_titles_as_str === "mention" ) {
+            //header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/mentions.png">';  
+            header_text = header_text +  '<span class="aw_filter_subfilter">Mention</span> ';
+            header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
+        } else if (filter_titles_as_str.indexOf('since') >=0 ) {
+            header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/trends.png">';  
+        }
         header_text = header_text +  ' <span class="aw_filter_subfilter"> ' + stream_header['topic'] + '</span> ';
     }
 
@@ -243,17 +256,16 @@ function aw_api_view_prepare_stream_layout_filter_header(stream_header, object, 
   var html = "";
 
   var stream_layout_header_label_html = '<span>' + stream_header['topic'].toUpperCase() + '</span>'; 
-  //var stream_layout_header_label_html = '<span>' + header_text.toUpperCase() + '</span>'; 
   $(".aw_streams_layout_interests_header_label").html(header_text); 
 
 
   if (trend_since && trend_till) {
      html = html +
              '<div class="aw_streams_layout_trends_header">'+
-               '<span> from </span>' +
+               '<span>......   </span>' +
                '<span class="aw_streams_layout_trends_heading" title='+ trend_since +'></span>'+
-               '<span> to </span>' +
-               '<span class="aw_streams_layout_trends_heading" title='+ trend_till +'></span>'+
+               /*'<span> to </span>' +
+               '<span class="aw_streams_layout_trends_heading" title='+ trend_till +'></span>'+*/
              '</div>';
      return html;
   } else

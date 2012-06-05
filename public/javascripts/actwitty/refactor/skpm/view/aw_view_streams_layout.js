@@ -850,8 +850,8 @@ function aw_api_view_stream_layout_render_meta_data(data)
     }
   });
   if (html == "") {
-    $("#aw_streams_layout_interests_meta_data").html(active_stream_topic);
-    $("span.aw_streams_layout_trends_heading").timeago();
+    //$("#aw_streams_layout_interests_meta_data").html(active_stream_topic);
+    //$("span.aw_streams_layout_trends_heading").timeago();
   } else {
     $("#aw_streams_layout_interests_meta_data").html(html);
   }
