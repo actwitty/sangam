@@ -136,12 +136,14 @@
         cursor: pointer; }
 
 .aw_stream_content {
-  margin-left: 10px;
-  margin-right: 18px;
-  width: 100%;
+  margin-left: 0px;
+  padding: 4px;
+  margin-right: 0px;
+  width: 97%;
   height: auto;
   display: inline-block;
-  border: 0px solid green; }
+  border: 0px solid green;
+  overflow: hidden; }
   .aw_stream_content .aw_stream_text_box {
     display: block; }
     .aw_stream_content .aw_stream_text_box p {

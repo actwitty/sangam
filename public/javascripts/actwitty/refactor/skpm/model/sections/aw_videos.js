@@ -7,7 +7,7 @@ function aw_api_videos_streams_pulled_cb(data){
   if( data ){
     aw_api_controller_show_videos(data);      
   }
-
+  aw_cache_api_set_data("aw.videos", data);
 }
 /*************************************************/
 /* 

@@ -63,7 +63,9 @@ function aw_api_model_images_fetch(){
 
     aw_global_services_api_registry[key]["images"](aw_api_model_receive_images_cb);
   });
-    
+  
+  //aw_cache_api_set_data("aw.images", data);
+
 
   aw_lib_console_log("DEBUG", "exiting:aw_api_model_images_fetch"); 
   

@@ -4,7 +4,7 @@ compress_assets: off
 gzip_assets: off
 javascripts:
   jquery:
-    - public/javascripts/jquery/jquery-1.6.2.min.js
+    - public/javascripts/jquery/jquery-1.7.2.min.js
     - public/javascripts/rails.js
     - public/javascripts/application.js
   actwittyall:
@@ -12,6 +12,8 @@ javascripts:
     - public/javascripts/actwitty/refactor/common/externals/rails/jquery_ujs.js
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.js
     - public/javascripts/actwitty/refactor/common/externals/rails/rails.validations.custom.js
+    - public/javascripts/actwitty/refactor/common/externals/jquery-waitLoading/jquery.showLoading.min.js
+    - public/javascripts/actwitty/refactor/common/externals/wookmark/jquery.wookmark.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_events.js
     - public/javascripts/actwitty/refactor/lpm/aw_lpm_signin.js
     - public/javascripts/actwitty/refactor/common/aw_jquery_manager.js
@@ -111,6 +113,7 @@ stylesheets:
     - public/stylesheets/actwitty/refactor/aw_common/aw_button_styles.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_feedbacks.css
     - public/stylesheets/actwitty/refactor/aw_common/aw_loading_animation.css
+    - public/stylesheets/actwitty/refactor/aw_common/showLoading.css
     - public/stylesheets/actwitty/refactor/aw_common/bootstrap/bootstrap.css
   actgreen:
     - public/stylesheets/actwitty/refactor/aw_lpm/act_green/aw_actgreen.css

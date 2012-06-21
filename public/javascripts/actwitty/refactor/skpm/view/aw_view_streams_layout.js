@@ -9,6 +9,60 @@
 ****************************************************************************/
 
 
+
+
+
+var colCount = 0;
+var colWidth = 220;
+var margin = 10;
+var spaceLeft = 0;
+var windowWidth = 0;
+var blocks = [];
+
+$(function(){
+	$(window).resize(setupBlocks);
+});
+
+function setupBlocks(container, selector) {
+	windowWidth = $(container).width();
+	blocks = [];
+
+	// Calculate the margin so the blocks are evenly spaced within the window
+	colCount = Math.floor(windowWidth/(colWidth+margin*2));
+	spaceLeft = (windowWidth - ((colWidth*colCount)+margin*2)) / 2;
+	spaceLeft -= margin;
+	
+	for(var i=0;i<colCount;i++){
+		blocks.push(margin);
+	}
+	positionBlocks(selector);
+}
+
+function positionBlocks(selector) {
+	selector.each(function(i){
+		var min = Array.min(blocks);
+		var index = $.inArray(min, blocks);
+		var leftPos = margin+(index*(colWidth+margin));
+		$(this).css({
+			'left':(leftPos+spaceLeft)+'px',
+			'top':min+'px'
+		});
+		blocks[index] = min+$(this).outerHeight()+margin;
+	});	
+}
+
+// Function to get the Min value in Array
+Array.min = function(array) {
+    return Math.min.apply(Math, array);
+};
+
+
+
+
+
+
+
+
 var aw_stream_view_filler_image_base_path = "/images/actwitty/refactor/aw_sketch/stream_layout_view/fillers/"
 
 var stream_layout_structure ={};
@@ -240,20 +294,21 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
         var content_html = "";
         var caption_html = "";
         var image_html = "";
-        if ( attachment.image_url ){
-             image_html = '<div class="aw_attachment_image_box_longpost" >' +
-                            '<a rel="aw_js_stream_imgs_fancy_box" href="' + attachment.image_url + '">' +
-                             '<img class="aw_attachment_image " src="' + attachment.image_url + ' " style="max-width:300px;" />' +
-                            '</a>' +
-                          '</div>';
-        } 
         if( attachment.title ){
           title_html = '<div class="aw_attachment_title_box_longpost" >' +
-                            '<a href="' + attachment.url + '" target="_blank" >' +
+                            '<a href="' + attachment.url + '" target="_blank" class="aw_headline" >' +
                               attachment.title +    
                             '</a>' +
                        '</div>';
         }
+        if ( attachment.image_url ){
+             image_html = '<div class="aw_attachment_image_box_longpost" >' +
+                            '<a rel="aw_js_stream_imgs_fancy_box" href="' + attachment.image_url + '">' +
+                             '<img class="aw_attachment_image " src="' + attachment.image_url + '"  />' +
+                            '</a>' +
+                          '</div>';
+        } 
+        
         if( !attachment.description){
           attachment.description = entry.text;
         }
@@ -294,9 +349,9 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
 
         
 
-        html = html + image_html +
-                      title_html +
-                      content_html;
+        html = html +  title_html +
+                       image_html +
+                       content_html;
       }else if( attachment.type == 'embed'){
         var title_html = "";
         var embed_html = "";
@@ -305,7 +360,7 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
        
         if( attachment.title ){
           title_html = '<div class="aw_attachment_title_box_longpost" >' +
-                          '<a href="' + attachment.url + '" target="_blank" >' +
+                          '<a href="' + attachment.url + '" target="_blank" class="aw_headline" >' +
                             attachment.title +    
                           '</a>' +
                        '</div>';
@@ -370,6 +425,44 @@ function aw_api_view_streams_layout_render_videos_section(entry)
 
 
 
+
+/***********************************************************/
+/*
+ *
+ *
+ */
+function aw_view_streams_layout_get_actions_html(entry){
+  var html = "";
+  if( entry.action && entry.action.length ){
+    var internal_html = "";
+
+    $.each( entry.action, function(index, action_data){
+      if( action_data.type == "link" ){
+        internal_html = internal_html + '<li class="aw_js_action_link_click aw_single_action_link " action_url="' + action_data.url + '" action_name="' + action_data.name + '" >' +
+                                            action_data.name + 
+                                      '</li>';
+       }else if( action_data.type == "static" ){
+
+         internal_html = internal_html + '<li class="aw_single_action aw_single_action_static"  >' +
+                                            action_data.name + 
+                                         '</li>';
+
+       }
+    });
+
+
+    html = '<div class="aw_actions_box" >' +
+                '<ul>' +
+                  internal_html + 
+                '</ul>' +
+           '</div>';
+  }
+
+  
+  return html;
+}
+
+
 /*
  *
  *
@@ -398,7 +491,7 @@ function aw_view_stream_layout_get_entry_html(entry, force_class){
 
   
 
-  var html = '<div class="  masonry_item '+aw_isotope_class+'" >' +
+  var html = '<div class="aw_mark_post">' +
 
                 '<div class="aw_stream_time_orig" >' +
                     '<abbr class="aw_js_timeago" title="' + entry.timestamp + '"></abbr>' +
@@ -411,7 +504,7 @@ function aw_view_stream_layout_get_entry_html(entry, force_class){
                   aw_view_stream_get_location_html(entry) +
                 '</div>' +
 
-                aw_view_stream_get_actions_html(entry) +
+                aw_view_streams_layout_get_actions_html(entry) +
 
 
                 '<div class="aw_originator_box aw_js_stream_hover_originator" >' +
@@ -513,6 +606,187 @@ function aw_api_view_streams_layout_prepare_display_index_table(data, content_ty
     content_display_index.to_show.long_posts = 0;
   }
 }
+
+
+
+
+
+
+
+
+/*
+ *
+ *
+ */
+function aw_api_view_stream_layout_render_ver2(data)
+{
+  
+  //var html = aw_streams_layout_view_html_init_post_layout("posts");
+  var html = "";
+  
+  var video_html = aw_streams_layout_view_html_init_post_layout("videos");
+  var images_html = aw_streams_layout_view_html_init_post_layout("images");
+  var small_posts_html = aw_streams_layout_view_html_init_post_layout("small_posts");
+  var fitCol_posts_html = aw_streams_layout_view_html_init_post_layout("posts");
+  var fitCol_left_posts_html = "";
+  var fitCol_right_posts_html = "";
+  
+  var str = "";
+  var content_type = "";
+  var index = 0;
+ 
+  var fitCol_left = true;
+
+  var aw_error_rendered = {};
+  
+  $("#aw_streams_layout_entries").remove();
+
+
+  $("#aw_streams_layout_entries_box").html(""); 
+  $("#aw_streams_layout_entries_box").append('<div id="aw_streams_layout_entries" class="isotope_item clearfix"></div>');
+
+  var col0_html = "";
+  var col1_html = "";
+  var col2_html = "";
+  var col3_html = "";
+
+
+  // TODO: Either of them is not needed....need re-factoring
+  var content_types_count ={
+                              images: 0,
+                              videos: 0,
+                              long_posts:0,
+                              short_posts:0
+                           };
+
+  var content_display_index = {
+                          shown : {
+                                   images: 0,
+                                   videos: 0,
+                                   long_posts:0,
+                                   short_posts:0,
+                                   filCol_posts:0
+                                  },
+                          remaining : {
+                                   images: 0,
+                                   videos: 0,
+                                   long_posts:0,
+                                   short_posts:0,
+                                   filCol_posts:0
+                                  },
+                          to_show : {
+                                   images: 0,
+                                   videos: 0,
+                                   long_posts:0,
+                                   short_posts:0,
+                                   filCol_posts:0
+                                  },
+                          global_images :
+                                  {
+                                    count:0,
+                                    html: "",
+                                    img_obj: {}
+                                  },
+                      };
+
+
+  aw_api_view_streams_layout_prepare_content_type_meta(data, content_types_count);
+
+  aw_api_view_streams_layout_prepare_display_index_table(data, content_types_count, content_display_index );
+
+  var index = 0;
+
+  $.each(data, function(key, entry){
+    if (  entry.service.pid && entry.service.pid == "aw_service_error" ){ 
+      if( aw_error_rendered[entry.service.name] ){
+        return;
+      }else{
+        aw_error_rendered[entry.service.name] = true;
+      }
+    }
+
+    content_type = aw_api_view_stream_layout_get_content_category(entry); 
+
+    html = html + aw_view_stream_layout_get_entry_html(entry);
+    
+    /*
+    switch(index%4) {
+    case 0 :
+             col0_html = col0_html + aw_view_stream_layout_get_entry_html(entry);
+             break;
+    case 1 :
+             col1_html = col1_html + aw_view_stream_layout_get_entry_html(entry);
+             break;
+    case 2 :
+             col2_html = col2_html + aw_view_stream_layout_get_entry_html(entry);
+             break;
+    case 3 :
+             col3_html = col3_html + aw_view_stream_layout_get_entry_html(entry);
+             break;         
+    }
+    */
+    index = index + 1;
+  });
+  
+
+  aw_cache_api_set_data("aw.streamlayout.displayprop", content_display_index);
+
+
+  
+  $("#aw_streams_layout_entries").html(html);
+  
+  /*
+  $("#aw_streams_layout_entries_col0").html(col0_html);
+  $("#aw_streams_layout_entries_col1").html(col1_html);
+  $("#aw_streams_layout_entries_col2").html(col2_html);
+  $("#aw_streams_layout_entries_col3").html(col3_html);
+  */
+
+
+ // Prepare layout options.
+  var options = {
+      autoResize: true, // This will auto-update the layout when the browser window is resized.
+      container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
+      offset: 15, // Optional, the distance between grid items
+      itemWidth: 225 // Optional, the width of a grid item
+  };
+      
+  // Get a reference to your grid items.
+  var handler = $("#aw_streams_layout_entries div.aw_mark_post");
+    
+  // Call the layout function.
+  //handler.wookmark(options);  
+
+  
+
+  $('#aw_streams_layout_entries').waitForImages(function() {
+    //setupBlocks("#aw_streams_layout_entries" , handler);
+    handler.wookmark(options);
+  });
+
+  //aw_api_view_stream_layout_apply_styleclass_entries(data,content_types_count, content_display_index);
+
+
+  // Prepare mentions section in streams layout. 
+  //aw_api_streams_layout_prepare_mentions_section(content_display_index);
+  
+  $("#aw_js_stream_entries").scrollTop(0); 
+  $("abbr.aw_js_timeago").timeago();
+  $("#aw_js_stream_busy").hide();
+  $("a[rel=aw_js_stream_imgs_fancy_box]").fancybox({
+	  	'transitionIn'		: 'none',
+		  'transitionOut'		: 'none',
+  		'titlePosition' 	: 'over',
+	  
+    });
+
+ // Prepare for final layouting
+ //aw_api_view_streams_layout_apply_final_layouting(content_display_index );
+  
+}
+
+
+
 
 
 
@@ -727,6 +1001,109 @@ function aw_api_view_stream_layout_render(data)
 
 
 
+
+
+
+
+
+/******************** RENDERING HEADER SECTION ************************/
+
+function aw_api_view_stream_prepare_header_viewer_operator()
+{
+  $("#aw_streams_layout_header_level2").slideToggle();
+  if (aw_cache_api_get_data("aw.interests",null).length > (5+7) )
+    $("#aw_streams_layout_header_level3").slideToggle();
+  //var span_element = $("#aw_streams_layout_header_viewer span");
+  var img_element = $("#aw_streams_layout_header_viewer img");
+  
+  var src_view_more = '/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_down_dark.png';
+  var src_view_less = '/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_up_dark.png';
+
+  //var text = span_element.text() == 'view more' ? 'view less' : 'view more';
+  var src = img_element.attr('src').indexOf('down') >= 0 ? src_view_less : src_view_more;
+
+  //span_element.text(text);
+  img_element.attr('src',src);
+  
+}
+
+function aw_api_view_stream_prepare_mentions_header_viewer_operator()
+{
+  $("#aw_streams_layout_mentions_header_level2").slideToggle();
+  if (aw_cache_api_get_data("aw.mentions",null).length > (5+7) )
+    $("#aw_streams_layout_mentions_header_level3").slideToggle();
+  //var span_element = $("#aw_streams_layout_header_viewer span");
+  var img_element = $("#aw_streams_layout_mentions_header_viewer img");
+  
+  var src_view_more = '/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_down_light.png';
+  var src_view_less = '/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_up_light.png';
+
+  //var text = span_element.text() == 'view more' ? 'view less' : 'view more';
+  var src = img_element.attr('src').indexOf('down') >= 0 ? src_view_less : src_view_more;
+
+  //span_element.text(text);
+  img_element.attr('src',src);
+  
+}
+
+
+function aw_api_view_stream_layout_render_mentions_header(data)
+{
+   var first_level_html = "";
+   var second_level_html = ""; 
+   var third_level_html = "";
+   var interests_count = data.length;
+   var topic_index = 0;
+
+
+   $.each(data, function(key, entry){
+      topic_index = topic_index + 1;
+      if (topic_index <= 10) {
+          first_level_html = first_level_html +
+                 '<div class="aw_streams_layout_mentions_header_entry_flevel aw_js_filterer" aw_filter_on="mention"'+
+                    'aw_mention_filter="' + entry.id + '" ' +
+                    'aw_filter_title="topic=' + entry.name  + '" ' +
+                    '>' +
+                     entry.name+
+                 '</div>';
+      } else if (topic_index <= (10+12)){
+          second_level_html = second_level_html +
+                 '<div class="aw_streams_layout_mentions_header_entry_slevel aw_js_filterer" aw_filter_on="mention"'+
+                    'aw_mention_filter="' + entry.id + '" ' +
+                    'aw_filter_title="topic=' + entry.name  + '" ' +
+                    '>' +
+                     entry.name+
+                 '</div>';
+      } else {
+          third_level_html = third_level_html +
+                 '<div class="aw_streams_layout_mentions_header_entry_tlevel aw_js_filterer" aw_filter_on="mention"'+
+                    'aw_mention_filter="' + entry.id + '" ' +
+                    'aw_filter_title="topic=' + entry.name  + '" ' +
+                    '>' +
+                     entry.name+
+                 '</div>';
+      }
+   });
+   
+   if (topic_index >= 10 ) {
+      var view_operator_html = '<div id="aw_streams_layout_mentions_header_viewer">' +
+                                  '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_down_light.png">'+
+                               '</div>';
+      first_level_html = first_level_html + view_operator_html;
+   }
+
+   $("#aw_streams_layout_mentions_header_level1").html(first_level_html);
+   $("#aw_streams_layout_mentions_header_level2").html(second_level_html);
+   $("#aw_streams_layout_mentions_header_level3").html(third_level_html);
+
+}
+
+
+/*
+ *
+ *
+ *
+ */
 function aw_api_view_stream_layout_render_header(data)
 {
    var first_level_html = "";
@@ -734,9 +1111,14 @@ function aw_api_view_stream_layout_render_header(data)
    var third_level_html = "";
    var interests_count = data.length;
    var topic_index = 0;
+
+   first_level_html = first_level_html +
+                      '<div class="aw_streams_layout_header_entry_flevel" id="aw_js_stream_home_layout_filterer"> Home '+
+                      '</div>';
+
    $.each(data, function(key, entry){
       topic_index = topic_index + 1;
-      if (topic_index <= 5) {
+      if (topic_index <= 9) {
           first_level_html = first_level_html +
                  '<div class="aw_streams_layout_header_entry_flevel aw_js_stream_layout_filterer" aw_filter_on="topic"'+
                     'aw_interest_filter="' + entry.interest_id + '" ' +
@@ -744,7 +1126,7 @@ function aw_api_view_stream_layout_render_header(data)
                     'id="'+entry.interest_id+'">' +
                      entry.name+
                  '</div>';
-      } else if (topic_index <= (5+7)){
+      } else if (topic_index <= (9+12)){
           second_level_html = second_level_html +
                  '<div class="aw_streams_layout_header_entry_slevel aw_js_stream_layout_filterer" aw_filter_on="topic"'+
                     'aw_interest_filter="' + entry.interest_id + '" ' +
@@ -763,19 +1145,54 @@ function aw_api_view_stream_layout_render_header(data)
       }
    });
    
-   
+   if (topic_index >= 9 ) {
+      var view_operator_html = '<div id="aw_streams_layout_header_viewer">' +
+                                  '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_down_dark.png">'+
+                               '</div>';
+      first_level_html = first_level_html + view_operator_html;
+   }
+
+   first_level_html = first_level_html + '<div id="aw_js_streams_layout_view_images" class="aw_streams_layout_header_icons">'+
+                 '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/camera_header_icon.png">'+
+              '</div>'; 
+
+   first_level_html = first_level_html +  '<div id="aw_js_streams_layout_view_videos" class="aw_streams_layout_header_icons">'+
+                '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/video_header_icon.png">'+
+              '</div>'; 
 
    $("#aw_streams_layout_header_level1").html(first_level_html);
    $("#aw_streams_layout_header_level2").html(second_level_html);
    $("#aw_streams_layout_header_level3").html(third_level_html);
-
-
-   if (topic_index <= 5 )
-     $("#aw_streams_layout_header_view_operator").hide();
-   else 
-     $("#aw_streams_layout_header_view_operator").show(); 
+   
+   aw_cache_api_get_data("aw.images", aw_api_view_append_image_nav_in_header);  
+   aw_cache_api_get_data("aw.videos", aw_api_view_append_video_nav_in_header);   
 
 }
+
+
+function aw_api_view_append_image_nav_in_header(data)
+{
+/*   var html = '<div id="aw_js_streams_layout_view_images" class="aw_streams_layout_header_icons">'+
+                 '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/camera_header_icon.png">'+
+              '</div>'; 
+   if (data.length) {
+       $("#aw_streams_layout_header_level1").append(html);
+   }
+*/
+}
+
+
+function aw_api_view_append_video_nav_in_header(data)
+{
+/*   var html = '<div id="aw_js_streams_layout_view_videos" class="aw_streams_layout_header_icons">'+
+                '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/video_header_icon.png">'+
+              '</div>'; 
+   if (data.length) {
+       $("#aw_streams_layout_header_level1").append(html);
+   }
+*/
+}
+
 
 
 
@@ -871,26 +1288,6 @@ function aw_api_view_stream_trigger_interest_rendering(interest)
 
 
 
-function aw_api_view_stream_prepare_header_viewer_operator()
-{
-  $("#aw_streams_layout_header_level2").slideToggle();
-  if (aw_cache_api_get_data("aw.interests",null).length > (5+7) )
-    $("#aw_streams_layout_header_level3").slideToggle();
-  var span_element = $("#aw_streams_layout_header_viewer span");
-  var img_element = $("#aw_streams_layout_header_viewer img");
-  
-  var src_view_more = '/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_more.png';
-  var src_view_less = '/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/view_less.png';
-
-  var text = span_element.text() == 'view more' ? 'view less' : 'view more';
-  var src = img_element.attr('src').indexOf('more') >= 0 ? src_view_less : src_view_more;
-
-  span_element.text(text);
-  img_element.attr('src',src);
-  
-}
-
-
 
 
 
@@ -956,11 +1353,10 @@ function aw_api_view_apply_fillers(content_display_index)
            $(".aw_streams_layout_image_filler_section").addClass("article_width_long_post");
       }
       $("a[rel=aw_streams_layout_fallback_filler_img_fancybox]").fancybox({
-	  	'transitionIn'		: 'none',
-		  'transitionOut'		: 'none',
-  		'titlePosition' 	: 'over',
-	  
-    });
+	            'transitionIn'		: 'none',
+		          'transitionOut'		: 'none',
+  		        'titlePosition' 	: 'over',
+	    });
      }
   }
 
@@ -1142,3 +1538,114 @@ function aw_api_streams_layout_prepare_mentions_section(content_display_index)
     }
 }
 
+
+
+
+/********************************* VIEW IMAGES/VIDEOS SECTION IN STREAMS LAYOUT *****************************/
+
+
+
+function aw_api_view_images_in_streams_layout(data) 
+{
+  var html = "";
+  $("#aw_streams_layout_entries").html(""); 
+  $.each(data, function(key, content) {
+      html = html +
+             '<div class="aw_mark_post_image">'+
+                '<a rel="aw_streams_layout_images_fancybox" href="'+content.url + '">' +
+                   '<img src="'+content.url+'">'+
+                '</a>'+
+             '</div>';
+  });
+
+  $("#aw_streams_layout_entries").html(html);
+
+  // Prepare layout options.
+  var options = {
+      autoResize: true, // This will auto-update the layout when the browser window is resized.
+      container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
+      offset: 15, // Optional, the distance between grid items
+      itemWidth: 225 // Optional, the width of a grid item
+  };
+      
+  // Get a reference to your grid items.
+  var handler = $("#aw_streams_layout_entries div.aw_mark_post_image");
+    
+  // Call the layout function once all the images are loaded
+  $('#aw_streams_layout_entries_box').waitForImages(function() {
+    handler.wookmark(options);
+  });
+  
+  $("a[rel=aw_streams_layout_images_fancybox]").fancybox({
+	            'transitionIn'		: 'none',
+		          'transitionOut'		: 'none',
+  		        'titlePosition' 	: 'over',
+	});
+
+
+}
+
+
+$(window).load(function() {
+//  $("#aw_streams_layout_entries div.aw_mark_post").wookmark();
+});
+
+
+
+
+function aw_api_view_videos_in_streams_layout(data) 
+{
+  var html = "";
+  $("#aw_streams_layout_entries").html(""); 
+  $.each(data, function(key, content) {
+      html = html + 
+             '<div class="aw_mark_post_videos">'+
+                aw_api_view_streams_layout_render_videos_section(content)+
+             '</div>';
+  });
+
+  $("#aw_streams_layout_entries").html(html);
+
+  $(".aw_js_video_thumbnails").each(function() {
+       aw_model_api_get_video_thumbnail($(this));
+  });
+
+  // Prepare layout options.
+  var options = {
+      autoResize: true, // This will auto-update the layout when the browser window is resized.
+      container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
+      offset: 15, // Optional, the distance between grid items
+      itemWidth: 225 // Optional, the width of a grid item
+  };
+      
+  // Get a reference to your grid items.
+  var handler = $("#aw_streams_layout_entries div.aw_mark_post_videos");
+    
+  // Call the layout function once all the images are loaded
+  //$('#aw_streams_layout_entries_box').waitForImages(function() {
+    handler.wookmark(options);
+  //});
+}
+
+
+
+
+/*
+ *  HOME PAGE VIEW IN STREAMS LAYOUT
+ *
+ */
+function aw_api_view_home_in_streams_layout(data)
+{
+   var handler = $("#aw_streams_layout_entries");
+   
+   handler.html("");
+
+   $.each(data, function(key, content) {
+       
+
+   
+   });
+   
+    
+
+}

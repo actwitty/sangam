@@ -20,6 +20,53 @@ function aw_pulled_stream_allow_cookie(context){
   }
   return false;
 }
+
+
+
+
+var aw_api_global_interest_id;
+
+function aw_api_model_set_interests_data(data, summary_id)
+{
+  console.log("**in fetch interest data");
+  var filter_id = "aw.interestdata." + summary_id;
+  
+  var cache_data = {
+                      id : filter_id,
+                      data : data 
+                   };
+
+  aw_cache_api_set_data(filter_id, data);
+}
+
+/*
+ * SAMARTH : fetch and keep topical data for different interets
+ *
+ *
+ */
+
+function aw_api_model_fetch_interests_data(data)
+{
+  
+  var interest_data =  data; //aw_cache_api_get_data("aw.interests.data", null);
+  /*
+  $.each( interest_data, function( key, summary) {
+    
+      var filter = {
+                      user_id : aw_js_global_visited_user_credentials.id,
+                      summary_id : summary.interest_id
+                   }
+      
+      aw_api_global_interest_id = summary.interest_id;
+       
+      aw_pulled_stream_query_filter(filter, aw_api_model_set_interests_data); 
+      console.log("********************in fetch interest data"); 
+  });
+  */
+}
+
+
+
 /*****************************************************************/
 /*
  *
@@ -30,7 +77,8 @@ function aw_pulled_stream_query_filter(filter, fn_cb){
     aw_local_unity_control_registry = new Date().getTime();
     var context={
                     cookie:  aw_local_unity_control_registry,
-                    test : 1
+                    test : 1,
+                    summary_id : filter.summary_id
                 };
     if( fn_cb != null){
       context.no_render_fn_cb = fn_cb;
@@ -144,7 +192,8 @@ function aw_pulled_stream_sort_data(context){
                                   return time2.local_timestamp - time1.local_timestamp;
                                });
   if(  context.no_render_fn_cb != null ){
-    context.no_render_fn_cb(merged_arr);
+    // SAMARTH : added summary id
+    context.no_render_fn_cb(merged_arr, context.summary_id);
   }else{
     aw_api_controller_show_or_hide_close(true);
     aw_api_controller_render_stream(merged_arr);

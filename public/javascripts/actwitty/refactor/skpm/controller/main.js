@@ -122,13 +122,13 @@ function aw_api_controller_view_minimal_init(){
 function aw_api_controller_sketch_start_data_pulls(){
   aw_lib_console_log("DEBUG", "entered: aw_api_controller_sketch_start_data_pulls");
   /*initialize */
-  aw_api_model_static_profile_initialize();
+  //aw_api_model_static_profile_initialize();
   aw_api_model_service_list_initialize();
   aw_api_model_interests_initialize();
-  aw_api_model_trends_initialize();
+  //aw_api_model_trends_initialize();
   aw_api_model_mentions_initialize();
-  aw_api_model_service_pouplarity_initialize();
-  aw_api_view_locations_initialize_map_view(0, 0);
+  //aw_api_model_service_pouplarity_initialize();
+  //aw_api_view_locations_initialize_map_view(0, 0);
   
   /* prepare */ 
   $.each(aw_js_global_services_enabled.services, function(service_name, detail) { 
@@ -152,18 +152,39 @@ function aw_api_controller_sketch_start_data_pulls(){
 
   /* trigger */
   //1. Static profile section
-  aw_api_model_static_profile_trigger_fetch();
-  aw_api_model_stream_view_fetch();
-  aw_api_model_visited_user_feed_fetch();
+  //aw_api_model_static_profile_trigger_fetch();
+  //aw_api_model_stream_view_fetch();
+  //aw_api_model_visited_user_feed_fetch();
   aw_api_model_videos_fetch();
   //aw_api_model_location_fetch();
-  aw_api_model_visited_user_friends_fetch();
+  //aw_api_model_visited_user_friends_fetch();
   if ( aw_js_global_visited_user_credentials.id == aw_js_global_logged_in_user_credentials.id ){
     aw_api_model_visited_user_feed_fetch();
   }
   aw_api_model_images_fetch();
-  aw_api_view_stream_set_default_internal_header();
+  //aw_api_view_stream_set_default_internal_header();
+
+  // samarth : fetch some data for all interests
+  //aw_api_model_topical_data_fetch();
+  // end
+
   aw_lib_console_log("DEBUG", "exitting: aw_api_controller_sketch_start_data_pulls");
+  
+  
+  // A HACK FOR REDIRECTING HOME PAGE NOW TO STREAMS LAYOUT PAGE
+  activate_streams_deactivate_profile();
+  aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_header);
+  aw_cache_api_get_data("aw.mentions.data",aw_api_view_stream_layout_render_mentions_header);
+  if (aw_js_active_interest_stream === "all") {
+      //$("#aw_js_stream_home_layout_filterer").trigger('click');
+      //aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_header);
+      //aw_cache_api_get_data("aw.mentions.data",aw_api_view_stream_layout_render_mentions_header);
+      aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);       
+  } else if (aw_js_active_interest_stream === "images") {
+      aw_cache_api_get_data("aw.images", aw_api_view_images_in_streams_layout); 
+  } else if (aw_js_active_interest_stream === "videos") {
+      aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+  }
 
 }
 
@@ -178,10 +199,11 @@ function activate_streams_deactivate_profile()
   $(".aw_page_wrapper").hide();
   $(".aw_actwitty_share_on_social_media").hide();
 
+  /*
   $(".aw_page_sketch_header").css("height","140px");
   $(".aw_banner_image_box").css("height","140px");
   $(".aw_banner_info_box").css("height","140px");
-
+  */
   aw_cache_api_set_data("aw.layout","streams_layout");
 
 }
@@ -199,6 +221,13 @@ function activate_profile_deactivate_streams()
   aw_cache_api_set_data("aw.layout","infographic_layout");
 
 }
+
+
+
+/* A BIT OF HACK TO GET INTO NEW PAGE */
+$(document).ready(function(){
+  
+});
 
 
 
