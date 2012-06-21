@@ -185,7 +185,7 @@ function aw_api_controller_tweak_stream_header(header_data){
  *
  */
 function aw_api_controller_show_videos(data){
-  //aw_cache_api_set_data("aw.images", data);
+  aw_cache_api_set_data("aw.videos", data);
   //aw_cache_api_get_data("aw.images", aw_api_view_append_image_nav_in_header);  
   //aw_api_view_videos_render(data);
 }

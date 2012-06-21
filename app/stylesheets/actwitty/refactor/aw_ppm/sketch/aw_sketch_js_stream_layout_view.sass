@@ -1,12 +1,14 @@
+body
+  background: #e6e6e6
 .aw_mark_post
   width: 220px
   border: 1px solid #ddd
   padding: 8px 0
   background-color: white
   border: 1px solid #DDD
-  -webkit-box-shadow: 0 8px 6px -6px #AAA
-  -moz-box-shadow: 0 8px 6px -6px #aaa
-  box-shadow: 0 8px 6px -6px #AAA
+  -moz-box-shadow: 0px 0px 5px #e0e0e0
+  -webkit-box-shadow: 0px 0px 5px #e0e0e0
+  box-shadow: 0px 0px 5px #e0e0e0
   display: inline-block
   vertical-align: top
   word-wrap: break-word
@@ -164,10 +166,143 @@
 
 
 
+/**************** HOME PAGE TOPICAL SECTION **********************
+
+.aw_stream_layout_home_topical_section
+  width: 470px
+  border: 1px solid red
+  padding: 8px 0
+  background-color: white
+  border: 1px solid #ccc
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
+  display: inline-block
+  text-align: center
+  img
+    max-width: 380px
+  .aw_stream_home_page_content
+    border-bottom: 1px solid #ccc
+    padding: 12px
+    .aw_stream_content
+      .aw_attachment_content_box
+        font-size: 13px
+        font-weight: bold
+    .aw_attachment_image_box_longpost
+      text-align: center
+      max-width: 210px
+      overflow: hidden
+      display-inline: block
+      margin-right: 4px
+      padding: 6px
+      float: left
+      .aw_attachment_image
+        max-width: 200px
+        overflow: hidden
+    .aw_attachment_title_box_longpost
+      float:left
+      margin: 5px 0 5px 5px
+      max-width: 440px
+      overflow: hidden
+      text-align: left
+      a
+        color: #333
+        text-decoration: none
+        line-height: 18px
+        font-family: Helvetica, Arial, sans-serif
+        font-size: 18px
+        font-style: normal
+        font-weight: bold
+        word-wrap: break-word
+    .aw_attachment_content_box_longpost
+      color: #333
+      margin-top: 10px
+      p
+        font-size: 13px
+        line-height: 20px
+        font-weight: bold
+        margin-top: 10px
+        margin-bottom: 0
+        text-align: left
+        word-wrap: break-word
+  .aw_actions_box
+    float: left
+    width: 100%
+    margin-top: 10px
+    display: block
+    max-height: 15px
+    ul
+      list-style: none
+      margin: 0
+      display: none
+      li
+        display: inline
+        float: left
+        margin-left: 3px
+        padding-left: 3px
+        height: 15px
+        line-height: 15px
+        color: #666
+        font-size: 11px
+        font-family: Helvetica, Arial, sans-serif
+      .aw_single_action_link
+        &:hover
+          color: #008BD8
+          cursor: pointer
+      .aw_single_action_static
+  .aw_originator_box
+    position: relative
+    display: block
+    width: 100%
+    margin-top: 0px
+    height: 20px
+    a
+      text-decoration: none
+      img
+        float: left
+        width: 24px
+        height: 24px
+        margin: 3px 8px 3px 0px
+        border: 0
+        -ms-interpolation-mode: bicubic
+        color: #999
+        line-height: 30px
+    .aw_stream_content_screen_name
+      color: #999
+      line-height: 30px
+      font-family: Helvetica, Arial, sans-serif
+      font-size: 11px
+      font-style: normal
+      margin: 0
+      margin-left: 5px
+      &:hover
+        cursor: pointer
+
+    .aw_stream_content_name
+      color: #999
+      line-height: 30px
+      font-family: Helvetica, Arial, sans-serif
+      font-size: 12px
+      font-style: normal
+      margin: 0px 
+      float: left
+      &:hover
+        cursor: pointer
+
+    .aw_stream_src_img
+      float: right
+      width: 16px
+      height: 16px
+      margin: 3px 8px 3px 0px
+      border: 0
+      -ms-interpolation-mode: bicubic
+      &:hover
+        cursor: pointer      
 
 
 
-
+.aw_stream_layout_home_topical_section .aw_stream_home_page_content:last-child
+  border: none
 
 
 
@@ -222,7 +357,7 @@
 /*************** HEADER REALTED CSS *****************************
 
 #aw_streams_layout_mentions_header_level1 , #aw_streams_layout_mentions_header_level2 , #aw_streams_layout_mentions_header_level3
-  width: 100%
+  width: 102%
   height: 30px
   position: relative
   background: #333
@@ -311,7 +446,7 @@
 
 
 #aw_streams_layout_header_level1 , #aw_streams_layout_header_level2 , #aw_streams_layout_header_level3
-  width: 100%
+  width: 102%
   height: 40px
   position: relative
   /*background-image: url(/images/actwitty/refactor/aw_common/grain_light_gray.jpg)
@@ -486,11 +621,20 @@
 
 
 .aw_streams_layout_sectional_view_header
+  color: black
+  padding: 5px 0 5px 5px
+  text-align: left
+  text-transform: uppercase
   font-size: 22px
-  color: #333
   font-weight: bold
-  padding: 5px 0 5px 0px
-  border-bottom: 2px solid #333
+  border-bottom: solid 4px black
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif
+  margin-left: 18px
+  margin-right: 18px
+  margin-top: 13px
+  margin-bottom: 6px
+  letter-spacing: -0.3px
+  
 
 
 
@@ -498,8 +642,12 @@
 #aw_streams_layout_content_container
   width: 100%
   background: #fff
-  padding: 4px
-  margin-top: 10px
+  padding: 15px 8px
+  margin-top: 25px
+  border-radius: 5px
+  -moz-box-shadow: 0px 0px 5px #e0e0e0
+  -webkit-box-shadow: 0px 0px 5px #e0e0e0
+  box-shadow: 0px 0px 5px #e0e0e0
 
 
 
@@ -912,6 +1060,7 @@
   padding: 10px 0 10px 0
   display: block
   position: relative
+  background: #fff
 
 .aw_streams_layout_interests_header_label
   border: 0px solid red

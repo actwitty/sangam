@@ -1643,22 +1643,148 @@ function aw_api_view_videos_in_streams_layout(data)
 
 
 
+/************************************************************************************
+ *                                                                                  *
+ *                        HOME PAGE VIEW IN STREAMS LAYOUT                          *
+ *                                                                                  *
+ ************************************************************************************/
+
+
+
 /*
- *  HOME PAGE VIEW IN STREAMS LAYOUT
+ *
+ *
+ */
+function aw_view_stream_layout_get_entry_html_for_topic_snapshot(entry, force_class){
+  
+  var text_html = "";
+  var hover_html = "";
+
+  var content_type = aw_api_view_stream_layout_get_content_category(entry);
+  var aw_isotope_class = aw_api_stream_layout_prepare_isotope_class(content_type); 
+
+  if (aw_isotope_class == 'article_width_long_post')
+    var attachment_html = aw_view_stream_get_attachments_for_longpost_html(entry);
+  else
+    var attachment_html = aw_view_stream_get_attachments_for_longpost_html(entry);
+
+  if (force_class)
+    aw_isotope_class = force_class;
+
+  if(!attachment_html.length){
+    text_html = aw_view_stream_get_text_html(entry);
+  }else{
+   hover_html = aw_api_view_stream_generate_hover_info(entry);
+  }
+
+
+  var html = '<div class="'+force_class+'">' +
+
+                '<div class="aw_stream_time_orig" >' +
+                    '<abbr class="aw_js_timeago" title="' + entry.timestamp + '"></abbr>' +
+                '</div>' +
+
+                '<div class="aw_stream_content" >' +
+                  attachment_html +
+                  text_html +
+                  aw_view_stream_get_mentions_html(entry) +
+                  aw_view_stream_get_location_html(entry) +
+                '</div>' +
+
+                aw_view_streams_layout_get_actions_html(entry) +
+
+
+                '<div class="aw_originator_box aw_js_stream_hover_originator" >' +
+                  '<a href="' + entry.originator.url + '" target="_blank">' +
+                    '<img src="' +  entry.originator.image  + '" width=16px height=16px />' +
+                  '</a>' +
+                  aw_view_stream_get_display_name(entry) +
+                  '<img class="aw_stream_src_img" src="' + social_media_sources[entry.service.name] + '" width=16px height=16px />' +
+                  hover_html +                
+                '</div>' +
+             '</div>';
+  return html;
+}
+
+
+
+
+
+
+
+/*
+ *
+ */
+function aw_api_view_build_home_topic_section(data, topic_name, main_html)
+{
+  var inner_html = '<div class="aw_stream_layout_home_topical_section">' +
+                     '<div class="aw_streams_layout_sectional_view_header">'+
+                          topic_name +
+                     '</div>';
+                    
+
+  var index = 0;
+
+  $.each(data, function(key, post) {
+ 
+     inner_html = inner_html + aw_view_stream_layout_get_entry_html_for_topic_snapshot(post, "aw_stream_home_page_content");
+     index++;
+
+     if (index == 3)
+         return false;
+  
+  });
+
+  inner_html = inner_html + '</div>';
+
+  return inner_html;
+
+}
+
+
+
+
+
+/*
  *
  */
 function aw_api_view_home_in_streams_layout(data)
 {
    var handler = $("#aw_streams_layout_entries");
+
+   var key_prefix = "aw.interestdata.";
    
+   var html = "";
+
    handler.html("");
 
-   $.each(data, function(key, content) {
-       
+   $.each(data, function(key, interest) {
+
+      var topical_data = aw_cache_api_get_data(key_prefix+interest.interest_id, null);
+     
+      html = html + aw_api_view_build_home_topic_section(topical_data, interest.name);
+
+   });
+  
+   handler.html(html);
 
    
+   // Prepare layout options.
+   var options = {
+       autoResize: true, // This will auto-update the layout when the browser window is resized.
+       container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
+       offset: 15, // Optional, the distance between grid items
+   };
+      
+   // Get a reference to your grid items.
+   var handler = $("#aw_streams_layout_entries div.aw_stream_layout_home_topical_section");
+    
+
+   handler.waitForImages(function() {
+     //setupBlocks("#aw_streams_layout_entries" , handler);
+     handler.wookmark(options);
    });
-   
+
     
 
 }

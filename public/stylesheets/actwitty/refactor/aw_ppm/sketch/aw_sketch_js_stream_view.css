@@ -202,12 +202,13 @@
     height: auto;
     display: block; }
     .aw_stream_content .aw_attachment_content_box .aw_attachment_paragraph {
-      color: black;
+      color: #333333;
       font-size: 13px;
       line-height: 18px;
       margin-top: 10px;
       margin-bottom: 0;
       text-align: left;
+      font-weight: bold;
       word-wrap: break-word; }
       .aw_stream_content .aw_attachment_content_box .aw_attachment_paragraph .aw_attachment_caption {
         color: #999999; }

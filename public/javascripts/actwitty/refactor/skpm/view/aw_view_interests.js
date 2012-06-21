@@ -18,7 +18,10 @@ function aw_api_view_interest_render(data){
   $("#aw_js_topics_list_box").append(html);
 
   
-  if (aw_js_active_interest_stream != "")
+  if (aw_js_active_interest_stream != "" && 
+      aw_js_active_interest_stream != "all" && 
+      aw_js_active_interest_stream != "images" &&
+      aw_js_active_interest_stream != "videos" )
     setup_stream_layout_view(aw_js_active_interest_stream); 
 }
  

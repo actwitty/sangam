@@ -179,7 +179,9 @@ function aw_api_controller_sketch_start_data_pulls(){
       //$("#aw_js_stream_home_layout_filterer").trigger('click');
       //aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_header);
       //aw_cache_api_get_data("aw.mentions.data",aw_api_view_stream_layout_render_mentions_header);
-      aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);       
+      //aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);       
+
+      // need to wait to invoke home screen viewing from aw_local_stream ... a big hack :(
   } else if (aw_js_active_interest_stream === "images") {
       aw_cache_api_get_data("aw.images", aw_api_view_images_in_streams_layout); 
   } else if (aw_js_active_interest_stream === "videos") {
@@ -221,13 +223,6 @@ function activate_profile_deactivate_streams()
   aw_cache_api_set_data("aw.layout","infographic_layout");
 
 }
-
-
-
-/* A BIT OF HACK TO GET INTO NEW PAGE */
-$(document).ready(function(){
-  
-});
 
 
 

@@ -1,12 +1,15 @@
+body {
+  background: #e6e6e6; }
+
 .aw_mark_post {
   width: 220px;
   border: 1px solid #dddddd;
   padding: 8px 0;
   background-color: white;
   border: 1px solid #dddddd;
-  -webkit-box-shadow: 0 8px 6px -6px #aaaaaa;
-  -moz-box-shadow: 0 8px 6px -6px #aaaaaa;
-  box-shadow: 0 8px 6px -6px #aaaaaa;
+  -moz-box-shadow: 0px 0px 5px #e0e0e0;
+  -webkit-box-shadow: 0px 0px 5px #e0e0e0;
+  box-shadow: 0px 0px 5px #e0e0e0;
   display: inline-block;
   vertical-align: top;
   word-wrap: break-word; }
@@ -152,6 +155,135 @@
   width: 225px;
   border: 0px solid red; }
 
+/*************** HOME PAGE TOPICAL SECTION ********************** */
+.aw_stream_layout_home_topical_section {
+  width: 470px;
+  border: 1px solid red;
+  padding: 8px 0;
+  background-color: white;
+  border: 1px solid #cccccc;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  text-align: center; }
+  .aw_stream_layout_home_topical_section img {
+    max-width: 380px; }
+  .aw_stream_layout_home_topical_section .aw_stream_home_page_content {
+    border-bottom: 1px solid #cccccc;
+    padding: 12px; }
+    .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_stream_content .aw_attachment_content_box {
+      font-size: 13px;
+      font-weight: bold; }
+    .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_image_box_longpost {
+      text-align: center;
+      max-width: 210px;
+      overflow: hidden;
+      display-inline: block;
+      margin-right: 4px;
+      padding: 6px;
+      float: left; }
+      .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_image_box_longpost .aw_attachment_image {
+        max-width: 200px;
+        overflow: hidden; }
+    .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_title_box_longpost {
+      margin: 5px 0 5px 5px;
+      max-width: 440px;
+      overflow: hidden;
+      text-align: left; }
+      .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_title_box_longpost a {
+        color: #333333;
+        text-decoration: none;
+        line-height: 18px;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: bold;
+        word-wrap: break-word; }
+    .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_content_box_longpost {
+      color: #333333;
+      margin-top: 10px; }
+      .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_content_box_longpost p {
+        font-size: 13px;
+        line-height: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 0;
+        text-align: left;
+        word-wrap: break-word; }
+  .aw_stream_layout_home_topical_section .aw_actions_box {
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+    display: block;
+    max-height: 15px; }
+    .aw_stream_layout_home_topical_section .aw_actions_box ul {
+      list-style: none;
+      margin: 0;
+      display: none; }
+      .aw_stream_layout_home_topical_section .aw_actions_box ul li {
+        display: inline;
+        float: left;
+        margin-left: 3px;
+        padding-left: 3px;
+        height: 15px;
+        line-height: 15px;
+        color: #666666;
+        font-size: 11px;
+        font-family: Helvetica, Arial, sans-serif; }
+      .aw_stream_layout_home_topical_section .aw_actions_box ul .aw_single_action_link:hover {
+        color: #008bd8;
+        cursor: pointer; }
+  .aw_stream_layout_home_topical_section .aw_originator_box {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-top: 0px;
+    height: 20px; }
+    .aw_stream_layout_home_topical_section .aw_originator_box a {
+      text-decoration: none; }
+      .aw_stream_layout_home_topical_section .aw_originator_box a img {
+        float: left;
+        width: 24px;
+        height: 24px;
+        margin: 3px 8px 3px 0px;
+        border: 0;
+        -ms-interpolation-mode: bicubic;
+        color: #999999;
+        line-height: 30px; }
+    .aw_stream_layout_home_topical_section .aw_originator_box .aw_stream_content_screen_name {
+      color: #999999;
+      line-height: 30px;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-style: normal;
+      margin: 0;
+      margin-left: 5px; }
+      .aw_stream_layout_home_topical_section .aw_originator_box .aw_stream_content_screen_name:hover {
+        cursor: pointer; }
+    .aw_stream_layout_home_topical_section .aw_originator_box .aw_stream_content_name {
+      color: #999999;
+      line-height: 30px;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-style: normal;
+      margin: 0px;
+      float: left; }
+      .aw_stream_layout_home_topical_section .aw_originator_box .aw_stream_content_name:hover {
+        cursor: pointer; }
+    .aw_stream_layout_home_topical_section .aw_originator_box .aw_stream_src_img {
+      float: right;
+      width: 16px;
+      height: 16px;
+      margin: 3px 8px 3px 0px;
+      border: 0;
+      -ms-interpolation-mode: bicubic; }
+      .aw_stream_layout_home_topical_section .aw_originator_box .aw_stream_src_img:hover {
+        cursor: pointer; }
+
+.aw_stream_layout_home_topical_section .aw_stream_home_page_content:last-child {
+  border: none; }
+
 /****************************************************************************************************************** */
 .aw_stream_post_action {
   width: 100%;
@@ -191,7 +323,7 @@
 
 /************** HEADER REALTED CSS ***************************** */
 #aw_streams_layout_mentions_header_level1, #aw_streams_layout_mentions_header_level2, #aw_streams_layout_mentions_header_level3 {
-  width: 100%;
+  width: 102%;
   height: 30px;
   position: relative;
   background: #333333;
@@ -265,7 +397,7 @@
 
 /* */
 #aw_streams_layout_header_level1, #aw_streams_layout_header_level2, #aw_streams_layout_header_level3 {
-  width: 100%;
+  width: 102%;
   height: 40px;
   position: relative;
   /*background-image: url(/images/actwitty/refactor/aw_common/grain_light_gray.jpg) */
@@ -421,17 +553,29 @@
   margin-right: 30px; }
 
 .aw_streams_layout_sectional_view_header {
+  color: black;
+  padding: 5px 0 5px 5px;
+  text-align: left;
+  text-transform: uppercase;
   font-size: 22px;
-  color: #333333;
   font-weight: bold;
-  padding: 5px 0 5px 0px;
-  border-bottom: 2px solid #333333; }
+  border-bottom: solid 4px black;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  margin-left: 18px;
+  margin-right: 18px;
+  margin-top: 13px;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px; }
 
 #aw_streams_layout_content_container {
   width: 100%;
   background: white;
-  padding: 4px;
-  margin-top: 10px; }
+  padding: 15px 8px;
+  margin-top: 25px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 5px #e0e0e0;
+  -webkit-box-shadow: 0px 0px 5px #e0e0e0;
+  box-shadow: 0px 0px 5px #e0e0e0; }
 
 .masonry_item {
   /*margin: 8px */
@@ -795,7 +939,8 @@
   margin-top: 10px;
   padding: 10px 0 10px 0;
   display: block;
-  position: relative; }
+  position: relative;
+  background: white; }
 
 .aw_streams_layout_interests_header_label {
   border: 0px solid red;

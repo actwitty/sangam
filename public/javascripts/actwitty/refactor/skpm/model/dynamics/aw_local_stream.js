@@ -26,6 +26,9 @@ function aw_pulled_stream_allow_cookie(context){
 
 var aw_api_global_interest_id;
 
+var aw_global_track_topic_stream_req;
+var aw_global_topical_length;
+
 function aw_api_model_set_interests_data(data, summary_id)
 {
   console.log("**in fetch interest data");
@@ -37,6 +40,12 @@ function aw_api_model_set_interests_data(data, summary_id)
                    };
 
   aw_cache_api_set_data(filter_id, data);
+  aw_global_track_topic_stream_req++;
+
+  if (aw_global_track_topic_stream_req === aw_global_topical_length && aw_js_active_interest_stream === "all") {
+      aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);  
+  }
+    
 }
 
 /*
@@ -49,7 +58,8 @@ function aw_api_model_fetch_interests_data(data)
 {
   
   var interest_data =  data; //aw_cache_api_get_data("aw.interests.data", null);
-  /*
+  aw_global_topical_length = interest_data.length;
+  aw_global_track_topic_stream_req = 0;
   $.each( interest_data, function( key, summary) {
     
       var filter = {
@@ -62,7 +72,6 @@ function aw_api_model_fetch_interests_data(data)
       aw_pulled_stream_query_filter(filter, aw_api_model_set_interests_data); 
       console.log("********************in fetch interest data"); 
   });
-  */
 }
 
 
