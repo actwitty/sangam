@@ -153,6 +153,38 @@
   border: 0px solid red; }
 
 /****************************************************************************************************************** */
+.aw_stream_post_action {
+  width: 100%;
+  height: 45px;
+  border: 0px solid red;
+  background-color: rgba(240, 240, 240, 0.1);
+  background: rgba(240, 240, 240, 0.1);
+  color: rgba(240, 240, 240, 0.1); }
+  .aw_stream_post_action a {
+    display: inline-block;
+    float: right;
+    margin: 10px 5px 0 0; }
+
+.aw_tweet_post_action_retweet, .aw_tweet_post_action_reply, .aw_tweet_post_action_favorite {
+  width: 16px;
+  height: 16px;
+  text-align: center; }
+
+.aw_tweet_post_action_retweet {
+  background-image: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/twitter_action_icons/retweet.png); }
+  .aw_tweet_post_action_retweet:hover {
+    background-image: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/twitter_action_icons/retweet_hover.png); }
+
+.aw_tweet_post_action_reply {
+  background-image: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/twitter_action_icons/reply.png); }
+  .aw_tweet_post_action_reply:hover {
+    background-image: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/twitter_action_icons/reply_hover.png); }
+
+.aw_tweet_post_action_favorite {
+  background-image: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/twitter_action_icons/favorite.png); }
+  .aw_tweet_post_action_favorite:hover {
+    background-image: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/twitter_action_icons/favorite_hover.png); }
+
 /************** */
 .aw_section_container_internal_data_box {
   display: none; }

@@ -459,6 +459,22 @@ function aw_view_streams_layout_get_actions_html(entry){
   }
 
   
+  if (entry.service.name === "twitter") {
+  
+    html = '<div class="aw_stream_post_action">'+
+             '<a href="https://twitter.com/intent/tweet?in_reply_to='+entry.service.pid+'">'+
+               '<div class="aw_tweet_post_action_reply"></div>'+
+             '</a>'+
+             '<a href="https://twitter.com/intent/retweet?tweet_id='+entry.service.pid+'">'+
+               '<div class="aw_tweet_post_action_retweet"></div>'+
+             '</a>'+
+             '<a href="https://twitter.com/intent/favorite?tweet_id='+entry.service.pid+'">'+
+               '<div class="aw_tweet_post_action_favorite"></div>'+
+             '</a>'+
+           '</div>';
+  
+  }
+  
   return html;
 }
 
@@ -489,7 +505,6 @@ function aw_view_stream_layout_get_entry_html(entry, force_class){
    hover_html = aw_api_view_stream_generate_hover_info(entry);
   }
 
-  
 
   var html = '<div class="aw_mark_post">' +
 

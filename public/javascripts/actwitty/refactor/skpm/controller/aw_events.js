@@ -14,6 +14,16 @@ $(".aw_js_filterer").live('click', function(){
 });
 
 
+  // view images in streams layout
+  $("#aw_js_streams_layout_view_images").live('click', function() {
+      aw_cache_api_get_data("aw.images", aw_api_view_images_in_streams_layout);
+  });
+
+  // view videos in streams layout
+  $("#aw_js_streams_layout_view_videos").live('click', function() {
+      aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+  });
+
 /*******************************************************/
 /*
  *
@@ -81,15 +91,7 @@ $(document).ready(function(){
       aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);       
   });
 
-  // view images in streams layout
-  $("#aw_js_streams_layout_view_images").live('click', function() {
-      aw_cache_api_get_data("aw.images", aw_api_view_images_in_streams_layout);
-  });
 
-  // view videos in streams layout
-  $("#aw_js_streams_layout_view_videos").live('click', function() {
-      aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
-  });
 
   
 
