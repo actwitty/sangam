@@ -107,7 +107,10 @@ function aw_cache_api_set_data(cache_id,cache_data)
          $.each(aw_global_cache_data[cache_id].fn_arr, function(index, fn_cb) {
             fn_cb(cache_data);
          });
-         aw_global_cache_data[cache_id].fn_arr=[];
+         aw_global_cache_data[cache_id] = {
+                                        data: cache_data,
+                                        fn_arr: []
+                                     };
      } else { /* only set the data */
        aw_global_cache_data[cache_id].data = cache_data;
      } 
