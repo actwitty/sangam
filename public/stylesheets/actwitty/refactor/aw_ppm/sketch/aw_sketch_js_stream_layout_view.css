@@ -1,6 +1,20 @@
 body {
   background: #e6e6e6; }
 
+#aw_page_footer {
+  margin-top: 20px;
+  width: 100%;
+  height: 20px;
+  padding: 8px;
+  text-align: center; }
+  #aw_page_footer img {
+    max-height: 20px;
+    vertical-align: middle; }
+  #aw_page_footer span {
+    color: #333333;
+    font-size: 12px;
+    font-weight: bold; }
+
 .aw_mark_post {
   width: 220px;
   border: 1px solid #dddddd;
