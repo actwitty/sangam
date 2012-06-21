@@ -158,7 +158,8 @@ body {
   -moz-box-shadow: 0 8px 6px -6px #aaaaaa;
   box-shadow: 0 8px 6px -6px #aaaaaa;
   display: inline-block;
-  text-align: center; }
+  text-align: center;
+  min-height: 190px; }
   .aw_mark_post_videos img {
     max-width: 210px; }
 
