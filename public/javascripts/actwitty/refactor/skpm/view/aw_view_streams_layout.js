@@ -1743,6 +1743,54 @@ function aw_api_view_build_home_topic_section(data, topic_name, main_html)
 
 
 
+function aw_stream_home_page_meta_content_html(type, count)
+{
+    var html = '<div class="aw_streams_layout_interests_meta_info_box " >'+
+                   '<div class="aw_streams_layout_interests_meta_info_icon">'+
+                     '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/'+ type +'.png">'+
+                   '</div>'+
+                   '<p><strong>'+
+                      count +
+                      '</strong>'+
+                      type +
+                   '</p>'+
+                  '</div>';
+    return html;
+}
+
+
+function aw_api_view_stream_render_home_meta_data(data)
+{
+  var html = "";
+  var meta_data = {  
+                     "post":0,
+                     "mention":0,
+                     "link" : 0,
+                     "image" : 0,
+                     "video" : 0,
+                     "location" :0,
+                  };
+
+  $.each(data, function(key, interest) {
+
+      meta_data["image"] = meta_data["image"] + interest.image;
+      meta_data["link"] = meta_data["link"] + interest.link;
+      meta_data["location"] = meta_data["location"] + interest.location;
+      meta_data["mention"] = meta_data["mention"] + interest.mention;
+      meta_data["post"] = meta_data["post"] + interest.post;
+      meta_data["video"] = meta_data["video"] + interest.video;
+  });
+  jQuery.each(meta_data, function(key, val) {
+      html = html +  aw_stream_home_page_meta_content_html(key+"s", val);
+  });
+
+  var headed_label = '<span class="aw_filter_subfilter"> Home Feeds </span> ';
+ 
+  $(".aw_streams_layout_interests_header_label").html(headed_label);
+  $("#aw_streams_layout_interests_meta_data").html(html);
+}
+
+
 
 
 /*
@@ -1757,6 +1805,8 @@ function aw_api_view_home_in_streams_layout(data)
    var html = "";
 
    handler.html("");
+
+   aw_api_view_stream_render_home_meta_data(data);
 
    $.each(data, function(key, interest) {
 
