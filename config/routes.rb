@@ -103,6 +103,7 @@ Sangam::Application.routes.draw do
 
   #match ":username" => "home#show"
   match ":username" => "home#show"
+  match ":username/mentions/:mention" => "home#show"
   match ":username/streams/:stream" => "home#show"
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):

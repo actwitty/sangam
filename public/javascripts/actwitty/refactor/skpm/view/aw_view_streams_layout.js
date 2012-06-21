@@ -460,7 +460,6 @@ function aw_view_streams_layout_get_actions_html(entry){
 
   
   if (entry.service.name === "twitter") {
-  
     html = '<div class="aw_stream_post_action">'+
              '<a href="https://twitter.com/intent/tweet?in_reply_to='+entry.service.pid+'">'+
                '<div class="aw_tweet_post_action_reply"></div>'+
@@ -472,7 +471,6 @@ function aw_view_streams_layout_get_actions_html(entry){
                '<div class="aw_tweet_post_action_favorite"></div>'+
              '</a>'+
            '</div>';
-  
   }
   
   return html;

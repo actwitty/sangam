@@ -35,6 +35,7 @@
   var aw_js_global_tw_access = #{@tw_access.to_json};
 
   var aw_js_active_interest_stream = '#{@active_stream}';
+  var aw_js_active_mention_stream = '#{@active_mention}';
 
 - if user_signed_in?
   :javascript
@@ -150,7 +151,7 @@
         /*#aw_streams_layout_image_entries.isotope_item.clearfix
           
   #aw_js_topics_list_box.aw_section_container_internal_data_box
-
+  #aw_js_mentions_list_box
 
 
                 

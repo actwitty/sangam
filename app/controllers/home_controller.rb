@@ -112,6 +112,10 @@ class HomeController < ApplicationController
     @user=nil
     @page_mode="profile_show_page"
     @show_invite_friends = false
+
+    @active_mention = ""
+    @active_stream = ""
+
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params} #{request.path} #{session.inspect}")
     if user_signed_in?
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
@@ -121,6 +125,20 @@ class HomeController < ApplicationController
     end
 
 
+    if !params[:mention].nil?
+       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for mention sketch #{params} #{request.path}") 
+       @active_mention = params[:mention] 
+    elsif !params[:stream].nil?
+       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for mention sketch #{params} #{request.path}") 
+       @active_stream = params[:stream] 
+    else
+       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for mention sketch #{params} #{request.path}") 
+       @active_stream = "all"
+    end
+
+
+  
+=begin
     if params[:stream].nil?
       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for profile sketch #{params} #{request.path}")
       @active_stream = "all"
@@ -131,7 +149,7 @@ class HomeController < ApplicationController
       #@active_stream = "all"
 
     end
-
+=end
 
 
     if params[:username].nil?
