@@ -924,14 +924,14 @@ body {
 
 /*********** STREAM LAYOUT ENTRIES HEADER */
 #aw_streams_layout_content_header {
-  border: 1px solid #cccccc;
-  border-radius: 4px;
+  /*border: 1px solid #ddd */
+  /* border-radius: 4px */
   padding-bottom: 10px;
   margin-bottom: 20px;
   background-color: rgba(17, 205, 238, 0.04);
-  -webkit-box-shadow: 0 4px 3px -3px #333333;
-  -moz-box-shadow: 0 4px 3px -3px #333333;
-  box-shadow: 0 4px 3px -3px #333333; }
+  /*-webkit-box-shadow: 0 4px 3px -3px #333 */
+  /*-moz-box-shadow: 0 4px 3px -3px #333 */
+  /*box-shadow: 0 4px 3px -3px #333 */ }
 
 .aw_streams_layout_sidebar_entry {
   width: 100%;
