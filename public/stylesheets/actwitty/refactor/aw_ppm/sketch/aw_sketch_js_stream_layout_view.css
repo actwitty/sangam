@@ -17,16 +17,17 @@ body {
 
 .aw_mark_post {
   width: 220px;
-  border: 1px solid #dddddd;
+  border: 1px solid #cccccc;
   padding: 8px 0;
   background-color: white;
   border: 1px solid #dddddd;
-  -moz-box-shadow: 0px 0px 5px #e0e0e0;
-  -webkit-box-shadow: 0px 0px 5px #e0e0e0;
-  box-shadow: 0px 0px 5px #e0e0e0;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   display: inline-block;
   vertical-align: top;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  min-height: 180px; }
   .aw_mark_post img {
     max-width: 200px; }
   .aw_mark_post .aw_stream_content .aw_attachment_image_box_longpost {
