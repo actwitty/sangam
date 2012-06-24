@@ -48,7 +48,15 @@
   :javascript
     var aw_js_global_logged_in_user_credentials = { };
 
-
+#fb-root
+  :javascript
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId="+aw_js_global_facebook_app_id+";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
   
 
@@ -102,38 +110,7 @@
              
           .aw_streams_actwitty_share_on_social_media
             
-            .aw_actwitty_share_on_twitter
-              %a.twitter-share-button{"data-via" => "act_witty", :href => "https://twitter.com/share"} Tweet
-              :javascript
-                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-            .aw_actwitty_share_on_facebook
-              %a{"expr:share_url" => "data:post.canonicalUrl", :href => "http://www.facebook.com/sharer.php", :name => "fb_share", :type => "button_count"} Share
-              %script{:src => "http://static.ak.fbcdn.net/connect.php/js/FB.Share", :type => "text/javascript"}
-              /
-                .fb-like{"data-font" => "arial", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "100"}
-              
-                #fb-root
-                :javascript
-                  (function(d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id)) return;
-                      js = d.createElement(s); js.id = id;
-                      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                      fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-            .aw_actwitty_share_on_googleplus
-              / Place this tag where you want the +1 button to render
-              %g:plusone{:annotation => "inline", :size => "medium", :width => "120"}
-                / Place this render call where appropriate
-                :javascript
-                  (function() {
-                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                    po.src = 'https://apis.google.com/js/plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                  })();
-            .aw_actwitty_share_on_linkedin
-              %script{:src => "//platform.linkedin.com/in.js", :type => "text/javascript"}
-              %script{"data-counter" => "right", :type => "IN/Share"}
+
       
       #aw_streams_content_header_separator
         %span.s1

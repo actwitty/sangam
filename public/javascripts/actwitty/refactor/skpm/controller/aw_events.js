@@ -5,7 +5,8 @@
 /* The click event which drives filters on streams to be applied and shown in streams section*/
 $(".aw_js_filterer").live('click', function(){
     // TODO : NEW_STREAMS
-    $("#aw_streams_layout_entries_box").showLoading();
+    //$("#aw_streams_layout_entries_box").showLoading();
+    $("#aw_streams_layout_content_container").showLoading(); 
     make_streams_layout_ready_for_rerender();
     activate_streams_deactivate_profile();
     aw_api_view_decode_filter($(this));
@@ -16,11 +17,13 @@ $(".aw_js_filterer").live('click', function(){
 
   // view images in streams layout
   $("#aw_js_streams_layout_view_images").live('click', function() {
+      $("#aw_streams_layout_content_container").showLoading(); 
       aw_cache_api_get_data("aw.images", aw_api_view_images_in_streams_layout);
   });
 
   // view videos in streams layout
   $("#aw_js_streams_layout_view_videos").live('click', function() {
+      $("#aw_streams_layout_content_container").showLoading(); 
       aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
   });
 
@@ -78,6 +81,7 @@ $(document).ready(function(){
 
   /* The click event which drives filters on streams to be applied and shown in streams section*/
   $(".aw_js_stream_layout_filterer").live('click', function(){
+    $("#aw_streams_layout_content_container").showLoading(); 
     aw_api_view_decode_filter($(this));
     aw_api_view_decode_filter_header($(this));
     return false;

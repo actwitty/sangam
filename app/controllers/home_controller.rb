@@ -265,7 +265,7 @@ class HomeController < ApplicationController
                                      :site_name => "Actwitty",
                                      :image => "#{@user_bio_info[:image]}",
                                      :description => "#{@user_bio_info[:bio]}",
-                                     :url => "http://www.#{AppConstants.server_base}/#{@user.username}",
+                                     #:url => "http://www.#{AppConstants.server_base}/#{@user.username}",
                                    },
                     :title => "Actwitty - The Complete Profile of #{@user.full_name}",
                     :keywords => "#{@user.full_name} #{@user_bio_info[:keywords]}",

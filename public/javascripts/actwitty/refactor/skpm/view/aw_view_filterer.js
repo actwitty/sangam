@@ -1,3 +1,60 @@
+/****************************************************************
+ * SET SOCIAL MEDIA SHARING NOW THROUGH SCRIPTING. 
+ ****************************************************************/
+function aw_api_set_social_media_sharing(filter_link)
+{
+   var html = '<div class="aw_actwitty_share_on_twitter">'+
+                  '<a class="twitter-share-button" data-via="act_witty" href="https://twitter.com/share?text=https%3A%2F%2Factwitty%3Acom%2Fsammy_ji%2Aenjoying">Tweet</a>'+
+                  '<script>'+
+           
+                      '!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");'+
+          
+                  '</script>'+
+                '</div>'+
+                '<div class="aw_actwitty_share_on_facebook">'+
+                  '<fb:like href="'+filter_link+'" send="false" layout="button_count" width="200" show_faces="false"></fb:like>'+
+                '</div>'+
+                '<div class="aw_actwitty_share_on_googleplus">'+
+                  '<g:plusone annotation="inline" size="medium" width="120">'+
+                    '<script>'+
+         
+                        '(function() {'+
+                          'var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;'+
+                          'po.src = "https://apis.google.com/js/plusone.js";'+
+                          'var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);'+
+                        '})();'+
+        
+                    '</script>'+
+                  '</g:plusone>'+
+                '</div>'+
+                '<div class="aw_actwitty_share_on_linkedin">'+
+                  '<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>'+
+                  '<script data-counter="right" type="IN/Share"></script>'+
+                '</div>';
+
+  
+    $(".aw_streams_actwitty_share_on_social_media").html(html);
+
+    FB.XFBML.parse();
+    //twttr.widgets.load();
+}
+
+
+/*$(window).load(function(){
+  FB.XFBML.parse();
+  twttr.widgets.load();
+});
+*/
+
+
+
+
+
+
+
+
+
+
 /****************************************************************/
 /*
  *
@@ -12,6 +69,11 @@ function aw_api_view_decode_filter(object){
   var filter_set_arr=[];
   var filter_set = filter_titles_as_str.split(',');
 
+  var filter_type = "";
+  var filter_value = "";
+  aw_js_global_visited_user_credentials.username;
+
+
   if( $.isArray(filter_set)){
     filter_set_arr = filter_set;
   }else{
@@ -24,6 +86,7 @@ function aw_api_view_decode_filter(object){
   $.each( filter_set_arr, function( index, filter_title){
     if( filter_title == 'topic' ){
       filter['summary_id'] =  object.attr("aw_interest_filter");
+      filter_link = aw_js_global_visited_user_credentials.username + "/streams/" + object.html();
     }
     
     if( filter_title == 'service'){
@@ -32,6 +95,7 @@ function aw_api_view_decode_filter(object){
 
     if( filter_title == 'mention'){
       var mention_id = object.attr("aw_mention_filter");
+      filter_link = aw_js_global_visited_user_credentials.username + "/mentions/" + object.html();
       if( !mention_id || !mention_id.length){
         filter['filter'] ={
                             entity: { 
@@ -118,6 +182,8 @@ function aw_api_view_decode_filter(object){
   aw_api_controller_change_filter_on_stream(filter);
 
   aw_cache_api_set_data("aw.filter",filter);
+
+  aw_api_set_social_media_sharing(filter_link);
 
 
 }

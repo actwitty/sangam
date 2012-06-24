@@ -775,6 +775,7 @@ function aw_api_view_stream_layout_render_ver2(data)
   $('#aw_streams_layout_entries').waitForImages(function() {
     //setupBlocks("#aw_streams_layout_entries" , handler);
     handler.wookmark(options);
+    $("#aw_streams_layout_content_container").hideLoading(); 
   });
 
   //aw_api_view_stream_layout_apply_styleclass_entries(data,content_types_count, content_display_index);
@@ -1587,6 +1588,7 @@ function aw_api_view_images_in_streams_layout(data)
   // Call the layout function once all the images are loaded
   $('#aw_streams_layout_entries_box').waitForImages(function() {
     handler.wookmark(options);
+    $("#aw_streams_layout_content_container").hideLoading(); 
   });
   
   $("a[rel=aw_streams_layout_images_fancybox]").fancybox({
@@ -1637,6 +1639,7 @@ function aw_api_view_videos_in_streams_layout(data)
   // Call the layout function once all the images are loaded
   //$('#aw_streams_layout_entries_box').waitForImages(function() {
     handler.wookmark(options);
+    $("#aw_streams_layout_content_container").hideLoading(); 
   //});
 }
 
@@ -1833,6 +1836,7 @@ function aw_api_view_home_in_streams_layout(data)
    handler.waitForImages(function() {
      //setupBlocks("#aw_streams_layout_entries" , handler);
      handler.wookmark(options);
+     $("#aw_streams_layout_content_container").hideLoading(); 
    });
 
     
