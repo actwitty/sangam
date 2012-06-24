@@ -1293,15 +1293,26 @@ function aw_api_view_stream_layout_render_meta_data(data)
 
 
 /*
- * This funtion will get triggered when we directly land in interests page using external links
+ *
  */
-function aw_api_view_stream_trigger_interest_rendering(interest)
+function aw_api_view_stream_layout_render_mentions_meta_data(data)
 {
+    var active_stream_topic = aw_cache_api_get_data("aw.stream.topic",null);
+    var html = '<div class="aw_mention_label_for_topics"> often mentioned in </div>';
+    $.each(data, function(key, entry) {
+   
+       if (entry.name === active_stream_topic ) {
+           html = html + 
+                  '<div class="aw_stream_mention_meta_data_topic_box">'+
+                    entry.interest_name+
+                  '</div>'
+       }
+    
+    });
+
+    $("#aw_streams_layout_interests_meta_data").html(html);
+
 }
-
-
-
-
 
 
 
@@ -1395,58 +1406,6 @@ function aw_api_view_apply_fillers(content_display_index)
 }
 
 
-
-function aw_api_view_streams_layout_apply_final_layouting(content_display_index)
-{
-  /*
-   if (0) {
-    var $container = $('#aw_streams_layout_entries');
-    $container.isotope({
-      layoutMode : 'masonry',
-      itemSelector: '.masonry_item',
-      masonry: {
-        itemSelector : '.element',
-        masonry : {
-          columnWidth : 120
-        },
-        masonryHorizontal : {
-          rowHeight: 120
-        },
-        cellsByRow : {
-          columnWidth : 240,
-          rowHeight : 240
-        },
-        cellsByColumn : {
-          columnWidth : 240,
-          rowHeight : 240
-        }
-      }
-    });
-
-  } else {
-    
-    var $tumblelog = $('#aw_streams_layout_entries');
-    $tumblelog.imagesLoaded( function(){
-      $tumblelog.masonry({
-        columnWidth: 240,
-        cornerStampSelector: '.aw_streams_layout_sidebar_entry'
-      });
-    });
-
-    var $main_container = $('#aw_streams_layout_entries_box');
-   
-    $main_container.imagesLoaded( function(){
-      $main_container.masonry({
-        columnWidth: 240,
-      });
-    });
-    
-   
-  }
-  */
-
-  aw_api_view_apply_fillers(content_display_index);
-}
 
 
 
@@ -1738,12 +1697,6 @@ function aw_api_view_build_home_topic_section(data, topic_name, topic)
          return false;
   
   });
-/*
-aw_filter_on="topic"'+
-                    'aw_interest_filter="' + entry.interest_id + '" ' +
-                    'aw_filter_title="topic=' + entry.name  + '" ' +
-                    'id="'+entry.interest_id+'">' +
- */
   inner_html = inner_html + 
                    '<div class="aw_stream_home_topiec_section_view_more">'+
                      '<input type="button" class="aw_js_stream_layout_filterer" ' +
@@ -1821,9 +1774,15 @@ function aw_api_view_home_in_streams_layout(data)
    
    var html = "";
 
-   handler.html("");
+   aw_api_set_social_media_sharing(aw_js_global_visited_user_credentials.username);
 
+   handler.html("");
+  
+   
    aw_api_view_stream_render_home_meta_data(data);
+
+   $("#aw_streams_layout_content_container").showLoading(); 
+
 
    $.each(data, function(key, interest) {
 

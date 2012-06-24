@@ -25,13 +25,11 @@ function aw_pulled_stream_allow_cookie(context){
 
 
 var aw_api_global_interest_id;
-
 var aw_global_track_topic_stream_req;
 var aw_global_topical_length;
 
 function aw_api_model_set_interests_data(data, summary_id)
 {
-  console.log("**in fetch interest data");
   var filter_id = "aw.interestdata." + summary_id;
   
   var cache_data = {
@@ -43,15 +41,14 @@ function aw_api_model_set_interests_data(data, summary_id)
   aw_global_track_topic_stream_req++;
 
   if (aw_global_track_topic_stream_req === aw_global_topical_length && aw_js_active_interest_stream === "all") {
+      
       aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);  
   }
     
 }
 
 /*
- * SAMARTH : fetch and keep topical data for different interets
- *
- *
+ * fetch and keep topical data for different interets
  */
 
 function aw_api_model_fetch_interests_data(data)
@@ -70,7 +67,6 @@ function aw_api_model_fetch_interests_data(data)
       aw_api_global_interest_id = summary.interest_id;
        
       aw_pulled_stream_query_filter(filter, aw_api_model_set_interests_data); 
-      console.log("********************in fetch interest data"); 
   });
 }
 
@@ -201,7 +197,7 @@ function aw_pulled_stream_sort_data(context){
                                   return time2.local_timestamp - time1.local_timestamp;
                                });
   if(  context.no_render_fn_cb != null ){
-    // SAMARTH : added summary id
+    //  added summary id
     context.no_render_fn_cb(merged_arr, context.summary_id);
   }else{
     aw_api_controller_show_or_hide_close(true);

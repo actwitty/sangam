@@ -145,7 +145,8 @@ body {
   -moz-box-shadow: 0 8px 6px -6px #aaaaaa;
   box-shadow: 0 8px 6px -6px #aaaaaa;
   display: inline-block;
-  text-align: center; }
+  text-align: center;
+  min-height: 150px; }
   .aw_mark_post_image img {
     max-width: 210px; }
 
@@ -1027,6 +1028,24 @@ body {
     .aw_streams_layout_interests_meta_info_box p strong {
       font-size: 16px;
       display: block; }
+
+.aw_mention_label_for_topics {
+  float: left;
+  font-size: 10px;
+  font-style: italic;
+  font-weight: bold;
+  color: #4183c4;
+  margin-right: 8px;
+  margin-top: 4px; }
+
+.aw_stream_mention_meta_data_topic_box {
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: #d4d4d4;
+  color: #333333;
+  float: left;
+  margin-right: 5px;
+  text-transform: capitalize; }
 
 .aw_streams_actwitty_share_on_social_media {
   border: 0px solid green;

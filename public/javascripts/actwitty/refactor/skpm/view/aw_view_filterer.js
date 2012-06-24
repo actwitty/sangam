@@ -3,6 +3,8 @@
  ****************************************************************/
 function aw_api_set_social_media_sharing(filter_link)
 {
+   filter_link = "http://" + aw_js_server_base + "/" + filter_link;
+
    var html = '<div class="aw_actwitty_share_on_twitter">'+
                   '<a class="twitter-share-button" data-via="act_witty" href="https://twitter.com/share?text=https%3A%2F%2Factwitty%3Acom%2Fsammy_ji%2Aenjoying">Tweet</a>'+
                   '<script>'+
@@ -259,7 +261,10 @@ function aw_api_view_decode_filter_header(object){
   $("span.aw_streams_layout_trends_heading").timeago();
 
   aw_cache_api_set_data("aw.stream.topic",stream_header['topic']);
-  aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_meta_data);
+  if (filter_titles_as_str === "topic")
+      aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_meta_data);
+  else if (filter_titles_as_str === "mention")
+      aw_cache_api_get_data("aw.mentions",aw_api_view_stream_layout_render_mentions_meta_data);
    
 }
 
@@ -274,13 +279,14 @@ function aw_api_view_construct_stream_layout_header(stream_header, filter_titles
 
     if( stream_header['topic']){
         if (filter_titles_as_str === "mention" ) {
-            //header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/mentions.png">';  
-            header_text = header_text +  '<span class="aw_filter_subfilter">Mention</span> ';
-            header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
+            //header_text = header_text +  '<span class="aw_filter_subfilter">Mention</span> ';
+            //header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/breadcrumb_arrow.png">';
         } else if (filter_titles_as_str.indexOf('since') >=0 ) {
             header_text = header_text + '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/trends.png">';  
         }
         header_text = header_text +  ' <span class="aw_filter_subfilter"> ' + stream_header['topic'] + '</span> ';
+        //if (filter_titles_as_str === "mention" ) 
+        //    header_text = header_text +  ' <span> often mentioned in </span> ';
     }
 
     if( stream_header['data_type']){
