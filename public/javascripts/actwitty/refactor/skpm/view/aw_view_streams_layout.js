@@ -1718,7 +1718,7 @@ function aw_view_stream_layout_get_entry_html_for_topic_snapshot(entry, force_cl
 /*
  *
  */
-function aw_api_view_build_home_topic_section(data, topic_name, main_html)
+function aw_api_view_build_home_topic_section(data, topic_name, topic)
 {
   var inner_html = '<div class="aw_stream_layout_home_topical_section">' +
                      '<div class="aw_streams_layout_sectional_view_header">'+
@@ -1731,14 +1731,28 @@ function aw_api_view_build_home_topic_section(data, topic_name, main_html)
   $.each(data, function(key, post) {
  
      inner_html = inner_html + aw_view_stream_layout_get_entry_html_for_topic_snapshot(post, "aw_stream_home_page_content");
+                  
      index++;
 
      if (index == 3)
          return false;
   
   });
-
-  inner_html = inner_html + '</div>';
+/*
+aw_filter_on="topic"'+
+                    'aw_interest_filter="' + entry.interest_id + '" ' +
+                    'aw_filter_title="topic=' + entry.name  + '" ' +
+                    'id="'+entry.interest_id+'">' +
+ */
+  inner_html = inner_html + 
+                   '<div class="aw_stream_home_topiec_section_view_more">'+
+                     '<input type="button" class="aw_js_stream_layout_filterer" ' +
+                       'aw_filter_on="topic"'+
+                       'aw_interest_filter="' + topic.interest_id + '" ' +
+                       'aw_filter_title="topic=' + topic.name  + '" ' + 
+                       'value="view more of '+topic_name+' >> "/>'+
+                   '</div>'+
+                  '</div>';
 
   return inner_html;
 
@@ -1815,7 +1829,7 @@ function aw_api_view_home_in_streams_layout(data)
 
       var topical_data = aw_cache_api_get_data(key_prefix+interest.interest_id, null);
      
-      html = html + aw_api_view_build_home_topic_section(topical_data, interest.name);
+      html = html + aw_api_view_build_home_topic_section(topical_data, interest.name, interest);
 
    });
   
