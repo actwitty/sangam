@@ -7,7 +7,7 @@ function aw_api_set_social_media_sharing(filter_link)
 
    var html = '<div class="aw_actwitty_share_on_twitter">'+
                   '<iframe allowtransparency="true" frameborder="0" scrolling="no"'+
-                      'src="//platform.twitter.com/widgets/tweet_button.html?via=marcus_christie&amp;text=Replace%20Me&amp;count=horizontal"'+
+                      'src="//platform.twitter.com/widgets/tweet_button.html?via=actwitty&amp;text=will add text&amp;count=horizontal"'+
                       'style="width:130px; height:20px;">'+
                   '</iframe>'+
 /*
