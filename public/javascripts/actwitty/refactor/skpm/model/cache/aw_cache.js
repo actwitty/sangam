@@ -62,3 +62,64 @@ function aw_api_cache_get_service_field_data(service_name, field){
   }
   return aw_local_cache_services[service_name][field];
 }
+
+
+
+
+var aw_global_cache_data={ };
+
+/*************************************************
+ *
+ * CACHED DATA FETCH
+ *
+ *************************************************/
+function aw_cache_api_get_data(cache_id, fn_cb)
+{
+  if ( !aw_global_cache_data[cache_id] ){
+    aw_global_cache_data[cache_id] = {
+                                        data: null,
+                                        fn_arr: []
+                                     };
+   }
+  if (aw_global_cache_data[cache_id] && aw_global_cache_data[cache_id].data) {
+    if (fn_cb != null)
+      fn_cb(aw_global_cache_data[cache_id].data);
+    else
+      return aw_global_cache_data[cache_id].data;
+  }
+  else{
+    aw_global_cache_data[cache_id].fn_arr.push(fn_cb);
+  }
+  
+
+}
+
+function aw_cache_api_set_data(cache_id,cache_data)
+{
+  if ( !aw_global_cache_data[cache_id] ){
+    aw_global_cache_data[cache_id] = {
+                                        data: cache_data,
+                                        fn_arr: []
+                                     };
+  }else{
+    if( aw_global_cache_data[cache_id].fn_arr &&
+        aw_global_cache_data[cache_id].fn_arr.length){
+         $.each(aw_global_cache_data[cache_id].fn_arr, function(index, fn_cb) {
+            fn_cb(cache_data);
+         });
+         aw_global_cache_data[cache_id] = {
+                                        data: cache_data,
+                                        fn_arr: []
+                                     };
+     } else { /* only set the data */
+       aw_global_cache_data[cache_id].data = cache_data;
+     } 
+     
+
+  }
+}
+
+
+
+
+

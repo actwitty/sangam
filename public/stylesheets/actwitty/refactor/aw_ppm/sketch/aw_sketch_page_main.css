@@ -48,7 +48,7 @@ body {
 
 .aw_page_sketch_header {
   width: 100%;
-  height: 300px;
+  height: 80px;
   display: block;
   position: relative;
   top: 40px;
@@ -60,7 +60,8 @@ body {
   background: -o-linear-gradient(top, #676f72 0%, #595e62 52%, #505559 100%);
   background: -ms-linear-gradient(top, #676f72 0%, #595e62 52%, #505559 100%);
   background: linear-gradient(top, #676f72 0%, #595e62 52%, #505559 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#676f72', endColorstr='#505559',GradientType=0 ); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#676f72', endColorstr='#505559',GradientType=0 );
+  background-image: url(/images/actwitty/refactor/aw_common/grain_dark_gray.jpg); }
   .aw_page_sketch_header .aw_banner_box {
     width: 950px;
     margin: 0px auto;
@@ -71,30 +72,32 @@ body {
       top: 0px;
       left: 0px;
       width: 540px;
-      height: 300px;
-      display: inline-block; }
+      height: 80px;
+      display: inline-block;
+      margin-left: -8px; }
       .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_header_box {
         top: 0px;
         display: block;
         position: absolute;
         width: 540px;
-        height: 30px;
+        height: 0px;
         background: #d6f5f5; }
       .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_box {
-        top: 30px;
+        top: 0px;
         display: block;
         position: absolute;
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(255, 255, 255, 0.1);
         width: 540px;
-        height: 110px;
+        height: 100%;
         overflow: hidden; }
         .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_box .aw_user_profile_pic {
           position: absolute;
-          top: 20px;
+          top: 10px;
           left: 25px;
           overflow: hidden; }
           .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_box .aw_user_profile_pic img {
-            border: 4px solid white;
+            border: 0px solid white;
+            border-radius: 2px;
             width: 75px;
             max-height: 80px; }
         .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_box a.aw_user_profile_name {
@@ -189,7 +192,7 @@ body {
           width: 150px;
           padding: 10px;
           margin-left: 20px;
-          margin-top: 40px;
+          margin-top: 30px;
           display: inline-block;
           cursor: pointer;
           position: relative; }
@@ -209,7 +212,7 @@ body {
             display: none;
             z-index: 20;
             position: absolute;
-            top: 0px;
+            top: -60px;
             left: 0;
             width: 300px;
             padding: 10px;
@@ -310,8 +313,19 @@ body {
   height: auto;
   position: relative;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  background: #e6e6e6; }
 
+/* actwitty streams overlap section */
+.aw_page_stream_overlap_wrapper {
+  position: relative;
+  width: 966px;
+  height: auto;
+  margin: 0px auto;
+  margin-top: 40px;
+  display: none; }
+
+/* actwitty main(rather old) section */
 .aw_page_wrapper {
   position: relative;
   width: 950px;

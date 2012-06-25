@@ -521,3 +521,24 @@ function aw_api_model_mentions_initialize(){
 }
 
 
+
+
+/*
+ *  Merge all mentions data to form a unique set of mentions
+ */
+function aw_api_model_merge_mentions_data(data)
+{
+  var mentions_data = data;
+  var mentions_array = {};
+  $.each( mentions_data, function( key, mention) {
+      
+      var name = mention.name; 
+      if (!mentions_array[name]) {
+          mentions_array[name] = {
+                                   id: mention.id,
+                                   name : mention.name
+                                 };
+      }
+  });
+  aw_cache_api_set_data("aw.mentions.data", mentions_array);
+}

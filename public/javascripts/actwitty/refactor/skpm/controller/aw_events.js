@@ -1,3 +1,32 @@
+
+// MOVING THIS OUT FOR AVOIDING RACE CONDITION
+// I GUESS IT ALSO MAKES SENSE TO MOVE ALL EVENTS OUT OF DOCUMENT READY SCOPE
+//
+/* The click event which drives filters on streams to be applied and shown in streams section*/
+$(".aw_js_filterer").live('click', function(){
+    // TODO : NEW_STREAMS
+    //$("#aw_streams_layout_entries_box").showLoading();
+    $("#aw_streams_layout_content_container").showLoading(); 
+    make_streams_layout_ready_for_rerender();
+    activate_streams_deactivate_profile();
+    aw_api_view_decode_filter($(this));
+    aw_api_view_decode_filter_header($(this));
+    return false;
+});
+
+
+  // view images in streams layout
+  $("#aw_js_streams_layout_view_images").live('click', function() {
+      $("#aw_streams_layout_content_container").showLoading(); 
+      aw_cache_api_get_data("aw.images", aw_api_view_images_in_streams_layout);
+  });
+
+  // view videos in streams layout
+  $("#aw_js_streams_layout_view_videos").live('click', function() {
+      $("#aw_streams_layout_content_container").showLoading(); 
+      aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+  });
+
 /*******************************************************/
 /*
  *
@@ -47,11 +76,28 @@ $(document).ready(function(){
     return false;
   });
 
-  $(".aw_js_filterer").live('click', function(){
+
+ 
+
+  /* The click event which drives filters on streams to be applied and shown in streams section*/
+  $(".aw_js_stream_layout_filterer").live('click', function(){
+    $("#aw_streams_layout_content_container").showLoading(); 
     aw_api_view_decode_filter($(this));
     aw_api_view_decode_filter_header($(this));
     return false;
   });
+
+
+  // view home page in streams layout
+  $("#aw_js_stream_home_layout_filterer").live('click', function(){
+      aw_cache_api_get_data("aw.interests",aw_api_view_stream_layout_render_header);
+      aw_cache_api_get_data("aw.mentions.data",aw_api_view_stream_layout_render_mentions_header);
+      aw_cache_api_get_data("aw.interests.data", aw_api_view_home_in_streams_layout);       
+  });
+
+
+
+  
 
   $("#aw_js_stream_close_control").live('click', function(){
     aw_api_controller_show_or_hide_close(false);
@@ -102,14 +148,24 @@ $(document).ready(function(){
   });
 
   $(".aw_js_scroll_nav").live('click', function(){
+    // TODO: NEW_STREAMS
+    activate_profile_deactivate_streams();
     var scroll_to_top_id = $(this).attr("aw_scroll_top_id");
     var position = $("#" + scroll_to_top_id).offset();
     $('html, body').animate({scrollTop: (position.top - 40)}, "slow");
     return false;
   });
-   var body_height = $(window).height();
-   aw_api_view_stream_apply_height(body_height);
+  var body_height = $(window).height();
+  aw_api_view_stream_apply_height(body_height);
  
+
+  $("#aw_streams_layout_header_viewer").live('click',function() {
+    aw_api_view_stream_prepare_header_viewer_operator();
+  });
+
+  $("#aw_streams_layout_mentions_header_viewer").live('click',function() {
+    aw_api_view_stream_prepare_mentions_header_viewer_operator();
+  });
 
     
 });

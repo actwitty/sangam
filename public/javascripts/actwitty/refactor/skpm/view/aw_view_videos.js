@@ -28,13 +28,14 @@ function aw_model_api_video_thumb_cb(ele, url, thumbnail, id, type){
 
   $("a[rel=aw_video_img_group]").fancybox({
                   'type' : 'iframe',
+                  // hide the related video suggestions and autoplay the video
                   'href' : $(this).href,
                   'overlayShow' : true,
                   'centerOnScroll' : true,
                   'speedIn' : 100,
                   'speedOut' : 50,
                   'width' : 640,
-                  'height' : 480,
+                  'height' : 480
                 });
 
 }

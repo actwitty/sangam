@@ -188,6 +188,11 @@ function aw_api_model_interests_process_interest_data(data) {
     aw_local_interest_data_json.push(interest_data);
   });
   aw_api_controller_render_interests(aw_local_interest_data_json);
+
+  aw_cache_api_set_data("aw.interests.data", aw_local_interest_data_json);
+
+  //aw_api_model_fetch_topical_data();
+
 }
 /*************************************************/
 /*
@@ -197,7 +202,7 @@ function aw_api_model_interests_process_interest_data(data) {
 function aw_api_model_interests_server_request(){
   if( aw_js_global_user_interests ){
       aw_api_model_interests_process_interest_data(aw_js_global_user_interests);
-  }else{
+  } else {
     $.ajax({
 
             url: "/home/get_summary.json",

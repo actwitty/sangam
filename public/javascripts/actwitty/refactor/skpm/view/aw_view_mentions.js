@@ -3,7 +3,7 @@
  *
  *
  */
-function aw_view_mentions_get_html(data){
+function aw_view_mentions_get_html_ver2(data){
 
   var max_to_show_in_one_interest = 7;
   var max_interests_to_show = 3;
@@ -64,12 +64,15 @@ function aw_view_mentions_get_html(data){
             display_class = "aw_js_mentions_box_hide_on_less";
             show_more = true;
           }
-
+           
+          var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_data.name; 
+          
           one_interest_html = one_interest_html +
                               '<div class="aw_sketch_mention_box aw_js_filterer ' + display_class + '" ' +
                                   'aw_filter_on="mention" ' +
                                   'aw_mention_filter="' + mention_data.id + '" ' +
                                   'aw_filter_title="topic=' + mention_data.name  + '" ' +
+                                  'id="' + mention_layout_filter_id +'"'+
                                 '>' +
                                 '<span>' +
                                   mention_data.name + 
@@ -93,6 +96,48 @@ function aw_view_mentions_get_html(data){
 
 }
 
+
+
+
+/**********************************************************/
+/*
+ *
+ *
+ */
+function aw_view_mentions_get_html(data){
+
+  var main_html = "";
+  var one_interest_html = "";
+  var running_interest_count = 0;
+
+  $.each(data, function(index, mention_data){
+    if( mention_data.process == "done" && mention_data.image){
+
+        if(  mention_data.name && mention_data.image ){
+           
+          var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_data.name; 
+          
+          main_html = main_html +
+                              '<div class="aw_sketch_mention_box aw_js_filterer " ' +
+                                  'aw_filter_on="mention" ' +
+                                  'aw_mention_filter="' + mention_data.id + '" ' +
+                                  'aw_filter_title="topic=' + mention_data.name  + '" ' +
+                                  'id="' + mention_layout_filter_id +'"'+
+                                '>' +
+                            '</div>';
+        }
+      }
+
+
+  });
+
+  return main_html;
+ 
+
+}
+
+
+
 /**********************************************************/
 /*
  *
@@ -101,18 +146,12 @@ function aw_view_mentions_get_html(data){
 function aw_api_view_mentions_render(data){
   var html = aw_view_mentions_get_html(data);
   if( html.length ){
-    $("#aw_js_mentions_list_box").html(html);
-    $("img[rel=aw_js_twipsy_mention_image]").twipsy({  live: true, placement: "below" }); 
-    $("#aw_js_mentions_main_container").show();
-    $("#aw_js_mentions_busy").hide();
-    $("#aw_js_mentions_nav").show();
-    /* fetch descriptions */ 
-   /* $(".aw_js_mention_image_class").each( function(index){
-      $(this).aw_api_js_get_description_fn();
-    });*/
+    $("#aw_js_mentions_list_box").append(html);
+
   }
 
-
+  if (aw_js_active_mention_stream != "")
+      setup_mention_layout_view(aw_js_active_mention_stream); 
   
 }
 

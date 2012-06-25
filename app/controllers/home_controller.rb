@@ -112,6 +112,10 @@ class HomeController < ApplicationController
     @user=nil
     @page_mode="profile_show_page"
     @show_invite_friends = false
+
+    @active_mention = ""
+    @active_stream = ""
+
     Rails.logger.info("[CNTRL] [HOME] [SHOW] Home Sketch request with #{params} #{request.path} #{session.inspect}")
     if user_signed_in?
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User signed in #{current_user.id} #{current_user.full_name}")
@@ -119,6 +123,33 @@ class HomeController < ApplicationController
     else
       Rails.logger.info("[CNTRL] [HOME] [SHOW] User not signed in")
     end
+
+
+    if !params[:mention].nil?
+       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for mention sketch #{params} #{request.path}") 
+       @active_mention = params[:mention] 
+    elsif !params[:stream].nil?
+       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for mention sketch #{params} #{request.path}") 
+       @active_stream = params[:stream] 
+    else
+       Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for mention sketch #{params} #{request.path}") 
+       @active_stream = "all"
+    end
+
+
+  
+=begin
+    if params[:stream].nil?
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for profile sketch #{params} #{request.path}")
+      @active_stream = "all"
+    else
+      Rails.logger.info("[CNTRL] [HOME] [SHOW] The request is for stream sketch #{params} #{request.path}")
+      # TODO: NEW_STREAMS
+      @active_stream = params[:stream]
+      #@active_stream = "all"
+
+    end
+=end
 
 
     if params[:username].nil?
@@ -151,6 +182,8 @@ class HomeController < ApplicationController
     end
    @fb_access = {}
    @tw_access = {}
+
+
    if user_signed_in? and  current_user.email != AppConstants.ghost_user_email
 
       authentications = Authentication.find_all_by_user_id(current_user.id)
@@ -232,7 +265,7 @@ class HomeController < ApplicationController
                                      :site_name => "Actwitty",
                                      :image => "#{@user_bio_info[:image]}",
                                      :description => "#{@user_bio_info[:bio]}",
-                                     :url => "http://www.#{AppConstants.server_base}/#{@user.username}",
+                                     #:url => "http://www.#{AppConstants.server_base}/#{@user.username}",
                                    },
                     :title => "Actwitty - The Complete Profile of #{@user.full_name}",
                     :keywords => "#{@user.full_name} #{@user_bio_info[:keywords]}",

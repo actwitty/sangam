@@ -177,6 +177,15 @@ function aw_view_stream_get_attachments_html(entry){
                         .join(" ") + "...";
           } 
           if( attachment.provider ){
+            var short_provider_text = attachment.provider;
+            if (short_provider_text.length > 130) {
+                short_provider_text =  attachment.provider
+                                       .trim()
+                                       .substring(0, 130)
+                                       .split(" ")
+                                       .slice(0, -1)
+                                       .join(" ") + "...";
+            }
             caption_html =  '<span class="aw_attachment_caption" >' +
                                 attachment.provider +
                              '</span> -  ' ;
@@ -293,7 +302,7 @@ function aw_view_stream_get_entry_html(entry){
 
                 '<div class="aw_originator_box aw_js_stream_hover_originator" >' +
                   '<a href="' + entry.originator.url + '" target="_blank">' +
-                    '<img src="' +  entry.originator.image  + '" width=100% height=100% />' +
+                    '<img src="' +  entry.originator.image  + '" width=16px height=16px />' +
                   '</a>' +
                   aw_view_stream_get_display_name(entry) +
                   '<img class="aw_stream_src_img" src="' + social_media_sources[entry.service.name] + '" width=16px height=16px />' +
@@ -302,6 +311,11 @@ function aw_view_stream_get_entry_html(entry){
              '</div>';
   return html;
 }
+
+
+
+
+
 /***********************************************************/
 /*
  *
@@ -310,6 +324,7 @@ function aw_view_stream_get_entry_html(entry){
 function aw_api_view_stream_render(data){
   var html = "";
   var aw_error_rendered = {};
+  var render_html_data = (aw_js_active_interest_stream == 'all') ? aw_view_stream_get_entry_html : aw_view_stream_layout_get_entry_html;
   $.each(data, function(key, entry){
     if (  entry.service.pid && entry.service.pid == "aw_service_error" ){ 
       if( aw_error_rendered[entry.service.name] ){
@@ -318,11 +333,11 @@ function aw_api_view_stream_render(data){
         aw_error_rendered[entry.service.name] = true;
       }
     }
-    html= html + aw_view_stream_get_entry_html(entry);
+    html= html + render_html_data(entry);
   });
   
   $("#aw_js_stream_entries").html(html);
-  $("#aw_js_stream_entries").scrollTop(0); 
+  $("#aw_js_stream_entries").scrollTop(0);
   $("abbr.aw_js_timeago").timeago();
   $("#aw_js_stream_busy").hide();
   $("a[rel=aw_js_stream_imgs_fancy_box]").fancybox({
@@ -457,7 +472,7 @@ function aw_api_view_handle_hover_show_overlay(ele){
   }
   hvr_handle_timer = setTimeout(function(){
     hover_ele.hide();
-  }, 1500);
+  }, 500);
 }
 function aw_api_view_handle_hover_handle_overlay_hover_in(ele){
   if( hvr_handle_timer != null) {
@@ -472,7 +487,7 @@ function aw_api_view_handle_hover_handle_overlay_hover_out(ele){
   var hide_ele = ele;
   dlg_hvr_handle_timer = setTimeout(function(){
       hide_ele.hide();
-  }, 1500);
+  }, 500);
 }
 /****************************************************************************/
 /*
@@ -489,3 +504,8 @@ function aw_api_view_handle_hover_close(ele){
 
   ele.closest( ".aw_js_stream_info_box" ).hide();
 }
+
+
+
+
+

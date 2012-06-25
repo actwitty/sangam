@@ -24,12 +24,18 @@
                                       };
   var aw_js_global_check_invites = "#{@aw_js_user_invites_check}"; 
   var aw_js_global_visited_user_foreign_ids = #{@service_uids.to_json};
+
+
   var aw_js_global_services_enabled = #{YAML.load_file("#{Rails.root}/#{AppConstants.services_enabled}").to_json};
   var aw_js_global_user_interests = #{@user_bio_info[:interests].to_json};
   var aw_global_freebase_api_key = #{AppConstants.freebase_api_key};
   var aw_js_global_rails_user_services_enabled = #{@services_enabled.to_json};
+
   var aw_js_global_fb_access = #{@fb_access.to_json};
   var aw_js_global_tw_access = #{@tw_access.to_json};
+
+  var aw_js_active_interest_stream = '#{@active_stream}';
+  var aw_js_active_mention_stream = '#{@active_mention}';
 
 - if user_signed_in?
   :javascript
@@ -42,7 +48,15 @@
   :javascript
     var aw_js_global_logged_in_user_credentials = { };
 
-
+#fb-root
+  :javascript
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId="+aw_js_global_facebook_app_id+";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
   
 
@@ -64,8 +78,6 @@
 #aw_js_page_start.aw_page_sketch_header
   .aw_banner_box
     .aw_banner_image_box
-      %img.aw_banner_image{:src => "/images/actwitty/refactor/aw_sketch/header/#{@user_bio_info[:bkg]}", :width => "540px" }
-      .aw_banner_user_title_header_box
       .aw_banner_user_title_box
         %a.aw_user_profile_pic{:href=>"/#{@user.username}" }
           %img#aw_profile_picture{:src=> "#{@user.photo_small_url}"  }
@@ -74,178 +86,83 @@
           %h2#aw_js_user_location.aw_location
           / %h2#aw_js_user_work.aw_work
           / %h2#aw_js_user_study.aw_study
-      .aw_banner_user_description_box
-        %blockquote{:cite => "#{@user.username}"}
-          %p#aw_js_user_description
     .aw_banner_info_box
       #aw_js_services_list.aw_services_enabled_box
-      #aw_js_actwitty_upcoming.aw_actwitty_whats_coming_box
-      .aw_actwitty_share_on_social_media
-        .aw_actwitty_share_on_twitter
-          %a.twitter-share-button{"data-via" => "act_witty", :href => "https://twitter.com/share", "data-url" => "http://www.#{AppConstants.server_base}/#{@user.username}", "data-text" => "Actwitty - The complete profile of #{@user.full_name}, a topical sense of social media. " } Tweet
-          :javascript
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-        .aw_actwitty_share_on_facebook
-          .fb-like{"data-font" => "arial", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "100"}
 
-          #fb-root
-            :javascript
-              (function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                  fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-        .aw_actwitty_share_on_googleplus
-          / Place this tag where you want the +1 button to render
-          %g:plusone{:annotation => "inline", :size => "medium", :width => "120"}
-            / Place this render call where appropriate
-            :javascript
-              (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/plusone.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-              })();
-        .aw_actwitty_share_on_linkedin
-          %script{:src => "//platform.linkedin.com/in.js", :type => "text/javascript"}
-          %script{"data-counter" => "right", :type => "IN/Share"}
-      .aw_get_actwitty_btn_box
-        %a#aw_js_get_actwitty.aw_get_actwitty_btn{:href => "/" } Get your Actwitty !
 .aw_page_full_width
-  #aw_js_left_side_navs.aw_left_side_nav.aw_vertical_navigation_absolute
-    .aw_vertical_navigation
-      %ul
-        %li#aw_js_static_profile_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/personal.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "#{@user.full_name}'s Interest profile", "aw_scroll_top_id" => "aw_js_page_start" }
-        %li#aw_js_mentions_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/mentions.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "Mentions often made" , "aw_scroll_top_id" => "aw_js_mentions_main_container"}
-        %li#aw_js_trends_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/trends.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "Topical trends", "aw_scroll_top_id" => "aw_js_trends_main_container" }
-        %li#aw_js_popularity_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/popularity.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "Reputation and Rapport", "aw_scroll_top_id" => "aw_js_popularity_main_container" }
-        %li#aw_js_contacts_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/contacts.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "Your agile friends", "aw_scroll_top_id" => "aw_js_connections_main_container" }
-        %li#aw_js_videos_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/videos.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "Videos", "aw_scroll_top_id" => "aw_js_videos_main_container" }
-        %li#aw_js_pics_nav
-          %img.aw_js_scroll_nav{:src=>"/images/actwitty/refactor/aw_sketch/side_nav/pictures.png", :width=>"50px", :rel=>"nav_twipsy", "data-original-title" => "Pictures", "aw_scroll_top_id" => "aw_js_images_main_container" }
-      
-  .aw_page_wrapper
-    .aw_page_container
-      .aw_infographic_container
-          
+  .aw_page_stream_overlap_wrapper
+    #aw_streams_layout_header_level1
+    #aw_streams_layout_header_level2
+    #aw_streams_layout_header_level3
+    
+    #aw_streams_layout_mentions_header_level1 
+    #aw_streams_layout_mentions_header_level2
+    #aw_streams_layout_mentions_header_level3
 
-        #aw_js_interests_main_container.aw_section_container_box
-          .aw_section_container_info_box          
-            .aw_section_container_internal_data_label
-              %h3 THE INTEREST PROFILE 
+
+    
+    #aw_streams_layout_content_container
+      #aw_streams_layout_content_header
+        .aw_streams_layout_sidebar_entry
+          .aw_streams_layout_interests_header_label
+            /%span Technology
+          #aw_streams_layout_interests_meta_data
+             
+          .aw_streams_actwitty_share_on_social_media
             
-            #aw_js_topics_list_box.aw_section_container_internal_data_box
-              #aw_js_topics_shared_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }    
 
+      
+      #aw_streams_content_header_separator
+        %span.s1
+        %span.s2
+        %span.s3
+        %span.s4
+        %span.s5
+        
 
-        #aw_js_mentions_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 MENTIONS OFTEN MADE 
-            .aw_section_container_internal_data_box
-              #aw_js_mentions_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }         
-              .aw_sketch_mentions_list_container
-                #aw_js_mentions_list_box.aw_sketch_mention_box
+      #aw_streams_layout_entries_box.clearfix
+        #aw_streams_layout_entries.isotope_item.clearfix
+          /*#aw_streams_layout_entries_col0.isotope_item.clearfix
+          /*#aw_streams_layout_entries_col1.isotope_item.clearfix
+          /*#aw_streams_layout_entries_col2.isotope_item.clearfix
+          /*#aw_streams_layout_entries_col3.isotope_item.clearfix
+        
+        /*#aw_streams_layout_mentions_entries.aw_streams_layout_entries_small_width.isotope_item.clearfix
+        /*#aw_streams_layout_small_posts_entries.isotope_item.clearfix
+        /*#aw_streams_layout_posts_entries_fitCol.isotope_item.clearfix
+        /*  #awstreams_layout_posts_entries_fitCol_left.isotope_item.clearfix
+        /*  #awstreams_layout_posts_entries_fitCol_right.isotope_item.clearfix
+        /*#aw_streams_layout_video_entries.isotope_item.clearfix
+        /*#aw_streams_layout_image_entries.isotope_item.clearfix
+    #aw_page_footer
+      %img{:src=>"/images/actwitty/refactor/aw_common/aw_logo.png"}
+      %span @actwitty
+  
+  /* this has been kept to fetch and store the list and then trigger 
+  #aw_js_topics_list_box.aw_section_container_internal_data_box
+  #aw_js_mentions_list_box
+
+  
+
 
                 
 
 
 
-        #aw_js_trends_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 TRENDING ACROSS WEEKS
-            .aw_section_container_internal_data_box
-              #aw_js_trends_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-              #aw_sketch_timeline
-                %ul#aw_js_sketch_timeline_dates.aw_sketch_timeline_dates
-                %ul#aw_js_sketch_timeline_details.aw_sketch_timeline_details
-                %a#prev.aw_sketch_timeline_prev
-                %a#next.aw_sketch_timeline_next
 
 
      
 
 
-        #aw_js_popularity_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 REPUTATION AND RAPPORT
-            .aw_section_container_internal_data_box   
-              #aw_js_popularity_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-              #aw_js_service_popularity_box.aw_service_popularity_container_box
 
 
-        #aw_js_connections_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 YOUR AGILE FRIENDS 
-            .aw_section_container_internal_data_box
-              #aw_js_connections_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-              / #aw_js_friends_count_box.aw_friends_services_box
-              #aw_js_contacts.aw_services_contacts_box
 
-        #aw_js_locations_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 PLACES FLAGGED
-            .aw_section_container_internal_data_box 
-              #aw_js_locations_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-              #aw_js_locations.aw_locations_container_box
-                #aw_js_locations_map_canvas{:style => "height:300px; width: 300px padding-left: 25px"}
 
-        #aw_js_videos_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 VIDEOS ENGAGED IN
-            .aw_section_container_internal_data_box 
-              #aw_js_videos_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-              #aw_js_videos.aw_videos_container_box
 
-        #aw_js_images_main_container.aw_section_container_box
-          .aw_section_container_info_box
-            .aw_section_container_internal_data_label
-              %h3 LIFE IN PICTURES
-            .aw_section_container_internal_data_box
-              #aw_js_images_busy.aw_busy_box
-                .aw_busy_mini_box
-                  %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }
-              #aw_js_images_box.aw_images_container_box
-      /* side box
-      #aw_js_sidebox_container.aw_sidebox_outer_container.aw_sidebox_outer_container_absolute
-        .aw_sidebox_shell
-          #aw_js_stream_container.aw_stream_container
-            #aw_stream_container_header
-              #aw_js_stream_dynamic_header.aw_stream_container_header_label
-                FEED
-              #aw_js_stream_close_control.aw_stream_container_close
-                %a{:href=>"#"} close x
-            
-            #aw_js_stream_busy.aw_busy_box
-              .aw_busy_mini_box
-                %img.aw_busy_img{ :src => "/images/actwitty/refactor/aw_common/aw_loading.gif", :width => '50px', :height => '50px'  }    
-            #aw_js_stream_entries.aw_stream_entries
+
+
+
+
             
               
 

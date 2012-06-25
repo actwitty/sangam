@@ -6,7 +6,8 @@
 .aw_vertical_navigation_absolute {
   top: 80px;
   position: absolute;
-  z-index: 11; }
+  z-index: 11;
+  display: none; }
 
 .aw_vertical_navigation ul {
   list-style: none;
@@ -28,5 +29,5 @@
     .aw_vertical_navigation ul li img {
       cursor: pointer;
       padding: 2px;
-      border: 1px solid #cccccc;
+      border: 0px solid #cccccc;
       z-index: 4; }

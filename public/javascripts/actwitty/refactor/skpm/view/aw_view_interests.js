@@ -1,10 +1,38 @@
-
 /*********************************************************/
 /*
  *
  *
  */
 function aw_api_view_interest_render(data){
+  var html = "";
+  var single_box_html = "";
+  var shown_count = 0;
+  var total_count = data.length;
+  var max_show = 6;
+  $.each(data, function(index, topic_detail) {
+    var stream_layout_filter_id = 'aw_stream_layout_interest_id_' + topic_detail.name;
+    html = html + '<div class="aw_sketch_dyn_topics_box_name aw_js_filterer" aw_filter_on="topic"   aw_interest_filter="' + topic_detail.interest_id + '" ' + 'aw_filter_title="topic=' + topic_detail.name  + '" id="'+ stream_layout_filter_id  +'" >' + '</div>';
+
+  });
+
+  $("#aw_js_topics_list_box").append(html);
+
+  
+  if (aw_js_active_interest_stream != "" && 
+      aw_js_active_interest_stream != "all" && 
+      aw_js_active_interest_stream != "images" &&
+      aw_js_active_interest_stream != "videos" )
+    setup_stream_layout_view(aw_js_active_interest_stream); 
+}
+ 
+
+
+/*********************************************************/
+/*
+ *
+ *
+ */
+function aw_api_view_interest_render_ver2(data){
   var html = "";
   var single_box_html = "";
   var shown_count = 0;
@@ -39,6 +67,7 @@ function aw_api_view_interest_render(data){
     }
 
   var services_html_internal = '';
+  var stream_layout_filter_id = 'aw_stream_layout_interest_id_';
   $.each( topic_detail.services, function ( index, service){
     services_html_internal = services_html_internal + 
                        '<img class="aw_sketch_dyn_topics_box_services_img aw_js_filterer" '
@@ -53,6 +82,7 @@ function aw_api_view_interest_render(data){
     if( shown_count >= max_show){
       display_class="aw_js_topics_box_hide_on_less";
     }
+    stream_layout_filter_id = stream_layout_filter_id + topic_detail.name;
     single_box_html = '<div class="aw_sketch_dyn_topics_box ' + display_class + ' " >' +
                         '<div class="aw_sketch_dyn_topics_box_index aw_js_filterer"' + 
                                       'aw_filter_on="topic"'  + 
@@ -60,7 +90,7 @@ function aw_api_view_interest_render(data){
                                       'aw_filter_title="topic=' + topic_detail.name  + '" >' +
                             '<p>' + topic_detail.post  + '</p>' +
                         '</div>' +
-                        '<div class="aw_sketch_dyn_topics_box_name aw_js_filterer" aw_filter_on="topic"   aw_interest_filter="' + topic_detail.interest_id + '" ' + 'aw_filter_title="topic=' + topic_detail.name  + '"  >' +
+                        '<div class="aw_sketch_dyn_topics_box_name aw_js_filterer" aw_filter_on="topic"   aw_interest_filter="' + topic_detail.interest_id + '" ' + 'aw_filter_title="topic=' + topic_detail.name  + '" id="'+ stream_layout_filter_id  +'" >' +
                           '<p rel="twipsy" data-original-title="'  + topic_twipsy + '" >' + topic_detail.name + '</p>' +
                         '</div>' +
                         '<div class="aw_sketch_dyn_topics_box_images" >' +
@@ -127,8 +157,12 @@ function aw_api_view_interest_render(data){
     $("#aw_js_topics_shared_busy").hide();
     $("#aw_js_interests_main_container").show();
   }
-
+  setup_stream_layout_view(aw_js_active_interest_stream);  
 }
+
+
+
+
 /****************************************************************/
 /*
  *
