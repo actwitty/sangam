@@ -6,12 +6,18 @@ function aw_api_set_social_media_sharing(filter_link)
    filter_link = "http://" + aw_js_server_base + "/" + filter_link;
 
    var html = '<div class="aw_actwitty_share_on_twitter">'+
+                  '<iframe allowtransparency="true" frameborder="0" scrolling="no"'+
+                      'src="//platform.twitter.com/widgets/tweet_button.html?via=marcus_christie&amp;text=Replace%20Me&amp;count=horizontal"'+
+                      'style="width:130px; height:20px;">'+
+                  '</iframe>'+
+/*
                   '<a class="twitter-share-button" data-via="act_witty" href="https://twitter.com/share?text=https%3A%2F%2Factwitty%3Acom%2Fsammy_ji%2Aenjoying">Tweet</a>'+
                   '<script>'+
            
                       '!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");'+
           
                   '</script>'+
+*/                  
                 '</div>'+
                 '<div class="aw_actwitty_share_on_facebook">'+
                   '<fb:like href="'+filter_link+'" send="false" layout="button_count" width="200" show_faces="false"></fb:like>'+

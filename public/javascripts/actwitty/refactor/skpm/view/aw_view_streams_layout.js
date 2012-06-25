@@ -1522,6 +1522,9 @@ function aw_api_view_images_in_streams_layout(data)
 {
   var html = "";
 
+  var sharing_link = aw_js_global_visited_user_credentials.username + "/streams/images";
+  aw_api_set_social_media_sharing(sharing_link);
+
   
   $(".aw_streams_layout_interests_header_label").html('<span class="aw_filter_subfilter">Images</span>');
   $("#aw_streams_layout_interests_meta_data").empty();
@@ -1575,10 +1578,13 @@ $(window).load(function() {
 function aw_api_view_videos_in_streams_layout(data) 
 {
   var html = "";
-
   
+  var sharing_link = aw_js_global_visited_user_credentials.username + "/streams/videos";
+  aw_api_set_social_media_sharing(sharing_link);
+
   $(".aw_streams_layout_interests_header_label").html('<span class="aw_filter_subfilter">Videos</span>');
   $("#aw_streams_layout_interests_meta_data").empty();
+ 
 
   $("#aw_streams_layout_entries").html(""); 
   $.each(data, function(key, content) {
