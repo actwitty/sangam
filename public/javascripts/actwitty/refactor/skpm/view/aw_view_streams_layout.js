@@ -1521,6 +1521,11 @@ function aw_api_streams_layout_prepare_mentions_section(content_display_index)
 function aw_api_view_images_in_streams_layout(data) 
 {
   var html = "";
+
+  
+  $(".aw_streams_layout_interests_header_label").html('<span class="aw_filter_subfilter">Images</span>');
+  $("#aw_streams_layout_interests_meta_data").empty();
+
   $("#aw_streams_layout_entries").html(""); 
   $.each(data, function(key, content) {
       html = html +
@@ -1570,6 +1575,11 @@ $(window).load(function() {
 function aw_api_view_videos_in_streams_layout(data) 
 {
   var html = "";
+
+  
+  $(".aw_streams_layout_interests_header_label").html('<span class="aw_filter_subfilter">Videos</span>');
+  $("#aw_streams_layout_interests_meta_data").empty();
+
   $("#aw_streams_layout_entries").html(""); 
   $.each(data, function(key, content) {
       html = html + 
