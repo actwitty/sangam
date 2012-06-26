@@ -760,7 +760,7 @@ function aw_api_view_stream_layout_render_ver2(data)
   var options = {
       autoResize: true, // This will auto-update the layout when the browser window is resized.
       container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
-      offset: 15, // Optional, the distance between grid items
+      offset: 20, // Optional, the distance between grid items
       itemWidth: 225 // Optional, the width of a grid item
   };
       
@@ -768,13 +768,22 @@ function aw_api_view_stream_layout_render_ver2(data)
   var handler = $("#aw_streams_layout_entries div.aw_mark_post");
     
   // Call the layout function.
-  //handler.wookmark(options);  
-
+  handler.wookmark(options);  
+ 
+  /*$("#aw_streams_layout_entries").isotope({
+    itemSelector: '.aw_mark_post'
+  });
+  */
   
 
   $('#aw_streams_layout_entries').waitForImages(function() {
     //setupBlocks("#aw_streams_layout_entries" , handler);
     handler.wookmark(options);
+    /*
+    $("#aw_streams_layout_entries").isotope({
+      itemSelector: '.aw_mark_post'
+    });
+    */
     $("#aw_streams_layout_content_container").hideLoading(); 
   });
 
@@ -794,9 +803,6 @@ function aw_api_view_stream_layout_render_ver2(data)
 	  
     });
 
- // Prepare for final layouting
- //aw_api_view_streams_layout_apply_final_layouting(content_display_index );
-  
 }
 
 
@@ -1184,6 +1190,8 @@ function aw_api_view_stream_layout_render_header(data)
 }
 
 
+
+// Keep it for a while
 function aw_api_view_append_image_nav_in_header(data)
 {
 /*   var html = '<div id="aw_js_streams_layout_view_images" class="aw_streams_layout_header_icons">'+
@@ -1218,7 +1226,7 @@ function aw_stream_layout_prepare_meta_info_html(meta_data_type, meta_data_value
 {
   if (filter_on.indexOf("service") >= 0 ) {
       var title = "topic="+entry.name+",service="+meta_data_type;
-      var html = '<div class="aw_streams_layout_interests_meta_info_box aw_js_filterer" aw_interest_filter="' + entry.interest_id + '" aw_filter_on="'+filter_on+'" aw_filter_title="' + title  + '" aw_service_filter="'+meta_data_type+'">'+
+      var html = '<div class="aw_streams_layout_interests_meta_info_box " aw_interest_filter="' + entry.interest_id + '" aw_filter_on="'+filter_on+'" aw_filter_title="' + title  + '" aw_service_filter="'+meta_data_type+'">'+
                    '<div class="aw_streams_layout_interests_meta_info_icon">'+
                      '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/'+ meta_data_type+'.png">'+
                    '</div>'+
@@ -1229,7 +1237,7 @@ function aw_stream_layout_prepare_meta_info_html(meta_data_type, meta_data_value
                    '</p>'+
                   '</div>';
   } else  {
-      var html = '<div class="aw_streams_layout_interests_meta_info_box aw_js_filterer" aw_interest_filter="' + entry.interest_id + '" aw_filter_on="'+filter_on+'" aw_filter_title="topic=' + entry.name  + ',data_type='+ meta_data_type +'" >'+
+      var html = '<div class="aw_streams_layout_interests_meta_info_box " aw_interest_filter="' + entry.interest_id + '" aw_filter_on="'+filter_on+'" aw_filter_title="topic=' + entry.name  + ',data_type='+ meta_data_type +'" >'+
                    '<div class="aw_streams_layout_interests_meta_info_icon">'+
                      '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/'+ meta_data_type+'.png">'+
                    '</div>'+

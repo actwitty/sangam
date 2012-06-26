@@ -70,8 +70,10 @@ development: &default
   #Twitter url: https://dev.twitter.com/apps
   #LinkedIn: https://www.linkedin.com/secure/developer
 
-  facebook_app_id:                    '172893766124779'
-  facebook_secret_key:                'd842d4c68c7698a9e0a0823333d691a2'
+  #facebook_app_id:                    '172893766124779'
+  #facebook_secret_key:                'd842d4c68c7698a9e0a0823333d691a2'
+  facebook_app_id:                    '257785487654726'
+  facebook_secret_key:                '96ccabe8937d9fa727485356ccb7e995'
   twitter_consumer_key:               '2E38F1bp3pmvGMW5hYUPtA'
   twitter_consumer_secret:            'DfqFIM0Y3Z9JWWruWfi5V4kirktL0CpQzhebW9FE'
   linkedin_app_id:                    'g0l32ovkc3vr'
