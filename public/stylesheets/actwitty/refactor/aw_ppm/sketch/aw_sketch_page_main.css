@@ -98,8 +98,8 @@ body {
           .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_box .aw_user_profile_pic img {
             border: 0px solid white;
             border-radius: 2px;
-            width: 75px;
-            max-height: 80px; }
+            max-height: 80px;
+            max-width: 80px; }
         .aw_page_sketch_header .aw_banner_box .aw_banner_image_box .aw_banner_user_title_box a.aw_user_profile_name {
           text-decoration: none;
           width: 500px; }

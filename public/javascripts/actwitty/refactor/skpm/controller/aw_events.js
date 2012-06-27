@@ -169,7 +169,10 @@ $(document).ready(function(){
     aw_api_view_stream_prepare_mentions_header_viewer_operator();
   });
 
-    
+  $("#aw_hide_promo").live('click', function() {
+    $("#aw_streams_promo").slideToggle();
+  });
+
 });
 
 // for the window resize

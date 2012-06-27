@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Give+You+Glory);
 body {
   background: #e6e6e6; }
 
@@ -1170,11 +1171,35 @@ body {
 
 /***************** COMING SOON SECTION **************** */
 #aw_streams_promo {
-  width: 102%;
-  height: 30px;
-  border: 1px solid red;
-  display: block; }
+  width: 100%;
+  height: 40px;
+  display: block;
+  padding-left: 10px;
+  padding-top: 14px;
+  padding-right: 8px;
+  background: url(/images/actwitty/refactor/aw_sketch/stream_layout_view/bckg/blue_header.jpg);
+  font-family: "Give You Glory", cursive; }
+  #aw_streams_promo span {
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    color: white; }
+  #aw_streams_promo span.aw_get_your_page {
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+    color: #fafafa;
+    margin-right: 80px; }
+  #aw_streams_promo img {
+    vertical-align: middle;
+    margin-left: 8px; }
 
+#aw_hide_promo {
+  float: right;
+  max-width: 20px;
+  cursor: pointer; }
+
+/********************* CLEARFIXES FOR FLOATING DIVS **************** */
 .clearfix:after {
   clear: both; }
 
