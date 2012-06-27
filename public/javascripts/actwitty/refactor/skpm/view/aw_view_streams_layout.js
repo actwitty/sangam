@@ -760,7 +760,7 @@ function aw_api_view_stream_layout_render_ver2(data)
   var options = {
       autoResize: true, // This will auto-update the layout when the browser window is resized.
       container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
-      offset: 20, // Optional, the distance between grid items
+      offset: 22, // Optional, the distance between grid items
       itemWidth: 225 // Optional, the width of a grid item
   };
       
@@ -1172,6 +1172,8 @@ function aw_api_view_stream_layout_render_header(data)
       first_level_html = first_level_html + view_operator_html;
    }
 
+
+   
    first_level_html = first_level_html + '<div id="aw_js_streams_layout_view_images" class="aw_streams_layout_header_icons">'+
                  '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/camera_header_icon.png">'+
               '</div>'; 
@@ -1179,7 +1181,6 @@ function aw_api_view_stream_layout_render_header(data)
    first_level_html = first_level_html +  '<div id="aw_js_streams_layout_view_videos" class="aw_streams_layout_header_icons">'+
                 '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/video_header_icon.png">'+
               '</div>'; 
-
    $("#aw_streams_layout_header_level1").html(first_level_html);
    $("#aw_streams_layout_header_level2").html(second_level_html);
    $("#aw_streams_layout_header_level3").html(third_level_html);
@@ -1206,7 +1207,8 @@ function aw_api_view_append_image_nav_in_header(data)
 
 function aw_api_view_append_video_nav_in_header(data)
 {
-/*   var html = '<div id="aw_js_streams_layout_view_videos" class="aw_streams_layout_header_icons">'+
+/*
+  var html = '<div id="aw_js_streams_layout_view_videos" class="aw_streams_layout_header_icons">'+
                 '<img src="/images/actwitty/refactor/aw_sketch/stream_layout_view/icons/video_header_icon.png">'+
               '</div>'; 
    if (data.length) {
@@ -1533,19 +1535,25 @@ function aw_api_view_images_in_streams_layout(data)
   var sharing_link = aw_js_global_visited_user_credentials.username + "/streams/images";
   aw_api_set_social_media_sharing(sharing_link);
 
-  
   $(".aw_streams_layout_interests_header_label").html('<span class="aw_filter_subfilter">Images</span>');
   $("#aw_streams_layout_interests_meta_data").empty();
 
   $("#aw_streams_layout_entries").html(""); 
-  $.each(data, function(key, content) {
-      html = html +
-             '<div class="aw_mark_post_image">'+
-                '<a rel="aw_streams_layout_images_fancybox" href="'+content.url + '">' +
-                   '<img src="'+content.url+'">'+
-                '</a>'+
-             '</div>';
-  });
+  
+  if (data.length) {
+      $.each(data, function(key, content) {
+          html = html +
+                 '<div class="aw_mark_post_image">'+
+                    '<a rel="aw_streams_layout_images_fancybox" href="'+content.url + '">' +
+                       '<img src="'+content.url+'">'+
+                    '</a>'+
+                '</div>';
+      });
+  } else {
+      html = html + '<div class="aw_stream_no_data_found">'+
+                        '<h4 id="aw_stream_no_data_found_label"> Ahh no Images found!!!</h4>'+
+                    '</div>';
+  }
 
   $("#aw_streams_layout_entries").html(html);
 
@@ -1553,7 +1561,7 @@ function aw_api_view_images_in_streams_layout(data)
   var options = {
       autoResize: true, // This will auto-update the layout when the browser window is resized.
       container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
-      offset: 15, // Optional, the distance between grid items
+      offset: 20, // Optional, the distance between grid items
       itemWidth: 225 // Optional, the width of a grid item
   };
       
@@ -1595,12 +1603,18 @@ function aw_api_view_videos_in_streams_layout(data)
  
 
   $("#aw_streams_layout_entries").html(""); 
-  $.each(data, function(key, content) {
-      html = html + 
-             '<div class="aw_mark_post_videos">'+
-                aw_api_view_streams_layout_render_videos_section(content)+
-             '</div>';
-  });
+  if (data.length) {
+      $.each(data, function(key, content) {
+          html = html + 
+                 '<div class="aw_mark_post_videos">'+
+                    aw_api_view_streams_layout_render_videos_section(content)+
+                 '</div>';
+      });
+  } else {
+      html = html + '<div class="aw_stream_no_data_found">'+
+                        '<h4 id="aw_stream_no_data_found_label"> Ahh no Videos found!!!</h4>'+
+                    '</div>';
+  }
 
   $("#aw_streams_layout_entries").html(html);
 
@@ -1612,7 +1626,7 @@ function aw_api_view_videos_in_streams_layout(data)
   var options = {
       autoResize: true, // This will auto-update the layout when the browser window is resized.
       container: $('#aw_streams_layout_entries_box'), // Optional, used for some extra CSS styling
-      offset: 15, // Optional, the distance between grid items
+      offset: 20, // Optional, the distance between grid items
       itemWidth: 225 // Optional, the width of a grid item
   };
       
