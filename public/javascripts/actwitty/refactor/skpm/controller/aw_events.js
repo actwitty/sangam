@@ -24,7 +24,9 @@ $(".aw_js_filterer").live('click', function(){
   // view videos in streams layout
   $("#aw_js_streams_layout_view_videos").live('click', function() {
       $("#aw_streams_layout_content_container").showLoading(); 
-      aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+      // NOt sure why videos are not getting fetched
+      //aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+      aw_api_view_videos_in_streams_layout(); 
   });
 
 /*******************************************************/

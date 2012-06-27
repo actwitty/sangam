@@ -1591,10 +1591,13 @@ $(window).load(function() {
 
 
 
-function aw_api_view_videos_in_streams_layout(data) 
+function aw_api_view_videos_in_streams_layout() 
 {
   var html = "";
   
+  var data = aw_cache_api_get_data("aw.videos", null)
+  
+
   var sharing_link = aw_js_global_visited_user_credentials.username + "/streams/videos";
   aw_api_set_social_media_sharing(sharing_link);
 
@@ -1603,7 +1606,7 @@ function aw_api_view_videos_in_streams_layout(data)
  
 
   $("#aw_streams_layout_entries").html(""); 
-  if (data.length) {
+  if (data && data.length) {
       $.each(data, function(key, content) {
           html = html + 
                  '<div class="aw_mark_post_videos">'+
