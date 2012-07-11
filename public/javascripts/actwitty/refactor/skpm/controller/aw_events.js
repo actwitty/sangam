@@ -24,7 +24,9 @@ $(".aw_js_filterer").live('click', function(){
   // view videos in streams layout
   $("#aw_js_streams_layout_view_videos").live('click', function() {
       $("#aw_streams_layout_content_container").showLoading(); 
-      aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+      // NOt sure why videos are not getting fetched
+      //aw_cache_api_get_data("aw.videos", aw_api_view_videos_in_streams_layout);
+      aw_api_view_videos_in_streams_layout(); 
   });
 
 /*******************************************************/
@@ -167,7 +169,10 @@ $(document).ready(function(){
     aw_api_view_stream_prepare_mentions_header_viewer_operator();
   });
 
-    
+  $("#aw_hide_promo").live('click', function() {
+    $("#aw_streams_promo").slideToggle();
+  });
+
 });
 
 // for the window resize
