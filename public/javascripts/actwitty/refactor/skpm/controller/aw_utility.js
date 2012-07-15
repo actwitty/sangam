@@ -32,7 +32,7 @@ function setup_stream_layout_view(interest_name)
 
 function setup_mention_layout_view(mention_name)
 {
-  var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_name;
+  var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_name.replace(/ /g, '');
   var mention_obj = $("#"+mention_layout_filter_id);
   mention_obj.trigger("click");
 

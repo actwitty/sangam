@@ -108,10 +108,10 @@ development: &default
   analytics_update_user:                    "user"
 
   #Social Fetch
-  max_import_first_time:                  20
-  max_import_every_time:                  10
-  first_time_feed_storage:                10#100
-  every_time_feed_storage:                10#20 #imports after first import is done
+  max_import_first_time:                  300
+  max_import_every_time:                  50
+  first_time_feed_storage:                300
+  every_time_feed_storage:                50 #imports after first import is done
 
   #text categorization
   min_text_length_for_text_categorization:  140

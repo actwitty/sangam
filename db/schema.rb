@@ -309,8 +309,8 @@ ActiveRecord::Schema.define(:version => 20120507155331) do
     t.integer  "status",                  :default => 1
     t.datetime "next_update_timestamp",   :default => '1970-01-01 00:00:00'
     t.integer  "update_interval",         :default => 64800
-    t.integer  "every_time_feed_storage", :default => 10
-    t.integer  "first_time_feed_storage", :default => 10
+    t.integer  "every_time_feed_storage", :default => 50
+    t.integer  "first_time_feed_storage", :default => 300
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
   end
