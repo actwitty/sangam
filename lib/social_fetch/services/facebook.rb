@@ -59,6 +59,7 @@ module SocialFetch
           array.concat(hash["data"]) if !hash["data"].blank?
         end
 
+     
         Rails.logger.info("\n\n\n[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] Now Going to SORT ")
 
         #a = nil
@@ -81,8 +82,8 @@ module SocialFetch
          Rails.logger.error("[LIB] [SOCIAL_FETCH] [FETCHER] [FACEBOOK] [pull_data] **** RESCUE **** => #{e.message} for #{params.inspect}")
          return []
       end
-
-
+      
+ 
         #     INPUT => {  :user_id => 123,
         #                 :uid => "234",
         #                 :latest_msg_timestamp => 1994-11-05T13:15:30Z ( ISO 8601) #its an example it will be utc time,

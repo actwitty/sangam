@@ -23,7 +23,7 @@ module Categorization
           end
 
           req << SERVICES_MODULE::OpenCalais.make_request(k, "opencalais:#{k}") #service:idx creates uniq handle on service + index
-          req << SERVICES_MODULE::AlchemyApi.make_request(k, "alchemyapi:#{k}", element ) #service:idx creates uniq handle on service + index
+         # req << SERVICES_MODULE::AlchemyApi.make_request(k, "alchemyapi:#{k}", element ) #service:idx creates uniq handle on service + index
 
           index += 1
 

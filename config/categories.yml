@@ -3,223 +3,98 @@ sports:
   channel: sports
   hierarchy: /
   name: sports
-  personalize: sporty
-  sentence: things on sports
-  end_sentence: and things on sports
-  fb_timeline: sports
-  background: bkg1.jpg
-  img_counter: 1
 automobiles:
   type: /automobiles
   channel: automobiles
   hierarchy: /
   name: automobiles
-  personalize: roadie
-  sentence: roads, automobiles, cars
-  end_sentence: roads, automobiles and cars
-  fb_timeline: automobiles
-  background: bkg1.jpg
-  img_counter: 2
 entertainment:
   type: /entertainment
   channel: entertainment
   hierarchy: /
   name: entertainment
-  personalize: entertainer
-  sentence: music, movies, entertainment
-  end_sentence: music, movies and entertainment
-  fb_timeline: shares about entertainment
-  background: bkg2.jpg
-  img_counter: 3
 games:
   type: /games
   channel: games
   hierarchy: /
   name: toys and games
-  personalize: gamer
-  sentence: fun, games
-  end_sentence: fun and games
-  fb_timeline: shares about fun and games
-  background: bkg2.jpg
-  img_counter: 4
 leisure:
   type: /leisure
   channel: leisure
   hierarchy: /
-  name: leisure,recreation and fashion
-  personalize: fashionista 
-  sentence: leisure, recreation, fashion
-  end_sentence: leisure, recreation and fashion
-  fb_timeline: shares about leisure recreation and fashions
-  background: bkg3.jpg
-  img_counter: 5
-nonprofit:
+  name: leisure,recreation and faishon
+nonprofits:
   type: /nonprofit
   channel: nonprofit
   hierarchy: /
   name: nonprofits
-  personalize: philanthropist
-  sentence: philanthropy, not-for-profits
-  end_sentence: philanthropy and not-for-profits
-  fb_timeline: shares about nonprofits
-  background: bkg3.jpg
-  img_counter: 6
 stories:
   type: /stories
   channel: stories
   hierarchy: /
-  name: stories and general chit chats
-  sentence: general things with friends
-  end_sentence: and general things with friends
-  fb_timeline: shares in general things
-  background: bkg4.jpg
-  img_counter: 7
+  name: stories
 technology:
   type: /technology
   channel: technology
   hierarchy: /
   name: technology
-  sentence: science, gadgets, technology
-  end_sentence: science, gadgets and technology
-  fb_timeline: technology
-  background: bkg5.jpg
-  img_counter: 8
 world:
   type: /world
   channel: world
   hierarchy: /
   name: society, religion, environment, law, crime and politics
-  personalize: social
-  sentence: topics on society, religion, environment, law, crime and politics
-  end_sentence: topics on society, religion, environment, law, crime and politics
-  fb_timeline: shares in world
-  background: bkg5.jpg
-  img_counter: 9
 animals:
   type: /animals
   channel: animals
   hierarchy: /
   name: pets and animals
-  sentence: things about animals, plants and wildlife
-  end_sentence: things about animals, plants and wildlife
-  fb_timeline: shares about animals
-  background: bkg6.jpg
-  img_counter: 10
 business:
   type: /business
   channel: business
   hierarchy: /
   name: business
-  sentence: market, business, entreprenuership 
-  end_sentence: market, business and entreprenuership
-  fb_timeline: shares about business
-  background: bkg7.jpg
-  img_counter: 11
 health:
   type: /health
   channel: health
   hierarchy: /
   name: health, medical and phrama
-  sentence: fitness, health, medicines, pharmaceuticals
-  end_sentence: fitness, health, medicines and pharmaceuticals
-  fb_timeline: shares about health
-  background: bkg6.jpg
-  img_counter: 12
 food:
   type: /food
   channel: food
   hierarchy: /
   name: food and drink
-  sentence: recipes, restaurants, food, drink
-  end_sentence: recipes, restaurants, food and drink
-  fb_timeline: shares about food
-  background: bkg1.jpg
-  img_counter: 13
 books:
   type: /books
   channel: books
   hierarchy: /
   name: books and articles
-  personalize: reader
-  sentence: articles, books, reading material
-  end_sentence: articles, books and reading material
-  fb_timeline: shares about reads
-  background: bkg3.jpg
-  img_counter: 14
 arts:
   type: /arts
   channel: arts
   hierarchy: /
   name: arts and design
-  personalize: artist
-  sentence: aesthetics, art, design
-  sentence: aesthetics, art and design
-  fb_timeline: shares about arts
-  background: bkg5.jpg
-  img_counter: 15
 places:
   type: /places
-  channel: places
+  channel: places_events
   hierarchy: /
   name: places, travel and events 
-  personalize: tourist
-  sentence: tourism, places, travel, events, adventures
-  end_sentence: tourism, places, travel, events, adventures
-  fb_timeline: shares about places
-  background: bkg2.jpg
-  img_counter: 16
 home:
   type: /home
   channel: home
   hierarchy: /
   name: home
-  personalize: family person
-  sentence: family, managing home, furnishings, home decor
-  end_sentence: family, managing home, furnishings and home decor
-  fb_timeline: shares about home
-  background: bkg5.jpg
-  img_counter: 17
 education:
   type: /eductaion
   channel: education
   hierarchy: /
   name: education
-  personalize: teacher
-  sentence: literacy, education, schools, colleges
-  end_sentence: literacy, education, schools and colleges
-  fb_timeline: shares about education
-  background: bkg3.jpg
-  img_counter: 18
 hobbies:
   type: /hobbies
   channel: hobbies
   hierarchy: /
   name: hobbies and interests
-  personalize: hobbyist
-  sentence: hobbies, personal interests, amateurism
-  end_sentence: hobbies, personal interests and amateurism
-  fb_timeline: shares about hobbies
-  background: bkg6.jpg
-  img_counter: 19
 products:
   type: /products
   channel: products
   hierarchy: /
   name: brands and products
-  personalize: shopaholic
-  sentence: brands, products, shopping or marketting
-  end_sentence: brands, products and shopping or marketting
-  fb_timeline: shares about products
-  background: bkg7.jpg
-  img_counter: 20
-environment:
-  type: /environment
-  channel: environment
-  hierarchy: /
-  name: environment
-  personalize: environmentalist
-  sentence: nature, weather
-  end_sentence: and things on environment
-  fb_timeline: environment
-  background: bkg7.jpg
-  img_counter: 21

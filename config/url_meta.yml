@@ -1,0 +1,15 @@
+mashable:
+  category:
+    tag: 
+      name: 'nav#local > div.page-container'
+      type: "class"
+      delimiter: " "
+      word_index: 1
+      
+
+techcrunch:
+  category:
+    tag:
+      name: '.post-category-name h3 a'
+      type: "text"
+

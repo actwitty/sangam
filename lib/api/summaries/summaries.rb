@@ -1,6 +1,9 @@
+require 'multipart_body'
 module Api
   module Summaries
     class << self
+    
+   
       #INPUT
       #  {
       #    :user_id => 123
@@ -108,7 +111,6 @@ module Api
           Rails.logger.info("[LIB] [API] [SUMMARIES] [GET_SUMMARY] Leaving => Blank User ID => #{params.inspect}")
           return {}
         end
-
 
         array = []
         summary = Summary.includes(:user).where(:user_id => params[:user_id]).order("source_created_at DESC").all.each do |attr|

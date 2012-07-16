@@ -105,6 +105,9 @@ gem 'jquery-rails'
 #thin
 gem 'thin'
 
+gem 'multipart_body'
+
+gem 'domainatrix'
 
 group :development do
   #query reviewer
