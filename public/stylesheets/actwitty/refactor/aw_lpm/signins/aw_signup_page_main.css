@@ -13,7 +13,9 @@
 
 #aw_lpm_signup_main_div {
   font-family: RobotoRegular;
+  display: block;
   margin: auto;
+  margin-top: 100px;
   width: 900px;
   height: 800px;
   /*border: 8px solid #0fb4e7 */

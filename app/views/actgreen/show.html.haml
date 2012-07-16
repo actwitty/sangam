@@ -1,21 +1,33 @@
 :javascript
   var actgreen_list = #{@actgreen_list.to_json};
 
-
+.aw_home_top_header
+  .aw_home_top_header_content
+    %a{:href=>"https://www.actwitty.com"}
+      .aw_home_top_header_logo_img
+      .aw_home_top_header_logo
+    .aw_lpm_top_nav
+      %ul
+        %li
+          %a{:href=>"/about/show.html",:target => "_blank" } Team
+        %li
+          %a{:href=>"/actwitty",:target => "_blank" } Live 
+        %li
+          %a{:href=>"http://actwittyblog.tumblr.com/",:target => "_blank" } Blog      
+        %li
+          %a{:href=>"/actgreen",:target => "_blank" } Eco
+        %li
+          %a{:href=>"/api",:target => "_blank" } API      
 #aw_actgreen_main_header
   %a{:href=>"http://www.actwitty.com"}
-    %img{:src => "/images/actwitty/refactor/aw_lpm/act_green/actgreen.jpg"}/
-    %img.actgreen_actwitty_logo{:src => "/images/actwitty/refactor/aw_lpm/act_green/aw_main_header.png"}/
-    %span.actgreen_b ACT
-    %span.actgreen_g GREEN
+    %img{:src => "/images/actwitty/refactor/aw_lpm/act_green/actgreen.png", :width => "80px" }/
+    %span Mark a tree and we plant it for every 100th signup.
 
-#aw_actgreen_main_subheader
-  %h4 We intend to make ourselves environment friendly by planting a tree every 100th signup, to compensate for servers being run to serve Actwitty users. You can engage by wishing a tree at your geo location. We will try to get that planted starting from Bangalore. 
 #aw_actgreen_main_box
   #aw_actgreen_fields
     = simple_form_for(@actgreen,:as=>:actgreen, :url => actgreen_new_path, :remote => true, :html => { :class=>"well form-horizontal" }) do |f|
       %fieldset
-        %legend Act Green : Mark a tree
+        %legend Mark a tree
         .control-group
           %label.control-label{:for => "aw_actgreen_name"} Name
           .controls
@@ -47,34 +59,17 @@
                       :label => false,
                       :input_html => { :id=>'aw_actgreen_location_long_input', :type => 'hidden'} 
         .control-group
-          %label.control-label{:for => "actgreen_thoughts"} ActGreen Thoughts
+          %label.control-label{:for => "actgreen_thoughts"} Thoughts
           .controls
             = f.input :comment ,
                       :label => false,
                       :input_html => { :id=>'actgreen_thoughts', :class=>'input-xlarge', :placeholder => "Your Thoughts ....", :type => "text", :height=>"28px" }
-            %p.help-block Share your ActGreen thoughts with us.
+            %p.help-block Share your eco friendly thoughts with us.
         .form-actions
-          = f.submit "ActGreen, mark a tree...", :type => "submit",:class=>"btn btn-success", :id=>"aw_actgreen_submit"
+          = f.submit "Mark a tree...", :type => "submit",:class=>"btn btn-success", :id=>"aw_actgreen_submit"
         %p#actgreen_data_save_report.help-block Your wish for tree has been marked.
         %p#actgreen_data_save_report_err.help-block OOPS!! There seems to be some error, kindly try after some time   
   #aw_actgreen_map_canvas
-
-.aw_home_main_footer
-  .aw_home_footer
-    .aw_home_about_us
-      %a{:href=>"/about/show.html",:target => "_blank" } About Us
-    .aw_home_about_us
-      %a{:href=>"/show?id=26",:target => "_blank" } ActwittyLive 
-    .aw_home_about_us
-      %a{:href=>"http://actwittyblog.tumblr.com/",:target => "_blank" } Blog      
-    .aw_home_act_green
-      %a{:href=>"/actgreen",:target => "_blank" }
-        %span ActGreen
-        %img{:src=>"/images/actwitty/refactor/aw_lpm/aw_act_green.png",:target => "_blank", :height => "30px"}
-
-    .aw_home_follow_us
-      %a{:href=>"https://www.facebook.com/pages/Actwitty/162060013895162",:target => "_blank"}
-        %img{:src=>"/images/actwitty/refactor/aw_lpm/facebook.png",:target => "_blank"}
-      %a{:href=>"https://twitter.com/#!/act_witty", :target => "_blank" }
-        %img{:src=>"/images/actwitty/refactor/aw_lpm/twitter.png"}
-      %span follow us on
+.aw_lpm_page_footer
+  %img{:src => "/images/actwitty/refactor/aw_common/aw_logo.png"}
+  %span @actwitty  
