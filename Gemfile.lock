@@ -84,6 +84,8 @@ GEM
     diff-lcs (1.1.3)
     dj_remixes (0.2.4)
       mark_facets (>= 0.1.0)
+    domainatrix (0.0.10)
+      addressable
     em-http-request (1.0.2)
       addressable (>= 2.2.3)
       cookiejar
@@ -300,6 +302,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise (~> 1.5.0)
   dj_remixes
+  domainatrix
   em-http-request
   factory_girl_rails
   geocoder

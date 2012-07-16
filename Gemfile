@@ -106,6 +106,9 @@ gem 'jquery-rails'
 gem 'thin'
 
 gem 'multipart_body'
+
+gem 'domainatrix'
+
 group :development do
   #query reviewer
   #gem "query_reviewer", :git => "git://github.com/nesquena/query_reviewer.git"
