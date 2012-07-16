@@ -3,8 +3,9 @@
 
 .aw_home_top_header
   .aw_home_top_header_content
-    .aw_home_top_header_logo_img
-    .aw_home_top_header_logo
+    %a{:href=>"https://www.actwitty.com"}
+      .aw_home_top_header_logo_img
+      .aw_home_top_header_logo
     .aw_lpm_top_nav
       %ul
         %li
@@ -16,7 +17,7 @@
         %li
           %a{:href=>"/actgreen",:target => "_blank" } Eco
         %li
-          %a{:href=>"/actgreen",:target => "_blank" } API          
+          %a{:href=>"/api",:target => "_blank" } API      
 #aw_actgreen_main_header
   %a{:href=>"http://www.actwitty.com"}
     %img{:src => "/images/actwitty/refactor/aw_lpm/act_green/actgreen.png", :width => "80px" }/
@@ -69,4 +70,6 @@
         %p#actgreen_data_save_report.help-block Your wish for tree has been marked.
         %p#actgreen_data_save_report_err.help-block OOPS!! There seems to be some error, kindly try after some time   
   #aw_actgreen_map_canvas
-
+.aw_lpm_page_footer
+  %img{:src => "/images/actwitty/refactor/aw_common/aw_logo.png"}
+  %span @actwitty  

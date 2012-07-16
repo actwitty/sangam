@@ -3,8 +3,9 @@
 
 .aw_home_top_header
   .aw_home_top_header_content
-    .aw_home_top_header_logo_img
-    .aw_home_top_header_logo
+    %a{:href=>"https://www.actwitty.com"}
+      .aw_home_top_header_logo_img
+      .aw_home_top_header_logo
     .aw_lpm_top_nav
       %ul
         %li
@@ -16,7 +17,7 @@
         %li
           %a{:href=>"/actgreen",:target => "_blank" } Eco
         %li
-          %a{:href=>"/actgreen",:target => "_blank" } API          
+          %a{:href=>"/api",:target => "_blank" } API          
 #aw_home_main_container
   .aw_lpm_main_box
     .aw_lpm_intro
@@ -81,7 +82,7 @@
 .aw_lpm_page_footer
   %img{:src => "/images/actwitty/refactor/aw_common/aw_logo.png"}
   %span @actwitty  
-  
+%input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
 
 /Feed Back User Voice
 :javascript

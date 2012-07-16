@@ -336,6 +336,7 @@ div.aw_home_top_nav h3 {
 #aw_home_about_box {
   width: 100%;
   min-height: 200px;
+  margin-top: 150px;
   display: block; }
   #aw_home_about_box .aw_home_about_vertical_box {
     width: 37%;

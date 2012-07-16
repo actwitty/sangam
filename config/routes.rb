@@ -8,6 +8,7 @@ Sangam::Application.routes.draw do
   get   '/actgreen', :to => 'actgreen#show'
   match '/actgreen/new', :to => 'actgreen#new'
 
+  match '/api', :to => 'api#show'
 
 
  # devise_for :users

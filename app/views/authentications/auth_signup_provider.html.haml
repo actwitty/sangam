@@ -2,16 +2,20 @@
 %link{:href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css", :rel => "stylesheet", :type => "text/css"}/
 /=render "welcome/header"
 #aw_lpm_signup_main_box
-  %center
-    %a{:href=>"http://www.actwitty.com", :target=> "_blank"}
-      %img{:src=>"/images/actwitty/refactor/aw_lpm/aw_main_header.png"}
+  .aw_home_top_header
+    .aw_home_top_header_content
+      %a{:href=>"https://www.actwitty.com"}
+        .aw_home_top_header_logo_img
+        .aw_home_top_header_logo
   #aw_lpm_signup_main_div
     #awlpm_signup_aw_header_label
       %img{:src=>"/images/actwitty/refactor/aw_lpm/registration_label.png"}    
     #aw_lpm_signup_box.js_signup_partial
       =render :partial => "users/registrations/new", :locals => { :user => @user } 
 %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
-
+.aw_lpm_page_footer
+  %img{:src => "/images/actwitty/refactor/aw_common/aw_logo.png"}
+  %span @actwitty
 /Feed Back User Voice
 :javascript
   var uvOptions = {};

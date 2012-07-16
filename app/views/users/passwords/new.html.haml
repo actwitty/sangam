@@ -1,5 +1,9 @@
 #aw_lpm_forgot_pswd_main_box
-  %img{:src=>'/images/actwitty/refactor/aw_lpm/aw_main_header.png'}
+  .aw_home_top_header
+    .aw_home_top_header_content
+      %a{:href=>"https://www.actwitty.com"}
+        .aw_home_top_header_logo_img
+        .aw_home_top_header_logo
   #aw_lpm_forgot_pswd_main_div
     #aw_lpm_forgot_pswd_header_label 
       %center Forgot Your Password?
@@ -16,5 +20,7 @@
               :input_html => { :id => 'aw_lpm_forgot_pswd_email_input'}
       %input#aw_lpm_forgot_password_btn.button_actwitty.blue.medium.hover_point{ :type => "submit", :value => "Email Me"}/
     %input#page_mode{:name => "page_mode", :type => "hidden", :value => "#{@page_mode}" } 
-
+.aw_lpm_page_footer
+  %img{:src => "/images/actwitty/refactor/aw_common/aw_logo.png"}
+  %span @actwitty
 
