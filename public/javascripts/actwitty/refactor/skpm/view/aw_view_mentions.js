@@ -65,7 +65,7 @@ function aw_view_mentions_get_html_ver2(data){
             show_more = true;
           }
            
-          var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_data.name; 
+          var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_data.name.replace(/ /g, ''); 
           
           one_interest_html = one_interest_html +
                               '<div class="aw_sketch_mention_box aw_js_filterer ' + display_class + '" ' +
@@ -115,7 +115,7 @@ function aw_view_mentions_get_html(data){
 
         if(  mention_data.name && mention_data.image ){
            
-          var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_data.name; 
+          var mention_layout_filter_id = 'aw_stream_layout_mention_id_' + mention_data.name.replace(/ /g, ''); 
           
           main_html = main_html +
                               '<div class="aw_sketch_mention_box aw_js_filterer " ' +

@@ -147,6 +147,7 @@ class AuthenticationsController < ApplicationController
                             }           
               current_user.enable_service(enable_hash)
             end
+            redirect_to session[:return_to] || '/'
             
           else
             Rails.logger.info("[CNTRL][Authentications] #{current_user.full_name} already has auth for #{provider}")

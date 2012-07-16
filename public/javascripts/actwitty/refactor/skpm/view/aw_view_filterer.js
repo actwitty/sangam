@@ -4,15 +4,16 @@
 function aw_api_set_social_media_sharing(filter_link)
 {
    filter_link = "http://" + aw_js_server_base + "/" + filter_link;
-
    var html = '<div class="aw_actwitty_share_on_twitter">'+
                   '<iframe allowtransparency="true" frameborder="0" scrolling="no"'+
-                      'src="//platform.twitter.com/widgets/tweet_button.html?via=actwitty&amp;text=willaddtext&amp;count=horizontal"'+
+                      'src="//platform.twitter.com/widgets/tweet_button.html?via=act_witty&amp;text=' + aw_js_global_visited_user_credentials.username + " curated at " + filter_link + '&amp;count=horizontal"'+
                       'style="width:130px; height:20px;">'+
                   '</iframe>'+
+
+
                 '</div>'+
                 '<div class="aw_actwitty_share_on_facebook">'+
-                  '<fb:like href="'+filter_link+'" send="false" layout="button_count" width="200" show_faces="false"></fb:like>'+
+                ' <div class="fb-send" data-href=' + filter_link +  '></div>' +
                 '</div>'+
                 '<div class="aw_actwitty_share_on_googleplus">'+
                   '<g:plusone annotation="inline" size="medium" width="120">'+
@@ -71,7 +72,6 @@ function aw_api_view_decode_filter(object){
 
   var filter_type = "";
   var filter_value = "";
-  aw_js_global_visited_user_credentials.username;
 
 
   if( $.isArray(filter_set)){
@@ -95,7 +95,7 @@ function aw_api_view_decode_filter(object){
 
     if( filter_title == 'mention'){
       var mention_id = object.attr("aw_mention_filter");
-      filter_link = aw_js_global_visited_user_credentials.username + "/mentions/" + object.html();
+      filter_link = aw_js_global_visited_user_credentials.username + "/mentions/" + encodeURIComponent(object.html());
       if( !mention_id || !mention_id.length){
         filter['filter'] ={
                             entity: { 
