@@ -243,6 +243,7 @@ div.aw_home_top_nav h3 {
       box-shadow: 5px 5px 5px #cccccc;
       float: left;
       margin-left: 40px;
+      background-color: white;
       display: inline-block; }
   .aw_lpm_main_box .aw_lpm_page_share_section {
     width: 940px;
