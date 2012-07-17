@@ -168,6 +168,11 @@ module LinkResolution
 
           #Rails.logger.info(" [RAILS] [LIB] [SCREEN_SCRAP] [GET_FAVICON] Leaving")
 
+          #relative to absolute url
+          if (value =~ /^\/[\w.\/]+/) and  (!params[:root_url].nil?)
+            value = params[:root_url] + value
+          end
+
           params[:output]["favicon"] = value
         rescue => e
           Rails.logger.error("[RAILS] [LIB] [SCREEN_SCRAP] [GET_FAVICON] **** RESCUE **** #{e.message} ")
@@ -205,14 +210,12 @@ module LinkResolution
 
         def get_image_url(params)
 
-          Rails.logger.info(" [RAILS] [LIB] [SCREEN_SCRAP] [IMAGE_URL] Entering")
+          #Rails.logger.info(" [RAILS] [LIB] [SCREEN_SCRAP] [IMAGE_URL] Entering")
 
           img_url = nil
           value = process_node(params)
 
-          #Rails.logger.info(" [RAILS] [LIB] [SCREEN_SCRAP] [IMAGE_URL] Leaving")
-
-          if value.nil?
+          if value.nil? and (!params[:base_url].nil?)
 
             image = {:image => nil, :area => 0 }
             nodes = params[:document].css('img')
@@ -221,18 +224,31 @@ module LinkResolution
 
               width, height, area = 1, 1, 1
 
+              url = img['src']
+
+              #relative to absolute url
+              if (img['src'] =~ /^\/[\w.\/]+/) and (!params[:root_url].nil? )
+                url = params[:root_url] + img['src']
+              end
+
               #first match the domain
-              if img['src'] =~ /#{params[:base_url]}/ and img['src'] =~ IMAGE_EXTENSION
+              if url =~ /#{params[:base_url]}/ and img['src'] =~ IMAGE_EXTENSION
 
                 width = img['width'].to_i if !img['width'].nil?
                 height = img['height'].to_i if !img['height'].nil?
                 area = width * height
-                image = {:image => img['src'], :area =>area } if area > image[:area]
+                image = {:image => url, :area =>area } if area > image[:area]
               end
             end
             value = image[:image] if !image[:image].nil?
           end
 
+          #relative to absolute url
+          if (value =~ /^\/[\w.\/]+/) and  (!params[:root_url].nil?)
+            value = params[:root_url] + value
+          end
+
+          #Rails.logger.info(" [RAILS] [LIB] [SCREEN_SCRAP] [IMAGE_URL] Leaving")
           params[:output]["image_url"] = value
         rescue => e
           Rails.logger.error("[RAILS] [LIB] [SCREEN_SCRAP] [IMAGE_URL] **** RESCUE **** #{e.message} ")
@@ -368,8 +384,14 @@ module LinkResolution
               output["url"] = response[:handle]
               output["canonical_url"] = c_url
 
+              domain, base_url, root_url = nil,nil,nil
+
               url_info = get_domain(c_url)
-              domain = url_info.domain
+              if !url_info.nil?
+                domain = url_info.domain
+                base_url = url_info.domain + "." + url_info.public_suffix
+                root_url = url_info.scheme+"://"+url_info.subdomain+"."+ base_url
+              end
 
               url_meta = nil
               url_meta = URL_META[domain] if !domain.blank?
@@ -405,7 +427,8 @@ module LinkResolution
                                       :document => doc,
                                       :output => output,
                                       :meta => meta,
-                                      :base_url =>  url_info.domain + "." + url_info.public_suffix,
+                                      :root_url => root_url,
+                                      :base_url =>  base_url,
                                       :default_tags => tags
                                    }
                     )

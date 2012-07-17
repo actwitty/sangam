@@ -20,7 +20,7 @@ module SocialFetch
           data_array = []
 
 #          access_token = '440859440-UGWWkwH5WAebLkwncu8hCN5kcmNiKbKzvFUkZx3W'
-#          uid = "440859440"
+#          uid = "1344951"        #wired
 #          token_secret = 'Hpqy3xEtp8zxLJEfZz3rNsMTg0Eg0Dx2qHHaLqOYDQ'
 
           access_token = params[:access_token]
@@ -465,6 +465,11 @@ module SocialFetch
 
         def validate_profile_feed_blob(params)
           #Rails.logger.info("[LIB] [SOCIAL_FETCH] [FETCHER] [TWITTER] [validate_profile_feed_blob] Entering")
+
+          #return false for reply messages which does not have any links
+          if params[:blob]["text"] =~ /^[@]\w+/
+            return false unless params[:blob]["text"] =~ /(http:\/\/|https:\/\/)\w+\.[\S]+/
+          end
 
           #if updated before  the "last_updated_at" then dont accept
           return false if params[:latest_msg_timestamp] >= params[:blob]["created_at"].to_time.utc
