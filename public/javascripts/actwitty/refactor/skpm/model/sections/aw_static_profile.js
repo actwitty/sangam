@@ -33,6 +33,7 @@ function aw_api_model_static_profile_add_service(service_name){
   aw_local_static_profile_total_count++;
 }
 
+
 /*************************************************/
 /*
  * These credentials are loaded as a part of the main
@@ -117,7 +118,6 @@ var aw_api_static_profile_fetch_cb = function(service_name, data, status){
  */
 function aw_api_model_static_profile_trigger_fetch(){
   aw_lib_console_log("DEBUG", "entering:aw_api_model_static_profile_trigger_fetch");
-
   $.each(aw_local_static_profile_services_to_poll, function(key, val) {
     aw_lib_console_log("DEBUG", "static_profile calling for " + key);
     aw_global_services_api_registry[key]["static_profile"](aw_api_static_profile_fetch_cb);

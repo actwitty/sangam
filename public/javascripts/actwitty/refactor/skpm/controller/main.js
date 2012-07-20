@@ -152,7 +152,7 @@ function aw_api_controller_sketch_start_data_pulls(){
 
   /* trigger */
   //1. Static profile section
-  //aw_api_model_static_profile_trigger_fetch();
+  aw_api_model_static_profile_trigger_fetch();
   //aw_api_model_stream_view_fetch();
   //aw_api_model_visited_user_feed_fetch();
   aw_api_model_videos_fetch();

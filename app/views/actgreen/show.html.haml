@@ -9,15 +9,17 @@
     .aw_lpm_top_nav
       %ul
         %li
-          %a{:href=>"/about/show.html",:target => "_blank" } Team
+          %a{:href=>"/" } Home
         %li
-          %a{:href=>"/actwitty",:target => "_blank" } Live 
+          %a{:href=>"/about" } Team
         %li
-          %a{:href=>"http://actwittyblog.tumblr.com/",:target => "_blank" } Blog      
+          %a{:href=>"/act_witty" } Live
         %li
-          %a{:href=>"/actgreen",:target => "_blank" } Eco
+          %a{:href=>"/blog" } Blog      
         %li
-          %a{:href=>"/api",:target => "_blank" } API      
+          %a.active{:href=>"/actgreen" } Eco
+        %li
+          %a{:href=>"/api" } API          
 #aw_actgreen_main_header
   %a{:href=>"http://www.actwitty.com"}
     %img{:src => "/images/actwitty/refactor/aw_lpm/act_green/actgreen.png", :width => "80px" }/

@@ -20,11 +20,19 @@ var windowWidth = 0;
 var blocks = [];
 
 $(function(){
-	$(window).resize(setupBlocks);
+  //SUDHANSHU :Hacked
+	$(window).resize(setupBlocks("#aw_streams_layout_entries" , null));
 });
 
 function setupBlocks(container, selector) {
+  console.log("----------------------------------");
+  console.log(container);
+  console.log("----------------------------------");
 	windowWidth = $(container).width();
+  //SUDHANSHU :Hacked
+  if( selector == undefined){
+    selector = $("#aw_streams_layout_entries div.aw_mark_post");
+  }
 	blocks = [];
 
 	// Calculate the margin so the blocks are evenly spaced within the window
@@ -358,7 +366,7 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
         var content_html = "";
 
        
-        if( attachment.title ){
+        if( attachment.title && attachment.provider != undefined ){
           title_html = '<div class="aw_attachment_title_box_longpost" >' +
                           '<a href="' + attachment.url + '" target="_blank" class="aw_headline" >' +
                             attachment.title +    
@@ -377,7 +385,7 @@ function aw_view_stream_get_attachments_for_longpost_html(entry){
 
 
         if( attachment.description){
-          if( attachment.provider ){
+          if( attachment.provider && attachment.provider != undefined ){
             caption_html =  '<span class="aw_attachment_caption" >' +
                                 attachment.provider +
                              '</span>';
@@ -1077,6 +1085,10 @@ function aw_api_view_stream_layout_render_mentions_header(data)
 
 
    $.each(data, function(key, entry){
+     if( !entry.id || !entry.name ){
+       //skip blanks
+       return;
+     }
       topic_index = topic_index + 1;
       if (topic_index <= 10) {
           first_level_html = first_level_html +

@@ -9,6 +9,7 @@ Sangam::Application.routes.draw do
   match '/actgreen/new', :to => 'actgreen#new'
 
   match '/api', :to => 'api#show'
+  match '/blog', :to => 'blog#show'
 
 
  # devise_for :users
@@ -73,8 +74,7 @@ Sangam::Application.routes.draw do
 
 
 
-  match '/about/show' => 'about#show'
-  match '/team/show' => 'team#show'
+  match '/about' => 'about#show'
 
   
   match '/invites/admin' => 'invites#admin'

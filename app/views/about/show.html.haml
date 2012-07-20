@@ -15,15 +15,17 @@
     .aw_lpm_top_nav
       %ul
         %li
-          %a{:href=>"/about/show.html",:target => "_blank" } Team
+          %a{:href=>"/" } Home
         %li
-          %a{:href=>"/actwitty",:target => "_blank" } Live 
+          %a.active{:href=>"/about/show.html" } Team
         %li
-          %a{:href=>"http://actwittyblog.tumblr.com/",:target => "_blank" } Blog      
+          %a{:href=>"/act_witty" } Live
         %li
-          %a{:href=>"/actgreen",:target => "_blank" } Eco
+          %a{:href=>"/blog" } Blog      
         %li
-          %a{:href=>"/api",:target => "_blank" } API    
+          %a{:href=>"/actgreen" } Eco
+        %li
+          %a{:href=>"/api" } API          
 #aw_home_main_container
 
   #aw_home_about_box
