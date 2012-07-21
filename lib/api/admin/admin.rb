@@ -9,6 +9,10 @@ module Api
       def delete_user(params)
         Rails.logger.info("[LIB] [API] [ADMIN] [DELETE_USER] entering #{params.inspect}")
 
+        delete_extra_activities
+
+        return
+
         if params[:user_id].blank?
           raise  "User or Provider or UID at provider cant be blank"
         end
@@ -26,6 +30,31 @@ module Api
       rescue => e
         Rails.logger.error("[LIB] [API] [ADMIN] [DELETE_USER] **** RESCUE **** #{e.message} For #{params.inspect}")
         false
+      end
+
+      def delete_extra_activities
+        Rails.logger.info("[LIB] [API] [ADMIN] [DELETE_EXTRA_ACTIVITIES] Entering")
+
+        u = User.all
+
+        u.each do |attr|
+          Activity.remove_activity_more_than_limit(:user_id => attr.id)
+
+          summaries = Summary.where(:user_id => attr.id).map(&:id)
+
+           #update user analytics
+          SummaryRank.build_analytics(:user_id => attr.id, :action => AppConstants.analytics_update_user, :num_of_week => 1)
+
+          if !summaries.blank?
+            #update summaries analytics
+            SummaryRank.build_analytics(:user_id => attr.id, :summary_id => summaries,
+                                    :action => AppConstants.analytics_update_summaries, :num_of_week => 1)
+          end
+        end
+
+        Rails.logger.info("[LIB] [API] [ADMIN] [DELETE_EXTRA_ACTIVITIES] Leaving")
+      rescue => e
+        Rails.logger.error("[LIB] [API] [ADMIN] [DELETE_EXTRA_ACTIVITIES] **** RESCUE **** #{e.message}")
       end
     end
   end

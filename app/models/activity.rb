@@ -376,8 +376,24 @@ class Activity < ActiveRecord::Base
       Rails.logger.error("[MODEL] [ACTIVITY] [remove_activity] **** RESCUE **** FAILED #{e.message} for #{params.to_s}")
       {}
     end
+    #INPUT {:user_id => 234 } #self user -id
+    #OUTPUT => attributes of deleted activity
+    def remove_activity_more_than_limit(params)
+      Rails.logger.info("[MODEL] [Activity] [remove_activity_more_than_limit] entering ")
 
+      a = Activity.where( :author_id => params[:user_id]).order("source_created_at DESC").limit(AppConstants.maximum_activities_of_user + 1).all
+
+      if a.size == (AppConstants.maximum_activities_of_user + 1)
+        Activity.destroy_all(:source_created_at.lteq =>  a[AppConstants.maximum_activities_of_user].source_created_at, :author_id => params[:user_id])
+      end
+
+      Rails.logger.info("[MODEL] [Activity] [remove_activity_more_than_limit] leaving ")
+    rescue => e
+      Rails.logger.error("[MODEL] [ACTIVITY] [remove_activity_more_than_limit] **** RESCUE **** FAILED #{e.message} ")
+    end
   end
+
+
 
 
   private

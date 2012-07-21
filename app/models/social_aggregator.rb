@@ -121,6 +121,8 @@ class SocialAggregator < ActiveRecord::Base
           num_of_week = AppConstants.analytics_default_number_of_week
         end
 
+        #Activity.remove_activity_more_than_limit(:user_id => params[:user_id])
+
         #update user analytics
         SummaryRank.build_analytics(:user_id => params[:user_id], :action => AppConstants.analytics_update_user, :num_of_week => num_of_week)
 

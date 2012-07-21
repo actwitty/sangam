@@ -108,10 +108,11 @@ development: &default
   analytics_update_user:                    "user"
 
   #Social Fetch
-  max_import_first_time:                  20
+  max_import_first_time:                  50
   max_import_every_time:                  10
   first_time_feed_storage:                20 #100
   every_time_feed_storage:                10 #20 #imports after first import is done
+  maximum_activities_of_user:             10
 
   #text categorization
   min_text_length_for_text_categorization:  140
@@ -132,7 +133,7 @@ development: &default
   local_action_recommend:                   "recommend"
 
   #Social Fetch
-  maximum_time_diff_for_social_fetch:        64800#in seconds    #18 hours
+  maximum_time_diff_for_social_fetch:        194400#in seconds    #54 hours
 
    #status during social fetch pipeline
   data_sync_new:                            1   #can be deleted in this state
@@ -210,6 +211,7 @@ production:
   max_import_every_time:                  20
   first_time_feed_storage:                50#100
   every_time_feed_storage:                50#20 #imports after first import is done
+  maximum_activities_of_user:             200
 
   #text categorization
   min_text_length_for_text_categorization:  140

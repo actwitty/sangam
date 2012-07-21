@@ -427,8 +427,8 @@ module LinkResolution
                                       :document => doc,
                                       :output => output,
                                       :meta => meta,
-                                      :root_url => root_url,
-                                      :base_url =>  base_url,
+                                      :root_url => root_url, #http://blog.google.com
+                                      :base_url =>  base_url, #google.com
                                       :default_tags => tags
                                    }
                     )
