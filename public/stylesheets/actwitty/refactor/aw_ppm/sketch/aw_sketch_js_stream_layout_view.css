@@ -207,7 +207,7 @@ body {
     padding: 12px; }
     .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_stream_content .aw_attachment_content_box {
       font-size: 13px;
-      font-weight: bold; }
+      font-weight: normal; }
     .aw_stream_layout_home_topical_section .aw_stream_home_page_content .aw_attachment_image_box_longpost {
       text-align: center;
       max-width: 210px;
@@ -787,6 +787,7 @@ body {
     color: black; }
     .article_width_wit_post .aw_stream_content .aw_attachment_content_box_longpost .aw_attachment_paragraph {
       font-size: 12px;
+      font-weight: normal;
       line-height: 18px;
       margin-top: 10px;
       margin-bottom: 0;
