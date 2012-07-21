@@ -41,6 +41,7 @@ Sangam::Application.routes.draw do
   end
 
   post "/crawled_user"  =>  "home#create_crawled_user"
+  post "/open_user"     => "home#create_open_user"
 
   match '/show' => 'home#show'
   match '/thanks' => 'home#thanks'

@@ -88,6 +88,7 @@ development: &default
   user_type_admin:                    1
   user_type_web_admin:                2
   user_type_crawled:                  3
+  user_type_open:                     4
 
   #FOR PUBLIC SHOW
   ghost_user_email:                       "administrator@actwitty.com"
@@ -113,6 +114,7 @@ development: &default
   first_time_feed_storage:                20 #100
   every_time_feed_storage:                10 #20 #imports after first import is done
   maximum_activities_of_user:             10
+  extra_delete:                           5   #to keep some buffer to pile up before next delete
 
   #text categorization
   min_text_length_for_text_categorization:  140
@@ -211,7 +213,8 @@ production:
   max_import_every_time:                  20
   first_time_feed_storage:                50#100
   every_time_feed_storage:                50#20 #imports after first import is done
-  maximum_activities_of_user:             200
+  maximum_activities_of_user:             250
+  extra_delete:                           50
 
   #text categorization
   min_text_length_for_text_categorization:  140

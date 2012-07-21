@@ -337,6 +337,8 @@ class HomeController < ApplicationController
     Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
     if user_signed_in?
 
+      current_user.create_open_user(params)
+
       if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
         params[:user_id]=Integer(params[:user_id])
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of current users")
@@ -681,6 +683,25 @@ class HomeController < ApplicationController
       render :json => {}, :status => 400
     end
   end
+
+  ###################################################################
+  def create_open_user
+    Rails.logger.info("[CNTRL] [HOME] [CREATE_OPEN_USER] Params:#{params}")
+
+    response_json = current_user.create_open_user(params)
+
+    Rails.logger.debug("[CNTRL] [HOME] [CREATE_OPEN_USER] Model Response:#{response_json}")
+
+    if request.post?
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_OPEN_USER] Params:#{params}")
+      render :json => {:response => true}, :status => 200
+
+    else
+      Rails.logger.info("[CNTRL] [HOME] [CREATE_OPEN_USER] [REJECTED] Params:#{params}")
+      render :json => {}, :status => 400
+    end
+  end
+
   ###################################################################
   def delete_user
     Rails.logger.info("[CNTRL] [HOME] [DELETE_USER] Params:#{params}")
@@ -695,6 +716,7 @@ class HomeController < ApplicationController
       render :json => {}, :status => 400
     end
   end
+
   ###################################################################
   def disable_service
     Rails.logger.info("[CNTRL] [HOME] [DISABLE_SERVICE] Params:#{params}")

@@ -6,6 +6,7 @@ require "search/search"
 require "entities/entities"
 require "admin/admin"
 require "user_crawl/user_crawl"
+require "user_open/user_open"
 require "social_shares/fb_timeline"
 
 require 'helpers/plan_table_query/plan_table_query'
@@ -875,6 +876,25 @@ module Api
         result = ::Api::UserCrawl.create_crawled_user(params)
       end
 
+
+################################################ OPEN USER ################################################
+      #INPUT
+      #HASH
+      #            {
+      #               :provider => "twitter",
+      #               :uid => "23232323",
+      #               :full_name => "Alok Srivastava"
+      #               :email => "alok@actwitty.com" [MANDATORY]
+      #               :photo => "http://xyz.com/123"  [OPTIONAL]
+      #               :location => "Bangalore" [OPTIONAL]
+      #               :gender => "male" [OPTIONAL]
+      #               :username => "mashable"[OPTIONAL]
+      #             },
+      #
+
+      def create_open_user(params)
+        result = ::Api::UserOpen.create_open_user(h)
+      end
 
 ############################################### SOCIAL SHARE ###########################################
       #  INPUT

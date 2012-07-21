@@ -9,10 +9,6 @@ module Api
       def delete_user(params)
         Rails.logger.info("[LIB] [API] [ADMIN] [DELETE_USER] entering #{params.inspect}")
 
-        delete_extra_activities
-
-        return
-
         if params[:user_id].blank?
           raise  "User or Provider or UID at provider cant be blank"
         end
