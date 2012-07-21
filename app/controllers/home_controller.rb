@@ -337,8 +337,6 @@ class HomeController < ApplicationController
     Rails.logger.info("[CNTRL][HOME][GET STREAMS] user get streams requested with params #{params}")
     if user_signed_in?
 
-      current_user.create_open_user(params)
-
       if !params[:user_id].blank? && Integer(params[:user_id]) == current_user.id
         params[:user_id]=Integer(params[:user_id])
         Rails.logger.error("[CNTRL][HOME][GET FRIENDS SUMMARY] Bad request cannot get friends of current users")
