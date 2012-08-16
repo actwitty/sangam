@@ -44,10 +44,15 @@
                                                   name: '#{current_user.full_name}',
                                                   pic: '#{current_user.photo_small_url}'                                        
                                                 };
+
 -else
   :javascript
     var aw_js_global_logged_in_user_credentials = { };
-
+- if user_signed_in?
+  - if current_user.email == @user.email
+    %script#IntercomSettingsScriptTag
+      console.log("I M IN");
+      var intercomSettings = { app_id: '41tyvp4p', email: '#{current_user.email}', created_at: #{Time.now.to_i} };
 #fb-root
   :javascript
     (function(d, s, id) {
@@ -219,3 +224,5 @@
     uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/qSgEkukkoJykzYLLS3m3w.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
+
+

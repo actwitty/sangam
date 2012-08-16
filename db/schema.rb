@@ -225,10 +225,10 @@ ActiveRecord::Schema.define(:version => 20120507155331) do
   create_table "local_actions", :force => true do |t|
     t.integer  "author_id"
     t.integer  "summary_id"
-    t.text     "meta",       :default => "--- {}\n\n"
+    t.text     "meta",       :default => "--- {}\n"
     t.text     "name"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   add_index "local_actions", ["author_id"], :name => "index_local_actions_on_author_id"
@@ -308,7 +308,7 @@ ActiveRecord::Schema.define(:version => 20120507155331) do
     t.text     "latest_msg_id",           :default => ""
     t.integer  "status",                  :default => 1
     t.datetime "next_update_timestamp",   :default => '1970-01-01 00:00:00'
-    t.integer  "update_interval",         :default => 64800
+    t.integer  "update_interval",         :default => 194400
     t.integer  "every_time_feed_storage", :default => 10
     t.integer  "first_time_feed_storage", :default => 20
     t.datetime "created_at",                                                 :null => false
@@ -328,7 +328,7 @@ ActiveRecord::Schema.define(:version => 20120507155331) do
     t.integer  "activity_id"
     t.text     "source_name"
     t.text     "source_msg_id"
-    t.text     "meta",              :default => "--- {}\n\n"
+    t.text     "meta",              :default => "--- {}\n"
     t.text     "name"
     t.integer  "count"
     t.datetime "source_created_at", :default => '1970-01-01 00:00:00'
