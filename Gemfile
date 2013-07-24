@@ -17,7 +17,7 @@ gem 'haml', '>= 3.0.25'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
 
-require "sass/plugin"
+#gem "sass/plugin"
 
 group :assets do
   gem  'compass-rails'
