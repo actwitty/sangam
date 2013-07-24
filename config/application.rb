@@ -47,6 +47,9 @@ module Sangam
     #disable asset pipeline 
     config.assets.enabled=false
 
+    # needed
+    config.generators.stylesheet_engine = :sass
+
     # be sure to check the documentation.
     config.generators do |g|
       g.template_engine :haml

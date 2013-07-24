@@ -16,6 +16,9 @@ gem 'bundler', '>= 1.0.0'
 gem 'haml', '>= 3.0.25'
 gem 'haml-rails', '>= 0.3.4', :group => :development
 
+
+require "sass/plugin"
+
 group :assets do
   gem  'compass-rails'
   gem 'compass_twitter_bootstrap'
@@ -63,7 +66,8 @@ gem 'rails3-generators'
 gem "validates_existence", ">= 0.4"
 
 
-gem 'client_side_validations'
+#gem 'client_side_validations'
+gem 'client_side_validations', :github => 'bcardarella/client_side_validations', :branch => '3-2-stable'
 
 #Form Styling
 gem 'simple_form' , '1.4.1'
